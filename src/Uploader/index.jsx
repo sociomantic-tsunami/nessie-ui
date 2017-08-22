@@ -25,9 +25,11 @@ export default class Uploader extends Component
         /**
         *  Uploader state
         */
-        uploadState : PropTypes.oneOf( [ 'default',
+        uploadState : PropTypes.oneOf( [
+            'default',
             'uploading',
-            'uploaded' ] ),
+            'uploaded'
+        ] ),
         /**
         *  Display as disabled
         */
@@ -83,7 +85,8 @@ export default class Uploader extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition    : PropTypes.oneOf( [ 'left',
+        errorMessagePosition    : PropTypes.oneOf( [
+            'left',
             'right',
             'top',
             'bottom',
@@ -132,10 +135,10 @@ export default class Uploader extends Component
         const { id } = this.state;
 
         const buttonRole = 'default';
-        let hasTooltip = false;
-        let uploaded   = false;
-        let isLoading  = false;
-        let iconType   = 'upload';
+        let   hasTooltip = false;
+        let   uploaded   = false;
+        let   isLoading  = false;
+        let   iconType   = 'upload';
         const iconTheme  = 'button';
 
         let uploaderButtonClass = cssMap.uploadButton;
@@ -176,8 +179,8 @@ export default class Uploader extends Component
             <Css
                 cssMap = { cssMap }
                 cssProps = { {
-                    loading         : isLoading,
                     uploaded,
+                    loading         : isLoading,
                     disabled        : isDisabled,
                     previewDisabled : previewisDisabled
                 } }>
@@ -205,14 +208,14 @@ export default class Uploader extends Component
                         tooltipIsVisible = { tooltipIsVisible }>
                         <div className = { cssMap.buttonsContainer }>
                             <Tooltip
-                                isVisible = { uploadState ===
-                                'uploaded' && previewTooltipIsVisible }
+                                isVisible = { uploadState === 'uploaded' &&
+                                              previewTooltipIsVisible }
                                 message   = { previewTooltipMessage }
                                 className = { cssMap.previewTooltip }>
                                 <Button
                                     role       = { buttonRole }
                                     className  = { uploaderButtonClass }
-                                    onClick    = { onClick }
+                                    onClick    = { !isDisabled && onClick }
                                     isDisabled = { isDisabled }
                                     isReadOnly = { isReadOnly }
                                     iconType   = { iconType }>
@@ -227,7 +230,8 @@ export default class Uploader extends Component
                             { uploaded  &&
                                 <IconButton
                                     className  = { cssMap.uploadedButton }
-                                    onClick    = { onClickSecondary }
+                                    onClick    = { !isDisabled &&
+                                                   onClickSecondary }
                                     isDisabled = { isDisabled }
                                     isReadOnly = { isReadOnly }
                                     iconType   = "delete"
