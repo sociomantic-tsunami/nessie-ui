@@ -103,7 +103,8 @@
 
 .buttonsContainer
 {
-    display:   flex;
+    display:    flex;
+    box-shadow: 0 0.1rem 0.2rem 0 var( --GS-5 );
 
     & > *
     {
@@ -137,6 +138,59 @@
     {
         background-color:   var( --PC-BLUE );
     }
+}
+
+
+.fakeButton
+{
+        flex:               0 0 auto;
+
+        position:           relative;
+        display:            flex;
+
+        width:              auto;
+        height:             3.2rem;
+
+        border:             none;
+        border-radius:      0;
+        padding:            0;
+
+        background:         var( --PC-BLUE );
+
+        cursor:             pointer;
+
+        &.fakeHovered,
+        &:hover
+        {
+            background: color( var( --PC-BLUE ) shade( 13% ) );
+        }
+}
+
+.fakeButtonIconContainer
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    width:              3rem;
+    height:             100%;
+
+    border-right:       0.1rem solid var( --PC-WHITE );
+}
+
+.fakeButtonTextContainer
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    padding:            0 1.5rem
+}
+
+.fakeButtonText
+{
+    color:          var( --PC-WHITE );
+    text-transform: uppercase;
 }
 
 

@@ -9,6 +9,8 @@ import Spinner          from '../Spinner';
 import IconButton       from '../IconButton';
 import Tooltip          from '../Tooltip';
 import Label            from '../Label';
+import Icon             from '../Icon';
+import Text             from '../Text';
 
 export default class Uploader extends Component
 {
@@ -73,11 +75,11 @@ export default class Uploader extends Component
         /**
          * onClick callback function: ( e ) => { ... }
          */
-        onClick                 : PropTypes.func,
+        onClickPreview                 : PropTypes.func,
         /**
-         * onClickSecondary callback function: ( e ) => { ... }
+         * onClickDelete callback function: ( e ) => { ... }
          */
-        onClickSecondary        : PropTypes.func,
+        onClickDelete        : PropTypes.func,
         /**
          * onChange callback function: ( e ) => { ... }
          */
@@ -121,8 +123,8 @@ export default class Uploader extends Component
             isReadOnly,
             label,
             onChange,
-            onClick,
-            onClickSecondary,
+            onClickPreview,
+            onClickDelete,
             previewisDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
@@ -139,7 +141,6 @@ export default class Uploader extends Component
         let   uploaded   = false;
         let   isLoading  = false;
         let   iconType   = 'upload';
-        const iconTheme  = 'button';
 
         let uploaderButtonClass = cssMap.uploadButton;
         let messageType;
@@ -174,6 +175,21 @@ export default class Uploader extends Component
             message     = errorMessage;
         }
 
+        const fakeUploadButton = (
+            <label
+                className = { cssMap.fakeButton }
+                htmlFor   = { id }>
+                <div className = { cssMap.fakeButtonIconContainer }>
+                    <Icon type = "upload" theme = "button" />
+                </div>
+                <div className = { cssMap.fakeButtonTextContainer }>
+                    <Text className = { cssMap.fakeButtonText }>
+                        { buttonLabel }
+                    </Text>
+                </div>
+            </label>
+        );
+
 
         return (
             <Css
@@ -186,6 +202,7 @@ export default class Uploader extends Component
                 } }>
                 <div className = { className }>
                     <input
+                        id        = { id }
                         type      = "file"
                         name      = { `${id}-file` }
                         className = { cssMap.input }
@@ -207,21 +224,23 @@ export default class Uploader extends Component
                         tooltipPosition  = { errorMessagePosition }
                         tooltipIsVisible = { tooltipIsVisible }>
                         <div className = { cssMap.buttonsContainer }>
-                            <Tooltip
-                                isVisible = { uploadState === 'uploaded' &&
-                                              previewTooltipIsVisible }
-                                message   = { previewTooltipMessage }
-                                className = { cssMap.previewTooltip }>
-                                <Button
-                                    role       = { buttonRole }
-                                    className  = { uploaderButtonClass }
-                                    onClick    = { !isDisabled && onClick }
-                                    isDisabled = { isDisabled }
-                                    isReadOnly = { isReadOnly }
-                                    iconType   = { iconType }>
-                                    { buttonLabel }
-                                </Button>
-                            </Tooltip>
+                            { uploadState === 'default' ? fakeUploadButton :
+                                <Tooltip
+                                    isVisible = { uploadState === 'uploaded' &&
+                                                  previewTooltipIsVisible }
+                                    message   = { previewTooltipMessage }
+                                    className = { cssMap.previewTooltip }>
+                                    <Button
+                                        role       = { buttonRole }
+                                        className  = { uploaderButtonClass }
+                                        onClick    = { onClickPreview }
+                                        isDisabled = { isDisabled }
+                                        isReadOnly = { isReadOnly }
+                                        iconType   = { iconType }>
+                                        { buttonLabel }
+                                    </Button>
+                                </Tooltip>
+                            }
                             { isLoading &&
                                 <div className = { cssMap.loadingOverlay }>
                                     <Spinner className = { cssMap.spinner } />
@@ -230,12 +249,11 @@ export default class Uploader extends Component
                             { uploaded  &&
                                 <IconButton
                                     className  = { cssMap.uploadedButton }
-                                    onClick    = { !isDisabled &&
-                                                   onClickSecondary }
+                                    onClick    = { onClickDelete }
                                     isDisabled = { isDisabled }
                                     isReadOnly = { isReadOnly }
                                     iconType   = "delete"
-                                    iconTheme  = { iconTheme } />
+                                    iconTheme  = "button" />
                             }
                         </div>
                     </IconWithTooltip>
