@@ -147,7 +147,9 @@ export default class IconButton extends Component
                 cssMap   = { cssMap }
                 cssProps = { {
                     role,
-                    disabled : isDisabled } }>
+                    disabled    : isDisabled,
+                    fakeHovered : forceHover,
+                } }>
                 <button
                     ref       = { buttonRef }
                     type      = "button"
