@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
-import Icon                 from '../Icon';
+import { IconButton }       from '../index';
 
 export default class Sorter extends Component
 {
@@ -41,9 +41,7 @@ export default class Sorter extends Component
     constructor()
     {
         super();
-        this.state = {
-            isHovered : false
-        };
+        this.state = { isHovered: false };
     }
 
     render()
@@ -88,13 +86,15 @@ export default class Sorter extends Component
                                 iconSize   = "S"
                                 role       = "light"
                                 iconType   = "up"
-                                forceHover = { fakeHovered || sort === 'asc' } />
+                                forceHover =
+                                    { fakeHovered || sort === 'asc' } />
                             <IconButton
-                                className  = { cssMap.up }
+                                className  = { cssMap.down }
                                 iconSize   = "S"
                                 role       = "light"
                                 iconType   = "down"
-                                forceHover = { fakeHovered || sort === 'desc' } />
+                                forceHover =
+                                    { fakeHovered || sort === 'desc' } />
                         </div>
                     }
                 </div>
