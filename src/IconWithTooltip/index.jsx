@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React, { Component }    from 'react';
+import PropTypes               from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import Icon                 from '../Icon';
-import Tooltip              from '../Tooltip';
-import Text                 from '../Text';
+import Css                     from '../hoc/Css';
+import { Icon, Tooltip, Text } from '../index';
+
 
 export default class IconWithTooltip extends Component
 {
@@ -134,7 +133,8 @@ export default class IconWithTooltip extends Component
                 cssMap   = { cssMap }
                 cssProps = { {
                     iconVisible : iconIsVisible,
-                    position    : !!children && iconPosition
+                    position    : !!children && iconPosition,
+                    disabled    : isDisabled,
                 } }>
                 <div className = { className }>
                     { children &&
@@ -151,6 +151,7 @@ export default class IconWithTooltip extends Component
                             onMouseOver = { onMouseOver }
                             onMouseOut  = { onMouseOut }>
                             <Icon
+                                className  = { cssMap.icon }
                                 size       = { iconSize }
                                 type       = { iconType }
                                 variant    = "fill" />
