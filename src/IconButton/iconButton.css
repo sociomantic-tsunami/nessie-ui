@@ -1,4 +1,5 @@
 @import "../proto/base.css";
+@import '../proto/definitions/_colors.css';
 
 .default
 {
@@ -23,8 +24,62 @@
     }
 }
 
+.role__control
+{
+    .icon
+    {
+        fill:   var( --GS-2 );
+    }
+
+    &:hover,
+    &.fakeHovered
+    {
+        .icon
+        {
+            fill:   var( --PC-BLUE );
+        }
+    }
+}
+.role__light
+{
+    .icon
+    {
+        fill:   color( var( --GS-2 ) a( 50% ) );
+    }
+
+    &:hover,
+    &.fakeHovered
+    {
+        .icon
+        {
+            fill:   var( --PC-BLUE );
+        }
+    }
+}
+.role__navigation
+{
+    .icon
+    {
+        fill:   color( var( --GS-2 ) a( 50% ) );
+    }
+
+    &:hover,
+    &.fakeHovered
+    {
+        .icon
+        {
+            fill:   var( --GS-2 );
+        }
+    }
+}
+
 .disabled
 {
     cursor:         default;
-    pointer-events: none;
+
+    .icon
+    {
+        fill:   var( --GS-7 );
+        color:  var( --GS-7 );
+    }
 }

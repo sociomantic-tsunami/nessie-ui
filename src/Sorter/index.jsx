@@ -83,22 +83,18 @@ export default class Sorter extends Component
                     </div>
                     { sorterIsVisible &&
                         <div className = { cssMap.sorter }>
-                            <Icon
+                            <IconButton
                                 className  = { cssMap.up }
-                                size       = "S"
-                                theme      = "light"
-                                type       = "up"
-                                forceHover = {
-                                    fakeHovered || sort === 'asc'
-                                } />
-                            <Icon
-                                className  = { cssMap.down }
-                                size       = "S"
-                                theme      = "light"
-                                type       = "down"
-                                forceHover = {
-                                    fakeHovered || sort === 'desc'
-                                } />
+                                iconSize   = "S"
+                                role       = "light"
+                                iconType   = "up"
+                                forceHover = { fakeHovered || sort === 'asc' } />
+                            <IconButton
+                                className  = { cssMap.up }
+                                iconSize   = "S"
+                                role       = "light"
+                                iconType   = "down"
+                                forceHover = { fakeHovered || sort === 'desc' } />
                         </div>
                     }
                 </div>

@@ -52,19 +52,24 @@ export default class IconButton extends Component
             'show',
             'up',
             'upload',
-            'validation'
+            'validation',
+            'alert',
+            'approved',
+            'declined',
+            'ended',
+            'error',
+            'pending',
+            'show',
+            'hide'
         ] ),
         /**
-         *  Icon theme
+         *  Appearance of the icon button
          */
-        iconTheme : PropTypes.oneOf( [
+        role : PropTypes.oneOf( [
             'light',
-            'dark',
-            'button',
             'control',
             'navigation'
         ] ),
-
         /**
          *  Display as disabled
          */
@@ -108,7 +113,7 @@ export default class IconButton extends Component
     static defaultProps =
     {
         iconSize   : 'S',
-        iconTheme  : 'control',
+        role       : 'control',
         isDisabled : false,
         isReadOnly : false,
         forceHover : false,
@@ -125,7 +130,7 @@ export default class IconButton extends Component
             iconSize,
             iconType,
             forceHover,
-            iconTheme,
+            role,
             isDisabled,
             isReadOnly,
             label,
@@ -141,8 +146,8 @@ export default class IconButton extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    disabled : isDisabled,
-                    size     : iconSize } }>
+                    role,
+                    disabled : isDisabled } }>
                 <button
                     ref       = { buttonRef }
                     type      = "button"
@@ -156,10 +161,7 @@ export default class IconButton extends Component
                     <Icon
                         className  = { cssMap.icon }
                         size       = { iconSize }
-                        type       = { iconType }
-                        theme      = { iconTheme }
-                        isDisabled = { isDisabled }
-                        forceHover = { forceHover }>
+                        type       = { iconType }>
                         { children || label }
                     </Icon>
                 </button>

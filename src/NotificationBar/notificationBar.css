@@ -26,6 +26,7 @@
 .info
 {
     margin-right:   2rem;
+    fill:           var( --PC-WHITE );
 }
 
 .close

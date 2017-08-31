@@ -58,15 +58,14 @@ export default class NotificationBar extends Component
         return (
             <Css
                 cssMap   = { cssMap }
-                cssProps = { { type : messageType,
-                    top  : isFixed } }>
+                cssProps = { {
+                    type : messageType,
+                    top  : isFixed
+                } }>
 
-                <div className  = { className }>
+                <div className = { className }>
 
-                    <Icon
-                        className  = { cssMap.info }
-                        type       = "info"
-                        theme      = "button" />
+                    <Icon className = { cssMap.info } type = "info" />
 
                     { ( children || message ) &&
                     <Text className = { cssMap.message }>

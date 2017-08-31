@@ -151,7 +151,6 @@ export default class IconWithTooltip extends Component
                             onMouseOver = { onMouseOver }
                             onMouseOut  = { onMouseOut }>
                             <Icon
-                                isDisabled = { isDisabled }
                                 size       = { iconSize }
                                 type       = { iconType }
                                 variant    = "fill" />
