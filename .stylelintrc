@@ -1,28 +1,38 @@
 {
+	"extends": "stylelint-config-standard",
   "rules": {
+		"at-rule-no-unknown" : [
+			true,
+			"ignoreAtRules" : "extend"
+			] ,
     "block-no-empty": null,
-    "block-opening-brace-space-before" : "always",
-    "block-opening-brace-newline-before" : "never",
+    "block-opening-brace-space-before" : null,
+    "block-opening-brace-newline-before" : "always",
     "block-opening-brace-newline-after" :"always",
+		"block-closing-brace-empty-line-before" : "never",
     "color-no-invalid-hex": true,
+		"color-hex-case": "upper",
+		"comment-no-empty": true,
+		"comment-whitespace-inside": "always",
     "declaration-block-no-duplicate-properties": true,
-    "declaration-block-no-ignored-properties" : true,
+		"declaration-block-no-redundant-longhand-properties" : null,
     "declaration-block-no-shorthand-property-overrides" : true,
+		"declaration-empty-line-before": null,
     "declaration-block-semicolon-newline-after": "always",
     "declaration-block-single-line-max-declarations": 1,
-    "declaration-colon-space-after": true,
+    "declaration-colon-space-after": null,
     "declaration-no-important": true,
-    "indentation": [ "tab", { indentInsideParens: "twice" }],
-    "no-indistinguishable-colors" : true,
+    "indentation": [ 4, { "indentInsideParens": "twice" }],
+		"function-parentheses-space-inside" : "always",
     "max-empty-lines": 7,
-    "max-nesting-depth" : 2,
-    "rule-nested-empty-line-before": "always",
-    "rule-non-nested-empty-line-before": "always",
+    "max-nesting-depth" : 3,
+		"selector-pseudo-class-no-unknown": [ true, {
+		  "ignorePseudoClasses": ["global"]
+		}],
     "unit-whitelist": ["em", "rem", "%", "s", "vw", "vh", "px"],
     "unit-no-unknown": true,
     "unit-case" : "lower",
-    "value-no-vendor-prefix" : true,
-    "time-no-imperceptible" :true
+    "value-no-vendor-prefix" : true
   },
   "ignorefiles" : [ "./node_modules/normalize.css/normalize.css" ]
 }
