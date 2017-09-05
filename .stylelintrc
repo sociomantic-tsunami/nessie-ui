@@ -24,14 +24,40 @@
     "declaration-no-important": true,
     "indentation": [ 4, { "indentInsideParens": "twice" }],
 		"function-parentheses-space-inside" : "always",
+		"length-zero-no-unit": true,
     "max-empty-lines": 7,
     "max-nesting-depth" : 3,
-		"selector-pseudo-class-no-unknown": [ true, {
-		  "ignorePseudoClasses": ["global"]
-		}],
-    "unit-whitelist": ["em", "rem", "%", "s", "vw", "vh", "px"],
+		"number-leading-zero": "always",
+		"property-case": "lower",
+		"rule-empty-line-before": [
+				"always",
+				{
+					"ignore": ["after-comment", "inside-block" ]
+				}
+			],
+		"selector-attribute-quotes": "always",
+		"selector-attribute-brackets-space-inside": "always",
+		"selector-attribute-operator-space-after": "always",
+		"selector-attribute-operator-space-before": "always",
+		"selector-combinator-space-after": "always",
+		"selector-combinator-space-before": "always",
+		"selector-descendant-combinator-no-non-space": true,
+		"selector-pseudo-class-case": "lower",
+		"selector-pseudo-class-no-unknown": [
+				true,
+				{
+			  	"ignorePseudoClasses": ["global"]
+				}
+			],
+		"selector-pseudo-class-parentheses-space-inside": "always",
+		"selector-pseudo-element-colon-notation": "double",
+		"selector-pseudo-element-case": "lower",
+		"selector-type-case": "lower",
+		"selector-list-comma-newline-after": "always",
+    "unit-whitelist": ["em", "rem", "%", "s", "ms", "vw", "vh", "px"],
     "unit-no-unknown": true,
     "unit-case" : "lower",
+		"value-keyword-case": "lower",
     "value-no-vendor-prefix" : true
   },
   "ignorefiles" : [ "./node_modules/normalize.css/normalize.css" ]
