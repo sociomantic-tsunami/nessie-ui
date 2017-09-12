@@ -1,0 +1,41 @@
+@import "../proto/checkable.css";
+
+.default
+{
+}
+
+.input:checked + .label::after
+{
+    display:                block;
+
+    background:             url( './images/validation--blue.svg' );
+
+    width:                  1.6rem;
+    height:                 1.6rem;
+
+    top:                    0.8rem;
+    left:                   0.3rem;
+}
+
+.fakeHovered
+{
+}
+
+.disabled,
+.disabled:hover
+{
+    .input:checked + .label::after
+    {
+        background:         url( './images/validation--grey.svg' );
+    }
+}
+
+
+.error,
+.error:hover
+{
+    .input:checked + .label::after
+    {
+        background:         url( './images/validation--red.svg' );
+    }
+}

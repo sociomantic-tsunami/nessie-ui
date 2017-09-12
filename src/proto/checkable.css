@@ -1,0 +1,121 @@
+@import "./base.css";
+@import "./definitions/_colors.css";
+
+.default
+{
+    padding-top:        0.5rem;
+    padding-bottom:     0.5rem;
+
+    width:              auto;
+
+    &:last-child
+    {
+        margin-bottom:      0;
+    }
+
+    &:hover .label
+    {
+        cursor:             pointer;
+
+        &::before
+        {
+            border-color:   var( --PC-BLUE );
+        }
+    }
+}
+
+.fakeHovered
+{
+    .label::before,
+    .input:focus + .label::before
+    {
+        border-color:   var( --PC-BLUE );
+    }
+}
+
+.label
+{
+    display:            inline-block;
+    vertical-align:     middle;
+
+    white-space:        nowrap;
+
+    &::before
+    {
+        content:            '';
+
+        display:            inline-block;
+        vertical-align:     middle;
+
+        position:           relative;
+
+        box-sizing:         border-box;
+        width:              2.2rem;
+        height:             2.2rem;
+
+        border:             0.1rem solid color(var( --GS-2 ) a( 50%) );
+
+        background:         var( --PC-WHITE );
+    }
+
+    &::after
+    {
+        content:            '';
+        display:            none;
+        background-size:    100%;
+        background-repeat:  no-repeat;
+    }
+
+    & > :first-child
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        margin-left:    1rem;
+    }
+}
+
+.error
+{
+    .label::before,
+    &:hover .label::before,
+    .input:focus + .label::before
+    {
+        border-color:       var( --AC-2 );
+    }
+}
+
+.disabled
+{
+    cursor:                 default;
+
+    .label,
+    .label:hover
+    {
+        cursor:             default;
+    }
+
+    .label::before,
+    &:hover .label::before,
+    .input:focus + .label::before
+    {
+        cursor:             default;
+        border-color:       var( --GS-10 );
+        background-color:   var( --GS-10 );
+    }
+}
+
+.input
+{
+    position:   absolute;
+    left:       -9999px;
+
+    &:checked + .label::after
+    {
+        position:   absolute;
+    }
+
+    &:focus + .label::before
+    {
+        border-color:   var( --PC-BLUE );
+    }
+}

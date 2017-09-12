@@ -1,0 +1,51 @@
+/*@import "../proto/base.css";*/
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    padding:    0 3rem;
+}
+
+.header /* rules from base.css */
+{
+    display:        block;
+    position:       relative;
+
+    box-sizing:     border-box;
+    width:          100%;
+
+    font-size:      1.4rem;
+    line-height:    1.8rem;
+
+    word-break:     normal;
+}
+
+.header
+{
+    margin-bottom:  3rem;
+
+    &:last-child
+    {
+        margin-bottom:  2rem;
+    }
+}
+
+.controls
+{
+    min-height: 5.2rem;
+}
+
+.title
+{
+    margin-bottom:  2rem;
+}
+
+.subtitle
+{
+    @extend %Nessie-Regular;
+    font-size:      1.4rem;
+    line-height:    1.6rem;
+    min-height:     1.6rem;
+    top:            0.4rem;
+    margin-top:     -0.6rem;
+}

@@ -1,0 +1,104 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    display:            block;
+
+    box-sizing:         border-box;
+    width:              100%;
+
+    border:             0.1rem solid color( var( --GS-2 ) a( 50% ) );
+
+    padding-top:        0.8rem;
+    padding-bottom:     0.6rem;
+    padding-left:       1rem;
+    padding-right:      1rem;
+
+    background-color:   var( --PC-WHITE );
+    color:              var( --GS-2 );
+
+    /* make sure we inherit all font styles */
+    font:               inherit;
+    line-height:        inherit;
+
+    /* removes clear and reveal password icons from IE */
+    &::-ms-reveal
+    {
+        display: none;
+    }
+
+    &::-ms-clear
+    {
+        display: none;
+    }
+
+    &::placeholder
+    {
+        color:  color( var( --GS-2 ) a( 50% ) );
+    }
+
+    &:hover,
+    &:focus
+    {
+        border-color:   var( --PC-BLUE );
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        &::placeholder
+        {
+            color: transparent !important;
+        }
+    }
+
+    textarea&
+    {
+        resize: none;
+    }
+}
+
+
+.fakeHovered
+{
+    border-color:   var( --PC-BLUE );
+}
+
+.error
+{
+    border-color:   var( --AC-2 ) !important; /* yes, always override other states */
+}
+
+.disabled
+{
+    background:     var( --GS-10 );
+    color:          color( var( --GS-2 ) a( 50% ) );
+    border-color:   var( --GS-10 );
+
+    &:hover,
+    &:focus
+    {
+        border-color:   var( --GS-10 );
+    }
+}
+
+
+.align__left
+{
+    text-align: left;
+}
+
+.align__right
+{
+    text-align: right;
+}
+
+.resizable
+{
+    textarea&
+    {
+        resize: vertical;
+    }
+}

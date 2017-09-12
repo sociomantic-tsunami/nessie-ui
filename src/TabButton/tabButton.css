@@ -1,0 +1,42 @@
+@import "../proto/definitions/_fonts.css";
+@import "../Button/button.css";
+
+.default
+{
+    margin-bottom:	0;
+    color:          var( --PC-BLUE ) ;
+
+    box-shadow:     none;
+
+    .content
+    {
+        border-bottom:  0;
+    }
+
+    &:hover .content
+    {
+        border-color:       var( --PC-BLUE ) ;
+    }
+}
+
+.label
+{
+	@extend %Nessie-SemiBold;
+	padding-top:	0.8rem;
+	padding-bottom:	0.4rem;
+}
+
+.active
+{
+    background:     var( --PC-BLUE )  !important;
+    color:          var( --PC-WHITE ) !important;
+    pointer-events: none;
+    cursor:         default;
+
+}
+
+.subtitle
+{
+	font-weight: 		normal;
+    text-transform:     initial;
+}

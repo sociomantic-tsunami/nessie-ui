@@ -1,0 +1,50 @@
+@import "../proto/checkable.css";
+
+.default
+{
+}
+
+.label
+{
+/*     line-height: 1.8rem;
+ */}
+.label::before
+{
+    border-radius:              50%;
+}
+
+.input:checked + .label::after
+{
+    display:                block;
+
+    background-color:       var( --PC-BLUE );
+    border-radius:          50%;
+
+    width:                  0.8rem;
+    height:                 0.8rem;
+
+    top:                    1.2rem;
+    left:                   0.7rem;
+}
+
+.fakeHovered
+{
+}
+
+.disabled,
+.disabled:hover
+{
+    .input:checked + .label::after
+    {
+        background-color:       color(var( --GS-2 ) a( 50%) );
+    }
+}
+
+.error,
+.error:hover
+{
+    .input:checked + .label::after
+    {
+        background-color:       var( --AC-2 );
+    }
+}

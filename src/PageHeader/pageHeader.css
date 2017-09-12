@@ -1,0 +1,18 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    flex:           0 0 auto;
+    width:          100%;
+
+    margin:         0;
+    border-bottom:  0.1rem solid var( --PC-WHITE );
+
+    background:     var( --PC-WHITE );
+}
+
+.content
+{
+    margin: 3rem 4rem;
+}

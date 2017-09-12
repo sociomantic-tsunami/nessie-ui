@@ -1,0 +1,46 @@
+.default
+{
+    /*  pladeholder */
+}
+
+.list
+{
+	display:			flex;
+	flex-direction:		row;
+	flex-wrap:			wrap;
+
+	flex-direction:		row;
+	justify-content:	flex-start;
+	align-items:		flex-start;
+
+    margin:             0;
+    padding:            0;
+
+    list-style-type:	none;
+}
+
+.listItem
+{
+    display:		block;
+
+    margin:         0;
+    margin-right:	3rem;
+
+    &:last-child
+    {
+    	margin:	0;
+    }
+}
+
+.layout__vertical
+{
+	.list
+	{
+		flex-direction:	column;
+	}
+
+    .listItem
+    {
+        margin: 0;
+    }
+}

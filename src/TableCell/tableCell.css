@@ -1,0 +1,63 @@
+@import "../proto/definitions/_fonts.css";
+
+$shark: 768px;
+
+.default
+{
+    /*flex-direction: row;*/
+
+    &::before
+    {
+        content:        attr( data-column-title );
+
+        position:       relative;
+
+        flex:           0 0 calc( 1 / 3 * 100% );
+
+        font-family:    Nessie-Bold;
+        top:            0.5rem;
+        margin-top:     -0.8rem;
+
+        font-size:      1.2rem;
+        line-height:    1.6rem;
+
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+    }
+
+    /*@media( min-width: $shark )
+    {*/
+        flex-direction: column;
+
+        &::before
+        {
+            display:    none;
+        }
+    /*}*/
+}
+
+.header /* required until we have a TableHeader text component */
+{
+    display:        none;
+
+    top: 			0.5rem;
+	margin-top: 	-0.8rem !important;
+
+    @extend %Nessie-Bold;
+
+    /*@media( min-width: $shark )
+    {*/
+        display:    flex;
+    /*}*/
+}
+
+
+.data
+{
+    padding-left:       0.5rem;
+
+    &.header
+    {
+        @extend %Nessie-Bold;
+    }
+}

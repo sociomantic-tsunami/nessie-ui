@@ -1,0 +1,28 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    display:        block;
+    margin-bottom:  1rem;
+
+    width:          auto;
+
+    @extend %Nessie-Bold;
+
+    white-space:    nowrap;
+
+    &[for]
+    {
+        cursor: pointer;
+    }
+
+    legend& /* fix for buggy <legend> element */
+    {
+        float:  left;
+        & + *
+        {
+            clear: left;
+        }
+    }
+}

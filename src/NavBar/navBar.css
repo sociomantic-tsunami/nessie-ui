@@ -1,0 +1,23 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
+
+    height:             6rem;
+
+    margin:             0;
+
+    border-top:         0.1rem solid color( var( --GS-2 ) tint( 80% ) );
+    border-bottom:      0.1rem solid color( var( --GS-2 ) tint( 80% ) );
+
+    background:         var( --PC-WHITE );
+}
+
+.list
+{
+   width:   auto;
+}

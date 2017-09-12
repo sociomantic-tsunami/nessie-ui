@@ -1,0 +1,122 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    .container
+    {
+        display:            flex;
+        flex-wrap:          wrap;
+        align-content:      flex-start;
+        align-items:        flex-start;
+
+        box-sizing:         border-box;
+        width:              100%;
+        min-height:         3.2rem;
+
+        border:             0.1rem solid color( var( --GS-2 ) a( 50% ) );
+
+        padding-top:        0.5rem;
+        padding-right:      0.5rem;
+        padding-bottom:     0;
+        padding-left:       0.5rem;
+
+        background-color:   var( --PC-WHITE );
+        outline:            none;
+        color:              var( --GS-2 );
+
+        overflow-x:         hidden;
+
+        &:hover
+        {
+            border-color:   var( --PC-BLUE );
+        }
+
+        & > *
+        {
+            margin-bottom:  0.5rem;
+            margin-right:   0.5rem;
+        }
+    }
+
+    .input
+    {
+        flex:           1 0 0%;
+
+        box-sizing:     border-box;
+        min-width:      5ch;
+        height:         2rem;
+
+        padding:        0;
+        padding-top:    0.1rem;
+
+        border:         none;
+        margin:         0;
+        margin-bottom:  0.5rem;
+
+        background:     transparent;
+
+        font:           inherit;
+        line-height:    inherit;
+        text-indent:    0.5rem;
+
+        &:focus
+        {
+            outline:    none;
+
+            &::placeholder
+            {
+                color: transparent !important;
+            }
+        }
+
+        &::placeholder
+        {
+            color:  color( var( --GS-2 ) a( 50% ) );
+        }
+    }
+}
+
+
+.fakeHovered
+{
+    .container
+    {
+        border-color:   var( --PC-BLUE );
+    }
+}
+
+
+.disabled
+{
+    .container
+    {
+        pointer-events: none;
+        background:     var( --GS-10 );
+        color:          color( var( --GS-2 ) a( 50% ) );
+        border-color:   var( --GS-10 );
+
+        &:hover
+        {
+            border-color:   var( --GS-10 );
+        }
+    }
+}
+
+
+.error
+{
+    .container
+    {
+        border-color:   var( --AC-2 ) !important; /* yes, always override other states */
+    }
+}
+
+
+.resizable
+{
+    .container
+    {
+        resize: vertical;
+    }
+}

@@ -1,0 +1,24 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    position:       relative;
+}
+
+.header
+{
+    display:            flex;
+    flex-direction:     row;
+
+    border-bottom:      0.2rem solid var( --PC-BLUE );
+
+    margin-bottom:		2rem;
+
+    /*overflow-y:         hidden;*/
+}
+
+.content
+{
+    /* padding? */
+}

@@ -1,0 +1,81 @@
+$shark: 768px;
+
+.default
+{
+    position:           relative;
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    flex-start;
+    align-items:        stretch;
+
+    box-sizing: border-box;
+
+    max-width:          100%;
+    min-width:          0;
+
+    flex:               1 0 0%;
+}
+
+.alignX__left
+{
+    align-items:    flex-start;
+    text-align:     left;
+}
+
+.alignX__center
+{
+    align-items:    center;
+    text-align:     center;
+}
+
+.alignX__right
+{
+    align-items:    flex-end;
+    text-align:     right;
+}
+
+.alignY__middle
+{
+    justify-content:    center;
+}
+
+.alignY__bottom
+{
+    justify-content:    flex-end;
+}
+
+/* Intended for actual columns of components that do not need rows. */
+.alignY__space-around
+{
+    justify-content:    space-around;
+
+    & > *
+    {
+        margin-bottom:  2rem;
+
+        &:last-child
+        {
+            margin-bottom:  0
+        }
+    }
+}
+
+
+@for $i from 1 to 24
+{
+    @for $j from 1 to 24
+    {
+        .size__$(i)\/$(j)
+        {
+            /*flex:       0 0 calc( $i / $j * 100% );*/
+            min-width:  calc( $i / $j * 100% );
+            max-width:  calc( $i / $j * 100% );
+            word-break: normal;
+        }
+    }
+}
+
+.size__content
+{
+    flex:   0 0 auto;
+}

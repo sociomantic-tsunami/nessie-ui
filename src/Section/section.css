@@ -1,0 +1,61 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    margin-bottom:  3rem;
+
+    /*&::after
+    {
+        bottom: -1rem;
+    }*/
+}
+
+.content
+{
+/*  */
+}
+
+.level__1
+{
+    margin-bottom:  7rem;
+
+    &::after
+    {
+        bottom: -3.5rem;
+    }
+}
+
+.level__2
+{
+    margin-bottom:  5rem;
+
+    &::after
+    {
+        bottom: -2rem;
+    }
+}
+
+
+
+
+/*
+
+.divider
+{
+    &::after
+    {
+        content:        '';
+
+        display:        block;
+        position:       absolute;
+
+        left:           0;
+
+        width:          calc( 100% + 3rem );
+        height:         0.1rem;
+
+        background:     color( var( --GS-2 ) a( 20% ) );
+    }
+}
+*/

@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "block-no-empty": null,
+    "block-opening-brace-space-before" : "always",
+    "block-opening-brace-newline-before" : "never",
+    "block-opening-brace-newline-after" :"always",
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-ignored-properties" : true,
+    "declaration-block-no-shorthand-property-overrides" : true,
+    "declaration-block-semicolon-newline-after": "always",
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-colon-space-after": true,
+    "declaration-no-important": true,
+    "indentation": [ "tab", { indentInsideParens: "twice" }],
+    "no-indistinguishable-colors" : true,
+    "max-empty-lines": 7,
+    "max-nesting-depth" : 2,
+    "rule-nested-empty-line-before": "always",
+    "rule-non-nested-empty-line-before": "always",
+    "unit-whitelist": ["em", "rem", "%", "s", "vw", "vh", "px"],
+    "unit-no-unknown": true,
+    "unit-case" : "lower",
+    "value-no-vendor-prefix" : true,
+    "time-no-imperceptible" :true
+  },
+  "ignorefiles" : [ "./node_modules/normalize.css/normalize.css" ]
+}

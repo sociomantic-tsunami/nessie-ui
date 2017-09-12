@@ -1,0 +1,28 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    display:            flex;
+    justify-content:    center;
+    align-content:      center;
+    background-color:   var( --PC-WHITE );
+
+    padding:            2rem;
+    border:             0.1rem solid var( --PC-GREY ) ;
+}
+
+.type__error
+{
+    border-color:   var( --AC-2 );
+}
+
+.type__alert
+{
+    border-color:   var( --AC-5 );
+}
+
+.type__success
+{
+    border-color:   var(  --AC-12 );
+}

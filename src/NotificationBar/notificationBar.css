@@ -1,0 +1,57 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/base.css";
+
+.default
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    background-color:   var( --PC-BLUE );
+
+    padding:            1.2rem;
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+}
+
+.message
+{
+    @extend %Nessie-Bold;
+    color:  var( --PC-WHITE );
+}
+
+.info
+{
+    margin-right:   2rem;
+}
+
+.close
+{
+    position:   absolute;
+    right:      5rem;
+}
+
+.top
+{
+    position:   fixed;
+    top:        0;
+    z-index:    1000;
+}
+
+.type__error
+{
+    background-color:   var( --AC-2 );
+}
+
+.type__alert
+{
+    background-color:   var( --AC-5 );
+}
+
+.type__success
+{
+    background-color:   var(  --AC-12 );
+}

@@ -1,0 +1,345 @@
+{
+    "Button" :
+    {
+        "label" : "Click me!"
+    },
+    "ButtonRadio" :
+    {
+        "label"     : "I’m really a Radio",
+        "lochness"  : { "isBeta" : true }
+    },
+    "ButtonRadioGroup" :
+    {
+        "label"         : "What’s your favorite fruit?",
+        "values"        : [ { "label":"apples","value":"apples","icon":"add"}, {"label":"oranges","value":"oranges","icon":"close"}, {"label":"kaki","value":"kaki","icon":"up" } ],
+        "selectedValue" : "oranges",
+        "lochness"      : { "isBeta" : true }
+    },
+    "ChangeLog" :
+    {
+        "title": "Change Log",
+        "children": "{<Table columns={ [ { title: 'Action', size: '1/4', isSortable: true }, { title: 'Date', size: '1/4', isSortable: true }, { title: 'Comments', size: '1/2', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
+        "showPaginator": false,
+        "pagination": {
+            "shownPages"    : [1, 2, 3 ],
+            "currentPage"   : 1,
+            "showNext"      : true
+        },
+        "lochness": { "isDeprecated" : true }
+    },
+    "CheckableGroup" :
+    {
+        "label" : "What’s your favorite fruit?",
+        "children" : "{<Radio>Apples</Radio><Radio>Oranges</Radio><Radio isChecked>Kaki</Radio><Radio isDisabled>Forbidden fruit</Radio>}"
+    },
+    "Checkbox" :
+    {
+        "label" : "Check it out"
+    },
+    "CheckboxGroup" :
+    {
+        "label"          : "Which fruits do you like?",
+        "values"         : ["apples", "oranges", "kaki"],
+        "selectedValues" : ["apples", "kaki"]
+    },
+    "CodeEditor" :
+    {
+        "label" : "Hack the planet"
+    },
+    "ColorInput" :
+    {
+        "label" : "Pick a color",
+        "lochness" : { "isBeta" : true }
+    },
+    "Column" :
+    {
+        "children"  : "column content"
+    },
+    "ControlPanel" :
+    {
+        "children" : "{<IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/>}",
+        "lochness" : { "isDeprecated" : true }
+    },
+    "DimensionsInput" :
+    {
+        "label"         : "Banner size",
+        "errorMessage"  : "Wrong size!"
+    },
+    "DragNDrop" :
+    {
+        "message"  : "Drop image file to upload",
+        "children" : "{<Label><Required>Image</Required></Label><Uploader/>}"
+    },
+    "Fieldset" :
+    {
+        "label"    : "Fieldset legend",
+        "children" : "{<div>Fieldset content</div>}"
+    },
+    "Form" :
+    {
+        "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
+    },
+    "FlounderDropdown" :
+    {
+        "placeholder" : "Just a placeholder",
+        "label"       : "Pick an option",
+        "data"        : [
+                           "Option",
+                            {
+                                "text" : "Option with description",
+                                "value" : "value2",
+                                "description":"Option description"
+                            },
+                            {
+                                "text" : "Disabled option",
+                                "value" : "value3",
+                                "disabled" : true
+                            }
+                        ]
+    },
+    "H1" :
+    {
+        "title": "h1 element"
+    },
+    "H2" :
+    {
+        "title": "h2 element"
+    },
+    "H3" :
+    {
+        "title": "h3 element"
+    },
+    "H4" :
+    {
+        "title": "h4 element"
+    },
+    "Icon" :
+    {
+        "type"  : "add"
+    },
+    "IconButton" :
+    {
+        "iconType"  : "add",
+        "label"     : "Add"
+    },
+    "IconToggle" :
+    {
+        "onLabel"   : "Hide",
+        "offLabel"  : "Show",
+        "onIcon"    : "up",
+        "offIcon"   : "down",
+        "lochness": { "isDeprecated" : true }
+    },
+    "IconWithTooltip" :
+    {
+        "iconType"          : "error",
+        "message"           : "Something’s wrong!",
+        "tooltipIsVisible"  : true
+    },
+    "Label" :
+    {
+        "label": " Label example"
+    },
+    "MessageBox" :
+    {
+        "message": "Our Wonderful Message"
+    },
+    "Module" :
+    {
+        "title": "Our Wonderful Module",
+        "children": "{<div>Some other components go here....</div>}"
+    },
+    "ModalDialog" :
+    {
+        "children" : "{<Section><H3>Header</H3><p>Modal box content</p><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
+    },
+    "NavBar" :
+    {
+        "children" : "{<NavItem label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isDisabled/></NavItem><NavItem label='Campaigns' href='#'/><NavItem label='Account' href='#' isDisabled/>}"
+    },
+    "NavDropdown" :
+    {
+        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
+    },
+    "NavItem" :
+    {
+        "label" : "Creatives",
+        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
+    },
+    "NavList" :
+    {
+        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
+    },
+    "NessieLogo" :
+    {
+        "lochness" : { "isBeta" : true }
+    },
+    "NotificationBar" :
+    {
+        "message" : "Here you can view your campaign settings"
+    },
+    "Page" :
+    {
+        "children" : "{<PageHeader><Row verticalAlign='middle'><Column size='1/6'><NessieLogo/></Column><Column size='5/6'><H1>Nessie Page</H1></Column></Row></PageHeader><PageContent><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form></PageContent><PageFooter>Footer content...</PageFooter>}",
+        "lochness" : { "isBeta" : true }
+    },
+    "PageContent" :
+    {
+        "children" : "{<PageContentHeader><H1>Page Title</H1><p>Page Subtitle</p></PageContentHeader><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form>}",
+        "lochness" : { "isBeta" : true }
+    },
+    "PageContentHeader" :
+    {
+        "children" : "{<H1>Page Title</H1><p>Page Subtitle</p>}",
+        "lochness" : { "isBeta" : true }
+    },
+    "PageHeader" :
+    {
+        "children" : "{<Row verticalAlign='middle'><Column size='1/6'><NessieLogo/></Column><Column size='5/6'><H1>Nessie Page Header</H1></Column></Row>}",
+        "lochness" : { "isBeta" : true }
+    },
+    "PageFooter" :
+    {
+        "children" : "{<div>Footer content...</div>}",
+        "lochness" : { "isBeta" : true }
+    },
+    "Paginator" :
+    {
+        "shownPages"    : [ 10, 11, 12 ],
+        "startPage"     : 1,
+        "endPage"       : 99,
+        "currentPage"   : 10,
+        "startEllipsis" : true,
+        "endEllipsis"   : true,
+        "showPrev"      : true,
+        "showNext"      : true
+    },
+    "PasswordInput" :
+    {
+        "label" : "Tell me your secrets",
+        "errorMessage" : "Please enter a valid name"
+    },
+    "ProgressIndicator" :
+    {
+        "currentPercentage" : 17
+    },
+    "Radio" :
+    {
+        "label": "Ga Ga"
+    },
+    "RadioGroup" :
+    {
+        "label"         : "What’s your favorite fruit?",
+        "values"        : [ "apples", "oranges", "kaki" ],
+        "selectedValue" : "apples"
+    },
+    "Row" :
+    {
+        "children": "{<Column size='1/3'><p>left<br/>column<br/>content</p></Column><Column size='1/3'><p>middle column content</p></Column><Column size='1/3'><p>right column content</p></Column>}"
+    },
+    "ScrollBox" :
+    {
+        "children"  : "{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/2', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
+        "scroll"    : "horizontal"
+    },
+    "Section" :
+    {
+        "title"   : "The Life and Times of David Hasselhoff",
+        "level"   : 1,
+        "children" : "{<Section level={2} title='Early Life'><p>Subsection content...</p></Section><Section level={2} title='Early Career'><p>Subsection content...</p></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><p>Sub-subsection content...</p></Section></Section><p>More main section content...</p>}"
+    },
+    "Slider":
+    {
+        "stepLabelStart": "Today",
+        "stepLabelEnd"  : "Future",
+        "value"         : [ 25, 75 ],
+        "ticks"         : [{"stepLabel":"|","step":25},{"stepLabel":"|","step":50},{"stepLabel":"|","step":75}],
+        "stepLabels"    : [{"stepLabel":"25","step":25},{"stepLabel":"50","step":50},{"stepLabel":"75","step":75}]
+    },
+    "SliderGroup":
+    {
+        "sliders"       : [ { "value": 50 }, { "value": 50, "isDisabled": true }, { "value": 50, "isDisabled": true }, { "value": 50, "isDisabled": true } ],
+        "stepLabels"    : [ { "stepLabel": "No filter", "step": 0 }, { "stepLabel": "Low", "step": 25 }, { "stepLabel": "Medium", "step": 50 }, { "stepLabel": "High", "step": 75 }, { "stepLabel": "Very high", "step": 100 } ],
+        "sliderLabels"  : [ "category 1", "category 2", "category 3", "category 4" ]
+    },
+    "Sorter" :
+    {
+        "children"  : "Something to sort"
+    },
+    "StatusIndicator" :
+    {
+        "label" :  "Deactivated"
+    },
+    "Tab" :
+    {
+        "label"    : "Tab title text",
+        "children" : "{<div>Tab content goes here</div>}"
+    },
+    "TabButton" :
+    {
+        "label" : "Tab title",
+        "subtitle" :"Something subtitly"
+    },
+    "Table" :
+    {
+        "values"  : [["Create","2016/06/10","Made a thing"],["Delete","2016/06/10","Erased a thing"],["Edit","2016/06/12","Modified a thing"], ["Create","2016/06/15","Made another thing"]],
+        "columns" : [{"title":"Action","isSortable":true, "size":"1/4"},{"title":"Date","isSortable":true, "size":"1/4"},{"title":"Comments","isSortable":false, "size":"1/2"}]
+    },
+    "TableCell" :
+    {
+        "children"      : "cell content",
+        "columnTitle"   : "column title"
+    },
+    "TableRow" :
+    {
+        "children": "{<TableCell size='1/3' columnTitle='left column title'><div>left<br/>column<br/>content</div></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
+    },
+    "Tabs" :
+    {
+        "children"          : "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}",
+        "activeTabIndex"    : 1
+    },
+    "Tag" :
+    {
+        "label"      : "Tag Label"
+    },
+    "TagInput" :
+    {
+        "children"      : "{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}",
+        "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
+    },
+    "TextArea" :
+    {
+        "label": "Text Area Label",
+        "placeholder": "Please enter max. 500 characters"
+    },
+    "TextInput" :
+    {
+        "label" : "Name",
+        "placeholder"  : "Your full name",
+        "errorMessage" : "Please enter a valid name"
+    },
+    "TextInputWithDropdown" :
+    {
+        "label"            : "How long?",
+        "inputPlaceholder" : "number",
+        "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
+        "errorMessage"     : "That’s too long!"
+    },
+    "Tooltip" :
+    {
+        "message"  : "Cost per click",
+        "children" : "{<Label>CPC</Label>}"
+    },
+    "Uploader" :
+    {
+        "label"  : "Banner image"
+    },
+    "ValuedTextInput" :
+    {
+        "label"         : "How much is the fish?",
+        "placeholder"   : "0.00",
+        "valueLabel"    : "EUR",
+        "errorMessage"  : "Enter a price in euros and cents"
+    }
+}

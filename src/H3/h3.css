@@ -1,0 +1,37 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+	position: 		relative;
+	top: 			0.4rem;
+
+	margin-top: 	-0.6rem;
+
+    @extend %Nessie-Bold;
+
+    font-size:      1.4rem;
+    line-height:    1.6rem;
+	min-height:     1.6rem;
+}
+
+.role__default
+{
+
+}
+
+.role__subtle
+{
+
+}
+
+.role__promoted
+{
+	color:	var( --AC-12 );
+}
+
+.role__critical
+{
+	color:	var( --AC-2 );
+}

@@ -1,0 +1,201 @@
+@import "../proto/base.css";
+
+$shark: 768px;
+
+.default
+{
+    display:        flex;
+    flex-direction: column;
+    align-items:    stretch;
+    flex-wrap:      nowrap;
+
+    max-width:      none;
+
+    margin-bottom:  0;
+
+    /*& > *
+    {
+        flex:       0 0 100%;
+        box-sizing: border-box;
+    }*/
+}
+
+
+.hasMinHeight
+{
+    min-height: 7.1rem; /* label + input */
+}
+
+/*
+@media( min-width: $shark )
+{ */
+    .default
+    {
+        flex-direction: row;
+
+        /*& > *
+        {
+            flex:   1 0 0%;
+        }*/
+
+        overflow-wrap:  break-word;
+    }
+
+    .alignX__left,
+    .alignX__center,
+    .alignX__right
+    {
+        & > *
+        {
+            flex:           0 0 auto;
+            word-break:     normal;
+        }
+    }
+
+    .alignX__left
+    {
+        justify-content:    flex-start;
+    }
+
+    .alignX__center
+    {
+        justify-content:    center;
+    }
+
+    .alignX__right
+    {
+        justify-content:    flex-end;
+    }
+
+    .alignY__top
+    {
+        align-items:    flex-start;
+    }
+
+    .alignY__middle
+    {
+        align-items:    center;
+    }
+
+    .alignY__bottom
+    {
+        align-items:    flex-end;
+    }
+
+    .wrap
+    {
+        flex-wrap:  wrap;
+    }
+/* } */
+
+
+.spacing__default
+{
+    & > *
+    {
+        margin-bottom:  2rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+}
+
+.spacing__h1
+{
+    & > *
+    {
+        margin-bottom:  7rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -7rem;
+    }
+}
+
+.spacing__h2
+{
+    & > *
+    {
+        margin-bottom:  5rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -5rem;
+    }
+}
+
+.spacing__h3
+{
+    & > *
+    {
+        margin-bottom:  2rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+}
+
+.spacing__h4
+{
+    & > *
+    {
+        margin-bottom:  2rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+}
+
+.spacing__label
+{
+    & > *
+    {
+        margin-bottom:  1rem;
+    }
+
+    &:last-child
+    {
+        margin-bottom:  -1rem;
+    }
+}
+
+.gutters__S
+{
+    width:          calc( 100% + 1rem );
+    margin-left:    -1rem;
+
+    & > *
+    {
+        padding-left:   1rem;
+    }
+}
+
+.gutters__M
+{
+    width:          calc( 100% + 2rem );
+    margin-left:    -2rem;
+
+    & > *
+    {
+        padding-left:   2rem;
+    }
+}
+
+.gutters__L
+{
+    width:          calc( 100% + 3rem );
+    margin-left:    -3rem;
+
+    & > *
+    {
+        padding-left:   3rem;
+    }
+}

@@ -1,0 +1,10 @@
+@import "../proto/base.css";
+
+.default
+{
+	margin-left:	0;
+	margin-right:	0;
+
+    border:		none;
+    padding:	0;
+}

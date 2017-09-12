@@ -1,0 +1,12 @@
+.default
+{
+    
+}
+
+.required
+{
+	&::after
+    {
+        content:    '\00a0*';
+    }
+}

@@ -1,0 +1,89 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/base.css";
+
+:root
+{
+    --handleSize:               1.6rem;
+    --stepLabelsContainerWidth: 8rem;
+    --slidersContainerWidth:    100%;
+}
+
+.default
+{
+    .flexContainer
+    {
+        display: flex;
+
+        &:not( :last-child )
+        {
+            margin-bottom:  1rem;
+        }
+    }
+
+    .stepLabelsContainer
+    {
+        position:       relative;
+
+        width:          var( --stepLabelsContainerWidth );
+        margin-top:     calc( var( --handleSize ) / 2 );
+        margin-bottom:  calc( var( --handleSize ) / 2 )
+    }
+
+    .labelWrapper
+    {
+        position:        absolute;
+        transform:       translateY( 50% );
+        max-width:       100%;
+    }
+
+    .stepLabel
+    {
+        @extend %Nessie-Regular;
+    }
+
+    .slidersContainer
+    {
+        display:   flex;
+        flex:      1 0 auto;
+        min-width: 0;
+    }
+
+    .sliderWrapper
+    {
+        display:         flex;
+        flex:            1 0 0%;
+        justify-content: center;
+    }
+
+    .sliderLabelContainer
+    {
+        display:        flex;
+        flex:           0 0 auto;
+        margin-left:    var( --stepLabelsContainerWidth );
+    }
+
+    .sliderLabelWrapper
+    {
+        display:         flex;
+        flex:            1 0 0%;
+        justify-content: center;
+        text-align:      center;
+        min-width:       0;
+    }
+
+    .sliderLabel
+    {
+        white-space:    normal;
+    }
+}
+
+.disabled
+{
+
+}
+
+.error
+{
+
+}

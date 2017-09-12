@@ -1,0 +1,446 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/base.css";
+
+.default
+{
+    position:           relative;
+    display:            table; /* flex doesn’t work here */
+    width:              auto;
+    border:             none;
+    padding:            0;
+    background:         transparent;
+    cursor:             pointer;
+    text-transform:     uppercase;
+    border-radius:      0;
+    box-shadow:         0 0.1rem 0.2rem 0 var( --GS-5 );
+}
+
+
+.content
+{
+    /* Firefox doesn’t properly support flex directly
+     * on button so we need to set it here
+     */
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        stretch;
+
+    box-sizing:         border-box;
+    min-width:          8rem;
+    height:             3.2rem; /************ replace with min-, or remove? */
+
+    border:             0.1rem solid transparent;
+}
+
+
+.label
+{
+    flex:               1 0 auto;
+
+    box-sizing:         border-box;
+    max-width:          100%;
+
+    /* adjust for font baseline */
+    padding-top:        0.7rem;
+    padding-bottom:     0.4rem;
+    /* +1px here with the border endlich */
+    padding-left:       1.4rem;
+    padding-right:      1.4rem;
+
+    @extend %Nessie-SemiBold;
+
+    font-size:          1.2rem;
+    line-height:        1.6rem;
+    letter-spacing:     0.04rem;
+
+    overflow:           hidden;
+    text-overflow:      ellipsis;
+    white-space:        nowrap;
+}
+
+
+.role__default
+{
+    background: var( --PC-BLUE );
+    color:      var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: color( var( --PC-BLUE ) shade( 13% ) );
+        color:      var( --PC-WHITE );
+    }
+
+    &:active
+    {
+        background: var( --PC-BLUE );
+    }
+}
+
+
+.role__promoted
+{
+    background: var( --AC-12 );
+    color:      var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: color( var( --AC-12 ) shade( 13% ) );
+        color:      var( --PC-WHITE );
+    }
+
+    &:active
+    {
+        background: var( --AC-12 );
+    }
+}
+
+
+.role__critical
+{
+    background: var( --AC-2 );
+    color:      var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: color( var( --AC-2 ) shade( 13% ) );
+        color:      var( --PC-WHITE );
+    }
+
+    &:active
+    {
+        background: var( --AC-2 );
+    }
+}
+
+
+.role__subtle
+{
+    color:      var( --PC-GREY );
+    background: var( --PC-WHITE );
+
+    .content
+    {
+        border-color:   var( --PC-GREY );
+    }
+
+    .iconContainer
+    {
+        fill:           var( --PC-GREY );
+
+        &:after
+        {
+            background-color: var( --PC-GREY );
+        }
+    }
+
+    &:not(.fakeHovered):not(:hover):not(.disabled)
+    {
+        .icon
+        {
+            fill:                       var( --PC-GREY );
+            color:                      var( --PC-GREY );
+        }
+    }
+
+    &:not(.loading):matches(.fakeHovered,:hover)
+    {
+        color:                      var( --PC-WHITE );
+        background:                 var( --PC-GREY );
+
+        .iconContainer:after
+        {
+            background-color:       var( --PC-WHITE );
+        }
+    }
+
+    &:active
+    {
+        background-color:       color( var( --PC-GREY ) tint( 13% ) );
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:           color( var( --PC-GREY ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-GREY );
+            }
+        }
+    }
+}
+
+
+.role__control
+{
+    color:                      var( --GS-1 );
+    box-shadow:                 none;
+
+    .content
+    {
+        min-width:              0;
+        height:                 auto;
+        border-width:           0;
+    }
+
+    .label
+    {
+        @extend %Nessie-Bold;
+        padding:                0;
+        text-transform:         none;
+    }
+
+    .iconContainer
+    {
+        border-width:           0;
+        padding:                0;
+        margin-top:             -0.2rem;
+
+        &:after
+        {
+            display:            none
+        }
+    }
+
+    &.iconPosition__right .iconContainer + .label
+    {
+        padding-right:          0.5rem;
+    }
+
+    &.iconPosition__left .iconContainer + .label
+    {
+        padding-left:           0.5rem;
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        color:                  var( --PC-BLUE );
+
+        .icon
+        {
+            fill:               var( --PC-BLUE );
+            color:              var( --PC-BLUE );
+        }
+    }
+
+    &:focus
+    {
+        outline:                none;
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:           color( var( --PC-GREY ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-GREY );
+            }
+        }
+    }
+}
+
+
+.size__S
+{
+
+    .iconContainer
+    {
+        padding:    0 0.8rem 0 0.6rem;
+    }
+
+    &.iconPosition__right .iconContainer
+    {
+        padding-right:      0.5rem;
+        padding-left:       0.7rem;
+    }
+
+
+    .content
+    {
+        min-width:          5rem;
+        min-height:         2.6rem;
+    }
+
+    .label
+    {
+        padding-top:        0.5rem;
+        padding-bottom:     0.5rem;
+
+        padding-left:       1.4rem;
+        padding-right:      1.4rem;
+
+
+        font-size:          1.2rem;
+        line-height:        1.6rem;
+        letter-spacing:     0.04rem;
+    }
+}
+
+
+.loading,
+.disabled
+{
+    cursor:         default;
+    pointer-events: none;
+}
+
+
+.loading
+{
+    .label,
+    .iconContainer
+    {
+        opacity:    0;
+    }
+}
+
+
+.disabled
+{
+    background:     var( --GS-7 );
+    color:          var( --PC-WHITE );
+
+    box-shadow:     none;
+
+    &.role__subtle
+    {
+        .content
+        {
+            border-color:       transparent;
+        }
+
+        .iconContainer:after
+        {
+            background-color:   var( --PC-WHITE );
+        }
+    }
+
+    &.fakeHovered,
+    &:hover,
+    &.role__control
+    {
+        background:     transparent;
+        color:          var( --GS-7 );
+
+        .icon
+        {
+            fill:          var( --GS-7 );
+            color:         var( --GS-7 );
+        }
+    }
+
+    &:not(.role__control)
+    {
+        &.fakeHovered,
+        &:hover
+        {
+            background:      var( --GS-7 ) !important;
+        }
+    }
+}
+
+
+.iconPosition__left:not(.role__control)
+{
+    .iconContainer
+    {
+        margin-right:       1px;
+    }
+}
+
+
+
+.iconPosition__right
+{
+    .content
+    {
+        flex-direction: row-reverse;
+    }
+
+    &:not(.role__control) .iconContainer
+    {
+        margin-left:        1px;
+        padding-left:       1.2rem;
+        padding-right:      1rem;
+
+        &:after
+        {
+            right:          auto;
+            left:           -1px;
+        }
+    }
+}
+
+.iconContainer
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    position:           relative;
+
+    flex:               0 0 auto;
+
+    border-width:       0.1rem;
+    border-style:       solid;
+    border-color:       transparent;
+
+    padding-right:      0.8rem;
+    padding-left:       0.6rem;
+
+    &:after
+    {
+        content:        '';
+        display:        block;
+        width:          1px;
+        height:         calc( 100% + 4px );
+        position:       absolute;
+        right:          -1px;
+        top:            -2px;
+        background-color: var( --PC-WHITE );
+    }
+}
+
+
+.loadingOverlay
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+
+    position:   absolute;
+
+    top:        0;
+    bottom:     0;
+
+    left:       0;
+    right:      0;
+
+    width:      100%;
+    height:     100%;
+
+    .spinner
+    {
+        border-color:   color( var( --PC-WHITE ) a( 50% ) );
+
+        &::after
+        {
+
+            border-top-color:   var( --PC-WHITE );
+        }
+}
+
+
+}

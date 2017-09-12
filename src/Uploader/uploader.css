@@ -1,0 +1,175 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    width:  auto;
+}
+
+
+.loading
+{
+    width:  100%;
+
+    .uploaderButton
+    {
+        pointer-events: none;
+    }
+
+    &.disabled .uploaderButton,
+    .uploaderButton:hover,
+    .uploaderButton:focus
+    {
+        background-image:   linear-gradient( to right, var( --AC-15 ) , var( --PC-BLUE ) );
+    }
+}
+
+.uploaded
+{
+    width:  100%;
+}
+
+.loading,
+.uploaded
+{
+    .iconWithTooltip
+    {
+        display:    block;
+        width:      100%;
+    }
+
+    .previewTooltip
+    {
+        width:  calc( 100% - 3.2rem );
+    }
+}
+
+.disabled
+{
+    .uploaderButton,
+    .uploadedButton
+    {
+        background-image:   none;
+        background-color:   var( --GS-7 );
+        pointer-events:     none;
+    }
+}
+
+.previewDisabled
+{
+    .uploaderButton
+    {
+        pointer-events: none;
+    }
+}
+
+
+
+
+
+
+.input
+{
+    display:    none;
+}
+
+.previewTooltip
+{
+    flex:   1 0 auto;
+    width:  100%;
+}
+
+.uploaderButton
+{
+    width:                   100%;
+    max-width:               100%;
+    background-image:        linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+    text-align:              left;
+    text-transform:          none;
+    display:                 block;
+
+    &:hover,
+    &:focus
+    {
+        background-image:    linear-gradient(to right, #0D5375 , #2387AE);
+    }
+
+    &:active
+    {
+        background-image:    linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+    }
+}
+
+
+.buttonsContainer
+{
+    display:   flex;
+
+    & > *
+    {
+        margin-bottom: 0;
+    }
+}
+
+
+.uploadedButton
+{
+    flex:                   0 0 auto;
+    width:                  3.2rem;
+    height:                 3.2rem;
+    padding:                0;
+    border:                 none;
+    background-color:       var( --PC-BLUE );
+
+    &:focus
+    {
+        outline:            none;
+    }
+
+    &:hover,
+    &:focus
+    {
+        background-color:   color( var( --PC-BLUE ) shade( 13% ) );
+        color:              var( --PC-WHITE );
+    }
+
+    &:active
+    {
+        background-color:   var( --PC-BLUE );
+    }
+}
+
+
+.loadingOverlay
+{
+    display:            inline-flex;
+    align-items:        center;
+    justify-content:    center;
+    position:           relative;
+    width:              3.2rem;
+    height:             3.2rem;
+    background-color:   var( --PC-BLUE );
+    vertical-align:     top;
+
+    &:focus
+    {
+        outline:        none;
+    }
+}
+
+
+.spinner
+{
+    border-color:           color( var( --PC-WHITE ) a( 25% ) );
+
+    &::after
+    {
+        border-top-color:   var( --PC-WHITE );
+    }
+}
+
+.iconWithTooltip
+{
+    display:    table;
+    width:      auto;
+}

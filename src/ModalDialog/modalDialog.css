@@ -1,0 +1,185 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+$wideWidth : 90rem;
+
+:global .visualTesting .modalContainer
+{
+    min-width:      1px;
+    min-height:     1px;
+    top:            0;
+    left:           0;
+    position:       fixed;
+    right:          0;
+    bottom:         0;
+}
+
+.default
+{
+    position:           fixed;
+
+    top:                0;
+    bottom:             0;
+    left:               0;
+    right:              0;
+
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    overflow-y:         auto;
+
+    z-index:            9999;
+    background:         color( var( --GS-11 ) a( 90% ) );
+
+}
+
+.type__carousel
+{
+    overflow-x:         auto;
+
+    .header
+    {
+        box-shadow:         0 0 4rem color( var( --GS-2 ) a( 10% ) );
+    }
+}
+
+
+.wide .content
+{
+    width:  $wideWidth;
+
+    .type__carousel &
+    {
+        width:  auto;
+    }
+}
+
+.showNav
+{
+    &.type__carousel .navigation
+    {
+        display:    block;
+    }
+}
+
+
+
+
+
+
+.content
+{
+    width:              50rem;
+    padding:            4rem;
+    box-sizing:         border-box;
+    box-shadow:         0 0 4rem color( var( --GS-2 ) a( 10% ) );
+    background:         var( --PC-WHITE );
+    text-align:         left;
+    z-index:            9999;
+
+    .type__carousel &
+    {
+        width:              auto;
+        min-width:          20rem;
+        height:             auto;
+        max-height:         100%;
+
+        line-height:        0;
+    }
+
+    .type__neutral &,
+    .type__crucial &,
+    .type__promoted &
+    {
+        border-left-style:  solid;
+        border-left-width:  0.6rem;
+    }
+
+
+    .type__neutral &,
+    {
+        border-color:   var( --PC-GREY );
+    }
+
+    .type__crucial &
+    {
+        border-color:   var( --AC-2 );
+    }
+
+    .type__promoted &
+    {
+        border-color:   var( --AC-12 );
+    }
+}
+
+
+/*
+
+only used in type__carousel for now
+
+*/
+
+.header
+{
+    background-color:   var( --PC-WHITE );
+    padding:            3.4rem 3.5rem 3.4rem 4rem;
+    display:            flex;
+    justify-content:    space-between;
+    position:           absolute;
+    top:                0;
+    left:               0;
+    width:              100%;
+    box-sizing:         border-box;
+
+    button
+    {
+        justify-content: flex-end;
+    }
+}
+
+.title
+{
+    max-width:          40rem;
+    position:           relative;
+    top:                0.6rem;
+    flex-basis:         100%;
+
+    @extend %Nessie-Bold;
+
+    font-size:          1.8rem;
+    letter-spacing:     0.02rem;
+    line-height:        2.2rem;
+    color:              var( --GS-2 );
+}
+
+.navigation
+{
+    display:    none;
+
+    button
+    {
+        position:   absolute;
+        top:        calc( 50% - 20px );
+
+        width:      auto;
+
+        margin:     0;
+        border:     none;
+        padding:    0;
+
+        background: transparent;
+
+        cursor:     pointer;
+        z-index:    9999;
+
+        &:first-child
+        {
+            left:   15rem;
+        }
+
+        &:last-child
+        {
+            right:  15rem;
+        }
+    }
+}

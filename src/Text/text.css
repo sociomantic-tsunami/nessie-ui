@@ -1,0 +1,53 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    top:            0.5rem;
+
+    width:          auto;
+
+    margin:         0;
+    margin-top:     -0.8rem;
+
+    margin-bottom:  1rem;
+
+    .default
+    {
+        display:    inline;
+        position:   static;
+    }
+}
+
+.noWrap
+{
+    white-space: nowrap;
+}
+
+.role__default
+{
+    color:  var( --PC-DARK-GREY );
+}
+
+.role__subtle
+{
+    color:  var( --PC-GREY );
+}
+
+.role__promoted
+{
+    color:  var( --AC-12 );
+}
+
+.role__critical
+{
+    color:  var( --AC-2 );
+}
+
+
+.overflowHidden
+{
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+}

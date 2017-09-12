@@ -1,0 +1,20 @@
+@import "../proto/base.css";
+
+.default
+{
+    overflow: auto;
+
+    /* magic...! */
+    padding:    1rem;
+    margin:     -1rem -1rem 1rem;
+}
+
+.scroll__horizontal
+{
+    overflow-y: hidden;
+}
+
+.scroll__vertical
+{
+    overflow-x: hidden;
+}

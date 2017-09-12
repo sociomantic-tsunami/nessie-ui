@@ -1,0 +1,30 @@
+@import "../proto/base.css";
+
+.default
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
+    width:              auto;
+
+    margin:             0;
+    border:             none;
+
+    padding:            0;
+
+    background:         transparent;
+
+    cursor:             pointer;
+
+    &:focus
+    {
+        outline:    none;
+    }
+}
+
+.disabled
+{
+    cursor:         default;
+    pointer-events: none;
+}

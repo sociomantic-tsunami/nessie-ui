@@ -1,0 +1,81 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    flex-start;
+    align-items:        flex-start;
+
+    width:              100%;
+    height:             auto;
+
+    min-width:          102.4rem;
+    min-height:         100vh;
+
+    margin:             0;
+
+    background:         var( --GS-11 );
+}
+
+.overflow__hidden
+{
+  overflow: hidden;
+}
+
+.overflow__visible
+{
+  overflow: visible;
+}
+
+.overflow__scroll
+{
+  overflow: scroll;
+}
+
+.overflow__scrollX
+{
+  overflow-x: scroll;
+}
+
+.overflow__scrollY
+{
+  overflow-y: scroll;
+}
+
+
+:global
+{
+    .overflow__hidden
+    {
+      overflow:     hidden;
+      max-height:   100vh;
+      max-width:    100vw;
+    }
+
+    .overflow__visible
+    {
+      overflow: visible;
+    }
+
+    .overflow__scroll
+    {
+      overflow: scroll;
+      max-height:   100vh;
+      max-width:    100vw;
+    }
+
+    .overflow__scrollX
+    {
+      overflow-x: scroll;
+      max-width:    100vw;
+    }
+
+    .overflow__scrollY
+    {
+      overflow-y: scroll;
+      max-height:   100vh;
+    }
+
+}

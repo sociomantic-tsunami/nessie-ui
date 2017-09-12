@@ -1,0 +1,61 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+:root
+{
+    --spinnerSize:  4rem;
+}
+
+.default
+{
+    flex:          1 0 auto;
+    margin:        0;
+}
+
+
+.content
+{
+    width:         102.4rem;
+
+    box-sizing:    border-box;
+
+    margin:        0 auto;
+    padding:       8rem 0;
+}
+
+.loadingOverlay
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+
+    position:   absolute;
+
+    top:        0;
+    bottom:     0;
+
+    left:       0;
+    right:      0;
+
+    width:      100%;
+    height:     100%;
+
+    background-color:   color( var( --PC-WHITE ) a( 70% ) );
+
+    z-index:    2;
+}
+
+.spinner
+{
+    position:   fixed !important;
+    top:        calc( 50% - ( var( --spinnerSize ) / 2 ) );
+
+    border-color:   color( var( --PC-BLUE ) a( 50% ) ) !important;
+
+    &::after
+    {
+
+        border-top-color:   var( --PC-BLUE ) !important;
+    }
+}
