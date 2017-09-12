@@ -1,0 +1,64 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    display:        flex;
+    font:           inherit;
+    line-height:    inherit;
+
+    .container
+    {
+        flex:       1 1 auto;
+        min-width:  0;
+    }
+
+    .label
+    {
+        flex:   0 0 auto;
+    }
+}
+
+.labelPosition__top
+{
+    flex-direction: column;
+
+    .label
+    {
+        align-self: flex-start;
+    }
+}
+
+.labelPosition__left,
+.labelPosition__right
+{
+    align-items:    center;
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+
+    .label
+    {
+        max-width:  50%;
+    }
+}
+
+.labelPosition__left
+{
+    & > .container
+    {
+        margin-left:   1rem;
+    }
+}
+
+.labelPosition__right
+{
+    flex-direction: row-reverse;
+
+    & > .container
+    {
+        margin-right:   1rem;
+    }
+}

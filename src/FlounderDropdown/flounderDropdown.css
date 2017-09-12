@@ -1,0 +1,878 @@
+/*@import "../proto/base.css";*/
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    /* from base.css */
+    position:       relative;
+    margin-bottom:  2rem;
+
+    box-sizing:     border-box;
+    width:          100%;
+
+    word-break:     normal;
+
+    &:last-child
+    {
+        margin-bottom:  0;
+    }
+}
+
+.headerMode /* Flounder as header */
+{
+    min-width:  40rem;
+
+    .mainWrapper
+    {
+        position:   absolute;
+
+        top:        0;
+        left:       0;
+        right:      0;
+
+        /* compensate for padding set on .selectedDisplayed
+         * and border set on .main (except on right side) */
+        margin: -1.8rem 0 -1.5rem -2.1rem;
+    }
+
+    .mainWrapper:not( .open )
+    {
+        .main,
+        .main:hover,
+        .main:focus,
+        &.fakeHovered .main,
+        .main.disabled
+        {
+            border-color:   transparent;
+            background:     transparent;
+        }
+    }
+
+    .main
+    {
+        display:            flex;
+        justify-content:    flex-start;
+        align-items:        center;
+    }
+
+    .arrow,
+    &.error .arrow
+    {
+        position:   relative;
+        left:       -3.5rem;
+        top:        0rem;
+        margin-top: 0;
+        right:      0;
+
+        .arrowInner
+        {
+            background-image:   url( './images/control/down__hover.svg' ); /* always blue */
+        }
+    }
+
+    &.error .open .main .arrowInner
+    {
+        background-image:   url( './images/control/up.svg' );
+    }
+
+    .main .selectedDisplayed
+    {
+        color:  var( --PC-BLUE );
+    }
+
+    .selectedDisplayed.disabled
+    {
+        color: var( --PC-DARK-GREY );
+    }
+
+    .open .main
+    {
+        z-index:    50;
+    }
+
+    .selectedDisplayed
+    {
+        padding:    1.7rem 5rem 1.4rem 2rem;
+    }
+
+    .optionsWrapper
+    {
+        top:            100%;
+        border-top:     none !important;
+
+        /* reset font */
+        @extend %Nessie-Regular;
+        font-size:      1.2rem;
+        line-height:    1.6rem;
+        text-transform: none;
+    }
+
+    .option,
+    .header,
+    .noResults
+    {
+        padding-left:   2rem;
+        padding-right:  2rem;
+    }
+
+    .section .option
+    {
+        padding-left:   3rem;
+    }
+}
+
+
+.headerLevel__1 /* H1 */
+{
+    .arrowInner
+    {
+        height: 3rem;
+        width:  3rem;
+
+    }
+
+}
+
+.headerLevel__2 /* H2 */
+{
+    .arrowInner
+    {
+        height: 2.2rem;
+        width:  2.2rem;
+    }
+}
+
+.headerLevel__3 /* H3 */
+{
+    .arrowInner
+    {
+        height: 2rem;
+        width:  2rem;
+    }
+}
+
+.headerLevel__4 /* H4 */
+{
+    .arrowInner
+    {
+        height: 1.8rem;
+        width:  1.8rem;
+    }
+}
+
+.open,
+.fakeHovered .open
+{
+    .main,
+    .main:hover,
+    .main:focus,
+    {
+        border-color:           var( --PC-BLUE );
+        border-bottom-color:    var( --PC-WHITE );
+
+        background:             var( --PC-WHITE );
+
+        .arrowInner
+        {
+            background-image:   url( './images/light/up__hover.svg' );
+        }
+    }
+
+    .optionsWrapper
+    {
+        border-color:   var( --PC-BLUE );
+        z-index:    50;
+    }
+
+}
+
+
+.error
+{
+    .main,
+    .main:hover,
+    .main:focus
+    {
+        border-color:   var( --AC-2 );
+
+        .optionsWrapper
+        {
+            border-color:   var( --AC-2 );
+        }
+    }
+
+    .open .main .arrowInner
+    {
+        background-image:   url( './images/light/up.svg' );
+    }
+}
+
+
+.main.disabled,
+.main.disabled:focus
+{
+    border-color:       color( var( --GS-10 ) );
+
+    background:         var( --GS-10 );
+    color:              var( --GS-2 );
+
+    cursor:             default;
+    pointer-events:     none;
+
+}
+
+.main.disabled
+{
+    .arrowInner
+    {
+        background-image:   url( './images/light/down.svg' );
+    }
+
+    .multipleSelectTag
+    {
+        border-color:   color( var( --GS-2 ) a( 50% ) );
+        background:     transparent;
+        color:          color( var( --GS-2 ) a( 50% ) );
+    }
+
+    .search
+    {
+        display:    none;
+    }
+
+    .optionsWrapper
+    {
+        display:    none;
+    }
+
+    .main:hover
+    {
+        border-color:           transparent;
+    }
+
+    .main .arrow .arrowInner
+    {
+        background-image:   url( './images/light/down.svg' );
+    }
+}
+
+.selectedDisplayed.disabled
+{
+    color:      var( --GS-2 );
+    opacity:    0.5;
+}
+
+.toggleIcon__magnifier
+{
+    .main,
+    .main.disabled
+    {
+        .arrowInner
+        {
+            background-image:   url( './images/light/search.svg' );
+        }
+    }
+
+    .main:hover,
+    .main:focus,
+    .open .main,
+    &.fakeHovered .main,
+    &.fakeHovered .open .main
+    {
+        .arrowInner
+        {
+            background-image:   url( './images/light/search__hover.svg' );
+        }
+    }
+}
+
+.toggleIcon__none
+{
+    .selectedDisplayed
+    {
+        padding-right:  1rem;
+    }
+
+    .multiTagList
+    {
+        padding-right:  0.5rem;
+    }
+}
+
+
+
+
+/*
+ *  $FLOUNDER - Sociomantic styling
+ */
+.mainWrapper
+{
+    /* no styles required! */
+}
+
+
+.main
+{
+    position:   relative;
+
+    margin:     0;
+    border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
+
+    background: var( --PC-WHITE );
+    color:      var( --PC-DARK-GREY );
+
+    &:hover,
+    &:focus,
+    .fakeHovered &
+    {
+        border: 0.1rem solid var( --PC-BLUE );
+
+        .arrowInner
+        {
+            background-image:   url( './images/light/down__hover.svg' );
+        }
+    }
+
+    &:focus
+    {
+        outline:    none;
+    }
+}
+
+
+.optionsWrapper
+{
+    position:       absolute;
+
+    width:          100%;
+    max-height:     45rem;
+
+    left:           0;
+    margin-left:    -0.1rem;
+
+    border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
+
+    background:     var( --PC-WHITE );
+    color:          var( --GS-3 );
+
+    overflow:       auto;
+
+    &:hover
+    {
+        border: 0.1rem solid var( --PC-BLUE );
+    }
+}
+
+
+.list
+{
+     background:    var( --PC-WHITE );
+     position:      relative;
+}
+
+
+.option.selected
+{
+    background: color( var( --PC-BLUE ) a( 10% ) );
+}
+
+
+.selectedDisplayed
+{
+    min-height:     1.6rem; /* the line height */
+
+    padding:        0.8rem 3.6rem 0.6rem 1rem;
+    margin:         0;
+
+    overflow:       hidden;
+    white-space:    nowrap;
+    text-overflow:  ellipsis;
+
+    color:          var( --GS-2 );
+
+    cursor:         pointer;
+
+    &[ data-value = "" ],
+    &:not( [ data-value ] ) /* is placeholder */
+    {
+        color:  color( var( --GS-2 ) a( 50% ) );
+    }
+
+    .description
+    {
+        display:    none;
+    }
+}
+
+
+.multipleTag
+{
+    .selectedDisplayed
+    {
+        position:   absolute;
+        box-sizing: border-box;
+
+        width:      100%;
+        height:     100%;
+    }
+}
+
+
+.description
+{
+    color:  var( --PC-GREY );
+}
+
+
+.hidden
+{
+    position:   absolute;
+    left:       -999999px;
+}
+
+.hiddenIos
+{
+    position:   absolute;
+    top:        0;
+    opacity:    0;
+    width:      1px;
+    height:     1px;
+}
+
+.selectedHidden,
+.searchHidden,
+.placeholder
+{
+    display:    none;
+}
+
+
+.option,
+.header,
+.noResults
+{
+    margin:     0;
+    padding:    0.7rem 1rem 0.5rem 1rem;
+}
+
+.option,
+.noResults
+{
+    color:      var( --GS-2 );
+    cursor:     pointer;
+
+    &:hover
+    {
+        background: color( var( --PC-BLUE ) a( 30% ) );
+        color:      var( --PC-DARK-GREY );
+    }
+}
+
+.noResults
+{
+    color:  color( var( --GS-2 ) a( 50% ) ) !important; /* always grey */
+}
+
+.disabled,
+.error .disabled
+{
+    pointer-events:             none;
+    cursor:                     auto;
+    color:                      color( var( --GS-2 ) a( 50% ) );
+
+    .description
+    {
+        color:  color( var( --PC-GREY ) a( 50% ) );
+    }
+}
+
+
+.arrow
+{
+    position:       absolute;
+    top:            0.7rem;
+    right:          1rem;
+
+    background:     transparent;
+    pointer-events: none;
+}
+
+
+.arrowInner
+{
+    height:                         1.6rem;
+    width:                          1.6rem;
+    background-size:                100%;
+}
+
+.arrowInner,
+.error .main .arrowInner
+{
+     background-image:  url( './images/light/down.svg' );
+}
+
+.search
+{
+    padding:        0;
+    border:         none;
+    margin:         0;
+
+    background:     transparent;
+
+    font:           inherit;
+    line-height:    inherit;
+
+    &:focus
+    {
+        outline:    none;
+    }
+
+    .main > &
+    {
+        position:       absolute;
+        top:            0;
+
+        box-sizing:     border-box;
+        width:          100%;
+        height:         100%;
+
+        text-indent:    1rem;
+
+    }
+
+    .multiTagList > &
+    {
+        flex:           1 0 0%;
+        min-width:      5ch;
+        text-indent:    0.5rem;
+    }
+}
+
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* FLOUNDER - multi select                                                    */
+/* -------------------------------------------------------------------------- */
+
+.multiTagList
+{
+    display:            flex;
+    flex-direction:     row;
+    flex-wrap:          wrap;
+    justify-content:    flex-start;
+    align-items:        center;
+
+    box-sizing:         border-box;
+
+    width:              100%;
+    min-height:         3rem;
+
+    padding-top:        0.5rem;
+    padding-right:      3rem;
+    padding-bottom:     0;
+    padding-left:       0.5rem;
+
+    & > *
+    {
+        margin-bottom:  0.5rem;
+        margin-right:   0.5rem;
+
+        &:last-child
+        {
+            margin-right:   0;
+        }
+    }
+}
+
+
+.multipleSelectTag
+{
+    flex:           0 0 auto;
+
+    display:        block;
+    position:       relative;
+
+    box-sizing:     border-box;
+    max-width:      100%;
+    min-height:     2rem;
+
+    border:         0.1rem solid transparent;
+
+    padding:        0.2rem 3.4rem 0 0.9rem;
+
+    background:     color( var( --GS-2 ) a( 10% ) );
+    color:          var( --GS-2 );
+
+    white-space:    nowrap;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+}
+
+.multipleTagClose
+{
+    display:            block;
+    position:           absolute;
+
+    top:                50%;
+    margin-top:         -0.8rem;
+
+    right:              0.9rem;
+
+    width:              1.6rem;
+    height:             1.6rem;
+
+    background:         url( './images/control/close.svg' ) no-repeat 100%;
+
+    cursor:             pointer;
+
+    &:hover
+    {
+        background-image:   url( './images/control/close__hover.svg' );
+    }
+}
+
+
+
+
+
+
+/* -------------------------------------*/
+/* FLOUNDER - description               */
+/* -------------------------------------*/
+.option > span, .option > div
+{
+    pointer-events:                 none;
+}
+
+
+.loading,
+.loadingFailed
+{
+    display:                        flex;
+    pointer-events:                 none;
+    color:                          #777;
+}
+
+
+.loading::after
+{
+    display:                        block;
+    content:                        'Loading';
+    animation:                      loading 1s infinite;
+}
+
+
+.loadingFailed::after
+{
+    display:                        block;
+    content:                        'Data load failed';
+}
+
+
+
+/* -------------------------------------*/
+/* FLOUNDER - grouped options           */
+/* -------------------------------------*/
+
+.section
+{
+    /* nothing to do here */
+}
+
+.header
+{
+    color:          var( --GS-2 );
+    @extend %Nessie-Bold;
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* Option Icons                                                               */
+/* -------------------------------------------------------------------------- */
+
+.option.optionIcon__approved,
+.option.optionIcon__declined,
+.option.optionIcon__alert,
+.option.optionIcon__ended,
+.option.optionIcon__pending,
+.option.optionIcon__error,
+.optionIcon__blueDot,
+.optionIcon__include,
+.optionIcon__exclude,
+.optionIcon__includeExclude
+{
+    position:   relative;
+
+    &::before
+    {
+        content:            '';
+        display:            block;
+        position:           absolute;
+        background-repeat:  no-repeat;
+    }
+}
+
+.option.optionIcon__approved,
+.option.optionIcon__declined,
+.option.optionIcon__alert,
+.option.optionIcon__ended,
+.option.optionIcon__pending,
+.option.optionIcon__error
+{
+    padding-left:   4.4rem;
+
+    &::before
+    {
+        top:        calc( 50% - 1.1rem );
+        left:       1rem;
+        bottom:     0;
+
+        width:      2.2rem;
+        height:     2.2rem;
+    }
+
+    .headerMode & /* icon always in the same position in header mode */
+    {
+        padding-left:   6.4rem !important;
+
+        &::before
+        {
+            left:   2rem !important;
+        }
+    }
+}
+
+.option.optionIcon__approved::before
+{
+    background-image:   url("./images/stroke-colours/approved.svg");
+}
+.option.optionIcon__declined::before
+{
+    background-image:   url("./images/stroke-colours/declined.svg");
+}
+.option.optionIcon__ended::before
+{
+    background-image:   url("./images/stroke-colours/ended.svg");
+}
+.option.optionIcon__pending::before
+{
+    background-image:   url("./images/stroke-colours/pending.svg");
+}
+.option.optionIcon__alert::before
+{
+    background-image:   url("./images/fill/alert.svg");
+}
+.option.optionIcon__error::before
+{
+    background-image:   url("./images/fill/error.svg");
+}
+
+.optionIcon__blueDot
+{
+    padding-left:   3rem;
+
+    &::before
+    {
+        left:           1rem;
+        top:            calc( 50% - 0.4rem );
+
+        width:          1rem;
+        height:         1rem;
+
+        border-radius:  1rem;
+        background:     var( --PC-BLUE );
+    }
+
+    .headerMode & /* icon always in the same position in header mode */
+    {
+        padding-left:   5rem !important;
+
+        &::before
+        {
+            left:   2rem !important;
+        }
+    }
+}
+
+.optionIcon__include,
+.optionIcon__exclude,
+.optionIcon__includeExclude
+{
+    padding-left:   4.4rem;
+
+    &::before
+    {
+        top:        calc( 50% - 0.5rem );
+        left:       1rem;
+        bottom:     0;
+
+        width:      2.2rem;
+        height:     1rem;
+    }
+
+    .headerMode & /* icon always in the same position in header mode */
+    {
+        padding-left:   6.4rem !important;
+
+        &::before
+        {
+            left:   2rem !important;
+        }
+    }
+}
+
+.optionIcon__include::before
+{
+    background-image:   url("./images/include.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/include__disabled.svg");
+    }
+}
+
+.optionIcon__exclude::before
+{
+    background-image:   url("./images/exclude.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/exclude__disabled.svg");
+    }
+}
+
+
+
+.optionIcon__includeExclude::before
+{
+    background-image:   url("./images/include--exclude.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/include--exclude__disabled.svg");
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* FLOUNDER - loading                                                     */
+/* -------------------------------------------------------------------------- */
+@keyframes loading
+{
+    0% {
+        content:                    'Loading.';
+    }
+    33% {
+        content:                    'Loading..';
+    }
+    66% {
+        content:                    'Loading...';
+    }
+}

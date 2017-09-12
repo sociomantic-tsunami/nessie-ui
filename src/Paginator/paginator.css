@@ -1,0 +1,105 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center;
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+}
+
+
+.arrows,
+.ellipsis,
+.pageButton,
+.pageButtons
+{
+    &:not( :last-child )
+    {
+        margin-right:   1rem;
+    }
+}
+
+.pageButton
+{
+    &:hover
+    {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:focus,
+    &:disabled
+    {
+        color:  var( --PC-DARK-GREY );
+    }
+}
+
+.pageButton,
+.ellipsis
+{
+    padding:        0;
+    border:         none;
+    margin:         0;
+
+    min-width:      2.6rem;
+    min-height:     1.6rem;
+
+    background:     transparent;
+    color:          color( var( --PC-DARK-GREY ) a( 50% ) );
+
+    @extend %Nessie-Bold;
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing: 0.02rem;
+
+    text-align:     center;
+
+    &:active
+    {
+        color:  color( var( --PC-DARK-GREY ) a( 50% ) );
+    }
+
+    &:focus
+    {
+        outline:    none;
+    }
+}
+
+
+.pageButtons
+{
+    display:        inline-flex;
+    align-items:    flex-start;
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+
+}
+
+
+.ellipsis
+{
+    width:                  2.4rem;
+    height:                 1.4rem;
+    background-size:        1.4rem;
+    background-position:    center;
+    background-repeat:      no-repeat;
+}
+
+
+.arrows
+{
+    height: 1.8rem;
+    width: 2.6rem;
+}

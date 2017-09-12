@@ -1,0 +1,68 @@
+@import "../proto/base.css";
+
+.default
+{
+    width:  auto;
+    font:   inherit;
+    &:hover,
+    &.fakeHovered
+    {
+        .up,
+        .down
+        {
+            opacity:    0.5;
+        }
+    }
+}
+
+.sorterVisible
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center;
+
+    cursor:             pointer;
+}
+
+.sort__asc
+{
+    .up
+    {
+        opacity:    1 !important;
+    }
+}
+
+.sort__desc
+{
+    .down
+    {
+        opacity:    1 !important;
+    }
+}
+
+
+
+
+
+
+.content
+{
+    flex:   1 0 auto;
+}
+
+.sorter
+{
+    display:        flex;
+    flex-direction: column;
+
+    flex:           0 0 0%;
+
+    margin-left:    1rem;
+
+}
+
+.down
+{
+    margin-top: -0.5rem
+}

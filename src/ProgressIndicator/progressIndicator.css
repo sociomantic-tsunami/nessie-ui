@@ -1,0 +1,70 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    /*  */
+}
+
+.percentageContainer
+{
+    position:           absolute;
+    text-align:         center;
+    top:                0;
+    bottom:             0;
+    left:               0;
+    right:              0;
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+}
+
+
+$defaultSpinnerSize:            84px;
+$defaultSpinnerOverlayBorder:   8px;
+$defaultSpinnerUnderlayBorder:  8px;
+
+.percentage
+{
+    @extend %Nessie-Bold;
+
+    font-size:          3rem;
+    letter-spacing:     0.01rem;
+    margin-top:         3px;
+}
+
+.spinner
+{
+    composes:             default from '../Spinner/spinner.css';
+
+    width:                $defaultSpinnerSize;
+    height:               $defaultSpinnerSize;
+    min-height:           $defaultSpinnerSize;
+    border-width:         $defaultSpinnerUnderlayBorder;
+
+  &:after
+  {
+    width:              calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
+    height:             calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
+    border-width:       $defaultSpinnerOverlayBorder;
+    animation:          defaultSpinnerRingRotate .8s infinite ease-in-out;
+    left:               -$defaultSpinnerOverlayBorder;
+    top:                -$defaultSpinnerOverlayBorder;
+  }
+
+
+
+}
+
+
+@keyframes defaultSpinnerRingRotate {
+  0%
+  {
+    transform: rotateZ(0deg) scale(1); /* scale to voerride default spinner setup */
+  }
+  100%
+  {
+    transform: rotateZ(360deg) scale(1);
+  }
+}

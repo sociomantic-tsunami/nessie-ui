@@ -1,0 +1,154 @@
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    display:                block;
+    background-repeat:      no-repeat;
+    background-position:    center;
+}
+
+.size__S
+{
+    width:                  1.6rem;
+    height:                 1.6rem;
+}
+
+.size__M
+{
+    width:                  2.4rem;
+    height:                 2.4rem;
+}
+
+.size__L
+{
+    width:                  3.2rem;
+    height:                 3.2rem;
+}
+
+.size__XL
+{
+    width:                  4rem;
+    height:                 4rem;
+}
+
+.size__XXL
+{
+    width:                  4.8rem;
+    height:                 4.8rem;
+}
+
+
+
+
+.theme__control
+{
+    fill:                       var( --GS-2 );
+
+    &:hover,
+    &.fakeHovered,
+    button:focus > &
+    {
+        fill:                   var( --PC-BLUE );
+    }
+}
+
+.theme__button
+{
+    fill:                       var( --PC-WHITE );
+    color:                      var( --PC-WHITE );
+}
+
+.theme__light,
+.theme__dark,
+.theme__navigation
+{
+    fill:                       color( var( --GS-2 ) a( 50% ) );
+}
+
+.theme__light
+{
+    &:hover,
+    &.fakeHovered,
+    button:focus > &
+    {
+        fill:                   var( --PC-BLUE );
+    }
+}
+
+.theme__dark
+{
+    &:hover,
+    &.fakeHovered,
+    button:focus > &
+    {
+        fill:                   var( --PC-WHITE );
+    }
+}
+
+.theme__navigation
+{
+    &:hover,
+    &.fakeHovered,
+    button:focus > &
+    {
+        fill:                   var( --GS-2 );
+    }
+}
+
+:not( .theme__button ).type
+{
+    &__alert
+    {
+        color:                       var( --AC-5 );
+    }
+
+    &__approved
+    {
+        color:                       var( --AC-12 );
+    }
+
+    &__declined,
+    &__error
+    {
+        color:                       var( --AC-2 );
+    }
+
+    &__ended
+    {
+        color:                       var( --GS-2 );
+    }
+
+    &__info
+    {
+        color:                       var( --GS-5 );
+    }
+
+    &__pending
+    {
+        color:                       var( --AC-4 );
+    }
+
+    &__validation
+    {
+        fill:                        var( --AC-12 );
+    }
+}
+
+
+.disabled:not( .theme__button )
+{
+    pointer-events:                 none;
+    fill:                           var( --GS-7 );
+    color:                          var( --GS-7 );
+}
+
+
+@each $icon in (account, add, calendar, close, delete, down, download, duplicate, edit, info, inspect, left, link, preview, reset, right, search, up, upload, validation, show, hide) {
+    .type__$(icon)
+    {
+    }
+}
+.variant__fill
+{}
+.variant__stroke
+{}

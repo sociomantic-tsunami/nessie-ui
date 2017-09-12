@@ -1,0 +1,131 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    .container
+    {
+        display:        flex;
+        flex-direction: row;
+
+        margin:     0;
+
+        & > *
+        {
+            margin: 0;
+        }
+    }
+
+    .input
+    {
+        flex:       1 1 auto;
+        min-width:  0;
+    }
+
+    .valueLabel
+    {
+        display:        block;
+        position:       relative;
+
+        flex:           0 0 auto;
+        width:          auto;
+
+
+        border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
+        padding:        0.8rem 1rem 0.6rem 1rem;
+
+        background:     var( --PC-WHITE );
+
+        white-space:    nowrap;
+
+        cursor:         pointer;
+
+        &::before,
+        &::after
+        {
+            content:        '';
+
+            display:        block;
+            position:       absolute;
+
+            top:            0.4rem;
+
+            width:          0.2rem;
+            height:         2.2rem;
+
+            background:     color( var( --GS-2 ) a( 20% ) );
+        }
+
+        &::before
+        {
+            left:   -0.2rem;
+        }
+
+        &::after
+        {
+            right:  -0.2rem;
+        }
+    }
+}
+
+.position__left
+{
+    .container
+    {
+        flex-direction:  row-reverse;
+    }
+
+    .valueLabel
+    {
+        margin-right:   -0.1rem;
+        border-right:   none;
+
+        &::before
+        {
+            display:    none;
+        }
+    }
+}
+
+
+.position__right
+{
+    .valueLabel
+    {
+        margin-left:    -0.1rem;
+        border-left:    none;
+
+        &::after
+        {
+            display:    none;
+        }
+    }
+}
+
+.fakeHovered
+{
+    .valueLabel
+    {
+        border-color:   var( --PC-BLUE );
+    }
+}
+
+.error
+{
+    .valueLabel
+    {
+        border-color:   var( --AC-2 );
+    }
+}
+
+
+.disabled
+{
+    .valueLabel
+    {
+        background:     var( --GS-10 );
+        border-color:   var( --GS-10 );
+        color:          color( var( --GS-2 ) a( 50% ) );
+        pointer-events: none;
+    }
+}

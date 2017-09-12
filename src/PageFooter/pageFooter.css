@@ -1,0 +1,24 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+ 	flex:		0 0 auto;
+ 	width:		100%;
+
+	margin:		0;
+
+  	background:	var( --PC-DARK-GREY );
+  	color:		var( --PC-WHITE );
+}
+
+.content
+{
+	box-sizing:	border-box;
+	width:		80%;
+ 	min-width:	320px;
+ 	max-width:	96rem;
+ 	margin:		2rem auto;
+
+ 	opacity:	0.3;
+}

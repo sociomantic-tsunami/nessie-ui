@@ -1,0 +1,33 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/base.css";
+
+.default
+{
+    height:                     0.8rem;
+    border-radius:              2rem;
+    background-color:           color( var( --PC-BLUE ) a( 30% ) );
+}
+
+.fill
+{
+    display:                    block;
+    position:                   absolute;
+    left:                       0.4rem;
+    height:                     100%;
+    max-width:                  calc( 100% - 0.4rem );
+    background-color:           var( --PC-BLUE );
+    border-top-right-radius:    2rem;
+    border-bottom-right-radius: 2rem;
+
+    &:before
+    {
+        content:                "";
+        display:                block;
+        position:               relative;
+        left:                   -0.4rem;
+        width:                  0.8rem;
+        height:                 0.8rem;
+        background-color:       var( --PC-BLUE );
+        border-radius:          50%;
+    }
+}

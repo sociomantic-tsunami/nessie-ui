@@ -1,0 +1,96 @@
+@import "./proto/definitions/_colors.css";
+@import "./proto/definitions/_fonts.css";
+
+/* Base Application Styles */
+
+html,
+body
+{
+    width:      100%;
+    height:     100%;
+    background: var( --GS-11 ) !important;
+}
+
+html
+{
+    line-height:    1.25; /* normalize across browsers */
+    font-size:      62.5%;
+}
+
+body
+{
+    @extend %Nessie-Regular;
+
+    overflow:       auto;
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing: 0.02rem;
+
+    color:          var( --GS-2 );
+}
+
+strong,
+b
+{
+    @extend %Nessie-Bold;
+}
+
+em,
+i
+{
+    @extend %Nessie-RegularIt;
+}
+
+p
+{
+    position:       relative;
+    top:            0.5rem;
+
+    margin:         0;
+    margin-top:     -0.8rem;
+    margin-bottom:  1rem;
+
+    line-height:    1.6rem;
+
+    &:last-child
+    {
+        margin-bottom:  0;
+    }
+}
+
+section
+{
+    margin-bottom:  4rem;
+}
+
+code
+{
+    font-size:  0.9em;
+}
+
+
+
+a
+{
+    max-width:  100%; /* until we have a <Link> component */
+}
+
+a,
+a:visited
+{
+    color:              var( --PC-BLUE );
+    text-decoration:    none;
+}
+
+a:hover,
+a:active
+{
+    color:              var( --AC-15 );
+    text-decoration:    underline;
+}
+
+.hidden
+{
+    display:    none !important;
+}

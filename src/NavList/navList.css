@@ -1,0 +1,36 @@
+@import "../proto/base.css";
+
+.default
+{
+    display:    flex;
+    padding:    0;
+    margin:     0;
+
+    list-style: none;
+}
+
+.layout__horizontal
+{
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        flex-start;
+
+    & > *
+    {
+        flex:           0 0 auto;
+        margin-bottom:  0;
+        margin-right:   6rem;
+
+        &:last-child
+        {
+            margin-right:   0;
+        }
+    }
+}
+
+.layout__vertical
+{
+    flex-direction:     column;
+    justify-content:    flex-start;
+    align-items:        stretch;
+}

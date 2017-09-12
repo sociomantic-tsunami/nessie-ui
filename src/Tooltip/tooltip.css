@@ -1,0 +1,247 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+:root
+{
+    --tooltipOffsetX:       1.1rem; /* 5px */
+    --tooltipOffsetY:       1.2rem; /* 5px */
+    --tooltipOffsetXY:      2.6rem;
+    --tooltipOffsetXYAfter: 2rem;
+
+    --pointerSize:          1rem;
+    --halfPointer:          0.5rem;
+    --halfPointerTweak:     0.1rem;
+
+    --tooltipPadding:       2rem;
+    --tooltipBorderWidth:   0.1rem;
+
+    --messageTop:           0.4rem;
+    --messageMarginTop:     -0.7rem;
+    --messageFontSize:      1.2rem;
+    --messageLineHeight:    1.6rem;
+    --messageLetterSpacing: 0.02rem;
+}
+
+
+.default
+{
+    position:       relative;
+    display:        inline-block;
+
+    max-width:      100%;
+}
+
+.tooltip
+{
+    display:            block;
+    position:           absolute;
+
+    width:              auto;
+
+    margin-bottom:      0;
+
+    border:             var( --tooltipBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+    padding:            var( --tooltipPadding );
+
+    background-color:   var( --PC-WHITE );
+
+    z-index:            100;
+
+    &::after
+    {
+        content:            "";
+        position:           absolute;
+        box-sizing:         border-box;
+
+        width:              var( --pointerSize );
+        height:             var( --pointerSize );
+
+        border:             var( --tooltipBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+
+        background-color:   var( --PC-WHITE );
+
+        transform:          rotate( 45deg );
+    }
+}
+
+.position__top,
+.position__bottom
+{
+    .tooltip
+    {
+        left:   50%;
+
+        &::after
+        {
+            right:  calc( 50% - var( --halfPointer ) );
+        }
+    }
+}
+
+.position__top
+{
+    .tooltip
+    {
+        top:        0;
+        transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
+
+        &::after
+        {
+            bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            border-top:     none;
+            border-left:    none;
+        }
+    }
+}
+
+
+.position__bottom
+{
+    .tooltip
+    {
+        bottom:     0;
+        transform:  translateX(-50%) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
+
+        &::after
+        {
+            top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+
+            border-bottom:  none;
+            border-right:   none;
+        }
+    }
+}
+
+.position__left,
+.position__right
+{
+    .tooltip
+    {
+        top:    50%;
+
+        &::after
+        {
+            top:         calc( 50% -var( --halfPointer ) - var( --halfPointerTweak ) );
+        }
+    }
+}
+
+.position__left
+{
+    .tooltip
+    {
+        top:        50%;
+        left:       0;
+
+        transform:  translateX(-100%) translateX( -var( --tooltipOffsetX )  ) translateY( -50% );
+
+        &::after
+        {
+            right:          calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            top:            calc( 50% - var( --halfPointer ) );
+
+            border-bottom:  none;
+            border-left:    none;
+        }
+    }
+}
+
+.position__right
+{
+    .tooltip
+    {
+        top:        50%;
+        right:      0;
+
+        transform:  translateX(100%) translateX( var( --tooltipOffsetX )  ) translateY( -50% );
+
+        &::after
+        {
+            top:            calc( 50% - var( --halfPointer ) );
+            left:           calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            border-top:     none;
+            border-right:   none;
+        }
+    }
+}
+
+.position__topLeft,
+.position__topRight
+{
+    .tooltip
+    {
+        top:    0;
+        left:   50%;
+
+        &::after
+        {
+            bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            border-top:     none;
+            border-left:    none;
+        }
+    }
+}
+
+.position__topLeft
+{
+    .tooltip
+    {
+        transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+
+        &::after
+        {
+            right:  var( --tooltipOffsetXYAfter );
+        }
+    }
+}
+
+.position__topRight
+{
+    .tooltip
+    {
+        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+
+        &::after
+        {
+            left:   var( --tooltipOffsetXYAfter );
+        }
+    }
+}
+
+
+
+
+
+
+.message
+{
+    position:           relative;
+    top:                var( --messageTop );
+
+    margin-top:         var( --messageMarginTop );
+    margin-right:       auto;
+    margin-left:        auto;
+
+    white-space:        nowrap;
+
+    /* reset the font and pointer so we don’t inherit from parent ...*/
+
+    color:              var( --GS-2 );
+
+    @extend %Nessie-Regular;
+
+    font-size:          var( --messageFontSize );
+    line-height:        var( --messageLineHeight );
+    letter-spacing:     var( --messageLetterSpacing );
+    font-weight:        normal;
+    text-transform:     none;
+    text-align:         left;
+
+    cursor:             default;
+}
+
+.content
+{
+    display:        flex;
+    flex-direction: column;
+}

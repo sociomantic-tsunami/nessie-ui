@@ -1,0 +1,192 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/base.css";
+
+:root
+{
+    --backgroundTransition:  background-color 0.2s ease-in-out;
+    --circleTransition:      left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
+    --textTransition:        opacity 0.2s cubic-bezier( 0.23, 1, 0.32, 1 ); /* easeOutQuint */
+}
+
+.default
+{
+    width:  auto;
+
+    &:hover,
+    &.fakeHovered
+    {
+        .label
+        {
+            background-color:       color( var( --GS-2 ) shade( 13% ) );
+        }
+
+        .input:checked + .label
+        {
+            background-color:       color( var( --AC-12 ) shade( 13% ) );
+        }
+    }
+
+    .input:focus
+    {
+        & + .label
+        {
+            background-color:       color( var( --GS-2 ) shade( 13% ) );
+        }
+
+        &:checked + .label
+        {
+            background-color:       color( var( --AC-12 ) shade( 13% ) );
+        }
+    }
+}
+
+
+.disabled
+{
+    .label,
+    .input:checked + .label
+    {
+        cursor:                 default;
+        background-color:       var( --GS-7 );
+    }
+
+    &:hover
+    {
+        .label,
+        .input:checked + .label
+        {
+            background-color:       var( --GS-7 );
+        }
+    }
+}
+
+
+
+
+
+
+.label
+{
+    position:           relative;
+    display:            flex;
+
+    min-height:         3.2rem; /* necessary if there's no label */
+
+    border-radius:      2rem;
+
+    background-color:   var( --GS-2 );
+
+    cursor:             pointer;
+    transition:         var( --backgroundTransition );
+
+
+    &::before
+    {
+        content:            '';
+
+        display:            block;
+        position:           absolute;
+
+        top:                0.4rem;
+        left:               0.4rem;
+
+        width:              2.4rem;
+        height:             2.4rem;
+
+        border-radius:      100%;
+
+        background-color:   var( --PC-WHITE );
+
+        transition:         var( --circleTransition );
+    }
+}
+
+.off,
+.on
+{
+    display:                block;
+    box-sizing:             border-box;
+
+    width:                  100%;
+
+    padding-top:            0.8rem;
+    padding-bottom:         0.5rem;
+
+    color:                  var( --PC-WHITE );
+
+    @extend %Nessie-SemiBold;
+
+    font-size:              1.2rem;
+    line-height:            1.6rem;
+    letter-spacing:         0.04rem;
+    text-transform:         uppercase;
+    text-align:             center;
+
+    overflow:               hidden;
+    white-space:            nowrap;
+    text-overflow:          ellipsis;
+
+    transition:             var( --textTransition );
+}
+
+.off
+{
+    padding-left:           4rem;
+    padding-right:          2.3rem;
+}
+
+.on
+{
+    position:               absolute; /* necessary to overlay on over off */
+    top:                    0;
+    bottom:                 0;
+    left:                   0;
+    right:                  0;
+
+    padding-left:           2.3rem;
+    padding-right:          4rem;
+
+    opacity:                0;
+}
+
+/* INPUT */
+/* basics to hide native input */
+.input
+{
+    position:               absolute;
+    left:                   -9999px;
+
+    &:checked + .label::after
+    {
+        position:           absolute;
+    }
+}
+
+.input:checked + .label
+{
+    background-color:       var( --AC-12 );
+    transition:             var( --backgroundTransition );
+
+    &::before
+    {
+        left:               calc( 100% - 28px);
+        transition:         var( --circleTransition );
+    }
+
+    .off,
+    .on
+    {
+        transition:         var( --textTransition );
+    }
+
+    .on
+    {
+        opacity:            1;
+    }
+
+    .off
+    {
+        opacity:            0;
+    }
+}

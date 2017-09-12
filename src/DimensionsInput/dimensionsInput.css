@@ -1,0 +1,100 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+
+}
+
+.error
+{
+    .container
+    {
+        border-color:       var( --AC-2 ) !important; /* error is always red! */
+    }
+}
+
+.fakeHovered
+{
+    .container
+    {
+        border-color:       var( --PC-BLUE );
+    }
+}
+
+.disabled
+{
+    .container
+    {
+        background-color:   var( --GS-10 );
+        border-color:       var( --GS-10 );
+    }
+
+    .input
+    {
+        background-color:   var( --GS-10 );
+    }
+
+    .inputDefault
+    {
+        color:  color( var( --GS-2 ) a( 50%) );
+    }
+}
+
+
+
+.container
+{
+    display:		        flex;
+    position:               relative;
+    flex-direction:         row;
+    align-items:	        center;
+    composes:               default from '../InputField/inputField.css';
+    padding-right:          0.5rem;
+    padding-left:           0.5rem;
+
+    & > *
+    {
+        margin-bottom:	   0;
+    }
+}
+
+
+.inputDefault
+{
+	display: 			flex;
+    flex:               1 1 100%;
+
+    position:           relative;
+    top:                0;
+
+    min-width:          5rem;
+
+	flex-grow:			1;
+
+    border:             none;
+    padding:            0;
+
+    letter-spacing: 0.02rem;
+    text-align:     center;
+
+    background:     transparent;
+
+    font:           inherit;
+    line-height:    inherit;
+
+    &:focus
+    {
+        outline:    none;
+
+        &::placeholder
+        {
+            color:  transparent !important;
+        }
+    }
+
+    &::-ms-clear
+    {
+        display: none;
+    }
+}

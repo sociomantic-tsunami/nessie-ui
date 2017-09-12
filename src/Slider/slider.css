@@ -1,0 +1,370 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+@import "../proto/base.css";
+
+:root
+{
+    --horizontalSliderHeight:   3.2rem;
+    --verticalSliderHeight:     30rem;
+
+    --trackSize:                1rem;
+    --trackBorderWidth:         0.1rem;
+
+    --handleSize:               1.6rem;
+
+    --tickSize:                 0.9rem;
+
+    --labelMargin:              1rem;
+    --stepLabelContainerHeight: 1.6rem; /*matches line height of labels*/
+}
+
+
+.default
+{
+    .inputContainer
+    {
+        position:   absolute;
+        left:       -9999999px;
+    }
+
+
+    /* Track + handles */
+
+    .handle,
+    .track,
+    {
+        box-sizing: border-box;
+    }
+
+    .handle,
+    .trackFill
+    {
+        position:   absolute;
+        z-index:    1;
+    }
+
+    .trackContainer
+    {
+        display:    flex;
+    }
+
+    .track
+    {
+        position:       relative;
+
+        border:         var( --trackBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+        border-radius:  var( --trackSize );
+
+        background:     var( --PC-WHITE );
+
+        user-select:    none;
+    }
+
+    .trackFill
+    {
+        border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
+        background:     color( var( --PC-BLUE ) a( 30% ) );
+    }
+
+    .handle
+    {
+        width:              var( --handleSize );
+        height:             var( --handleSize );
+
+        border-radius:      50%;
+        background-color:   var( --PC-BLUE);
+
+        cursor:             grab;
+
+        &:active
+        {
+            cursor: grabbing;
+        }
+    }
+
+    .handleLabel
+    {
+        display:    none;
+    }
+
+
+    /* Ticks */
+
+    .ticksContainer
+    {
+        width:      100%;
+        height:     100%;
+        position:   relative;
+    }
+
+    .tick
+    {
+        color:          color( var( --GS-2 ) a( 50% ) );
+        position:       absolute;
+        transform:      translateX( -50% );
+        line-height:    var( --trackSize );
+        font-size:      var( --tickSize );
+    }
+
+
+    /* Step labels */
+
+    .stepLabelsContainer
+    {
+        position:   relative;
+    }
+
+    .stepLabel
+    {
+        position:   absolute;
+        @extend %Nessie-Bold;
+    }
+}
+
+
+
+
+.orientation__horizontal
+{
+    .trackContainer
+    {
+        flex-direction: column;
+    }
+
+    .track,
+    .stepLabelsContainer
+    {
+        width:          calc( 100% - var( --handleSize ) );
+
+        margin-left:    calc( var( --handleSize ) / 2 );
+        margin-right:   calc( var( --handleSize ) / 2 );
+    }
+
+    .track
+    {
+        height:         var( --trackSize );
+
+        margin-top:     calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
+        margin-bottom:  calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
+    }
+
+    .handle
+    {
+        top:        50%;
+        transform:  translateX( -50% ) translateY( -50% );
+    }
+
+    .trackFill
+    {
+        height: 100%;
+    }
+
+    .stepLabelsContainer
+    {
+        height:         var( --stepLabelContainerHeight );
+
+        margin-left:    calc( var( --handleSize) / 2 );
+        margin-right:   calc( var( --handleSize) / 2 );
+    }
+
+    .stepLabelsContainer
+    {
+        /* We need to replace label with Label component to avoid these magic numbers */
+        margin-top:     -0.3rem;
+        margin-bottom:  0.6rem;
+
+        &:last-child
+        {
+            margin-top:     0.8rem;
+            margin-bottom:  -0.5rem;
+        }
+    }
+
+    .stepLabel
+    {
+        transform:  translateX( -50% );
+
+        &:first-child /* start label */
+        {
+            transform:  translateX( calc( -1 * ( var( --handleSize) / 2 ) ) );
+        }
+
+        &:last-child /* end label */
+        {
+            transform: translateX( calc( -100% + ( var( --handleSize) / 2 ) ) );
+        }
+    }
+}
+
+
+
+
+.orientation__vertical
+{
+    width:      auto;
+    height:     var( --verticalSliderHeight );
+
+    .trackContainer
+    {
+        height: 100%;
+    }
+
+    .track,
+    .stepLabelsContainer
+    {
+        height: calc( 100% - var( --handleSize ) );
+
+        margin-top:     calc( var( --handleSize ) / 2 );
+        margin-bottom:  calc( var( --handleSize ) / 2 );
+    }
+
+    .track
+    {
+        width:  var( --trackSize );
+    }
+
+    .trackFill
+    {
+        width:  100%
+    }
+
+    .handle
+    {
+        left:       50%;
+        transform:  translateX( -50% ) translateY( 50% );
+    }
+
+    .stepLabelsContainer
+    {
+        margin-right:   var( --labelMargin );
+
+        &:last-child
+        {
+            margin-right:   0;
+            margin-left:    var( --labelMargin );
+        }
+    }
+
+    .stepLabel
+    {
+        transform:  translateY( 50% );
+    }
+
+    .tick
+    {
+        /* We should change the ticks to use the Text component to avoid this
+           1px nudge */
+        left:       calc( 50% - 1px );
+        transform:  translateX( -50% ) translateY( 50% ) rotate( 90deg );
+    }
+}
+
+
+
+
+.hasHandleLabels
+{
+    .handleLabel
+    {
+        display:            flex;
+        position:           relative;
+        justify-content:    center;
+
+        color:              var( --PC-BLUE );
+
+        cursor:             default;
+        user-select:        none;
+    }
+}
+
+
+.handleLabelPosition__top
+{
+    .handleLabel
+    {
+        /* This is a magic number, it’s just a coincidence that it happens to be
+           the same number as the handle size. We should use the Text component
+           to avoid this */
+        top:    -1.6rem;
+    }
+}
+
+.handleLabelPosition__bottom &
+{
+    .handleLabel
+    {
+        /* This is a magic number, it’s just a coincidence that it happens to be
+           the same number as the handle size. We should use the Text component
+           to avoid this */
+        bottom: -1.6rem;
+    }
+}
+
+.handleLabelPosition__right &
+{
+    .handleLabel
+    {
+        /* This is a magic number, it’s just a coincidence that it happens to be
+           the same number as the handle size. We should use the Text component
+           to avoid this */
+        left:   1.6rem;
+    }
+}
+
+.handleLabelPosition__left &
+{
+    .handleLabel
+    {
+        /* This is a magic number, it’s just a coincidence that it happens to be
+           the same number as the handle size. We should use the Text component
+           to avoid this */
+        right:  1.6rem;
+    }
+}
+
+
+
+
+.error
+{
+    .trackFill
+    {
+        background: color( var( --AC-2 ) a( 30% ) );
+    }
+
+    .handleLabel
+    {
+        color:  var( --AC-2 );
+    }
+}
+
+
+.disabled
+{
+    .track
+    {
+        border-color:   var( --GS-10 );
+        background:     var( --GS-10 );
+    }
+
+    .trackFill
+    {
+        background: color( var( --GS-4 ) a( 30% ) );
+    }
+
+    .handle
+    {
+        background: var( --GS-5 );
+        cursor:     default;
+    }
+
+    .handleLabel
+    {
+        color:  color( var( --GS-2 ) a( 50% ) );
+    }
+
+    .ticksContainer
+    {
+        display:    none;
+    }
+}

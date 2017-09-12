@@ -1,0 +1,201 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    display:        block;
+    list-style:     none;
+    width:          auto;
+    margin-bottom:  0;
+
+    @extend %Nessie-Regular;
+    font-size:      1.4rem;
+
+    .link /* needs to go inside .default to override foundations.css */
+    {
+        display:            block;
+        white-space:        nowrap;
+        text-decoration:    none !important;
+        cursor:             text;
+
+        &,
+        &:hover,
+        &:focus,
+        &:active
+        {
+            color:  var( --GS-2  );
+        }
+
+        &[href]
+        {
+            cursor: pointer;
+        }
+
+        &:focus
+        {
+            outline:    none;
+        }
+    }
+}
+
+.disabled
+{
+    pointer-events: none;
+
+    & > .link
+    {
+        color:  color( var( --GS-2 ) a( 50% ) ) !important;
+        cursor: default !important;
+
+        &::after
+        {
+            background: color( var( --GS-2 ) a( 50% ) ) !important;
+        }
+
+        & > .icon
+        {
+            opacity:    0.5;
+        }
+    }
+
+}
+
+.role__default,
+.role__primary
+{
+    & > .link
+    {
+        padding:    0.7rem 0 0.5rem 0;
+        @extend %Nessie-Bold;
+    }
+
+    & > .link[href]:hover,
+    & > .link[href]:focus,
+    & > .link[href]:active,
+    &.fakeHovered > .link,
+    &.open > .link,
+    &.current > .link
+    {
+        color:  var( --PC-BLUE );
+    }
+
+    &.current > .link::after
+    {
+        content:    '';
+        display:    block;
+
+        position:   absolute;
+        bottom:     0;
+
+        width:      100%;
+        height:     0.2rem;
+
+        background: var( --PC-BLUE );
+    }
+}
+
+.role__primary
+{
+    & > .link
+    {
+        text-transform: uppercase;
+    }
+}
+
+.role__sub
+{
+    & > .link
+    {
+        padding:        1.2rem 2rem 1rem 1.5rem;
+        border-left:    0.5rem solid transparent;
+        color:          var( --GS-2  );
+    }
+
+    & > .link[href]:hover,
+    & > .link[href]:focus,
+    & > .link[href]:active,
+    &.fakeHovered > .link,
+    &.open > .link
+    {
+        color:          var( --GS-2  );
+        border-color:   var( --PC-BLUE );
+    }
+
+    &.current > .link
+    {
+        @extend %Nessie-Bold;
+        border-color:   transparent;
+    }
+}
+
+.open
+{
+    .dropdown
+    {
+        left:   auto;
+    }
+
+    &.dropdownAlign__right .dropdown
+    {
+        right:  0;
+    }
+}
+
+
+
+
+
+
+
+
+.dropdown
+{
+    position:   absolute;
+    left:       -99999px;
+    margin-top: -0.2rem;
+}
+
+
+.icon__account
+{
+    & > .link
+    {
+        padding:    1.4rem 0 1.2rem;
+
+        &::after
+        {
+            display:    none !important;
+        }
+    }
+
+    & > .link > .icon
+    {
+        display:    inline-block;
+    }
+
+    & > .link[href]:hover > .icon,
+    & > .link[href]:active > .icon,
+    & > .link[href]:focus > .icon,
+    &.open > .link > .icon,
+    &.fakeHovered > .link > .icon,
+    &.current > .link > .icon
+    {
+        background: url( ./svg/account__hover.svg);
+    }
+
+    & > .link > .icon,
+    &.disabled > .link > .icon
+    {
+        background: url( ./svg/account.svg);
+    }
+}
+
+
+.icon
+{
+    display:    none;
+    width:      2.4rem;
+    height:     2.4rem;
+    margin:     -0.7rem 0 -0.7rem 1.5rem;
+}

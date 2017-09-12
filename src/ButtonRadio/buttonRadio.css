@@ -1,0 +1,17 @@
+@import "../proto/base.css";
+
+.default
+{
+	display:	inline-block;
+	width:		auto;
+}
+
+.input
+{
+	display:	none;
+}
+
+.label
+{
+	display:	block;
+}

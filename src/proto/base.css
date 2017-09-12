@@ -1,0 +1,24 @@
+.default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+
+    white-space:    normal;
+    word-break:     normal;
+
+    &:last-child
+    {
+        margin-bottom:  0;
+    }
+}

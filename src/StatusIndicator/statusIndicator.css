@@ -1,0 +1,39 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+    width:              auto;
+
+    padding:            0.6rem 2rem;
+
+    border:             0.2rem solid var( --GS-2 );
+    border-radius:      1.6rem;
+
+    color:              var( --GS-2 );
+
+    @extend %Nessie-SemiBold;
+
+    font-size:          1.2rem;
+    line-height:        1.6rem;
+    letter-spacing:     0.04rem;
+
+    text-transform:     uppercase;
+    text-align:         center;
+
+    overflow:           hidden;
+    text-overflow:      ellipsis;
+}
+
+.status__active
+{
+    color:          var( --AC-12 );
+    border-color:   var( --AC-12 );
+}
+
+.status__alert
+{
+    color:         var( --AC-5 );
+    border-color:  var( --AC-5 );
+}

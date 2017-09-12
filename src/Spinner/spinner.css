@@ -1,0 +1,103 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+
+
+%spinner-basics
+{
+  position:                     relative;
+  background-color:             transparent;
+  border-style:                 solid;
+  border-color:                 color( var( --GS-2 ) a( 30% ) );
+  border-radius:                50%;
+  box-sizing:                   content-box;
+  display:                      inline-block;
+
+  &:after
+  {
+    position:                   absolute;
+    content:                    "";
+    top:                        0px;
+    left:                       0px;
+    border-style:               solid;
+    border-color:               var( --GS-2 ) transparent transparent transparent;
+    border-radius:              50%;
+    box-sizing:                 border-box;
+  }
+}
+
+
+$defaultSpinnerSize:            10px;
+$defaultSpinnerOverlayBorder:   1px;
+$defaultSpinnerUnderlayBorder:  3px;
+$defaultSpinnerScale:           1.48;
+
+.default
+{
+  @extend %spinner-basics;
+  width:                $defaultSpinnerSize;
+  height:               $defaultSpinnerSize;
+  min-height:           $defaultSpinnerSize;
+  border-width:         $defaultSpinnerUnderlayBorder;
+
+
+  &:after
+  {
+    width:              $defaultSpinnerSize;
+    height:             $defaultSpinnerSize;
+    border-width:       $defaultSpinnerOverlayBorder;
+    animation:          defaultSpinnerRingRotate .8s infinite ease-in-out;
+  }
+}
+
+@keyframes defaultSpinnerRingRotate {
+  0%
+  {
+    transform: rotateZ(0deg) scale($defaultSpinnerScale);
+  }
+  100%
+  {
+    transform: rotateZ(360deg) scale($defaultSpinnerScale);
+  }
+}
+
+
+
+
+
+
+
+
+/* big */
+$bigSpinnerSize:             30px;
+$bigSpinnerUnderlayBorder:   5px;
+$bigSpinnerOverlayBorder:    3px;
+$bigSpinnerScale:            1.3;
+
+.size__big
+{
+  @extend %spinner-basics;
+  width:                    $bigSpinnerSize;
+  height:                   $bigSpinnerSize;
+  min-height:               $bigSpinnerSize;
+  border-width:             $bigSpinnerUnderlayBorder;
+
+  &:after
+  {
+    width:                  $bigSpinnerSize;
+    height:                 $bigSpinnerSize;
+    border-width:           $bigSpinnerOverlayBorder;
+    animation:              bigSpinnerRingRotate .8s infinite ease-in-out;
+  }
+}
+
+@keyframes bigSpinnerRingRotate {
+  0%
+  {
+    transform: rotateZ(0deg) scale($bigSpinnerScale);
+  }
+  100%
+  {
+    transform: rotateZ(360deg) scale($bigSpinnerScale);
+  }
+}
