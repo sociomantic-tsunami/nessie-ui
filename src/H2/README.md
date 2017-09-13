@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie H2 is a html `<h2>` text element
+A Nessie H2 is a h2 text element
 
 Example Usage
 -------------

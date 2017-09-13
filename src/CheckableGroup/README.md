@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie CheckableGroup wraps for a group of Nessie Checkboxes, Nessie Radios, etc. (and formats them as a HTML list).
+A Nessie CheckableGroup wraps for a group of Checkboxes, Radios, etc. (and formats them as a HTML list).
 
 Example Usage
 -------------

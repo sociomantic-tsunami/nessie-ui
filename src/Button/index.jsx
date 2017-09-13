@@ -13,15 +13,15 @@ export default class Button extends Component
         /**
         *  Label text
         */
-        label : PropTypes.string,
+        label        : PropTypes.string,
         /**
         *  HTML type attribute
         */
-        type  : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+        type         : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
         /**
-        *  Button role/style
+        *  Button presentation/style
         */
-        role  : PropTypes.oneOf( [
+        presentation : PropTypes.oneOf( [
             'default',
             'subtle',
             'promoted',
@@ -112,7 +112,7 @@ export default class Button extends Component
     static defaultProps =
     {
         type         : 'button',
-        role         : 'default',
+        presentation : 'default',
         iconType     : 'none',
         iconPosition : 'left',
         isLoading    : false,
@@ -169,28 +169,25 @@ export default class Button extends Component
             isLoading,
             label,
             onClick,
-            role,
+            presentation,
             type,
             value
         } = this.props;
 
         const { id, isHovered } = this.state;
 
-        let iconMarkup;
-        if ( iconType && iconType !== 'none' )
-        {
-            iconMarkup = (
-                <div className = { cssMap.iconContainer }>
-                    <Icon
-                        className  = { cssMap.icon }
-                        type       = { iconType }
-                        theme      = { role === 'control' ? role : 'button' }
-                        variant    = "stroke"
-                        forceHover = { isHovered }
-                        isDisabled = { isDisabled } />
-                </div>
-            );
-        }
+        const iconMarkup = (
+            <div className = { cssMap.iconContainer }>
+                <Icon
+                    className  = { cssMap.icon }
+                    type       = { iconType }
+                    theme      = { presentation === 'control' ?
+                        presentation : 'button' }
+                    variant    = "stroke"
+                    forceHover = { isHovered }
+                    isDisabled = { isDisabled } />
+            </div>
+        );
 
         const content = (
             <div className = { cssMap.content }>
@@ -205,7 +202,7 @@ export default class Button extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    role,
+                    presentation,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,

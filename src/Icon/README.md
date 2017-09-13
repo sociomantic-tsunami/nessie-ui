@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie Icon contains a `<svg>` that can display different icons in different forms using this combinations of options:
+A Nessie Icon contains a SVG that can display different icons in different forms using this combinations of options:
 
 Theme:
 	- light: used for icons within a module [default]
