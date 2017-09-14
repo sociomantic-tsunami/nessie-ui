@@ -4,7 +4,6 @@
 /* eslint no-console: 0*/
 
 import React       from 'react';
-import CodeMirror  from 'react-codemirror';
 import { shallow } from 'enzyme';
 
 import Css         from '../hoc/Css';
@@ -32,9 +31,9 @@ describe( 'CodeEditor', () =>
             expect( wrapper.find( Css ) ).to.have.length( 1 );
         } );
 
-        it( 'should contain exactly one CodeMirror', () =>
+        it( 'should contain exactly one textArea', () =>
         {
-            expect( wrapper.find( CodeMirror ).length ).to.equal( 1 );
+            expect( wrapper.find( 'textarea' ).length ).to.equal( 1 );
         } );
     } );
 
@@ -44,7 +43,7 @@ describe( 'CodeEditor', () =>
         {
             wrapper.setProps( { value: 'code!' } );
 
-            expect( wrapper.find( CodeMirror ).prop( 'value' ) )
+            expect( wrapper.find( 'textarea' ).prop( 'defaultValue' ) )
                 .to.equal( 'code!' );
         } );
 
@@ -53,7 +52,7 @@ describe( 'CodeEditor', () =>
             const onMouseOver = sinon.spy();
             wrapper.setProps( { onMouseOver } );
 
-            expect( wrapper.find( `.${cssMap.container}` )
+            expect( wrapper.find( `.${cssMap.editor}` )
                 .prop( 'onMouseOver' ) ).to.equal( onMouseOver );
         } );
 
@@ -62,7 +61,7 @@ describe( 'CodeEditor', () =>
             const onMouseOut = sinon.spy();
             wrapper.setProps( { onMouseOut } );
 
-            expect( wrapper.find( `.${cssMap.container}` )
+            expect( wrapper.find( `.${cssMap.editor}` )
                 .prop( 'onMouseOut' ) ).to.equal( onMouseOut );
         } );
     } );
