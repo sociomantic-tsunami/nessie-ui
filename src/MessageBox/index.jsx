@@ -29,14 +29,14 @@ export default class MessageBox extends Component
         const { cssMap, className, children, message,
                 messageType } = this.props;
 
+        const messageNode = <Text>{ message }</Text>;
+
         return (
             <Css
                 cssMap   = { cssMap }
                 cssProps = { { type: messageType } }>
                 <div className = { className }>
-                    { ( children || message ) &&
-                        <Text>{ message }</Text>
-                    }
+                    { children || messageNode }
                 </div>
             </Css>
         );
