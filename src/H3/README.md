@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie H3 is a h3 text element
+A Nessie H3 is a html `<h3>` text element
 
 Example Usage
 -------------

@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie H4 is a h4 text element
+A Nessie H4 is a html `<h4>` text element
 
 Example Usage
 -------------
