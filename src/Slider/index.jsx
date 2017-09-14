@@ -160,7 +160,7 @@ export default class Slider extends Component
         this.state = { ...this.state, track: {} };
 
         this.setTrackState = this.setTrackState.bind( this );
-        this.handleRef = this.handleRef.bind( this );
+        this.handleInputRef = this.handleInputRef.bind( this );
         this.inputs = [];
 
         this.handleMouseUp = this.handleMouseUp.bind( this );
@@ -439,7 +439,7 @@ export default class Slider extends Component
     }
 
 
-    handleRef( ref )
+    handleInputRef( ref )
     {
         this.inputs.push( ref );
     }
@@ -565,7 +565,7 @@ export default class Slider extends Component
                         { values.map( ( val, i ) => (
                             <input
                                 key = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                ref = { this.handleRef }
+                                ref = { this.handleInputRef }
                                 type = "range"
                                 readOnly = { isReadOnly }
                                 disabled = { isDisabled }
