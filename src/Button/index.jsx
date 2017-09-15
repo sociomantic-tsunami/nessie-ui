@@ -19,9 +19,9 @@ export default class Button extends Component
         */
         type         : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
         /**
-        *  Button presentation/style
+        *  Button role/style
         */
-        presentation : PropTypes.oneOf( [
+        role : PropTypes.oneOf( [
             'default',
             'subtle',
             'promoted',
@@ -112,7 +112,7 @@ export default class Button extends Component
     static defaultProps =
     {
         type         : 'button',
-        presentation : 'default',
+        role : 'default',
         iconType     : 'none',
         iconPosition : 'left',
         isLoading    : false,
@@ -169,7 +169,7 @@ export default class Button extends Component
             isLoading,
             label,
             onClick,
-            presentation,
+            role,
             type,
             value
         } = this.props;
@@ -181,8 +181,8 @@ export default class Button extends Component
                 <Icon
                     className  = { cssMap.icon }
                     type       = { iconType }
-                    theme      = { presentation === 'control' ?
-                        presentation : 'button' }
+                    theme      = { role === 'control' ?
+                        role : 'button' }
                     variant    = "stroke"
                     forceHover = { isHovered }
                     isDisabled = { isDisabled } />
@@ -202,7 +202,7 @@ export default class Button extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    presentation,
+                    role,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,

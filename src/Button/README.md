@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie Button component is a button with different appearences (_presentations_), a loading state and an optional icon.
+A Nessie Button component is a button with different appearences (_roles_), a loading state and an optional icon.
 
 
 Example Usage
@@ -23,10 +23,10 @@ A primary button width an icon on the right:
 
 A subtle button:
 
-    <Button label="Ended!" presentation="subtle" iconType="ended">Ended!</Button>
+    <Button label="Ended!" role="subtle" iconType="ended">Ended!</Button>
 
 ---
 
 A secondary button:
 
-    <Button presentation="secondary">Click me!</Button>
+    <Button role="secondary">Click me!</Button>
