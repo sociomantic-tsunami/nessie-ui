@@ -105,14 +105,14 @@ export default class ButtonRadio extends Component
 
     static defaultProps =
     {
-        buttonrole   : 'default',
-        isChecked    : false,
-        isDisabled   : false,
-        iconType     : 'none',
-        iconPosition : 'left',
-        iconTheme    : 'button',
-        showLabel    : true,
-        cssMap       : require( './buttonRadio.css' )
+        buttonrole : 'default',
+        isChecked          : false,
+        isDisabled         : false,
+        iconType           : 'none',
+        iconPosition       : 'left',
+        iconTheme          : 'button',
+        showLabel          : true,
+        cssMap             : require( './buttonRadio.css' )
     };
 
     render()

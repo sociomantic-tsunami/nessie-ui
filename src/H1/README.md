@@ -1,7 +1,7 @@
 Component Description
 ---------------------
 
-A Nessie H1 is a `<h1>` text element.
+A Nessie H1 is a html `<h1>` text element.
 
 Example Usage
 -------------

@@ -92,8 +92,8 @@ describe( 'Button', () =>
             it( 'should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control'
+                    iconType     : 'add',
+                    role : 'control'
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
@@ -111,8 +111,8 @@ describe( 'Button', () =>
             it( 'should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control'
+                    iconType     : 'add',
+                    role : 'control'
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
