@@ -4,6 +4,7 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import NavDropdown          from '../NavDropdown';
 import Text                 from '../Text';
+import Icon                 from '../Icon';
 
 const filterNavItems = node =>
 {
@@ -108,9 +109,13 @@ export default class NavItem extends Component
                         className = { cssMap.link }
                         href      = { isCurrentPage ? null : href }
                         onClick   = { onClick }>
-                        <Text noWrap>{ label }</Text>
+                        <Text className = { cssMap.textLabel } >{ label }</Text>
                         { ( iconType && iconType !== 'none' ) &&
-                            <div className  = { cssMap.icon } />
+                            <Icon
+                                className = { cssMap.navItemIcon }
+                                type = "account"
+                                theme = "control"
+                                size = "M" />
                         }
                     </a>
                     { children &&
