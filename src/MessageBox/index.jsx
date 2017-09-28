@@ -1,44 +1,41 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import Text                 from '../Text';
 
-export default class MessageBox extends Component
+const MessageBox = ( {
+    cssMap,
+    className,
+    children,
+    message,
+    messageType } ) =>
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { type: messageType } }>
+            <div className = { className }>
+                { ( children || message ) &&
+                    <Text>{ message }</Text>
+                }
+            </div>
+        </Css>;
+
+MessageBox.propTypes =
 {
-    static propTypes =
-    {
-        /**
-        *  Message text
-        */
-        message     : PropTypes.string,
-        /**
-        *  Message type
-        */
-        messageType : PropTypes.oneOf( [ 'alert', 'info', 'error', 'success' ] )
-    }
+    /**
+    *  Message text
+    */
+    message     : PropTypes.string,
+    /**
+    *  Message type
+    */
+    messageType : PropTypes.oneOf( [ 'alert', 'info', 'error', 'success' ] )
+};
 
-    static defaultProps =
-    {
-        messageType : 'info',
-        cssMap      : require( './messageBox.css' )
-    };
+MessageBox.defaultProps =
+{
+    messageType : 'info',
+    cssMap      : require( './messageBox.css' )
+};
 
-    render()
-    {
-        const { cssMap, className, children, message,
-                messageType } = this.props;
-
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { type: messageType } }>
-                <div className = { className }>
-                    { ( children || message ) &&
-                        <Text>{ message }</Text>
-                    }
-                </div>
-            </Css>
-        );
-    }
-}
+export default MessageBox;
