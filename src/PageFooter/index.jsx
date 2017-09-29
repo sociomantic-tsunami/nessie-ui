@@ -1,37 +1,32 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-export default class PageFooter extends Component
+const PageFooter = ( {
+    children,
+    cssMap,
+    className } ) =>
+
+        <Css cssMap = { cssMap }>
+            <footer className = { className }>
+                <div className = { cssMap.content }>
+                    { children }
+                </div>
+            </footer>
+        </Css>;
+
+PageFooter.propTypes =
 {
-    static propTypes =
-    {
-        /**
-         *  PageFooter content
-         */
-        children : PropTypes.node
-    };
+    /**
+     *  PageFooter content
+     */
+    children : PropTypes.node
+};
 
-    static defaultProps =
-    {
-        cssMap : require( './pageFooter.css' )
-    };
+PageFooter.defaultProps =
+{
+    cssMap : require( './pageFooter.css' )
+};
 
-    render()
-    {
-        const { children,
-                cssMap,
-                className } = this.props;
-
-        return (
-            <Css cssMap = { cssMap }>
-                <footer className = { className }>
-                    <div className = { cssMap.content }>
-                        { children }
-                    </div>
-                </footer>
-            </Css>
-        );
-    }
-}
+export default PageFooter;
