@@ -12,20 +12,10 @@ import Checkbox    from './index';
 describe( 'Checkbox', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Checkbox /> );
-        instance = wrapper.instance();
-    } );
-
-    describe( 'constructor( props )', () =>
-    {
-        it( 'should have name Checkbox', () =>
-        {
-            expect( instance.constructor.name ).to.equal( 'Checkbox' );
-        } );
     } );
 
     describe( 'render()', () =>
