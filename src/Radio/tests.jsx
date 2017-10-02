@@ -14,20 +14,10 @@ import Radio       from './index';
 describe( 'Radio', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Radio /> );
-        instance = wrapper.instance();
-    } );
-
-    describe( 'constructor( props )', () =>
-    {
-        it( 'should have name Radio', () =>
-        {
-            expect( instance.constructor.name ).to.equal( 'Radio' );
-        } );
     } );
 
     describe( 'render()', () =>
