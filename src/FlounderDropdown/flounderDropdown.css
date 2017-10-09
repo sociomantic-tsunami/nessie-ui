@@ -81,11 +81,6 @@
         color:  var( --PC-BLUE );
     }
 
-    .selectedDisplayed.disabled
-    {
-        color: var( --PC-DARK-GREY );
-    }
-
     .open .main
     {
         z-index:    50;
@@ -94,6 +89,11 @@
     .selectedDisplayed
     {
         padding:    1.7rem 5rem 1.4rem 2rem;
+
+        .main.disabled &
+        {
+            color: var( --PC-DARK-GREY );
+        }
     }
 
     .optionsWrapper
@@ -255,13 +255,14 @@
     {
         background-image:   url( './images/light/down.svg' );
     }
+
+    .selectedDisplayed
+    {
+        color:      var( --GS-2 );
+        opacity:    0.5;
+    }
 }
 
-.selectedDisplayed.disabled
-{
-    color:      var( --GS-2 );
-    opacity:    0.5;
-}
 
 .toggleIcon__magnifier
 {
