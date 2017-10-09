@@ -374,7 +374,7 @@
 
 .option.selected
 {
-    background: color( var( --PC-BLUE ) a( 10% ) );
+    background-color:   color( var( --PC-BLUE ) a( 10% ) );
 }
 
 
@@ -464,8 +464,8 @@
 
     &:hover
     {
-        background: color( var( --PC-BLUE ) a( 30% ) );
-        color:      var( --PC-DARK-GREY );
+        background-color:   color( var( --PC-BLUE ) a( 30% ) );
+        color:              var( --PC-DARK-GREY );
     }
 }
 
@@ -703,83 +703,85 @@
 .option.optionIcon__ended,
 .option.optionIcon__pending,
 .option.optionIcon__error,
-.optionIcon__blueDot,
 .optionIcon__include,
 .optionIcon__exclude,
 .optionIcon__includeExclude
 {
-    position:   relative;
-
-    &::before
-    {
-        content:            '';
-        display:            block;
-        position:           absolute;
-        background-repeat:  no-repeat;
-    }
-}
-
-.option.optionIcon__approved,
-.option.optionIcon__declined,
-.option.optionIcon__alert,
-.option.optionIcon__ended,
-.option.optionIcon__pending,
-.option.optionIcon__error
-{
-    padding-left:   4.4rem;
-
-    &::before
-    {
-        top:        calc( 50% - 1.1rem );
-        left:       1rem;
-        bottom:     0;
-
-        width:      2.2rem;
-        height:     2.2rem;
-    }
+    padding-left:           4.4rem;
+    background-repeat:      no-repeat;
+    background-position:    1rem center;
+    background-size:        2.2rem;
 
     .headerMode & /* icon always in the same position in header mode */
     {
-        padding-left:   6.4rem !important;
-
-        &::before
-        {
-            left:   2rem !important;
-        }
+        padding-left:           6.4rem !important;
+        background-position:    2rem center !important;
     }
 }
 
-.option.optionIcon__approved::before
+.option.optionIcon__approved
 {
     background-image:   url("./images/stroke-colours/approved.svg");
 }
-.option.optionIcon__declined::before
+.option.optionIcon__declined
 {
     background-image:   url("./images/stroke-colours/declined.svg");
 }
-.option.optionIcon__ended::before
+.option.optionIcon__ended
 {
     background-image:   url("./images/stroke-colours/ended.svg");
 }
-.option.optionIcon__pending::before
+.option.optionIcon__pending
 {
     background-image:   url("./images/stroke-colours/pending.svg");
 }
-.option.optionIcon__alert::before
+.option.optionIcon__alert
 {
     background-image:   url("./images/fill/alert.svg");
 }
-.option.optionIcon__error::before
+.option.optionIcon__error
 {
     background-image:   url("./images/fill/error.svg");
+}
+.optionIcon__include
+{
+    background-image:   url("./images/include.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/include__disabled.svg");
+    }
+}
+.optionIcon__exclude
+{
+    background-image:   url("./images/exclude.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/exclude__disabled.svg");
+    }
+}
+.optionIcon__includeExclude
+{
+    background-image:   url("./images/include--exclude.svg");
+
+    .disabled&
+    {
+        background-image:   url("./images/include--exclude__disabled.svg");
+    }
 }
 
 .optionIcon__blueDot
 {
+    position:       relative;
     padding-left:   3rem;
 
     &::before
     {
+        content:        '';
+        display:        block;
+        position:       absolute;
+
         left:           1rem;
         top:            calc( 50% - 0.4rem );
 
@@ -798,65 +800,6 @@
         {
             left:   2rem !important;
         }
-    }
-}
-
-.optionIcon__include,
-.optionIcon__exclude,
-.optionIcon__includeExclude
-{
-    padding-left:   4.4rem;
-
-    &::before
-    {
-        top:        calc( 50% - 0.5rem );
-        left:       1rem;
-        bottom:     0;
-
-        width:      2.2rem;
-        height:     1rem;
-    }
-
-    .headerMode & /* icon always in the same position in header mode */
-    {
-        padding-left:   6.4rem !important;
-
-        &::before
-        {
-            left:   2rem !important;
-        }
-    }
-}
-
-.optionIcon__include::before
-{
-    background-image:   url("./images/include.svg");
-
-    .disabled&
-    {
-        background-image:   url("./images/include__disabled.svg");
-    }
-}
-
-.optionIcon__exclude::before
-{
-    background-image:   url("./images/exclude.svg");
-
-    .disabled&
-    {
-        background-image:   url("./images/exclude__disabled.svg");
-    }
-}
-
-
-
-.optionIcon__includeExclude::before
-{
-    background-image:   url("./images/include--exclude.svg");
-
-    .disabled&
-    {
-        background-image:   url("./images/include--exclude__disabled.svg");
     }
 }
 
