@@ -1,5 +1,6 @@
 import 'normalize.css';
 import './foundations.css';
+import * as lib from './index';
 
 export Animate                  from './Animate';
 export Button                   from './Button';
@@ -72,3 +73,7 @@ export TextInputWithIcon        from './TextInputWithIcon';
 export Tooltip                  from './Tooltip';
 export Uploader                 from './Uploader';
 export ValuedTextInput          from './ValuedTextInput';
+
+const { 'default': ignoreMe, ...defaultExport } = lib;
+
+export default defaultExport;
