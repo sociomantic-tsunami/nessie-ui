@@ -11,7 +11,7 @@ export default class NavItemDriver extends ClickableComponentDriver
 
     getLabel()
     {
-        return this.wrapper.find( `.${this.cssMap.link} span` )
+        return this.wrapper.find( `.${this.cssMap.link} div` )
                         .first().children();
     }
 

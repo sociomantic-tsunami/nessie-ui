@@ -66,8 +66,8 @@
 {
     & > .link
     {
-        padding:    0.7rem 0 0.5rem 0;
-        @extend %Nessie-Bold;
+        padding: 1rem 0;
+        @extend %ProximaNova-Bold;
     }
 
     & > .link[href]:hover,
@@ -107,7 +107,7 @@
 {
     & > .link
     {
-        padding:        1.2rem 2rem 1rem 1.5rem;
+        padding:        1.6rem 2rem 1.6rem 1.5rem;
         border-left:    0.5rem solid transparent;
         color:          var( --GS-2  );
     }
@@ -143,12 +143,6 @@
 }
 
 
-
-
-
-
-
-
 .dropdown
 {
     position:   absolute;
@@ -157,45 +151,30 @@
 }
 
 
+.textLabel
+{
+    font-size:     1.4rem;
+    margin-bottom: 0rem;
+}
+
+
 .icon__account
 {
     & > .link
     {
-        padding:    1.4rem 0 1.2rem;
+        display:     flex;
+        align-items: center;
+        padding:     1rem 0 1rem;
 
         &::after
         {
-            display:    none !important;
+            display: none !important;
         }
-    }
-
-    & > .link > .icon
-    {
-        display:    inline-block;
-    }
-
-    & > .link[href]:hover > .icon,
-    & > .link[href]:active > .icon,
-    & > .link[href]:focus > .icon,
-    &.open > .link > .icon,
-    &.fakeHovered > .link > .icon,
-    &.current > .link > .icon
-    {
-        background: url( ./svg/account__hover.svg);
-    }
-
-    & > .link > .icon,
-    &.disabled > .link > .icon
-    {
-        background: url( ./svg/account.svg);
     }
 }
 
 
-.icon
+.navItemIcon
 {
-    display:    none;
-    width:      2.4rem;
-    height:     2.4rem;
-    margin:     -0.7rem 0 -0.7rem 1.5rem;
+    margin-left: 1.5rem;
 }
