@@ -3,12 +3,13 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import NavDropdown          from '../NavDropdown';
+import Text                 from '../Text';
+import Icon                 from '../Icon';
 
 const filterNavItems = node =>
 {
     const _node = React.Children.toArray( node );
 
-    // eslint-disable-next-line no-shadow
     const isNavItem = node => React.isValidElement( node ) &&
         node.type.name === 'NavItem';
 
@@ -70,7 +71,7 @@ export default class NavItem extends Component
         /**
          * Display as hover when required from another component
          */
-        forceHover    : PropTypes.bool
+        forceHover    : PropTypes.bool,
     };
 
     static defaultProps =
@@ -84,23 +85,9 @@ export default class NavItem extends Component
 
     render()
     {
-        const {
-            children,
-            label,
-            className,
-            cssMap,
-            dropdownAlign,
-            forceHover,
-            href,
-            iconType,
-            isCurrentPage,
-            isOpen,
-            isDisabled,
-            onClick,
-            onMouseOut,
-            onMouseOver,
-            role
-        } = this.props;
+        const { children, label, className, cssMap, dropdownAlign, forceHover,
+            href, iconType, isCurrentPage, isOpen, isDisabled, onClick,
+            onMouseOut, onMouseOver, role } = this.props;
 
         return (
             <Css
@@ -122,9 +109,13 @@ export default class NavItem extends Component
                         className = { cssMap.link }
                         href      = { isCurrentPage ? null : href }
                         onClick   = { onClick }>
-                        <span>{ label }</span>
+                        <Text className = { cssMap.textLabel } >{ label }</Text>
                         { ( iconType && iconType !== 'none' ) &&
-                            <div className  = { cssMap.icon } />
+                            <Icon
+                                className = { cssMap.navItemIcon }
+                                type = "account"
+                                theme = "control"
+                                size = "M" />
                         }
                     </a>
                     { children &&
