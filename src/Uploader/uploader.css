@@ -63,11 +63,6 @@
     }
 }
 
-
-
-
-
-
 .input
 {
     display:    none;
@@ -87,6 +82,8 @@
     text-align:              left;
     text-transform:          none;
     display:                 block;
+    box-shadow:              none;
+
 
     &:hover,
     &:focus
@@ -100,10 +97,10 @@
     }
 }
 
-
 .buttonsContainer
 {
-    display:    flex;
+    display:    inline-flex;
+    width:      100%;
     box-shadow: 0 0.1rem 0.2rem 0 var( --GS-5 );
 
     & > *
