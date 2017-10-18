@@ -94,7 +94,6 @@
     }
 }
 
-
 .position__bottom
 {
     .tooltip
@@ -182,6 +181,25 @@
     }
 }
 
+.position__bottomLeft,
+.position__bottomRight
+{
+    .tooltip
+    {
+        bottom:     0;
+        left:       50%;
+
+        &::after
+        {
+            top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            right:       calc( 50% - var( --halfPointer ) );
+
+            border-bottom:  none;
+            border-right:   none;
+        }
+    }
+}
+
 .position__topLeft
 {
     .tooltip
@@ -208,10 +226,31 @@
     }
 }
 
+.position__bottomLeft
+{
+    .tooltip
+    {
+        transform: translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) );
 
+        &::after
+        {
+            right:  var( --tooltipOffsetXYAfter );
+        }
+    }
+}
 
+.position__bottomRight
+{
+    .tooltip
+    {
+        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 
-
+        &::after
+        {
+            left:  var( --tooltipOffsetXYAfter );
+        }
+    }
+}
 
 .message
 {
