@@ -9,6 +9,7 @@
     --tooltipOffsetXYAfter: 2rem;
 
     --pointerSize:          1rem;
+    --connectBox:           1.6rem;
     --halfPointer:          0.5rem;
     --halfPointerTweak:     0.1rem;
 
@@ -47,6 +48,16 @@
 
     z-index:            100;
 
+    &::before
+    {
+        content:            "";
+        position:           absolute;
+        box-sizing:         border-box;
+
+        width:              var( --connectBox );
+        height:             var( --connectBox );
+    }
+
     &::after
     {
         content:            "";
@@ -71,6 +82,7 @@
     {
         left:   50%;
 
+        &::before,
         &::after
         {
             right:  calc( 50% - var( --halfPointer ) );
@@ -84,6 +96,12 @@
     {
         top:        0;
         transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
+
+        &::before
+        {
+            bottom: -var( --connectBox );
+            left:   calc( 50% - 0.8rem );
+        }
 
         &::after
         {
@@ -101,6 +119,11 @@
         bottom:     0;
         transform:  translateX(-50%) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 
+        &::before
+        {
+            top:   -var( --connectBox );
+            left:  calc( 50% - 0.8rem );
+        }
         &::after
         {
             top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
@@ -134,6 +157,12 @@
 
         transform:  translateX(-100%) translateX( -var( --tooltipOffsetX )  ) translateY( -50% );
 
+        &::before
+        {
+            top:   calc( 50% - 0.8rem );
+            left:  100%;
+        }
+
         &::after
         {
             right:          calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
@@ -154,6 +183,11 @@
 
         transform:  translateX(100%) translateX( var( --tooltipOffsetX )  ) translateY( -50% );
 
+        &::before
+        {
+            top:   calc( 50% - 0.8rem );
+            right: 100%;
+        }
         &::after
         {
             top:            calc( 50% - var( --halfPointer ) );
@@ -210,6 +244,12 @@
         {
             right:  var( --tooltipOffsetXYAfter );
         }
+
+        &::before
+        {
+            bottom:  -var( --connectBox );
+            right:    var( --connectBox );
+        }
     }
 }
 
@@ -222,6 +262,12 @@
         &::after
         {
             left:   var( --tooltipOffsetXYAfter );
+        }
+
+        &::before
+        {
+            bottom:  -var( --connectBox );
+            left:    var( --connectBox );
         }
     }
 }
@@ -236,6 +282,12 @@
         {
             right:  var( --tooltipOffsetXYAfter );
         }
+
+        &::before
+        {
+            top:    -var( --connectBox );
+            right:  var( --connectBox );
+        }
     }
 }
 
@@ -248,6 +300,12 @@
         &::after
         {
             left:  var( --tooltipOffsetXYAfter );
+        }
+
+        &::before
+        {
+            top:    -var( --connectBox );
+            left:   var( --connectBox );
         }
     }
 }
