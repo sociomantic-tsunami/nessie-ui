@@ -54,7 +54,7 @@
         position:           absolute;
         box-sizing:         border-box;
 
-        width:              var( --connectBox );
+        width:              100%;
         height:             var( --connectBox );
     }
 
@@ -100,7 +100,7 @@
         &::before
         {
             bottom: -var( --connectBox );
-            left:   calc( 50% - 0.8rem );
+            left:   0;
         }
 
         &::after
@@ -122,7 +122,7 @@
         &::before
         {
             top:   -var( --connectBox );
-            left:  calc( 50% - 0.8rem );
+            left:  0;
         }
         &::after
         {
@@ -159,8 +159,11 @@
 
         &::before
         {
-            top:   calc( 50% - 0.8rem );
-            left:  100%;
+            width:  var( --connectBox );
+            height: 100%;
+
+            top:   0;
+            left:  -var( --connectBox );
         }
 
         &::after
@@ -185,8 +188,11 @@
 
         &::before
         {
-            top:   calc( 50% - 0.8rem );
-            right: 100%;
+            width:  var( --connectBox );
+            height: 100%;
+
+            top:   0;
+            left:  -var( --connectBox );
         }
         &::after
         {
@@ -248,7 +254,7 @@
         &::before
         {
             bottom:  -var( --connectBox );
-            right:    var( --connectBox );
+            left:    0;
         }
     }
 }
@@ -267,7 +273,7 @@
         &::before
         {
             bottom:  -var( --connectBox );
-            left:    var( --connectBox );
+            left:    0;
         }
     }
 }
@@ -286,7 +292,7 @@
         &::before
         {
             top:    -var( --connectBox );
-            right:  var( --connectBox );
+            left:   0;
         }
     }
 }
@@ -305,7 +311,7 @@
         &::before
         {
             top:    -var( --connectBox );
-            left:   var( --connectBox );
+            left:   0;
         }
     }
 }
