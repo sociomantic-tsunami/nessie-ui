@@ -68,7 +68,8 @@ export default class IconButton extends Component
         role : PropTypes.oneOf( [
             'light',
             'control',
-            'navigation'
+            'navigation',
+            'negative'
         ] ),
         /**
          *  Display as disabled

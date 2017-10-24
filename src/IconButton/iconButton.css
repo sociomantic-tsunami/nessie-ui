@@ -73,6 +73,16 @@
     }
 }
 
+.role__negative
+{
+    .icon
+    {
+        fill:                       var( --PC-WHITE );
+        color:                      var( --PC-WHITE );
+    }
+}
+
+
 .disabled
 {
     cursor:         default;
