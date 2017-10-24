@@ -33,13 +33,12 @@ const NotificationBar = ( {
                 <Text className = { cssMap.message }>
                     { children || message }
                 </Text>
-
                 }
 
                 { isDismissible && <IconButton
                     className  = { cssMap.close }
                     iconType   = "close"
-                    iconTheme  = "button"
+                    role       = "negative"
                     onClick    = { onClickClose } />}
             </div>
         </Css>

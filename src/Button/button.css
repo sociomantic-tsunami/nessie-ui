@@ -77,6 +77,11 @@
     {
         background: var( --PC-BLUE );
     }
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
 }
 
 
@@ -96,6 +101,11 @@
     {
         background: var( --AC-12 );
     }
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
 }
 
 
@@ -114,6 +124,11 @@
     &:active
     {
         background: var( --AC-2 );
+    }
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
     }
 }
 
@@ -174,6 +189,11 @@
                 border-top-color:   var( --PC-GREY );
             }
         }
+    }
+
+    .icon
+    {
+        fill:   color( var( --GS-2 ) a( 50% ) );
     }
 }
 
@@ -247,6 +267,11 @@
                 border-top-color:   var( --PC-GREY );
             }
         }
+    }
+
+    .icon
+    {
+        fill:   var( --GS-2 );
     }
 }
 

@@ -5,21 +5,13 @@ import Css                  from '../hoc/Css';
 
 const Icon = ( {
     children,
-    className = '',
+    className,
     cssMap,
-    forceHover,
-    theme,
-    isDisabled,
     label,
-    onMouseOut,
-    onMouseOver,
     size,
     type,
     variant  } ) =>
 {
-    let xLink;
-    let needsVariant = false;
-
     const statusIconArray = [
         'alert',
         'approved',
@@ -29,32 +21,16 @@ const Icon = ( {
         'pending'
     ];
 
-    if ( statusIconArray.indexOf( type ) >= 0 )
-    {
-        needsVariant = true;
-        xLink        = `#icon__${type}-${variant}`;
-    }
-    else
-    {
-        xLink        = `#icon__${type}`;
-    }
+    const xLink = statusIconArray.indexOf( type ) > -1 ?
+        `#icon__${type}-${variant}` : `#icon__${type}`;
 
     return (
         <Css
             cssMap   = { cssMap }
-            cssProps = { { size,
-                type,
-                theme,
-                variant     : needsVariant && variant,
-                disabled    : isDisabled,
-                fakeHovered : !isDisabled && forceHover,
-            } }>
-
+            cssProps = { { size, type } }>
             <svg
-                className      = { className }
-                aria-label     = { children || label }
-                onMouseOver    = { onMouseOver }
-                onMouseOut     = { onMouseOut }>
+                className  = { className }
+                aria-label = { children || label }>
                 <use xlinkHref = { xLink } />
             </svg>
         </Css>
@@ -72,16 +48,6 @@ Icon.propTypes =
         'L',
         'XL',
         'XXL'
-    ] ),
-    /**
-     *  Icon theme
-     */
-    theme : PropTypes.oneOf( [
-        'light',
-        'dark',
-        'control',
-        'button',
-        'navigation'
     ] ),
     /**
      *  Icon to show
@@ -124,32 +90,14 @@ Icon.propTypes =
         'stroke'
     ] ),
     /**
-     * Icon label
+     * ARIA label
      */
-    label       : PropTypes.string,
-    /**
-     * Display as hover when required from another component
-     */
-    forceHover  : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled  : PropTypes.bool,
-    /**
-     *  onMouseOver callback function: ( e ) = { ... }
-     */
-    onMouseOver : PropTypes.func,
-    /**
-     *  onMouseOut callback function: ( e ) = { ... }
-     */
-    onMouseOut  : PropTypes.func
-
+    label : PropTypes.string,
 };
 
 Icon.defaultProps =
 {
     size       : 'S',
-    theme      : 'light',
     forceHover : false,
     isDisabled : false,
     variant    : 'fill',

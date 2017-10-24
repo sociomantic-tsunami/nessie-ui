@@ -176,21 +176,14 @@ export default class Button extends Component
 
         const { id, isHovered } = this.state;
 
-        let iconMarkup;
-        if ( iconType && iconType !== 'none' )
-        {
-            iconMarkup = (
-                <div className = { cssMap.iconContainer }>
-                    <Icon
-                        className  = { cssMap.icon }
-                        type       = { iconType }
-                        theme      = { role === 'control' ? role : 'button' }
-                        variant    = "stroke"
-                        forceHover = { isHovered }
-                        isDisabled = { isDisabled } />
-                </div>
-            );
-        }
+        const iconMarkup = (
+            <div className = { cssMap.iconContainer }>
+                <Icon
+                    className  = { cssMap.icon }
+                    type       = { iconType }
+                    variant    = "stroke" />
+            </div>
+        );
 
         const content = (
             <div className = { cssMap.content }>

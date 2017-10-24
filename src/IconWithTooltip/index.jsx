@@ -1,10 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import Icon                 from '../Icon';
-import Tooltip              from '../Tooltip';
-import Text                 from '../Text';
+import Css                     from '../hoc/Css';
+import { Icon, Tooltip, Text } from '../index';
 
 const IconWithTooltip = ( {
     children,
@@ -41,7 +39,8 @@ const IconWithTooltip = ( {
             cssMap   = { cssMap }
             cssProps = { {
                 iconVisible : iconIsVisible,
-                position    : !!children && iconPosition
+                position    : !!children && iconPosition,
+                disabled    : isDisabled
             } }>
             <div className = { className }>
                 { children &&

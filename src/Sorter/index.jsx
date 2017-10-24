@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
-import Icon                 from '../Icon';
+import { IconButton }       from '../index';
 
 export default class Sorter extends Component
 {
@@ -41,9 +41,7 @@ export default class Sorter extends Component
     constructor()
     {
         super();
-        this.state = {
-            isHovered : false
-        };
+        this.state = { isHovered: false };
     }
 
     render()
@@ -83,22 +81,20 @@ export default class Sorter extends Component
                     </div>
                     { sorterIsVisible &&
                         <div className = { cssMap.sorter }>
-                            <Icon
+                            <IconButton
                                 className  = { cssMap.up }
-                                size       = "S"
-                                theme      = "light"
-                                type       = "up"
-                                forceHover = {
-                                    fakeHovered || sort === 'asc'
-                                } />
-                            <Icon
+                                iconSize   = "S"
+                                role       = "light"
+                                iconType   = "up"
+                                forceHover =
+                                    { fakeHovered || sort === 'asc' } />
+                            <IconButton
                                 className  = { cssMap.down }
-                                size       = "S"
-                                theme      = "light"
-                                type       = "down"
-                                forceHover = {
-                                    fakeHovered || sort === 'desc'
-                                } />
+                                iconSize   = "S"
+                                role       = "light"
+                                iconType   = "down"
+                                forceHover =
+                                    { fakeHovered || sort === 'desc' } />
                         </div>
                     }
                 </div>
