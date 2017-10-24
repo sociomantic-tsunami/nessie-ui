@@ -1,47 +1,18 @@
-import React, { isReactElement } from 'react';
-import PropTypes                 from 'prop-types';
+import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
 
-import Css                       from '../hoc/Css';
-import ListBoxOption             from './ListBoxOption';
-import styles                    from './listBox.css';
+import Css       from '../hoc/Css';
+import styles    from './listBox.css';
+import {
+    buildOptions,
+    generateId,
+    mapFocusable,
+    mapToAria
+} from './utils';
 
-
-const generateId = name =>
-    `${name}-${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
-
-const mapToAria = val =>
-{
-    if ( typeof val === 'boolean' )
-    {
-        return val ? 'true' : 'false';
-    }
-
-    return val;
-};
-
-const mapFocusable = isFocusable => ( isFocusable ? '0' : '-1' );
-
-const buildOptions = ( {
-    activeOption,
-    children,
-    options = [],
-    selectedOptions
-} ) =>
-    ( children || options ).map( ( opt = {} ) =>
-    {
-        const { isActive, isSelected, ...props } = isReactElement( opt ) ?
-            opt.props : opt;
-
-        return (
-            <ListBoxOption
-                isActive   = { props.id === activeOption || isActive }
-                isSelected = { selectedOptions.indexOf( props.id ) > -1 ||
-                    isSelected }
-                { ...props } />
-        );
-    } );
 
 const ListBox = ( {
+    children,
     className,
     cssMap,
     isFocusable,
@@ -49,7 +20,6 @@ const ListBox = ( {
     id,
     onClick,
     onKeyPress,
-    ...props
 } ) => (
     /* eslint-disable jsx-a11y/aria-activedescendant-has-tabindex */
     // nonsense ^^
@@ -64,7 +34,16 @@ const ListBox = ( {
             onKeyPress            = { onKeyPress }
             role                  = "listbox"
             tabIndex              = { mapFocusable( isFocusable ) }>
-            { buildOptions( props ) }
+            { children.map( option => {
+                const isActive = option.props.id === activeOption ||
+                    option.props.isActive;
+
+                const isSelected =
+                    selectedOptions.indexOf( option.props.id ) > -1 ||
+                        option.props.isSelected;
+
+                return React.cloneElement( isActive, isSelected );
+            } ) }
         </ul>
     </Css>
     /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
@@ -79,7 +58,7 @@ ListBox.propTypes = {
     isFocusable     : PropTypes.bool,
     isMultiselect   : PropTypes.bool,
     id              : PropTypes.string,
-    options         : PropTypes.arrayOf( PropTypes.object ),
+    optionions         : PropTypes.arrayOf( PropTypes.object ),
     onClick         : PropTypes.func,
     onKeyPress      : PropTypes.func,
     selectedOptions : PropTypes.arrayOf( PropTypes.string ),

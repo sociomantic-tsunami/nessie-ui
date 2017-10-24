@@ -1,9 +1,11 @@
-import React, { isReactElement }      from 'react';
+import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import Css                            from '../hoc/Css';
 import styles                         from './comboBox.css';
 import { ListBox, TextInputWithIcon } from '../index';
+import { InputFrame }                 from '../InputField';
+import { utils }                      from '../ListBox';
 
 
 const generateId = name =>
@@ -20,11 +22,13 @@ const mapAria = val =>
 };
 
 const ComboBox = ( {
+    children,
     activeOption,
     className,
     cssMap,
     hasAutocomplete,
     id,
+    inputIsReadOnly,
     isOpen,
     isReadOnly,
     isRequired,
@@ -42,15 +46,16 @@ const ComboBox = ( {
     <Css
         cssMap   = { cssMap }
         cssProps = { { open: options.length && isOpen } }>
-        <div className = { className }>
+        <InputFrame className = { className }>
             <TextInputWithIcon
                 aria-autocomplete = { mapAria( hasAutocomplete ) }
                 aria-expanded     = { mapAria( isOpen ) }
                 aria-controls     = { `${id}-list` }
+                aria-readonly     = { isReadOnly }
                 className         = { cssMap.textField }
                 iconType          = { isOpen ? 'up' : 'down' }
                 id                = { `${id}-input` }
-                isReadOnly        = { isReadOnly }
+                isReadOnly        = { inputIsReadOnly }
                 isRequired        = { isRequired }
                 onBlur            = { onBlur }
                 onClick           = { onClickInput }
@@ -66,19 +71,27 @@ const ComboBox = ( {
                 isFocusable     = { false }
                 id              = { `${id}-list` }
                 onClick         = { onClickList }
-                options         = { options }
-                selectedOptions = { selectedOptions } />
-        </div>
+                selectedOptions = { selectedOptions }>
+                { utils.buildOptions(
+                    activeOption,
+                    children,
+                    options,
+                    selectedOptions
+                ) }
+            </ListBox>
+        </InputFrame>
     </Css>
 );
 
 
 ComboBox.propTypes = {
+    children        : PropTypes.node,
     activeOption    : PropTypes.string,
     className       : PropTypes.string,
     cssMap          : PropTypes.objectOf( PropTypes.string ),
     hasAutocomplete : PropTypes.bool,
     id              : PropTypes.string,
+    inputIsReadOnly : PropTypes.bool,
     isOpen          : PropTypes.bool,
     isReadOnly      : PropTypes.bool,
     isRequired      : PropTypes.bool,
@@ -95,11 +108,13 @@ ComboBox.propTypes = {
 };
 
 ComboBox.defaultProps = {
+    children        : null,
     activeOption    : null,
     className       : null,
     cssMap          : styles,
     hasAutocomplete : false,
     id              : generateId( 'ComboBox' ),
+    inputIsReadOnly : false,
     isOpen          : false,
     isReadOnly      : false,
     isRequired      : false,
