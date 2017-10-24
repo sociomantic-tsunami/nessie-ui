@@ -6,7 +6,7 @@ import Css              from '../hoc/Css';
 import InputField       from '../InputField';
 import IconButton       from '../IconButton';
 import Tooltip          from '../Tooltip';
-import InputContainer   from '../proto/InputContainer';
+
 
 export default class TextInputWithIcon extends Component
 {
@@ -417,25 +417,19 @@ to 'none' instead.` );
                     disabled : isDisabled,
                     error    : hasError,
                     position : iconPosition } }>
-                <InputContainer
-                    { ...props }
-                    id        = { id }
-                    className = { className }
-                    label     = { label }>
-                    <div className = { cssMap.container }>
-                        <InputField
-                            { ...props }
-                            inputRef   = { this.handleInputRef }
-                            className  = { cssMap.input }
-                            id         = { id }
-                            type       = { inputType }
-                            textAlign  = { alignText }
-                            forceHover = { forceHoverInput }
-                            onFocus    = { this.handleFocus }
-                            onBlur     = { this.handleBlur } />
-                        { iconNode }
-                    </div>
-                </InputContainer>
+                <div className = { cssMap.container }>
+                    <InputField
+                        { ...props }
+                        inputRef   = { this.handleInputRef }
+                        className  = { cssMap.input }
+                        id         = { id }
+                        type       = { inputType }
+                        textAlign  = { alignText }
+                        forceHover = { forceHoverInput }
+                        onFocus    = { this.handleFocus }
+                        onBlur     = { this.handleBlur } />
+                    { iconNode }
+                </div>
             </Css>
         );
     }

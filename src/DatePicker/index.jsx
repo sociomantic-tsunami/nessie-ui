@@ -1,0 +1,273 @@
+import React                from 'react';
+import PropTypes            from 'prop-types';
+
+import withDropdown         from '../Dropdown/withDropdown';
+import DatePicker           from './DatePicker';
+import TimeInput            from './TimeInput';
+import TextInputWithIcon    from '../TextInputWithIcon';
+import { eventHandler }     from './utils';
+
+
+const InputWithDropdown = withDropdown( TextInputWithIcon );
+
+const DefaultDatePicker = ( {
+    currentMonth,
+    currentYear,
+    days,
+    forceHover,
+    hasError,
+    hourIsDisabled,
+    hourPlaceholder,
+    hourValue,
+    inputPlaceholder,
+    isDisabled,
+    isOpen,
+    isReadOnly,
+    minuteIsDisabled,
+    minutePlaceholder,
+    minuteValue,
+    mode,
+    months,
+    nextIsDisabled,
+    onBlur,
+    onChange,
+    onClickCell,
+    onClickIcon,
+    onClickNext,
+    onClickPrev,
+    onFocus,
+    onKeyPress,
+    onMouseOut,
+    onMouseOver,
+    prevIsDisabled,
+    inputValue,
+    weeks,
+} ) =>
+{
+    const datePicker = (
+        <DatePicker
+            headers        = { mode !== 'month' ? days : null }
+            isDisabled     = { isDisabled }
+            isReadOnly     = { isReadOnly }
+            items          = { mode === 'month' ? months : weeks }
+            label          = { mode === 'month' ?
+                currentYear : `${currentMonth} ${currentYear}` }
+            onClickNext    = { onClickNext }
+            onClickPrev    = { onClickPrev }
+            nextIsDisabled = { nextIsDisabled }
+            prevIsDisabled = { prevIsDisabled }
+            onClickItem    = { onClickCell } />
+    );
+
+    const timePicker = mode === 'default' && (
+        <TimeInput
+            hourIsDisabled    = { hourIsDisabled }
+            hourPlaceholder   = { hourPlaceholder }
+            hourValue         = { hourValue }
+            isDisabled        = { isDisabled }
+            isReadOnly        = { isReadOnly }
+            minuteIsDisabled  = { minuteIsDisabled }
+            minutePlaceholder = { minutePlaceholder }
+            minuteValue       = { minuteValue }
+            onBlur            = { onBlur }
+            onChange          = { onChange }
+            onFocus           = { onFocus }
+            onKeyPress        = { onKeyPress } />
+    );
+
+    const dropdownProps = {
+        children : [ datePicker, timePicker ],
+        hasError,
+    };
+
+    return (
+        <InputWithDropdown
+            dropdownProps  = { dropdownProps }
+            dropdownIsOpen = { isOpen }
+            forceHover     = { forceHover || isOpen }
+            hasError       = { hasError }
+            iconType       = "calendar"
+            isDisabled     = { isDisabled }
+            isReadOnly     = { isReadOnly }
+            onBlur         = { eventHandler( onBlur, 'main' ) }
+            onChange       = { eventHandler( onChange, 'main' ) }
+            onClickIcon    = { onClickIcon }
+            onFocus        = { eventHandler( onFocus, 'main' ) }
+            onKeyPress     = { eventHandler( onKeyPress, 'main' ) }
+            onMouseOut     = { onMouseOut }
+            onMouseOver    = { onMouseOver }
+            placeholder    = { inputPlaceholder }
+            value          = { inputValue } />
+    );
+};
+
+DefaultDatePicker.propTypes =
+{
+    /**
+    *  Label text
+    */
+    label                 : PropTypes.string,
+    /**
+     *  Label position
+     */
+    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    /**
+    *  Display as disabled
+    */
+    isDisabled            : PropTypes.bool,
+    /**
+    *  Display as read-only
+    */
+    isReadOnly            : PropTypes.bool,
+    /**
+     *  Display as disabled
+     */
+    hasError              : PropTypes.bool,
+    /**
+     *  Tooltip message text (string or JSX)
+     */
+    errorMessage          : PropTypes.node,
+    /**
+     *  Error Tooltip is displayed
+     */
+    errorMessageIsVisible : PropTypes.bool,
+    /**
+     *  Main input placeholder text
+     */
+    inputPlaceholder      : PropTypes.string,
+    /**
+     *  Hour input placeholder text
+     */
+    hourPlaceholder       : PropTypes.string,
+    /**
+     *  Minute input placeholder text
+     */
+    minutePlaceholder     : PropTypes.string,
+    /**
+     *  Main input value
+     */
+    inputValue            : PropTypes.string,
+    /**
+     *  Hour input value
+     */
+    hourValue             : PropTypes.string,
+    /**
+     *  Minute input value
+     */
+    minuteValue           : PropTypes.string,
+    /**
+     *  Picker mode
+     */
+    mode                  : PropTypes.oneOf( [
+        'default',
+        'date',
+        'month'
+    ] ),
+    /**
+     *  “Previous” button is disabled
+     */
+    prevIsDisabled   : PropTypes.bool,
+    /**
+     *  “Next” button is disabled
+     */
+    nextIsDisabled   : PropTypes.bool,
+    /**
+     *  "Hour" input is disabled
+     */
+    hourIsDisabled   : PropTypes.bool,
+    /**
+     *  "Minute" input is disabled
+     */
+    minuteIsDisabled : PropTypes.bool,
+    /**
+     *  Picker is open
+     */
+    isOpen           : PropTypes.bool,
+    /**
+     *  Days of week to display
+     */
+    days             : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Weeks to display in default/day mode
+     */
+    weeks            : PropTypes.arrayOf(
+        PropTypes.arrayOf( PropTypes.object )
+    ),
+    /**
+     *  Months to display in month mode
+     */
+    months       : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
+    /**
+     *  Current month to disaplay in default/day mode
+     */
+    currentMonth : PropTypes.string,
+    /**
+     *  Current year to display
+     */
+    currentYear  : PropTypes.string,
+    /**
+     *  Display as hovered
+     */
+    forceHover   : PropTypes.bool,
+    /**
+     *  onChange callback function
+     */
+    onChange     : PropTypes.func,
+    /**
+     *  onKeyPress callback function
+     */
+    onKeyPress   : PropTypes.func,
+    /**
+     *  onFocus callback function
+     */
+    onFocus      : PropTypes.func,
+    /**
+     *  onBlur callback function
+     */
+    onBlur       : PropTypes.func,
+    /**
+     *  onMouseOver callback function
+     */
+    onMouseOver  : PropTypes.func,
+    /**
+     *  onMouseOut callback function
+     */
+    onMouseOut   : PropTypes.func,
+    /**
+     *  onClick callback function for “Next” button
+     */
+    onClickPrev  : PropTypes.func,
+    /**
+     *  onClick callback function for “Previous” button
+     */
+    onClickNext  : PropTypes.func,
+    /**
+     *  onClick callback function for calendar icon
+     */
+    onClickIcon  : PropTypes.func,
+    /**
+     *  onClick callback function for calendar date cell
+     */
+    onClickCell  : PropTypes.func
+};
+
+DefaultDatePicker.defaultProps =
+{
+    mode                  : 'default',
+    currentMonth          : 'January',
+    currentYear           : '2000',
+    isOpen                : false,
+    isDisabled            : false,
+    isReadOnly            : false,
+    hasError              : false,
+    errorMessageIsVisible : false,
+    inputPlaceholder      : 'YYYY-MM-DD HH:MM',
+    hourPlaceholder       : 'HH',
+    minutePlaceholder     : 'MM',
+    days                  : null,
+    weeks                 : null,
+    months                : null,
+};
+
+
+export default DefaultDatePicker;

@@ -1,0 +1,63 @@
+@import '../proto/base.css';
+@import '../proto/definitions/_colors.css';
+
+.default
+{
+    display:            flex;
+
+    height:             2.4rem;
+    width:              2.4rem;
+    min-width:          2.4rem; /* IE fix (required?) */
+
+    flex-direction:     row;
+    align-items:        center;
+    justify-content:    center;
+
+    padding:            0;
+
+    border:             0.1rem solid transparent;
+    border-radius:      100%;
+
+    background:         var( --PC-WHITE );
+    color:              var( --GS-2 );
+
+    &.active,
+    &:focus,
+    &:hover
+    {
+        border-color:   var( --PC-BLUE );
+        background:     var( --PC-WHITE );
+    }
+
+    cursor:             pointer;
+
+    /* months
+    height:                 2.4rem;
+    width:                  5rem;
+    border-radius:          2rem;*/
+}
+
+
+.selected
+{
+    border-color:   var( --PC-BLUE );
+    background:     var( --PC-BLUE );
+    color:          var( --PC-WHITE );
+
+    &.active
+    &:focus,
+    &:hover,
+    {
+        border-color:   var( --PC-BLUE );
+        background:     color( var( --PC-BLUE ) tint( 13% ) );
+    }
+}
+
+
+.disabled
+{
+    border-color:   var( --GS-10 );
+    background:     var( --GS-10 );
+    color:          color( var( --GS-2 ) a( 50% ) );
+    cursor:         default;
+}

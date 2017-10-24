@@ -1,0 +1,44 @@
+.default
+{
+    position:   relative;
+
+    .dropdown
+    {
+        position:   absolute;
+        left:       0;
+        z-index:    9999;
+    }
+
+    &:not( .open )
+    {
+        .dropdown
+        {
+            display:    none;
+        }
+    }
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+}
+
+
+.position__bottom
+{
+    .dropdown
+    {
+        margin-top: -0.1rem;
+    }
+}
+
+.position__top
+{
+    .dropdown
+    {
+        top:            0;
+        margin-bottom:  -0.1rem;
+        transform:      translateY( -100% );
+
+    }
+}

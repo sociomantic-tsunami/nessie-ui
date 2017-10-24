@@ -1,0 +1,31 @@
+@import '../proto/base.css';
+
+.default
+{
+    .input
+    {
+        width:          100%;
+
+        padding:        0;
+        border:         0;
+
+        font:           inherit;
+        line-height:    inherit;
+
+        &:focus
+        {
+            outline:    none;
+        }
+
+        &::placeholder
+        {
+            font:           inherit;
+            line-height:    inherit;
+        }
+
+        &:first-child
+        {
+            text-align: right;
+        }
+    }
+}
