@@ -77,7 +77,7 @@ export default class NotificationBar extends Component
                     { isDismissible && <IconButton
                         className  = { cssMap.close }
                         iconType   = "close"
-                        iconTheme  = "button"
+                        role       = "negative"
                         onClick    = { onClickClose } />}
                 </div>
             </Css>
