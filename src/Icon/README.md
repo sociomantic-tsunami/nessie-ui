@@ -6,7 +6,7 @@ A Nessie Icon contains a `<svg>` that can display different icons in different f
 Theme:
 	- light: used for icons within a module [default]
 	- control: used for icons in the control panel, only theme with disabled state
-	- button: used for icons contained in buttons, always white, no hover (exception: Icon is grey by default and white on hover when rendered in a .Button with role: 'subtle')
+	- button: used for icons contained in buttons, always white, no hover (exception: Icon is grey by default and white on hover when rendered in a .Button with variant: 'subtle')
 	- navigation: used in paginator and carousel. maybe used in top navigation eventually
 	- dark: a theme for light color icons on a dark background. not yet in use.
 
