@@ -61,7 +61,7 @@
 }
 
 
-.role__default
+.variant__default
 {
     background: var( --PC-BLUE );
     color:      var( --PC-WHITE );
@@ -80,7 +80,7 @@
 }
 
 
-.role__promoted
+.variant__promoted
 {
     background: var( --AC-12 );
     color:      var( --PC-WHITE );
@@ -99,7 +99,7 @@
 }
 
 
-.role__critical
+.variant__critical
 {
     background: var( --AC-2 );
     color:      var( --PC-WHITE );
@@ -118,7 +118,7 @@
 }
 
 
-.role__subtle
+.variant__subtle
 {
     color:      var( --PC-GREY );
     background: var( --PC-WHITE );
@@ -178,7 +178,7 @@
 }
 
 
-.role__control
+.variant__control
 {
     color:                      var( --GS-1 );
     box-shadow:                 none;
@@ -313,7 +313,7 @@
 
     box-shadow:     none;
 
-    &.role__subtle
+    &.variant__subtle
     {
         .content
         {
@@ -328,7 +328,7 @@
 
     &.fakeHovered,
     &:hover,
-    &.role__control
+    &.variant__control
     {
         background:     transparent;
         color:          var( --GS-7 );
@@ -340,7 +340,7 @@
         }
     }
 
-    &:not(.role__control)
+    &:not(.variant__control)
     {
         &.fakeHovered,
         &:hover
@@ -351,7 +351,7 @@
 }
 
 
-.iconPosition__left:not(.role__control)
+.iconPosition__left:not(.variant__control)
 {
     .iconContainer
     {
@@ -368,7 +368,7 @@
         flex-direction: row-reverse;
     }
 
-    &:not(.role__control) .iconContainer
+    &:not(.variant__control) .iconContainer
     {
         margin-left:        1px;
         padding-left:       1.2rem;

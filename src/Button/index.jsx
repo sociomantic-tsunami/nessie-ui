@@ -13,15 +13,15 @@ export default class Button extends Component
         /**
         *  Label text
         */
-        label : PropTypes.string,
+        label   : PropTypes.string,
         /**
         *  HTML type attribute
         */
-        type  : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+        type    : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
         /**
-        *  Button role/style
+        *  Button variant/style
         */
-        role  : PropTypes.oneOf( [
+        variant : PropTypes.oneOf( [
             'default',
             'subtle',
             'promoted',
@@ -112,7 +112,7 @@ export default class Button extends Component
     static defaultProps =
     {
         type         : 'button',
-        role         : 'default',
+        variant      : 'default',
         iconType     : 'none',
         iconPosition : 'left',
         isLoading    : false,
@@ -169,7 +169,7 @@ export default class Button extends Component
             isLoading,
             label,
             onClick,
-            role,
+            variant,
             type,
             value
         } = this.props;
@@ -184,7 +184,7 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
-                        theme      = { role === 'control' ? role : 'button' }
+                        theme      = { variant === 'control' ? variant : 'button' }
                         variant    = "stroke"
                         forceHover = { isHovered }
                         isDisabled = { isDisabled } />
@@ -205,7 +205,7 @@ export default class Button extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    role,
+                    variant,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,

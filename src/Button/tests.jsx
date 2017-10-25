@@ -82,18 +82,18 @@ describe( 'Button', () =>
             } );
         } );
 
-        describe( 'role', () =>
+        describe( 'variant', () =>
         {
             it( 'should be "default" by default', () =>
             {
-                expect( instance.props.role ).to.equal( 'default' );
+                expect( instance.props.variant ).to.equal( 'default' );
             } );
 
             it( 'should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    variant  : 'control'
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
@@ -112,7 +112,7 @@ describe( 'Button', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    variant  : 'control'
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
