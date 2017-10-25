@@ -13,7 +13,7 @@ const filterNavItems = node => React.Children.toArray( node )
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
     const dropdownItems = filterNavItems( children ).map( child =>
-    React.cloneElement( child, { ...child.props, role: 'sub' } ) );
+        React.cloneElement( child, { ...child.props, variant: 'sub' } ) );
 
     return (
         <Css cssMap = { cssMap }>
