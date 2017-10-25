@@ -7,27 +7,27 @@ const H3 = ( {
     cssMap,
     className,
     children,
-    role,
+    variant,
     title } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role } }>
-            <h3 className = { className }>
-                { children || title }
-            </h3>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { variant } }>
+        <h3 className = { className }>
+            { children || title }
+        </h3>
+    </Css>;
 
 H3.propTypes =
 {
     /**
     *  Title text
     */
-    title : PropTypes.string,
+    title   : PropTypes.string,
     /**
-    *  Role (style) to apply to heading
+    *  variant (style) to apply to heading
     */
-    role  : PropTypes.oneOf( [
+    variant : PropTypes.oneOf( [
         'default',
         'subtle',
         'promoted',
@@ -37,8 +37,8 @@ H3.propTypes =
 
 H3.defaultProps =
 {
-    role   : 'default',
-    cssMap : require( './h3.css' )
+    variant : 'default',
+    cssMap  : require( './h3.css' )
 };
 
 
