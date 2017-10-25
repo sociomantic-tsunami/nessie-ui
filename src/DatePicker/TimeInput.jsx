@@ -10,6 +10,7 @@ import { eventHandler }               from './utils';
 const TimeInput = ( {
     className,
     cssMap,
+    forceHover,
     hourPlaceholder,
     hourIsDisabled,
     hourValue,
@@ -25,46 +26,42 @@ const TimeInput = ( {
     minutePlaceholder,
     minuteValue
 } ) => (
-    <InputFrame
-        className = { buildClassName( className, cssMap ) }
-        isActive  = { isActive }>
-        <Row gutters = "S" verticalAlign = "middle">
-            <Column>
-                <input
-                    className   = { cssMap.input }
-                    id          = { `${id}-hour` }
-                    type        = "text"
-                    placeholder = { hourPlaceholder }
-                    value       = { hourValue }
-                    disabled    = { isDisabled || hourIsDisabled }
-                    readOnly    = { isReadOnly }
-                    onFocus     = { eventHandler( onFocus, 'hour' ) }
-                    onBlur      = { eventHandler( onBlur, 'hour' ) }
-                    onChange    = { eventHandler( onChange, 'hour' ) }
-                    onKeyPress  = { eventHandler( onKeyPress, 'hour' ) } />
-            </Column>
-            <Column context = "lala" size = "content">
-                <Text role = "subtle">:</Text>
-            </Column>
-            <Column>
-                <input
-                    id          = { `${id}-minute` }
-                    type        = "text"
-                    placeholder = { minutePlaceholder }
-                    value       = { minuteValue }
-                    disabled    = { isDisabled || minuteIsDisabled }
-                    readOnly    = { isReadOnly }
-                    onFocus     = { eventHandler( onFocus, 'minute' ) }
-                    onBlur      = { eventHandler( onBlur, 'minute' ) }
-                    onChange    = { eventHandler( onChange, 'minute' ) }
-                    onKeyPress  = { eventHandler( onKeyPress, 'minute' ) } />
-            </Column>
-        </Row>
-    </InputFrame>
+    <div
+        className = { buildClassName( className, cssMap, {
+            fakeHovered : forceHover
+        } ) }>
+        <input
+            id          = { `${id}-input-hour` }
+            type        = "text"
+            placeholder = { hourPlaceholder }
+            value       = { hourValue }
+            className   = { cssMap.hour }
+            disabled    = { isDisabled || hourIsDisabled }
+            readOnly    = { isReadOnly }
+            onFocus     = { eventHandler( onFocus, 'hour' ) }
+            onBlur      = { eventHandler( onBlur, 'hour' ) }
+            onChange    = { eventHandler( onChange, 'hour' ) }
+            onKeyPress  = { eventHandler( onKeyPress, 'hour' ) } />
+        <span>:</span>
+        <input
+            id          = { `${id}-input-minute` }
+            type        = "text"
+            placeholder = { minutePlaceholder }
+            value       = { minuteValue }
+            className   = { cssMap.min }
+            disabled    = { isDisabled || minuteIsDisabled }
+            readOnly    = { isReadOnly }
+            onFocus     = { eventHandler( onFocus, 'minute' ) }
+            onBlur      = { eventHandler( onBlur, 'minute' ) }
+            onChange    = { eventHandler( onChange, 'minute' ) }
+            onKeyPress  = { eventHandler( onKeyPress, 'minute' ) } />
+    </div>
 );
 
 TimeInput.propTypes = {
+    className         : PropTypes.string,
     cssMap            : PropTypes.objectOf( PropTypes.string ),
+    forceHover        : PropTypes.bool,
     hourPlaceholder   : PropTypes.string,
     hourIsDisabled    : PropTypes.bool,
     hourValue         : PropTypes.string,
@@ -83,7 +80,9 @@ TimeInput.propTypes = {
 };
 
 TimeInput.defaultProps = {
+    className         : undefined,
     cssMap            : styles,
+    forceHover        : false,
     hourPlaceholder   : undefined,
     hourIsDisabled    : false,
     hourValue         : undefined,

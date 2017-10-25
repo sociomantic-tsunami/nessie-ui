@@ -1,10 +1,10 @@
-import React                 from 'react';
-import PropTypes             from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }    from '../utils';
-import styles                from './datePickerItem.css';
-import { eventHandler }      from './utils';
-import { wrapText }          from '../Text/utils';
+import { buildClassName }   from '../utils';
+import styles               from './datePickerItem.css';
+import { eventHandler }     from './utils';
+import { Text }             from '../index';
 
 
 const DatePickerItem = ( {
@@ -17,7 +17,8 @@ const DatePickerItem = ( {
     isReadOnly,
     label,
     onClick,
-    value
+    value,
+    type,
 } ) => (
     <button
         aria-pressed = { isSelected }
@@ -25,12 +26,13 @@ const DatePickerItem = ( {
             active   : isActive,
             disabled : isDisabled,
             selected : isSelected,
+            type     : type,
         } ) }
         disabled     = { isDisabled }
         onClick      = { !isReadOnly && eventHandler( onClick, value ) }
         type         = "button"
         value        = { value }>
-        { wrapText( children || label ) }
+        <Text className = { cssMap.text }>{ children || label }</Text>
     </button>
 );
 
@@ -45,6 +47,7 @@ DatePickerItem.propTypes = {
     label      : PropTypes.string,
     onClick    : PropTypes.func,
     value      : PropTypes.string,
+    type       : PropTypes.oneOf( [ 'day', 'month' ] ),
 };
 
 DatePickerItem.defaultProps = {
@@ -58,6 +61,7 @@ DatePickerItem.defaultProps = {
     label      : undefined,
     onClick    : undefined,
     value      : undefined,
+    type       : 'day',
 };
 
 export default DatePickerItem;

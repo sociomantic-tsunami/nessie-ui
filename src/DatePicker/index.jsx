@@ -56,7 +56,8 @@ const DateTimePicker = ( {
             onClickPrev    = { onClickPrev }
             nextIsDisabled = { nextIsDisabled }
             prevIsDisabled = { prevIsDisabled }
-            onClickItem    = { onClickCell } />
+            onClickItem    = { onClickCell }
+            type           = { mode === 'month' ? 'month' : 'day' }/>
     );
 
     const timePicker = mode === 'default' && (

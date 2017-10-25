@@ -1,7 +1,6 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
-import { Table, TableRow, TableCell } from '../index';
 import { buildClassName }             from '../utils';
 import styles                         from './datePicker.css';
 import DatePickerItem                 from './DatePickerItem';
@@ -21,6 +20,7 @@ const DatePicker = ( {
     onClickNext,
     onClickPrev,
     prevIsDisabled,
+    type,
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
         <DatePickerHeader
@@ -31,28 +31,36 @@ const DatePicker = ( {
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
             prevIsDisabled = { prevIsDisabled } />
-        <Table>
-            <TableRow gutters = "S">
-                { headers && headers.map( ( header, i ) =>
-                    <TableCell align = "center" isHeader key = { i }>
-                        { header.label }
-                    </TableCell>
-                ) }
-            </TableRow>
-            { items && items.map( ( row, i ) =>
-                <TableRow gutters = "S" key = { i }>
-                    { headers && headers.map( ( header, j ) =>
-                        <TableCell align = "center" key = { j }>
-                            { row[ j ] &&
+
+        <table className = { cssMap.calendar }>
+            { headers &&
+                <thead className = { cssMap.calendarHeader }>
+                    <tr>
+                        { headers.map( ( header, i ) =>
+                            <th key = { i }>
+                                <span title = { header.title }>
+                                    { header.label }
+                                </span>
+                            </th>
+                        ) }
+                    </tr>
+                </thead>
+            }
+            <tbody>
+                { items.map( ( item, i ) =>
+                    <tr key = { i }>
+                        { item.map( ( item, j ) =>
+                            <td key = { j }>
                                 <DatePickerItem
-                                    { ...row[ j ] }
-                                    onClick = { onClickItem } />
-                            }
-                        </TableCell>
-                    ) }
-                </TableRow>
-            ) }
-        </Table>
+                                    { ...item }
+                                    onClick = { onClickItem }
+                                    type    = { type } />
+                            </td>
+                        ) }
+                    </tr>
+                ) }
+            </tbody>
+        </table>
     </div>
 );
 
@@ -70,6 +78,7 @@ DatePicker.propTypes = {
     onClickNext    : PropTypes.func,
     onClickPrev    : PropTypes.func,
     prevIsDisabled : PropTypes.bool,
+    type           : PropTypes.oneOf( [ 'day', 'month' ] ),
 };
 
 DatePicker.defaultProps = {
@@ -85,6 +94,7 @@ DatePicker.defaultProps = {
     onClickNext    : undefined,
     onClickPrev    : undefined,
     prevIsDisabled : false,
+    type           : "day",
 };
 
 export default DatePicker;

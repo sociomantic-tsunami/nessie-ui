@@ -28,7 +28,8 @@
 {
     .dropdown
     {
-        margin-top: -0.1rem;
+        bottom:     0;
+        transform:  translateY( calc( 100% - 0.1rem ) );
     }
 }
 
@@ -36,9 +37,7 @@
 {
     .dropdown
     {
-        top:            0;
-        margin-bottom:  -0.1rem;
-        transform:      translateY( -100% );
-
+        top:        0;
+        transform:  translateY( calc( -100% + 0.1rem ) );
     }
 }

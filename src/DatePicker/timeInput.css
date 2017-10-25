@@ -1,16 +1,52 @@
-@import '../proto/base.css';
+@import '../proto/definitions/_colors.css';
 
 .default
 {
-    .input
-    {
-        width:          100%;
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    position:           relative;
 
+    font-size:          1.2rem;
+    line-height:        1.6rem;
+    text-align:         center;
+    color:              color( var( --GS-2 ) tint( 50% ) );
+
+    width:              12rem;
+    margin:             2rem auto 0;
+
+    padding-top:        0.8rem;
+    padding-bottom:     0.6rem;
+
+    border-width:       0.1rem;
+    border-style:       solid;
+    border-color:       color( var( --GS-2 ) tint( 50% ) );
+    border-radius:      2rem;
+    box-sizing:         border-box;
+
+    &:hover,
+    &.fakeHovered
+    {
+        border-color:   var( --PC-BLUE );
+    }
+
+    .hour,
+    .min
+    {
         padding:        0;
         border:         0;
+        width:          3rem;
+        text-align:     center;
 
         font:           inherit;
         line-height:    inherit;
+
+        &:active,
+        &:hover,
+        &:focus
+        {
+            color:  var( --GS-2 );
+        }
 
         &:focus
         {
@@ -22,10 +58,10 @@
             font:           inherit;
             line-height:    inherit;
         }
+    }
 
-        &:first-child
-        {
-            text-align: right;
-        }
+    span
+    {
+        user-select:    none;
     }
 }

@@ -3,8 +3,8 @@ import React from 'react';
 import Text  from './index';
 
 
-const wrapText = node =>
-    ( typeof node === 'string' ? <Text>{ node }</Text> : node );
+const wrapText = ( node, props ) =>
+    ( typeof node === 'string' ? <Text { ...props }>{ node }</Text> : node );
 
 
 export { wrapText };
