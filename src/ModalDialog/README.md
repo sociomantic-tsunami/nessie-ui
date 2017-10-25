@@ -13,7 +13,7 @@ default (no border)
         <H3>Header</H3>
         <p>Modal box content</p>
         <TextInput/>
-        <Button role="subtle">OK</Button>
+        <Button variant="subtle">OK</Button>
     </ModalDialog>
 
 neutral, crucial( grey or red border)
