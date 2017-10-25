@@ -48,16 +48,16 @@ DatePickerItem.propTypes = {
 };
 
 DatePickerItem.defaultProps = {
-    children   : null,
-    className  : null,
+    children   : undefined,
+    className  : undefined,
     cssMap     : styles,
     isActive   : false,
     isDisabled : false,
     isSelected : false,
     isReadOnly : false,
-    label      : null,
-    onClick    : null,
-    value      : null,
+    label      : undefined,
+    onClick    : undefined,
+    value      : undefined,
 };
 
 export default DatePickerItem;

@@ -46,7 +46,7 @@ const DateTimePicker = ( {
 {
     const datePicker = (
         <DatePicker
-            headers        = { mode !== 'month' ? days : null }
+            headers        = { mode !== 'month' ? days : undefined }
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             items          = { mode === 'month' ? months : weeks }
@@ -253,37 +253,37 @@ DateTimePicker.propTypes =
 
 DateTimePicker.defaultProps =
 {
-    currentMonth      : null,
-    currentYear       : null,
-    days              : null,
+    currentMonth      : undefined,
+    currentYear       : undefined,
+    days              : undefined,
     forceHover        : false,
     hasError          : false,
     hourIsDisabled    : false,
-    hourPlaceholder   : null,
-    hourValue         : null,
-    inputPlaceholder  : null,
+    hourPlaceholder   : undefined,
+    hourValue         : undefined,
+    inputPlaceholder  : undefined,
     isDisabled        : false,
     isOpen            : false,
     isReadOnly        : false,
     minuteIsDisabled  : false,
-    minutePlaceholder : null,
-    minuteValue       : null,
+    minutePlaceholder : undefined,
+    minuteValue       : undefined,
     mode              : 'default',
-    months            : null,
+    months            : undefined,
     nextIsDisabled    : false,
-    onBlur            : null,
-    onChange          : null,
-    onClickCell       : null,
-    onClickIcon       : null,
-    onClickNext       : null,
-    onClickPrev       : null,
-    onFocus           : null,
-    onKeyPress        : null,
-    onMouseOut        : null,
-    onMouseOver       : null,
+    onBlur            : undefined,
+    onChange          : undefined,
+    onClickCell       : undefined,
+    onClickIcon       : undefined,
+    onClickNext       : undefined,
+    onClickPrev       : undefined,
+    onFocus           : undefined,
+    onKeyPress        : undefined,
+    onMouseOut        : undefined,
+    onMouseOver       : undefined,
     prevIsDisabled    : false,
-    inputValue        : null,
-    weeks             : null,
+    inputValue        : undefined,
+    weeks             : undefined,
 };
 
 

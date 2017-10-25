@@ -47,7 +47,7 @@ const withDropdown = Component =>
         cssMap           : styles,
         dropdownIsOpen   : false,
         dropdownPosition : 'bottom',
-        dropdownProps    : null,
+        dropdownProps    : undefined,
     };
 
     WithDropdown.displayName = buildDisplayName( WithDropdown, Component );

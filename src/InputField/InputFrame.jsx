@@ -51,8 +51,8 @@ InputFrame.propTypes = {
 };
 
 InputFrame.defaultProps = {
-    children   : null,
-    className  : null,
+    children   : undefined,
+    className  : undefined,
     cssMap     : styles,
     hasError   : false,
     isActive   : false,

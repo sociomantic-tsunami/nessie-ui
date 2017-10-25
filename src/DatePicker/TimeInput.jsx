@@ -43,7 +43,7 @@ const TimeInput = ( {
                     onChange    = { eventHandler( onChange, 'hour' ) }
                     onKeyPress  = { eventHandler( onKeyPress, 'hour' ) } />
             </Column>
-            <Column size = "content">
+            <Column context = "lala" size = "content">
                 <Text role = "subtle">:</Text>
             </Column>
             <Column>
@@ -84,20 +84,20 @@ TimeInput.propTypes = {
 
 TimeInput.defaultProps = {
     cssMap            : styles,
-    hourPlaceholder   : null,
+    hourPlaceholder   : undefined,
     hourIsDisabled    : false,
-    hourValue         : null,
+    hourValue         : undefined,
     id                : generateId( 'TimeInput' ),
     isActive          : false,
     isDisabled        : false,
     isReadOnly        : false,
-    onChange          : null,
-    onBlur            : null,
-    onFocus           : null,
-    onKeyPress        : null,
+    onChange          : undefined,
+    onBlur            : undefined,
+    onFocus           : undefined,
+    onKeyPress        : undefined,
     minuteIsDisabled  : false,
-    minutePlaceholder : null,
-    minuteValue       : null,
+    minutePlaceholder : undefined,
+    minuteValue       : undefined,
 };
 
 export default TimeInput;

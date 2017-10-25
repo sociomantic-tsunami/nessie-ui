@@ -73,17 +73,17 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
-    className      : null,
+    className      : undefined,
     cssMap         : styles,
-    headers        : null,
+    headers        : undefined,
     isDisabled     : false,
     isReadOnly     : false,
-    items          : null,
-    label          : null,
+    items          : undefined,
+    label          : undefined,
     nextIsDisabled : false,
-    onClickItem    : null,
-    onClickNext    : null,
-    onClickPrev    : null,
+    onClickItem    : undefined,
+    onClickNext    : undefined,
+    onClickPrev    : undefined,
     prevIsDisabled : false,
 };
 

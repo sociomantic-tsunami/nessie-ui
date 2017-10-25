@@ -21,8 +21,8 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-    children  : null,
-    className : null,
+    children  : undefined,
+    className : undefined,
     cssMap    : styles,
     hasError  : false,
 };

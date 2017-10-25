@@ -204,7 +204,11 @@ export default class TextInputWithIcon extends Component
 
     static defaultProps =
     {
+        defaultValue          : undefined,
+        label                 : undefined,
         labelPosition         : 'top',
+        placeholder           : undefined,
+        id                    : generateId( 'TextInputWithIcon' ),
         isDisabled            : false,
         isReadOnly            : false,
         iconButtonIsDisabled  : false,
@@ -218,8 +222,21 @@ export default class TextInputWithIcon extends Component
         textAlign             : 'auto',
         forceHover            : false,
         cssMap                : styles,
-        className             : null,
-        id                    : generateId( 'TextInputWithIcon' ),
+        className             : undefined,
+        iconTooltipMessage    : undefined,
+        inputType             : 'text',
+        onClickIcon           : undefined,
+        value                 : undefined,
+        name                  : undefined,
+        onChange              : undefined,
+        onKeyPress            : undefined,
+        onBlur                : undefined,
+        onFocus               : undefined,
+        onInput               : undefined,
+        onMouseOut            : undefined,
+        onMouseOutIcon        : undefined,
+        onMouseOver           : undefined,
+        onMouseOverIcon       : undefined,
     };
 
     constructor( props )
@@ -353,13 +370,10 @@ to 'none' instead.` );
         const {
             className,
             cssMap,
+            defaultValue,
             forceHover,
-            label,
-            ...props
-        } = this.props;
-
-        const {
             hasError,
+            id,
             iconButtonIsDisabled,
             iconButtonIsVisible,
             iconPosition,
@@ -369,39 +383,23 @@ to 'none' instead.` );
             iconType,
             inputType,
             isDisabled,
+            isReadOnly,
+            name,
+            onChange,
             onClickIcon,
-            textAlign
-        } = props;
+            onKeyPress,
+            onInput,
+            onMouseOut,
+            onMouseOver,
+            placeholder,
+            textAlign,
+            value,
+        } = this.props;
 
         const {
             iconIsFocused,
-            iconIsHovered,
-            id
+            iconIsHovered
         } = this.state;
-
-        let iconNode;
-
-        if ( iconType && iconButtonIsVisible !== false && iconType !== 'none' )
-        {
-            iconNode = (
-                <Tooltip
-                    { ...props }
-                    className   = { cssMap.icon }
-                    message     = { iconTooltipMessage }
-                    isVisible   = { iconTooltipIsVisible }
-                    position    = { iconTooltipPosition }
-                    onMouseOver = { this.handleMouseOverIcon }
-                    onMouseOut  = { this.handleMouseOutIcon }>
-                    <IconButton
-                        { ...props }
-                        buttonRef  = { this.handleButtonRef }
-                        onClick    = { onClickIcon }
-                        onFocus    = { this.handleFocusIcon }
-                        onBlur     = { this.handleBlurIcon }
-                        isDisabled = { isDisabled || iconButtonIsDisabled } />
-                </Tooltip>
-            );
-        }
 
         const forceHoverInput = forceHover || iconIsFocused || iconIsHovered;
 
@@ -420,16 +418,52 @@ to 'none' instead.` );
                     position : iconPosition
                 } ) }>
                 <InputField
-                    { ...props }
-                    inputRef   = { this.handleInputRef }
-                    className  = { cssMap.input }
-                    id         = { id }
-                    type       = { inputType }
-                    textAlign  = { alignText }
-                    forceHover = { forceHoverInput }
-                    onFocus    = { this.handleFocus }
-                    onBlur     = { this.handleBlur } />
-                { iconNode }
+                    className    = { cssMap.input }
+                    defaultValue = { defaultValue }
+                    forceHover   = { forceHoverInput }
+                    hasError     = { hasError }
+                    id           = { id }
+                    inputRef     = { this.handleInputRef }
+                    isDisabled   = { isDisabled }
+                    isReadOnly   = { isReadOnly }
+                    name         = { name }
+                    onBlur       = { this.handleBlur }
+                    onChange     = { onChange }
+                    onFocus      = { this.handleFocus }
+                    onKeyPress   = { onKeyPress }
+                    onInput      = { onInput }
+                    onMouseOut   = { onMouseOut }
+                    onMouseOver  = { onMouseOver }
+                    placeholder  = { placeholder }
+                    textAlign    = { alignText }
+                    type         = { inputType }
+                    value        = { value } />
+                { ( iconType && iconButtonIsVisible !== false &&
+                    iconType !== 'none' ) &&
+                    <Tooltip
+                        className   = { cssMap.icon }
+                        isDisabled  = { isDisabled }
+                        isReadOnly  = { isReadOnly }
+                        isVisible   = { iconTooltipIsVisible }
+                        hasError    = { hasError }
+                        message     = { iconTooltipMessage }
+                        onMouseOut  = { this.handleMouseOutIcon }
+                        onMouseOver = { this.handleMouseOverIcon }
+                        position    = { iconTooltipPosition } >
+                        <IconButton
+                            forceHover  = { forceHover }
+                            buttonRef   = { this.handleButtonRef }
+                            iconType    = { iconType }
+                            isDisabled  = { isDisabled || iconButtonIsDisabled }
+                            isReadOnly  = { isReadOnly }
+                            hasError    = { hasError }
+                            onClick     = { onClickIcon }
+                            onFocus     = { this.handleFocusIcon }
+                            onBlur      = { this.handleBlurIcon }
+                            onMouseOut  = { onMouseOut }
+                            onMouseOver = { onMouseOver } />
+                    </Tooltip>
+                }
             </div>
         );
     }

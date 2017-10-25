@@ -108,18 +108,18 @@ InputContainer.propTypes = {
 };
 
 InputContainer.defaultProps = {
-    className             : null,
+    className             : undefined,
     cssMap                : styles,
-    errorMessage          : null,
+    errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
     hasError              : false,
-    id                    : null,
+    id                    : undefined,
     isDisabled            : false,
-    label                 : null,
+    label                 : undefined,
     labelPosition         : 'top',
-    onMouseOut            : null,
-    onMouseOver           : null,
+    onMouseOut            : undefined,
+    onMouseOver           : undefined,
 };
 
 export default InputContainer;

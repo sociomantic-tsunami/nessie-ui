@@ -43,13 +43,13 @@ DatePickerHeader.propTypes = {
 };
 
 DatePickerHeader.defaultProps = {
-    label          : null,
-    isDisabled     : null,
-    isReadOnly     : null,
-    nextIsDisabled : null,
-    onClickNext    : null,
-    onClickPrev    : null,
-    prevIsDisabled : null,
+    label          : undefined,
+    isDisabled     : undefined,
+    isReadOnly     : undefined,
+    nextIsDisabled : undefined,
+    onClickNext    : undefined,
+    onClickPrev    : undefined,
+    prevIsDisabled : undefined,
 };
 
 export default DatePickerHeader;

@@ -55,10 +55,10 @@ const withInputContainer = Component =>
 
     WithInputContainer.defaultProps = {
         ...Component.defaultProps,
-        // errorMessage          : null,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
-        // label                 : null,
+        label                 : undefined,
         labelPosition         : 'top',
     };
 
