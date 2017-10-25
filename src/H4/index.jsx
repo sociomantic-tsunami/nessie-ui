@@ -7,27 +7,27 @@ const H4 = ( {
     cssMap,
     className,
     children,
-    role,
+    variant,
     title } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role } }>
-            <h4 className = { className }>
-                { children || title }
-            </h4>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { variant } }>
+        <h4 className = { className }>
+            { children || title }
+        </h4>
+    </Css>;
 
 H4.propTypes =
 {
     /**
     *  Title text
     */
-    title : PropTypes.string,
+    title   : PropTypes.string,
     /**
-    *  Role (style) to apply to heading
+    *  variant (style) to apply to heading
     */
-    role  : PropTypes.oneOf( [
+    variant : PropTypes.oneOf( [
         'default',
         'subtle',
         'promoted',
@@ -37,8 +37,8 @@ H4.propTypes =
 
 H4.defaultProps =
 {
-    role   : 'default',
-    cssMap : require( './h4.css' )
+    variant : 'default',
+    cssMap  : require( './h4.css' )
 };
 
 export default H4;
