@@ -25,22 +25,22 @@
     white-space: nowrap;
 }
 
-.role__default
+.variant__default
 {
     color:  var( --PC-DARK-GREY );
 }
 
-.role__subtle
+.variant__subtle
 {
     color:  var( --PC-GREY );
 }
 
-.role__promoted
+.variant__promoted
 {
     color:  var( --AC-12 );
 }
 
-.role__critical
+.variant__critical
 {
     color:  var( --AC-2 );
 }
