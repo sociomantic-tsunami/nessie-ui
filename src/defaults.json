@@ -151,7 +151,7 @@
     },
     "ModalDialog" :
     {
-        "children" : "{<Section><H3>Header</H3><p>Modal box content</p><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
+        "children" : "{<Section><H3>Header</H3><p>Modal box content</p><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' variant={'subtle'}>OK</Button></Column></Row>}"
     },
     "NavBar" :
     {
