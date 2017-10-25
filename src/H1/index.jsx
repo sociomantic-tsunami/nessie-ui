@@ -3,10 +3,10 @@ import PropTypes             from 'prop-types';
 
 import Css                   from '../hoc/Css';
 
-const H1 = ( { cssMap, className, children, title, role } ) =>
+const H1 = ( { cssMap, className, children, title, variant } ) =>
     <Css
         cssMap   = { cssMap }
-        cssProps = { { role } }>
+        cssProps = { { variant } }>
         <h1 className = { className }>
             { children || title }
         </h1>
@@ -19,9 +19,9 @@ H1.propTypes =
     */
     title : PropTypes.string,
     /**
-    *  Role (style) to apply to heading
+    *  variant (style) to apply to heading
     */
-    role  : PropTypes.oneOf( [
+    variant  : PropTypes.oneOf( [
         'default',
         'subtle',
         'promoted',
@@ -31,7 +31,7 @@ H1.propTypes =
 
 H1.defaultProps =
 {
-    role   : 'default',
+    variant : 'default',
     cssMap : require( './h1.css' )
 };
 

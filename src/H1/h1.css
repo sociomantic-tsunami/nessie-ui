@@ -17,22 +17,22 @@
     min-height:     2.6rem;
 }
 
-.role__default
+.variant__default
 {
 
 }
 
-.role__subtle
+.variant__subtle
 {
 
 }
 
-.role__promoted
+.variant__promoted
 {
 	color:	var( --AC-12 );
 }
 
-.role__critical
+.variant__critical
 {
 	color:	var( --AC-2 );
 }
