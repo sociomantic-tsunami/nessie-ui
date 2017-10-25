@@ -10,7 +10,7 @@ import { eventHandler }     from './utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-const DefaultDatePicker = ( {
+const DateTimePicker = ( {
     currentMonth,
     currentYear,
     days,
@@ -101,7 +101,7 @@ const DefaultDatePicker = ( {
     );
 };
 
-DefaultDatePicker.propTypes =
+DateTimePicker.propTypes =
 {
     /**
     *  Label text
@@ -251,23 +251,40 @@ DefaultDatePicker.propTypes =
     onClickCell  : PropTypes.func
 };
 
-DefaultDatePicker.defaultProps =
+DateTimePicker.defaultProps =
 {
-    mode                  : 'default',
-    currentMonth          : 'January',
-    currentYear           : '2000',
-    isOpen                : false,
-    isDisabled            : false,
-    isReadOnly            : false,
-    hasError              : false,
-    errorMessageIsVisible : false,
-    inputPlaceholder      : 'YYYY-MM-DD HH:MM',
-    hourPlaceholder       : 'HH',
-    minutePlaceholder     : 'MM',
-    days                  : null,
-    weeks                 : null,
-    months                : null,
+    currentMonth      : null,
+    currentYear       : null,
+    days              : null,
+    forceHover        : false,
+    hasError          : false,
+    hourIsDisabled    : false,
+    hourPlaceholder   : null,
+    hourValue         : null,
+    inputPlaceholder  : null,
+    isDisabled        : false,
+    isOpen            : false,
+    isReadOnly        : false,
+    minuteIsDisabled  : false,
+    minutePlaceholder : null,
+    minuteValue       : null,
+    mode              : 'default',
+    months            : null,
+    nextIsDisabled    : false,
+    onBlur            : null,
+    onChange          : null,
+    onClickCell       : null,
+    onClickIcon       : null,
+    onClickNext       : null,
+    onClickPrev       : null,
+    onFocus           : null,
+    onKeyPress        : null,
+    onMouseOut        : null,
+    onMouseOver       : null,
+    prevIsDisabled    : false,
+    inputValue        : null,
+    weeks             : null,
 };
 
 
-export default DefaultDatePicker;
+export default DateTimePicker;

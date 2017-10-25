@@ -1,9 +1,11 @@
 ## Component Description
 
-DatePicker currently exports a DatePicker and/or a TimeInput placed inside a
-Dropdown which, in turn, is attached to a TextInputWithIcon.
+This module currently exports a _DateTimePicker_ consisting of a DatePicker
+and/or a TimeInput placed inside a Dropdown which, in turn, is attached to a
+TextInputWithIcon.
 
-**In a future release this component will export just the DatePicker.** It
+
+**In a future release this module will export just the DatePicker.** It
 will be up to the host app to place the DatePicker inside a Dropdown and attach
 the Dropdown to an input (or any other component).
 
