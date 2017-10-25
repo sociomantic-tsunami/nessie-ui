@@ -1,3 +1,4 @@
+
 /* eslint max-len: ["error", { "ignoreTrailingComments": true }] */
 
 import React, { Component } from 'react';
@@ -131,6 +132,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
         };
     }
 );
+
 
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
@@ -348,22 +350,28 @@ export default class FlounderDropdown extends Component
         cssMap                : require( './flounderDropdown.css' )
     };
 
+    constructor( props )
+    {
+        super( props );
+        this.handleRef = this.handleRef.bind( this );
+    }
+
+
     componentDidMount()
     {
-        const { refs, props } = this;
-
-        const flounder = buildFlounder( refs.flounderDiv, props );
+        const { flounderDiv, props } = this;
+        const flounder = buildFlounder( flounderDiv, props );
 
         setValue( flounder, props.value || props.defaultValue );
         flounder.disable( props.isDisabled );
 
-        refs.flounder = flounder;
+        this.flounderInstance = flounder;
     }
 
     componentDidUpdate( prevProps )
     {
-        const { refs, props } = this;
-        let   { flounder }    = refs;
+        const { flounderDiv, props } = this;
+        let { flounderInstance } = this;
 
         // eslint-disable-next-line no-restricted-syntax
         for ( const propName of rebuildOnProps )
@@ -371,15 +379,19 @@ export default class FlounderDropdown extends Component
             if ( stringifyObj( prevProps[ propName ] ) !==
                 stringifyObj( props[ propName ] ) )
             {
-                flounder = buildFlounder( refs.flounderDiv, props );
+                flounderInstance = buildFlounder( flounderDiv, props );
                 break;
             }
         }
 
-        setValue( flounder, props.value );
-        flounder.disable( props.isDisabled );
+        setValue( flounderInstance, props.value );
+        flounderInstance.disable( props.isDisabled );
     }
 
+    handleRef( node )
+    {
+        this.flounderDiv = node;
+    }
 
     render()
     {
@@ -412,7 +424,7 @@ export default class FlounderDropdown extends Component
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
                         <div
-                            ref         = "flounderDiv"
+                            ref = { this.handleRef }
                             onMouseOver = { onMouseOver }
                             onMouseOut  = { onMouseOut }
                         />
