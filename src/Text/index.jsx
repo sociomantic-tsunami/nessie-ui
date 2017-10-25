@@ -9,19 +9,19 @@ const Text = ( {
     children,
     noWrap,
     overflowIsHidden,
-    role,
+    variant,
     text } ) =>
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
-                role,
-                overflowHidden : overflowIsHidden,
-                noWrap
-            } }>
-            <div className = { className }>
-                { children || text }
-            </div>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            variant,
+            overflowHidden : overflowIsHidden,
+            noWrap
+        } }>
+        <div className = { className }>
+            { children || text }
+        </div>
+    </Css>;
 Text.propTypes =
 {
     /**
@@ -33,9 +33,9 @@ Text.propTypes =
      */
     overflowIsHidden : PropTypes.bool,
     /**
-    *  Role (style) to apply to text
+    *  variant (style) to apply to text
     */
-    role             : PropTypes.oneOf( [
+    variant          : PropTypes.oneOf( [
         'default',
         'subtle',
         'promoted',
@@ -51,7 +51,7 @@ Text.defaultProps =
 {
     noWrap           : false,
     overflowIsHidden : false,
-    role             : 'default',
+    variant          : 'default',
     cssMap           : require( './text.css' )
 };
 

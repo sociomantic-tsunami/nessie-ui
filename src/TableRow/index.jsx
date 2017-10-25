@@ -18,7 +18,7 @@ const TableRow = ( {
         <Css cssMap = { cssMap }>
             <Row
                 className     = { className }
-                role          = "row"
+                variant       = "row"
                 align         = { align }
                 verticalAlign = { verticalAlign }
                 gutters       = { gutters }
