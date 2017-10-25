@@ -9,22 +9,22 @@ const Column = ( {
     className,
     columnTitle,
     cssMap,
-    role,
+    variant,
     size,
     verticalAlign } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { size,
-                alignX : align,
-                alignY : verticalAlign } }>
-            <div
-                className         = { className }
-                role              = { role }
-                data-column-title = { columnTitle }>
-                { children }
-            </div>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { size,
+            alignX : align,
+            alignY : verticalAlign } }>
+        <div
+            className         = { className }
+            variant              = { variant }
+            data-column-title = { columnTitle }>
+            { children }
+        </div>
+    </Css>;
 
 Column.propTypes =
 {
@@ -87,9 +87,9 @@ Column.propTypes =
      */
     children : PropTypes.node,
     /**
-    *  Column role
+    *  Column variant
     */
-    role     : PropTypes.string
+    variant  : PropTypes.string
 };
 
 Column.defaultProps =
