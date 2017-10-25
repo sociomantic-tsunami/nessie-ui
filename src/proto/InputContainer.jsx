@@ -44,7 +44,7 @@ export default class InputContainer extends Component
                             overflowIsHidden = { typeof label === 'string' }
                             className        = { cssMap.label }
                             htmlFor          = { id }
-                            role             = { labelPosition === 'top' ?
+                            variant          = { labelPosition === 'top' ?
                                                  'header' : 'default' }
                             onMouseOver      = { onMouseOver }
                             onMouseOut       = { onMouseOut }>
