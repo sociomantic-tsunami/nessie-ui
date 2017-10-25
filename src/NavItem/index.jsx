@@ -30,13 +30,13 @@ const NavItem = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    role } ) =>
+    variant } ) =>
 {
     return (
         <Css
             cssMap   = { cssMap }
             cssProps = { {
-                role,
+                variant,
                 disabled    : isDisabled,
                 current     : isCurrentPage,
                 dropdownAlign,
@@ -70,9 +70,9 @@ const NavItem = ( {
 NavItem.propTypes =
 {
     /**
-     *  Navigation role
+     *  Navigation variant
      */
-    role          : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
+    variant       : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
     /**
      *  navItem text
      */
@@ -125,7 +125,7 @@ NavItem.propTypes =
 
 NavItem.defaultProps =
 {
-    role          : 'default',
+    variant       : 'default',
     href          : '#',
     dropdownAlign : 'left',
     iconType      : 'none',

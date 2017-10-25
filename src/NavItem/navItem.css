@@ -61,8 +61,8 @@
 
 }
 
-.role__default,
-.role__primary
+.variant__default,
+.variant__primary
 {
     & > .link
     {
@@ -95,7 +95,7 @@
     }
 }
 
-.role__primary
+.variant__primary
 {
     & > .link
     {
@@ -103,7 +103,7 @@
     }
 }
 
-.role__sub
+.variant__sub
 {
     & > .link
     {
