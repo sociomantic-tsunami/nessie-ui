@@ -1,11 +1,11 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { Component }             from 'react';
+import PropTypes                        from 'prop-types';
 
-import Component        from '../proto/Component';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
-import IconButton       from '../IconButton';
-import Tooltip          from '../Tooltip';
+import { buildClassName, generateId }   from '../utils';
+import styles                           from './textInputWithIcon.css';
+import InputField                       from '../InputField';
+import IconButton                       from '../IconButton';
+import Tooltip                          from '../Tooltip';
 
 
 export default class TextInputWithIcon extends Component
@@ -217,7 +217,9 @@ export default class TextInputWithIcon extends Component
         iconPosition          : 'right',
         textAlign             : 'auto',
         forceHover            : false,
-        cssMap                : require( './textInputWithIcon.css' )
+        cssMap                : styles,
+        className             : null,
+        id                    : generateId( 'TextInputWithIcon' ),
     };
 
     constructor( props )
@@ -411,26 +413,24 @@ to 'none' instead.` );
         }
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <div
+                className = { buildClassName( className, cssMap, {
                     disabled : isDisabled,
                     error    : hasError,
-                    position : iconPosition } }>
-                <div className = { cssMap.container }>
-                    <InputField
-                        { ...props }
-                        inputRef   = { this.handleInputRef }
-                        className  = { cssMap.input }
-                        id         = { id }
-                        type       = { inputType }
-                        textAlign  = { alignText }
-                        forceHover = { forceHoverInput }
-                        onFocus    = { this.handleFocus }
-                        onBlur     = { this.handleBlur } />
-                    { iconNode }
-                </div>
-            </Css>
+                    position : iconPosition
+                } ) }>
+                <InputField
+                    { ...props }
+                    inputRef   = { this.handleInputRef }
+                    className  = { cssMap.input }
+                    id         = { id }
+                    type       = { inputType }
+                    textAlign  = { alignText }
+                    forceHover = { forceHoverInput }
+                    onFocus    = { this.handleFocus }
+                    onBlur     = { this.handleBlur } />
+                { iconNode }
+            </div>
         );
     }
 }

@@ -6,15 +6,11 @@
     flex-direction: row;
     align-items:    center;
 
-    & > *
-    {
-        margin: 0;
-    }
-
     .input
     {
-        flex:       1 1 auto;
-        min-width:  0;
+        flex:           1 1 auto;
+        min-width:      0;
+        margin-bottom:  0;
     }
 }
 
