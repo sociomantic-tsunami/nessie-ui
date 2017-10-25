@@ -91,7 +91,7 @@ export default class Tooltip extends Component
         const tooltip = (
             <div
                 className = { cssMap.tooltip }
-                role      = "tooltip"
+                variant      = "tooltip"
                 id        = { id }>
                 <div
                     className = { cssMap.message }>{ messageLines }</div>
