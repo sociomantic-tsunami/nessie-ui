@@ -12,11 +12,11 @@ export default class ButtonRadio extends Component
         /**
         *  Label text
         */
-        label      : PropTypes.string,
+        label         : PropTypes.string,
         /**
-        *  Button role/style
+        *  Button variant/style
         */
-        buttonrole : PropTypes.oneOf( [
+        buttonvariant : PropTypes.oneOf( [
             'default',
             'secondary',
             'tertiary'
@@ -105,7 +105,7 @@ export default class ButtonRadio extends Component
 
     static defaultProps =
     {
-        buttonrole   : 'default',
+        buttonvariant: 'default',
         isChecked    : false,
         isDisabled   : false,
         iconType     : 'none',
@@ -118,7 +118,7 @@ export default class ButtonRadio extends Component
     render()
    {
         const {
-            buttonrole,
+            buttonvariant,
             children,
             cssMap,
             customIcon,
@@ -147,7 +147,7 @@ export default class ButtonRadio extends Component
                 name       = { name }>
                 <IconButton
                     element      = "div"
-                    role         = { buttonrole }
+                    variant      = { buttonvariant }
                     isDisabled   = { isChecked || isDisabled }
                     iconType     = { iconType }
                     customIcon   = { customIcon }
