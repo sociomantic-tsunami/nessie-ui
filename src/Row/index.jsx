@@ -11,24 +11,24 @@ const Row = ( {
     cssMap,
     gutters,
     hasMinHeight,
-    role,
+    variant,
     spacing } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
-                alignX  : align,
-                alignY  : verticalAlign,
-                hasMinHeight,
-                gutters : gutters !== 'none' && gutters,
-                spacing : spacing !== 'none' && spacing
-            } }>
-            <div
-                className = { className }
-                role      = { role }>
-                { children }
-            </div>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            alignX  : align,
+            alignY  : verticalAlign,
+            hasMinHeight,
+            gutters : gutters !== 'none' && gutters,
+            spacing : spacing !== 'none' && spacing
+        } }>
+        <div
+            className = { className }
+            variant      = { variant }>
+            { children }
+        </div>
+    </Css>;
 
 Row.propTypes =
 {
@@ -78,9 +78,9 @@ Row.propTypes =
         'label'
     ] ),
     /**
-     *  Row role
+     *  Row variant
      */
-    role     : PropTypes.string,
+    variant  : PropTypes.string,
     /**
      *  Row content (Columns)
      */
