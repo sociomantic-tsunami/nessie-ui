@@ -12,13 +12,14 @@
     "dist": "webpack --env=dist",
     "dist-watch": "webpack --env=dist --watch",
     "dev": "webpack --env=dev --watch",
+    "loch:clean": "rimraf .lochness",
     "start": "concurrently --kill-others \"yarn dev\" \"yarn serve\"",
     "test": "karma start",
     "test:v:ref": "visualTest -e dev -s src -d dist -j src/defaults.json -t reference",
     "test:Chrome": "karma start --singleRun=false --browsers Chrome",
     "test:v": "visualTest -e dev -s src -d dist -j src/defaults.json",
-    "test:v:clean": "rimraf backstop_data/bitmaps_test && rimraf .lochness",
-    "test:v:build": "yarn test:v:clean && loch:build -e dev -s src -d dist -j src/defaults.json",
+    "test:v:clean": "yarn loch:clean",
+    "test:v:build": "yarn loch:build -e dev -s src -d dist -j src/defaults.json",
     "test:v:buildFresh": "concurrently \"yarn build\" \"yarn test:v:build\"",
     "test:visuals": "yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v",
     "tdd": "karma start --autoWatch=true --singleRun=false",
@@ -27,7 +28,8 @@
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
     "bump": "yarn pre-bump && yarn version && yarn post-bump",
     "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
-    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push"
+    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push",
+    "postinstall": "loch:build -e dist -s src -d dist -j src/defaults.json"
   },
   "keywords": [
     "scotland",
