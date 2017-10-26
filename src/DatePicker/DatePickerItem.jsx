@@ -1,10 +1,9 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import styles               from './datePickerItem.css';
-import { eventHandler }     from './utils';
-import { Text }             from '../index';
+import { buildClassName, eventHandler } from '../utils';
+import styles                           from './datePickerItem.css';
+import { Text }                         from '../index';
 
 
 const DatePickerItem = ( {

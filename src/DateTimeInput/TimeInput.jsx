@@ -1,10 +1,8 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                                        from 'react';
+import PropTypes                                    from 'prop-types';
 
 import { buildClassName, eventHandler, generateId } from '../utils';
 import styles                                       from './timeInput.css';
-import { Text }                                     from '../index';
-
 
 const TimeInput = ( {
     className,

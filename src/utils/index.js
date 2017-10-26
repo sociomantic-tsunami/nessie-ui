@@ -49,6 +49,9 @@ const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
     return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
+const eventHandler = ( func, ...rest ) =>
+    func && ( ( ...args ) => func( ...args, ...rest ) );
+
 
 const getComponentName = Component =>
     Component.displayName || Component.name || 'Component';
@@ -58,6 +61,6 @@ const generateId = name =>
     `${name}-${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
 
 
-export { buildClassName, buildDisplayName, generateId };
+export { buildClassName, buildDisplayName, eventHandler, generateId };
 
-export default { buildClassName, buildDisplayName, generateId };
+export default { buildClassName, buildDisplayName, eventHandler, generateId };

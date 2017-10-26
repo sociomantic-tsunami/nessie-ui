@@ -1,9 +1,9 @@
-import React                                from 'react';
-import PropTypes                            from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { Column, IconButton, Row, Text }    from '../index';
-import { buildClassName }                   from '../utils';
-import styles                               from './datePickerHeader.css';
+import { IconButton, Text } from '../index';
+import { buildClassName }   from '../utils';
+import styles               from './datePickerHeader.css';
 
 const DatePickerHeader = ( {
     className,

@@ -2,10 +2,10 @@ import 'normalize.css';
 import './foundations.css';
 
 import withInputContainer from './proto/withInputContainer';
-import DatePicker         from './DatePicker';
+import DateTimeInput      from './DateTimeInput';
 import TextInputWithIcon  from './TextInputWithIcon';
 
-const WrappedDatePicker        = withInputContainer( DatePicker );
+const WrappedDateTimeInput     = withInputContainer( DateTimeInput );
 const WrappedTextInputWithIcon = withInputContainer( TextInputWithIcon );
 
 export Animate                  from './Animate';
@@ -17,7 +17,8 @@ export Checkbox                 from './Checkbox';
 export CheckboxGroup            from './CheckboxGroup';
 export CodeEditor               from './CodeEditor';
 export Column                   from './Column';
-export { WrappedDatePicker as DatePicker };
+export DatePicker               from './DatePicker';
+export { WrappedDateTimeInput as DateTimeInput };
 export DimensionsInput          from './DimensionsInput';
 export Divider                  from './Divider';
 export DragNDrop                from './DragNDrop';
