@@ -1,26 +1,16 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
-    .container
-    {
-        display:        flex;
-        flex-direction: row;
-        align-items:    center;
-
-        margin:     0;
-
-        & > *
-        {
-            margin: 0;
-        }
-    }
+    display:        flex;
+    flex-direction: row;
+    align-items:    center;
 
     .input
     {
-        flex:       1 1 auto;
-        min-width:  0;
+        flex:           1 1 auto;
+        min-width:      0;
+        margin-bottom:  0;
     }
 }
 

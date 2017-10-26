@@ -1,0 +1,20 @@
+@import '../proto/base.css';
+@import '../proto/definitions/_colors.css';
+
+.default
+{
+    width:      auto;
+    min-width:  0;
+    max-width:  none;
+
+    padding:    2rem;
+    border:     0.1rem solid var( --PC-BLUE );
+    box-shadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+
+    background: var( --PC-WHITE );
+}
+
+.error
+{
+    border-color:   var( --AC-1 );
+}

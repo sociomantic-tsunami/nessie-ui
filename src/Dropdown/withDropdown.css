@@ -1,0 +1,43 @@
+.default
+{
+    position:   relative;
+
+    .dropdown
+    {
+        position:   absolute;
+        left:       0;
+        z-index:    9999;
+    }
+
+    &:not( .open )
+    {
+        .dropdown
+        {
+            display:    none;
+        }
+    }
+
+    & > *
+    {
+        margin-bottom:  0;
+    }
+}
+
+
+.position__bottom
+{
+    .dropdown
+    {
+        bottom:     0;
+        transform:  translateY( calc( 100% - 0.1rem ) );
+    }
+}
+
+.position__top
+{
+    .dropdown
+    {
+        top:        0;
+        transform:  translateY( calc( -100% + 0.1rem ) );
+    }
+}
