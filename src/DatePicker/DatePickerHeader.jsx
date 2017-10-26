@@ -20,7 +20,8 @@ const DatePickerHeader = ( {
         <IconButton
             className  = { cssMap.prev }
             iconType   = "left"
-            isDisabled = { prevIsDisabled }
+            isDisabled = { isDisabled || prevIsDisabled }
+            isReadOnly = { isReadOnly }
             onClick    = { onClickPrev } />
         <Text className = { cssMap.date }>
             { label }
@@ -28,8 +29,9 @@ const DatePickerHeader = ( {
         <IconButton
             className  = { cssMap.next }
             iconType   = "right"
-            isDisabled = { nextIsDisabled }
-            onClick    = { onClickPrev } />
+            isDisabled = { isDisabled || nextIsDisabled }
+            isReadOnly = { isReadOnly }
+            onClick    = { onClickNext } />
     </div>
 );
 

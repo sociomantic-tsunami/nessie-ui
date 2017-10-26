@@ -58,7 +58,7 @@ const DateTimeInput = ( {
             nextIsDisabled = { nextIsDisabled }
             prevIsDisabled = { prevIsDisabled }
             onClickItem    = { onClickCell }
-            type           = { mode === 'month' ? 'month' : 'day' }/>
+            type           = { mode === 'month' ? 'month' : 'day' } />
     );
 
     const timePicker = mode === 'default' && (
@@ -255,7 +255,7 @@ DateTimeInput.propTypes =
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef        : PropTypes.func,
+    inputRef     : PropTypes.func,
 };
 
 DateTimeInput.defaultProps =

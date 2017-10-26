@@ -29,7 +29,7 @@
         color:          var( --GS-2 );
     }
 
-    &.active,
+    &.fakeHovered,
     &:focus,
     &:hover
     {
@@ -69,7 +69,7 @@
         color:  var( --PC-WHITE );
     }
 
-    &.active,
+    &.fakeHovered,
     &:focus,
     &:hover
     {
@@ -86,7 +86,7 @@
 
 
 .disabled,
-.disabled.active,
+.disabled.fakeHovered,
 .disabled:focus,
 .disabled:hover
 {

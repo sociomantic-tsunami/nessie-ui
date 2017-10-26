@@ -1,16 +1,16 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName, eventHandler } from '../utils';
-import styles                           from './datePickerItem.css';
-import { Text }                         from '../index';
+import { buildClassName }   from '../utils';
+import styles               from './datePickerItem.css';
+import { Text }             from '../index';
 
 
 const DatePickerItem = ( {
     children,
     className,
     cssMap,
-    isActive,
+    forceHover,
     isDisabled,
     isSelected,
     isReadOnly,
@@ -18,28 +18,41 @@ const DatePickerItem = ( {
     onClick,
     value,
     type,
-} ) => (
-    <button
-        aria-pressed = { isSelected }
-        className    = { buildClassName( className, cssMap, {
-            active   : isActive,
-            disabled : isDisabled,
-            selected : isSelected,
-            type     : type,
-        } ) }
-        disabled     = { isDisabled }
-        onClick      = { !isReadOnly && eventHandler( onClick, value ) }
-        type         = "button"
-        value        = { value }>
-        <Text className = { cssMap.text }>{ children || label }</Text>
-    </button>
-);
+} ) =>
+{
+    const handleClick = e =>
+    {
+        e.stopPropagation();
+        e.preventDefault();
+        if ( !isReadOnly && onClick )
+        {
+            onClick( value );
+        }
+    };
+
+    return (
+        <button
+            aria-pressed = { isSelected }
+            className    = { buildClassName( className, cssMap, {
+                fakeHovered : forceHover,
+                disabled    : isDisabled,
+                selected    : isSelected,
+                type        : type,
+            } ) }
+            disabled     = { isDisabled }
+            onClick      = { handleClick }
+            type         = "button"
+            value        = { value }>
+            <Text className = { cssMap.text }>{ children || label }</Text>
+        </button>
+    );
+};
 
 DatePickerItem.propTypes = {
     children   : PropTypes.node,
     className  : PropTypes.string,
     cssMap     : PropTypes.objectOf( PropTypes.string ),
-    isActive   : PropTypes.bool,
+    forceHover : PropTypes.bool,
     isDisabled : PropTypes.bool,
     isSelected : PropTypes.bool,
     isReadOnly : PropTypes.bool,
@@ -53,7 +66,7 @@ DatePickerItem.defaultProps = {
     children   : undefined,
     className  : undefined,
     cssMap     : styles,
-    isActive   : false,
+    forceHover : false,
     isDisabled : false,
     isSelected : false,
     isReadOnly : false,

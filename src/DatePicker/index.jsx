@@ -52,10 +52,12 @@ const DatePicker = ( {
                         <tr key = { i }>
                             { item.map( ( item, j ) =>
                                 <td key = { j }>
-                                    <DatePickerItem
-                                        { ...item }
-                                        onClick = { onClickItem }
-                                        type    = { type } />
+                                    { item.value &&
+                                        <DatePickerItem
+                                            { ...item }
+                                            onClick = { onClickItem }
+                                            type    = { type } />
+                                    }
                                 </td>
                             ) }
                         </tr>
@@ -96,7 +98,7 @@ DatePicker.defaultProps = {
     onClickNext    : undefined,
     onClickPrev    : undefined,
     prevIsDisabled : false,
-    type           : "day",
+    type           : 'day',
 };
 
 export default DatePicker;

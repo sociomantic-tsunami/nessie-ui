@@ -41,7 +41,7 @@
         font:           inherit;
         line-height:    inherit;
 
-        &:active,
+        &:fakeHovered,
         &:hover,
         &:focus
         {

@@ -7,16 +7,12 @@
     border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
     background: var( --PC-WHITE );
 
+    &.fakeHovered,
     &:hover,
     &:focus
     {
         border-color:   var( --PC-BLUE );
     }
-}
-
-.active
-{
-    border-color:   var( --PC-BLUE );
 }
 
 .error

@@ -34,7 +34,7 @@ const withInputContainer = Component =>
         /**
          *  Component label
          */
-        label                 : PropTypes.string,
+        label                 : PropTypes.node,
         /**
          *  Position of component label relative to component
          */

@@ -10,14 +10,14 @@ const InputFrame = ( {
     className,
     cssMap,
     hasError,
-    isActive,
+    forceHover,
     isDisabled
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
-            active   : isActive,
-            disabled : isDisabled,
-            error    : hasError,
+            fakeHovered : forceHover,
+            disabled    : isDisabled,
+            error       : hasError,
         } ) }>
         { children }
     </div>
@@ -37,13 +37,13 @@ InputFrame.propTypes = {
      */
     cssMap     : PropTypes.objectOf( PropTypes.string ),
     /**
+     *  Display as active
+     */
+    forceHover : PropTypes.bool,
+    /**
      *  Display as error
      */
     hasError   : PropTypes.bool,
-    /**
-     *  Display as active
-     */
-    isActive   : PropTypes.bool,
     /**
      *  Display as disabled
      */
@@ -54,8 +54,8 @@ InputFrame.defaultProps = {
     children   : undefined,
     className  : undefined,
     cssMap     : styles,
+    forceHover : false,
     hasError   : false,
-    isActive   : false,
     isDisabled : false,
 };
 

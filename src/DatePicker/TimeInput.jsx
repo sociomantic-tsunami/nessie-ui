@@ -1,9 +1,8 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                                        from 'react';
+import PropTypes                                    from 'prop-types';
 
 import { buildClassName, eventHandler, generateId } from '../utils';
 import styles                                       from './timeInput.css';
-import { Text }                                     from '../index';
 
 
 const TimeInput = ( {
@@ -14,7 +13,6 @@ const TimeInput = ( {
     hourIsDisabled,
     hourValue,
     id,
-    isActive,
     isDisabled,
     isReadOnly,
     onChange,
@@ -65,7 +63,6 @@ TimeInput.propTypes = {
     hourIsDisabled    : PropTypes.bool,
     hourValue         : PropTypes.string,
     id                : PropTypes.string,
-    isActive          : PropTypes.bool,
     isDisabled        : PropTypes.bool,
     isReadOnly        : PropTypes.bool,
     onChange          : PropTypes.func,
@@ -86,7 +83,6 @@ TimeInput.defaultProps = {
     hourIsDisabled    : false,
     hourValue         : undefined,
     id                : generateId( 'TimeInput' ),
-    isActive          : false,
     isDisabled        : false,
     isReadOnly        : false,
     onChange          : undefined,
