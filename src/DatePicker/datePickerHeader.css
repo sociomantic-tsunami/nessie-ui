@@ -1,0 +1,35 @@
+@import '../proto/definitions/_colors.css';
+@import '../proto/definitions/_fonts.css';
+
+.default
+{
+    position:               relative;
+    display:                flex;
+    justify-content:        center;
+    align-items:            center;
+
+    margin-bottom:          2rem;
+
+    .date
+    {
+        @extend %Nessie-Bold;
+        margin-bottom:  0;
+    }
+
+    .prev,
+    .next
+    {
+        position:   absolute;
+        top:        calc( 50% - 0.8rem);
+    }
+
+    .prev
+    {
+        left:   0;
+    }
+
+    .next
+    {
+        right:  0;
+    }
+}
