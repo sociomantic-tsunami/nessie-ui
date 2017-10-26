@@ -20,6 +20,7 @@ const DateTimeInput = ( {
     hourPlaceholder,
     hourValue,
     inputPlaceholder,
+    inputRef,
     isDisabled,
     isOpen,
     isReadOnly,
@@ -90,6 +91,7 @@ const DateTimeInput = ( {
             iconType       = "calendar"
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
+            inputRef       = { inputRef }
             onBlur         = { eventHandler( onBlur, 'main' ) }
             onChange       = { eventHandler( onChange, 'main' ) }
             onClickIcon    = { onClickIcon }
@@ -249,7 +251,11 @@ DateTimeInput.propTypes =
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell  : PropTypes.func
+    onClickCell  : PropTypes.func,
+    /**
+     * Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef        : PropTypes.func,
 };
 
 DateTimeInput.defaultProps =
@@ -266,6 +272,7 @@ DateTimeInput.defaultProps =
     isDisabled        : false,
     isOpen            : false,
     isReadOnly        : false,
+    inputRef          : undefined,
     minuteIsDisabled  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
