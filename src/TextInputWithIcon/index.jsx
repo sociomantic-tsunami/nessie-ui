@@ -238,13 +238,6 @@ export default class TextInputWithIcon extends Component
         this.handleMouseOutIcon  = this.handleMouseOutIcon.bind( this );
         this.handleInputRef      = this.handleInputRef.bind( this );
         this.handleButtonRef     = this.handleButtonRef.bind( this );
-
-        if ( props.iconButtonIsVisible === false )
-        {
-            console.warn( `${this.constructor.name}: iconButtonIsVisible is \
-deprecated and will be removed in the next major release. Please set iconType \
-to 'none' instead.` );
-        }
     }
 
     handleFocus( e )
@@ -359,7 +352,6 @@ to 'none' instead.` );
         const {
             hasError,
             iconButtonIsDisabled,
-            iconButtonIsVisible,
             iconPosition,
             iconTooltipIsVisible,
             iconTooltipMessage,
@@ -379,7 +371,7 @@ to 'none' instead.` );
 
         let iconNode;
 
-        if ( iconType && iconButtonIsVisible !== false && iconType !== 'none' )
+        if ( iconType && iconType !== 'none' )
         {
             iconNode = (
                 <Tooltip
