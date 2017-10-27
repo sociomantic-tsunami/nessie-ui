@@ -14133,6 +14133,36 @@ var utils = {
 
 
     /**
+     * ## debounce
+     *
+     * debounces a function using the specified delay
+     *
+     * @param {Function} func function to be debounced
+     * @param {Number} wait debounce delay
+     * @param {Object} context context for debounced funtion execution
+     *
+     * @return {Void} void
+     */
+    debounce: function debounce(func, wait) {
+        var context = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this;
+
+        var args = void 0;
+        var timeout = void 0;
+
+        var debounced = function debounced() {
+            return func.apply(context, args);
+        };
+
+        return function () {
+            clearTimeout(timeout);
+
+            args = arguments;
+            timeout = setTimeout(debounced, wait);
+        };
+    },
+
+
+    /**
      * ## extendClass
      *
      * extends a class from an object.  returns the original reference
@@ -14328,26 +14358,32 @@ var utils = {
      *
      * checks if an option is visible and, if it is not, scrolls it into view
      *
-     * @param {DOMElement} element element to check
+     * @param {DOMElement}  element         element to check
+     * @param {DOMElement}  [scrollParent]  parent element to scroll
      *
      * @return {Void} void
      */
-    scrollTo: function scrollTo(element) {
+    scrollTo: function scrollTo(element, scrollParent) {
         if (element) {
-            var parent = element.parentNode.parentNode;
-            var elHeight = element.offsetHeight;
-            var min = parent.scrollTop;
-            var max = parent.scrollTop + parent.offsetHeight - elHeight;
-            var pos = element.offsetTop;
+            var scrollElement = scrollParent || element.offsetParent;
 
-            if (pos < min) {
-                parent.scrollTop = pos - elHeight * 0.5;
-            } else if (pos > max) {
-                parent.scrollTop = pos - parent.offsetHeight + elHeight * 1.5;
+            if (scrollElement.scrollHeight > scrollElement.offsetHeight) {
+                var pos = element.offsetTop;
+                var elHeight = element.offsetHeight;
+                var contHeight = scrollElement.offsetHeight;
+
+                var min = scrollElement.scrollTop;
+                var max = min + scrollElement.offsetHeight - elHeight;
+
+                if (pos < min) {
+                    scrollElement.scrollTop = pos;
+                } else if (pos > max) {
+                    scrollElement.scrollTop = pos - (contHeight - elHeight);
+                }
             }
-        } else {
-            return false;
         }
+
+        return false;
     },
 
 
@@ -14393,7 +14429,7 @@ var utils = {
             utils.addClass(_el, _class);
         }
     }
-}; /* globals document, window, setTimeout*/
+}; /* globals clearTimeout, document, setTimeout, window */
 
 
 (0, _http2.default)(utils);
@@ -15370,14 +15406,14 @@ var defaultOptions = exports.defaultOptions = {
     multipleMessage: '(Multiple Items Selected)',
     noMoreOptionsMessage: 'No more options to add.',
     noMoreResultsMessage: 'No matches found',
-    onChange: function onChange(e, selectedValues) {}, // eslint-disable-line
-    onClose: function onClose(e, selectedValues) {}, // eslint-disable-line
-    onComponentDidMount: function onComponentDidMount() {}, // eslint-disable-line
-    onComponentWillUnmount: function onComponentWillUnmount() {}, // eslint-disable-line
-    onFirstTouch: function onFirstTouch(e) {}, // eslint-disable-line
-    onInit: function onInit() {}, // eslint-disable-line
-    onInputChange: function onInputChange(e) {}, // eslint-disable-line
-    onOpen: function onOpen(e, selectedValues) {}, // eslint-disable-line
+    onChange: null, // function( e, selectedValues ){}
+    onClose: null, // function( e, selectedValues ){}
+    onComponentDidMount: null, // function(){}
+    onComponentWillUnmount: null, // function(){}
+    onFirstTouch: null, // function( e ){}
+    onInit: null, // function(){}
+    onInputChange: null, // function( e ){}
+    onOpen: null, // function( e, selectedValues ){}
     openOnHover: false,
     placeholder: 'Please choose an option',
     search: false,
@@ -28589,8 +28625,6 @@ var _defaults = __webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var nativeSlice = Array.prototype.slice;
-
 var api = {
 
     /**
@@ -28733,8 +28767,6 @@ var api = {
      * @return {Void} void
      */
     deselectAll: function deselectAll(silent) {
-        var _this2 = this;
-
         this.removeSelectedClass();
         this.removeSelectedValue();
 
@@ -28742,10 +28774,12 @@ var api = {
             var multiTagWrapper = this.refs.multiTagWrapper;
 
             if (multiTagWrapper) {
-                var tags = nativeSlice.call(multiTagWrapper.children, 0, -1);
+                var children = multiTagWrapper.children;
 
-                tags.forEach(function (el, count) {
-                    var lastEl = count === tags.length - 1;
+                for (var i = 0; i < children.length - 1; i++) {
+                    var el = children[i];
+
+                    var lastEl = i === children.length - 1;
 
                     if (!silent && lastEl) {
                         el = el.children;
@@ -28753,10 +28787,10 @@ var api = {
 
                         el.click();
                     } else {
-                        el.removeEventListener('click', _this2.removeMultiTag);
+                        el.removeEventListener('click', this.removeMultiTag);
                         el.remove();
                     }
-                });
+                }
 
                 this.addPlaceholder();
             }
@@ -28780,14 +28814,12 @@ var api = {
         var selected = refs.selected;
 
         if (bool) {
-            refs.flounder.removeEventListener('keydown', this.checkFlounderKeypress);
-            refs.selected.removeEventListener('click', this.toggleList);
-            _utils2.default.addClass(selected, classes.DISABLED);
+            flounder.removeEventListener('keydown', this.checkFlounderKeypress);
+            selected.removeEventListener('click', this.toggleList);
             _utils2.default.addClass(flounder, classes.DISABLED);
         } else {
-            refs.flounder.addEventListener('keydown', this.checkFlounderKeypress);
-            refs.selected.addEventListener('click', this.toggleList);
-            _utils2.default.removeClass(selected, classes.DISABLED);
+            flounder.addEventListener('keydown', this.checkFlounderKeypress);
+            selected.addEventListener('click', this.toggleList);
             _utils2.default.removeClass(flounder, classes.DISABLED);
         }
     },
@@ -28963,7 +28995,7 @@ var api = {
      * @return {Object} option and div tage
      */
     getData: function getData(index) {
-        var _this3 = this;
+        var _this2 = this;
 
         var refs = this.refs;
 
@@ -28974,11 +29006,11 @@ var api = {
             };
         } else if (index && index.length && typeof index !== 'string') {
             return index.map(function (i) {
-                return _this3.getData(i);
+                return _this2.getData(i);
             });
         } else if (!index) {
             return refs.selectOptions.map(function (el, i) {
-                return _this3.getData(i);
+                return _this2.getData(i);
             });
         }
 
@@ -28999,11 +29031,32 @@ var api = {
         var data = el.options;
         var classes = this.classes;
 
-        nativeSlice.call(data).forEach(function (el) {
-            if (el.selected && !_utils2.default.hasClass(el, classes.PLACEHOLDER)) {
-                opts.push(el);
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var _el = _step.value;
+
+                if (_el.selected && !_utils2.default.hasClass(_el, classes.PLACEHOLDER)) {
+                    opts.push(_el);
+                }
             }
-        });
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
 
         return opts;
     },
@@ -29034,23 +29087,23 @@ var api = {
      * @return {Void} void
      */
     loadDataFromUrl: function loadDataFromUrl(url, callback) {
-        var _this4 = this;
+        var _this3 = this;
 
         var classes = this.classes;
 
         _utils2.default.http.get(url).then(function (data) {
             if (data) {
-                _this4.data = JSON.parse(data);
+                _this3.data = JSON.parse(data);
 
                 if (callback) {
-                    callback(_this4.data);
+                    callback(_this3.data);
                 }
             } else {
                 console.warn('no data recieved');
             }
         }).catch(function (e) {
             console.warn('something happened: ', e);
-            _this4.rebuild([{
+            _this3.rebuild([{
                 text: '',
                 value: '',
                 index: 0,
@@ -29262,8 +29315,6 @@ var _utils = __webpack_require__(16);
 var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var nativeSlice = Array.prototype.slice;
 
 var build = {
 
@@ -29585,8 +29636,13 @@ var build = {
         this.defaultObj = (0, _defaults.setDefaultOption)(this, this.props, data);
         var defaultValue = this.defaultObj;
 
+        var selectedClassName = classes.SELECTED_DISPLAYED;
+        if (defaultValue.value && defaultValue.extraClass) {
+            selectedClassName += ' ' + defaultValue.extraClass;
+        }
+
         var selected = constructElement({
-            className: classes.SELECTED_DISPLAYED,
+            className: selectedClassName,
             'data-value': defaultValue.value,
             'data-index': defaultValue.index
         });
@@ -29717,13 +29773,34 @@ var build = {
                 var data = [];
                 var selectOptions = [];
 
-                nativeSlice.call(target.children, 0).forEach(function (optionEl) {
-                    selectOptions.push(optionEl);
-                    data.push({
-                        text: optionEl.innerHTML,
-                        value: optionEl.value
-                    });
-                });
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = target.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var optionEl = _step.value;
+
+                        selectOptions.push(optionEl);
+                        data.push({
+                            text: optionEl.innerHTML,
+                            value: optionEl.value
+                        });
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
 
                 refs.selectOptions = selectOptions;
 
@@ -29760,9 +29837,30 @@ var build = {
     popInSelectElements: function popInSelectElements(select) {
         _utils2.default.removeAllChildren(select);
 
-        this.originalChildren.forEach(function (_el) {
-            select.appendChild(_el);
-        });
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+            for (var _iterator2 = this.originalChildren[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var el = _step2.value;
+
+                select.appendChild(el);
+            }
+        } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
+                }
+            } finally {
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
+                }
+            }
+        }
     },
 
 
@@ -29779,13 +29877,15 @@ var build = {
     popOutSelectElements: function popOutSelectElements(select) {
         var res = [];
 
-        this.originalChildren = nativeSlice.call(select.children, 0);
+        this.originalChildren = select.children;
         var children = this.originalChildren;
 
-        children.forEach(function (_el, i) {
-            res[i] = _el.cloneNode(true);
-            select.removeChild(_el);
-        });
+        for (var i = 0; i < children.length; i++) {
+            var el = children[i];
+
+            res[i] = el.cloneNode(true);
+            select.removeChild(el);
+        }
 
         res.forEach(function (_el) {
             select.appendChild(_el);
@@ -29863,7 +29963,6 @@ var classes = {
     ARROW_INNER: 'flounder__arrow--inner',
     DESCRIPTION: 'flounder__option--description',
     DISABLED: 'flounder__disabled',
-    DISABLED_OPTION: 'flounder__disabled--option',
     HEADER: 'flounder__header',
     HIDDEN: 'flounder--hidden',
     HIDDEN_IOS: 'flounder--hidden--ios',
@@ -29917,8 +30016,6 @@ var _keycodes2 = _interopRequireDefault(_keycodes);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* globals console, document, setTimeout, window */
-var nativeSlice = Array.prototype.slice;
-
 var events = {
 
     /**
@@ -30008,14 +30105,15 @@ var events = {
             }
         });
 
-        var tags = nativeSlice.call(multiTagWrapper.children, 0, -1);
+        var children = multiTagWrapper.children;
 
-        tags.forEach(function (tag) {
+        for (var i = 0; i < children.length - 1; i++) {
+            var tag = children[i];
             var closeBtn = tag.firstChild;
 
-            closeBtn.addEventListener('click', _this.removeMultiTag);
-            tag.addEventListener('keydown', _this.checkMultiTagKeydown);
-        });
+            closeBtn.addEventListener('click', this.removeMultiTag);
+            tag.addEventListener('keydown', this.checkMultiTagKeydown);
+        }
     },
 
 
@@ -30137,13 +30235,15 @@ var events = {
         var search = this.refs.search;
         var multiTagWrapper = this.refs.multiTagWrapper;
 
+        this.debouncedFuzzySearch = _utils2.default.debounce(this.fuzzySearch, 200);
+
         if (multiTagWrapper) {
             multiTagWrapper.addEventListener('click', this.toggleListSearchClick);
         }
 
         search.addEventListener('click', this.toggleListSearchClick);
         search.addEventListener('focus', this.toggleListSearchClick);
-        search.addEventListener('keyup', this.fuzzySearch);
+        search.addEventListener('keyup', this.debouncedFuzzySearch);
         search.addEventListener('focus', this.clearPlaceholder);
     },
 
@@ -30157,8 +30257,7 @@ var events = {
      * @return {Void} void
      */
     addSelectKeyListener: function addSelectKeyListener() {
-        var refs = this.refs;
-        var select = refs.select;
+        var select = this.refs.select;
 
         select.addEventListener('keyup', this.setSelectValue);
         select.addEventListener('keydown', this.setKeypress);
@@ -30175,8 +30274,6 @@ var events = {
             plug.className = classes.PLUG;
             select.insertBefore(plug, firstOption);
         }
-
-        select.focus();
     },
 
 
@@ -30257,6 +30354,7 @@ var events = {
             // If only one result is available, select that result.
             // If more than one results, select one only on exact match.
             var selectedIndex = -1;
+
             if (res.length === 1) {
                 selectedIndex = 0;
             } else if (res.length > 1) {
@@ -30280,10 +30378,12 @@ var events = {
                         }, 200);
                     }
 
-                    try {
-                        this.onChange(e, this.getSelectedValues());
-                    } catch (e) {
-                        console.warn('something may be wrong in "onChange"', e);
+                    if (this.onChange) {
+                        try {
+                            this.onChange(e, this.getSelectedValues());
+                        } catch (e) {
+                            console.warn('something may be wrong in "onChange"', e);
+                        }
                     }
                 }
             }
@@ -30341,45 +30441,35 @@ var events = {
     /**
      * ## checkMultiTagKeydown
      *
-     * when a tag is selected, this decided how to handle it by either
-     * passing the event on, or handling tag removal
+     * when a tag is selected, this decides how to handle it by either passing
+     * the event on, or handling tag removal
      *
      * @param {Object} e event object
      *
      * @return {Void} void
      */
     checkMultiTagKeydown: function checkMultiTagKeydown(e) {
-        var keyCode = e.keyCode;
-        var self = this;
-        var refs = this.refs;
-        var tags = nativeSlice.call(refs.multiTagWrapper.children, 0, -1);
-        var target = e.target;
-        var index = tags.indexOf(target);
+        var _this3 = this;
 
-        /**
-         * ## focusSearch
-         *
-         * focus' on the search input
-         *
-         * @return {Void}  void
-         */
-        function focusSearch() {
-            refs.search.focus();
-            self.clearPlaceholder();
-            self.toggleListSearchClick(e);
-        }
+        var keyCode = e.keyCode,
+            target = e.target;
 
-        if (keyCode === _keycodes2.default.LEFT || keyCode === _keycodes2.default.RIGHT || keyCode === _keycodes2.default.BACKSPACE) {
+
+        var catchKeys = [_keycodes2.default.BACKSPACE, _keycodes2.default.LEFT, _keycodes2.default.RIGHT];
+
+        if (catchKeys.indexOf(keyCode) !== -1) {
             e.preventDefault();
             e.stopPropagation();
 
             if (keyCode === _keycodes2.default.BACKSPACE) {
-                self.checkMultiTagKeydownRemove(target, focusSearch, index);
+                this.checkMultiTagKeydownRemove(target);
             } else {
-                self.checkMultiTagKeydownNavigate(focusSearch, keyCode, index);
+                this.checkMultiTagKeydownNavigate(keyCode, target);
             }
         } else if (e.key.length < 2) {
-            focusSearch();
+            setTimeout(function () {
+                return _this3.refs.search.focus();
+            }, 0);
         }
     },
 
@@ -30387,26 +30477,29 @@ var events = {
     /**
      * ## checkMultiTagKeydownNavigate
      *
-     * after left or right is hit while a multitag is focused, this focus' on
+     * after left or right is hit while a multitag is focused, this focuses on
      * the next tag in that direction or the the search field
      *
-     * @param {Function} focusSearch function to focus on the search field
-     * @param {Number} keyCode keyclode from te keypress event
-     * @param {Number} index index of currently focused tag
+     * @param {Number} keyCode keycode from the keypress event
+     * @param {DOMElement} target focused multitag
      *
      * @return {Void} void
      */
-    checkMultiTagKeydownNavigate: function checkMultiTagKeydownNavigate(focusSearch, keyCode, index) {
-        var tags = nativeSlice.call(this.refs.multiTagWrapper.children, 0, -1);
+    checkMultiTagKeydownNavigate: function checkMultiTagKeydownNavigate(keyCode, target) {
+        if (keyCode === _keycodes2.default.LEFT) {
+            var prev = target.previousSibling;
 
-        var adjustment = keyCode - 38;
-        var newIndex = index + adjustment;
-        var length = tags.length - 1;
+            if (prev) {
+                prev.focus();
+            }
+        } else if (keyCode === _keycodes2.default.RIGHT) {
+            var next = target.nextSibling;
 
-        if (newIndex > length) {
-            focusSearch();
-        } else if (newIndex >= 0) {
-            tags[newIndex].focus();
+            if (next) {
+                setTimeout(function () {
+                    return next.focus();
+                }, 0);
+            }
         }
     },
 
@@ -30414,26 +30507,25 @@ var events = {
     /**
      * ## checkMultiTagKeydownRemove
      *
-     * after a backspece while a multitag is focused, this removes the tag and
-     * focus' on the next
+     * after a backspace while a multitag is focused, this removes the tag and
+     * focuses on the next
      *
      * @param {DOMElement} target focused multitag
-     * @param {Function} focusSearch function to focus on the search field
-     * @param {Number} index index of currently focused tag
      *
      * @return {Void} void
      */
-    checkMultiTagKeydownRemove: function checkMultiTagKeydownRemove(target, focusSearch, index) {
-        var tags = nativeSlice.call(this.refs.multiTagWrapper.children, 0, -1);
-
-        var siblings = tags.length - 1;
+    checkMultiTagKeydownRemove: function checkMultiTagKeydownRemove(target) {
+        var prev = target.previousSibling;
+        var next = target.nextSibling;
 
         target.firstChild.click();
 
-        if (siblings > 0) {
-            tags[index === 0 ? 0 : index - 1].focus();
-        } else {
-            focusSearch();
+        if (prev) {
+            setTimeout(function () {
+                return prev.focus();
+            }, 0);
+        } else if (next) {
+            next.focus();
         }
     },
 
@@ -30488,18 +30580,17 @@ var events = {
      * @return {Void} void
      */
     displayMultipleTags: function displayMultipleTags(selectedOptions, multiTagWrapper) {
-        var _this3 = this;
+        var children = multiTagWrapper.children;
 
-        var tags = nativeSlice.call(multiTagWrapper.children, 0, -1);
-
-        tags.forEach(function (tag) {
+        for (var i = 0; i < children.length - 1; i++) {
+            var tag = children[i];
             var closeBtn = tag.firstChild;
 
-            closeBtn.removeEventListener('click', _this3.removeMultiTag);
-            tag.removeEventListener('keydown', _this3.checkMultiTagKeydown);
+            closeBtn.removeEventListener('click', this.removeMultiTag);
+            tag.removeEventListener('keydown', this.checkMultiTagKeydown);
 
             multiTagWrapper.removeChild(tag);
-        });
+        }
 
         if (selectedOptions.length > 0) {
             this.addMultipleTags(selectedOptions, multiTagWrapper);
@@ -30619,10 +30710,12 @@ var events = {
     firstTouchController: function firstTouchController(e) {
         var refs = this.refs;
 
-        try {
-            this.onFirstTouch(e);
-        } catch (e) {
-            console.warn('something may be wrong in "onFirstTouch"', e);
+        if (this.onFirstTouch) {
+            try {
+                this.onFirstTouch(e);
+            } catch (e) {
+                console.warn('something may be wrong in "onFirstTouch"', e);
+            }
         }
 
         refs.selected.removeEventListener('click', this.firstTouchController);
@@ -30630,6 +30723,44 @@ var events = {
 
         if (this.props.openOnHover) {
             refs.wrapper.removeEventListener('mouseenter', this.firstTouchController);
+        }
+    },
+
+
+    /**
+     * ## hideEmptySection
+     *
+     * Check if the provided element is indeed a section. If it is, check if
+     * it must to be shown or hidden.
+     *
+     * @param {DOMElement} se the section to be checked
+     *
+     * @return {Void} void
+     */
+    hideEmptySection: function hideEmptySection(se) {
+        var selectedClass = this.selectedClass;
+        var sections = this.refs.sections;
+
+        for (var i = 0; i < sections.length; ++i) {
+            if (sections[i] === se) {
+                var shouldBeHidden = true;
+
+                // Ignore the title in childNodes[0]
+                for (var j = 1; j < se.childNodes.length; j++) {
+                    if (!_utils2.default.hasClass(se.childNodes[j], selectedClass)) {
+                        shouldBeHidden = false;
+                        break;
+                    }
+                }
+
+                if (shouldBeHidden) {
+                    _utils2.default.addClass(se, selectedClass);
+                } else {
+                    _utils2.default.removeClass(se, selectedClass);
+                }
+
+                break;
+            }
         }
     },
 
@@ -30734,10 +30865,12 @@ var events = {
         selected.setAttribute('data-value', value);
         selected.setAttribute('data-index', index);
 
-        try {
-            this.onChange(e, this.getSelectedValues());
-        } catch (e) {
-            console.warn('something may be wrong in "onChange"', e);
+        if (this.onChange) {
+            try {
+                this.onChange(e, this.getSelectedValues());
+            } catch (e) {
+                console.warn('something may be wrong in "onChange"', e);
+            }
         }
     },
 
@@ -30808,7 +30941,7 @@ var events = {
         var search = this.refs.search;
         search.removeEventListener('click', this.toggleListSearchClick);
         search.removeEventListener('focus', this.toggleListSearchClick);
-        search.removeEventListener('keyup', this.fuzzySearch);
+        search.removeEventListener('keyup', this.debouncedFuzzySearch);
         search.removeEventListener('focus', this.clearPlaceholder);
     },
 
@@ -30996,7 +31129,7 @@ var events = {
             if (e || obj.type === 'blur' || !keyCode && obj.type === 'change' || keyCode && nonKeys.indexOf(keyCode) === -1) {
                 if (this.toggleList.justOpened && !e) {
                     this.toggleList.justOpened = false;
-                } else {
+                } else if (this.onChange) {
                     try {
                         this.onChange(e, this.getSelectedValues());
                     } catch (e) {
@@ -31037,7 +31170,7 @@ var events = {
 
             _utils2.default.addClass(selectedOption, selectedClass);
 
-            _utils2.default.scrollTo(selectedOption);
+            _utils2.default.scrollTo(selectedOption, refs.optionsListWrapper);
         }
     },
 
@@ -31102,8 +31235,6 @@ var events = {
         var classes = this.classes;
 
         _utils2.default.addClass(refs.optionsListWrapper, classes.HIDDEN);
-        this.removeSelectKeyListener();
-
         _utils2.default.removeClass(wrapper, classes.OPEN);
 
         var qsHTML = document.querySelector('html');
@@ -31112,13 +31243,17 @@ var events = {
 
         if (this.search) {
             this.fuzzySearchReset();
+        } else {
+            this.removeSelectKeyListener();
         }
 
         if (!exit) {
-            refs.flounder.focus();
+            setTimeout(function () {
+                return refs.flounder.focus();
+            }, 0);
         }
 
-        if (this.ready) {
+        if (this.onClose && this.ready) {
             try {
                 this.onClose(e, this.getSelectedValues());
             } catch (e) {
@@ -31191,8 +31326,6 @@ var events = {
      * @return {Void} void
      */
     toggleOpen: function toggleOpen(e, optionsList, refs) {
-        this.addSelectKeyListener();
-
         if (!this.isIos || this.search || this.multipleTags === true) {
             var classes = this.classes;
 
@@ -31205,15 +31338,22 @@ var events = {
             qsHTML.addEventListener('touchend', this.catchBodyClick);
         }
 
-        if (!this.multiple) {
+        if (!this.multipleTags) {
             var index = refs.select.selectedIndex;
             var selectedDiv = refs.data[index];
 
-            _utils2.default.scrollTo(selectedDiv);
+            _utils2.default.scrollTo(selectedDiv, refs.optionsListWrapper);
         }
 
         if (this.search) {
-            refs.search.focus();
+            setTimeout(function () {
+                return refs.search.focus();
+            }, 0);
+        } else {
+            this.addSelectKeyListener();
+            setTimeout(function () {
+                return refs.select.focus();
+            }, 0);
         }
 
         var optionCount = refs.data.length;
@@ -31223,59 +31363,19 @@ var events = {
         }
 
         if (refs.multiTagWrapper) {
-            var tags = nativeSlice.call(refs.multiTagWrapper.children, 0, -1);
+            var numTags = refs.multiTagWrapper.children.length - 1;
 
-            if (tags.length === optionCount) {
+            if (numTags === optionCount) {
                 this.removeNoResultsMessage();
                 this.addNoMoreOptionsMessage();
             }
         }
 
-        if (this.ready) {
+        if (this.onOpen && this.ready) {
             try {
                 this.onOpen(e, this.getSelectedValues());
             } catch (e) {
                 console.warn('something may be wrong in "onOpen"', e);
-            }
-        }
-    },
-
-
-    /**
-     * ## hideEmptySection
-     *
-     * hides a section which does not have any visible options.
-     *
-     * @param {DOMElement} se the section to be checked
-     *
-     * @return {Void} void
-     */
-    hideEmptySection: function hideEmptySection(se) {
-        var selectedClass = this.selectedClass;
-        var sections = this.refs.sections;
-
-        // Check if the provided element is indeed a section.
-        // If it is, check if it must to be shown or hidden.
-
-        for (var i = 0; i < sections.length; ++i) {
-            if (sections[i] === se) {
-                var shouldBeHidden = true;
-
-                // Ignore the title in childNodes[0].
-                for (var j = 1; j < se.childNodes.length; j++) {
-                    if (!_utils2.default.hasClass(se.childNodes[j], selectedClass)) {
-                        shouldBeHidden = false;
-                        break;
-                    }
-                }
-
-                if (shouldBeHidden) {
-                    _utils2.default.addClass(se, selectedClass);
-                } else {
-                    _utils2.default.removeClass(se, selectedClass);
-                }
-
-                break;
             }
         }
     }
@@ -31297,7 +31397,7 @@ Object.defineProperty(exports, "__esModule", {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-/* globals console, document */
+/* globals console, document, setTimeout */
 
 
 var _defaults = __webpack_require__(25);
@@ -31336,14 +31436,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var nativeSlice = Array.prototype.slice;
-
 /**
  * main flounder class
  *
  * @return {Object} Flounder instance
  */
-
 var Flounder = function () {
     _createClass(Flounder, [{
         key: 'componentWillUnmount',
@@ -31356,10 +31453,12 @@ var Flounder = function () {
          * @return {Void} void
          */
         value: function componentWillUnmount() {
-            try {
-                this.onComponentWillUnmount();
-            } catch (e) {
-                console.warn('something may be wrong in\n                                        "onComponentWillUnmount"', e);
+            if (this.onComponentWillUnmount) {
+                try {
+                    this.onComponentWillUnmount();
+                } catch (e) {
+                    console.warn('something may be wrong in "onComponentWillUnmount"', e);
+                }
             }
 
             this.removeListeners();
@@ -31479,10 +31578,12 @@ var Flounder = function () {
         value: function fuzzySearch(e) {
             this.fuzzySearch.previousValue = this.fuzzySearch.previousValue || '';
 
-            try {
-                this.onInputChange(e);
-            } catch (e) {
-                console.warn('something may be wrong in "onInputChange"', e);
+            if (this.onInputChange) {
+                try {
+                    this.onInputChange(e);
+                } catch (e) {
+                    console.warn('something may be wrong in "onInputChange"', e);
+                }
             }
 
             if (!this.toggleList.justOpened) {
@@ -31492,10 +31593,12 @@ var Flounder = function () {
 
                 if (keyCode !== _keycodes2.default.UP && keyCode !== _keycodes2.default.DOWN && keyCode !== _keycodes2.default.ENTER && keyCode !== _keycodes2.default.ESCAPE) {
                     if (this.multipleTags && keyCode === _keycodes2.default.BACKSPACE && this.fuzzySearch.previousValue === '') {
-                        var lastTag = nativeSlice.call(this.refs.multiTagWrapper.children, 0, -1).pop();
+                        var lastTag = this.refs.search.previousSibling;
 
                         if (lastTag) {
-                            lastTag.focus();
+                            setTimeout(function () {
+                                return lastTag.focus();
+                            }, 0);
                         }
                     } else {
                         this.filterSearchResults(e);
@@ -31561,10 +31664,12 @@ var Flounder = function () {
                 this.search = new _search2.default(this);
             }
 
-            try {
-                this.onInit();
-            } catch (e) {
-                console.warn('something may be wrong in "onInit"', e);
+            if (this.onInit) {
+                try {
+                    this.onInit();
+                } catch (e) {
+                    console.warn('something may be wrong in "onInit"', e);
+                }
             }
 
             this.buildDom();
@@ -31579,10 +31684,12 @@ var Flounder = function () {
             this.multiSelect = multiSelect;
             this.onRender();
 
-            try {
-                this.onComponentDidMount();
-            } catch (e) {
-                console.warn('something may be wrong in onComponentDidMount', e);
+            if (this.onComponentDidMount) {
+                try {
+                    this.onComponentDidMount();
+                } catch (e) {
+                    console.warn('something may be wrong in onComponentDidMount', e);
+                }
             }
 
             this.ready = true;
@@ -31923,55 +32030,6 @@ var Sole = exports.Sole = function () {
         }
 
         /**
-         * ## filterSelected
-         *
-         * helper function to filter selected options from search results
-         *
-         * @param {Object} res search result object
-         *
-         * @return {Boolean} data not in selected options
-         */
-
-    }, {
-        key: 'filterSelected',
-        value: function filterSelected(res) {
-            if (!res.d || !res.d.value) {
-                return false;
-            }
-
-            if (this.flounder.multipleTags) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = this.flounder.getSelectedValues()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var o = _step.value;
-
-                        if (res.d.value === o) {
-                            return false;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        /**
          * ## getResultWeights
          *
          * after the data is prepared this is mapped through the data to get
@@ -32071,7 +32129,6 @@ var Sole = exports.Sole = function () {
                 return false;
             }
 
-            ratedRes = ratedRes.filter(this.filterSelected.bind(this));
             ratedRes = ratedRes.filter(this.isItemAboveMinimum);
             ratedRes.sort(this.compareScoreCards);
 
@@ -32140,14 +32197,14 @@ var Sole = exports.Sole = function () {
                         count = (target.match(queryWord) || []).length;
                     } else if (target[0]) {
                         target.forEach(function (word) {
-                            count = word.indexOf(queryWord) !== -1 ? 1 : 0;
+                            count += word.indexOf(queryWord) !== -1 ? 1 : 0;
                         });
                     } else {
                         count = target[queryWord] || 0.000001;
                     }
 
-                    if (count && count > 0) {
-                        score += weight * count * 10;
+                    if (count > 0) {
+                        score = weight * count * 10;
                     } else if (noPunishment !== true) {
                         score = -weight;
                     }
@@ -32171,7 +32228,7 @@ exports.default = Sole;
 
 
 /* globals module */
-module.exports = '1.2.0';
+module.exports = '1.3.0';
 
 /***/ }),
 /* 184 */
