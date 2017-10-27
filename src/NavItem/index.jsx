@@ -24,7 +24,7 @@ const NavItem = ( {
     forceHover,
     href,
     iconType,
-    isCurrentPage,
+    isCurrentCategory,
     isOpen,
     isDisabled,
     onClick,
@@ -38,7 +38,7 @@ const NavItem = ( {
             cssProps = { {
                 role,
                 disabled    : isDisabled,
-                current     : isCurrentPage,
+                current     : isCurrentCategory,
                 dropdownAlign,
                 open        : isOpen,
                 fakeHovered : forceHover,
@@ -50,7 +50,7 @@ const NavItem = ( {
                 onMouseOut  = { onMouseOut }>
                 <a
                     className = { cssMap.link }
-                    href      = { isCurrentPage ? null : href }
+                    href      = { href }
                     onClick   = { onClick }>
                     <span>{ label }</span>
                     { ( iconType && iconType !== 'none' ) &&
@@ -88,7 +88,7 @@ NavItem.propTypes =
     /**
      *  Display as current page
      */
-    isCurrentPage : PropTypes.bool,
+    isCurrentCategory : PropTypes.bool,
     /*
     *  Display as disabled/read-only
      */
