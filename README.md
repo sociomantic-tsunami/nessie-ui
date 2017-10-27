@@ -1,4 +1,4 @@
-# nessie - 4.2.2
+# nessie - 4.2.3
 
 React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
