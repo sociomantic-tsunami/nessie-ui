@@ -36,6 +36,10 @@ export default class NavItem extends Component
          */
         iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
         /**
+        *  Display as current page
+        */
+        isCurrent     : PropTypes.bool,
+        /**
          *  Display as current page
          */
         isCurrentPage : PropTypes.bool,
@@ -93,6 +97,7 @@ export default class NavItem extends Component
             forceHover,
             href,
             iconType,
+            isCurrent,
             isCurrentPage,
             isOpen,
             isDisabled,
@@ -102,13 +107,20 @@ export default class NavItem extends Component
             role
         } = this.props;
 
+        if ( isCurrentPage === true )
+        {
+            console.warn( `${this.constructor.name}: isCurrentPage is \
+deprecated and will be removed in the next major release. Please use \
+isCurrent instead.` );
+        }
+
         return (
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
                     role,
                     disabled    : isDisabled,
-                    current     : isCurrentPage,
+                    current     : isCurrent || isCurrentPage,
                     dropdownAlign,
                     open        : isOpen,
                     fakeHovered : forceHover,
@@ -120,7 +132,7 @@ export default class NavItem extends Component
                     onMouseOut  = { onMouseOut }>
                     <a
                         className = { cssMap.link }
-                        href      = { isCurrentPage ? null : href }
+                        href      = { href }
                         onClick   = { onClick }>
                         <span>{ label }</span>
                         { ( iconType && iconType !== 'none' ) &&
