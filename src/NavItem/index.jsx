@@ -4,16 +4,6 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import NavDropdown          from '../NavDropdown';
 
-const filterNavItems = node =>
-{
-    const _node = React.Children.toArray( node );
-
-    // eslint-disable-next-line no-shadow
-    const isNavItem = node => React.isValidElement( node ) &&
-        node.type.name === 'NavItem';
-
-    return _node.filter( isNavItem );
-};
 
 export default class NavItem extends Component
 {
