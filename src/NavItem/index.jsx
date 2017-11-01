@@ -29,10 +29,6 @@ export default class NavItem extends Component
         *  Display as current page
         */
         isCurrent     : PropTypes.bool,
-        /**
-         *  Display as current page
-         */
-        isCurrentPage : PropTypes.bool,
         /*
         *  Display as disabled/read-only
          */
