@@ -5,9 +5,7 @@
 {
     flex:           0 0 auto;
     width:          100%;
-
     margin:         0;
-    border-bottom:  0.1rem solid var( --PC-WHITE );
 
     background:     var( --PC-WHITE );
 }
