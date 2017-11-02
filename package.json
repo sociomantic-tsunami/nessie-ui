@@ -8,7 +8,6 @@
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "lint-fix": "npm run lint -- --fix",
     "serve": "loch -e dev -s src -d dist -j src/defaults.json",
-    "prepush": "yarn test:visuals && yarn test",
     "dist": "webpack --env=dist",
     "dist-watch": "webpack --env=dist --watch",
     "dev": "webpack --env=dev --watch",
