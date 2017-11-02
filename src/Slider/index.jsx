@@ -373,6 +373,8 @@ export default class Slider extends Component
     */
     handleMouseDown( event )
     {
+        event.preventDefault();
+
         const { props } = this;
         if ( props.isReadOnly || props.isDisabled )
         {
@@ -380,8 +382,10 @@ export default class Slider extends Component
         }
 
         const { refs } = this;
-
         refs.targetInput = refs[ `input${event.target.dataset.index}` ];
+
+        refs.targetInput.focus();
+
         addEventListener( 'mousemove', this.handleMouseMove );
         addEventListener( 'mouseup', this.handleMouseUp );
     }
@@ -603,8 +607,8 @@ export default class Slider extends Component
                         <div
                             aria-hidden
                             className = { cssMap.track }
-                            ref       = { this.setTrackState }
-                            onClick   = { this.clickAlert }>
+                            ref       = { this.setTrackState }>
+                            {/* onClick   = { } */}
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>
