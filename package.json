@@ -27,9 +27,9 @@
     "svgSprite": "./.prep-icon.sh  > /dev/null && ./.generate-sprite.sh  > /dev/null",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
-    "bump": "yarn pre-bump && yarn version && yarn post-bump",
+    "bump": "yarn pre-bump && yarn release-it && yarn post-bump",
     "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
-    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push"
+    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify",
   },
   "keywords": [
     "scotland",
@@ -79,6 +79,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "flounder": "^1.3.0",
+    "gh-badges":"^1.3.0",
     "glob": "^7.1.2",
     "happypack": "^3.1.0",
     "husky": "^0.14.3",
