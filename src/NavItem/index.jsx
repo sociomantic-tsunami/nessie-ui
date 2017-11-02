@@ -127,7 +127,7 @@ isCurrent instead.` );
                     </a>
                     { children &&
                         <NavDropdown className = { cssMap.dropdown }>
-                            { filterNavItems( children ) }
+                            { children }
                         </NavDropdown>
                     }
                 </li>
