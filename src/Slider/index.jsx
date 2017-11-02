@@ -167,6 +167,9 @@ export default class Slider extends Component
         this.handleMouseMove = this.handleMouseMove.bind( this );
 
         this.getNewValue = this.getNewValue.bind( this );
+
+        this.handleFocusOnHandler = this.handleFocusOnHandler.bind( this );
+        this.handleBlurOnHandler = this.handleBlurOnHandler.bind( this );
     }
 
 
@@ -204,8 +207,8 @@ export default class Slider extends Component
         offset += '%'; length += '%';
 
         return orientation === 'vertical' ?
-        { height: length, bottom: offset } :
-        { width: length, left: offset };
+            { height: length, bottom: offset } :
+            { width: length, left: offset };
     }
 
 
@@ -253,7 +256,7 @@ export default class Slider extends Component
         const offset   = `${this.getOffset( value )}%`;
 
         return orientation === 'vertical' ?
-         { bottom: offset } : { left: offset };
+            { bottom: offset } : { left: offset };
     }
 
 
@@ -284,12 +287,12 @@ export default class Slider extends Component
 
         let position = mouse - start;
         if ( isVertical ) // account for y-axis inversion
-           {
+        {
             position = length - position;
         }
 
         if ( isLogarithmic )
-           {
+        {
             let v = Math.round( ( ( position / length ) * range ) + minValue );
             const min = minValue === 0 ? 0 : Math.log( minValue );
             const max = Math.log( maxValue );
@@ -411,7 +414,7 @@ export default class Slider extends Component
             maxValue
         } = this.props;
 
-        if ( stepLabelStart || stepLabelEnd )
+        if ( stepLabelStart || stepLabelEnd )
         {
             const newStepLabels = [
                 { 'stepLabel': stepLabelStart, 'step': minValue },
@@ -423,6 +426,28 @@ export default class Slider extends Component
         }
 
         return stepLabels;
+    }
+
+    /**
+    * Updates state with current focused handle id
+    * @param {Event}   event   event being passed
+    */
+    handleFocusOnHandler( event )
+    {
+        this.setState( {
+            handleIndex : parseInt( event.target.id, 10 )
+        } );
+    }
+
+    /**
+    * Updates state with a non-valid handle id to
+    * remove focused style
+    */
+    handleBlurOnHandler()
+    {
+        this.setState( {
+            handleIndex : -1
+        } );
     }
 
 
@@ -505,16 +530,25 @@ export default class Slider extends Component
         );
 
         const buildHandle = ( val, i ) =>
-            <div
-                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                data-index  = { i }
-                className   = { cssMap.handle }
-                onMouseDown = { this.handleMouseDown }
-                style       = { this.getHandleStyle( val ) } >
-                <span className = { cssMap.handleLabel }>
-                    { val }
-                </span>
-            </div>;
+        {
+            let handleClassName = cssMap.handle;
+            if ( this.state.handleIndex === i )
+            {
+                handleClassName = `${cssMap.handle} ${cssMap.handleFocus}`;
+            }
+            return (
+                <div
+                    key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                    data-index  = { i }
+                    className   = { handleClassName }
+                    onMouseDown = { this.handleMouseDown }
+                    style       = { this.getHandleStyle( val ) } >
+                    <span className = { cssMap.handleLabel }>
+                        { val }
+                    </span>
+                </div>
+            );
+        };
 
         const ticksMarkUp = ticks && (
             <div className = { cssMap.ticksContainer }>
@@ -526,7 +560,7 @@ export default class Slider extends Component
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
                         </div>
-                 ) }
+                ) }
             </div>
         );
 
@@ -546,6 +580,7 @@ export default class Slider extends Component
                         { values.map( ( val, i ) => (
                             <input
                                 key      = { i } // eslint-disable-line react/no-array-index-key, max-len
+                                id       = { i }
                                 ref      = { `input${i}` }
                                 type     = "range"
                                 readOnly = { isReadOnly }
@@ -554,8 +589,10 @@ export default class Slider extends Component
                                 min      = { minValue }
                                 step     = { step }
                                 onChange = { onChange }
+                                onFocus  = { this.handleFocusOnHandler }
+                                onBlur   = { this.handleBlurOnHandler }
                                 value    = { val } />
-                         ) ) }
+                        ) ) }
                     </div>
 
                     { sliderLabelMarkUp }
@@ -566,7 +603,8 @@ export default class Slider extends Component
                         <div
                             aria-hidden
                             className = { cssMap.track }
-                            ref       = { this.setTrackState }>
+                            ref       = { this.setTrackState }
+                            onClick   = { this.clickAlert }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>
