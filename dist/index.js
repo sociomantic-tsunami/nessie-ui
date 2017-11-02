@@ -23132,17 +23132,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var filterNavItems = function filterNavItems(node) {
-    var _node = _react2.default.Children.toArray(node);
-
-    // eslint-disable-next-line no-shadow
-    var isNavItem = function isNavItem(node) {
-        return _react2.default.isValidElement(node) && node.type.name === 'NavItem';
-    };
-
-    return _node.filter(isNavItem);
-};
-
 var NavItem = function (_Component) {
     _inherits(NavItem, _Component);
 
@@ -23164,6 +23153,7 @@ var NavItem = function (_Component) {
                 forceHover = _props.forceHover,
                 href = _props.href,
                 iconType = _props.iconType,
+                isCurrent = _props.isCurrent,
                 isCurrentPage = _props.isCurrentPage,
                 isOpen = _props.isOpen,
                 isDisabled = _props.isDisabled,
@@ -23173,6 +23163,10 @@ var NavItem = function (_Component) {
                 role = _props.role;
 
 
+            if (isCurrentPage === true) {
+                console.warn(this.constructor.name + ': isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
+            }
+
             return _react2.default.createElement(
                 _Css2.default,
                 {
@@ -23180,7 +23174,7 @@ var NavItem = function (_Component) {
                     cssProps: {
                         role: role,
                         disabled: isDisabled,
-                        current: isCurrentPage,
+                        current: isCurrent || isCurrentPage,
                         dropdownAlign: dropdownAlign,
                         open: isOpen,
                         fakeHovered: forceHover,
@@ -23196,7 +23190,7 @@ var NavItem = function (_Component) {
                         'a',
                         {
                             className: cssMap.link,
-                            href: isCurrentPage ? null : href,
+                            href: href,
                             onClick: onClick },
                         _react2.default.createElement(
                             'span',
@@ -23236,9 +23230,9 @@ NavItem.propTypes = {
      */
     iconType: _propTypes2.default.oneOf(['account', 'none']),
     /**
-     *  Display as current page
-     */
-    isCurrentPage: _propTypes2.default.bool,
+    *  Display as current page
+    */
+    isCurrent: _propTypes2.default.bool,
     /*
     *  Display as disabled/read-only
      */
