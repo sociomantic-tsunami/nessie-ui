@@ -58,6 +58,7 @@
         background:     var( --PC-WHITE );
 
         user-select:    none;
+        cursor:         pointer;
     }
 
     .trackFill

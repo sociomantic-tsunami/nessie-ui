@@ -170,6 +170,7 @@ export default class Slider extends Component
 
         this.handleFocusOnHandler = this.handleFocusOnHandler.bind( this );
         this.handleBlurOnHandler = this.handleBlurOnHandler.bind( this );
+        this.handleTrackMouseDown = this.handleTrackMouseDown.bind( this );
     }
 
 
@@ -432,6 +433,7 @@ export default class Slider extends Component
         return stepLabels;
     }
 
+
     /**
     * Updates state with current focused handle id
     * @param {Event}   event   event being passed
@@ -443,6 +445,7 @@ export default class Slider extends Component
         } );
     }
 
+
     /**
     * Updates state with a non-valid handle id to
     * remove focused style
@@ -452,6 +455,39 @@ export default class Slider extends Component
         this.setState( {
             handleIndex : -1
         } );
+    }
+
+
+    /**
+    * Updates target input with new value from the mouse down on track position
+    * @param {Event}  event   event being passed
+    */
+    handleTrackMouseDown( event )
+    {
+        event.preventDefault();
+
+        if ( event.target.dataset.index === undefined )
+        {
+            const { refs }             = this;
+            const { clientX, clientY } = event;
+            const targetHandle         = refs.targetInput ? refs.targetInput :
+                refs.input0;
+            const { onChange }         = this.props;
+            const e = new Event( 'change' );
+
+            targetHandle.value = this.getStep(
+                this.getNewValue( clientX, clientY ) );
+
+            targetHandle.focus();
+
+            targetHandle.dispatchEvent( e );
+            if ( onChange )
+            {
+                onChange( e );
+            }
+
+            this.forceUpdate();
+        }
     }
 
 
@@ -610,9 +646,9 @@ export default class Slider extends Component
                                 stepLabelsTrack }
                         <div
                             aria-hidden
-                            className = { cssMap.track }
-                            ref       = { this.setTrackState }>
-                            {/* onClick   = { } */}
+                            className   = { cssMap.track }
+                            ref         = { this.setTrackState }
+                            onMouseDown = { this.handleTrackMouseDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>
