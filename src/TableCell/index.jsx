@@ -38,7 +38,13 @@ export default class TableCell extends Component
         /**
          *  Size of the cell
          */
-        size : PropTypes.oneOf( [ '1/1',
+        size : PropTypes.oneOf( [
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+            '1/1',
             '1/2', '2/2',
             '1/3', '2/3', '3/3',
             '1/4', '2/4', '3/4', '4/4',

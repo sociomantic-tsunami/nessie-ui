@@ -14,7 +14,13 @@ export default class Column extends Component
         /**
          *  Width of the Column
          */
-        size        : PropTypes.oneOf( [ '1/1',
+        size        : PropTypes.oneOf( [
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+            '1/1',
             'content',
             '1/2', '2/2',
             '1/3', '2/3', '3/3',

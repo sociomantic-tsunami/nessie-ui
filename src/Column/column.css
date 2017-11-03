@@ -79,3 +79,34 @@ $shark: 768px;
 {
     flex:   0 0 auto;
 }
+
+
+.size__S
+{
+    width:                  1.6rem;
+    height:                 1.6rem;
+}
+
+.size__M
+{
+    width:                  2.4rem;
+    height:                 2.4rem;
+}
+
+.size__L
+{
+    width:                  3.2rem;
+    height:                 3.2rem;
+}
+
+.size__XL
+{
+    width:                  4rem;
+    height:                 4rem;
+}
+
+.size__XXL
+{
+    width:                  4.8rem;
+    height:                 4.8rem;
+}
