@@ -439,7 +439,7 @@ export default class Slider extends Component
     handleFocusOnHandler( event )
     {
         this.setState( {
-            handleIndex : parseInt( event.target.id, 10 )
+            handleIndex : event.target.id
         } );
     }
 
@@ -480,6 +480,8 @@ export default class Slider extends Component
             ticks = []
         } = this.props;
 
+        const { id } = this.state;
+
         let values = [];
 
         if ( typeof value !== 'undefined' )
@@ -513,7 +515,8 @@ export default class Slider extends Component
         }
 
         const sliderLabelMarkUp = label && (
-            <Label>
+            <Label
+                htmlFor = { `${id}_0` }>
                 <IconWithTooltip
                     iconType         = "error"
                     iconPosition     = "right"
@@ -536,7 +539,8 @@ export default class Slider extends Component
         const buildHandle = ( val, i ) =>
         {
             let handleClassName = cssMap.handle;
-            if ( this.state.handleIndex === i )
+            if ( this.state.handleIndex && this.state.handleIndex !== -1 &&
+                      parseInt( this.state.handleIndex.slice( -1 ), 10 ) === i )
             {
                 handleClassName = `${cssMap.handle} ${cssMap.handleFocus}`;
             }
@@ -584,7 +588,7 @@ export default class Slider extends Component
                         { values.map( ( val, i ) => (
                             <input
                                 key      = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                id       = { i }
+                                id       = { `${id}_${i}` }
                                 ref      = { `input${i}` }
                                 type     = "range"
                                 readOnly = { isReadOnly }
