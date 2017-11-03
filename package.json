@@ -8,7 +8,6 @@
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "lint-fix": "npm run lint -- --fix",
     "serve": "loch -e dev -s src -d dist -j src/defaults.json",
-    "prepush": "yarn test:visuals && yarn test",
     "dist": "webpack --env=dist",
     "dist-watch": "webpack --env=dist --watch",
     "dev": "webpack --env=dev --watch",
@@ -29,7 +28,7 @@
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
     "bump": "yarn pre-bump && yarn release-it && yarn post-bump",
     "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
-    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify",
+    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify"
   },
   "keywords": [
     "scotland",
