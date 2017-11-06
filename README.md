@@ -1,4 +1,8 @@
-# nessie - 4.0.7
+# Nessie
+[![GitHub package version](https://img.shields.io/github/package-json/v/sociomantic-tsunami/nessie.svg?style=plastic)]()
+[![David](https://img.shields.io/david/sociomantic-tsunami/nessie.svg?style=plastic)]()
+[![David](https://img.shields.io/david/dev/sociomantic-tsunami/nessie.svg?style=plastic)]()
+
 
 [![Nessie build status](https://travis-ci.org/sociomantic-tsunami/nessie.svg)](https://travis-ci.org)
 

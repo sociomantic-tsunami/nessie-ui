@@ -1,9 +1,9 @@
-import React             from 'react';
-import PropTypes         from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import Component         from '../proto/Component';
-import Css               from '../hoc/Css';
-import TextInputWithIcon from '../TextInputWithIcon';
+import Component                from '../proto/Component';
+import Css                      from '../hoc/Css';
+import { TextInputWithIcon }    from '../index';
 
 
 export default class PasswordInput extends Component
