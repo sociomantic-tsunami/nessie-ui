@@ -4,6 +4,8 @@
 [![David](https://img.shields.io/david/dev/sociomantic-tsunami/nessie.svg?style=plastic)]()
 
 
+[![Nessie build status](https://travis-ci.org/sociomantic-tsunami/nessie.svg)](https://travis-ci.org)
+
 React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
 ## Usage

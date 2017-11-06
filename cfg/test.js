@@ -82,7 +82,7 @@ module.exports = Object.assign( {}, baseConfig, {
                         }
                     }
                 ],
-                include : /lochness\/src|nessie|lochness\/test/,
+                include : /loch-ness\/src|nessie-ui|loch-ness\/test/,
             },
             {
                 test : /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
