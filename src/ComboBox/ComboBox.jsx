@@ -1,133 +1,189 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                  from 'react';
+import PropTypes              from 'prop-types';
 
-import Css                            from '../hoc/Css';
-import styles                         from './comboBox.css';
-import { ListBox, TextInputWithIcon } from '../index';
-import { InputFrame }                 from '../InputField';
-import { utils }                      from '../ListBox';
+import { ListBox, ScrollBox } from '../index';
+import TextInputWithIcon      from '../TextInputWithIcon';
+import withDropdown           from '../Dropdown/withDropdown';
+import { generateId }         from '../utils';
 
+const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-const generateId = name =>
-    `${name}-${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
-
-const mapAria = val =>
-{
-    if ( typeof val === 'boolean' )
-    {
-        return val ? 'true' : 'false';
-    }
-
-    return val;
-};
-
-const ComboBox = ( {
-    children,
+const SearchBox = ( {
     activeOption,
-    className,
-    cssMap,
-    hasAutocomplete,
     id,
-    inputIsReadOnly,
+    inputValue,
     isOpen,
-    isReadOnly,
-    isRequired,
-    onBlur,
+    onChangeInput,
     onClickInput,
-    onClickList,
-    onFocus,
+    onClickOption,
     onInput,
-    onKeyPress,
+    onMouseOutOption,
+    onMouseOverOption,
+    onScroll,
     options,
     placeholder,
-    selectedOptions,
-    value,
-} ) => (
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { open: options.length && isOpen } }>
-        <InputFrame className = { className }>
-            <TextInputWithIcon
-                aria-autocomplete = { mapAria( hasAutocomplete ) }
-                aria-expanded     = { mapAria( isOpen ) }
-                aria-controls     = { `${id}-list` }
-                aria-readonly     = { isReadOnly }
-                className         = { cssMap.textField }
-                iconType          = { isOpen ? 'up' : 'down' }
-                id                = { `${id}-input` }
-                isReadOnly        = { inputIsReadOnly }
-                isRequired        = { isRequired }
-                onBlur            = { onBlur }
-                onClick           = { onClickInput }
-                onFocus           = { onFocus }
-                onInput           = { onInput }
-                onKeyPress        = { onKeyPress }
-                placeholder       = { placeholder }
-                role              = "combobox"
-                value             = { value } />
+    selectedOption,
+} ) =>
+{
+    const dropdownContent = (
+        <ScrollBox onScroll = { onScroll }>
             <ListBox
-                activeOption    = { activeOption }
-                className       = { cssMap.listBox }
-                isFocusable     = { false }
-                id              = { `${id}-list` }
-                onClick         = { onClickList }
-                selectedOptions = { selectedOptions }>
-                { utils.buildOptions(
-                    activeOption,
-                    children,
-                    options,
-                    selectedOptions
-                ) }
-            </ListBox>
-        </InputFrame>
-    </Css>
-);
+                activeOption   = { activeOption }
+                selectedOption = { selectedOption }
+                isFocusable    = { false }
+                onClickOption  = { onClickOption }
+                onMouseOut     = { onMouseOutOption }
+                onMouseOver    = { onMouseOverOption }
+                options        = { options } />
+        </ScrollBox>
+    );
 
-
-ComboBox.propTypes = {
-    children        : PropTypes.node,
-    activeOption    : PropTypes.string,
-    className       : PropTypes.string,
-    cssMap          : PropTypes.objectOf( PropTypes.string ),
-    hasAutocomplete : PropTypes.bool,
-    id              : PropTypes.string,
-    inputIsReadOnly : PropTypes.bool,
-    isOpen          : PropTypes.bool,
-    isReadOnly      : PropTypes.bool,
-    isRequired      : PropTypes.bool,
-    options         : PropTypes.arrayOf( PropTypes.object ),
-    onBlur          : PropTypes.func,
-    onClickInput    : PropTypes.func,
-    onClickList     : PropTypes.func,
-    onFocus         : PropTypes.func,
-    onInput         : PropTypes.func,
-    onKeyPress      : PropTypes.func,
-    placeholder     : PropTypes.string,
-    selectedOptions : PropTypes.arrayOf( PropTypes.string ),
-    value           : PropTypes.string,
+    return (
+        <InputWithDropdown
+            aria           = { { activeDescendant: `${id}` } }
+            id             = { `${id}-input` }
+            inputType      = "search"
+            iconType       = "search"
+            dropdownIsOpen = { isOpen }
+            dropdownProps  = { { children: dropdownContent } }
+            onChange       = { onChangeInput }
+            onClick        = { onClickInput }
+            onInput        = { onInput }
+            placeholder    = { placeholder }
+            value          = { inputValue } />
+    );
 };
 
-ComboBox.defaultProps = {
-    children        : null,
-    activeOption    : null,
-    className       : null,
-    cssMap          : styles,
-    hasAutocomplete : false,
-    id              : generateId( 'ComboBox' ),
-    inputIsReadOnly : false,
-    isOpen          : false,
-    isReadOnly      : false,
-    isRequired      : false,
-    options         : null,
-    onBlur          : null,
-    onClickInput    : null,
-    onClickList     : null,
-    onFocus         : null,
-    onInput         : null,
-    onKeyPress      : null,
-    placeholder     : null,
-    selectedOptions : null,
-    value           : null,
+SearchBox.propTypes =
+{
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover        : PropTypes.bool,
+    /**
+     *  Display as disabled
+     */
+    isDisabled        : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly        : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError          : PropTypes.bool,
+    /**
+     *  HTML id attribute (overwrite default)
+     */
+    id                : PropTypes.string,
+    /**
+     *  Input change callback function
+     */
+    onChange          : PropTypes.func,
+    /**
+     *  input callback function
+     */
+    onInput           : PropTypes.func,
+    /**
+     * keyPress callback function
+     */
+    onKeyPress        : PropTypes.func,
+    /**
+     *  focus callback function
+     */
+    onFocus           : PropTypes.func,
+    /**
+     *  blur callback function
+     */
+    onBlur            : PropTypes.func,
+    /**
+     *  mouseOver callback function
+     */
+    onMouseOver       : PropTypes.func,
+    /**
+     *  mouseOut callback function
+     */
+    onMouseOut        : PropTypes.func,
+    /**
+     *  Placeholder text
+     */
+    placeholder       : PropTypes.string,
+
+    /**
+     * Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef          : PropTypes.func,
+    /*
+     * Active option in dropdown list
+     */
+    activeOption      : PropTypes.string,
+    /*
+     * Dropdown options as ListOption nodes (overrides “options” prop)
+     */
+    children          : PropTypes.node,
+    /*
+     * Input field value
+     */
+    inputValue        : PropTypes.string,
+    /*
+     * Dropdown is open
+     */
+    isOpen            : PropTypes.bool,
+    /*
+     * On click dropdown option
+     */
+    onClickOption     : PropTypes.func,
+    /*
+     * On mouse out dropdown option
+     */
+    onMouseOutOption  : PropTypes.func,
+    /*
+     * On mouse over dropdown option
+     */
+    onMouseOverOption : PropTypes.func,
+    /*
+     * On scroll dropdown list
+     */
+    onScroll          : PropTypes.func,
+    /*
+     * Dropdown list options
+     */
+    options           : PropTypes.arrayOf( PropTypes.object ),
+    /*
+     * Selected option(s) from dropdown list
+     */
+    selectedOption    : PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.arrayOf( PropTypes.string )
+    ] ),
 };
 
-export default ComboBox;
+SearchBox.defaultProps = {
+
+    placeholder       : undefined,
+    isDisabled        : false,
+    isReadOnly        : false,
+    hasError          : false,
+    id                : generateId( 'SearchBox' ),
+    onChange          : undefined,
+    onInput           : undefined,
+    onKeyPress        : undefined,
+    onFocus           : undefined,
+    onBlur            : undefined,
+    onMouseOver       : undefined,
+    onMouseOut        : undefined,
+    forceHover        : false,
+    inputRef          : undefined,
+    activeOption      : undefined,
+    children          : undefined,
+    inputValue        : undefined,
+    isOpen            : false,
+    onClickOption     : undefined,
+    onMouseOutOption  : undefined,
+    onMouseOverOption : undefined,
+    onScroll          : undefined,
+    options           : undefined,
+    selectedOption    : undefined,
+};
+
+export default SearchBox;

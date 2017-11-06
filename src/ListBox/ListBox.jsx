@@ -10,8 +10,10 @@ import {
     mapToAria
 } from './utils';
 
+const killFocus = e => e.preventDefault();
 
 const ListBox = ( {
+    activeOption,
     children,
     className,
     cssMap,
@@ -20,6 +22,8 @@ const ListBox = ( {
     id,
     onClick,
     onKeyPress,
+    onMouseDown,
+    onMouseUp,
 } ) => (
     /* eslint-disable jsx-a11y/aria-activedescendant-has-tabindex */
     // nonsense ^^
@@ -32,6 +36,8 @@ const ListBox = ( {
             onClick               = { onClick &&
                 ( e => onClick( e, e.target.id ) ) }
             onKeyPress            = { onKeyPress }
+            onMouseDown           = { isFocusable : onMouseDown : killFocus }
+            onMosueUp             = { onMouseUp }
             role                  = "listbox"
             tabIndex              = { mapFocusable( isFocusable ) }>
             { children.map( option => {
