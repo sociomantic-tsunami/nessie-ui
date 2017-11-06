@@ -6,10 +6,12 @@
 import React                               from 'react';
 import { ReactWrapper, mount, shallow }    from 'enzyme';
 
-import { IconButton, InputField, Tooltip } from '../index';
-import Css                                 from '../hoc/Css';
-import NessieComponent                     from '../proto/Component';
-import InputContainer                      from '../proto/InputContainer';
+import {
+    IconButton,
+    InputField,
+    TextInputWithIcon as WrappedTextInputWithIcon,
+    Tooltip
+} from '../index';
 
 import TextInputWithIcon                   from './index';
 
@@ -27,11 +29,9 @@ describe( 'TextInputWithIcon', () =>
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should extend NessieComponent', () =>
+        it( 'should have name TextInputWithIcon', () =>
         {
-            const prototype = Object.getPrototypeOf( instance.constructor );
-
-            expect( prototype === NessieComponent ).to.be.true;
+            expect( instance.constructor.name ).to.equal( 'TextInputWithIcon' );
         } );
     } );
 
@@ -75,64 +75,64 @@ describe( 'TextInputWithIcon', () =>
         } );
 
         it( 'should not call onFocus when e.relatedTarget is the <button>',
-        () =>
-        {
-            const onFocus = sinon.spy();
-            const button  = <button />;
+            () =>
+            {
+                const onFocus = sinon.spy();
+                const button  = <button />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: button } );
 
-            wrapper.setProps( { onFocus } );
-            instance.button = button;
+                wrapper.setProps( { onFocus } );
+                instance.button = button;
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( onFocus.called ).to.be.false;
-        } );
+                expect( onFocus.called ).to.be.false;
+            } );
 
         it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <input>', () =>
-        {
-            const input = <input />;
+            {
+                const input = <input />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.input = input;
+                instance.input = input;
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
         it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <button>', () =>
-        {
-            const button = <button />;
+            {
+                const button = <button />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: button } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.button = button;
+                instance.button = button;
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
         it( 'should not call e.stopPropagation when e.relatedTarget is not the \
 <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            {
+                const e = new Event( {} );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation.called ).to.be.false;
-        } );
+                expect( stopPropagation.called ).to.be.false;
+            } );
     } );
 
     describe( 'handleBlur( e )', () =>
@@ -194,46 +194,46 @@ is the <button>', () =>
 
         it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <input>', () =>
-        {
-            const input = <input />;
+            {
+                const input = <input />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.input = input;
+                instance.input = input;
 
-            instance.handleBlur( e );
+                instance.handleBlur( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
         it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <button>', () =>
-        {
-            const button = <button />;
+            {
+                const button = <button />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: button } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.button = button;
+                instance.button = button;
 
-            instance.handleBlur( e );
+                instance.handleBlur( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
         it( 'should not call e.stopPropagation when e.relatedTarget is not the \
 <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            {
+                const e = new Event( {} );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.handleBlur( e );
+                instance.handleBlur( e );
 
-            expect( stopPropagation.called ).to.be.false;
-        } );
+                expect( stopPropagation.called ).to.be.false;
+            } );
     } );
 
     describe( 'handleFocusIcon( e )', () =>
@@ -519,16 +519,6 @@ is the <button>', () =>
             wrapper.setProps( { iconType: 'add' } );
         } );
 
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
-        it( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
-        } );
-
         it( 'should contain exactly one InputField', () =>
         {
             expect( wrapper.find( InputField ) ).to.have.length( 1 );
@@ -552,38 +542,6 @@ is the <button>', () =>
         beforeEach( () =>
         {
             props = instance.props;
-        } );
-
-        describe( 'label', () =>
-        {
-            it( 'should be undefined by default', () =>
-            {
-                expect( props.label ).to.be.undefined;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { label: 'yes!' } );
-
-                expect( wrapper.find( InputContainer ).prop( 'label' ) ).to
-                    .equal( 'yes!' );
-            } );
-        } );
-
-        describe( 'labelPosition', () =>
-        {
-            it( 'should be "top" by default', () =>
-            {
-                expect( props.labelPosition ).to.equal( 'top' );
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { labelPosition: 'left' } );
-
-                expect( wrapper.find( InputContainer )
-                    .prop( 'labelPosition' ) ).to.equal( 'left' );
-            } );
         } );
 
         describe( 'placeholder', () =>
@@ -642,29 +600,21 @@ is the <button>', () =>
 
             it( 'should pass textAlign "left" to Inputfield when value is \
 "right"', () =>
-            {
-                wrapper.setProps( { iconPosition: 'right' } );
+                {
+                    wrapper.setProps( { iconPosition: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
-                    .equal( 'left' );
-            } );
+                    expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
+                        .equal( 'left' );
+                } );
 
             it( 'should pass textAlign "right" to Inputfield when value is \
 "left"', () =>
-            {
-                wrapper.setProps( { iconPosition: 'left' } );
+                {
+                    wrapper.setProps( { iconPosition: 'left' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
-                    .equal( 'right' );
-            } );
-
-            it( 'should be passed to cssProps as position', () =>
-            {
-                wrapper.setProps( { iconPosition: 'left' } );
-
-                expect( wrapper.find( Css ).first().prop( 'cssProps' )
-                    .position ).to.equal( 'left' );
-            } );
+                    expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
+                        .equal( 'right' );
+                } );
         } );
 
         describe( 'textAlign', () =>
@@ -753,22 +703,6 @@ is the <button>', () =>
                 expect( props.isDisabled ).to.be.false;
             } );
 
-            it( 'should be passed to cssProps as disabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( wrapper.find( Css ).first().prop( 'cssProps' )
-                    .disabled ).to.be.true;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( wrapper.find( InputContainer ).prop( 'isDisabled' ) )
-                    .to.be.true;
-            } );
-
             it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
@@ -828,14 +762,6 @@ is the <button>', () =>
                 expect( props.isReadOnly ).to.be.false;
             } );
 
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( wrapper.find( InputContainer ).prop( 'isReadOnly' ) )
-                    .to.be.true;
-            } );
-
             it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
@@ -874,22 +800,6 @@ is the <button>', () =>
                 expect( props.hasError ).to.be.false;
             } );
 
-            it( 'should be passed to cssProps as error', () =>
-            {
-                wrapper.setProps( { hasError: true } );
-
-                expect( wrapper.find( Css ).first().prop( 'cssProps' ).error )
-                    .to.be.true;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { hasError: true } );
-
-                expect( wrapper.find( InputContainer ).prop( 'hasError' ) ).to
-                    .be.true;
-            } );
-
             it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { hasError: true } );
@@ -918,54 +828,6 @@ is the <button>', () =>
 
                 expect( wrapper.find( IconButton ).prop( 'hasError' ) ).to.be
                     .true;
-            } );
-        } );
-
-        describe( 'errorMessage', () =>
-        {
-            it( 'should be undefined by default', () =>
-            {
-                expect( props.errorMessage ).to.be.undefined;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { errorMessage: 'yes!' } );
-
-                expect( wrapper.find( InputContainer ).prop( 'errorMessage' ) )
-                    .to.equal( 'yes!' );
-            } );
-        } );
-
-        describe( 'errorMessageIsVisible', () =>
-        {
-            it( 'should be false by default', () =>
-            {
-                expect( props.errorMessageIsVisible ).to.be.false;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { errorMessageIsVisible: true } );
-
-                expect( wrapper.find( InputContainer )
-                    .prop( 'errorMessageIsVisible' ) ).to.be.true;
-            } );
-        } );
-
-        describe( 'errorMessagePosition', () =>
-        {
-            it( 'should be "top" by default', () =>
-            {
-                expect( props.errorMessagePosition ).to.equal( 'top' );
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setProps( { errorMessagePosition: 'topLeft' } );
-
-                expect( wrapper.find( InputContainer )
-                    .prop( 'errorMessagePosition' ) ).to.equal( 'topLeft' );
             } );
         } );
 
@@ -1003,9 +865,17 @@ is the <button>', () =>
 
         describe( 'id', () =>
         {
-            it( 'should be undefined by default', () =>
+            it( 'should be defined', () =>
             {
-                expect( props.id ).to.be.undefined;
+                expect( props.id ).to.be.defined;
+            } );
+
+            it( 'should be passed to the InputField', () =>
+            {
+                wrapper.setProps( { id: 'yes!' } );
+
+                expect( wrapper.find( InputField ).prop( 'id' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
@@ -1125,16 +995,6 @@ is the <button>', () =>
                 expect( props.onMouseOver ).to.be.undefined;
             } );
 
-            it( 'should be passed to the InputContainer', () =>
-            {
-                const onMouseOver = () => undefined;
-
-                wrapper.setProps( { onMouseOver } );
-
-                expect( wrapper.find( InputContainer ).prop( 'onMouseOver' ) )
-                    .to.equal( onMouseOver );
-            } );
-
             it( 'should be passed to the InputField', () =>
             {
                 const onMouseOver = () => undefined;
@@ -1177,16 +1037,6 @@ is the <button>', () =>
             it( 'should be undefined by default', () =>
             {
                 expect( props.onMouseOut ).to.be.undefined;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                const onMouseOut = () => undefined;
-
-                wrapper.setProps( { onMouseOut } );
-
-                expect( wrapper.find( InputContainer ).prop( 'onMouseOut' ) )
-                    .to.equal( onMouseOut );
             } );
 
             it( 'should be passed to the InputField', () =>
@@ -1269,30 +1119,6 @@ is the <button>', () =>
             e = new Event( {} );
         } );
 
-        describe( 'id', () =>
-        {
-            it( 'should be defined', () =>
-            {
-                expect( wrapper.state( 'id' ) ).to.be.defined;
-            } );
-
-            it( 'should be passed to the InputContainer', () =>
-            {
-                wrapper.setState( { id: 'yes!' } );
-
-                expect( wrapper.find( InputContainer ).prop( 'id' ) ).to
-                    .equal( 'yes!' );
-            } );
-
-            it( 'should be passed to the InputField', () =>
-            {
-                wrapper.setState( { id: 'yes!' } );
-
-                expect( wrapper.find( InputField ).prop( 'id' ) ).to
-                    .equal( 'yes!' );
-            } );
-        } );
-
         describe( 'iconIsFocused', () =>
         {
             it( 'should be false by default', () =>
@@ -1373,7 +1199,7 @@ describe( 'TextInputWithIconDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <TextInputWithIcon /> );
+        wrapper = mount( <WrappedTextInputWithIcon /> );
         driver  = wrapper.driver();
     } );
 

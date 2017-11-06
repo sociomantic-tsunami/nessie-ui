@@ -1,0 +1,101 @@
+@import '../proto/base.css';
+@import '../proto/definitions/_colors.css';
+
+.default
+{
+    display:            flex;
+
+    flex-direction:     row;
+    align-items:        center;
+    justify-content:    center;
+
+    padding:            0;
+    border:             0.1rem solid transparent;
+
+    background:         var( --PC-WHITE );
+
+    cursor:             pointer;
+
+    .text
+    {
+        color:                  var( --GS-2 );
+        font-variant-numeric:   lining-nums tabular-nums;
+    }
+
+    &:hover
+    {
+        border-color:   var( --PC-BLUE );
+        background:     var( --PC-WHITE );
+        color:          var( --GS-2 );
+    }
+
+    &.fakeHovered,
+    &:focus,
+    &:hover
+    {
+        border-color:   var( --PC-BLUE );
+        background:     var( --PC-WHITE );
+
+        .text
+        {
+            color:  var( --GS-2 )
+        }
+    }
+}
+
+.type__day
+{
+    height:             2.4rem;
+    width:              2.4rem;
+    min-width:          2.4rem; /* IE fix */
+    border-radius:      100%;
+}
+
+.type__month
+{
+    height:                 2.4rem;
+    width:                  5rem;
+    border-radius:          2rem;
+}
+
+
+.selected
+{
+    border-color:   var( --PC-BLUE );
+    background:     var( --PC-BLUE );
+
+    .text
+    {
+        color:  var( --PC-WHITE );
+    }
+
+    &.fakeHovered,
+    &:focus,
+    &:hover
+    {
+        background:     color( var( --PC-BLUE ) tint( 13% ) );
+        border-color:   color( var( --PC-BLUE ) tint( 13% ) );
+
+        .text
+        {
+            color:  var( --PC-WHITE );
+        }
+    }
+
+}
+
+
+.disabled,
+.disabled.fakeHovered,
+.disabled:focus,
+.disabled:hover
+{
+    border-color:   var( --GS-10 );
+    background:     var( --GS-10 );
+    cursor:         default;
+
+    .text
+    {
+        color:          color( var( --GS-2 ) a( 50% ) );
+    }
+}
