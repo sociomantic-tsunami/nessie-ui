@@ -1,5 +1,7 @@
 # nessie - 4.0.7
 
+[![Nessie build status](https://travis-ci.org/sociomantic-tsunami/nessie.svg)](https://travis-ci.org)
+
 React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
 ## Usage
