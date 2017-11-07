@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "4.2.5",
+  "version": "5.0.0",
   "description": "Nessie React Components",
   "main": "dist",
   "scripts": {
