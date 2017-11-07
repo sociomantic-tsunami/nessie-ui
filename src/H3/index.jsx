@@ -1,45 +1,45 @@
-import React, { Component }  from 'react';
+import React                 from 'react';
 import PropTypes             from 'prop-types';
 
 import Css                   from '../hoc/Css';
 
-export default class H3 extends Component
+const H3 = ( {
+    cssMap,
+    className,
+    children,
+    role,
+    title } ) =>
+
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { role } }>
+            <h3 className = { className }>
+                { children || title }
+            </h3>
+        </Css>;
+
+H3.propTypes =
 {
-    static propTypes =
-    {
-        /**
-        *  Title text
-        */
-        title : PropTypes.string,
-        /**
-        *  Role (style) to apply to heading
-        */
-        role  : PropTypes.oneOf( [
-            'default',
-            'subtle',
-            'promoted',
-            'critical'
-        ] )
-    };
+    /**
+    *  Title text
+    */
+    title : PropTypes.string,
+    /**
+    *  Role (style) to apply to heading
+    */
+    role  : PropTypes.oneOf( [
+        'default',
+        'subtle',
+        'promoted',
+        'critical'
+    ] )
+};
 
-    static defaultProps =
-    {
-        role   : 'default',
-        cssMap : require( './h3.css' )
-    };
+H3.defaultProps =
+{
+    role   : 'default',
+    cssMap : require( './h3.css' )
+};
 
-    render()
-    {
-        const { cssMap, className, children, role, title } = this.props;
 
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { role } }>
-                <h3 className = { className }>
-                    { children || title }
-                </h3>
-            </Css>
-        );
-    }
-}
+export default H3;

@@ -29,7 +29,7 @@ export default class FlounderDropdownDriver
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.innerFlounderComponent = wrapper.node.refs.flounder;
+        this.innerFlounderComponent = wrapper.node.flounderInstance;
     }
 
     /**
