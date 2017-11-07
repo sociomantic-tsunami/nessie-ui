@@ -1,6 +1,13 @@
 import 'normalize.css';
 import './foundations.css';
 
+import withInputContainer from './proto/withInputContainer';
+import DateTimeInput      from './DateTimeInput';
+import TextInputWithIcon  from './TextInputWithIcon';
+
+const WrappedDateTimeInput     = withInputContainer( DateTimeInput );
+const WrappedTextInputWithIcon = withInputContainer( TextInputWithIcon );
+
 export Animate                  from './Animate';
 export Button                   from './Button';
 export ButtonRadio              from './ButtonRadio';
@@ -10,6 +17,8 @@ export Checkbox                 from './Checkbox';
 export CheckboxGroup            from './CheckboxGroup';
 export CodeEditor               from './CodeEditor';
 export Column                   from './Column';
+export DatePicker               from './DatePicker';
+export { WrappedDateTimeInput as DateTimeInput };
 export DimensionsInput          from './DimensionsInput';
 export Divider                  from './Divider';
 export DragNDrop                from './DragNDrop';
@@ -68,7 +77,7 @@ export Text                     from './Text';
 export TextArea                 from './TextArea';
 export TextInput                from './TextInput';
 export TextInputWithDropdown    from './TextInputWithDropdown';
-export TextInputWithIcon        from './TextInputWithIcon';
+export { WrappedTextInputWithIcon as TextInputWithIcon };
 export Tooltip                  from './Tooltip';
 export Uploader                 from './Uploader';
 export ValuedTextInput          from './ValuedTextInput';

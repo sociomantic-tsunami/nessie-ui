@@ -1,5 +1,4 @@
-/* global Event addEventListener removeEventListener */
-
+/* global addEventListener removeEventListener Event */
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
@@ -161,6 +160,8 @@ export default class Slider extends Component
         this.state = { ...this.state, track: {} };
 
         this.setTrackState = this.setTrackState.bind( this );
+        this.handleInputRef = this.handleInputRef.bind( this );
+        this.inputs = [];
 
         this.handleMouseUp = this.handleMouseUp.bind( this );
         this.handleMouseDown = this.handleMouseDown.bind( this );
@@ -170,6 +171,17 @@ export default class Slider extends Component
     }
 
 
+    componentWillUpdate( nextProps )
+    {
+        if ( JSON.stringify( nextProps.value ) !==
+            JSON.stringify( this.props.value ) )
+        {
+            this.inputs = [];
+        }
+    }
+
+
+    // eslint-disable-next-line valid-jsdoc
     /**
     * Generate track fill style object depending on input values
     * @param  {Array}   values    slider values
@@ -242,6 +254,8 @@ export default class Slider extends Component
         return ( ( value - minValue ) / range ) * 100;
     }
 
+
+    // eslint-disable-next-line valid-jsdoc
     /**
     * Generate a style object for handle based on input value
     * @param  {Number}  value   slider value
@@ -318,9 +332,9 @@ export default class Slider extends Component
     }
 
 
+    // eslint-disable-next-line valid-jsdoc
     /**
     * Updates state with current track geometry
-    * @param {Element}  ref DOM element
     */
     setTrackState( ref )
     {
@@ -341,13 +355,32 @@ export default class Slider extends Component
 
 
     /**
+    * Sets target input ref and adds mouseUp and MouseMove listeners
+    * @param {Event}   event   event being passed
+    */
+    handleMouseDown( event )
+    {
+        const { props } = this;
+        if ( props.isReadOnly || props.isDisabled )
+        {
+            return;
+        }
+
+        this.targetInput = this.inputs[ event.target.dataset.index ];
+
+        addEventListener( 'mousemove', this.handleMouseMove );
+        addEventListener( 'mouseup', this.handleMouseUp );
+    }
+
+
+    /**
     * Updates target input with new value from handle position
     * @param {Event}  event   event being passed
     */
     handleMouseMove( event )
     {
         const { clientX, clientY } = event;
-        const { targetInput }      = this.refs;
+        const { targetInput }      = this;
         const { onChange }         = this.props;
         const e = new Event( 'change' );
 
@@ -361,26 +394,6 @@ export default class Slider extends Component
         }
 
         this.forceUpdate();
-    }
-
-
-    /**
-    * Sets target input ref and adds mouseUp and MouseMove listeners
-    * @param {Event}   event   event being passed
-    */
-    handleMouseDown( event )
-    {
-        const { props } = this;
-        if ( props.isReadOnly || props.isDisabled )
-        {
-            return;
-        }
-
-        const { refs } = this;
-
-        refs.targetInput = refs[ `input${event.target.dataset.index}` ];
-        addEventListener( 'mousemove', this.handleMouseMove );
-        addEventListener( 'mouseup', this.handleMouseUp );
     }
 
 
@@ -423,6 +436,12 @@ export default class Slider extends Component
         }
 
         return stepLabels;
+    }
+
+
+    handleInputRef( ref )
+    {
+        this.inputs.push( ref );
     }
 
 
@@ -545,9 +564,9 @@ export default class Slider extends Component
                     <div className = { cssMap.inputContainer }>
                         { values.map( ( val, i ) => (
                             <input
-                                key      = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                ref      = { `input${i}` }
-                                type     = "range"
+                                key = { i } // eslint-disable-line react/no-array-index-key, max-len
+                                ref = { this.handleInputRef }
+                                type = "range"
                                 readOnly = { isReadOnly }
                                 disabled = { isDisabled }
                                 max      = { maxValue }

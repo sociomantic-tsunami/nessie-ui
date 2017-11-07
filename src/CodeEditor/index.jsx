@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
-import CodeMirror           from 'react-codemirror';
 
 import Css                  from '../hoc/Css';
 import InputContainer       from '../proto/InputContainer';
@@ -10,9 +9,8 @@ import InputContainer       from '../proto/InputContainer';
 import 'codemirror/mode/jsx/jsx';
 
 const defaultOptions = {
-    lineNumbers    : true,
-    lineWrapping   : true,
-    scrollbarStyle : 'native'
+    lineNumbers  : true,
+    lineWrapping : true
 };
 
 export default class CodeEditor extends Component
@@ -27,11 +25,11 @@ export default class CodeEditor extends Component
          *  Label position
          */
         labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-         /**
+        /**
          *  Display as disabled
          */
         isDisabled            : PropTypes.bool,
-         /**
+        /**
          *  Display as read-only
          */
         isReadOnly            : PropTypes.bool,
@@ -51,6 +49,10 @@ export default class CodeEditor extends Component
         *  Error message position relative to the icon
         */
         errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        /**
+         * Input string default value
+         */
+        defaultValue          : PropTypes.string,
         /**
          * Input string value
          */
@@ -93,8 +95,7 @@ export default class CodeEditor extends Component
         /**
          * onCursorActivity callback function: ( cursor ) => { ... }
          */
-        onCursorActivity : PropTypes.func
-
+        onCursorActivity : PropTypes.func,
     };
 
     static defaultProps =
@@ -106,35 +107,136 @@ export default class CodeEditor extends Component
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         forceHover            : false,
-        cursor                : { line: 0, ch: 0 },
         cssMap                : require( './codeEditor.css' )
     };
 
     constructor( props )
     {
         super( props );
+
         this.state = { ...this.state, isFocused: false };
-        this.handleFocusChange = this.handleFocusChange.bind( this );
+
+        this.handleFocus          = this.handleFocus.bind( this );
+        this.handleBlur           = this.handleBlur.bind( this );
+        this.handleChange         = this.handleChange.bind( this );
+        this.handleCursorActivity = this.handleCursorActivity.bind( this );
     }
 
     componentDidMount()
     {
-        const { cursor, onCursorActivity } = this.props;
-        const codeMirror = this.refs.codeMirror.getCodeMirror();
+        const {
+            cursor,
+            defaultValue,
+            isDisabled,
+            isReadOnly,
+            options,
+            value = ''
+        } = this.props;
 
-        codeMirror.setCursor( cursor );
+        const combinedOptions = {
+            ...defaultOptions,
+            ...options,
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+        };
 
-        if ( onCursorActivity )
+        const codeMirrorInstance = require( 'codemirror' );
+
+        const codeMirror = codeMirrorInstance.fromTextArea(
+            this.textarea, combinedOptions );
+
+        codeMirror.setValue( defaultValue || value );
+
+        codeMirror.on( 'change', this.handleChange );
+        codeMirror.on( 'cursorActivity', this.handleCursorActivity);
+        codeMirror.on( 'focus', this.handleFocus );
+        codeMirror.on( 'blur', this.handleBlur );
+
+        if ( cursor )
         {
-            codeMirror.on( 'cursorActivity', () =>
-                onCursorActivity( codeMirror.getCursor() ) );
+            codeMirror.setCursor( cursor );
+        }
+
+        this.codeMirror = codeMirror;
+    }
+
+
+    componentDidUpdate()
+    {
+        const {
+            cursor,
+            isDisabled,
+            isReadOnly,
+            options = {},
+            value
+        } = this.props;
+
+        const { codeMirror } = this;
+
+        const combinedOptions = {
+            ...defaultOptions,
+            ...options,
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+        };
+
+        Object.keys( combinedOptions ).forEach( option =>
+            codeMirror.setOption( option, combinedOptions[ option ] ) );
+
+        if ( typeof value !== 'undefined' )
+        {
+            codeMirror.setValue( value || '' );
+        }
+
+        if ( cursor )
+        {
+            codeMirror.setCursor( cursor );
         }
     }
 
-    handleFocusChange( f )
+    componentWillUnmount()
     {
-        this.setState( { isFocused: f } );
+        this.codeMirror.toTextArea();
     }
+
+    handleFocus( cm )
+    {
+        this.setState( { isFocused: true } );
+
+        const { onFocus } = this.props;
+        if ( onFocus )
+        {
+            onFocus( cm );
+        }
+    }
+
+    handleBlur( cm )
+    {
+        this.setState( { isFocused: false } );
+
+        const { onBlur } = this.props;
+        if ( onBlur )
+        {
+            onBlur( cm );
+        }
+    }
+
+    handleCursorActivity( cm )
+    {
+        const { onCursorActivity } = this.props;
+        if ( onCursorActivity )
+        {
+            onCursorActivity( this.codeMirror.getCursor() );
+        }
+    }
+
+    handleChange( cm )
+    {
+        const { onChange } = this.props;
+        if ( onChange )
+        {
+            onChange( cm );
+        }
+    }
+
 
     render()
     {
@@ -148,19 +250,13 @@ export default class CodeEditor extends Component
         const {
             forceHover,
             isDisabled,
-            isReadOnly,
             hasError,
             onMouseOut,
-            onMouseOver
+            onMouseOver,
+            value,
         } = props;
 
         const { isFocused } = this.state;
-
-        const combinedOptions = {
-            ...defaultOptions,
-            ...options,
-            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
-        };
 
         return (
             <Css
@@ -171,20 +267,15 @@ export default class CodeEditor extends Component
                     fakeHovered : !isDisabled && !hasError &&
                                   ( forceHover || isFocused )
                 } }>
-                <InputContainer
-                    { ...props }
-                    className = { className }>
+                <InputContainer { ...props } className = { className }>
                     <div
-                        className   = { cssMap.container }
+                        className   = { cssMap.editor }
                         onMouseOver = { onMouseOver }
                         onMouseOut  = { onMouseOut }>
-                        <CodeMirror
-                            { ...props }
-                            ref           = "codeMirror"
-                            className     = { cssMap.editor }
-                            element       = "textarea"
-                            options       = { combinedOptions }
-                            onFocusChange = { this.handleFocusChange } />
+                        <textarea
+                            ref          = { ref => this.textarea = ref }
+                            defaultValue = { value }
+                            autoComplete = "off" />
                     </div>
                 </InputContainer>
             </Css>

@@ -1,36 +1,29 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import NavList              from '..//NavList';
 
-export default class NavBar extends Component
+const NavBar = ( { children, className, cssMap } ) =>
+    <Css cssMap = { cssMap }>
+        <nav className = { className }>
+            <NavList className = { cssMap.list }>
+                { children }
+            </NavList>
+        </nav>
+    </Css>;
+
+NavBar.propTypes =
 {
-    static propTypes =
-    {
-        /**
-         *  Navigation bar content (NavItems)
-         */
-        children : PropTypes.node,
-    };
+    /**
+     *  Navigation bar content (NavItems)
+     */
+    children : PropTypes.node,
+};
 
-    static defaultProps =
-    {
-        cssMap : require( './navBar.css' )
-    };
+NavBar.defaultProps =
+{
+    cssMap : require( './navBar.css' )
+};
 
-    render()
-    {
-        const { children, className, cssMap } = this.props;
-
-        return (
-            <Css cssMap = { cssMap }>
-                <nav className = { className }>
-                    <NavList className = { cssMap.list }>
-                        { children }
-                    </NavList>
-                </nav>
-            </Css>
-        );
-    }
-}
+export default NavBar;

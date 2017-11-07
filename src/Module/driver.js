@@ -1,5 +1,5 @@
 /* eslint-disable valid-jsdoc, no-magic-numbers */
-import { IconButton } from 'nessie';
+import { IconButton } from 'nessie-ui';
 
 /* eslint-disable max-len */
 const ERRORS = {
