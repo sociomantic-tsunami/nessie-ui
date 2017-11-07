@@ -85,7 +85,7 @@ var _inputComponentDriver = __webpack_require__(28);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -107,7 +107,7 @@ var TextInputWithIconDriver = function (_InputComponentDriver) {
     _createClass(TextInputWithIconDriver, [{
         key: 'getErrorMessage',
         value: function getErrorMessage() {
-            var iconWithTooltip = this.wrapper.children().filter(_nessie.IconWithTooltip);
+            var iconWithTooltip = this.wrapper.children().filter(_nessieUi.IconWithTooltip);
             return iconWithTooltip.driver().getMessage();
         }
     }, {
@@ -213,14 +213,14 @@ function checkContentAccessiblity(driver, method) {
 /***/ 115:
 /***/ (function(module, exports) {
 
-module.exports = require("nessie/dist/componentDriver.js");
+module.exports = require("nessie-ui/dist/componentDriver.js");
 
 /***/ }),
 
 /***/ 14:
 /***/ (function(module, exports) {
 
-module.exports = require("nessie/dist/index.js");
+module.exports = require("nessie-ui/dist/index.js");
 
 /***/ }),
 
@@ -293,7 +293,7 @@ var _driver27 = __webpack_require__(73);
 
 var _driver28 = _interopRequireDefault(_driver27);
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 var _simpleComponentDriver = __webpack_require__(8);
 
@@ -310,55 +310,55 @@ var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var drivers = [{
-    Component: _nessie.Button,
+    Component: _nessieUi.Button,
     Driver: _driver2.default
 }, {
-    Component: _nessie.Module,
+    Component: _nessieUi.Module,
     Driver: _driver4.default
 }, {
-    Component: _nessie.TextInputWithIcon,
+    Component: _nessieUi.TextInputWithIcon,
     Driver: _driver14.default
 }, {
-    Component: _nessie.PasswordInput,
+    Component: _nessieUi.PasswordInput,
     Driver: _driver16.default
 }, {
-    Component: _nessie.Icon,
+    Component: _nessieUi.Icon,
     Driver: _driver6.default
 }, {
-    Component: _nessie.Tooltip,
+    Component: _nessieUi.Tooltip,
     Driver: _driver8.default
 }, {
-    Component: _nessie.IconWithTooltip,
+    Component: _nessieUi.IconWithTooltip,
     Driver: _driver10.default
 }, {
-    Component: _nessie.IconButton,
+    Component: _nessieUi.IconButton,
     Driver: _driver2.default
 }, {
-    Component: _nessie.FlounderDropdown,
+    Component: _nessieUi.FlounderDropdown,
     Driver: _driver12.default
 }, {
-    Component: _nessie.TextInput,
+    Component: _nessieUi.TextInput,
     Driver: _inputComponentDriver2.default
 }, {
-    Component: _nessie.Section,
+    Component: _nessieUi.Section,
     Driver: _driver18.default
 }, {
-    Component: _nessie.Row,
+    Component: _nessieUi.Row,
     Driver: _driver20.default
 }, {
-    Component: _nessie.Column,
+    Component: _nessieUi.Column,
     Driver: _driver20.default
 }, {
-    Component: _nessie.Form,
+    Component: _nessieUi.Form,
     Driver: _driver22.default
 }, {
-    Component: _nessie.NavItem,
+    Component: _nessieUi.NavItem,
     Driver: _driver24.default
 }, {
-    Component: _nessie.NotificationBar,
+    Component: _nessieUi.NotificationBar,
     Driver: _driver26.default
 }, {
-    Component: _nessie.ModalDialog,
+    Component: _nessieUi.ModalDialog,
     Driver: _driver28.default
 }];
 
@@ -492,18 +492,6 @@ var InputComponentDriver = function (_ClickableComponentDr) {
         key: 'clearInputValue',
         value: function clearInputValue() {
             return this.setInputValue('');
-        }
-
-        /**
-         * Deprecated function, please use pressKey Instead.
-         * @param {Integer} keyCode the integer code of a key
-         * @return {InputComponentDriver} this driver (for chaining commands)
-         */
-
-    }, {
-        key: 'keyInput',
-        value: function keyInput(keyCode) {
-            return this.pressKey(keyCode);
         }
 
         /**
@@ -729,7 +717,7 @@ var FlounderDropdownDriver = function () {
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.innerFlounderComponent = wrapper.node.refs.flounder;
+        this.innerFlounderComponent = wrapper.node.flounderInstance;
     }
 
     /**
@@ -1030,7 +1018,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 var _simpleComponentDriver = __webpack_require__(8);
 
@@ -1060,11 +1048,11 @@ var ModalDialogDriver = function (_SimpleComponentDrive) {
 
         _this.overlay = wrapper.find('.' + _this.cssMap.default);
 
-        _this.closeButton = wrapper.find('.' + _this.cssMap.header).find(_nessie.IconButton);
+        _this.closeButton = wrapper.find('.' + _this.cssMap.header).find(_nessieUi.IconButton);
 
-        _this.prevButton = wrapper.find('.' + _this.cssMap.navigation).find(_nessie.IconButton).first();
+        _this.prevButton = wrapper.find('.' + _this.cssMap.navigation).find(_nessieUi.IconButton).first();
 
-        _this.nextButton = wrapper.find('.' + _this.cssMap.navigation).find(_nessie.IconButton).last();
+        _this.nextButton = wrapper.find('.' + _this.cssMap.navigation).find(_nessieUi.IconButton).last();
         return _this;
     }
 
@@ -1124,7 +1112,7 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable valid-jsdoc, no-magic-numbers */
 
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1152,7 +1140,7 @@ var ModuleDriver = function () {
     _createClass(ModuleDriver, [{
         key: 'toggle',
         value: function toggle() {
-            var toggle = this.wrapper.find(_nessie.IconButton).last();
+            var toggle = this.wrapper.find(_nessieUi.IconButton).last();
 
             if (toggle.length === 0) {
                 throw new Error(ERRORS.MODULE_NOT_COLLAPSIBLE);
@@ -1173,7 +1161,7 @@ var ModuleDriver = function () {
                 throw new Error(ERRORS.MODULE_HAS_NO_DELETE);
             }
 
-            var deleteButton = this.wrapper.find(_nessie.IconButton).first();
+            var deleteButton = this.wrapper.find(_nessieUi.IconButton).first();
 
             deleteButton.driver().click();
 
@@ -1217,7 +1205,7 @@ var _clickableComponentDriver = __webpack_require__(24);
 
 var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1245,12 +1233,12 @@ var NavItemDriver = function (_ClickableComponentDr) {
     }, {
         key: 'getChildNavItems',
         value: function getChildNavItems() {
-            var dropdown = this.wrapper.find(_nessie.NavDropdown);
+            var dropdown = this.wrapper.find(_nessieUi.NavDropdown);
             if (dropdown.length !== 1) {
                 return [];
             }
 
-            return dropdown.children(_nessie.NavItem);
+            return dropdown.children(_nessieUi.NavItem);
         }
     }]);
 
@@ -1390,7 +1378,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _nessie = __webpack_require__(14);
+var _nessieUi = __webpack_require__(14);
 
 var _inputComponentDriver = __webpack_require__(28);
 
@@ -1416,7 +1404,7 @@ var PasswordInput = function (_InputComponentDriver) {
     _createClass(PasswordInput, [{
         key: 'getErrorMessage',
         value: function getErrorMessage() {
-            var textInputWithIcon = this.wrapper.find(_nessie.TextInputWithIcon);
+            var textInputWithIcon = this.wrapper.find(_nessieUi.TextInputWithIcon);
             return textInputWithIcon.driver().getErrorMessage();
         }
     }]);
