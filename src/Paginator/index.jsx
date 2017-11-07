@@ -48,7 +48,7 @@ const Paginator = ( {
         <Css cssMap = { cssMap }>
             <div
                 className  = { className }
-                variant    = "navigation"
+                role       = "navigation"
                 aria-label = "Pagination">
                 { showPrev &&
                     <IconButton

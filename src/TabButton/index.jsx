@@ -20,7 +20,7 @@ const TabButton = ( {
         <button
             ref       = { buttonRef }
             className = { className }
-            variant      = "tab"
+            role      = "tab"
             value     = { String( tabIndex ) }
             disabled  = { isDisabled }
             onClick   = { onClick }>

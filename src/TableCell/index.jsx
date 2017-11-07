@@ -44,7 +44,7 @@ const TableCell = ( {
             <Column
                 className     = { className }
                 size          = { size }
-                variant          = { isHeader ? 'columnheader' : 'gridcell' }
+                role          = { isHeader ? 'columnheader' : 'gridcell' }
                 columnTitle   = { columnTitle }
                 align         = { align }
                 verticalAlign = { verticalAlign }>

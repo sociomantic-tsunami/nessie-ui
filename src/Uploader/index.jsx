@@ -131,12 +131,12 @@ export default class Uploader extends Component
 
         const { id } = this.state;
 
-        const buttonvariant = 'default';
-        let hasTooltip = false;
-        let uploaded   = false;
-        let isLoading  = false;
-        let iconType   = 'upload';
-        const iconTheme  = 'button';
+        const buttonVariant = 'default';
+        let hasTooltip      = false;
+        let uploaded        = false;
+        let isLoading       = false;
+        let iconType        = 'upload';
+        const iconTheme     = 'button';
 
         let uploaderButtonClass = cssMap.uploadButton;
         let messageType;
@@ -210,7 +210,7 @@ export default class Uploader extends Component
                                 message   = { previewTooltipMessage }
                                 className = { cssMap.previewTooltip }>
                                 <Button
-                                    variant       = { buttonvariant }
+                                    variant    = { buttonVariant }
                                     className  = { uploaderButtonClass }
                                     onClick    = { onClick }
                                     isDisabled = { isDisabled }

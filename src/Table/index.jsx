@@ -97,7 +97,7 @@ const Table = ( {
                 dataTable : isDataTable,
                 zebra     : isZebra
             } }>
-            <div variant = "grid" className = { className }>
+            <div role = "grid" className = { className }>
                 { header }
                 { rows }
             </div>

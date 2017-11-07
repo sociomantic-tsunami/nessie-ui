@@ -43,7 +43,7 @@ export default class Tab extends Component
                     className  = { className }
                     onClick    = { onClick }
                     aria-label = { label }
-                    variant    = "tabpanel">
+                    role       = "tabpanel">
                     { children }
                 </div>
             </Css>
