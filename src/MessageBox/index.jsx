@@ -9,16 +9,22 @@ const MessageBox = ( {
     className,
     children,
     message,
-    messageType } ) =>
+    messageType
+} ) =>
+{
+    const messageNode = <Text>{ message }</Text>;
+
+    return (
         <Css
             cssMap   = { cssMap }
             cssProps = { { type: messageType } }>
             <div className = { className }>
-                { ( children || message ) &&
-                    <Text>{ message }</Text>
-                }
+                { children || messageNode }
             </div>
-        </Css>;
+        </Css>
+    );
+};
+
 
 MessageBox.propTypes =
 {

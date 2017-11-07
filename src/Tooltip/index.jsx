@@ -46,7 +46,9 @@ export default class Tooltip extends Component
             'top',
             'bottom',
             'topLeft',
-            'topRight' ] ),
+            'topRight',
+            'bottomLeft',
+            'bottomRight' ] ),
     };
 
     static defaultProps =

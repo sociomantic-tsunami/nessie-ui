@@ -4,23 +4,17 @@
 
 .default
 {
-    .container
-    {
-
-    }
-
     .editor
     {
         box-sizing: border-box;
         border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
         &:hover,
-        .fakeHovered &
+        .fakeHovered&
         {
             border: 0.1rem solid var( --PC-BLUE );
         }
     }
-
 }
 
 .error
@@ -41,6 +35,9 @@
         color:          color( var( --GS-2 ) a( 50% ) ) !important;
     }
 }
+
+
+
 
 
 

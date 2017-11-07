@@ -4,16 +4,6 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import NavDropdown          from '../NavDropdown';
 
-const filterNavItems = node =>
-{
-    const _node = React.Children.toArray( node );
-
-    // eslint-disable-next-line no-shadow
-    const isNavItem = node => React.isValidElement( node ) &&
-        node.type.name === 'NavItem';
-
-    return _node.filter( isNavItem );
-};
 
 const NavItem = ( {
     children,
@@ -30,42 +20,41 @@ const NavItem = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    role } ) =>
-{
-    return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
-                role,
-                disabled    : isDisabled,
-                current     : isCurrentPage,
-                dropdownAlign,
-                open        : isOpen,
-                fakeHovered : forceHover,
-                icon        : iconType
-            } }>
-            <li
-                className   = { className }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
-                <a
-                    className = { cssMap.link }
-                    href      = { isCurrentPage ? null : href }
-                    onClick   = { onClick }>
-                    <span>{ label }</span>
-                    { ( iconType && iconType !== 'none' ) &&
-                        <div className  = { cssMap.icon } />
-                    }
-                </a>
-                { children &&
-                    <NavDropdown className = { cssMap.dropdown }>
-                        { filterNavItems( children ) }
-                    </NavDropdown>
+    role
+} ) => (
+
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            role,
+            disabled    : isDisabled,
+            current     : isCurrentPage,
+            dropdownAlign,
+            open        : isOpen,
+            fakeHovered : forceHover,
+            icon        : iconType
+        } }>
+        <li
+            className   = { className }
+            onMouseOver = { onMouseOver }
+            onMouseOut  = { onMouseOut }>
+            <a
+                className = { cssMap.link }
+                href      = { href }
+                onClick   = { onClick }>
+                <span>{ label }</span>
+                { ( iconType && iconType !== 'none' ) &&
+                    <div className  = { cssMap.icon } />
                 }
-            </li>
-        </Css>
-    );
-};
+            </a>
+            { children &&
+                <NavDropdown className = { cssMap.dropdown }>
+                    { children }
+                </NavDropdown>
+            }
+        </li>
+    </Css>
+);
 
 NavItem.propTypes =
 {

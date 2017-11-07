@@ -48,6 +48,10 @@ const buildFlounder = ( node, props = {} ) =>
     if ( node )
     {
         let flounder = node.flounder;
+
+        const keepOpen = !!( flounder &&
+            flounder.refs.wrapper.className.match( props.cssMap.open ) );
+
         const onChange = ( ...args ) =>
         {
             const toChange = !props.isReadOnly && props.onChange;
@@ -85,6 +89,12 @@ const buildFlounder = ( node, props = {} ) =>
 
         flounder = flounder ? flounder.rebuild( flounderProps ) :
             new Flounder( node, flounderProps );
+
+        if ( keepOpen )
+        {
+            flounder.toggleList( {} );
+        }
+
         return flounder;
     }
 
