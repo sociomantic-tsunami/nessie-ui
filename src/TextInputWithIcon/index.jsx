@@ -430,8 +430,7 @@ export default class TextInputWithIcon extends Component
                     textAlign    = { alignText }
                     type         = { inputType }
                     value        = { value } />
-                { ( iconType && iconButtonIsVisible !== false &&
-                    iconType !== 'none' ) &&
+                { ( iconType && iconType !== 'none' ) &&
                     <Tooltip
                         className   = { cssMap.icon }
                         isDisabled  = { isDisabled }

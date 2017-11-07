@@ -82,7 +82,7 @@ module.exports = Object.assign( {}, baseConfig, {
                         }
                     }
                 ],
-                include : /loch-ness\/src|nessie-ui|loch-ness\/test/,
+                include : /\/src/,
             },
             {
                 test : /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -99,7 +99,7 @@ module.exports = Object.assign( {}, baseConfig, {
         extensions : [ '.js', '.jsx' ],
         alias      :
         {
-            nessie          : `${defaultSettings.srcPath}/index`,
+            'nessie-ui'     : `${defaultSettings.srcPath}/index`,
             componentDriver : `${defaultSettings.srcPath}/Testing/index`,
             fonts           : `${defaultSettings.srcPath}/proto/webfonts/`
         }
