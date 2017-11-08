@@ -20,9 +20,9 @@ describe( 'Uploader', () =>
             Wrapper = mount( <Uploader /> );
         } );
 
-        it( 'should render component based on Button iconType=upload', () =>
+        it( 'should render component based on a html label iconType=upload', () =>
         {
-            expect( Wrapper.find( 'Button', 'Uploader', 'Icon' ) )
+            expect( Wrapper.find( 'label', 'Uploader', 'Icon' ) )
                 .to.have.length( 1 );
         } );
     } );
@@ -92,8 +92,8 @@ state', () =>
         it( 'should render a component based on Button with a readonly state',
         () =>
         {
-            expect( Wrapper.find( 'Button' ) ).to.have.length( 1 );
-            expect( Wrapper.find( 'Button' ).prop( 'isReadOnly' ) ).to.be.true;
+            expect( Wrapper.find( 'label' ) ).to.be.length( 1 );
+            expect( Wrapper.find( 'label' ).prop( 'htmlFor' ) ).to.be.undefined;
         } );
     } );
 } );

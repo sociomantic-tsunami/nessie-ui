@@ -75,11 +75,11 @@ export default class Uploader extends Component
         /**
          * onClick callback function: ( e ) => { ... }
          */
-        onClickPreview                 : PropTypes.func,
+        onClickPreview          : PropTypes.func,
         /**
          * onClickDelete callback function: ( e ) => { ... }
          */
-        onClickDelete        : PropTypes.func,
+        onClickDelete           : PropTypes.func,
         /**
          * onChange callback function: ( e ) => { ... }
          */
@@ -178,7 +178,7 @@ export default class Uploader extends Component
         const fakeUploadButton = (
             <label
                 className = { cssMap.fakeButton }
-                htmlFor   = { id }>
+                htmlFor   = { isReadOnly ? undefined : id  }>
                 <div className = { cssMap.fakeButtonIconContainer }>
                     <Icon type = "upload" theme = "button" />
                 </div>
