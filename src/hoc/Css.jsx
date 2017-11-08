@@ -1,31 +1,14 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
-const CSS_SEPARATOR = '  ';
-const CSS_MODIFIER  = '__';
 
-export default class NessieCss extends Component
+const NessieCss = ( { children, cssMap, cssProps } ) =>
 {
-    static propTypes =
-    {
-        cssMap   : PropTypes.objectOf( PropTypes.string ),
-        cssProps : PropTypes.objectOf( PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.number,
-            PropTypes.bool
-        ] ) )
-    };
+    const CSS_SEPARATOR = '  ';
+    const CSS_MODIFIER  = '__';
 
-    static defaultProps =
+    const createCssString = () =>
     {
-        cssMap   : {},
-        cssProps : {}
-    };
-
-    cssString()
-    {
-        const { cssMap, cssProps } = this.props;
-
         if ( cssMap )
         {
             const defaultString = cssMap.default;
@@ -33,7 +16,7 @@ export default class NessieCss extends Component
             let cssString = defaultString || '';
 
             Object.keys( cssProps ).forEach( prop =>
-            {
+                {
                 const propValue = cssProps[ prop ];
 
                 if ( propValue )
@@ -60,17 +43,32 @@ export default class NessieCss extends Component
 
             return cssString;
         }
-    }
+    };
 
-    render()
-    {
-        const prevClassName   = this.props.children.props.className;
-        const newClassName    = this.cssString() +
-            ( prevClassName ? ( CSS_SEPARATOR + prevClassName ) : '' );
+    const prevClassName   = children.props.className;
+    const newClassName    = createCssString() +
+    ( prevClassName ? ( CSS_SEPARATOR + prevClassName ) : '' );
 
-        return React.cloneElement( this.props.children,
-            {
-                className : newClassName
-            } );
-    }
-}
+    return React.cloneElement( children,
+        {
+            className : newClassName
+        } );
+};
+
+NessieCss.propTypes =
+{
+    cssMap   : PropTypes.objectOf( PropTypes.string ),
+    cssProps : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool
+    ] ) )
+};
+
+NessieCss.defaultProps =
+{
+    cssMap   : {},
+    cssProps : {}
+};
+
+export default NessieCss;

@@ -1,50 +1,44 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-export default class ProgressIndicator extends Component
-{
-    static propTypes =
-    {
-        /**
-         *  Show percentage
-         */
-        showPercentage    : PropTypes.bool,
-        /**
-         *  Current percentage value
-         */
-        currentPercentage : PropTypes.number
-    };
+const ProgressIndicator = ( {
+    cssMap,
+    className,
+    currentPercentage,
+    showPercentage } ) =>
 
-    static defaultProps =
-    {
-        cssMap         : require( './progressIndicator.css' ),
-        showPercentage : true
-    };
-
-    render()
-    {
-        const { cssMap,
-                className,
-                currentPercentage,
-                showPercentage } = this.props;
-
-
-        return (
-            <Css cssMap   = { cssMap }>
-                <div className = { className }>
-                    <div className = { cssMap.spinner }>
-                        { showPercentage &&
-                            <div className = { cssMap.percentageContainer }>
-                                <span className = { cssMap.percentage } >
-                                    { currentPercentage }%
-                                </span>
-                            </div>
-                        }
-                    </div>
+        <Css cssMap   = { cssMap }>
+            <div className = { className }>
+                <div className = { cssMap.spinner }>
+                    { showPercentage &&
+                        <div className = { cssMap.percentageContainer }>
+                            <span className = { cssMap.percentage } >
+                                { currentPercentage }%
+                            </span>
+                        </div>
+                    }
                 </div>
-            </Css>
-        );
-    }
-}
+            </div>
+        </Css>;
+
+ProgressIndicator.propTypes =
+{
+    /**
+     *  Show percentage
+     */
+    showPercentage    : PropTypes.bool,
+    /**
+     *  Current percentage value
+     */
+    currentPercentage : PropTypes.number
+};
+
+ProgressIndicator.defaultProps =
+{
+    cssMap         : require( './progressIndicator.css' ),
+    showPercentage : true
+};
+
+export default ProgressIndicator;

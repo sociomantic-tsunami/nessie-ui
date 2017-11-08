@@ -44,16 +44,6 @@ export default class InputComponentDriver extends ClickableComponentDriver
     }
 
     /**
-     * Deprecated function, please use pressKey Instead.
-     * @param {Integer} keyCode the integer code of a key
-     * @return {InputComponentDriver} this driver (for chaining commands)
-     */
-    keyInput( keyCode )
-    {
-        return this.pressKey( keyCode );
-    }
-
-    /**
      * Simulates the pressing of a give key. In case of a printible character
      * the input will be updated accordingly as well.
      * @param {Integer} keyCode the integer code of a key

@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React                from 'react';
 
 import Css                  from '../hoc/Css';
 
-export default class NessieLogo extends Component
+const NessieLogo = ( { cssMap, className } ) =>
+    <Css cssMap = { cssMap }>
+        <img
+            alt       = ""
+            className = { className }
+            src       = "images/nessie.svg" />
+    </Css>;
+
+NessieLogo.propTypes = {};
+
+NessieLogo.defaultProps =
 {
-    static propTypes = {};
+    cssMap : require( './nessieLogo.css' )
+};
 
-    static defaultProps =
-    {
-        cssMap : require( './nessieLogo.css' )
-    };
-
-    render()
-    {
-        const { cssMap, className } = this.props;
-
-        return (
-            <Css cssMap = { cssMap }>
-                <img
-                    alt       = ""
-                    className = { className }
-                    src       = "images/nessie.svg" />
-            </Css>
-        );
-    }
-}
+export default NessieLogo;
