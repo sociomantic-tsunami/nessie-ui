@@ -61,6 +61,27 @@ const generateId = name =>
     `${name}-${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
 
 
-export { buildClassName, buildDisplayName, eventHandler, generateId };
+const mapAria = ( ariaObj = {} ) =>
+{
+    const res = { role: ariaObj.role };
 
-export default { buildClassName, buildDisplayName, eventHandler, generateId };
+    Object.keys( ariaObj ).forEach( key =>
+    {
+        if ( key !== 'role' )
+        {
+            res[ `aria-${key.toLowerCase()}` ] = ariaObj[ key ].toString();
+        }
+    } );
+
+    return res;
+};
+
+export { buildClassName, buildDisplayName, eventHandler, generateId, mapAria };
+
+export default {
+    buildClassName,
+    buildDisplayName,
+    eventHandler,
+    generateId,
+    mapAria
+};

@@ -13,6 +13,14 @@ export default class TextInputWithIcon extends Component
     static propTypes =
     {
         /**
+         *  aria properties
+         */
+        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+            PropTypes.bool,
+            PropTypes.number,
+            PropTypes.string,
+        ] ) ),
+        /**
          *  Label text (string or JSX node)
          */
         label     : PropTypes.node,
@@ -204,6 +212,7 @@ export default class TextInputWithIcon extends Component
 
     static defaultProps =
     {
+        aria                  : undefined,
         defaultValue          : undefined,
         label                 : undefined,
         labelPosition         : 'top',
@@ -257,13 +266,6 @@ export default class TextInputWithIcon extends Component
         this.handleMouseOutIcon  = this.handleMouseOutIcon.bind( this );
         this.handleInputRef      = this.handleInputRef.bind( this );
         this.handleButtonRef     = this.handleButtonRef.bind( this );
-
-        if ( props.iconButtonIsVisible === false )
-        {
-            console.warn( `${this.constructor.name}: iconButtonIsVisible is \
-deprecated and will be removed in the next major release. Please set iconType \
-to 'none' instead.` );
-        }
     }
 
     handleFocus( e )
@@ -368,6 +370,7 @@ to 'none' instead.` );
     render()
     {
         const {
+            aria,
             className,
             cssMap,
             defaultValue,
@@ -375,7 +378,6 @@ to 'none' instead.` );
             hasError,
             id,
             iconButtonIsDisabled,
-            iconButtonIsVisible,
             iconPosition,
             iconTooltipIsVisible,
             iconTooltipMessage,
@@ -418,6 +420,7 @@ to 'none' instead.` );
                     position : iconPosition
                 } ) }>
                 <InputField
+                    aria         = { aria }
                     className    = { cssMap.input }
                     defaultValue = { defaultValue }
                     forceHover   = { forceHoverInput }
@@ -438,8 +441,7 @@ to 'none' instead.` );
                     textAlign    = { alignText }
                     type         = { inputType }
                     value        = { value } />
-                { ( iconType && iconButtonIsVisible !== false &&
-                    iconType !== 'none' ) &&
+                { ( iconType && iconType !== 'none' ) &&
                     <Tooltip
                         className   = { cssMap.icon }
                         isDisabled  = { isDisabled }

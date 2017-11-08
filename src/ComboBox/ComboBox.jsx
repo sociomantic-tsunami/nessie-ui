@@ -1,21 +1,33 @@
-import React                  from 'react';
-import PropTypes              from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { ListBox, ScrollBox } from '../index';
-import TextInputWithIcon      from '../TextInputWithIcon';
-import withDropdown           from '../Dropdown/withDropdown';
-import { generateId }         from '../utils';
+import { ListBox, ScrollBox }       from '../index';
+import { ListBoxOption }            from '../ListBox';
+import TextInputWithIcon            from '../TextInputWithIcon';
+import withDropdown                 from '../Dropdown/withDropdown';
+import { generateId }               from '../utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-const SearchBox = ( {
+const addPrefix    = ( str, id ) => str.replace( `${id}-`, '' );
+const removePrefix = ( str, id ) => `${id}-${str}`;
+
+const ComboBox = ( {
     activeOption,
+    forceHover,
+    hasError,
     id,
+    inputRef,
     inputValue,
+    isDisabled,
     isOpen,
+    isReadOnly,
+    name,
+    onBlur,
     onChangeInput,
     onClickInput,
     onClickOption,
+    onFocus,
     onInput,
     onMouseOutOption,
     onMouseOverOption,
@@ -28,33 +40,53 @@ const SearchBox = ( {
     const dropdownContent = (
         <ScrollBox onScroll = { onScroll }>
             <ListBox
-                activeOption   = { activeOption }
-                selectedOption = { selectedOption }
-                isFocusable    = { false }
-                onClickOption  = { onClickOption }
-                onMouseOut     = { onMouseOutOption }
-                onMouseOver    = { onMouseOverOption }
-                options        = { options } />
+                activeOption      = { activeOption }
+                selectedOptions   = { selectedOption }
+                isFocusable       = { false }
+                onClickOption     = { ( e, optId ) =>
+                    onClickOption( e, removePrefix( optId, id ) ) }
+                onMouseOutOption  = { ( e, optId ) =>
+                    onMouseOutOption( e, removePrefix( optId, id ) ) }
+                onMouseOverOption = { ( e, optId ) =>
+                    onMouseOverOption( e, removePrefix( optId, id ) ) }>
+                { options.map( ( opt = {} ) => (
+                    <ListBoxOption
+                        { ...opt }
+                        id = { opt.id ? addPrefix( opt.id, id ) : undefined } />
+                ) ) }
+            </ListBox>
         </ScrollBox>
     );
 
     return (
         <InputWithDropdown
-            aria           = { { activeDescendant: `${id}` } }
-            id             = { `${id}-input` }
-            inputType      = "search"
+            aria           = { {
+                activeDescendant : addPrefix( activeOption, id ),
+                expanded         : isOpen,
+                role             : 'combobox',
+            } }
+            forceHover     = { forceHover }
+            hasError       = { hasError }
             iconType       = "search"
+            id             = { id }
+            inputRef       = { inputRef }
+            inputType      = "search"
+            isDisabled     = { isDisabled }
+            isReadOnly     = { isReadOnly }
             dropdownIsOpen = { isOpen }
             dropdownProps  = { { children: dropdownContent } }
+            name           = { name }
+            onBlur         = { onBlur }
             onChange       = { onChangeInput }
             onClick        = { onClickInput }
+            onFocus        = { onFocus }
             onInput        = { onInput }
             placeholder    = { placeholder }
             value          = { inputValue } />
     );
 };
 
-SearchBox.propTypes =
+ComboBox.propTypes =
 {
     /**
      * Display as hover when required from another component
@@ -118,10 +150,6 @@ SearchBox.propTypes =
      */
     activeOption      : PropTypes.string,
     /*
-     * Dropdown options as ListOption nodes (overrides “options” prop)
-     */
-    children          : PropTypes.node,
-    /*
      * Input field value
      */
     inputValue        : PropTypes.string,
@@ -158,13 +186,13 @@ SearchBox.propTypes =
     ] ),
 };
 
-SearchBox.defaultProps = {
+ComboBox.defaultProps = {
 
     placeholder       : undefined,
     isDisabled        : false,
     isReadOnly        : false,
     hasError          : false,
-    id                : generateId( 'SearchBox' ),
+    id                : generateId( 'ComboBox' ),
     onChange          : undefined,
     onInput           : undefined,
     onKeyPress        : undefined,
@@ -175,7 +203,6 @@ SearchBox.defaultProps = {
     forceHover        : false,
     inputRef          : undefined,
     activeOption      : undefined,
-    children          : undefined,
     inputValue        : undefined,
     isOpen            : false,
     onClickOption     : undefined,
@@ -186,4 +213,4 @@ SearchBox.defaultProps = {
     selectedOption    : undefined,
 };
 
-export default SearchBox;
+export default ComboBox;

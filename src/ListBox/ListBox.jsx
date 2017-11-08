@@ -5,14 +5,16 @@ import Css       from '../hoc/Css';
 import styles    from './listBox.css';
 import {
     buildOptions,
+    eventHandler,
     generateId,
     mapFocusable,
-    mapToAria
+    mapAria,
 } from './utils';
 
 const killFocus = e => e.preventDefault();
 
 const ListBox = ( {
+    aria,
     activeOption,
     children,
     className,
@@ -21,42 +23,41 @@ const ListBox = ( {
     isMultiselect,
     id,
     onClick,
+    onClickOption,
+    onMouseOutOption,
+    onMouseOverOption,
     onKeyPress,
-    onMouseDown,
-    onMouseUp,
+    options,
+    selectedOptions,
 } ) => (
-    /* eslint-disable jsx-a11y/aria-activedescendant-has-tabindex */
-    // nonsense ^^
-    <Css cssMap = { cssMap }>
         <ul
-            aria-activedescendant = { isFocusable && props.activeOption }
-            aria-multiselectable  = { mapToAria( isMultiselect ) }
-            className             = { className }
-            id                    = { id }
-            onClick               = { onClick &&
-                ( e => onClick( e, e.target.id ) ) }
-            onKeyPress            = { onKeyPress }
-            onMouseDown           = { isFocusable : onMouseDown : killFocus }
-            onMosueUp             = { onMouseUp }
-            role                  = "listbox"
-            tabIndex              = { mapFocusable( isFocusable ) }>
-            { children.map( option => {
-                const isActive = option.props.id === activeOption ||
-                    option.props.isActive;
-
-                const isSelected =
-                    selectedOptions.indexOf( option.props.id ) > -1 ||
-                        option.props.isSelected;
-
-                return React.cloneElement( isActive, isSelected );
+            { ...mapAria( {
+                ...aria,
+                activeDescendant : isFocusable ? activeOption : null,
+                multiSelectable  : isMultiselect,
+                role             : 'listbox',
             } ) }
+            className   = { buildClassName( className, cssMap ) }
+            id          = { id }
+            onKeyPress  = { onKeyPress }
+            onMouseDown = { !isFocusable ? killFocus : undefined }
+            tabIndex    = { isFocusable ? '0' : '-1' }>
+            { children.map( option =>
+                React.cloneElement( option, {
+                    isActive   : option.props.id === activeOption,
+                    isSelected :
+                        selectedOptions.indexOf( option.props.id ) > -1,
+                    onClick     : onClickOption,
+                    onMouseOut  : onMouseOutOption,
+                    onMouseOver : onMouseOverOption,
+                } )
+            ) }
         </ul>
-    </Css>
-    /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 );
 
 
 ListBox.propTypes = {
+    aria            : PropTypes.objectOf( PropTypes.string ),
     activeOption    : PropTypes.string,
     children        : PropTypes.node,
     className       : PropTypes.string,
@@ -64,24 +65,25 @@ ListBox.propTypes = {
     isFocusable     : PropTypes.bool,
     isMultiselect   : PropTypes.bool,
     id              : PropTypes.string,
-    optionions         : PropTypes.arrayOf( PropTypes.object ),
+    options         : PropTypes.arrayOf( PropTypes.object ),
     onClick         : PropTypes.func,
     onKeyPress      : PropTypes.func,
     selectedOptions : PropTypes.arrayOf( PropTypes.string ),
 };
 
 ListBox.defaultProps = {
-    activeOption    : null,
-    children        : null,
-    className       : null,
+    aria            : undefined,
+    activeOption    : undefined,
+    children        : undefined,
+    className       : undefined,
     cssMap          : styles,
     isFocusable     : true,
     isMultiselect   : false,
     id              : generateId( 'ListBox' ),
-    options         : null,
-    onClick         : null,
-    onKeyPress      : null,
-    selectedOptions : null,
+    options         : undefined,
+    onClick         : undefined,
+    onKeyPress      : undefined,
+    selectedOptions : undefined,
 };
 
 export default ListBox;
