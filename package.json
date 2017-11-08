@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "4.2.5",
+  "version": "5.0.2",
   "description": "Nessie React Components",
   "main": "dist",
   "scripts": {
@@ -26,7 +26,9 @@
     "svgSprite": "./.prep-icon.sh  > /dev/null && ./.generate-sprite.sh  > /dev/null",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
-    "bump": "yarn pre-bump && yarn release-it ${1} && yarn post-bump",
+    "bump": "yarn pre-bump ; release-it && yarn post-bump",
+    "bump:minor": "yarn pre-bump ; release-it minor && yarn post-bump",
+    "bump:major": "yarn pre-bump ; release-it major && yarn post-bump",
     "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
     "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify"
   },
@@ -98,7 +100,7 @@
     "karma-sinon-chai": "^1.2.3",
     "karma-sourcemap-loader": "^0.3.5",
     "karma-webpack": "^2.0.4",
-    "loch-ness": "^2.0.0",
+    "loch-ness": "^2.0.1",
     "lolex": "^1.4.0",
     "markdown-loader": "^2.0.0",
     "microbejs": "^0.5.0",
