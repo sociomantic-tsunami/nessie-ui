@@ -9,6 +9,7 @@
     --tooltipOffsetXYAfter: 2rem;
 
     --pointerSize:          1rem;
+    --connectBox:           1.6rem;
     --halfPointer:          0.5rem;
     --halfPointerTweak:     0.1rem;
 
@@ -47,6 +48,16 @@
 
     z-index:            100;
 
+    &::before
+    {
+        content:            "";
+        position:           absolute;
+        box-sizing:         border-box;
+
+        width:              100%;
+        height:             var( --connectBox );
+    }
+
     &::after
     {
         content:            "";
@@ -71,6 +82,7 @@
     {
         left:   50%;
 
+        &::before,
         &::after
         {
             right:  calc( 50% - var( --halfPointer ) );
@@ -85,6 +97,12 @@
         top:        0;
         transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
 
+        &::before
+        {
+            bottom: -var( --connectBox );
+            left:   0;
+        }
+
         &::after
         {
             bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
@@ -94,7 +112,6 @@
     }
 }
 
-
 .position__bottom
 {
     .tooltip
@@ -102,6 +119,11 @@
         bottom:     0;
         transform:  translateX(-50%) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 
+        &::before
+        {
+            top:   -var( --connectBox );
+            left:  0;
+        }
         &::after
         {
             top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
@@ -135,6 +157,15 @@
 
         transform:  translateX(-100%) translateX( -var( --tooltipOffsetX )  ) translateY( -50% );
 
+        &::before
+        {
+            width:  var( --connectBox );
+            height: 100%;
+
+            top:   0;
+            left:  -var( --connectBox );
+        }
+
         &::after
         {
             right:          calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
@@ -155,6 +186,14 @@
 
         transform:  translateX(100%) translateX( var( --tooltipOffsetX )  ) translateY( -50% );
 
+        &::before
+        {
+            width:  var( --connectBox );
+            height: 100%;
+
+            top:   0;
+            left:  -var( --connectBox );
+        }
         &::after
         {
             top:            calc( 50% - var( --halfPointer ) );
@@ -182,6 +221,25 @@
     }
 }
 
+.position__bottomLeft,
+.position__bottomRight
+{
+    .tooltip
+    {
+        bottom:     0;
+        left:       50%;
+
+        &::after
+        {
+            top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            right:       calc( 50% - var( --halfPointer ) );
+
+            border-bottom:  none;
+            border-right:   none;
+        }
+    }
+}
+
 .position__topLeft
 {
     .tooltip
@@ -191,6 +249,12 @@
         &::after
         {
             right:  var( --tooltipOffsetXYAfter );
+        }
+
+        &::before
+        {
+            bottom:  -var( --connectBox );
+            left:    0;
         }
     }
 }
@@ -205,13 +269,52 @@
         {
             left:   var( --tooltipOffsetXYAfter );
         }
+
+        &::before
+        {
+            bottom:  -var( --connectBox );
+            left:    0;
+        }
     }
 }
 
+.position__bottomLeft
+{
+    .tooltip
+    {
+        transform: translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) );
 
+        &::after
+        {
+            right:  var( --tooltipOffsetXYAfter );
+        }
 
+        &::before
+        {
+            top:    -var( --connectBox );
+            left:   0;
+        }
+    }
+}
 
+.position__bottomRight
+{
+    .tooltip
+    {
+        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 
+        &::after
+        {
+            left:  var( --tooltipOffsetXYAfter );
+        }
+
+        &::before
+        {
+            top:    -var( --connectBox );
+            left:   0;
+        }
+    }
+}
 
 .message
 {
