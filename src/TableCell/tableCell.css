@@ -2,8 +2,26 @@
 
 $shark: 768px;
 
+@media( min-width: $shark )
+{
+	.default
+    {
+    	padding-bottom:	0;
+
+    	&:last-child
+    	{
+        	padding-bottom:	-1rem;
+    	}
+    }
+}
+
 .default
 {
+    & > *
+    {
+       padding:	1rem 0;
+    }
+
     /*flex-direction: row;*/
 
     &::before
