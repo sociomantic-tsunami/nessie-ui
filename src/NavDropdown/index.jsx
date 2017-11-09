@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
@@ -10,34 +10,31 @@ const isNavItem = node => React.isValidElement( node )
 const filterNavItems = node => React.Children.toArray( node )
     .filter( isNavItem );
 
-export default class NavDropdown extends Component
+const NavDropdown = ( { children, className, cssMap } ) =>
 {
-    static propTypes =
-    {
-        /**
-         *  Dropdown content (NavItems)
-         */
-        children : PropTypes.node,
-    };
+    const dropdownItems = filterNavItems( children ).map( child =>
+    React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
-    static defaultProps =
-    {
-        cssMap : require( './navDropdown.css' )
-    };
+    return (
+        <Css cssMap = { cssMap }>
+            <NavList layout = "vertical" className = { className }>
+                { dropdownItems }
+            </NavList>
+        </Css>
+    );
+};
 
-    render()
-    {
-        const { children, className, cssMap } = this.props;
+NavDropdown.propTypes =
+{
+    /**
+     *  Dropdown content (NavItems)
+     */
+    children : PropTypes.node,
+};
 
-        const dropdownItems = filterNavItems( children ).map( child =>
-        React.cloneElement( child, { ...child.props, role: 'sub' } ) );
+NavDropdown.defaultProps =
+{
+    cssMap : require( './navDropdown.css' )
+};
 
-        return (
-            <Css cssMap = { cssMap }>
-                <NavList layout = "vertical" className = { className }>
-                    { dropdownItems }
-                </NavList>
-            </Css>
-        );
-    }
-}
+export default NavDropdown;

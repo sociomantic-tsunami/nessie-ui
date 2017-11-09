@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
@@ -9,38 +9,35 @@ const isNavItem = node => React.isValidElement( node )
 const filterNavItems = node => React.Children.toArray( node )
     .filter( isNavItem );
 
-export default class NavList extends Component
+const NavList = ( { children, className, cssMap, layout } ) =>
 {
-    static propTypes =
-    {
-        /**
-         *  List content (NavItems)
-         */
-        children : PropTypes.node,
-        /**
-         *  How to lay out the list items
-         */
-        layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
-    };
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { layout } }>
+            <ul className = { className }>
+                { filterNavItems( children ) }
+            </ul>
+        </Css>
+    );
+};
 
-    static defaultProps =
-    {
-        layout : 'horizontal',
-        cssMap : require( './navList.css' )
-    };
+NavList.propTypes =
+{
+    /**
+     *  List content (NavItems)
+     */
+    children : PropTypes.node,
+    /**
+     *  How to lay out the list items
+     */
+    layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+};
 
-    render()
-    {
-        const { children, className, cssMap, layout } = this.props;
+NavList.defaultProps =
+{
+    layout : 'horizontal',
+    cssMap : require( './navList.css' )
+};
 
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { layout } }>
-                <ul className = { className }>
-                    { filterNavItems( children ) }
-                </ul>
-            </Css>
-        );
-    }
-}
+export default NavList;

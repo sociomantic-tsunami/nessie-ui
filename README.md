@@ -1,4 +1,6 @@
-# nessie - 4.2.3
+# Nessie
+[![GitHub package version](https://img.shields.io/github/package-json/v/sociomantic-tsunami/nessie.svg?style=plastic)]()
+[![Nessie build status](https://travis-ci.org/sociomantic-tsunami/nessie.svg)](https://travis-ci.org)
 
 React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
