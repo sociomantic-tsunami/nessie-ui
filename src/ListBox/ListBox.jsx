@@ -1,15 +1,12 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import Css       from '../hoc/Css';
 import styles    from './listBox.css';
 import {
-    buildOptions,
-    eventHandler,
+    buildClassName,
     generateId,
-    mapFocusable,
     mapAria,
-} from './utils';
+} from '../utils';
 
 const killFocus = e => e.preventDefault();
 
@@ -21,7 +18,7 @@ const ListBox = ( {
     cssMap,
     isFocusable,
     isMultiselect,
-    id,
+    id = generateId( 'ListBox' ),
     onClick,
     onClickOption,
     onMouseOutOption,
@@ -40,18 +37,24 @@ const ListBox = ( {
             className   = { buildClassName( className, cssMap ) }
             id          = { id }
             onKeyPress  = { onKeyPress }
-            onMouseDown = { !isFocusable ? killFocus : undefined }
+            onMouseDown = { !isFocusable && killFocus }
             tabIndex    = { isFocusable ? '0' : '-1' }>
-            { children.map( option =>
+            { children && children.map( option => {
+            if( option.options )
+            {
+                return
+            }
+            return (
                 React.cloneElement( option, {
                     isActive   : option.props.id === activeOption,
-                    isSelected :
+                    isSelected : selectedOptions &&
                         selectedOptions.indexOf( option.props.id ) > -1,
                     onClick     : onClickOption,
                     onMouseOut  : onMouseOutOption,
                     onMouseOver : onMouseOverOption,
                 } )
-            ) }
+            );
+            } ) }
         </ul>
 );
 
@@ -79,7 +82,7 @@ ListBox.defaultProps = {
     cssMap          : styles,
     isFocusable     : true,
     isMultiselect   : false,
-    id              : generateId( 'ListBox' ),
+    id              : undefined,
     options         : undefined,
     onClick         : undefined,
     onKeyPress      : undefined,

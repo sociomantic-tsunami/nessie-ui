@@ -36,7 +36,7 @@ const buildClassName = ( className, cssMap = {}, cssProps = {} ) =>
 
         cssString += className ? ( CSS_SEPARATOR + className ) : '';
 
-        return cssString;
+        return cssString || undefined;
     }
 };
 
@@ -57,8 +57,8 @@ const getComponentName = Component =>
     Component.displayName || Component.name || 'Component';
 
 
-const generateId = name =>
-    `${name}-${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
+const generateId = componentName =>
+    `${componentName}${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
 
 
 const mapAria = ( ariaObj = {} ) =>
@@ -67,7 +67,8 @@ const mapAria = ( ariaObj = {} ) =>
 
     Object.keys( ariaObj ).forEach( key =>
     {
-        if ( key !== 'role' )
+        const value = ariaObj[ key ];
+        if ( key !== 'role' && value )
         {
             res[ `aria-${key.toLowerCase()}` ] = ariaObj[ key ].toString();
         }

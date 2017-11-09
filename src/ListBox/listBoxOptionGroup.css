@@ -1,0 +1,23 @@
+.default
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
+
+    .title
+    {
+        padding:    1rem;
+    }
+
+    .titleText
+    {
+        font-weight:    bold;
+    }
+
+    .options
+    {
+        display:    block;
+        margin:     0;
+        padding:    0;
+    }
+}

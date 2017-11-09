@@ -36,23 +36,23 @@ SelectBox.propTypes = {
 };
 
 SelectBox.defaultProps = {
-    activeOption    : null,
-    className       : null,
+    activeOption    : undefined,
+    className       : undefined,
     cssMap          : styles,
     id              : generateId( 'SelectBox' ),
     isOpen          : false,
     isReadOnly      : false,
     isRequired      : false,
-    options         : null,
-    onBlur          : null,
-    onClickInput    : null,
-    onClickList     : null,
-    onFocus         : null,
-    onInput         : null,
-    onKeyPress      : null,
-    placeholder     : null,
-    selectedOptions : null,
-    value           : null,
+    options         : undefined,
+    onBlur          : undefined,
+    onClickInput    : undefined,
+    onClickList     : undefined,
+    onFocus         : undefined,
+    onInput         : undefined,
+    onKeyPress      : undefined,
+    placeholder     : undefined,
+    selectedOptions : undefined,
+    value           : undefined,
 };
 
 export default SelectBox;

@@ -2,58 +2,82 @@ import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
 import { ListBox, ScrollBox }       from '../index';
-import { ListBoxOption }            from '../ListBox';
+import ListBoxOption                from '../ListBox/ListBoxOption';
+import ListBoxOptionGroup           from '../ListBox/ListBoxOptionGroup';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Dropdown/withDropdown';
 import { generateId }               from '../utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-const addPrefix    = ( str, id ) => str.replace( `${id}-`, '' );
-const removePrefix = ( str, id ) => `${id}-${str}`;
+const addPrefix    = ( str = '', prefix ) => `${prefix}-${str}`;
+const removePrefix = ( str = '', prefix ) => str.replace( `${prefix}-`, '' );
 
-const ComboBox = ( {
+const createHandler = ( func, comboId ) => func && (
+    ( proxy, event, optId ) =>
+        func( proxy, event, removePrefix( optId, comboId ) )
+);
+
+const buildListBoxOptions = ( options = [], prefix = '' ) =>
+    options.map( ( option = {} ) =>
+    {
+        if ( option.options )
+        {
+            return (
+                <ListBoxOptionGroup title = { option.title }>
+                    { buildListBoxOptions( option.options, prefix ) }
+                </ListBoxOptionGroup>
+            );
+        }
+
+        return (
+            <ListBoxOption
+                { ...option }
+                id = { option.id && addPrefix( option.id, prefix ) } />
+        );
+    } );
+
+const ComboBox = function ComboBox( {
     activeOption,
     forceHover,
     hasError,
-    id,
+    id = generateId( 'ComboBox' ),
     inputRef,
     inputValue,
     isDisabled,
     isOpen,
-    isReadOnly,
+    inputIsReadOnly,
     name,
     onBlur,
     onChangeInput,
     onClickInput,
     onClickOption,
     onFocus,
-    onInput,
+    onKeyDown,
+    onKeyPress,
+    onKeyUp,
     onMouseOutOption,
     onMouseOverOption,
     onScroll,
     options,
     placeholder,
     selectedOption,
-} ) =>
+} )
 {
     const dropdownContent = (
-        <ScrollBox onScroll = { onScroll }>
+        <ScrollBox
+            height   = "50vh"
+            onScroll = { onScroll }>
             <ListBox
-                activeOption      = { activeOption }
-                selectedOptions   = { selectedOption }
+                activeOption      = { addPrefix( activeOption, id ) }
+                id                = { addPrefix( 'listbox', id ) }
                 isFocusable       = { false }
-                onClickOption     = { ( e, optId ) =>
-                    onClickOption( e, removePrefix( optId, id ) ) }
-                onMouseOutOption  = { ( e, optId ) =>
-                    onMouseOutOption( e, removePrefix( optId, id ) ) }
-                onMouseOverOption = { ( e, optId ) =>
-                    onMouseOverOption( e, removePrefix( optId, id ) ) }>
-                { options.map( ( opt = {} ) => (
-                    <ListBoxOption
-                        { ...opt }
-                        id = { opt.id ? addPrefix( opt.id, id ) : undefined } />
-                ) ) }
+                onClickOption     = { createHandler( onClickOption, id ) }
+                onMouseOutOption  = { createHandler( onMouseOutOption, id ) }
+                onMouseOverOption = { createHandler( onMouseOverOption, id ) }
+                selectedOptions   = {
+                    selectedOption && addPrefix( selectedOption, id ) }>
+                { buildListBoxOptions( options, id ) }
             </ListBox>
         </ScrollBox>
     );
@@ -61,26 +85,34 @@ const ComboBox = ( {
     return (
         <InputWithDropdown
             aria           = { {
-                activeDescendant : addPrefix( activeOption, id ),
-                expanded         : isOpen,
-                role             : 'combobox',
+                activeDescendant :
+                    activeOption && addPrefix( activeOption, id ),
+                expanded : isOpen,
+                hasPopup : 'listbox',
+                owns     : addPrefix( 'listbox', id ),
+                role     : 'combobox',
             } }
-            forceHover     = { forceHover }
+            forceHover     = { forceHover || isOpen }
             hasError       = { hasError }
             iconType       = "search"
             id             = { id }
             inputRef       = { inputRef }
             inputType      = "search"
             isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
+            isReadOnly     = { inputIsReadOnly }
             dropdownIsOpen = { isOpen }
-            dropdownProps  = { { children: dropdownContent } }
+            dropdownProps  = { {
+                children : dropdownContent,
+                hasError
+            } }
             name           = { name }
             onBlur         = { onBlur }
             onChange       = { onChangeInput }
             onClick        = { onClickInput }
             onFocus        = { onFocus }
-            onInput        = { onInput }
+            onKeyDown      = { onKeyDown }
+            onKeyPress     = { onKeyPress }
+            onKeyUp        = { onKeyUp }
             placeholder    = { placeholder }
             value          = { inputValue } />
     );
@@ -99,7 +131,7 @@ ComboBox.propTypes =
     /**
      *  Display as read-only
      */
-    isReadOnly        : PropTypes.bool,
+    inputIsReadOnly   : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
@@ -111,15 +143,19 @@ ComboBox.propTypes =
     /**
      *  Input change callback function
      */
-    onChange          : PropTypes.func,
+    onChangeInput     : PropTypes.func,
     /**
-     *  input callback function
+     * key down callback function
      */
-    onInput           : PropTypes.func,
+    onKeyDown         : PropTypes.func,
     /**
-     * keyPress callback function
+     * key press callback function
      */
     onKeyPress        : PropTypes.func,
+    /**
+     * key up callback function
+     */
+    onKeyUp           : PropTypes.func,
     /**
      *  focus callback function
      */
@@ -180,24 +216,21 @@ ComboBox.propTypes =
     /*
      * Selected option(s) from dropdown list
      */
-    selectedOption    : PropTypes.oneOfType( [
-        PropTypes.string,
-        PropTypes.arrayOf( PropTypes.string )
-    ] ),
+    selectedOption    : PropTypes.string,
 };
 
 ComboBox.defaultProps = {
-
     placeholder       : undefined,
     isDisabled        : false,
-    isReadOnly        : false,
+    inputIsReadOnly   : false,
     hasError          : false,
-    id                : generateId( 'ComboBox' ),
-    onChange          : undefined,
-    onInput           : undefined,
-    onKeyPress        : undefined,
-    onFocus           : undefined,
+    id                : undefined,
+    onChangeInput     : undefined,
     onBlur            : undefined,
+    onKeyDown         : undefined,
+    onKeyPress        : undefined,
+    onKeyUp           : undefined,
+    onFocus           : undefined,
     onMouseOver       : undefined,
     onMouseOut        : undefined,
     forceHover        : false,

@@ -2,7 +2,7 @@ import React                                     from 'react';
 import PropTypes                                 from 'prop-types';
 
 import { Text }                                  from '../index';
-import { buildClassName, generateId, mapAria }   from '../utils';
+import { buildClassName, eventHandler, generateId, mapAria }   from '../utils';
 import styles                                    from './listBoxOption.css';
 
 const buildLabel = ( { children, text, value } ) =>
@@ -29,7 +29,7 @@ const ListBoxOption = ( {
     className,
     cssMap,
     isActive,
-    id,
+    id = generateId( 'ListBoxOption' ),
     isDisabled,
     isSelected,
     onClick,
@@ -70,16 +70,16 @@ ListBoxOption.propTypes = {
 };
 
 ListBoxOption.defaultProps = {
-    aria       : null,
-    children   : null,
-    className  : null,
+    aria       : undefined,
+    children   : undefined,
+    className  : undefined,
     cssMap     : styles,
     isActive   : false,
-    id         : generateId( 'ListBoxOption' ),
+    id         : undefined,
     isDisabled : false,
     isSelected : false,
-    text       : null,
-    value      : null,
+    text       : undefined,
+    value      : undefined,
 };
 
 export default ListBoxOption;

@@ -157,13 +157,17 @@ export default class TextInputWithIcon extends Component
          */
         onChange        : PropTypes.func,
         /**
-         *  input callback function
+         * key down callback function
          */
-        onInput         : PropTypes.func,
+        onKeyDown        : PropTypes.func,
         /**
-         * keyPress callback function
+         * key press callback function
          */
-        onKeyPress      : PropTypes.func,
+        onKeyPress        : PropTypes.func,
+        /**
+         * key up callback function
+         */
+        onKeyUp        : PropTypes.func,
         /**
          *  focus callback function
          */
@@ -238,10 +242,11 @@ export default class TextInputWithIcon extends Component
         value                 : undefined,
         name                  : undefined,
         onChange              : undefined,
-        onKeyPress            : undefined,
         onBlur                : undefined,
         onFocus               : undefined,
-        onInput               : undefined,
+        onKeyDown             : undefined,
+        onKeyPress            : undefined,
+        onKeyUp               : undefined,
         onMouseOut            : undefined,
         onMouseOutIcon        : undefined,
         onMouseOver           : undefined,
@@ -254,14 +259,11 @@ export default class TextInputWithIcon extends Component
 
         this.state = {
             ...this.state,
-            iconIsFocused : false,
             iconIsHovered : false
         };
 
         this.handleFocus         = this.handleFocus.bind( this );
         this.handleBlur          = this.handleBlur.bind( this );
-        this.handleFocusIcon     = this.handleFocusIcon.bind( this );
-        this.handleBlurIcon      = this.handleBlurIcon.bind( this );
         this.handleMouseOverIcon = this.handleMouseOverIcon.bind( this );
         this.handleMouseOutIcon  = this.handleMouseOutIcon.bind( this );
         this.handleInputRef      = this.handleInputRef.bind( this );
@@ -310,26 +312,6 @@ export default class TextInputWithIcon extends Component
         {
             onBlur( e );
         }
-    }
-
-    handleFocusIcon( e )
-    {
-        const { onFocusIcon } = this.props;
-        if ( onFocusIcon ) onFocusIcon( e );
-
-        this.handleFocus( e );
-
-        this.setState( { iconIsFocused: true } );
-    }
-
-    handleBlurIcon( e )
-    {
-        const { onBlurIcon } = this.props;
-        if ( onBlurIcon ) onBlurIcon( e );
-
-        this.handleBlur( e );
-
-        this.setState( { iconIsFocused: false } );
     }
 
     handleMouseOverIcon( e )
@@ -389,8 +371,9 @@ export default class TextInputWithIcon extends Component
             name,
             onChange,
             onClickIcon,
+            onKeyDown,
             onKeyPress,
-            onInput,
+            onKeyUp,
             onMouseOut,
             onMouseOver,
             placeholder,
@@ -398,12 +381,9 @@ export default class TextInputWithIcon extends Component
             value,
         } = this.props;
 
-        const {
-            iconIsFocused,
-            iconIsHovered
-        } = this.state;
+        const { iconIsHovered } = this.state;
 
-        const forceHoverInput = forceHover || iconIsFocused || iconIsHovered;
+        const forceHoverInput = forceHover || iconIsHovered;
 
         let alignText = textAlign;
 
@@ -433,8 +413,9 @@ export default class TextInputWithIcon extends Component
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
                     onFocus      = { this.handleFocus }
+                    onKeyDown    = { onKeyDown }
                     onKeyPress   = { onKeyPress }
-                    onInput      = { onInput }
+                    onKeyUp      = { onKeyUp }
                     onMouseOut   = { onMouseOut }
                     onMouseOver  = { onMouseOver }
                     placeholder  = { placeholder }
@@ -453,15 +434,13 @@ export default class TextInputWithIcon extends Component
                         onMouseOver = { this.handleMouseOverIcon }
                         position    = { iconTooltipPosition } >
                         <IconButton
-                            forceHover  = { forceHover }
                             buttonRef   = { this.handleButtonRef }
                             iconType    = { iconType }
                             isDisabled  = { isDisabled || iconButtonIsDisabled }
+                            isFocusable = { false }
                             isReadOnly  = { isReadOnly }
                             hasError    = { hasError }
                             onClick     = { onClickIcon }
-                            onFocus     = { this.handleFocusIcon }
-                            onBlur      = { this.handleBlurIcon }
                             onMouseOut  = { onMouseOut }
                             onMouseOver = { onMouseOver } />
                     </Tooltip>

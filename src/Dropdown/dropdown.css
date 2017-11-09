@@ -3,11 +3,9 @@
 
 .default
 {
-    width:      auto;
     min-width:  0;
     max-width:  none;
 
-    padding:    2rem;
     border:     0.1rem solid var( --PC-BLUE );
     box-shadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
 
@@ -17,4 +15,19 @@
 .error
 {
     border-color:   var( --AC-1 );
+}
+
+.padding
+{
+    padding:    2rem;
+}
+
+.size__default
+{
+    width: 100%;
+}
+
+.size__content
+{
+    width: auto;
 }
