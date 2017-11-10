@@ -17,9 +17,17 @@
     border-color:   var( --AC-1 );
 }
 
-.padding
+.padding__S
+{
+    padding:    1rem;
+}
+.padding__M
 {
     padding:    2rem;
+}
+.padding__L
+{
+    padding:    3rem;
 }
 
 .size__default
