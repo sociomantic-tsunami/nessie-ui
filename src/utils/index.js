@@ -49,8 +49,7 @@ const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
     return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
-const eventHandler = ( func, ...rest ) =>
-    func && ( ( ...args ) => func( ...args, ...rest ) );
+const eventHandler = ( func, ...rest ) => func && ( e => func( e, ...rest ) );
 
 
 const getComponentName = Component =>

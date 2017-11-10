@@ -1,9 +1,8 @@
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React, { Component }                    from 'react';
+import PropTypes                               from 'prop-types';
 
-import Component                   from '../proto/Component';
-import { buildClassName, mapAria } from '../utils';
-import styles                      from './inputField.css';
+import { buildClassName, generateId, mapAria } from '../utils';
+import styles                                  from './inputField.css';
 
 
 export default class InputField extends Component
@@ -114,7 +113,7 @@ export default class InputField extends Component
         if ( typeof onInput !== 'undefined' )
         {
             console.warn( '${this.constructor.name}: onInput props is \
-deprecated. Please use onChange instead.');
+deprecated. Please use onChange instead.' );
         }
     }
 
@@ -128,6 +127,7 @@ deprecated. Please use onChange instead.');
             element,
             forceHover,
             hasError,
+            id = generateId( 'InputField' ),
             inputRef,
             isDisabled,
             isReadOnly,
@@ -148,8 +148,6 @@ deprecated. Please use onChange instead.');
             type,
             value
         } = this.props;
-
-        const id = this.state.id;
 
         const InputElement = element || 'input';
 

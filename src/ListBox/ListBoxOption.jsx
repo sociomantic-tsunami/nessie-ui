@@ -1,7 +1,7 @@
 import React                                     from 'react';
 import PropTypes                                 from 'prop-types';
 
-import { Text }                                  from '../index';
+import { Icon, Text }                            from '../index';
 import { buildClassName, eventHandler, generateId, mapAria }   from '../utils';
 import styles                                    from './listBoxOption.css';
 
@@ -28,8 +28,9 @@ const ListBoxOption = ( {
     aria,
     className,
     cssMap,
-    isActive,
+    iconType,
     id = generateId( 'ListBoxOption' ),
+    isActive,
     isDisabled,
     isSelected,
     onClick,
@@ -52,6 +53,12 @@ const ListBoxOption = ( {
         onClick     = { eventHandler( onClick, id ) }
         onMouseOut  = { eventHandler( onMouseOut, id ) }
         onMouseOver = { eventHandler( onMouseOver, id ) }>
+        { iconType &&
+            <Icon
+                className = { cssMap.icon }
+                type      = { iconType }
+                variant   = "stroke" />
+        }
         { buildLabel( props ) }
     </li>
 );
