@@ -181,7 +181,7 @@ export default class CodeEditor extends Component
         Object.keys( combinedOptions ).forEach( option =>
             codeMirror.setOption( option, combinedOptions[ option ] ) );
 
-        if ( typeof value !== 'undefined' )
+        if ( typeof value !== 'undefined' && codeMirror.getValue() !== value )
         {
             codeMirror.setValue( value || '' );
         }
