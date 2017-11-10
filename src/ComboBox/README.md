@@ -1,6 +1,7 @@
 ## Component Description
 
-A combination of an text input field and a dropdown list.
+Reference implementation of a combobox: combines of an text input field and a
+dropdown list.
 
 You can implement several different UI patterns using this component, including,
 but not limited to:

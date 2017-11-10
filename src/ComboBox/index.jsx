@@ -14,8 +14,7 @@ const addPrefix    = ( str = '', prefix ) => `${prefix}-${str}`;
 const removePrefix = ( str = '', prefix ) => str.replace( `${prefix}-`, '' );
 
 const createHandler = ( func, comboId ) => func && (
-    ( proxy, event, optId ) =>
-        func( proxy, event, removePrefix( optId, comboId ) )
+    ( e, optId ) => func( e, removePrefix( optId, comboId ) )
 );
 
 const buildListBoxOptions = ( options = [], prefix = '' ) =>
@@ -43,8 +42,10 @@ const ComboBox = function ComboBox( {
     activeOption,
     forceHover,
     hasError,
+    iconType,
     id = generateId( 'ComboBox' ),
     inputRef,
+    inputType,
     inputValue,
     isDisabled,
     isOpen,
@@ -65,7 +66,7 @@ const ComboBox = function ComboBox( {
     onScroll,
     options,
     placeholder,
-    selectedOption,
+    selection,
 } )
 {
     const dropdownContent = (
@@ -79,8 +80,11 @@ const ComboBox = function ComboBox( {
                 onClickOption     = { createHandler( onClickOption, id ) }
                 onMouseOutOption  = { createHandler( onMouseOutOption, id ) }
                 onMouseOverOption = { createHandler( onMouseOverOption, id ) }
-                selectedOptions   = {
-                    selectedOption && addPrefix( selectedOption, id ) }>
+                selection         = { selection &&
+                    Array.isArray( selection ) ?
+                        selection.map( opt => addPrefix( opt, id ) ) :
+                        addPrefix( selection, id )
+                }>
                 { buildListBoxOptions( options, id ) }
             </ListBox>
         </ScrollBox>
@@ -98,10 +102,10 @@ const ComboBox = function ComboBox( {
             } }
             forceHover     = { forceHover || isOpen }
             hasError       = { hasError }
-            iconType       = "search"
+            iconType       = { iconType }
             id             = { id }
             inputRef       = { inputRef }
-            inputType      = "search"
+            inputType      = { inputType }
             isDisabled     = { isDisabled }
             isReadOnly     = { inputIsReadOnly }
             dropdownIsOpen = { isOpen }
@@ -126,19 +130,43 @@ ComboBox.propTypes =
     /*
      * Active option in dropdown list
      */
-    activeOption      : PropTypes.string,
+    activeOption : PropTypes.string,
     /**
      * Display as hover when required from another component
      */
-    forceHover        : PropTypes.bool,
+    forceHover   : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError          : PropTypes.bool,
+    hasError     : PropTypes.bool,
     /**
-     *  Display as disabled
+     *  Icon type to display
      */
-    isDisabled        : PropTypes.bool,
+    iconType     : PropTypes.oneOf( [
+        'account',
+        'add',
+        'calendar',
+        'close',
+        'delete',
+        'down',
+        'download',
+        'duplicate',
+        'edit',
+        'info',
+        'hide',
+        'inspect',
+        'left',
+        'link',
+        'preview',
+        'reset',
+        'right',
+        'search',
+        'show',
+        'up',
+        'upload',
+        'validation',
+        'none',
+    ] ),
     /**
      *  HTML id attribute (overwrite default)
      */
@@ -151,10 +179,18 @@ ComboBox.propTypes =
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
     inputRef          : PropTypes.func,
+    /**
+     * HTML type attribute for input
+     */
+    inputType         : PropTypes.string,
     /*
      * Input field value
      */
     inputValue        : PropTypes.string,
+    /**
+     *  Display as disabled
+     */
+    isDisabled        : PropTypes.bool,
     /*
      * Dropdown is open
      */
@@ -163,6 +199,10 @@ ComboBox.propTypes =
      *  HTML name attribute
      */
     name              : PropTypes.string,
+    /**
+     *  blur callback function
+     */
+    onBlur            : PropTypes.func,
     /**
      *  Input change callback function
      */
@@ -183,10 +223,6 @@ ComboBox.propTypes =
      *  focus callback function
      */
     onFocus           : PropTypes.func,
-    /**
-     *  blur callback function
-     */
-    onBlur            : PropTypes.func,
     /**
      *  mouseOver callback function
      */
@@ -226,15 +262,25 @@ ComboBox.propTypes =
     /*
      * Selected option(s) from dropdown list
      */
-    selectedOption    : PropTypes.string,
+    selection         : PropTypes.oneOfType( [
+        PropTypes.string,
+        PropTypes.objectOf( PropTypes.string ),
+    ] ),
 };
 
 ComboBox.defaultProps = {
+    activeOption      : undefined,
+    forceHover        : false,
     placeholder       : undefined,
-    isDisabled        : false,
-    inputIsReadOnly   : false,
     hasError          : false,
+    iconType          : 'none',
     id                : undefined,
+    inputIsReadOnly   : false,
+    inputRef          : undefined,
+    inputType         : 'text',
+    inputValue        : undefined,
+    isDisabled        : false,
+    isOpen            : false,
     name              : undefined,
     onChangeInput     : undefined,
     onBlur            : undefined,
@@ -243,19 +289,14 @@ ComboBox.defaultProps = {
     onKeyPress        : undefined,
     onKeyUp           : undefined,
     onFocus           : undefined,
-    onMouseOver       : undefined,
-    onMouseOut        : undefined,
-    forceHover        : false,
-    inputRef          : undefined,
-    activeOption      : undefined,
-    inputValue        : undefined,
-    isOpen            : false,
     onClickOption     : undefined,
+    onMouseOut        : undefined,
     onMouseOutOption  : undefined,
+    onMouseOver       : undefined,
     onMouseOverOption : undefined,
     onScroll          : undefined,
     options           : undefined,
-    selectedOption    : undefined,
+    selection         : undefined,
 };
 
 export default ComboBox;

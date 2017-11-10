@@ -44,7 +44,7 @@ export default class TextInputWithIcon extends Component
          */
         placeholder : PropTypes.string,
         /**
-         *  Icon type to display (overrides customIcon)
+         *  Icon type to display
          */
         iconType    : PropTypes.oneOf( [
             'account',
