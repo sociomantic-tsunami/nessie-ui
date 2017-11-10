@@ -39,14 +39,14 @@ const buildOptions = ( options = [] ) =>
             const { options: groupOptions, ...groupProps } = option;
 
             return (
-                <ListBoxOptionGroup { ...groupProps }>
+                <ListBoxOptionGroup { ...groupProps } key = { option.header }>
                     { buildOptions( groupOptions ) }
                 </ListBoxOptionGroup>
             );
         }
 
         return (
-            <ListBoxOption { ...option } />
+            <ListBoxOption { ...option } key = { option.id }/>
         );
     } );
 
