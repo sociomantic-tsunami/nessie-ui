@@ -1,7 +1,7 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { ListBox, ScrollBox }       from '../index';
+import { ListBox, ScrollBox, Text } from '../index';
 import ListBoxOption                from '../ListBox/ListBoxOption';
 import ListBoxOptionGroup           from '../ListBox/ListBoxOptionGroup';
 import TextInputWithIcon            from '../TextInputWithIcon';
@@ -40,6 +40,7 @@ const buildListBoxOptions = ( options = [], prefix = '' ) =>
 
 const ComboBox = function ComboBox( {
     activeOption,
+    dropdownPlaceholder,
     forceHover,
     hasError,
     iconType,
@@ -48,6 +49,7 @@ const ComboBox = function ComboBox( {
     inputType,
     inputValue,
     isDisabled,
+    isMultiselect,
     isOpen,
     inputIsReadOnly,
     name,
@@ -64,18 +66,19 @@ const ComboBox = function ComboBox( {
     onMouseOver,
     onMouseOverOption,
     onScroll,
-    options,
-    placeholder,
+    options = [],
+    inputPlaceholder,
     selection,
 } )
 {
-    const dropdownContent = (
+    const dropdownContent = options.length ? (
         <ScrollBox
             height   = "50vh"
             onScroll = { onScroll }>
             <ListBox
                 activeOption      = { addPrefix( activeOption, id ) }
                 id                = { addPrefix( 'listbox', id ) }
+                isMultiselect     = { isMultiselect }
                 isFocusable       = { false }
                 onClickOption     = { createHandler( onClickOption, id ) }
                 onMouseOutOption  = { createHandler( onMouseOutOption, id ) }
@@ -88,7 +91,7 @@ const ComboBox = function ComboBox( {
                 { buildListBoxOptions( options, id ) }
             </ListBox>
         </ScrollBox>
-    );
+    ) : <Text noWrap role = "subtle">{ dropdownPlaceholder }</Text>;
 
     return (
         <InputWithDropdown
@@ -109,7 +112,11 @@ const ComboBox = function ComboBox( {
             isDisabled     = { isDisabled }
             isReadOnly     = { inputIsReadOnly }
             dropdownIsOpen = { isOpen }
-            dropdownProps  = { { children: dropdownContent, hasError } }
+            dropdownProps  = { {
+                children : dropdownContent,
+                hasError,
+                padding  : options.length ? 'none' : 'S',
+            } }
             name           = { name }
             onBlur         = { onBlur }
             onChange       = { onChangeInput }
@@ -120,7 +127,7 @@ const ComboBox = function ComboBox( {
             onKeyUp        = { onKeyUp }
             onMouseOut     = { onMouseOut }
             onMouseOver    = { onMouseOver }
-            placeholder    = { placeholder }
+            placeholder    = { inputPlaceholder }
             value          = { inputValue } />
     );
 };
@@ -130,19 +137,23 @@ ComboBox.propTypes =
     /*
      * Active option in dropdown list
      */
-    activeOption : PropTypes.string,
+    activeOption        : PropTypes.string,
+    /**
+     * Placeholder text to show when no dropdown list options
+     */
+    dropdownPlaceholder : PropTypes.string,
     /**
      * Display as hover when required from another component
      */
-    forceHover   : PropTypes.bool,
+    forceHover          : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError     : PropTypes.bool,
+    hasError            : PropTypes.bool,
     /**
      *  Icon type to display
      */
-    iconType     : PropTypes.oneOf( [
+    iconType            : PropTypes.oneOf( [
         'account',
         'add',
         'calendar',
@@ -171,6 +182,10 @@ ComboBox.propTypes =
      *  HTML id attribute (overwrite default)
      */
     id                : PropTypes.string,
+    /**
+     *  Dropdown list allows multiple selection
+     */
+    isMultiselect     : PropTypes.bool,
     /**
      *  Display as read-only
      */
@@ -234,7 +249,7 @@ ComboBox.propTypes =
     /**
      *  Placeholder text
      */
-    placeholder       : PropTypes.string,
+    inputPlaceholder  : PropTypes.string,
     /*
      * On click callback funciton for input
      */
@@ -269,34 +284,37 @@ ComboBox.propTypes =
 };
 
 ComboBox.defaultProps = {
-    activeOption      : undefined,
-    forceHover        : false,
-    placeholder       : undefined,
-    hasError          : false,
-    iconType          : 'none',
-    id                : undefined,
-    inputIsReadOnly   : false,
-    inputRef          : undefined,
-    inputType         : 'text',
-    inputValue        : undefined,
-    isDisabled        : false,
-    isOpen            : false,
-    name              : undefined,
-    onChangeInput     : undefined,
-    onBlur            : undefined,
-    onClickInput      : undefined,
-    onKeyDown         : undefined,
-    onKeyPress        : undefined,
-    onKeyUp           : undefined,
-    onFocus           : undefined,
-    onClickOption     : undefined,
-    onMouseOut        : undefined,
-    onMouseOutOption  : undefined,
-    onMouseOver       : undefined,
-    onMouseOverOption : undefined,
-    onScroll          : undefined,
-    options           : undefined,
-    selection         : undefined,
+    activeOption        : undefined,
+    dropdownPlaceholder : undefined,
+    forceHover          : false,
+    inputPlaceholder    : undefined,
+    hasError            : false,
+    iconType            : 'none',
+    id                  : undefined,
+    inputIsReadOnly     : false,
+    inputRef            : undefined,
+    inputType           : 'text',
+    inputValue          : undefined,
+    isDisabled          : false,
+    isOpen              : false,
+    isMultiselect       : false,
+    name                : undefined,
+    noOptiosText        : undefined,
+    onChangeInput       : undefined,
+    onBlur              : undefined,
+    onClickInput        : undefined,
+    onKeyDown           : undefined,
+    onKeyPress          : undefined,
+    onKeyUp             : undefined,
+    onFocus             : undefined,
+    onClickOption       : undefined,
+    onMouseOut          : undefined,
+    onMouseOutOption    : undefined,
+    onMouseOver         : undefined,
+    onMouseOverOption   : undefined,
+    onScroll            : undefined,
+    options             : undefined,
+    selection           : undefined,
 };
 
 export default ComboBox;

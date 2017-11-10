@@ -5,10 +5,10 @@ import { buildClassName }   from '../utils';
 import styles               from './scrollBox.css';
 
 const createScrollHandler = func =>
-    func && ( ( e, ...args ) =>
+    func && ( e =>
     {
         const { clientHeight, scrollHeight, scrollTop } = e.target;
-        func( e, ...args, scrollTop / ( scrollHeight - clientHeight ) );
+        func( e, scrollTop / ( scrollHeight - clientHeight ) );
     } );
 
 const ScrollBox = ( {

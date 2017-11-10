@@ -78,10 +78,10 @@ const DateTimeInput = ( {
     );
 
     const dropdownProps = {
-        children    : [ datePicker, timePicker ],
+        children : [ datePicker, timePicker ],
         hasError,
-        hasPadding  : true,
-        size        : 'content',
+        padding  : 'M',
+        size     : 'content',
     };
 
     return (
