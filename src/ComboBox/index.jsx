@@ -21,11 +21,13 @@ const createHandler = ( func, comboId ) => func && (
 const buildListBoxOptions = ( options = [], prefix = '' ) =>
     options.map( ( option = {} ) =>
     {
-        if ( option.options )
+        if ( option.header )
         {
+            const { options: groupOptions, ...groupProps } = option;
+
             return (
-                <ListBoxOptionGroup title = { option.title }>
-                    { buildListBoxOptions( option.options, prefix ) }
+                <ListBoxOptionGroup { ...groupProps }>
+                    { buildListBoxOptions( groupOptions, prefix ) }
                 </ListBoxOptionGroup>
             );
         }
@@ -56,7 +58,9 @@ const ComboBox = function ComboBox( {
     onKeyDown,
     onKeyPress,
     onKeyUp,
+    onMouseOut,
     onMouseOutOption,
+    onMouseOver,
     onMouseOverOption,
     onScroll,
     options,
@@ -101,10 +105,7 @@ const ComboBox = function ComboBox( {
             isDisabled     = { isDisabled }
             isReadOnly     = { inputIsReadOnly }
             dropdownIsOpen = { isOpen }
-            dropdownProps  = { {
-                children : dropdownContent,
-                hasError
-            } }
+            dropdownProps  = { { children: dropdownContent, hasError } }
             name           = { name }
             onBlur         = { onBlur }
             onChange       = { onChangeInput }
@@ -113,6 +114,8 @@ const ComboBox = function ComboBox( {
             onKeyDown      = { onKeyDown }
             onKeyPress     = { onKeyPress }
             onKeyUp        = { onKeyUp }
+            onMouseOut     = { onMouseOut }
+            onMouseOver    = { onMouseOver }
             placeholder    = { placeholder }
             value          = { inputValue } />
     );
@@ -120,26 +123,46 @@ const ComboBox = function ComboBox( {
 
 ComboBox.propTypes =
 {
+    /*
+     * Active option in dropdown list
+     */
+    activeOption      : PropTypes.string,
     /**
      * Display as hover when required from another component
      */
     forceHover        : PropTypes.bool,
     /**
+     *  Display as error/invalid
+     */
+    hasError          : PropTypes.bool,
+    /**
      *  Display as disabled
      */
     isDisabled        : PropTypes.bool,
+    /**
+     *  HTML id attribute (overwrite default)
+     */
+    id                : PropTypes.string,
     /**
      *  Display as read-only
      */
     inputIsReadOnly   : PropTypes.bool,
     /**
-     *  Display as error/invalid
+     * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    hasError          : PropTypes.bool,
+    inputRef          : PropTypes.func,
+    /*
+     * Input field value
+     */
+    inputValue        : PropTypes.string,
+    /*
+     * Dropdown is open
+     */
+    isOpen            : PropTypes.bool,
     /**
-     *  HTML id attribute (overwrite default)
+     *  HTML name attribute
      */
-    id                : PropTypes.string,
+    name              : PropTypes.string,
     /**
      *  Input change callback function
      */
@@ -176,33 +199,20 @@ ComboBox.propTypes =
      *  Placeholder text
      */
     placeholder       : PropTypes.string,
-
-    /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef          : PropTypes.func,
     /*
-     * Active option in dropdown list
+     * On click callback funciton for input
      */
-    activeOption      : PropTypes.string,
+    onClickInput      : PropTypes.func,
     /*
-     * Input field value
-     */
-    inputValue        : PropTypes.string,
-    /*
-     * Dropdown is open
-     */
-    isOpen            : PropTypes.bool,
-    /*
-     * On click dropdown option
+     * On click callback function for doropdown option
      */
     onClickOption     : PropTypes.func,
     /*
-     * On mouse out dropdown option
+     * On mouse out callback function for dropdown option
      */
     onMouseOutOption  : PropTypes.func,
     /*
-     * On mouse over dropdown option
+     * On mouse over callback function for dropdown option
      */
     onMouseOverOption : PropTypes.func,
     /*
@@ -225,8 +235,10 @@ ComboBox.defaultProps = {
     inputIsReadOnly   : false,
     hasError          : false,
     id                : undefined,
+    name              : undefined,
     onChangeInput     : undefined,
     onBlur            : undefined,
+    onClickInput      : undefined,
     onKeyDown         : undefined,
     onKeyPress        : undefined,
     onKeyUp           : undefined,
