@@ -25,7 +25,7 @@ const buildListBoxOptions = ( options = [], prefix = '' ) =>
             const { options: groupOptions, ...groupProps } = option;
 
             return (
-                <ListBoxOptionGroup { ...groupProps }>
+                <ListBoxOptionGroup { ...groupProps } key = { option.header }>
                     { buildListBoxOptions( groupOptions, prefix ) }
                 </ListBoxOptionGroup>
             );
@@ -34,7 +34,8 @@ const buildListBoxOptions = ( options = [], prefix = '' ) =>
         return (
             <ListBoxOption
                 { ...option }
-                id = { option.id && addPrefix( option.id, prefix ) } />
+                id  = { option.id && addPrefix( option.id, prefix ) }
+                key = { option.id } />
         );
     } );
 
