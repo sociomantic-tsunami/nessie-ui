@@ -99,7 +99,7 @@ module.exports = Object.assign( {}, baseConfig, {
         extensions : [ '.js', '.jsx' ],
         alias      :
         {
-            'nessie-ui'     : `${defaultSettings.srcPath}/index`,
+            'nessie'        : `${defaultSettings.srcPath}/index`,
             componentDriver : `${defaultSettings.srcPath}/Testing/index`,
             fonts           : `${defaultSettings.srcPath}/proto/webfonts/`
         }

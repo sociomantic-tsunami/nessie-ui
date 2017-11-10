@@ -1,5 +1,5 @@
 import InputComponentDriver from '../Testing/CommonDrivers/inputComponentDriver';
-import { IconWithTooltip }  from 'nessie-ui';
+import { IconWithTooltip }  from 'nessie';
 
 export default class TextInputWithIconDriver extends InputComponentDriver
 {

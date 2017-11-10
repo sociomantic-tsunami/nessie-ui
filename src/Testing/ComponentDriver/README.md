@@ -49,7 +49,7 @@ The driver suite links the components to their drivers. It looks like this:
 
 
 ```es6
-import { ComponentDriver } from 'nessie-ui/dist/componentDriver'; // just 'componentDriver' within Nessie
+import { ComponentDriver } from 'nessie/dist/componentDriver'; // just 'componentDriver' within Nessie
 import Module from 'path/to/module';
 import ModuleDriver from 'path/to/module/driver';
 
@@ -72,7 +72,7 @@ the enzyme extension to use drivers.
 
 ```es6
 import * as enzyme from 'enzyme';
-import { ComponentDriver } from 'nessie-ui/dist/componentDriver'; // just 'componentDriver' within Nessie
+import { ComponentDriver } from 'nessie/dist/componentDriver'; // just 'componentDriver' within Nessie
 import driverSuite from 'path/to/driver/suite';
 
 // Extend enzyme's API to make drivers available.

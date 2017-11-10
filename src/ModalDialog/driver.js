@@ -1,4 +1,4 @@
-import { IconButton } from 'nessie-ui';
+import { IconButton } from 'nessie';
 
 import SimpleComponentDriver
     from '../Testing/CommonDrivers/simpleComponentDriver';

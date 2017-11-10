@@ -45,9 +45,9 @@ const commonJsConfig = Object.assign( {}, baseConfig, {
 
     externals :
     {
-        'nessie-ui' : 'nessie-ui/dist/index.js',
+        'nessie' : 'nessie/dist/index.js',
 
-        'componentDriver' : 'nessie-ui/dist/componentDriver.js',
+        'componentDriver' : 'nessie/dist/componentDriver.js',
 
         'prop-types' :
         {

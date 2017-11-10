@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-len
 import ClickableComponentDriver
     from '../Testing/CommonDrivers/clickableComponentDriver';
-import { NavItem, NavDropdown } from 'nessie-ui';
+import { NavItem, NavDropdown } from 'nessie';
 export default class NavItemDriver extends ClickableComponentDriver
 {
     constructor( wrapper )
