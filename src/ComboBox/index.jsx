@@ -6,17 +6,16 @@ import ListBoxOption                from '../ListBox/ListBoxOption';
 import ListBoxOptionGroup           from '../ListBox/ListBoxOptionGroup';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Dropdown/withDropdown';
-import { generateId }               from '../utils';
+import { deepPure, generateId }     from '../utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 const addPrefix    = ( str = '', prefix ) => `${prefix}-${str}`;
 const removePrefix = ( str = '', prefix ) => str.replace( `${prefix}-`, '' );
 
-const createHandler = ( func, comboId ) => func && (
-    ( proxy, event, optId ) =>
-        func( proxy, event, removePrefix( optId, comboId ) )
-);
+
+const PureListBoxOption      = deepPure( ListBoxOption );
+const PureListBoxOptionGroup = deepPure( ListBoxOptionGroup );
 
 const buildListBoxOptions = ( options = [], prefix = '' ) =>
     options.map( ( option = {} ) =>
