@@ -1,21 +1,21 @@
 import React, { Component }         from 'react';
 import PropTypes                    from 'prop-types';
-import { pure }                     from 'recompose';
 
 import { ListBox, ScrollBox, Text } from '../index';
 import ListBoxOption                from '../ListBox/ListBoxOption';
 import ListBoxOptionGroup           from '../ListBox/ListBoxOptionGroup';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Dropdown/withDropdown';
-import { generateId }               from '../utils';
+import { deepPure, generateId }     from '../utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 const addPrefix    = ( str = '', prefix ) => `${prefix}-${str}`;
 const removePrefix = ( str = '', prefix ) => str.replace( `${prefix}-`, '' );
 
-const PureListBoxOption      = pure( ListBoxOption );
-const PureListBoxOptionGroup = pure( ListBoxOptionGroup );
+
+const PureListBoxOption      = deepPure( ListBoxOption );
+const PureListBoxOptionGroup = deepPure( ListBoxOptionGroup );
 
 const buildListBoxOptions = ( options = [], prefix = '' ) =>
     options.map( ( option = {} ) =>

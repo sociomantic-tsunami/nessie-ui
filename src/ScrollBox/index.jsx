@@ -38,7 +38,7 @@ ScrollBox.propTypes =
     /**
      *  ScrollBox height, specified in rem units
      */
-    height   : PropTypes.number,
+    height   : PropTypes.string,
     /**
      *  on scroll callback function
      */

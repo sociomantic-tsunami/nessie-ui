@@ -1,3 +1,6 @@
+import React, { Component } from 'react';
+import isEqual              from 'lodash.isequal';
+
 const CSS_MODIFIER  = '__';
 const CSS_SEPARATOR = '  ';
 
@@ -49,11 +52,23 @@ const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
     return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
+const deepPure = Comp => class DeepPure extends Component
+{
+    shouldComponentUpdate( nextProps )
+    {
+        return !isEqual( this.props, nextProps );
+    }
+    render()
+    {
+        return <Comp { ...this.props } />;
+    }
+};
+
 const eventHandler = ( func, ...rest ) => func && ( e => func( e, ...rest ) );
 
 
-const getComponentName = Component =>
-    Component.displayName || Component.name || 'Component';
+const getComponentName = Comp =>
+    Comp.displayName || Comp.name || 'Component';
 
 
 const generateId = componentName =>
@@ -76,11 +91,20 @@ const mapAria = ( ariaObj = {} ) =>
     return res;
 };
 
-export { buildClassName, buildDisplayName, eventHandler, generateId, mapAria };
+
+export {
+    buildClassName,
+    buildDisplayName,
+    deepPure,
+    eventHandler,
+    generateId,
+    mapAria,
+};
 
 export default {
     buildClassName,
     buildDisplayName,
+    deepPure,
     eventHandler,
     generateId,
     mapAria
