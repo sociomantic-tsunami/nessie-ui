@@ -51,6 +51,10 @@ $shark: 768px;
     /*}*/
 }
 
+.rowHeader
+{
+    @extend %Nessie-Bold;
+}
 
 .data
 {
@@ -60,4 +64,10 @@ $shark: 768px;
     {
         @extend %Nessie-Bold;
     }
+}
+
+.sticky
+{
+    position:    sticky;
+    left:        0;
 }

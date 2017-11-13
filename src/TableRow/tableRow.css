@@ -1,7 +1,10 @@
+@import "../proto/definitions/_colors.css";
+
 $shark: 768px;
 
 .default
 {
+    background-color:     var( --PC-WHITE );
     & > *
     {
 	   margin:	1rem 0;
@@ -11,6 +14,13 @@ $shark: 768px;
     {
         margin-top: 0;
     }
+}
+
+.sticky
+{
+    position:    sticky;
+    top:         0;
+    z-index:     1;
 }
 
 @media( min-width: $shark )
