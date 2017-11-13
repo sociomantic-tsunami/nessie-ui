@@ -17,11 +17,13 @@ const ScrollBox = ( {
     children,
     height,
     onScroll,
-    scroll
+    scrollBoxRef,
+    scroll,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, { scroll } ) }
         onScroll  = { createScrollHandler( onScroll ) }
+        ref       = { scrollBoxRef }
         style     = { { maxHeight: height ? `${height}` : null } }>
         { children }
     </div>
