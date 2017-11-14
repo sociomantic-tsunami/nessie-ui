@@ -1,45 +1,20 @@
+/* global document */
+
 import React, { Component }         from 'react';
 import PropTypes                    from 'prop-types';
 
-import { ListBox, ScrollBox, Text } from '../index';
-import ListBoxOption                from '../ListBox/ListBoxOption';
-import ListBoxOptionGroup           from '../ListBox/ListBoxOptionGroup';
+import { ScrollBox, Text }          from '../index';
+import ListBox                      from '../ListBox';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Dropdown/withDropdown';
-import { deepPure, generateId }     from '../utils';
+import { generateId }               from '../utils';
+import {
+    addPrefix,
+    buildListBoxOptions,
+    removePrefix,
+} from './utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
-
-const addPrefix    = ( str = '', prefix ) => `${prefix}-${str}`;
-const removePrefix = ( str = '', prefix ) => str.replace( `${prefix}-`, '' );
-
-
-const PureListBoxOption      = deepPure( ListBoxOption );
-const PureListBoxOptionGroup = deepPure( ListBoxOptionGroup );
-
-const buildListBoxOptions = ( options = [], prefix = '' ) =>
-    options.map( ( option = {} ) =>
-    {
-        if ( option.header )
-        {
-            const { options: groupOptions, ...groupProps } = option;
-
-            return (
-                <PureListBoxOptionGroup
-                    { ...groupProps }
-                    key = { option.header }>
-                    { buildListBoxOptions( groupOptions, prefix ) }
-                </PureListBoxOptionGroup>
-            );
-        }
-
-        return (
-            <PureListBoxOption
-                { ...option }
-                id  = { option.id && addPrefix( option.id, prefix ) }
-                key = { option.id } />
-        );
-    } );
 
 
 export default class ComboBox extends Component
@@ -229,13 +204,14 @@ export default class ComboBox extends Component
         selection           : undefined,
     };
 
-    constructor( props )
+    constructor()
     {
-        super( props );
+        super();
 
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
+        this.setRef                = this.setRef.bind( this );
     }
 
     componentDidUpdate()
@@ -269,6 +245,14 @@ export default class ComboBox extends Component
         }
     }
 
+    setRef( ref )
+    {
+        if ( ref )
+        {
+            this.scrollBox = ref;
+        }
+    }
+
     handleClickOption( e, optId )
     {
         const { id, onClickOption } = this.props;
@@ -295,6 +279,7 @@ export default class ComboBox extends Component
             onMouseOverOption( e, removePrefix( optId, id ) );
         }
     }
+
 
     render()
     {
@@ -332,7 +317,7 @@ export default class ComboBox extends Component
             <ScrollBox
                 height       = "50vh"
                 onScroll     = { onScroll }
-                scrollBoxRef = { ref => this.scrollBox = ref }>
+                scrollBoxRef = { this.setRef }>
                 <ListBox
                     activeOption      = { addPrefix( activeOption, id ) }
                     id                = { addPrefix( 'listbox', id ) }
@@ -341,11 +326,7 @@ export default class ComboBox extends Component
                     onClickOption     = { this.handleClickOption }
                     onMouseOutOption  = { this.handleMouseOutOption }
                     onMouseOverOption = { this.handleMouseOverOption }
-                    selection         = { selection &&
-                        Array.isArray( selection ) ?
-                            selection.map( opt => addPrefix( opt, id ) ) :
-                            addPrefix( selection, id )
-                    }>
+                    selection         = { addPrefix( selection, id ) }>
                     { buildListBoxOptions( options, id ) }
                 </ListBox>
             </ScrollBox>
