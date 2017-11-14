@@ -74,6 +74,7 @@ const getComponentName = Comp =>
 const generateId = componentName =>
     `${componentName}${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
 
+const killFocus = e => e.preventDefault();
 
 const mapAria = ( ariaObj = {} ) =>
 {
@@ -98,6 +99,7 @@ export {
     deepPure,
     eventHandler,
     generateId,
+    killFocus,
     mapAria,
 };
 
@@ -107,5 +109,6 @@ export default {
     deepPure,
     eventHandler,
     generateId,
+    killFocus,
     mapAria
 };

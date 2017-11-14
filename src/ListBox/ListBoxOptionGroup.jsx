@@ -5,7 +5,7 @@ import { Text }                     from '../index';
 import { buildClassName, mapAria }  from '../utils';
 import styles                       from './listBoxOptionGroup.css';
 
-const ListBoxOption = ( {
+const ListBoxOptionGroup = ( {
     aria,
     children,
     className,
@@ -27,7 +27,7 @@ const ListBoxOption = ( {
     </li>
 );
 
-ListBoxOption.propTypes = {
+ListBoxOptionGroup.propTypes = {
     aria      : PropTypes.objectOf( PropTypes.string ),
     children  : PropTypes.node,
     className : PropTypes.string,
@@ -36,7 +36,7 @@ ListBoxOption.propTypes = {
     title     : PropTypes.string,
 };
 
-ListBoxOption.defaultProps = {
+ListBoxOptionGroup.defaultProps = {
     aria      : undefined,
     children  : undefined,
     className : undefined,
@@ -45,4 +45,4 @@ ListBoxOption.defaultProps = {
     title     : undefined,
 };
 
-export default ListBoxOption;
+export default ListBoxOptionGroup;
