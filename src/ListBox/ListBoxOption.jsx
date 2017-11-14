@@ -20,6 +20,7 @@ const ListBoxOption = ( {
     className,
     cssMap,
     description,
+    iconSize,
     iconType,
     id = generateId( 'ListBoxOption' ),
     isActive,
@@ -48,6 +49,7 @@ const ListBoxOption = ( {
         { ( iconType && iconType !== 'none' ) &&
             <Icon
                 className = { cssMap.icon }
+                size      = { iconSize || description ? 'M' : 'S'  }
                 type      = { iconType }
                 variant   = "stroke" />
         }
@@ -67,6 +69,7 @@ ListBoxOption.propTypes = {
     className   : PropTypes.string,
     cssMap      : PropTypes.objectOf( PropTypes.string ),
     description : PropTypes.string,
+    iconSize    : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
     iconType    : PropTypes.oneOf( [
         'account',
         'add',
@@ -115,6 +118,7 @@ ListBoxOption.defaultProps = {
     className   : undefined,
     cssMap      : styles,
     description : undefined,
+    iconSize    : undefined,
     iconType    : 'none',
     isActive    : false,
     id          : undefined,
