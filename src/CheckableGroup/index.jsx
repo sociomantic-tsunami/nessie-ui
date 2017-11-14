@@ -6,17 +6,6 @@ import Css          from '../hoc/Css';
 import Fieldset     from '../Fieldset';
 
 
-const filterCheckable = ( node ) =>
-{
-    const _node = React.Children.toArray( node );
-
-    const isCheckable = ( child ) => React.isValidElement( child ) &&
-        typeof child.props.isChecked === 'boolean';
-
-    return _node.filter( isCheckable );
-};
-
-
 export default class CheckableGroup extends Component
 {
     static propTypes =
@@ -108,7 +97,7 @@ export default class CheckableGroup extends Component
 
         const name = name || this.state.id;
 
-        const items = filterCheckable( children ).map( ( child ) =>
+        const items = React.Children.toArray( children ).map( ( child ) =>
             React.cloneElement( child, {
                 ...child.props,
                 isReadOnly : isReadOnly || child.props.isReadOnly,

@@ -5,12 +5,6 @@ import NessieComponent      from '../proto/Component';
 import TabButton            from '../TabButton';
 
 
-const isTab = node => React.isValidElement( node )
-    && node.type.name === 'Tab';
-
-const filterTabs = node => React.Children.toArray( node )
-    .filter( isTab );
-
 export default class Tabs extends NessieComponent
 {
     static propTypes =
@@ -88,7 +82,7 @@ export default class Tabs extends NessieComponent
             cssMap
         } = this.props;
 
-        const tabs   = filterTabs( children );
+        const tabs   = React.Children.toArray( children );
         const header = this.renderHeader( tabs );
 
         const content = tabs[ activeTabIndex ];

@@ -4,15 +4,10 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import NavList              from '..//NavList';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
-
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
 
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
-    const dropdownItems = filterNavItems( children ).map( child =>
+    const dropdownItems = React.Children.toArray( children ).map( child =>
     React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
     return (

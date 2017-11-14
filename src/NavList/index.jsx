@@ -3,12 +3,6 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
-
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
-
 const NavList = ( { children, className, cssMap, layout } ) =>
 {
     return (
@@ -16,7 +10,7 @@ const NavList = ( { children, className, cssMap, layout } ) =>
             cssMap   = { cssMap }
             cssProps = { { layout } }>
             <ul className = { className }>
-                { filterNavItems( children ) }
+                { children }
             </ul>
         </Css>
     );

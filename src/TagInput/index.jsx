@@ -7,11 +7,6 @@ import InputContainer   from '../proto/InputContainer';
 import Tag              from '../Tag';
 
 
-const isTag = node => React.isValidElement( node ) && node.type.name === 'Tag';
-
-const filterTags = node => React.Children.toArray( node ).filter( isTag );
-
-
 const buildTagsFromStrings = ( strings = [] ) =>
     strings.map( string => <Tag key = { string } label = { string } /> );
 
@@ -146,7 +141,7 @@ export default class TagInput extends Component
 
         const { id, isFocused } = this.state;
 
-        const tagItems = children ? filterTags( children ) :
+        const tagItems = children ? React.Children.toArray( children ) :
             buildTagsFromStrings( tags );
 
         const updatedTagItems = tagItems.map( tag =>
