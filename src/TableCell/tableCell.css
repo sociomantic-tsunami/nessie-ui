@@ -1,9 +1,11 @@
 @import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/_colors.css";
 
 $shark: 768px;
 
 .default
 {
+    background-color:     var( --PC-WHITE );
     /*flex-direction: row;*/
 
     &::before
@@ -54,6 +56,7 @@ $shark: 768px;
 .rowHeader
 {
     @extend %Nessie-Bold;
+    z-index:            1;
 }
 
 .data
@@ -69,5 +72,12 @@ $shark: 768px;
 .sticky
 {
     position:    sticky;
-    left:        0;
+    left:        -30px;
+}
+
+.stickyFixed
+{
+    position:    sticky;
+    left:        -30px;
+    z-index:     1
 }

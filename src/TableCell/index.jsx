@@ -17,6 +17,7 @@ const TableCell = ( {
     isDataTable,
     isSortable,
     isSticky,
+    isStickyFixed,
     onToggle,
     size,
     sort,
@@ -40,10 +41,11 @@ const TableCell = ( {
         <Css
             cssMap   = { cssMap }
             cssProps = { {
-                header    : isHeader,
-                rowHeader : isRowHeader,
-                data      : isDataTable,
-                sticky    : isSticky
+                header      : isHeader,
+                rowHeader   : isRowHeader,
+                data        : isDataTable,
+                sticky      : isSticky,
+                stickyFixed : isStickyFixed
             } }>
             <Column
                 className     = { className }

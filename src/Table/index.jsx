@@ -24,17 +24,16 @@ const buildTableFromValues = ( values = [], rows = [], stickyHeaderRow  ) =>
                 isRowHeader
                 isSticky = { stickyHeaderRow }
                 size = { rows[ i ].size }
-                key  = { i } // eslint-disable-line react/no-array-index-key, max-len
+                key  = { `header_${i}` } // eslint-disable-line react/no-array-index-key, max-len
             >
                 { rowTitleText }
             </TableCell>
             );
         }
-
         return (
             // eslint-disable-next-line react/no-array-index-key
             <TableRow key = { i }>
-                { rows.length && headerRow }
+                { headerRow }
                 {
                     row.map( ( col, j ) =>
                     // eslint-disable-next-line react/no-array-index-key
@@ -66,8 +65,8 @@ const Table = ( {
             isSticky = { stickyHeader }
             verticalAlign = "middle"
             className = { cssMap.row }>
-            { rows.length &&
-                <TableCell isHeader size = { rows[ 0 ].size } />
+            { rows.length > 0 &&
+                <TableCell isHeader isStickyFixed size = { rows[ 0 ].size } />
             }
             { columns.map( ( column, index ) =>
             {
@@ -101,10 +100,12 @@ const Table = ( {
             {
                 children : cells.map( ( cell, index ) =>
                 {
-                    if ( typeof columns[ index ] === 'object' )
+                    const columnIndex = rows.length ? index - 1 : index;
+
+                    if ( typeof columns[ columnIndex ] === 'object' )
                     {
-                        const title = columns[ index ].title;
-                        const size  = columns[ index ].size;
+                        const title = columns[ columnIndex ].title;
+                        const size  = columns[ columnIndex ].size;
 
                         return React.cloneElement( cell,
                             {
