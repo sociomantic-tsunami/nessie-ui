@@ -1,3 +1,5 @@
+@import '../proto/definitions/_fonts.css';
+
 .default
 {
     display:    block;
@@ -7,11 +9,12 @@
     .title
     {
         padding:    1rem;
+        cursor:     default;
     }
 
     .titleText
     {
-        font-weight:    bold;
+        @extend %Nessie-Bold;
     }
 
     .options

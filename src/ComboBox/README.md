@@ -12,7 +12,7 @@ but not limited to:
 The implementation of the above is determined by the event handling behavior
 provided by the consumer in the host app.
 
-## Recommended Implementations
+## Recommended Implementations (WIP)
 
 The following recommendations are based on [WAI-ARIA Authoring Practices 1.1](https://w3c.github.io/aria-practices/#combobox)
 with some modifications.
@@ -74,3 +74,9 @@ When the ComboBox `isOpen` the recommended behavior is:
 
 
 ### Text input with autocomplete
+
+TBC
+
+### Search dropdown
+
+TBC
