@@ -9,11 +9,24 @@ import Fieldset     from '../Fieldset';
 const filterCheckable = ( node ) =>
 {
     const _node = React.Children.toArray( node );
+    let warning = false;
 
-    const isCheckable = ( child ) => React.isValidElement( child ) &&
-        typeof child.props.isChecked === 'boolean';
+    _node.forEach( child  =>
+    {
+        if ( !( React.isValidElement( child ) &&
+        typeof child.props.isChecked === 'boolean' ) )
+        {
+            warning = true;
+        }
+    } );
 
-    return _node.filter( isCheckable );
+    if ( warning )
+    {
+        console.warn( 'CheckableGroup should be \
+provided with Checkboxes and not other elements' );
+    }
+
+    return _node;
 };
 
 

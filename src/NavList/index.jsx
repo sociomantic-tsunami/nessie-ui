@@ -3,11 +3,29 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
 
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
+const filterNavItems = ( node ) =>
+{
+    const _node = React.Children.toArray( node );
+    let warning = false;
+
+    _node.forEach( child =>
+    {
+        if ( !( React.isValidElement( child )
+        && child.type.name === 'NavItem' ) )
+        {
+            warning = true;
+        }
+    } );
+
+    if ( warning )
+    {
+        console.warn( 'NavList should be \
+provided with NavItems and not other elements' );
+    }
+
+    return _node;
+};
 
 const NavList = ( { children, className, cssMap, layout } ) =>
 {
