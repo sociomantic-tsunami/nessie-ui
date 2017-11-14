@@ -66,7 +66,10 @@ const Table = ( {
             verticalAlign = "middle"
             className = { cssMap.row }>
             { rows.length > 0 &&
-                <TableCell isHeader isStickyFixed size = { rows[ 0 ].size } />
+                <TableCell
+                    isHeader
+                    isStickyFixed = { stickyHeaderRow }
+                    size = { rows[ 0 ].size } />
             }
             { columns.map( ( column, index ) =>
             {
