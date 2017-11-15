@@ -1,27 +1,6 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 
-$moduleSpacing:  3rem;
-
-
-%module-highlight
-{
-    display:            block;
-    content:            '';
-    position:           absolute;
-
-    left:               0;
-    top:                0;
-
-    height:             100% ;
-    width:              100%;
-
-    background:         var(  --GS-9  );
-
-    opacity:            0;
-    transition:         opacity 200ms ease-in-out;
-}
-
 .default
 {
     /* this needs to be a flex column for vertical alignment
@@ -29,56 +8,18 @@ $moduleSpacing:  3rem;
     display:        flex;
     flex-direction: column;
 
-    margin-bottom:  $moduleSpacing;
-
     background:     var( --PC-WHITE );
 
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
-
-    .default /* nested module */
-    {
-
-        margin-top: 2rem;
-
-        /* negate the module spacing when collapsed submodules are stacked */
-        &.default + .default
-        {
-            margin-top: -$moduleSpacing;
-        }
-    }
-}
-
-.level__2
-{
-    & > .header + .content
-    {
-        padding-top:    1rem;
-    }
-}
-
-.level__3,
-.level__4
-{
-    & > .header,
-    & > .content
-    {
-        padding-top:    2rem;
-        padding-bottom: 2rem;
-    }
 }
 
 .collapsible
 {
     & > .header
     {
-        cursor: pointer;
-
-        &::before
-        {
-            @extend %module-highlight;
-            transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            opacity:    1;
-        }
+        cursor:     pointer;
+        background: var(  --GS-11  );
+        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
     }
 }
 
@@ -91,18 +32,15 @@ $moduleSpacing:  3rem;
         padding-bottom:     3rem;
         margin-bottom:      0;
 
-        &::before
-        {
-            transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            opacity:    0;
-            height:     100%;
-        }
+        background: var(  --GS-11  );
+        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
+        height:     100%;
     }
 
-    &:hover > .header::before
+    &:hover > .header
     {
-        opacity:    1;
-        transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
+        background: transparent;
+        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
     }
     .content
     {
@@ -110,69 +48,19 @@ $moduleSpacing:  3rem;
     }
 }
 
-.error
-{
-    & > .header::before
-    {
-        @extend %module-highlight;
-        opacity:            1;
-        background-color:   var( --AC-2 );
-    }
-}
-
 .moduleError
 {
-    &::before
+    & > .header
     {
-        content:            '';
-        position:           absolute;
-
-        left:               0;
-        top:                0;
-
-        height:             calc( 100% );
-        width:              0.6rem;
-
         background-color:   var( --AC-2 );
-        transition:         opacity 0.1s ease-in-out, opacity 200ms ease-in-out;
-
-    }
-}
-
-.subtleHighlight
-{
-    .header::before
-    {
-        display:            none;
-
-    }
-
-    &::before
-    {
-        @extend %module-highlight;
-        height:             100%;
-        background:         var( --PC-GREY );
-        opacity:            1;
-        left:               -3rem;
-
-    }
-
-    &.collapsed::before
-    {
-
-        opacity:            0;
-    }
-
-    &.collapsed:hover::before
-    {
-        transition:         height 200ms ease-in-out, opacity 200ms ease-in-out;
-        opacity:            1;
-
     }
 }
 
 .header
 {
+    background:         var(  --PC-WHITE  );
+    transition:         background-color 200ms ease-in-out;
+
     position:           relative;
 
     display:            flex;
