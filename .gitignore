@@ -21,10 +21,6 @@ node_modules/
 *.o
 *.so
 
-# Build #
-#########
-dist/
-
 # happypack #
 ############
 .happypack/
