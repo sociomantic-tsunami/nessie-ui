@@ -14,17 +14,13 @@ $moduleSpacing:  3rem;
     top:                0;
 
     height:             100% ;
-    width:              0.6rem;
+    width:              100%;
 
-    background:         var( --PC-BLUE );
+    background:         var(  --GS-9  );
 
     opacity:            0;
     transition:         opacity 200ms ease-in-out;
 }
-
-
-
-
 
 .default
 {
@@ -41,25 +37,8 @@ $moduleSpacing:  3rem;
 
     .default /* nested module */
     {
-        box-shadow: none;
 
-        .content,
-        .header
-        {
-            padding:    2rem 0;
-        }
-
-        .header
-        {
-            &::before
-            {
-                left:   -3rem;
-            }
-        }
-        .controls
-        {
-            right:  0;
-        }
+        margin-top: 2rem;
 
         /* negate the module spacing when collapsed submodules are stacked */
         &.default + .default
@@ -67,7 +46,6 @@ $moduleSpacing:  3rem;
             margin-top: -$moduleSpacing;
         }
     }
-
 }
 
 .level__2
@@ -161,9 +139,6 @@ $moduleSpacing:  3rem;
     }
 }
 
-
-
-
 .subtleHighlight
 {
     .header::before
@@ -195,14 +170,6 @@ $moduleSpacing:  3rem;
 
     }
 }
-
-
-
-
-
-
-
-
 
 .header
 {
