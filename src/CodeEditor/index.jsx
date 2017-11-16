@@ -233,7 +233,7 @@ export default class CodeEditor extends Component
         const { onChange } = this.props;
         if ( onChange )
         {
-            onChange( cm );
+            onChange( cm.getValue() );
         }
     }
 
