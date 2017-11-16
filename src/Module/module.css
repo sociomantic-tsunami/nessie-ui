@@ -17,48 +17,44 @@
 {
     & > .header
     {
+        background: var( --GS-11 );
         cursor:     pointer;
-        background: var(  --GS-11  );
-        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
     }
 }
 
 .collapsed
 {
-    padding-bottom:  0;
-
-    & > .header
+    & .header
     {
-        padding-bottom:     3rem;
-        margin-bottom:      0;
+        background:         transparent;
 
-        background: var(  --GS-11  );
-        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
-        height:     100%;
+        &:hover
+        {
+            background: var( --GS-11 );
+        }
     }
 
-    &:hover > .header
-    {
-        background: transparent;
-        transition: height 200ms ease-in-out, background-color 200ms ease-in-out;
-    }
     .content
     {
+        background: var( --GS-11 );
         display:    none;
     }
+
 }
 
 .moduleError
 {
-    & > .header
+    border-left: 0.5rem solid var( --AC-1 );
+
+    & > .header, .content
     {
-        background-color:   var( --AC-2 );
+        padding-left: 2.5rem
     }
 }
 
 .header
 {
-    background:         var(  --PC-WHITE  );
+    background:         transparent;
     transition:         background-color 200ms ease-in-out;
 
     position:           relative;
