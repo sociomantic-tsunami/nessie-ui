@@ -10,13 +10,13 @@ const Dropdown = ( {
     className,
     cssMap,
     hasError,
-    hasPadding,
+    padding,
     size
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
-            error   : hasError,
-            padding : hasPadding,
+            error : hasError,
+            padding,
             size,
         } ) }>
         { children }
@@ -24,21 +24,21 @@ const Dropdown = ( {
 );
 
 Dropdown.propTypes = {
-    children   : PropTypes.node,
-    className  : PropTypes.string,
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
-    hasError   : PropTypes.bool,
-    hasPadding : PropTypes.bool,
-    size       : PropTypes.oneOf( [ 'content', 'default' ] ),
+    children  : PropTypes.node,
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    hasError  : PropTypes.bool,
+    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
 };
 
 Dropdown.defaultProps = {
-    children   : undefined,
-    className  : undefined,
-    cssMap     : styles,
-    hasError   : false,
-    hasPadding : false,
-    size       : 'default',
+    children  : undefined,
+    className : undefined,
+    cssMap    : styles,
+    hasError  : false,
+    padding   : 'none',
+    size      : 'default',
 };
 
 export default Dropdown;

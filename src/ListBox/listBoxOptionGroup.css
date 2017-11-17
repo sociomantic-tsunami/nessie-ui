@@ -6,13 +6,13 @@
     margin:     0;
     padding:    0;
 
-    .title
+    .header
     {
         padding:    1rem;
         cursor:     default;
     }
 
-    .titleText
+    .headerText
     {
         @extend %Nessie-Bold;
     }
