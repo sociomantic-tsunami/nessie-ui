@@ -11,16 +11,16 @@ const ListBoxOptionGroup = ( {
     className,
     cssMap,
     options,
-    title,
+    header,
 } ) => (
     <li
         { ...mapAria( { ...aria, role: 'none' } ) }
         className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.title }>
-            <Text className = { cssMap.titleText }>{ title }</Text>
+        <div className = { cssMap.header }>
+            <Text className = { cssMap.headerText }>{ header }</Text>
         </div>
         <ul
-            { ...mapAria( { expanded: true, label: title, role: 'group' } ) }
+            { ...mapAria( { expanded: true, label: header, role: 'group' } ) }
             className = { cssMap.options }>
             { children || options }
         </ul>
@@ -33,7 +33,7 @@ ListBoxOptionGroup.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     options   : PropTypes.arrayOf( PropTypes.object ),
-    title     : PropTypes.string,
+    header    : PropTypes.string,
 };
 
 ListBoxOptionGroup.defaultProps = {
@@ -42,7 +42,7 @@ ListBoxOptionGroup.defaultProps = {
     className : undefined,
     cssMap    : styles,
     options   : undefined,
-    title     : undefined,
+    header    : undefined,
 };
 
 export default ListBoxOptionGroup;
