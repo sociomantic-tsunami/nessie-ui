@@ -17,8 +17,7 @@ const buildTableFromValues = ( cssMap, values = [] ) =>
                     row.map( ( col, j ) =>
                         // eslint-disable-next-line react/no-array-index-key
                         <TableCell
-                            key       = { j }
-                            className = { cssMap.tableCell } >
+                            key       = { j }>
                             <Text>{ col }</Text>
                         </TableCell>
                     )
@@ -80,6 +79,7 @@ const Table = ( {
 
                         return React.cloneElement( cell,
                             {
+                                className   : cssMap.cell,
                                 columnTitle : title ||
                                 cell.props.columnTitle,
                                 size : size || cell.props.size

@@ -10,7 +10,7 @@
 {
 	.row:nth-child(even)
 	{
-        .tableCell
+        .cell
         {
             background-color: var( --GS-10 );
         }
