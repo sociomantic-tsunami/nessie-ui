@@ -1,15 +1,9 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import styles               from './scrollBox.css';
-
-const createScrollHandler = func =>
-    func && ( ( e, ...args ) =>
-    {
-        const { clientHeight, scrollHeight, scrollTop } = e.target;
-        func( e, ...args, scrollTop / ( scrollHeight - clientHeight ) );
-    } );
+import { buildClassName }       from '../utils';
+import styles                   from './scrollBox.css';
+import { createScrollHandler }  from './utils';
 
 const ScrollBox = ( {
     className,
