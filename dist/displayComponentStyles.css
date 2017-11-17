@@ -12876,7 +12876,7 @@ only used in type__carousel for now
         top:    -1.6rem;
     }
 
-.slider__handleLabelPosition__bottom__1pwPY & .slider__handleLabel__2uauA
+.slider__handleLabelPosition__bottom__1pwPY .slider__handleLabel__2uauA
     {
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
@@ -12884,7 +12884,7 @@ only used in type__carousel for now
         bottom: -1.6rem;
     }
 
-.slider__handleLabelPosition__right__ImoIR & .slider__handleLabel__2uauA
+.slider__handleLabelPosition__right__ImoIR .slider__handleLabel__2uauA
     {
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
@@ -12892,7 +12892,7 @@ only used in type__carousel for now
         left:   1.6rem;
     }
 
-.slider__handleLabelPosition__left__37HX- & .slider__handleLabel__2uauA
+.slider__handleLabelPosition__left__37HX- .slider__handleLabel__2uauA
     {
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component

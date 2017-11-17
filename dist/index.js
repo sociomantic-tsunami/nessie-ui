@@ -24166,7 +24166,7 @@ var SliderGroup = function SliderGroup(_ref) {
                                 key: i // eslint-disable-line react/no-array-index-key, max-len
                                 , className: cssMap.labelWrapper,
                                 style: {
-                                    bottom: getOffset(value.step) + '%'
+                                    bottom: getOffset(value.step, minValue, maxValue) + '%'
                                 } },
                             _react2.default.createElement(
                                 _Label2.default,
