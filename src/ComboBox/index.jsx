@@ -34,6 +34,10 @@ export default class ComboBox extends Component
          */
         forceHover          : PropTypes.bool,
         /**
+         *  Input has autocomplete
+         */
+        hasAutocomplete        : PropTypes.bool,
+        /**
          *  Display as error/invalid
          */
         hasError            : PropTypes.bool,
@@ -68,7 +72,7 @@ export default class ComboBox extends Component
         /**
          *  HTML id attribute (overwrite default)
          */
-        id                : PropTypes.string,
+        id           : PropTypes.string,
         /**
          *  Dropdown list allows multiple selection
          */
@@ -172,6 +176,7 @@ export default class ComboBox extends Component
 
     static defaultProps = {
         activeOption        : undefined,
+        autocomplete        : false,
         dropdownPlaceholder : undefined,
         forceHover          : false,
         inputPlaceholder    : undefined,
@@ -285,6 +290,7 @@ export default class ComboBox extends Component
     {
         const {
             activeOption,
+            autocomplete,
             dropdownPlaceholder,
             forceHover,
             hasError,
@@ -335,6 +341,7 @@ export default class ComboBox extends Component
         return (
             <InputWithDropdown
                 aria           = { {
+                    autocomplete     : autocomplete ? 'both' : 'list',
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
                     expanded : isOpen,
