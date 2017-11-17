@@ -319,24 +319,37 @@ export default class ComboBox extends Component
             selection,
         } = this.props;
 
-        const dropdownContent = options.length ? (
-            <ScrollBox
-                height       = "50vh"
-                onScroll     = { onScroll }
-                scrollBoxRef = { this.setRef }>
-                <ListBox
-                    activeOption      = { addPrefix( activeOption, id ) }
-                    id                = { addPrefix( 'listbox', id ) }
-                    isMultiselect     = { isMultiselect }
-                    isFocusable       = { false }
-                    onClickOption     = { this.handleClickOption }
-                    onMouseOutOption  = { this.handleMouseOutOption }
-                    onMouseOverOption = { this.handleMouseOverOption }
-                    selection         = { addPrefix( selection, id ) }>
-                    { buildListBoxOptions( options, id ) }
-                </ListBox>
-            </ScrollBox>
-        ) : <Text noWrap role = "subtle">{ dropdownPlaceholder }</Text>;
+        let dropdownContent;
+
+        if ( options.length )
+        {
+            dropdownContent = (
+                <ScrollBox
+                    height       = "50vh"
+                    onScroll     = { onScroll }
+                    scrollBoxRef = { this.setRef }>
+                    <ListBox
+                        activeOption      = { addPrefix( activeOption, id ) }
+                        id                = { addPrefix( 'listbox', id ) }
+                        isMultiselect     = { isMultiselect }
+                        isFocusable       = { false }
+                        onClickOption     = { this.handleClickOption }
+                        onMouseOutOption  = { this.handleMouseOutOption }
+                        onMouseOverOption = { this.handleMouseOverOption }
+                        selection         = { addPrefix( selection, id ) }>
+                        { buildListBoxOptions( options, id ) }
+                    </ListBox>
+                </ScrollBox>
+            );
+        }
+        else
+        {
+            dropdownContent = (
+                <Text noWrap overflowIsHidden role = "subtle">
+                    { dropdownPlaceholder }
+                </Text>
+            );
+        }
 
         return (
             <InputWithDropdown
