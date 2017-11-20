@@ -36,7 +36,6 @@
 
     .content
     {
-        background: var( --GS-11 );
         display:    none;
     }
 
@@ -46,7 +45,8 @@
 {
     border-left: 0.5rem solid var( --AC-1 );
 
-    & > .header, .content
+    & > .header,
+    & > .content
     {
         padding-left: 2.5rem
     }
@@ -54,7 +54,6 @@
 
 .header
 {
-    background:         transparent;
     transition:         background-color 200ms ease-in-out;
 
     position:           relative;

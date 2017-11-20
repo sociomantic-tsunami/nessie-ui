@@ -196,7 +196,8 @@ export default class Module extends Component
                 cssProps = { {
                     collapsible     : isCollapsible,
                     collapsed       : isCollapsible && isCollapsed,
-                    moduleError     : hasError
+                    error           : hasError,
+                    moduleError     : hasModuleError
                 } }>
                 <section className = { className }>
                     { header }
