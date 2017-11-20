@@ -7,7 +7,7 @@ import InputContainer   from '../proto/InputContainer';
 import Tag              from '../Tag';
 
 
-const filterTags = ( node ) =>
+const warnTags = ( node ) =>
 {
     const _node = React.Children.toArray( node );
     let warning = false;
@@ -23,8 +23,8 @@ const filterTags = ( node ) =>
 
     if ( warning )
     {
-        console.warn( 'TagInput should be \
-provided with tag components and not other elements' );
+        console.warn( 'TagInput children should be \
+individual tag components and not other elements' );
     }
 
     return node;
@@ -164,7 +164,7 @@ export default class TagInput extends Component
 
         const { id, isFocused } = this.state;
 
-        const tagItems = children ? filterTags( children ) :
+        const tagItems = children ? warnTags( children ) :
             buildTagsFromStrings( tags );
 
         const updatedTagItems = tagItems.map( tag =>

@@ -5,7 +5,7 @@ import Css                  from '../hoc/Css';
 import NavList              from '..//NavList';
 
 
-const filterNavItems = ( node ) =>
+const warnNavItems = ( node ) =>
 {
     const _node = React.Children.toArray( node );
     let warning = false;
@@ -21,8 +21,8 @@ const filterNavItems = ( node ) =>
 
     if ( warning )
     {
-        console.warn( 'NavDropdown should be \
-provided with Navitems and not other elements' );
+        console.warn( 'NavDropdown children should be \
+Navitems and not other elements' );
     }
 
     return _node;
@@ -30,7 +30,7 @@ provided with Navitems and not other elements' );
 
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
-    const dropdownItems = filterNavItems( children ).map( child =>
+    const dropdownItems = warnNavItems( children ).map( child =>
     React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
     return (

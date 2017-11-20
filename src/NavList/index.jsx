@@ -4,7 +4,7 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 
 
-const filterNavItems = ( node ) =>
+const warnNavItems = ( node ) =>
 {
     const _node = React.Children.toArray( node );
     let warning = false;
@@ -20,8 +20,8 @@ const filterNavItems = ( node ) =>
 
     if ( warning )
     {
-        console.warn( 'NavList should be \
-provided with NavItems and not other elements' );
+        console.warn( 'NavList children should be \
+NavItems and not other elements' );
     }
 
     return _node;
@@ -34,7 +34,7 @@ const NavList = ( { children, className, cssMap, layout } ) =>
             cssMap   = { cssMap }
             cssProps = { { layout } }>
             <ul className = { className }>
-                { filterNavItems( children ) }
+                { warnNavItems( children ) }
             </ul>
         </Css>
     );
