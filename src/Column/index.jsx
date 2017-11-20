@@ -15,11 +15,11 @@ export default class Column extends Component
          *  Width of the Column
          */
         size        : PropTypes.oneOf( [
-            'S',
-            'M',
-            'L',
-            'XL',
-            'XXL',
+            'icon-S',
+            'icon-M',
+            'icon-L',
+            'icon-XL',
+            'icon-XXL',
             '1/1',
             'content',
             '1/2', '2/2',
