@@ -8,7 +8,7 @@ import Text                 from '../Text';
 import Required             from '../Required';
 
 
-const buildTableFromValues = ( cssMap, values = [] ) =>
+const buildTableFromValues = ( values = [] ) =>
     values.map( ( row, i ) =>
         (
         // eslint-disable-next-line react/no-array-index-key
@@ -16,8 +16,7 @@ const buildTableFromValues = ( cssMap, values = [] ) =>
                 {
                     row.map( ( col, j ) =>
                         // eslint-disable-next-line react/no-array-index-key
-                        <TableCell
-                            key       = { j }>
+                        <TableCell key = { j }>
                             <Text>{ col }</Text>
                         </TableCell>
                     )
@@ -36,7 +35,7 @@ const Table = ( {
     isDataTable,
     isZebra } ) =>
 {
-    const _children = children || buildTableFromValues( cssMap, values );
+    const _children = children || buildTableFromValues( values );
 
     const header = columns.length ?
         ( <TableRow verticalAlign = "middle" className = { cssMap.row }>
@@ -79,7 +78,9 @@ const Table = ( {
 
                         return React.cloneElement( cell,
                             {
-                                className   : cssMap.cell,
+                                className : cell.props.className ?
+                                    `${cell.props.className}  ${cssMap.cell}`
+                                    : cssMap.cell,
                                 columnTitle : title ||
                                 cell.props.columnTitle,
                                 size : size || cell.props.size

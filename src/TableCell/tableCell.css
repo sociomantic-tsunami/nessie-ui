@@ -6,13 +6,6 @@ $shark: 768px;
 {
 	.default
     {
-    	padding-bottom:	0;
-
-    	&:last-child
-    	{
-        	padding-bottom:	-1rem;
-    	}
-
         &:first-child
         {
             padding-left: 0;
