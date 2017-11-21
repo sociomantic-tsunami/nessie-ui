@@ -72,13 +72,6 @@ $shark: 768px;
 .sticky
 {
     position:    sticky;
-    left:        -30px;
-}
-
-.stickyFixed
-{
-    position:    sticky;
-    align-self:  stretch;
-    left:        -30px;
-    z-index:     1
+    left:        0;
+    z-index:     1;
 }

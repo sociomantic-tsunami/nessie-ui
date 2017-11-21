@@ -45,12 +45,12 @@ const Table = ( {
                 const title = column.title;
                 const text  = column.isRequired ?
                     <Required>{ title }</Required> : title;
-                const rowHeader = column.isRowHeader;
+                const stickyCell = column.isSticky;
 
                 return (
                     <TableCell
                         isHeader
-                        isStickyFixed = { rowHeader }
+                        isSticky    = { stickyCell }
                         isDataTable = { isDataTable }
                         isSortable  = { column.isSortable }
                         sort        = { column.sort }
