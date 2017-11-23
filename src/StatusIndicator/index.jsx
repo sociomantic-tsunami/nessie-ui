@@ -1,40 +1,33 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-export default class StatusIndicator extends Component
+const StatusIndicator = ( { children, className, cssMap, label, status } ) =>
+    <Css
+        cssMap = { cssMap }
+        cssProps = { { status } }>
+        <div className = { className }>
+            { children || label }
+        </div>
+    </Css>;
+
+StatusIndicator.propTypes =
 {
-    static propTypes =
-    {
-        /**
-        *  Status text
-        */
-        label  : PropTypes.string,
-        /**
-         *  Display as active/deactivated
-         */
-        status : PropTypes.oneOf( [ 'active', 'deactivated', 'alert' ] )
-    };
+    /**
+    *  Status text
+    */
+    label  : PropTypes.string,
+    /**
+     *  Display as active/deactivated
+     */
+    status : PropTypes.oneOf( [ 'active', 'deactivated', 'alert' ] )
+};
 
-    static defaultProps =
-    {
-        status : 'deactivated',
-        cssMap : require( './statusIndicator.css' )
-    };
+StatusIndicator.defaultProps =
+{
+    status : 'deactivated',
+    cssMap : require( './statusIndicator.css' )
+};
 
-    render()
-   {
-        const { children, className, cssMap, label, status } = this.props;
-
-        return (
-            <Css
-                cssMap = { cssMap }
-                cssProps = { { status } }>
-                <div className = { className }>
-                    { children || label }
-                </div>
-            </Css>
-        );
-    }
-}
+export default StatusIndicator;

@@ -1,4 +1,4 @@
-import { TextInputWithIcon } from 'nessie';
+import { TextInputWithIcon } from 'nessie-ui';
 
 import InputComponentDriver
     from '../Testing/CommonDrivers/inputComponentDriver';

@@ -18,7 +18,7 @@ import ModalDialogDriver       from './ModalDialog/driver';
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
          FlounderDropdown, PasswordInput, Form, Section, Row, Column,
          TextInput, NavItem, NotificationBar, TextInputWithIcon,
-         ModalDialog }  from 'nessie';
+         ModalDialog }  from 'nessie-ui';
 
 import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver';
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver';

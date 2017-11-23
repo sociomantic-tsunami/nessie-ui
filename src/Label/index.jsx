@@ -1,82 +1,77 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import Text                 from '../Text';
 
-export default class Label extends Component
+const Label = ( {
+    children,
+    className,
+    cssMap,
+    element,
+    htmlFor,
+    label,
+    noWrap,
+    onMouseOut,
+    onMouseOver,
+    overflowIsHidden } ) =>
 {
-    static propTypes =
-    {
-        /**
-        *  Label text
-        */
-        label            : PropTypes.string,
-        /**
-         * HTML element to use (legend should only be used inside a Fieldset)
-         */
-        element          : PropTypes.oneOf( [ 'label', 'legend' ] ),
-        /**
-         *  ID of element this Label labels (HTML for attribute)
-         */
-        htmlFor          : PropTypes.string,
-        /**
-        *  Don’t wrap text to the next line
-        */
-        noWrap           : PropTypes.bool,
-        /**
-         *  Clip overflow
-         */
-        overflowIsHidden : PropTypes.bool,
-        /**
-         *  Mouse over callback function
-         */
-        onMouseOver      : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut       : PropTypes.func,
-    };
+    const LabelElement = element || 'label';
 
-    static defaultProps =
-    {
-        element          : 'label',
-        noWrap           : false,
-        overflowIsHidden : false,
-        cssMap           : require( './label.css' )
-    };
+    return (
+        <Css cssMap = { cssMap }>
+            <LabelElement
+                className   = { className }
+                htmlFor     = { element === 'label' ? htmlFor : null }
+                onMouseOver = { onMouseOver }
+                onMouseOut  = { onMouseOut } >
+                <Text
+                    noWrap           = { noWrap }
+                    overflowIsHidden = { overflowIsHidden }>
+                    { children || label }
+                </Text>
+            </LabelElement>
+        </Css>
+    );
+};
+Label.propTypes =
+{
+    /**
+    *  Label text
+    */
+    label            : PropTypes.string,
+    /**
+     * HTML element to use (legend should only be used inside a Fieldset)
+     */
+    element          : PropTypes.oneOf( [ 'label', 'legend' ] ),
+    /**
+     *  ID of element this Label labels (HTML for attribute)
+     */
+    htmlFor          : PropTypes.string,
+    /**
+    *  Don’t wrap text to the next line
+    */
+    noWrap           : PropTypes.bool,
+    /**
+     *  Clip overflow
+     */
+    overflowIsHidden : PropTypes.bool,
+    /**
+     *  Mouse over callback function
+     */
+    onMouseOver      : PropTypes.func,
+    /**
+     *  Mouse out callback function
+     */
+    onMouseOut       : PropTypes.func,
+};
 
-    render()
-    {
-        const {
-            children,
-            className,
-            cssMap,
-            element,
-            htmlFor,
-            label,
-            noWrap,
-            onMouseOut,
-            onMouseOver,
-            overflowIsHidden
-        } = this.props;
+Label.defaultProps =
+{
+    element          : 'label',
+    noWrap           : false,
+    overflowIsHidden : false,
+    cssMap           : require( './label.css' )
+};
 
-        const LabelElement = element || 'label';
-
-        return (
-            <Css cssMap = { cssMap }>
-                <LabelElement
-                    className   = { className }
-                    htmlFor     = { element === 'label' ? htmlFor : null }
-                    onMouseOver = { onMouseOver }
-                    onMouseOut  = { onMouseOut } >
-                    <Text
-                        noWrap           = { noWrap }
-                        overflowIsHidden = { overflowIsHidden }>
-                        { children || label }
-                    </Text>
-                </LabelElement>
-            </Css>
-        );
-    }
-}
+export default Label;
