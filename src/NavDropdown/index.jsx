@@ -1,43 +1,58 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import NavList              from '..//NavList';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
 
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
-
-export default class NavDropdown extends Component
+const warnNavItems = ( node ) =>
 {
-    static propTypes =
+    const _node = React.Children.toArray( node );
+    let warning = false;
+
+    _node.forEach( child =>
     {
-        /**
-         *  Dropdown content (NavItems)
-         */
-        children : PropTypes.node,
-    };
+        if ( !( React.isValidElement( child )
+        && child.type.name === 'NavItem' ) )
+        {
+            warning = true;
+        }
+    } );
 
-    static defaultProps =
+    if ( warning )
     {
-        cssMap : require( './navDropdown.css' )
-    };
-
-    render()
-    {
-        const { children, className, cssMap } = this.props;
-
-        const dropdownItems = filterNavItems( children ).map( child =>
-        React.cloneElement( child, { ...child.props, role: 'sub' } ) );
-
-        return (
-            <Css cssMap = { cssMap }>
-                <NavList layout = "vertical" className = { className }>
-                    { dropdownItems }
-                </NavList>
-            </Css>
-        );
+        console.warn( 'NavDropdown children should be \
+Navitems and not other elements' );
     }
-}
+
+    return _node;
+};
+
+const NavDropdown = ( { children, className, cssMap } ) =>
+{
+    const dropdownItems = warnNavItems( children ).map( child =>
+    React.cloneElement( child, { ...child.props, role: 'sub' } ) );
+
+    return (
+        <Css cssMap = { cssMap }>
+            <NavList layout = "vertical" className = { className }>
+                { dropdownItems }
+            </NavList>
+        </Css>
+    );
+};
+
+NavDropdown.propTypes =
+{
+    /**
+     *  Dropdown content (NavItems)
+     */
+    children : PropTypes.node,
+};
+
+NavDropdown.defaultProps =
+{
+    cssMap : require( './navDropdown.css' )
+};
+
+export default NavDropdown;

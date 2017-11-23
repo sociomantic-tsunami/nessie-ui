@@ -1,0 +1,12 @@
+{
+    "pkgFiles": null,
+    "src": {
+        "commit": false
+    },
+    "npm": {
+        "publish": false
+    },
+    "github": {
+        "release": true
+    }
+}

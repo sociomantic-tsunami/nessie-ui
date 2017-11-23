@@ -295,7 +295,7 @@
     }
 }
 
-.handleLabelPosition__bottom &
+.handleLabelPosition__bottom
 {
     .handleLabel
     {
@@ -306,7 +306,7 @@
     }
 }
 
-.handleLabelPosition__right &
+.handleLabelPosition__right
 {
     .handleLabel
     {
@@ -317,7 +317,7 @@
     }
 }
 
-.handleLabelPosition__left &
+.handleLabelPosition__left
 {
     .handleLabel
     {

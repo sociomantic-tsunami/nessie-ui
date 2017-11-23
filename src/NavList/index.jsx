@@ -1,46 +1,61 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
 
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
-
-export default class NavList extends Component
+const warnNavItems = ( node ) =>
 {
-    static propTypes =
-    {
-        /**
-         *  List content (NavItems)
-         */
-        children : PropTypes.node,
-        /**
-         *  How to lay out the list items
-         */
-        layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
-    };
+    const _node = React.Children.toArray( node );
+    let warning = false;
 
-    static defaultProps =
+    _node.forEach( child =>
     {
-        layout : 'horizontal',
-        cssMap : require( './navList.css' )
-    };
+        if ( !( React.isValidElement( child )
+        && child.type.name === 'NavItem' ) )
+        {
+            warning = true;
+        }
+    } );
 
-    render()
+    if ( warning )
     {
-        const { children, className, cssMap, layout } = this.props;
-
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { layout } }>
-                <ul className = { className }>
-                    { filterNavItems( children ) }
-                </ul>
-            </Css>
-        );
+        console.warn( 'NavList children should be \
+NavItems and not other elements' );
     }
-}
+
+    return _node;
+};
+
+const NavList = ( { children, className, cssMap, layout } ) =>
+{
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { layout } }>
+            <ul className = { className }>
+                { warnNavItems( children ) }
+            </ul>
+        </Css>
+    );
+};
+
+NavList.propTypes =
+{
+    /**
+     *  List content (NavItems)
+     */
+    children : PropTypes.node,
+    /**
+     *  How to lay out the list items
+     */
+    layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+};
+
+NavList.defaultProps =
+{
+    layout : 'horizontal',
+    cssMap : require( './navList.css' )
+};
+
+export default NavList;

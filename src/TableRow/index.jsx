@@ -1,81 +1,92 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import Row                  from '../Row';
 
-export default class TableRow extends Component
+const TableRow = ( {
+    align,
+    children,
+    className,
+    cssMap,
+    gutters,
+    isSticky,
+    verticalAlign } ) =>
 {
-    static propTypes =
-    {
-        /**
-         *  Globally sets cell horizonal alignment
-         *  for this row (individual cell alignment will override)
-         */
-        align : PropTypes.oneOf( [
-            'auto',
-            'left',
-            'center',
-            'right'
-        ] ),
-        /**
-         *  Globally sets cell vertical alignment
-         *  for this row (individual cell alignment will overrides)
-         */
-        verticalAlign : PropTypes.oneOf( [
-            'auto',
-            'top',
-            'middle',
-            'bottom'
-        ] ),
-        /**
-         *  Gutter size
-         */
-        gutters : PropTypes.oneOf( [
-            'none',
-            'S',
-            'M',
-            'L'
-        ] ),
-        /**
-         *  Row content (TableCells)
-         */
-        children : PropTypes.node
-    };
+    const cells = React.Children.toArray( children ).map( cell =>
+        React.cloneElement( cell,
+            {
+                align         : align || cell.props.align,
+                verticalAlign : verticalAlign || cell.props.verticalAlign,
+            }
+        )
+    );
 
-    static defaultProps =
-    {
-        align         : 'auto',
-        verticalAlign : 'auto',
-        gutters       : 'L',
-        cssMap        : require( './tableRow.css' )
-    };
+    return (
+        <Css
+            cssMap = { cssMap }
+            cssProps = { {
+                sticky : isSticky
+            } }>
+            <Row
+                className     = { className }
+                role          = "row"
+                gutters       = { gutters }
+                spacing       = "none">
+                { cells }
+            </Row>
+        </Css>
+    );
+};
 
-    render()
-    {
-        const {
-            align,
-            children,
-            className,
-            cssMap,
-            gutters,
-            verticalAlign
-        } = this.props;
+TableRow.propTypes =
+{
+    /**
+     *  Globally sets cell horizonal alignment
+     *  for this row (individual cell alignment will override)
+     */
+    align : PropTypes.oneOf( [
+        'auto',
+        'left',
+        'center',
+        'right'
+    ] ),
+    /**
+     *  Globally sets cell vertical alignment
+     *  for this row (individual cell alignment will overrides)
+     */
+    verticalAlign : PropTypes.oneOf( [
+        'auto',
+        'top',
+        'middle',
+        'bottom'
+    ] ),
+    /**
+     *  Gutter size
+     */
+    gutters : PropTypes.oneOf( [
+        'none',
+        'S',
+        'M',
+        'L'
+    ] ),
+    /**
+     *  Makes the row sticky
+     */
+    isSticky : PropTypes.bool,
+    /**
+     *  Row content (TableCells)
+     */
+    children : PropTypes.node
+};
 
-        const cells = React.Children.toArray( children );
+TableRow.defaultProps =
+{
+    align         : 'auto',
+    verticalAlign : 'auto',
+    gutters       : 'L',
+    isSticky      : false,
+    cssMap        : require( './tableRow.css' )
+};
 
-        return (
-            <Css cssMap = { cssMap }>
-                <Row
-                    className     = { className }
-                    role          = "row"
-                    align         = { align }
-                    verticalAlign = { verticalAlign }
-                    gutters       = { gutters }
-                    spacing       = "none">
-                    { cells }
-                </Row>
-            </Css>
-        );
-    }
-}
+export default TableRow;
