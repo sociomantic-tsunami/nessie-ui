@@ -10,6 +10,7 @@ const TableRow = ( {
     className,
     cssMap,
     gutters,
+    isSticky,
     verticalAlign } ) =>
 {
     const cells = React.Children.toArray( children ).map( cell =>
@@ -22,7 +23,11 @@ const TableRow = ( {
     );
 
     return (
-        <Css cssMap = { cssMap }>
+        <Css
+            cssMap = { cssMap }
+            cssProps = { {
+                sticky : isSticky
+            } }>
             <Row
                 className     = { className }
                 role          = "row"
@@ -66,6 +71,10 @@ TableRow.propTypes =
         'L'
     ] ),
     /**
+     *  Makes the row sticky
+     */
+    isSticky : PropTypes.bool,
+    /**
      *  Row content (TableCells)
      */
     children : PropTypes.node
@@ -76,6 +85,7 @@ TableRow.defaultProps =
     align         : 'auto',
     verticalAlign : 'auto',
     gutters       : 'L',
+    isSticky      : false,
     cssMap        : require( './tableRow.css' )
 };
 
