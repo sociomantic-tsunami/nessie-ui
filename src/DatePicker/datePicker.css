@@ -1,3 +1,5 @@
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
 @import '../proto/base.css';
 
 .default

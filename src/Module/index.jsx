@@ -55,10 +55,6 @@ export default class Module extends Component
          */
         hasModuleError        : PropTypes.bool,
         /**
-         * What style of highlight line (LHS of module)
-         */
-        highlightType         : PropTypes.oneOf( [ 'default', 'subtle' ] ),
-        /**
          *  Tooltip message text (string or JSX)
          */
         errorMessage          : PropTypes.node,
@@ -91,7 +87,6 @@ export default class Module extends Component
         isDeletable   : false,
         isLoading     : false,
         isReadOnly    : false,
-        highlightType : 'default',
         headerLevel   : 2,
         cssMap        : require( './module.css' )
     };
@@ -137,7 +132,6 @@ export default class Module extends Component
             children,
             customHeader,
             headerLevel,
-            highlightType,
             hasError,
             hasModuleError,
             errorMessage,
@@ -203,9 +197,7 @@ export default class Module extends Component
                     collapsible     : isCollapsible,
                     collapsed       : isCollapsible && isCollapsed,
                     error           : hasError,
-                    moduleError     : hasModuleError,
-                    subtleHighlight : highlightType === 'subtle',
-                    level           : headerLevel
+                    moduleError     : hasModuleError
                 } }>
                 <section className = { className }>
                     { header }

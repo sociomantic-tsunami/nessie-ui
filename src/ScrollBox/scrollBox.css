@@ -3,10 +3,6 @@
 .default
 {
     overflow: auto;
-
-    /* magic...! */
-    padding:    1rem;
-    margin:     -1rem -1rem 1rem;
 }
 
 .scroll__horizontal

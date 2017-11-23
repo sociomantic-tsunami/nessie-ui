@@ -10,17 +10,27 @@ const TableRow = ( {
     className,
     cssMap,
     gutters,
+    isSticky,
     verticalAlign } ) =>
 {
-    const cells = React.Children.toArray( children );
+    const cells = React.Children.toArray( children ).map( cell =>
+        React.cloneElement( cell,
+            {
+                align         : align || cell.props.align,
+                verticalAlign : verticalAlign || cell.props.verticalAlign,
+            }
+        )
+    );
 
     return (
-        <Css cssMap = { cssMap }>
+        <Css
+            cssMap = { cssMap }
+            cssProps = { {
+                sticky : isSticky
+            } }>
             <Row
                 className     = { className }
                 role          = "row"
-                align         = { align }
-                verticalAlign = { verticalAlign }
                 gutters       = { gutters }
                 spacing       = "none">
                 { cells }
@@ -61,6 +71,10 @@ TableRow.propTypes =
         'L'
     ] ),
     /**
+     *  Makes the row sticky
+     */
+    isSticky : PropTypes.bool,
+    /**
      *  Row content (TableCells)
      */
     children : PropTypes.node
@@ -71,6 +85,7 @@ TableRow.defaultProps =
     align         : 'auto',
     verticalAlign : 'auto',
     gutters       : 'L',
+    isSticky      : false,
     cssMap        : require( './tableRow.css' )
 };
 

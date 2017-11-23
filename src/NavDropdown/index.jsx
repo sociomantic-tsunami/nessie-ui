@@ -4,15 +4,33 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import NavList              from '..//NavList';
 
-const isNavItem = node => React.isValidElement( node )
-    && node.type.name === 'NavItem';
 
-const filterNavItems = node => React.Children.toArray( node )
-    .filter( isNavItem );
+const warnNavItems = ( node ) =>
+{
+    const _node = React.Children.toArray( node );
+    let warning = false;
+
+    _node.forEach( child =>
+    {
+        if ( !( React.isValidElement( child )
+        && child.type.name === 'NavItem' ) )
+        {
+            warning = true;
+        }
+    } );
+
+    if ( warning )
+    {
+        console.warn( 'NavDropdown children should be \
+Navitems and not other elements' );
+    }
+
+    return _node;
+};
 
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
-    const dropdownItems = filterNavItems( children ).map( child =>
+    const dropdownItems = warnNavItems( children ).map( child =>
     React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
     return (

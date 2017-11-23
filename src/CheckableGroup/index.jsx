@@ -6,14 +6,27 @@ import Css          from '../hoc/Css';
 import Fieldset     from '../Fieldset';
 
 
-const filterCheckable = ( node ) =>
+const warnCheckable = ( node ) =>
 {
     const _node = React.Children.toArray( node );
+    let warning = false;
 
-    const isCheckable = ( child ) => React.isValidElement( child ) &&
-        typeof child.props.isChecked === 'boolean';
+    _node.forEach( child  =>
+    {
+        if ( !( React.isValidElement( child ) &&
+        typeof child.props.isChecked === 'boolean' ) )
+        {
+            warning = true;
+        }
+    } );
 
-    return _node.filter( isCheckable );
+    if ( warning )
+    {
+        console.warn( 'CheckableGroup children should be \
+checkable elements and not other elements' );
+    }
+
+    return _node;
 };
 
 
@@ -108,7 +121,7 @@ export default class CheckableGroup extends Component
 
         const name = name || this.state.id;
 
-        const items = filterCheckable( children ).map( ( child ) =>
+        const items = warnCheckable( children ).map( ( child ) =>
             React.cloneElement( child, {
                 ...child.props,
                 isReadOnly : isReadOnly || child.props.isReadOnly,

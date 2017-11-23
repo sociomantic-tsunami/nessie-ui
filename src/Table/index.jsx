@@ -8,20 +8,19 @@ import Text                 from '../Text';
 import Required             from '../Required';
 
 
-const buildTableFromValues = ( values = [] ) =>
+const buildTableFromValues = ( values = []  ) =>
     values.map( ( row, i ) =>
-    (
-        // eslint-disable-next-line react/no-array-index-key
-        <TableRow key = { i }>
-            {
-                row.map( ( col, j ) =>
-                // eslint-disable-next-line react/no-array-index-key
-                    <TableCell key = { j }><Text>{ col }</Text></TableCell>
-                )
-            }
-        </TableRow>
-    ) );
-
+        (
+            // eslint-disable-next-line react/no-array-index-key
+            <TableRow key = { i }>
+                {
+                    row.map( ( col, j ) =>
+                    // eslint-disable-next-line react/no-array-index-key
+                        <TableCell key = { j }><Text>{ col }</Text></TableCell>
+                    )
+                }
+            </TableRow>
+        ) );
 
 const Table = ( {
     children,
@@ -31,28 +30,34 @@ const Table = ( {
     onToggle,
     values,
     isDataTable,
-    isZebra } ) =>
+    isZebra,
+    stickyHeader } ) =>
 {
     const _children = children || buildTableFromValues( values );
 
     const header = columns.length ?
-        ( <TableRow verticalAlign = "middle" className = { cssMap.row }>
+        ( <TableRow
+            isSticky = { stickyHeader }
+            verticalAlign = "middle"
+            className = { cssMap.row }>
             { columns.map( ( column, index ) =>
-                {
+            {
                 const title = column.title;
                 const text  = column.isRequired ?
                     <Required>{ title }</Required> : title;
+                const stickyCell = column.isSticky;
 
                 return (
                     <TableCell
                         isHeader
+                        isSticky    = { stickyCell }
                         isDataTable = { isDataTable }
                         isSortable  = { column.isSortable }
                         sort        = { column.sort }
                         size        = { column.size }
                         onToggle    = { onToggle }
                         key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                        >
+                    >
                         { text }
                     </TableCell>
                 );
@@ -68,24 +73,32 @@ const Table = ( {
         return React.cloneElement( row,
             {
                 children : cells.map( ( cell, index ) =>
-                        {
+                {
                     if ( typeof columns[ index ] === 'object' )
-                            {
+                    {
                         const title = columns[ index ].title;
                         const size  = columns[ index ].size;
+                        const rowHeaderCell = columns[ index ].isRowHeader;
+                        const stickyCell = columns[ index ].isSticky;
 
                         return React.cloneElement( cell,
                             {
+                                className : cell.props.className ?
+                                    `${cell.props.className}  ${cssMap.cell}`
+                                    : cssMap.cell,
                                 columnTitle : title ||
                                 cell.props.columnTitle,
-                                size : size || cell.props.size
+                                size        : size || cell.props.size,
+                                isRowHeader : rowHeaderCell ||
+                                cell.props.isRowHeader,
+                                isSticky : stickyCell ||
+                                cell.props.isSticky
                             } );
                     }
-
                     return cell;
                 } ),
                 className : row.props.className ?
-                `${row.props.className}  ${cssMap.row}` : cssMap.row
+                    `${row.props.className}  ${cssMap.row}` : cssMap.row
             } );
     } );
 
@@ -115,37 +128,42 @@ Table.propTypes =
      * Array of objects defining the table columns
      */
     columns : PropTypes.arrayOf( PropTypes.shape( {
-        title      : PropTypes.string,
-        size       : PropTypes.string,
-        isRequired : PropTypes.bool,
-        isSortable : PropTypes.bool,
-        sort       : PropTypes.oneOf( [ 'asc', 'desc' ] )
+        title       : PropTypes.string,
+        size        : PropTypes.string,
+        isRowHeader : PropTypes.bool,
+        isSticky    : PropTypes.bool,
+        isRequired  : PropTypes.bool,
+        isSortable  : PropTypes.bool,
+        sort        : PropTypes.oneOf( [ 'asc', 'desc' ] )
     } ) ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */
-    children : PropTypes.node,
-
+    children     : PropTypes.node,
     /**
      *  Is Data Table (smaller fonts, zebra paddings)
      */
-    isDataTable : PropTypes.bool,
-
+    isDataTable  : PropTypes.bool,
     /**
      *  Display as zebra-striped
      */
-    isZebra  : PropTypes.bool,
+    isZebra      : PropTypes.bool,
     /**
      *  Column sorter onToggle callback function: ( e ) => { ... }
      */
-    onToggle : PropTypes.func
+    onToggle     : PropTypes.func,
+    /**
+     *  Makes header row sticky
+     */
+    stickyHeader : PropTypes.bool
 };
 
 Table.defaultProps =
 {
-    isZebra     : false,
-    isDataTable : false,
-    cssMap      : require( './table.css' )
+    isZebra      : false,
+    isDataTable  : false,
+    stickyHeader : false,
+    cssMap       : require( './table.css' )
 };
 
 export default Table;
