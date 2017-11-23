@@ -8472,6 +8472,60 @@ span.CodeMirror-selectedtext { background: none; }
         -ms-flex:   0 0 auto;
             flex:   0 0 auto;
 }
+
+.column__size__icon-S
+{
+    width:                  1.6rem;
+    height:                 1.6rem;
+}
+
+.column__size__icon-M
+{
+    width:                  2.4rem;
+    height:                 2.4rem;
+}
+
+.column__size__icon-L
+{
+    width:                  3.2rem;
+    height:                 3.2rem;
+}
+
+.column__size__icon-XL
+{
+    width:                  4rem;
+    height:                 4rem;
+}
+
+.column__size__icon-XXL
+{
+    width:                  4.8rem;
+    height:                 4.8rem;
+}
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+.datePicker__default .datePicker__calendarHeader
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 .datePicker__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -8494,7 +8548,7 @@ span.CodeMirror-selectedtext { background: none; }
     word-break:     normal;
 }
 
-    .datePicker__default:last-child
+.datePicker__default:last-child
     {
         margin-bottom:  0;
     }
@@ -8506,7 +8560,7 @@ span.CodeMirror-selectedtext { background: none; }
 
 .datePicker__default .datePicker__calendarHeader
     {
-        color:  var(--PC-BLUE);
+        color:  #289bc8;
     }
 
 .datePicker__default .datePicker__calendarHeader th
@@ -10338,24 +10392,6 @@ textarea.inputField__resizable
 
     /* greyscale colors */
 }
-.module__collapsible > .module__header::before, .module__error > .module__header::before, .module__subtleHighlight::before
-{
-    display:            block;
-    content:            '';
-    position:           absolute;
-
-    left:               0;
-    top:                0;
-
-    height:             100% ;
-    width:              0.6rem;
-
-    background:         #289bc8;
-
-    opacity:            0;
-    -webkit-transition:         opacity 200ms ease-in-out;
-    transition:         opacity 200ms ease-in-out;
-}
 .module__default
 {
     /* this needs to be a flex column for vertical alignment
@@ -10370,130 +10406,42 @@ textarea.inputField__resizable
         -ms-flex-direction: column;
             flex-direction: column;
 
-    margin-bottom:  3rem;
-
     background:     #ffffff;
 
     -webkit-box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
 
             box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
-
 }
-.module__default .module__default /* nested module */
-    {
-        -webkit-box-shadow: none;
-                box-shadow: none;
-    }
-.module__default .module__default .module__content, .module__default .module__default .module__header
-        {
-            padding:    2rem 0;
-        }
-.module__default .module__default .module__header::before
-            {
-                left:   -3rem;
-            }
-.module__default .module__default .module__controls
-        {
-            right:  0;
-        }
-/* negate the module spacing when collapsed submodules are stacked */
-.module__default .module__default.module__default + .module__default
-        {
-            margin-top: -3rem;
-        }
-.module__level__2 > .module__header + .module__content
-    {
-        padding-top:    1rem;
-    }
-.module__level__3 > .module__header, .module__level__3 > .module__content, .module__level__4 > .module__header, .module__level__4 > .module__content
-    {
-        padding-top:    2rem;
-        padding-bottom: 2rem;
-    }
 .module__collapsible > .module__header
     {
-        cursor: pointer;
+        background: #F5F5F5;
+        cursor:     pointer;
     }
-.module__collapsible > .module__header::before
-        {
-            -webkit-transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            opacity:    1;
-        }
-.module__collapsed
-{
-    padding-bottom:  0;
-}
-.module__collapsed > .module__header
+.module__collapsed .module__header
     {
-        padding-bottom:     3rem;
-        margin-bottom:      0;
+        background:         transparent;
     }
-.module__collapsed > .module__header::before
+.module__collapsed .module__header:hover
         {
-            -webkit-transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-            opacity:    0;
-            height:     100%;
+            background: #F5F5F5;
         }
-.module__collapsed:hover > .module__header::before
-    {
-        opacity:    1;
-        -webkit-transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-        transition: height 200ms ease-in-out, opacity 200ms ease-in-out;
-    }
 .module__collapsed .module__content
     {
         display:    none;
     }
-.module__error > .module__header::before
+.module__moduleError
+{
+    border-left: 0.5rem solid #e64b6e;
+}
+.module__moduleError > .module__header, .module__moduleError > .module__content
     {
-        opacity:            1;
-        background-color:   #f55f69;
-    }
-.module__moduleError::before
-    {
-        content:            '';
-        position:           absolute;
-
-        left:               0;
-        top:                0;
-
-        height:             100%;
-        width:              0.6rem;
-
-        background-color:   #f55f69;
-        -webkit-transition:         opacity 0.1s ease-in-out, opacity 200ms ease-in-out;
-        transition:         opacity 0.1s ease-in-out, opacity 200ms ease-in-out;
-
-    }
-.module__subtleHighlight .module__header::before
-    {
-        display:            none;
-
-    }
-.module__subtleHighlight::before
-    {
-        height:             100%;
-        background:         #96a3aa;
-        opacity:            1;
-        left:               -3rem;
-
-    }
-.module__subtleHighlight.module__collapsed::before
-    {
-
-        opacity:            0;
-    }
-.module__subtleHighlight.module__collapsed:hover::before
-    {
-        -webkit-transition:         height 200ms ease-in-out, opacity 200ms ease-in-out;
-        transition:         height 200ms ease-in-out, opacity 200ms ease-in-out;
-        opacity:            1;
-
+        padding-left: 2.5rem
     }
 .module__header
 {
+    -webkit-transition:         background-color 200ms ease-in-out;
+    transition:         background-color 200ms ease-in-out;
+
     position:           relative;
 
     display:            -webkit-box;
@@ -13121,10 +13069,6 @@ only used in type__carousel for now
 .scrollBox__default
 {
     overflow: auto;
-
-    /* magic...! */
-    padding:    1rem;
-    margin:     -1rem -1rem 1rem;
 }
 
 .scrollBox__scroll__horizontal
@@ -14090,41 +14034,58 @@ only used in type__carousel for now
     text-transform:     none;
     text-transform:     initial;
 }
-.tableRow__default > *
-    {
-	   margin:	1rem 0;
-    }
-    .tableRow__default:first-child > *
-    {
-        margin-top: 0;
-    }
-
-@media( min-width: 768px )
+.tableRow__default
 {
-	.tableRow__default
-    {
-    	margin-bottom:	0;
-    }
+    width:       100%;
+    margin-left: 0;
+}
 
-    	.tableRow__default:last-child
-    	{
-        	margin-bottom:	-1rem;
-    	}
+.tableRow__sticky
+{
+    position:    -webkit-sticky;
+    position:    sticky;
+    top:         0;
+    z-index:     2;
 }
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.tableCell__header, .tableCell__data.tableCell__header
+.tableCell__header, .tableCell__rowHeader, .tableCell__data.tableCell__header
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
 
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+@media( min-width: 768px )
+{
+        .tableCell__default:first-child
+        {
+            padding-left: 0;
+        }
+}
+
 .tableCell__default
 {
+	padding-top: 	1rem;
+	padding-bottom: 1rem;
+
+    background-color:     #ffffff;
 
     /*@media( min-width: $shark )
     {*/
@@ -14184,9 +14145,22 @@ only used in type__carousel for now
     /*}*/
 }
 
+.tableCell__rowHeader
+{
+    z-index:            1;
+}
+
 .tableCell__data
 {
     padding-left:       0.5rem;
+}
+
+.tableCell__sticky
+{
+    position:    -webkit-sticky;
+    position:    sticky;
+    left:        0;
+    z-index:     1;
 }
 .table__default /* all elements get default margin-bottom of 2rem */
 {
@@ -14231,10 +14205,10 @@ only used in type__carousel for now
             font-feature-settings:	lining-nums tabular-nums;
     font-variant-numeric:	lining-nums tabular-nums;
 }
-.table__zebra .table__row:nth-child(even)
-	{
-	    background-color: #F0F0F0;
-	}
+.table__zebra .table__row:nth-child(even) .table__cell
+        {
+            background-color: #F0F0F0;
+        }
 .table__dataTable .table__row
 {
     margin-right:   0;

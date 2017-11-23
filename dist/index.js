@@ -14339,14 +14339,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var filterCheckable = function filterCheckable(node) {
+var warnCheckable = function warnCheckable(node) {
     var _node = _react2.default.Children.toArray(node);
+    var warning = false;
 
-    var isCheckable = function isCheckable(child) {
-        return _react2.default.isValidElement(child) && typeof child.props.isChecked === 'boolean';
-    };
+    _node.forEach(function (child) {
+        if (!(_react2.default.isValidElement(child) && typeof child.props.isChecked === 'boolean')) {
+            warning = true;
+        }
+    });
 
-    return _node.filter(isCheckable);
+    if (warning) {
+        console.warn('CheckableGroup children should be \
+checkable elements and not other elements');
+    }
+
+    return _node;
 };
 
 var CheckableGroup = function (_Component) {
@@ -14380,7 +14388,7 @@ var CheckableGroup = function (_Component) {
 
             var name = name || this.state.id;
 
-            var items = filterCheckable(children).map(function (child) {
+            var items = warnCheckable(children).map(function (child) {
                 return _react2.default.cloneElement(child, _extends({}, child.props, {
                     isReadOnly: isReadOnly || child.props.isReadOnly,
                     isDisabled: isDisabled || child.props.isDisabled,
@@ -14950,12 +14958,22 @@ var _Css2 = _interopRequireDefault(_Css);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isNavItem = function isNavItem(node) {
-    return _react2.default.isValidElement(node) && node.type.name === 'NavItem';
-};
+var warnNavItems = function warnNavItems(node) {
+    var _node = _react2.default.Children.toArray(node);
+    var warning = false;
 
-var filterNavItems = function filterNavItems(node) {
-    return _react2.default.Children.toArray(node).filter(isNavItem);
+    _node.forEach(function (child) {
+        if (!(_react2.default.isValidElement(child) && child.type.name === 'NavItem')) {
+            warning = true;
+        }
+    });
+
+    if (warning) {
+        console.warn('NavList children should be \
+NavItems and not other elements');
+    }
+
+    return _node;
 };
 
 var NavList = function NavList(_ref) {
@@ -14972,7 +14990,7 @@ var NavList = function NavList(_ref) {
         _react2.default.createElement(
             'ul',
             { className: className },
-            filterNavItems(children)
+            warnNavItems(children)
         )
     );
 };
@@ -15918,7 +15936,7 @@ Column.propTypes = {
     /**
      *  Width of the Column
      */
-    size: _propTypes2.default.oneOf(['1/1', 'content', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
+    size: _propTypes2.default.oneOf(['icon-S', 'icon-M', 'icon-L', 'icon-XL', 'icon-XXL', '1/1', 'content', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
     /* eslint-disable max-len */
     '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/17', '2/17', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24'
     /* eslint-enable max-len */
@@ -16103,12 +16121,22 @@ var _NavList2 = _interopRequireDefault(_NavList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isNavItem = function isNavItem(node) {
-    return _react2.default.isValidElement(node) && node.type.name === 'NavItem';
-};
+var warnNavItems = function warnNavItems(node) {
+    var _node = _react2.default.Children.toArray(node);
+    var warning = false;
 
-var filterNavItems = function filterNavItems(node) {
-    return _react2.default.Children.toArray(node).filter(isNavItem);
+    _node.forEach(function (child) {
+        if (!(_react2.default.isValidElement(child) && child.type.name === 'NavItem')) {
+            warning = true;
+        }
+    });
+
+    if (warning) {
+        console.warn('NavDropdown children should be \
+Navitems and not other elements');
+    }
+
+    return _node;
 };
 
 var NavDropdown = function NavDropdown(_ref) {
@@ -16116,7 +16144,7 @@ var NavDropdown = function NavDropdown(_ref) {
         className = _ref.className,
         cssMap = _ref.cssMap;
 
-    var dropdownItems = filterNavItems(children).map(function (child) {
+    var dropdownItems = warnNavItems(children).map(function (child) {
         return _react2.default.cloneElement(child, _extends({}, child.props, { role: 'sub' }));
     });
 
@@ -17238,8 +17266,10 @@ var TableCell = function TableCell(_ref) {
         columnTitle = _ref.columnTitle,
         cssMap = _ref.cssMap,
         isHeader = _ref.isHeader,
+        isRowHeader = _ref.isRowHeader,
         isDataTable = _ref.isDataTable,
         isSortable = _ref.isSortable,
+        isSticky = _ref.isSticky,
         onToggle = _ref.onToggle,
         size = _ref.size,
         sort = _ref.sort,
@@ -17267,7 +17297,9 @@ var TableCell = function TableCell(_ref) {
             cssMap: cssMap,
             cssProps: {
                 header: isHeader,
-                data: isDataTable
+                rowHeader: isRowHeader,
+                data: isDataTable,
+                sticky: isSticky
             } },
         _react2.default.createElement(
             _Column2.default,
@@ -17292,9 +17324,17 @@ TableCell.propTypes = {
      */
     isHeader: _propTypes2.default.bool,
     /**
+     *  Display as a row header cell
+     */
+    isRowHeader: _propTypes2.default.bool,
+    /**
      *  Show a Sorter in header cell
      */
     isSortable: _propTypes2.default.bool,
+    /**
+     *  Makes the cell sticky
+     */
+    isSticky: _propTypes2.default.bool,
     /**
      *  Sort direction
      */
@@ -17307,7 +17347,7 @@ TableCell.propTypes = {
     /**
      *  Size of the cell
      */
-    size: _propTypes2.default.oneOf(['1/1', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
+    size: _propTypes2.default.oneOf(['icon-S', 'icon-M', 'icon-L', 'icon-XL', 'icon-XXL', '1/1', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
     /* eslint-disable max-len */
     '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/17', '2/17', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24', 'content'
     /* eslint-enable max-len */
@@ -17332,8 +17372,10 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
     isHeader: false,
+    isRowHeader: false,
     isDataTable: false,
     isSortable: false,
+    isSticky: false,
     cssMap: __webpack_require__(176)
 };
 
@@ -17374,20 +17416,28 @@ var TableRow = function TableRow(_ref) {
         className = _ref.className,
         cssMap = _ref.cssMap,
         gutters = _ref.gutters,
+        isSticky = _ref.isSticky,
         verticalAlign = _ref.verticalAlign;
 
-    var cells = _react2.default.Children.toArray(children);
+    var cells = _react2.default.Children.toArray(children).map(function (cell) {
+        return _react2.default.cloneElement(cell, {
+            align: align || cell.props.align,
+            verticalAlign: verticalAlign || cell.props.verticalAlign
+        });
+    });
 
     return _react2.default.createElement(
         _Css2.default,
-        { cssMap: cssMap },
+        {
+            cssMap: cssMap,
+            cssProps: {
+                sticky: isSticky
+            } },
         _react2.default.createElement(
             _Row2.default,
             {
                 className: className,
                 role: 'row',
-                align: align,
-                verticalAlign: verticalAlign,
                 gutters: gutters,
                 spacing: 'none' },
             cells
@@ -17411,6 +17461,10 @@ TableRow.propTypes = {
      */
     gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
     /**
+     *  Makes the row sticky
+     */
+    isSticky: _propTypes2.default.bool,
+    /**
      *  Row content (TableCells)
      */
     children: _propTypes2.default.node
@@ -17420,6 +17474,7 @@ TableRow.defaultProps = {
     align: 'auto',
     verticalAlign: 'auto',
     gutters: 'L',
+    isSticky: false,
     cssMap: __webpack_require__(177)
 };
 
@@ -20207,7 +20262,7 @@ var CodeEditor = function (_Component) {
                 return codeMirror.setOption(option, combinedOptions[option]);
             });
 
-            if (typeof value !== 'undefined') {
+            if (typeof value !== 'undefined' && codeMirror.getValue() !== value) {
                 codeMirror.setValue(value || '');
             }
 
@@ -20257,7 +20312,7 @@ var CodeEditor = function (_Component) {
             var onChange = this.props.onChange;
 
             if (onChange) {
-                onChange(cm);
+                onChange(cm.getValue());
             }
         }
     }, {
@@ -22227,7 +22282,6 @@ var Module = function (_Component) {
                 children = _props.children,
                 customHeader = _props.customHeader,
                 headerLevel = _props.headerLevel,
-                highlightType = _props.highlightType,
                 hasError = _props.hasError,
                 hasModuleError = _props.hasModuleError,
                 errorMessage = _props.errorMessage,
@@ -22296,9 +22350,7 @@ var Module = function (_Component) {
                         collapsible: isCollapsible,
                         collapsed: isCollapsible && isCollapsed,
                         error: hasError,
-                        moduleError: hasModuleError,
-                        subtleHighlight: highlightType === 'subtle',
-                        level: headerLevel
+                        moduleError: hasModuleError
                     } },
                 _react2.default.createElement(
                     'section',
@@ -22360,10 +22412,6 @@ Module.propTypes = {
      */
     hasModuleError: _propTypes2.default.bool,
     /**
-     * What style of highlight line (LHS of module)
-     */
-    highlightType: _propTypes2.default.oneOf(['default', 'subtle']),
-    /**
      *  Tooltip message text (string or JSX)
      */
     errorMessage: _propTypes2.default.node,
@@ -22394,7 +22442,6 @@ Module.defaultProps = {
     isDeletable: false,
     isLoading: false,
     isReadOnly: false,
-    highlightType: 'default',
     headerLevel: 2,
     cssMap: __webpack_require__(146)
 };
@@ -22470,7 +22517,7 @@ exports.default = NavBar;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(0);
@@ -22492,123 +22539,125 @@ var _NavDropdown2 = _interopRequireDefault(_NavDropdown);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var NavItem = function NavItem(_ref) {
-  var children = _ref.children,
-      label = _ref.label,
-      className = _ref.className,
-      cssMap = _ref.cssMap,
-      dropdownAlign = _ref.dropdownAlign,
-      forceHover = _ref.forceHover,
-      href = _ref.href,
-      iconType = _ref.iconType,
-      isCurrentPage = _ref.isCurrentPage,
-      isOpen = _ref.isOpen,
-      isDisabled = _ref.isDisabled,
-      onClick = _ref.onClick,
-      onMouseOut = _ref.onMouseOut,
-      onMouseOver = _ref.onMouseOver,
-      role = _ref.role;
-  return _react2.default.createElement(
-    _Css2.default,
-    {
-      cssMap: cssMap,
-      cssProps: {
-        role: role,
-        disabled: isDisabled,
-        current: isCurrentPage,
-        dropdownAlign: dropdownAlign,
-        open: isOpen,
-        fakeHovered: forceHover,
-        icon: iconType
-      } },
-    _react2.default.createElement(
-      'li',
-      {
-        className: className,
-        onMouseOver: onMouseOver,
-        onMouseOut: onMouseOut },
-      _react2.default.createElement(
-        'a',
+    var children = _ref.children,
+        label = _ref.label,
+        className = _ref.className,
+        cssMap = _ref.cssMap,
+        dropdownAlign = _ref.dropdownAlign,
+        forceHover = _ref.forceHover,
+        href = _ref.href,
+        iconType = _ref.iconType,
+        isCurrentPage = _ref.isCurrentPage,
+        isCurrent = _ref.isCurrent,
+        isOpen = _ref.isOpen,
+        isDisabled = _ref.isDisabled,
+        onClick = _ref.onClick,
+        onMouseOut = _ref.onMouseOut,
+        onMouseOver = _ref.onMouseOver,
+        role = _ref.role;
+
+    if (isCurrentPage === true) {
+        console.warn(undefined.constructor.name + ': isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
+    }
+
+    return _react2.default.createElement(
+        _Css2.default,
         {
-          className: cssMap.link,
-          href: href,
-          onClick: onClick },
+            cssMap: cssMap,
+            cssProps: {
+                role: role,
+                disabled: isDisabled,
+                current: isCurrent || isCurrentPage,
+                dropdownAlign: dropdownAlign,
+                open: isOpen,
+                fakeHovered: forceHover,
+                icon: iconType
+            } },
         _react2.default.createElement(
-          'span',
-          null,
-          label
-        ),
-        iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
-      ),
-      children && _react2.default.createElement(
-        _NavDropdown2.default,
-        { className: cssMap.dropdown },
-        children
-      )
-    )
-  );
+            'li',
+            {
+                className: className,
+                onMouseOver: onMouseOver,
+                onMouseOut: onMouseOut },
+            _react2.default.createElement(
+                'a',
+                {
+                    className: cssMap.link,
+                    href: href,
+                    onClick: onClick },
+                _react2.default.createElement(
+                    'span',
+                    null,
+                    label
+                ),
+                iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
+            ),
+            children && _react2.default.createElement(
+                _NavDropdown2.default,
+                { className: cssMap.dropdown },
+                children
+            )
+        )
+    );
 };
 
 NavItem.propTypes = {
-  /**
-   *  Navigation role
-   */
-  role: _propTypes2.default.oneOf(['default', 'primary', 'sub']),
-  /**
-   *  navItem text
-   */
-  label: _propTypes2.default.node,
-  /**
-   *  HTML href attribute
-   */
-  href: _propTypes2.default.string,
-  /**
-   *  Icon to show
-   */
-  iconType: _propTypes2.default.oneOf(['account', 'none']),
-  /**
-   *  Display as current page
-   */
-  isCurrentPage: _propTypes2.default.bool,
-  /*
-  *  Display as disabled/read-only
-   */
-  isDisabled: _propTypes2.default.bool,
-  /*
-  * Dropdown menu alignment
-   */
-  dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
-  /*
-  * Dropdown menu is open
-   */
-  isOpen: _propTypes2.default.bool,
-  /**
-   *  Dropdown menu items
-   */
-  children: _propTypes2.default.node,
-  /**
-   *  onMouseOver callback function
-   */
-  onMouseOver: _propTypes2.default.func,
-  /**
-   *  onMouseOut callback function
-   */
-  onMouseOut: _propTypes2.default.func,
-  /**
-   *  onClick callback function
-   */
-  onClick: _propTypes2.default.func,
-  /**
-   * Display as hover when required from another component
-   */
-  forceHover: _propTypes2.default.bool
+    /**
+     *  Navigation role
+     */
+    role: _propTypes2.default.oneOf(['default', 'primary', 'sub']),
+    /**
+     *  navItem text
+     */
+    label: _propTypes2.default.node,
+    /**
+     *  HTML href attribute
+     */
+    href: _propTypes2.default.string,
+    /**
+     *  Icon to show
+     */
+    iconType: _propTypes2.default.oneOf(['account', 'none']),
+    /*
+    *  Display as disabled/read-only
+     */
+    isDisabled: _propTypes2.default.bool,
+    /*
+    * Dropdown menu alignment
+     */
+    dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
+    /*
+    * Dropdown menu is open
+     */
+    isOpen: _propTypes2.default.bool,
+    /**
+     *  Dropdown menu items
+     */
+    children: _propTypes2.default.node,
+    /**
+     *  onMouseOver callback function
+     */
+    onMouseOver: _propTypes2.default.func,
+    /**
+     *  onMouseOut callback function
+     */
+    onMouseOut: _propTypes2.default.func,
+    /**
+     *  onClick callback function
+     */
+    onClick: _propTypes2.default.func,
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover: _propTypes2.default.bool
 };
 
 NavItem.defaultProps = {
-  role: 'default',
-  href: '#',
-  dropdownAlign: 'left',
-  iconType: 'none',
-  cssMap: __webpack_require__(149)
+    role: 'default',
+    href: '#',
+    dropdownAlign: 'left',
+    iconType: 'none',
+    cssMap: __webpack_require__(149)
 };
 
 exports.default = NavItem;
@@ -24706,13 +24755,17 @@ var Table = function Table(_ref) {
         onToggle = _ref.onToggle,
         values = _ref.values,
         isDataTable = _ref.isDataTable,
-        isZebra = _ref.isZebra;
+        isZebra = _ref.isZebra,
+        stickyHeader = _ref.stickyHeader;
 
     var _children = children || buildTableFromValues(values);
 
     var header = columns.length ? _react2.default.createElement(
         _TableRow2.default,
-        { verticalAlign: 'middle', className: cssMap.row },
+        {
+            isSticky: stickyHeader,
+            verticalAlign: 'middle',
+            className: cssMap.row },
         columns.map(function (column, index) {
             var title = column.title;
             var text = column.isRequired ? _react2.default.createElement(
@@ -24720,11 +24773,13 @@ var Table = function Table(_ref) {
                 null,
                 title
             ) : title;
+            var stickyCell = column.isSticky;
 
             return _react2.default.createElement(
                 _TableCell2.default,
                 {
                     isHeader: true,
+                    isSticky: stickyCell,
                     isDataTable: isDataTable,
                     isSortable: column.isSortable,
                     sort: column.sort,
@@ -24745,13 +24800,17 @@ var Table = function Table(_ref) {
                 if (_typeof(columns[index]) === 'object') {
                     var title = columns[index].title;
                     var size = columns[index].size;
+                    var rowHeaderCell = columns[index].isRowHeader;
+                    var stickyCell = columns[index].isSticky;
 
                     return _react2.default.cloneElement(cell, {
+                        className: cell.props.className ? cell.props.className + '  ' + cssMap.cell : cssMap.cell,
                         columnTitle: title || cell.props.columnTitle,
-                        size: size || cell.props.size
+                        size: size || cell.props.size,
+                        isRowHeader: rowHeaderCell || cell.props.isRowHeader,
+                        isSticky: stickyCell || cell.props.isSticky
                     });
                 }
-
                 return cell;
             }),
             className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row
@@ -24786,6 +24845,8 @@ Table.propTypes = {
     columns: _propTypes2.default.arrayOf(_propTypes2.default.shape({
         title: _propTypes2.default.string,
         size: _propTypes2.default.string,
+        isRowHeader: _propTypes2.default.bool,
+        isSticky: _propTypes2.default.bool,
         isRequired: _propTypes2.default.bool,
         isSortable: _propTypes2.default.bool,
         sort: _propTypes2.default.oneOf(['asc', 'desc'])
@@ -24794,12 +24855,10 @@ Table.propTypes = {
      *  Table content (TableRows containing TableCells; overrides values)
      */
     children: _propTypes2.default.node,
-
     /**
      *  Is Data Table (smaller fonts, zebra paddings)
      */
     isDataTable: _propTypes2.default.bool,
-
     /**
      *  Display as zebra-striped
      */
@@ -24807,12 +24866,17 @@ Table.propTypes = {
     /**
      *  Column sorter onToggle callback function: ( e ) => { ... }
      */
-    onToggle: _propTypes2.default.func
+    onToggle: _propTypes2.default.func,
+    /**
+     *  Makes header row sticky
+     */
+    stickyHeader: _propTypes2.default.bool
 };
 
 Table.defaultProps = {
     isZebra: false,
     isDataTable: false,
+    stickyHeader: false,
     cssMap: __webpack_require__(175)
 };
 
@@ -24855,12 +24919,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var isTab = function isTab(node) {
-    return _react2.default.isValidElement(node) && node.type.name === 'Tab';
-};
+var warnTabs = function warnTabs(node) {
+    var _node = _react2.default.Children.toArray(node);
+    var warning = false;
 
-var filterTabs = function filterTabs(node) {
-    return _react2.default.Children.toArray(node).filter(isTab);
+    _node.forEach(function (child) {
+        if (!(_react2.default.isValidElement(child) && child.type.name === 'Tab')) {
+            warning = true;
+        }
+    });
+
+    if (warning) {
+        console.warn('Tabs component children should be \
+individual Tab components and not other elements');
+    }
+
+    return _node;
 };
 
 var Tabs = function (_NessieComponent) {
@@ -24920,7 +24994,7 @@ var Tabs = function (_NessieComponent) {
                 cssMap = _props.cssMap;
 
 
-            var tabs = filterTabs(children);
+            var tabs = warnTabs(children);
             var header = this.renderHeader(tabs);
 
             var content = tabs[activeTabIndex];
@@ -25014,12 +25088,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var isTag = function isTag(node) {
-    return _react2.default.isValidElement(node) && node.type.name === 'Tag';
-};
+var warnTags = function warnTags(node) {
+    var _node = _react2.default.Children.toArray(node);
+    var warning = false;
 
-var filterTags = function filterTags(node) {
-    return _react2.default.Children.toArray(node).filter(isTag);
+    _node.forEach(function (child) {
+        if (!(_react2.default.isValidElement(child) && child.type.name === 'Tag')) {
+            warning = true;
+        }
+    });
+
+    if (warning) {
+        console.warn('TagInput children should be \
+individual tag components and not other elements');
+    }
+
+    return node;
 };
 
 var buildTagsFromStrings = function buildTagsFromStrings() {
@@ -25079,7 +25163,7 @@ var TagInput = function (_Component) {
                 isFocused = _state.isFocused;
 
 
-            var tagItems = children ? filterTags(children) : buildTagsFromStrings(tags);
+            var tagItems = children ? warnTags(children) : buildTagsFromStrings(tags);
 
             var updatedTagItems = tagItems.map(function (tag) {
                 return _react2.default.cloneElement(tag, _extends({}, tag.props, {
@@ -26656,7 +26740,7 @@ module.exports = {"default":"codeEditor__default","editor":"codeEditor__editor",
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"column__default","alignX__left":"column__alignX__left","alignX__center":"column__alignX__center","alignX__right":"column__alignX__right","alignY__middle":"column__alignY__middle","alignY__bottom":"column__alignY__bottom","alignY__space-around":"column__alignY__space-around","size__1/1":"column__size__1-1","size__1/2":"column__size__1-2","size__1/3":"column__size__1-3","size__1/4":"column__size__1-4","size__1/5":"column__size__1-5","size__1/6":"column__size__1-6","size__1/7":"column__size__1-7","size__1/8":"column__size__1-8","size__1/9":"column__size__1-9","size__1/10":"column__size__1-10","size__1/11":"column__size__1-11","size__1/12":"column__size__1-12","size__1/13":"column__size__1-13","size__1/14":"column__size__1-14","size__1/15":"column__size__1-15","size__1/16":"column__size__1-16","size__1/17":"column__size__1-17","size__1/18":"column__size__1-18","size__1/19":"column__size__1-19","size__1/20":"column__size__1-20","size__1/21":"column__size__1-21","size__1/22":"column__size__1-22","size__1/23":"column__size__1-23","size__1/24":"column__size__1-24","size__2/1":"column__size__2-1","size__2/2":"column__size__2-2","size__2/3":"column__size__2-3","size__2/4":"column__size__2-4","size__2/5":"column__size__2-5","size__2/6":"column__size__2-6","size__2/7":"column__size__2-7","size__2/8":"column__size__2-8","size__2/9":"column__size__2-9","size__2/10":"column__size__2-10","size__2/11":"column__size__2-11","size__2/12":"column__size__2-12","size__2/13":"column__size__2-13","size__2/14":"column__size__2-14","size__2/15":"column__size__2-15","size__2/16":"column__size__2-16","size__2/17":"column__size__2-17","size__2/18":"column__size__2-18","size__2/19":"column__size__2-19","size__2/20":"column__size__2-20","size__2/21":"column__size__2-21","size__2/22":"column__size__2-22","size__2/23":"column__size__2-23","size__2/24":"column__size__2-24","size__3/1":"column__size__3-1","size__3/2":"column__size__3-2","size__3/3":"column__size__3-3","size__3/4":"column__size__3-4","size__3/5":"column__size__3-5","size__3/6":"column__size__3-6","size__3/7":"column__size__3-7","size__3/8":"column__size__3-8","size__3/9":"column__size__3-9","size__3/10":"column__size__3-10","size__3/11":"column__size__3-11","size__3/12":"column__size__3-12","size__3/13":"column__size__3-13","size__3/14":"column__size__3-14","size__3/15":"column__size__3-15","size__3/16":"column__size__3-16","size__3/17":"column__size__3-17","size__3/18":"column__size__3-18","size__3/19":"column__size__3-19","size__3/20":"column__size__3-20","size__3/21":"column__size__3-21","size__3/22":"column__size__3-22","size__3/23":"column__size__3-23","size__3/24":"column__size__3-24","size__4/1":"column__size__4-1","size__4/2":"column__size__4-2","size__4/3":"column__size__4-3","size__4/4":"column__size__4-4","size__4/5":"column__size__4-5","size__4/6":"column__size__4-6","size__4/7":"column__size__4-7","size__4/8":"column__size__4-8","size__4/9":"column__size__4-9","size__4/10":"column__size__4-10","size__4/11":"column__size__4-11","size__4/12":"column__size__4-12","size__4/13":"column__size__4-13","size__4/14":"column__size__4-14","size__4/15":"column__size__4-15","size__4/16":"column__size__4-16","size__4/17":"column__size__4-17","size__4/18":"column__size__4-18","size__4/19":"column__size__4-19","size__4/20":"column__size__4-20","size__4/21":"column__size__4-21","size__4/22":"column__size__4-22","size__4/23":"column__size__4-23","size__4/24":"column__size__4-24","size__5/1":"column__size__5-1","size__5/2":"column__size__5-2","size__5/3":"column__size__5-3","size__5/4":"column__size__5-4","size__5/5":"column__size__5-5","size__5/6":"column__size__5-6","size__5/7":"column__size__5-7","size__5/8":"column__size__5-8","size__5/9":"column__size__5-9","size__5/10":"column__size__5-10","size__5/11":"column__size__5-11","size__5/12":"column__size__5-12","size__5/13":"column__size__5-13","size__5/14":"column__size__5-14","size__5/15":"column__size__5-15","size__5/16":"column__size__5-16","size__5/17":"column__size__5-17","size__5/18":"column__size__5-18","size__5/19":"column__size__5-19","size__5/20":"column__size__5-20","size__5/21":"column__size__5-21","size__5/22":"column__size__5-22","size__5/23":"column__size__5-23","size__5/24":"column__size__5-24","size__6/1":"column__size__6-1","size__6/2":"column__size__6-2","size__6/3":"column__size__6-3","size__6/4":"column__size__6-4","size__6/5":"column__size__6-5","size__6/6":"column__size__6-6","size__6/7":"column__size__6-7","size__6/8":"column__size__6-8","size__6/9":"column__size__6-9","size__6/10":"column__size__6-10","size__6/11":"column__size__6-11","size__6/12":"column__size__6-12","size__6/13":"column__size__6-13","size__6/14":"column__size__6-14","size__6/15":"column__size__6-15","size__6/16":"column__size__6-16","size__6/17":"column__size__6-17","size__6/18":"column__size__6-18","size__6/19":"column__size__6-19","size__6/20":"column__size__6-20","size__6/21":"column__size__6-21","size__6/22":"column__size__6-22","size__6/23":"column__size__6-23","size__6/24":"column__size__6-24","size__7/1":"column__size__7-1","size__7/2":"column__size__7-2","size__7/3":"column__size__7-3","size__7/4":"column__size__7-4","size__7/5":"column__size__7-5","size__7/6":"column__size__7-6","size__7/7":"column__size__7-7","size__7/8":"column__size__7-8","size__7/9":"column__size__7-9","size__7/10":"column__size__7-10","size__7/11":"column__size__7-11","size__7/12":"column__size__7-12","size__7/13":"column__size__7-13","size__7/14":"column__size__7-14","size__7/15":"column__size__7-15","size__7/16":"column__size__7-16","size__7/17":"column__size__7-17","size__7/18":"column__size__7-18","size__7/19":"column__size__7-19","size__7/20":"column__size__7-20","size__7/21":"column__size__7-21","size__7/22":"column__size__7-22","size__7/23":"column__size__7-23","size__7/24":"column__size__7-24","size__8/1":"column__size__8-1","size__8/2":"column__size__8-2","size__8/3":"column__size__8-3","size__8/4":"column__size__8-4","size__8/5":"column__size__8-5","size__8/6":"column__size__8-6","size__8/7":"column__size__8-7","size__8/8":"column__size__8-8","size__8/9":"column__size__8-9","size__8/10":"column__size__8-10","size__8/11":"column__size__8-11","size__8/12":"column__size__8-12","size__8/13":"column__size__8-13","size__8/14":"column__size__8-14","size__8/15":"column__size__8-15","size__8/16":"column__size__8-16","size__8/17":"column__size__8-17","size__8/18":"column__size__8-18","size__8/19":"column__size__8-19","size__8/20":"column__size__8-20","size__8/21":"column__size__8-21","size__8/22":"column__size__8-22","size__8/23":"column__size__8-23","size__8/24":"column__size__8-24","size__9/1":"column__size__9-1","size__9/2":"column__size__9-2","size__9/3":"column__size__9-3","size__9/4":"column__size__9-4","size__9/5":"column__size__9-5","size__9/6":"column__size__9-6","size__9/7":"column__size__9-7","size__9/8":"column__size__9-8","size__9/9":"column__size__9-9","size__9/10":"column__size__9-10","size__9/11":"column__size__9-11","size__9/12":"column__size__9-12","size__9/13":"column__size__9-13","size__9/14":"column__size__9-14","size__9/15":"column__size__9-15","size__9/16":"column__size__9-16","size__9/17":"column__size__9-17","size__9/18":"column__size__9-18","size__9/19":"column__size__9-19","size__9/20":"column__size__9-20","size__9/21":"column__size__9-21","size__9/22":"column__size__9-22","size__9/23":"column__size__9-23","size__9/24":"column__size__9-24","size__10/1":"column__size__10-1","size__10/2":"column__size__10-2","size__10/3":"column__size__10-3","size__10/4":"column__size__10-4","size__10/5":"column__size__10-5","size__10/6":"column__size__10-6","size__10/7":"column__size__10-7","size__10/8":"column__size__10-8","size__10/9":"column__size__10-9","size__10/10":"column__size__10-10","size__10/11":"column__size__10-11","size__10/12":"column__size__10-12","size__10/13":"column__size__10-13","size__10/14":"column__size__10-14","size__10/15":"column__size__10-15","size__10/16":"column__size__10-16","size__10/17":"column__size__10-17","size__10/18":"column__size__10-18","size__10/19":"column__size__10-19","size__10/20":"column__size__10-20","size__10/21":"column__size__10-21","size__10/22":"column__size__10-22","size__10/23":"column__size__10-23","size__10/24":"column__size__10-24","size__11/1":"column__size__11-1","size__11/2":"column__size__11-2","size__11/3":"column__size__11-3","size__11/4":"column__size__11-4","size__11/5":"column__size__11-5","size__11/6":"column__size__11-6","size__11/7":"column__size__11-7","size__11/8":"column__size__11-8","size__11/9":"column__size__11-9","size__11/10":"column__size__11-10","size__11/11":"column__size__11-11","size__11/12":"column__size__11-12","size__11/13":"column__size__11-13","size__11/14":"column__size__11-14","size__11/15":"column__size__11-15","size__11/16":"column__size__11-16","size__11/17":"column__size__11-17","size__11/18":"column__size__11-18","size__11/19":"column__size__11-19","size__11/20":"column__size__11-20","size__11/21":"column__size__11-21","size__11/22":"column__size__11-22","size__11/23":"column__size__11-23","size__11/24":"column__size__11-24","size__12/1":"column__size__12-1","size__12/2":"column__size__12-2","size__12/3":"column__size__12-3","size__12/4":"column__size__12-4","size__12/5":"column__size__12-5","size__12/6":"column__size__12-6","size__12/7":"column__size__12-7","size__12/8":"column__size__12-8","size__12/9":"column__size__12-9","size__12/10":"column__size__12-10","size__12/11":"column__size__12-11","size__12/12":"column__size__12-12","size__12/13":"column__size__12-13","size__12/14":"column__size__12-14","size__12/15":"column__size__12-15","size__12/16":"column__size__12-16","size__12/17":"column__size__12-17","size__12/18":"column__size__12-18","size__12/19":"column__size__12-19","size__12/20":"column__size__12-20","size__12/21":"column__size__12-21","size__12/22":"column__size__12-22","size__12/23":"column__size__12-23","size__12/24":"column__size__12-24","size__13/1":"column__size__13-1","size__13/2":"column__size__13-2","size__13/3":"column__size__13-3","size__13/4":"column__size__13-4","size__13/5":"column__size__13-5","size__13/6":"column__size__13-6","size__13/7":"column__size__13-7","size__13/8":"column__size__13-8","size__13/9":"column__size__13-9","size__13/10":"column__size__13-10","size__13/11":"column__size__13-11","size__13/12":"column__size__13-12","size__13/13":"column__size__13-13","size__13/14":"column__size__13-14","size__13/15":"column__size__13-15","size__13/16":"column__size__13-16","size__13/17":"column__size__13-17","size__13/18":"column__size__13-18","size__13/19":"column__size__13-19","size__13/20":"column__size__13-20","size__13/21":"column__size__13-21","size__13/22":"column__size__13-22","size__13/23":"column__size__13-23","size__13/24":"column__size__13-24","size__14/1":"column__size__14-1","size__14/2":"column__size__14-2","size__14/3":"column__size__14-3","size__14/4":"column__size__14-4","size__14/5":"column__size__14-5","size__14/6":"column__size__14-6","size__14/7":"column__size__14-7","size__14/8":"column__size__14-8","size__14/9":"column__size__14-9","size__14/10":"column__size__14-10","size__14/11":"column__size__14-11","size__14/12":"column__size__14-12","size__14/13":"column__size__14-13","size__14/14":"column__size__14-14","size__14/15":"column__size__14-15","size__14/16":"column__size__14-16","size__14/17":"column__size__14-17","size__14/18":"column__size__14-18","size__14/19":"column__size__14-19","size__14/20":"column__size__14-20","size__14/21":"column__size__14-21","size__14/22":"column__size__14-22","size__14/23":"column__size__14-23","size__14/24":"column__size__14-24","size__15/1":"column__size__15-1","size__15/2":"column__size__15-2","size__15/3":"column__size__15-3","size__15/4":"column__size__15-4","size__15/5":"column__size__15-5","size__15/6":"column__size__15-6","size__15/7":"column__size__15-7","size__15/8":"column__size__15-8","size__15/9":"column__size__15-9","size__15/10":"column__size__15-10","size__15/11":"column__size__15-11","size__15/12":"column__size__15-12","size__15/13":"column__size__15-13","size__15/14":"column__size__15-14","size__15/15":"column__size__15-15","size__15/16":"column__size__15-16","size__15/17":"column__size__15-17","size__15/18":"column__size__15-18","size__15/19":"column__size__15-19","size__15/20":"column__size__15-20","size__15/21":"column__size__15-21","size__15/22":"column__size__15-22","size__15/23":"column__size__15-23","size__15/24":"column__size__15-24","size__16/1":"column__size__16-1","size__16/2":"column__size__16-2","size__16/3":"column__size__16-3","size__16/4":"column__size__16-4","size__16/5":"column__size__16-5","size__16/6":"column__size__16-6","size__16/7":"column__size__16-7","size__16/8":"column__size__16-8","size__16/9":"column__size__16-9","size__16/10":"column__size__16-10","size__16/11":"column__size__16-11","size__16/12":"column__size__16-12","size__16/13":"column__size__16-13","size__16/14":"column__size__16-14","size__16/15":"column__size__16-15","size__16/16":"column__size__16-16","size__16/17":"column__size__16-17","size__16/18":"column__size__16-18","size__16/19":"column__size__16-19","size__16/20":"column__size__16-20","size__16/21":"column__size__16-21","size__16/22":"column__size__16-22","size__16/23":"column__size__16-23","size__16/24":"column__size__16-24","size__17/1":"column__size__17-1","size__17/2":"column__size__17-2","size__17/3":"column__size__17-3","size__17/4":"column__size__17-4","size__17/5":"column__size__17-5","size__17/6":"column__size__17-6","size__17/7":"column__size__17-7","size__17/8":"column__size__17-8","size__17/9":"column__size__17-9","size__17/10":"column__size__17-10","size__17/11":"column__size__17-11","size__17/12":"column__size__17-12","size__17/13":"column__size__17-13","size__17/14":"column__size__17-14","size__17/15":"column__size__17-15","size__17/16":"column__size__17-16","size__17/17":"column__size__17-17","size__17/18":"column__size__17-18","size__17/19":"column__size__17-19","size__17/20":"column__size__17-20","size__17/21":"column__size__17-21","size__17/22":"column__size__17-22","size__17/23":"column__size__17-23","size__17/24":"column__size__17-24","size__18/1":"column__size__18-1","size__18/2":"column__size__18-2","size__18/3":"column__size__18-3","size__18/4":"column__size__18-4","size__18/5":"column__size__18-5","size__18/6":"column__size__18-6","size__18/7":"column__size__18-7","size__18/8":"column__size__18-8","size__18/9":"column__size__18-9","size__18/10":"column__size__18-10","size__18/11":"column__size__18-11","size__18/12":"column__size__18-12","size__18/13":"column__size__18-13","size__18/14":"column__size__18-14","size__18/15":"column__size__18-15","size__18/16":"column__size__18-16","size__18/17":"column__size__18-17","size__18/18":"column__size__18-18","size__18/19":"column__size__18-19","size__18/20":"column__size__18-20","size__18/21":"column__size__18-21","size__18/22":"column__size__18-22","size__18/23":"column__size__18-23","size__18/24":"column__size__18-24","size__19/1":"column__size__19-1","size__19/2":"column__size__19-2","size__19/3":"column__size__19-3","size__19/4":"column__size__19-4","size__19/5":"column__size__19-5","size__19/6":"column__size__19-6","size__19/7":"column__size__19-7","size__19/8":"column__size__19-8","size__19/9":"column__size__19-9","size__19/10":"column__size__19-10","size__19/11":"column__size__19-11","size__19/12":"column__size__19-12","size__19/13":"column__size__19-13","size__19/14":"column__size__19-14","size__19/15":"column__size__19-15","size__19/16":"column__size__19-16","size__19/17":"column__size__19-17","size__19/18":"column__size__19-18","size__19/19":"column__size__19-19","size__19/20":"column__size__19-20","size__19/21":"column__size__19-21","size__19/22":"column__size__19-22","size__19/23":"column__size__19-23","size__19/24":"column__size__19-24","size__20/1":"column__size__20-1","size__20/2":"column__size__20-2","size__20/3":"column__size__20-3","size__20/4":"column__size__20-4","size__20/5":"column__size__20-5","size__20/6":"column__size__20-6","size__20/7":"column__size__20-7","size__20/8":"column__size__20-8","size__20/9":"column__size__20-9","size__20/10":"column__size__20-10","size__20/11":"column__size__20-11","size__20/12":"column__size__20-12","size__20/13":"column__size__20-13","size__20/14":"column__size__20-14","size__20/15":"column__size__20-15","size__20/16":"column__size__20-16","size__20/17":"column__size__20-17","size__20/18":"column__size__20-18","size__20/19":"column__size__20-19","size__20/20":"column__size__20-20","size__20/21":"column__size__20-21","size__20/22":"column__size__20-22","size__20/23":"column__size__20-23","size__20/24":"column__size__20-24","size__21/1":"column__size__21-1","size__21/2":"column__size__21-2","size__21/3":"column__size__21-3","size__21/4":"column__size__21-4","size__21/5":"column__size__21-5","size__21/6":"column__size__21-6","size__21/7":"column__size__21-7","size__21/8":"column__size__21-8","size__21/9":"column__size__21-9","size__21/10":"column__size__21-10","size__21/11":"column__size__21-11","size__21/12":"column__size__21-12","size__21/13":"column__size__21-13","size__21/14":"column__size__21-14","size__21/15":"column__size__21-15","size__21/16":"column__size__21-16","size__21/17":"column__size__21-17","size__21/18":"column__size__21-18","size__21/19":"column__size__21-19","size__21/20":"column__size__21-20","size__21/21":"column__size__21-21","size__21/22":"column__size__21-22","size__21/23":"column__size__21-23","size__21/24":"column__size__21-24","size__22/1":"column__size__22-1","size__22/2":"column__size__22-2","size__22/3":"column__size__22-3","size__22/4":"column__size__22-4","size__22/5":"column__size__22-5","size__22/6":"column__size__22-6","size__22/7":"column__size__22-7","size__22/8":"column__size__22-8","size__22/9":"column__size__22-9","size__22/10":"column__size__22-10","size__22/11":"column__size__22-11","size__22/12":"column__size__22-12","size__22/13":"column__size__22-13","size__22/14":"column__size__22-14","size__22/15":"column__size__22-15","size__22/16":"column__size__22-16","size__22/17":"column__size__22-17","size__22/18":"column__size__22-18","size__22/19":"column__size__22-19","size__22/20":"column__size__22-20","size__22/21":"column__size__22-21","size__22/22":"column__size__22-22","size__22/23":"column__size__22-23","size__22/24":"column__size__22-24","size__23/1":"column__size__23-1","size__23/2":"column__size__23-2","size__23/3":"column__size__23-3","size__23/4":"column__size__23-4","size__23/5":"column__size__23-5","size__23/6":"column__size__23-6","size__23/7":"column__size__23-7","size__23/8":"column__size__23-8","size__23/9":"column__size__23-9","size__23/10":"column__size__23-10","size__23/11":"column__size__23-11","size__23/12":"column__size__23-12","size__23/13":"column__size__23-13","size__23/14":"column__size__23-14","size__23/15":"column__size__23-15","size__23/16":"column__size__23-16","size__23/17":"column__size__23-17","size__23/18":"column__size__23-18","size__23/19":"column__size__23-19","size__23/20":"column__size__23-20","size__23/21":"column__size__23-21","size__23/22":"column__size__23-22","size__23/23":"column__size__23-23","size__23/24":"column__size__23-24","size__24/1":"column__size__24-1","size__24/2":"column__size__24-2","size__24/3":"column__size__24-3","size__24/4":"column__size__24-4","size__24/5":"column__size__24-5","size__24/6":"column__size__24-6","size__24/7":"column__size__24-7","size__24/8":"column__size__24-8","size__24/9":"column__size__24-9","size__24/10":"column__size__24-10","size__24/11":"column__size__24-11","size__24/12":"column__size__24-12","size__24/13":"column__size__24-13","size__24/14":"column__size__24-14","size__24/15":"column__size__24-15","size__24/16":"column__size__24-16","size__24/17":"column__size__24-17","size__24/18":"column__size__24-18","size__24/19":"column__size__24-19","size__24/20":"column__size__24-20","size__24/21":"column__size__24-21","size__24/22":"column__size__24-22","size__24/23":"column__size__24-23","size__24/24":"column__size__24-24","size__content":"column__size__content"};
+module.exports = {"default":"column__default","alignX__left":"column__alignX__left","alignX__center":"column__alignX__center","alignX__right":"column__alignX__right","alignY__middle":"column__alignY__middle","alignY__bottom":"column__alignY__bottom","alignY__space-around":"column__alignY__space-around","size__1/1":"column__size__1-1","size__1/2":"column__size__1-2","size__1/3":"column__size__1-3","size__1/4":"column__size__1-4","size__1/5":"column__size__1-5","size__1/6":"column__size__1-6","size__1/7":"column__size__1-7","size__1/8":"column__size__1-8","size__1/9":"column__size__1-9","size__1/10":"column__size__1-10","size__1/11":"column__size__1-11","size__1/12":"column__size__1-12","size__1/13":"column__size__1-13","size__1/14":"column__size__1-14","size__1/15":"column__size__1-15","size__1/16":"column__size__1-16","size__1/17":"column__size__1-17","size__1/18":"column__size__1-18","size__1/19":"column__size__1-19","size__1/20":"column__size__1-20","size__1/21":"column__size__1-21","size__1/22":"column__size__1-22","size__1/23":"column__size__1-23","size__1/24":"column__size__1-24","size__2/1":"column__size__2-1","size__2/2":"column__size__2-2","size__2/3":"column__size__2-3","size__2/4":"column__size__2-4","size__2/5":"column__size__2-5","size__2/6":"column__size__2-6","size__2/7":"column__size__2-7","size__2/8":"column__size__2-8","size__2/9":"column__size__2-9","size__2/10":"column__size__2-10","size__2/11":"column__size__2-11","size__2/12":"column__size__2-12","size__2/13":"column__size__2-13","size__2/14":"column__size__2-14","size__2/15":"column__size__2-15","size__2/16":"column__size__2-16","size__2/17":"column__size__2-17","size__2/18":"column__size__2-18","size__2/19":"column__size__2-19","size__2/20":"column__size__2-20","size__2/21":"column__size__2-21","size__2/22":"column__size__2-22","size__2/23":"column__size__2-23","size__2/24":"column__size__2-24","size__3/1":"column__size__3-1","size__3/2":"column__size__3-2","size__3/3":"column__size__3-3","size__3/4":"column__size__3-4","size__3/5":"column__size__3-5","size__3/6":"column__size__3-6","size__3/7":"column__size__3-7","size__3/8":"column__size__3-8","size__3/9":"column__size__3-9","size__3/10":"column__size__3-10","size__3/11":"column__size__3-11","size__3/12":"column__size__3-12","size__3/13":"column__size__3-13","size__3/14":"column__size__3-14","size__3/15":"column__size__3-15","size__3/16":"column__size__3-16","size__3/17":"column__size__3-17","size__3/18":"column__size__3-18","size__3/19":"column__size__3-19","size__3/20":"column__size__3-20","size__3/21":"column__size__3-21","size__3/22":"column__size__3-22","size__3/23":"column__size__3-23","size__3/24":"column__size__3-24","size__4/1":"column__size__4-1","size__4/2":"column__size__4-2","size__4/3":"column__size__4-3","size__4/4":"column__size__4-4","size__4/5":"column__size__4-5","size__4/6":"column__size__4-6","size__4/7":"column__size__4-7","size__4/8":"column__size__4-8","size__4/9":"column__size__4-9","size__4/10":"column__size__4-10","size__4/11":"column__size__4-11","size__4/12":"column__size__4-12","size__4/13":"column__size__4-13","size__4/14":"column__size__4-14","size__4/15":"column__size__4-15","size__4/16":"column__size__4-16","size__4/17":"column__size__4-17","size__4/18":"column__size__4-18","size__4/19":"column__size__4-19","size__4/20":"column__size__4-20","size__4/21":"column__size__4-21","size__4/22":"column__size__4-22","size__4/23":"column__size__4-23","size__4/24":"column__size__4-24","size__5/1":"column__size__5-1","size__5/2":"column__size__5-2","size__5/3":"column__size__5-3","size__5/4":"column__size__5-4","size__5/5":"column__size__5-5","size__5/6":"column__size__5-6","size__5/7":"column__size__5-7","size__5/8":"column__size__5-8","size__5/9":"column__size__5-9","size__5/10":"column__size__5-10","size__5/11":"column__size__5-11","size__5/12":"column__size__5-12","size__5/13":"column__size__5-13","size__5/14":"column__size__5-14","size__5/15":"column__size__5-15","size__5/16":"column__size__5-16","size__5/17":"column__size__5-17","size__5/18":"column__size__5-18","size__5/19":"column__size__5-19","size__5/20":"column__size__5-20","size__5/21":"column__size__5-21","size__5/22":"column__size__5-22","size__5/23":"column__size__5-23","size__5/24":"column__size__5-24","size__6/1":"column__size__6-1","size__6/2":"column__size__6-2","size__6/3":"column__size__6-3","size__6/4":"column__size__6-4","size__6/5":"column__size__6-5","size__6/6":"column__size__6-6","size__6/7":"column__size__6-7","size__6/8":"column__size__6-8","size__6/9":"column__size__6-9","size__6/10":"column__size__6-10","size__6/11":"column__size__6-11","size__6/12":"column__size__6-12","size__6/13":"column__size__6-13","size__6/14":"column__size__6-14","size__6/15":"column__size__6-15","size__6/16":"column__size__6-16","size__6/17":"column__size__6-17","size__6/18":"column__size__6-18","size__6/19":"column__size__6-19","size__6/20":"column__size__6-20","size__6/21":"column__size__6-21","size__6/22":"column__size__6-22","size__6/23":"column__size__6-23","size__6/24":"column__size__6-24","size__7/1":"column__size__7-1","size__7/2":"column__size__7-2","size__7/3":"column__size__7-3","size__7/4":"column__size__7-4","size__7/5":"column__size__7-5","size__7/6":"column__size__7-6","size__7/7":"column__size__7-7","size__7/8":"column__size__7-8","size__7/9":"column__size__7-9","size__7/10":"column__size__7-10","size__7/11":"column__size__7-11","size__7/12":"column__size__7-12","size__7/13":"column__size__7-13","size__7/14":"column__size__7-14","size__7/15":"column__size__7-15","size__7/16":"column__size__7-16","size__7/17":"column__size__7-17","size__7/18":"column__size__7-18","size__7/19":"column__size__7-19","size__7/20":"column__size__7-20","size__7/21":"column__size__7-21","size__7/22":"column__size__7-22","size__7/23":"column__size__7-23","size__7/24":"column__size__7-24","size__8/1":"column__size__8-1","size__8/2":"column__size__8-2","size__8/3":"column__size__8-3","size__8/4":"column__size__8-4","size__8/5":"column__size__8-5","size__8/6":"column__size__8-6","size__8/7":"column__size__8-7","size__8/8":"column__size__8-8","size__8/9":"column__size__8-9","size__8/10":"column__size__8-10","size__8/11":"column__size__8-11","size__8/12":"column__size__8-12","size__8/13":"column__size__8-13","size__8/14":"column__size__8-14","size__8/15":"column__size__8-15","size__8/16":"column__size__8-16","size__8/17":"column__size__8-17","size__8/18":"column__size__8-18","size__8/19":"column__size__8-19","size__8/20":"column__size__8-20","size__8/21":"column__size__8-21","size__8/22":"column__size__8-22","size__8/23":"column__size__8-23","size__8/24":"column__size__8-24","size__9/1":"column__size__9-1","size__9/2":"column__size__9-2","size__9/3":"column__size__9-3","size__9/4":"column__size__9-4","size__9/5":"column__size__9-5","size__9/6":"column__size__9-6","size__9/7":"column__size__9-7","size__9/8":"column__size__9-8","size__9/9":"column__size__9-9","size__9/10":"column__size__9-10","size__9/11":"column__size__9-11","size__9/12":"column__size__9-12","size__9/13":"column__size__9-13","size__9/14":"column__size__9-14","size__9/15":"column__size__9-15","size__9/16":"column__size__9-16","size__9/17":"column__size__9-17","size__9/18":"column__size__9-18","size__9/19":"column__size__9-19","size__9/20":"column__size__9-20","size__9/21":"column__size__9-21","size__9/22":"column__size__9-22","size__9/23":"column__size__9-23","size__9/24":"column__size__9-24","size__10/1":"column__size__10-1","size__10/2":"column__size__10-2","size__10/3":"column__size__10-3","size__10/4":"column__size__10-4","size__10/5":"column__size__10-5","size__10/6":"column__size__10-6","size__10/7":"column__size__10-7","size__10/8":"column__size__10-8","size__10/9":"column__size__10-9","size__10/10":"column__size__10-10","size__10/11":"column__size__10-11","size__10/12":"column__size__10-12","size__10/13":"column__size__10-13","size__10/14":"column__size__10-14","size__10/15":"column__size__10-15","size__10/16":"column__size__10-16","size__10/17":"column__size__10-17","size__10/18":"column__size__10-18","size__10/19":"column__size__10-19","size__10/20":"column__size__10-20","size__10/21":"column__size__10-21","size__10/22":"column__size__10-22","size__10/23":"column__size__10-23","size__10/24":"column__size__10-24","size__11/1":"column__size__11-1","size__11/2":"column__size__11-2","size__11/3":"column__size__11-3","size__11/4":"column__size__11-4","size__11/5":"column__size__11-5","size__11/6":"column__size__11-6","size__11/7":"column__size__11-7","size__11/8":"column__size__11-8","size__11/9":"column__size__11-9","size__11/10":"column__size__11-10","size__11/11":"column__size__11-11","size__11/12":"column__size__11-12","size__11/13":"column__size__11-13","size__11/14":"column__size__11-14","size__11/15":"column__size__11-15","size__11/16":"column__size__11-16","size__11/17":"column__size__11-17","size__11/18":"column__size__11-18","size__11/19":"column__size__11-19","size__11/20":"column__size__11-20","size__11/21":"column__size__11-21","size__11/22":"column__size__11-22","size__11/23":"column__size__11-23","size__11/24":"column__size__11-24","size__12/1":"column__size__12-1","size__12/2":"column__size__12-2","size__12/3":"column__size__12-3","size__12/4":"column__size__12-4","size__12/5":"column__size__12-5","size__12/6":"column__size__12-6","size__12/7":"column__size__12-7","size__12/8":"column__size__12-8","size__12/9":"column__size__12-9","size__12/10":"column__size__12-10","size__12/11":"column__size__12-11","size__12/12":"column__size__12-12","size__12/13":"column__size__12-13","size__12/14":"column__size__12-14","size__12/15":"column__size__12-15","size__12/16":"column__size__12-16","size__12/17":"column__size__12-17","size__12/18":"column__size__12-18","size__12/19":"column__size__12-19","size__12/20":"column__size__12-20","size__12/21":"column__size__12-21","size__12/22":"column__size__12-22","size__12/23":"column__size__12-23","size__12/24":"column__size__12-24","size__13/1":"column__size__13-1","size__13/2":"column__size__13-2","size__13/3":"column__size__13-3","size__13/4":"column__size__13-4","size__13/5":"column__size__13-5","size__13/6":"column__size__13-6","size__13/7":"column__size__13-7","size__13/8":"column__size__13-8","size__13/9":"column__size__13-9","size__13/10":"column__size__13-10","size__13/11":"column__size__13-11","size__13/12":"column__size__13-12","size__13/13":"column__size__13-13","size__13/14":"column__size__13-14","size__13/15":"column__size__13-15","size__13/16":"column__size__13-16","size__13/17":"column__size__13-17","size__13/18":"column__size__13-18","size__13/19":"column__size__13-19","size__13/20":"column__size__13-20","size__13/21":"column__size__13-21","size__13/22":"column__size__13-22","size__13/23":"column__size__13-23","size__13/24":"column__size__13-24","size__14/1":"column__size__14-1","size__14/2":"column__size__14-2","size__14/3":"column__size__14-3","size__14/4":"column__size__14-4","size__14/5":"column__size__14-5","size__14/6":"column__size__14-6","size__14/7":"column__size__14-7","size__14/8":"column__size__14-8","size__14/9":"column__size__14-9","size__14/10":"column__size__14-10","size__14/11":"column__size__14-11","size__14/12":"column__size__14-12","size__14/13":"column__size__14-13","size__14/14":"column__size__14-14","size__14/15":"column__size__14-15","size__14/16":"column__size__14-16","size__14/17":"column__size__14-17","size__14/18":"column__size__14-18","size__14/19":"column__size__14-19","size__14/20":"column__size__14-20","size__14/21":"column__size__14-21","size__14/22":"column__size__14-22","size__14/23":"column__size__14-23","size__14/24":"column__size__14-24","size__15/1":"column__size__15-1","size__15/2":"column__size__15-2","size__15/3":"column__size__15-3","size__15/4":"column__size__15-4","size__15/5":"column__size__15-5","size__15/6":"column__size__15-6","size__15/7":"column__size__15-7","size__15/8":"column__size__15-8","size__15/9":"column__size__15-9","size__15/10":"column__size__15-10","size__15/11":"column__size__15-11","size__15/12":"column__size__15-12","size__15/13":"column__size__15-13","size__15/14":"column__size__15-14","size__15/15":"column__size__15-15","size__15/16":"column__size__15-16","size__15/17":"column__size__15-17","size__15/18":"column__size__15-18","size__15/19":"column__size__15-19","size__15/20":"column__size__15-20","size__15/21":"column__size__15-21","size__15/22":"column__size__15-22","size__15/23":"column__size__15-23","size__15/24":"column__size__15-24","size__16/1":"column__size__16-1","size__16/2":"column__size__16-2","size__16/3":"column__size__16-3","size__16/4":"column__size__16-4","size__16/5":"column__size__16-5","size__16/6":"column__size__16-6","size__16/7":"column__size__16-7","size__16/8":"column__size__16-8","size__16/9":"column__size__16-9","size__16/10":"column__size__16-10","size__16/11":"column__size__16-11","size__16/12":"column__size__16-12","size__16/13":"column__size__16-13","size__16/14":"column__size__16-14","size__16/15":"column__size__16-15","size__16/16":"column__size__16-16","size__16/17":"column__size__16-17","size__16/18":"column__size__16-18","size__16/19":"column__size__16-19","size__16/20":"column__size__16-20","size__16/21":"column__size__16-21","size__16/22":"column__size__16-22","size__16/23":"column__size__16-23","size__16/24":"column__size__16-24","size__17/1":"column__size__17-1","size__17/2":"column__size__17-2","size__17/3":"column__size__17-3","size__17/4":"column__size__17-4","size__17/5":"column__size__17-5","size__17/6":"column__size__17-6","size__17/7":"column__size__17-7","size__17/8":"column__size__17-8","size__17/9":"column__size__17-9","size__17/10":"column__size__17-10","size__17/11":"column__size__17-11","size__17/12":"column__size__17-12","size__17/13":"column__size__17-13","size__17/14":"column__size__17-14","size__17/15":"column__size__17-15","size__17/16":"column__size__17-16","size__17/17":"column__size__17-17","size__17/18":"column__size__17-18","size__17/19":"column__size__17-19","size__17/20":"column__size__17-20","size__17/21":"column__size__17-21","size__17/22":"column__size__17-22","size__17/23":"column__size__17-23","size__17/24":"column__size__17-24","size__18/1":"column__size__18-1","size__18/2":"column__size__18-2","size__18/3":"column__size__18-3","size__18/4":"column__size__18-4","size__18/5":"column__size__18-5","size__18/6":"column__size__18-6","size__18/7":"column__size__18-7","size__18/8":"column__size__18-8","size__18/9":"column__size__18-9","size__18/10":"column__size__18-10","size__18/11":"column__size__18-11","size__18/12":"column__size__18-12","size__18/13":"column__size__18-13","size__18/14":"column__size__18-14","size__18/15":"column__size__18-15","size__18/16":"column__size__18-16","size__18/17":"column__size__18-17","size__18/18":"column__size__18-18","size__18/19":"column__size__18-19","size__18/20":"column__size__18-20","size__18/21":"column__size__18-21","size__18/22":"column__size__18-22","size__18/23":"column__size__18-23","size__18/24":"column__size__18-24","size__19/1":"column__size__19-1","size__19/2":"column__size__19-2","size__19/3":"column__size__19-3","size__19/4":"column__size__19-4","size__19/5":"column__size__19-5","size__19/6":"column__size__19-6","size__19/7":"column__size__19-7","size__19/8":"column__size__19-8","size__19/9":"column__size__19-9","size__19/10":"column__size__19-10","size__19/11":"column__size__19-11","size__19/12":"column__size__19-12","size__19/13":"column__size__19-13","size__19/14":"column__size__19-14","size__19/15":"column__size__19-15","size__19/16":"column__size__19-16","size__19/17":"column__size__19-17","size__19/18":"column__size__19-18","size__19/19":"column__size__19-19","size__19/20":"column__size__19-20","size__19/21":"column__size__19-21","size__19/22":"column__size__19-22","size__19/23":"column__size__19-23","size__19/24":"column__size__19-24","size__20/1":"column__size__20-1","size__20/2":"column__size__20-2","size__20/3":"column__size__20-3","size__20/4":"column__size__20-4","size__20/5":"column__size__20-5","size__20/6":"column__size__20-6","size__20/7":"column__size__20-7","size__20/8":"column__size__20-8","size__20/9":"column__size__20-9","size__20/10":"column__size__20-10","size__20/11":"column__size__20-11","size__20/12":"column__size__20-12","size__20/13":"column__size__20-13","size__20/14":"column__size__20-14","size__20/15":"column__size__20-15","size__20/16":"column__size__20-16","size__20/17":"column__size__20-17","size__20/18":"column__size__20-18","size__20/19":"column__size__20-19","size__20/20":"column__size__20-20","size__20/21":"column__size__20-21","size__20/22":"column__size__20-22","size__20/23":"column__size__20-23","size__20/24":"column__size__20-24","size__21/1":"column__size__21-1","size__21/2":"column__size__21-2","size__21/3":"column__size__21-3","size__21/4":"column__size__21-4","size__21/5":"column__size__21-5","size__21/6":"column__size__21-6","size__21/7":"column__size__21-7","size__21/8":"column__size__21-8","size__21/9":"column__size__21-9","size__21/10":"column__size__21-10","size__21/11":"column__size__21-11","size__21/12":"column__size__21-12","size__21/13":"column__size__21-13","size__21/14":"column__size__21-14","size__21/15":"column__size__21-15","size__21/16":"column__size__21-16","size__21/17":"column__size__21-17","size__21/18":"column__size__21-18","size__21/19":"column__size__21-19","size__21/20":"column__size__21-20","size__21/21":"column__size__21-21","size__21/22":"column__size__21-22","size__21/23":"column__size__21-23","size__21/24":"column__size__21-24","size__22/1":"column__size__22-1","size__22/2":"column__size__22-2","size__22/3":"column__size__22-3","size__22/4":"column__size__22-4","size__22/5":"column__size__22-5","size__22/6":"column__size__22-6","size__22/7":"column__size__22-7","size__22/8":"column__size__22-8","size__22/9":"column__size__22-9","size__22/10":"column__size__22-10","size__22/11":"column__size__22-11","size__22/12":"column__size__22-12","size__22/13":"column__size__22-13","size__22/14":"column__size__22-14","size__22/15":"column__size__22-15","size__22/16":"column__size__22-16","size__22/17":"column__size__22-17","size__22/18":"column__size__22-18","size__22/19":"column__size__22-19","size__22/20":"column__size__22-20","size__22/21":"column__size__22-21","size__22/22":"column__size__22-22","size__22/23":"column__size__22-23","size__22/24":"column__size__22-24","size__23/1":"column__size__23-1","size__23/2":"column__size__23-2","size__23/3":"column__size__23-3","size__23/4":"column__size__23-4","size__23/5":"column__size__23-5","size__23/6":"column__size__23-6","size__23/7":"column__size__23-7","size__23/8":"column__size__23-8","size__23/9":"column__size__23-9","size__23/10":"column__size__23-10","size__23/11":"column__size__23-11","size__23/12":"column__size__23-12","size__23/13":"column__size__23-13","size__23/14":"column__size__23-14","size__23/15":"column__size__23-15","size__23/16":"column__size__23-16","size__23/17":"column__size__23-17","size__23/18":"column__size__23-18","size__23/19":"column__size__23-19","size__23/20":"column__size__23-20","size__23/21":"column__size__23-21","size__23/22":"column__size__23-22","size__23/23":"column__size__23-23","size__23/24":"column__size__23-24","size__24/1":"column__size__24-1","size__24/2":"column__size__24-2","size__24/3":"column__size__24-3","size__24/4":"column__size__24-4","size__24/5":"column__size__24-5","size__24/6":"column__size__24-6","size__24/7":"column__size__24-7","size__24/8":"column__size__24-8","size__24/9":"column__size__24-9","size__24/10":"column__size__24-10","size__24/11":"column__size__24-11","size__24/12":"column__size__24-12","size__24/13":"column__size__24-13","size__24/14":"column__size__24-14","size__24/15":"column__size__24-15","size__24/16":"column__size__24-16","size__24/17":"column__size__24-17","size__24/18":"column__size__24-18","size__24/19":"column__size__24-19","size__24/20":"column__size__24-20","size__24/21":"column__size__24-21","size__24/22":"column__size__24-22","size__24/23":"column__size__24-23","size__24/24":"column__size__24-24","size__content":"column__size__content","size__icon-S":"column__size__icon-S","size__icon-M":"column__size__icon-M","size__icon-L":"column__size__icon-L","size__icon-XL":"column__size__icon-XL","size__icon-XXL":"column__size__icon-XXL"};
 
 /***/ }),
 /* 123 */
@@ -26824,7 +26908,7 @@ module.exports = {"title":"modalDialog__title","default":"modalDialog__default",
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"module__default","collapsible":"module__collapsible","header":"module__header","error":"module__error","subtleHighlight":"module__subtleHighlight","content":"module__content","controls":"module__controls","level__2":"module__level__2","level__3":"module__level__3","level__4":"module__level__4","collapsed":"module__collapsed","moduleError":"module__moduleError","title":"module__title","loadingOverlay":"module__loadingOverlay"};
+module.exports = {"default":"module__default","collapsible":"module__collapsible","header":"module__header","collapsed":"module__collapsed","content":"module__content","moduleError":"module__moduleError","title":"module__title","controls":"module__controls","loadingOverlay":"module__loadingOverlay"};
 
 /***/ }),
 /* 147 */
@@ -27027,21 +27111,21 @@ module.exports = {"label":"tabButton__label","role__control":"tabButton__role__c
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"table__default","zebra":"table__zebra","row":"table__row","dataTable":"table__dataTable"};
+module.exports = {"default":"table__default","zebra":"table__zebra","row":"table__row","cell":"table__cell","dataTable":"table__dataTable"};
 
 /***/ }),
 /* 176 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"header":"tableCell__header","data":"tableCell__data","default":"tableCell__default"};
+module.exports = {"header":"tableCell__header","rowHeader":"tableCell__rowHeader","data":"tableCell__data","default":"tableCell__default","sticky":"tableCell__sticky"};
 
 /***/ }),
 /* 177 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"tableRow__default"};
+module.exports = {"default":"tableRow__default","sticky":"tableRow__sticky"};
 
 /***/ }),
 /* 178 */
@@ -33030,7 +33114,7 @@ exports.default = withDropdown;
 /* 226 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746c-.213.863-.884 1.534-1.745 1.747zm6.25-7.445l-11.95 11.95c-.466.47-1.22.473-1.69.006 0-.002-.004-.003-.006-.006-.47-.465-.472-1.22-.007-1.69l.007-.006 1.72-1.72c-1.013-.887-1.88-1.927-2.57-3.085L.125 8l.203-.323C2.418 4.318 5 2.62 8 2.62c1.043-.02 2.077.186 3.036.6l2.09-2.045c.47-.468 1.23-.468 1.696 0 .472.468.472 1.227 0 1.697zM9.542 4.76C9.057 4.533 8.532 4.415 8 4.41c-1.98 0-3.585 1.606-3.585 3.585.003.534.12 1.06.347 1.542l.932-.933c-.058-.2-.085-.403-.083-.61 0-1.32 1.07-2.39 2.39-2.39.208 0 .413.027.61.083l.932-.93zm6.117 2.915c-.556-.905-1.21-1.747-1.948-2.51l-2.186 2.2c.018.21.018.422 0 .632 0 1.98-1.606 3.587-3.585 3.587-.21.018-.422.018-.634 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3 0 5.58-1.696 7.672-5.055L15.875 8l-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.06-7.666-5.06S2.42 4.32.328 7.68L.125 8l.203.323c2.093 3.36 4.677 5.058 7.678 5.058s5.584-1.695 7.666-5.057L15.875 8l-.203-.322zm-7.666 3.91C6.026 11.588 4.42 9.982 4.42 8c0-1.98 1.605-3.587 3.586-3.587 1.982 0 3.587 1.606 3.587 3.587 0 1.98-1.605 3.588-3.587 3.588zM10.398 8c0 1.32-1.07 2.39-2.393 2.39-1.32 0-2.392-1.07-2.392-2.39s1.07-2.392 2.392-2.392c1.322 0 2.393 1.072 2.393 2.392z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
+module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
 
 /***/ }),
 /* 227 */
