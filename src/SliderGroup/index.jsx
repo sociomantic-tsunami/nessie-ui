@@ -113,7 +113,9 @@ const SliderGroup = ( {
                                         style = { {
                                             bottom :
                                             `${getOffset(
-                                                value.step
+                                                value.step,
+                                                minValue,
+                                                maxValue
                                             )}%`
                                         } } >
                                         <Label
