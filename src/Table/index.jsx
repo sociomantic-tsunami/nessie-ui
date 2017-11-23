@@ -10,17 +10,19 @@ import Required             from '../Required';
 
 const buildTableFromValues = ( values = [] ) =>
     values.map( ( row, i ) =>
-    (
+        (
         // eslint-disable-next-line react/no-array-index-key
-        <TableRow key = { i }>
-            {
-                row.map( ( col, j ) =>
-                // eslint-disable-next-line react/no-array-index-key
-                    <TableCell key = { j }><Text>{ col }</Text></TableCell>
-                )
-            }
-        </TableRow>
-    ) );
+            <TableRow key = { i }>
+                {
+                    row.map( ( col, j ) =>
+                        // eslint-disable-next-line react/no-array-index-key
+                        <TableCell key = { j }>
+                            <Text>{ col }</Text>
+                        </TableCell>
+                    )
+                }
+            </TableRow>
+        ) );
 
 
 const Table = ( {
@@ -38,7 +40,7 @@ const Table = ( {
     const header = columns.length ?
         ( <TableRow verticalAlign = "middle" className = { cssMap.row }>
             { columns.map( ( column, index ) =>
-                {
+            {
                 const title = column.title;
                 const text  = column.isRequired ?
                     <Required>{ title }</Required> : title;
@@ -52,7 +54,7 @@ const Table = ( {
                         size        = { column.size }
                         onToggle    = { onToggle }
                         key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                        >
+                    >
                         { text }
                     </TableCell>
                 );
@@ -68,14 +70,17 @@ const Table = ( {
         return React.cloneElement( row,
             {
                 children : cells.map( ( cell, index ) =>
-                        {
+                {
                     if ( typeof columns[ index ] === 'object' )
-                            {
+                    {
                         const title = columns[ index ].title;
                         const size  = columns[ index ].size;
 
                         return React.cloneElement( cell,
                             {
+                                className : cell.props.className ?
+                                    `${cell.props.className}  ${cssMap.cell}`
+                                    : cssMap.cell,
                                 columnTitle : title ||
                                 cell.props.columnTitle,
                                 size : size || cell.props.size
@@ -85,7 +90,7 @@ const Table = ( {
                     return cell;
                 } ),
                 className : row.props.className ?
-                `${row.props.className}  ${cssMap.row}` : cssMap.row
+                    `${row.props.className}  ${cssMap.row}` : cssMap.row
             } );
     } );
 
