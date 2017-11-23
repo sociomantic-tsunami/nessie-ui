@@ -35,7 +35,13 @@ Column.propTypes =
     /**
      *  Width of the Column
      */
-    size        : PropTypes.oneOf( [ '1/1',
+    size        : PropTypes.oneOf( [
+        'icon-S',
+        'icon-M',
+        'icon-L',
+        'icon-XL',
+        'icon-XXL',
+        '1/1',
         'content',
         '1/2', '2/2',
         '1/3', '2/3', '3/3',
