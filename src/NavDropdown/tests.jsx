@@ -7,20 +7,19 @@
 import React                      from 'react';
 import { mount }                  from 'enzyme';
 
-
-import NavDropdown                from './index';
+import NavDropdown             from './index';
 
 describe( 'NavDropdown', () =>
 {
     let Wrapper;
 
     beforeEach( () =>
-{
+    {
         Wrapper = mount( <NavDropdown /> );
     } );
 
     it( 'should have its component name and hash as default className', () =>
-{
+    {
         expect( Wrapper.find( '.navDropdown__default' ) ).to.have.length( 1 );
     } );
 } );
