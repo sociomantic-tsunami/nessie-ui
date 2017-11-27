@@ -56,9 +56,6 @@ $shark: 768px;
 {
     display:        none;
 
-    top: 			0.5rem;
-	margin-top: 	-0.8rem !important;
-
     @extend %Nessie-Bold;
 
     /*@media( min-width: $shark )
