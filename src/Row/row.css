@@ -204,6 +204,6 @@ $shark: 768px;
 {
     & > *
     {
-        word-wrap: unset;
+        word-wrap: normal;
     }
 }
