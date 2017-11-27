@@ -37,8 +37,6 @@ $shark: 768px;
         {
             flex:   1 0 0%;
         }*/
-
-        overflow-wrap:  break-word;
     }
 
     .alignX__left,
@@ -48,7 +46,6 @@ $shark: 768px;
         & > *
         {
             flex:           0 0 auto;
-            word-break:     normal;
         }
     }
 
@@ -197,13 +194,5 @@ $shark: 768px;
     & > *
     {
         padding-left:   3rem;
-    }
-}
-
-.noWrap
-{
-    & > *
-    {
-        word-wrap: normal;
     }
 }

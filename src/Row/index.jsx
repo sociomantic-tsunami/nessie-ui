@@ -6,7 +6,6 @@ import Css                  from '../hoc/Css';
 const Row = ( {
     align,
     verticalAlign,
-    noWrap,
     children,
     className,
     cssMap,
@@ -22,8 +21,7 @@ const Row = ( {
                 alignY  : verticalAlign,
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
-                spacing : spacing !== 'none' && spacing,
-                noWrap  : noWrap,
+                spacing : spacing !== 'none' && spacing
 
             } }>
             <div
@@ -49,10 +47,6 @@ Row.propTypes =
     *  Set minimum height equal to average row.
     */
     hasMinHeight  : PropTypes.bool,
-    /**
-    * don’t wrap text to the next line.
-    */
-    noWrap        : PropTypes.bool,
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
