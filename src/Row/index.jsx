@@ -6,6 +6,7 @@ import Css                  from '../hoc/Css';
 const Row = ( {
     align,
     verticalAlign,
+    isTruncated,
     children,
     className,
     cssMap,
@@ -17,11 +18,13 @@ const Row = ( {
         <Css
             cssMap   = { cssMap }
             cssProps = { {
-                alignX  : align,
-                alignY  : verticalAlign,
+                alignX    : align,
+                alignY    : verticalAlign,
                 hasMinHeight,
-                gutters : gutters !== 'none' && gutters,
-                spacing : spacing !== 'none' && spacing
+                gutters   : gutters !== 'none' && gutters,
+                spacing   : spacing !== 'none' && spacing,
+                truncated : isTruncated,
+
             } }>
             <div
                 className = { className }
@@ -46,6 +49,11 @@ Row.propTypes =
     *  Set minimum height equal to average row.
     */
     hasMinHeight  : PropTypes.bool,
+    /**
+    *  Sets css property word-break to none on Row
+    * component and allows truncated text lines.
+    */
+    isTruncated   : PropTypes.bool,
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
@@ -91,6 +99,7 @@ Row.defaultProps =
 {
     align         : 'auto',
     hasMinHeight  : false,
+    isTruncated   : true,
     verticalAlign : 'auto',
     spacing       : 'default',
     gutters       : 'L',

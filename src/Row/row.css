@@ -199,3 +199,11 @@ $shark: 768px;
         padding-left:   3rem;
     }
 }
+
+.truncated
+{
+    & > *
+    {
+        word-wrap: unset;
+    }
+}
