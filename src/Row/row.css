@@ -200,7 +200,7 @@ $shark: 768px;
     }
 }
 
-.truncated
+.noWrap
 {
     & > *
     {
