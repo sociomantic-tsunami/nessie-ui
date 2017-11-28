@@ -371,7 +371,7 @@ export default class Slider extends Component
         }
 
         this.targetInput = this.inputs[
-                                   parseInt( event.target.dataset.index, 10 ) ];
+            parseInt( event.target.dataset.index, 10 ) ];
 
         this.targetInput.focus();
 
@@ -482,7 +482,7 @@ export default class Slider extends Component
         {
             const { clientX, clientY } = event;
             const targetHandle         = this.targetInput ? this.targetInput :
-                this.input[ 0 ];
+                this.inputs[ 0 ];
             const { onChange }         = this.props;
             const e = new Event( 'change' );
 
@@ -499,6 +499,15 @@ export default class Slider extends Component
 
             this.forceUpdate();
         }
+    }
+
+    /**
+    * callback refs handler
+    * @param {Object}  ref  ref
+    */
+    handleInputRef( ref )
+    {
+        this.inputs.push( ref );
     }
 
 
