@@ -13,6 +13,17 @@
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
 }
 
+ .level__3,
+ .level__4
+ {
+     & > .header,
+     & > .content
+     {
+         padding-top:    2rem;
+         padding-bottom: 2rem;
+     }
+ }
+
 .collapsible
 {
     & > .header
