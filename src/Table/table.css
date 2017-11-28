@@ -18,9 +18,15 @@
 }
 
 
-.dataTable .row
+.dataTable .cell
 {
-    margin-right:   0;
-    padding-left:   0.5rem;
-    padding-right:  1rem;
+    &:first-child
+    {
+        padding-left:   0.5rem;
+    }
+
+    &:last-child
+    {
+        padding-right:  0.5rem;
+    }
 }
