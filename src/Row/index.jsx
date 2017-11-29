@@ -92,7 +92,6 @@ Row.defaultProps =
 {
     align         : 'auto',
     hasMinHeight  : false,
-    noWrap        : true,
     verticalAlign : 'auto',
     spacing       : 'default',
     gutters       : 'L',
