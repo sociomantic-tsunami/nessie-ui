@@ -78,6 +78,22 @@ export default class Module extends Component
          *  Delete button onClick callback function
          */
         onClickDelete         : PropTypes.func,
+        /**
+        *  Delete button onClick callback function
+        */
+        onMouseOutError       : PropTypes.func,
+        /**
+        *  Delete button onClick callback function
+        */
+        onMouseOverError      : PropTypes.func,
+        /**
+        *  Delete button onClick callback function
+        */
+        onMouseOutHeader      : PropTypes.func,
+        /**
+         *  Delete button onClick callback function
+         */
+        onMouseOverHeader     : PropTypes.func,
     };
 
     static defaultProps =
@@ -97,6 +113,51 @@ export default class Module extends Component
 
         this.handleClickDelete = this.handleClickDelete.bind( this );
         this.handleClickToggle = this.handleClickToggle.bind( this );
+        this.onMouseOverHeader = this.onMouseOverHeader.bind( this );
+        this.onMouseOutHeader = this.onMouseOutHeader.bind( this );
+        this.onMouseOverError = this.onMouseOverError.bind( this );
+        this.onMouseOutError = this.onMouseOutError.bind( this );
+    }
+
+    onMouseOverHeader( e )
+    {
+        e.stopPropagation();
+        const { onClickToggle } = this.props;
+        if ( onClickToggle )
+        {
+            onClickToggle( e );
+        }
+    }
+
+
+    onMouseOutHeader( e )
+    {
+        e.stopPropagation();
+        const { onClickToggle } = this.props;
+        if ( onClickToggle )
+        {
+            onClickToggle( e );
+        }
+    }
+
+    onMouseOverError( e )
+    {
+        e.stopPropagation();
+        const { onClickToggle } = this.props;
+        if ( onClickToggle )
+        {
+            onClickToggle( e );
+        }
+    }
+
+    onMouseOutError( e )
+    {
+        e.stopPropagation();
+        const { onClickToggle } = this.props;
+        if ( onClickToggle )
+        {
+            onClickToggle( e );
+        }
     }
 
     handleClickToggle( e )
@@ -137,7 +198,12 @@ export default class Module extends Component
             errorMessage,
             errorMessageIsVisible,
             onClickHeader,
+            onMouseOutError,
+            onMouseOverError,
+            onMouseOutHeader,
+            onMouseOverHeader,
             title,
+
         } = this.props;
 
         let header;
@@ -145,8 +211,10 @@ export default class Module extends Component
         {
             header = (
                 <header
-                    className = { cssMap.header }
-                    onClick   = { onClickHeader }>
+                    className   = { cssMap.header }
+                    onClick     = { onClickHeader }
+                    onMouseOut  = { onMouseOutError }
+                    onMouseOver = { onMouseOverError }>
                     { customHeader }
                 </header>
             );
@@ -160,14 +228,20 @@ export default class Module extends Component
                     className = { cssMap.header }
                     onClick   = { onClickHeader }>
                     <div className = { cssMap.title }>
-                        <ModuleHeader>{ title }</ModuleHeader>
+                        <ModuleHeader
+                            onMouseOut = { onMouseOutHeader }
+                            onMouseOver = { onMouseOverHeader }>
+                                { title }
+                        </ModuleHeader>
                     </div>
                     <div className = { cssMap.controls }>
                         { !!errorMessage && hasError &&
                             <IconWithTooltip
                                 message          = { errorMessage }
                                 iconType         = "error"
-                                tooltipIsVisible = { errorMessageIsVisible } />
+                                tooltipIsVisible = { errorMessageIsVisible }
+                                onMouseOut       = { onMouseOutError }
+                                onMouseOver      = { onMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton
