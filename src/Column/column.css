@@ -70,7 +70,6 @@ $shark: 768px;
             /*flex:       0 0 calc( $i / $j * 100% );*/
             min-width:  calc( $i / $j * 100% );
             max-width:  calc( $i / $j * 100% );
-            word-break: normal;
         }
     }
 }
