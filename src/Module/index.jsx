@@ -197,7 +197,8 @@ export default class Module extends Component
                     collapsible     : isCollapsible,
                     collapsed       : isCollapsible && isCollapsed,
                     error           : hasError,
-                    moduleError     : hasModuleError
+                    moduleError     : hasModuleError,
+                    level           : headerLevel
                 } }>
                 <section className = { className }>
                     { header }
