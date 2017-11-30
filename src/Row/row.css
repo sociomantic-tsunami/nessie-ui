@@ -26,6 +26,11 @@ $shark: 768px;
     min-height: 7.1rem; /* label + input */
 }
 
+.hasWrap
+{
+    flex-wrap: wrap;
+}
+
 /*
 @media( min-width: $shark )
 { */

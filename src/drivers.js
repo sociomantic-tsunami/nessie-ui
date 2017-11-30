@@ -16,7 +16,7 @@ import NotificationBarDriver   from './NotificationBar/driver';
 import ModalDialogDriver       from './ModalDialog/driver';
 
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
-         FlounderDropdown, PasswordInput, Form, Section, Row, Column,
+         FlounderDropdown, PasswordInput, Form, Section, Row, Grid, Column,
          TextInput, NavItem, NotificationBar, TextInputWithIcon,
          ModalDialog }  from 'nessie-ui';
 
@@ -72,6 +72,10 @@ const drivers =
     },
     {
         Component : Row,
+        Driver    : RowColumnDriver
+    },
+    {
+        Component : Grid,
         Driver    : RowColumnDriver
     },
     {

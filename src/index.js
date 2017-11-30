@@ -25,6 +25,7 @@ export DragNDrop                from './DragNDrop';
 export Fieldset                 from './Fieldset';
 export Form                     from './Form';
 export FlounderDropdown         from './FlounderDropdown';
+export Grid                     from './Grid';
 export H1                       from './H1';
 export H2                       from './H2';
 export H3                       from './H3';
