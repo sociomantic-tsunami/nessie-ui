@@ -1044,9 +1044,6 @@ legend.label__default__1KHiG + *
         position:           absolute;
         -webkit-box-sizing:         border-box;
                 box-sizing:         border-box;
-
-        width:              100%;
-        height:             1.6rem;
     }
 
 .tooltip__tooltip__hehe5::after
@@ -1068,14 +1065,26 @@ legend.label__default__1KHiG + *
                 transform:          rotate( 45deg );
     }
 
+.tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::before, .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::before, .tooltip__position__topLeft__1BLEB .tooltip__tooltip__hehe5::before, .tooltip__position__topRight__1G1f- .tooltip__tooltip__hehe5::before, .tooltip__position__bottomLeft__3nirw .tooltip__tooltip__hehe5::before, .tooltip__position__bottomRight__3Eszo .tooltip__tooltip__hehe5::before
+        {
+            left:   -0.1rem;
+            width:  calc(100% + 0.2rem);
+            height: 1.2rem;
+        }
+
 .tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5, .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5
     {
         left:   50%;
     }
 
-.tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::before, .tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::after, .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::before, .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::after
+.tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::after, .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::after
         {
             right:  calc(50% - 0.5rem);
+        }
+
+.tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::before, .tooltip__position__topLeft__1BLEB .tooltip__tooltip__hehe5::before, .tooltip__position__topRight__1G1f- .tooltip__tooltip__hehe5::before
+        {
+            bottom: -1.3rem;
         }
 
 .tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5
@@ -1085,17 +1094,16 @@ legend.label__default__1KHiG + *
                 transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
     }
 
-.tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::before
-        {
-            bottom: -1.6rem;
-            left:   0;
-        }
-
 .tooltip__position__top__Vgf7Z .tooltip__tooltip__hehe5::after
         {
             bottom:         -0.6rem;
             border-top:     none;
             border-left:    none;
+        }
+
+.tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::before, .tooltip__position__bottomLeft__3nirw .tooltip__tooltip__hehe5::before, .tooltip__position__bottomRight__3Eszo .tooltip__tooltip__hehe5::before
+        {
+            top:    -1.3rem;
         }
 
 .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5
@@ -1105,15 +1113,9 @@ legend.label__default__1KHiG + *
                 transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
     }
 
-.tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::before
-        {
-            top:   -1.6rem;
-            left:  0;
-        }
-
 .tooltip__position__bottom__2isLV .tooltip__tooltip__hehe5::after
         {
-            top:         -0.6rem;
+            top:            -0.6rem;
 
             border-bottom:  none;
             border-right:   none;
@@ -1123,6 +1125,13 @@ legend.label__default__1KHiG + *
     {
         top:    50%;
     }
+
+.tooltip__position__left__2uP29 .tooltip__tooltip__hehe5::before, .tooltip__position__right__3PeHq .tooltip__tooltip__hehe5::before
+        {
+            top:    -0.1rem;
+            width:  1.2rem;
+            height: calc(100% + 0.2rem);
+        }
 
 .tooltip__position__left__2uP29 .tooltip__tooltip__hehe5::after, .tooltip__position__right__3PeHq .tooltip__tooltip__hehe5::after
         {
@@ -1141,11 +1150,7 @@ legend.label__default__1KHiG + *
 
 .tooltip__position__left__2uP29 .tooltip__tooltip__hehe5::before
         {
-            width:  1.6rem;
-            height: 100%;
-
-            top:   0;
-            left:  -1.6rem;
+            right:  -1.2rem;
         }
 
 .tooltip__position__left__2uP29 .tooltip__tooltip__hehe5::after
@@ -1169,11 +1174,7 @@ legend.label__default__1KHiG + *
 
 .tooltip__position__right__3PeHq .tooltip__tooltip__hehe5::before
         {
-            width:  1.6rem;
-            height: 100%;
-
-            top:   0;
-            left:  -1.6rem;
+            left:   -1.2rem;
         }
 
 .tooltip__position__right__3PeHq .tooltip__tooltip__hehe5::after
@@ -1223,12 +1224,6 @@ legend.label__default__1KHiG + *
             right:  2rem;
         }
 
-.tooltip__position__topLeft__1BLEB .tooltip__tooltip__hehe5::before
-        {
-            bottom:  -1.6rem;
-            left:    0;
-        }
-
 .tooltip__position__topRight__1G1f- .tooltip__tooltip__hehe5
     {
         -webkit-transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
@@ -1238,12 +1233,6 @@ legend.label__default__1KHiG + *
 .tooltip__position__topRight__1G1f- .tooltip__tooltip__hehe5::after
         {
             left:   2rem;
-        }
-
-.tooltip__position__topRight__1G1f- .tooltip__tooltip__hehe5::before
-        {
-            bottom:  -1.6rem;
-            left:    0;
         }
 
 .tooltip__position__bottomLeft__3nirw .tooltip__tooltip__hehe5
@@ -1257,12 +1246,6 @@ legend.label__default__1KHiG + *
             right:  2rem;
         }
 
-.tooltip__position__bottomLeft__3nirw .tooltip__tooltip__hehe5::before
-        {
-            top:    -1.6rem;
-            left:   0;
-        }
-
 .tooltip__position__bottomRight__3Eszo .tooltip__tooltip__hehe5
     {
         -webkit-transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
@@ -1272,12 +1255,6 @@ legend.label__default__1KHiG + *
 .tooltip__position__bottomRight__3Eszo .tooltip__tooltip__hehe5::after
         {
             left:  2rem;
-        }
-
-.tooltip__position__bottomRight__3Eszo .tooltip__tooltip__hehe5::before
-        {
-            top:    -1.6rem;
-            left:   0;
         }
 
 .tooltip__message__2x0kz

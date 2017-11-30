@@ -1044,9 +1044,6 @@ legend.label__default + *
         position:           absolute;
         -webkit-box-sizing:         border-box;
                 box-sizing:         border-box;
-
-        width:              100%;
-        height:             1.6rem;
     }
 
 .tooltip__tooltip::after
@@ -1068,14 +1065,26 @@ legend.label__default + *
                 transform:          rotate( 45deg );
     }
 
+.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+        {
+            left:   -0.1rem;
+            width:  calc(100% + 0.2rem);
+            height: 1.2rem;
+        }
+
 .tooltip__position__top .tooltip__tooltip, .tooltip__position__bottom .tooltip__tooltip
     {
         left:   50%;
     }
 
-.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__top .tooltip__tooltip::after, .tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottom .tooltip__tooltip::after
+.tooltip__position__top .tooltip__tooltip::after, .tooltip__position__bottom .tooltip__tooltip::after
         {
             right:  calc(50% - 0.5rem);
+        }
+
+.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before
+        {
+            bottom: -1.3rem;
         }
 
 .tooltip__position__top .tooltip__tooltip
@@ -1085,17 +1094,16 @@ legend.label__default + *
                 transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
     }
 
-.tooltip__position__top .tooltip__tooltip::before
-        {
-            bottom: -1.6rem;
-            left:   0;
-        }
-
 .tooltip__position__top .tooltip__tooltip::after
         {
             bottom:         -0.6rem;
             border-top:     none;
             border-left:    none;
+        }
+
+.tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+        {
+            top:    -1.3rem;
         }
 
 .tooltip__position__bottom .tooltip__tooltip
@@ -1105,15 +1113,9 @@ legend.label__default + *
                 transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
     }
 
-.tooltip__position__bottom .tooltip__tooltip::before
-        {
-            top:   -1.6rem;
-            left:  0;
-        }
-
 .tooltip__position__bottom .tooltip__tooltip::after
         {
-            top:         -0.6rem;
+            top:            -0.6rem;
 
             border-bottom:  none;
             border-right:   none;
@@ -1123,6 +1125,13 @@ legend.label__default + *
     {
         top:    50%;
     }
+
+.tooltip__position__left .tooltip__tooltip::before, .tooltip__position__right .tooltip__tooltip::before
+        {
+            top:    -0.1rem;
+            width:  1.2rem;
+            height: calc(100% + 0.2rem);
+        }
 
 .tooltip__position__left .tooltip__tooltip::after, .tooltip__position__right .tooltip__tooltip::after
         {
@@ -1141,11 +1150,7 @@ legend.label__default + *
 
 .tooltip__position__left .tooltip__tooltip::before
         {
-            width:  1.6rem;
-            height: 100%;
-
-            top:   0;
-            left:  -1.6rem;
+            right:  -1.2rem;
         }
 
 .tooltip__position__left .tooltip__tooltip::after
@@ -1169,11 +1174,7 @@ legend.label__default + *
 
 .tooltip__position__right .tooltip__tooltip::before
         {
-            width:  1.6rem;
-            height: 100%;
-
-            top:   0;
-            left:  -1.6rem;
+            left:   -1.2rem;
         }
 
 .tooltip__position__right .tooltip__tooltip::after
@@ -1223,12 +1224,6 @@ legend.label__default + *
             right:  2rem;
         }
 
-.tooltip__position__topLeft .tooltip__tooltip::before
-        {
-            bottom:  -1.6rem;
-            left:    0;
-        }
-
 .tooltip__position__topRight .tooltip__tooltip
     {
         -webkit-transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
@@ -1238,12 +1233,6 @@ legend.label__default + *
 .tooltip__position__topRight .tooltip__tooltip::after
         {
             left:   2rem;
-        }
-
-.tooltip__position__topRight .tooltip__tooltip::before
-        {
-            bottom:  -1.6rem;
-            left:    0;
         }
 
 .tooltip__position__bottomLeft .tooltip__tooltip
@@ -1257,12 +1246,6 @@ legend.label__default + *
             right:  2rem;
         }
 
-.tooltip__position__bottomLeft .tooltip__tooltip::before
-        {
-            top:    -1.6rem;
-            left:   0;
-        }
-
 .tooltip__position__bottomRight .tooltip__tooltip
     {
         -webkit-transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
@@ -1272,12 +1255,6 @@ legend.label__default + *
 .tooltip__position__bottomRight .tooltip__tooltip::after
         {
             left:  2rem;
-        }
-
-.tooltip__position__bottomRight .tooltip__tooltip::before
-        {
-            top:    -1.6rem;
-            left:   0;
         }
 
 .tooltip__message
