@@ -1718,16 +1718,16 @@ textarea.inputField__resizable
 .withDropdown__position__bottom .withDropdown__dropdown
     {
         bottom:     0;
-        -webkit-transform:  translateY( calc(100% - 0.1rem) );
-                transform:  translateY( calc(100% - 0.1rem) );
+        -webkit-transform:  translateY( 100% ) translateY( -0.1rem );
+                transform:  translateY( 100% ) translateY( -0.1rem );
     }
 
 
 .withDropdown__position__top .withDropdown__dropdown
     {
         top:        0;
-        -webkit-transform:  translateY( calc(-100% + 0.1rem) );
-                transform:  translateY( calc(-100% + 0.1rem) );
+        -webkit-transform:  translateY( -100% ) translateY( 0.1rem );
+                transform:  translateY( -100% ) translateY( 0.1rem );
     }
 .dropdown__default /* all elements get default margin-bottom of 2rem */
 {
