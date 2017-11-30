@@ -11,6 +11,12 @@
     background:     var( --PC-WHITE );
 
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
+
+    &.default + .default
+    {
+        margin-top: -2rem;
+    }
+
 }
 
 .collapsible
@@ -106,12 +112,6 @@
 
     margin:     0;
     padding:    3rem;
-
-    /* negate the module spacing when collapsed submodules are stacked */
-    & > .default
-    {
-        margin-bottom: 0;
-    }
 }
 
 .loadingOverlay
