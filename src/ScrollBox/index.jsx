@@ -1,16 +1,25 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }       from '../utils';
+import styles                   from './scrollBox.css';
+import { createScrollHandler }  from './utils';
 
-const ScrollBox = ( { cssMap, children, height, scroll } ) =>
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { scroll } }>
-        <div style = { { maxHeight: height ? `${height}rem` : null } }>
-            { children }
-        </div>
-    </Css>;
+const ScrollBox = ( {
+    className,
+    cssMap,
+    children,
+    height,
+    onScroll,
+    scroll
+} ) => (
+    <div
+        className = { buildClassName( className, cssMap, { scroll } ) }
+        onScroll  = { createScrollHandler( onScroll ) }
+        style     = { { maxHeight: height ? `${height}` : null } }>
+        { children }
+    </div>
+);
 
 ScrollBox.propTypes =
 {
@@ -21,7 +30,11 @@ ScrollBox.propTypes =
     /**
      *  ScrollBox height, specified in rem units
      */
-    height   : PropTypes.number,
+    height   : PropTypes.string,
+    /**
+     *  on scroll callback function
+     */
+    onScroll : PropTypes.func,
     /**
      *  Scroll direction
      */
@@ -31,8 +44,11 @@ ScrollBox.propTypes =
 
 ScrollBox.defaultProps =
 {
-    scroll : 'both',
-    cssMap : require( './scrollBox.css' )
+    children : undefined,
+    cssMap   : styles,
+    height   : undefined,
+    onScroll : undefined,
+    scroll   : 'both',
 };
 
 export default ScrollBox;

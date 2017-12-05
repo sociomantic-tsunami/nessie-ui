@@ -5,6 +5,8 @@ import Component     from '../proto/Component';
 import Css           from '../hoc/Css';
 import Icon          from '../Icon';
 
+const killFocus = e => e.preventDefault();
+
 export default class IconButton extends Component
 {
     static propTypes =
@@ -127,6 +129,7 @@ export default class IconButton extends Component
             forceHover,
             iconTheme,
             isDisabled,
+            isFocusable,
             isReadOnly,
             label,
             onBlur,
@@ -152,7 +155,9 @@ export default class IconButton extends Component
                     disabled  = { isDisabled }
                     onClick   = { !isReadOnly && onClick }
                     onBlur    = { onBlur }
-                    onFocus   = { onFocus } >
+                    onFocus   = { onFocus }
+                    tabIndex  = { isFocusable ? '0' : '-1' }
+                    onMouseDown = { !isFocusable && killFocus }>
                     <Icon
                         className  = { cssMap.icon }
                         size       = { iconSize }
