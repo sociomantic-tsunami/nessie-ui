@@ -5,10 +5,20 @@ import { buildClassName } from '../utils';
 import styles             from './dropdown.css';
 
 
-const Dropdown = ( { children, className, cssMap, hasError } ) => (
+const Dropdown = ( {
+    children,
+    className,
+    cssMap,
+    hasError,
+    padding,
+    size
+} ) => (
     <div
-        className = { buildClassName( className, cssMap,
-            { error: hasError } ) }>
+        className = { buildClassName( className, cssMap, {
+            error : hasError,
+            padding,
+            size,
+        } ) }>
         { children }
     </div>
 );
@@ -18,6 +28,8 @@ Dropdown.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     hasError  : PropTypes.bool,
+    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
 };
 
 Dropdown.defaultProps = {
@@ -25,6 +37,8 @@ Dropdown.defaultProps = {
     className : undefined,
     cssMap    : styles,
     hasError  : false,
+    padding   : 'none',
+    size      : 'default',
 };
 
 export default Dropdown;

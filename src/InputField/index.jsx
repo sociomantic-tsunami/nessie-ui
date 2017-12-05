@@ -1,8 +1,9 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import Component from '../proto/Component';
-import Css       from '../hoc/Css';
+import Component                   from '../proto/Component';
+import { buildClassName, mapAria } from '../utils';
+import styles                      from './inputField.css';
 
 
 export default class InputField extends Component
@@ -74,10 +75,6 @@ export default class InputField extends Component
          */
         onBlur       : PropTypes.func,
         /**
-         * onInput callback function
-         */
-        onInput      : PropTypes.func,
-        /**
          * onKeyPress callback function
          */
         onKeyPress   : PropTypes.func,
@@ -107,13 +104,24 @@ export default class InputField extends Component
         isDisabled : false,
         hasError   : false,
         forceHover : false,
-        cssMap     : require( './inputField.css' )
+        cssMap     : styles,
     };
 
+    constructor( props )
+    {
+        super( props );
+
+        if ( typeof onInput !== 'undefined' )
+        {
+            console.warn( '${this.constructor.name}: onInput props is \
+deprecated. Please use onChange instead.');
+        }
+    }
 
     render()
     {
         const {
+            aria,
             className,
             cssMap,
             defaultValue,
@@ -127,9 +135,11 @@ export default class InputField extends Component
             name,
             onBlur,
             onInput,
-            onKeyPress,
             onChange,
             onFocus,
+            onKeyDown,
+            onKeyPress,
+            onKeyUp,
             onMouseOut,
             onMouseOver,
             placeholder,
@@ -144,35 +154,33 @@ export default class InputField extends Component
         const InputElement = element || 'input';
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <InputElement
+                { ...mapAria( aria ) }
+                className    = { buildClassName( className, cssMap, {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
                     fakeHovered : !isDisabled && forceHover,
                     align       : textAlign,
                     resizable   : element === 'textarea' && isResizable
-                } }>
-                <InputElement
-                    ref          = { inputRef }
-                    className    = { className }
-                    type         = { element === 'input' ? type : null }
-                    placeholder  = { placeholder }
-                    id           = { id }
-                    name         = { name }
-                    disabled     = { isDisabled }
-                    readOnly     = { isReadOnly }
-                    onChange     = { onChange }
-                    defaultValue = { defaultValue }
-                    value        = { value }
-                    rows         = { element === 'textarea' ? rows : null }
-                    onMouseOver  = { onMouseOver }
-                    onMouseOut   = { onMouseOut }
-                    onBlur       = { onBlur }
-                    onInput      = { onInput }
-                    onKeyPress   = { onKeyPress }
-                    onFocus      = { onFocus } />
-            </Css>
+                } ) }
+                defaultValue = { defaultValue }
+                disabled     = { isDisabled }
+                id           = { id }
+                name         = { name }
+                onBlur       = { onBlur }
+                onChange     = { onChange || onInput }
+                onFocus      = { onFocus }
+                onKeyDown    = { onKeyDown }
+                onKeyPress   = { onKeyPress }
+                onKeyUp      = { onKeyUp }
+                onMouseOut   = { onMouseOut }
+                onMouseOver  = { onMouseOver }
+                placeholder  = { placeholder }
+                readOnly     = { isReadOnly }
+                ref          = { inputRef }
+                rows         = { element === 'textarea' ? rows : null }
+                type         = { element === 'input' ? type : null }
+                value        = { value } />
         );
     }
 }

@@ -1,0 +1,26 @@
+@import '../proto/definitions/_fonts.css';
+
+.default
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
+
+    .header
+    {
+        padding:    1rem;
+        cursor:     default;
+    }
+
+    .headerText
+    {
+        @extend %Nessie-Bold;
+    }
+
+    .options
+    {
+        display:    block;
+        margin:     0;
+        padding:    0;
+    }
+}
