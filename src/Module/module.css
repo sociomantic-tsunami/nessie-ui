@@ -12,6 +12,14 @@
 
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
 
+    .default
+    {
+        .header
+        {
+            background: var( --GS-11 );
+        }
+    }
+
     &.default + .default
     {
         margin-top: -2rem;
@@ -34,7 +42,6 @@
 {
     & > .header
     {
-        background: var( --GS-11 );
         cursor:     pointer;
     }
 }
