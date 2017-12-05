@@ -1,0 +1,8 @@
+{
+    "src": {
+        "push": false
+    },
+    "npm": {
+        "publish": false
+    }
+}

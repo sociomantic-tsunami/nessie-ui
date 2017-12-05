@@ -13,8 +13,10 @@ const TableCell = ( {
     columnTitle,
     cssMap,
     isHeader,
+    isRowHeader,
     isDataTable,
     isSortable,
+    isSticky,
     onToggle,
     size,
     sort,
@@ -31,15 +33,17 @@ const TableCell = ( {
                 onToggle = { onToggle }>
                 { contentNode }
             </Sorter>
-    );
+        );
     }
 
     return (
         <Css
             cssMap   = { cssMap }
             cssProps = { {
-                header : isHeader,
-                data   : isDataTable
+                header    : isHeader,
+                rowHeader : isRowHeader,
+                data      : isDataTable,
+                sticky    : isSticky,
             } }>
             <Column
                 className     = { className }
@@ -64,9 +68,17 @@ TableCell.propTypes =
      */
     isHeader    : PropTypes.bool,
     /**
+     *  Display as a row header cell
+     */
+    isRowHeader : PropTypes.bool,
+    /**
      *  Show a Sorter in header cell
      */
     isSortable  : PropTypes.bool,
+    /**
+     *  Makes the cell sticky
+     */
+    isSticky    : PropTypes.bool,
     /**
      *  Sort direction
      */
@@ -83,7 +95,13 @@ TableCell.propTypes =
     /**
      *  Size of the cell
      */
-    size : PropTypes.oneOf( [ '1/1',
+    size : PropTypes.oneOf( [
+        'icon-S',
+        'icon-M',
+        'icon-L',
+        'icon-XL',
+        'icon-XXL',
+        '1/1',
         '1/2', '2/2',
         '1/3', '2/3', '3/3',
         '1/4', '2/4', '3/4', '4/4',
@@ -142,8 +160,10 @@ TableCell.propTypes =
 TableCell.defaultProps =
 {
     isHeader    : false,
+    isRowHeader : false,
     isDataTable : false,
     isSortable  : false,
+    isSticky    : false,
     cssMap      : require( './tableCell.css' )
 };
 

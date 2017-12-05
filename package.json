@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "5.0.2",
+  "version": "5.2.0",
   "description": "Nessie React Components",
   "main": "dist",
   "scripts": {
@@ -26,11 +26,13 @@
     "svgSprite": "./.prep-icon.sh  > /dev/null && ./.generate-sprite.sh  > /dev/null",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
-    "bump": "yarn pre-bump ; release-it && yarn post-bump",
-    "bump:minor": "yarn pre-bump ; release-it minor && yarn post-bump",
-    "bump:major": "yarn pre-bump ; release-it major && yarn post-bump",
+    "changelog": "yarn auto-changelog -- --commit-limit false --output CHANGELOG.md && git tag --delete $(git describe --tags --abbrev=0) && git add . && git commit --amend --no-edit",
+    "bump": "yarn pre-bump ; release-it --config=preReleaseit.json -n && yarn changelog && release-it --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump",
+    "bump:minor": "yarn pre-bump ; release-it minor --config=preReleaseit.json -n && yarn changelog && release-it minor --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump",
+    "bump:major": "yarn pre-bump ; release-it major --config=preReleaseit.json -n && yarn changelog && release-it major --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump",
     "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
-    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify"
+    "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify",
+    "npm-publish": "npm publish --registry=https://registry.npmjs.org/"
   },
   "keywords": [
     "scotland",
@@ -154,6 +156,7 @@
     "winston": "^2.2.0"
   },
   "dependencies": {
+    "auto-changelog": "^1.1.0",
     "codemirror": "^5.26.0",
     "copyfiles": "^1.2.0",
     "lodash.clonedeep": "^4.5.0",

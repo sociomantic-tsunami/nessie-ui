@@ -15,46 +15,56 @@ const NavItem = ( {
     href,
     iconType,
     isCurrentPage,
+    isCurrent,
     isOpen,
     isDisabled,
     onClick,
     onMouseOut,
     onMouseOver,
     role
-} ) => (
+} ) =>
+{
+    if ( isCurrentPage === true )
+    {
+        console.warn( `${this.constructor.name}: isCurrentPage is \
+deprecated and will be removed in the next major release. Please use \
+isCurrent instead.` );
+    }
 
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { {
-            role,
-            disabled    : isDisabled,
-            current     : isCurrentPage,
-            dropdownAlign,
-            open        : isOpen,
-            fakeHovered : forceHover,
-            icon        : iconType
-        } }>
-        <li
-            className   = { className }
-            onMouseOver = { onMouseOver }
-            onMouseOut  = { onMouseOut }>
-            <a
-                className = { cssMap.link }
-                href      = { href }
-                onClick   = { onClick }>
-                <span>{ label }</span>
-                { ( iconType && iconType !== 'none' ) &&
-                    <div className  = { cssMap.icon } />
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { {
+                role,
+                disabled    : isDisabled,
+                current     : isCurrent || isCurrentPage,
+                dropdownAlign,
+                open        : isOpen,
+                fakeHovered : forceHover,
+                icon        : iconType
+            } }>
+            <li
+                className   = { className }
+                onMouseOver = { onMouseOver }
+                onMouseOut  = { onMouseOut }>
+                <a
+                    className = { cssMap.link }
+                    href      = { href }
+                    onClick   = { onClick }>
+                    <span>{ label }</span>
+                    { ( iconType && iconType !== 'none' ) &&
+                        <div className  = { cssMap.icon } />
+                    }
+                </a>
+                { children &&
+                    <NavDropdown className = { cssMap.dropdown }>
+                        { children }
+                    </NavDropdown>
                 }
-            </a>
-            { children &&
-                <NavDropdown className = { cssMap.dropdown }>
-                    { children }
-                </NavDropdown>
-            }
-        </li>
-    </Css>
-);
+            </li>
+        </Css>
+    );
+};
 
 NavItem.propTypes =
 {
@@ -74,10 +84,6 @@ NavItem.propTypes =
      *  Icon to show
      */
     iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
-    /**
-     *  Display as current page
-     */
-    isCurrentPage : PropTypes.bool,
     /*
     *  Display as disabled/read-only
      */

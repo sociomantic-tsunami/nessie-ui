@@ -5,11 +5,28 @@ import NessieComponent      from '../proto/Component';
 import TabButton            from '../TabButton';
 
 
-const isTab = node => React.isValidElement( node )
-    && node.type.name === 'Tab';
+const warnTabs = ( node ) =>
+{
+    const _node = React.Children.toArray( node );
+    let warning = false;
 
-const filterTabs = node => React.Children.toArray( node )
-    .filter( isTab );
+    _node.forEach( child =>
+    {
+        if ( !( React.isValidElement( child )
+        && child.type.name === 'Tab' ) )
+        {
+            warning = true;
+        }
+    } );
+
+    if ( warning )
+    {
+        console.warn( 'Tabs component children should be \
+individual Tab components and not other elements' );
+    }
+
+    return _node;
+};
 
 export default class Tabs extends NessieComponent
 {
@@ -88,7 +105,7 @@ export default class Tabs extends NessieComponent
             cssMap
         } = this.props;
 
-        const tabs   = filterTabs( children );
+        const tabs   = warnTabs( children );
         const header = this.renderHeader( tabs );
 
         const content = tabs[ activeTabIndex ];

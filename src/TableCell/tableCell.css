@@ -1,9 +1,25 @@
 @import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/_colors.css";
 
 $shark: 768px;
 
+@media( min-width: $shark )
+{
+	.default
+    {
+        &:first-child
+        {
+            padding-left: 0;
+        }
+    }
+}
+
 .default
 {
+	padding-top: 	1rem;
+	padding-bottom: 1rem;
+
+    background-color:     var( --PC-WHITE );
     /*flex-direction: row;*/
 
     &::before
@@ -51,6 +67,11 @@ $shark: 768px;
     /*}*/
 }
 
+.rowHeader
+{
+    @extend %Nessie-Bold;
+    z-index:            1;
+}
 
 .data
 {
@@ -60,4 +81,11 @@ $shark: 768px;
     {
         @extend %Nessie-Bold;
     }
+}
+
+.sticky
+{
+    position:    sticky;
+    left:        0;
+    z-index:     1;
 }
