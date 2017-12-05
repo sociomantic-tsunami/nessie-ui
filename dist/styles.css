@@ -1791,11 +1791,9 @@ textarea.inputField__resizable
 }
 .dropdown__default
 {
-    width:      auto;
     min-width:  0;
     max-width:  none;
 
-    padding:    2rem;
     border:     0.1rem solid #289bc8;
     -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
             box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
@@ -1805,6 +1803,26 @@ textarea.inputField__resizable
 .dropdown__error
 {
     border-color:   #e64b6e;
+}
+.dropdown__padding__S
+{
+    padding:    1rem;
+}
+.dropdown__padding__M
+{
+    padding:    2rem;
+}
+.dropdown__padding__L
+{
+    padding:    3rem;
+}
+.dropdown__size__default
+{
+    width: 100%;
+}
+.dropdown__size__content
+{
+    width: auto;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -8501,6 +8519,101 @@ span.CodeMirror-selectedtext { background: none; }
 {
     width:                  4.8rem;
     height:                 4.8rem;
+}
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+.listBoxOption__default
+{
+    display:    block;
+    margin:     0;
+    padding:    1rem;
+
+    margin:         0;
+    padding:        1rem;
+
+    cursor:         pointer;
+}
+
+.listBoxOption__default .listBoxOption__icon
+    {
+        -webkit-box-flex:           0;
+        -webkit-flex:           0 0 auto;
+            -ms-flex:           0 0 auto;
+                flex:           0 0 auto;
+        margin-right:   1rem;
+    }
+
+.listBoxOption__default .listBoxOption__text
+    {
+        -webkit-box-flex:       1;
+        -webkit-flex:       1 0 0%;
+            -ms-flex:       1 0 0%;
+                flex:       1 0 0%;
+        min-width:  0;
+    }
+
+.listBoxOption__selected
+{
+    background: rgba(40, 155, 200, 0.1);
+}
+
+.listBoxOption__active, .listBoxOption__default:hover
+{
+    background: rgba(40, 155, 200, 0.3);
+    color:      #283237;
+}
+
+.listBoxOption__disabled
+{
+    cursor: default;
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+.listBoxOptionGroup__default .listBoxOptionGroup__headerText
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.listBoxOptionGroup__default
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
+}
+
+.listBoxOptionGroup__default .listBoxOptionGroup__header
+    {
+        padding:    1rem;
+        cursor:     default;
+    }
+
+.listBoxOptionGroup__default .listBoxOptionGroup__options
+    {
+        display:    block;
+        margin:     0;
+        padding:    0;
+    }
+.listBox__default
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions

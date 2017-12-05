@@ -1791,11 +1791,9 @@ textarea.inputField__resizable__2CfEu
 }
 .dropdown__default__13IF5
 {
-    width:      auto;
     min-width:  0;
     max-width:  none;
 
-    padding:    2rem;
     border:     0.1rem solid #289bc8;
     -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
             box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
@@ -1805,6 +1803,26 @@ textarea.inputField__resizable__2CfEu
 .dropdown__error__3OWkd
 {
     border-color:   #e64b6e;
+}
+.dropdown__padding__S__1mOx-
+{
+    padding:    1rem;
+}
+.dropdown__padding__M__gwalE
+{
+    padding:    2rem;
+}
+.dropdown__padding__L__2LEdX
+{
+    padding:    3rem;
+}
+.dropdown__size__default__3pD2F
+{
+    width: 100%;
+}
+.dropdown__size__content__3Lc7W
+{
+    width: auto;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -8501,6 +8519,101 @@ span.CodeMirror-selectedtext { background: none; }
 {
     width:                  4.8rem;
     height:                 4.8rem;
+}
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+.listBoxOption__default__DkyAr
+{
+    display:    block;
+    margin:     0;
+    padding:    1rem;
+
+    margin:         0;
+    padding:        1rem;
+
+    cursor:         pointer;
+}
+
+.listBoxOption__default__DkyAr .listBoxOption__icon__2UOgm
+    {
+        -webkit-box-flex:           0;
+        -webkit-flex:           0 0 auto;
+            -ms-flex:           0 0 auto;
+                flex:           0 0 auto;
+        margin-right:   1rem;
+    }
+
+.listBoxOption__default__DkyAr .listBoxOption__text__1BfTM
+    {
+        -webkit-box-flex:       1;
+        -webkit-flex:       1 0 0%;
+            -ms-flex:       1 0 0%;
+                flex:       1 0 0%;
+        min-width:  0;
+    }
+
+.listBoxOption__selected__2rpmu
+{
+    background: rgba(40, 155, 200, 0.1);
+}
+
+.listBoxOption__active__3Kugi, .listBoxOption__default__DkyAr:hover
+{
+    background: rgba(40, 155, 200, 0.3);
+    color:      #283237;
+}
+
+.listBoxOption__disabled__2-4Xe
+{
+    cursor: default;
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+.listBoxOptionGroup__default__3m1i2 .listBoxOptionGroup__headerText__114K7
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.listBoxOptionGroup__default__3m1i2
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
+}
+
+.listBoxOptionGroup__default__3m1i2 .listBoxOptionGroup__header__1HgZf
+    {
+        padding:    1rem;
+        cursor:     default;
+    }
+
+.listBoxOptionGroup__default__3m1i2 .listBoxOptionGroup__options__1ETqV
+    {
+        display:    block;
+        margin:     0;
+        padding:    0;
+    }
+.listBox__default__1-fww
+{
+    display:    block;
+    margin:     0;
+    padding:    0;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
