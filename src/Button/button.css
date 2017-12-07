@@ -259,20 +259,13 @@
     background:     color( var( --PC-BLUE ) tint( 70% ) );
     color:          color( var( --PC-BLUE ) tint( 25% ) );
 
-    box-shadow:     none;
-
-    &.role__subtle
+    .icon
     {
-        .content
-        {
-            border-color:       transparent;
-        }
-
-        .iconContainer:after
-        {
-            background-color:   var( --PC-WHITE );
-        }
+        fill:   color( var( --PC-BLUE ) tint( 25% ) );
+        color:  color( var( --PC-BLUE ) tint( 25% ) );
     }
+
+    box-shadow:     none;
 
     &.fakeHovered,
     &:hover,
