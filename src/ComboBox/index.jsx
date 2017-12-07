@@ -224,7 +224,7 @@ export default class ComboBox extends Component
         const { scrollBox } = this;
         const { activeOption, id } = this.props;
 
-        if ( activeOption )
+        if ( scrollBox && activeOption )
         {
             const activeEl =
                 document.getElementById( addPrefix( activeOption, id ) );

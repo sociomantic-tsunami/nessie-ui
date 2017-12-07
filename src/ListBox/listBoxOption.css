@@ -2,14 +2,14 @@
 
 .default
 {
-    display:    block;
+    display:    flex;
     margin:     0;
     padding:    1rem;
 
-    margin:         0;
-    padding:        1rem;
+    margin:     0;
+    padding:    1rem;
 
-    cursor:         pointer;
+    cursor:     pointer;
 
     .icon
     {
