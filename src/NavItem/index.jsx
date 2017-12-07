@@ -26,9 +26,8 @@ const NavItem = ( {
 {
     if ( isCurrentPage === true )
     {
-        console.warn( `${this.constructor.name}: isCurrentPage is \
-deprecated and will be removed in the next major release. Please use \
-isCurrent instead.` );
+        console.warn( `NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.` );
     }
 
     return (
@@ -93,6 +92,10 @@ NavItem.propTypes =
      */
     dropdownAlign : PropTypes.oneOf( [ 'left', 'right' ] ),
     /*
+     * Display as current page/section
+     */
+    isCurrent     : PropTypes.bool,
+    /*
     * Dropdown menu is open
      */
     isOpen        : PropTypes.bool,
@@ -124,6 +127,7 @@ NavItem.defaultProps =
     href          : '#',
     dropdownAlign : 'left',
     iconType      : 'none',
+    isCurrent     : false,
     cssMap        : require( './navItem.css' )
 };
 
