@@ -156,6 +156,7 @@ deprecated. Please use onChange instead.');
         return (
             <InputElement
                 { ...mapAria( aria ) }
+                autoComplete = { element !== 'textarea' ? 'off' : null }
                 className    = { buildClassName( className, cssMap, {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
