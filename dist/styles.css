@@ -8535,14 +8535,17 @@ span.CodeMirror-selectedtext { background: none; }
 
 .listBoxOption__default
 {
-    display:    block;
+    display:    -webkit-box;
+    display:    -webkit-flex;
+    display:    -ms-flexbox;
+    display:    flex;
     margin:     0;
     padding:    1rem;
 
-    margin:         0;
-    padding:        1rem;
+    margin:     0;
+    padding:    1rem;
 
-    cursor:         pointer;
+    cursor:     pointer;
 }
 
 .listBoxOption__default .listBoxOption__icon
@@ -14185,18 +14188,11 @@ only used in type__carousel for now
     /* greyscale colors */
 }
 
-@media( min-width: 768px )
-{
-        .tableCell__default:first-child
-        {
-            padding-left: 0;
-        }
-}
-
 .tableCell__default
 {
-	padding-top: 	1rem;
-	padding-bottom: 1rem;
+    padding-top:    1rem;
+    padding-bottom: 1rem;
+    padding-left:   0.5rem;
 
     background-color:     #ffffff;
 
@@ -14207,6 +14203,7 @@ only used in type__carousel for now
         -webkit-flex-direction: column;
             -ms-flex-direction: column;
                 flex-direction: column;
+    /*}*/
     /*}*/
 }
 
@@ -14242,6 +14239,14 @@ only used in type__carousel for now
             display:    none;
         }
 
+/*@media( min-width: $shark )
+    {*/
+
+.tableCell__default:first-child
+        {
+            padding-left: 0;
+        }
+
 .tableCell__header /* required until we have a TableHeader text component */
 {
     display:        none;
@@ -14263,10 +14268,15 @@ only used in type__carousel for now
     z-index:            1;
 }
 
-.tableCell__data
-{
-    padding-left:       0.5rem;
-}
+.tableCell__data:first-child
+    {
+        padding-left:       0.5rem;
+    }
+
+.tableCell__data:last-child
+    {
+        padding-right:      0.5rem;
+    }
 
 .tableCell__sticky
 {
@@ -14322,12 +14332,6 @@ only used in type__carousel for now
         {
             background-color: #F0F0F0;
         }
-.table__dataTable .table__row
-{
-    margin-right:   0;
-    padding-left:   0.5rem;
-    padding-right:  1rem;
-}
 .tabs__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;

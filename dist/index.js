@@ -13322,6 +13322,7 @@ deprecated. Please use onChange instead.');
       var InputElement = element || 'input';
 
       return _react2.default.createElement(InputElement, _extends({}, (0, _utils.mapAria)(aria), {
+        autoComplete: element !== 'textarea' ? 'off' : null,
         className: (0, _utils.buildClassName)(className, cssMap, {
           error: !isDisabled && hasError,
           disabled: isDisabled,
@@ -21084,7 +21085,7 @@ var ComboBox = function (_Component) {
                 id = _props.id;
 
 
-            if (activeOption) {
+            if (scrollBox && activeOption) {
                 var activeEl = document.getElementById((0, _utils2.addPrefix)(activeOption, id));
 
                 if (activeEl && scrollBox.scrollHeight > scrollBox.offsetHeight) {
@@ -23510,7 +23511,7 @@ var NavItem = function NavItem(_ref) {
         role = _ref.role;
 
     if (isCurrentPage === true) {
-        console.warn(undefined.constructor.name + ': isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
+        console.warn('NavItem: isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
     }
 
     return _react2.default.createElement(
@@ -23580,6 +23581,10 @@ NavItem.propTypes = {
      */
     dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
     /*
+     * Display as current page/section
+     */
+    isCurrent: _propTypes2.default.bool,
+    /*
     * Dropdown menu is open
      */
     isOpen: _propTypes2.default.bool,
@@ -23610,6 +23615,7 @@ NavItem.defaultProps = {
     href: '#',
     dropdownAlign: 'left',
     iconType: 'none',
+    isCurrent: false,
     cssMap: __webpack_require__(158)
 };
 
@@ -28100,7 +28106,7 @@ module.exports = {"label":"tabButton__label","role__control":"tabButton__role__c
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"table__default","zebra":"table__zebra","row":"table__row","cell":"table__cell","dataTable":"table__dataTable"};
+module.exports = {"default":"table__default","zebra":"table__zebra","row":"table__row","cell":"table__cell"};
 
 /***/ }),
 /* 185 */
