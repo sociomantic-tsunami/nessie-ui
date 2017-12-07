@@ -6,7 +6,11 @@
 {
     /* primary colors */
     --PC-WHITE:     #ffffff;
-    --PC-BLUE:      #289bc8;
+    --PC-BLUE:      #19a2e2;
+    --PC-GREEN:     #1bbab0;
+    --PC-RED:       #ff5460;
+    --PC-ORAGE:     #ff7f5a;
+    --PC-YELLOW:    #ffb050;
     --PC-GREY:      #96a3aa;
     --PC-DARK-GREY: #283237;
 
@@ -39,6 +43,4 @@
     --GS-8:     #DEDEDE;
     --GS-9:     #E6E6E6;
     --GS-10:    #F0F0F0;
-    --GS-11:    #F5F5F5;
-    --GS-12:    #FAFAFA;
 }
