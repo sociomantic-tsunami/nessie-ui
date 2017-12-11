@@ -1,3 +1,5 @@
+@import "../proto/global.css";
+
 $shark: 768px;
 
 .default
@@ -51,7 +53,7 @@ $shark: 768px;
 
     & > *
     {
-        margin-bottom:  2rem;
+        margin-bottom:  var( --spacing-s );
 
         &:last-child
         {

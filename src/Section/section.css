@@ -1,9 +1,10 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
+@import "../proto/global.css";
 
 .default
 {
-    margin-bottom:  3rem;
+    margin-bottom:  var( --spacing-l );
 
     /*&::after
     {
@@ -18,21 +19,21 @@
 
 .level__1
 {
-    margin-bottom:  7rem;
+    margin-bottom:  var( --spacing-xxl );
 
     &::after
     {
-        bottom: -3.5rem;
+        bottom: -( var( --spacing-l ) );
     }
 }
 
 .level__2
 {
-    margin-bottom:  5rem;
+    margin-bottom: var( --spacing-xl );
 
     &::after
     {
-        bottom: -2rem;
+        bottom: -( var( --spacing-s ) );
     }
 }
 

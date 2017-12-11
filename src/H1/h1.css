@@ -1,6 +1,7 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 @import "../proto/definitions/_fonts.css";
+@import "../proto/global.css";
 
 .default
 {
@@ -8,7 +9,7 @@
 	top: 			0.6rem;
 
 	margin-top: 	-0.9rem;
-	margin-bottom:	7rem;
+	margin-bottom:	var( --spacing-xxl );
 
     @extend %Nessie-Bold;
 

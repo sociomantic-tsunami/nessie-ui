@@ -6,7 +6,7 @@
 {
     /* from base.css */
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  var( --spacing-s );
 
     box-sizing:     border-box;
     width:          100%;

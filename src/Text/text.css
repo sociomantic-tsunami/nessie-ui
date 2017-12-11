@@ -1,6 +1,7 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 @import "../proto/definitions/_fonts.css";
+@import "../proto/global.css";
 
 .default
 {
@@ -11,7 +12,7 @@
     margin:         0;
     margin-top:     -0.8rem;
 
-    margin-bottom:  1rem;
+    margin-bottom:  var( --spacing-xs );
 
     .default
     {

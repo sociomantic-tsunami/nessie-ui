@@ -1,6 +1,7 @@
 @import "../proto/definitions/_colors.css";
 @import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
+@import "../proto/global.css";
 
 .default
 {
@@ -51,8 +52,8 @@
 
     @extend %Nessie-SemiBold;
 
-    font-size:          1.2rem;
-    line-height:        1.6rem;
+    font-size:          var( --typo-m );
+    line-height:        var( --line-height-m );
     letter-spacing:     0.04rem;
 
     overflow:           hidden;
@@ -281,8 +282,8 @@
         padding-right:      1.4rem;
 
 
-        font-size:          1.2rem;
-        line-height:        1.6rem;
+        font-size:          var( --typo-m );
+        line-height:        var( --line-height-m );
         letter-spacing:     0.04rem;
     }
 }

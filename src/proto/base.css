@@ -1,7 +1,9 @@
+@import "../proto/global.css";
+
 .default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  var( --spacing-s );
 
     box-sizing:     border-box;
     width:          100%;
