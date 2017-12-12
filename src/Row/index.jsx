@@ -70,7 +70,7 @@ Row.propTypes =
      */
     spacing : PropTypes.oneOf( [
         'none',
-        'XS'
+        'XS',
         'S',
         'XL',
         'XXL'
