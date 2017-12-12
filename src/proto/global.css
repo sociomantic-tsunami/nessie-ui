@@ -1,18 +1,8 @@
 :root
 {
     /*  TYPOGRAPHY SIZES */
-    --typo-s: 1rem;
     --typo-m: 1.2rem;
-    --typo-l: 1.4rem;
-
-    --line-height-s: 1.2rem;
     --line-height-m: 1.6rem;
-    --line-height-l: 2rem;
-
-    /*  GUTTERS */
-    --gutters-s: 0.8rem;
-    --gutters-m: 1.6rem;
-    --gutters-l: 2.4rem;
 
     /*  SPACING */
     --spacing-xs:  0.8rem;

@@ -103,8 +103,8 @@
 
         /* reset font */
         @extend %Nessie-Regular;
-        font-size:      1.2rem;
-        line-height:    1.6rem;
+        font-size:      var( --typo-m );
+        line-height:    var( --line-height-m );
         text-transform: none;
     }
 

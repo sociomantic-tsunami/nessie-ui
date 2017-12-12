@@ -9,7 +9,6 @@
 	top: 			0.6rem;
 
 	margin-top: 	-0.9rem;
-	margin-bottom:	var( --spacing-xxl );
 
     @extend %Nessie-Bold;
 
@@ -36,4 +35,19 @@
 .role__critical
 {
 	color:	var( --AC-2 );
+}
+
+.spacing__S
+{
+    margin-bottom: var( --spacing-xs );
+}
+
+.spacing__M
+{
+    margin-bottom: var( --spacing-m );
+}
+
+.spacing__L
+{
+    margin-bottom: var( --spacing-xxl );
 }

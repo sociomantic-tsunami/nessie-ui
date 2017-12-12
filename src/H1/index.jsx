@@ -3,14 +3,22 @@ import PropTypes             from 'prop-types';
 
 import Css                   from '../hoc/Css';
 
-const H1 = ( { cssMap, className, children, title, role } ) =>
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { role } }>
-        <h1 className = { className }>
-            { children || title }
-        </h1>
-    </Css>;
+const H1 = ( {
+    cssMap,
+    className,
+    children,
+    spacing,
+    title,
+    role } ) =>
+
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { role,
+                spacing : spacing } }>
+            <h1 className = { className }>
+                { children || title }
+            </h1>
+        </Css>;
 
 H1.propTypes =
 {
@@ -26,13 +34,22 @@ H1.propTypes =
         'subtle',
         'promoted',
         'critical'
+    ] ),
+    /**
+     *  Height of the H1 margin-bottom
+     */
+    spacing : PropTypes.oneOf( [
+        'S',
+        'M',
+        'L'
     ] )
 };
 
 H1.defaultProps =
 {
-    role   : 'default',
-    cssMap : require( './h1.css' )
+    role       : 'default',
+    spacing    : 'L',
+    cssMap     : require( './h1.css' )
 };
 
 export default H1;

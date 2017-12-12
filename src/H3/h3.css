@@ -12,7 +12,7 @@
     @extend %Nessie-Bold;
 
     font-size:      1.4rem;
-    line-height:    1.6rem;
+    line-height:    var( --line-height-m );
 	min-height:     1.6rem;
 }
 
@@ -34,4 +34,19 @@
 .role__critical
 {
 	color:	var( --AC-2 );
+}
+
+.spacing__S
+{
+    margin-bottom: var( --spacing-xs );
+}
+
+.spacing__M
+{
+    margin-bottom: var( --spacing-m );
+}
+
+.spacing__L
+{
+    margin-bottom: var( --spacing-xxl );
 }
