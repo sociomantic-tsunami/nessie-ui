@@ -236,214 +236,6 @@ is the <button>', () =>
             } );
     } );
 
-    describe( 'handleFocusIcon( e )', () =>
-    {
-        it( 'should call setState with { iconIsFocused: true } }', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleFocusIcon( new Event( {} ) );
-
-            expect( setState.calledWith( sinon.match(
-                { iconIsFocused: true } ) ) ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call setState exactly once', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleFocusIcon( new Event( {} ) );
-
-            expect( setState.calledOnce ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call onFocusIcon with e', () =>
-        {
-            const e = new Event( {} );
-            const onFocusIcon = sinon.spy();
-
-            wrapper.setProps( { onFocusIcon } );
-
-            instance.handleFocusIcon( e );
-
-            expect( onFocusIcon.calledWith( e ) ).to.be.true;
-        } );
-
-        it( 'should call onFocusIcon exactly once', () =>
-        {
-            const onFocusIcon = sinon.spy();
-
-            wrapper.setProps( { onFocusIcon } );
-
-            instance.handleFocusIcon( new Event( {} ) );
-
-            expect( onFocusIcon.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call this.handleFocus with e', () =>
-        {
-            const e = new Event( {} );
-            const setState = sinon.spy( instance, 'handleFocus' );
-
-            instance.handleFocusIcon( e );
-
-            expect( setState.calledWith( e ) ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call this.handleFocus exactly once', () =>
-        {
-            const setState = sinon.spy( instance, 'handleFocus' );
-            instance.handleFocusIcon( new Event( {} ) );
-
-            expect( setState.calledOnce ).to.be.true;
-
-            setState.restore();
-        } );
-    } );
-
-    describe( 'handleBlurIcon( e )', () =>
-    {
-        it( 'should call setState with { iconIsFocused: false } }', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleBlurIcon( new Event( {} ) );
-
-            expect( setState.calledWith( sinon.match(
-                { iconIsFocused: false } ) ) ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call setState exactly once', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleBlurIcon( new Event( {} ) );
-
-            expect( setState.calledOnce ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call onBlurIcon with e', () =>
-        {
-            const e = new Event( {} );
-            const onBlurIcon = sinon.spy();
-
-            wrapper.setProps( { onBlurIcon } );
-
-            instance.handleBlurIcon( e );
-
-            expect( onBlurIcon.calledWith( e ) ).to.be.true;
-        } );
-
-        it( 'should call onBlurIcon exactly once', () =>
-        {
-            const onBlurIcon = sinon.spy();
-
-            wrapper.setProps( { onBlurIcon } );
-
-            instance.handleBlurIcon( new Event( {} ) );
-
-            expect( onBlurIcon.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call this.handleBlur with e', () =>
-        {
-            const e = new Event( {} );
-            const setState = sinon.spy( instance, 'handleBlur' );
-
-            instance.handleBlurIcon( e );
-
-            expect( setState.calledWith( e ) ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call this.handleBlur exactly once', () =>
-        {
-            const setState = sinon.spy( instance, 'handleBlur' );
-            instance.handleBlurIcon( new Event( {} ) );
-
-            expect( setState.calledOnce ).to.be.true;
-
-            setState.restore();
-        } );
-    } );
-
-    describe( 'handleMouseOverIcon( e )', () =>
-    {
-        it( 'should call setState with { iconIsHovered: true } }', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleMouseOverIcon( new Event( {} ) );
-
-            expect( setState.calledWith( sinon.match(
-                { iconIsHovered: true } ) ) ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call setState exactly once', () =>
-        {
-            const setState = sinon.spy( instance, 'setState' );
-            instance.handleMouseOverIcon( new Event( {} ) );
-
-            expect( setState.calledOnce ).to.be.true;
-
-            setState.restore();
-        } );
-
-        it( 'should call onMouseOverIcon with e', () =>
-        {
-            const onMouseOverIcon = sinon.spy();
-            const e = new Event( {} );
-
-            wrapper.setProps( { onMouseOverIcon } );
-
-            instance.handleMouseOverIcon( e );
-
-            expect( onMouseOverIcon.calledWith( e ) ).to.be.true;
-        } );
-
-        it( 'should call onMouseOverIcon exactly once', () =>
-        {
-            const onMouseOverIcon = sinon.spy();
-
-            wrapper.setProps( { onMouseOverIcon } );
-
-            instance.handleMouseOverIcon( new Event( {} ) );
-
-            expect( onMouseOverIcon.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call onMouseOver with e', () =>
-        {
-            const onMouseOver = sinon.spy();
-            const e = new Event( {} );
-
-            wrapper.setProps( { onMouseOver } );
-
-            instance.handleMouseOverIcon( e );
-
-            expect( onMouseOver.calledWith( e ) ).to.be.true;
-        } );
-
-        it( 'should call onMouseOver exactly once', () =>
-        {
-            const onMouseOver = sinon.spy();
-
-            wrapper.setProps( { onMouseOver } );
-
-            instance.handleMouseOverIcon( new Event( {} ) );
-
-            expect( onMouseOver.calledOnce ).to.be.true;
-        } );
-    } );
-
     describe( 'handleMouseOutIcon( e )', () =>
     {
         it( 'should call setState with { iconIsHovered: false } }', () =>
@@ -952,21 +744,39 @@ is the <button>', () =>
             } );
         } );
 
-        describe( 'onInput', () =>
+        describe( 'onKeyDown', () =>
         {
             it( 'should be undefined by default', () =>
             {
-                expect( props.onInput ).to.be.undefined;
+                expect( props.onKeyDown ).to.be.undefined;
             } );
 
             it( 'should be passed to the InputField', () =>
             {
-                const onInput = () => undefined;
+                const onKeyDown = () => undefined;
 
-                wrapper.setProps( { onInput } );
+                wrapper.setProps( { onKeyDown } );
 
-                expect( wrapper.find( InputField ).prop( 'onInput' ) ).to
-                    .equal( onInput );
+                expect( wrapper.find( InputField ).prop( 'onKeyDown' ) ).to
+                    .equal( onKeyDown );
+            } );
+        } );
+
+        describe( 'onKeyUp', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( props.onKeyUp ).to.be.undefined;
+            } );
+
+            it( 'should be passed to the InputField', () =>
+            {
+                const onKeyUp = () => undefined;
+
+                wrapper.setProps( { onKeyUp } );
+
+                expect( wrapper.find( InputField ).prop( 'onKeyUp' ) ).to
+                    .equal( onKeyUp );
             } );
         } );
 
@@ -1119,41 +929,6 @@ is the <button>', () =>
             e = new Event( {} );
         } );
 
-        describe( 'iconIsFocused', () =>
-        {
-            it( 'should be false by default', () =>
-            {
-                expect( wrapper.state( 'iconIsFocused' ) ).to.be.false;
-            } );
-
-            it( 'should not be true after InputField receives focus', () =>
-            {
-                wrapper.find( InputField ).simulate( 'focus', e );
-                expect( wrapper.state( 'iconIsFocused' ) ).not.to.be.true;
-            } );
-
-            it( 'should be true after IconButton receives focus', () =>
-            {
-                wrapper.find( IconButton ).simulate( 'focus', e );
-                expect( wrapper.update().state( 'iconIsFocused' ) ).to.be.true;
-            } );
-
-            it( 'should be false after IconButton is blurred', () =>
-            {
-                wrapper.find( IconButton ).simulate( 'focus', e );
-                wrapper.find( IconButton ).simulate( 'blur', e );
-                expect( wrapper.state( 'iconIsFocused' ) ).to.be.false;
-            } );
-
-            it( 'should be passed to InputField as forceHover', () =>
-            {
-                wrapper.setState( { iconIsFocused: true } );
-
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) ).to.be
-                    .true;
-            } );
-        } );
-
         describe( 'iconIsHovered', () =>
         {
             it( 'should be false by default', () =>
@@ -1177,7 +952,7 @@ is the <button>', () =>
             {
                 wrapper.find( Tooltip ).simulate( 'mouseOver', e );
                 wrapper.find( Tooltip ).simulate( 'mouseOut', e );
-                expect( wrapper.state( 'iconIsFocused' ) ).to.be.false;
+                expect( wrapper.state( 'iconIsHovered' ) ).to.be.false;
             } );
 
             it( 'should be passed to InputField as forceHover', () =>

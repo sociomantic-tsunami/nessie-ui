@@ -11,6 +11,14 @@ export default class TextInput extends Component
     static propTypes =
     {
         /**
+         *  aria properties
+         */
+        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+            PropTypes.bool,
+            PropTypes.number,
+            PropTypes.string,
+        ] ) ),
+        /**
          *  Label text (string or JSX node)
          */
         label         : PropTypes.node,
@@ -113,6 +121,7 @@ export default class TextInput extends Component
 
     static defaultProps =
     {
+        aria                  : undefined,
         labelPosition         : 'top',
         isDisabled            : false,
         isReadOnly            : false,
