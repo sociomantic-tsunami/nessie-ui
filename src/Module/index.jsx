@@ -79,19 +79,19 @@ export default class Module extends Component
          */
         onClickDelete         : PropTypes.func,
         /**
-        *  Delete button onClick callback function
+        *  Error tooltip bound to error icon onMouseOut callback function
         */
         onMouseOutError       : PropTypes.func,
         /**
-        *  Delete button onClick callback function
+        *  Error tooltip bound to error icon onMouseOver callback function
         */
         onMouseOverError      : PropTypes.func,
         /**
-        *  Delete button onClick callback function
+        *  Error tooltip bound to header onMouseOut callback function
         */
         onMouseOutHeader      : PropTypes.func,
         /**
-         *  Delete button onClick callback function
+         *  Error tooltip bound to header onMouseOver callback function
          */
         onMouseOverHeader     : PropTypes.func,
     };
@@ -113,50 +113,50 @@ export default class Module extends Component
 
         this.handleClickDelete = this.handleClickDelete.bind( this );
         this.handleClickToggle = this.handleClickToggle.bind( this );
-        this.onMouseOverHeader = this.onMouseOverHeader.bind( this );
-        this.onMouseOutHeader = this.onMouseOutHeader.bind( this );
-        this.onMouseOverError = this.onMouseOverError.bind( this );
-        this.onMouseOutError = this.onMouseOutError.bind( this );
+        this.handleOnMouseOverHeader = this.handleOnMouseOverHeader.bind( this );
+        this.handleOnMouseOutHeader = this.handleOnMouseOutHeader.bind( this );
+        this.handleOnMouseOverError = this.handleOnMouseOverError.bind( this );
+        this.handleOnMouseOutError = this.handleOnMouseOutError.bind( this );
     }
 
-    onMouseOverHeader( e )
+    handleOnMouseOverHeader( e )
     {
         e.stopPropagation();
-        const { onClickToggle } = this.props;
-        if ( onClickToggle )
+        const { onMouseOverHeader } = this.props;
+        if ( onMouseOverHeader )
         {
-            onClickToggle( e );
+            onMouseOverHeader( e );
         }
     }
 
 
-    onMouseOutHeader( e )
+    handleOnMouseOutHeader( e )
     {
         e.stopPropagation();
-        const { onClickToggle } = this.props;
-        if ( onClickToggle )
+        const { onMouseOutHeader } = this.props;
+        if ( onMouseOutHeader )
         {
-            onClickToggle( e );
+            onMouseOutHeader( e );
         }
     }
 
-    onMouseOverError( e )
+    handleOnMouseOverError( e )
     {
         e.stopPropagation();
-        const { onClickToggle } = this.props;
-        if ( onClickToggle )
+        const { onMouseOverError } = this.props;
+        if ( onMouseOverError )
         {
-            onClickToggle( e );
+            onMouseOverError( e );
         }
     }
 
-    onMouseOutError( e )
+    handleOnMouseOutError( e )
     {
         e.stopPropagation();
-        const { onClickToggle } = this.props;
-        if ( onClickToggle )
+        const { onMouseOutError } = this.props;
+        if ( onMouseOutError )
         {
-            onClickToggle( e );
+            onMouseOutError( e );
         }
     }
 
@@ -229,8 +229,8 @@ export default class Module extends Component
                     onClick   = { onClickHeader }>
                     <div className = { cssMap.title }>
                         <ModuleHeader
-                            onMouseOut = { onMouseOutHeader }
-                            onMouseOver = { onMouseOverHeader }>
+                            onMouseOut = { this.handleOnMouseOutHeader }
+                            onMouseOver = { this.handleOnMouseOverHeader }>
                                 { title }
                         </ModuleHeader>
                     </div>
@@ -240,8 +240,8 @@ export default class Module extends Component
                                 message          = { errorMessage }
                                 iconType         = "error"
                                 tooltipIsVisible = { errorMessageIsVisible }
-                                onMouseOut       = { onMouseOutError }
-                                onMouseOver      = { onMouseOverError } />
+                                onMouseOut       = { this.handleOnMouseOutError }
+                                onMouseOver      = { this.handleOnMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton
