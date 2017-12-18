@@ -43,7 +43,7 @@
 
 .moduleError
 {
-    border-left: 0.5rem solid var( --AC-1 );
+    border-left: 0.5rem solid var( --AC-RED);
 
     & > .header,
     & > .content

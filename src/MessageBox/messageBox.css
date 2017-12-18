@@ -9,20 +9,20 @@
     background-color:   var( --PC-WHITE );
 
     padding:            2rem;
-    border:             0.1rem solid var( --PC-GREY ) ;
+    border:             0.1rem solid var( ---GS-5 ) ;
 }
 
 .type__error
 {
-    border-color:   var( --AC-2 );
+    border-color:   var( --PC-RED );
 }
 
 .type__alert
 {
-    border-color:   var( --AC-5 );
+    border-color:   var( --PC-YELLOW );
 }
 
 .type__success
 {
-    border-color:   var(  --AC-12 );
+    border-color:   var(  --PC-GREEN );
 }

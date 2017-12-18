@@ -329,12 +329,12 @@
 {
     .trackFill
     {
-        background: color( var( --AC-2 ) a( 30% ) );
+        background: color( var( --PC-RED ) a( 30% ) );
     }
 
     .handleLabel
     {
-        color:  var( --AC-2 );
+        color:  var( --PC-RED );
     }
 }
 

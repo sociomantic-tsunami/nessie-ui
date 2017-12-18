@@ -98,17 +98,17 @@ $wideWidth : 90rem;
 
     .type__neutral &,
     {
-        border-color:   var( --PC-GREY );
+        border-color:   var( ---GS-5 );
     }
 
     .type__crucial &
     {
-        border-color:   var( --AC-2 );
+        border-color:   var( --PC-RED );
     }
 
     .type__promoted &
     {
-        border-color:   var( --AC-12 );
+        border-color:   var( --PC-GREEN );
     }
 }
 

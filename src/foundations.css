@@ -86,7 +86,7 @@ a:visited
 a:hover,
 a:active
 {
-    color:              var( --AC-15 );
+    color:              color( var( --PC-BLUE ) shade( 35% ) );
     text-decoration:    underline;
 }
 

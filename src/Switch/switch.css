@@ -23,7 +23,7 @@
 
         .input:checked + .label
         {
-            background-color:       color( var( --AC-12 ) shade( 13% ) );
+            background-color:       color( var( --PC-GREEN ) shade( 13% ) );
         }
     }
 
@@ -36,7 +36,7 @@
 
         &:checked + .label
         {
-            background-color:       color( var( --AC-12 ) shade( 13% ) );
+            background-color:       color( var( --PC-GREEN ) shade( 13% ) );
         }
     }
 }
@@ -165,7 +165,7 @@
 
 .input:checked + .label
 {
-    background-color:       var( --AC-12 );
+    background-color:       var( --PC-GREEN );
     transition:             var( --backgroundTransition );
 
     &::before
