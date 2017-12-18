@@ -73,8 +73,8 @@
     &:focus,
     &:hover
     {
-        background:     color( var( --PC-BLUE ) tint( 13% ) );
-        border-color:   color( var( --PC-BLUE ) tint( 13% ) );
+        background:     color( var( --PC-BLUE ) tint( 15% ) );
+        border-color:   color( var( --PC-BLUE ) tint( 15% ) );
 
         .text
         {

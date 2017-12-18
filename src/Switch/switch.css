@@ -18,12 +18,12 @@
     {
         .label
         {
-            background-color:       color( var( --GS-2 ) shade( 13% ) );
+            background-color:       color( var( --GS-2 ) shade( 15% ) );
         }
 
         .input:checked + .label
         {
-            background-color:       color( var( --PC-GREEN ) shade( 13% ) );
+            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
         }
     }
 
@@ -31,12 +31,12 @@
     {
         & + .label
         {
-            background-color:       color( var( --GS-2 ) shade( 13% ) );
+            background-color:       color( var( --GS-2 ) shade( 15% ) );
         }
 
         &:checked + .label
         {
-            background-color:       color( var( --PC-GREEN ) shade( 13% ) );
+            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
         }
     }
 }

@@ -129,7 +129,7 @@
     &:hover,
     &:focus
     {
-        background-color:   color( var( --PC-BLUE ) shade( 13% ) );
+        background-color:   color( var( --PC-BLUE ) shade( 15% ) );
         color:              var( --PC-WHITE );
     }
 
