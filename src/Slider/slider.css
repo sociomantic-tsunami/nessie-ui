@@ -63,7 +63,7 @@
     .trackFill
     {
         border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:     color( var( --PC-BLUE ) a( 30% ) );
+        background:     color( var( --PC-BLUE ) a( 35% ) );
     }
 
     .handle
@@ -329,7 +329,7 @@
 {
     .trackFill
     {
-        background: color( var( --PC-RED ) a( 30% ) );
+        background: color( var( --PC-RED ) a( 35% ) );
     }
 
     .handleLabel
@@ -349,7 +349,7 @@
 
     .trackFill
     {
-        background: color( var( --GS-4 ) a( 30% ) );
+        background: color( var( --GS-4 ) a( 35% ) );
     }
 
     .handle

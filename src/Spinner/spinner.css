@@ -8,7 +8,7 @@
   position:                     relative;
   background-color:             transparent;
   border-style:                 solid;
-  border-color:                 color( var( --GS-2 ) a( 30% ) );
+  border-color:                 color( var( --GS-2 ) a( 35% ) );
   border-radius:                50%;
   box-sizing:                   content-box;
   display:                      inline-block;

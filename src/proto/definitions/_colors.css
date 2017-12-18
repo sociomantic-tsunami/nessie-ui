@@ -18,7 +18,7 @@
     --GS-1:     var( --PC-DARK-GREY );
     --GS-2:     color( var( --PC-DARK-GREY ) tint( 10% ) );
     --GS-3:     color( var( --PC-DARK-GREY ) tint( 20% ) );
-    --GS-4:     color( var( --PC-DARK-GREY ) tint( 30% ) );
+    --GS-4:     color( var( --PC-DARK-GREY ) tint( 35% ) );
     --GS-5:     color( var( --PC-DARK-GREY ) tint( 40% ) );
     --GS-6:     color( var( --PC-DARK-GREY ) tint( 50% ) );
     --GS-7:     color( var( --PC-DARK-GREY ) tint( 60% ) );

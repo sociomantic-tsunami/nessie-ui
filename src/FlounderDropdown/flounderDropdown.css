@@ -465,7 +465,7 @@
 
     &:hover
     {
-        background-color:   color( var( --PC-BLUE ) a( 30% ) );
+        background-color:   color( var( --PC-BLUE ) a( 35% ) );
         color:              var( --PC-DARK-GREY );
     }
 }

@@ -32,7 +32,7 @@
 .active,
 .default:hover
 {
-    background: color( var( --PC-BLUE ) a( 30% ) );
+    background: color( var( --PC-BLUE ) a( 35% ) );
     color:      var( --PC-DARK-GREY );
 }
 
