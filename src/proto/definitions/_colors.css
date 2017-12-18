@@ -16,13 +16,13 @@
 
     /* greyscale colors */
     --GS-1:     var( --PC-DARK-GREY );
-    --GS-2:     color( var( --PC-DARK-GREY ) tint( 25% ) );
-    --GS-3:     color( var( --PC-DARK-GREY ) tint( 15% ) );
-    --GS-4:     color( var( --PC-DARK-GREY ) tint( 5% ) );
-    --GS-5:     color( var( --PC-DARK-GREY ) tint( 0% ) );
-    --GS-6:     color( var( --PC-DARK-GREY ) tint( 10% ) );
-    --GS-7:     color( var( --PC-DARK-GREY ) tint( 25% ) );
-    --GS-8:     color( var( --PC-DARK-GREY ) tint( 40% ) );
-    --GS-9:     color( var( --PC-DARK-GREY ) tint( 70% ) );
+    --GS-2:     color( var( --PC-DARK-GREY ) tint( 10% ) );
+    --GS-3:     color( var( --PC-DARK-GREY ) tint( 20% ) );
+    --GS-4:     color( var( --PC-DARK-GREY ) tint( 30% ) );
+    --GS-5:     color( var( --PC-DARK-GREY ) tint( 40% ) );
+    --GS-6:     color( var( --PC-DARK-GREY ) tint( 50% ) );
+    --GS-7:     color( var( --PC-DARK-GREY ) tint( 60% ) );
+    --GS-8:     color( var( --PC-DARK-GREY ) tint( 70% ) );
+    --GS-9:     color( var( --PC-DARK-GREY ) tint( 80% ) );
     --GS-10:    color( var( --PC-DARK-GREY ) tint( 90% ) );
 }
