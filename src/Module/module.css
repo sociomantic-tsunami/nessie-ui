@@ -17,7 +17,7 @@
 {
     & > .header
     {
-        background: var( --GS-11 );
+        background: var( --GS-10 );
         cursor:     pointer;
     }
 }
@@ -30,7 +30,7 @@
 
         &:hover
         {
-            background: var( --GS-11 );
+            background: var( --GS-10 );
         }
     }
 

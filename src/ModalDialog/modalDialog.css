@@ -29,7 +29,7 @@ $wideWidth : 90rem;
     overflow-y:         auto;
 
     z-index:            9999;
-    background:         color( var( --GS-11 ) a( 90% ) );
+    background:         color( var( --GS-10 ) a( 90% ) );
 
 }
 
