@@ -92,7 +92,7 @@
 
         .main.disabled &
         {
-            color: var( --PC-DARK-GREY );
+            color: var( --GS-1 );
         }
     }
 
@@ -321,7 +321,7 @@
     border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
     background: var( --PC-WHITE );
-    color:      var( --PC-DARK-GREY );
+    color:      var( --GS-1 );
 
     &:hover,
     &:focus,
@@ -466,7 +466,7 @@
     &:hover
     {
         background-color:   color( var( --PC-BLUE ) a( 35% ) );
-        color:              var( --PC-DARK-GREY );
+        color:              var( --GS-1 );
     }
 }
 

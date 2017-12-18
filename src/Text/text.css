@@ -27,7 +27,7 @@
 
 .role__default
 {
-    color:  var( --PC-DARK-GREY );
+    color:  var( --GS-1 );
 }
 
 .role__subtle
