@@ -120,21 +120,21 @@
 
 .role__subtle
 {
-    color:      var( ---GS-5 );
+    color:      var( --GS-5 );
     background: var( --PC-WHITE );
 
     .content
     {
-        border-color:   var( ---GS-5 );
+        border-color:   var( --GS-5 );
     }
 
     .iconContainer
     {
-        fill:           var( ---GS-5 );
+        fill:           var( --GS-5 );
 
         &:after
         {
-            background-color: var( ---GS-5 );
+            background-color: var( --GS-5 );
         }
     }
 
@@ -142,15 +142,15 @@
     {
         .icon
         {
-            fill:                       var( ---GS-5 );
-            color:                      var( ---GS-5 );
+            fill:                       var( --GS-5 );
+            color:                      var( --GS-5 );
         }
     }
 
     &:not(.loading):matches(.fakeHovered,:hover)
     {
         color:                      var( --PC-WHITE );
-        background:                 var( ---GS-5 );
+        background:                 var( --GS-5 );
 
         .iconContainer:after
         {
@@ -160,18 +160,18 @@
 
     &:active
     {
-        background-color:       color( var( ---GS-5 ) tint( 15% ) );
+        background-color:       color( var( --GS-5 ) tint( 15% ) );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:           color( var( ---GS-5 ) a( 25% ) );
+            border-color:           color( var( --GS-5 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( ---GS-5 );
+                border-top-color:   var( --GS-5 );
             }
         }
     }
@@ -240,11 +240,11 @@
     {
         .spinner
         {
-            border-color:           color( var( ---GS-5 ) a( 25% ) );
+            border-color:           color( var( --GS-5 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( ---GS-5 );
+                border-top-color:   var( --GS-5 );
             }
         }
     }

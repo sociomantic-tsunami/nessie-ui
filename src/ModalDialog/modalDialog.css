@@ -98,7 +98,7 @@ $wideWidth : 90rem;
 
     .type__neutral &,
     {
-        border-color:   var( ---GS-5 );
+        border-color:   var( --GS-5 );
     }
 
     .type__crucial &

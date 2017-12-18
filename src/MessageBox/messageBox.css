@@ -9,7 +9,7 @@
     background-color:   var( --PC-WHITE );
 
     padding:            2rem;
-    border:             0.1rem solid var( ---GS-5 ) ;
+    border:             0.1rem solid var( --GS-5 ) ;
 }
 
 .type__error
