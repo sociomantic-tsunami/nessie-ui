@@ -6,13 +6,30 @@
     font-variant-numeric:	lining-nums tabular-nums;
 }
 
+.dataTable
+{
+    .row
+    {
+        margin-left:    -0.5rem;
+        margin-right:   -0.5rem;
+    }
+
+    .cell
+    {
+        padding-left:   0.5rem;
+        padding-right:  0.5rem;
+    }
+}
+
 .zebra
 {
-	.row:nth-child(even)
-	{
-        .cell
-        {
-            background-color: var( --GS-10 );
-        }
-	}
+    .row:nth-child(even) > .cell
+    {
+        background: var( --GS-10 );
+    }
+
+    .row
+    {
+        margin: 0;
+    }
 }

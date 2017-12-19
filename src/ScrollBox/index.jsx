@@ -6,39 +6,47 @@ import styles                   from './scrollBox.css';
 import { createScrollHandler }  from './utils';
 
 const ScrollBox = ( {
-    className,
     cssMap,
     children,
+    className,
+    contentWidth,
     height,
     onScroll,
     scroll
-} ) => (
+} ) =>
     <div
         className = { buildClassName( className, cssMap, { scroll } ) }
         onScroll  = { createScrollHandler( onScroll ) }
         style     = { { maxHeight: height ? `${height}` : null } }>
-        { children }
-    </div>
-);
+        <div
+            className = { cssMap.content }
+            style     = { { width: contentWidth } }>
+            { children }
+        </div>
+    </div>;
 
 ScrollBox.propTypes =
 {
     /**
      *  ScrollBox content
      */
-    children : PropTypes.node,
+    children     : PropTypes.node,
     /**
-     *  ScrollBox height, specified in rem units
+     *  ScrollBox content width
      */
-    height   : PropTypes.string,
+    contentWidth : PropTypes.string,
+    /**
+     *  ScrollBox height
+     */
+    height       : PropTypes.string,
     /**
      *  on scroll callback function
      */
-    onScroll : PropTypes.func,
+    onScroll     : PropTypes.func,
     /**
      *  Scroll direction
      */
-    scroll   : PropTypes.oneOf( [ 'horizontal', 'vertical', 'both' ] )
+    scroll       : PropTypes.oneOf( [ 'horizontal', 'vertical', 'both' ] )
 
 };
 
