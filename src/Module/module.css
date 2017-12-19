@@ -8,37 +8,64 @@
     display:        flex;
     flex-direction: column;
 
+    margin-bottom:  3rem;
+
     background:     var( --PC-WHITE );
 
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
+
+    .default + .default
+    {
+        margin-top: -3rem;
+    }
+
 }
+
+ .level__3,
+ .level__4
+ {
+     & > .header,
+     & > .content
+     {
+         padding-top:    2rem;
+         padding-bottom: 2rem;
+     }
+ }
 
 .collapsible
 {
     & > .header
     {
-        background: var( --GS-10 );
         cursor:     pointer;
+    }
+
+    .default & > .header
+    {
+        background: var( --GS-11 );
+    }
+
+    &.collapsed
+    {
+        .default & > .header
+        {
+            background: transparent;
+
+            &:hover
+            {
+                background: var( --GS-10 );
+            }
+        }
+
+
     }
 }
 
 .collapsed
 {
-    & .header
-    {
-        background:         transparent;
-
-        &:hover
-        {
-            background: var( --GS-10 );
-        }
-    }
-
-    .content
+    & > .content
     {
         display:    none;
     }
-
 }
 
 .moduleError
