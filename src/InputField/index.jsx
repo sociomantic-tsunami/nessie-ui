@@ -113,8 +113,8 @@ export default class InputField extends Component
 
         if ( typeof onInput !== 'undefined' )
         {
-            console.warn( '${this.constructor.name}: onInput props is \
-deprecated. Please use onChange instead.');
+            console.warn( `${this.constructor.name}: onInput prop is
+deprecated. Please use onChange instead.` );
         }
     }
 

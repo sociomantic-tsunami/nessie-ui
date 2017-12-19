@@ -7,29 +7,6 @@ import InputContainer   from '../proto/InputContainer';
 import Tag              from '../Tag';
 
 
-const warnTags = ( node ) =>
-{
-    const _node = React.Children.toArray( node );
-    let warning = false;
-
-    _node.forEach( child =>
-    {
-        if ( !( React.isValidElement( child )
-        && child.type.name === 'Tag' ) )
-        {
-            warning = true;
-        }
-    } );
-
-    if ( warning )
-    {
-        console.warn( 'TagInput children should be \
-individual tag components and not other elements' );
-    }
-
-    return node;
-};
-
 const buildTagsFromStrings = ( strings = [] ) =>
     strings.map( string => <Tag key = { string } label = { string } /> );
 
@@ -164,10 +141,9 @@ export default class TagInput extends Component
 
         const { id, isFocused } = this.state;
 
-        const tagItems = children ? warnTags( children ) :
-            buildTagsFromStrings( tags );
+        const tagItems = children || buildTagsFromStrings( tags );
 
-        const updatedTagItems = tagItems.map( tag =>
+        const updatedTagItems = tagItems && tagItems.map( tag =>
             React.cloneElement( tag, {
                 ...tag.props,
                 isDisabled : isDisabled || tag.props.isDisabled,
