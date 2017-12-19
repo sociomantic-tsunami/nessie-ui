@@ -8,21 +8,15 @@
     display:        flex;
     flex-direction: column;
 
+    margin-bottom:  3rem;
+
     background:     var( --PC-WHITE );
 
     box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
 
-    .default
+    .default + .default
     {
-        .header
-        {
-            background: var( --GS-11 );
-        }
-    }
-
-    &.default + .default
-    {
-        margin-top: -2rem;
+        margin-top: -3rem;
     }
 
 }
@@ -44,25 +38,34 @@
     {
         cursor:     pointer;
     }
+
+    .default & > .header
+    {
+        background: var( --GS-11 );
+    }
+
+    &.collapsed
+    {
+        .default & > .header
+        {
+            background: transparent;
+
+            &:hover
+            {
+                background: var( --GS-11 );
+            }
+        }
+
+
+    }
 }
 
 .collapsed
 {
-    & .header
-    {
-        background:         transparent;
-
-        &:hover
-        {
-            background: var( --GS-11 );
-        }
-    }
-
-    .content
+    & > .content
     {
         display:    none;
     }
-
 }
 
 .moduleError
