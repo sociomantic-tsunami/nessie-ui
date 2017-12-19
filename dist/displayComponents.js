@@ -15783,31 +15783,35 @@ var defaults = {
             var select = refs.select;
             var placeholder = configObj.placeholder;
 
-            var defaultObj = {
-                text: placeholder || placeholder === '' ? placeholder : defaultOptions.placeholder,
-                value: '',
-                index: 0,
-                extraClass: classes.HIDDEN + '  ' + classes.PLACEHOLDER
-            };
+            if (!rebuild || configObj.data) {
+                var defaultObj = {
+                    text: placeholder || placeholder === '' ? placeholder : defaultOptions.placeholder,
+                    value: '',
+                    index: 0,
+                    extraClass: classes.HIDDEN + '  ' + classes.PLACEHOLDER
+                };
 
-            if (select) {
-                var escapedText = flounder.allowHTML ? defaultObj.text : _utils2.default.escapeHTML(defaultObj.text);
+                if (select) {
+                    var escapedText = flounder.allowHTML ? defaultObj.text : _utils2.default.escapeHTML(defaultObj.text);
 
-                var defaultOption = _utils2.default.constructElement({
-                    tagname: 'option',
-                    className: classes.OPTION_TAG,
-                    value: defaultObj.value
-                });
+                    var defaultOption = _utils2.default.constructElement({
+                        tagname: 'option',
+                        className: classes.OPTION_TAG,
+                        value: defaultObj.value
+                    });
 
-                defaultOption.innerHTML = escapedText;
+                    defaultOption.innerHTML = escapedText;
 
-                select.insertBefore(defaultOption, select[0]);
-                flounder.refs.selectOptions.unshift(defaultOption);
+                    select.insertBefore(defaultOption, select[0]);
+                    flounder.refs.selectOptions.unshift(defaultOption);
+                }
+
+                originalData.unshift(defaultObj);
+
+                return defaultObj;
             }
 
-            originalData.unshift(defaultObj);
-
-            return defaultObj;
+            return flounder.data[0];
         }
 
         /**
@@ -16811,6 +16815,7 @@ var Row = function Row(_ref) {
                 hasMinHeight: hasMinHeight,
                 gutters: gutters !== 'none' && gutters,
                 spacing: spacing !== 'none' && spacing
+
             } },
         _react2.default.createElement(
             'div',
@@ -23292,7 +23297,8 @@ var Module = function (_Component) {
                         collapsible: isCollapsible,
                         collapsed: isCollapsible && isCollapsed,
                         error: hasError,
-                        moduleError: hasModuleError
+                        moduleError: hasModuleError,
+                        level: headerLevel
                     } },
                 _react2.default.createElement(
                     'section',
@@ -23458,8 +23464,10 @@ exports.default = NavBar;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+
+var _NavItem$propTypes;
 
 var _react = __webpack_require__(0);
 
@@ -23477,133 +23485,121 @@ var _NavDropdown = __webpack_require__(33);
 
 var _NavDropdown2 = _interopRequireDefault(_NavDropdown);
 
+var _navItem = __webpack_require__(137);
+
+var _navItem2 = _interopRequireDefault(_navItem);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var NavItem = function NavItem(_ref) {
-    var children = _ref.children,
-        label = _ref.label,
-        className = _ref.className,
-        cssMap = _ref.cssMap,
-        dropdownAlign = _ref.dropdownAlign,
-        forceHover = _ref.forceHover,
-        href = _ref.href,
-        iconType = _ref.iconType,
-        isCurrentPage = _ref.isCurrentPage,
-        isCurrent = _ref.isCurrent,
-        isOpen = _ref.isOpen,
-        isDisabled = _ref.isDisabled,
-        onClick = _ref.onClick,
-        onMouseOut = _ref.onMouseOut,
-        onMouseOver = _ref.onMouseOver,
-        role = _ref.role;
+  var children = _ref.children,
+      label = _ref.label,
+      className = _ref.className,
+      cssMap = _ref.cssMap,
+      dropdownAlign = _ref.dropdownAlign,
+      forceHover = _ref.forceHover,
+      href = _ref.href,
+      iconType = _ref.iconType,
+      isCurrentPage = _ref.isCurrentPage,
+      isCurrent = _ref.isCurrent,
+      isOpen = _ref.isOpen,
+      isDisabled = _ref.isDisabled,
+      onClick = _ref.onClick,
+      onMouseOut = _ref.onMouseOut,
+      onMouseOver = _ref.onMouseOver,
+      role = _ref.role;
 
-    if (isCurrentPage === true) {
-        console.warn('NavItem: isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
-    }
+  if (typeof isCurrentPage !== 'undefined') {
+    console.warn('NavItem: isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
+  }
 
-    return _react2.default.createElement(
-        _Css2.default,
+  return _react2.default.createElement(
+    _Css2.default,
+    {
+      cssMap: cssMap,
+      cssProps: {
+        role: role,
+        disabled: isDisabled,
+        current: isCurrent || isCurrentPage,
+        dropdownAlign: dropdownAlign,
+        open: isOpen,
+        fakeHovered: forceHover,
+        icon: iconType
+      } },
+    _react2.default.createElement(
+      'li',
+      {
+        className: className,
+        onMouseOver: onMouseOver,
+        onMouseOut: onMouseOut },
+      _react2.default.createElement(
+        'a',
         {
-            cssMap: cssMap,
-            cssProps: {
-                role: role,
-                disabled: isDisabled,
-                current: isCurrent || isCurrentPage,
-                dropdownAlign: dropdownAlign,
-                open: isOpen,
-                fakeHovered: forceHover,
-                icon: iconType
-            } },
+          className: cssMap.link,
+          href: href,
+          onClick: onClick },
         _react2.default.createElement(
-            'li',
-            {
-                className: className,
-                onMouseOver: onMouseOver,
-                onMouseOut: onMouseOut },
-            _react2.default.createElement(
-                'a',
-                {
-                    className: cssMap.link,
-                    href: href,
-                    onClick: onClick },
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    label
-                ),
-                iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
-            ),
-            children && _react2.default.createElement(
-                _NavDropdown2.default,
-                { className: cssMap.dropdown },
-                children
-            )
-        )
-    );
+          'span',
+          null,
+          label
+        ),
+        iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
+      ),
+      children && _react2.default.createElement(
+        _NavDropdown2.default,
+        { className: cssMap.dropdown },
+        children
+      )
+    )
+  );
 };
 
-NavItem.propTypes = {
-    /**
-     *  Navigation role
-     */
-    role: _propTypes2.default.oneOf(['default', 'primary', 'sub']),
-    /**
-     *  navItem text
-     */
-    label: _propTypes2.default.node,
-    /**
-     *  HTML href attribute
-     */
-    href: _propTypes2.default.string,
-    /**
-     *  Icon to show
-     */
-    iconType: _propTypes2.default.oneOf(['account', 'none']),
-    /*
-    *  Display as disabled/read-only
-     */
-    isDisabled: _propTypes2.default.bool,
-    /*
-    * Dropdown menu alignment
-     */
-    dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
-    /*
-     * Display as current page/section
-     */
-    isCurrent: _propTypes2.default.bool,
-    /*
-    * Dropdown menu is open
-     */
-    isOpen: _propTypes2.default.bool,
-    /**
-     *  Dropdown menu items
-     */
-    children: _propTypes2.default.node,
-    /**
-     *  onMouseOver callback function
-     */
-    onMouseOver: _propTypes2.default.func,
-    /**
-     *  onMouseOut callback function
-     */
-    onMouseOut: _propTypes2.default.func,
-    /**
-     *  onClick callback function
-     */
-    onClick: _propTypes2.default.func,
-    /**
-     * Display as hover when required from another component
-     */
-    forceHover: _propTypes2.default.bool
-};
+NavItem.propTypes = (_NavItem$propTypes = {
+  /**
+   *  Dropdown menu items
+   */
+  children: _propTypes2.default.node,
+  /*
+  * Dropdown menu alignment
+   */
+  dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
+  /**
+   * Display as hover when required from another component
+   */
+  forceHover: _propTypes2.default.bool,
+  /**
+   *  navItem text
+   */
+  label: _propTypes2.default.node,
+  /**
+   *  HTML href attribute
+   */
+  href: _propTypes2.default.string,
+  /**
+   *  Icon to show
+   */
+  iconType: _propTypes2.default.oneOf(['account', 'none']),
+  /*
+  *  Item represents the current page and/or section
+   */
+  isCurrent: _propTypes2.default.bool,
+  /*
+  *  Display as disabled/read-only
+   */
+  isDisabled: _propTypes2.default.bool
+}, _defineProperty(_NavItem$propTypes, 'isCurrent', _propTypes2.default.bool), _defineProperty(_NavItem$propTypes, 'isOpen', _propTypes2.default.bool), _defineProperty(_NavItem$propTypes, 'onClick', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'onMouseOut', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'onMouseOver', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'role', _propTypes2.default.oneOf(['default', 'primary', 'sub'])), _NavItem$propTypes);
 
 NavItem.defaultProps = {
-    role: 'default',
-    href: '#',
-    dropdownAlign: 'left',
-    iconType: 'none',
-    isCurrent: false,
-    cssMap: __webpack_require__(137)
+  cssMap: _navItem2.default,
+  dropdownAlign: 'left',
+  href: '#',
+  iconType: 'none',
+  isCurrent: false,
+  isDisabled: false,
+  isOpen: false,
+  role: 'default'
 };
 
 exports.default = NavItem;
@@ -24855,9 +24851,10 @@ var _utils2 = __webpack_require__(214);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ScrollBox = function ScrollBox(_ref) {
-    var className = _ref.className,
-        cssMap = _ref.cssMap,
+    var cssMap = _ref.cssMap,
         children = _ref.children,
+        className = _ref.className,
+        contentWidth = _ref.contentWidth,
         height = _ref.height,
         onScroll = _ref.onScroll,
         scroll = _ref.scroll;
@@ -24867,7 +24864,13 @@ var ScrollBox = function ScrollBox(_ref) {
             className: (0, _utils.buildClassName)(className, cssMap, { scroll: scroll }),
             onScroll: (0, _utils2.createScrollHandler)(onScroll),
             style: { maxHeight: height ? '' + height : null } },
-        children
+        _react2.default.createElement(
+            'div',
+            {
+                className: cssMap.content,
+                style: { width: contentWidth } },
+            children
+        )
     );
 };
 
@@ -24877,7 +24880,11 @@ ScrollBox.propTypes = {
      */
     children: _propTypes2.default.node,
     /**
-     *  ScrollBox height, specified in rem units
+     *  ScrollBox content width
+     */
+    contentWidth: _propTypes2.default.string,
+    /**
+     *  ScrollBox height
      */
     height: _propTypes2.default.string,
     /**
@@ -25673,6 +25680,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var buildTableFromValues = function buildTableFromValues() {
     var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var isDataTable = arguments[1];
     return values.map(function (row, i) {
         return (
             // eslint-disable-next-line react/no-array-index-key
@@ -25684,7 +25692,7 @@ var buildTableFromValues = function buildTableFromValues() {
                         // eslint-disable-next-line react/no-array-index-key
                         _react2.default.createElement(
                             _TableCell2.default,
-                            { key: j },
+                            { isDataTable: isDataTable, key: j },
                             _react2.default.createElement(
                                 _Text2.default,
                                 null,
@@ -25710,7 +25718,7 @@ var Table = function Table(_ref) {
         isZebra = _ref.isZebra,
         stickyHeader = _ref.stickyHeader;
 
-    var _children = children || buildTableFromValues(values);
+    var _children = children || buildTableFromValues(values, isDataTable);
 
     var header = columns.length ? _react2.default.createElement(
         _TableRow2.default,
@@ -25730,15 +25738,15 @@ var Table = function Table(_ref) {
             return _react2.default.createElement(
                 _TableCell2.default,
                 {
-                    isHeader: true,
-                    isSticky: stickyCell,
+                    className: cssMap.cell,
                     isDataTable: isDataTable,
+                    isHeader: true,
                     isSortable: column.isSortable,
-                    sort: column.sort,
-                    size: column.size,
-                    onToggle: onToggle,
+                    isSticky: stickyCell,
                     key: index // eslint-disable-line react/no-array-index-key, max-len
-                },
+                    , onToggle: onToggle,
+                    size: column.size,
+                    sort: column.sort },
                 text
             );
         })
@@ -27882,7 +27890,7 @@ module.exports = {"title":"modalDialog__title__1o8rG","default":"modalDialog__de
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"module__default__3sx3E","collapsible":"module__collapsible___1Dw1","header":"module__header__1nV4U","collapsed":"module__collapsed__2E7U6","content":"module__content__1TqqO","moduleError":"module__moduleError__1JHku","title":"module__title__3Lkwz","controls":"module__controls__EmmEF","loadingOverlay":"module__loadingOverlay__2ez-G"};
+module.exports = {"default":"module__default__3sx3E","level__3":"module__level__3__Y8s9q","header":"module__header__1nV4U","content":"module__content__1TqqO","level__4":"module__level__4__389dh","collapsible":"module__collapsible___1Dw1","collapsed":"module__collapsed__2E7U6","moduleError":"module__moduleError__1JHku","title":"module__title__3Lkwz","controls":"module__controls__EmmEF","loadingOverlay":"module__loadingOverlay__2ez-G"};
 
 /***/ }),
 /* 135 */
@@ -28015,7 +28023,7 @@ module.exports = {"default":"row__default__2TI-k","hasMinHeight":"row__hasMinHei
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"scrollBox__default__GWy-0","scroll__horizontal":"scrollBox__scroll__horizontal__2cDkN","scroll__vertical":"scrollBox__scroll__vertical__2Fmp3"};
+module.exports = {"default":"scrollBox__default__GWy-0","scroll__horizontal":"scrollBox__scroll__horizontal__2cDkN","scroll__vertical":"scrollBox__scroll__vertical__2Fmp3","content":"scrollBox__content__tGMBF"};
 
 /***/ }),
 /* 154 */
@@ -28085,14 +28093,14 @@ module.exports = {"label":"tabButton__label__s-MZG","role__control":"tabButton__
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"table__default__fpQba","zebra":"table__zebra__1Wxas","row":"table__row__1YGNP","cell":"table__cell__3NkUW"};
+module.exports = {"default":"table__default__fpQba","dataTable":"table__dataTable__2QZly","row":"table__row__1YGNP","cell":"table__cell__3NkUW","zebra":"table__zebra__1Wxas"};
 
 /***/ }),
 /* 164 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"header":"tableCell__header__2c3IP","rowHeader":"tableCell__rowHeader__sGb0f","data":"tableCell__data__UD_yf","default":"tableCell__default__2dIPU","sticky":"tableCell__sticky__2DCB3"};
+module.exports = {"header":"tableCell__header__2c3IP","rowHeader":"tableCell__rowHeader__sGb0f","default":"tableCell__default__2dIPU","sticky":"tableCell__sticky__2DCB3"};
 
 /***/ }),
 /* 165 */
@@ -28162,7 +28170,7 @@ module.exports = {"default":"textInputWithIcon__default__2JGx9","input":"textInp
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"message":"tooltip__message__2x0kz","default":"tooltip__default__mBPQb","tooltip":"tooltip__tooltip__hehe5","position__top":"tooltip__position__top__Vgf7Z","position__bottom":"tooltip__position__bottom__2isLV","position__left":"tooltip__position__left__2uP29","position__right":"tooltip__position__right__3PeHq","position__topLeft":"tooltip__position__topLeft__1BLEB","position__topRight":"tooltip__position__topRight__1G1f-","position__bottomLeft":"tooltip__position__bottomLeft__3nirw","position__bottomRight":"tooltip__position__bottomRight__3Eszo","content":"tooltip__content__2IvKG"};
+module.exports = {"message":"tooltip__message__2x0kz","default":"tooltip__default__mBPQb","tooltip":"tooltip__tooltip__hehe5","position__top":"tooltip__position__top__Vgf7Z","position__bottom":"tooltip__position__bottom__2isLV","position__topLeft":"tooltip__position__topLeft__1BLEB","position__topRight":"tooltip__position__topRight__1G1f-","position__bottomLeft":"tooltip__position__bottomLeft__3nirw","position__bottomRight":"tooltip__position__bottomRight__3Eszo","position__left":"tooltip__position__left__2uP29","position__right":"tooltip__position__right__3PeHq","content":"tooltip__content__2IvKG"};
 
 /***/ }),
 /* 175 */
@@ -28683,6 +28691,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 /* globals console */
 
 
@@ -29194,9 +29204,17 @@ var api = {
 
         refs.select.innerHTML = '';
         refs.select = false;
+
         this.defaultObj = (0, _defaults.setDefaultOption)(this, props, data, true);
 
         refs.optionsList.innerHTML = '';
+
+        if (refs.noMoreOptionsEl || _typeof(refs.noMoreOptionsEl) === undefined) {
+            delete refs.noMoreOptionsEl;
+        }
+        if (refs.noResultsEl || _typeof(refs.noResultsEl) === undefined) {
+            delete refs.noResultsEl;
+        }
 
         var _buildData = this.buildData(this.defaultObj, this.data, refs.optionsList, select);
 
@@ -30564,6 +30582,7 @@ var events = {
      * @return {Void} void
      */
     clickSet: function clickSet(e) {
+
         e.preventDefault();
         e.stopPropagation();
 
@@ -30589,16 +30608,18 @@ var events = {
      * @return {Void} void
      */
     displayMultipleTags: function displayMultipleTags(selectedOptions, multiTagWrapper) {
-        var children = multiTagWrapper.children;
+        var tag = this.refs.search.previousSibling;
 
-        for (var i = 0; i < children.length - 1; i++) {
-            var tag = children[i];
+        while (tag) {
             var closeBtn = tag.firstChild;
+            var prevTag = tag.previousSibling;
 
             closeBtn.removeEventListener('click', this.removeMultiTag);
             tag.removeEventListener('keydown', this.checkMultiTagKeydown);
 
             multiTagWrapper.removeChild(tag);
+
+            tag = prevTag;
         }
 
         if (selectedOptions.length > 0) {
@@ -31292,15 +31313,17 @@ var events = {
         var isHidden = _utils2.default.hasClass(optionsList, classes.HIDDEN);
         var type = e.type;
 
-        if (type === 'mouseleave' || force === 'close' || !isHidden) {
-            this.toggleList.justOpened = false;
-            this.toggleClosed(e, optionsList, refs, wrapper);
-        } else {
-            if (type === 'keydown') {
-                this.toggleList.justOpened = true;
-            }
+        if (!(this.data.length === 0 || this.data.length === 1 && this.data[0].extraClass.indexOf('flounder__placeholder') > -1)) {
+            if (type === 'mouseleave' || force === 'close' || !isHidden) {
+                this.toggleList.justOpened = false;
+                this.toggleClosed(e, optionsList, refs, wrapper);
+            } else {
+                if (type === 'keydown') {
+                    this.toggleList.justOpened = true;
+                }
 
-            this.toggleOpen(e, optionsList, refs, wrapper);
+                this.toggleOpen(e, optionsList, refs, wrapper);
+            }
         }
     },
 
@@ -32237,7 +32260,7 @@ exports.default = Sole;
 
 
 /* globals module */
-module.exports = '1.3.1';
+module.exports = '1.3.3';
 
 /***/ }),
 /* 193 */
@@ -36050,7 +36073,7 @@ exports.default = { createScrollHandler: createScrollHandler };
 /* 215 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
+module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746c-.213.863-.884 1.534-1.745 1.747zm6.25-7.445l-11.95 11.95c-.466.47-1.22.473-1.69.006 0-.002-.004-.003-.006-.006-.47-.465-.472-1.22-.007-1.69l.007-.006 1.72-1.72c-1.013-.887-1.88-1.927-2.57-3.085L.125 8l.203-.323C2.418 4.318 5 2.62 8 2.62c1.043-.02 2.077.186 3.036.6l2.09-2.045c.47-.468 1.23-.468 1.696 0 .472.468.472 1.227 0 1.697zM9.542 4.76C9.057 4.533 8.532 4.415 8 4.41c-1.98 0-3.585 1.606-3.585 3.585.003.534.12 1.06.347 1.542l.932-.933c-.058-.2-.085-.403-.083-.61 0-1.32 1.07-2.39 2.39-2.39.208 0 .413.027.61.083l.932-.93zm6.117 2.915c-.556-.905-1.21-1.747-1.948-2.51l-2.186 2.2c.018.21.018.422 0 .632 0 1.98-1.606 3.587-3.585 3.587-.21.018-.422.018-.634 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3 0 5.58-1.696 7.672-5.055L15.875 8l-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.06-7.666-5.06S2.42 4.32.328 7.68L.125 8l.203.323c2.093 3.36 4.677 5.058 7.678 5.058s5.584-1.695 7.666-5.057L15.875 8l-.203-.322zm-7.666 3.91C6.026 11.588 4.42 9.982 4.42 8c0-1.98 1.605-3.587 3.586-3.587 1.982 0 3.587 1.606 3.587 3.587 0 1.98-1.605 3.588-3.587 3.588zM10.398 8c0 1.32-1.07 2.39-2.393 2.39-1.32 0-2.392-1.07-2.392-2.39s1.07-2.392 2.392-2.392c1.322 0 2.393 1.072 2.393 2.392z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
 
 /***/ }),
 /* 216 */
