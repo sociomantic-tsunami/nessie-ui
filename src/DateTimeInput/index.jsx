@@ -80,6 +80,8 @@ const DateTimeInput = ( {
     const dropdownProps = {
         children : [ datePicker, timePicker ],
         hasError,
+        padding  : 'M',
+        size     : 'content',
     };
 
     return (

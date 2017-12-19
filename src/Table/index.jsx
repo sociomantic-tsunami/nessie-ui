@@ -8,7 +8,7 @@ import Text                 from '../Text';
 import Required             from '../Required';
 
 
-const buildTableFromValues = ( values = []  ) =>
+const buildTableFromValues = ( values = [], isDataTable  ) =>
     values.map( ( row, i ) =>
         (
             // eslint-disable-next-line react/no-array-index-key
@@ -16,7 +16,9 @@ const buildTableFromValues = ( values = []  ) =>
                 {
                     row.map( ( col, j ) =>
                     // eslint-disable-next-line react/no-array-index-key
-                        <TableCell key = { j }><Text>{ col }</Text></TableCell>
+                        <TableCell isDataTable = { isDataTable } key = { j }>
+                            <Text>{ col }</Text>
+                        </TableCell>
                     )
                 }
             </TableRow>
@@ -33,7 +35,7 @@ const Table = ( {
     isZebra,
     stickyHeader } ) =>
 {
-    const _children = children || buildTableFromValues( values );
+    const _children = children || buildTableFromValues( values, isDataTable );
 
     const header = columns.length ?
         ( <TableRow
@@ -49,15 +51,15 @@ const Table = ( {
 
                 return (
                     <TableCell
-                        isHeader
-                        isSticky    = { stickyCell }
+                        className   = { cssMap.cell }
                         isDataTable = { isDataTable }
+                        isHeader
                         isSortable  = { column.isSortable }
-                        sort        = { column.sort }
-                        size        = { column.size }
-                        onToggle    = { onToggle }
+                        isSticky    = { stickyCell }
                         key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                    >
+                        onToggle    = { onToggle }
+                        size        = { column.size }
+                        sort        = { column.sort }>
                         { text }
                     </TableCell>
                 );

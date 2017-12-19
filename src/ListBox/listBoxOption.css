@@ -1,0 +1,42 @@
+@import '../proto/definitions/_colors.css';
+
+.default
+{
+    display:    flex;
+    margin:     0;
+    padding:    1rem;
+
+    margin:     0;
+    padding:    1rem;
+
+    cursor:     pointer;
+
+    .icon
+    {
+        flex:           0 0 auto;
+        margin-right:   1rem;
+    }
+
+    .text
+    {
+        flex:       1 0 0%;
+        min-width:  0;
+    }
+}
+
+.selected
+{
+    background: color( var( --PC-BLUE ) a( 10% ) );
+}
+
+.active,
+.default:hover
+{
+    background: color( var( --PC-BLUE ) a( 30% ) );
+    color:      var( --PC-DARK-GREY );
+}
+
+.disabled
+{
+    cursor: default;
+}

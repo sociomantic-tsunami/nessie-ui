@@ -27,8 +27,8 @@ const NavItem = ( {
 {
     if ( typeof isCurrentPage !== 'undefined' )
     {
-        console.warn( 'NavItem: isCurrentPage is deprecated and will be \
-removed in the next major release. Please use isCurrent instead.' );
+        console.warn( `NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.` );
     }
 
     return (
@@ -101,6 +101,10 @@ NavItem.propTypes =
      */
     isDisabled    : PropTypes.bool,
     /*
+     * Display as current page/section
+     */
+    isCurrent     : PropTypes.bool,
+    /*
     * Dropdown menu is open
      */
     isOpen        : PropTypes.bool,
@@ -132,7 +136,6 @@ NavItem.defaultProps =
     isDisabled    : false,
     isOpen        : false,
     role          : 'default',
-
 };
 
 export default NavItem;
