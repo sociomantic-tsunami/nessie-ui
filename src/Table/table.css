@@ -8,11 +8,22 @@
 
 .zebra
 {
-	.row:nth-child(even)
-	{
-        .cell
-        {
-            background-color: var( --GS-10 );
-        }
-	}
+    .row:nth-child(even) > .cell
+    {
+        background: var( --GS-10 );
+    }
+
+    .row
+    {
+        margin: 0;
+    }
+}
+
+.dataTable
+{
+    .cell
+    {
+        padding-left:   0.5rem;
+        padding-right:  0.5rem;
+    }
 }
