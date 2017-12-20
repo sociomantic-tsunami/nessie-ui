@@ -6,30 +6,6 @@ import Css          from '../hoc/Css';
 import Fieldset     from '../Fieldset';
 
 
-const warnCheckable = ( node ) =>
-{
-    const _node = React.Children.toArray( node );
-    let warning = false;
-
-    _node.forEach( child  =>
-    {
-        if ( !( React.isValidElement( child ) &&
-        typeof child.props.isChecked === 'boolean' ) )
-        {
-            warning = true;
-        }
-    } );
-
-    if ( warning )
-    {
-        console.warn( 'CheckableGroup children should be \
-checkable elements and not other elements' );
-    }
-
-    return _node;
-};
-
-
 export default class CheckableGroup extends Component
 {
     static propTypes =
@@ -113,22 +89,21 @@ export default class CheckableGroup extends Component
             isReadOnly,
             label,
             layout,
+            name,
             onChange,
             onMouseOver,
             onMouseOut,
             errorMessageIsVisible
         } = this.props;
 
-        const name = name || this.state.id;
-
-        const items = warnCheckable( children ).map( ( child ) =>
+        const items = children && children.map( child =>
             React.cloneElement( child, {
                 ...child.props,
                 isReadOnly : isReadOnly || child.props.isReadOnly,
                 isDisabled : isDisabled || child.props.isDisabled,
                 hasError   : hasError || child.props.hasError,
                 forceHover : forceHover || child.props.forceHover,
-                name,
+                name       : name || this.state.id,
                 onChange
             } )
         );
@@ -147,7 +122,7 @@ export default class CheckableGroup extends Component
                     onMouseOver           = { onMouseOver }
                     onMouseOut            = { onMouseOut }>
                     <ul className = { cssMap.list }>
-                        { items.map( ( item, index ) =>
+                        { items && items.map( ( item, index ) =>
                             (
                                 <li
                                     key       = { index } // eslint-disable-line react/no-array-index-key, max-len
