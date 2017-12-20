@@ -17,7 +17,7 @@
 
 .error
 {
-    border-color:   var( --AC-2 ) !important;
+    border-color:   var( --PC-RED ) !important;
 }
 
 .disabled

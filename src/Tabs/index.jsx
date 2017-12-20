@@ -5,29 +5,6 @@ import NessieComponent      from '../proto/Component';
 import TabButton            from '../TabButton';
 
 
-const warnTabs = ( node ) =>
-{
-    const _node = React.Children.toArray( node );
-    let warning = false;
-
-    _node.forEach( child =>
-    {
-        if ( !( React.isValidElement( child )
-        && child.type.name === 'Tab' ) )
-        {
-            warning = true;
-        }
-    } );
-
-    if ( warning )
-    {
-        console.warn( 'Tabs component children should be \
-individual Tab components and not other elements' );
-    }
-
-    return _node;
-};
-
 export default class Tabs extends NessieComponent
 {
     static propTypes =
@@ -61,7 +38,7 @@ export default class Tabs extends NessieComponent
     }
 
 
-    renderHeader( tabs )
+    renderHeader( tabs = [] )
     {
         const { activeTabIndex } = this.props;
 
@@ -105,10 +82,9 @@ export default class Tabs extends NessieComponent
             cssMap
         } = this.props;
 
-        const tabs   = warnTabs( children );
-        const header = this.renderHeader( tabs );
+        const header = this.renderHeader( children );
 
-        const content = tabs[ activeTabIndex ];
+        const content = children[ activeTabIndex ];
 
         return (
             <div className = { cssMap.default } >

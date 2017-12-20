@@ -68,7 +68,7 @@
 
 .error
 {
-    border-color:   var( --AC-2 ) !important; /* yes, always override other states */
+    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
 }
 
 .disabled

@@ -51,15 +51,15 @@ const Table = ( {
 
                 return (
                     <TableCell
-                        isHeader
-                        isSticky    = { stickyCell }
+                        className   = { cssMap.cell }
                         isDataTable = { isDataTable }
+                        isHeader
                         isSortable  = { column.isSortable }
-                        sort        = { column.sort }
-                        size        = { column.size }
-                        onToggle    = { onToggle }
+                        isSticky    = { stickyCell }
                         key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                    >
+                        onToggle    = { onToggle }
+                        size        = { column.size }
+                        sort        = { column.sort }>
                         { text }
                     </TableCell>
                 );
@@ -108,7 +108,10 @@ const Table = ( {
     return (
         <Css
             cssMap   = { cssMap }
-            cssProps = { { zebra: isZebra } }>
+            cssProps = { {
+                dataTable : isDataTable,
+                zebra     : isZebra
+            } }>
             <div role = "grid" className = { className }>
                 { header }
                 { rows }

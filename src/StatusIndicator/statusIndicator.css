@@ -28,12 +28,12 @@
 
 .status__active
 {
-    color:          var( --AC-12 );
-    border-color:   var( --AC-12 );
+    color:          var( --PC-GREEN );
+    border-color:   var( --PC-GREEN );
 }
 
 .status__alert
 {
-    color:         var( --AC-5 );
-    border-color:  var( --AC-5 );
+    color:         var( --PC-YELLOW );
+    border-color:  var( --PC-YELLOW );
 }
