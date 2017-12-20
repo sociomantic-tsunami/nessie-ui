@@ -32,8 +32,8 @@
 .active,
 .default:hover
 {
-    background: color( var( --PC-BLUE ) a( 30% ) );
-    color:      var( --PC-DARK-GREY );
+    background: color( var( --PC-BLUE ) a( 35% ) );
+    color:      var( --GS-1 );
 }
 
 .disabled

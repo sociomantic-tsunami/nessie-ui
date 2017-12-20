@@ -20,7 +20,7 @@
     .uploaderButton:hover,
     .uploaderButton:focus
     {
-        background-image:   linear-gradient( to right, var( --AC-15 ) , var( --PC-BLUE ) );
+        background-image:   linear-gradient( to right, var( --GS-1 ) , var( --PC-BLUE ) );
     }
 }
 
@@ -83,7 +83,7 @@
 {
     width:                   100%;
     max-width:               100%;
-    background-image:        linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+    background-image:        linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
     text-align:              left;
     text-transform:          none;
     display:                 block;
@@ -96,7 +96,7 @@
 
     &:active
     {
-        background-image:    linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+        background-image:    linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
     }
 }
 
@@ -129,7 +129,7 @@
     &:hover,
     &:focus
     {
-        background-color:   color( var( --PC-BLUE ) shade( 13% ) );
+        background-color:   color( var( --PC-BLUE ) shade( 15% ) );
         color:              var( --PC-WHITE );
     }
 

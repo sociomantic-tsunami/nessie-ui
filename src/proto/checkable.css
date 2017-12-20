@@ -80,7 +80,7 @@
     &:hover .label::before,
     .input:focus + .label::before
     {
-        border-color:       var( --AC-2 );
+        border-color:       var( --PC-RED );
     }
 }
 

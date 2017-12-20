@@ -5,7 +5,7 @@
 {
     height:                     0.8rem;
     border-radius:              2rem;
-    background-color:           color( var( --PC-BLUE ) a( 30% ) );
+    background-color:           color( var( --PC-BLUE ) a( 35% ) );
 }
 
 .fill

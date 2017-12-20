@@ -45,6 +45,6 @@
 {
     .input:checked + .label::after
     {
-        background-color:       var( --AC-2 );
+        background-color:       var( --PC-RED );
     }
 }
