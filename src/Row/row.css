@@ -9,7 +9,6 @@ $shark: 768px;
     align-items:    stretch;
     flex-wrap:      nowrap;
 
-    width:          auto;
     max-width:      none;
 
     margin-bottom:  0;
@@ -167,6 +166,7 @@ $shark: 768px;
 
 .gutters__S
 {
+    width:          calc( 100% + 1rem );
     margin-left:    -0.5rem;
     margin-right:   -0.5rem;
 
@@ -179,6 +179,7 @@ $shark: 768px;
 
 .gutters__M
 {
+    width:          calc( 100% + 2rem );
     margin-left:    -1rem;
     margin-right:   -1rem;
 
@@ -191,6 +192,7 @@ $shark: 768px;
 
 .gutters__L
 {
+    width:          calc( 100% + 3rem );
     margin-left:    -1.5rem;
     margin-right:   -1.5rem;
 
