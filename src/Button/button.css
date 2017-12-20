@@ -289,6 +289,30 @@
             background:      var( --GS-7 ) !important;
         }
     }
+
+    &.role__promoted
+    {
+        background:     color( var( --PC-GREEN ) tint( 70% ) );
+        color:          color( var( --PC-GREEN ) tint( 25% ) );
+
+        .icon
+        {
+            fill:   color( var( --PC-GREEN ) tint( 25% ) );
+            color:  color( var( --PC-GREEN ) tint( 25% ) );
+        }
+    }
+
+    &.role__critical
+    {
+        background:     color( var( --PC-RED ) tint( 70% ) );
+        color:          color( var( --PC-RED ) tint( 25% ) );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+            color:  color( var( --PC-RED ) tint( 25% ) );
+        }
+    }
 }
 
 .loadingOverlay
