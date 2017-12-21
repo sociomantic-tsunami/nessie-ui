@@ -5,24 +5,25 @@
 :root
 {
     /* primary colors */
-    --PC-WHITE:     #ffffff;
-    --PC-BLUE:      #19a2e2;
-    --PC-GREEN:     #1bbab0;
-    --PC-RED:       #ff5460;
-    --PC-ORANGE:    #ff7f5a;
-    --PC-YELLOW:    #ffb050;
+     --PC-WHITE:  #ffffff;
+     --PC-BLUE:   #19a2e2;
+     --PC-GREEN:  #1bbab0;
+     --PC-RED:    #ff5460;
+     --PC-ORANGE: #ff7f5a;
+     --PC-YELLOW: #ffb050;
 
-    --PC-GREY:      var( --GS-5 );
+     --PC-GREY:      var( --GS-5 );
+     --PC-DARK-GREY: var( --GS-10 );
 
-    /* greyscale colors */
-    --GS-1:     #334c68;
-    --GS-2:     color( var( --GS-1 ) tint( 10% ) );
-    --GS-3:     color( var( --GS-1 ) tint( 20% ) );
-    --GS-4:     color( var( --GS-1 ) tint( 35% ) );
-    --GS-5:     color( var( --GS-1 ) tint( 40% ) );
-    --GS-6:     color( var( --GS-1 ) tint( 50% ) );
-    --GS-7:     color( var( --GS-1 ) tint( 60% ) );
-    --GS-8:     color( var( --GS-1 ) tint( 70% ) );
-    --GS-9:     color( var( --GS-1 ) tint( 80% ) );
-    --GS-10:    color( var( --GS-1 ) tint( 95% ) );
+     /* greyscale colors */
+     --GS-1:     color( var( --GS-5 ) shade( 35% ) );
+     --GS-2:     color( var( --GS-5 ) shade( 25% ) );
+     --GS-3:     color( var( --GS-5 ) shade( 15% ) );
+     --GS-4:     color( var( --GS-5 ) shade( 5% ) );
+     --GS-5:     #7594ae;
+     --GS-6:     color( var( --GS-5 ) tint( 10% ) );
+     --GS-7:     color( var( --GS-5 ) tint( 25% ) );
+     --GS-8:     color( var( --GS-5 ) tint( 40% ) );
+     --GS-9:     color( var( --GS-5 ) tint( 70% ) );
+     --GS-10:    color( var( --GS-5 ) tint( 90% ) );
 }
