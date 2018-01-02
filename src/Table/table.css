@@ -4,21 +4,7 @@
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
-}
-
-.dataTable
-{
-    .row
-    {
-        margin-left:    -0.5rem;
-        margin-right:   -0.5rem;
-    }
-
-    .cell
-    {
-        padding-left:   0.5rem;
-        padding-right:  0.5rem;
-    }
+    overflow-wrap:          break-word;
 }
 
 .zebra
