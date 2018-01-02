@@ -17753,7 +17753,6 @@ var TableCell = function TableCell(_ref) {
         cssMap = _ref.cssMap,
         isHeader = _ref.isHeader,
         isRowHeader = _ref.isRowHeader,
-        isDataTable = _ref.isDataTable,
         isSortable = _ref.isSortable,
         isSticky = _ref.isSticky,
         onToggle = _ref.onToggle,
@@ -17770,9 +17769,7 @@ var TableCell = function TableCell(_ref) {
     if (isHeader && isSortable) {
         contentNode = _react2.default.createElement(
             _Sorter2.default,
-            {
-                sort: sort,
-                onToggle: onToggle },
+            { sort: sort, onToggle: onToggle },
             contentNode
         );
     }
@@ -17784,7 +17781,6 @@ var TableCell = function TableCell(_ref) {
             cssProps: {
                 header: isHeader,
                 rowHeader: isRowHeader,
-                data: isDataTable,
                 sticky: isSticky
             } },
         _react2.default.createElement(
@@ -17825,10 +17821,6 @@ TableCell.propTypes = {
      *  Sort direction
      */
     sort: _propTypes2.default.oneOf(['asc', 'desc', 'none']),
-    /**
-     *  Is Data Table (smaller fonts, zebra paddings)
-     */
-    isDataTable: _propTypes2.default.bool,
 
     /**
      *  Size of the cell
@@ -17859,7 +17851,6 @@ TableCell.propTypes = {
 TableCell.defaultProps = {
     isHeader: false,
     isRowHeader: false,
-    isDataTable: false,
     isSortable: false,
     isSticky: false,
     cssMap: __webpack_require__(185)
@@ -25642,7 +25633,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var buildTableFromValues = function buildTableFromValues() {
     var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var isDataTable = arguments[1];
     return values.map(function (row, i) {
         return (
             // eslint-disable-next-line react/no-array-index-key
@@ -25654,7 +25644,7 @@ var buildTableFromValues = function buildTableFromValues() {
                         // eslint-disable-next-line react/no-array-index-key
                         _react2.default.createElement(
                             _TableCell2.default,
-                            { isDataTable: isDataTable, key: j },
+                            { key: j },
                             _react2.default.createElement(
                                 _Text2.default,
                                 null,
@@ -25669,25 +25659,30 @@ var buildTableFromValues = function buildTableFromValues() {
 };
 
 var Table = function Table(_ref) {
-    var children = _ref.children,
+    var align = _ref.align,
+        children = _ref.children,
         className = _ref.className,
         _ref$columns = _ref.columns,
         columns = _ref$columns === undefined ? [] : _ref$columns,
         cssMap = _ref.cssMap,
+        gutters = _ref.gutters,
         onToggle = _ref.onToggle,
         values = _ref.values,
         isDataTable = _ref.isDataTable,
         isZebra = _ref.isZebra,
-        stickyHeader = _ref.stickyHeader;
+        hasStickyHeader = _ref.hasStickyHeader,
+        verticalAlign = _ref.verticalAlign;
 
-    var _children = children || buildTableFromValues(values, isDataTable);
+    var _children = children || buildTableFromValues(values);
 
     var header = columns.length ? _react2.default.createElement(
         _TableRow2.default,
         {
-            isSticky: stickyHeader,
-            verticalAlign: 'middle',
-            className: cssMap.row },
+            align: align,
+            className: cssMap.row,
+            gutters: gutters,
+            isSticky: hasStickyHeader,
+            verticalAlign: verticalAlign },
         columns.map(function (column, index) {
             var title = column.title;
             var text = column.isRequired ? _react2.default.createElement(
@@ -25701,7 +25696,6 @@ var Table = function Table(_ref) {
                 _TableCell2.default,
                 {
                     className: cssMap.cell,
-                    isDataTable: isDataTable,
                     isHeader: true,
                     isSortable: column.isSortable,
                     isSticky: stickyCell,
@@ -25718,6 +25712,7 @@ var Table = function Table(_ref) {
         var cells = _react2.default.Children.toArray(row.props.children);
 
         return _react2.default.cloneElement(row, {
+            align: align || row.props.align,
             children: cells.map(function (cell, index) {
                 if (_typeof(columns[index]) === 'object') {
                     var title = columns[index].title;
@@ -25735,7 +25730,9 @@ var Table = function Table(_ref) {
                 }
                 return cell;
             }),
-            className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row
+            className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row,
+            gutters: isDataTable ? 'S' : gutters || row.props.gutters,
+            verticalAlign: verticalAlign || row.props.verticalAlign
         });
     });
 
@@ -25743,10 +25740,7 @@ var Table = function Table(_ref) {
         _Css2.default,
         {
             cssMap: cssMap,
-            cssProps: {
-                dataTable: isDataTable,
-                zebra: isZebra
-            } },
+            cssProps: { zebra: isZebra } },
         _react2.default.createElement(
             'div',
             { role: 'grid', className: className },
@@ -25758,9 +25752,13 @@ var Table = function Table(_ref) {
 
 Table.propTypes = {
     /**
-     * 2D Array of table values (for convenience)
+     *  Text alignment inside cells
      */
-    values: _propTypes2.default.arrayOf(_propTypes2.default.arrayOf(_propTypes2.default.string)),
+    align: _propTypes2.default.oneOf(['left', 'right', 'center', 'auto']),
+    /**
+     *  Table content (TableRows containing TableCells; overrides values)
+     */
+    children: _propTypes2.default.node,
     /**
      * Array of objects defining the table columns
      */
@@ -25773,14 +25771,11 @@ Table.propTypes = {
         isSortable: _propTypes2.default.bool,
         sort: _propTypes2.default.oneOf(['asc', 'desc'])
     })),
+    gutters: _propTypes2.default.oneOf(['S', 'M', 'L', 'none']),
     /**
-     *  Table content (TableRows containing TableCells; overrides values)
+     *  Makes header row sticky
      */
-    children: _propTypes2.default.node,
-    /**
-     *  Is Data Table (smaller fonts, zebra paddings)
-     */
-    isDataTable: _propTypes2.default.bool,
+    hasStickyHeader: _propTypes2.default.bool,
     /**
      *  Display as zebra-striped
      */
@@ -25790,16 +25785,22 @@ Table.propTypes = {
      */
     onToggle: _propTypes2.default.func,
     /**
-     *  Makes header row sticky
+     * 2D Array of table values (for convenience)
      */
-    stickyHeader: _propTypes2.default.bool
+    values: _propTypes2.default.arrayOf(_propTypes2.default.arrayOf(_propTypes2.default.string)),
+    /**
+     *  Vertical alignment inside cells
+     */
+    verticalAlign: _propTypes2.default.oneOf(['top', 'bottom', 'middle'])
 };
 
 Table.defaultProps = {
+    align: 'auto',
+    cssMap: __webpack_require__(184),
+    gutters: 'M',
+    hasStickyHeader: false,
     isZebra: false,
-    isDataTable: false,
-    stickyHeader: false,
-    cssMap: __webpack_require__(184)
+    verticalAlign: 'middle'
 };
 
 exports.default = Table;
@@ -28023,7 +28024,7 @@ module.exports = {"label":"tabButton__label","role__control":"tabButton__role__c
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"table__default","dataTable":"table__dataTable","row":"table__row","cell":"table__cell","zebra":"table__zebra"};
+module.exports = {"default":"table__default","zebra":"table__zebra","row":"table__row","cell":"table__cell"};
 
 /***/ }),
 /* 185 */

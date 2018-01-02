@@ -546,9 +546,6 @@ a:hover, a:active
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .inputContainer__default__tWiVT:last-child
@@ -644,9 +641,6 @@ a:hover, a:active
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .text__default__1j9VQ:last-child
@@ -725,9 +719,6 @@ a:hover, a:active
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .label__default__1KHiG:last-child
@@ -1019,7 +1010,6 @@ legend.label__default__1KHiG + *
     display:        inline-block;
 
     max-width:      100%;
-    z-index:        1;
 }
 
 .tooltip__tooltip__hehe5
@@ -1035,6 +1025,8 @@ legend.label__default__1KHiG + *
     padding:            2rem;
 
     background-color:   #ffffff;
+
+    z-index:            100;
 }
 
 .tooltip__tooltip__hehe5::before
@@ -1428,9 +1420,6 @@ legend.label__default__1KHiG + *
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .textInputWithIcon__default__2JGx9:last-child
@@ -1509,9 +1498,6 @@ legend.label__default__1KHiG + *
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .inputField__default__BgAmO:last-child
@@ -1644,9 +1630,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .iconButton__default__XPmOq:last-child
@@ -1745,9 +1728,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .dropdown__default__13IF5:last-child
@@ -2288,9 +2268,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .spinner__default__3HVrD:last-child
@@ -2458,9 +2435,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .button__default__3AXUD:last-child
@@ -2927,9 +2901,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .radio__default__1hjqa:last-child
@@ -3092,9 +3063,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .buttonRadio__default__1QUOH:last-child
@@ -3134,9 +3102,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .fieldset__default__1Eptt:last-child
@@ -3231,9 +3196,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .checkbox__default__pbnFv:last-child
@@ -3387,9 +3349,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .codeEditor__default__3XMrR:last-child
@@ -3773,9 +3732,9 @@ span.CodeMirror-selectedtext { background: none; }
         -ms-flex-align:        stretch;
             align-items:        stretch;
 
-    -webkit-box-sizing: border-box;
+    -webkit-box-sizing:         border-box;
 
-            box-sizing: border-box;
+            box-sizing:         border-box;
 
     max-width:          100%;
     min-width:          0;
@@ -8059,9 +8018,6 @@ span.CodeMirror-selectedtext { background: none; }
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .datePicker__default__12lfM:last-child
@@ -8113,9 +8069,6 @@ span.CodeMirror-selectedtext { background: none; }
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .datePickerItem__default__NsQ-o:last-child
@@ -8309,9 +8262,6 @@ span.CodeMirror-selectedtext { background: none; }
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .inputField__default__BgAmO:last-child
@@ -8444,9 +8394,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .dimensionsInput__default__161gR:last-child
@@ -8582,9 +8529,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .divider__default__3CKl9:last-child
@@ -8751,9 +8695,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .form__default__16h5S:last-child
@@ -8832,9 +8773,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .h1__default__OCMje:last-child
@@ -8906,9 +8844,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .h2__default__3XBD-:last-child
@@ -8982,9 +8917,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .h3__default__22-Rs:last-child
@@ -9055,9 +8987,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .h4__default__3y7ay:last-child
@@ -9145,8 +9074,6 @@ textarea.inputField__resizable__2CfEu
 
             box-sizing:     border-box;
     width:          100%;
-
-    word-break:     normal;
 }
 .flounderDropdown__default__2X8Az:last-child
     {
@@ -9821,9 +9748,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .messageBox__default__3hsFC:last-child
@@ -9888,9 +9812,6 @@ textarea.inputField__resizable__2CfEu
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .module__default__3sx3E:last-child
@@ -10326,9 +10247,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .navList__default__2JZBI:last-child
@@ -10413,9 +10331,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .navBar__default__1EAbA:last-child
@@ -10507,9 +10422,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .navItem__default__kwc7o:last-child
@@ -10685,9 +10597,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .nessieLogo__default__29T4w:last-child
@@ -10740,9 +10649,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .notificationBar__default__lNNgQ:last-child
@@ -10828,9 +10734,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .page__default__1F0MF:last-child
@@ -10941,9 +10844,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .pageContent__default__2xCEE:last-child
@@ -11053,8 +10953,6 @@ only used in type__carousel for now
 
     font-size:      1.4rem;
     line-height:    1.8rem;
-
-    word-break:     normal;
 }
 .pageContentHeader__header__3Gi1w
 {
@@ -11097,9 +10995,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .pageHeader__default__3zPHF:last-child
@@ -11149,9 +11044,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .pageFooter__default__2jvKK:last-child
@@ -11210,9 +11102,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .paginator__default__2tWDo:last-child
@@ -11347,9 +11236,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .passwordInput__default__1KJw4:last-child
@@ -11390,9 +11276,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .progressBar__default__11kkQ:last-child
@@ -11446,9 +11329,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .spinner__default__3HVrD:last-child
@@ -11585,9 +11465,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .progressIndicator__default__4m5YP:last-child
@@ -11717,9 +11594,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .row__default__2TI-k:last-child
@@ -11746,7 +11620,6 @@ only used in type__carousel for now
         -ms-flex-wrap:      nowrap;
             flex-wrap:      nowrap;
 
-    width:          auto;
     max-width:      none;
 
     margin-bottom:  0;
@@ -11908,6 +11781,7 @@ only used in type__carousel for now
 
 .row__gutters__S__13F38
 {
+    width:          calc(100% + 1rem);
     margin-left:    -0.5rem;
     margin-right:   -0.5rem;
 }
@@ -11920,6 +11794,7 @@ only used in type__carousel for now
 
 .row__gutters__M__22OWD
 {
+    width:          calc(100% + 2rem);
     margin-left:    -1rem;
     margin-right:   -1rem;
 }
@@ -11932,6 +11807,7 @@ only used in type__carousel for now
 
 .row__gutters__L__1MuqL
 {
+    width:          calc(100% + 3rem);
     margin-left:    -1.5rem;
     margin-right:   -1.5rem;
 }
@@ -11958,9 +11834,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .section__default__1RKjM:last-child
@@ -12068,9 +11941,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .slider__default__20oIL:last-child
@@ -12457,9 +12327,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .sliderGroup__default__2Y9lA:last-child
@@ -12588,9 +12455,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .scrollBox__default__GWy-0:last-child
@@ -12634,9 +12498,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .sorter__default__3a0HN:last-child
@@ -12690,10 +12551,11 @@ only used in type__carousel for now
 
 .sorter__content__1ID1F
 {
-    -webkit-box-flex:   1;
-    -webkit-flex:   1 0 auto;
-        -ms-flex:   1 0 auto;
-            flex:   1 0 auto;
+    -webkit-box-flex:       1;
+    -webkit-flex:       1 0 0%;
+        -ms-flex:       1 0 0%;
+            flex:       1 0 0%;
+    min-width:  0;
 }
 
 .sorter__sorter__6G4xn
@@ -12741,9 +12603,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .statusIndicator__default__21UTk:last-child
@@ -12842,9 +12701,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .switch__default__29KN6:last-child
@@ -13077,9 +12933,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .tabButton__default__2fot-:last-child
@@ -13571,6 +13424,19 @@ only used in type__carousel for now
     text-transform:     none;
     text-transform:     initial;
 }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
 .tableRow__default__15hF0
 {
 
@@ -13581,6 +13447,7 @@ only used in type__carousel for now
     position:    -webkit-sticky;
     position:    sticky;
     top:         0;
+    background:  #ffffff;
     z-index:     2;
 }
 
@@ -13613,9 +13480,6 @@ only used in type__carousel for now
     padding-top:    1rem;
     padding-bottom: 1rem;
     /* background-color:     var( --PC-WHITE ); */
-    /*flex-direction: row;*/
-
-    background:         #ffffff;
 
     /*@media( min-width: $shark )
     {*/
@@ -13634,6 +13498,8 @@ only used in type__carousel for now
         } */
     /*}*/
 }
+
+/*flex-direction: row;*/
 
 .tableCell__default__2dIPU::before
     {
@@ -13685,10 +13551,11 @@ only used in type__carousel for now
 
 .tableCell__sticky__2DCB3
 {
-    position:    -webkit-sticky;
-    position:    sticky;
-    left:        0;
-    z-index:     1;
+    position:   -webkit-sticky;
+    position:   sticky;
+    left:       0;
+    background: #ffffff;
+    z-index:    1;
 }
 .table__default__fpQba /* all elements get default margin-bottom of 2rem */
 {
@@ -13707,9 +13574,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .table__default__fpQba:last-child
@@ -13732,23 +13596,15 @@ only used in type__carousel for now
     -webkit-font-feature-settings:	lining-nums tabular-nums;
             font-feature-settings:	lining-nums tabular-nums;
     font-variant-numeric:	lining-nums tabular-nums;
+    word-wrap:          break-word;
 }
-.table__dataTable__2QZly .table__row__1YGNP
-    {
-        margin-left:    -0.5rem;
-        margin-right:   -0.5rem;
-    }
-.table__dataTable__2QZly .table__cell__3NkUW
-    {
-        padding-left:   0.5rem;
-        padding-right:  0.5rem;
-    }
 .table__zebra__1Wxas .table__row__1YGNP:nth-child(even) > .table__cell__3NkUW
     {
         background: #F0F0F0;
     }
 .table__zebra__1Wxas .table__row__1YGNP
     {
+        width:  100%;
         margin: 0;
     }
 .tabs__default__3DOQh /* all elements get default margin-bottom of 2rem */
@@ -13768,9 +13624,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .tabs__default__3DOQh:last-child
@@ -13831,9 +13684,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .tag__default__308m5:last-child
@@ -13914,9 +13764,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .tagInput__default__3DPRk:last-child
@@ -14073,9 +13920,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .textArea__default__Dfi2-:last-child
@@ -14104,9 +13948,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .textInput__default__9o_HN:last-child
@@ -14148,9 +13989,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
 .textInputWithDropdown__default__9ZDoM:last-child
@@ -14250,9 +14088,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .uploader__default__3Iq-q:last-child
@@ -14432,9 +14267,6 @@ only used in type__carousel for now
     letter-spacing:	0.02rem;
 
     font-weight:    normal;
-
-    white-space:    normal;
-    word-break:     normal;
 }
 
     .valuedTextInput__default__3aCux:last-child
