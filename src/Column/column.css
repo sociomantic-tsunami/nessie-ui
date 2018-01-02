@@ -8,7 +8,7 @@ $shark: 768px;
     justify-content:    flex-start;
     align-items:        stretch;
 
-    box-sizing: border-box;
+    box-sizing:         border-box;
 
     max-width:          100%;
     min-width:          0;
