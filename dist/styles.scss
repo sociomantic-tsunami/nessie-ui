@@ -1356,33 +1356,28 @@ legend.label__default + *
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
         {
-            margin-left:    1rem;
+            margin-left:    var(--iconSpacingHorizontal);
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content
         {
-            margin-right:   1rem;
+            margin-right:   var(--iconSpacingHorizontal);
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
         {
             position:   absolute;
-            top:        0;
+            top:        -1.2rem;
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip
         {
-            -webkit-transform:  translateX( 50% ) translateY( -50% );
-                    transform:  translateX( 50% ) translateY( -50% );
-
-            right:      0;
+            right:  -1.2rem;
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
         {
-            -webkit-transform:  translateX( -50% ) translateY( -50% );
-                    transform:  translateX( -50% ) translateY( -50% );
-            left:       0;
+            left:   -1.2rem;
         }
 
 .iconWithTooltip__content

@@ -1356,33 +1356,28 @@ legend.label__default__1KHiG + *
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__left__Fd9-e > .iconWithTooltip__content__3vlxh
         {
-            margin-left:    1rem;
+            margin-left:    var(--iconSpacingHorizontal);
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__right__2GZjl > .iconWithTooltip__content__3vlxh
         {
-            margin-right:   1rem;
+            margin-right:   var(--iconSpacingHorizontal);
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topRight__25nMe > .iconWithTooltip__iconWithTooltip__3OGPB, .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topLeft__MeeB4 > .iconWithTooltip__iconWithTooltip__3OGPB
         {
             position:   absolute;
-            top:        0;
+            top:        -1.2rem;
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topRight__25nMe > .iconWithTooltip__iconWithTooltip__3OGPB
         {
-            -webkit-transform:  translateX( 50% ) translateY( -50% );
-                    transform:  translateX( 50% ) translateY( -50% );
-
-            right:      0;
+            right:  -1.2rem;
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topLeft__MeeB4 > .iconWithTooltip__iconWithTooltip__3OGPB
         {
-            -webkit-transform:  translateX( -50% ) translateY( -50% );
-                    transform:  translateX( -50% ) translateY( -50% );
-            left:       0;
+            left:   -1.2rem;
         }
 
 .iconWithTooltip__content__3vlxh
