@@ -1,8 +1,8 @@
 
 :root
 {
-    --iconSpacingHorizontal:    1rem;
-    --iconSpacingBottom:        2rem;
+    --iconSize:     2.4rem;
+    --iconSpacing:  1rem;
 }
 
 .default
@@ -17,7 +17,7 @@
     font:           inherit;
     line-height:    inherit;
 
-    margin-bottom:  var( --iconSpacingBottom );
+    margin-bottom:  2rem;
 
     &:last-child
     {
@@ -76,7 +76,7 @@
         & > .iconWithTooltip
         {
             position:   absolute;
-            top:        0;
+            top:        calc( -var( --iconSize ) / 2 );
         }
     }
 
@@ -84,9 +84,7 @@
     {
         & > .iconWithTooltip
         {
-            transform:  translateX( 50% ) translateY( -50% );
-
-            right:      0;
+            right:  calc( -var( --iconSize ) / 2 );
         }
     }
 
@@ -94,8 +92,7 @@
     {
         & > .iconWithTooltip
         {
-            transform:  translateX( -50% ) translateY( -50% );
-            left:       0;
+            left:   calc( -var( --iconSize ) / 2 );
         }
     }
 }
