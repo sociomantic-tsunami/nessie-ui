@@ -58,7 +58,7 @@
 
         & > .content
         {
-            margin-left:    var( --iconSpacingHorizontal );
+            margin-left:    var( --iconSpacing );
         }
     }
 
@@ -66,7 +66,7 @@
     {
         & > .content
         {
-            margin-right:   var( --iconSpacingHorizontal );
+            margin-right:   var( --iconSpacing );
         }
     }
 
