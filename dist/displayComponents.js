@@ -24793,12 +24793,14 @@ var ScrollBox = function ScrollBox(_ref) {
         contentWidth = _ref.contentWidth,
         height = _ref.height,
         onScroll = _ref.onScroll,
-        scroll = _ref.scroll;
+        scroll = _ref.scroll,
+        scrollBoxRef = _ref.scrollBoxRef;
     return _react2.default.createElement(
         'div',
         {
             className: (0, _utils.buildClassName)(className, cssMap, { scroll: scroll }),
             onScroll: (0, _utils2.createScrollHandler)(onScroll),
+            ref: scrollBoxRef,
             style: { maxHeight: height ? '' + height : null } },
         _react2.default.createElement(
             'div',
@@ -24830,7 +24832,11 @@ ScrollBox.propTypes = {
     /**
      *  Scroll direction
      */
-    scroll: _propTypes2.default.oneOf(['horizontal', 'vertical', 'both'])
+    scroll: _propTypes2.default.oneOf(['horizontal', 'vertical', 'both']),
+    /**
+     *  Callback that receives scrollable div: ( ref ) => { ... }
+     */
+    scrollBoxRef: _propTypes2.default.func
 
 };
 
@@ -24839,7 +24845,8 @@ ScrollBox.defaultProps = {
     cssMap: _scrollBox2.default,
     height: undefined,
     onScroll: undefined,
-    scroll: 'both'
+    scroll: 'both',
+    scrollBoxRef: undefined
 };
 
 exports.default = ScrollBox;

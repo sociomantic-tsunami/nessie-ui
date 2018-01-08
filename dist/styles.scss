@@ -700,6 +700,7 @@ a:hover, a:active
 .text__overflowHidden
 {
     overflow:       hidden;
+    word-wrap:  normal;
     text-overflow:  ellipsis;
 }
 .label__default /* all elements get default margin-bottom of 2rem */
@@ -1356,12 +1357,12 @@ legend.label__default + *
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
         {
-            margin-left:    var(--iconSpacingHorizontal);
+            margin-left:    1rem;
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content
         {
-            margin-right:   var(--iconSpacingHorizontal);
+            margin-right:   1rem;
         }
 
 .iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip

@@ -700,6 +700,7 @@ a:hover, a:active
 .text__overflowHidden__1LaAV
 {
     overflow:       hidden;
+    word-wrap:  normal;
     text-overflow:  ellipsis;
 }
 .label__default__1KHiG /* all elements get default margin-bottom of 2rem */
@@ -1356,12 +1357,12 @@ legend.label__default__1KHiG + *
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__left__Fd9-e > .iconWithTooltip__content__3vlxh
         {
-            margin-left:    var(--iconSpacingHorizontal);
+            margin-left:    1rem;
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__right__2GZjl > .iconWithTooltip__content__3vlxh
         {
-            margin-right:   var(--iconSpacingHorizontal);
+            margin-right:   1rem;
         }
 
 .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topRight__25nMe > .iconWithTooltip__iconWithTooltip__3OGPB, .iconWithTooltip__iconVisible__ao5jW.iconWithTooltip__position__topLeft__MeeB4 > .iconWithTooltip__iconWithTooltip__3OGPB
