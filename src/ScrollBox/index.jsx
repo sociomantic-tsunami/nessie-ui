@@ -12,11 +12,13 @@ const ScrollBox = ( {
     contentWidth,
     height,
     onScroll,
-    scroll
+    scroll,
+    scrollBoxRef,
 } ) =>
     <div
         className = { buildClassName( className, cssMap, { scroll } ) }
         onScroll  = { createScrollHandler( onScroll ) }
+        ref       = { scrollBoxRef }
         style     = { { maxHeight: height ? `${height}` : null } }>
         <div
             className = { cssMap.content }
@@ -46,17 +48,22 @@ ScrollBox.propTypes =
     /**
      *  Scroll direction
      */
-    scroll       : PropTypes.oneOf( [ 'horizontal', 'vertical', 'both' ] )
+    scroll       : PropTypes.oneOf( [ 'horizontal', 'vertical', 'both' ] ),
+    /**
+     *  Callback that receives scrollable div: ( ref ) => { ... }
+     */
+    scrollBoxRef : PropTypes.func,
 
 };
 
 ScrollBox.defaultProps =
 {
-    children : undefined,
-    cssMap   : styles,
-    height   : undefined,
-    onScroll : undefined,
-    scroll   : 'both',
+    children     : undefined,
+    cssMap       : styles,
+    height       : undefined,
+    onScroll     : undefined,
+    scroll       : 'both',
+    scrollBoxRef : undefined,
 };
 
 export default ScrollBox;
