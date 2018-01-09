@@ -12547,11 +12547,10 @@ only used in type__carousel for now
 
 .sorter__content
 {
-    -webkit-box-flex:       1;
-    -webkit-flex:       1 0 0%;
-        -ms-flex:       1 0 0%;
-            flex:       1 0 0%;
-    min-width:  0;
+    -webkit-box-flex:   1;
+    -webkit-flex:   1 0 auto;
+        -ms-flex:   1 0 auto;
+            flex:   1 0 auto;
 }
 
 .sorter__sorter
@@ -12568,11 +12567,11 @@ only used in type__carousel for now
 
     -webkit-box-flex:           0;
 
-    -webkit-flex:           0 0 0%;
+    -webkit-flex:           0 0 auto;
 
-        -ms-flex:           0 0 0%;
+        -ms-flex:           0 0 auto;
 
-            flex:           0 0 0%;
+            flex:           0 0 auto;
 
     margin-left:    1rem;
 
