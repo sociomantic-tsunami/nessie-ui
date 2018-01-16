@@ -7,10 +7,10 @@ import { createScrollHandler }  from './utils';
 import IconButton               from '../IconButton';
 
 const ScrollBox = ( {
+    cssMap,
     children,
     className,
     contentWidth,
-    cssMap,
     height,
     onClickScrollDown,
     onClickScrollLeft,
@@ -134,6 +134,7 @@ ScrollBox.defaultProps =
     onClickScrollUp      : undefined,
     onScroll             : undefined,
     scroll               : 'both',
+    scrollBoxRef         : undefined,
     scrollDownIsVisible  : false,
     scrollLeftIsVisible  : false,
     scrollRightIsVisible : false,

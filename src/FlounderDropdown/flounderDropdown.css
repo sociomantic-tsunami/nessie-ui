@@ -11,8 +11,6 @@
     box-sizing:     border-box;
     width:          100%;
 
-    word-break:     normal;
-
     &:last-child
     {
         margin-bottom:  0;

@@ -14,7 +14,6 @@ const TableCell = ( {
     cssMap,
     isHeader,
     isRowHeader,
-    isDataTable,
     isSortable,
     isSticky,
     onToggle,
@@ -28,9 +27,7 @@ const TableCell = ( {
     if ( isHeader && isSortable )
     {
         contentNode = (
-            <Sorter
-                sort     = { sort }
-                onToggle = { onToggle }>
+            <Sorter sort = { sort } onToggle = { onToggle }>
                 { contentNode }
             </Sorter>
         );
@@ -42,7 +39,6 @@ const TableCell = ( {
             cssProps = { {
                 header    : isHeader,
                 rowHeader : isRowHeader,
-                data      : isDataTable,
                 sticky    : isSticky,
             } }>
             <Column
@@ -87,10 +83,6 @@ TableCell.propTypes =
         'desc',
         'none'
     ] ),
-    /**
-     *  Is Data Table (smaller fonts, zebra paddings)
-     */
-    isDataTable : PropTypes.bool,
 
     /**
      *  Size of the cell
@@ -161,7 +153,6 @@ TableCell.defaultProps =
 {
     isHeader    : false,
     isRowHeader : false,
-    isDataTable : false,
     isSortable  : false,
     isSticky    : false,
     cssMap      : require( './tableCell.css' )

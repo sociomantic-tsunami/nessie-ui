@@ -1,12 +1,14 @@
+@import "../proto/definitions/_colors.css";
+
 .default
 {
-    width:       100%;
-    margin-left: 0;
+
 }
 
 .sticky
 {
     position:    sticky;
     top:         0;
+    background:  var( --PC-WHITE );
     z-index:     2;
 }
