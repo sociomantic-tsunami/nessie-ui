@@ -33,7 +33,6 @@ const Table = ( {
     gutters,
     onToggle,
     values,
-    isDataTable,
     isZebra,
     hasStickyHeader,
     verticalAlign,
@@ -105,8 +104,7 @@ const Table = ( {
                 } ),
                 className : row.props.className ?
                     `${row.props.className}  ${cssMap.row}` : cssMap.row,
-                gutters : isDataTable ?
-                    'S' : gutters || row.props.gutters,
+                gutters       : gutters || row.props.gutters,
                 verticalAlign : verticalAlign || row.props.verticalAlign,
             } );
     } );
@@ -129,7 +127,7 @@ Table.propTypes =
     /**
      *  Text alignment inside cells
      */
-    align   : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    align    : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */
@@ -168,7 +166,7 @@ Table.propTypes =
     /**
      *  Vertical alignment inside cells
      */
-    verticalAlign   : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
+    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =
