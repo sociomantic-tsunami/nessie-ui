@@ -1026,8 +1026,6 @@ legend.label__default__1KHiG + *
     padding:            2rem;
 
     background-color:   #ffffff;
-
-    z-index:            100;
 }
 
 .tooltip__tooltip__hehe5::before
@@ -12457,22 +12455,65 @@ only used in type__carousel for now
     {
         margin-bottom:  0;
     }
-
-.scrollBox__default__GWy-0
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
 {
-    overflow: auto;
-}
+    /* primary colors */
 
-.scrollBox__scroll__horizontal__2cDkN
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.scrollBox__default__GWy-0 .scrollBox__scrollBox__2UBiX
+    {
+        overflow: auto;
+    }
+.scrollBox__scroll__horizontal__2cDkN .scrollBox__scrollBox__2UBiX
+    {
+        overflow-y: hidden;
+    }
+.scrollBox__scroll__vertical__2Fmp3 .scrollBox__scrollBox__2UBiX
+    {
+        overflow-x: hidden;
+    }
+.scrollBox__content__tGMBF
 {
-    overflow-y: hidden;
-}
 
-.scrollBox__scroll__vertical__2Fmp3
+}
+.scrollBox__icon__down__29U1k, .scrollBox__icon__left__1Wpwq, .scrollBox__icon__right__2qnyF, .scrollBox__icon__up__mnKCx
 {
-    overflow-x: hidden;
+    position:         absolute;
+    z-index:          10;
+    background-color: #ffffff;
+    border-radius:    2rem;
+    opacity:          0.8;
 }
-
+.scrollBox__icon__down__29U1k svg, .scrollBox__icon__left__1Wpwq svg, .scrollBox__icon__right__2qnyF svg, .scrollBox__icon__up__mnKCx svg
+    {
+        fill:         #289bc8;
+    }
+.scrollBox__icon__down__29U1k
+{
+    bottom: 1rem;
+    left:   calc(50% - 1.6rem);
+}
+.scrollBox__icon__left__1Wpwq
+{
+    top:    calc(50% - 1.6rem);
+    left:   1rem;
+}
+.scrollBox__icon__right__2qnyF
+{
+    top:    calc(50% - 1.6rem);
+    right:  1rem;
+}
+.scrollBox__icon__up__mnKCx
+{
+    top:    1rem;
+    left:   calc(50% - 1.6rem);
+}
 .scrollBox__content__tGMBF
 {
 

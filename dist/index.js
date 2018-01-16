@@ -548,7 +548,7 @@ var _IconWithTooltip2 = __webpack_require__(16);
 
 var _IconWithTooltip3 = _interopRequireDefault(_IconWithTooltip2);
 
-var _IconButton2 = __webpack_require__(8);
+var _IconButton2 = __webpack_require__(7);
 
 var _IconButton3 = _interopRequireDefault(_IconButton2);
 
@@ -835,157 +835,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _utils = __webpack_require__(4);
-
-var _inputContainer = __webpack_require__(198);
-
-var _inputContainer2 = _interopRequireDefault(_inputContainer);
-
-var _Label = __webpack_require__(13);
-
-var _Label2 = _interopRequireDefault(_Label);
-
-var _IconWithTooltip = __webpack_require__(16);
-
-var _IconWithTooltip2 = _interopRequireDefault(_IconWithTooltip);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var InputContainer = function InputContainer(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      cssMap = _ref.cssMap,
-      errorMessage = _ref.errorMessage,
-      errorMessageIsVisible = _ref.errorMessageIsVisible,
-      errorMessagePosition = _ref.errorMessagePosition,
-      hasError = _ref.hasError,
-      id = _ref.id,
-      isDisabled = _ref.isDisabled,
-      label = _ref.label,
-      labelPosition = _ref.labelPosition,
-      onMouseOut = _ref.onMouseOut,
-      onMouseOver = _ref.onMouseOver;
-  return _react2.default.createElement(
-    'div',
-    {
-      className: (0, _utils.buildClassName)(className, cssMap, {
-        labelPosition: label && labelPosition
-      }) },
-    label && _react2.default.createElement(
-      _Label2.default,
-      {
-        overflowIsHidden: typeof label === 'string',
-        className: cssMap.label,
-        htmlFor: id,
-        role: labelPosition === 'top' ? 'header' : 'default',
-        onMouseOver: onMouseOver,
-        onMouseOut: onMouseOut },
-      label
-    ),
-    _react2.default.createElement(
-      _IconWithTooltip2.default,
-      {
-        className: cssMap.container,
-        iconType: 'error',
-        iconPosition: 'topRight',
-        message: errorMessage,
-        tooltipIsVisible: errorMessageIsVisible,
-        tooltipPosition: errorMessagePosition,
-        iconIsVisible: !isDisabled && !!errorMessage && hasError,
-        onMouseOver: onMouseOver,
-        onMouseOut: onMouseOut },
-      children
-    )
-  );
-};
-
-InputContainer.propTypes = {
-  /**
-   *  Extra CSS class name
-   */
-  className: _propTypes2.default.string,
-  /**
-   *  CSS class map
-   */
-  cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
-  /**
-   *  Error tooltip message to show
-   */
-  errorMessage: _propTypes2.default.string,
-  /**
-   *  Whether error tooltip is shown
-   */
-  errorMessageIsVisible: _propTypes2.default.bool,
-  /**
-   *  Position of error tooltip relative to error icon
-   */
-  errorMessagePosition: _propTypes2.default.oneOf(['top', 'topRight']),
-  /**
-   *  Whether error icon is shown
-   */
-  hasError: _propTypes2.default.bool,
-  /**
-   *  id of the associated input
-   */
-  id: _propTypes2.default.string,
-  /**
-   *  Display as disabled
-   */
-  isDisabled: _propTypes2.default.bool,
-  /**
-   *  Input label text
-   */
-  label: _propTypes2.default.node,
-  /**
-   *  Label position relative to the input
-   */
-  labelPosition: _propTypes2.default.oneOf(['top', 'left', 'right']),
-  /**
-   *  Mouse over callback function
-   */
-  onMouseOut: _propTypes2.default.func,
-  /**
-   *  Mouse out callback function
-   */
-  onMouseOver: _propTypes2.default.func
-};
-
-InputContainer.defaultProps = {
-  className: undefined,
-  cssMap: _inputContainer2.default,
-  errorMessage: undefined,
-  errorMessageIsVisible: false,
-  errorMessagePosition: 'top',
-  hasError: false,
-  id: undefined,
-  isDisabled: false,
-  label: undefined,
-  labelPosition: 'top',
-  onMouseOut: undefined,
-  onMouseOver: undefined
-};
-
-exports.default = InputContainer;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -1162,6 +1011,157 @@ IconButton.defaultProps = {
   cssMap: __webpack_require__(146)
 };
 exports.default = IconButton;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _utils = __webpack_require__(4);
+
+var _inputContainer = __webpack_require__(198);
+
+var _inputContainer2 = _interopRequireDefault(_inputContainer);
+
+var _Label = __webpack_require__(13);
+
+var _Label2 = _interopRequireDefault(_Label);
+
+var _IconWithTooltip = __webpack_require__(16);
+
+var _IconWithTooltip2 = _interopRequireDefault(_IconWithTooltip);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var InputContainer = function InputContainer(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      cssMap = _ref.cssMap,
+      errorMessage = _ref.errorMessage,
+      errorMessageIsVisible = _ref.errorMessageIsVisible,
+      errorMessagePosition = _ref.errorMessagePosition,
+      hasError = _ref.hasError,
+      id = _ref.id,
+      isDisabled = _ref.isDisabled,
+      label = _ref.label,
+      labelPosition = _ref.labelPosition,
+      onMouseOut = _ref.onMouseOut,
+      onMouseOver = _ref.onMouseOver;
+  return _react2.default.createElement(
+    'div',
+    {
+      className: (0, _utils.buildClassName)(className, cssMap, {
+        labelPosition: label && labelPosition
+      }) },
+    label && _react2.default.createElement(
+      _Label2.default,
+      {
+        overflowIsHidden: typeof label === 'string',
+        className: cssMap.label,
+        htmlFor: id,
+        role: labelPosition === 'top' ? 'header' : 'default',
+        onMouseOver: onMouseOver,
+        onMouseOut: onMouseOut },
+      label
+    ),
+    _react2.default.createElement(
+      _IconWithTooltip2.default,
+      {
+        className: cssMap.container,
+        iconType: 'error',
+        iconPosition: 'topRight',
+        message: errorMessage,
+        tooltipIsVisible: errorMessageIsVisible,
+        tooltipPosition: errorMessagePosition,
+        iconIsVisible: !isDisabled && !!errorMessage && hasError,
+        onMouseOver: onMouseOver,
+        onMouseOut: onMouseOut },
+      children
+    )
+  );
+};
+
+InputContainer.propTypes = {
+  /**
+   *  Extra CSS class name
+   */
+  className: _propTypes2.default.string,
+  /**
+   *  CSS class map
+   */
+  cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
+  /**
+   *  Error tooltip message to show
+   */
+  errorMessage: _propTypes2.default.string,
+  /**
+   *  Whether error tooltip is shown
+   */
+  errorMessageIsVisible: _propTypes2.default.bool,
+  /**
+   *  Position of error tooltip relative to error icon
+   */
+  errorMessagePosition: _propTypes2.default.oneOf(['top', 'topRight']),
+  /**
+   *  Whether error icon is shown
+   */
+  hasError: _propTypes2.default.bool,
+  /**
+   *  id of the associated input
+   */
+  id: _propTypes2.default.string,
+  /**
+   *  Display as disabled
+   */
+  isDisabled: _propTypes2.default.bool,
+  /**
+   *  Input label text
+   */
+  label: _propTypes2.default.node,
+  /**
+   *  Label position relative to the input
+   */
+  labelPosition: _propTypes2.default.oneOf(['top', 'left', 'right']),
+  /**
+   *  Mouse over callback function
+   */
+  onMouseOut: _propTypes2.default.func,
+  /**
+   *  Mouse out callback function
+   */
+  onMouseOver: _propTypes2.default.func
+};
+
+InputContainer.defaultProps = {
+  className: undefined,
+  cssMap: _inputContainer2.default,
+  errorMessage: undefined,
+  errorMessageIsVisible: false,
+  errorMessagePosition: 'top',
+  hasError: false,
+  id: undefined,
+  isDisabled: false,
+  label: undefined,
+  labelPosition: 'top',
+  onMouseOut: undefined,
+  onMouseOver: undefined
+};
+
+exports.default = InputContainer;
 
 /***/ }),
 /* 9 */,
@@ -15225,7 +15225,7 @@ var _InputField = __webpack_require__(12);
 
 var _InputField2 = _interopRequireDefault(_InputField);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -16145,7 +16145,7 @@ var _Radio = __webpack_require__(28);
 
 var _Radio2 = _interopRequireDefault(_Radio);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -17982,7 +17982,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -20661,7 +20661,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -21841,7 +21841,7 @@ var _InputField = __webpack_require__(12);
 
 var _InputField2 = _interopRequireDefault(_InputField);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -22297,7 +22297,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -22934,7 +22934,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -23627,7 +23627,7 @@ var _Text = __webpack_require__(5);
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -24055,7 +24055,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -24781,7 +24781,7 @@ exports.default = RadioGroup;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -24800,69 +24800,144 @@ var _scrollBox2 = _interopRequireDefault(_scrollBox);
 
 var _utils2 = __webpack_require__(235);
 
+var _IconButton = __webpack_require__(7);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ScrollBox = function ScrollBox(_ref) {
-    var cssMap = _ref.cssMap,
-        children = _ref.children,
-        className = _ref.className,
-        contentWidth = _ref.contentWidth,
-        height = _ref.height,
-        onScroll = _ref.onScroll,
-        scroll = _ref.scroll,
-        scrollBoxRef = _ref.scrollBoxRef;
-    return _react2.default.createElement(
+  var cssMap = _ref.cssMap,
+      children = _ref.children,
+      className = _ref.className,
+      contentWidth = _ref.contentWidth,
+      height = _ref.height,
+      onClickScrollDown = _ref.onClickScrollDown,
+      onClickScrollLeft = _ref.onClickScrollLeft,
+      onClickScrollRight = _ref.onClickScrollRight,
+      onClickScrollUp = _ref.onClickScrollUp,
+      onScroll = _ref.onScroll,
+      scroll = _ref.scroll,
+      scrollBoxRef = _ref.scrollBoxRef,
+      scrollDownIsVisible = _ref.scrollDownIsVisible,
+      scrollLeftIsVisible = _ref.scrollLeftIsVisible,
+      scrollRightIsVisible = _ref.scrollRightIsVisible,
+      scrollUpIsVisible = _ref.scrollUpIsVisible;
+  return _react2.default.createElement(
+    'div',
+    { className: (0, _utils.buildClassName)(className, cssMap, { scroll: scroll }) },
+    scrollDownIsVisible && _react2.default.createElement(_IconButton2.default, {
+      className: cssMap.icon__down,
+      iconType: 'down',
+      iconSize: 'L',
+      onClick: onClickScrollDown }),
+    scrollLeftIsVisible && _react2.default.createElement(_IconButton2.default, {
+      className: cssMap.icon__left,
+      iconType: 'left',
+      iconSize: 'L',
+      onClick: onClickScrollLeft }),
+    scrollRightIsVisible && _react2.default.createElement(_IconButton2.default, {
+      className: cssMap.icon__right,
+      iconType: 'right',
+      iconSize: 'L',
+      onClick: onClickScrollRight }),
+    scrollUpIsVisible && _react2.default.createElement(_IconButton2.default, {
+      className: cssMap.icon__up,
+      iconType: 'up',
+      iconSize: 'L',
+      onClick: onClickScrollUp }),
+    _react2.default.createElement(
+      'div',
+      {
+        className: cssMap.scrollBox,
+        onScroll: (0, _utils2.createScrollHandler)(onScroll, scroll),
+        ref: scrollBoxRef,
+        style: { maxHeight: height ? '' + height : null } },
+      _react2.default.createElement(
         'div',
         {
-            className: (0, _utils.buildClassName)(className, cssMap, { scroll: scroll }),
-            onScroll: (0, _utils2.createScrollHandler)(onScroll),
-            ref: scrollBoxRef,
-            style: { maxHeight: height ? '' + height : null } },
-        _react2.default.createElement(
-            'div',
-            {
-                className: cssMap.content,
-                style: { width: contentWidth } },
-            children
-        )
-    );
+          className: cssMap.content,
+          style: { width: contentWidth } },
+        children
+      )
+    )
+  );
 };
 
 ScrollBox.propTypes = {
-    /**
-     *  ScrollBox content
-     */
-    children: _propTypes2.default.node,
-    /**
-     *  ScrollBox content width
-     */
-    contentWidth: _propTypes2.default.string,
-    /**
-     *  ScrollBox height
-     */
-    height: _propTypes2.default.string,
-    /**
-     *  on scroll callback function
-     */
-    onScroll: _propTypes2.default.func,
-    /**
-     *  Scroll direction
-     */
-    scroll: _propTypes2.default.oneOf(['horizontal', 'vertical', 'both']),
-    /**
-     *  Callback that receives scrollable div: ( ref ) => { ... }
-     */
-    scrollBoxRef: _propTypes2.default.func
-
+  /**
+   *  ScrollBox content
+   */
+  children: _propTypes2.default.node,
+  /**
+   *  ScrollBox content width, any CSS length string
+   */
+  contentWidth: _propTypes2.default.string,
+  /**
+   *  ScrollBox height, any CSS length string
+   */
+  height: _propTypes2.default.string,
+  /**
+   *  on click scroll down icon callback function
+   */
+  onClickScrollDown: _propTypes2.default.func,
+  /**
+   *  on click scroll left icon callback function
+   */
+  onClickScrollLeft: _propTypes2.default.func,
+  /**
+   *  on click scroll right icon callback function
+   */
+  onClickScrollRight: _propTypes2.default.func,
+  /**
+   *  on click scroll up icon callback function
+   */
+  onClickScrollUp: _propTypes2.default.func,
+  /**
+   *  on scroll callback function
+   */
+  onScroll: _propTypes2.default.func,
+  /**
+   *  Scroll direction
+   */
+  scroll: _propTypes2.default.oneOf(['horizontal', 'vertical', 'both']),
+  /**
+   * Callback ref: ( ref ) => { ... }
+   */
+  scrollBoxRef: _propTypes2.default.func,
+  /**
+   *  Display Scroll left icon
+   */
+  scrollLeftIsVisible: _propTypes2.default.bool,
+  /**
+   *  Display Scroll right icon
+   */
+  scrollRightIsVisible: _propTypes2.default.bool,
+  /**
+   *  Display Scroll up icon
+   */
+  scrollUpIsVisible: _propTypes2.default.bool,
+  /**
+   *  Display Scroll down icon
+   */
+  scrollDownIsVisible: _propTypes2.default.bool
 };
 
 ScrollBox.defaultProps = {
-    children: undefined,
-    cssMap: _scrollBox2.default,
-    height: undefined,
-    onScroll: undefined,
-    scroll: 'both',
-    scrollBoxRef: undefined
+  children: undefined,
+  cssMap: _scrollBox2.default,
+  height: undefined,
+  onClickScrollDown: undefined,
+  onClickScrollLeft: undefined,
+  onClickScrollRight: undefined,
+  onClickScrollUp: undefined,
+  onScroll: undefined,
+  scroll: 'both',
+  scrollBoxRef: undefined,
+  scrollDownIsVisible: false,
+  scrollLeftIsVisible: false,
+  scrollRightIsVisible: false,
+  scrollUpIsVisible: false
 };
 
 exports.default = ScrollBox;
@@ -25675,7 +25750,6 @@ var Table = function Table(_ref) {
         gutters = _ref.gutters,
         onToggle = _ref.onToggle,
         values = _ref.values,
-        isDataTable = _ref.isDataTable,
         isZebra = _ref.isZebra,
         hasStickyHeader = _ref.hasStickyHeader,
         verticalAlign = _ref.verticalAlign;
@@ -25738,7 +25812,7 @@ var Table = function Table(_ref) {
                 return cell;
             }),
             className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row,
-            gutters: isDataTable ? 'S' : gutters || row.props.gutters,
+            gutters: gutters || row.props.gutters,
             verticalAlign: verticalAlign || row.props.verticalAlign
         });
     });
@@ -25982,7 +26056,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -26230,7 +26304,7 @@ var _InputField = __webpack_require__(12);
 
 var _InputField2 = _interopRequireDefault(_InputField);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -26425,7 +26499,7 @@ var _InputField = __webpack_require__(12);
 
 var _InputField2 = _interopRequireDefault(_InputField);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -26616,7 +26690,7 @@ var _Component2 = __webpack_require__(3);
 
 var _Component3 = _interopRequireDefault(_Component2);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -26954,7 +27028,7 @@ var _Spinner = __webpack_require__(17);
 
 var _Spinner2 = _interopRequireDefault(_Spinner);
 
-var _IconButton = __webpack_require__(8);
+var _IconButton = __webpack_require__(7);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -27232,7 +27306,7 @@ var _Component2 = __webpack_require__(3);
 
 var _Component3 = _interopRequireDefault(_Component2);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -27517,7 +27591,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _InputContainer = __webpack_require__(7);
+var _InputContainer = __webpack_require__(8);
 
 var _InputContainer2 = _interopRequireDefault(_InputContainer);
 
@@ -27961,7 +28035,7 @@ module.exports = {"default":"row__default","hasMinHeight":"row__hasMinHeight","a
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"scrollBox__default","scroll__horizontal":"scrollBox__scroll__horizontal","scroll__vertical":"scrollBox__scroll__vertical","content":"scrollBox__content"};
+module.exports = {"default":"scrollBox__default","scrollBox":"scrollBox__scrollBox","scroll__horizontal":"scrollBox__scroll__horizontal","scroll__vertical":"scrollBox__scroll__vertical","content":"scrollBox__content","icon__down":"scrollBox__icon__down","icon__left":"scrollBox__icon__left","icon__right":"scrollBox__icon__right","icon__up":"scrollBox__icon__up"};
 
 /***/ }),
 /* 175 */
@@ -36000,19 +36074,42 @@ Object.defineProperty(exports, "__esModule", {
  * Higher-order function that adds scroll percentage as second argument
  *
  * @param   {Function}  func    scroll handler function
+ * @param   {String}  dir     scroll direction
  *
  * @return  {Function}
  *
  */
-function createScrollHandler(func) {
+function createScrollHandler(func, dir) {
     return func && function (e) {
-        var _e$target = e.target,
-            clientHeight = _e$target.clientHeight,
-            scrollHeight = _e$target.scrollHeight,
-            scrollTop = _e$target.scrollTop;
+        var scroll = dir === 'both' ? [getScroll(e.target, 'horizontal'), getScroll(e.target, 'vertical')] : getScroll(e.target, dir);
 
-        func(e, scrollTop / (scrollHeight - clientHeight));
+        func(e, scroll);
     };
+}
+
+/**
+ * ## getScroll
+ * Calculates the scroll percentage of an element in a given direction
+ *
+ * @param   {Function}  el  scrollable element
+ * @param   {String}  dir scroll direction
+ *
+ * @return  {Number}
+ *
+ */
+function getScroll(el, dir) {
+    var scrollPos = void 0;
+    var scrollLength = void 0;
+
+    if (dir === 'horizontal') {
+        scrollPos = el.scrollLeft;
+        scrollLength = el.scrollWidth - el.clientWidth;
+    } else {
+        scrollPos = el.scrollTop;
+        scrollLength = el.scrollHeight - el.clientHeight;
+    }
+
+    return scrollLength ? scrollPos / scrollLength : 0;
 }
 
 exports.createScrollHandler = createScrollHandler;

@@ -1026,8 +1026,6 @@ legend.label__default + *
     padding:            2rem;
 
     background-color:   #ffffff;
-
-    z-index:            100;
 }
 
 .tooltip__tooltip::before
@@ -12457,22 +12455,65 @@ only used in type__carousel for now
     {
         margin-bottom:  0;
     }
-
-.scrollBox__default
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
 {
-    overflow: auto;
-}
+    /* primary colors */
 
-.scrollBox__scroll__horizontal
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.scrollBox__default .scrollBox__scrollBox
+    {
+        overflow: auto;
+    }
+.scrollBox__scroll__horizontal .scrollBox__scrollBox
+    {
+        overflow-y: hidden;
+    }
+.scrollBox__scroll__vertical .scrollBox__scrollBox
+    {
+        overflow-x: hidden;
+    }
+.scrollBox__content
 {
-    overflow-y: hidden;
-}
 
-.scrollBox__scroll__vertical
+}
+.scrollBox__icon__down, .scrollBox__icon__left, .scrollBox__icon__right, .scrollBox__icon__up
 {
-    overflow-x: hidden;
+    position:         absolute;
+    z-index:          10;
+    background-color: #ffffff;
+    border-radius:    2rem;
+    opacity:          0.8;
 }
-
+.scrollBox__icon__down svg, .scrollBox__icon__left svg, .scrollBox__icon__right svg, .scrollBox__icon__up svg
+    {
+        fill:         #289bc8;
+    }
+.scrollBox__icon__down
+{
+    bottom: 1rem;
+    left:   calc(50% - 1.6rem);
+}
+.scrollBox__icon__left
+{
+    top:    calc(50% - 1.6rem);
+    left:   1rem;
+}
+.scrollBox__icon__right
+{
+    top:    calc(50% - 1.6rem);
+    right:  1rem;
+}
+.scrollBox__icon__up
+{
+    top:    1rem;
+    left:   calc(50% - 1.6rem);
+}
 .scrollBox__content
 {
 
