@@ -47,7 +47,7 @@ const ScrollBox = ( {
             onClick = { onClickScrollUp } /> }
         <div
             className = { cssMap.scrollBox }
-            onScroll  = { createScrollHandler( onScroll ) }
+            onScroll  = { createScrollHandler( onScroll, scroll ) }
             ref       = { scrollBoxRef }
             style     = { { maxHeight: height ? `${height}` : null } }>
             <div
