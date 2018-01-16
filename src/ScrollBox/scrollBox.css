@@ -37,7 +37,7 @@
 .icon__up
 {
     position:         absolute;
-    z-index:          99;
+    z-index:          10;
     background-color: var( --PC-WHITE );
     border-radius:    2rem;
     opacity:          0.8;
