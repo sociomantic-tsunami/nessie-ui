@@ -52,8 +52,7 @@ const ScrollBox = ( {
             style     = { { maxHeight: height ? `${height}` : null } }>
             <div
                 className = { cssMap.content }
-                style =
-                    { { width: contentWidth ? `${contentWidth}%` : null  } }>
+                style     = { { width: contentWidth } }>
                 { children }
             </div>
         </div>
@@ -66,11 +65,11 @@ ScrollBox.propTypes =
      */
     children           : PropTypes.node,
     /**
-     *  ScrollBox content width, , specified in rem %
+     *  ScrollBox content width, any CSS length string
      */
-    contentWidth       : PropTypes.number,
+    contentWidth       : PropTypes.string,
     /**
-     *  ScrollBox height
+     *  ScrollBox height, any CSS length string
      */
     height             : PropTypes.string,
     /**
