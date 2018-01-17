@@ -7,12 +7,14 @@ const H2 = ( {
     cssMap,
     className,
     children,
+    spacing,
     role,
     title } ) =>
 
         <Css
             cssMap   = { cssMap }
-            cssProps = { { role } }>
+            cssProps = { { role,
+                spacing : spacing } }>
             <h2 className = { className }>
                 { children || title }
             </h2>
@@ -32,13 +34,22 @@ H2.propTypes =
         'subtle',
         'promoted',
         'critical'
+    ] ),
+    /**
+     *  Height of the H1 margin-bottom
+     */
+    spacing : PropTypes.oneOf( [
+        'S',
+        'M',
+        'L'
     ] )
 };
 
 H2.defaultProps =
 {
-    role   : 'default',
-    cssMap : require( './h2.css' )
+    role       : 'default',
+    spacing    : 'L',
+    cssMap     : require( './h2.css' )
 };
 
 

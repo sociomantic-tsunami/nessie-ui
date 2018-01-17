@@ -1,10 +1,11 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_fonts.css";
+@import "../proto/global.css";
 
 .default
 {
     display:        block;
-    margin-bottom:  1rem;
+    margin-bottom:  var( --spacing-xs );
 
     width:          auto;
 

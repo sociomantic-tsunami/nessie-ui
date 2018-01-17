@@ -57,8 +57,8 @@
 
     @extend %Nessie-Bold;
 
-    font-size:      1.2rem;
-    line-height:    1.6rem;
+    font-size:      var( --typo-m );
+    line-height:    var( --line-height-m );
     letter-spacing: 0.02rem;
 
     text-align:     center;

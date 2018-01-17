@@ -13,7 +13,7 @@
 
     border-bottom:      0.2rem solid var( --PC-BLUE );
 
-    margin-bottom:		2rem;
+    margin-bottom:		var( --spacing-s );
 
     /*overflow-y:         hidden;*/
 }

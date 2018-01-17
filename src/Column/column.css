@@ -1,3 +1,5 @@
+@import "../proto/global.css";
+
 $shark: 768px;
 
 .default
@@ -8,7 +10,7 @@ $shark: 768px;
     justify-content:    flex-start;
     align-items:        stretch;
 
-    box-sizing: border-box;
+    box-sizing:         border-box;
 
     max-width:          100%;
     min-width:          0;
@@ -51,7 +53,7 @@ $shark: 768px;
 
     & > *
     {
-        margin-bottom:  2rem;
+        margin-bottom:  var( --spacing-s );
 
         &:last-child
         {

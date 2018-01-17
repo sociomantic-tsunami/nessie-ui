@@ -37,7 +37,7 @@ $overlayShift:          -0.8rem;
 
     height:                 $overlaySize;
     min-height:             8rem;
-    width:                  calc( 100% - 2rem );;
+    width:                  calc( 100% - 2rem );
 
     z-index:                999;
 

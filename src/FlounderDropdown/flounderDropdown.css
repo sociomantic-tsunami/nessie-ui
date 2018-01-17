@@ -6,12 +6,10 @@
 {
     /* from base.css */
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  var( --spacing-s );
 
     box-sizing:     border-box;
     width:          100%;
-
-    word-break:     normal;
 
     &:last-child
     {
@@ -103,8 +101,8 @@
 
         /* reset font */
         @extend %Nessie-Regular;
-        font-size:      1.2rem;
-        line-height:    1.6rem;
+        font-size:      var( --typo-m );
+        line-height:    var( --line-height-m );
         text-transform: none;
     }
 

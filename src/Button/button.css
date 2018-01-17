@@ -1,6 +1,7 @@
 @import "../proto/definitions/_colors.css";
 @import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
+@import "../proto/global.css";
 
 .default
 {
@@ -34,8 +35,8 @@
 {
     @extend %Nessie-SemiBold;
 
-    font-size:          1.2rem;
-    line-height:        1.2rem;
+    font-size:          var( --typo-m );
+    line-height:        var( --line-height-m );
     letter-spacing:     0.04rem;
 
     margin-top:         0.1rem;

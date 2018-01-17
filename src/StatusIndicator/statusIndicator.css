@@ -15,8 +15,8 @@
 
     @extend %Nessie-SemiBold;
 
-    font-size:          1.2rem;
-    line-height:        1.6rem;
+    font-size:          var( --typo-m );
+    line-height:        var( --line-height-m );
     letter-spacing:     0.04rem;
 
     text-transform:     uppercase;

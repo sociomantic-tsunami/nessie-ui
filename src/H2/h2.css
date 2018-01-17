@@ -1,6 +1,7 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 @import "../proto/definitions/_fonts.css";
+@import "../proto/global.css";
 
 .default
 {
@@ -8,7 +9,6 @@
 	top: 			0.5rem;
 
 	margin-top: 	-0.6rem;
-    margin-bottom:  4rem;
 
     @extend %Nessie-Bold;
 
@@ -37,4 +37,19 @@
 .role__critical
 {
 	color:	var( --PC-RED );
+}
+
+.spacing__S
+{
+    margin-bottom: var( --spacing-xs );
+}
+
+.spacing__M
+{
+    margin-bottom: var( --spacing-m );
+}
+
+.spacing__L
+{
+    margin-bottom: var( --spacing-xxl );
 }

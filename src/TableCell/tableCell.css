@@ -10,8 +10,6 @@ $shark: 768px;
     /* background-color:     var( --PC-WHITE ); */
     /*flex-direction: row;*/
 
-    background:         var( --PC-WHITE );
-
     &::before
     {
         content:        attr( data-column-title );
@@ -24,8 +22,8 @@ $shark: 768px;
         top:            0.5rem;
         margin-top:     -0.8rem;
 
-        font-size:      1.2rem;
-        line-height:    1.6rem;
+        font-size:      var( --typo-m );
+        line-height:    var( --line-height-m );
 
         overflow:       hidden;
         text-overflow:  ellipsis;
@@ -72,7 +70,8 @@ $shark: 768px;
 
 .sticky
 {
-    position:    sticky;
-    left:        0;
-    z-index:     1;
+    position:   sticky;
+    left:       0;
+    background: var( --PC-WHITE );
+    z-index:    1;
 }
