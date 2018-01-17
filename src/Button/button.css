@@ -14,7 +14,6 @@
     cursor:             pointer;
     text-transform:     uppercase;
     border-radius:      0;
-    box-shadow:         0 0.1rem 0.2rem 0 var( --GS-5 );
 }
 
 
@@ -24,43 +23,66 @@
      * on button so we need to set it here
      */
     display:            flex;
-    flex-direction:     row;
-    justify-content:    flex-start;
-    align-items:        stretch;
 
-    box-sizing:         border-box;
-    min-width:          8rem;
+    align-items:        center;
+    text-align:         center;
+
+    min-width:          9rem;
     height:             3.2rem; /************ replace with min-, or remove? */
-
-    border:             0.1rem solid transparent;
 }
-
 
 .label
 {
-    flex:               1 0 auto;
-
-    box-sizing:         border-box;
-    max-width:          100%;
-
-    /* adjust for font baseline */
-    padding-top:        0.7rem;
-    padding-bottom:     0.4rem;
-    /* +1px here with the border endlich */
-    padding-left:       1.4rem;
-    padding-right:      1.4rem;
-
     @extend %Nessie-SemiBold;
 
     font-size:          var( --typo-m );
     line-height:        var( --line-height-m );
     letter-spacing:     0.04rem;
 
+    margin-top:         0.1rem;
+
+    padding-left:       1.6rem;
+    padding-right:      1.6rem;
+
     overflow:           hidden;
     text-overflow:      ellipsis;
     white-space:        nowrap;
 }
 
+
+
+.iconPosition__right
+{
+    .content
+    {
+        flex-direction: row-reverse;
+    }
+
+    .iconContainer
+    {
+        padding-right:      0.8rem;
+        padding-left:       0.4rem;
+    }
+
+    .iconContainer + .label
+    {
+        padding-right: 0rem;
+    }
+}
+
+.iconPosition__left
+{
+    .iconContainer
+    {
+        padding-right:      0.4rem;
+        padding-left:       0.8rem;
+    }
+
+    .iconContainer + .label
+    {
+        padding-left: 0rem;
+    }
+}
 
 .role__default
 {
@@ -70,7 +92,7 @@
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --PC-BLUE ) shade( 13% ) );
+        background: color( var( --PC-BLUE ) shade( 15% ) );
         color:      var( --PC-WHITE );
     }
 
@@ -83,59 +105,59 @@
 
 .role__promoted
 {
-    background: var( --AC-12 );
+    background: var( --PC-GREEN );
     color:      var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --AC-12 ) shade( 13% ) );
+        background: color( var( --PC-GREEN ) shade( 15% ) );
         color:      var( --PC-WHITE );
     }
 
     &:active
     {
-        background: var( --AC-12 );
+        background: var( --PC-GREEN );
     }
 }
 
 
 .role__critical
 {
-    background: var( --AC-2 );
+    background: var( --PC-RED );
     color:      var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --AC-2 ) shade( 13% ) );
+        background: color( var( --PC-RED ) shade( 15% ) );
         color:      var( --PC-WHITE );
     }
 
     &:active
     {
-        background: var( --AC-2 );
+        background: var( --PC-RED );
     }
 }
 
 
 .role__subtle
 {
-    color:      var( --PC-GREY );
+    color:      var( --GS-5 );
     background: var( --PC-WHITE );
 
     .content
     {
-        border-color:   var( --PC-GREY );
+        border-color:   var( --GS-5 );
     }
 
     .iconContainer
     {
-        fill:           var( --PC-GREY );
+        fill:           var( --GS-5 );
 
         &:after
         {
-            background-color: var( --PC-GREY );
+            background-color: var( --GS-5 );
         }
     }
 
@@ -143,15 +165,15 @@
     {
         .icon
         {
-            fill:                       var( --PC-GREY );
-            color:                      var( --PC-GREY );
+            fill:                       var( --GS-5 );
+            color:                      var( --GS-5 );
         }
     }
 
     &:not(.loading):matches(.fakeHovered,:hover)
     {
         color:                      var( --PC-WHITE );
-        background:                 var( --PC-GREY );
+        background:                 var( --GS-5 );
 
         .iconContainer:after
         {
@@ -161,18 +183,18 @@
 
     &:active
     {
-        background-color:       color( var( --PC-GREY ) tint( 13% ) );
+        background-color:       color( var( --GS-5 ) tint( 15% ) );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY ) a( 25% ) );
+            border-color:           color( var( --GS-5 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --PC-GREY );
+                border-top-color:   var( --GS-5 );
             }
         }
     }
@@ -182,43 +204,6 @@
 .role__control
 {
     color:                      var( --GS-1 );
-    box-shadow:                 none;
-
-    .content
-    {
-        min-width:              0;
-        height:                 auto;
-        border-width:           0;
-    }
-
-    .label
-    {
-        @extend %Nessie-Bold;
-        padding:                0;
-        text-transform:         none;
-    }
-
-    .iconContainer
-    {
-        border-width:           0;
-        padding:                0;
-        margin-top:             -0.2rem;
-
-        &:after
-        {
-            display:            none
-        }
-    }
-
-    &.iconPosition__right .iconContainer + .label
-    {
-        padding-right:          0.5rem;
-    }
-
-    &.iconPosition__left .iconContainer + .label
-    {
-        padding-left:           0.5rem;
-    }
 
     &.fakeHovered,
     &:hover
@@ -241,50 +226,13 @@
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY ) a( 25% ) );
+            border-color:           color( var( --GS-5 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --PC-GREY );
+                border-top-color:   var( --GS-5 );
             }
         }
-    }
-}
-
-
-.size__S
-{
-
-    .iconContainer
-    {
-        padding:    0 0.8rem 0 0.6rem;
-    }
-
-    &.iconPosition__right .iconContainer
-    {
-        padding-right:      0.5rem;
-        padding-left:       0.7rem;
-    }
-
-
-    .content
-    {
-        min-width:          5rem;
-        min-height:         2.6rem;
-    }
-
-    .label
-    {
-        padding-top:        0.5rem;
-        padding-bottom:     0.5rem;
-
-        padding-left:       1.4rem;
-        padding-right:      1.4rem;
-
-
-        font-size:          var( --typo-m );
-        line-height:        var( --line-height-m );
-        letter-spacing:     0.04rem;
     }
 }
 
@@ -309,23 +257,16 @@
 
 .disabled
 {
-    background:     var( --GS-7 );
-    color:          var( --PC-WHITE );
+    background:     color( var( --PC-BLUE ) tint( 70% ) );
+    color:          color( var( --PC-BLUE ) tint( 25% ) );
+
+    .icon
+    {
+        fill:   color( var( --PC-BLUE ) tint( 25% ) );
+        color:  color( var( --PC-BLUE ) tint( 25% ) );
+    }
 
     box-shadow:     none;
-
-    &.role__subtle
-    {
-        .content
-        {
-            border-color:       transparent;
-        }
-
-        .iconContainer:after
-        {
-            background-color:   var( --PC-WHITE );
-        }
-    }
 
     &.fakeHovered,
     &:hover,
@@ -349,70 +290,31 @@
             background:      var( --GS-7 ) !important;
         }
     }
-}
 
-
-.iconPosition__left:not(.role__control)
-{
-    .iconContainer
+    &.role__promoted
     {
-        margin-right:       1px;
-    }
-}
+        background:     color( var( --PC-GREEN ) tint( 70% ) );
+        color:          color( var( --PC-GREEN ) tint( 25% ) );
 
-
-
-.iconPosition__right
-{
-    .content
-    {
-        flex-direction: row-reverse;
-    }
-
-    &:not(.role__control) .iconContainer
-    {
-        margin-left:        1px;
-        padding-left:       1.2rem;
-        padding-right:      1rem;
-
-        &:after
+        .icon
         {
-            right:          auto;
-            left:           -1px;
+            fill:   color( var( --PC-GREEN ) tint( 25% ) );
+            color:  color( var( --PC-GREEN ) tint( 25% ) );
+        }
+    }
+
+    &.role__critical
+    {
+        background:     color( var( --PC-RED ) tint( 70% ) );
+        color:          color( var( --PC-RED ) tint( 25% ) );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+            color:  color( var( --PC-RED ) tint( 25% ) );
         }
     }
 }
-
-.iconContainer
-{
-    display:            flex;
-    justify-content:    center;
-    align-items:        center;
-
-    position:           relative;
-
-    flex:               0 0 auto;
-
-    border-width:       0.1rem;
-    border-style:       solid;
-    border-color:       transparent;
-
-    padding-right:      0.8rem;
-    padding-left:       0.6rem;
-
-    &:after
-    {
-        content:        '';
-        display:        block;
-        width:          1px;
-        height:         calc( 100% + 4px );
-        position:       absolute;
-        right:          -1px;
-        top:            -2px;
-        background-color: var( --PC-WHITE );
-    }
-}
-
 
 .loadingOverlay
 {
@@ -441,7 +343,5 @@
 
             border-top-color:   var( --PC-WHITE );
         }
-}
-
-
+    }
 }

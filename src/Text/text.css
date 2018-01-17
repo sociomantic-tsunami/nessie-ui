@@ -28,22 +28,22 @@
 
 .role__default
 {
-    color:  var( --PC-DARK-GREY );
+    color:  var( --GS-1 );
 }
 
 .role__subtle
 {
-    color:  var( --PC-GREY );
+    color:  var( --GS-5 );
 }
 
 .role__promoted
 {
-    color:  var( --AC-12 );
+    color:  var( --PC-GREEN );
 }
 
 .role__critical
 {
-    color:  var( --AC-2 );
+    color:  var( --PC-RED );
 }
 
 

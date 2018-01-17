@@ -43,15 +43,15 @@
 
 .type__error
 {
-    background-color:   var( --AC-2 );
+    background-color:   var( --PC-RED );
 }
 
 .type__alert
 {
-    background-color:   var( --AC-5 );
+    background-color:   var( --PC-YELLOW );
 }
 
 .type__success
 {
-    background-color:   var(  --AC-12 );
+    background-color:   var(  --PC-GREEN );
 }

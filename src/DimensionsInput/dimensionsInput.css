@@ -10,7 +10,7 @@
 {
     .container
     {
-        border-color:       var( --AC-2 ) !important; /* error is always red! */
+        border-color:       var( --PC-RED ) !important; /* error is always red! */
     }
 }
 

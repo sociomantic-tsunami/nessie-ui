@@ -14,7 +14,7 @@
 
 .error
 {
-    border-color:   var( --AC-1 );
+    border-color:   var( --AC-RED);
 }
 
 .padding__S

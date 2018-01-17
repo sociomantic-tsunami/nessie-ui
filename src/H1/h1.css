@@ -29,12 +29,12 @@
 
 .role__promoted
 {
-	color:	var( --AC-12 );
+	color:	var( --PC-GREEN );
 }
 
 .role__critical
 {
-	color:	var( --AC-2 );
+	color:	var( --PC-RED );
 }
 
 .spacing__S

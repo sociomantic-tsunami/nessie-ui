@@ -41,7 +41,7 @@
 
     .default & > .header
     {
-        background: var( --GS-11 );
+        background: var( --GS-10 );
     }
 
     &.collapsed
@@ -52,7 +52,7 @@
 
             &:hover
             {
-                background: var( --GS-11 );
+                background: var( --GS-10 );
             }
         }
 
@@ -70,7 +70,7 @@
 
 .moduleError
 {
-    border-left: 0.5rem solid var( --AC-1 );
+    border-left: 0.5rem solid var( --AC-RED);
 
     & > .header,
     & > .content

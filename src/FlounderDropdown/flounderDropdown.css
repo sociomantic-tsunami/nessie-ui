@@ -90,7 +90,7 @@
 
         .main.disabled &
         {
-            color: var( --PC-DARK-GREY );
+            color: var( --GS-1 );
         }
     }
 
@@ -192,11 +192,11 @@
     .main:hover,
     .main:focus
     {
-        border-color:   var( --AC-2 );
+        border-color:   var( --PC-RED );
 
         .optionsWrapper
         {
-            border-color:   var( --AC-2 );
+            border-color:   var( --PC-RED );
         }
     }
 
@@ -319,7 +319,7 @@
     border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
     background: var( --PC-WHITE );
-    color:      var( --PC-DARK-GREY );
+    color:      var( --GS-1 );
 
     &:hover,
     &:focus,
@@ -420,7 +420,7 @@
 
 .description
 {
-    color:  var( --PC-GREY );
+    color:  var( --GS-5 );
 }
 
 
@@ -463,8 +463,8 @@
 
     &:hover
     {
-        background-color:   color( var( --PC-BLUE ) a( 30% ) );
-        color:              var( --PC-DARK-GREY );
+        background-color:   color( var( --PC-BLUE ) a( 35% ) );
+        color:              var( --GS-1 );
     }
 }
 
@@ -482,7 +482,7 @@
 
     .description
     {
-        color:  color( var( --PC-GREY ) a( 50% ) );
+        color:  color( var( --GS-5 ) a( 50% ) );
     }
 }
 
