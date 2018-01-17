@@ -1,5 +1,5 @@
 import 'normalize.css';
-import './foundations.css';
+// import './foundations.css';
 
 import withInputContainer from './proto/withInputContainer';
 import DateTimeInput      from './DateTimeInput';

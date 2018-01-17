@@ -10,7 +10,7 @@
     max-width:      100%;
     min-width:      0; /* in case this is a flexbox child */
 
-    font-size:      var( --typo-m );
+    font-size:      var( --typo-l );
     line-height:    var( --line-height-m );
     letter-spacing:	0.02rem;
 
