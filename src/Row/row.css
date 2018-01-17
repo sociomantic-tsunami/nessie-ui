@@ -140,39 +140,39 @@ $shark: 768px;
 
 .gutters__S
 {
-    width:          calc( 100% + 1rem );
-    margin-left:    -0.5rem;
-    margin-right:   -0.5rem;
+    width:          calc( 100% + var( --gutters-s ) );
+    margin-left:    calc( -var( --gutters-s ) / 2 );
+    margin-right:   calc( -var( --gutters-s ) / 2 );
 
     & > *
     {
-        padding-left:   0.5rem;
-        padding-right:  0.5rem;
+        padding-left:   calc( var( --gutters-s ) / 2 );
+        padding-right:  calc( var( --gutters-s ) / 2 );
     }
 }
 
 .gutters__M
 {
-    width:          calc( 100% + 2rem );
-    margin-left:    -1rem;
-    margin-right:   -1rem;
+    width:          calc( 100% + var( --gutters-m ) );
+    margin-left:    calc( -var( --gutters-m ) / 2 );
+    margin-right:   calc( -var( --gutters-m ) / 2 );
 
     & > *
     {
-        padding-left:   1rem;
-        padding-right:  1rem;
+        padding-left:   calc( var( --gutters-m ) / 2 );
+        padding-right:  calc( var( --gutters-m ) / 2 );
     }
 }
 
 .gutters__L
 {
-    width:          calc( 100% + 3rem );
-    margin-left:    -1.5rem;
-    margin-right:   -1.5rem;
+    width:          calc( 100% + var( --gutters-l ) );
+    margin-left:    calc( -var( --gutters-l ) / 2 );
+    margin-right:   calc( -var( --gutters-l ) / 2 );
 
     & > *
     {
-        padding-left:   1.5rem;
-        padding-right:  1.5rem;
+        padding-left:   calc( var( --gutters-l ) / 2 );
+        padding-right:  calc( var( --gutters-l ) / 2 );
     }
 }
