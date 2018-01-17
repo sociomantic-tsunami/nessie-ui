@@ -64,23 +64,6 @@ describe( 'TagInput', () =>
         expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
 
-    it( 'should only render Tag components as a children', () =>
-    {
-
-        sinon.spy( console, 'warn' );
-
-        wrapper.setProps( { children : [
-            <Tag label = "TagLabel 1" />,
-            <div className = "boo" />
-        ] } );
-
-        expect( wrapper.find( '.boo' ) ).to.have.length( 1 );
-        expect( console.warn ).to.be.calledOnce;
-
-        console.warn.restore();
-
-    } );
-
     it( 'should trigger onKeyPress callbacks when key pressed', () =>
     {
         const onKeyPress = sinon.spy();

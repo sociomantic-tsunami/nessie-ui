@@ -9,7 +9,6 @@
     --tooltipOffsetXYAfter: 2rem;
 
     --pointerSize:          1rem;
-    --connectBox:           1.6rem;
     --halfPointer:          0.5rem;
     --halfPointerTweak:     0.1rem;
 
@@ -46,16 +45,11 @@
 
     background-color:   var( --PC-WHITE );
 
-    z-index:            100;
-
     &::before
     {
         content:            "";
         position:           absolute;
         box-sizing:         border-box;
-
-        width:              100%;
-        height:             var( --connectBox );
     }
 
     &::after
@@ -76,16 +70,46 @@
 }
 
 .position__top,
+.position__bottom,
+.position__topLeft,
+.position__topRight,
+.position__bottomLeft,
+.position__bottomRight
+{
+    .tooltip
+    {
+        &::before
+        {
+            left:   calc( -var( --tooltipBorderWidth ) );
+            width:  calc( 100% + var( --tooltipBorderWidth ) * 2 );
+            height: var( --tooltipOffsetY );
+        }
+    }
+}
+
+.position__top,
 .position__bottom
 {
     .tooltip
     {
         left:   50%;
 
-        &::before,
         &::after
         {
             right:  calc( 50% - var( --halfPointer ) );
+        }
+    }
+}
+
+.position__top,
+.position__topLeft,
+.position__topRight
+{
+    .tooltip
+    {
+        &::before
+        {
+            bottom: calc( -var( --tooltipOffsetY ) - var( --tooltipBorderWidth ) );
         }
     }
 }
@@ -97,17 +121,24 @@
         top:        0;
         transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
 
-        &::before
-        {
-            bottom: -var( --connectBox );
-            left:   0;
-        }
-
         &::after
         {
             bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
             border-top:     none;
             border-left:    none;
+        }
+    }
+}
+
+.position__bottom,
+.position__bottomLeft,
+.position__bottomRight
+{
+    .tooltip
+    {
+        &::before
+        {
+            top:    calc( -var( --tooltipOffsetY ) - var( --tooltipBorderWidth ) );
         }
     }
 }
@@ -119,14 +150,9 @@
         bottom:     0;
         transform:  translateX(-50%) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 
-        &::before
-        {
-            top:   -var( --connectBox );
-            left:  0;
-        }
         &::after
         {
-            top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            top:            calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
 
             border-bottom:  none;
             border-right:   none;
@@ -140,6 +166,13 @@
     .tooltip
     {
         top:    50%;
+
+        &::before
+        {
+            top:    calc( -var( --tooltipBorderWidth ) );
+            width:  var( --tooltipOffsetY );
+            height: calc( 100% + var( --tooltipBorderWidth ) * 2 );
+        }
 
         &::after
         {
@@ -159,11 +192,7 @@
 
         &::before
         {
-            width:  var( --connectBox );
-            height: 100%;
-
-            top:   0;
-            left:  -var( --connectBox );
+            right:  calc( -var( --tooltipOffsetX ) - var( --tooltipBorderWidth ) );
         }
 
         &::after
@@ -188,12 +217,9 @@
 
         &::before
         {
-            width:  var( --connectBox );
-            height: 100%;
-
-            top:   0;
-            left:  -var( --connectBox );
+            left:   calc( -var( --tooltipOffsetX ) - var( --tooltipBorderWidth ) );
         }
+
         &::after
         {
             top:            calc( 50% - var( --halfPointer ) );
@@ -250,12 +276,6 @@
         {
             right:  var( --tooltipOffsetXYAfter );
         }
-
-        &::before
-        {
-            bottom:  -var( --connectBox );
-            left:    0;
-        }
     }
 }
 
@@ -268,12 +288,6 @@
         &::after
         {
             left:   var( --tooltipOffsetXYAfter );
-        }
-
-        &::before
-        {
-            bottom:  -var( --connectBox );
-            left:    0;
         }
     }
 }
@@ -288,12 +302,6 @@
         {
             right:  var( --tooltipOffsetXYAfter );
         }
-
-        &::before
-        {
-            top:    -var( --connectBox );
-            left:   0;
-        }
     }
 }
 
@@ -306,12 +314,6 @@
         &::after
         {
             left:  var( --tooltipOffsetXYAfter );
-        }
-
-        &::before
-        {
-            top:    -var( --connectBox );
-            left:   0;
         }
     }
 }

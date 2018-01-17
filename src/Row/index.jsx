@@ -22,6 +22,7 @@ const Row = ( {
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
                 spacing : spacing !== 'none' && spacing
+
             } }>
             <div
                 className = { className }

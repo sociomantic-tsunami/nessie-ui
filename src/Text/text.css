@@ -50,5 +50,6 @@
 .overflowHidden
 {
     overflow:       hidden;
+    overflow-wrap:  normal;
     text-overflow:  ellipsis;
 }
