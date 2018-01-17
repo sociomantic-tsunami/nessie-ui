@@ -8,7 +8,7 @@ import Text                 from '../Text';
 import Required             from '../Required';
 
 
-const buildTableFromValues = ( values = [], isDataTable  ) =>
+const buildTableFromValues = ( values = [] ) =>
     values.map( ( row, i ) =>
         (
             // eslint-disable-next-line react/no-array-index-key
@@ -16,7 +16,7 @@ const buildTableFromValues = ( values = [], isDataTable  ) =>
                 {
                     row.map( ( col, j ) =>
                     // eslint-disable-next-line react/no-array-index-key
-                        <TableCell isDataTable = { isDataTable } key = { j }>
+                        <TableCell key = { j }>
                             <Text>{ col }</Text>
                         </TableCell>
                     )
@@ -25,23 +25,28 @@ const buildTableFromValues = ( values = [], isDataTable  ) =>
         ) );
 
 const Table = ( {
+    align,
     children,
     className,
     columns = [],
     cssMap,
+    gutters,
     onToggle,
     values,
-    isDataTable,
     isZebra,
-    stickyHeader } ) =>
+    hasStickyHeader,
+    verticalAlign,
+} ) =>
 {
-    const _children = children || buildTableFromValues( values, isDataTable );
+    const _children = children || buildTableFromValues( values );
 
     const header = columns.length ?
         ( <TableRow
-            isSticky = { stickyHeader }
-            verticalAlign = "middle"
-            className = { cssMap.row }>
+            align         = { align }
+            className     = { cssMap.row }
+            gutters       = { gutters }
+            isSticky      = { hasStickyHeader }
+            verticalAlign = { verticalAlign } >
             { columns.map( ( column, index ) =>
             {
                 const title = column.title;
@@ -52,7 +57,6 @@ const Table = ( {
                 return (
                     <TableCell
                         className   = { cssMap.cell }
-                        isDataTable = { isDataTable }
                         isHeader
                         isSortable  = { column.isSortable }
                         isSticky    = { stickyCell }
@@ -74,6 +78,7 @@ const Table = ( {
 
         return React.cloneElement( row,
             {
+                align    : align || row.props.align,
                 children : cells.map( ( cell, index ) =>
                 {
                     if ( typeof columns[ index ] === 'object' )
@@ -88,19 +93,19 @@ const Table = ( {
                                 className : cell.props.className ?
                                     `${cell.props.className}  ${cssMap.cell}`
                                     : cssMap.cell,
-                                columnTitle : title ||
-                                cell.props.columnTitle,
+                                columnTitle : title || cell.props.columnTitle,
                                 size        : size || cell.props.size,
                                 isRowHeader : rowHeaderCell ||
-                                cell.props.isRowHeader,
-                                isSticky : stickyCell ||
-                                cell.props.isSticky
+                                    cell.props.isRowHeader,
+                                isSticky : stickyCell || cell.props.isSticky
                             } );
                     }
                     return cell;
                 } ),
                 className : row.props.className ?
-                    `${row.props.className}  ${cssMap.row}` : cssMap.row
+                    `${row.props.className}  ${cssMap.row}` : cssMap.row,
+                gutters       : gutters || row.props.gutters,
+                verticalAlign : verticalAlign || row.props.verticalAlign,
             } );
     } );
 
@@ -108,10 +113,7 @@ const Table = ( {
     return (
         <Css
             cssMap   = { cssMap }
-            cssProps = { {
-                dataTable : isDataTable,
-                zebra     : isZebra
-            } }>
+            cssProps = { { zebra: isZebra } }>
             <div role = "grid" className = { className }>
                 { header }
                 { rows }
@@ -123,13 +125,17 @@ const Table = ( {
 Table.propTypes =
 {
     /**
-     * 2D Array of table values (for convenience)
+     *  Text alignment inside cells
      */
-    values  : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
+    align    : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    /**
+     *  Table content (TableRows containing TableCells; overrides values)
+     */
+    children : PropTypes.node,
     /**
      * Array of objects defining the table columns
      */
-    columns : PropTypes.arrayOf( PropTypes.shape( {
+    columns  : PropTypes.arrayOf( PropTypes.shape( {
         title       : PropTypes.string,
         size        : PropTypes.string,
         isRowHeader : PropTypes.bool,
@@ -138,34 +144,39 @@ Table.propTypes =
         isSortable  : PropTypes.bool,
         sort        : PropTypes.oneOf( [ 'asc', 'desc' ] )
     } ) ),
-    /**
-     *  Table content (TableRows containing TableCells; overrides values)
-     */
-    children     : PropTypes.node,
-    /**
-     *  Is Data Table (smaller fonts, zebra paddings)
-     */
-    isDataTable  : PropTypes.bool,
-    /**
-     *  Display as zebra-striped
-     */
-    isZebra      : PropTypes.bool,
-    /**
-     *  Column sorter onToggle callback function: ( e ) => { ... }
-     */
-    onToggle     : PropTypes.func,
+    gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      *  Makes header row sticky
      */
-    stickyHeader : PropTypes.bool
+    hasStickyHeader : PropTypes.bool,
+    /**
+     *  Display as zebra-striped
+     */
+    isZebra         : PropTypes.bool,
+    /**
+     *  Column sorter onToggle callback function: ( e ) => { ... }
+     */
+    onToggle        : PropTypes.func,
+    /**
+     * 2D Array of table values (for convenience)
+     */
+    values          : PropTypes.arrayOf(
+        PropTypes.arrayOf( PropTypes.string )
+    ),
+    /**
+     *  Vertical alignment inside cells
+     */
+    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =
 {
-    isZebra      : false,
-    isDataTable  : false,
-    stickyHeader : false,
-    cssMap       : require( './table.css' )
+    align           : 'auto',
+    cssMap          : require( './table.css' ),
+    gutters         : 'M',
+    hasStickyHeader : false,
+    isZebra         : false,
+    verticalAlign   : 'middle',
 };
 
 export default Table;
