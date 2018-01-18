@@ -45,6 +45,8 @@
 
     background-color:   var( --PC-WHITE );
 
+    z-index:            100;
+
     &::before
     {
         content:            "";
