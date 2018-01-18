@@ -16,6 +16,8 @@
     padding-right:      1.5rem;
 
     background-color:   var( --PC-WHITE );
+
+    font-size:          var( --typo-l );
     color:              var( --PC-GREY--D5 );
 
     @extend %Nessie-Regular;
