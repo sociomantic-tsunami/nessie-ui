@@ -1026,6 +1026,8 @@ legend.label__default + *
     padding:            2rem;
 
     background-color:   #ffffff;
+
+    z-index:            100;
 }
 
 .tooltip__tooltip::before
