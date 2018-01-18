@@ -16,11 +16,6 @@
     &:hover .label
     {
         cursor:             pointer;
-
-        &::before
-        {
-            border-color:   var( --PC-BLUE );
-        }
     }
 }
 
@@ -50,10 +45,11 @@
         position:           relative;
 
         box-sizing:         border-box;
-        width:              2.2rem;
-        height:             2.2rem;
+        width:              2rem;
+        height:             2rem;
 
-        border:             0.1rem solid color(var( --GS-2 ) a( 50%) );
+        border:             0.1rem solid var( --PC-BLUE--LIGHT );
+        border-radius:      0.1rem;
 
         background:         var( --PC-WHITE );
     }
@@ -70,7 +66,7 @@
     {
         display:        inline-block;
         vertical-align: middle;
-        margin-left:    1rem;
+        margin-left:    0.8rem;
     }
 }
 
@@ -99,23 +95,21 @@
     .input:focus + .label::before
     {
         cursor:             default;
-        border-color:       var( --GS-10 );
-        background-color:   var( --GS-10 );
     }
 }
 
 .input
 {
-    position:   absolute;
-    left:       -9999px;
+    position:               absolute;
+    left:                   -9999px;
 
     &:checked + .label::after
     {
-        position:   absolute;
+        position:           absolute;
     }
 
     &:focus + .label::before
     {
-        border-color:   var( --PC-BLUE );
+        border:             2px solid var( --PC-BLUE );
     }
 }
