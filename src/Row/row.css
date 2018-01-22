@@ -37,8 +37,6 @@ $shark: 768px;
         {
             flex:   1 0 0%;
         }*/
-
-        overflow-wrap:  break-word;
     }
 
     .alignX__left,
@@ -48,7 +46,6 @@ $shark: 768px;
         & > *
         {
             flex:           0 0 auto;
-            word-break:     normal;
         }
     }
 
@@ -170,32 +167,38 @@ $shark: 768px;
 .gutters__S
 {
     width:          calc( 100% + 1rem );
-    margin-left:    -1rem;
+    margin-left:    -0.5rem;
+    margin-right:   -0.5rem;
 
     & > *
     {
-        padding-left:   1rem;
+        padding-left:   0.5rem;
+        padding-right:  0.5rem;
     }
 }
 
 .gutters__M
 {
     width:          calc( 100% + 2rem );
-    margin-left:    -2rem;
+    margin-left:    -1rem;
+    margin-right:   -1rem;
 
     & > *
     {
-        padding-left:   2rem;
+        padding-left:   1rem;
+        padding-right:  1rem;
     }
 }
 
 .gutters__L
 {
     width:          calc( 100% + 3rem );
-    margin-left:    -3rem;
+    margin-left:    -1.5rem;
+    margin-right:   -1.5rem;
 
     & > *
     {
-        padding-left:   3rem;
+        padding-left:   1.5rem;
+        padding-right:  1.5rem;
     }
 }

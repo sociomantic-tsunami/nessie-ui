@@ -4,15 +4,19 @@
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
+    overflow-wrap:          break-word;
 }
 
 .zebra
 {
-	.row:nth-child(even)
-	{
-        .cell
-        {
-            background-color: var( --GS-10 );
-        }
-	}
+    .row:nth-child(even) > .cell
+    {
+        background: var( --GS-10 );
+    }
+
+    .row
+    {
+        width:  100%;
+        margin: 0;
+    }
 }

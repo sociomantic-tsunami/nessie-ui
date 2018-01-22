@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "5.3.1",
+  "version": "5.5.1",
   "description": "Nessie React Components",
   "main": "dist",
   "scripts": {
@@ -81,7 +81,7 @@
     "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
-    "flounder": "^1.3.1",
+    "flounder": "^1.3.5",
     "gh-badges": "^1.3.0",
     "glob": "^7.1.2",
     "happypack": "^3.1.0",

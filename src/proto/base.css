@@ -14,9 +14,6 @@
 
     font-weight:    normal;
 
-    white-space:    normal;
-    word-break:     normal;
-
     &:last-child
     {
         margin-bottom:  0;
