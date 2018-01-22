@@ -3,7 +3,7 @@
 .default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  var( --spacing-s );
+    margin-bottom:  var( --gutters-m );
 
     box-sizing:     border-box;
     width:          100%;

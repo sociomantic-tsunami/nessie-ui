@@ -24,7 +24,7 @@
     .label::before,
     .input:focus + .label::before
     {
-        border-color:   var( --PC-BLUE );
+        border:         0.2rem solid var( --PC-BLUE );
     }
 }
 
@@ -33,7 +33,7 @@
     display:            inline-block;
     vertical-align:     middle;
 
-    white-space:        nowrap;
+    color:              var( --PC-GREY--D5 );
 
     &::before
     {
@@ -66,7 +66,12 @@
     {
         display:        inline-block;
         vertical-align: middle;
-        margin-left:    0.8rem;
+        margin-left:    var( --gutters-s );
+    }
+
+    .text
+    {
+        color: var( --PC-GREY--D15 );
     }
 }
 
@@ -77,6 +82,11 @@
     .input:focus + .label::before
     {
         border-color:       var( --PC-RED );
+    }
+
+    .label .text
+    {
+        color:  var( --PC-RED );
     }
 }
 
@@ -96,6 +106,11 @@
     {
         cursor:             default;
     }
+
+    .label .text
+    {
+        color:  var( --PC-GREY--L70 );
+    }
 }
 
 .input
@@ -110,6 +125,6 @@
 
     &:focus + .label::before
     {
-        border:             2px solid var( --PC-BLUE );
+        border:             0.2rem solid var( --PC-BLUE );
     }
 }

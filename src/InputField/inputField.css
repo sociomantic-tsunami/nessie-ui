@@ -8,12 +8,12 @@
     box-sizing:         border-box;
     width:              100%;
 
-    border:             0.1rem solid var( --PC-GREY--L40 );
+    border:             0.1rem solid var( --PC-GREY--L70 );
 
     padding-top:        1.1rem;
     padding-bottom:     1.1rem;
-    padding-left:       1.5rem;
-    padding-right:      1.5rem;
+    padding-left:       var( --gutters-m );
+    padding-right:      var( --gutters-m );
 
     background-color:   var( --PC-WHITE );
 
@@ -36,7 +36,7 @@
     &::placeholder
     {
         @extend %Nessie-RegularIt;
-        color:         var( --PC-GREY--L25 );
+        color:         var( --PC-GREY--L80 );
     }
 
     &:focus
@@ -61,18 +61,21 @@
 {
     border-color:   var( --PC-BLUE );
     outline:        0.1rem solid var( --PC-BLUE );
+    outline-offset: -0.2rem;
 }
 
 .error
 {
     border-color:   var( --PC-RED ) !important; /* yes, always override other states */
     outline:        0.1rem solid var( --PC-RED ) !important; /* yes, always override other states */
+    outline-offset: -0.2rem !important; /* yes, always override other states */
+    color:          var( --PC-RED )!important; /* yes, always override other states */
 }
 
 .disabled
 {
     background:     var( --PC-GREY--L90 );
-    color:          var( --PC-GREY--L25 );
+    color:          var( --PC-GREY--L40 );
     border-color:   var( --PC-GREY--L70 );
 
     &:focus
