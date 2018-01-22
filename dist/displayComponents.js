@@ -21122,6 +21122,7 @@ var ComboBox = function (_Component) {
                     {
                         height: '50vh',
                         onScroll: onScroll,
+                        scroll: 'vertical',
                         scrollBoxRef: this.setRef },
                     _react2.default.createElement(
                         _ListBox2.default,
@@ -28077,7 +28078,7 @@ module.exports = {"default":"tab__default__3X9OU"};
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"label":"tabButton__label__s-MZG","default":"tabButton__default__2fot-","content":"tabButton__content__2nWC-","iconPosition__right":"tabButton__iconPosition__right__3TjUh","iconContainer":"tabButton__iconContainer__2TS7w","iconPosition__left":"tabButton__iconPosition__left__2GBjt","role__default":"tabButton__role__default__2fpg8","fakeHovered":"tabButton__fakeHovered__1ple-","role__promoted":"tabButton__role__promoted__2euaE","role__critical":"tabButton__role__critical__1Nfi0","role__subtle":"tabButton__role__subtle__1sbdu","disabled":"tabButton__disabled__34KRw","icon":"tabButton__icon__1FrZd","loading":"tabButton__loading__3FW4H","loadingOverlay":"tabButton__loadingOverlay__NO9GT","spinner":"tabButton__spinner__kPSov","role__control":"tabButton__role__control__T5uU2","active":"tabButton__active__2GsXf","subtitle":"tabButton__subtitle__1YUUD"};
+module.exports = {"label":"tabButton__label__s-MZG","role__control":"tabButton__role__control__T5uU2","default":"tabButton__default__2fot-","content":"tabButton__content__2nWC-","role__default":"tabButton__role__default__2fpg8","fakeHovered":"tabButton__fakeHovered__1ple-","role__promoted":"tabButton__role__promoted__2euaE","role__critical":"tabButton__role__critical__1Nfi0","role__subtle":"tabButton__role__subtle__1sbdu","iconContainer":"tabButton__iconContainer__2TS7w","disabled":"tabButton__disabled__34KRw","icon":"tabButton__icon__1FrZd","loading":"tabButton__loading__3FW4H","loadingOverlay":"tabButton__loadingOverlay__NO9GT","spinner":"tabButton__spinner__kPSov","iconPosition__right":"tabButton__iconPosition__right__3TjUh","iconPosition__left":"tabButton__iconPosition__left__2GBjt","size__S":"tabButton__size__S__1Yt4-","active":"tabButton__active__2GsXf","subtitle":"tabButton__subtitle__1YUUD"};
 
 /***/ }),
 /* 163 */

@@ -529,19 +529,10 @@ a:hover, a:active
 {
     display:    none !important;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .inputContainer__default__tWiVT /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -557,15 +548,13 @@ a:hover, a:active
     font-weight:    normal;
 }
 
-.inputContainer__default__tWiVT:last-child
+    .inputContainer__default__tWiVT:last-child
     {
         margin-bottom:  0;
     }
-
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
-
 .inputContainer__default__tWiVT
 {
     display:        -webkit-box;
@@ -575,7 +564,6 @@ a:hover, a:active
     font:           inherit;
     line-height:    inherit;
 }
-
 .inputContainer__default__tWiVT .inputContainer__container__3ELoU
     {
         -webkit-box-flex:       1;
@@ -584,7 +572,6 @@ a:hover, a:active
                 flex:       1 1 auto;
         min-width:  0;
     }
-
 .inputContainer__default__tWiVT .inputContainer__label__lbIF5
     {
         -webkit-box-flex:   0;
@@ -592,7 +579,6 @@ a:hover, a:active
             -ms-flex:   0 0 auto;
                 flex:   0 0 auto;
     }
-
 .inputContainer__labelPosition__top__3-m31
 {
     -webkit-box-orient: vertical;
@@ -601,14 +587,12 @@ a:hover, a:active
         -ms-flex-direction: column;
             flex-direction: column;
 }
-
 .inputContainer__labelPosition__top__3-m31 .inputContainer__label__lbIF5
     {
         -webkit-align-self: flex-start;
             -ms-flex-item-align: start;
                 align-self: flex-start;
     }
-
 .inputContainer__labelPosition__left__3Uh2I, .inputContainer__labelPosition__right__1aC0W
 {
     -webkit-box-align:    center;
@@ -616,22 +600,18 @@ a:hover, a:active
         -ms-flex-align:    center;
             align-items:    center;
 }
-
 .inputContainer__labelPosition__left__3Uh2I > *, .inputContainer__labelPosition__right__1aC0W > *
     {
         margin-bottom:  0;
     }
-
 .inputContainer__labelPosition__left__3Uh2I .inputContainer__label__lbIF5, .inputContainer__labelPosition__right__1aC0W .inputContainer__label__lbIF5
     {
         max-width:  50%;
     }
-
 .inputContainer__labelPosition__left__3Uh2I > .inputContainer__container__3ELoU
     {
         margin-left:   1rem;
     }
-
 .inputContainer__labelPosition__right__1aC0W
 {
     -webkit-box-orient: horizontal;
@@ -640,7 +620,6 @@ a:hover, a:active
         -ms-flex-direction: row-reverse;
             flex-direction: row-reverse;
 }
-
 .inputContainer__labelPosition__right__1aC0W > .inputContainer__container__3ELoU
     {
         margin-right:   1rem;
@@ -1420,19 +1399,10 @@ legend.label__default__1KHiG + *
         -ms-flex:               0 0 auto;
             flex:               0 0 auto;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .textInputWithIcon__default__2JGx9 /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -1448,7 +1418,7 @@ legend.label__default__1KHiG + *
     font-weight:    normal;
 }
 
-.textInputWithIcon__default__2JGx9:last-child
+    .textInputWithIcon__default__2JGx9:last-child
     {
         margin-bottom:  0;
     }
@@ -1639,19 +1609,10 @@ textarea.inputField__resizable__2CfEu
     {
         resize: vertical;
     }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .iconButton__default__XPmOq /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -1667,7 +1628,7 @@ textarea.inputField__resizable__2CfEu
     font-weight:    normal;
 }
 
-.iconButton__default__XPmOq:last-child
+    .iconButton__default__XPmOq:last-child
     {
         margin-bottom:  0;
     }
@@ -3081,19 +3042,10 @@ textarea.inputField__resizable__2CfEu
     {
         background-color:       #f55f69;
     }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .buttonRadio__default__1QUOH /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -3109,7 +3061,7 @@ textarea.inputField__resizable__2CfEu
     font-weight:    normal;
 }
 
-.buttonRadio__default__1QUOH:last-child
+    .buttonRadio__default__1QUOH:last-child
     {
         margin-bottom:  0;
     }
@@ -3129,19 +3081,10 @@ textarea.inputField__resizable__2CfEu
 {
 	display:	block;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .fieldset__default__1Eptt /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -3157,7 +3100,7 @@ textarea.inputField__resizable__2CfEu
     font-weight:    normal;
 }
 
-.fieldset__default__1Eptt:last-child
+    .fieldset__default__1Eptt:last-child
     {
         margin-bottom:  0;
     }
@@ -3232,19 +3175,10 @@ textarea.inputField__resizable__2CfEu
     {
         margin: 0;
     }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .checkbox__default__pbnFv /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -3260,22 +3194,21 @@ textarea.inputField__resizable__2CfEu
     font-weight:    normal;
 }
 
-.checkbox__default__pbnFv:last-child
+    .checkbox__default__pbnFv:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .checkbox__default__pbnFv
 {
     padding-top:        0.5rem;
@@ -3283,27 +3216,22 @@ textarea.inputField__resizable__2CfEu
 
     width:              auto;
 }
-
 .checkbox__default__pbnFv:last-child
     {
         margin-bottom:      0;
     }
-
 .checkbox__default__pbnFv:hover .checkbox__label__1J95p
     {
         cursor:             pointer;
     }
-
 .checkbox__default__pbnFv:hover .checkbox__label__1J95p::before
         {
-            border-color:   #19a2e2;
+            border-color:   #289bc8;
         }
-
 .checkbox__fakeHovered__2fm15 .checkbox__label__1J95p::before, .checkbox__fakeHovered__2fm15 .checkbox__input__2w-zn:focus + .checkbox__label__1J95p::before
     {
-        border-color:   #19a2e2;
+        border-color:   #289bc8;
     }
-
 .checkbox__label__1J95p
 {
     display:            inline-block;
@@ -3311,7 +3239,6 @@ textarea.inputField__resizable__2CfEu
 
     white-space:        nowrap;
 }
-
 .checkbox__label__1J95p::before
     {
         content:            '';
@@ -3327,11 +3254,10 @@ textarea.inputField__resizable__2CfEu
         width:              2.2rem;
         height:             2.2rem;
 
-        border:             0.1rem solid rgba(71, 94, 119, 0.5);
+        border:             0.1rem solid rgba(65, 75, 85, 0.5);
 
         background:         #ffffff;
     }
-
 .checkbox__label__1J95p::after
     {
         content:            '';
@@ -3339,56 +3265,46 @@ textarea.inputField__resizable__2CfEu
         background-size:    100%;
         background-repeat:  no-repeat;
     }
-
 .checkbox__label__1J95p > :first-child
     {
         display:        inline-block;
         vertical-align: middle;
         margin-left:    1rem;
     }
-
 .checkbox__error__CbZ_R .checkbox__label__1J95p::before, .checkbox__error__CbZ_R:hover .checkbox__label__1J95p::before, .checkbox__error__CbZ_R .checkbox__input__2w-zn:focus + .checkbox__label__1J95p::before
     {
-        border-color:       #ff5460;
+        border-color:       #f55f69;
     }
-
 .checkbox__disabled__QCqJx
 {
     cursor:                 default;
 }
-
 .checkbox__disabled__QCqJx .checkbox__label__1J95p, .checkbox__disabled__QCqJx .checkbox__label__1J95p:hover
     {
         cursor:             default;
     }
-
 .checkbox__disabled__QCqJx .checkbox__label__1J95p::before, .checkbox__disabled__QCqJx:hover .checkbox__label__1J95p::before, .checkbox__disabled__QCqJx .checkbox__input__2w-zn:focus + .checkbox__label__1J95p::before
     {
         cursor:             default;
-        border-color:       rgb(245, 246, 247);
-        background-color:   rgb(245, 246, 247);
+        border-color:       #F0F0F0;
+        background-color:   #F0F0F0;
     }
-
 .checkbox__input__2w-zn
 {
     position:   absolute;
     left:       -9999px;
 }
-
 .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after
     {
         position:   absolute;
     }
-
 .checkbox__input__2w-zn:focus + .checkbox__label__1J95p::before
     {
-        border-color:   #19a2e2;
+        border-color:   #289bc8;
     }
-
 .checkbox__default__pbnFv
 {
 }
-
 .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after
 {
     display:                block;
@@ -3401,16 +3317,13 @@ textarea.inputField__resizable__2CfEu
     top:                    0.8rem;
     left:                   0.3rem;
 }
-
 .checkbox__fakeHovered__2fm15
 {
 }
-
 .checkbox__disabled__QCqJx .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after, .checkbox__disabled__QCqJx:hover .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after
     {
         background:         url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7b3BhY2l0eTowLjU7ZmlsbDojNDE0QjU1O30KPC9zdHlsZT4KPGcgaWQ9IkxheWVyXzIiPgo8L2c+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNC40LDMuNEMxNCwzLDEzLjQsMywxMywzLjRsLTcuMSw3LjFMMy4xLDcuN2MtMC40LTAuNC0xLTAuNC0xLjQsMGMtMC40LDAuNC0wLjQsMSwwLDEuNGwzLjUsMy41CgljMC4yLDAuMiwwLjUsMC4zLDAuNywwLjNjMC4zLDAsMC41LTAuMSwwLjctMC4zbDcuOC03LjhDMTQuOCw0LjQsMTQuOCwzLjgsMTQuNCwzLjR6Ii8+Cjwvc3ZnPgo=);
     }
-
 .checkbox__error__CbZ_R .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after, .checkbox__error__CbZ_R:hover .checkbox__input__2w-zn:checked + .checkbox__label__1J95p::after
     {
         background:         url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRjU1RjY5O30KPC9zdHlsZT4KPGcgaWQ9IkxheWVyXzIiPgo8L2c+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNC40LDMuNEMxNCwzLDEzLjQsMywxMywzLjRsLTcuMSw3LjFMMy4xLDcuN2MtMC40LTAuNC0xLTAuNC0xLjQsMGMtMC40LDAuNC0wLjQsMSwwLDEuNGwzLjUsMy41CgljMC4yLDAuMiwwLjUsMC4zLDAuNywwLjNjMC4zLDAsMC41LTAuMSwwLjctMC4zbDcuOC03LjhDMTQuOCw0LjQsMTQuOCwzLjgsMTQuNCwzLjR6Ii8+Cjwvc3ZnPgo=);
@@ -8068,6 +7981,8 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
 
@@ -8082,19 +7997,10 @@ span.CodeMirror-selectedtext { background: none; }
     font-style: normal;
 }
 
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .datePicker__default__12lfM /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -8122,7 +8028,7 @@ span.CodeMirror-selectedtext { background: none; }
 
 .datePicker__default__12lfM .datePicker__calendarHeader__QSM7u
     {
-        color:  #19a2e2;
+        color:  #289bc8;
     }
 
 .datePicker__default__12lfM .datePicker__calendarHeader__QSM7u th
@@ -8279,6 +8185,8 @@ span.CodeMirror-selectedtext { background: none; }
 :root
 {
     /* primary colors */
+
+    /* accent colors */
 
     /* greyscale colors */
 }
@@ -10318,19 +10226,10 @@ only used in type__carousel for now
         {
             right:  15rem;
         }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .navList__default__2JZBI /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -10346,7 +10245,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.navList__default__2JZBI:last-child
+    .navList__default__2JZBI:last-child
     {
         margin-bottom:  0;
     }
@@ -10411,19 +10310,10 @@ only used in type__carousel for now
         -ms-flex-align:        stretch;
             align-items:        stretch;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .navBar__default__1EAbA /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -10439,22 +10329,21 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.navBar__default__1EAbA:last-child
+    .navBar__default__1EAbA:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .navBar__default__1EAbA
 {
     display:            -webkit-box;
@@ -10474,12 +10363,11 @@ only used in type__carousel for now
 
     margin:             0;
 
-    border-top:         0.1rem solid rgb(218, 223, 228);
-    border-bottom:      0.1rem solid rgb(218, 223, 228);
+    border-top:         0.1rem solid rgb(217, 219, 221);
+    border-bottom:      0.1rem solid rgb(217, 219, 221);
 
     background:         #ffffff;
 }
-
 .navBar__list__1pxW5
 {
    width:   auto;
@@ -10492,6 +10380,8 @@ only used in type__carousel for now
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
 
@@ -10501,7 +10391,7 @@ only used in type__carousel for now
     max-width:          none;
     max-height:         50vh;
 
-    border:             0.1rem solid #19a2e2;
+    border:             0.1rem solid #289bc8;
 
     padding:            1rem 0;
 
@@ -10511,19 +10401,10 @@ only used in type__carousel for now
 
     z-index:            999;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .navItem__default__kwc7o /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -10539,40 +10420,36 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.navItem__default__kwc7o:last-child
+    .navItem__default__kwc7o:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
-
 .navItem__default__kwc7o
 {
     font-family: Nessie-Regular, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
-
 .navItem__role__default__97T5T > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K, .navItem__role__sub__xE3Hy.navItem__current__41LLP > .navItem__link__1Uu3K
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
-
 .navItem__default__kwc7o
 {
     display:        block;
@@ -10581,7 +10458,6 @@ only used in type__carousel for now
     margin-bottom:  0;
     font-size:      1.4rem;
 }
-
 .navItem__default__kwc7o .navItem__link__1Uu3K /* needs to go inside .default to override foundations.css */
     {
         display:            block;
@@ -10589,54 +10465,44 @@ only used in type__carousel for now
         text-decoration:    none !important;
         cursor:             text;
     }
-
 .navItem__default__kwc7o .navItem__link__1Uu3K, .navItem__default__kwc7o .navItem__link__1Uu3K:hover, .navItem__default__kwc7o .navItem__link__1Uu3K:focus, .navItem__default__kwc7o .navItem__link__1Uu3K:active
         {
-            color:  rgb(71, 94, 119);
+            color:  #414B55;
         }
-
 .navItem__default__kwc7o .navItem__link__1Uu3K[href]
         {
             cursor: pointer;
         }
-
 .navItem__default__kwc7o .navItem__link__1Uu3K:focus
         {
             outline:    none;
         }
-
 .navItem__disabled__1yNtP
 {
     pointer-events: none;
 
 }
-
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K
     {
-        color:  rgba(71, 94, 119, 0.5) !important;
+        color:  rgba(65, 75, 85, 0.5) !important;
         cursor: default !important;
     }
-
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K::after
         {
-            background: rgba(71, 94, 119, 0.5) !important;
+            background: rgba(65, 75, 85, 0.5) !important;
         }
-
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
         {
             opacity:    0.5;
         }
-
 .navItem__role__default__97T5T > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K
     {
         padding:    0.7rem 0 0.5rem 0;
     }
-
 .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:hover, .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:focus, .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:active, .navItem__role__default__97T5T.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__default__97T5T.navItem__open__2zeF7 > .navItem__link__1Uu3K, .navItem__role__default__97T5T.navItem__current__41LLP > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:hover, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:focus, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:active, .navItem__role__primary__1rbCf.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf.navItem__open__2zeF7 > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf.navItem__current__41LLP > .navItem__link__1Uu3K
     {
-        color:  #19a2e2;
+        color:  #289bc8;
     }
-
 .navItem__role__default__97T5T.navItem__current__41LLP > .navItem__link__1Uu3K::after, .navItem__role__primary__1rbCf.navItem__current__41LLP > .navItem__link__1Uu3K::after
     {
         content:    '';
@@ -10648,74 +10514,61 @@ only used in type__carousel for now
         width:      100%;
         height:     0.2rem;
 
-        background: #19a2e2;
+        background: #289bc8;
     }
-
 .navItem__role__primary__1rbCf > .navItem__link__1Uu3K
     {
         text-transform: uppercase;
     }
-
 .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K
     {
         padding:        1.2rem 2rem 1rem 1.5rem;
         border-left:    0.5rem solid transparent;
-        color:          rgb(71, 94, 119);
+        color:          #414B55;
     }
-
 .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:hover, .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:focus, .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:active, .navItem__role__sub__xE3Hy.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__sub__xE3Hy.navItem__open__2zeF7 > .navItem__link__1Uu3K
     {
-        color:          rgb(71, 94, 119);
-        border-color:   #19a2e2;
+        color:          #414B55;
+        border-color:   #289bc8;
     }
-
 .navItem__role__sub__xE3Hy.navItem__current__41LLP > .navItem__link__1Uu3K
     {
         border-color:   transparent;
     }
-
 .navItem__open__2zeF7 .navItem__dropdown__2PHEm
     {
         left:   auto;
     }
-
 .navItem__open__2zeF7.navItem__dropdownAlign__right__2Ca4x .navItem__dropdown__2PHEm
     {
         right:  0;
     }
-
 .navItem__dropdown__2PHEm
 {
     position:   absolute;
     left:       -99999px;
     margin-top: -0.2rem;
 }
-
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K
     {
         padding:    1.4rem 0 1.2rem;
     }
-
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K::after
         {
             display:    none !important;
         }
-
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         display:    inline-block;
     }
-
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:hover > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:active > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:focus > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__open__2zeF7 > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__current__41LLP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMyNzlCQzg7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMiwwQzUuNCwwLDAsNS40LDAsMTJjMCwyLjYsMC45LDUuMSwyLjMsN2MyLjIsMyw1LjcsNSw5LjcsNWM0LDAsNy41LTIsOS43LTVjMS40LTIsMi4zLTQuNCwyLjMtNw0KCQkJCQlDMjQsNS40LDE4LjYsMCwxMiwweiBNMjAuMiwxNy43Yy0yLjItMS42LTUtMi42LTguMi0yLjZzLTYsMS04LjIsMi42QzIuNywxNi4xLDIsMTQuMSwyLDExLjljMC01LjUsNC41LTEwLDEwLTEwDQoJCQkJCWM1LjUsMCwxMCw0LjUsMTAsMTBDMjIsMTQuMSwyMS4zLDE2LjEsMjAuMiwxNy43eiIvPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KCTxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjEyIiBjeT0iOS41IiByPSI0Ii8+DQo8L2c+DQo8L3N2Zz4NCg==);
     }
-
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__disabled__1yNtP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiM0MjRCNTU7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMiwwQzUuNCwwLDAsNS40LDAsMTJjMCwyLjYsMC45LDUuMSwyLjMsN2MyLjIsMyw1LjcsNSw5LjcsNWM0LDAsNy41LTIsOS43LTVjMS40LTIsMi4zLTQuNCwyLjMtNw0KCQkJCQlDMjQsNS40LDE4LjYsMCwxMiwweiBNMjAuMiwxNy43Yy0yLjItMS42LTUtMi42LTguMi0yLjZzLTYsMS04LjIsMi42QzIuNywxNi4xLDIsMTQuMSwyLDExLjljMC01LjUsNC41LTEwLDEwLTEwDQoJCQkJCWM1LjUsMCwxMCw0LjUsMTAsMTBDMjIsMTQuMSwyMS4zLDE2LjEsMjAuMiwxNy43eiIvPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KCTxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjEyIiBjeT0iOS41IiByPSI0Ii8+DQo8L2c+DQo8L3N2Zz4NCg==);
     }
-
 .navItem__icon__2yK-C
 {
     display:    none;
@@ -10723,19 +10576,10 @@ only used in type__carousel for now
     height:     2.4rem;
     margin:     -0.7rem 0 -0.7rem 1.5rem;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .nessieLogo__default__29T4w /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -10751,7 +10595,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.nessieLogo__default__29T4w:last-child
+    .nessieLogo__default__29T4w:last-child
     {
         margin-bottom:  0;
     }
@@ -10979,19 +10823,10 @@ only used in type__carousel for now
       overflow-y: scroll;
       max-height:   100vh;
     }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .pageContent__default__2xCEE /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -11007,22 +10842,21 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.pageContent__default__2xCEE:last-child
+    .pageContent__default__2xCEE:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .pageContent__default__2xCEE
 {
     -webkit-box-flex:          1;
@@ -11031,7 +10865,6 @@ only used in type__carousel for now
             flex:          1 0 auto;
     margin:        0;
 }
-
 .pageContent__content__2wkgj
 {
     width:         102.4rem;
@@ -11043,7 +10876,6 @@ only used in type__carousel for now
     margin:        0 auto;
     padding:       8rem 0;
 }
-
 .pageContent__loadingOverlay__1_RTM
 {
     display:            -webkit-box;
@@ -11079,19 +10911,17 @@ only used in type__carousel for now
 
     z-index:    2;
 }
-
 .pageContent__spinner__3pwNl
 {
     position:   fixed !important;
     top:        calc(50% - 2rem);
 
-    border-color:   rgba(25, 162, 226, 0.5) !important;
+    border-color:   rgba(40, 155, 200, 0.5) !important;
 }
-
 .pageContent__spinner__3pwNl::after
     {
 
-        border-top-color:   #19a2e2 !important;
+        border-top-color:   #289bc8 !important;
     }
 /*@import "../proto/base.css";*/
 /*------------------------------------//
@@ -11144,19 +10974,10 @@ only used in type__carousel for now
     top:            0.4rem;
     margin-top:     -0.6rem;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .pageHeader__default__3zPHF /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -11172,22 +10993,21 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.pageHeader__default__3zPHF:last-child
+    .pageHeader__default__3zPHF:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .pageHeader__default__3zPHF
 {
     -webkit-box-flex:           0;
@@ -11199,7 +11019,6 @@ only used in type__carousel for now
 
     background:     #ffffff;
 }
-
 .pageHeader__content__1PJmk
 {
     margin: 3rem 4rem;
@@ -11396,19 +11215,10 @@ only used in type__carousel for now
     height: 1.8rem;
     width: 2.6rem;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .passwordInput__default__1KJw4 /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -11424,7 +11234,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.passwordInput__default__1KJw4:last-child
+    .passwordInput__default__1KJw4:last-child
     {
         margin-bottom:  0;
     }
@@ -11634,19 +11444,10 @@ only used in type__carousel for now
             transform: rotateZ(360deg) scale(1.3);
   }
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .progressIndicator__default__4m5YP /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -11662,38 +11463,34 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.progressIndicator__default__4m5YP:last-child
+    .progressIndicator__default__4m5YP:last-child
     {
         margin-bottom:  0;
     }
-
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
-
 .progressIndicator__percentage__3Biz3
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .progressIndicator__default__4m5YP
 {
     /*  */
 }
-
 .progressIndicator__percentageContainer__3BNlN
 {
     position:           absolute;
@@ -11715,7 +11512,6 @@ only used in type__carousel for now
         -ms-flex-align:        center;
             align-items:        center;
 }
-
 .progressIndicator__percentage__3Biz3
 {
 
@@ -11723,7 +11519,6 @@ only used in type__carousel for now
     letter-spacing:     0.01rem;
     margin-top:         3px;
 }
-
 .progressIndicator__spinner__1AcMf
 {
 
@@ -11735,7 +11530,6 @@ only used in type__carousel for now
 
 
 }
-
 .progressIndicator__spinner__1AcMf:after
   {
     width:              100px;
@@ -11746,7 +11540,6 @@ only used in type__carousel for now
     left:               -8px;
     top:                -8px;
   }
-
 @-webkit-keyframes progressIndicator__defaultSpinnerRingRotate__3wT-S {
   0%
   {
@@ -11759,7 +11552,6 @@ only used in type__carousel for now
             transform: rotateZ(360deg) scale(1);
   }
 }
-
 @keyframes progressIndicator__defaultSpinnerRingRotate__3wT-S {
   0%
   {
@@ -12498,6 +12290,8 @@ only used in type__carousel for now
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
 
@@ -12512,19 +12306,10 @@ only used in type__carousel for now
     font-style: normal;
 }
 
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .sliderGroup__default__2Y9lA /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -12649,19 +12434,10 @@ only used in type__carousel for now
 {
 
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .scrollBox__default__GWy-0 /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -12677,42 +12453,37 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.scrollBox__default__GWy-0:last-child
+    .scrollBox__default__GWy-0:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .scrollBox__default__GWy-0 .scrollBox__scrollBox__2UBiX
     {
         overflow: auto;
     }
-
 .scrollBox__scroll__horizontal__2cDkN .scrollBox__scrollBox__2UBiX
     {
         overflow-y: hidden;
     }
-
 .scrollBox__scroll__vertical__2Fmp3 .scrollBox__scrollBox__2UBiX
     {
         overflow-x: hidden;
     }
-
 .scrollBox__content__tGMBF
 {
 
 }
-
 .scrollBox__icon__down__29U1k, .scrollBox__icon__left__1Wpwq, .scrollBox__icon__right__2qnyF, .scrollBox__icon__up__mnKCx
 {
     position:         absolute;
@@ -12721,53 +12492,38 @@ only used in type__carousel for now
     border-radius:    2rem;
     opacity:          0.8;
 }
-
 .scrollBox__icon__down__29U1k svg, .scrollBox__icon__left__1Wpwq svg, .scrollBox__icon__right__2qnyF svg, .scrollBox__icon__up__mnKCx svg
     {
-        fill:         #19a2e2;
+        fill:         #289bc8;
     }
-
 .scrollBox__icon__down__29U1k
 {
     bottom: 1rem;
     left:   calc(50% - 1.6rem);
 }
-
 .scrollBox__icon__left__1Wpwq
 {
     top:    calc(50% - 1.6rem);
     left:   1rem;
 }
-
 .scrollBox__icon__right__2qnyF
 {
     top:    calc(50% - 1.6rem);
     right:  1rem;
 }
-
 .scrollBox__icon__up__mnKCx
 {
     top:    1rem;
     left:   calc(50% - 1.6rem);
 }
-
 .scrollBox__content__tGMBF
 {
 
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .sorter__default__3a0HN /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -12783,7 +12539,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.sorter__default__3a0HN:last-child
+    .sorter__default__3a0HN:last-child
     {
         margin-bottom:  0;
     }
@@ -13178,6 +12934,13 @@ only used in type__carousel for now
     font-style: normal;
 }
 
+.tabButton__role__control__T5uU2 .tabButton__label__s-MZG
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13186,22 +12949,15 @@ only used in type__carousel for now
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
-}
-
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
 }
 
 .tabButton__default__2fot- /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -13233,6 +12989,8 @@ only used in type__carousel for now
     cursor:             pointer;
     text-transform:     uppercase;
     border-radius:      0;
+    -webkit-box-shadow:         0 0.1rem 0.2rem 0 #96A3AA;
+            box-shadow:         0 0.1rem 0.2rem 0 #96A3AA;
 }
 
 .tabButton__content__2nWC-
@@ -13244,150 +13002,139 @@ only used in type__carousel for now
     display:            -webkit-flex;
     display:            -ms-flexbox;
     display:            flex;
+    -webkit-box-orient:     horizontal;
+    -webkit-box-direction:     normal;
+    -webkit-flex-direction:     row;
+        -ms-flex-direction:     row;
+            flex-direction:     row;
+    -webkit-box-pack:    start;
+    -webkit-justify-content:    flex-start;
+        -ms-flex-pack:    start;
+            justify-content:    flex-start;
+    -webkit-box-align:        stretch;
+    -webkit-align-items:        stretch;
+        -ms-flex-align:        stretch;
+            align-items:        stretch;
 
-    -webkit-box-align:        center;
+    -webkit-box-sizing:         border-box;
 
-    -webkit-align-items:        center;
-
-        -ms-flex-align:        center;
-
-            align-items:        center;
-    text-align:         center;
-
-    min-width:          9rem;
+            box-sizing:         border-box;
+    min-width:          8rem;
     height:             3.2rem; /************ replace with min-, or remove? */
+
+    border:             0.1rem solid transparent;
 }
 
 .tabButton__label__s-MZG
 {
+    -webkit-box-flex:               1;
+    -webkit-flex:               1 0 auto;
+        -ms-flex:               1 0 auto;
+            flex:               1 0 auto;
+
+    -webkit-box-sizing:         border-box;
+
+            box-sizing:         border-box;
+    max-width:          100%;
+
+    /* adjust for font baseline */
+    padding-top:        0.7rem;
+    padding-bottom:     0.4rem;
+    /* +1px here with the border endlich */
+    padding-left:       1.4rem;
+    padding-right:      1.4rem;
 
     font-size:          1.2rem;
     line-height:        1.6rem;
     letter-spacing:     0.04rem;
-
-    margin-top:         0.1rem;
-
-    padding-left:       1.6rem;
-    padding-right:      1.6rem;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
     white-space:        nowrap;
 }
 
-.tabButton__iconPosition__right__3TjUh .tabButton__content__2nWC-
-    {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: reverse;
-        -webkit-flex-direction: row-reverse;
-            -ms-flex-direction: row-reverse;
-                flex-direction: row-reverse;
-    }
-
-.tabButton__iconPosition__right__3TjUh .tabButton__iconContainer__2TS7w
-    {
-        padding-right:      0.8rem;
-        padding-left:       0.4rem;
-    }
-
-.tabButton__iconPosition__right__3TjUh .tabButton__iconContainer__2TS7w + .tabButton__label__s-MZG
-    {
-        padding-right: 0rem;
-    }
-
-.tabButton__iconPosition__left__2GBjt .tabButton__iconContainer__2TS7w
-    {
-        padding-right:      0.4rem;
-        padding-left:       0.8rem;
-    }
-
-.tabButton__iconPosition__left__2GBjt .tabButton__iconContainer__2TS7w + .tabButton__label__s-MZG
-    {
-        padding-left: 0rem;
-    }
-
 .tabButton__role__default__2fpg8
 {
-    background: #19a2e2;
+    background: #289bc8;
     color:      #ffffff;
 }
 
 .tabButton__role__default__2fpg8.tabButton__fakeHovered__1ple-, .tabButton__role__default__2fpg8:hover
     {
-        background: rgb(21, 138, 192);
+        background: rgb(35, 135, 174);
         color:      #ffffff;
     }
 
 .tabButton__role__default__2fpg8:active
     {
-        background: #19a2e2;
+        background: #289bc8;
     }
 
 .tabButton__role__promoted__2euaE
 {
-    background: #1bbab0;
+    background: #23a59b;
     color:      #ffffff;
 }
 
 .tabButton__role__promoted__2euaE.tabButton__fakeHovered__1ple-, .tabButton__role__promoted__2euaE:hover
     {
-        background: rgb(23, 158, 150);
+        background: rgb(30, 144, 135);
         color:      #ffffff;
     }
 
 .tabButton__role__promoted__2euaE:active
     {
-        background: #1bbab0;
+        background: #23a59b;
     }
 
 .tabButton__role__critical__1Nfi0
 {
-    background: #ff5460;
+    background: #f55f69;
     color:      #ffffff;
 }
 
 .tabButton__role__critical__1Nfi0.tabButton__fakeHovered__1ple-, .tabButton__role__critical__1Nfi0:hover
     {
-        background: rgb(217, 71, 82);
+        background: rgb(213, 83, 91);
         color:      #ffffff;
     }
 
 .tabButton__role__critical__1Nfi0:active
     {
-        background: #ff5460;
+        background: #f55f69;
     }
 
 .tabButton__role__subtle__1sbdu
 {
-    color:      rgb(133, 148, 164);
+    color:      #96a3aa;
     background: #ffffff;
 }
 
 .tabButton__role__subtle__1sbdu .tabButton__content__2nWC-
     {
-        border-color:   rgb(133, 148, 164);
+        border-color:   #96a3aa;
     }
 
 .tabButton__role__subtle__1sbdu .tabButton__iconContainer__2TS7w
     {
-        fill:           rgb(133, 148, 164);
+        fill:           #96a3aa;
     }
 
 .tabButton__role__subtle__1sbdu .tabButton__iconContainer__2TS7w:after
         {
-            background-color: rgb(133, 148, 164);
+            background-color: #96a3aa;
         }
 
 .tabButton__role__subtle__1sbdu:not(.tabButton__fakeHovered__1ple-):not(:hover):not(.tabButton__disabled__34KRw) .tabButton__icon__1FrZd
         {
-            fill:                       rgb(133, 148, 164);
-            color:                      rgb(133, 148, 164);
+            fill:                       #96a3aa;
+            color:                      #96a3aa;
         }
 
 .tabButton__role__subtle__1sbdu:not(.tabButton__loading__3FW4H).tabButton__fakeHovered__1ple-, .tabButton__role__subtle__1sbdu:not(.tabButton__loading__3FW4H):hover
     {
         color:                      #ffffff;
-        background:                 rgb(133, 148, 164);
+        background:                 #96a3aa;
     }
 
 .tabButton__role__subtle__1sbdu:not(.tabButton__loading__3FW4H).tabButton__fakeHovered__1ple- .tabButton__iconContainer__2TS7w:after, .tabButton__role__subtle__1sbdu:not(.tabButton__loading__3FW4H):hover .tabButton__iconContainer__2TS7w:after
@@ -13397,33 +13144,70 @@ only used in type__carousel for now
 
 .tabButton__role__subtle__1sbdu:active
     {
-        background-color:       rgb(151, 164, 178);
+        background-color:       rgb(164, 175, 181);
     }
 
 .tabButton__role__subtle__1sbdu .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov
         {
-            border-color:           rgba(133, 148, 164, 0.25);
+            border-color:           rgba(150, 163, 170, 0.25);
         }
 
 .tabButton__role__subtle__1sbdu .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov::after
             {
-                border-top-color:   rgb(133, 148, 164);
+                border-top-color:   #96a3aa;
             }
 
 .tabButton__role__control__T5uU2
 {
-    color:                      #334c68;
+    color:                      #283237;
+    -webkit-box-shadow:                 none;
+            box-shadow:                 none;
 }
+
+.tabButton__role__control__T5uU2 .tabButton__content__2nWC-
+    {
+        min-width:              0;
+        height:                 auto;
+        border-width:           0;
+    }
+
+.tabButton__role__control__T5uU2 .tabButton__label__s-MZG
+    {
+        padding:                0;
+        text-transform:         none;
+    }
+
+.tabButton__role__control__T5uU2 .tabButton__iconContainer__2TS7w
+    {
+        border-width:           0;
+        padding:                0;
+        margin-top:             -0.2rem;
+    }
+
+.tabButton__role__control__T5uU2 .tabButton__iconContainer__2TS7w:after
+        {
+            display:            none
+        }
+
+.tabButton__role__control__T5uU2.tabButton__iconPosition__right__3TjUh .tabButton__iconContainer__2TS7w + .tabButton__label__s-MZG
+    {
+        padding-right:          0.5rem;
+    }
+
+.tabButton__role__control__T5uU2.tabButton__iconPosition__left__2GBjt .tabButton__iconContainer__2TS7w + .tabButton__label__s-MZG
+    {
+        padding-left:           0.5rem;
+    }
 
 .tabButton__role__control__T5uU2.tabButton__fakeHovered__1ple-, .tabButton__role__control__T5uU2:hover
     {
-        color:                  #19a2e2;
+        color:                  #289bc8;
     }
 
 .tabButton__role__control__T5uU2.tabButton__fakeHovered__1ple- .tabButton__icon__1FrZd, .tabButton__role__control__T5uU2:hover .tabButton__icon__1FrZd
         {
-            fill:               #19a2e2;
-            color:              #19a2e2;
+            fill:               #289bc8;
+            color:              #289bc8;
         }
 
 .tabButton__role__control__T5uU2:focus
@@ -13433,13 +13217,44 @@ only used in type__carousel for now
 
 .tabButton__role__control__T5uU2 .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov
         {
-            border-color:           rgba(133, 148, 164, 0.25);
+            border-color:           rgba(150, 163, 170, 0.25);
         }
 
 .tabButton__role__control__T5uU2 .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov::after
             {
-                border-top-color:   rgb(133, 148, 164);
+                border-top-color:   #96a3aa;
             }
+
+.tabButton__size__S__1Yt4- .tabButton__iconContainer__2TS7w
+    {
+        padding:    0 0.8rem 0 0.6rem;
+    }
+
+.tabButton__size__S__1Yt4-.tabButton__iconPosition__right__3TjUh .tabButton__iconContainer__2TS7w
+    {
+        padding-right:      0.5rem;
+        padding-left:       0.7rem;
+    }
+
+.tabButton__size__S__1Yt4- .tabButton__content__2nWC-
+    {
+        min-width:          5rem;
+        min-height:         2.6rem;
+    }
+
+.tabButton__size__S__1Yt4- .tabButton__label__s-MZG
+    {
+        padding-top:        0.5rem;
+        padding-bottom:     0.5rem;
+
+        padding-left:       1.4rem;
+        padding-right:      1.4rem;
+
+
+        font-size:          1.2rem;
+        line-height:        1.6rem;
+        letter-spacing:     0.04rem;
+    }
 
 .tabButton__loading__3FW4H, .tabButton__disabled__34KRw
 {
@@ -13454,60 +13269,112 @@ only used in type__carousel for now
 
 .tabButton__disabled__34KRw
 {
-    background:     rgb(186, 227, 246);
-    color:          rgb(83, 185, 233);
+    background:     #D2D7D9;
+    color:          #ffffff;
 
     -webkit-box-shadow:     none;
 
             box-shadow:     none;
 }
 
-.tabButton__disabled__34KRw .tabButton__icon__1FrZd
-    {
-        fill:   rgb(83, 185, 233);
-        color:  rgb(83, 185, 233);
-    }
+.tabButton__disabled__34KRw.tabButton__role__subtle__1sbdu .tabButton__content__2nWC-
+        {
+            border-color:       transparent;
+        }
+
+.tabButton__disabled__34KRw.tabButton__role__subtle__1sbdu .tabButton__iconContainer__2TS7w:after
+        {
+            background-color:   #ffffff;
+        }
 
 .tabButton__disabled__34KRw.tabButton__fakeHovered__1ple-, .tabButton__disabled__34KRw:hover, .tabButton__disabled__34KRw.tabButton__role__control__T5uU2
     {
         background:     transparent;
-        color:          rgb(173, 183, 195);
+        color:          #D2D7D9;
     }
 
 .tabButton__disabled__34KRw.tabButton__fakeHovered__1ple- .tabButton__icon__1FrZd, .tabButton__disabled__34KRw:hover .tabButton__icon__1FrZd, .tabButton__disabled__34KRw.tabButton__role__control__T5uU2 .tabButton__icon__1FrZd
         {
-            fill:          rgb(173, 183, 195);
-            color:         rgb(173, 183, 195);
+            fill:          #D2D7D9;
+            color:         #D2D7D9;
         }
 
 .tabButton__disabled__34KRw:not(.tabButton__role__control__T5uU2).tabButton__fakeHovered__1ple-, .tabButton__disabled__34KRw:not(.tabButton__role__control__T5uU2):hover
         {
-            background:      rgb(173, 183, 195) !important;
+            background:      #D2D7D9 !important;
         }
 
-.tabButton__disabled__34KRw.tabButton__role__promoted__2euaE
+.tabButton__iconPosition__left__2GBjt:not(.tabButton__role__control__T5uU2) .tabButton__iconContainer__2TS7w
     {
-        background:     rgb(187, 234, 231);
-        color:          rgb(84, 203, 196);
+        margin-right:       1px;
     }
 
-.tabButton__disabled__34KRw.tabButton__role__promoted__2euaE .tabButton__icon__1FrZd
-        {
-            fill:   rgb(84, 203, 196);
-            color:  rgb(84, 203, 196);
-        }
-
-.tabButton__disabled__34KRw.tabButton__role__critical__1Nfi0
+.tabButton__iconPosition__right__3TjUh .tabButton__content__2nWC-
     {
-        background:     rgb(255, 204, 207);
-        color:          rgb(255, 127, 136);
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -webkit-flex-direction: row-reverse;
+            -ms-flex-direction: row-reverse;
+                flex-direction: row-reverse;
     }
 
-.tabButton__disabled__34KRw.tabButton__role__critical__1Nfi0 .tabButton__icon__1FrZd
+.tabButton__iconPosition__right__3TjUh:not(.tabButton__role__control__T5uU2) .tabButton__iconContainer__2TS7w
+    {
+        margin-left:        1px;
+        padding-left:       1.2rem;
+        padding-right:      1rem;
+    }
+
+.tabButton__iconPosition__right__3TjUh:not(.tabButton__role__control__T5uU2) .tabButton__iconContainer__2TS7w:after
         {
-            fill:   rgb(255, 127, 136);
-            color:  rgb(255, 127, 136);
+            right:          auto;
+            left:           -1px;
         }
+
+.tabButton__iconContainer__2TS7w
+{
+    display:            -webkit-box;
+    display:            -webkit-flex;
+    display:            -ms-flexbox;
+    display:            flex;
+    -webkit-box-pack:    center;
+    -webkit-justify-content:    center;
+        -ms-flex-pack:    center;
+            justify-content:    center;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+
+    position:           relative;
+
+    -webkit-box-flex:               0;
+
+    -webkit-flex:               0 0 auto;
+
+        -ms-flex:               0 0 auto;
+
+            flex:               0 0 auto;
+
+    border-width:       0.1rem;
+    border-style:       solid;
+    border-color:       transparent;
+
+    padding-right:      0.8rem;
+    padding-left:       0.6rem;
+}
+
+.tabButton__iconContainer__2TS7w:after
+    {
+        content:        '';
+        display:        block;
+        width:          1px;
+        height:         calc(100% + 4px);
+        position:       absolute;
+        right:          -1px;
+        top:            -2px;
+        background-color: #ffffff;
+    }
 
 .tabButton__loadingOverlay__NO9GT
 {
@@ -13539,12 +13406,14 @@ only used in type__carousel for now
 
     width:      100%;
     height:     100%;
+
+
 }
 
 .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov
     {
         border-color:   rgba(255, 255, 255, 0.5);
-    }
+}
 
 .tabButton__loadingOverlay__NO9GT .tabButton__spinner__kPSov::after
         {
@@ -13555,7 +13424,7 @@ only used in type__carousel for now
 .tabButton__default__2fot-
 {
     margin-bottom:	0;
-    color:          #19a2e2;
+    color:          #289bc8;
 
     -webkit-box-shadow:     none;
 
@@ -13569,7 +13438,7 @@ only used in type__carousel for now
 
 .tabButton__default__2fot-:hover .tabButton__content__2nWC-
     {
-        border-color:       #19a2e2;
+        border-color:       #289bc8;
     }
 
 .tabButton__label__s-MZG
@@ -13580,7 +13449,7 @@ only used in type__carousel for now
 
 .tabButton__active__2GsXf
 {
-    background:     #19a2e2  !important;
+    background:     #289bc8  !important;
     color:          #ffffff !important;
     pointer-events: none;
     cursor:         default;
@@ -13600,6 +13469,8 @@ only used in type__carousel for now
 :root
 {
     /* primary colors */
+
+    /* accent colors */
 
     /* greyscale colors */
 }
@@ -13724,19 +13595,10 @@ only used in type__carousel for now
     background: #ffffff;
     z-index:    1;
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .table__default__fpQba /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -13752,22 +13614,21 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.table__default__fpQba:last-child
+    .table__default__fpQba:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .table__default__fpQba
 {
     -webkit-font-feature-settings:	lining-nums tabular-nums;
@@ -13775,12 +13636,10 @@ only used in type__carousel for now
     font-variant-numeric:	lining-nums tabular-nums;
     word-wrap:          break-word;
 }
-
 .table__zebra__1Wxas .table__row__1YGNP:nth-child(even) > .table__cell__3NkUW
     {
-        background: rgb(245, 246, 247);
+        background: #F0F0F0;
     }
-
 .table__zebra__1Wxas .table__row__1YGNP
     {
         width:  100%;
@@ -13846,19 +13705,10 @@ only used in type__carousel for now
 {
     /* padding? */
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .tag__default__308m5 /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -13874,22 +13724,21 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.tag__default__308m5:last-child
+    .tag__default__308m5:last-child
     {
         margin-bottom:  0;
     }
-
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
-
 :root
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
 }
-
 .tag__default__308m5
 {
     display:        -webkit-box;
@@ -13908,14 +13757,12 @@ only used in type__carousel for now
 
     padding:        0 1rem;
 
-    background:     rgba(71, 94, 119, 0.1);
+    background:     rgba(65, 75, 85, 0.1);
 }
-
 .tag__default__308m5 .tag__label__33UX_
     {
         white-space:    nowrap;
     }
-
 .tag__default__308m5 .tag__delete__1EIsa
     {
        -webkit-box-flex:        0;
@@ -13925,21 +13772,18 @@ only used in type__carousel for now
        float:       right;
        margin-left: 1rem;
     }
-
 .tag__default__308m5 > *
     {
         margin-bottom:  0;
     }
-
 .tag__disabled__1SfAy
 {
-    border-color:   rgba(71, 94, 119, 0.5);
+    border-color:   rgba(65, 75, 85, 0.5);
     background:     transparent;
 }
-
 .tag__disabled__1SfAy .tag__label__33UX_
     {
-        color:  rgba(71, 94, 119, 0.5);
+        color:  rgba(65, 75, 85, 0.5);
     }
 .tagInput__default__3DPRk /* all elements get default margin-bottom of 2rem */
 {
@@ -14097,19 +13941,10 @@ only used in type__carousel for now
     {
         resize: vertical;
     }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .textArea__default__Dfi2- /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -14125,7 +13960,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.textArea__default__Dfi2-:last-child
+    .textArea__default__Dfi2-:last-child
     {
         margin-bottom:  0;
     }
@@ -14134,19 +13969,10 @@ only used in type__carousel for now
 {
     /* nothing to see here */
 }
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
-}
-
 .textInput__default__9o_HN /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -14162,7 +13988,7 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-.textInput__default__9o_HN:last-child
+    .textInput__default__9o_HN:last-child
     {
         margin-bottom:  0;
     }
@@ -14179,22 +14005,15 @@ only used in type__carousel for now
 {
     /* primary colors */
 
+    /* accent colors */
+
     /* greyscale colors */
-}
-
-:root
-{
-    /*  TYPOGRAPHY SIZES */
-
-    /*  GUTTERS */
-
-    /*  SPACING */
 }
 
 .textInputWithDropdown__default__9ZDoM /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
-    margin-bottom:  1.6rem;
+    margin-bottom:  2rem;
 
     -webkit-box-sizing:     border-box;
 
@@ -14283,12 +14102,12 @@ only used in type__carousel for now
 
 .textInputWithDropdown__disabled__ZpaDl.textInputWithDropdown__position__right__I6D67 .textInputWithDropdown__input__IYMPC
         {
-            border-right:   0.1rem solid rgba(71, 94, 119, 0.2);
+            border-right:   0.1rem solid rgba(65, 75, 85, 0.2);
         }
 
 .textInputWithDropdown__disabled__ZpaDl.textInputWithDropdown__position__left__JIIJB .textInputWithDropdown__input__IYMPC
         {
-            border-left:    0.1rem solid rgba(71, 94, 119, 0.2);
+            border-left:    0.1rem solid rgba(65, 75, 85, 0.2);
         }
 .uploader__default__3Iq-q /* all elements get default margin-bottom of 2rem */
 {

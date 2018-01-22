@@ -21128,6 +21128,7 @@ var ComboBox = function (_Component) {
                     {
                         height: '50vh',
                         onScroll: onScroll,
+                        scroll: 'vertical',
                         scrollBoxRef: this.setRef },
                     _react2.default.createElement(
                         _ListBox2.default,
