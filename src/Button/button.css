@@ -7,13 +7,22 @@
 {
     position:           relative;
     display:            table; /* flex doesn’t work here */
+
     width:              auto;
-    border:             none;
+
     padding:            0;
+
+    border:             none;
+    border-radius:      0.2rem;
+
     background:         transparent;
     cursor:             pointer;
     text-transform:     uppercase;
-    border-radius:      0;
+
+    &:focus
+    {
+        outline:        none;
+    }
 }
 
 
@@ -23,13 +32,15 @@
      * on button so we need to set it here
      */
     display:            flex;
-
+    justify-content:    center;
     align-items:        center;
-    text-align:         center;
 
     min-width:          9rem;
     height:             3.2rem; /************ replace with min-, or remove? */
+
+    text-align:         center;
 }
+
 
 .label
 {
@@ -40,7 +51,6 @@
     letter-spacing:     0.04rem;
 
     margin-top:         0.1rem;
-
     padding-left:       1.6rem;
     padding-right:      1.6rem;
 
@@ -48,7 +58,6 @@
     text-overflow:      ellipsis;
     white-space:        nowrap;
 }
-
 
 
 .iconPosition__right
@@ -70,6 +79,7 @@
     }
 }
 
+
 .iconPosition__left
 {
     .iconContainer
@@ -84,6 +94,7 @@
     }
 }
 
+
 .role__default
 {
     background: var( --PC-BLUE );
@@ -92,13 +103,22 @@
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --PC-BLUE ) shade( 15% ) );
+        background: var( --PC-BLUE--DARK );
         color:      var( --PC-WHITE );
     }
+}
 
-    &:active
+
+.role__secondary
+{
+    background: var( --PC-GREY--L90 );
+    color:      var( --PC-GREY--L25 );
+
+    &.fakeHovered,
+    &:hover
     {
-        background: var( --PC-BLUE );
+        background: var( --PC-GREY--L70 );
+        color:      var( --PC-GREY--L25 );
     }
 }
 
@@ -111,13 +131,8 @@
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --PC-GREEN ) shade( 15% ) );
+        background: var( --PC-GREEN--DARK );
         color:      var( --PC-WHITE );
-    }
-
-    &:active
-    {
-        background: var( --PC-GREEN );
     }
 }
 
@@ -130,26 +145,53 @@
     &.fakeHovered,
     &:hover
     {
-        background: color( var( --PC-RED ) shade( 15% ) );
+        background: var( --PC-RED--DARK );
         color:      var( --PC-WHITE );
     }
+}
 
-    &:active
+
+.role__warning
+{
+    background: var( --PC-ORANGE );
+    color:      var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
     {
-        background: var( --PC-RED );
+        background: var( --PC-ORANGE--DARK );
+        color:      var( --PC-WHITE );
     }
 }
 
 
 .role__subtle
 {
-    color:      var( --GS-5 );
-    background: var( --PC-WHITE );
+    color:          var( --PC-BLUE );
+    background:     transparent;
 
     .content
     {
-        border-color:   var( --GS-5 );
+        min-width:      7rem;
+
+        border-radius:  1.5rem;
+        border:         0.1rem solid var( --PC-BLUE );
+
+        box-sizing:     border-box;
     }
+
+
+    &.fakeHovered,
+    &:hover
+    {
+        color:      var( --PC-WHITE );
+
+        .content
+        {
+            background: var( --PC-BLUE );
+        }
+    }
+
 
     .iconContainer
     {
@@ -161,7 +203,7 @@
         }
     }
 
-    &:not(.fakeHovered):not(:hover):not(.disabled)
+    /*&:not(.fakeHovered):not(:hover):not(.disabled)
     {
         .icon
         {
@@ -179,12 +221,8 @@
         {
             background-color:       var( --PC-WHITE );
         }
-    }
+    }*/
 
-    &:active
-    {
-        background-color:       color( var( --GS-5 ) tint( 15% ) );
-    }
 
     .loadingOverlay
     {
@@ -215,11 +253,6 @@
             fill:               var( --PC-BLUE );
             color:              var( --PC-BLUE );
         }
-    }
-
-    &:focus
-    {
-        outline:                none;
     }
 
     .loadingOverlay
@@ -257,18 +290,31 @@
 
 .disabled
 {
-    background:     color( var( --PC-BLUE ) tint( 70% ) );
-    color:          color( var( --PC-BLUE ) tint( 25% ) );
 
-    .icon
+    &.role__default
     {
-        fill:   color( var( --PC-BLUE ) tint( 25% ) );
-        color:  color( var( --PC-BLUE ) tint( 25% ) );
+        background:     var( --PC-BLUE--LIGHT );
+        color:          var( --PC-BLUE--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-BLUE ) tint( 25% ) );
+            color:  color( var( --PC-BLUE ) tint( 25% ) );
+        }
     }
 
-    box-shadow:     none;
+    &.role__secondary
+    {
+        color:          var( --PC-GREY--L55 );
 
-    &.fakeHovered,
+        .icon
+        {
+            fill:   color( var( --PC-BLUE ) tint( 25% ) );
+            color:  color( var( --PC-BLUE ) tint( 25% ) );
+        }
+    }
+
+    /*&.fakeHovered,
     &:hover,
     &.role__control
     {
@@ -289,12 +335,12 @@
         {
             background:      var( --GS-7 ) !important;
         }
-    }
+    }*/
 
     &.role__promoted
     {
-        background:     color( var( --PC-GREEN ) tint( 70% ) );
-        color:          color( var( --PC-GREEN ) tint( 25% ) );
+        background:     var( --PC-GREEN--LIGHT );
+        color:          var( --PC-GREEN--L25 );
 
         .icon
         {
@@ -305,8 +351,37 @@
 
     &.role__critical
     {
-        background:     color( var( --PC-RED ) tint( 70% ) );
-        color:          color( var( --PC-RED ) tint( 25% ) );
+        background:     var( --PC-RED--LIGHT );
+        color:          var( --PC-RED--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+            color:  color( var( --PC-RED ) tint( 25% ) );
+        }
+    }
+
+    &.role__warning
+    {
+        background:     var( --PC-ORANGE--LIGHT );
+        color:          var( --PC-ORANGE--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+            color:  color( var( --PC-RED ) tint( 25% ) );
+        }
+    }
+
+    &.role__subtle
+    {
+        color:          var( --PC-BLUE--L40 );
+
+        .content
+        {
+            background:     var( --PC-WHITE );
+            border-color:   var( --PC-BLUE--LIGHT );
+        }
 
         .icon
         {
@@ -315,6 +390,7 @@
         }
     }
 }
+
 
 .loadingOverlay
 {

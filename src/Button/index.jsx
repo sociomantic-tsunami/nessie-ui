@@ -23,9 +23,11 @@ export default class Button extends Component
         */
         role  : PropTypes.oneOf( [
             'default',
+            'secondary',
             'subtle',
             'promoted',
             'critical',
+            'warning',
             'control'
         ] ),
         /**
