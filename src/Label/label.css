@@ -5,7 +5,7 @@
 .default
 {
     display:        block;
-    margin-bottom:  var( --spacing-xs );
+    margin-bottom:  var( --spacing-1 );
 
     width:          auto;
 

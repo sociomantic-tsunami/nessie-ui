@@ -53,7 +53,7 @@ $shark: 768px;
 
     & > *
     {
-        margin-bottom:  var( --spacing-s );
+        margin-bottom:  var( --spacing-2 );
 
         &:last-child
         {

@@ -34,7 +34,7 @@
 
         & > *
         {
-            margin-bottom:  var( --spacing-xs );
+            margin-bottom:  var( --spacing-1 );
             margin-right:   0.5rem;
         }
     }
@@ -52,7 +52,7 @@
 
         border:         none;
         margin:         0;
-        margin-bottom:  var( --spacing-xs );
+        margin-bottom:  var( --spacing-1 );
 
         background:     transparent;
 

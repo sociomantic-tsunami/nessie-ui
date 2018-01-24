@@ -4,7 +4,7 @@
 
 .default
 {
-    margin-bottom:  var( --spacing-l );
+    margin-bottom:  var( --spacing-4 );
 
     /*&::after
     {
@@ -19,21 +19,21 @@
 
 .level__1
 {
-    margin-bottom:  var( --spacing-xxl );
+    margin-bottom:  var( --spacing-8 );
 
     &::after
     {
-        bottom: -( var( --spacing-l ) );
+        bottom: -( var( --spacing-4 ) );
     }
 }
 
 .level__2
 {
-    margin-bottom: var( --spacing-xl );
+    margin-bottom: var( --spacing-5 );
 
     &::after
     {
-        bottom: -( var( --spacing-s ) );
+        bottom: -( var( --spacing-2 ) );
     }
 }
 
