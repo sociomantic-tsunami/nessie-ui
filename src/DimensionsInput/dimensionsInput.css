@@ -6,41 +6,48 @@
 
 }
 
+
 .error
 {
-    .container
+    .inputDefault
     {
-        border-color:       var( --PC-RED ) !important; /* error is always red! */
+        border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+        outline:        0.1rem solid var( --PC-RED ) !important; /* yes, always override other states */
+        outline-offset: -0.2rem !important; /* yes, always override other states */
+        color:          var( --PC-RED )!important; /* yes, always override other states */
+    }
+
+    .icon
+    {
+        color:          var( --PC-RED )!important; /* yes, always override other states */
     }
 }
+
 
 .fakeHovered
 {
-    .container
+    .inputDefault
     {
         border-color:       var( --PC-BLUE );
+        outline:            0.1rem solid var( --PC-BLUE );
+        outline-offset:     -0.2rem;
     }
 }
 
+
 .disabled
 {
-    .container
+    .inputDefault
     {
-        background-color:   var( --GS-10 );
-        border-color:       var( --GS-10 );
+        background:         var( --PC-GREY--L90 );
+        color:              var( --PC-GREY--L40 );
     }
 
     .input
     {
         background-color:   var( --GS-10 );
     }
-
-    .inputDefault
-    {
-        color:  color( var( --GS-2 ) a( 50%) );
-    }
 }
-
 
 
 .container
@@ -49,9 +56,6 @@
     position:               relative;
     flex-direction:         row;
     align-items:	        center;
-    composes:               default from '../InputField/inputField.css';
-    padding-right:          0.5rem;
-    padding-left:           0.5rem;
 
     & > *
     {
@@ -62,30 +66,33 @@
 
 .inputDefault
 {
+    composes:           default from '../InputField/inputField.css';
+
 	display: 			flex;
     flex:               1 1 100%;
 
     position:           relative;
     top:                0;
 
-    min-width:          5rem;
+    min-width:          6.4rem;
 
 	flex-grow:			1;
 
-    border:             none;
-    padding:            0;
+    padding:            1.1rem 1.6rem 1.1rem 1.6rem;
 
-    letter-spacing: 0.02rem;
-    text-align:     center;
+    letter-spacing:     0.02rem;
+    text-align:         center;
 
-    background:     transparent;
+    background:         transparent;
 
-    font:           inherit;
-    line-height:    inherit;
+    font:               inherit;
+    font-size:          1.4rem;
+    line-height:        inherit;
 
     &:focus
     {
-        outline:    none;
+        border-color:       var( --PC-BLUE );
+        outline:            0.1rem solid var( --PC-BLUE );
 
         &::placeholder
         {
@@ -97,4 +104,14 @@
     {
         display: none;
     }
+}
+
+
+.icon
+{
+    margin-left:    1.4rem;
+    margin-right:   1.4rem;
+
+    font-size:      1.6rem;
+    color:       var( --PC-GREY--D25 );
 }
