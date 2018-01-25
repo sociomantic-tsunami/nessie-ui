@@ -120,6 +120,19 @@
         background: var( --PC-GREY--L70 );
         color:      var( --PC-GREY--L25 );
     }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:          color( var( --PC-GREY--L25 ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:  var( --PC-GREY--L25 );
+            }
+        }
+    }
 }
 
 
@@ -180,7 +193,6 @@
         box-sizing:     border-box;
     }
 
-
     &.fakeHovered,
     &:hover
     {
@@ -191,7 +203,6 @@
             background: var( --PC-BLUE );
         }
     }
-
 
     .iconContainer
     {
@@ -223,16 +234,15 @@
         }
     }*/
 
-
     .loadingOverlay
     {
         .spinner
         {
-            border-color:           color( var( --GS-5 ) a( 25% ) );
+            border-color:           color( var( --PC-BLUE  ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --GS-5 );
+                border-top-color:   var( --PC-BLUE );
             }
         }
     }
@@ -241,7 +251,7 @@
 
 .role__control
 {
-    color:                      var( --GS-1 );
+    color:                      var( --PC-GREY--DARK );
 
     &.fakeHovered,
     &:hover
@@ -259,11 +269,11 @@
     {
         .spinner
         {
-            border-color:           color( var( --GS-5 ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--DARK ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --GS-5 );
+                border-top-color:   var( --PC-GREY--DARK );
             }
         }
     }
@@ -290,7 +300,6 @@
 
 .disabled
 {
-
     &.role__default
     {
         background:     var( --PC-BLUE--LIGHT );
@@ -416,7 +425,6 @@
 
         &::after
         {
-
             border-top-color:   var( --PC-WHITE );
         }
     }
