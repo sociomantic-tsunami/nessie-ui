@@ -79,20 +79,20 @@ export default class Module extends Component
          */
         onClickDelete         : PropTypes.func,
         /**
-        *  Error tooltip bound to error icon onMouseOut callback function
-        */
+          *  Error icon mouse over callback function
+          */
         onMouseOutError       : PropTypes.func,
         /**
-        *  Error tooltip bound to error icon onMouseOver callback function
-        */
+          *  Error icon mouse out callback function
+          */
         onMouseOverError      : PropTypes.func,
         /**
-        *  Error tooltip bound to header onMouseOut callback function
-        */
+          *  Header mouse over callback function
+          */
         onMouseOutHeader      : PropTypes.func,
         /**
-         *  Error tooltip bound to header onMouseOver callback function
-         */
+          *  Header mouse out callback function
+          */
         onMouseOverHeader     : PropTypes.func,
     };
 
@@ -113,51 +113,6 @@ export default class Module extends Component
 
         this.handleClickDelete = this.handleClickDelete.bind( this );
         this.handleClickToggle = this.handleClickToggle.bind( this );
-        this.handleOnMouseOverHeader = this.handleOnMouseOverHeader.bind( this );
-        this.handleOnMouseOutHeader = this.handleOnMouseOutHeader.bind( this );
-        this.handleOnMouseOverError = this.handleOnMouseOverError.bind( this );
-        this.handleOnMouseOutError = this.handleOnMouseOutError.bind( this );
-    }
-
-    handleOnMouseOverHeader( e )
-    {
-        e.stopPropagation();
-        const { onMouseOverHeader } = this.props;
-        if ( onMouseOverHeader )
-        {
-            onMouseOverHeader( e );
-        }
-    }
-
-
-    handleOnMouseOutHeader( e )
-    {
-        e.stopPropagation();
-        const { onMouseOutHeader } = this.props;
-        if ( onMouseOutHeader )
-        {
-            onMouseOutHeader( e );
-        }
-    }
-
-    handleOnMouseOverError( e )
-    {
-        e.stopPropagation();
-        const { onMouseOverError } = this.props;
-        if ( onMouseOverError )
-        {
-            onMouseOverError( e );
-        }
-    }
-
-    handleOnMouseOutError( e )
-    {
-        e.stopPropagation();
-        const { onMouseOutError } = this.props;
-        if ( onMouseOutError )
-        {
-            onMouseOutError( e );
-        }
     }
 
     handleClickToggle( e )
@@ -225,14 +180,12 @@ export default class Module extends Component
 
             header = (
                 <header
-                    className = { cssMap.header }
-                    onClick   = { onClickHeader }>
+                    className   = { cssMap.header }
+                    onClick     = { onClickHeader }
+                    onMouseOut  = { onMouseOutHeader }
+                    onMouseOver = { onMouseOverHeader }>
                     <div className = { cssMap.title }>
-                        <ModuleHeader
-                            onMouseOut = { this.handleOnMouseOutHeader }
-                            onMouseOver = { this.handleOnMouseOverHeader }>
-                                { title }
-                        </ModuleHeader>
+                        <ModuleHeader>{ title }</ModuleHeader>
                     </div>
                     <div className = { cssMap.controls }>
                         { !!errorMessage && hasError &&
@@ -240,8 +193,8 @@ export default class Module extends Component
                                 message          = { errorMessage }
                                 iconType         = "error"
                                 tooltipIsVisible = { errorMessageIsVisible }
-                                onMouseOut       = { this.handleOnMouseOutError }
-                                onMouseOver      = { this.handleOnMouseOverError } />
+                                onMouseOut       = { onMouseOutError }
+                                onMouseOver      = { onMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton
@@ -268,11 +221,11 @@ export default class Module extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    collapsible     : isCollapsible,
-                    collapsed       : isCollapsible && isCollapsed,
-                    error           : hasError,
-                    moduleError     : hasModuleError,
-                    level           : headerLevel
+                    collapsible : isCollapsible,
+                    collapsed   : isCollapsible && isCollapsed,
+                    error       : hasError,
+                    moduleError : hasModuleError,
+                    level       : headerLevel
                 } }>
                 <section className = { className }>
                     { header }
