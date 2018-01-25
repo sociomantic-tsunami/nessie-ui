@@ -3,23 +3,11 @@
 
 $shark: 768px;
 
-@media( min-width: $shark )
-{
-	.default
-    {
-        &:first-child
-        {
-            padding-left: 0;
-        }
-    }
-}
-
 .default
 {
-	padding-top: 	1rem;
-	padding-bottom: 1rem;
-
-    background-color:     var( --PC-WHITE );
+    padding-top:    1rem;
+    padding-bottom: 1rem;
+    /* background-color:     var( --PC-WHITE ); */
     /*flex-direction: row;*/
 
     &::before
@@ -50,14 +38,20 @@ $shark: 768px;
             display:    none;
         }
     /*}*/
+
+    /*@media( min-width: $shark )
+    {*/
+        /* &:first-child
+        {
+            padding-left: 0;
+        } */
+    /*}*/
 }
+
 
 .header /* required until we have a TableHeader text component */
 {
     display:        none;
-
-    top: 			0.5rem;
-	margin-top: 	-0.8rem !important;
 
     @extend %Nessie-Bold;
 
@@ -73,19 +67,11 @@ $shark: 768px;
     z-index:            1;
 }
 
-.data
-{
-    padding-left:       0.5rem;
-
-    &.header
-    {
-        @extend %Nessie-Bold;
-    }
-}
 
 .sticky
 {
-    position:    sticky;
-    left:        0;
-    z-index:     1;
+    position:   sticky;
+    left:       0;
+    background: var( --PC-WHITE );
+    z-index:    1;
 }

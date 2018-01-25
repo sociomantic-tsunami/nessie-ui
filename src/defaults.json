@@ -34,14 +34,15 @@
     {
         "label" : "Hack the planet"
     },
-    "ColorInput" :
-    {
-        "label" : "Pick a color",
-        "lochness" : { "isBeta" : true }
-    },
+
     "Column" :
     {
         "children"  : "column content"
+    },
+    "ComboBox" :
+    {
+        "isOpen" : true,
+        "options": [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option4","text":"Option 3"},{"id":"option5","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]
     },
     "DatePicker" :
     {
@@ -231,8 +232,9 @@
     },
     "ScrollBox" :
     {
-        "children"  : "{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/2', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
-        "scroll"    : "horizontal"
+        "children"     : "{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/3', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
+        "scroll"       : "horizontal",
+        "contentWidth" : "150%"
     },
     "Section" :
     {
