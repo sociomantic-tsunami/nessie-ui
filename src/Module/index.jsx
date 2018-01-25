@@ -78,6 +78,22 @@ export default class Module extends Component
          *  Delete button onClick callback function
          */
         onClickDelete         : PropTypes.func,
+        /**
+          *  Error icon mouse over callback function
+          */
+        onMouseOutError       : PropTypes.func,
+        /**
+          *  Error icon mouse out callback function
+          */
+        onMouseOverError      : PropTypes.func,
+        /**
+          *  Header mouse over callback function
+          */
+        onMouseOutHeader      : PropTypes.func,
+        /**
+          *  Header mouse out callback function
+          */
+        onMouseOverHeader     : PropTypes.func,
     };
 
     static defaultProps =
@@ -137,7 +153,12 @@ export default class Module extends Component
             errorMessage,
             errorMessageIsVisible,
             onClickHeader,
+            onMouseOutError,
+            onMouseOverError,
+            onMouseOutHeader,
+            onMouseOverHeader,
             title,
+
         } = this.props;
 
         let header;
@@ -145,8 +166,10 @@ export default class Module extends Component
         {
             header = (
                 <header
-                    className = { cssMap.header }
-                    onClick   = { onClickHeader }>
+                    className   = { cssMap.header }
+                    onClick     = { onClickHeader }
+                    onMouseOut  = { onMouseOutError }
+                    onMouseOver = { onMouseOverError }>
                     { customHeader }
                 </header>
             );
@@ -157,8 +180,10 @@ export default class Module extends Component
 
             header = (
                 <header
-                    className = { cssMap.header }
-                    onClick   = { onClickHeader }>
+                    className   = { cssMap.header }
+                    onClick     = { onClickHeader }
+                    onMouseOut  = { onMouseOutHeader }
+                    onMouseOver = { onMouseOverHeader }>
                     <div className = { cssMap.title }>
                         <ModuleHeader>{ title }</ModuleHeader>
                     </div>
@@ -167,7 +192,9 @@ export default class Module extends Component
                             <IconWithTooltip
                                 message          = { errorMessage }
                                 iconType         = "error"
-                                tooltipIsVisible = { errorMessageIsVisible } />
+                                tooltipIsVisible = { errorMessageIsVisible }
+                                onMouseOut       = { onMouseOutError }
+                                onMouseOver      = { onMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton
@@ -194,11 +221,11 @@ export default class Module extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    collapsible     : isCollapsible,
-                    collapsed       : isCollapsible && isCollapsed,
-                    error           : hasError,
-                    moduleError     : hasModuleError,
-                    level           : headerLevel
+                    collapsible : isCollapsible,
+                    collapsed   : isCollapsible && isCollapsed,
+                    error       : hasError,
+                    moduleError : hasModuleError,
+                    level       : headerLevel
                 } }>
                 <section className = { className }>
                     { header }
