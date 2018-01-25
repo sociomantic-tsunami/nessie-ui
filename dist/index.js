@@ -23183,6 +23183,10 @@ var Module = function (_Component) {
                 errorMessage = _props.errorMessage,
                 errorMessageIsVisible = _props.errorMessageIsVisible,
                 onClickHeader = _props.onClickHeader,
+                onMouseOutError = _props.onMouseOutError,
+                onMouseOverError = _props.onMouseOverError,
+                onMouseOutHeader = _props.onMouseOutHeader,
+                onMouseOverHeader = _props.onMouseOverHeader,
                 title = _props.title;
 
 
@@ -23192,7 +23196,9 @@ var Module = function (_Component) {
                     'header',
                     {
                         className: cssMap.header,
-                        onClick: onClickHeader },
+                        onClick: onClickHeader,
+                        onMouseOut: onMouseOutError,
+                        onMouseOver: onMouseOverError },
                     customHeader
                 );
             } else if (title) {
@@ -23202,7 +23208,9 @@ var Module = function (_Component) {
                     'header',
                     {
                         className: cssMap.header,
-                        onClick: onClickHeader },
+                        onClick: onClickHeader,
+                        onMouseOut: onMouseOutHeader,
+                        onMouseOver: onMouseOverHeader },
                     _react2.default.createElement(
                         'div',
                         { className: cssMap.title },
@@ -23218,7 +23226,9 @@ var Module = function (_Component) {
                         !!errorMessage && hasError && _react2.default.createElement(_index.IconWithTooltip, {
                             message: errorMessage,
                             iconType: 'error',
-                            tooltipIsVisible: errorMessageIsVisible }),
+                            tooltipIsVisible: errorMessageIsVisible,
+                            onMouseOut: onMouseOutError,
+                            onMouseOver: onMouseOverError }),
                         isDeletable && _react2.default.createElement(
                             _index.IconButton,
                             {
@@ -23331,7 +23341,23 @@ Module.propTypes = {
     /**
      *  Delete button onClick callback function
      */
-    onClickDelete: _propTypes2.default.func
+    onClickDelete: _propTypes2.default.func,
+    /**
+      *  Error icon mouse over callback function
+      */
+    onMouseOutError: _propTypes2.default.func,
+    /**
+      *  Error icon mouse out callback function
+      */
+    onMouseOverError: _propTypes2.default.func,
+    /**
+      *  Header mouse over callback function
+      */
+    onMouseOutHeader: _propTypes2.default.func,
+    /**
+      *  Header mouse out callback function
+      */
+    onMouseOverHeader: _propTypes2.default.func
 };
 Module.defaultProps = {
     isCollapsible: false,
