@@ -46,7 +46,7 @@
 {
     .input:checked + .label::before
     {
-        border-color:           var( --PC-RED );
+        border-color:           0.2rem solid var( --PC-RED );
         background-color:       var( --PC-RED );
     }
 }

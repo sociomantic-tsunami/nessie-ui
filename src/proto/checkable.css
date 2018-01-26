@@ -81,7 +81,7 @@
     &:hover .label::before,
     .input:focus + .label::before
     {
-        border-color:       var( --PC-RED );
+        border:       0.2rem solid var( --PC-RED );
     }
 
     .label .text

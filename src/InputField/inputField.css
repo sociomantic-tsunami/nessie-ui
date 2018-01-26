@@ -43,6 +43,7 @@
     {
         border-color:   var( --PC-BLUE );
         outline:        0.1rem solid var( --PC-BLUE );
+        outline-offset: 0;
 
         &::placeholder
         {
@@ -61,14 +62,13 @@
 {
     border-color:   var( --PC-BLUE );
     outline:        0.1rem solid var( --PC-BLUE );
-    outline-offset: -0.2rem;
 }
 
 .error
 {
     border-color:   var( --PC-RED ) !important; /* yes, always override other states */
     outline:        0.1rem solid var( --PC-RED ) !important; /* yes, always override other states */
-    outline-offset: -0.2rem !important; /* yes, always override other states */
+    color:          var( --PC-RED ) !important; /* yes, always override other states */
 }
 
 .disabled
