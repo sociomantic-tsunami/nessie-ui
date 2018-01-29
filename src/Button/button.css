@@ -121,12 +121,17 @@
         color:      var( --PC-GREY--L25 );
     }
 
+    .icon
+    {
+        fill:       var( --PC-GREY--L25 );
+        color:      var( --PC-GREY--L25 );
+    }
+
     .loadingOverlay
     {
         .spinner
         {
             border-color:          color( var( --PC-GREY--L25 ) a( 25% ) );
-
             &::after
             {
                 border-top-color:  var( --PC-GREY--L25 );
@@ -202,37 +207,19 @@
         {
             background: var( --PC-BLUE );
         }
-    }
 
-    .iconContainer
-    {
-        fill:           var( --GS-5 );
-
-        &:after
-        {
-            background-color: var( --GS-5 );
-        }
-    }
-
-    /*&:not(.fakeHovered):not(:hover):not(.disabled)
-    {
         .icon
         {
-            fill:                       var( --GS-5 );
-            color:                      var( --GS-5 );
+            fill:   var( --PC-WHITE );
+            color:  var( --PC-WHITE );
         }
     }
 
-    &:not(.loading):matches(.fakeHovered,:hover)
+    .icon
     {
-        color:                      var( --PC-WHITE );
-        background:                 var( --GS-5 );
-
-        .iconContainer:after
-        {
-            background-color:       var( --PC-WHITE );
-        }
-    }*/
+        fill:   var( --PC-BLUE );
+        color:  var( --PC-BLUE );
+    }
 
     .loadingOverlay
     {
@@ -251,7 +238,13 @@
 
 .role__control
 {
-    color:                      var( --PC-GREY--DARK );
+    color:                  var( --PC-GREY--DARK );
+
+    .icon
+    {
+        fill:               var( --PC-GREY--DARK );
+        color:              var( --PC-GREY--DARK );
+    }
 
     &.fakeHovered,
     &:hover
@@ -318,33 +311,10 @@
 
         .icon
         {
-            fill:   color( var( --PC-BLUE ) tint( 25% ) );
-            color:  color( var( --PC-BLUE ) tint( 25% ) );
+            fill:   var( --PC-GREY--L55 );
+            color:  var( --PC-GREY--L55 );
         }
     }
-
-    /*&.fakeHovered,
-    &:hover,
-    &.role__control
-    {
-        background:     transparent;
-        color:          var( --GS-7 );
-
-        .icon
-        {
-            fill:          var( --GS-7 );
-            color:         var( --GS-7 );
-        }
-    }
-
-    &:not(.role__control)
-    {
-        &.fakeHovered,
-        &:hover
-        {
-            background:      var( --GS-7 ) !important;
-        }
-    }*/
 
     &.role__promoted
     {
@@ -394,8 +364,8 @@
 
         .icon
         {
-            fill:   color( var( --PC-RED ) tint( 25% ) );
-            color:  color( var( --PC-RED ) tint( 25% ) );
+            fill:   var( --PC-BLUE--L40 );
+            color:  var( --PC-BLUE--L40 );
         }
     }
 }
