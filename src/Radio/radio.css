@@ -20,11 +20,11 @@
     background-color:       var( --PC-BLUE );
     border-radius:          50%;
 
-    width:                  0.8rem;
-    height:                 0.8rem;
+    width:                  1.2rem;
+    height:                 1.2rem;
 
-    top:                    1.2rem;
-    left:                   0.7rem;
+    top:                    0.9rem;
+    left:                   0.4rem;
 }
 
 .fakeHovered
@@ -36,7 +36,7 @@
 {
     .input:checked + .label::after
     {
-        background-color:       color(var( --GS-2 ) a( 50%) );
+        background-color:      var( --PC-BLUE--L40 );
     }
 }
 

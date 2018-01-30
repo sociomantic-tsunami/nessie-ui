@@ -8,7 +8,7 @@
   position:                     relative;
   background-color:             transparent;
   border-style:                 solid;
-  border-color:                 color( var( --GS-2 ) a( 35% ) );
+  border-color:                 color( var( --PC-GREY--D25 ) a( 35% ) );
   border-radius:                50%;
   box-sizing:                   content-box;
   display:                      inline-block;
@@ -20,7 +20,7 @@
     top:                        0px;
     left:                       0px;
     border-style:               solid;
-    border-color:               var( --GS-2 ) transparent transparent transparent;
+    border-color:               var( --PC-GREY--D25 ) transparent transparent transparent;
     border-radius:              50%;
     box-sizing:                 border-box;
   }

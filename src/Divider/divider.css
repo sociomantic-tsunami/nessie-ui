@@ -5,8 +5,8 @@
 .default
 {
 	position: 		        relative;
-    margin-top:             var( --spacing-s );
-    margin-bottom:          var( --spacing-m );
+    margin-top:             var( --spacing-2 );
+    margin-bottom:          var( --spacing-3 );
     height:                 0.1rem;
 
     border:                 none;

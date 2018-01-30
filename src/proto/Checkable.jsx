@@ -71,7 +71,7 @@ export default class Checkable extends Component
                         onMouseOut  = { onMouseOut }
                         className   = { cssMap.label }>
                         { labelNode || ( labelText &&
-                            <Text>{ labelText }</Text>
+                            <Text className = { cssMap.text }>{ labelText }</Text>
                         ) }
                     </label>
                 </div>

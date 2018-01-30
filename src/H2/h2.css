@@ -41,15 +41,15 @@
 
 .spacing__S
 {
-    margin-bottom: var( --spacing-xs );
+    margin-bottom: var( --spacing-1 );
 }
 
 .spacing__M
 {
-    margin-bottom: var( --spacing-m );
+    margin-bottom: var( --spacing-3 );
 }
 
 .spacing__L
 {
-    margin-bottom: var( --spacing-xxl );
+    margin-bottom: var( --spacing-8 );
 }

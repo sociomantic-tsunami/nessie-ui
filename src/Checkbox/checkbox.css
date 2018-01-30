@@ -4,17 +4,26 @@
 {
 }
 
-.input:checked + .label::after
+.input:checked
 {
-    display:                block;
+    & + .label::before
+    {
+        border-color:           var( --PC-BLUE );
+        background-color:       var( --PC-BLUE );
+    }
 
-    background:             url( './images/validation--blue.svg' );
+    & + .label::after
+    {
+        display:                block;
 
-    width:                  1.6rem;
-    height:                 1.6rem;
+        background:             url( './images/validation--white.svg' );
 
-    top:                    0.8rem;
-    left:                   0.3rem;
+        width:                  var( --spacing-2 );
+        height:                 var( --spacing-2 );
+
+        top:                    0.7rem;
+        left:                   0.2rem;
+    }
 }
 
 .fakeHovered
@@ -24,9 +33,10 @@
 .disabled,
 .disabled:hover
 {
-    .input:checked + .label::after
+    .input:checked + .label::before
     {
-        background:         url( './images/validation--grey.svg' );
+        border-color:           var( --PC-BLUE--L40 );
+        background-color:       var( --PC-BLUE--L40 );
     }
 }
 
@@ -34,8 +44,9 @@
 .error,
 .error:hover
 {
-    .input:checked + .label::after
+    .input:checked + .label::before
     {
-        background:         url( './images/validation--red.svg' );
+        border-color:           0.2rem solid var( --PC-RED );
+        background-color:       var( --PC-RED );
     }
 }

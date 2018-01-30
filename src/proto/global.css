@@ -1,24 +1,23 @@
 :root
 {
     /*  TYPOGRAPHY SIZES */
-    --typo-s: 1rem;
-    --typo-m: 1.2rem;
-    --typo-l: 1.4rem;
+    --typo-s:  1rem;
+    --typo-m:  1.2rem;
+    --typo-l:  1.4rem;
+    --typo-xl: 1.6rem;
 
     --line-height-s: 1.2rem;
     --line-height-m: 1.6rem;
     --line-height-l: 2rem;
 
-    /*  GUTTERS */
-    --gutters-s: 0.8rem;
-    --gutters-m: 1.6rem;
-    --gutters-l: 2.4rem;
 
     /*  SPACING */
-    --spacing-xs:  0.8rem;
-    --spacing-s:   1.6rem;
-    --spacing-m:   2.4rem;
-    --spacing-l:   3.2rem;
-    --spacing-xl:  4rem;
-    --spacing-xxl: 6.4rem;
+    --spacing-1:    0.8rem;
+    --spacing-2:    1.6rem;
+    --spacing-3:    2.4rem;
+    --spacing-4:    3.2rem;
+    --spacing-5:    4rem;
+    --spacing-6:    4.8rem;
+    --spacing-7:    5.6rem;
+    --spacing-8:    6.4rem;
 }
