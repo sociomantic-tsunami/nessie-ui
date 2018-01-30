@@ -3,14 +3,13 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
+import React                       from 'react';
+import { mount, shallow }          from 'enzyme';
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import Css                         from '../hoc/Css';
+import { H2, H3, IconWithTooltip } from '../index';
 
-import Css                from '../hoc/Css';
-import { H2, H3 }         from '../index';
-
-import Module             from './index';
+import Module                      from './index';
 
 
 describe( 'Module', () =>
@@ -75,19 +74,99 @@ describe( 'Module', () =>
 
     describe( 'props', () =>
     {
-        it( 'should be undefined by default', () =>
-        {
-            expect( instance.props.title ).to.be.undefined;
-        } );
-
         describe( 'title', () =>
         {
+            it( 'should be undefined by default', () =>
+            {
+                expect( instance.props.title ).to.be.undefined;
+            } );
+
             it( 'should be passed to the header component as children', () =>
             {
                 wrapper.setProps( { title: 'Boom' } );
 
                 expect( wrapper.find( H2 ).prop( 'children' ) )
                     .to.equal( 'Boom' );
+            } );
+        } );
+
+        describe( 'onMouseOutError', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOutError ).to.be.undefined;
+            } );
+
+            it( 'should be passed to the IconWithTooltip as onMouseOut', () =>
+            {
+                const onMouseOutError = sinon.spy();
+                wrapper.setProps( {
+                    errorMessage : 'error!',
+                    hasError     : true,
+                    onMouseOutError,
+                    title        : 'hello',
+                } );
+
+                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOut' ) )
+                    .to.equal( onMouseOutError );
+            } );
+        } );
+
+        describe( 'onMouseOverError', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOverError ).to.be.undefined;
+            } );
+
+            it( 'should be passed to the IconWithTooltip as onMouseOver', () =>
+            {
+                const onMouseOverError = sinon.spy();
+                wrapper.setProps( {
+                    errorMessage : 'error!',
+                    hasError     : true,
+                    onMouseOverError,
+                    title        : 'hello',
+                } );
+
+                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOver' ) )
+                    .to.equal( onMouseOverError );
+            } );
+        } );
+
+        describe( 'onMouseOutHeader', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOutHeader ).to.be.undefined;
+            } );
+
+            it( 'should be passed to the <header> as onMouseOut', () =>
+            {
+                const onMouseOutHeader = sinon.spy();
+                wrapper.setProps( { onMouseOutHeader, title: 'hello' } );
+
+                expect( wrapper.find( 'header' ).prop( 'onMouseOut' ) )
+                    .to.equal( onMouseOutHeader );
+            } );
+        } );
+
+        describe( 'onMouseOverHeader', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOverHeader ).to.be.undefined;
+            } );
+
+            it( 'should be passed to the <header> as onMouseOver', () =>
+            {
+                const onMouseOverHeader = sinon.spy();
+                wrapper.setProps( { onMouseOverHeader, title: 'hello' } );
+
+                console.log( wrapper.find( H2 ).length );
+
+                expect( wrapper.find( 'header' ).prop( 'onMouseOver' ) )
+                    .to.equal( onMouseOverHeader );
             } );
         } );
     } );

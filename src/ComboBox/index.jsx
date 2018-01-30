@@ -327,6 +327,7 @@ export default class ComboBox extends Component
                 <ScrollBox
                     height       = "50vh"
                     onScroll     = { onScroll }
+                    scroll       = "vertical"
                     scrollBoxRef = { this.setRef }>
                     <ListBox
                         activeOption      = { addPrefix( activeOption, id ) }
