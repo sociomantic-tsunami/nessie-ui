@@ -370,9 +370,11 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Css = __webpack_require__(2);
+var _utils = __webpack_require__(4);
 
-var _Css2 = _interopRequireDefault(_Css);
+var _text = __webpack_require__(169);
+
+var _text2 = _interopRequireDefault(_text);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -383,23 +385,21 @@ var Text = function Text(_ref) {
         noWrap = _ref.noWrap,
         overflowIsHidden = _ref.overflowIsHidden,
         role = _ref.role,
-        text = _ref.text;
+        text = _ref.text,
+        textRef = _ref.textRef;
     return _react2.default.createElement(
-        _Css2.default,
+        'div',
         {
-            cssMap: cssMap,
-            cssProps: {
-                role: role,
+            className: (0, _utils.buildClassName)(className, cssMap, {
                 overflowHidden: overflowIsHidden,
-                noWrap: noWrap
-            } },
-        _react2.default.createElement(
-            'div',
-            { className: className },
-            children || text
-        )
+                noWrap: noWrap,
+                role: role
+            }),
+            ref: textRef },
+        children || text
     );
 };
+
 Text.propTypes = {
     /**
     *  Don’t wrap text to the next line
@@ -416,14 +416,18 @@ Text.propTypes = {
     /**
     *  Text string
     */
-    text: _propTypes2.default.string
+    text: _propTypes2.default.string,
+    /**
+    *  callback that receives ref to the text div: ref => ...
+    */
+    textRef: _propTypes2.default.func
 };
 
 Text.defaultProps = {
+    cssMap: _text2.default,
     noWrap: false,
     overflowIsHidden: false,
-    role: 'default',
-    cssMap: __webpack_require__(169)
+    role: 'default'
 };
 
 exports.default = Text;
