@@ -34,7 +34,7 @@ export default class TooltipDriver extends SimpleComponentDriver
 
     getMessage()
     {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
+        return this.wrapper.find( `.${this.cssMap.messageContainer}` ).children();
     }
 }
 

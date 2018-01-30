@@ -1,45 +1,54 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
-import Component from '../proto/Component';
-import Css       from '../hoc/Css';
-import Text      from '../Text';
+import Component  from '../proto/Component';
+import Css        from '../hoc/Css';
+import IconButton from '../IconButton';
+import Text       from '../Text';
 
 export default class Tooltip extends Component
 {
     static propTypes =
     {
         /**
-        *  Node that the Tooltip wraps
-        */
+         *  Node that the Tooltip wraps
+         */
         children         : PropTypes.node,
         /**
-        *  Display the tooltip
-        */
+         *  Display the tooltip as user dismissible
+         */
+         isDismissible    : PropTypes.bool,
+        /**
+         *  Display the tooltip
+         */
         isVisible        : PropTypes.bool,
         /**
-        *  Tooltip message text (string or JSX)
-        */
+         *  Tooltip message text (string or JSX)
+         */
         message          : PropTypes.node,
         /**
-        *  Text won’t wrap to the next line
-        */
+         *  Text won’t wrap to the next line
+         */
         noWrap           : PropTypes.bool,
         /**
-        *  onMouseOver callback function: ( e ) => { ... }
-        */
+         *  Function to call on “Close” button click: ( e ) => { ... }
+         */
+        onClickClose     : PropTypes.func,
+        /**
+         *  onMouseOver callback function: ( e ) => { ... }
+         */
         onMouseOver      : PropTypes.func,
         /**
-        *  onMouseOut callback function: ( e ) => { ... }
-        */
+         *  onMouseOut callback function: ( e ) => { ... }
+         */
         onMouseOut       : PropTypes.func,
         /**
-        *  Hides overflow of wrapped content
-        */
+         *  Hides overflow of wrapped content
+         */
         overflowIsHidden : PropTypes.bool,
         /**
-        *  Tooltip position relative to wrapped component
-        */
+         *  Tooltip position relative to wrapped component
+         */
         position         : PropTypes.oneOf( [
             'left',
             'right',
@@ -68,8 +77,10 @@ export default class Tooltip extends Component
             cssMap,
             message,
             position,
+            isDismissible,
             isVisible,
             noWrap,
+            onClickClose,
             onMouseOver,
             onMouseOut,
             overflowIsHidden
@@ -77,26 +88,39 @@ export default class Tooltip extends Component
 
         const { id } = this.state;
 
-        let messageLines = message;
+        let messageText = message;
 
-        if ( typeof message === 'string' )
+        if ( typeof messageText === 'string' )
         {
             const regexp = /([^\s].{1,49}(?=\s+|$))|([^\s]{1,50})/g;
 
             const matches = message.match( regexp ) || [];
 
-            messageLines = matches.map( ( line, index ) =>
-                // eslint-disable-next-line react/no-array-index-key
-                <div key = { index }>{line}</div> );
+            messageText = ( <Text
+                className = { cssMap.message }
+                noWrap >
+                { matches.map( line => [ line, <br /> ] ) }
+            </Text> );
         }
+
 
         const tooltip = (
             <div
-                className = { cssMap.tooltip }
+                className = { isDismissible ? cssMap.tooltipDismissible :
+                    cssMap.tooltip }
                 role      = "tooltip"
                 id        = { id }>
-                <div
-                    className = { cssMap.message }>{ messageLines }</div>
+                <div className = { cssMap.messageContainer }>
+                    { messageText }
+                </div>
+                { isDismissible &&
+                    <IconButton
+                        className    = { cssMap.isDismissible  }
+                        iconType     = "close"
+                        onClickClose = { onClickClose }
+                        iconTheme    = "button"
+                        iconSize     = "M"
+                    />}
             </div>
         );
 
