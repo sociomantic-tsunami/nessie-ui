@@ -1,16 +1,10 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
-@import "../proto/global.css";
 
 .default
 {
-    top:            0.5rem;
-
     width:          auto;
 
     margin:         0;
-    margin-top:     -0.9rem;
     margin-bottom:  var( --spacing-1 );
 
     font-size:      var( --typo-l );
@@ -46,7 +40,6 @@
 {
     color:  var( --PC-RED );
 }
-
 
 .overflowHidden
 {

@@ -1,6 +1,6 @@
-@import "../proto/global.css";
+@import "./definitions/variables.css";
 
-.default /* all elements get default margin-bottom of 2rem */
+.default
 {
     position:       relative;
     margin-bottom:  var( --spacing-2 );
