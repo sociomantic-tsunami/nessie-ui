@@ -3,8 +3,6 @@
 
 .default
 {
-    font:               inherit;
-
     .container
     {
         display:        flex;
@@ -16,11 +14,6 @@
         {
             margin: 0;
         }
-    }
-
-    &::placeholder
-    {
-        font:           inherit;
     }
 
     .input
@@ -58,19 +51,17 @@
             width:          0.1rem;
             height:         1.6rem;
 
-            @extend %Nessie-SemiBold;
-
             background:     var( --PC-GREY--L70 );
         }
 
         &::before
         {
-            left:   -0.2rem;
+            left:   0;
         }
 
         &::after
         {
-            right:  -0.2rem;
+            right:  0;
         }
     }
 }
@@ -81,6 +72,11 @@
     .container
     {
         flex-direction:  row-reverse;
+    }
+
+    .input
+    {
+        padding-left:   1.3rem;
     }
 
     .valueLabel
@@ -98,6 +94,11 @@
 
 .position__right
 {
+    .input
+    {
+        padding-right:   1.3rem;
+    }
+
     .valueLabel
     {
         margin-left:    -0.1rem;
@@ -118,11 +119,6 @@
         outline:        0.1rem solid var( --PC-BLUE );
     }
 
-    .input
-    {
-        outline:        none;
-    }
-
     .valueLabel
     {
         border-color:   var( --PC-BLUE );
@@ -135,11 +131,6 @@
     .container
     {
         outline:        0.1rem solid var( --PC-RED );
-    }
-
-    .input
-    {
-        outline:        none !important;
     }
 
     .valueLabel
@@ -170,10 +161,5 @@
         {
             background:     var( --PC-GREY--L80 );
         }
-    }
-
-    .container
-    {
-        outline:        none;
     }
 }
