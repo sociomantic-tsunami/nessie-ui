@@ -71,7 +71,6 @@
 .messageText
 {
     color:              var( --PC-WHITE );
-    line-height:        var( --line-height-xl );
 }
 
 
