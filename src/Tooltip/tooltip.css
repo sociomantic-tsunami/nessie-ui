@@ -21,11 +21,10 @@
 }
 
 
-.tooltip,
-.tooltipDismissible
+.tooltip
 {
     display:            flex;
-    align-items:        start;
+    align-items:        flex-start;
 
     position:           absolute;
 
@@ -60,7 +59,7 @@
 }
 
 
-.messageContainer
+.message
 {
     padding-top:        var( --spacing-1 );
     padding-right:      var( --spacing-2 );
@@ -69,7 +68,7 @@
 }
 
 
-.message
+.messageText
 {
     color:              var( --PC-WHITE );
     line-height:        var( --line-height-xl );
@@ -83,11 +82,9 @@
 }
 
 
-.isDismissible
+.iconContainer
 {
-    margin-top:   var( --spacing-1 );
-    margin-left:  var( --spacing-1 );
-    margin-right: var( --spacing-1 );
+    padding:        var( --spacing-1 );
 }
 
 
@@ -98,8 +95,7 @@
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         &::before
         {
@@ -114,8 +110,7 @@
 .position__top,
 .position__bottom
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         left:   50%;
 
@@ -131,8 +126,7 @@
 .position__topLeft,
 .position__topRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         &::before
         {
@@ -144,8 +138,7 @@
 
 .position__top
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         top:        0;
         transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
@@ -164,8 +157,7 @@
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         &::before
         {
@@ -177,8 +169,7 @@
 
 .position__bottom
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         bottom:     0;
         transform:  translateX(-50%) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
@@ -197,8 +188,7 @@
 .position__left,
 .position__right
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         top:    50%;
 
@@ -211,7 +201,7 @@
 
         &::after
         {
-            top:         calc( 50% -var( --halfPointer ) );
+            top:         calc( 50% - var( --halfPointer ) );
         }
     }
 }
@@ -219,8 +209,7 @@
 
 .position__left
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         top:        50%;
         left:       0;
@@ -246,8 +235,7 @@
 
 .position__right
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         top:        50%;
         right:      0;
@@ -273,8 +261,7 @@
 .position__topLeft,
 .position__topRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         top:    0;
         left:   50%;
@@ -292,8 +279,7 @@
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         bottom:     0;
         left:       50%;
@@ -312,8 +298,7 @@
 
 .position__topLeft
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
 
@@ -327,8 +312,7 @@
 
 .position__topRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
 
@@ -342,8 +326,7 @@
 
 .position__bottomLeft
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         transform: translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) );
 
@@ -357,8 +340,7 @@
 
 .position__bottomRight
 {
-    .tooltip,
-    .tooltipDismissible
+    .tooltip
     {
         transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
 

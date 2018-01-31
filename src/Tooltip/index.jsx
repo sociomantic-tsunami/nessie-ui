@@ -17,7 +17,7 @@ export default class Tooltip extends Component
         /**
          *  Display the tooltip as user dismissible
          */
-         isDismissible    : PropTypes.bool,
+        isDismissible    : PropTypes.bool,
         /**
          *  Display the tooltip
          */
@@ -96,31 +96,30 @@ export default class Tooltip extends Component
 
             const matches = message.match( regexp ) || [];
 
-            messageText = ( <Text
-                className = { cssMap.message }
-                noWrap >
-                { matches.map( line => [ line, <br /> ] ) }
-            </Text> );
+            messageText = (
+                <Text className = { cssMap.messageText } noWrap>
+                    { matches.map( line => [ line, <br /> ] ) }
+                </Text> );
         }
 
 
         const tooltip = (
             <div
-                className = { isDismissible ? cssMap.tooltipDismissible :
-                    cssMap.tooltip }
+                className = { cssMap.tooltip }
                 role      = "tooltip"
                 id        = { id }>
-                <div className = { cssMap.messageContainer }>
+                <div className = { cssMap.message }>
                     { messageText }
                 </div>
                 { isDismissible &&
-                    <IconButton
-                        className    = { cssMap.isDismissible  }
-                        iconType     = "close"
-                        onClickClose = { onClickClose }
-                        iconTheme    = "button"
-                        iconSize     = "M"
-                    />}
+                    <div className = { cssMap.iconContainer } >
+                        <IconButton
+                            iconType  = "close"
+                            onClick   = { onClickClose }
+                            iconTheme = "button"
+                            iconSize  = "M" />
+                    </div>
+                }
             </div>
         );
 
