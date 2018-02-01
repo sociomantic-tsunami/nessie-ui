@@ -16,7 +16,7 @@
 
     background-color:   var( --PC-WHITE );
 
-    font-size:          var( --typo-l );
+    font-size:          var( --typo-3 );
     color:              var( --PC-GREY--D5 );
 
     @extend %Nessie-Regular;

@@ -117,7 +117,7 @@
 
     @extend %Nessie-SemiBold;
 
-    font-size:              var( --typo-m );
+    font-size:              var( --typo-2 );
     line-height:            var( --line-height-s );
     letter-spacing:         0.04rem;
     text-transform:         uppercase;

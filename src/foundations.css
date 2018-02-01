@@ -23,7 +23,7 @@ body
 
     overflow:       auto;
 
-    font-size:      var( --typo-m );
+    font-size:      var( --typo-2 );
     line-height:    1.6rem;
     letter-spacing: 0.02rem;
 

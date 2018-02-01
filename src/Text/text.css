@@ -8,7 +8,7 @@
     margin-bottom:  var( --spacing-1 );
 
     @extend %Nessie-Regular;
-    font-size:      var( --typo-l );
+    font-size:      var( --typo-3 );
     line-height:    var( --line-height-m );
     letter-spacing: 0;
 
