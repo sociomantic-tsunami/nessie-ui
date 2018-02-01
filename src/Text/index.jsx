@@ -10,18 +10,19 @@ const Text = ( {
     noWrap,
     overflowIsHidden,
     role,
-    text } ) =>
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
-                role,
-                overflowHidden : overflowIsHidden,
-                noWrap
-            } }>
-            <div className = { className }>
-                { children || text }
-            </div>
-        </Css>;
+    text }
+) =>
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            role,
+            overflowHidden : overflowIsHidden,
+            noWrap
+        } }>
+        <div className = { className }>
+            { children || text }
+        </div>
+    </Css>;
 Text.propTypes =
 {
     /**
