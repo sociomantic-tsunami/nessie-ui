@@ -42,7 +42,7 @@
 {
     @extend %Nessie-Regular;
     font-size:      1.4rem;
-    line-height:    var( --line-height-m );
+    line-height:    var( --line-height-s );
     min-height:     1.6rem;
     top:            0.4rem;
     margin-top:     -0.6rem;

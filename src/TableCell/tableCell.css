@@ -23,7 +23,7 @@ $shark: 768px;
         margin-top:     -0.8rem;
 
         font-size:      var( --typo-m );
-        line-height:    var( --line-height-m );
+        line-height:    var( --line-height-s );
 
         overflow:       hidden;
         text-overflow:  ellipsis;

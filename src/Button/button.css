@@ -44,7 +44,7 @@
     @extend %Nessie-SemiBold;
 
     font-size:          var( --typo-m );
-    line-height:        var( --line-height-m );
+    line-height:        var( --line-height-s );
     letter-spacing:     0.04rem;
 
     margin-top:         0.1rem;

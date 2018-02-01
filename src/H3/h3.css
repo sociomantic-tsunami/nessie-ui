@@ -12,7 +12,7 @@
     @extend %Nessie-Bold;
 
     font-size:      1.4rem;
-    line-height:    var( --line-height-m );
+    line-height:    var( --line-height-s );
 	min-height:     1.6rem;
 }
 

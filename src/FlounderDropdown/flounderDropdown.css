@@ -102,7 +102,7 @@
         /* reset font */
         @extend %Nessie-Regular;
         font-size:      var( --typo-m );
-        line-height:    var( --line-height-m );
+        line-height:    var( --line-height-s );
         text-transform: none;
     }
 
