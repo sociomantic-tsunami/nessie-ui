@@ -9,11 +9,10 @@
 
     @extend %Nessie-Bold;
 
-    font-size:      1.6rem;
-    line-height:    1.8rem;
-	min-height:     1.8rem;
-
-    text-transform: uppercase;
+    @extend %Nessie-Bold;
+    font-size:      var( --typo-6 );
+    line-height:    var( --line-height-l );
+    letter-spacing: 0.05rem;
 }
 
 .role__default

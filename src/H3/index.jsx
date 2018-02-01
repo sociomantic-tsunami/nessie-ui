@@ -9,16 +9,17 @@ const H3 = ( {
     children,
     spacing,
     role,
-    title } ) =>
+    title }
+) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role,
-                spacing : spacing } }>
-            <h3 className = { className }>
-                { children || title }
-            </h3>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { role,
+            spacing } }>
+        <h3 className = { className }>
+            { children || title }
+        </h3>
+    </Css>;
 
 H3.propTypes =
 {
@@ -47,9 +48,9 @@ H3.propTypes =
 
 H3.defaultProps =
 {
-    role       : 'default',
-    spacing    : 'L',
-    cssMap     : require( './h3.css' )
+    role    : 'default',
+    spacing : 'L',
+    cssMap  : require( './h3.css' )
 };
 
 

@@ -10,10 +10,9 @@
 	margin-top: 	-0.6rem;
 
     @extend %Nessie-Bold;
-
-    font-size:      1.4rem;
-    line-height:    var( --line-height-s );
-	min-height:     1.6rem;
+    font-size:      var( --typo-4 );
+    line-height:    var( --line-height-l );
+    letter-spacing: 0.02rem;
 }
 
 .role__default
