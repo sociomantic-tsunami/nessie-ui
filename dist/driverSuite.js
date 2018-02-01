@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 236);
+/******/ 	return __webpack_require__(__webpack_require__.s = 237);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -140,7 +140,78 @@ exports.default = SectionDriver;
 
 /***/ }),
 
-/***/ 116:
+/***/ 107:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _simpleComponentDriver = __webpack_require__(9);
+
+var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// eslint-disable-line max-len
+
+var ERRORS = {
+    SWITCH_CANNOT_BE_TOGGLED: function SWITCH_CANNOT_BE_TOGGLED(state) {
+        return 'Switch cannot be toggled since it is ' + state;
+    } // eslint-disable-line max-len
+};
+
+var SwitchDriver = function (_SimpleComponentDrive) {
+    _inherits(SwitchDriver, _SimpleComponentDrive);
+
+    function SwitchDriver(wrapper) {
+        _classCallCheck(this, SwitchDriver);
+
+        return _possibleConstructorReturn(this, (SwitchDriver.__proto__ || Object.getPrototypeOf(SwitchDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.default));
+    }
+
+    _createClass(SwitchDriver, [{
+        key: 'toggle',
+        value: function toggle() {
+            var props = this.wrapper.props();
+
+            if (props.isDisabled) {
+                throw new Error(ERRORS.SWITCH_CANNOT_BE_TOGGLED('disabled'));
+            }
+            if (props.isReadOnly) {
+                throw new Error(ERRORS.SWITCH_CANNOT_BE_TOGGLED('readonly'));
+            }
+
+            this.input.simulate('change', { target: { checked: !props.isChecked } });
+
+            return this.wrapper;
+        }
+    }, {
+        key: 'input',
+        get: function get() {
+            return this.wrapper.find('.' + this.cssMap.input);
+        }
+    }]);
+
+    return SwitchDriver;
+}(_simpleComponentDriver2.default);
+
+exports.default = SwitchDriver;
+
+/***/ }),
+
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -196,7 +267,7 @@ exports.default = TextInputWithIconDriver;
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -281,7 +352,7 @@ function checkContentAccessiblity(driver, method) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, exports) {
 
 module.exports = require("nessie-ui/dist/componentDriver.js");
@@ -295,7 +366,7 @@ module.exports = require("nessie-ui/dist/index.js");
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -306,7 +377,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.InputComponentDriver = exports.ClickableComponentDriver = exports.SimpleComponentDriver = undefined;
 
-var _componentDriver = __webpack_require__(121);
+var _componentDriver = __webpack_require__(122);
 
 var _driver = __webpack_require__(62);
 
@@ -320,7 +391,7 @@ var _driver5 = __webpack_require__(76);
 
 var _driver6 = _interopRequireDefault(_driver5);
 
-var _driver7 = __webpack_require__(117);
+var _driver7 = __webpack_require__(118);
 
 var _driver8 = _interopRequireDefault(_driver7);
 
@@ -332,7 +403,7 @@ var _driver11 = __webpack_require__(72);
 
 var _driver12 = _interopRequireDefault(_driver11);
 
-var _driver13 = __webpack_require__(116);
+var _driver13 = __webpack_require__(117);
 
 var _driver14 = _interopRequireDefault(_driver13);
 
@@ -363,6 +434,10 @@ var _driver26 = _interopRequireDefault(_driver25);
 var _driver27 = __webpack_require__(79);
 
 var _driver28 = _interopRequireDefault(_driver27);
+
+var _driver29 = __webpack_require__(107);
+
+var _driver30 = _interopRequireDefault(_driver29);
 
 var _nessieUi = __webpack_require__(14);
 
@@ -431,6 +506,9 @@ var drivers = [{
 }, {
     Component: _nessieUi.ModalDialog,
     Driver: _driver28.default
+}, {
+    Component: _nessieUi.Switch,
+    Driver: _driver30.default
 }];
 
 exports.SimpleComponentDriver = _simpleComponentDriver2.default;
