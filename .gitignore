@@ -11,6 +11,7 @@ node_modules/
 *.sublime-project
 *.sublime-workspace
 
+
 # Compiled source #
 ###################
 *.com
@@ -19,6 +20,10 @@ node_modules/
 *.exe
 *.o
 *.so
+
+# Build #
+#########
+dist/
 
 # happypack #
 ############
@@ -63,6 +68,7 @@ Thumbs.db
 ##############
 backstop_data/bitmaps_test
 backstop_data/*_report
+
 
 # Lochness #
 ############
