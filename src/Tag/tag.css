@@ -7,24 +7,26 @@
     align-items:    center;
 
     width:          auto;
-    height:     2rem;
 
-    border:         0.1rem solid transparent;
+    padding-left:   var( --spacing-2 );
+    padding-top:    0.4rem;
+    padding-bottom: 0.4rem;
 
-    padding:        0 1rem;
-
-    background:     color( var( --GS-2 ) a( 10% ) );
+    background:     var( --PC-ORANGE--L90 );
 
     .label
     {
+        @extend %Nessie-SemiBold;
+
+        letter-spacing: 0.04rem;
         white-space:    nowrap;
+        color: var( --PC-GREY--D25 );
     }
 
     .delete
     {
-       flex:        0 0 auto;
-       float:       right;
-       margin-left: 1rem;
+        margin-left:    var( --spacing-1 );
+        margin-right:   var( --spacing-1 );
     }
 
     & > *
