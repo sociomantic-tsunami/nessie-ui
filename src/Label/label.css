@@ -7,7 +7,11 @@
 
     width:          auto;
 
-    @extend %Nessie-Bold;
+    @extend %Nessie-Regular;
+    font-size:      var( --typo-2 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
 
     white-space:    nowrap;
 

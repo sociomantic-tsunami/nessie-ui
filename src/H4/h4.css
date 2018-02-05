@@ -9,6 +9,9 @@
 	margin-top: 	-0.8rem;
 
     @extend %Nessie-Bold;
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-l );
+    letter-spacing: 0;
 
 	min-height:	1.6rem
 }
