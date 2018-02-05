@@ -14,11 +14,12 @@ import FormDriver              from './Form/driver';
 import NavItemDriver           from './NavItem/driver';
 import NotificationBarDriver   from './NotificationBar/driver';
 import ModalDialogDriver       from './ModalDialog/driver';
+import SwitchDriver            from './Switch/driver';
 
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
          FlounderDropdown, PasswordInput, Form, Section, Row, Column,
          TextInput, NavItem, NotificationBar, TextInputWithIcon,
-         ModalDialog }  from 'nessie-ui';
+         ModalDialog, Switch }  from 'nessie-ui';
 
 import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver';
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver';
@@ -93,6 +94,10 @@ const drivers =
     {
         Component : ModalDialog,
         Driver    : ModalDialogDriver
+    },
+    {
+        Component : Switch,
+        Driver    : SwitchDriver
     }
 ];
 
