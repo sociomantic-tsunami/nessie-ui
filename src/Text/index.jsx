@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+import styles               from './text.css';
 
 const Text = ( {
     cssMap,
@@ -10,18 +11,20 @@ const Text = ( {
     noWrap,
     overflowIsHidden,
     role,
-    text } ) =>
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
-                role,
-                overflowHidden : overflowIsHidden,
-                noWrap
-            } }>
-            <div className = { className }>
-                { children || text }
-            </div>
-        </Css>;
+    text,
+    textRef,
+} ) => (
+    <div
+        className = { buildClassName( className, cssMap, {
+            overflowHidden : overflowIsHidden,
+            noWrap,
+            role,
+        } ) }
+        ref = { textRef }>
+        { children || text }
+    </div>
+);
+
 Text.propTypes =
 {
     /**
@@ -44,15 +47,19 @@ Text.propTypes =
     /**
     *  Text string
     */
-    text : PropTypes.string
+    text : PropTypes.string,
+    /**
+    *  callback that receives ref to the text div: ref => ...
+    */
+    textRef  : PropTypes.func,
 };
 
 Text.defaultProps =
 {
+    cssMap           : styles,
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',
-    cssMap           : require( './text.css' )
 };
 
 export default Text;
