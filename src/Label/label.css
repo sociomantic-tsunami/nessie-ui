@@ -7,7 +7,8 @@
 
     width:          auto;
 
-    @extend %Nessie-Regular;
+    @extend %Nessie-Bold;
+
     font-size:      var( --typo-2 );
     line-height:    var( --line-height-m );
     letter-spacing: 0.05rem;

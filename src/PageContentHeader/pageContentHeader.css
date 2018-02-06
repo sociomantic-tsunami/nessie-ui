@@ -40,10 +40,11 @@
 
 .subtitle
 {
-    @extend %Nessie-Regular;
-    font-size:      1.4rem;
-    line-height:    var( --line-height-s );
-    min-height:     1.6rem;
-    top:            0.4rem;
-    margin-top:     -0.6rem;
+    @extend %Nessie-Semibold;
+
+    font-size:      var( --typo-4 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0;
+
+    min-height:     var( --line-height-m );
 }
