@@ -3,12 +3,11 @@
 .default
 {
 	position: 		relative;
-	top: 			0.6rem;
 
-	min-height:     2.6rem;
-	margin-top: 	-0.9rem;
+	min-height:     var( --line-height-l );
 
     @extend %Nessie-Bold;
+
     font-size:      var( --typo-7 );
     line-height:    var( --line-height-l );
     letter-spacing: 0.05rem;
