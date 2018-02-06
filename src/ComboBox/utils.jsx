@@ -1,3 +1,4 @@
+/* global document getComputedStyle */
 import React                from 'react';
 
 import ListBoxOption        from '../ListBox/ListBoxOption';
@@ -65,6 +66,43 @@ function buildListBoxOptions( options = [], prefix )
 }
 
 /**
+ * ## getScrollParent
+ * Gets the first scrollable DOM ancestor of the element
+ *
+ * @param   {HTMLElement}  el   element to find scroll parent of
+ *
+ * @return  {HTMLElement}
+ *
+ */
+function getScrollParent( element )
+{
+    let style = getComputedStyle( element );
+
+    if ( style.position === 'fixed' )
+    {
+        return document.body;
+    }
+
+    const overflowRegex = /(auto|scroll)/;
+
+    let el = element;
+
+    while ( el.parentElement )
+    {
+        style = getComputedStyle( el );
+
+        if ( overflowRegex.test( style.overflowY ) )
+        {
+            return el;
+        }
+
+        el = el.parentElement;
+    }
+
+    return document.body;
+}
+
+/**
  * ## removePrefix
  * Removes a prefix from a string
  *
@@ -79,4 +117,4 @@ function removePrefix( str, prefix )
     return ( str && prefix ) ? str.replace( `${prefix}-`, '' ) : str;
 }
 
-export { addPrefix, buildListBoxOptions, removePrefix };
+export { addPrefix, buildListBoxOptions, getScrollParent, removePrefix };

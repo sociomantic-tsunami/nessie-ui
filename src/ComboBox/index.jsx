@@ -11,6 +11,7 @@ import { generateId }               from '../utils';
 import {
     addPrefix,
     buildListBoxOptions,
+    getScrollParent,
     removePrefix,
 } from './utils';
 
@@ -32,7 +33,7 @@ export default class ComboBox extends Component
         /**
          * Position of the dropdown relative to the text input
          */
-        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
+        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
         /**
          * Display as hover when required from another component
          */
@@ -76,7 +77,7 @@ export default class ComboBox extends Component
         /**
          *  HTML id attribute (overwrite default)
          */
-        id           : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  Dropdown list allows multiple selection
          */
@@ -181,7 +182,7 @@ export default class ComboBox extends Component
     static defaultProps = {
         activeOption        : undefined,
         dropdownPlaceholder : undefined,
-        dropdownPosition    : 'bottom',
+        dropdownPosition    : 'auto',
         forceHover          : false,
         inputPlaceholder    : undefined,
         hasAutocomplete     : false,
@@ -222,6 +223,17 @@ export default class ComboBox extends Component
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
         this.setRef                = this.setRef.bind( this );
+        this.setDivRef             = this.setDivRef.bind( this );
+    }
+
+    componentDidMount()
+    {
+        this.getDropdownPosition();
+    }
+
+    componentWillReceiveProps()
+    {
+        this.getDropdownPosition();
     }
 
     componentDidUpdate()
@@ -260,6 +272,31 @@ export default class ComboBox extends Component
         if ( ref )
         {
             this.scrollBox = ref;
+        }
+    }
+
+    setDivRef( ref )
+    {
+        if ( ref )
+        {
+            this.divRef = ref;
+        }
+    }
+
+
+    getDropdownPosition()
+    {
+        const { divRef } = this;
+
+        if ( divRef )
+        {
+            const scrollParent = getScrollParent( divRef );
+            const divBox       = divRef.getBoundingClientRect();
+            const parentBox    = scrollParent.getBoundingClientRect();
+            const { height }   = parentBox;
+            const divOffset    = divBox.top - parentBox.top;
+
+            this.dropdownPosition = divOffset > height / 2 ? 'top' : 'bottom';
         }
     }
 
@@ -378,7 +415,8 @@ export default class ComboBox extends Component
                 isDisabled       = { isDisabled }
                 isReadOnly       = { inputIsReadOnly }
                 dropdownIsOpen   = { isOpen }
-                dropdownPosition = { dropdownPostion }
+                dropdownPosition = { dropdownPosition !== 'auto' ?
+                    dropdownPosition : this.dropdownPosition }
                 dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
@@ -394,6 +432,7 @@ export default class ComboBox extends Component
                 onKeyUp     = { onKeyUp }
                 onMouseOut  = { onMouseOut }
                 onMouseOver = { onMouseOver }
+                divRef      = { this.setDivRef }
                 placeholder = { inputPlaceholder }
                 value       = { inputValue } />
         );
