@@ -3,6 +3,7 @@ import PropTypes        from 'prop-types';
 
 import Component        from '../proto/Component';
 import Css              from '../hoc/Css';
+import Icon             from '../Icon';
 import InputField       from '../InputField';
 import InputContainer   from '../proto/InputContainer';
 
@@ -220,7 +221,10 @@ export default class DimensionsInput extends Component
                             value        = { widthValue }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur } />
-                        <div className = { cssMap.icon }>✕</div>
+                        <Icon
+                            className = { cssMap.icon }
+                            type      = "close"
+                            size      = "M" />
                         <InputField
                             { ...props }
                             inputRef     = { heightInputRef }
