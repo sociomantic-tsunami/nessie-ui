@@ -1,6 +1,6 @@
-@import "../proto/global.css";
+@import "./definitions/variables.css";
 
-.default /* all elements get default margin-bottom of 2rem */
+.default
 {
     position:       relative;
     margin-bottom:  var( --spacing-2 );
@@ -9,11 +9,6 @@
     width:          100%;
     max-width:      100%;
     min-width:      0; /* in case this is a flexbox child */
-
-    line-height:    var( --line-height-m );
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
 
     &:last-child
     {

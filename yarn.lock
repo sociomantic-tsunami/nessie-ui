@@ -504,7 +504,7 @@ babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.1.4, babel-core@^6.17.0, babel-core@^6.24.1, babel-core@^6.3.26:
+babel-core@^6.1.4, babel-core@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.24.1.tgz#8c428564dce1e1f41fb337ec34f4c3b022b5ad83"
   dependencies:
@@ -528,7 +528,7 @@ babel-core@^6.1.4, babel-core@^6.17.0, babel-core@^6.24.1, babel-core@^6.3.26:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-core@^6.26.0:
+babel-core@^6.17.0, babel-core@^6.26.0, babel-core@^6.3.26:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
   dependencies:
@@ -2551,13 +2551,13 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.0.0, core-js@^2.2.0, core-js@^2.4.0:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
-
-core-js@^2.4.1, core-js@^2.5.0:
+core-js@^2.0.0, core-js@^2.4.1, core-js@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
+
+core-js@^2.2.0, core-js@^2.4.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -5812,9 +5812,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-loch-ness@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.0.1.tgz#482f4be74b3fb281642de5aba45835f2763f72e2"
+loch-ness@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.2.1.tgz#3533e43d1a75ea8f2cecb2ded7773ddbecf9eadb"
   dependencies:
     autoprefixer "^6.3.3"
     babel-cli "^6.24.1"
@@ -5843,7 +5843,7 @@ loch-ness@^2.0.1:
     json-loader "^0.5.4"
     karma-notification-reporter "^0.1.1"
     markdown-loader "^0.1.7"
-    nessie-ui "^5.0.1"
+    nessie-ui "^5.5.3"
     normalize.css "^5.0.0"
     null-loader "^0.1.1"
     open "^0.0.5"
@@ -6303,13 +6303,13 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
-mime-db@1.x.x, mime-db@~1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.12.0.tgz#3d0c63180f458eb10d325aaa37d7c58ae312e9d7"
-
-"mime-db@>= 1.27.0 < 2", mime-db@~1.27.0:
+mime-db@1.x.x, "mime-db@>= 1.27.0 < 2", mime-db@~1.27.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
+
+mime-db@~1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.12.0.tgz#3d0c63180f458eb10d325aaa37d7c58ae312e9d7"
 
 mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.7:
   version "2.1.15"
@@ -6509,10 +6509,11 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-nessie-ui@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/nessie-ui/-/nessie-ui-5.0.1.tgz#21a394cbae8925dc78813cd40ea51c668e07e622"
+nessie-ui@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/nessie-ui/-/nessie-ui-5.5.3.tgz#06a186c27ef0970e1374a7aed4881c5259c945f3"
   dependencies:
+    auto-changelog "^1.1.0"
     codemirror "^5.26.0"
     copyfiles "^1.2.0"
     lodash.clonedeep "^4.5.0"
@@ -9568,13 +9569,13 @@ tapable@^0.1.8, tapable@~0.1.8:
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.1.10.tgz#29c35707c2b70e50d07482b5d202e8ed446dafd4"
 
-tapable@^0.2.5, tapable@^0.2.7:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
-
-tapable@~0.2.5:
+tapable@^0.2.5, tapable@~0.2.5:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.6.tgz#206be8e188860b514425375e6f1ae89bfb01fd8d"
+
+tapable@^0.2.7:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
 
 tar-fs@^1.4.1:
   version "1.16.0"

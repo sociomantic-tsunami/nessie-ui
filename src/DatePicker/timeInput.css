@@ -7,8 +7,8 @@
     align-items:        center;
     position:           relative;
 
-    font-size:          var( --typo-m );
-    line-height:        var( --line-height-m );
+    font-size:          var( --typo-1 );
+    line-height:        var( --line-height-s );
     text-align:         center;
     color:              color( var( --GS-2 ) tint( 50% ) );
 

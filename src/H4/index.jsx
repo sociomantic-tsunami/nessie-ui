@@ -9,16 +9,17 @@ const H4 = ( {
     children,
     spacing,
     role,
-    title } ) =>
+    title }
+) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role,
-                spacing : spacing  } }>
-            <h4 className = { className }>
-                { children || title }
-            </h4>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { role,
+            spacing  } }>
+        <h4 className = { className }>
+            { children || title }
+        </h4>
+    </Css>;
 
 H4.propTypes =
 {
@@ -47,9 +48,9 @@ H4.propTypes =
 
 H4.defaultProps =
 {
-    role       : 'default',
-    spacing    : 'L',
-    cssMap     : require( './h4.css' )
+    role    : 'default',
+    spacing : 'L',
+    cssMap  : require( './h4.css' )
 };
 
 export default H4;

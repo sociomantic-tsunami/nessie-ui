@@ -1,5 +1,4 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/variables.css";
 
 :root
 {
@@ -10,16 +9,6 @@
 
     --pointerSize:          1rem;
     --halfPointer:          0.5rem;
-    --halfPointerTweak:     0.1rem;
-
-    --tooltipPadding:       2rem;
-    --tooltipBorderWidth:   0.1rem;
-
-    --messageTop:           0.4rem;
-    --messageMarginTop:     -0.7rem;
-    --messageFontSize:      1.2rem;
-    --messageLineHeight:    1.6rem;
-    --messageLetterSpacing: 0.02rem;
 }
 
 
@@ -31,19 +20,23 @@
     max-width:      100%;
 }
 
+
 .tooltip
 {
-    display:            block;
+    display:            flex;
+    align-items:        flex-start;
+
     position:           absolute;
 
     width:              auto;
 
     margin-bottom:      0;
 
-    border:             var( --tooltipBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
-    padding:            var( --tooltipPadding );
+    border-radius:      0.2rem;
 
-    background-color:   var( --PC-WHITE );
+    background-color:   var( --PC-GREY--D25 );
+
+    z-index:            100;
 
     &::before
     {
@@ -61,13 +54,40 @@
         width:              var( --pointerSize );
         height:             var( --pointerSize );
 
-        border:             var( --tooltipBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
-
-        background-color:   var( --PC-WHITE );
+        background-color:   var( --PC-GREY--D25 );
 
         transform:          rotate( 45deg );
     }
 }
+
+
+.message
+{
+    padding-top:        var( --spacing-1 );
+    padding-right:      var( --spacing-2 );
+    padding-bottom:     var( --spacing-1 );
+    padding-left:       var( --spacing-2 );
+}
+
+
+.messageText
+{
+    color:              var( --PC-WHITE );
+}
+
+
+.content
+{
+    display:        flex;
+    flex-direction: column;
+}
+
+
+.iconContainer
+{
+    padding:        var( --spacing-1 );
+}
+
 
 .position__top,
 .position__bottom,
@@ -80,12 +100,13 @@
     {
         &::before
         {
-            left:   calc( -var( --tooltipBorderWidth ) );
-            width:  calc( 100% + var( --tooltipBorderWidth ) * 2 );
-            height: var( --tooltipOffsetY );
+            left:           0;
+            width:          100%;
+            height:         var( --tooltipOffsetY );
         }
     }
 }
+
 
 .position__top,
 .position__bottom
@@ -101,6 +122,7 @@
     }
 }
 
+
 .position__top,
 .position__topLeft,
 .position__topRight
@@ -109,10 +131,11 @@
     {
         &::before
         {
-            bottom: calc( -var( --tooltipOffsetY ) - var( --tooltipBorderWidth ) );
+            bottom: -var( --tooltipOffsetY );
         }
     }
 }
+
 
 .position__top
 {
@@ -123,12 +146,13 @@
 
         &::after
         {
-            bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            bottom:         -var( --halfPointer );
             border-top:     none;
             border-left:    none;
         }
     }
 }
+
 
 .position__bottom,
 .position__bottomLeft,
@@ -138,10 +162,11 @@
     {
         &::before
         {
-            top:    calc( -var( --tooltipOffsetY ) - var( --tooltipBorderWidth ) );
+            top:    -var( --tooltipOffsetY );
         }
     }
 }
+
 
 .position__bottom
 {
@@ -152,13 +177,14 @@
 
         &::after
         {
-            top:            calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            top:            -var( --halfPointer );
 
             border-bottom:  none;
             border-right:   none;
         }
     }
 }
+
 
 .position__left,
 .position__right
@@ -169,17 +195,18 @@
 
         &::before
         {
-            top:    calc( -var( --tooltipBorderWidth ) );
+            top:    0;
             width:  var( --tooltipOffsetY );
-            height: calc( 100% + var( --tooltipBorderWidth ) * 2 );
+            height: 100%;
         }
 
         &::after
         {
-            top:         calc( 50% -var( --halfPointer ) - var( --halfPointerTweak ) );
+            top:         calc( 50% - var( --halfPointer ) );
         }
     }
 }
+
 
 .position__left
 {
@@ -192,12 +219,12 @@
 
         &::before
         {
-            right:  calc( -var( --tooltipOffsetX ) - var( --tooltipBorderWidth ) );
+            right:  -var( --tooltipOffsetX );
         }
 
         &::after
         {
-            right:          calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            right:          -var( --halfPointer );
             top:            calc( 50% - var( --halfPointer ) );
 
             border-bottom:  none;
@@ -205,6 +232,7 @@
         }
     }
 }
+
 
 .position__right
 {
@@ -217,18 +245,19 @@
 
         &::before
         {
-            left:   calc( -var( --tooltipOffsetX ) - var( --tooltipBorderWidth ) );
+            left:   -var( --tooltipOffsetX );
         }
 
         &::after
         {
             top:            calc( 50% - var( --halfPointer ) );
-            left:           calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            left:           -var( --halfPointer );
             border-top:     none;
             border-right:   none;
         }
     }
 }
+
 
 .position__topLeft,
 .position__topRight
@@ -240,12 +269,13 @@
 
         &::after
         {
-            bottom:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            bottom:         -var( --halfPointer );
             border-top:     none;
             border-left:    none;
         }
     }
 }
+
 
 .position__bottomLeft,
 .position__bottomRight
@@ -257,7 +287,7 @@
 
         &::after
         {
-            top:         calc( -var( --halfPointer ) - var( --halfPointerTweak ) );
+            top:         -var( --halfPointer );
             right:       calc( 50% - var( --halfPointer ) );
 
             border-bottom:  none;
@@ -265,6 +295,7 @@
         }
     }
 }
+
 
 .position__topLeft
 {
@@ -279,6 +310,7 @@
     }
 }
 
+
 .position__topRight
 {
     .tooltip
@@ -291,6 +323,7 @@
         }
     }
 }
+
 
 .position__bottomLeft
 {
@@ -305,6 +338,7 @@
     }
 }
 
+
 .position__bottomRight
 {
     .tooltip
@@ -316,37 +350,4 @@
             left:  var( --tooltipOffsetXYAfter );
         }
     }
-}
-
-.message
-{
-    position:           relative;
-    top:                var( --messageTop );
-
-    margin-top:         var( --messageMarginTop );
-    margin-right:       auto;
-    margin-left:        auto;
-
-    white-space:        nowrap;
-
-    /* reset the font and pointer so we don’t inherit from parent ...*/
-
-    color:              var( --GS-2 );
-
-    @extend %Nessie-Regular;
-
-    font-size:          var( --messageFontSize );
-    line-height:        var( --messageLineHeight );
-    letter-spacing:     var( --messageLetterSpacing );
-    font-weight:        normal;
-    text-transform:     none;
-    text-align:         left;
-
-    cursor:             default;
-}
-
-.content
-{
-    display:        flex;
-    flex-direction: column;
 }
