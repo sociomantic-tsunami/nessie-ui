@@ -10,11 +10,6 @@
     max-width:      100%;
     min-width:      0; /* in case this is a flexbox child */
 
-    line-height:    var( --line-height-m );
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-
     &:last-child
     {
         margin-bottom:  0;

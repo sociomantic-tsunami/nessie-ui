@@ -9,16 +9,17 @@ const H2 = ( {
     children,
     spacing,
     role,
-    title } ) =>
+    title }
+) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role,
-                spacing : spacing } }>
-            <h2 className = { className }>
-                { children || title }
-            </h2>
-        </Css>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { role,
+            spacing } }>
+        <h2 className = { className }>
+            { children || title }
+        </h2>
+    </Css>;
 
 H2.propTypes =
 {
@@ -47,9 +48,9 @@ H2.propTypes =
 
 H2.defaultProps =
 {
-    role       : 'default',
-    spacing    : 'L',
-    cssMap     : require( './h2.css' )
+    role    : 'default',
+    spacing : 'L',
+    cssMap  : require( './h2.css' )
 };
 
 

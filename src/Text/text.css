@@ -7,7 +7,11 @@
     margin:         0;
     margin-bottom:  var( --spacing-1 );
 
-    font-size:      var( --typo-l );
+    @extend %Nessie-Regular;
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0;
 
     .default
     {

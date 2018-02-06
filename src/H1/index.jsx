@@ -9,16 +9,16 @@ const H1 = ( {
     children,
     spacing,
     title,
-    role } ) =>
-
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role,
-                spacing : spacing } }>
-            <h1 className = { className }>
-                { children || title }
-            </h1>
-        </Css>;
+    role }
+) =>
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { role,
+            spacing } }>
+        <h1 className = { className }>
+            { children || title }
+        </h1>
+    </Css>;
 
 H1.propTypes =
 {
@@ -47,9 +47,9 @@ H1.propTypes =
 
 H1.defaultProps =
 {
-    role       : 'default',
-    spacing    : 'L',
-    cssMap     : require( './h1.css' )
+    role    : 'default',
+    spacing : 'L',
+    cssMap  : require( './h1.css' )
 };
 
 export default H1;
