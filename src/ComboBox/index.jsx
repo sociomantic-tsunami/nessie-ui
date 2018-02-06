@@ -30,13 +30,17 @@ export default class ComboBox extends Component
          */
         dropdownPlaceholder : PropTypes.string,
         /**
+         * Position of the dropdown relative to the text input
+         */
+        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
+        /**
          * Display as hover when required from another component
          */
         forceHover          : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete        : PropTypes.bool,
+        hasAutocomplete     : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
@@ -177,6 +181,7 @@ export default class ComboBox extends Component
     static defaultProps = {
         activeOption        : undefined,
         dropdownPlaceholder : undefined,
+        dropdownPosition    : 'bottom',
         forceHover          : false,
         inputPlaceholder    : undefined,
         hasAutocomplete     : false,
@@ -291,11 +296,13 @@ export default class ComboBox extends Component
         const {
             activeOption,
             dropdownPlaceholder,
+            dropdownPosition,
             forceHover,
             hasAutocomplete,
             hasError,
             iconType,
             id,
+            inputPlaceholder,
             inputRef,
             inputType,
             inputValue,
@@ -315,7 +322,6 @@ export default class ComboBox extends Component
             onMouseOver,
             onScroll,
             options = [],
-            inputPlaceholder,
             selection,
         } = this.props;
 
@@ -354,7 +360,7 @@ export default class ComboBox extends Component
 
         return (
             <InputWithDropdown
-                aria           = { {
+                aria = { {
                     autocomplete     : hasAutocomplete ? 'both' : 'list',
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
@@ -363,32 +369,33 @@ export default class ComboBox extends Component
                     owns     : addPrefix( 'listbox', id ),
                     role     : 'combobox',
                 } }
-                forceHover     = { forceHover || isOpen }
-                hasError       = { hasError }
-                iconType       = { iconType }
-                id             = { id }
-                inputRef       = { inputRef }
-                inputType      = { inputType }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { inputIsReadOnly }
-                dropdownIsOpen = { isOpen }
-                dropdownProps  = { {
+                forceHover       = { forceHover || isOpen }
+                hasError         = { hasError }
+                iconType         = { iconType }
+                id               = { id }
+                inputRef         = { inputRef }
+                inputType        = { inputType }
+                isDisabled       = { isDisabled }
+                isReadOnly       = { inputIsReadOnly }
+                dropdownIsOpen   = { isOpen }
+                dropdownPosition = { dropdownPostion }
+                dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
                     padding  : options.length ? 'none' : 'S',
                 } }
-                name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChangeInput }
-                onClick        = { onClickInput }
-                onFocus        = { onFocus }
-                onKeyDown      = { onKeyDown }
-                onKeyPress     = { onKeyPress }
-                onKeyUp        = { onKeyUp }
-                onMouseOut     = { onMouseOut }
-                onMouseOver    = { onMouseOver }
-                placeholder    = { inputPlaceholder }
-                value          = { inputValue } />
+                name        = { name }
+                onBlur      = { onBlur }
+                onChange    = { onChangeInput }
+                onClick     = { onClickInput }
+                onFocus     = { onFocus }
+                onKeyDown   = { onKeyDown }
+                onKeyPress  = { onKeyPress }
+                onKeyUp     = { onKeyUp }
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }
+                placeholder = { inputPlaceholder }
+                value       = { inputValue } />
         );
     }
 }
