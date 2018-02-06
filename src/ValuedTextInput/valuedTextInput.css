@@ -34,7 +34,9 @@
         padding:        1.1rem 1.3rem 1.1rem 1.3rem;
 
         background:     var( --PC-WHITE );
-        font-size:      var( --typo-s );
+
+        font-size:      var( --typo-1 );
+        color:          var( --PC-GREY--D5 );
         white-space:    nowrap;
 
         cursor:         pointer;
@@ -49,7 +51,7 @@
             top:            1.1rem;
 
             width:          0.1rem;
-            height:         1.6rem;
+            height:         var( --spacing-2 );
 
             background:     var( --PC-GREY--L70 );
         }
