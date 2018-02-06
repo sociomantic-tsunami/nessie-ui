@@ -23,6 +23,7 @@ const Tag = ( {  children, className, cssMap, label, ...props } ) =>
                 <IconButton
                     { ...props }
                     iconType   = "close"
+                    iconSize   = "M"
                     className  = { cssMap.delete }
                 />
             </div>
