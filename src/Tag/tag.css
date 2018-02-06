@@ -12,7 +12,7 @@
     padding-top:    0.4rem;
     padding-bottom: 0.4rem;
 
-    background:     var( --PC-ORANGE--L90 );
+    background:     var( --PC-BLUE--L90 );
 
     .label
     {
@@ -20,7 +20,7 @@
 
         letter-spacing: 0.04rem;
         white-space:    nowrap;
-        color: var( --PC-GREY--D25 );
+        color: var( --PC-BLUE );
     }
 
     .delete
@@ -37,11 +37,10 @@
 
 .disabled
 {
-    border-color:   color( var( --GS-2 ) a( 50% ) );
-    background:     transparent;
+    background:     var( --PC-GREY--L90 );
 
     .label
     {
-        color:  color( var( --GS-2 ) a( 50% ) );
+        color:      var( --PC-GREY--L40 );
     }
 }
