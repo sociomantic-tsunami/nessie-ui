@@ -40,9 +40,16 @@ export default class Tabs extends NessieComponent
 
     renderHeader( tabs = [] )
     {
+        let tabsArray = tabs;
+
+        if ( !Array.isArray( tabs ) )
+        {
+            tabsArray = [ tabs ];
+        }
+
         const { activeTabIndex } = this.props;
 
-        return tabs.map( ( child, index ) =>
+        return tabsArray.map( ( child, index ) =>
         {
             const { isDisabled, label } = child.props;
 
@@ -84,7 +91,8 @@ export default class Tabs extends NessieComponent
 
         const header = this.renderHeader( children );
 
-        const content = children[ activeTabIndex ];
+        const content = Array.isArray( children ) ?
+          children[ activeTabIndex ] : children;
 
         return (
             <div className = { cssMap.default } >
