@@ -3,36 +3,50 @@
 
 .default
 {
-    margin-bottom:	0;
-    color:          var( --PC-BLUE ) ;
+    margin:             0 0 -0.1rem 0;
+    color:              var( --PC-GREY--L70 ) ;
 
-    box-shadow:     none;
+    border-radius:      0;
+
+    text-transform:     none;
+
+    &:last-child
+    {
+        margin-bottom: -0.1rem; /* overrides base rule */
+    }
+
+    &:not(:last-child)
+    {
+        margin-right: var( --spacing-2 );
+    }
 
     .content
     {
-        border-bottom:  0;
+        min-width: 0;
     }
 
     &:hover .content
     {
-        border-color:       var( --PC-BLUE ) ;
+
     }
 }
 
 .label
 {
 	@extend %Nessie-SemiBold;
-	padding-top:	0.8rem;
-	padding-bottom:	0.4rem;
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-s );
+    padding-left:   var( --spacing-1 );
+    padding-right:  var( --spacing-1 );
 }
 
 .active
 {
-    background:     var( --PC-BLUE )  !important;
-    color:          var( --PC-WHITE ) !important;
-    pointer-events: none;
-    cursor:         default;
-
+    color:                  var( --PC-BLUE );
+    border-bottom:          0.1rem solid var( --PC-BLUE );
+    pointer-events:         none;
+    cursor:                 default;
 }
 
 .subtitle
