@@ -23,7 +23,7 @@
 {
     &:not( :last-child )
     {
-        margin-right:   var( --spacing-1 );
+        margin-right:       var( --spacing-1 );
     }
 }
 
@@ -56,7 +56,7 @@
     border:             none;
     margin:             0;
 
-    min-width:              var( --spacing-3 );
+    min-width:          var( --spacing-3 );
     height:             var( --spacing-3 );
 
     color:              var( --PC-GREY--L55 );
@@ -78,8 +78,8 @@
 
 .pageButtons
 {
-    display:        inline-flex;
-    align-items:    flex-start;
+    display:            inline-flex;
+    align-items:        flex-start;
 
     & > *
     {
@@ -91,9 +91,9 @@
 
 .ellipsis
 {
-    padding: 0;
-    height:                 1.4rem;
-    background-color:       transparent;
+    padding:            0;
+    height:             1.4rem;
+    background-color:   transparent;
 }
 
 
