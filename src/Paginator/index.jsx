@@ -23,16 +23,16 @@ const Paginator = ( {
     shownPages = [], showPrev } ) =>
 {
     const pageButtons = shownPages.map( ( pageNum ) =>
-    (
-        <button
-            className = { cssMap.pageButton }
-            disabled  = { pageNum === currentPage }
-            key       = { pageNum }
-            onClick   = { onClickPage }
-            type      = "button"
-            value     = { String( pageNum ) }>
-            { String( pageNum ) }
-        </button>
+        (
+            <button
+                className = { cssMap.pageButton }
+                disabled  = { pageNum === currentPage }
+                key       = { pageNum }
+                onClick   = { onClickPage }
+                type      = "button"
+                value     = { String( pageNum ) }>
+                { String( pageNum ) }
+            </button>
         ) );
 
     const showStartPage = typeof startPage === 'number';
@@ -54,7 +54,7 @@ const Paginator = ( {
                     <IconButton
                         className   = { cssMap.arrows }
                         iconTheme   = "navigation"
-                        iconSize    = "S"
+                        iconSize    = "M"
                         iconType    = "left"
                         onClick     = { onClickPrev }>
                         { prevLabel }
@@ -104,7 +104,7 @@ const Paginator = ( {
                     <IconButton
                         className   = { cssMap.arrows }
                         iconTheme   = "navigation"
-                        iconSize    = "S"
+                        iconSize    = "M"
                         iconType    = "right"
                         onClick     = { onClickNext }>
                         { nextLabel }
