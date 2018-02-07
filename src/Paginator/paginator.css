@@ -23,62 +23,63 @@
 {
     &:not( :last-child )
     {
-        margin-right:   1rem;
+        margin-right:       var( --spacing-1 );
     }
 }
 
 .pageButton
 {
-    &:hover
+    background-color:       var( --PC-GREY--L90 );
+
+    padding-left:           var( --spacing-1 );
+    padding-right:          var( --spacing-1 );
+    padding-top:            0;
+    padding-bottom:         0;
+
+    &:hover:not([disabled])
     {
-        cursor: pointer;
+        cursor:             pointer;
     }
 
     &:hover,
     &:focus,
     &:disabled
     {
-        color:  var( --GS-1 );
+        color:              var( --PC-WHITE );
+        background-color:   var( --PC-BLUE )
     }
 }
 
 .pageButton,
 .ellipsis
 {
-    padding:        0;
-    border:         none;
-    margin:         0;
+    border:             none;
+    margin:             0;
 
-    min-width:      2.6rem;
-    min-height:     1.6rem;
+    min-width:          var( --spacing-3 );
+    height:             var( --spacing-3 );
 
-    background:     transparent;
-    color:          color( var( --GS-1 ) a( 50% ) );
+    color:              var( --PC-GREY--L55 );
 
     @extend %Nessie-Bold;
 
-    font-size:      var( --typo-2 );
-    line-height:    var( --line-height-s );
-    letter-spacing: 0.02rem;
+    font-size:          var( --typo-2 );
+    line-height:        var( --line-height-s );
+    letter-spacing:     0.02rem;
 
-    text-align:     center;
-
-    &:active
-    {
-        color:  color( var( --GS-1 ) a( 50% ) );
-    }
+    text-align:         center;
 
     &:focus
     {
-        outline:    none;
+        outline:        none;
     }
 }
 
 
 .pageButtons
 {
-    display:        inline-flex;
-    align-items:    flex-start;
+    display:            inline-flex;
+    align-items:        flex-start;
 
     & > *
     {
@@ -90,16 +91,13 @@
 
 .ellipsis
 {
-    width:                  2.4rem;
-    height:                 1.4rem;
-    background-size:        1.4rem;
-    background-position:    center;
-    background-repeat:      no-repeat;
+    padding:            0;
+    height:             1.4rem;
+    background-color:   transparent;
 }
 
 
 .arrows
 {
-    height: 1.8rem;
-    width: 2.6rem;
+
 }
