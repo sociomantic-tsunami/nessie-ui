@@ -1,6 +1,5 @@
 /*@import "../proto/base.css";*/
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/variables.css";
 
 .default
 {
@@ -167,15 +166,17 @@
     .main:focus,
     {
         border-color:           var( --PC-BLUE );
-        border-bottom-color:    var( --PC-WHITE );
+        outline:                0.1rem solid var( --PC-BLUE );
+        outline-offset:         0;
 
-        background:             var( --PC-WHITE );
+        background-color:       var( --PC-WHITE );
 
         .arrowInner
         {
             background-image:   url( './images/light/up__hover.svg' );
         }
     }
+
 
     .optionsWrapper
     {
@@ -222,6 +223,15 @@
 
 .main.disabled
 {
+    background:             var( --PC-GREY--L90 );
+    color:                  var( --PC-GREY--L40 );
+    border-color:           var( --PC-GREY--L70 );
+
+    &:focus
+    {
+        border-color:       var( --PC-GREY--L70 );
+    }
+
     .arrowInner
     {
         background-image:   url( './images/light/down.svg' );
@@ -229,9 +239,9 @@
 
     .multipleSelectTag
     {
-        border-color:   color( var( --GS-2 ) a( 50% ) );
-        background:     transparent;
-        color:          color( var( --GS-2 ) a( 50% ) );
+        border-color:       color( var( --GS-2 ) a( 50% ) );
+        background:         transparent;
+        color:              color( var( --GS-2 ) a( 50% ) );
     }
 
     .search
@@ -313,54 +323,46 @@
 
 .main
 {
-    position:   relative;
+    composes:   default from '../InputField/inputField.css';
 
-    margin:     0;
-    border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    letter-spacing: 0;
 
-    background: var( --PC-WHITE );
-    color:      var( --GS-1 );
-
-    &:hover,
     &:focus,
     .fakeHovered &
     {
-        border: 0.1rem solid var( --PC-BLUE );
+        border-color:   var( --PC-BLUE );
+        outline:        0.1rem solid var( --PC-BLUE );
+        outline-offset: 0;
 
         .arrowInner
         {
             background-image:   url( './images/light/down__hover.svg' );
         }
     }
-
-    &:focus
-    {
-        outline:    none;
-    }
 }
 
 
 .optionsWrapper
 {
-    position:       absolute;
+    @extend             %Nessie-SemiBold;
 
-    width:          100%;
-    max-height:     45rem;
+    position:           absolute;
 
-    left:           0;
-    margin-left:    -0.1rem;
+    width:              100%;
+    max-height:         45rem;
 
-    border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    top:                calc( 100% + 1rem );
+    left:               0;
 
-    background:     var( --PC-WHITE );
-    color:          var( --GS-3 );
+    margin-left:        -0.1rem;
+    padding-top:        var( --spacing-1 );
+    padding-bottom:     var( --spacing-1 );
 
-    overflow:       auto;
+    background:         var( --PC-WHITE );
+    color:              var( --GS-3 );
+    box-shadow:         0 0.5rem 1rem var( --PC-GREY--L75 );
 
-    &:hover
-    {
-        border: 0.1rem solid var( --PC-BLUE );
-    }
+    overflow:           auto;
 }
 
 
@@ -381,7 +383,7 @@
 {
     min-height:     1.6rem; /* the line height */
 
-    padding:        0.8rem 3.6rem 0.6rem 1rem;
+    /* padding:        0.8rem 3.6rem 0.6rem 1rem; */
     margin:         0;
 
     overflow:       hidden;
@@ -458,13 +460,19 @@
 .option,
 .noResults
 {
-    color:      var( --GS-2 );
-    cursor:     pointer;
+    color:       var( --PC-GREY );
+    line-height: var( --line-height-m );
+    cursor:      pointer;
+
+    padding-left:       var( --spacing-2 );
+    padding-right:      var( --spacing-2 );
+    padding-top:        1.2rem;
+    padding-bottom:     1.2rem;
 
     &:hover
     {
-        background-color:   color( var( --PC-BLUE ) a( 35% ) );
-        color:              var( --GS-1 );
+        background-color:   var( --PC-BLUE );
+        color:              var( --PC-WHITE );
     }
 }
 
@@ -500,9 +508,9 @@
 
 .arrowInner
 {
-    height:                         1.6rem;
-    width:                          1.6rem;
-    background-size:                100%;
+    width:              var( --spacing-3 );
+    height:             var( --spacing-3 );
+    background-size:    100%;
 }
 
 .arrowInner,
