@@ -11,7 +11,7 @@
     display:            flex;
     flex-direction:     row;
 
-    border-bottom:      solid 1px var( --PC-GREY--L40 );
+    border-bottom:      solid 0.1rem var( --PC-GREY--L40 );
 
     margin-bottom:		var( --spacing-2 );
 }
