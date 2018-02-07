@@ -31,6 +31,11 @@
 {
     background-color:       var( --PC-GREY--L90 );
 
+    padding-left:           var( --spacing-1 );
+    padding-right:          var( --spacing-1 );
+    padding-top:            0;
+    padding-bottom:         0;
+
     &:hover:not([disabled])
     {
         cursor:             pointer;
@@ -48,11 +53,10 @@
 .pageButton,
 .ellipsis
 {
-    padding:            0;
     border:             none;
     margin:             0;
 
-    width:              var( --spacing-3 );
+    min-width:              var( --spacing-3 );
     height:             var( --spacing-3 );
 
     color:              var( --PC-GREY--L55 );
@@ -87,6 +91,7 @@
 
 .ellipsis
 {
+    padding: 0;
     height:                 1.4rem;
     background-color:       transparent;
 }
