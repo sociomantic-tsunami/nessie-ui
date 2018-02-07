@@ -31,7 +31,7 @@
 {
     background-color:       var( --PC-GREY--L90 );
 
-    &:hover
+    &:hover:not([disabled])
     {
         cursor:             pointer;
     }
