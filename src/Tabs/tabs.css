@@ -11,11 +11,9 @@
     display:            flex;
     flex-direction:     row;
 
-    border-bottom:      0.2rem solid var( --PC-BLUE );
+    border-bottom:      solid 1px var( --PC-GREY--L40 );
 
     margin-bottom:		var( --spacing-2 );
-
-    /*overflow-y:         hidden;*/
 }
 
 .content
