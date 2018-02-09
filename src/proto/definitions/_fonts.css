@@ -14,20 +14,20 @@
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 %Nessie-SemiBold
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 %Nessie-Bold
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 }
 
