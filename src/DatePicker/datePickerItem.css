@@ -18,8 +18,10 @@
 
     .text
     {
-        color:                  var( --GS-2 );
+        color:                  var( --PC-GREY--D25 );
         font-variant-numeric:   lining-nums tabular-nums;
+        font-size:              var( --typo-3 );
+        line-height:            var( --line-height-s );
     }
 
     &:hover
@@ -45,9 +47,9 @@
 
 .type__day
 {
-    height:             2.4rem;
-    width:              2.4rem;
-    min-width:          2.4rem; /* IE fix */
+    height:             var( --spacing-4 );
+    width:              var( --spacing-4 );
+    min-width:          var( --spacing-4 ); /* IE fix */
     border-radius:      100%;
 }
 
@@ -90,12 +92,12 @@
 .disabled:focus,
 .disabled:hover
 {
-    border-color:   var( --GS-10 );
-    background:     var( --GS-10 );
+    border-color:   var( --PC-GREY--L90 );
+    background:     var( --PC-GREY--L90 );
     cursor:         default;
 
     .text
     {
-        color:          color( var( --GS-2 ) a( 50% ) );
+        color:      var( --PC-GREY--L70 );
     }
 }

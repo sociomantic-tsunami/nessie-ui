@@ -1,19 +1,28 @@
-@import '../proto/definitions/_colors.css';
-@import '../proto/definitions/_fonts.css';
+@import '../proto/definitions/variables.css';
 
 .default
 {
     position:               relative;
-    display:                flex;
+    /* display:                flex;
     justify-content:        center;
-    align-items:            center;
+    align-items:            center; */
 
     margin-bottom:          2rem;
+    padding-top:         var( --spacing-3 );
+    padding-right:       var( --spacing-3 );
+    padding-bottom:      var( --spacing-2 );
+    padding-left:        var( --spacing-3 );
+
+    background-color:       var( --PC-BLUE );
 
     .date
     {
-        @extend %Nessie-Bold;
+        @extend %Nessie;
         margin-bottom:  0;
+        color:          var( --PC-WHITE );
+        text-align:     center;
+        font-size:      var( --typo-7 );
+        line-height:    var( --line-height-m );
     }
 
     .prev,
@@ -21,6 +30,11 @@
     {
         position:   absolute;
         top:        calc( 50% - 0.8rem);
+
+        svg /* change color of the prev/next arrow icons */
+        {
+            fill:   var( --PC-WHITE );
+        }
     }
 
     .prev

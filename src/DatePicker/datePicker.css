@@ -9,11 +9,15 @@
     .calendarHeader
     {
         @extend %Nessie-Bold;
-        color:  var( --PC-BLUE );
+        color:              var( --PC-BLUE );
+        font-size:          1.1rem;
+        line-height:        var( --line-height-s );
+        text-transform:     uppercase;
+        text-align:         center;
 
         th
         {
-            padding:    0 0.6rem 2rem 0;
+             padding-bottom:    0.8rem;
 
             &:last-child
             {
@@ -28,5 +32,10 @@
                 margin-top:     -0.8rem;
             }
         }
+    }
+
+    td
+    {
+        padding: 0.4rem;
     }
 }
