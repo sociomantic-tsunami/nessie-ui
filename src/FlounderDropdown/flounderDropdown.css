@@ -310,8 +310,6 @@
 }
 
 
-
-
 /*
  *  $FLOUNDER - Sociomantic styling
  */
@@ -364,6 +362,9 @@
 
     overflow:           auto;
 }
+
+
+
 
 
 .list
@@ -422,7 +423,9 @@
 
 .description
 {
-    color:  var( --GS-5 );
+    color:          var( --PC-GREY--D25 );
+    line-height:    var( --line-height-m );
+    font-size:      var( --typo-3 );
 }
 
 
@@ -490,7 +493,7 @@
 
     .description
     {
-        color:  color( var( --GS-5 ) a( 50% ) );
+        color:                  var( --PC-GREY--L55 );
     }
 }
 
@@ -824,5 +827,29 @@
     }
     66% {
         content:                    'Loading...';
+    }
+}
+
+
+
+
+
+
+/*
+* class selector fix for styling options that also have description;
+* avoiding to configure flounder rules for classes since it'll be deprecated
+*/
+:global
+{
+    .optionWithDescription
+    {
+        font-size:      var( --typo-5 );
+        line-height:    var( --line-height-m );
+        color:          var( --PC-BLUE );
+    }
+
+    .optionWithDescription[class*=disabled]
+    {
+        color:          var( --PC-GREY--L40 );
     }
 }

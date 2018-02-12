@@ -85,18 +85,95 @@
         "placeholder" : "Just a placeholder",
         "label"       : "Pick an option",
         "data"        : [
-                           "Option",
-                            {
-                                "text" : "Option with description",
-                                "value" : "value2",
-                                "description":"Option description"
-                            },
-                            {
-                                "text" : "Disabled option",
-                                "value" : "value3",
-                                "disabled" : true
-                            }
-                        ]
+           "Option",
+            {
+                "text"        : "Option with description",
+                "value"       : "value2",
+                "description" : "Option description"
+            },
+            {
+                "text"  : "Option with icon (blueDot)",
+                "value" : "value3",
+                "icon"  : "blueDot"
+            },
+            {
+                "text"        : "Option with icon (approved) and description",
+                "value"       : "value4",
+                "description" : "Option description",
+                "icon"        : "approved"
+            },
+            {
+                "text"     : "Disabled option",
+                "value"    : "value5",
+                "disabled" : true
+            },
+            {
+                "text"        : "Disabled option with description",
+                "description" : "Option description",
+                "value"       : "value6",
+                "disabled"    : true
+            },
+            {
+
+                "text"     : "Disabled option with icon",
+                "value"    : "value7",
+                "icon"     :"error",
+                "disabled" : true
+            },
+            {
+                "text"        : "Disabled option with icon and description",
+                "description" : "Option description",
+                "value"       : "value8",
+                "icon"        :"ended",
+                "disabled"    : true
+            },
+            {
+                "text"  : "Option with really, really, really, really, really, really, really, really, really, long text",
+                "value" : "value9"
+            },
+            {
+                "text"        : "Option with really, really, really, really, really, really, really, really, really, long text and a long description too",
+                "description" : "Option description is really, really, really, really, really, really, long too",
+                "value"       : "value10"
+            },
+            {
+                "text"        : "Option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
+                "description" : "Option description is also really, really, really, really, really, really, long",
+                "value"       : "value11",
+                "icon"        : "pending"
+            },
+            {
+                "text"        : "Disabled option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
+                "description" : "Option description is also really, really, really, really, really, really, long",
+                "value"       : "value12",
+                "icon"        : "alert",
+                "disabled"    : true
+            },
+            {
+                "header" : "Subsection 1",
+                "data"   : [
+                    "Subsection option 1",
+                    "Subsection option 2",
+                    {
+                        "text"        : "Subsection option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
+                        "description" : "Option description is also really, really, really, really, really, really, long",
+                        "value"       : "value12",
+                        "icon"        : "alert"
+                    } ]
+            },
+            {
+                "header" : "Subsection 2",
+                "data"   : [
+                    "Subsection option 1",
+                    "Subsection option 2",
+                    {
+                        "text"        : "Subsection option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
+                        "description" : "Option description is also really, really, really, really, really, really, long",
+                        "value"       : "value13",
+                        "icon"        : "alert"
+                    } ]
+            }
+        ]
     },
     "H1" :
     {
