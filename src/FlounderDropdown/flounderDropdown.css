@@ -321,13 +321,9 @@
 
 .main
 {
-    /* composes:   default from '../InputField/inputField.css'; */
-
     border:         0.1rem solid var( --PC-GREY--L70 );
-    /* padding:        0; */
 
     letter-spacing: 0;
-    /* padding-right:  4rem; */
 
     &:focus,
     .fakeHovered &
@@ -543,11 +539,13 @@
     padding:        0;
     border:         none;
     margin:         0;
+    margin-bottom:  0.5rem;
 
     background:     transparent;
 
-    font:           inherit;
-    line-height:    inherit;
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0.04rem;
 
     &:focus
     {
@@ -595,17 +593,16 @@
     box-sizing:         border-box;
 
     width:              100%;
-    min-height:         5rem;
+    min-height:         var( --spacing-6 );
 
-    padding-top:        0.8rem;
+    padding-top:        var( --spacing-1 );
     padding-right:      3rem;
-    padding-bottom:     0.8rem;
-    padding-left:       0.5rem;
+    padding-bottom:     0.3rem;
+    padding-left:       var( --spacing-1 );
 
     & > *
     {
-        /* margin-bottom:  0.5rem; */
-        margin-right:   0.5rem;
+        margin-right:   0.8rem;
 
         &:last-child
         {
@@ -640,11 +637,6 @@
     font-size:          var( --typo-3 );
     line-height:        var( --line-height-m );
     letter-spacing:     0.04rem;
-
-    /* &:last-of-type
-    {
-        margin-bottom:  0;
-    } */
 }
 
 .multipleTagClose
@@ -856,8 +848,6 @@
 
 
 
-
-
 /*
 * class selector fix for styling options that also have description;
 * avoiding to configure flounder rules for classes since it'll be deprecated
@@ -878,26 +868,11 @@
 
     .optionWithDescription[class*=selectedDisplayed]
     {
-        min-height:     1.6rem;
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-s );
 
-        margin:         1rem 1.5rem;
-
-        overflow:       hidden;
-        white-space:    nowrap;
-        text-overflow:  ellipsis;
-
         color:          var( --PC-GREY--D5 );
-
-        cursor:         pointer;
-
-        &[ data-value = "" ],
-        &:not( [ data-value ] ) /* is placeholder */
-        {
-            color:  color( var( --GS-2 ) a( 50% ) );
-        }
 
         .description
         {
