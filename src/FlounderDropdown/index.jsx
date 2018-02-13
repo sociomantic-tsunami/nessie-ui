@@ -64,6 +64,7 @@ const buildFlounder = ( node, props = {} ) =>
             toChange && props.onChange( ...args );
         };
 
+        // check if option has description and apply custom class if has
         const dropDownOptionsUpdated = props.data.map( option =>
         {
             const _option = option;

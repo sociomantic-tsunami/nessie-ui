@@ -72,7 +72,10 @@ describe( 'FlounderDropdownDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <FlounderDropdown /> );
+        const props = {
+            data : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
+        };
+        wrapper = mount( <FlounderDropdown  { ...props } /> );
         driver  = wrapper.driver();
     } );
 
