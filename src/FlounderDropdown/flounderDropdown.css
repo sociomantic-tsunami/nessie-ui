@@ -266,7 +266,7 @@
 
     .selectedDisplayed
     {
-        color:      var( --GS-2 );
+        color:      var( --PC-GREY--D5 );
         opacity:    0.5;
     }
 }
@@ -321,9 +321,13 @@
 
 .main
 {
-    composes:   default from '../InputField/inputField.css';
+    /* composes:   default from '../InputField/inputField.css'; */
+
+    border:         0.1rem solid var( --PC-GREY--L70 );
+    /* padding:        0; */
 
     letter-spacing: 0;
+    /* padding-right:  4rem; */
 
     &:focus,
     .fakeHovered &
@@ -382,16 +386,19 @@
 
 .selectedDisplayed
 {
-    min-height:     1.6rem; /* the line height */
+    min-height:     var( --spacing-2 ); /* the line height */
 
-    /* padding:        0.8rem 3.6rem 0.6rem 1rem; */
-    margin:         0;
+    padding-top:        1.1rem;
+    padding-right:      var( --spacing-3 );
+    padding-bottom:     1.1rem;
+    padding-left:       1.4rem;
 
     overflow:       hidden;
     white-space:    nowrap;
     text-overflow:  ellipsis;
 
-    color:          var( --GS-2 );
+    color:          var( --PC-GREY--D5 );
+    font-size:      var( --typo-3 );
 
     cursor:         pointer;
 
@@ -412,11 +419,18 @@
 {
     .selectedDisplayed
     {
-        position:   absolute;
-        box-sizing: border-box;
+        position:       absolute;
+        box-sizing:     border-box;
 
-        width:      100%;
-        height:     100%;
+        width:          100%;
+        height:         100%;
+
+        padding-top:    var( --spacing-2 );
+    }
+
+    .arrow
+    {
+        top:            var( --spacing-2 );
     }
 }
 
@@ -465,6 +479,7 @@
 {
     color:       var( --PC-GREY );
     line-height: var( --line-height-m );
+    font-size:   var( --typo-3 );
     cursor:      pointer;
 
     padding-left:       var( --spacing-2 );
@@ -502,7 +517,7 @@
 .arrow
 {
     position:       absolute;
-    top:            0.7rem;
+    top:            var( --spacing-1 );
     right:          1rem;
 
     background:     transparent;
@@ -580,16 +595,16 @@
     box-sizing:         border-box;
 
     width:              100%;
-    min-height:         3rem;
+    min-height:         5rem;
 
-    padding-top:        0.5rem;
+    padding-top:        0.8rem;
     padding-right:      3rem;
-    padding-bottom:     0;
+    padding-bottom:     0.8rem;
     padding-left:       0.5rem;
 
     & > *
     {
-        margin-bottom:  0.5rem;
+        /* margin-bottom:  0.5rem; */
         margin-right:   0.5rem;
 
         &:last-child
@@ -602,25 +617,34 @@
 
 .multipleSelectTag
 {
-    flex:           0 0 auto;
+    flex:               0 0 auto;
 
-    display:        block;
-    position:       relative;
+    display:            block;
+    position:           relative;
 
-    box-sizing:     border-box;
-    max-width:      100%;
-    min-height:     2rem;
+    box-sizing:         border-box;
+    max-width:          100%;
+    min-height:         2rem;
 
-    border:         0.1rem solid transparent;
+    padding:            0.4rem 3.9rem 0.4rem 1.5rem;
+    margin-bottom:      0.5rem;
 
-    padding:        0.2rem 3.4rem 0 0.9rem;
+    background-color:   var( --PC-BLUE--L90 );
+    color:              var( --PC-BLUE );
 
-    background:     color( var( --GS-2 ) a( 10% ) );
-    color:          var( --GS-2 );
+    white-space:        nowrap;
+    overflow:           hidden;
+    text-overflow:      ellipsis;
 
-    white-space:    nowrap;
-    overflow:       hidden;
-    text-overflow:  ellipsis;
+    @extend %Nessie-SemiBold;
+    font-size:          var( --typo-3 );
+    line-height:        var( --line-height-m );
+    letter-spacing:     0.04rem;
+
+    /* &:last-of-type
+    {
+        margin-bottom:  0;
+    } */
 }
 
 .multipleTagClose
@@ -628,13 +652,12 @@
     display:            block;
     position:           absolute;
 
-    top:                50%;
-    margin-top:         -0.8rem;
+    top:                0.4rem;
 
-    right:              0.9rem;
+    right:              0.8rem;
 
-    width:              1.6rem;
-    height:             1.6rem;
+    width:              2.4rem;
+    height:             2.4rem;
 
     background:         url( './images/control/close.svg' ) no-repeat 100%;
 
@@ -835,7 +858,6 @@
 
 
 
-
 /*
 * class selector fix for styling options that also have description;
 * avoiding to configure flounder rules for classes since it'll be deprecated
@@ -852,5 +874,34 @@
     .optionWithDescription[class*=disabled]
     {
         color:          var( --PC-GREY--L40 );
+    }
+
+    .optionWithDescription[class*=selectedDisplayed]
+    {
+        min-height:     1.6rem;
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+
+        margin:         1rem 1.5rem;
+
+        overflow:       hidden;
+        white-space:    nowrap;
+        text-overflow:  ellipsis;
+
+        color:          var( --PC-GREY--D5 );
+
+        cursor:         pointer;
+
+        &[ data-value = "" ],
+        &:not( [ data-value ] ) /* is placeholder */
+        {
+            color:  color( var( --GS-2 ) a( 50% ) );
+        }
+
+        .description
+        {
+            display:    none;
+        }
     }
 }
