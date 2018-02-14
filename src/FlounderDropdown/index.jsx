@@ -11,6 +11,7 @@ import H1                   from '../H1';
 import H2                   from '../H2';
 import H3                   from '../H3';
 import H4                   from '../H4';
+import styles               from './flounderDropdown.css';
 
 const headers = { 1: H1, 2: H2, 3: H3, 4: H4 };
 
@@ -64,45 +65,53 @@ const buildFlounder = ( node, props = {} ) =>
             toChange && props.onChange( ...args );
         };
 
-        // check if option has description and apply custom class if has
-        const dropDownOptionsUpdated = props.data.map( option =>
+
+        let dropDownData = props.data;
+
+        if ( Array.isArray( props.data ) )
         {
-            const _option = option;
-
-            if ( typeof _option.data !== 'undefined' )
+            // check if option has description and apply custom class if has
+            const dropDownOptionsUpdated = props.data.map( option =>
             {
-                const subOptions = _option.data.map( subOption =>
+                const _option = option;
+
+                if ( typeof _option.data !== 'undefined' )
                 {
-                    const subOptionUpdated = subOption;
-
-                    if ( typeof subOptionUpdated === 'object' )
+                    const subOptions = _option.data.map( subOption =>
                     {
-                        if ( typeof subOptionUpdated.description !==
-                             'undefined' )
+                        const subOptionUpdated = subOption;
+
+                        if ( typeof subOptionUpdated === 'object' )
                         {
-                            subOptionUpdated.extraClass =
-                                                        'optionWithDescription';
+                            if ( typeof subOptionUpdated.description !==
+                                 'undefined' )
+                            {
+                                subOptionUpdated.extraClass =
+                                                styles.optionWithDescription;
+                            }
                         }
-                    }
 
-                    return subOptionUpdated;
-                } );
+                        return subOptionUpdated;
+                    } );
 
-                _option.data = subOptions;
-            }
-            else if ( typeof _option.description !== 'undefined' )
-            {
-                _option.extraClass = 'optionWithDescription';
-            }
+                    _option.data = subOptions;
+                }
+                else if ( typeof _option.description !== 'undefined' )
+                {
+                    _option.extraClass = styles.optionWithDescription;
+                }
 
-            return _option;
-        } );
+                return _option;
+            } );
+
+            dropDownData = dropDownOptionsUpdated;
+        }
 
 
         const flounderProps =
             {
                 classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder( dropDownOptionsUpdated,
+                data    : mapIconClassesToFlounder( dropDownData,
                     props.cssMap ),
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
@@ -406,7 +415,7 @@ export default class FlounderDropdown extends Component
         forceHover            : false,
         placeholder           : 'Please choose an option',
         icon                  : 'arrow',
-        cssMap                : require( './flounderDropdown.css' )
+        cssMap                : styles
     };
 
     constructor( props )
