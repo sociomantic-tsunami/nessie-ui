@@ -2,48 +2,64 @@
 
 .default
 {
-    position:               relative;
-    /* display:                flex;
-    justify-content:        center;
-    align-items:            center; */
+    position:            relative;
 
-    margin-bottom:          2rem;
+    margin-bottom:       2rem;
     padding-top:         var( --spacing-3 );
     padding-right:       var( --spacing-3 );
     padding-bottom:      var( --spacing-2 );
     padding-left:        var( --spacing-3 );
 
-    background-color:       var( --PC-BLUE );
+    background-color:    var( --PC-BLUE );
 
     .date
     {
         @extend %Nessie;
-        margin-bottom:  0;
         color:          var( --PC-WHITE );
-        text-align:     center;
         font-size:      var( --typo-7 );
+        font-weight:    300;
         line-height:    var( --line-height-m );
+
+        margin-bottom:  0;
+        margin-top:     var( --spacing-2 );
+        padding-top:    var( --spacing-2 );
+        position:       relative;
+    }
+
+    .year
+    {
+        font-size:      1.3rem;
+        font-weight:    400;
+        line-height:    var( --line-height-s );
+
+        position:       absolute;
+        top:            0;
+        left:           0;
+    }
+
+    .buttonsWrapper
+    {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
     }
 
     .prev,
     .next
     {
-        position:   absolute;
-        top:        calc( 50% - 0.8rem);
+        width:          var( --spacing-3 );
+        height:         var( --spacing-3 );
 
         svg /* change color of the prev/next arrow icons */
         {
-            fill:   var( --PC-WHITE );
+            fill:       var( --PC-WHITE );
         }
-    }
 
-    .prev
-    {
-        left:   0;
-    }
-
-    .next
-    {
-        right:  0;
+        &[class*=disabled] svg
+        {
+            opacity:    0.38;
+        }
     }
 }

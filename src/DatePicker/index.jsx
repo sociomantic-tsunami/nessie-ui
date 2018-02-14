@@ -10,6 +10,8 @@ import DatePickerHeader               from './DatePickerHeader';
 const DatePicker = ( {
     className,
     cssMap,
+    month,
+    year,
     headers,
     isDisabled,
     isReadOnly,
@@ -27,6 +29,8 @@ const DatePicker = ( {
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             label          = { label }
+            month          = { month }
+            year           = { year }
             nextIsDisabled = { nextIsDisabled }
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
@@ -71,6 +75,8 @@ const DatePicker = ( {
 DatePicker.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
+    month     : PropTypes.string,
+    year      : PropTypes.string,
     headers   : PropTypes.arrayOf(
         PropTypes.objectOf( PropTypes.string ) ),
     isDisabled     : PropTypes.bool,
@@ -88,6 +94,8 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
     className      : undefined,
     cssMap         : styles,
+    month          : undefined,
+    year           : undefined,
     headers        : undefined,
     isDisabled     : false,
     isReadOnly     : false,

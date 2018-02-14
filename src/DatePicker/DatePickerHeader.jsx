@@ -8,7 +8,9 @@ import styles               from './datePickerHeader.css';
 const DatePickerHeader = ( {
     className,
     cssMap,
-    label,
+    month,
+    year,
+//    label,
     isDisabled,
     isReadOnly,
     nextIsDisabled,
@@ -17,28 +19,33 @@ const DatePickerHeader = ( {
     prevIsDisabled,
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
-        <IconButton
-            className  = { cssMap.prev }
-            iconType   = "left"
-            isDisabled = { isDisabled || prevIsDisabled }
-            isReadOnly = { isReadOnly }
-            onClick    = { onClickPrev } />
+        <div className = { cssMap.buttonsWrapper }>
+            <IconButton
+                className  = { cssMap.prev }
+                iconType   = "left"
+                isDisabled = { isDisabled || prevIsDisabled }
+                isReadOnly = { isReadOnly }
+                onClick    = { onClickPrev } />
+            <IconButton
+                className  = { cssMap.next }
+                iconType   = "right"
+                isDisabled = { isDisabled || nextIsDisabled }
+                isReadOnly = { isReadOnly }
+                onClick    = { onClickNext } />
+        </div>
         <Text className = { cssMap.date }>
-            { label }
+            { month }
+            <span className = { cssMap.year }> { year } </span>
         </Text>
-        <IconButton
-            className  = { cssMap.next }
-            iconType   = "right"
-            isDisabled = { isDisabled || nextIsDisabled }
-            isReadOnly = { isReadOnly }
-            onClick    = { onClickNext } />
     </div>
 );
 
 DatePickerHeader.propTypes = {
     className      : PropTypes.string,
     cssMap         : PropTypes.objectOf( PropTypes.string ),
-    label          : PropTypes.string,
+    month          : PropTypes.string,
+    year           : PropTypes.string,
+//    label          : PropTypes.string,
     isDisabled     : PropTypes.bool,
     isReadOnly     : PropTypes.bool,
     nextIsDisabled : PropTypes.bool,
@@ -50,7 +57,9 @@ DatePickerHeader.propTypes = {
 DatePickerHeader.defaultProps = {
     className      : undefined,
     cssMap         : styles,
-    label          : undefined,
+    dateMonth      : undefined,
+    dateYear       : undefined,
+//    label          : undefined,
     isDisabled     : undefined,
     isReadOnly     : undefined,
     nextIsDisabled : undefined,
