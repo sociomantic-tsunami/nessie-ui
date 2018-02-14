@@ -529,32 +529,68 @@ a:hover, a:active
 {
     display:    none !important;
 }
-.inputContainer__default__tWiVT /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.inputContainer__default__tWiVT
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .inputContainer__default__tWiVT:last-child
+/* in case this is a flexbox child */
+
+.inputContainer__default__tWiVT:last-child
     {
         margin-bottom:  0;
     }
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
+
 .inputContainer__default__tWiVT
 {
     display:        -webkit-box;
@@ -564,6 +600,7 @@ a:hover, a:active
     font:           inherit;
     line-height:    inherit;
 }
+
 .inputContainer__default__tWiVT .inputContainer__container__3ELoU
     {
         -webkit-box-flex:       1;
@@ -572,6 +609,7 @@ a:hover, a:active
                 flex:       1 1 auto;
         min-width:  0;
     }
+
 .inputContainer__default__tWiVT .inputContainer__label__lbIF5
     {
         -webkit-box-flex:   0;
@@ -579,6 +617,7 @@ a:hover, a:active
             -ms-flex:   0 0 auto;
                 flex:   0 0 auto;
     }
+
 .inputContainer__labelPosition__top__3-m31
 {
     -webkit-box-orient: vertical;
@@ -587,12 +626,14 @@ a:hover, a:active
         -ms-flex-direction: column;
             flex-direction: column;
 }
+
 .inputContainer__labelPosition__top__3-m31 .inputContainer__label__lbIF5
     {
         -webkit-align-self: flex-start;
             -ms-flex-item-align: start;
                 align-self: flex-start;
     }
+
 .inputContainer__labelPosition__left__3Uh2I, .inputContainer__labelPosition__right__1aC0W
 {
     -webkit-box-align:    center;
@@ -600,18 +641,22 @@ a:hover, a:active
         -ms-flex-align:    center;
             align-items:    center;
 }
+
 .inputContainer__labelPosition__left__3Uh2I > *, .inputContainer__labelPosition__right__1aC0W > *
     {
         margin-bottom:  0;
     }
+
 .inputContainer__labelPosition__left__3Uh2I .inputContainer__label__lbIF5, .inputContainer__labelPosition__right__1aC0W .inputContainer__label__lbIF5
     {
         max-width:  50%;
     }
+
 .inputContainer__labelPosition__left__3Uh2I > .inputContainer__container__3ELoU
     {
         margin-left:   1rem;
     }
+
 .inputContainer__labelPosition__right__1aC0W
 {
     -webkit-box-orient: horizontal;
@@ -620,6 +665,7 @@ a:hover, a:active
         -ms-flex-direction: row-reverse;
             flex-direction: row-reverse;
 }
+
 .inputContainer__labelPosition__right__1aC0W > .inputContainer__container__3ELoU
     {
         margin-right:   1rem;
@@ -1399,26 +1445,64 @@ legend.label__default__1KHiG + *
         -ms-flex:               0 0 auto;
             flex:               0 0 auto;
 }
-.textInputWithIcon__default__2JGx9 /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textInputWithIcon__default__2JGx9
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textInputWithIcon__default__2JGx9:last-child
+/* in case this is a flexbox child */
+
+.textInputWithIcon__default__2JGx9:last-child
     {
         margin-bottom:  0;
     }
@@ -1609,26 +1693,64 @@ textarea.inputField__resizable__2CfEu
     {
         resize: vertical;
     }
-.iconButton__default__XPmOq /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.iconButton__default__XPmOq
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .iconButton__default__XPmOq:last-child
+/* in case this is a flexbox child */
+
+.iconButton__default__XPmOq:last-child
     {
         margin-bottom:  0;
     }
@@ -3042,26 +3164,64 @@ textarea.inputField__resizable__2CfEu
     {
         background-color:       #f55f69;
     }
-.buttonRadio__default__1QUOH /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.buttonRadio__default__1QUOH
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .buttonRadio__default__1QUOH:last-child
+/* in case this is a flexbox child */
+
+.buttonRadio__default__1QUOH:last-child
     {
         margin-bottom:  0;
     }
@@ -3081,26 +3241,64 @@ textarea.inputField__resizable__2CfEu
 {
 	display:	block;
 }
-.fieldset__default__1Eptt /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.fieldset__default__1Eptt
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .fieldset__default__1Eptt:last-child
+/* in case this is a flexbox child */
+
+.fieldset__default__1Eptt:last-child
     {
         margin-bottom:  0;
     }
@@ -7948,6 +8146,11 @@ span.CodeMirror-selectedtext { background: none; }
     font-style: normal;
 }
 
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
 .listBoxOptionGroup__default__3m1i2
 {
     display:    block;
@@ -7981,9 +8184,24 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
 /*------------------------------------//
@@ -7997,24 +8215,30 @@ span.CodeMirror-selectedtext { background: none; }
     font-style: normal;
 }
 
-.datePicker__default__12lfM /* all elements get default margin-bottom of 2rem */
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.datePicker__default__12lfM
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
+
+/* in case this is a flexbox child */
 
 .datePicker__default__12lfM:last-child
     {
@@ -8028,7 +8252,7 @@ span.CodeMirror-selectedtext { background: none; }
 
 .datePicker__default__12lfM .datePicker__calendarHeader__QSM7u
     {
-        color:  #289bc8;
+        color:  #19a2e2;
     }
 
 .datePicker__default__12lfM .datePicker__calendarHeader__QSM7u th
@@ -8186,9 +8410,24 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
 /*------------------------------------//
@@ -8200,6 +8439,11 @@ span.CodeMirror-selectedtext { background: none; }
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
+}
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
 }
 
 .datePickerHeader__default__3hHMY
@@ -10226,26 +10470,64 @@ only used in type__carousel for now
         {
             right:  15rem;
         }
-.navList__default__2JZBI /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.navList__default__2JZBI
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .navList__default__2JZBI:last-child
+/* in case this is a flexbox child */
+
+.navList__default__2JZBI:last-child
     {
         margin-bottom:  0;
     }
@@ -10310,40 +10592,68 @@ only used in type__carousel for now
         -ms-flex-align:        stretch;
             align-items:        stretch;
 }
-.navBar__default__1EAbA /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.navBar__default__1EAbA
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .navBar__default__1EAbA:last-child
+/* in case this is a flexbox child */
+
+.navBar__default__1EAbA:last-child
     {
         margin-bottom:  0;
     }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
 
-    /* accent colors */
-
-    /* greyscale colors */
-}
 .navBar__default__1EAbA
 {
     display:            -webkit-box;
@@ -10363,11 +10673,12 @@ only used in type__carousel for now
 
     margin:             0;
 
-    border-top:         0.1rem solid rgb(217, 219, 221);
-    border-bottom:      0.1rem solid rgb(217, 219, 221);
+    border-top:         0.1rem solid color( var(--GS-2) tint( 80% ) );
+    border-bottom:      0.1rem solid color( var(--GS-2) tint( 80% ) );
 
     background:         #ffffff;
 }
+
 .navBar__list__1pxW5
 {
    width:   auto;
@@ -10380,9 +10691,24 @@ only used in type__carousel for now
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
 .navDropdown__default__2crMa /* extends NavList css */
@@ -10391,7 +10717,7 @@ only used in type__carousel for now
     max-width:          none;
     max-height:         50vh;
 
-    border:             0.1rem solid #289bc8;
+    border:             0.1rem solid #19a2e2;
 
     padding:            1rem 0;
 
@@ -10401,55 +10727,82 @@ only used in type__carousel for now
 
     z-index:            999;
 }
-.navItem__default__kwc7o /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .navItem__default__kwc7o:last-child
-    {
-        margin-bottom:  0;
-    }
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
+
 :root
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
+
 .navItem__default__kwc7o
 {
     font-family: Nessie-Regular, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
+
 .navItem__role__default__97T5T > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K, .navItem__role__sub__xE3Hy.navItem__current__41LLP > .navItem__link__1Uu3K
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.navItem__default__kwc7o
+{
+    position:       relative;
+    margin-bottom:  1.6rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0;
+}
+
+/* in case this is a flexbox child */
+
+.navItem__default__kwc7o:last-child
+    {
+        margin-bottom:  0;
+    }
+
 .navItem__default__kwc7o
 {
     display:        block;
@@ -10458,6 +10811,7 @@ only used in type__carousel for now
     margin-bottom:  0;
     font-size:      1.4rem;
 }
+
 .navItem__default__kwc7o .navItem__link__1Uu3K /* needs to go inside .default to override foundations.css */
     {
         display:            block;
@@ -10465,44 +10819,54 @@ only used in type__carousel for now
         text-decoration:    none !important;
         cursor:             text;
     }
+
 .navItem__default__kwc7o .navItem__link__1Uu3K, .navItem__default__kwc7o .navItem__link__1Uu3K:hover, .navItem__default__kwc7o .navItem__link__1Uu3K:focus, .navItem__default__kwc7o .navItem__link__1Uu3K:active
         {
-            color:  #414B55;
+            color:  var(--GS-2);
         }
+
 .navItem__default__kwc7o .navItem__link__1Uu3K[href]
         {
             cursor: pointer;
         }
+
 .navItem__default__kwc7o .navItem__link__1Uu3K:focus
         {
             outline:    none;
         }
+
 .navItem__disabled__1yNtP
 {
     pointer-events: none;
 
 }
+
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K
     {
-        color:  rgba(65, 75, 85, 0.5) !important;
+        color:  color( var(--GS-2) a( 50% ) ) !important;
         cursor: default !important;
     }
+
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K::after
         {
-            background: rgba(65, 75, 85, 0.5) !important;
+            background: color( var(--GS-2) a( 50% ) ) !important;
         }
+
 .navItem__disabled__1yNtP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
         {
             opacity:    0.5;
         }
+
 .navItem__role__default__97T5T > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K
     {
         padding:    0.7rem 0 0.5rem 0;
     }
+
 .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:hover, .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:focus, .navItem__role__default__97T5T > .navItem__link__1Uu3K[href]:active, .navItem__role__default__97T5T.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__default__97T5T.navItem__open__2zeF7 > .navItem__link__1Uu3K, .navItem__role__default__97T5T.navItem__current__41LLP > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:hover, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:focus, .navItem__role__primary__1rbCf > .navItem__link__1Uu3K[href]:active, .navItem__role__primary__1rbCf.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf.navItem__open__2zeF7 > .navItem__link__1Uu3K, .navItem__role__primary__1rbCf.navItem__current__41LLP > .navItem__link__1Uu3K
     {
-        color:  #289bc8;
+        color:  #19a2e2;
     }
+
 .navItem__role__default__97T5T.navItem__current__41LLP > .navItem__link__1Uu3K::after, .navItem__role__primary__1rbCf.navItem__current__41LLP > .navItem__link__1Uu3K::after
     {
         content:    '';
@@ -10514,61 +10878,74 @@ only used in type__carousel for now
         width:      100%;
         height:     0.2rem;
 
-        background: #289bc8;
+        background: #19a2e2;
     }
+
 .navItem__role__primary__1rbCf > .navItem__link__1Uu3K
     {
         text-transform: uppercase;
     }
+
 .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K
     {
         padding:        1.2rem 2rem 1rem 1.5rem;
         border-left:    0.5rem solid transparent;
-        color:          #414B55;
+        color:          var(--GS-2);
     }
+
 .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:hover, .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:focus, .navItem__role__sub__xE3Hy > .navItem__link__1Uu3K[href]:active, .navItem__role__sub__xE3Hy.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K, .navItem__role__sub__xE3Hy.navItem__open__2zeF7 > .navItem__link__1Uu3K
     {
-        color:          #414B55;
-        border-color:   #289bc8;
+        color:          var(--GS-2);
+        border-color:   #19a2e2;
     }
+
 .navItem__role__sub__xE3Hy.navItem__current__41LLP > .navItem__link__1Uu3K
     {
         border-color:   transparent;
     }
+
 .navItem__open__2zeF7 .navItem__dropdown__2PHEm
     {
         left:   auto;
     }
+
 .navItem__open__2zeF7.navItem__dropdownAlign__right__2Ca4x .navItem__dropdown__2PHEm
     {
         right:  0;
     }
+
 .navItem__dropdown__2PHEm
 {
     position:   absolute;
     left:       -99999px;
     margin-top: -0.2rem;
 }
+
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K
     {
         padding:    1.4rem 0 1.2rem;
     }
+
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K::after
         {
             display:    none !important;
         }
+
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         display:    inline-block;
     }
+
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:hover > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:active > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K[href]:focus > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__open__2zeF7 > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__fakeHovered__3g1hy > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__current__41LLP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiMyNzlCQzg7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMiwwQzUuNCwwLDAsNS40LDAsMTJjMCwyLjYsMC45LDUuMSwyLjMsN2MyLjIsMyw1LjcsNSw5LjcsNWM0LDAsNy41LTIsOS43LTVjMS40LTIsMi4zLTQuNCwyLjMtNw0KCQkJCQlDMjQsNS40LDE4LjYsMCwxMiwweiBNMjAuMiwxNy43Yy0yLjItMS42LTUtMi42LTguMi0yLjZzLTYsMS04LjIsMi42QzIuNywxNi4xLDIsMTQuMSwyLDExLjljMC01LjUsNC41LTEwLDEwLTEwDQoJCQkJCWM1LjUsMCwxMCw0LjUsMTAsMTBDMjIsMTQuMSwyMS4zLDE2LjEsMjAuMiwxNy43eiIvPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KCTxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjEyIiBjeT0iOS41IiByPSI0Ii8+DQo8L2c+DQo8L3N2Zz4NCg==);
     }
+
 .navItem__icon__account__2MyH8 > .navItem__link__1Uu3K > .navItem__icon__2yK-C, .navItem__icon__account__2MyH8.navItem__disabled__1yNtP > .navItem__link__1Uu3K > .navItem__icon__2yK-C
     {
         background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiM0MjRCNTU7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMiwwQzUuNCwwLDAsNS40LDAsMTJjMCwyLjYsMC45LDUuMSwyLjMsN2MyLjIsMyw1LjcsNSw5LjcsNWM0LDAsNy41LTIsOS43LTVjMS40LTIsMi4zLTQuNCwyLjMtNw0KCQkJCQlDMjQsNS40LDE4LjYsMCwxMiwweiBNMjAuMiwxNy43Yy0yLjItMS42LTUtMi42LTguMi0yLjZzLTYsMS04LjIsMi42QzIuNywxNi4xLDIsMTQuMSwyLDExLjljMC01LjUsNC41LTEwLDEwLTEwDQoJCQkJCWM1LjUsMCwxMCw0LjUsMTAsMTBDMjIsMTQuMSwyMS4zLDE2LjEsMjAuMiwxNy43eiIvPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KCTxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjEyIiBjeT0iOS41IiByPSI0Ii8+DQo8L2c+DQo8L3N2Zz4NCg==);
     }
+
 .navItem__icon__2yK-C
 {
     display:    none;
@@ -10576,26 +10953,64 @@ only used in type__carousel for now
     height:     2.4rem;
     margin:     -0.7rem 0 -0.7rem 1.5rem;
 }
-.nessieLogo__default__29T4w /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.nessieLogo__default__29T4w
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .nessieLogo__default__29T4w:last-child
+/* in case this is a flexbox child */
+
+.nessieLogo__default__29T4w:last-child
     {
         margin-bottom:  0;
     }
@@ -10823,40 +11238,68 @@ only used in type__carousel for now
       overflow-y: scroll;
       max-height:   100vh;
     }
-.pageContent__default__2xCEE /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.pageContent__default__2xCEE
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .pageContent__default__2xCEE:last-child
+/* in case this is a flexbox child */
+
+.pageContent__default__2xCEE:last-child
     {
         margin-bottom:  0;
     }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
 
-    /* accent colors */
-
-    /* greyscale colors */
-}
 .pageContent__default__2xCEE
 {
     -webkit-box-flex:          1;
@@ -10865,6 +11308,7 @@ only used in type__carousel for now
             flex:          1 0 auto;
     margin:        0;
 }
+
 .pageContent__content__2wkgj
 {
     width:         102.4rem;
@@ -10876,6 +11320,7 @@ only used in type__carousel for now
     margin:        0 auto;
     padding:       8rem 0;
 }
+
 .pageContent__loadingOverlay__1_RTM
 {
     display:            -webkit-box;
@@ -10911,17 +11356,19 @@ only used in type__carousel for now
 
     z-index:    2;
 }
+
 .pageContent__spinner__3pwNl
 {
     position:   fixed !important;
     top:        calc(50% - 2rem);
 
-    border-color:   rgba(40, 155, 200, 0.5) !important;
+    border-color:   rgba(25, 162, 226, 0.5) !important;
 }
+
 .pageContent__spinner__3pwNl::after
     {
 
-        border-top-color:   #289bc8 !important;
+        border-top-color:   #19a2e2 !important;
     }
 /*@import "../proto/base.css";*/
 /*------------------------------------//
@@ -10974,40 +11421,68 @@ only used in type__carousel for now
     top:            0.4rem;
     margin-top:     -0.6rem;
 }
-.pageHeader__default__3zPHF /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.pageHeader__default__3zPHF
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .pageHeader__default__3zPHF:last-child
+/* in case this is a flexbox child */
+
+.pageHeader__default__3zPHF:last-child
     {
         margin-bottom:  0;
     }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
 
-    /* accent colors */
-
-    /* greyscale colors */
-}
 .pageHeader__default__3zPHF
 {
     -webkit-box-flex:           0;
@@ -11019,6 +11494,7 @@ only used in type__carousel for now
 
     background:     #ffffff;
 }
+
 .pageHeader__content__1PJmk
 {
     margin: 3rem 4rem;
@@ -11215,26 +11691,64 @@ only used in type__carousel for now
     height: 1.8rem;
     width: 2.6rem;
 }
-.passwordInput__default__1KJw4 /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.passwordInput__default__1KJw4
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .passwordInput__default__1KJw4:last-child
+/* in case this is a flexbox child */
+
+.passwordInput__default__1KJw4:last-child
     {
         margin-bottom:  0;
     }
@@ -11444,53 +11958,80 @@ only used in type__carousel for now
             transform: rotateZ(360deg) scale(1.3);
   }
 }
-.progressIndicator__default__4m5YP /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
 {
-    position:       relative;
-    margin-bottom:  2rem;
+    /* primary colors */
 
-    -webkit-box-sizing:     border-box;
 
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
 
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
+     /* greyscale colors */
 
-    font-weight:    normal;
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
-    .progressIndicator__default__4m5YP:last-child
-    {
-        margin-bottom:  0;
-    }
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
+
 .progressIndicator__percentage__3Biz3
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
+
 :root
 {
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
+    /*  TYPOGRAPHY SIZES */
 }
+
+:root
+{
+    /*  SPACING */
+}
+
+.progressIndicator__default__4m5YP
+{
+    position:       relative;
+    margin-bottom:  1.6rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0;
+}
+
+/* in case this is a flexbox child */
+
+.progressIndicator__default__4m5YP:last-child
+    {
+        margin-bottom:  0;
+    }
+
 .progressIndicator__default__4m5YP
 {
     /*  */
 }
+
 .progressIndicator__percentageContainer__3BNlN
 {
     position:           absolute;
@@ -11512,6 +12053,7 @@ only used in type__carousel for now
         -ms-flex-align:        center;
             align-items:        center;
 }
+
 .progressIndicator__percentage__3Biz3
 {
 
@@ -11519,6 +12061,7 @@ only used in type__carousel for now
     letter-spacing:     0.01rem;
     margin-top:         3px;
 }
+
 .progressIndicator__spinner__1AcMf
 {
 
@@ -11530,6 +12073,7 @@ only used in type__carousel for now
 
 
 }
+
 .progressIndicator__spinner__1AcMf:after
   {
     width:              100px;
@@ -11540,6 +12084,7 @@ only used in type__carousel for now
     left:               -8px;
     top:                -8px;
   }
+
 @-webkit-keyframes progressIndicator__defaultSpinnerRingRotate__3wT-S {
   0%
   {
@@ -11552,6 +12097,7 @@ only used in type__carousel for now
             transform: rotateZ(360deg) scale(1);
   }
 }
+
 @keyframes progressIndicator__defaultSpinnerRingRotate__3wT-S {
   0%
   {
@@ -12290,9 +12836,24 @@ only used in type__carousel for now
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
 /*------------------------------------//
@@ -12306,24 +12867,30 @@ only used in type__carousel for now
     font-style: normal;
 }
 
-.sliderGroup__default__2Y9lA /* all elements get default margin-bottom of 2rem */
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.sliderGroup__default__2Y9lA
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
+
+/* in case this is a flexbox child */
 
 .sliderGroup__default__2Y9lA:last-child
     {
@@ -12470,7 +13037,8 @@ only used in type__carousel for now
 }
 .scrollBox__default__GWy-0 .scrollBox__scrollBox__2UBiX
     {
-        overflow: auto;
+        overflow:               auto;
+        overscroll-behavior:    contain;
     }
 .scrollBox__scroll__horizontal__2cDkN .scrollBox__scrollBox__2UBiX
     {
@@ -12520,26 +13088,64 @@ only used in type__carousel for now
 {
 
 }
-.sorter__default__3a0HN /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.sorter__default__3a0HN
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .sorter__default__3a0HN:last-child
+/* in case this is a flexbox child */
+
+.sorter__default__3a0HN:last-child
     {
         margin-bottom:  0;
     }
@@ -13470,9 +14076,24 @@ only used in type__carousel for now
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
 .tableRow__default__15hF0
@@ -13595,40 +14216,68 @@ only used in type__carousel for now
     background: #ffffff;
     z-index:    1;
 }
-.table__default__fpQba /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.table__default__fpQba
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .table__default__fpQba:last-child
+/* in case this is a flexbox child */
+
+.table__default__fpQba:last-child
     {
         margin-bottom:  0;
     }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
 
-    /* accent colors */
-
-    /* greyscale colors */
-}
 .table__default__fpQba
 {
     -webkit-font-feature-settings:	lining-nums tabular-nums;
@@ -13636,10 +14285,12 @@ only used in type__carousel for now
     font-variant-numeric:	lining-nums tabular-nums;
     word-wrap:          break-word;
 }
+
 .table__zebra__1Wxas .table__row__1YGNP:nth-child(even) > .table__cell__3NkUW
     {
-        background: #F0F0F0;
+        background: var(--GS-10);
     }
+
 .table__zebra__1Wxas .table__row__1YGNP
     {
         width:  100%;
@@ -13941,26 +14592,64 @@ only used in type__carousel for now
     {
         resize: vertical;
     }
-.textArea__default__Dfi2- /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textArea__default__Dfi2-
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textArea__default__Dfi2-:last-child
+/* in case this is a flexbox child */
+
+.textArea__default__Dfi2-:last-child
     {
         margin-bottom:  0;
     }
@@ -13969,26 +14658,64 @@ only used in type__carousel for now
 {
     /* nothing to see here */
 }
-.textInput__default__9o_HN /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textInput__default__9o_HN
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textInput__default__9o_HN:last-child
+/* in case this is a flexbox child */
+
+.textInput__default__9o_HN:last-child
     {
         margin-bottom:  0;
     }
@@ -14005,29 +14732,54 @@ only used in type__carousel for now
 {
     /* primary colors */
 
-    /* accent colors */
 
-    /* greyscale colors */
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
 }
 
-.textInputWithDropdown__default__9ZDoM /* all elements get default margin-bottom of 2rem */
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textInputWithDropdown__default__9ZDoM
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
+
+/* in case this is a flexbox child */
 
 .textInputWithDropdown__default__9ZDoM:last-child
     {
@@ -14102,12 +14854,12 @@ only used in type__carousel for now
 
 .textInputWithDropdown__disabled__ZpaDl.textInputWithDropdown__position__right__I6D67 .textInputWithDropdown__input__IYMPC
         {
-            border-right:   0.1rem solid rgba(65, 75, 85, 0.2);
+            border-right:   0.1rem solid color( var(--GS-2) a( 20% ) );
         }
 
 .textInputWithDropdown__disabled__ZpaDl.textInputWithDropdown__position__left__JIIJB .textInputWithDropdown__input__IYMPC
         {
-            border-left:    0.1rem solid rgba(65, 75, 85, 0.2);
+            border-left:    0.1rem solid color( var(--GS-2) a( 20% ) );
         }
 .uploader__default__3Iq-q /* all elements get default margin-bottom of 2rem */
 {

@@ -12470,7 +12470,8 @@ only used in type__carousel for now
 }
 .scrollBox__default .scrollBox__scrollBox
     {
-        overflow: auto;
+        overflow:               auto;
+        overscroll-behavior:    contain;
     }
 .scrollBox__scroll__horizontal .scrollBox__scrollBox
     {

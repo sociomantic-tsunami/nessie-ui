@@ -25973,10 +25973,17 @@ var Tabs = function (_NessieComponent) {
             var _this2 = this;
 
             var tabs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+            var tabsArray = tabs;
+
+            if (!Array.isArray(tabs)) {
+                tabsArray = [tabs];
+            }
+
             var activeTabIndex = this.props.activeTabIndex;
 
 
-            return tabs.map(function (child, index) {
+            return tabsArray.map(function (child, index) {
                 var _child$props = child.props,
                     isDisabled = _child$props.isDisabled,
                     label = _child$props.label;
@@ -26015,7 +26022,7 @@ var Tabs = function (_NessieComponent) {
 
             var header = this.renderHeader(children);
 
-            var content = children[activeTabIndex];
+            var content = Array.isArray(children) ? children[activeTabIndex] : children;
 
             return _react2.default.createElement(
                 'div',
