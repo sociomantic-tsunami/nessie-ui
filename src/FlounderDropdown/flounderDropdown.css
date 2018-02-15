@@ -33,7 +33,7 @@
         {
             border-color:   transparent;
             background:     transparent;
-            outline:        none;
+            box-shadow:     none;
         }
     }
 
@@ -169,8 +169,7 @@
     .open .main:focus
     {
         border-color:    var( --PC-RED );
-        outline:         0.1rem solid var( --PC-RED );
-        outline-offset:  0;
+        box-shadow:      0 0 0 0.1rem var( --PC-RED );
         color:           var( --PC-RED );
 
 
@@ -193,7 +192,6 @@
 {
     background:             var( --PC-GREY--L90 );
     color:                  var( --PC-GREY--L40 );
-    border-color:           var( --PC-GREY--L70 );
 
     &:focus
     {
@@ -284,6 +282,7 @@
 .main
 {
     border:             0.1rem solid var( --PC-GREY--L70 );
+    border-radius:      0.2rem;
 
     letter-spacing:     0;
 
@@ -292,8 +291,8 @@
     .open &
     {
         border-color:   var( --PC-BLUE );
-        outline:        0.1rem solid var( --PC-BLUE );
-        outline-offset: 0;
+        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        outline:        none;
     }
 
     &:focus,

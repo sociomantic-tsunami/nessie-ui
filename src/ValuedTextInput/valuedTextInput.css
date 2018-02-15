@@ -118,7 +118,7 @@
 {
     .container
     {
-        outline:        0.1rem solid var( --PC-BLUE );
+        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
     }
 
     .valueLabel
@@ -132,7 +132,7 @@
 {
     .container
     {
-        outline:        0.1rem solid var( --PC-RED );
+        box-shadow:     0 0 0 0.1rem var( --PC-RED );
     }
 
     .valueLabel
