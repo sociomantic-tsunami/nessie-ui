@@ -14,7 +14,7 @@
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 %Nessie-SemiBold
@@ -27,7 +27,7 @@
 %Nessie-Bold
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 }
 
