@@ -1,24 +1,13 @@
-/*@import "../proto/base.css";*/
-@import "../proto/definitions/variables.css";
+@import "../proto/base.css";
 
 .default
 {
-    /* from base.css */
-    position:       relative;
-    margin-bottom:  var( --spacing-2 );
 
-    box-sizing:     border-box;
-    width:          100%;
-
-    &:last-child
-    {
-        margin-bottom:  0;
-    }
 }
 
 .headerMode /* Flounder as header */
 {
-    min-width:  40rem;
+    min-width:      40rem;
 
     .mainWrapper
     {
@@ -30,7 +19,7 @@
 
         /* compensate for padding set on .selectedDisplayed
          * and border set on .main (except on right side) */
-        margin: -1.8rem 0 -1.5rem -2.1rem;
+        margin:     -1.8rem 0 -1.5rem -2.1rem;
     }
 
     .mainWrapper:not( .open )
@@ -39,10 +28,12 @@
         .main:hover,
         .main:focus,
         &.fakeHovered .main,
+        &.error .main,
         .main.disabled
         {
             border-color:   transparent;
             background:     transparent;
+            outline:        none;
         }
     }
 
@@ -53,14 +44,13 @@
         align-items:        center;
     }
 
-    .arrow,
-    &.error .arrow
+    .arrow
     {
-        position:   relative;
-        left:       -3.5rem;
-        top:        0rem;
-        margin-top: 0;
-        right:      0;
+        position:           relative;
+        top:                0.2rem;
+        left:               -3.5rem;
+        margin-top:         0;
+        right:              0;
 
         .arrowInner
         {
@@ -68,14 +58,23 @@
         }
     }
 
-    &.error .open .main .arrowInner
+    &.error
     {
-        background-image:   url( './images/control/up.svg' );
+        .arrow .arrowInner,
+        .main:focus .arrow .arrowInner
+        {
+            background-image:   url( './images/control/down__hover.svg' );
+        }
+
+        .open .arrow .arrowInner
+        {
+            background-image:   url( './images/up--red.svg' );
+        }
     }
 
     .main .selectedDisplayed
     {
-        color:  var( --PC-BLUE );
+        color:      var( --PC-BLUE );
     }
 
     .open .main
@@ -86,53 +85,35 @@
     .selectedDisplayed
     {
         padding:    1.7rem 5rem 1.4rem 2rem;
-
-        .main.disabled &
-        {
-            color: var( --GS-1 );
-        }
-    }
-
-    .optionsWrapper
-    {
-        top:            100%;
-        border-top:     none !important;
-
-        /* reset font */
-        @extend %Nessie-Regular;
-        font-size:      var( --typo-2 );
-        line-height:    var( --line-height-s );
-        text-transform: none;
-    }
-
-    .option,
-    .header,
-    .noResults
-    {
-        padding-left:   2rem;
-        padding-right:  2rem;
-    }
-
-    .section .option
-    {
-        padding-left:   3rem;
     }
 }
 
 
 .headerLevel__1 /* H1 */
 {
-    .arrowInner
+    .selectedDisplayed
     {
-        height: 3rem;
-        width:  3rem;
-
+        font-size:      var( --typo-7 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.05rem;
     }
 
+    .arrowInner
+    {
+        height:         3rem;
+        width:          3rem;
+    }
 }
 
 .headerLevel__2 /* H2 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-6 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.05rem;
+    }
+
     .arrowInner
     {
         height: 2.2rem;
@@ -142,6 +123,13 @@
 
 .headerLevel__3 /* H3 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-4 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.02rem;
+    }
+
     .arrowInner
     {
         height: 2rem;
@@ -151,6 +139,18 @@
 
 .headerLevel__4 /* H4 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-3 );
+    	line-height:    var( --line-height-l );
+    	letter-spacing: 0;
+    }
+
+    .arrow
+    {
+        top:            0.3rem;
+    }
+
     .arrowInner
     {
         height: 1.8rem;
@@ -158,67 +158,35 @@
     }
 }
 
-.open,
-.fakeHovered .open
-{
-    .main,
-    .main:hover,
-    .main:focus,
-    {
-        border-color:           var( --PC-BLUE );
-        outline:                0.1rem solid var( --PC-BLUE );
-        outline-offset:         0;
-
-        background-color:       var( --PC-WHITE );
-
-        .arrowInner
-        {
-            background-image:   url( './images/light/up__hover.svg' );
-        }
-    }
-
-
-    .optionsWrapper
-    {
-        border-color:   var( --PC-BLUE );
-        z-index:    50;
-    }
-
-}
-
 
 .error
 {
     .main,
     .main:hover,
-    .main:focus
+    .main:focus,
+    .open .main,
+    .open .main:hover,
+    .open .main:focus
     {
-        border-color:   var( --PC-RED );
+        border-color:    var( --PC-RED );
+        outline:         0.1rem solid var( --PC-RED );
+        outline-offset:  0;
+        color:           var( --PC-RED );
 
-        .optionsWrapper
-        {
-            border-color:   var( --PC-RED );
-        }
+
     }
 
-    .open .main .arrowInner
+    .main .arrowInner,
+    .main:focus .arrowInner
     {
-        background-image:   url( './images/light/up.svg' );
+         background-image:  url( './images/down--red.svg' );
     }
-}
 
-
-.main.disabled,
-.main.disabled:focus
-{
-    border-color:       color( var( --GS-10 ) );
-
-    background:         var( --GS-10 );
-    color:              var( --GS-2 );
-
-    cursor:             default;
-    pointer-events:     none;
-
+    .open .main .arrowInner,
+    .open .main:focus .arrowInner
+    {
+         background-image:  url( './images/up--red.svg' );
+    }
 }
 
 .main.disabled
@@ -232,16 +200,10 @@
         border-color:       var( --PC-GREY--L70 );
     }
 
-    .arrowInner
-    {
-        background-image:   url( './images/light/down.svg' );
-    }
-
     .multipleSelectTag
     {
-        border-color:       color( var( --GS-2 ) a( 50% ) );
-        background:         transparent;
-        color:              color( var( --GS-2 ) a( 50% ) );
+        background:         var( --PC-GREY--L90 );
+        color:              var( --PC-GREY--L40 );
     }
 
     .search
@@ -321,21 +283,31 @@
 
 .main
 {
-    border:         0.1rem solid var( --PC-GREY--L70 );
+    border:             0.1rem solid var( --PC-GREY--L70 );
 
-    letter-spacing: 0;
+    letter-spacing:     0;
 
     &:focus,
-    .fakeHovered &
+    .fakeHovered &,
+    .open &
     {
         border-color:   var( --PC-BLUE );
         outline:        0.1rem solid var( --PC-BLUE );
         outline-offset: 0;
+    }
 
+    &:focus,
+    .fakeHovered &
+    {
         .arrowInner
         {
             background-image:   url( './images/light/down__hover.svg' );
         }
+    }
+
+    .open & .arrowInner
+    {
+        background-image:   url( './images/light/up__hover.svg' );
     }
 }
 
@@ -357,10 +329,10 @@
     padding-bottom:     var( --spacing-1 );
 
     background:         var( --PC-WHITE );
-    color:              var( --GS-3 );
     box-shadow:         0 0.5rem 1rem var( --PC-GREY--L75 );
 
     overflow:           auto;
+    z-index:            50;
 }
 
 
@@ -398,12 +370,6 @@
 
     cursor:         pointer;
 
-    &[ data-value = "" ],
-    &:not( [ data-value ] ) /* is placeholder */
-    {
-        color:  color( var( --GS-2 ) a( 50% ) );
-    }
-
     .description
     {
         display:    none;
@@ -426,13 +392,15 @@
 
     .arrow
     {
-        top:            var( --spacing-2 );
+        top:            1.3rem;
     }
 }
 
 
 .description
 {
+    @extend         %Nessie-Regular;
+
     color:          var( --PC-GREY--D25 );
     line-height:    var( --line-height-m );
     font-size:      var( --typo-3 );
@@ -473,15 +441,15 @@
 .option,
 .noResults
 {
-    color:       var( --PC-GREY );
-    line-height: var( --line-height-m );
-    font-size:   var( --typo-3 );
-    cursor:      pointer;
+    color:                  var( --PC-GREY );
+    line-height:            var( --line-height-m );
+    font-size:              var( --typo-3 );
+    cursor:                 pointer;
 
-    padding-left:       var( --spacing-2 );
-    padding-right:      var( --spacing-2 );
-    padding-top:        1.2rem;
-    padding-bottom:     1.2rem;
+    padding-left:           var( --spacing-2 );
+    padding-right:          var( --spacing-2 );
+    padding-top:            1.2rem;
+    padding-bottom:         1.2rem;
 
     &:hover,
     &:hover .description
@@ -493,7 +461,7 @@
 
 .noResults
 {
-    color:  color( var( --GS-2 ) a( 50% ) ) !important; /* always grey */
+
 }
 
 .disabled,
@@ -528,11 +496,12 @@
     background-size:    100%;
 }
 
-.arrowInner,
-.error .main .arrowInner
+
+.arrowInner
 {
-     background-image:  url( './images/light/down.svg' );
+    background-image:  url( './images/light/down.svg' );
 }
+
 
 .search
 {
@@ -711,8 +680,11 @@
 
 .header
 {
-    color:  var( --PC-GREY--D25 );
     @extend %Nessie-RegularIt;
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-m );
+    color:          var( --PC-GREY--D25 );
 }
 
 
@@ -737,13 +709,7 @@
 
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );
-
     color:          var( --PC-GREY--D5 );
-
-    .description
-    {
-        display:    none;
-    }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -764,12 +730,6 @@
     background-repeat:      no-repeat;
     background-position:    1.6rem center;
     background-size:        2.4rem;
-
-    .headerMode & /* icon always in the same position in header mode */
-    {
-        padding-left:           6.4rem !important;
-        background-position:    2rem center !important;
-    }
 }
 
 .option.optionIcon__approved
@@ -843,16 +803,6 @@
 
         border-radius:  1rem;
         background:     var( --PC-BLUE );
-    }
-
-    .headerMode & /* icon always in the same position in header mode */
-    {
-        padding-left:   5rem !important;
-
-        &::before
-        {
-            left:   2rem !important;
-        }
     }
 }
 
