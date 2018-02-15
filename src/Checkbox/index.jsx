@@ -12,7 +12,7 @@ Checkbox.propTypes =
     /**
     *  Label text string
     */
-    label       : PropTypes.string,
+    label       : PropTypes.oneOfType( [ PropTypes.string, PropTypes.node ] ),
     /**
     *  Display as checked
     */
