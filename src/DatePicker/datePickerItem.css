@@ -21,6 +21,7 @@
         color:                  var( --PC-GREY--D25 );
         font-variant-numeric:   lining-nums tabular-nums;
         font-size:              var( --typo-3 );
+        font-weight:            300;
         line-height:            var( --line-height-s );
     }
 
@@ -55,9 +56,9 @@
 
 .type__month
 {
-    height:                 2.4rem;
-    width:                  5rem;
-    border-radius:          2rem;
+    height:                 3.2rem;
+    width:                  6.4rem;
+    border-radius:          0.3rem;
 }
 
 
