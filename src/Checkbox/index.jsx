@@ -10,9 +10,13 @@ const Checkbox = ( props ) =>
 Checkbox.propTypes =
 {
     /**
-    *  Label text string
-    */
-    label       : PropTypes.oneOfType( [ PropTypes.string, PropTypes.node ] ),
+     *  Label content (JSX node; overrides label prop)
+     */
+    children    : PropTypes.node,
+    /**
+     *  Label content (string)
+     */
+    label       : PropTypes.string,
     /**
     *  Display as checked
     */
