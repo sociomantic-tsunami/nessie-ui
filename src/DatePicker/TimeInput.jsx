@@ -4,7 +4,6 @@ import PropTypes                                    from 'prop-types';
 import { buildClassName, eventHandler, generateId } from '../utils';
 import styles                                       from './timeInput.css';
 
-
 const TimeInput = ( {
     className,
     cssMap,
@@ -79,7 +78,7 @@ TimeInput.defaultProps = {
     className         : undefined,
     cssMap            : styles,
     forceHover        : false,
-    hourPlaceholder   : undefined,
+    hourPlaceholder   : 'HH',
     hourIsDisabled    : false,
     hourValue         : undefined,
     id                : generateId( 'TimeInput' ),
@@ -90,7 +89,7 @@ TimeInput.defaultProps = {
     onFocus           : undefined,
     onKeyPress        : undefined,
     minuteIsDisabled  : false,
-    minutePlaceholder : undefined,
+    minutePlaceholder : 'MM',
     minuteValue       : undefined,
 };
 

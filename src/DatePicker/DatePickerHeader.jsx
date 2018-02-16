@@ -4,6 +4,7 @@ import PropTypes            from 'prop-types';
 import { IconButton, Text } from '../index';
 import { buildClassName }   from '../utils';
 import styles               from './datePickerHeader.css';
+import TimeInput            from './TimeInput';
 
 const DatePickerHeader = ( {
     className,
@@ -37,6 +38,7 @@ const DatePickerHeader = ( {
             { month }
             <span className = { cssMap.year }> { year } </span>
         </Text>
+        <TimeInput />
     </div>
 );
 
