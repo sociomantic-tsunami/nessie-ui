@@ -73,6 +73,7 @@ export default class ComboBox extends Component
             'upload',
             'validation',
             'none',
+            'auto',
         ] ),
         /**
          *  HTML id attribute (overwrite default)
@@ -215,25 +216,30 @@ export default class ComboBox extends Component
         selection           : undefined,
     };
 
-    constructor()
+    constructor( props )
     {
         super();
+
+        const dropdownPosition = props.dropdownPosition !== 'auto' ?
+            props.dropdownPosition : 'bottom';
+
+        this.state = { dropdownPosition };
 
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
-        this.setRef                = this.setRef.bind( this );
-        this.setDivRef             = this.setDivRef.bind( this );
+        this.setScrollBoxRef       = this.setScrollBoxRef( this );
+        this.setWrapperRef         = this.setWrapperRef.bind( this );
     }
 
     componentDidMount()
     {
-        this.getDropdownPosition();
+        this.setDropdownPosition();
     }
 
-    componentWillReceiveProps()
+    componentWillReceiveProps( newProps )
     {
-        this.getDropdownPosition();
+        this.setDropdownPosition( newProps );
     }
 
     componentDidUpdate()
@@ -267,7 +273,7 @@ export default class ComboBox extends Component
         }
     }
 
-    setRef( ref )
+    setScrollBoxRef( ref )
     {
         if ( ref )
         {
@@ -275,29 +281,41 @@ export default class ComboBox extends Component
         }
     }
 
-    setDivRef( ref )
+    setWrapperRef( ref )
     {
         if ( ref )
         {
-            this.divRef = ref;
+            this.wrapperRef = ref;
         }
     }
 
-
-    getDropdownPosition()
+    setDropdownPosition( props = this.props )
     {
-        const { divRef } = this;
+        let dropdownPosition = props.dropdownPosition;
 
-        if ( divRef )
+        if ( props.dropdownPosition === 'auto' )
         {
-            const scrollParent = getScrollParent( divRef );
-            const divBox       = divRef.getBoundingClientRect();
-            const parentBox    = scrollParent.getBoundingClientRect();
-            const { height }   = parentBox;
-            const divOffset    = divBox.top - parentBox.top;
+            const { wrapperRef } = this;
 
-            this.dropdownPosition = divOffset > height / 2 ? 'top' : 'bottom';
+            if ( wrapperRef )
+            {
+                const scrollParent = getScrollParent( wrapperRef );
+                const wrapperBox   = wrapperRef.getBoundingClientRect();
+                const parentBox    = scrollParent.getBoundingClientRect();
+                const { height }   = parentBox;
+
+                const offset =
+                    wrapperBox.top - parentBox.top - scrollParent.scrollTop;
+
+                dropdownPosition = offset > height / 2 ? 'top' : 'bottom';
+            }
+            else
+            {
+                dropdownPosition = 'bottom';
+            }
         }
+
+        this.setState( { dropdownPosition } );
     }
 
     handleClickOption( e, optId )
@@ -333,7 +351,6 @@ export default class ComboBox extends Component
         const {
             activeOption,
             dropdownPlaceholder,
-            dropdownPosition,
             forceHover,
             hasAutocomplete,
             hasError,
@@ -362,6 +379,8 @@ export default class ComboBox extends Component
             selection,
         } = this.props;
 
+        const { dropdownPosition } = this.state;
+
         let dropdownContent;
 
         if ( options.length )
@@ -371,7 +390,7 @@ export default class ComboBox extends Component
                     height       = "50vh"
                     onScroll     = { onScroll }
                     scroll       = "vertical"
-                    scrollBoxRef = { this.setRef }>
+                    scrollBoxRef = { this.setScrollBoxRef }>
                     <ListBox
                         activeOption      = { addPrefix( activeOption, id ) }
                         id                = { addPrefix( 'listbox', id ) }
@@ -415,8 +434,7 @@ export default class ComboBox extends Component
                 isDisabled       = { isDisabled }
                 isReadOnly       = { inputIsReadOnly }
                 dropdownIsOpen   = { isOpen }
-                dropdownPosition = { dropdownPosition !== 'auto' ?
-                    dropdownPosition : this.dropdownPosition }
+                dropdownPosition = { dropdownPosition }
                 dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
@@ -432,9 +450,9 @@ export default class ComboBox extends Component
                 onKeyUp     = { onKeyUp }
                 onMouseOut  = { onMouseOut }
                 onMouseOver = { onMouseOver }
-                divRef      = { this.setDivRef }
                 placeholder = { inputPlaceholder }
-                value       = { inputValue } />
+                value       = { inputValue }
+                wrapperRef  = { this.setWrapperRef } />
         );
     }
 }

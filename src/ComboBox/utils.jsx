@@ -67,39 +67,31 @@ function buildListBoxOptions( options = [], prefix )
 
 /**
  * ## getScrollParent
- * Gets the first scrollable DOM ancestor of the element
+ * Gets the first scrollable DOM ancestor of the specified element
  *
- * @param   {HTMLElement}  el   element to find scroll parent of
+ * @param   {HTMLElement}   el  element whose scroll parent to find
  *
  * @return  {HTMLElement}
  *
  */
-function getScrollParent( element )
+function getScrollParent( el )
 {
-    let style = getComputedStyle( element );
+    if ( !el ) return null;
 
-    if ( style.position === 'fixed' )
+    const style = getComputedStyle( el );
+
+    if ( [ document.body, document.documentElement ].includes( el ) ||
+        style.position === 'fixed' )
     {
-        return document.body;
+        return document.documentElement;
+    }
+    else if ( `${style.overflow} ${style.overflowX} ${style.overflowY}`.match(
+        /(auto|scroll|hidden)/ ) )
+    {
+        return el;
     }
 
-    const overflowRegex = /(auto|scroll)/;
-
-    let el = element;
-
-    while ( el.parentElement )
-    {
-        style = getComputedStyle( el );
-
-        if ( overflowRegex.test( style.overflowY ) )
-        {
-            return el;
-        }
-
-        el = el.parentElement;
-    }
-
-    return document.body;
+    return getScrollParent( el.parentElement );
 }
 
 /**
