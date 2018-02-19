@@ -92,27 +92,9 @@
                 "description" : "Option description"
             },
             {
-                "text"  : "Option with icon (blueDot)",
-                "value" : "value3",
-                "icon"  : "blueDot"
-            },
-            {
-                "text"        : "Option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
-                "description" : "Option description is also really, really, really, really, really, really, long",
-                "value"       : "value11",
-                "icon"        : "pending"
-            },
-            {
                 "text"     : "Disabled option",
                 "value"    : "value5",
                 "disabled" : true
-            },
-            {
-                "text"        : "Option with really, really, really, really, really, really, really, really, really, long text and a long description and an icon",
-                "description" : "Option description is also really, really, really, really, really, really, long",
-                "value"       : "value11",
-                "icon"        : "pending",
-                "disabled"    : true
             }
         ]
     },
