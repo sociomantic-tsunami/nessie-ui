@@ -486,7 +486,7 @@
 {
     pointer-events:             none;
     cursor:                     auto;
-    color:                      var( --PC-GREY--L40 );
+    color:                      color( var( --GS-2 ) a( 50% ) );
 
     .description
     {
@@ -692,8 +692,8 @@
 
 .header
 {
-    color:  var( --PC-GREY--D25 );
-    @extend %Nessie-RegularIt;
+    color:          var( --GS-2 );
+    @extend %Nessie-Bold;
 }
 
 
@@ -714,10 +714,10 @@
 .optionIcon__exclude,
 .optionIcon__includeExclude
 {
-    padding-left:           5.6rem;
+    padding-left:           4.4rem;
     background-repeat:      no-repeat;
-    background-position:    1.6rem center;
-    background-size:        2.4rem;
+    background-position:    1rem center;
+    background-size:        2.2rem;
 
     .headerMode & /* icon always in the same position in header mode */
     {
