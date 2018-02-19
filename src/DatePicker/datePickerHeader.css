@@ -42,11 +42,10 @@
 
     .buttonsWrapper
     {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
-        align-content: center;
+        display:            flex;
+        justify-content:    space-between;
+        align-items:        center;
+        align-content:      center;
     }
 
     .prev,
@@ -54,15 +53,5 @@
     {
         width:          var( --spacing-3 );
         height:         var( --spacing-3 );
-
-        svg /* change color of the prev/next arrow icons */
-        {
-            fill:       var( --PC-WHITE );
-        }
-
-        &[class*=disabled] svg
-        {
-            opacity:    0.38;
-        }
     }
 }

@@ -11,7 +11,6 @@ const DatePickerHeader = ( {
     cssMap,
     month,
     year,
-//    label,
     isDisabled,
     isReadOnly,
     nextIsDisabled,
@@ -26,13 +25,15 @@ const DatePickerHeader = ( {
                 iconType   = "left"
                 isDisabled = { isDisabled || prevIsDisabled }
                 isReadOnly = { isReadOnly }
-                onClick    = { onClickPrev } />
+                onClick    = { onClickPrev }
+                role       = "button" />
             <IconButton
                 className  = { cssMap.next }
                 iconType   = "right"
                 isDisabled = { isDisabled || nextIsDisabled }
                 isReadOnly = { isReadOnly }
-                onClick    = { onClickNext } />
+                onClick    = { onClickNext }
+                role       = "button" />
         </div>
         <Text className = { cssMap.date }>
             { month }
@@ -47,7 +48,6 @@ DatePickerHeader.propTypes = {
     cssMap         : PropTypes.objectOf( PropTypes.string ),
     month          : PropTypes.string,
     year           : PropTypes.string,
-//    label          : PropTypes.string,
     isDisabled     : PropTypes.bool,
     isReadOnly     : PropTypes.bool,
     nextIsDisabled : PropTypes.bool,
@@ -61,7 +61,6 @@ DatePickerHeader.defaultProps = {
     cssMap         : styles,
     dateMonth      : undefined,
     dateYear       : undefined,
-//    label          : undefined,
     isDisabled     : undefined,
     isReadOnly     : undefined,
     nextIsDisabled : undefined,

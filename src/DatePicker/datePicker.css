@@ -1,11 +1,10 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import '../proto/base.css';
+@import "../proto/definitions/variables.css";
 
 .default
 {
     width:          auto;
-    box-shadow:     0 4px 10px 0 color( var( --PC-GREY ) a(10%) );
+    // box-shadow:     0 4px 10px 0 color( var( --PC-GREY ) a(10%) );
 
     .calendarHeader
     {
