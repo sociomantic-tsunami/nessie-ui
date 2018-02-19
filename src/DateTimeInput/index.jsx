@@ -5,7 +5,6 @@ import { DatePicker }                       from '../index';
 import TextInputWithIcon                    from '../TextInputWithIcon';
 import withDropdown                         from '../Dropdown/withDropdown';
 import { eventHandler }                     from '../utils';
-import TimeInput                            from './TimeInput';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
@@ -51,26 +50,21 @@ const DateTimeInput = ( {
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             items          = { mode === 'month' ? months : weeks }
-            label          = { mode === 'month' ?
-                currentYear : `${currentMonth} ${currentYear}` }
+            month          = { currentMonth }
+            year           = { currentYear }
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
             nextIsDisabled = { nextIsDisabled }
             prevIsDisabled = { prevIsDisabled }
             onClickItem    = { onClickCell }
-            type           = { mode === 'month' ? 'month' : 'day' } />
-    );
-
-    const timePicker = mode === 'default' && (
-        <TimeInput
+            type           = { mode === 'month' ? 'month' : 'day' }
             hourIsDisabled    = { hourIsDisabled }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
-            isDisabled        = { isDisabled }
-            isReadOnly        = { isReadOnly }
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
+            mode              = { mode }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onFocus           = { onFocus }
@@ -78,9 +72,9 @@ const DateTimeInput = ( {
     );
 
     const dropdownProps = {
-        children : [ datePicker, timePicker ],
+        children : datePicker,
         hasError,
-        padding  : 'M',
+        padding  : 'none',
         size     : 'content',
     };
 
