@@ -11,13 +11,14 @@ const TableRow = ( {
     cssMap,
     gutters,
     isSticky,
-    verticalAlign } ) =>
+    verticalAlign,
+} ) =>
 {
     const cells = React.Children.toArray( children ).map( cell =>
         React.cloneElement( cell,
             {
-                align         : align || cell.props.align,
-                verticalAlign : verticalAlign || cell.props.verticalAlign,
+                align         : cell.props.align || align,
+                verticalAlign : cell.props.verticalAlign || verticalAlign,
             }
         )
     );
@@ -82,9 +83,9 @@ TableRow.propTypes =
 
 TableRow.defaultProps =
 {
-    align         : 'auto',
-    verticalAlign : 'auto',
-    gutters       : 'L',
+    align         : undefined,
+    verticalAlign : undefined,
+    gutters       : undefined,
     isSticky      : false,
     cssMap        : require( './tableRow.css' )
 };

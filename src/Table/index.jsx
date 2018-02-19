@@ -78,7 +78,7 @@ const Table = ( {
 
         return React.cloneElement( row,
             {
-                align    : align || row.props.align,
+                align    : row.props.align || align,
                 children : cells.map( ( cell, index ) =>
                 {
                     if ( typeof columns[ index ] === 'object' )
@@ -93,19 +93,19 @@ const Table = ( {
                                 className : cell.props.className ?
                                     `${cell.props.className}  ${cssMap.cell}`
                                     : cssMap.cell,
-                                columnTitle : title || cell.props.columnTitle,
-                                size        : size || cell.props.size,
-                                isRowHeader : rowHeaderCell ||
-                                    cell.props.isRowHeader,
-                                isSticky : stickyCell || cell.props.isSticky
+                                columnTitle : cell.props.columnTitle || title,
+                                size        : cell.props.size || size,
+                                isRowHeader : cell.props.isRowHeader ||
+                                    rowHeaderCell,
+                                isSticky : cell.props.isSticky || stickyCell
                             } );
                     }
                     return cell;
                 } ),
                 className : row.props.className ?
                     `${row.props.className}  ${cssMap.row}` : cssMap.row,
-                gutters       : gutters || row.props.gutters,
-                verticalAlign : verticalAlign || row.props.verticalAlign,
+                gutters       : row.props.gutters || gutters ,
+                verticalAlign : row.props.verticalAlign || verticalAlign,
             } );
     } );
 
