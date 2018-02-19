@@ -44,6 +44,34 @@ const rebuildOnProps = [
     'search'
 ];
 
+const addExtraClasses = ( data ) =>
+{
+    if ( !Array.isArray( data ) )
+    {
+        return data;
+    }
+
+    return data.map( datum =>
+    {
+        if ( typeof datum !== 'object' )
+        {
+            return datum;
+        }
+
+        if ( datum.description )
+        {
+            const descClass = styles.optionWithDescription;
+
+            const extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${descClass}` : descClass;
+
+            return { ...datum, extraClass };
+        }
+
+        return { ...datum, data: addExtraClasses( datum.data ) };
+    } );
+};
+
 const buildFlounder = ( node, props = {} ) =>
 {
     if ( node )
@@ -65,54 +93,11 @@ const buildFlounder = ( node, props = {} ) =>
             toChange && props.onChange( ...args );
         };
 
-
-        let dropDownData = props.data;
-
-        if ( Array.isArray( props.data ) )
-        {
-            // check if option has description and apply custom class if has
-            const dropDownOptionsUpdated = props.data.map( option =>
-            {
-                const _option = option;
-
-                if ( typeof _option.data !== 'undefined' )
-                {
-                    const subOptions = _option.data.map( subOption =>
-                    {
-                        const subOptionUpdated = subOption;
-
-                        if ( typeof subOptionUpdated === 'object' )
-                        {
-                            if ( typeof subOptionUpdated.description !==
-                                 'undefined' )
-                            {
-                                subOptionUpdated.extraClass =
-                                                styles.optionWithDescription;
-                            }
-                        }
-
-                        return subOptionUpdated;
-                    } );
-
-                    _option.data = subOptions;
-                }
-                else if ( typeof _option.description !== 'undefined' )
-                {
-                    _option.extraClass = styles.optionWithDescription;
-                }
-
-                return _option;
-            } );
-
-            dropDownData = dropDownOptionsUpdated;
-        }
-
-
         const flounderProps =
             {
                 classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder( dropDownData,
-                    props.cssMap ),
+                data    : mapIconClassesToFlounder(
+                    addExtraClasses( props.data ), props.cssMap ),
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
                 multipleMessage      : props.multipleMessage,
@@ -171,36 +156,35 @@ const setValue = ( flounder, value ) =>
 };
 
 const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
-    data.map( datum =>
+{
+    if ( !Array.isArray( data ) )
+    {
+        return data;
+    }
+
+    return data.map( datum =>
     {
         if ( typeof datum !== 'object' )
         {
             return datum;
         }
 
-        let extraClassUpdated = cssMap[ `optionIcon__${datum.icon}` ];
+        let extraClass  = datum.extraClass;
+        const iconClass = cssMap[ `optionIcon__${datum.icon}` ];
 
-        if ( typeof datum.extraClass !== 'undefined' )
+        if ( iconClass )
         {
-            if ( typeof extraClassUpdated !== 'undefined' )
-            {
-                extraClassUpdated = `${extraClassUpdated} ${datum.extraClass}`;
-            }
-            else
-            {
-                extraClassUpdated = datum.extraClass;
-            }
+            extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${iconClass}` : datum.iconClass;
         }
-
 
         return {
             ...datum,
-            // eslint-disable-next-line key-spacing
-            data : datum.data && mapIconClassesToFlounder( datum.data, cssMap ),
-            extraClass : extraClassUpdated
+            data : mapIconClassesToFlounder( datum.data, cssMap ),
+            extraClass,
         };
     } );
-
+};
 
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
