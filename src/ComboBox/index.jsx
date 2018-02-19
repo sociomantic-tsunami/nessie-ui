@@ -73,7 +73,6 @@ export default class ComboBox extends Component
             'upload',
             'validation',
             'none',
-            'auto',
         ] ),
         /**
          *  HTML id attribute (overwrite default)
