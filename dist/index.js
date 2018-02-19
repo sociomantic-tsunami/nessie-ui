@@ -16320,8 +16320,12 @@ var Checkbox = function Checkbox(props) {
 
 Checkbox.propTypes = {
   /**
-  *  Label text string
-  */
+   *  Label content (JSX node; overrides label prop)
+   */
+  children: _propTypes2.default.node,
+  /**
+   *  Label content (string)
+   */
   label: _propTypes2.default.string,
   /**
   *  Display as checked
@@ -21574,11 +21578,12 @@ var DateTimeInput = function DateTimeInput(_ref) {
       weeks = _ref.weeks;
 
   var datePicker = _react2.default.createElement(_index.DatePicker, {
+    key: 'datePicker',
     headers: mode !== 'month' ? days : undefined,
     isDisabled: isDisabled,
     isReadOnly: isReadOnly,
     items: mode === 'month' ? months : weeks,
-    label: mode === 'month' ? currentYear : currentMonth + ' ' + currentYear,
+    label: mode === 'month' ? '' + currentYear : currentMonth + ' ' + currentYear,
     onClickNext: onClickNext,
     onClickPrev: onClickPrev,
     nextIsDisabled: nextIsDisabled,
@@ -21587,6 +21592,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     type: mode === 'month' ? 'month' : 'day' });
 
   var timePicker = mode === 'default' && _react2.default.createElement(_TimeInput2.default, {
+    key: 'timeInput',
     hourIsDisabled: hourIsDisabled,
     hourPlaceholder: hourPlaceholder,
     hourValue: hourValue,
@@ -35680,8 +35686,8 @@ DatePickerHeader.propTypes = {
     isDisabled: _propTypes2.default.bool,
     isReadOnly: _propTypes2.default.bool,
     nextIsDisabled: _propTypes2.default.bool,
-    onClickNext: _propTypes2.default.bool,
-    onClickPrev: _propTypes2.default.bool,
+    onClickNext: _propTypes2.default.func,
+    onClickPrev: _propTypes2.default.func,
     prevIsDisabled: _propTypes2.default.bool
 };
 
