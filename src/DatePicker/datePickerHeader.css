@@ -4,7 +4,6 @@
 {
     position:            relative;
 
-    // margin-bottom:       2rem;
     padding-top:         var( --spacing-3 );
     padding-right:       var( --spacing-3 );
     padding-bottom:      var( --spacing-2 );

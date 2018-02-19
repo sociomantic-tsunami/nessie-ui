@@ -6,7 +6,7 @@
     min-width:  0;
     max-width:  none;
 
-    border:     0.1rem solid var( --PC-BLUE );
+    border:     0.1rem solid var(--PC-GREY--L70);
     box-shadow: 0 0.1rem 0.4rem 0 color( var( --PC-GREY ) a(10%) );
 
     background: var( --PC-WHITE );

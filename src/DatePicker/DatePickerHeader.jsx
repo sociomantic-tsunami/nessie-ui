@@ -9,14 +9,25 @@ import TimeInput            from './TimeInput';
 const DatePickerHeader = ( {
     className,
     cssMap,
-    month,
-    year,
+    hourIsDisabled,
+    hourPlaceholder,
+    hourValue,
     isDisabled,
     isReadOnly,
+    minuteIsDisabled,
+    minutePlaceholder,
+    minuteValue,
+    mode,
+    month,
+    onBlur,
+    onChange,
+    onFocus,
+    onKeyPress,
     nextIsDisabled,
     onClickNext,
     onClickPrev,
     prevIsDisabled,
+    year,
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
         <div className = { cssMap.buttonsWrapper }>
@@ -26,47 +37,83 @@ const DatePickerHeader = ( {
                 isDisabled = { isDisabled || prevIsDisabled }
                 isReadOnly = { isReadOnly }
                 onClick    = { onClickPrev }
-                role       = "button" />
+                iconTheme  = "button" />
             <IconButton
                 className  = { cssMap.next }
                 iconType   = "right"
                 isDisabled = { isDisabled || nextIsDisabled }
                 isReadOnly = { isReadOnly }
                 onClick    = { onClickNext }
-                role       = "button" />
+                iconTheme  = "button" />
         </div>
         <Text className = { cssMap.date }>
             { month }
             <span className = { cssMap.year }> { year } </span>
         </Text>
-        <TimeInput />
+        { mode === 'default' &&
+            <TimeInput
+                hourIsDisabled    = { hourIsDisabled }
+                hourPlaceholder   = { hourPlaceholder }
+                hourValue         = { hourValue }
+                isDisabled        = { isDisabled }
+                isReadOnly        = { isReadOnly }
+                minuteIsDisabled  = { minuteIsDisabled }
+                minutePlaceholder = { minutePlaceholder }
+                minuteValue       = { minuteValue }
+                onBlur            = { onBlur }
+                onChange          = { onChange }
+                onFocus           = { onFocus }
+                onKeyPress        = { onKeyPress } />
+        }
     </div>
 );
 
 DatePickerHeader.propTypes = {
-    className      : PropTypes.string,
-    cssMap         : PropTypes.objectOf( PropTypes.string ),
-    month          : PropTypes.string,
-    year           : PropTypes.string,
-    isDisabled     : PropTypes.bool,
-    isReadOnly     : PropTypes.bool,
-    nextIsDisabled : PropTypes.bool,
-    onClickNext    : PropTypes.bool,
-    onClickPrev    : PropTypes.bool,
-    prevIsDisabled : PropTypes.bool,
+    className         : PropTypes.string,
+    cssMap            : PropTypes.objectOf( PropTypes.string ),
+    hourIsDisabled    : PropTypes.bool,
+    hourPlaceholder   : PropTypes.string,
+    hourValue         : PropTypes.string,
+    isDisabled        : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
+    minuteIsDisabled  : PropTypes.bool,
+    minutePlaceholder : PropTypes.string,
+    minuteValue       : PropTypes.string,
+    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    month             : PropTypes.string,
+    nextIsDisabled    : PropTypes.bool,
+    onBlur            : undefined,
+    onChange          : undefined,
+    onClickNext       : PropTypes.bool,
+    onClickPrev       : PropTypes.bool,
+    onFocus           : undefined,
+    onKeyPress        : undefined,
+    prevIsDisabled    : PropTypes.bool,
+    year              : PropTypes.string,
 };
 
 DatePickerHeader.defaultProps = {
-    className      : undefined,
-    cssMap         : styles,
-    dateMonth      : undefined,
-    dateYear       : undefined,
-    isDisabled     : undefined,
-    isReadOnly     : undefined,
-    nextIsDisabled : undefined,
-    onClickNext    : undefined,
-    onClickPrev    : undefined,
-    prevIsDisabled : undefined,
+    className         : undefined,
+    cssMap            : styles,
+    hourIsDisabled    : false,
+    hourPlaceholder   : undefined,
+    hourValue         : undefined,
+    isDisabled        : undefined,
+    isReadOnly        : undefined,
+    minuteIsDisabled  : false,
+    minutePlaceholder : undefined,
+    minuteValue       : undefined,
+    mode              : 'default',
+    month             : undefined,
+    nextIsDisabled    : undefined,
+    onBlur            : PropTypes.func,
+    onChange          : PropTypes.func,
+    onClickNext       : undefined,
+    onClickPrev       : undefined,
+    onFocus           : PropTypes.func,
+    onKeyPress        : PropTypes.func,
+    prevIsDisabled    : undefined,
+    year              : undefined,
 };
 
 export default DatePickerHeader;
