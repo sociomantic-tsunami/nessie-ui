@@ -2,8 +2,9 @@
 
 .default
 {
-    display:    flex;
-    margin:     0;
+    display:        flex;
+    align-items:    center;
+    margin:         0;
 
     padding-left:           var( --spacing-2 );
     padding-right:          var( --spacing-2 );
@@ -24,6 +25,10 @@
     {
         flex:           0 0 auto;
         margin-right:   1rem;
+    }
+
+    &:hover .icon{
+        fill:           var( --PC-WHITE );
     }
 
     .textContainer
@@ -49,8 +54,7 @@
 .active,
 .default:hover
 {
-    /* background-color:   color( var( --PC-BLUE ) a( 35% ) );
-    color:              var( --GS-1 ); */
+
 }
 
 .disabled,
@@ -73,6 +77,8 @@
         font-size:      var( --typo-5 );
         line-height:    var( --line-height-m );
         color:          var( --PC-BLUE );
+
+        margin:         0;
     }
 
     .optionText[class*=disabled]
