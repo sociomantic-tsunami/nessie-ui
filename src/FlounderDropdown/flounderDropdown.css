@@ -1,23 +1,13 @@
-@import "../proto/definitions/variables.css";
+@import "../proto/base.css";
 
 .default
 {
-    /* from base.css */
-    position:       relative;
-    margin-bottom:  var( --spacing-2 );
 
-    box-sizing:     border-box;
-    width:          100%;
-
-    &:last-child
-    {
-        margin-bottom:  0;
-    }
 }
 
 .headerMode /* Flounder as header */
 {
-    min-width:  40rem;
+    min-width:      40rem;
 
     .mainWrapper
     {
@@ -29,7 +19,7 @@
 
         /* compensate for padding set on .selectedDisplayed
          * and border set on .main (except on right side) */
-        margin: -1.8rem 0 -1.5rem -2.1rem;
+        margin:     -1.8rem 0 -1.5rem -2.1rem;
     }
 
     .mainWrapper:not( .open )
@@ -38,10 +28,12 @@
         .main:hover,
         .main:focus,
         &.fakeHovered .main,
+        &.error .main,
         .main.disabled
         {
             border-color:   transparent;
             background:     transparent;
+            box-shadow:     none;
         }
     }
 
@@ -52,14 +44,13 @@
         align-items:        center;
     }
 
-    .arrow,
-    &.error .arrow
+    .arrow
     {
-        position:   relative;
-        left:       -3.5rem;
-        top:        0rem;
-        margin-top: 0;
-        right:      0;
+        position:           relative;
+        top:                0.2rem;
+        left:               -3.5rem;
+        margin-top:         0;
+        right:              0;
 
         .arrowInner
         {
@@ -67,14 +58,23 @@
         }
     }
 
-    &.error .open .main .arrowInner
+    &.error
     {
-        background-image:   url( './images/control/up.svg' );
+        .arrow .arrowInner,
+        .main:focus .arrow .arrowInner
+        {
+            background-image:   url( './images/control/down__hover.svg' );
+        }
+
+        .open .arrow .arrowInner
+        {
+            background-image:   url( './images/up--red.svg' );
+        }
     }
 
     .main .selectedDisplayed
     {
-        color:  var( --PC-BLUE );
+        color:      var( --PC-BLUE );
     }
 
     .open .main
@@ -85,53 +85,35 @@
     .selectedDisplayed
     {
         padding:    1.7rem 5rem 1.4rem 2rem;
-
-        .main.disabled &
-        {
-            color: var( --GS-1 );
-        }
-    }
-
-    .optionsWrapper
-    {
-        top:            100%;
-        border-top:     none !important;
-
-        /* reset font */
-        @extend %Nessie-Regular;
-        font-size:      var( --typo-2 );
-        line-height:    var( --line-height-s );
-        text-transform: none;
-    }
-
-    .option,
-    .header,
-    .noResults
-    {
-        padding-left:   2rem;
-        padding-right:  2rem;
-    }
-
-    .section .option
-    {
-        padding-left:   3rem;
     }
 }
 
 
 .headerLevel__1 /* H1 */
 {
-    .arrowInner
+    .selectedDisplayed
     {
-        height: 3rem;
-        width:  3rem;
-
+        font-size:      var( --typo-7 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.05rem;
     }
 
+    .arrowInner
+    {
+        height:         3rem;
+        width:          3rem;
+    }
 }
 
 .headerLevel__2 /* H2 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-6 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.05rem;
+    }
+
     .arrowInner
     {
         height: 2.2rem;
@@ -141,6 +123,13 @@
 
 .headerLevel__3 /* H3 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-4 );
+        line-height:    var( --line-height-l );
+        letter-spacing: 0.02rem;
+    }
+
     .arrowInner
     {
         height: 2rem;
@@ -150,6 +139,18 @@
 
 .headerLevel__4 /* H4 */
 {
+    .selectedDisplayed
+    {
+        font-size:      var( --typo-3 );
+    	line-height:    var( --line-height-l );
+    	letter-spacing: 0;
+    }
+
+    .arrow
+    {
+        top:            0.3rem;
+    }
+
     .arrowInner
     {
         height: 1.8rem;
@@ -157,79 +158,50 @@
     }
 }
 
-.open,
-.fakeHovered .open
-{
-    .main,
-    .main:hover,
-    .main:focus,
-    {
-        border-color:           var( --PC-BLUE );
-        border-bottom-color:    var( --PC-WHITE );
-
-        background:             var( --PC-WHITE );
-
-        .arrowInner
-        {
-            background-image:   url( './images/light/up__hover.svg' );
-        }
-    }
-
-    .optionsWrapper
-    {
-        border-color:   var( --PC-BLUE );
-        z-index:    50;
-    }
-
-}
-
 
 .error
 {
     .main,
     .main:hover,
-    .main:focus
+    .main:focus,
+    .open .main,
+    .open .main:hover,
+    .open .main:focus
     {
-        border-color:   var( --PC-RED );
+        border-color:    var( --PC-RED );
+        box-shadow:      0 0 0 0.1rem var( --PC-RED );
+        color:           var( --PC-RED );
 
-        .optionsWrapper
-        {
-            border-color:   var( --PC-RED );
-        }
+
     }
 
-    .open .main .arrowInner
+    .main .arrowInner,
+    .main:focus .arrowInner
     {
-        background-image:   url( './images/light/up.svg' );
+         background-image:  url( './images/down--red.svg' );
     }
-}
 
-
-.main.disabled,
-.main.disabled:focus
-{
-    border-color:       color( var( --GS-10 ) );
-
-    background:         var( --GS-10 );
-    color:              var( --GS-2 );
-
-    cursor:             default;
-    pointer-events:     none;
-
+    .open .main .arrowInner,
+    .open .main:focus .arrowInner
+    {
+         background-image:  url( './images/up--red.svg' );
+    }
 }
 
 .main.disabled
 {
-    .arrowInner
+    background:             var( --PC-GREY--L90 );
+    color:                  var( --PC-GREY--L40 );
+
+    &:focus
     {
-        background-image:   url( './images/light/down.svg' );
+        border-color:       var( --PC-GREY--L70 );
     }
 
     .multipleSelectTag
     {
-        border-color:   color( var( --GS-2 ) a( 50% ) );
-        background:     transparent;
-        color:          color( var( --GS-2 ) a( 50% ) );
+        background:         var( --PC-GREY--L90 );
+        color:              var( --PC-GREY--L40 );
     }
 
     .search
@@ -254,7 +226,7 @@
 
     .selectedDisplayed
     {
-        color:      var( --GS-2 );
+        color:      var( --PC-GREY--D5 );
         opacity:    0.5;
     }
 }
@@ -298,8 +270,6 @@
 }
 
 
-
-
 /*
  *  $FLOUNDER - Sociomantic styling
  */
@@ -311,55 +281,61 @@
 
 .main
 {
-    position:   relative;
+    border:             0.1rem solid var( --PC-GREY--L70 );
+    border-radius:      0.2rem;
 
-    margin:     0;
-    border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    letter-spacing:     0;
 
-    background: var( --PC-WHITE );
-    color:      var( --GS-1 );
+    &:focus,
+    .fakeHovered &,
+    .open &
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        outline:        none;
+    }
 
-    &:hover,
     &:focus,
     .fakeHovered &
     {
-        border: 0.1rem solid var( --PC-BLUE );
-
         .arrowInner
         {
             background-image:   url( './images/light/down__hover.svg' );
         }
     }
 
-    &:focus
+    .open & .arrowInner
     {
-        outline:    none;
+        background-image:   url( './images/light/up__hover.svg' );
     }
 }
 
 
 .optionsWrapper
 {
-    position:       absolute;
+    @extend             %Nessie-SemiBold;
 
-    width:          100%;
-    max-height:     45rem;
+    position:           absolute;
 
-    left:           0;
-    margin-left:    -0.1rem;
+    width:              100%;
+    max-height:         45rem;
 
-    border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    top:                calc( 100% + 1rem );
+    left:               0;
 
-    background:     var( --PC-WHITE );
-    color:          var( --GS-3 );
+    margin-left:        -0.1rem;
+    padding-top:        var( --spacing-1 );
+    padding-bottom:     var( --spacing-1 );
 
-    overflow:       auto;
+    background:         var( --PC-WHITE );
+    box-shadow:         0 0.5rem 1rem var( --PC-GREY--L75 );
 
-    &:hover
-    {
-        border: 0.1rem solid var( --PC-BLUE );
-    }
+    overflow:           auto;
+    z-index:            50;
 }
+
+
+
 
 
 .list
@@ -377,24 +353,21 @@
 
 .selectedDisplayed
 {
-    min-height:     1.6rem; /* the line height */
+    min-height:     var( --spacing-2 ); /* the line height */
 
-    padding:        0.8rem 3.6rem 0.6rem 1rem;
-    margin:         0;
+    padding-top:        1.1rem;
+    padding-right:      3.8rem;
+    padding-bottom:     1.1rem;
+    padding-left:       1.4rem;
 
     overflow:       hidden;
     white-space:    nowrap;
     text-overflow:  ellipsis;
 
-    color:          var( --GS-2 );
+    color:          var( --PC-GREY--D5 );
+    font-size:      var( --typo-3 );
 
     cursor:         pointer;
-
-    &[ data-value = "" ],
-    &:not( [ data-value ] ) /* is placeholder */
-    {
-        color:  color( var( --GS-2 ) a( 50% ) );
-    }
 
     .description
     {
@@ -407,18 +380,29 @@
 {
     .selectedDisplayed
     {
-        position:   absolute;
-        box-sizing: border-box;
+        position:       absolute;
+        box-sizing:     border-box;
 
-        width:      100%;
-        height:     100%;
+        width:          100%;
+        height:         100%;
+
+        padding-top:    var( --spacing-2 );
+    }
+
+    .arrow
+    {
+        top:            1.3rem;
     }
 }
 
 
 .description
 {
-    color:  var( --GS-5 );
+    @extend         %Nessie-Regular;
+
+    color:          var( --PC-GREY--D25 );
+    line-height:    var( --line-height-m );
+    font-size:      var( --typo-3 );
 }
 
 
@@ -456,19 +440,27 @@
 .option,
 .noResults
 {
-    color:      var( --GS-2 );
-    cursor:     pointer;
+    color:                  var( --PC-GREY );
+    line-height:            var( --line-height-m );
+    font-size:              var( --typo-3 );
+    cursor:                 pointer;
 
-    &:hover
+    padding-left:           var( --spacing-2 );
+    padding-right:          var( --spacing-2 );
+    padding-top:            1.2rem;
+    padding-bottom:         1.2rem;
+
+    &:hover,
+    &:hover .description
     {
-        background-color:   color( var( --PC-BLUE ) a( 35% ) );
-        color:              var( --GS-1 );
+        background-color:   var( --PC-BLUE );
+        color:              var( --PC-WHITE );
     }
 }
 
 .noResults
 {
-    color:  color( var( --GS-2 ) a( 50% ) ) !important; /* always grey */
+
 }
 
 .disabled,
@@ -476,11 +468,11 @@
 {
     pointer-events:             none;
     cursor:                     auto;
-    color:                      color( var( --GS-2 ) a( 50% ) );
+    color:                      var( --PC-GREY--L40 );
 
     .description
     {
-        color:  color( var( --GS-5 ) a( 50% ) );
+        color:                  var( --PC-GREY--L55 );
     }
 }
 
@@ -488,7 +480,7 @@
 .arrow
 {
     position:       absolute;
-    top:            0.7rem;
+    top:            var( --spacing-1 );
     right:          1rem;
 
     background:     transparent;
@@ -498,16 +490,17 @@
 
 .arrowInner
 {
-    height:                         1.6rem;
-    width:                          1.6rem;
-    background-size:                100%;
+    width:              var( --spacing-3 );
+    height:             var( --spacing-3 );
+    background-size:    100%;
 }
 
-.arrowInner,
-.error .main .arrowInner
+
+.arrowInner
 {
-     background-image:  url( './images/light/down.svg' );
+    background-image:  url( './images/light/down.svg' );
 }
+
 
 .search
 {
@@ -517,8 +510,9 @@
 
     background:     transparent;
 
-    font:           inherit;
-    line-height:    inherit;
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0.04rem;
 
     &:focus
     {
@@ -566,17 +560,16 @@
     box-sizing:         border-box;
 
     width:              100%;
-    min-height:         3rem;
+    min-height:         var( --spacing-6 );
 
-    padding-top:        0.5rem;
-    padding-right:      3rem;
-    padding-bottom:     0;
-    padding-left:       0.5rem;
+    padding-top:        var( --spacing-1 );
+    padding-right:      4.2rem;
+    padding-left:       var( --spacing-1 );
 
     & > *
     {
-        margin-bottom:  0.5rem;
-        margin-right:   0.5rem;
+        margin-right:   0.8rem;
+        margin-bottom:  0.8rem;
 
         &:last-child
         {
@@ -588,25 +581,28 @@
 
 .multipleSelectTag
 {
-    flex:           0 0 auto;
+    flex:               0 0 auto;
 
-    display:        block;
-    position:       relative;
+    display:            block;
+    position:           relative;
 
-    box-sizing:     border-box;
-    max-width:      100%;
-    min-height:     2rem;
+    box-sizing:         border-box;
+    max-width:          100%;
+    min-height:         2rem;
 
-    border:         0.1rem solid transparent;
+    padding:            0.4rem 3.9rem 0.4rem 1.5rem;
 
-    padding:        0.2rem 3.4rem 0 0.9rem;
+    background-color:   var( --PC-BLUE--L90 );
+    color:              var( --PC-BLUE );
 
-    background:     color( var( --GS-2 ) a( 10% ) );
-    color:          var( --GS-2 );
+    white-space:        nowrap;
+    overflow:           hidden;
+    text-overflow:      ellipsis;
 
-    white-space:    nowrap;
-    overflow:       hidden;
-    text-overflow:  ellipsis;
+    @extend %Nessie-SemiBold;
+    font-size:          var( --typo-3 );
+    line-height:        var( --line-height-m );
+    letter-spacing:     0.04rem;
 }
 
 .multipleTagClose
@@ -614,13 +610,12 @@
     display:            block;
     position:           absolute;
 
-    top:                50%;
-    margin-top:         -0.8rem;
+    top:                0.4rem;
 
-    right:              0.9rem;
+    right:              0.8rem;
 
-    width:              1.6rem;
-    height:             1.6rem;
+    width:              2.4rem;
+    height:             2.4rem;
 
     background:         url( './images/control/close.svg' ) no-repeat 100%;
 
@@ -682,13 +677,37 @@
 
 .header
 {
-    color:          var( --GS-2 );
-    @extend %Nessie-Bold;
+    @extend %Nessie-RegularIt;
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-m );
+    color:          var( --PC-GREY--D25 );
 }
 
 
+/* -------------------------------------------------------------------------- */
+/* Option with description                                                    */
+/* -------------------------------------------------------------------------- */
 
+.optionWithDescription
+{
+    font-size:      var( --typo-5 );
+    line-height:    var( --line-height-m );
+    color:          var( --PC-BLUE );
+}
 
+.optionWithDescription[class*=disabled]
+{
+    color:          var( --PC-GREY--L40 );
+}
+
+.optionWithDescription[class*=selectedDisplayed]
+{
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-s );
+    color:          var( --PC-GREY--D5 );
+}
 
 /* -------------------------------------------------------------------------- */
 /* Option Icons                                                               */
@@ -704,16 +723,10 @@
 .optionIcon__exclude,
 .optionIcon__includeExclude
 {
-    padding-left:           4.4rem;
+    padding-left:           5.6rem;
     background-repeat:      no-repeat;
-    background-position:    1rem center;
-    background-size:        2.2rem;
-
-    .headerMode & /* icon always in the same position in header mode */
-    {
-        padding-left:           6.4rem !important;
-        background-position:    2rem center !important;
-    }
+    background-position:    1.6rem center;
+    background-size:        2.4rem;
 }
 
 .option.optionIcon__approved
@@ -787,16 +800,6 @@
 
         border-radius:  1rem;
         background:     var( --PC-BLUE );
-    }
-
-    .headerMode & /* icon always in the same position in header mode */
-    {
-        padding-left:   5rem !important;
-
-        &::before
-        {
-            left:   2rem !important;
-        }
     }
 }
 
