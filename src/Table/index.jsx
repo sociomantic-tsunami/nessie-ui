@@ -23,9 +23,8 @@ const Table = ( {
     verticalAlign,
 } ) =>
 {
-    const _children = children || buildRowsFromValues( values );
-
-    const rows = React.Children.toArray( _children ).map( row =>
+    const rows = React.Children.toArray( children ||
+        buildRowsFromValues( values ) ).map( row =>
     {
         const cells = React.Children.toArray( row.props.children );
 
@@ -38,8 +37,11 @@ const Table = ( {
                     align       : cell.props.align || column.align,
                     columnTitle : cell.props.columnTitle || column.title,
                     size        : cell.props.size || column.size,
-                    isRowHeader : cell.props.isRowHeader || column.isRowHeader,
-                    isSticky    : cell.props.isSticky || column.isSticky,
+                    isRowHeader : cell.props.isRowHeader ||
+                        column.isRowHeader,
+                    isSticky      : cell.props.isSticky || column.isSticky,
+                    verticalAlign : cell.props.verticalAlign ||
+                        column.verticalAlign,
                 };
 
                 return React.cloneElement( cell, {

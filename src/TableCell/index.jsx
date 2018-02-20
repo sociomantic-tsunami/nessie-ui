@@ -137,7 +137,6 @@ TableCell.defaultProps =
     align         : undefined,
     children      : undefined,
     cssMap        : styles,
-    gutters       : undefined,
     isHeader      : false,
     isRowHeader   : false,
     isSortable    : false,
