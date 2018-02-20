@@ -8,8 +8,8 @@
 
     padding-left:           var( --spacing-2 );
     padding-right:          var( --spacing-2 );
-    padding-top:            1.2rem;
-    padding-bottom:         1.2rem;
+    padding-top:            var( --spacing-1 );
+    padding-bottom:         var( --spacing-1 );
 
     cursor:     pointer;
 
@@ -36,6 +36,20 @@
         flex:           1 0 0%;
         min-width:      0;
     }
+
+    &.disabled,
+    &.disabled .optionText,
+    &.error .disabled
+    {
+        pointer-events:             none;
+        cursor:                     auto;
+        color:                      var( --PC-GREY--L40 );
+
+        .description
+        {
+            color:                  var( --PC-GREY--L55 );
+        }
+    }
 }
 
 .default,
@@ -57,18 +71,6 @@
 
 }
 
-.disabled,
-.error .disabled
-{
-    pointer-events:             none;
-    cursor:                     auto;
-    color:                      var( --PC-GREY--L40 );
-
-    .description
-    {
-        color:                  var( --PC-GREY--L55 );
-    }
-}
 
 .withDescription
 {

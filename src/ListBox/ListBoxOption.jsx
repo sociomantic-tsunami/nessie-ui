@@ -11,7 +11,6 @@ import {
     generateId,
     mapAria
 } from '../utils';
-import { buildOptionLabel } from './utils';
 import styles               from './listBoxOption.css';
 
 
