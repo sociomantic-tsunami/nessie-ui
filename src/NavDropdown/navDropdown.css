@@ -1,4 +1,4 @@
-@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/variables.css";
 
 .default /* extends NavList css */
 {
@@ -6,11 +6,12 @@
     max-width:          none;
     max-height:         50vh;
 
-    border:             0.1rem solid var( --PC-BLUE );
+    background:         var( --PC-BLUE );
 
-    padding:            1rem 0;
-
-    background:         var( --PC-WHITE );
+    padding-top:        var( --spacing-1 );
+    padding-right:      var( --spacing-2 );
+    padding-bottom:     var( --spacing-1 );
+    padding-left:       var( --spacing-2 );
 
     overflow-y:         auto;
 

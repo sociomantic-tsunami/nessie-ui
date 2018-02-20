@@ -1,6 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 
 .default
 {
@@ -8,34 +6,11 @@
     list-style:     none;
     width:          auto;
     margin-bottom:  0;
+    background:     var( --PC-WHITE );
 
-    @extend %Nessie-Regular;
-    font-size:      1.4rem;
-
-    .link /* needs to go inside .default to override foundations.css */
+    &:hover
     {
-        display:            block;
-        white-space:        nowrap;
-        text-decoration:    none !important;
-        cursor:             text;
-
-        &,
-        &:hover,
-        &:focus,
-        &:active
-        {
-            color:  var( --GS-2  );
-        }
-
-        &[href]
-        {
-            cursor: pointer;
-        }
-
-        &:focus
-        {
-            outline:    none;
-        }
+        background-color:  var(--PC-BLUE--L90 );
     }
 }
 
@@ -66,8 +41,9 @@
 {
     & > .link
     {
-        padding:    0.7rem 0 0.5rem 0;
-        @extend %Nessie-Bold;
+        @extend %Nessie-SemiBold;
+
+        padding:    0.8rem;
     }
 
     & > .link[href]:hover,
@@ -105,11 +81,21 @@
 
 .role__sub
 {
+    border-radius:         0.6rem;
+
     & > .link
     {
-        padding:        1.2rem 2rem 1rem 1.5rem;
-        border-left:    0.5rem solid transparent;
-        color:          var( --GS-2  );
+        padding-top:       0;
+        padding-right:     var( --spacing-2 );
+        padding-bottom:    0;
+        padding-left:      var( --spacing-2 );
+
+        background-color:  var( --PC-BLUE );
+
+        border-radius:     0.2rem;
+
+        line-height:       var( --line-height-xxl );
+        color:             var( --PC-WHITE );
     }
 
     & > .link[href]:hover,
@@ -118,8 +104,8 @@
     &.fakeHovered > .link,
     &.open > .link
     {
-        color:          var( --GS-2  );
-        border-color:   var( --PC-BLUE );
+        background-color:   var( --PC-BLUE--L25 );
+        border-color:       var( --PC-BLUE--L25 );
     }
 
     &.current > .link
@@ -142,12 +128,27 @@
     }
 }
 
+.link
+{
+    display:            block;
+    white-space:        nowrap;
+    text-decoration:    none !important;
+    cursor:             text;
 
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-s );
+    color:          var( --PC-GREY--L25 );
 
+    &[href]
+    {
+        cursor: pointer;
+    }
 
-
-
-
+    &:focus
+    {
+        outline:    none;
+    }
+}
 
 .dropdown
 {
@@ -156,12 +157,14 @@
     margin-top: -0.2rem;
 }
 
-
 .icon__account
 {
     & > .link
     {
-        padding:    1.4rem 0 1.2rem;
+        padding-top:    1.3rem;
+        padding-right:  var( --spacing-3 );
+        padding-bottom: 1.5rem;
+        padding-left:   var( --spacing-3 );
 
         &::after
         {
@@ -171,7 +174,7 @@
 
     & > .link > .icon
     {
-        display:    inline-block;
+        display:    block;
     }
 
     & > .link[href]:hover > .icon,
@@ -191,11 +194,11 @@
     }
 }
 
-
 .icon
 {
-    display:    none;
-    width:      2.4rem;
-    height:     2.4rem;
-    margin:     -0.7rem 0 -0.7rem 1.5rem;
+    display:       none;
+    width:         2.4rem;
+    height:        2.4rem;
+    margin:        auto;
+    margin-bottom: 0.4rem;
 }

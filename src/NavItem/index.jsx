@@ -51,10 +51,10 @@ removed in the next major release. Please use isCurrent instead.` );
                     className = { cssMap.link }
                     href      = { href }
                     onClick   = { onClick }>
-                    <span>{ label }</span>
                     { ( iconType && iconType !== 'none' ) &&
                         <div className  = { cssMap.icon } />
                     }
+                    <span>{ label }</span>
                 </a>
                 { children &&
                     <NavDropdown className = { cssMap.dropdown }>
