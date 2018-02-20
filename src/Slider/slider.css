@@ -1,5 +1,3 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 :root
@@ -7,7 +5,7 @@
     --horizontalSliderHeight:   3.2rem;
     --verticalSliderHeight:     30rem;
 
-    --trackSize:                1rem;
+    --trackSize:                0.2rem;
     --trackBorderWidth:         0.1rem;
 
     --handleSize:               1.6rem;
@@ -52,7 +50,7 @@
     {
         position:       relative;
 
-        border:         var( --trackBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+        border:         var( --trackBorderWidth ) solid var( --PC-GREY--L85 );
         border-radius:  var( --trackSize );
 
         background:     var( --PC-WHITE );
@@ -63,7 +61,7 @@
     .trackFill
     {
         border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:     color( var( --PC-BLUE ) a( 35% ) );
+        background:     var( --PC-BLUE );
     }
 
     .handle
@@ -72,13 +70,15 @@
         height:             var( --handleSize );
 
         border-radius:      50%;
-        background-color:   var( --PC-BLUE);
+        border:             var( --trackBorderWidth ) solid var( --PC-GREY--L85 );
+        background-color:   var( --PC-WHITE);
 
         cursor:             grab;
 
         &:active
         {
             cursor: grabbing;
+            box-shadow: 0 0 0.7rem 0 var( --PC-GREY--L80 );
         }
     }
 
@@ -156,7 +156,7 @@
 
     .trackFill
     {
-        height: 100%;
+        height: var( --trackSize );
     }
 
     .stepLabelsContainer
