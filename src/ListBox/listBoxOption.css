@@ -24,7 +24,7 @@
     .icon
     {
         flex:           0 0 auto;
-        margin-right:   1rem;
+        margin-right:   var( --spacing-2 );
     }
 
     &:hover .icon{
