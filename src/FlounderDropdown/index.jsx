@@ -11,6 +11,7 @@ import H1                   from '../H1';
 import H2                   from '../H2';
 import H3                   from '../H3';
 import H4                   from '../H4';
+import styles               from './flounderDropdown.css';
 
 const headers = { 1: H1, 2: H2, 3: H3, 4: H4 };
 
@@ -43,6 +44,34 @@ const rebuildOnProps = [
     'search'
 ];
 
+const addExtraClasses = ( data ) =>
+{
+    if ( !Array.isArray( data ) )
+    {
+        return data;
+    }
+
+    return data.map( datum =>
+    {
+        if ( typeof datum !== 'object' )
+        {
+            return datum;
+        }
+
+        if ( datum.description )
+        {
+            const descClass = styles.optionWithDescription;
+
+            const extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${descClass}` : descClass;
+
+            return { ...datum, extraClass };
+        }
+
+        return { ...datum, data: addExtraClasses( datum.data ) };
+    } );
+};
+
 const buildFlounder = ( node, props = {} ) =>
 {
     if ( node )
@@ -67,8 +96,8 @@ const buildFlounder = ( node, props = {} ) =>
         const flounderProps =
             {
                 classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder( props.data,
-                                                    props.cssMap ),
+                data    : mapIconClassesToFlounder(
+                    addExtraClasses( props.data ), props.cssMap ),
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
                 multipleMessage      : props.multipleMessage,
@@ -127,58 +156,71 @@ const setValue = ( flounder, value ) =>
 };
 
 const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
-    data.map( datum =>
+{
+    if ( !Array.isArray( data ) )
+    {
+        return data;
+    }
+
+    return data.map( datum =>
     {
         if ( typeof datum !== 'object' )
         {
             return datum;
         }
 
+        let extraClass  = datum.extraClass;
+        const iconClass = cssMap[ `optionIcon__${datum.icon}` ];
+
+        if ( iconClass )
+        {
+            extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${iconClass}` : datum.iconClass;
+        }
+
         return {
             ...datum,
-            // eslint-disable-next-line key-spacing
-            data : datum.data && mapIconClassesToFlounder( datum.data, cssMap ),
-            extraClass : cssMap[ `optionIcon__${datum.icon}` ]
+            data : mapIconClassesToFlounder( datum.data, cssMap ),
+            extraClass,
         };
-    }
-);
-
+    } );
+};
 
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
-     ( {
-         ARROW                 : cssMap.arrow,
-         ARROW_INNER           : cssMap.arrowInner,
-         DESCRIPTION           : cssMap.description,
-         DISABLED              : cssMap.disabled,
-         HEADER                : cssMap.header,
-         HIDDEN                : cssMap.hidden,
-         HIDDEN_IOS            : cssMap.hiddenIos,
+    ( {
+        ARROW                 : cssMap.arrow,
+        ARROW_INNER           : cssMap.arrowInner,
+        DESCRIPTION           : cssMap.description,
+        DISABLED              : cssMap.disabled,
+        HEADER                : cssMap.header,
+        HIDDEN                : cssMap.hidden,
+        HIDDEN_IOS            : cssMap.hiddenIos,
         // HOVER                   : cssMap.hover,
-         LIST                  : cssMap.list,
-         LOADING               : cssMap.loading,
-         LOADING_FAILED        : cssMap.loadingFailed,
-         MAIN                  : cssMap.main,
-         MAIN_WRAPPER          : cssMap.mainWrapper,
-         MULTIPLE_TAG_FLOUNDER : cssMap.multipleTag,
-         MULTI_TAG_LIST        : cssMap.multiTagList,
-         MULTIPLE_SELECT_TAG   : cssMap.multipleSelectTag,
-         MULTIPLE_TAG_CLOSE    : cssMap.multipleTagClose,
-         NO_RESULTS            : cssMap.noResults,
-         OPEN                  : cssMap.open,
-         OPTION                : cssMap.option,
-        // OPTION_TAG              : cssMap.optionTag,
-         OPTIONS_WRAPPER       : cssMap.optionsWrapper,
-         PLACEHOLDER           : cssMap.placeholder,
+        LIST                  : cssMap.list,
+        LOADING               : cssMap.loading,
+        LOADING_FAILED        : cssMap.loadingFailed,
+        MAIN                  : cssMap.main,
+        MAIN_WRAPPER          : cssMap.mainWrapper,
+        MULTIPLE_TAG_FLOUNDER : cssMap.multipleTag,
+        MULTI_TAG_LIST        : cssMap.multiTagList,
+        MULTIPLE_SELECT_TAG   : cssMap.multipleSelectTag,
+        MULTIPLE_TAG_CLOSE    : cssMap.multipleTagClose,
+        NO_RESULTS            : cssMap.noResults,
+        OPEN                  : cssMap.open,
+        OPTION                : cssMap.option,
+        // OPTION_TAG               : cssMap.optionTag,
+        OPTIONS_WRAPPER       : cssMap.optionsWrapper,
+        PLACEHOLDER           : cssMap.placeholder,
         // PLUG                    : cssMap.plug,
-         SECTION               : cssMap.section,
-         SELECTED              : cssMap.selected,
-         SELECTED_HIDDEN       : cssMap.selectedHidden,
-         SELECTED_DISPLAYED    : cssMap.selectedDisplayed,
-         SEARCH                : cssMap.search,
-         SEARCH_HIDDEN         : cssMap.searchHidden,
+        SECTION               : cssMap.section,
+        SELECTED              : cssMap.selected,
+        SELECTED_HIDDEN       : cssMap.selectedHidden,
+        SELECTED_DISPLAYED    : cssMap.selectedDisplayed,
+        SEARCH                : cssMap.search,
+        SEARCH_HIDDEN         : cssMap.searchHidden,
         // SELECT_TAG              : cssMap.selectTag
-     } );
+    } );
 
 export default class FlounderDropdown extends Component
 {
@@ -357,7 +399,7 @@ export default class FlounderDropdown extends Component
         forceHover            : false,
         placeholder           : 'Please choose an option',
         icon                  : 'arrow',
-        cssMap                : require( './flounderDropdown.css' )
+        cssMap                : styles
     };
 
     constructor( props )

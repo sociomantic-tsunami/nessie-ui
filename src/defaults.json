@@ -87,18 +87,18 @@
         "placeholder" : "Just a placeholder",
         "label"       : "Pick an option",
         "data"        : [
-                           "Option",
-                            {
-                                "text" : "Option with description",
-                                "value" : "value2",
-                                "description":"Option description"
-                            },
-                            {
-                                "text" : "Disabled option",
-                                "value" : "value3",
-                                "disabled" : true
-                            }
-                        ]
+           "Option",
+            {
+                "text"        : "Option with description",
+                "value"       : "value2",
+                "description" : "Option description"
+            },
+            {
+                "text"     : "Disabled option",
+                "value"    : "value5",
+                "disabled" : true
+            }
+        ]
     },
     "H1" :
     {
