@@ -1,28 +1,13 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                   from 'react';
+import PropTypes               from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import TableRow             from '../TableRow';
-import TableCell            from '../TableCell';
-import Text                 from '../Text';
-import Required             from '../Required';
+import TableCell               from '../TableCell';
+import TableRow                from '../TableRow';
+import Required                from '../Required';
+import { buildClassName }      from '../utils';
+import styles                  from './table.css';
+import { buildRowsFromValues } from './utils';
 
-
-const buildTableFromValues = ( values = [] ) =>
-    values.map( ( row, i ) =>
-        (
-            // eslint-disable-next-line react/no-array-index-key
-            <TableRow key = { i }>
-                {
-                    row.map( ( col, j ) =>
-                    // eslint-disable-next-line react/no-array-index-key
-                        <TableCell key = { j }>
-                            <Text>{ col }</Text>
-                        </TableCell>
-                    )
-                }
-            </TableRow>
-        ) );
 
 const Table = ( {
     align,
@@ -38,87 +23,79 @@ const Table = ( {
     verticalAlign,
 } ) =>
 {
-    const _children = children || buildTableFromValues( values );
+    const _children = children || buildRowsFromValues( values );
 
-    const header = columns.length ?
-        ( <TableRow
-            align         = { align }
-            className     = { cssMap.row }
-            gutters       = { gutters }
-            isSticky      = { hasStickyHeader }
-            verticalAlign = { verticalAlign } >
-            { columns.map( ( column, index ) =>
-            {
-                const title = column.title;
-                const text  = column.isRequired ?
-                    <Required>{ title }</Required> : title;
-                const stickyCell = column.isSticky;
-
-                return (
-                    <TableCell
-                        className   = { cssMap.cell }
-                        isHeader
-                        isSortable  = { column.isSortable }
-                        isSticky    = { stickyCell }
-                        key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                        onToggle    = { onToggle }
-                        size        = { column.size }
-                        sort        = { column.sort }>
-                        { text }
-                    </TableCell>
-                );
-            } )
-            }
-        </TableRow> ) : null;
-
-
-    const rows = React.Children.toArray( _children ).map( ( row ) =>
+    const rows = React.Children.toArray( _children ).map( row =>
     {
         const cells = React.Children.toArray( row.props.children );
 
-        return React.cloneElement( row,
+        return React.cloneElement( row, {
+            align    : row.props.align || align,
+            children : cells.map( ( cell, i ) =>
             {
-                align    : row.props.align || align,
-                children : cells.map( ( cell, index ) =>
-                {
-                    if ( typeof columns[ index ] === 'object' )
-                    {
-                        const title = columns[ index ].title;
-                        const size  = columns[ index ].size;
-                        const rowHeaderCell = columns[ index ].isRowHeader;
-                        const stickyCell = columns[ index ].isSticky;
+                const column      = columns[ i ];
+                const columnProps = column && {
+                    align       : cell.props.align || column.align,
+                    columnTitle : cell.props.columnTitle || column.title,
+                    size        : cell.props.size || column.size,
+                    isRowHeader : cell.props.isRowHeader || column.isRowHeader,
+                    isSticky    : cell.props.isSticky || column.isSticky,
+                };
 
-                        return React.cloneElement( cell,
-                            {
-                                className : cell.props.className ?
-                                    `${cell.props.className}  ${cssMap.cell}`
-                                    : cssMap.cell,
-                                columnTitle : cell.props.columnTitle || title,
-                                size        : cell.props.size || size,
-                                isRowHeader : cell.props.isRowHeader ||
-                                    rowHeaderCell,
-                                isSticky : cell.props.isSticky || stickyCell
-                            } );
-                    }
-                    return cell;
-                } ),
-                className : row.props.className ?
-                    `${row.props.className}  ${cssMap.row}` : cssMap.row,
-                gutters       : row.props.gutters || gutters ,
-                verticalAlign : row.props.verticalAlign || verticalAlign,
-            } );
+                return React.cloneElement( cell, {
+                    ...columnProps,
+                    className : cell.props.className ?
+                        `${cell.props.className}  ${cssMap.cell}` : cssMap.cell,
+                } );
+            } ),
+            className : row.props.className ?
+                `${row.props.className}  ${cssMap.row}` : cssMap.row,
+            gutters       : row.props.gutters || gutters,
+            verticalAlign : row.props.verticalAlign || verticalAlign,
+        } );
     } );
 
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { zebra: isZebra } }>
-            <div role = "grid" className = { className }>
-                { header }
-                { rows }
-            </div>
-        </Css>
+        <div
+            className = { buildClassName( className, cssMap, {
+                zebra : isZebra,
+            } ) }
+            role = "grid">
+            { columns.length &&
+                <TableRow
+                    align         = { align }
+                    className     = { cssMap.row }
+                    gutters       = { gutters }
+                    isSticky      = { hasStickyHeader }
+                    verticalAlign = { verticalAlign } >
+                    { columns.map( ( column, i ) =>
+                    {
+                        const title = column.title;
+                        const text  = column.isRequired ?
+                            <Required>{ title }</Required> : title;
+                        const stickyCell = column.isSticky;
+
+                        return (
+                            <TableCell
+                                align         = { column.align }
+                                className     = { cssMap.cell }
+                                isHeader
+                                isSortable    = { column.isSortable }
+                                isSticky      = { stickyCell }
+                                key           = { i }
+                                onToggle      = { onToggle }
+                                size          = { column.size }
+                                sort          = { column.sort }
+                                verticalAlign = { column.verticalAlign }>
+                                { text }
+                            </TableCell>
+                        );
+                    } ) }
+                </TableRow>
+            }
+            { rows }
+        </div>
     );
 };
 
@@ -172,10 +149,14 @@ Table.propTypes =
 Table.defaultProps =
 {
     align           : 'auto',
-    cssMap          : require( './table.css' ),
+    children        : undefined,
+    columns         : undefined,
+    cssMap          : styles,
     gutters         : 'M',
     hasStickyHeader : false,
     isZebra         : false,
+    onToggle        : undefined,
+    values          : undefined,
     verticalAlign   : 'middle',
 };
 

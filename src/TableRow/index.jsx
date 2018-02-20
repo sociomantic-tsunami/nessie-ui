@@ -1,8 +1,9 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import Row                  from '../Row';
+import Row                from '../Row';
+import { buildClassName } from '../utils';
+import styles             from './tableRow.css';
 
 const TableRow = ( {
     align,
@@ -24,19 +25,15 @@ const TableRow = ( {
     );
 
     return (
-        <Css
-            cssMap = { cssMap }
-            cssProps = { {
-                sticky : isSticky
-            } }>
-            <Row
-                className     = { className }
-                role          = "row"
-                gutters       = { gutters }
-                spacing       = "none">
-                { cells }
-            </Row>
-        </Css>
+        <Row
+            className = { buildClassName( className, cssMap, {
+                sticky : isSticky,
+            } ) }
+            role    = "row"
+            gutters = { gutters }
+            spacing = "none">
+            { cells }
+        </Row>
     );
 };
 
@@ -46,48 +43,34 @@ TableRow.propTypes =
      *  Globally sets cell horizonal alignment
      *  for this row (individual cell alignment will override)
      */
-    align : PropTypes.oneOf( [
-        'auto',
-        'left',
-        'center',
-        'right'
-    ] ),
+    align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    /**
+     *  Row content (TableCells)
+     */
+    children      : PropTypes.node,
+    /**
+     *  Gutter size
+     */
+    gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Makes the row sticky
+     */
+    isSticky      : PropTypes.bool,
     /**
      *  Globally sets cell vertical alignment
      *  for this row (individual cell alignment will overrides)
      */
-    verticalAlign : PropTypes.oneOf( [
-        'auto',
-        'top',
-        'middle',
-        'bottom'
-    ] ),
-    /**
-     *  Gutter size
-     */
-    gutters : PropTypes.oneOf( [
-        'none',
-        'S',
-        'M',
-        'L'
-    ] ),
-    /**
-     *  Makes the row sticky
-     */
-    isSticky : PropTypes.bool,
-    /**
-     *  Row content (TableCells)
-     */
-    children : PropTypes.node
+    verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
 
 TableRow.defaultProps =
 {
     align         : undefined,
-    verticalAlign : undefined,
+    children      : undefined,
+    cssMap        : styles,
     gutters       : undefined,
     isSticky      : false,
-    cssMap        : require( './tableRow.css' )
+    verticalAlign : undefined,
 };
 
 export default TableRow;
