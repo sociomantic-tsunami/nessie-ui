@@ -1,6 +1,5 @@
 import React, { Children, cloneElement }    from 'react';
 
-import { Text }                             from '../index';
 import ListBoxOption                        from './ListBoxOption';
 import ListBoxOptionGroup                   from './ListBoxOptionGroup';
 
