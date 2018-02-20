@@ -43,7 +43,7 @@
     {
         @extend %Nessie-SemiBold;
 
-        padding:    0.8rem;
+        padding:    var( --spacing-1 );
     }
 
     & > .link[href]:hover,
@@ -197,8 +197,8 @@
 .icon
 {
     display:       none;
-    width:         2.4rem;
-    height:        2.4rem;
+    width:         var( --spacing-3 );
+    height:        var( --spacing-3 );
     margin:        auto;
     margin-bottom: 0.4rem;
 }
