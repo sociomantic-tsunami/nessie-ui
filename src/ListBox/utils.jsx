@@ -59,36 +59,6 @@ function buildOptions( options = [] )
 }
 
 /**
- * ## buildOptionLabel
- *
- * Builds the ListBoxOption label
- *
- * @param   {Object}    props   props to build the label from
- *
- * @return  {String}
- *
- */
-function buildOptionLabel( { children, text, value } )
-{
-    let label;
-
-    if ( children )
-    {
-        label = children;
-    }
-    else
-    {
-        label = typeof text !== 'undefined' ? text : value;
-        label = String( label );
-    }
-
-    label = typeof label === 'string' ?
-        <Text noWrap overflowIsHidden>{ label }</Text> : label;
-
-    return label;
-}
-
-/**
  * ## updateOptions
  * Updates the props of the ListBoxOptions based on props
  *
@@ -126,4 +96,4 @@ const updateOptions = ( options = [], props ) =>
     } );
 };
 
-export { buildOptions, buildOptionLabel, isSelectedOption, updateOptions };
+export { buildOptions, isSelectedOption, updateOptions };

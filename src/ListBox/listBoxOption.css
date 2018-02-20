@@ -1,15 +1,24 @@
-@import '../proto/definitions/_colors.css';
+@import '../proto/definitions/variables.css';
 
 .default
 {
     display:    flex;
     margin:     0;
-    padding:    1rem;
 
-    margin:     0;
-    padding:    1rem;
+    padding-left:           var( --spacing-2 );
+    padding-right:          var( --spacing-2 );
+    padding-top:            1.2rem;
+    padding-bottom:         1.2rem;
 
     cursor:     pointer;
+
+    &:hover,
+    &:hover .optionText,
+    &:hover .description
+    {
+        background-color:   var( --PC-BLUE );
+        color:              var( --PC-WHITE );
+    }
 
     .icon
     {
@@ -17,26 +26,70 @@
         margin-right:   1rem;
     }
 
-    .text
+    .textContainer
     {
-        flex:       1 0 0%;
-        min-width:  0;
+        flex:           1 0 0%;
+        min-width:      0;
     }
+}
+
+.default,
+.optionText
+{
+    color:                  var( --PC-GREY );
+    line-height:            var( --line-height-m );
+    font-size:              var( --typo-3 );
 }
 
 .selected
 {
-    background: color( var( --PC-BLUE ) a( 10% ) );
+    background-color:   color( var( --PC-BLUE ) a( 10% ) );
 }
 
 .active,
 .default:hover
 {
-    background: color( var( --PC-BLUE ) a( 35% ) );
-    color:      var( --GS-1 );
+    /* background-color:   color( var( --PC-BLUE ) a( 35% ) );
+    color:              var( --GS-1 ); */
 }
 
-.disabled
+.disabled,
+.error .disabled
 {
-    cursor: default;
+    pointer-events:             none;
+    cursor:                     auto;
+    color:                      var( --PC-GREY--L40 );
+
+    .description
+    {
+        color:                  var( --PC-GREY--L55 );
+    }
+}
+
+.withDescription
+{
+    .optionText
+    {
+        font-size:      var( --typo-5 );
+        line-height:    var( --line-height-m );
+        color:          var( --PC-BLUE );
+    }
+
+    .optionText[class*=disabled]
+    {
+        color:          var( --PC-GREY--L40 );
+    }
+
+    .optionText[class*=selectedDisplayed]
+    {
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--D5 );
+    }
+
+    .description
+    {
+
+    }
 }

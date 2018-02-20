@@ -1,4 +1,4 @@
-@import '../proto/definitions/_fonts.css';
+@import '../proto/definitions/variables.css';
 
 .default
 {
@@ -8,13 +8,19 @@
 
     .header
     {
-        padding:    1rem;
+        // padding:    1rem;
+        margin:     0;
+        padding:    0.7rem 1rem 0.5rem 1rem;
         cursor:     default;
     }
 
     .headerText
     {
-        @extend %Nessie-Bold;
+        @extend %Nessie-RegularIt;
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        color:          var( --PC-GREY--D25 );
     }
 
     .options
