@@ -77,11 +77,7 @@ const ListBoxOption = ( {
             <div className = { cssMap.textContainer }>
                 { label }
                 { description &&
-                    <Text
-                        className = "test"
-                        noWrap
-                        overflowIsHidden
-                        role = "subtle">
+                    <Text className = { cssMap.description } overflowIsHidden>
                         { description }
                     </Text> }
             </div>

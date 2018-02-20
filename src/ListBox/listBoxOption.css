@@ -13,12 +13,19 @@
 
     cursor:     pointer;
 
-    &:hover,
-    &:hover .optionText,
-    &:hover .description
+    &:hover
     {
-        background-color:   var( --PC-BLUE );
-        color:              var( --PC-WHITE );
+        background-color:       var( --PC-BLUE );
+
+        .optionText,
+        .description
+        {
+            color:              var( --PC-WHITE );
+        }
+
+        .icon{
+            fill:               var( --PC-WHITE );
+        }
     }
 
     .icon
@@ -27,37 +34,32 @@
         margin-right:   var( --spacing-2 );
     }
 
-    &:hover .icon{
-        fill:           var( --PC-WHITE );
-    }
-
     .textContainer
     {
         flex:           1 0 0%;
         min-width:      0;
     }
 
-    &.disabled,
-    &.disabled .optionText,
-    &.error .disabled
+    .optionText
     {
-        pointer-events:             none;
-        cursor:                     auto;
-        color:                      var( --PC-GREY--L40 );
+        color:              var( --PC-GREY );
+    }
+
+    &.disabled
+    {
+        pointer-events:     none;
+        cursor:             auto;
+
+        .optionText
+        {
+            color:          var( --PC-GREY--L40 );
+        }
 
         .description
         {
-            color:                  var( --PC-GREY--L55 );
+            color:          var( --PC-GREY--L55 );
         }
     }
-}
-
-.default,
-.optionText
-{
-    color:                  var( --PC-GREY );
-    line-height:            var( --line-height-m );
-    font-size:              var( --typo-3 );
 }
 
 .selected
@@ -65,12 +67,11 @@
     background-color:   color( var( --PC-BLUE ) a( 10% ) );
 }
 
-.active,
-.default:hover
+.active
 {
-
+    background:         color( var( --PC-BLUE ) a( 35% ) );
+    color:              var( --GS-1 );
 }
-
 
 .withDescription
 {
@@ -81,23 +82,5 @@
         color:          var( --PC-BLUE );
 
         margin:         0;
-    }
-
-    .optionText[class*=disabled]
-    {
-        color:          var( --PC-GREY--L40 );
-    }
-
-    .optionText[class*=selectedDisplayed]
-    {
-
-        font-size:      var( --typo-3 );
-        line-height:    var( --line-height-s );
-        color:          var( --PC-GREY--D5 );
-    }
-
-    .description
-    {
-
     }
 }
