@@ -46,6 +46,7 @@ const DateTimeInput = ( {
 {
     const datePicker = (
         <DatePicker
+            key            = "datePicker"
             headers        = { mode !== 'month' ? days : undefined }
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
