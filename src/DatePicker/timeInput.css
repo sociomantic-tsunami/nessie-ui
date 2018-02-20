@@ -1,27 +1,18 @@
-@import '../proto/definitions/_colors.css';
+@import '../proto/definitions/variables.css';
 
 .default
 {
-    display:            flex;
-    justify-content:    center;
-    align-items:        center;
+    display:            inline-block;
     position:           relative;
 
     font-size:          var( --typo-1 );
     line-height:        var( --line-height-s );
-    text-align:         center;
-    color:              color( var( --GS-2 ) tint( 50% ) );
+    text-align:         right;
 
-    width:              12rem;
-    margin:             2rem auto 0;
+    vertical-align:     bottom;
 
-    padding-top:        0.8rem;
-    padding-bottom:     0.6rem;
+    width:              50%;
 
-    border-width:       0.1rem;
-    border-style:       solid;
-    border-color:       color( var( --GS-2 ) tint( 50% ) );
-    border-radius:      2rem;
     box-sizing:         border-box;
 
     &:hover,
@@ -33,35 +24,40 @@
     .hour,
     .min
     {
-        padding:        0;
-        border:         0;
-        width:          3rem;
-        text-align:     center;
+        border:             0;
+        width:              3.6rem;
+        height:             2.4rem;
+        padding:            0;
 
-        font:           inherit;
-        line-height:    inherit;
+        text-align:         center;
+        font:               inherit;
+        line-height:        var( --line-height-s );
+        font-size:          1.3rem;
+        color:              var( --PC-WHITE );
 
-        &:active,
-        &:hover,
-        &:focus
-        {
-            color:  var( --GS-2 );
-        }
+        background-color:   var( --PC-BLUE--D5 );
 
         &:focus
         {
-            outline:    none;
+            outline:        none;
         }
 
         &::placeholder
         {
-            font:           inherit;
-            line-height:    inherit;
+            line-height:    var( --line-height-s );
+            font-size:      1.3rem;
+            font-weight:    300;
+            color:          var( --PC-WHITE );
         }
     }
 
     span
     {
-        user-select:    none;
+        user-select:        none;
+        line-height:        var( --line-height-s );
+        font-size:          1.3rem;
+        color:              var( --PC-WHITE );
+        margin:             0 0.3rem;
+        display:            inline-block;
     }
 }
