@@ -127,37 +127,33 @@ NavItem.propTypes =
         'hide'
     ] ),
     /*
-    *  Item represents the current page and/or section
-     */
-    isCurrentPage : PropTypes.bool,
-    /*
     *  Display as disabled/read-only
      */
-    isDisabled    : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
     /*
      * Display as current page/section
      */
-    isCurrent     : PropTypes.bool,
+    isCurrent   : PropTypes.bool,
     /*
     * Dropdown menu is open
      */
-    isOpen        : PropTypes.bool,
+    isOpen      : PropTypes.bool,
     /**
      *  onClick callback function
      */
-    onClick       : PropTypes.func,
+    onClick     : PropTypes.func,
     /**
      *  onMouseOut callback function
      */
-    onMouseOut    : PropTypes.func,
+    onMouseOut  : PropTypes.func,
     /**
      *  onMouseOver callback function
      */
-    onMouseOver   : PropTypes.func,
+    onMouseOver : PropTypes.func,
     /**
      *  Navigation role
      */
-    role          : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
+    role        : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
 };
 
 NavItem.defaultProps =
