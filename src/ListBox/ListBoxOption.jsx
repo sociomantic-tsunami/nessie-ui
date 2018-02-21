@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import { Icon, Text }       from '../index';
+import { Icon, Text } from '../index';
 import {
     buildClassName,
     eventHandler,
     generateId,
     mapAria
 } from '../utils';
-import styles               from './listBoxOption.css';
+import styles         from './listBoxOption.css';
 
 
 const ListBoxOption = ( {
@@ -70,7 +70,7 @@ const ListBoxOption = ( {
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
                     className = { cssMap.icon }
-                    size      = { iconSize || description ? 'M' : 'S'  }
+                    size      = { iconSize || ( description ? 'M' : 'S' )  }
                     type      = { iconType }
                     variant   = "stroke" />
             }
