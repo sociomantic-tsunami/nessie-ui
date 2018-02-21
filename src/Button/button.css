@@ -15,11 +15,6 @@
     background:         transparent;
     cursor:             pointer;
     text-transform:     uppercase;
-
-    &:focus
-    {
-        outline:        none;
-    }
 }
 
 
@@ -31,10 +26,8 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-
-    min-width:          9rem;
-    height:             3.2rem; /************ replace with min-, or remove? */
-
+    height:             4rem; /************ replace with min-, or remove? */
+    padding:            0 var( --spacing-2 );
     text-align:         center;
 }
 
@@ -46,10 +39,6 @@
     font-size:          var( --typo-2 );
     line-height:        var( --line-height-s );
     letter-spacing:     0.04rem;
-
-    margin-top:         0.1rem;
-    padding-left:       1.6rem;
-    padding-right:      1.6rem;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
@@ -66,13 +55,7 @@
 
     .iconContainer
     {
-        padding-right:      0.8rem;
-        padding-left:       0.4rem;
-    }
-
-    .iconContainer + .label
-    {
-        padding-right: 0rem;
+        margin-left:    var( --spacing-1 );
     }
 }
 
@@ -81,13 +64,7 @@
 {
     .iconContainer
     {
-        padding-right:      0.4rem;
-        padding-left:       0.8rem;
-    }
-
-    .iconContainer + .label
-    {
-        padding-left: 0rem;
+        margin-right:   var( --spacing-1 );
     }
 }
 
@@ -120,15 +97,16 @@
 
     .icon
     {
-        fill:       var( --PC-GREY--L25 );
-        color:      var( --PC-GREY--L25 );
+        fill:   var( --PC-GREY--L25 );
+        color:  var( --PC-GREY--L25 );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:          color( var( --PC-GREY--L25 ) a( 25% ) );
+            border-color:   color( var( --PC-GREY--L25 ) a( 25% ) );
+
             &::after
             {
                 border-top-color:  var( --PC-GREY--L25 );
@@ -222,7 +200,7 @@
     {
         .spinner
         {
-            border-color:           color( var( --PC-BLUE  ) a( 25% ) );
+            border-color:   color( var( --PC-BLUE  ) a( 25% ) );
 
             &::after
             {
@@ -235,23 +213,23 @@
 
 .role__control
 {
-    color:                  var( --PC-GREY--DARK );
+    color:  var( --PC-GREY--DARK );
 
     .icon
     {
-        fill:               var( --PC-GREY--DARK );
-        color:              var( --PC-GREY--DARK );
+        fill:   var( --PC-GREY--DARK );
+        color:  var( --PC-GREY--DARK );
     }
 
     &.fakeHovered,
     &:hover
     {
-        color:                  var( --PC-BLUE );
+        color:  var( --PC-BLUE );
 
         .icon
         {
-            fill:               var( --PC-BLUE );
-            color:              var( --PC-BLUE );
+            fill:   var( --PC-BLUE );
+            color:  var( --PC-BLUE );
         }
     }
 
@@ -259,7 +237,7 @@
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY--DARK ) a( 25% ) );
+            border-color:   color( var( --PC-GREY--DARK ) a( 25% ) );
 
             &::after
             {
@@ -292,8 +270,8 @@
 {
     &.role__default
     {
-        background:     var( --PC-BLUE--LIGHT );
-        color:          var( --PC-BLUE--L25 );
+        background: var( --PC-BLUE--LIGHT );
+        color:      var( --PC-BLUE--L25 );
 
         .icon
         {
@@ -304,7 +282,7 @@
 
     &.role__secondary
     {
-        color:          var( --PC-GREY--L55 );
+        color:  var( --PC-GREY--L55 );
 
         .icon
         {
@@ -315,8 +293,8 @@
 
     &.role__promoted
     {
-        background:     var( --PC-GREEN--LIGHT );
-        color:          var( --PC-GREEN--L25 );
+        background: var( --PC-GREEN--LIGHT );
+        color:      var( --PC-GREEN--L25 );
 
         .icon
         {
@@ -327,8 +305,8 @@
 
     &.role__critical
     {
-        background:     var( --PC-RED--LIGHT );
-        color:          var( --PC-RED--L25 );
+        background: var( --PC-RED--LIGHT );
+        color:      var( --PC-RED--L25 );
 
         .icon
         {
@@ -339,8 +317,8 @@
 
     &.role__warning
     {
-        background:     var( --PC-ORANGE--LIGHT );
-        color:          var( --PC-ORANGE--L25 );
+        background: var( --PC-ORANGE--LIGHT );
+        color:      var( --PC-ORANGE--L25 );
 
         .icon
         {
@@ -351,7 +329,7 @@
 
     &.role__subtle
     {
-        color:          var( --PC-BLUE--L40 );
+        color:  var( --PC-BLUE--L40 );
 
         .content
         {
@@ -375,16 +353,16 @@
     justify-content:    center;
     align-items:        center;
 
-    position:   absolute;
+    position:           absolute;
 
-    top:        0;
-    bottom:     0;
+    top:                0;
+    bottom:             0;
 
-    left:       0;
-    right:      0;
+    left:               0;
+    right:              0;
 
-    width:      100%;
-    height:     100%;
+    width:              100%;
+    height:             100%;
 
     .spinner
     {
