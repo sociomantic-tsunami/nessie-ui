@@ -48,20 +48,20 @@
 
     .track
     {
-        position:       relative;
+        position:           relative;
 
-        border:         var( --trackBorderWidth ) solid var( --PC-GREY--L85 );
-        border-radius:  var( --trackSize );
+        border:             var( --trackBorderWidth ) solid var( --PC-GREY--L85 );
+        border-radius:      var( --trackSize );
 
-        background:     var( --PC-WHITE );
+        background:         var( --PC-WHITE );
 
-        user-select:    none;
+        user-select:        none;
     }
 
     .trackFill
     {
-        border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:     var( --PC-BLUE );
+        border-radius:      calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
+        background:         var( --PC-BLUE );
     }
 
     .handle
@@ -79,6 +79,9 @@
         {
             cursor:         grabbing;
             box-shadow:     0 0 0.7rem 0 var( --PC-GREY--L80 );
+
+            width:          calc(var( --handleSize ) * 1.2);
+            height:         calc(var( --handleSize ) * 1.2);
         }
     }
 
@@ -116,7 +119,7 @@
 
     .stepLabelsContainer
     {
-        position:   relative;
+        position:       relative;
     }
 
     .stepLabel
@@ -351,12 +354,6 @@
 
 .disabled
 {
-    .track
-    {
-        border-color:   var( --GS-10 );
-        background:     var( --GS-10 );
-    }
-
     .trackFill
     {
         background:     color( var( --GS-4 ) a( 35% ) );
@@ -364,8 +361,17 @@
 
     .handle
     {
-        background:     var( --GS-5 );
+        background:     var( --PC-WHITE );
         cursor:         default;
+
+        &:active
+        {
+            cursor:         default;
+            box-shadow:     none;
+
+            width:          var( --handleSize );
+            height:         var( --handleSize );
+        }
     }
 
     .handleLabel
