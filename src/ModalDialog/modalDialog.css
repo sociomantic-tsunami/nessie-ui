@@ -28,8 +28,7 @@ $wideWidth : 90rem;
     overflow-y:         auto;
 
     z-index:            9999;
-    background:         color( var( --GS-10 ) a( 90% ) );
-
+    background:         color( var( --PC-GREY--D45 ) a( 53% ) );
 }
 
 .type__carousel
@@ -71,10 +70,11 @@ $wideWidth : 90rem;
     width:              50rem;
     padding:            4rem;
     box-sizing:         border-box;
-    box-shadow:         0 0 4rem color( var( --GS-2 ) a( 10% ) );
+    box-shadow:         0 0.2rem 2rem 0 color( var( --PC-GREY--D45 ) a( 30% ) );
     background:         var( --PC-WHITE );
     text-align:         left;
     z-index:            9999;
+    border-radius:      0.5rem;
 
     .type__carousel &
     {
