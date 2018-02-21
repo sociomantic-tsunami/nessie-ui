@@ -1,5 +1,4 @@
-/*@import "../proto/base.css";*/
-@import "../proto/definitions/_fonts.css";
+@import "../proto/definitions/variables.css";
 
 .default
 {

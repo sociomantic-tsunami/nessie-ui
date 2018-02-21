@@ -1,5 +1,4 @@
-@import "../proto/definitions/_fonts.css";
-@import "../Button/button.css";
+@import "../Button/button.css"; /* imports base.css */
 
 .default
 {
