@@ -216,8 +216,8 @@ export default class Slider extends Component
         offset += '%'; length += '%';
 
         return orientation === 'vertical' ?
-        { height: length, bottom: offset } :
-        { width: length, left: offset };
+            { height: length, bottom: offset } :
+            { width: length, left: offset };
     }
 
 
@@ -267,7 +267,7 @@ export default class Slider extends Component
         const offset   = `${this.getOffset( value )}%`;
 
         return orientation === 'vertical' ?
-         { bottom: offset } : { left: offset };
+            { bottom: offset } : { left: offset };
     }
 
 
@@ -298,12 +298,12 @@ export default class Slider extends Component
 
         let position = mouse - start;
         if ( isVertical ) // account for y-axis inversion
-           {
+        {
             position = length - position;
         }
 
         if ( isLogarithmic )
-           {
+        {
             let v = Math.round( ( ( position / length ) * range ) + minValue );
             const min = minValue === 0 ? 0 : Math.log( minValue );
             const max = Math.log( maxValue );
@@ -424,7 +424,7 @@ export default class Slider extends Component
             maxValue
         } = this.props;
 
-        if ( stepLabelStart || stepLabelEnd )
+        if ( stepLabelStart || stepLabelEnd )
         {
             const newStepLabels = [
                 { 'stepLabel': stepLabelStart, 'step': minValue },
@@ -545,7 +545,7 @@ export default class Slider extends Component
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
                         </div>
-                 ) }
+                ) }
             </div>
         );
 
@@ -574,7 +574,7 @@ export default class Slider extends Component
                                 step     = { step }
                                 onChange = { onChange }
                                 value    = { val } />
-                         ) ) }
+                        ) ) }
                     </div>
 
                     { sliderLabelMarkUp }

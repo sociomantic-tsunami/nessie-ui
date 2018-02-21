@@ -10,7 +10,7 @@
 
     --handleSize:               1.6rem;
 
-    --tickSize:                 0.9rem;
+    --tickSize:                 0.4rem;
 
     --labelMargin:              1rem;
     --stepLabelContainerHeight: 1.6rem; /*matches line height of labels*/
@@ -77,8 +77,8 @@
 
         &:active
         {
-            cursor: grabbing;
-            box-shadow: 0 0 0.7rem 0 var( --PC-GREY--L80 );
+            cursor:         grabbing;
+            box-shadow:     0 0 0.7rem 0 var( --PC-GREY--L80 );
         }
     }
 
@@ -99,11 +99,16 @@
 
     .tick
     {
-        color:          color( var( --GS-2 ) a( 50% ) );
-        position:       absolute;
-        transform:      translateX( -50% );
-        line-height:    var( --trackSize );
-        font-size:      var( --tickSize );
+        position:           absolute;
+        transform:          translateX(-50%) translateY(-50%);
+        z-index:            2;
+
+        font-size:          0;
+
+        background-color:   var( --PC-WHITE );
+
+        width:              var( --tickSize );
+        height:             var( --tickSize );
     }
 
 
@@ -116,8 +121,12 @@
 
     .stepLabel
     {
-        position:   absolute;
-        @extend %Nessie-Bold;
+        @extend %Nessie-Regular;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        color:          var( --PC-GREY );
+
+        position:       absolute;
     }
 }
 
@@ -150,13 +159,14 @@
 
     .handle
     {
-        top:        50%;
-        transform:  translateX( -50% ) translateY( -50% );
+        top:            50%;
+        transform:      translateX( -50% ) translateY( -50% );
     }
 
     .trackFill
     {
-        height: var( --trackSize );
+        height:         var( --trackSize );
+        transform:      translateY(-50%);
     }
 
     .stepLabelsContainer
@@ -170,8 +180,7 @@
     .stepLabelsContainer
     {
         /* We need to replace label with Label component to avoid these magic numbers */
-        margin-top:     -0.3rem;
-        margin-bottom:  0.6rem;
+        margin-bottom:      0.6rem;
 
         &:last-child
         {
@@ -212,7 +221,7 @@
     .track,
     .stepLabelsContainer
     {
-        height: calc( 100% - var( --handleSize ) );
+        height:         calc( 100% - var( --handleSize ) );
 
         margin-top:     calc( var( --handleSize ) / 2 );
         margin-bottom:  calc( var( --handleSize ) / 2 );
@@ -220,23 +229,24 @@
 
     .track
     {
-        width:  var( --trackSize );
+        width:          var( --trackSize );
     }
 
     .trackFill
     {
-        width:  100%
+        width:          var( --trackSize );
+        transform:      translateX(-50%);
     }
 
     .handle
     {
-        left:       50%;
-        transform:  translateX( -50% ) translateY( 50% );
+        left:           50%;
+        transform:      translateX( -50% ) translateY( 50% );
     }
 
     .stepLabelsContainer
     {
-        margin-right:   var( --labelMargin );
+        margin-right:       var( --labelMargin );
 
         &:last-child
         {
@@ -254,8 +264,8 @@
     {
         /* We should change the ticks to use the Text component to avoid this
            1px nudge */
-        left:       calc( 50% - 1px );
-        transform:  translateX( -50% ) translateY( 50% ) rotate( 90deg );
+        left:       50%;
+        transform:  translateX( -50% ) translateY( 50% );
     }
 }
 
@@ -334,7 +344,7 @@
 
     .handleLabel
     {
-        color:  var( --PC-RED );
+        color:      var( --PC-RED );
     }
 }
 
@@ -349,22 +359,22 @@
 
     .trackFill
     {
-        background: color( var( --GS-4 ) a( 35% ) );
+        background:     color( var( --GS-4 ) a( 35% ) );
     }
 
     .handle
     {
-        background: var( --GS-5 );
-        cursor:     default;
+        background:     var( --GS-5 );
+        cursor:         default;
     }
 
     .handleLabel
     {
-        color:  color( var( --GS-2 ) a( 50% ) );
+        color:          color( var( --GS-2 ) a( 50% ) );
     }
 
     .ticksContainer
     {
-        display:    none;
+        display:        none;
     }
 }
