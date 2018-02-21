@@ -11,12 +11,12 @@ import {
     generateId,
     mapAria
 } from '../utils';
-import { buildOptionLabel } from './utils';
 import styles               from './listBoxOption.css';
 
 
 const ListBoxOption = ( {
     aria,
+    children,
     className,
     cssMap,
     description,
@@ -29,39 +29,61 @@ const ListBoxOption = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    ...props
-} ) => (
-    <li
-        { ...mapAria( {
-            ...aria,
-            selected : isSelected,
-            role     : 'option',
-        } ) }
-        className = { buildClassName( className, cssMap, {
-            disabled : isDisabled,
-            active   : isActive,
-            selected : isSelected,
-        } ) }
-        id          = { id }
-        onClick     = { eventHandler( onClick, id ) }
-        onMouseOut  = { eventHandler( onMouseOut, id ) }
-        onMouseOver = { eventHandler( onMouseOver, id ) }>
-        { ( iconType && iconType !== 'none' ) &&
-            <Icon
-                className = { cssMap.icon }
-                size      = { iconSize || description ? 'M' : 'S'  }
-                type      = { iconType }
-                variant   = "stroke" />
-        }
-        <div className = { cssMap.text }>
-            { buildOptionLabel( props ) }
-            { description &&
-                <Text noWrap overflowIsHidden role = "subtle">
-                    { description }
-                </Text> }
-        </div>
-    </li>
-);
+    text,
+    value,
+} ) =>
+{
+    let label;
+
+    if ( children )
+    {
+        label = children;
+    }
+    else
+    {
+        label = typeof text !== 'undefined' ? text : value;
+        label = String( label );
+    }
+
+    label = typeof label === 'string' ? (
+        <Text className = { cssMap.optionText } noWrap overflowIsHidden>
+            { label }
+        </Text> ) : label;
+
+    return (
+        <li
+            { ...mapAria( {
+                ...aria,
+                selected : isSelected,
+                role     : 'option',
+            } ) }
+            className = { buildClassName( className, cssMap, {
+                disabled        : isDisabled,
+                active          : isActive,
+                selected        : isSelected,
+                withDescription : !!description,
+            } ) }
+            id          = { id }
+            onClick     = { eventHandler( onClick, id ) }
+            onMouseOut  = { eventHandler( onMouseOut, id ) }
+            onMouseOver = { eventHandler( onMouseOver, id ) }>
+            { ( iconType && iconType !== 'none' ) &&
+                <Icon
+                    className = { cssMap.icon }
+                    size      = { iconSize || description ? 'M' : 'S'  }
+                    type      = { iconType }
+                    variant   = "stroke" />
+            }
+            <div className = { cssMap.textContainer }>
+                { label }
+                { description &&
+                    <Text className = { cssMap.description } overflowIsHidden>
+                        { description }
+                    </Text> }
+            </div>
+        </li>
+    );
+};
 
 ListBoxOption.propTypes = {
     aria        : PropTypes.objectOf( PropTypes.string ),
