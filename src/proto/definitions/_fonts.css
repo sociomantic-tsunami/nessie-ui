@@ -42,7 +42,9 @@
     --typo-6:  2rem;
     --typo-7:  2.4rem;
 
-    --line-height-s: 1.6rem;
-    --line-height-m: 2.4rem;
-    --line-height-l: 3.2rem;
+    --line-height-s:   1.6rem;
+    --line-height-m:   2.4rem;
+    --line-height-l:   3.2rem;
+    --line-height-xl:  4rem;
+    --line-height-xxl: 4.8rem;
 }

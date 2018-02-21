@@ -6,11 +6,13 @@
     max-width:          none;
     max-height:         50vh;
 
-    border:             0.1rem solid var( --PC-BLUE );
+    background:         var( --PC-BLUE );
+    box-shadow:         0 0.2rem 1rem 0 var( --PC-GREY--L75 );
 
-    padding:            1rem 0;
-
-    background:         var( --PC-WHITE );
+    padding-top:        var( --spacing-1 );
+    padding-right:      var( --spacing-2 );
+    padding-bottom:     var( --spacing-1 );
+    padding-left:       var( --spacing-2 );
 
     overflow-y:         auto;
 
