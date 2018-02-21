@@ -1,6 +1,6 @@
 {
   "name": "nessie-ui",
-  "version": "5.7.2",
+  "version": "5.7.3",
   "description": "Nessie React Components",
   "main": "dist",
   "scripts": {
@@ -102,7 +102,7 @@
     "karma-sinon-chai": "^1.2.3",
     "karma-sourcemap-loader": "^0.3.5",
     "karma-webpack": "^2.0.4",
-    "loch-ness": "^2.2.1",
+    "loch-ness": "^2.2.2",
     "lodash.isequal": "^4.5.0",
     "lolex": "^1.4.0",
     "markdown-loader": "^2.0.0",
