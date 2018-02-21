@@ -150,7 +150,7 @@
     },
     "NavBar" :
     {
-        "children" : "{<NavItem label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isDisabled/></NavItem><NavItem label='Campaigns' href='#'/><NavItem label='Account' href='#' isDisabled/>}"
+        "children" : "{<NavItem iconType='account' label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isCurrent/></NavItem><NavItem iconType='add' label='Campaigns' href='#'/><NavItem iconType='calendar' label='Account' href='#'/>}"
     },
     "NavDropdown" :
     {

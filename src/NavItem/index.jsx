@@ -2,6 +2,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
 import NavDropdown          from '../NavDropdown';
 import styles               from './navItem.css';
 
@@ -27,8 +28,8 @@ const NavItem = ( {
 {
     if ( typeof isCurrentPage !== 'undefined' )
     {
-        console.warn( `NavItem: isCurrentPage is deprecated and will be \
-removed in the next major release. Please use isCurrent instead.` );
+        console.warn( 'NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.' );
     }
 
     return (
@@ -41,7 +42,7 @@ removed in the next major release. Please use isCurrent instead.` );
                 dropdownAlign,
                 open        : isOpen,
                 fakeHovered : forceHover,
-                icon        : iconType
+                hasIcon     : iconType !== 'none'
             } }>
             <li
                 className   = { className }
@@ -52,7 +53,10 @@ removed in the next major release. Please use isCurrent instead.` );
                     href      = { href }
                     onClick   = { onClick }>
                     { ( iconType && iconType !== 'none' ) &&
-                        <div className  = { cssMap.icon } />
+                        <Icon
+                            className = { cssMap.icon }
+                            type = { iconType }
+                            size = "M" />
                     }
                     <span>{ label }</span>
                 </a>
@@ -91,11 +95,41 @@ NavItem.propTypes =
     /**
      *  Icon to show
      */
-    iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
+    iconType      : PropTypes.oneOf( [
+        'none',
+        'account',
+        'add',
+        'calendar',
+        'close',
+        'delete',
+        'down',
+        'download',
+        'duplicate',
+        'edit',
+        'info',
+        'inspect',
+        'left',
+        'link',
+        'preview',
+        'reset',
+        'right',
+        'search',
+        'up',
+        'upload',
+        'validation',
+        'alert',
+        'approved',
+        'declined',
+        'ended',
+        'error',
+        'pending',
+        'show',
+        'hide'
+    ] ),
     /*
     *  Item represents the current page and/or section
      */
-    isCurrent     : PropTypes.bool,
+    isCurrentPage : PropTypes.bool,
     /*
     *  Display as disabled/read-only
      */

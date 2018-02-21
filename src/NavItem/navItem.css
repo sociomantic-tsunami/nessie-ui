@@ -8,7 +8,8 @@
     margin-bottom:  0;
     background:     var( --PC-WHITE );
 
-    &:hover
+    &:hover,
+    &.current
     {
         background-color:  var(--PC-BLUE--L90 );
     }
@@ -23,11 +24,6 @@
         color:  color( var( --GS-2 ) a( 50% ) ) !important;
         cursor: default !important;
 
-        &::after
-        {
-            background: color( var( --GS-2 ) a( 50% ) ) !important;
-        }
-
         & > .icon
         {
             opacity:    0.5;
@@ -41,8 +37,6 @@
 {
     & > .link
     {
-        @extend %Nessie-SemiBold;
-
         padding:    var( --spacing-1 );
     }
 
@@ -56,18 +50,10 @@
         color:  var( --PC-BLUE );
     }
 
-    &.current > .link::after
+    &.fakeHovered,
+    &.open
     {
-        content:    '';
-        display:    block;
-
-        position:   absolute;
-        bottom:     0;
-
-        width:      100%;
-        height:     0.2rem;
-
-        background: var( --PC-BLUE );
+        background-color:  var(--PC-BLUE--L90 );
     }
 }
 
@@ -96,22 +82,21 @@
 
         line-height:       var( --line-height-xxl );
         color:             var( --PC-WHITE );
+
+        &:visited
+        {
+            color:         var( --PC-WHITE );
+        }
     }
 
     & > .link[href]:hover,
     & > .link[href]:focus,
     & > .link[href]:active,
     &.fakeHovered > .link,
-    &.open > .link
-    {
-        background-color:   var( --PC-BLUE--L25 );
-        border-color:       var( --PC-BLUE--L25 );
-    }
-
+    &.open > .link,
     &.current > .link
     {
-        @extend %Nessie-Bold;
-        border-color:   transparent;
+        background-color:   var( --PC-BLUE--L25 );
     }
 }
 
@@ -135,18 +120,25 @@
     text-decoration:    none !important;
     cursor:             text;
 
+    @extend %Nessie-SemiBold;
+
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );
     color:          var( --PC-GREY--L25 );
 
     &[href]
     {
-        cursor: pointer;
+        cursor:     pointer;
     }
 
     &:focus
     {
         outline:    none;
+    }
+
+    &:visited
+    {
+        color:      var( --PC-GREY--L25 );
     }
 }
 
@@ -157,7 +149,7 @@
     margin-top: -0.2rem;
 }
 
-.icon__account
+.hasIcon
 {
     & > .link
     {
@@ -165,16 +157,12 @@
         padding-right:  var( --spacing-3 );
         padding-bottom: 1.5rem;
         padding-left:   var( --spacing-3 );
-
-        &::after
-        {
-            display:    none !important;
-        }
     }
 
     & > .link > .icon
     {
-        display:    block;
+        margin:        auto;
+        margin-bottom: 0.4rem;
     }
 
     & > .link[href]:hover > .icon,
@@ -184,21 +172,12 @@
     &.fakeHovered > .link > .icon,
     &.current > .link > .icon
     {
-        background: url( ./svg/account__hover.svg);
+        fill: var( --PC-BLUE );
     }
 
     & > .link > .icon,
     &.disabled > .link > .icon
     {
-        background: url( ./svg/account.svg);
+        fill: var( --PC-GREY--L25 );
     }
-}
-
-.icon
-{
-    display:       none;
-    width:         var( --spacing-3 );
-    height:        var( --spacing-3 );
-    margin:        auto;
-    margin-bottom: 0.4rem;
 }
