@@ -33,14 +33,10 @@
 {
     align-items:    center;
 
-    & > *
-    {
-        margin-bottom:  0;
-    }
-
     .label
     {
-        max-width:  50%;
+        max-width:      50%;
+        margin-bottom:  0;
     }
 }
 
