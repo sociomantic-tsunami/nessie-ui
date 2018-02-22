@@ -6,13 +6,12 @@
     .editor
     {
         box-sizing: border-box;
-        border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
         .fakeHovered&
         {
-          /* browser default focus style*/
-          outline: auto 0.2rem Highlight;
-          outline: auto 0.5rem -webkit-focus-ring-color;
+            /* browser default focus style */
+            outline: auto 0.2rem highlight;
+            outline: auto 0.5rem -webkit-focus-ring-color;
         }
     }
 }
@@ -21,7 +20,7 @@
 {
     .editor
     {
-        border-color:   var( --PC-RED ) !important;
+        /* style me! */
     }
 }
 
@@ -29,10 +28,7 @@
 {
     .editor
     {
-        border-color:   var( --GS-10 ) !important;
-
-        background:     var( --GS-10 ) !important;
-        color:          color( var( --GS-2 ) a( 50% ) ) !important;
+        /* style me! */
     }
 }
 
@@ -51,12 +47,13 @@
         line-height:    initial;
 
         font-family:    monospace, sans-serif;
-        font-size:      1.1rem;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
     }
 
     .CodeMirror-sizer
     {
-        margin-left:        0 !important;
+        margin-left:    0 !important;
     }
 
     .CodeMirror-gutters
@@ -68,7 +65,7 @@
 
     .CodeMirror-gutter-wrapper
     {
-        left:               0 !important;
+        left:   0 !important;
     }
 
     .CodeMirror-linenumber

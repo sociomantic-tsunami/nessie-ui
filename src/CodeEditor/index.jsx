@@ -266,8 +266,7 @@ export default class CodeEditor extends Component
                 cssProps = { {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
-                    fakeHovered : !isDisabled && !hasError &&
-                                  ( forceHover || isFocused )
+                    fakeHovered : !isDisabled && ( forceHover || isFocused )
                 } }>
                 <InputContainer { ...props } className = { className }>
                     <div
