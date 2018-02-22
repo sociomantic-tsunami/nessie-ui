@@ -82,6 +82,11 @@
             color:          var( --PC-GREY--D5 );
             opacity:        0.5;
         }
+
+        &.multipleTag
+        {
+            background:         var( --PC-WHITE );
+        }
     }
 
 
