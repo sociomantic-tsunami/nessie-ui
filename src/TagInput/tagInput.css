@@ -13,28 +13,30 @@
         width:              100%;
         min-height:         3.2rem;
 
-        border:             0.1rem solid color( var( --GS-2 ) a( 50% ) );
+        border:             0.1rem solid var( --PC-GREY--L70 );
+        border-radius:      0.2rem;
 
-        padding-top:        0.5rem;
-        padding-right:      0.5rem;
+        padding-top:        var( --spacing-1 );
+        padding-right:      var( --spacing-1 );
         padding-bottom:     0;
-        padding-left:       0.5rem;
+        padding-left:       var( --spacing-1 );
 
         background-color:   var( --PC-WHITE );
         outline:            none;
-        color:              var( --GS-2 );
+        color:              var( --PC-GREY--D5 );
 
         overflow-x:         hidden;
 
         &:hover
         {
             border-color:   var( --PC-BLUE );
+            box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
         }
 
         & > *
         {
+            margin-right:   var( --spacing-1 );
             margin-bottom:  var( --spacing-1 );
-            margin-right:   0.5rem;
         }
     }
 
@@ -55,8 +57,10 @@
 
         background:     transparent;
 
-        font:           inherit;
-        line-height:    inherit;
+        @extend         %Nessie-Regular;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.04rem;
         text-indent:    0.5rem;
 
         &:focus
@@ -71,7 +75,8 @@
 
         &::placeholder
         {
-            color:  color( var( --GS-2 ) a( 50% ) );
+            @extend %Nessie-RegularIt;
+            color:         var( --PC-GREY--L80 );
         }
     }
 }
@@ -91,13 +96,10 @@
     .container
     {
         pointer-events: none;
-        background:     var( --GS-10 );
-        color:          color( var( --GS-2 ) a( 50% ) );
-        border-color:   var( --GS-10 );
 
         &:hover
         {
-            border-color:   var( --GS-10 );
+            border-color:   ( --PC-GREY--L70 );
         }
     }
 }
@@ -108,6 +110,7 @@
     .container
     {
         border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+        box-shadow:     0 0 0 0.1rem var( --PC-RED );
     }
 }
 
