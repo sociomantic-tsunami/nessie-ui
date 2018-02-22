@@ -14,9 +14,11 @@ const withDropdown = Component =>
         dropdownIsOpen,
         dropdownPosition,
         dropdownProps,
+        wrapperRef,
         ...componentProps
     } ) => (
         <div
+            ref       = { wrapperRef }
             className = { buildClassName( '', cssMap, {
                 open     : dropdownIsOpen,
                 position : dropdownPosition,
@@ -40,6 +42,10 @@ const withDropdown = Component =>
          *  Props to pass directly to the Dropdown component
          */
         dropdownProps    : PropTypes.objectOf( PropTypes.any ),
+        /**
+         *  Callback function that receives a ref to the outer wrapper div
+         */
+        wrapperRef       : PropTypes.func,
     };
 
     WithDropdown.defaultProps = {
@@ -48,6 +54,7 @@ const withDropdown = Component =>
         dropdownIsOpen   : false,
         dropdownPosition : 'bottom',
         dropdownProps    : undefined,
+        wrapperRef       : undefined,
     };
 
     WithDropdown.displayName = buildDisplayName( WithDropdown, Component );
