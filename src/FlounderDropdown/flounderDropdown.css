@@ -551,7 +551,6 @@
         margin-left:    calc( -1 * ( var( --borderWidth ) + var( --spacing-2 ) ) );
     }
 
-
     .main,
     .main:hover,
     &.fakeHovered .main,
@@ -563,7 +562,6 @@
         box-shadow:     none;
     }
 
-
     .main
     {
         display:            flex;
@@ -571,21 +569,7 @@
         align-items:        center;
     }
 
-    &.error
-    {
-        .arrow .arrowInner,
-        .main:focus .arrow .arrowInner
-        {
-            background-image:   url( './images/control/down__hover.svg' );
-        }
-
-        .open .arrow .arrowInner
-        {
-            background-image:   url( './images/up--red.svg' );
-        }
-    }
-
-    .main .selectedDisplayed
+    &:not( .error ) .main .selectedDisplayed
     {
         color:  var( --PC-BLUE );
     }
@@ -600,16 +584,14 @@
     .arrow
     {
         position:   relative;
-
         top:        auto;
         right:      auto;
-
         transform:  none;
+    }
 
-        .arrowInner
-        {
-            background-image:   url( './images/control/down__hover.svg' ); /* always blue */
-        }
+    .arrowInner
+    {
+        background-image:   url( './images/control/down__hover.svg' );
     }
 }
 
@@ -713,13 +695,17 @@
     .main,
     .main:hover,
     .main:focus,
-    .open .main,
-    .open .main:hover,
-    .open .main:focus
+    .mainWrapper.open .main,
+    .mainWrapper.open .main:hover,
+    .mainWrapper.open .main:focus
     {
         border-color:    var( --PC-RED );
         box-shadow:      0 0 0 0.1rem var( --PC-RED );
-        color:           var( --PC-RED );
+
+        .selectedDisplayed
+        {
+            color:           var( --PC-RED );
+        }
     }
 
     .main .arrowInner,
@@ -728,8 +714,8 @@
          background-image:  url( './images/down--red.svg' );
     }
 
-    .open .main .arrowInner,
-    .open .main:focus .arrowInner
+    .mainWrapper.open .main .arrowInner,
+    .mainWrapper.open .main:focus .arrowInner
     {
          background-image:  url( './images/up--red.svg' );
     }
@@ -740,9 +726,9 @@
 {
     .main:hover,
     .main:focus,
-    .open .main,
+    .mainWrapper.open .main,
     &.fakeHovered .main,
-    &.fakeHovered .open .main
+    &.fakeHovered .mainWrapper.open .main
     {
         .arrowInner
         {
