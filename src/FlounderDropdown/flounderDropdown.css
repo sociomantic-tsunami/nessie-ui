@@ -193,6 +193,11 @@
     background:             var( --PC-GREY--L90 );
     color:                  var( --PC-GREY--L40 );
 
+    &.multipleTag
+    {
+        background:         var( --PC-WHITE );
+    }
+
     &:focus
     {
         border-color:       var( --PC-GREY--L70 );
