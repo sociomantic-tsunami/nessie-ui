@@ -6,8 +6,7 @@
     {
         display:            flex;
         flex-wrap:          wrap;
-        align-content:      flex-start;
-        align-items:        flex-start;
+        align-items:        center;
 
         box-sizing:         border-box;
         width:              100%;
@@ -23,7 +22,6 @@
 
         background-color:   var( --PC-WHITE );
         outline:            none;
-        color:              var( --PC-GREY--D5 );
 
         overflow-x:         hidden;
 
@@ -52,8 +50,7 @@
         padding-top:    0.1rem;
 
         border:         none;
-        margin:         0;
-        margin-bottom:  var( --spacing-1 );
+        margin-right:   0;
 
         background:     transparent;
 
@@ -62,6 +59,7 @@
         line-height:    var( --line-height-m );
         letter-spacing: 0.04rem;
         text-indent:    0.5rem;
+        color:          var( --PC-GREY--D5 );
 
         &:focus
         {
