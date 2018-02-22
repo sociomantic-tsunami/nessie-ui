@@ -6,11 +6,13 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import InputContainer       from '../proto/InputContainer';
 
+
 import 'codemirror/mode/jsx/jsx';
 
 const defaultOptions = {
     lineNumbers  : true,
-    lineWrapping : true
+    lineWrapping : true,
+    theme        : 'monokai'
 };
 
 export default class CodeEditor extends Component
@@ -147,7 +149,7 @@ export default class CodeEditor extends Component
         codeMirror.setValue( defaultValue || value );
 
         codeMirror.on( 'change', this.handleChange );
-        codeMirror.on( 'cursorActivity', this.handleCursorActivity);
+        codeMirror.on( 'cursorActivity', this.handleCursorActivity );
         codeMirror.on( 'focus', this.handleFocus );
         codeMirror.on( 'blur', this.handleBlur );
 
@@ -264,8 +266,7 @@ export default class CodeEditor extends Component
                 cssProps = { {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
-                    fakeHovered : !isDisabled && !hasError &&
-                                  ( forceHover || isFocused )
+                    fakeHovered : !isDisabled && ( forceHover || isFocused )
                 } }>
                 <InputContainer { ...props } className = { className }>
                     <div
