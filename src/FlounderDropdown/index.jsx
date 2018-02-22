@@ -175,7 +175,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
         if ( iconClass )
         {
             extraClass = datum.extraClass ?
-                `${datum.extraClass}  ${iconClass}` : datum.iconClass;
+                `${datum.extraClass}  ${iconClass}` : iconClass;
         }
 
         return {
