@@ -456,7 +456,7 @@ var _DateTimeInput = __webpack_require__(68);
 
 var _DateTimeInput2 = _interopRequireDefault(_DateTimeInput);
 
-var _TextInputWithIcon = __webpack_require__(30);
+var _TextInputWithIcon = __webpack_require__(32);
 
 var _TextInputWithIcon2 = _interopRequireDefault(_TextInputWithIcon);
 
@@ -464,11 +464,11 @@ var _Animate2 = __webpack_require__(61);
 
 var _Animate3 = _interopRequireDefault(_Animate2);
 
-var _Button2 = __webpack_require__(32);
+var _Button2 = __webpack_require__(34);
 
 var _Button3 = _interopRequireDefault(_Button2);
 
-var _ButtonRadio2 = __webpack_require__(33);
+var _ButtonRadio2 = __webpack_require__(35);
 
 var _ButtonRadio3 = _interopRequireDefault(_ButtonRadio2);
 
@@ -480,7 +480,7 @@ var _CheckableGroup2 = __webpack_require__(19);
 
 var _CheckableGroup3 = _interopRequireDefault(_CheckableGroup2);
 
-var _Checkbox2 = __webpack_require__(34);
+var _Checkbox2 = __webpack_require__(36);
 
 var _Checkbox3 = _interopRequireDefault(_Checkbox2);
 
@@ -492,7 +492,7 @@ var _CodeEditor2 = __webpack_require__(65);
 
 var _CodeEditor3 = _interopRequireDefault(_CodeEditor2);
 
-var _Column2 = __webpack_require__(35);
+var _Column2 = __webpack_require__(37);
 
 var _Column3 = _interopRequireDefault(_Column2);
 
@@ -516,7 +516,7 @@ var _DragNDrop2 = __webpack_require__(71);
 
 var _DragNDrop3 = _interopRequireDefault(_DragNDrop2);
 
-var _Fieldset2 = __webpack_require__(36);
+var _Fieldset2 = __webpack_require__(38);
 
 var _Fieldset3 = _interopRequireDefault(_Fieldset2);
 
@@ -580,7 +580,7 @@ var _NavBar2 = __webpack_require__(83);
 
 var _NavBar3 = _interopRequireDefault(_NavBar2);
 
-var _NavDropdown2 = __webpack_require__(37);
+var _NavDropdown2 = __webpack_require__(39);
 
 var _NavDropdown3 = _interopRequireDefault(_NavDropdown2);
 
@@ -644,11 +644,11 @@ var _RadioGroup2 = __webpack_require__(99);
 
 var _RadioGroup3 = _interopRequireDefault(_RadioGroup2);
 
-var _Required2 = __webpack_require__(38);
+var _Required2 = __webpack_require__(40);
 
 var _Required3 = _interopRequireDefault(_Required2);
 
-var _Row2 = __webpack_require__(39);
+var _Row2 = __webpack_require__(41);
 
 var _Row3 = _interopRequireDefault(_Row2);
 
@@ -656,7 +656,7 @@ var _Section2 = __webpack_require__(103);
 
 var _Section3 = _interopRequireDefault(_Section2);
 
-var _Slider2 = __webpack_require__(40);
+var _Slider2 = __webpack_require__(42);
 
 var _Slider3 = _interopRequireDefault(_Slider2);
 
@@ -668,7 +668,7 @@ var _ScrollBox2 = __webpack_require__(101);
 
 var _ScrollBox3 = _interopRequireDefault(_ScrollBox2);
 
-var _Sorter2 = __webpack_require__(41);
+var _Sorter2 = __webpack_require__(43);
 
 var _Sorter3 = _interopRequireDefault(_Sorter2);
 
@@ -692,7 +692,7 @@ var _Tab2 = __webpack_require__(109);
 
 var _Tab3 = _interopRequireDefault(_Tab2);
 
-var _TabButton2 = __webpack_require__(42);
+var _TabButton2 = __webpack_require__(44);
 
 var _TabButton3 = _interopRequireDefault(_TabButton2);
 
@@ -700,11 +700,11 @@ var _Table2 = __webpack_require__(110);
 
 var _Table3 = _interopRequireDefault(_Table2);
 
-var _TableCell2 = __webpack_require__(43);
+var _TableCell2 = __webpack_require__(29);
 
 var _TableCell3 = _interopRequireDefault(_TableCell2);
 
-var _TableRow2 = __webpack_require__(44);
+var _TableRow2 = __webpack_require__(30);
 
 var _TableRow3 = _interopRequireDefault(_TableRow2);
 
@@ -14419,7 +14419,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _Fieldset = __webpack_require__(36);
+var _Fieldset = __webpack_require__(38);
 
 var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
@@ -15196,8 +15196,255 @@ Radio.defaultProps = {
 exports.default = Radio;
 
 /***/ }),
-/* 29 */,
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Column = __webpack_require__(37);
+
+var _Column2 = _interopRequireDefault(_Column);
+
+var _Sorter = __webpack_require__(43);
+
+var _Sorter2 = _interopRequireDefault(_Sorter);
+
+var _Text = __webpack_require__(5);
+
+var _Text2 = _interopRequireDefault(_Text);
+
+var _utils = __webpack_require__(4);
+
+var _tableCell = __webpack_require__(186);
+
+var _tableCell2 = _interopRequireDefault(_tableCell);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TableCell = function TableCell(_ref) {
+    var align = _ref.align,
+        children = _ref.children,
+        className = _ref.className,
+        columnTitle = _ref.columnTitle,
+        cssMap = _ref.cssMap,
+        isHeader = _ref.isHeader,
+        isRowHeader = _ref.isRowHeader,
+        isSortable = _ref.isSortable,
+        isSticky = _ref.isSticky,
+        onToggle = _ref.onToggle,
+        size = _ref.size,
+        sort = _ref.sort,
+        verticalAlign = _ref.verticalAlign;
+
+    var contentNode = typeof children === 'string' ? _react2.default.createElement(
+        _Text2.default,
+        null,
+        children
+    ) : children;
+
+    if (isHeader && isSortable) {
+        contentNode = _react2.default.createElement(
+            _Sorter2.default,
+            { sort: sort, onToggle: onToggle },
+            contentNode
+        );
+    }
+
+    return _react2.default.createElement(
+        _Column2.default,
+        {
+            className: (0, _utils.buildClassName)(className, cssMap, {
+                header: isHeader,
+                rowHeader: isRowHeader,
+                sticky: isSticky
+            }),
+            size: size,
+            role: isHeader ? 'columnheader' : 'gridcell',
+            columnTitle: columnTitle,
+            align: align,
+            verticalAlign: verticalAlign },
+        contentNode
+    );
+};
+TableCell.propTypes = {
+    /**
+     *  Horizontal alignment of content (“auto” makes all items 100% width)
+     */
+    align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
+    /**
+     *  Cell content
+     */
+    children: _propTypes2.default.node,
+    /**
+     *  Title of the column this cell in
+     */
+    columnTitle: _propTypes2.default.string,
+    /**
+     *  Display as a header cell
+     */
+    isHeader: _propTypes2.default.bool,
+    /**
+     *  Display as a row header cell
+     */
+    isRowHeader: _propTypes2.default.bool,
+    /**
+     *  Show a Sorter in header cell
+     */
+    isSortable: _propTypes2.default.bool,
+    /**
+     *  Makes the cell sticky
+     */
+    isSticky: _propTypes2.default.bool,
+    /**
+     *  Sorter onToggle callback function: ( e ) => { ... }
+     */
+    onToggle: _propTypes2.default.func,
+    /**
+     *  Size of the cell
+     */
+    size: _propTypes2.default.oneOf(['icon-S', 'icon-M', 'icon-L', 'icon-XL', 'icon-XXL', '1/1', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
+    /* eslint-disable max-len */
+    '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/16', '2/16', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24', 'content'
+    /* eslint-enable max-len */
+    ]),
+    /**
+     *  Sort direction
+     */
+    sort: _propTypes2.default.oneOf(['asc', 'desc', 'none']),
+    /**
+     *  Vertical alignment of content (“auto” is equivalent to “top”)
+     */
+    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom'])
+
+};
+
+TableCell.defaultProps = {
+    align: undefined,
+    children: undefined,
+    cssMap: _tableCell2.default,
+    isHeader: false,
+    isRowHeader: false,
+    isSortable: false,
+    isSticky: false,
+    size: undefined,
+    sort: 'none',
+    verticalAlign: undefined
+};
+
+exports.default = TableCell;
+
+/***/ }),
 /* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Row = __webpack_require__(41);
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _utils = __webpack_require__(4);
+
+var _tableRow = __webpack_require__(187);
+
+var _tableRow2 = _interopRequireDefault(_tableRow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TableRow = function TableRow(_ref) {
+    var align = _ref.align,
+        children = _ref.children,
+        className = _ref.className,
+        cssMap = _ref.cssMap,
+        gutters = _ref.gutters,
+        isSticky = _ref.isSticky,
+        verticalAlign = _ref.verticalAlign;
+
+    var cells = _react2.default.Children.toArray(children).map(function (cell) {
+        return _react2.default.cloneElement(cell, {
+            align: cell.props.align || align,
+            verticalAlign: cell.props.verticalAlign || verticalAlign
+        });
+    });
+
+    return _react2.default.createElement(
+        _Row2.default,
+        {
+            className: (0, _utils.buildClassName)(className, cssMap, {
+                sticky: isSticky
+            }),
+            role: 'row',
+            gutters: gutters,
+            spacing: 'none' },
+        cells
+    );
+};
+
+TableRow.propTypes = {
+    /**
+     *  Globally sets cell horizonal alignment
+     *  for this row (individual cell alignment will override)
+     */
+    align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
+    /**
+     *  Row content (TableCells)
+     */
+    children: _propTypes2.default.node,
+    /**
+     *  Gutter size
+     */
+    gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
+    /**
+     *  Makes the row sticky
+     */
+    isSticky: _propTypes2.default.bool,
+    /**
+     *  Globally sets cell vertical alignment
+     *  for this row (individual cell alignment will overrides)
+     */
+    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom'])
+};
+
+TableRow.defaultProps = {
+    align: undefined,
+    children: undefined,
+    cssMap: _tableRow2.default,
+    gutters: undefined,
+    isSticky: false,
+    verticalAlign: undefined
+};
+
+exports.default = TableRow;
+
+/***/ }),
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15644,7 +15891,7 @@ TextInputWithIcon.defaultProps = {
 exports.default = TextInputWithIcon;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15873,7 +16120,7 @@ var setDefaultOption = exports.setDefaultOption = defaults.setDefaultOption;
 exports.default = defaults;
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16121,7 +16368,7 @@ Button.defaultProps = {
 exports.default = Button;
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16288,7 +16535,7 @@ ButtonRadio.defaultProps = {
 exports.default = ButtonRadio;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16388,7 +16635,7 @@ Checkbox.defaultProps = {
 exports.default = Checkbox;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16478,7 +16725,7 @@ Column.defaultProps = {
 exports.default = Column;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16602,7 +16849,7 @@ Fieldset.defaultProps = {
 exports.default = Fieldset;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16666,7 +16913,7 @@ NavDropdown.defaultProps = {
 exports.default = NavDropdown;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16728,7 +16975,7 @@ Required.defaultProps = {
 exports.default = Required;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16829,7 +17076,7 @@ Row.defaultProps = {
 exports.default = Row;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17462,7 +17709,7 @@ Slider.defaultProps = {
 exports.default = Slider;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17611,7 +17858,7 @@ Sorter.defaultProps = {
 exports.default = Sorter;
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17715,255 +17962,6 @@ TabButton.defaultProps = {
 };
 
 exports.default = TabButton;
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Css = __webpack_require__(2);
-
-var _Css2 = _interopRequireDefault(_Css);
-
-var _Column = __webpack_require__(35);
-
-var _Column2 = _interopRequireDefault(_Column);
-
-var _Text = __webpack_require__(5);
-
-var _Text2 = _interopRequireDefault(_Text);
-
-var _Sorter = __webpack_require__(41);
-
-var _Sorter2 = _interopRequireDefault(_Sorter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var TableCell = function TableCell(_ref) {
-    var align = _ref.align,
-        children = _ref.children,
-        className = _ref.className,
-        columnTitle = _ref.columnTitle,
-        cssMap = _ref.cssMap,
-        isHeader = _ref.isHeader,
-        isRowHeader = _ref.isRowHeader,
-        isSortable = _ref.isSortable,
-        isSticky = _ref.isSticky,
-        onToggle = _ref.onToggle,
-        size = _ref.size,
-        sort = _ref.sort,
-        verticalAlign = _ref.verticalAlign;
-
-    var contentNode = typeof children === 'string' ? _react2.default.createElement(
-        _Text2.default,
-        null,
-        children
-    ) : children;
-
-    if (isHeader && isSortable) {
-        contentNode = _react2.default.createElement(
-            _Sorter2.default,
-            { sort: sort, onToggle: onToggle },
-            contentNode
-        );
-    }
-
-    return _react2.default.createElement(
-        _Css2.default,
-        {
-            cssMap: cssMap,
-            cssProps: {
-                header: isHeader,
-                rowHeader: isRowHeader,
-                sticky: isSticky
-            } },
-        _react2.default.createElement(
-            _Column2.default,
-            {
-                className: className,
-                size: size,
-                role: isHeader ? 'columnheader' : 'gridcell',
-                columnTitle: columnTitle,
-                align: align,
-                verticalAlign: verticalAlign },
-            contentNode
-        )
-    );
-};
-TableCell.propTypes = {
-    /**
-     *  Title of the column this cell in
-     */
-    columnTitle: _propTypes2.default.string,
-    /**
-     *  Display as a header cell
-     */
-    isHeader: _propTypes2.default.bool,
-    /**
-     *  Display as a row header cell
-     */
-    isRowHeader: _propTypes2.default.bool,
-    /**
-     *  Show a Sorter in header cell
-     */
-    isSortable: _propTypes2.default.bool,
-    /**
-     *  Makes the cell sticky
-     */
-    isSticky: _propTypes2.default.bool,
-    /**
-     *  Sort direction
-     */
-    sort: _propTypes2.default.oneOf(['asc', 'desc', 'none']),
-
-    /**
-     *  Size of the cell
-     */
-    size: _propTypes2.default.oneOf(['icon-S', 'icon-M', 'icon-L', 'icon-XL', 'icon-XXL', '1/1', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
-    /* eslint-disable max-len */
-    '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/17', '2/17', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24', 'content'
-    /* eslint-enable max-len */
-    ]),
-    /**
-     *  Horizontal alignment of content (“auto” makes all items 100% width)
-     */
-    align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
-    /**
-     *  Vertical alignment of content (“auto” is equivalent to “top”)
-     */
-    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom']),
-    /**
-     *  Cell content
-     */
-    children: _propTypes2.default.node,
-    /**
-     *  Sorter onToggle callback function: ( e ) => { ... }
-     */
-    onToggle: _propTypes2.default.func
-};
-
-TableCell.defaultProps = {
-    isHeader: false,
-    isRowHeader: false,
-    isSortable: false,
-    isSticky: false,
-    cssMap: __webpack_require__(186)
-};
-
-exports.default = TableCell;
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Css = __webpack_require__(2);
-
-var _Css2 = _interopRequireDefault(_Css);
-
-var _Row = __webpack_require__(39);
-
-var _Row2 = _interopRequireDefault(_Row);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var TableRow = function TableRow(_ref) {
-    var align = _ref.align,
-        children = _ref.children,
-        className = _ref.className,
-        cssMap = _ref.cssMap,
-        gutters = _ref.gutters,
-        isSticky = _ref.isSticky,
-        verticalAlign = _ref.verticalAlign;
-
-    var cells = _react2.default.Children.toArray(children).map(function (cell) {
-        return _react2.default.cloneElement(cell, {
-            align: align || cell.props.align,
-            verticalAlign: verticalAlign || cell.props.verticalAlign
-        });
-    });
-
-    return _react2.default.createElement(
-        _Css2.default,
-        {
-            cssMap: cssMap,
-            cssProps: {
-                sticky: isSticky
-            } },
-        _react2.default.createElement(
-            _Row2.default,
-            {
-                className: className,
-                role: 'row',
-                gutters: gutters,
-                spacing: 'none' },
-            cells
-        )
-    );
-};
-
-TableRow.propTypes = {
-    /**
-     *  Globally sets cell horizonal alignment
-     *  for this row (individual cell alignment will override)
-     */
-    align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
-    /**
-     *  Globally sets cell vertical alignment
-     *  for this row (individual cell alignment will overrides)
-     */
-    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom']),
-    /**
-     *  Gutter size
-     */
-    gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
-    /**
-     *  Makes the row sticky
-     */
-    isSticky: _propTypes2.default.bool,
-    /**
-     *  Row content (TableCells)
-     */
-    children: _propTypes2.default.node
-};
-
-TableRow.defaultProps = {
-    align: 'auto',
-    verticalAlign: 'auto',
-    gutters: 'L',
-    isSticky: false,
-    cssMap: __webpack_require__(187)
-};
-
-exports.default = TableRow;
 
 /***/ }),
 /* 45 */
@@ -19705,11 +19703,13 @@ var withDropdown = function withDropdown(Component) {
             dropdownIsOpen = _ref.dropdownIsOpen,
             dropdownPosition = _ref.dropdownPosition,
             dropdownProps = _ref.dropdownProps,
-            componentProps = _objectWithoutProperties(_ref, ['cssMap', 'dropdownIsOpen', 'dropdownPosition', 'dropdownProps']);
+            wrapperRef = _ref.wrapperRef,
+            componentProps = _objectWithoutProperties(_ref, ['cssMap', 'dropdownIsOpen', 'dropdownPosition', 'dropdownProps', 'wrapperRef']);
 
         return _react2.default.createElement(
             'div',
             {
+                ref: wrapperRef,
                 className: (0, _utils.buildClassName)('', cssMap, {
                     open: dropdownIsOpen,
                     position: dropdownPosition
@@ -19731,14 +19731,19 @@ var withDropdown = function withDropdown(Component) {
         /**
          *  Props to pass directly to the Dropdown component
          */
-        dropdownProps: _propTypes2.default.objectOf(_propTypes2.default.any)
+        dropdownProps: _propTypes2.default.objectOf(_propTypes2.default.any),
+        /**
+         *  Callback function that receives a ref to the outer wrapper div
+         */
+        wrapperRef: _propTypes2.default.func
     });
 
     WithDropdown.defaultProps = _extends({}, Component.defaultProps, {
         cssMap: _withDropdown2.default,
         dropdownIsOpen: false,
         dropdownPosition: 'bottom',
-        dropdownProps: undefined
+        dropdownProps: undefined,
+        wrapperRef: undefined
     });
 
     WithDropdown.displayName = (0, _utils.buildDisplayName)(WithDropdown, Component);
@@ -20377,7 +20382,7 @@ var _CheckableGroup = __webpack_require__(19);
 
 var _CheckableGroup2 = _interopRequireDefault(_CheckableGroup);
 
-var _ButtonRadio = __webpack_require__(33);
+var _ButtonRadio = __webpack_require__(35);
 
 var _ButtonRadio2 = _interopRequireDefault(_ButtonRadio);
 
@@ -20552,7 +20557,7 @@ var _CheckableGroup = __webpack_require__(19);
 
 var _CheckableGroup2 = _interopRequireDefault(_CheckableGroup);
 
-var _Checkbox = __webpack_require__(34);
+var _Checkbox = __webpack_require__(36);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
@@ -20988,7 +20993,7 @@ var _ListBox = __webpack_require__(235);
 
 var _ListBox2 = _interopRequireDefault(_ListBox);
 
-var _TextInputWithIcon = __webpack_require__(30);
+var _TextInputWithIcon = __webpack_require__(32);
 
 var _TextInputWithIcon2 = _interopRequireDefault(_TextInputWithIcon);
 
@@ -21013,19 +21018,34 @@ var InputWithDropdown = (0, _withDropdown2.default)(_TextInputWithIcon2.default)
 var ComboBox = function (_Component) {
     _inherits(ComboBox, _Component);
 
-    function ComboBox() {
+    function ComboBox(props) {
         _classCallCheck(this, ComboBox);
 
         var _this = _possibleConstructorReturn(this, (ComboBox.__proto__ || Object.getPrototypeOf(ComboBox)).call(this));
 
+        var dropdownPosition = props.dropdownPosition !== 'auto' ? props.dropdownPosition : 'bottom';
+
+        _this.state = { dropdownPosition: dropdownPosition };
+
         _this.handleClickOption = _this.handleClickOption.bind(_this);
         _this.handleMouseOutOption = _this.handleMouseOutOption.bind(_this);
         _this.handleMouseOverOption = _this.handleMouseOverOption.bind(_this);
-        _this.setRef = _this.setRef.bind(_this);
+        _this.setScrollBoxRef = _this.setScrollBoxRef(_this);
+        _this.setWrapperRef = _this.setWrapperRef.bind(_this);
         return _this;
     }
 
     _createClass(ComboBox, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setDropdownPosition();
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(newProps) {
+            this.setDropdownPosition(newProps);
+        }
+    }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             var scrollBox = this.scrollBox;
@@ -21054,11 +21074,46 @@ var ComboBox = function (_Component) {
             }
         }
     }, {
-        key: 'setRef',
-        value: function setRef(ref) {
+        key: 'setScrollBoxRef',
+        value: function setScrollBoxRef(ref) {
             if (ref) {
                 this.scrollBox = ref;
             }
+        }
+    }, {
+        key: 'setWrapperRef',
+        value: function setWrapperRef(ref) {
+            if (ref) {
+                this.wrapperRef = ref;
+            }
+        }
+    }, {
+        key: 'setDropdownPosition',
+        value: function setDropdownPosition() {
+            var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+
+            var dropdownPosition = props.dropdownPosition;
+
+            if (props.dropdownPosition === 'auto') {
+                var wrapperRef = this.wrapperRef;
+
+
+                if (wrapperRef) {
+                    var scrollParent = (0, _utils2.getScrollParent)(wrapperRef);
+                    var wrapperBox = wrapperRef.getBoundingClientRect();
+                    var parentBox = scrollParent.getBoundingClientRect();
+                    var height = parentBox.height;
+
+
+                    var offset = wrapperBox.top - parentBox.top - scrollParent.scrollTop;
+
+                    dropdownPosition = offset > height / 2 ? 'top' : 'bottom';
+                } else {
+                    dropdownPosition = 'bottom';
+                }
+            }
+
+            this.setState({ dropdownPosition: dropdownPosition });
         }
     }, {
         key: 'handleClickOption',
@@ -21104,6 +21159,7 @@ var ComboBox = function (_Component) {
                 hasError = _props5.hasError,
                 iconType = _props5.iconType,
                 id = _props5.id,
+                inputPlaceholder = _props5.inputPlaceholder,
                 inputRef = _props5.inputRef,
                 inputType = _props5.inputType,
                 inputValue = _props5.inputValue,
@@ -21124,8 +21180,8 @@ var ComboBox = function (_Component) {
                 onScroll = _props5.onScroll,
                 _props5$options = _props5.options,
                 options = _props5$options === undefined ? [] : _props5$options,
-                inputPlaceholder = _props5.inputPlaceholder,
                 selection = _props5.selection;
+            var dropdownPosition = this.state.dropdownPosition;
 
 
             var dropdownContent = void 0;
@@ -21137,7 +21193,7 @@ var ComboBox = function (_Component) {
                         height: '50vh',
                         onScroll: onScroll,
                         scroll: 'vertical',
-                        scrollBoxRef: this.setRef },
+                        scrollBoxRef: this.setScrollBoxRef },
                     _react2.default.createElement(
                         _ListBox2.default,
                         {
@@ -21178,6 +21234,7 @@ var ComboBox = function (_Component) {
                 isDisabled: isDisabled,
                 isReadOnly: inputIsReadOnly,
                 dropdownIsOpen: isOpen,
+                dropdownPosition: dropdownPosition,
                 dropdownProps: {
                     children: dropdownContent,
                     hasError: hasError,
@@ -21194,7 +21251,8 @@ var ComboBox = function (_Component) {
                 onMouseOut: onMouseOut,
                 onMouseOver: onMouseOver,
                 placeholder: inputPlaceholder,
-                value: inputValue });
+                value: inputValue,
+                wrapperRef: this.setWrapperRef });
         }
     }]);
 
@@ -21210,6 +21268,10 @@ ComboBox.propTypes = {
      * Placeholder text to show when no dropdown list options
      */
     dropdownPlaceholder: _propTypes2.default.string,
+    /**
+     * Position of the dropdown relative to the text input
+     */
+    dropdownPosition: _propTypes2.default.oneOf(['top', 'bottom', 'auto']),
     /**
      * Display as hover when required from another component
      */
@@ -21330,6 +21392,7 @@ ComboBox.propTypes = {
 ComboBox.defaultProps = {
     activeOption: undefined,
     dropdownPlaceholder: undefined,
+    dropdownPosition: 'auto',
     forceHover: false,
     inputPlaceholder: undefined,
     hasAutocomplete: false,
@@ -21525,7 +21588,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _index = __webpack_require__(6);
 
-var _TextInputWithIcon = __webpack_require__(30);
+var _TextInputWithIcon = __webpack_require__(32);
 
 var _TextInputWithIcon2 = _interopRequireDefault(_TextInputWithIcon);
 
@@ -23467,7 +23530,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _NavDropdown = __webpack_require__(37);
+var _NavDropdown = __webpack_require__(39);
 
 var _NavDropdown2 = _interopRequireDefault(_NavDropdown);
 
@@ -25135,7 +25198,7 @@ var _Css = __webpack_require__(2);
 
 var _Css2 = _interopRequireDefault(_Css);
 
-var _Slider = __webpack_require__(40);
+var _Slider = __webpack_require__(42);
 
 var _Slider2 = _interopRequireDefault(_Slider);
 
@@ -25344,7 +25407,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _sprite = __webpack_require__(238);
+var _sprite = __webpack_require__(239);
 
 var _sprite2 = _interopRequireDefault(_sprite);
 
@@ -25719,7 +25782,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = __webpack_require__(0);
 
@@ -25729,54 +25792,27 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Css = __webpack_require__(2);
-
-var _Css2 = _interopRequireDefault(_Css);
-
-var _TableRow = __webpack_require__(44);
-
-var _TableRow2 = _interopRequireDefault(_TableRow);
-
-var _TableCell = __webpack_require__(43);
+var _TableCell = __webpack_require__(29);
 
 var _TableCell2 = _interopRequireDefault(_TableCell);
 
-var _Text = __webpack_require__(5);
+var _TableRow = __webpack_require__(30);
 
-var _Text2 = _interopRequireDefault(_Text);
+var _TableRow2 = _interopRequireDefault(_TableRow);
 
-var _Required = __webpack_require__(38);
+var _Required = __webpack_require__(40);
 
 var _Required2 = _interopRequireDefault(_Required);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _utils = __webpack_require__(4);
 
-var buildTableFromValues = function buildTableFromValues() {
-    var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    return values.map(function (row, i) {
-        return (
-            // eslint-disable-next-line react/no-array-index-key
-            _react2.default.createElement(
-                _TableRow2.default,
-                { key: i },
-                row.map(function (col, j) {
-                    return (
-                        // eslint-disable-next-line react/no-array-index-key
-                        _react2.default.createElement(
-                            _TableCell2.default,
-                            { key: j },
-                            _react2.default.createElement(
-                                _Text2.default,
-                                null,
-                                col
-                            )
-                        )
-                    );
-                })
-            )
-        );
-    });
-};
+var _table = __webpack_require__(185);
+
+var _table2 = _interopRequireDefault(_table);
+
+var _utils2 = __webpack_require__(237);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Table = function Table(_ref) {
     var align = _ref.align,
@@ -25792,80 +25828,74 @@ var Table = function Table(_ref) {
         hasStickyHeader = _ref.hasStickyHeader,
         verticalAlign = _ref.verticalAlign;
 
-    var _children = children || buildTableFromValues(values);
-
-    var header = columns.length ? _react2.default.createElement(
-        _TableRow2.default,
-        {
-            align: align,
-            className: cssMap.row,
-            gutters: gutters,
-            isSticky: hasStickyHeader,
-            verticalAlign: verticalAlign },
-        columns.map(function (column, index) {
-            var title = column.title;
-            var text = column.isRequired ? _react2.default.createElement(
-                _Required2.default,
-                null,
-                title
-            ) : title;
-            var stickyCell = column.isSticky;
-
-            return _react2.default.createElement(
-                _TableCell2.default,
-                {
-                    className: cssMap.cell,
-                    isHeader: true,
-                    isSortable: column.isSortable,
-                    isSticky: stickyCell,
-                    key: index // eslint-disable-line react/no-array-index-key, max-len
-                    , onToggle: onToggle,
-                    size: column.size,
-                    sort: column.sort },
-                text
-            );
-        })
-    ) : null;
-
-    var rows = _react2.default.Children.toArray(_children).map(function (row) {
+    var rows = _react2.default.Children.toArray(children || (0, _utils2.buildRowsFromValues)(values)).map(function (row) {
         var cells = _react2.default.Children.toArray(row.props.children);
 
         return _react2.default.cloneElement(row, {
-            align: align || row.props.align,
-            children: cells.map(function (cell, index) {
-                if (_typeof(columns[index]) === 'object') {
-                    var title = columns[index].title;
-                    var size = columns[index].size;
-                    var rowHeaderCell = columns[index].isRowHeader;
-                    var stickyCell = columns[index].isSticky;
+            align: row.props.align || align,
+            children: cells.map(function (cell, i) {
+                var column = columns[i];
+                var columnProps = column && {
+                    align: cell.props.align || column.align,
+                    columnTitle: cell.props.columnTitle || column.title,
+                    size: cell.props.size || column.size,
+                    isRowHeader: cell.props.isRowHeader || column.isRowHeader,
+                    isSticky: cell.props.isSticky || column.isSticky,
+                    verticalAlign: cell.props.verticalAlign || column.verticalAlign
+                };
 
-                    return _react2.default.cloneElement(cell, {
-                        className: cell.props.className ? cell.props.className + '  ' + cssMap.cell : cssMap.cell,
-                        columnTitle: title || cell.props.columnTitle,
-                        size: size || cell.props.size,
-                        isRowHeader: rowHeaderCell || cell.props.isRowHeader,
-                        isSticky: stickyCell || cell.props.isSticky
-                    });
-                }
-                return cell;
+                return _react2.default.cloneElement(cell, _extends({}, columnProps, {
+                    className: cell.props.className ? cell.props.className + '  ' + cssMap.cell : cssMap.cell
+                }));
             }),
             className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row,
-            gutters: gutters || row.props.gutters,
-            verticalAlign: verticalAlign || row.props.verticalAlign
+            gutters: row.props.gutters || gutters,
+            verticalAlign: row.props.verticalAlign || verticalAlign
         });
     });
 
     return _react2.default.createElement(
-        _Css2.default,
+        'div',
         {
-            cssMap: cssMap,
-            cssProps: { zebra: isZebra } },
-        _react2.default.createElement(
-            'div',
-            { role: 'grid', className: className },
-            header,
-            rows
-        )
+            className: (0, _utils.buildClassName)(className, cssMap, {
+                zebra: isZebra
+            }),
+            role: 'grid' },
+        columns.length && _react2.default.createElement(
+            _TableRow2.default,
+            {
+                align: align,
+                className: cssMap.row,
+                gutters: gutters,
+                isSticky: hasStickyHeader,
+                verticalAlign: verticalAlign },
+            columns.map(function (column, i) {
+                var title = column.title;
+                var text = column.isRequired ? _react2.default.createElement(
+                    _Required2.default,
+                    null,
+                    title
+                ) : title;
+                var stickyCell = column.isSticky;
+
+                return _react2.default.createElement(
+                    _TableCell2.default,
+                    {
+                        align: column.align,
+                        className: cssMap.cell,
+                        isHeader: true,
+                        isSortable: column.isSortable,
+                        isSticky: stickyCell,
+                        key: i,
+                        onToggle: onToggle,
+                        size: column.size,
+                        sort: column.sort,
+                        verticalAlign: column.verticalAlign },
+                    text
+                );
+            })
+        ),
+        rows
     );
 };
 
@@ -25915,10 +25945,14 @@ Table.propTypes = {
 
 Table.defaultProps = {
     align: 'auto',
-    cssMap: __webpack_require__(185),
+    children: undefined,
+    columns: undefined,
+    cssMap: _table2.default,
     gutters: 'M',
     hasStickyHeader: false,
     isZebra: false,
+    onToggle: undefined,
+    values: undefined,
     verticalAlign: 'middle'
 };
 
@@ -25949,7 +25983,7 @@ var _Component = __webpack_require__(3);
 
 var _Component2 = _interopRequireDefault(_Component);
 
-var _TabButton = __webpack_require__(42);
+var _TabButton = __webpack_require__(44);
 
 var _TabButton2 = _interopRequireDefault(_TabButton);
 
@@ -27061,7 +27095,7 @@ var _Component2 = __webpack_require__(3);
 
 var _Component3 = _interopRequireDefault(_Component2);
 
-var _Button = __webpack_require__(32);
+var _Button = __webpack_require__(34);
 
 var _Button2 = _interopRequireDefault(_Button);
 
@@ -28757,7 +28791,7 @@ var _utils = __webpack_require__(18);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _defaults = __webpack_require__(31);
+var _defaults = __webpack_require__(33);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29432,7 +29466,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* globals document */
 
 
-var _defaults = __webpack_require__(31);
+var _defaults = __webpack_require__(33);
 
 var _utils = __webpack_require__(18);
 
@@ -31500,7 +31534,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 /* globals console, document, setTimeout */
 
 
-var _defaults = __webpack_require__(31);
+var _defaults = __webpack_require__(33);
 
 var _utils = __webpack_require__(18);
 
@@ -34839,7 +34873,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactDom = __webpack_require__(239);
+var _reactDom = __webpack_require__(240);
 
 var _PropTypes = __webpack_require__(52);
 
@@ -35518,7 +35552,7 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.removePrefix = exports.buildListBoxOptions = exports.addPrefix = undefined;
+exports.removePrefix = exports.getScrollParent = exports.buildListBoxOptions = exports.addPrefix = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -35538,7 +35572,8 @@ var _utils = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } /* global document getComputedStyle */
+
 
 var PureListBoxOption = (0, _utils.deepPure)(_ListBoxOption2.default);
 var PureListBoxOptionGroup = (0, _utils.deepPure)(_ListBoxOptionGroup2.default);
@@ -35600,6 +35635,29 @@ function buildListBoxOptions() {
 }
 
 /**
+ * ## getScrollParent
+ * Gets the first scrollable DOM ancestor of the specified element
+ *
+ * @param   {HTMLElement}   el  element whose scroll parent to find
+ *
+ * @return  {HTMLElement}
+ *
+ */
+function getScrollParent(el) {
+    if (!el) return null;
+
+    var style = getComputedStyle(el);
+
+    if ([document.body, document.documentElement].includes(el) || style.position === 'fixed') {
+        return document.documentElement;
+    } else if ((style.overflow + ' ' + style.overflowX + ' ' + style.overflowY).match(/(auto|scroll|hidden)/)) {
+        return el;
+    }
+
+    return getScrollParent(el.parentElement);
+}
+
+/**
  * ## removePrefix
  * Removes a prefix from a string
  *
@@ -35615,6 +35673,7 @@ function removePrefix(str, prefix) {
 
 exports.addPrefix = addPrefix;
 exports.buildListBoxOptions = buildListBoxOptions;
+exports.getScrollParent = getScrollParent;
 exports.removePrefix = removePrefix;
 
 /***/ }),
@@ -36161,14 +36220,78 @@ exports.createScrollHandler = createScrollHandler;
 exports.default = { createScrollHandler: createScrollHandler };
 
 /***/ }),
-/* 237 */,
-/* 238 */
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.buildRowsFromValues = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _TableCell = __webpack_require__(29);
+
+var _TableCell2 = _interopRequireDefault(_TableCell);
+
+var _TableRow = __webpack_require__(30);
+
+var _TableRow2 = _interopRequireDefault(_TableRow);
+
+var _Text = __webpack_require__(5);
+
+var _Text2 = _interopRequireDefault(_Text);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * ## buildTableRowsFromValues
+ * Builds TableRows/Cols from a 2D array of string values
+ *
+ * @param   {Array.<Array.<String>>}    values  2D array of values
+ *
+ * @return  {ReactElement}
+ *
+ */
+function buildRowsFromValues() {
+    var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    return values.map(function (row, i) {
+        return _react2.default.createElement(
+            _TableRow2.default,
+            { key: i },
+            row.map(function (col, j) {
+                return _react2.default.createElement(
+                    _TableCell2.default,
+                    { key: j },
+                    _react2.default.createElement(
+                        _Text2.default,
+                        null,
+                        col
+                    )
+                );
+            })
+        );
+    });
+}
+
+exports.buildRowsFromValues = buildRowsFromValues;
+exports.default = { buildRowsFromValues: buildRowsFromValues };
+
+/***/ }),
+/* 238 */,
+/* 239 */
 /***/ (function(module, exports) {
 
 module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom");

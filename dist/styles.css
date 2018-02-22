@@ -13463,32 +13463,6 @@ only used in type__carousel for now
     text-transform:     none;
     text-transform:     initial;
 }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-
-.tableRow__default
-{
-
-}
-
-.tableRow__sticky
-{
-    position:    -webkit-sticky;
-    position:    sticky;
-    top:         0;
-    background:  #ffffff;
-    z-index:     2;
-}
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
@@ -13595,6 +13569,32 @@ only used in type__carousel for now
     left:       0;
     background: #ffffff;
     z-index:    1;
+}
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+.tableRow__default
+{
+
+}
+
+.tableRow__sticky
+{
+    position:    -webkit-sticky;
+    position:    sticky;
+    top:         0;
+    background:  #ffffff;
+    z-index:     2;
 }
 .table__default /* all elements get default margin-bottom of 2rem */
 {
