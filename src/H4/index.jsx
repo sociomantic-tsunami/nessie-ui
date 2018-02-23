@@ -1,25 +1,20 @@
-import React                 from 'react';
-import PropTypes             from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                   from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './h4.css';
 
 const H4 = ( {
     cssMap,
     className,
     children,
-    spacing,
+    title,
     role,
-    title }
-) =>
-
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { role,
-            spacing  } }>
-        <h4 className = { className }>
-            { children || title }
-        </h4>
-    </Css>;
+} ) => (
+    <h4 className = { buildClassName( className, cssMap, { role } ) }>
+        { children || title }
+    </h4>
+);
 
 H4.propTypes =
 {
@@ -34,23 +29,15 @@ H4.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
+        'critical',
     ] ),
-    /**
-     *  Height of the H1 margin-bottom
-     */
-    spacing : PropTypes.oneOf( [
-        'S',
-        'M',
-        'L'
-    ] )
 };
 
 H4.defaultProps =
 {
-    role    : 'default',
-    spacing : 'L',
-    cssMap  : require( './h4.css' )
+    title  : undefined,
+    role   : 'default',
+    cssMap : styles,
 };
 
 export default H4;
