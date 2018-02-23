@@ -3,6 +3,7 @@
 .default
 {
     position:       relative;
+    margin:         0;
     margin-bottom:  var( --spacing-2 );
 
     box-sizing:     border-box;
