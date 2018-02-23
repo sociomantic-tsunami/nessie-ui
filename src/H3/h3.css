@@ -3,9 +3,10 @@
 .default
 {
     position: 		relative;
+    min-height:     var( --line-height-l );
+    margin-bottom:  var( --spacing-2 );
 
     @extend %Nessie-Bold;
-
     font-size:      var( --typo-4 );
     line-height:    var( --line-height-l );
     letter-spacing: 0.02rem;
@@ -29,19 +30,4 @@
 .role__critical
 {
     color:	var( --PC-RED );
-}
-
-.spacing__S
-{
-    margin-bottom: var( --spacing-2 );
-}
-
-.spacing__M
-{
-    margin-bottom: var( --spacing-5 );
-}
-
-.spacing__L
-{
-    margin-bottom: var( --spacing-7 );
 }

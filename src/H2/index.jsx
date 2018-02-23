@@ -1,25 +1,20 @@
-import React                 from 'react';
-import PropTypes             from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                   from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './h2.css';
 
 const H2 = ( {
     cssMap,
     className,
     children,
-    spacing,
+    title,
     role,
-    title }
-) =>
-
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { role,
-            spacing } }>
-        <h2 className = { className }>
-            { children || title }
-        </h2>
-    </Css>;
+} ) => (
+    <h2 className = { buildClassName( className, cssMap, { role } ) }>
+        { children || title }
+    </h2>
+);
 
 H2.propTypes =
 {
@@ -34,24 +29,15 @@ H2.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
+        'critical',
     ] ),
-    /**
-     *  Height of the H1 margin-bottom
-     */
-    spacing : PropTypes.oneOf( [
-        'S',
-        'M',
-        'L'
-    ] )
 };
 
 H2.defaultProps =
 {
-    role    : 'default',
-    spacing : 'L',
-    cssMap  : require( './h2.css' )
+    title  : undefined,
+    role   : 'default',
+    cssMap : styles,
 };
-
 
 export default H2;
