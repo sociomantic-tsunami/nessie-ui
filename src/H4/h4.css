@@ -35,12 +35,12 @@
 
 .spacing__S
 {
-    margin-bottom: var( --spacing-1 );
+    margin-bottom: var( --spacing-2 );
 }
 
 .spacing__M
 {
-    margin-bottom: var( --spacing-3 );
+    margin-bottom: var( --spacing-5 );
 }
 
 .spacing__L
