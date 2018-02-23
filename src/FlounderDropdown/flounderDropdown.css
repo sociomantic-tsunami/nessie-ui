@@ -181,7 +181,7 @@
     .searchHidden,
     .placeholder
     {
-        display:    none;
+        display:            none;
     }
 
     .option,
@@ -678,8 +678,8 @@
     .selectedDisplayed
     {
         font-size:      var( --typo-3 );
-    	line-height:    var( --line-height-l );
-    	letter-spacing: 0;
+        line-height:    var( --line-height-l );
+        letter-spacing: 0;
     }
 
     /* .arrow
@@ -716,13 +716,13 @@
     .main .arrowInner,
     .main:focus .arrowInner
     {
-         background-image:  url( './images/down--red.svg' );
+        background-image:  url( './images/down--red.svg' );
     }
 
     .mainWrapper.open .main .arrowInner,
     .mainWrapper.open .main:focus .arrowInner
     {
-         background-image:  url( './images/up--red.svg' );
+        background-image:  url( './images/up--red.svg' );
     }
 }
 

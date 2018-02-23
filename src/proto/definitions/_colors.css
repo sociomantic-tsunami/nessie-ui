@@ -5,195 +5,195 @@
 :root
 {
     /* primary colors */
-     --PC-WHITE:            #ffffff;
-     --PC-GREY:             #597494;
-     --PC-BLUE:             #19a2e2;
-     --PC-RED:              #ff5460;
-     --PC-ORANGE:           #ff965a;
-     --PC-YELLOW:           #ffd46b;
-     --PC-LIME:             #b1dc68;
-     --PC-GREEN:            #1bbab0;
-     --PC-NAVY:             #0074a5;
+    --PC-WHITE:            #ffffff;
+    --PC-GREY:             #597494;
+    --PC-BLUE:             #19a2e2;
+    --PC-RED:              #ff5460;
+    --PC-ORANGE:           #ff965a;
+    --PC-YELLOW:           #ffd46b;
+    --PC-LIME:             #b1dc68;
+    --PC-GREEN:            #1bbab0;
+    --PC-NAVY:             #0074a5;
 
 
 
-     /* greyscale colors */
-     --PC-GREY--D85:        #181e28;
-     --PC-GREY--D75:        #202835;
-     --PC-GREY--D65:        #273241;
-     --PC-GREY--D55:        #2f3c4e;
-     --PC-GREY--D45:        #36465a;
-     --PC-GREY--D35:        #394b60;
-     --PC-GREY--D25:        #42566e;
-     --PC-GREY--D15:        #4b627d;
-     --PC-GREY--D5:         #546e8c;
+    /* greyscale colors */
+    --PC-GREY--D85:        #181e28;
+    --PC-GREY--D75:        #202835;
+    --PC-GREY--D65:        #273241;
+    --PC-GREY--D55:        #2f3c4e;
+    --PC-GREY--D45:        #36465a;
+    --PC-GREY--D35:        #394b60;
+    --PC-GREY--D25:        #42566e;
+    --PC-GREY--D15:        #4b627d;
+    --PC-GREY--D5:         #546e8c;
 
-     --PC-GREY--L10:        #69829e;
-     --PC-GREY--L25:        #8296ae;
-     --PC-GREY--L40:        #98a8bc;
-     --PC-GREY--L55:        #afbccb;
-     --PC-GREY--L70:        #c7d0db;
-     --PC-GREY--L75:        #cfd7e0;
-     --PC-GREY--L80:        #d7dde5;
-     --PC-GREY--L85:        #dfe4ea;
-     --PC-GREY--L90:        #eef1f4;
-     --PC-GREY--L95:        #f6f7f9;
+    --PC-GREY--L10:        #69829e;
+    --PC-GREY--L25:        #8296ae;
+    --PC-GREY--L40:        #98a8bc;
+    --PC-GREY--L55:        #afbccb;
+    --PC-GREY--L70:        #c7d0db;
+    --PC-GREY--L75:        #cfd7e0;
+    --PC-GREY--L80:        #d7dde5;
+    --PC-GREY--L85:        #dfe4ea;
+    --PC-GREY--L90:        #eef1f4;
+    --PC-GREY--L95:        #f6f7f9;
 
-     --PC-GREY--DARK:        var( --PC-GREY--D15 );
-     --PC-GREY--LIGHT:       var( --PC-GREY--L70 );
+    --PC-GREY--DARK:        var( --PC-GREY--D15 );
+    --PC-GREY--LIGHT:       var( --PC-GREY--L70 );
 
 
-     /* bluescale colors */
-     --PC-BLUE--D85:        #0e2533;
-     --PC-BLUE--D75:        #103348;
-     --PC-BLUE--D65:        #10425c;
-     --PC-BLUE--D55:        #125171;
-     --PC-BLUE--D45:        #135f85;
-     --PC-BLUE--D35:        #106993;
-     --PC-BLUE--D25:        #1279a9;
-     --PC-BLUE--D15:        #1589c0;
-     --PC-BLUE--D5:         #1799d6;
+    /* bluescale colors */
+    --PC-BLUE--D85:        #0e2533;
+    --PC-BLUE--D75:        #103348;
+    --PC-BLUE--D65:        #10425c;
+    --PC-BLUE--D55:        #125171;
+    --PC-BLUE--D45:        #135f85;
+    --PC-BLUE--D35:        #106993;
+    --PC-BLUE--D25:        #1279a9;
+    --PC-BLUE--D15:        #1589c0;
+    --PC-BLUE--D5:         #1799d6;
 
-     --PC-BLUE--L10:        #30abe4;
-     --PC-BLUE--L25:        #52b9e9;
-     --PC-BLUE--L40:        #75c7ed;
-     --PC-BLUE--L55:        #97d5f1;
-     --PC-BLUE--L70:        #bae3f6;
-     --PC-BLUE--L90:        #e8f5fc;
-     --PC-BLUE--L90:        #f3fafd;
+    --PC-BLUE--L10:        #30abe4;
+    --PC-BLUE--L25:        #52b9e9;
+    --PC-BLUE--L40:        #75c7ed;
+    --PC-BLUE--L55:        #97d5f1;
+    --PC-BLUE--L70:        #bae3f6;
+    --PC-BLUE--L90:        #e8f5fc;
+    --PC-BLUE--L90:        #f3fafd;
 
-     --PC-BLUE--DARK:        var( --PC-BLUE--D15 );
-     --PC-BLUE--LIGHT:       var( --PC-BLUE--L70 );
+    --PC-BLUE--DARK:        var( --PC-BLUE--D15 );
+    --PC-BLUE--LIGHT:       var( --PC-BLUE--L70 );
 
-     /* redscale colors */
-     --PC-RED--D85:         #311920;
-     --PC-RED--D75:         #4a2028;
-     --PC-RED--D65:         #61272f;
-     --PC-RED--D55:         #7a2d37;
-     --PC-RED--D45:         #92353d;
-     --PC-RED--D35:         #a6363e;
-     --PC-RED--D25:         #bf3e47;
-     --PC-RED--D15:         #d94751;
-     --PC-RED--D5:          #1799d6;
+    /* redscale colors */
+    --PC-RED--D85:         #311920;
+    --PC-RED--D75:         #4a2028;
+    --PC-RED--D65:         #61272f;
+    --PC-RED--D55:         #7a2d37;
+    --PC-RED--D45:         #92353d;
+    --PC-RED--D35:         #a6363e;
+    --PC-RED--D25:         #bf3e47;
+    --PC-RED--D15:         #d94751;
+    --PC-RED--D5:          #1799d6;
 
-     --PC-RED--L10:         #ff6d77;
-     --PC-RED--L25:         #ff8790;
-     --PC-RED--L40:         #ff959c;
-     --PC-RED--L55:         #ffadb2;
-     --PC-RED--L70:         #ffcccf;
-     --PC-RED--L90:         #ffeeef;
-     --PC-RED--L95:         #fff7f7;
+    --PC-RED--L10:         #ff6d77;
+    --PC-RED--L25:         #ff8790;
+    --PC-RED--L40:         #ff959c;
+    --PC-RED--L55:         #ffadb2;
+    --PC-RED--L70:         #ffcccf;
+    --PC-RED--L90:         #ffeeef;
+    --PC-RED--L95:         #fff7f7;
 
-     --PC-RED--DARK:        var( --PC-RED--D15 );
-     --PC-RED--LIGHT:       var( --PC-RED--L70 );
+    --PC-RED--DARK:        var( --PC-RED--D15 );
+    --PC-RED--LIGHT:       var( --PC-RED--L70 );
 
-     /* orangescale colors */
-     --PC-ORANGE--D85:      #31231f;
-     --PC-ORANGE--D75:      #4a3026;
-     --PC-ORANGE--D65:      #613e2d;
-     --PC-ORANGE--D55:      #7a4b34;
-     --PC-ORANGE--D45:      #92593a;
-     --PC-ORANGE--D35:      #a6613a;
-     --PC-ORANGE--D25:      #bf7043;
-     --PC-ORANGE--D15:      #d97f4c;
-     --PC-ORANGE--D5:       #f28e55;
+    /* orangescale colors */
+    --PC-ORANGE--D85:      #31231f;
+    --PC-ORANGE--D75:      #4a3026;
+    --PC-ORANGE--D65:      #613e2d;
+    --PC-ORANGE--D55:      #7a4b34;
+    --PC-ORANGE--D45:      #92593a;
+    --PC-ORANGE--D35:      #a6613a;
+    --PC-ORANGE--D25:      #bf7043;
+    --PC-ORANGE--D15:      #d97f4c;
+    --PC-ORANGE--D5:       #f28e55;
 
-     --PC-ORANGE--L10:      #ffa06a;
-     --PC-ORANGE--L25:      #ffb083;
-     --PC-ORANGE--L40:      #ffc09c;
-     --PC-ORANGE--L55:      #ffccb0;
-     --PC-ORANGE--L70:      #ffdfcd;
-     --PC-ORANGE--L90:      #fff4ee;
-     --PC-ORANGE--L95:      #fff9f6;
+    --PC-ORANGE--L10:      #ffa06a;
+    --PC-ORANGE--L25:      #ffb083;
+    --PC-ORANGE--L40:      #ffc09c;
+    --PC-ORANGE--L55:      #ffccb0;
+    --PC-ORANGE--L70:      #ffdfcd;
+    --PC-ORANGE--L90:      #fff4ee;
+    --PC-ORANGE--L95:      #fff9f6;
 
-     --PC-ORANGE--DARK:        var( --PC-ORANGE--D15 );
-     --PC-ORANGE--LIGHT:       var( --PC-ORANGE--L70 );
+    --PC-ORANGE--DARK:        var( --PC-ORANGE--D15 );
+    --PC-ORANGE--LIGHT:       var( --PC-ORANGE--L70 );
 
-     /* yellowscale colors */
-     --PC-YELLOW--D85:      #261f0f;
-     --PC-YELLOW--D75:      #40351a;
-     --PC-YELLOW--D65:      #594925;
-     --PC-YELLOW--D55:      #735f30;
-     --PC-YELLOW--D45:      #907940;
-     --PC-YELLOW--D35:      #a68a45;
-     --PC-YELLOW--D25:      #bf9e50;
-     --PC-YELLOW--D15:      #d9b45b;
-     --PC-YELLOW--D5:       #f2c965;
+    /* yellowscale colors */
+    --PC-YELLOW--D85:      #261f0f;
+    --PC-YELLOW--D75:      #40351a;
+    --PC-YELLOW--D65:      #594925;
+    --PC-YELLOW--D55:      #735f30;
+    --PC-YELLOW--D45:      #907940;
+    --PC-YELLOW--D35:      #a68a45;
+    --PC-YELLOW--D25:      #bf9e50;
+    --PC-YELLOW--D15:      #d9b45b;
+    --PC-YELLOW--D5:       #f2c965;
 
-     --PC-YELLOW--L10:      #ffd87a;
-     --PC-YELLOW--L25:      #ffde90;
-     --PC-YELLOW--L40:      #ffe5a6;
-     --PC-YELLOW--L55:      #ffeab8;
-     --PC-YELLOW--L70:      #fff2d2;
-     --PC-YELLOW--L90:      #fffaf0;
-     --PC-YELLOW--L95:      #fffcf7;
+    --PC-YELLOW--L10:      #ffd87a;
+    --PC-YELLOW--L25:      #ffde90;
+    --PC-YELLOW--L40:      #ffe5a6;
+    --PC-YELLOW--L55:      #ffeab8;
+    --PC-YELLOW--L70:      #fff2d2;
+    --PC-YELLOW--L90:      #fffaf0;
+    --PC-YELLOW--L95:      #fffcf7;
 
-     --PC-YELLOW--DARK:        var( --PC-YELLOW--D15 );
-     --PC-YELLOW--LIGHT:       var( --PC-YELLOW--L70 );
+    --PC-YELLOW--DARK:        var( --PC-YELLOW--D15 );
+    --PC-YELLOW--LIGHT:       var( --PC-YELLOW--L70 );
 
-     /* limescale colors */
-     --PC-LIME--D85:        #252d21;
-     --PC-LIME--D75:        #36422a;
-     --PC-LIME--D65:        #455632;
-     --PC-LIME--D55:        #566b3a;
-     --PC-LIME--D45:        #677f42;
-     --PC-LIME--D35:        #738f43;
-     --PC-LIME--D25:        #84a44d;
-     --PC-LIME--D15:        #96bb58;
-     --PC-LIME--D5:         #a7d062;
+    /* limescale colors */
+    --PC-LIME--D85:        #252d21;
+    --PC-LIME--D75:        #36422a;
+    --PC-LIME--D65:        #455632;
+    --PC-LIME--D55:        #566b3a;
+    --PC-LIME--D45:        #677f42;
+    --PC-LIME--D35:        #738f43;
+    --PC-LIME--D25:        #84a44d;
+    --PC-LIME--D15:        #96bb58;
+    --PC-LIME--D5:         #a7d062;
 
-     --PC-LIME--L10:        #b8df77;
-     --PC-LIME--L25:        #c8e695;
-     --PC-LIME--L40:        #cee9a1;
-     --PC-LIME--L55:        #d9eeb6;
-     --PC-LIME--L70:        #e7f4d1;
-     --PC-LIME--L90:        #f7fbf0;
-     --PC-LIME--L95:        #fbfdf7;
+    --PC-LIME--L10:        #b8df77;
+    --PC-LIME--L25:        #c8e695;
+    --PC-LIME--L40:        #cee9a1;
+    --PC-LIME--L55:        #d9eeb6;
+    --PC-LIME--L70:        #e7f4d1;
+    --PC-LIME--L90:        #f7fbf0;
+    --PC-LIME--L95:        #fbfdf7;
 
-     --PC-LIME--DARK:        var( --PC-LIME--D15 );
-     --PC-LIME--LIGHT:       var( --PC-LIME--L70 );
+    --PC-LIME--DARK:        var( --PC-LIME--D15 );
+    --PC-LIME--LIGHT:       var( --PC-LIME--L70 );
 
-     /* greenscale colors */
-     --PC-GREEN--D85:       #0f282c;
-     --PC-GREEN--D75:       #10393c;
-     --PC-GREEN--D65:       #114a4b;
-     --PC-GREEN--D55:       #135b5b;
-     --PC-GREEN--D45:       #146d69;
-     --PC-GREEN--D35:       #117972;
-     --PC-GREEN--D25:       #148b83;
-     --PC-GREEN--D15:       #169e95;
-     --PC-GREEN--D5:        #19b0a7;
+    /* greenscale colors */
+    --PC-GREEN--D85:       #0f282c;
+    --PC-GREEN--D75:       #10393c;
+    --PC-GREEN--D65:       #114a4b;
+    --PC-GREEN--D55:       #135b5b;
+    --PC-GREEN--D45:       #146d69;
+    --PC-GREEN--D35:       #117972;
+    --PC-GREEN--D25:       #148b83;
+    --PC-GREEN--D15:       #169e95;
+    --PC-GREEN--D5:        #19b0a7;
 
-     --PC-GREEN--L10:       #32c1b8;
-     --PC-GREEN--L25:       #5fcec7;
-     --PC-GREEN--L40:       #71d4ce;
-     --PC-GREEN--L55:       #91ddd9;
-     --PC-GREEN--L70:       #bbeae7;
-     --PC-GREEN--L90:       #e8f8f7;
-     --PC-GREEN--L95:       #f3fbfa;
+    --PC-GREEN--L10:       #32c1b8;
+    --PC-GREEN--L25:       #5fcec7;
+    --PC-GREEN--L40:       #71d4ce;
+    --PC-GREEN--L55:       #91ddd9;
+    --PC-GREEN--L70:       #bbeae7;
+    --PC-GREEN--L90:       #e8f8f7;
+    --PC-GREEN--L95:       #f3fbfa;
 
-     --PC-GREEN--DARK:        var( --PC-GREEN--D15 );
-     --PC-GREEN--LIGHT:       var( --PC-GREEN--L70 );
+    --PC-GREEN--DARK:        var( --PC-GREEN--D15 );
+    --PC-GREEN--LIGHT:       var( --PC-GREEN--L70 );
 
-     /* navyscale colors */
-     --PC-NAVY--D85:        #001118;
-     --PC-NAVY--D75:        #001d29;
-     --PC-NAVY--D65:        #002839;
-     --PC-NAVY--D55:        #00344a;
-     --PC-NAVY--D45:        #003f5a;
-     --PC-NAVY--D35:        #004b6b;
-     --PC-NAVY--D25:        #00567b;
-     --PC-NAVY--D15:        #00628c;
-     --PC-NAVY--D5:         #006e9c;
+    /* navyscale colors */
+    --PC-NAVY--D85:        #001118;
+    --PC-NAVY--D75:        #001d29;
+    --PC-NAVY--D65:        #002839;
+    --PC-NAVY--D55:        #00344a;
+    --PC-NAVY--D45:        #003f5a;
+    --PC-NAVY--D35:        #004b6b;
+    --PC-NAVY--D25:        #00567b;
+    --PC-NAVY--D15:        #00628c;
+    --PC-NAVY--D5:         #006e9c;
 
-     --PC-NAVY--L10:        #1a82ae;
-     --PC-NAVY--L25:        #4096bb;
-     --PC-NAVY--L40:        #66abc9;
-     --PC-NAVY--L55:        #85bcd3;
-     --PC-NAVY--L70:        #b3d5e4;
-     --PC-NAVY--L90:        #e6f1f6;
-     --PC-NAVY--L95:        #f2f7fa;
+    --PC-NAVY--L10:        #1a82ae;
+    --PC-NAVY--L25:        #4096bb;
+    --PC-NAVY--L40:        #66abc9;
+    --PC-NAVY--L55:        #85bcd3;
+    --PC-NAVY--L70:        #b3d5e4;
+    --PC-NAVY--L90:        #e6f1f6;
+    --PC-NAVY--L95:        #f2f7fa;
 
-     --PC-NAVY--DARK:        var( --PC-NAVY--D15 );
-     --PC-NAVY--LIGHT:       var( --PC-NAVY--L70 );
+    --PC-NAVY--DARK:        var( --PC-NAVY--D15 );
+    --PC-NAVY--LIGHT:       var( --PC-NAVY--L70 );
 }

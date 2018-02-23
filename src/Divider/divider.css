@@ -2,7 +2,7 @@
 
 .default
 {
-	position: 		        relative;
+    position: 		        relative;
     margin-top:             var( --spacing-2 );
     margin-bottom:          var( --spacing-3 );
     height:                 0.1rem;

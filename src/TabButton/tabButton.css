@@ -32,7 +32,7 @@
 
 .label
 {
-	@extend %Nessie-SemiBold;
+    @extend %Nessie-SemiBold;
 
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );
@@ -42,14 +42,14 @@
 
 .active
 {
-    color:                  var( --PC-BLUE );
-    border-bottom:          0.1rem solid var( --PC-BLUE );
-    pointer-events:         none;
-    cursor:                 default;
+    color:          var( --PC-BLUE );
+    border-bottom:  0.1rem solid var( --PC-BLUE );
+    pointer-events: none;
+    cursor:         default;
 }
 
 .subtitle
 {
-	font-weight: 		normal;
-    text-transform:     initial;
+    font-weight: 	normal;
+    text-transform: initial;
 }

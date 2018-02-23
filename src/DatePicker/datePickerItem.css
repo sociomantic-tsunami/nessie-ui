@@ -40,7 +40,7 @@
 
         .text
         {
-            color:  var( --GS-2 )
+            color:      var( --GS-2 );
         }
     }
 }
@@ -68,7 +68,7 @@
 
     .text
     {
-        color:  var( --PC-WHITE );
+        color:      var( --PC-WHITE );
     }
 
     &.fakeHovered,
@@ -80,7 +80,7 @@
 
         .text
         {
-            color:  var( --PC-WHITE );
+            color:      var( --PC-WHITE );
         }
     }
 

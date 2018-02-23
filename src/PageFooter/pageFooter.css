@@ -2,22 +2,22 @@
 
 .default
 {
- 	flex:		0 0 auto;
- 	width:		100%;
+    flex:		0 0 auto;
+    width:		100%;
 
-	margin:		0;
+    margin:		0;
 
-  	background:	var( --GS-1 );
-  	color:		var( --PC-WHITE );
+    background:	var( --GS-1 );
+    color:		var( --PC-WHITE );
 }
 
 .content
 {
-	box-sizing:	border-box;
-	width:		80%;
- 	min-width:	320px;
- 	max-width:	96rem;
- 	margin:		2rem auto;
+    box-sizing:	border-box;
+    width:		80%;
+    min-width:	320px;
+    max-width:	96rem;
+    margin:		2rem auto;
 
- 	opacity:	0.3;
+    opacity:	0.3;
 }

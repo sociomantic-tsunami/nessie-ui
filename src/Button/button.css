@@ -71,45 +71,45 @@
 
 .role__default
 {
-    background: var( --PC-BLUE );
-    color:      var( --PC-WHITE );
+    background:         var( --PC-BLUE );
+    color:              var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
     {
-        background: var( --PC-BLUE--DARK );
-        color:      var( --PC-WHITE );
+        background:     var( --PC-BLUE--DARK );
+        color:          var( --PC-WHITE );
     }
 }
 
 
 .role__secondary
 {
-    background: var( --PC-GREY--L90 );
-    color:      var( --PC-GREY--L25 );
+    background:         var( --PC-GREY--L90 );
+    color:              var( --PC-GREY--L25 );
 
     &.fakeHovered,
     &:hover
     {
-        background: var( --PC-GREY--L70 );
-        color:      var( --PC-GREY--L25 );
+        background:     var( --PC-GREY--L70 );
+        color:          var( --PC-GREY--L25 );
     }
 
     .icon
     {
-        fill:   var( --PC-GREY--L25 );
-        color:  var( --PC-GREY--L25 );
+        fill:           var( --PC-GREY--L25 );
+        color:          var( --PC-GREY--L25 );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:   color( var( --PC-GREY--L25 ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--L25 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:  var( --PC-GREY--L25 );
+                border-top-color:   var( --PC-GREY--L25 );
             }
         }
     }
@@ -118,8 +118,8 @@
 
 .role__promoted
 {
-    background: var( --PC-GREEN );
-    color:      var( --PC-WHITE );
+    background:     var( --PC-GREEN );
+    color:          var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
@@ -132,8 +132,8 @@
 
 .role__critical
 {
-    background: var( --PC-RED );
-    color:      var( --PC-WHITE );
+    background:     var( --PC-RED );
+    color:          var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
@@ -146,8 +146,8 @@
 
 .role__warning
 {
-    background: var( --PC-ORANGE );
-    color:      var( --PC-WHITE );
+    background:     var( --PC-ORANGE );
+    color:          var( --PC-WHITE );
 
     &.fakeHovered,
     &:hover
@@ -176,7 +176,7 @@
     &.fakeHovered,
     &:hover
     {
-        color:      var( --PC-WHITE );
+        color:          var( --PC-WHITE );
 
         .content
         {
@@ -185,22 +185,22 @@
 
         .icon
         {
-            fill:   var( --PC-WHITE );
-            color:  var( --PC-WHITE );
+            fill:       var( --PC-WHITE );
+            color:      var( --PC-WHITE );
         }
     }
 
     .icon
     {
-        fill:   var( --PC-BLUE );
-        color:  var( --PC-BLUE );
+        fill:           var( --PC-BLUE );
+        color:          var( --PC-BLUE );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:   color( var( --PC-BLUE  ) a( 25% ) );
+            border-color:           color( var( --PC-BLUE  ) a( 25% ) );
 
             &::after
             {
@@ -213,18 +213,18 @@
 
 .role__control
 {
-    color:  var( --PC-GREY--DARK );
+    color:          var( --PC-GREY--DARK );
 
     .icon
     {
-        fill:   var( --PC-GREY--DARK );
-        color:  var( --PC-GREY--DARK );
+        fill:       var( --PC-GREY--DARK );
+        color:      var( --PC-GREY--DARK );
     }
 
     &.fakeHovered,
     &:hover
     {
-        color:  var( --PC-BLUE );
+        color:      var( --PC-BLUE );
 
         .icon
         {
@@ -237,7 +237,7 @@
     {
         .spinner
         {
-            border-color:   color( var( --PC-GREY--DARK ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--DARK ) a( 25% ) );
 
             &::after
             {
@@ -282,7 +282,7 @@
 
     &.role__secondary
     {
-        color:  var( --PC-GREY--L55 );
+        color:      var( --PC-GREY--L55 );
 
         .icon
         {
@@ -329,7 +329,7 @@
 
     &.role__subtle
     {
-        color:  var( --PC-BLUE--L40 );
+        color:              var( --PC-BLUE--L40 );
 
         .content
         {
@@ -339,8 +339,8 @@
 
         .icon
         {
-            fill:   var( --PC-BLUE--L40 );
-            color:  var( --PC-BLUE--L40 );
+            fill:           var( --PC-BLUE--L40 );
+            color:          var( --PC-BLUE--L40 );
         }
     }
 }
@@ -366,7 +366,7 @@
 
     .spinner
     {
-        border-color:   color( var( --PC-WHITE ) a( 50% ) );
+        border-color:           color( var( --PC-WHITE ) a( 50% ) );
 
         &::after
         {

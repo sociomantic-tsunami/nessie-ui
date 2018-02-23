@@ -47,16 +47,17 @@
 * SLIDE
 */
 
-@keyframes slideInDown {
+@keyframes slideInDown
+{
     from
     {
-        transform: translate3d(0, -100%, 0);
+        transform:  translate3d(0, -100%, 0);
         visibility: visible;
     }
 
     to
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 }
 
@@ -69,12 +70,13 @@
 {
     from
     {
-        transform: translate3d(-100%, 0, 0);
+        transform:  translate3d(-100%, 0, 0);
         visibility: visible;
     }
 
-    to {
-        transform: translate3d(0, 0, 0);
+    to
+    {
+        transform:  translate3d(0, 0, 0);
     }
 }
 
@@ -83,16 +85,17 @@
     animation: slideInLeft 1000ms;
 }
 
-@keyframes slideInRight {
+@keyframes slideInRight
+{
     from
     {
-        transform: translate3d(100%, 0, 0);
+        transform:  translate3d(100%, 0, 0);
         visibility: visible;
     }
 
     to
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 }
 
@@ -105,12 +108,13 @@
 {
     from
     {
-        transform: translate3d(0, 100%, 0);
+        transform:  translate3d(0, 100%, 0);
         visibility: visible;
     }
 
-    to {
-        transform: translate3d(0, 0, 0);
+    to
+    {
+        transform:  translate3d(0, 0, 0);
     }
 }
 
@@ -123,13 +127,13 @@
 {
     from
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 
     to
     {
         visibility: hidden;
-        transform: translate3d(0, 100%, 0);
+        transform:  translate3d(0, 100%, 0);
     }
 }
 
@@ -142,13 +146,13 @@
 {
     from
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 
     to
     {
         visibility: hidden;
-        transform: translate3d(-100%, 0, 0);
+        transform:  translate3d(-100%, 0, 0);
     }
 }
 
@@ -161,13 +165,13 @@
 {
     from
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 
     to
     {
         visibility: hidden;
-        transform: translate3d(100%, 0, 0);
+        transform:  translate3d(100%, 0, 0);
     }
 }
 
@@ -180,13 +184,13 @@
 {
     from
     {
-        transform: translate3d(0, 0, 0);
+        transform:  translate3d(0, 0, 0);
     }
 
     to
     {
         visibility: hidden;
-        transform: translate3d(0, -100%, 0);
+        transform:  translate3d(0, -100%, 0);
     }
 }
 

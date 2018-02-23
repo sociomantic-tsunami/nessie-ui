@@ -5,13 +5,11 @@
 
 .list
 {
-	display:			flex;
-	flex-direction:		row;
-	flex-wrap:			wrap;
-
-	flex-direction:		row;
-	justify-content:	flex-start;
-	align-items:		flex-start;
+    display:			flex;
+    flex-direction:		row;
+    flex-wrap:			wrap;
+    justify-content:	flex-start;
+    align-items:		flex-start;
 
     margin:             0;
     padding:            0;
@@ -28,16 +26,16 @@
 
     &:last-child
     {
-    	margin:	0;
+        margin:	0;
     }
 }
 
 .layout__vertical
 {
-	.list
+    .list
 	{
-		flex-direction:	column;
-	}
+        flex-direction:	column;
+    }
 
     .listItem
     {

@@ -28,17 +28,17 @@ $shark: 768px;
 
     /*@media( min-width: $shark )
     {*/
-        flex-direction: column;
+    flex-direction: column;
 
-        &::before
-        {
-            display:    none;
-        }
+    &::before
+    {
+        display:    none;
+    }
     /*}*/
 
     /*@media( min-width: $shark )
     {*/
-        /* &:first-child
+    /* &:first-child
         {
             padding-left: 0;
         } */
@@ -48,13 +48,13 @@ $shark: 768px;
 
 .header /* required until we have a TableHeader text component */
 {
-    display:        none;
+    /* display:        none; */
 
     @extend %Nessie-Bold;
 
     /*@media( min-width: $shark )
     {*/
-        display:    flex;
+    display:    flex;
     /*}*/
 }
 

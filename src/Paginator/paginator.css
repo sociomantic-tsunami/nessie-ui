@@ -44,7 +44,7 @@
     &:disabled
     {
         color:              var( --PC-WHITE );
-        background-color:   var( --PC-BLUE )
+        background-color:   var( --PC-BLUE );
     }
 }
 

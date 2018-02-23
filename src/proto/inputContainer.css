@@ -2,36 +2,36 @@
 
 .default
 {
-    display:        flex;
-    font:           inherit;
-    line-height:    inherit;
+    display:            flex;
+    font:               inherit;
+    line-height:        inherit;
 
     .container
     {
-        flex:       1 1 auto;
-        min-width:  0;
+        flex:           1 1 auto;
+        min-width:      0;
     }
 
     .label
     {
-        flex:   0 0 auto;
+        flex:           0 0 auto;
     }
 }
 
 .labelPosition__top
 {
-    flex-direction: column;
+    flex-direction:     column;
 
     .label
     {
-        align-self: flex-start;
+        align-self:     flex-start;
     }
 }
 
 .labelPosition__left,
 .labelPosition__right
 {
-    align-items:    center;
+    align-items:        center;
 
     .label
     {
@@ -44,7 +44,7 @@
 {
     & > .container
     {
-        margin-left:   1rem;
+        margin-left:    1rem;
     }
 }
 

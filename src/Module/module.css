@@ -106,16 +106,16 @@
     }
 }
 
- .level__3,
- .level__4
- {
-     & > .header,
-     & > .content
-     {
-         padding-top:    var( --spacing-3 );
-         padding-bottom: var( --spacing-3 );
-     }
- }
+.level__3,
+.level__4
+{
+    & > .header,
+    & > .content
+    {
+        padding-top:    var( --spacing-3 );
+        padding-bottom: var( --spacing-3 );
+    }
+}
 
 .collapsible
 {
@@ -136,7 +136,7 @@
 {
     & > .content
     {
-        display:    none;
+        display:        none;
     }
 }
 
