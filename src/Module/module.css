@@ -1,6 +1,6 @@
 @import "../proto/base.css";
 
-:global
+:root
 {
     --controlsHeight:   2.4rem;
     --errorBorder:      0.5rem;
@@ -124,8 +124,8 @@
         cursor: pointer;
     }
 
-    & > .header:hover,
-    &.collapsed
+    &:not( .collapsed ) .header,
+    &.collapsed > .header:hover
     {
         background: var( --PC-GREY--L95 );
     }
