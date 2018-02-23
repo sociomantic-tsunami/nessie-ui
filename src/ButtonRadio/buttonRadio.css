@@ -2,16 +2,16 @@
 
 .default
 {
-	display:	inline-block;
-	width:		auto;
+    display:	inline-block;
+    width:		auto;
 }
 
 .input
 {
-	display:	none;
+    display:	none;
 }
 
 .label
 {
-	display:	block;
+    display:	block;
 }

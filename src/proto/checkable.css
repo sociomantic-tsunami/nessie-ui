@@ -9,12 +9,12 @@
 
     &:last-child
     {
-        margin-bottom:      0;
+        margin-bottom:  0;
     }
 
     &:hover .label
     {
-        cursor:             pointer;
+        cursor:         pointer;
     }
 }
 

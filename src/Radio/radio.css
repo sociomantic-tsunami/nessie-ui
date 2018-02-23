@@ -6,25 +6,24 @@
 
 .label
 {
-/*     line-height: 1.8rem;
- */}
+}
 .label::before
 {
-    border-radius:              50%;
+    border-radius:      50%;
 }
 
 .input:checked + .label::after
 {
-    display:                block;
+    display:            block;
 
-    background-color:       var( --PC-BLUE );
-    border-radius:          50%;
+    background-color:   var( --PC-BLUE );
+    border-radius:      50%;
 
-    width:                  1.2rem;
-    height:                 1.2rem;
+    width:              1.2rem;
+    height:             1.2rem;
 
-    top:                    0.6rem;
-    left:                   0.4rem;
+    top:                0.6rem;
+    left:               0.4rem;
 }
 
 .fakeHovered
@@ -36,7 +35,7 @@
 {
     .input:checked + .label::after
     {
-        background-color:      var( --PC-BLUE--L40 );
+        background-color: var( --PC-BLUE--L40 );
     }
 }
 
@@ -45,6 +44,6 @@
 {
     .input:checked + .label::after
     {
-        background-color:       var( --PC-RED );
+        background-color: var( --PC-RED );
     }
 }

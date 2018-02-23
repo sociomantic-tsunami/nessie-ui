@@ -37,9 +37,6 @@
 
 
 
-
-
-
 :global
 {
     .CodeMirror
@@ -83,7 +80,10 @@
 
 :global @keyframes blink
 {
-  0% {}
-  50% { background-color: transparent; }
-  100% {}
+    0% {}
+    50%
+    {
+        background-color: transparent;
+    }
+    100% {}
 }

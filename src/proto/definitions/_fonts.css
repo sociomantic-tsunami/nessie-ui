@@ -34,17 +34,17 @@
 :root
 {
     /*  TYPOGRAPHY SIZES */
-    --typo-1:  1rem;
-    --typo-2:  1.2rem;
-    --typo-3:  1.4rem;
-    --typo-4:  1.6rem;
-    --typo-5:  1.8rem;
-    --typo-6:  2rem;
-    --typo-7:  2.4rem;
+    --typo-1:           1rem;
+    --typo-2:           1.2rem;
+    --typo-3:           1.4rem;
+    --typo-4:           1.6rem;
+    --typo-5:           1.8rem;
+    --typo-6:           2rem;
+    --typo-7:           2.4rem;
 
-    --line-height-s:   1.6rem;
-    --line-height-m:   2.4rem;
-    --line-height-l:   3.2rem;
-    --line-height-xl:  4rem;
-    --line-height-xxl: 4.8rem;
+    --line-height-s:    1.6rem;
+    --line-height-m:    2.4rem;
+    --line-height-l:    3.2rem;
+    --line-height-xl:   4rem;
+    --line-height-xxl:  4.8rem;
 }

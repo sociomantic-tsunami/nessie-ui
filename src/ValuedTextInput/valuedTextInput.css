@@ -142,7 +142,7 @@
         &::before,
         &::after
         {
-            background:     var( --PC-RED );
+            background: var( --PC-RED );
         }
     }
 }
@@ -160,7 +160,7 @@
         &::before,
         &::after
         {
-            background:     var( --PC-GREY--L80 );
+            background: var( --PC-GREY--L80 );
         }
     }
 }

@@ -142,8 +142,8 @@
     .selectedDisplayed
     {
         font-size:      var( --typo-3 );
-    	line-height:    var( --line-height-l );
-    	letter-spacing: 0;
+        line-height:    var( --line-height-l );
+        letter-spacing: 0;
     }
 
     .arrow
@@ -178,13 +178,13 @@
     .main .arrowInner,
     .main:focus .arrowInner
     {
-         background-image:  url( './images/down--red.svg' );
+        background-image:  url( './images/down--red.svg' );
     }
 
     .open .main .arrowInner,
     .open .main:focus .arrowInner
     {
-         background-image:  url( './images/up--red.svg' );
+        background-image:  url( './images/up--red.svg' );
     }
 }
 
@@ -211,17 +211,17 @@
 
     .search
     {
-        display:    none;
+        display:            none;
     }
 
     .optionsWrapper
     {
-        display:    none;
+        display:            none;
     }
 
     .main:hover
     {
-        border-color:           transparent;
+        border-color:       transparent;
     }
 
     .main .arrow .arrowInner
@@ -231,8 +231,8 @@
 
     .selectedDisplayed
     {
-        color:      var( --PC-GREY--D5 );
-        opacity:    0.5;
+        color:              var( --PC-GREY--D5 );
+        opacity:            0.5;
     }
 }
 
@@ -345,8 +345,8 @@
 
 .list
 {
-     background:    var( --PC-WHITE );
-     position:      relative;
+    background:    var( --PC-WHITE );
+    position:      relative;
 }
 
 
@@ -471,13 +471,13 @@
 .disabled,
 .error .disabled
 {
-    pointer-events:             none;
-    cursor:                     auto;
-    color:                      var( --PC-GREY--L40 );
+    pointer-events:         none;
+    cursor:                 auto;
+    color:                  var( --PC-GREY--L40 );
 
     .description
     {
-        color:                  var( --PC-GREY--L55 );
+        color:              var( --PC-GREY--L55 );
     }
 }
 
@@ -640,7 +640,8 @@
 /* -------------------------------------*/
 /* FLOUNDER - description               */
 /* -------------------------------------*/
-.option > span, .option > div
+.option > span,
+.option > div
 {
     pointer-events:                 none;
 }
@@ -736,31 +737,31 @@
 
 .option.optionIcon__approved
 {
-    background-image:   url("./images/stroke-colours/approved.svg");
+    background-image:       url("./images/stroke-colours/approved.svg");
 }
 .option.optionIcon__declined
 {
-    background-image:   url("./images/stroke-colours/declined.svg");
+    background-image:       url("./images/stroke-colours/declined.svg");
 }
 .option.optionIcon__ended
 {
-    background-image:   url("./images/stroke-colours/ended.svg");
+    background-image:       url("./images/stroke-colours/ended.svg");
 }
 .option.optionIcon__pending
 {
-    background-image:   url("./images/stroke-colours/pending.svg");
+    background-image:       url("./images/stroke-colours/pending.svg");
 }
 .option.optionIcon__alert
 {
-    background-image:   url("./images/fill/alert.svg");
+    background-image:       url("./images/fill/alert.svg");
 }
 .option.optionIcon__error
 {
-    background-image:   url("./images/fill/error.svg");
+    background-image:       url("./images/fill/error.svg");
 }
 .optionIcon__include
 {
-    background-image:   url("./images/include.svg");
+    background-image:       url("./images/include.svg");
 
     .disabled&
     {
@@ -769,7 +770,7 @@
 }
 .optionIcon__exclude
 {
-    background-image:   url("./images/exclude.svg");
+    background-image:       url("./images/exclude.svg");
 
     .disabled&
     {
@@ -778,7 +779,7 @@
 }
 .optionIcon__includeExclude
 {
-    background-image:   url("./images/include--exclude.svg");
+    background-image:       url("./images/include--exclude.svg");
 
     .disabled&
     {
@@ -814,13 +815,16 @@
 /* -------------------------------------------------------------------------- */
 @keyframes loading
 {
-    0% {
+    0%
+    {
         content:                    'Loading.';
     }
-    33% {
+    33%
+    {
         content:                    'Loading..';
     }
-    66% {
+    66%
+    {
         content:                    'Loading...';
     }
 }

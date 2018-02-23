@@ -3,8 +3,8 @@ $wideWidth : 90rem;
 
 :global .visualTesting .modalContainer
 {
-    min-width:      1px;
-    min-height:     1px;
+    min-width:      0.1rem;
+    min-height:     0.1rem;
     top:            0;
     left:           0;
     position:       fixed;
@@ -158,7 +158,7 @@ only used in type__carousel for now
     button
     {
         position:   absolute;
-        top:        calc( 50% - 20px );
+        top:        calc( 50% - 2rem );
 
         width:      auto;
 

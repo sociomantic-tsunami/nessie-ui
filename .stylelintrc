@@ -13,16 +13,16 @@
     "font-family-no-duplicate-names": true,
     "indentation": [ 4, { indentInsideParens: "twice" }],
     "max-empty-lines": 7,
-    "max-nesting-depth" : 2,
+    "max-nesting-depth" : 3,
     "property-case": "lower",
     "selector-list-comma-newline-after": "always",
     "selector-list-comma-newline-before": "never-multi-line",
-    "selector-list-comma-space-after": "always",
-    "unit-whitelist": ["ch", "rem", "%", "s", "vw", "vh"],
+    "unit-whitelist": ["ch", "rem", "%", "s", "ms", "vw", "vh", "deg"],
     "unit-no-unknown": true,
     "unit-case" : "lower",
     "value-list-max-empty-lines": 1,
     "value-no-vendor-prefix" : true,
   },
-  "ignorefiles" : [ "./node_modules/normalize.css/normalize.css" ]
+  "ignoreFiles" : [ "./node_modules/normalize.css/normalize.css",
+                    "./src/CodeEditor/**.css"]
 }

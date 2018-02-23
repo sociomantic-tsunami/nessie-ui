@@ -2,9 +2,9 @@
 
 .default
 {
-	position: 		relative;
+    position: 		relative;
 
-	min-height:     var( --line-height-l );
+    min-height:     var( --line-height-l );
 
     @extend %Nessie-Bold;
 
@@ -25,12 +25,12 @@
 
 .role__promoted
 {
-	color:	var( --PC-GREEN );
+    color:	var( --PC-GREEN );
 }
 
 .role__critical
 {
-	color:	var( --PC-RED );
+    color:	var( --PC-RED );
 }
 
 .spacing__S

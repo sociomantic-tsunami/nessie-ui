@@ -87,7 +87,7 @@
 
     .handleLabel
     {
-        display:    none;
+        display:            none;
     }
 
 
@@ -95,9 +95,9 @@
 
     .ticksContainer
     {
-        width:      100%;
-        height:     100%;
-        position:   relative;
+        width:              100%;
+        height:             100%;
+        position:           relative;
     }
 
     .tick
@@ -119,17 +119,17 @@
 
     .stepLabelsContainer
     {
-        position:       relative;
+        position:           relative;
     }
 
     .stepLabel
     {
         @extend %Nessie-Regular;
-        font-size:      var( --typo-3 );
-        line-height:    var( --line-height-m );
-        color:          var( --PC-GREY );
+        font-size:          var( --typo-3 );
+        line-height:        var( --line-height-m );
+        color:              var( --PC-GREY );
 
-        position:       absolute;
+        position:           absolute;
     }
 }
 
@@ -353,13 +353,13 @@
 {
     .trackFill
     {
-        background:     color( var( --GS-4 ) a( 35% ) );
+        background:         color( var( --GS-4 ) a( 35% ) );
     }
 
     .handle
     {
-        background:     var( --PC-WHITE );
-        cursor:         default;
+        background:         var( --PC-WHITE );
+        cursor:             default;
 
         &:active
         {
@@ -373,11 +373,11 @@
 
     .handleLabel
     {
-        color:          color( var( --GS-2 ) a( 50% ) );
+        color:              color( var( --GS-2 ) a( 50% ) );
     }
 
     .ticksContainer
     {
-        display:        none;
+        display:            none;
     }
 }

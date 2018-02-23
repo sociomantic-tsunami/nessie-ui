@@ -2,13 +2,13 @@
 
 .default
 {
-    display:        flex;
-    align-items:    center;
+    display:            flex;
+    align-items:        center;
 
-    margin:         0;
-    padding:        var( --spacing-1 ) var( --spacing-2 );
+    margin:             0;
+    padding:            var( --spacing-1 ) var( --spacing-2 );
 
-    cursor:         pointer;
+    cursor:             pointer;
 
     .icon
     {
@@ -18,30 +18,30 @@
 
     .textContainer
     {
-        flex:       1 0 0%;
-        min-width:  0;
+        flex:           1 0 0%;
+        min-width:      0;
     }
 
     .optionText
     {
-        margin: 0;
-        color:  var( --PC-GREY );
+        margin:         0;
+        color:          var( --PC-GREY );
     }
 
     &:hover,
     &.active
     {
-        background: var( --PC-BLUE );
+        background:     var( --PC-BLUE );
 
         .optionText,
         .description
         {
-            color:  var( --PC-WHITE );
+            color:      var( --PC-WHITE );
         }
 
         .icon
         {
-            fill:   var( --PC-WHITE );
+            fill:       var( --PC-WHITE );
         }
     }
 }
@@ -58,21 +58,21 @@
 
 .selected
 {
-    background: color( var( --PC-BLUE ) a( 10% ) );
+    background:         color( var( --PC-BLUE ) a( 10% ) );
 }
 
 .disabled
 {
-    pointer-events: none;
-    cursor:         auto;
+    pointer-events:     none;
+    cursor:             auto;
 
     .optionText
     {
-        color:  var( --PC-GREY--L40 );
+        color:          var( --PC-GREY--L40 );
     }
 
     .description
     {
-        color:  var( --PC-GREY--L55 );
+        color:          var( --PC-GREY--L55 );
     }
 }

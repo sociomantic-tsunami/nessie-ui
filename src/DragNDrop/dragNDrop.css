@@ -31,7 +31,6 @@ $overlayShift:          -0.8rem;
 
     position:               absolute;
 
-    /* margin-top:                    $overlayShift; */
     margin-left:                   $overlayShift;
 
     height:                 $overlaySize;
@@ -46,7 +45,6 @@ $overlayShift:          -0.8rem;
     background:             color( var( --PC-WHITE ) a( 50% ) );
 
     pointer-events:         none;
-    /* margin-left:           3rem; */
 
     top:                    50%;
     transform:              translateY(-50%);

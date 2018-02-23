@@ -41,28 +41,29 @@ $defaultSpinnerUnderlayBorder:  8px;
     min-height:           $defaultSpinnerSize;
     border-width:         $defaultSpinnerUnderlayBorder;
 
-  &:after
-  {
-    width:              calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
-    height:             calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
-    border-width:       $defaultSpinnerOverlayBorder;
-    animation:          defaultSpinnerRingRotate .8s infinite ease-in-out;
-    left:               -$defaultSpinnerOverlayBorder;
-    top:                -$defaultSpinnerOverlayBorder;
-  }
+    &:after
+    {
+        width:              calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
+        height:             calc( $defaultSpinnerSize + 2 * $defaultSpinnerOverlayBorder );
+        border-width:       $defaultSpinnerOverlayBorder;
+        animation:          defaultSpinnerRingRotate .8s infinite ease-in-out;
+        left:               -$defaultSpinnerOverlayBorder;
+        top:                -$defaultSpinnerOverlayBorder;
+    }
 
 
 
 }
 
 
-@keyframes defaultSpinnerRingRotate {
-  0%
-  {
-    transform: rotateZ(0deg) scale(1); /* scale to voerride default spinner setup */
-  }
-  100%
-  {
-    transform: rotateZ(360deg) scale(1);
-  }
+@keyframes defaultSpinnerRingRotate
+{
+    0%
+    {
+        transform: rotateZ(0deg) scale(1); /* scale to voerride default spinner setup */
+    }
+    100%
+    {
+        transform: rotateZ(360deg) scale(1);
+    }
 }
