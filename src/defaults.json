@@ -76,7 +76,7 @@
     "Fieldset" :
     {
         "label"    : "Fieldset legend",
-        "children" : "{<div>Fieldset content</div>}"
+        "children" : "{<Text>Fieldset content</Text>}"
     },
     "Form" :
     {
@@ -142,11 +142,11 @@
     "Module" :
     {
         "title": "Our Wonderful Module",
-        "children": "{<div>Some other components go here....</div>}"
+        "children": "{<Text>Some other components go here....</Text>}"
     },
     "ModalDialog" :
     {
-        "children" : "{<Section><H3>Header</H3><p>Modal box content</p><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
+        "children" : "{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
     },
     "NavBar" :
     {
@@ -180,12 +180,12 @@
     },
     "PageContent" :
     {
-        "children" : "{<PageContentHeader><H1>Page Title</H1><p>Page Subtitle</p></PageContentHeader><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form>}",
+        "children" : "{<PageContentHeader><H1>Page Title</H1><Text>Page Subtitle</Text></PageContentHeader><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form>}",
         "lochness" : { "isBeta" : true }
     },
     "PageContentHeader" :
     {
-        "children" : "{<H1>Page Title</H1><p>Page Subtitle</p>}",
+        "children" : "{<H1>Page Title</H1><Text>Page Subtitle</Text>}",
         "lochness" : { "isBeta" : true }
     },
     "PageHeader" :
@@ -195,7 +195,7 @@
     },
     "PageFooter" :
     {
-        "children" : "{<div>Footer content...</div>}",
+        "children" : "{<Text>Footer content...</Text>}",
         "lochness" : { "isBeta" : true }
     },
     "Paginator" :
@@ -230,7 +230,7 @@
     },
     "Row" :
     {
-        "children": "{<Column size='1/3'><p>left<br/>column<br/>content</p></Column><Column size='1/3'><p>middle column content</p></Column><Column size='1/3'><p>right column content</p></Column>}"
+        "children": "{<Column size='1/3'><Text>left</Text><Text>column</Text><Text>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
     },
     "ScrollBox" :
     {
@@ -242,7 +242,7 @@
     {
         "title"   : "The Life and Times of David Hasselhoff",
         "level"   : 1,
-        "children" : "{<Section level={2} title='Early Life'><p>Subsection content...</p></Section><Section level={2} title='Early Career'><p>Subsection content...</p></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><p>Sub-subsection content...</p></Section></Section><p>More main section content...</p>}"
+        "children" : "{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"
     },
     "Slider":
     {
@@ -269,7 +269,7 @@
     "Tab" :
     {
         "label"    : "Tab title text",
-        "children" : "{<div>Tab content goes here</div>}"
+        "children" : "{<Text>Tab content goes here</Text>}"
     },
     "TabButton" :
     {
@@ -288,7 +288,7 @@
     },
     "TableRow" :
     {
-        "children": "{<TableCell size='1/3' columnTitle='left column title'><div>left<br/>column<br/>content</div></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
+        "children": "{<TableCell size='1/3' columnTitle='left column title'><Text>left</Text><Text>column</Text><Text>content</Text></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
     },
     "Tabs" :
     {
