@@ -175,7 +175,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
         if ( iconClass )
         {
             extraClass = datum.extraClass ?
-                `${datum.extraClass}  ${iconClass}` : datum.iconClass;
+                `${datum.extraClass}  ${iconClass}` : iconClass;
         }
 
         return {
@@ -386,6 +386,7 @@ export default class FlounderDropdown extends Component
         headerLevel           : 'none',
         hasError              : false,
         errorMessageIsVisible : false,
+        errorMessagePosition  : 'top',
         isDisabled            : false,
         isReadOnly            : false,
         multiple              : false,

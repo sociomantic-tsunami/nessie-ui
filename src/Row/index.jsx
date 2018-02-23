@@ -71,10 +71,12 @@ Row.propTypes =
      */
     spacing : PropTypes.oneOf( [
         'none',
-        'XS',
-        'S',
-        'XL',
-        'XXL'
+        'default',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'label',
     ] ),
     /**
      *  Row role
@@ -91,7 +93,7 @@ Row.defaultProps =
     align         : 'auto',
     hasMinHeight  : false,
     verticalAlign : 'auto',
-    spacing       : 'S',
+    spacing       : 'default',
     gutters       : 'L',
     cssMap        : require( './row.css' )
 };

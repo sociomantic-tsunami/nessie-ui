@@ -11,6 +11,7 @@ import { generateId }               from '../utils';
 import {
     addPrefix,
     buildListBoxOptions,
+    getScrollParent,
     removePrefix,
 } from './utils';
 
@@ -30,13 +31,17 @@ export default class ComboBox extends Component
          */
         dropdownPlaceholder : PropTypes.string,
         /**
+         * Position of the dropdown relative to the text input
+         */
+        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        /**
          * Display as hover when required from another component
          */
         forceHover          : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete        : PropTypes.bool,
+        hasAutocomplete     : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
@@ -72,7 +77,7 @@ export default class ComboBox extends Component
         /**
          *  HTML id attribute (overwrite default)
          */
-        id           : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  Dropdown list allows multiple selection
          */
@@ -177,6 +182,7 @@ export default class ComboBox extends Component
     static defaultProps = {
         activeOption        : undefined,
         dropdownPlaceholder : undefined,
+        dropdownPosition    : 'auto',
         forceHover          : false,
         inputPlaceholder    : undefined,
         hasAutocomplete     : false,
@@ -209,14 +215,30 @@ export default class ComboBox extends Component
         selection           : undefined,
     };
 
-    constructor()
+    constructor( props )
     {
         super();
+
+        const dropdownPosition = props.dropdownPosition !== 'auto' ?
+            props.dropdownPosition : 'bottom';
+
+        this.state = { dropdownPosition };
 
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
-        this.setRef                = this.setRef.bind( this );
+        this.setScrollBoxRef       = this.setScrollBoxRef( this );
+        this.setWrapperRef         = this.setWrapperRef.bind( this );
+    }
+
+    componentDidMount()
+    {
+        this.setDropdownPosition();
+    }
+
+    componentWillReceiveProps( newProps )
+    {
+        this.setDropdownPosition( newProps );
     }
 
     componentDidUpdate()
@@ -250,12 +272,49 @@ export default class ComboBox extends Component
         }
     }
 
-    setRef( ref )
+    setScrollBoxRef( ref )
     {
         if ( ref )
         {
             this.scrollBox = ref;
         }
+    }
+
+    setWrapperRef( ref )
+    {
+        if ( ref )
+        {
+            this.wrapperRef = ref;
+        }
+    }
+
+    setDropdownPosition( props = this.props )
+    {
+        let dropdownPosition = props.dropdownPosition;
+
+        if ( props.dropdownPosition === 'auto' )
+        {
+            const { wrapperRef } = this;
+
+            if ( wrapperRef )
+            {
+                const scrollParent = getScrollParent( wrapperRef );
+                const wrapperBox   = wrapperRef.getBoundingClientRect();
+                const parentBox    = scrollParent.getBoundingClientRect();
+                const { height }   = parentBox;
+
+                const offset =
+                    wrapperBox.top - parentBox.top - scrollParent.scrollTop;
+
+                dropdownPosition = offset > height / 2 ? 'top' : 'bottom';
+            }
+            else
+            {
+                dropdownPosition = 'bottom';
+            }
+        }
+
+        this.setState( { dropdownPosition } );
     }
 
     handleClickOption( e, optId )
@@ -296,6 +355,7 @@ export default class ComboBox extends Component
             hasError,
             iconType,
             id,
+            inputPlaceholder,
             inputRef,
             inputType,
             inputValue,
@@ -315,9 +375,10 @@ export default class ComboBox extends Component
             onMouseOver,
             onScroll,
             options = [],
-            inputPlaceholder,
             selection,
         } = this.props;
+
+        const { dropdownPosition } = this.state;
 
         let dropdownContent;
 
@@ -328,7 +389,7 @@ export default class ComboBox extends Component
                     height       = "50vh"
                     onScroll     = { onScroll }
                     scroll       = "vertical"
-                    scrollBoxRef = { this.setRef }>
+                    scrollBoxRef = { this.setScrollBoxRef }>
                     <ListBox
                         activeOption      = { addPrefix( activeOption, id ) }
                         id                = { addPrefix( 'listbox', id ) }
@@ -354,7 +415,7 @@ export default class ComboBox extends Component
 
         return (
             <InputWithDropdown
-                aria           = { {
+                aria = { {
                     autocomplete     : hasAutocomplete ? 'both' : 'list',
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
@@ -363,32 +424,34 @@ export default class ComboBox extends Component
                     owns     : addPrefix( 'listbox', id ),
                     role     : 'combobox',
                 } }
-                forceHover     = { forceHover || isOpen }
-                hasError       = { hasError }
-                iconType       = { iconType }
-                id             = { id }
-                inputRef       = { inputRef }
-                inputType      = { inputType }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { inputIsReadOnly }
-                dropdownIsOpen = { isOpen }
-                dropdownProps  = { {
+                forceHover       = { forceHover || isOpen }
+                hasError         = { hasError }
+                iconType         = { iconType }
+                id               = { id }
+                inputRef         = { inputRef }
+                inputType        = { inputType }
+                isDisabled       = { isDisabled }
+                isReadOnly       = { inputIsReadOnly }
+                dropdownIsOpen   = { isOpen }
+                dropdownPosition = { dropdownPosition }
+                dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
                     padding  : options.length ? 'none' : 'S',
                 } }
-                name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChangeInput }
-                onClick        = { onClickInput }
-                onFocus        = { onFocus }
-                onKeyDown      = { onKeyDown }
-                onKeyPress     = { onKeyPress }
-                onKeyUp        = { onKeyUp }
-                onMouseOut     = { onMouseOut }
-                onMouseOver    = { onMouseOver }
-                placeholder    = { inputPlaceholder }
-                value          = { inputValue } />
+                name        = { name }
+                onBlur      = { onBlur }
+                onChange    = { onChangeInput }
+                onClick     = { onClickInput }
+                onFocus     = { onFocus }
+                onKeyDown   = { onKeyDown }
+                onKeyPress  = { onKeyPress }
+                onKeyUp     = { onKeyUp }
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }
+                placeholder = { inputPlaceholder }
+                value       = { inputValue }
+                wrapperRef  = { this.setWrapperRef } />
         );
     }
 }
