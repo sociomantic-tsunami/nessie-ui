@@ -169,8 +169,8 @@ export default class Slider extends Component
 
         this.getNewValue = this.getNewValue.bind( this );
 
-        this.handleFocusOnHandler = this.handleFocusOnHandler.bind( this );
-        this.handleBlurOnHandler = this.handleBlurOnHandler.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
+        this.handleBlur = this.handleBlur.bind( this );
         this.handleTrackMouseDown = this.handleTrackMouseDown.bind( this );
     }
 
@@ -450,7 +450,7 @@ export default class Slider extends Component
     * Updates state with current focused handle id
     * @param {Event}   event   event being passed
     */
-    handleFocusOnHandler( event )
+    handleFocus( event )
     {
         this.setState( {
             handleIndex : event.target.id
@@ -462,7 +462,7 @@ export default class Slider extends Component
     * Updates state with a non-valid handle id to
     * remove focused style
     */
-    handleBlurOnHandler()
+    handleBlur()
     {
         this.setState( {
             handleIndex : -1
@@ -653,8 +653,8 @@ export default class Slider extends Component
                                 min      = { minValue }
                                 step     = { step }
                                 onChange = { onChange }
-                                onFocus  = { this.handleFocusOnHandler }
-                                onBlur   = { this.handleBlurOnHandler }
+                                onFocus  = { this.handleFocus }
+                                onBlur   = { this.handleBlur }
                                 value    = { val } />
                         ) ) }
                     </div>
