@@ -1,14 +1,15 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
-import { buildClassName, generateId } from '../utils';
-import styles                         from './dimensionsInput.css';
-import { InputField, Text }           from '../index';
-import withInputContainer             from '../proto/withInputContainer';
+import { generateId }                    from '../utils';
+import { Column, InputField, Row, Text } from '../index';
+import InputContainer                    from '../proto/InputContainer';
 
 const DimensionsInput = ( {
     className,
-    cssMap,
+    errorMessage,
+    errorMessageIsVisible,
+    errorMessagePosition,
     forceHover,
     hasError,
     heightDefaultValue,
@@ -18,6 +19,8 @@ const DimensionsInput = ( {
     id,
     isDisabled,
     isReadOnly,
+    label,
+    labelPosition,
     onChange,
     onBlur,
     onFocus,
@@ -28,40 +31,58 @@ const DimensionsInput = ( {
     widthPlaceholder,
     widthValue,
 } ) => (
-    <div
-        className   = { buildClassName( className, cssMap ) }
-        onMouseOut  = { onMouseOut }
-        onMouseOver = { onMouseOver }>
-        <InputField
-            className    = { cssMap.input }
-            defaultValue = { widthDefaultValue }
-            forceHover   = { forceHover }
-            hasError     = { hasError }
-            id           = { `${id}-width` }
-            isDisabled   = { isDisabled }
-            isReadOnly   = { isReadOnly }
-            inputRef     = { widthInputRef }
-            onChange     = { onChange }
-            onBlur       = { onBlur }
-            onFocus      = { onFocus }
-            placeholder  = { widthPlaceholder }
-            value        = { widthValue } />
-        <Text className = { cssMap.text }>✕</Text>
-        <InputField
-            className    = { cssMap.input }
-            defaultValue = { heightDefaultValue }
-            forceHover   = { forceHover }
-            hasError     = { hasError }
-            id           = { `${id}-height` }
-            isDisabled   = { isDisabled }
-            isReadOnly   = { isReadOnly }
-            inputRef     = { heightInputRef }
-            onChange     = { onChange }
-            onBlur       = { onBlur }
-            onFocus      = { onFocus }
-            placeholder  = { heightPlaceholder }
-            value        = { heightValue } />
-    </div>
+    <InputContainer
+        className             = { className }
+        errorMessage          = { errorMessage }
+        errorMessageIsVisible = { errorMessageIsVisible }
+        errorMessagePosition  = { errorMessagePosition }
+        hasError              = { hasError }
+        id                    = { `${id}-width` }
+        isDisabled            = { isDisabled }
+        label                 = { label }
+        labelPosition         = { labelPosition }
+        onMouseOut            = { onMouseOut }
+        onMouseOver           = { onMouseOver }>
+        <Row
+            gutters       = "S"
+            onMouseOut    = { onMouseOut }
+            onMouseOver   = { onMouseOver }
+            verticalAlign = "middle">
+            <Column>
+                <InputField
+                    defaultValue = { widthDefaultValue }
+                    forceHover   = { forceHover }
+                    hasError     = { hasError }
+                    id           = { `${id}-width` }
+                    isDisabled   = { isDisabled }
+                    isReadOnly   = { isReadOnly }
+                    inputRef     = { widthInputRef }
+                    onChange     = { onChange }
+                    onBlur       = { onBlur }
+                    onFocus      = { onFocus }
+                    placeholder  = { widthPlaceholder }
+                    value        = { widthValue } />
+            </Column>
+            <Column size = "content">
+                <Text>✕</Text>
+            </Column>
+            <Column>
+                <InputField
+                    defaultValue = { heightDefaultValue }
+                    forceHover   = { forceHover }
+                    hasError     = { hasError }
+                    id           = { `${id}-height` }
+                    isDisabled   = { isDisabled }
+                    isReadOnly   = { isReadOnly }
+                    inputRef     = { heightInputRef }
+                    onChange     = { onChange }
+                    onBlur       = { onBlur }
+                    onFocus      = { onFocus }
+                    placeholder  = { heightPlaceholder }
+                    value        = { heightValue } />
+            </Column>
+        </Row>
+    </InputContainer>
 );
 
 DimensionsInput.propTypes = {
@@ -163,7 +184,6 @@ DimensionsInput.propTypes = {
 
 DimensionsInput.defaultProps = {
     className             : undefined,
-    cssMap                : styles,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -189,4 +209,4 @@ DimensionsInput.defaultProps = {
     widthValue            : undefined,
 };
 
-export default withInputContainer( DimensionsInput );
+export default DimensionsInput;
