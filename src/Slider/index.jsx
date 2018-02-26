@@ -168,6 +168,10 @@ export default class Slider extends Component
         this.handleMouseMove = this.handleMouseMove.bind( this );
 
         this.getNewValue = this.getNewValue.bind( this );
+
+        this.handleFocus = this.handleFocus.bind( this );
+        this.handleBlur = this.handleBlur.bind( this );
+        this.handleTrackMouseDown = this.handleTrackMouseDown.bind( this );
     }
 
 
@@ -216,8 +220,8 @@ export default class Slider extends Component
         offset += '%'; length += '%';
 
         return orientation === 'vertical' ?
-        { height: length, bottom: offset } :
-        { width: length, left: offset };
+            { height: length, bottom: offset } :
+            { width: length, left: offset };
     }
 
 
@@ -267,7 +271,7 @@ export default class Slider extends Component
         const offset   = `${this.getOffset( value )}%`;
 
         return orientation === 'vertical' ?
-         { bottom: offset } : { left: offset };
+            { bottom: offset } : { left: offset };
     }
 
 
@@ -298,12 +302,12 @@ export default class Slider extends Component
 
         let position = mouse - start;
         if ( isVertical ) // account for y-axis inversion
-           {
+        {
             position = length - position;
         }
 
         if ( isLogarithmic )
-           {
+        {
             let v = Math.round( ( ( position / length ) * range ) + minValue );
             const min = minValue === 0 ? 0 : Math.log( minValue );
             const max = Math.log( maxValue );
@@ -366,7 +370,10 @@ export default class Slider extends Component
             return;
         }
 
-        this.targetInput = this.inputs[ event.target.dataset.index ];
+        this.targetInput = this.inputs[
+            parseInt( event.target.dataset.index, 10 ) ];
+
+        this.targetInput.focus();
 
         addEventListener( 'mousemove', this.handleMouseMove );
         addEventListener( 'mouseup', this.handleMouseUp );
@@ -424,7 +431,7 @@ export default class Slider extends Component
             maxValue
         } = this.props;
 
-        if ( stepLabelStart || stepLabelEnd )
+        if ( stepLabelStart || stepLabelEnd )
         {
             const newStepLabels = [
                 { 'stepLabel': stepLabelStart, 'step': minValue },
@@ -439,6 +446,65 @@ export default class Slider extends Component
     }
 
 
+    /**
+    * Updates state with current focused handle id
+    * @param {Event}   event   event being passed
+    */
+    handleFocus( event )
+    {
+        this.setState( {
+            handleIndex : event.target.id
+        } );
+    }
+
+
+    /**
+    * Updates state with a non-valid handle id to
+    * remove focused style
+    */
+    handleBlur()
+    {
+        this.setState( {
+            handleIndex : -1
+        } );
+    }
+
+
+    /**
+    * Updates target input with new value from the mouse down on track position
+    * @param {Event}  event   event being passed
+    */
+    handleTrackMouseDown( event )
+    {
+        event.preventDefault();
+
+        if ( event.target.dataset.index === undefined )
+        {
+            const { clientX, clientY } = event;
+            const targetHandle         = this.targetInput ? this.targetInput :
+                this.inputs[ 0 ];
+            const { onChange }         = this.props;
+            const e = new Event( 'change' );
+
+            targetHandle.value = this.getStep(
+                this.getNewValue( clientX, clientY ) );
+
+            targetHandle.focus();
+
+            targetHandle.dispatchEvent( e );
+            if ( onChange )
+            {
+                onChange( e );
+            }
+
+            this.forceUpdate();
+        }
+    }
+
+    /**
+    * callback refs handler
+    * @param {Object}  ref  ref
+    */
     handleInputRef( ref )
     {
         this.inputs.push( ref );
@@ -469,6 +535,8 @@ export default class Slider extends Component
             value,
             ticks = []
         } = this.props;
+
+        const { id } = this.state;
 
         let values = [];
 
@@ -503,7 +571,8 @@ export default class Slider extends Component
         }
 
         const sliderLabelMarkUp = label && (
-            <Label>
+            <Label
+                htmlFor = { `${id}_0` }>
                 <IconWithTooltip
                     iconType         = "error"
                     iconPosition     = "right"
@@ -524,16 +593,26 @@ export default class Slider extends Component
         );
 
         const buildHandle = ( val, i ) =>
-            <div
-                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                data-index  = { i }
-                className   = { cssMap.handle }
-                onMouseDown = { this.handleMouseDown }
-                style       = { this.getHandleStyle( val ) } >
-                <span className = { cssMap.handleLabel }>
-                    { val }
-                </span>
-            </div>;
+        {
+            let handleClassName = cssMap.handle;
+            if ( this.state.handleIndex && this.state.handleIndex !== -1 &&
+                      parseInt( this.state.handleIndex.slice( -1 ), 10 ) === i )
+            {
+                handleClassName = `${cssMap.handle} ${cssMap.handleFocus}`;
+            }
+            return (
+                <div
+                    key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                    data-index  = { i }
+                    className   = { handleClassName }
+                    onMouseDown = { this.handleMouseDown }
+                    style       = { this.getHandleStyle( val ) } >
+                    <span className = { cssMap.handleLabel }>
+                        { val }
+                    </span>
+                </div>
+            );
+        };
 
         const ticksMarkUp = ticks && (
             <div className = { cssMap.ticksContainer }>
@@ -545,7 +624,7 @@ export default class Slider extends Component
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
                         </div>
-                 ) }
+                ) }
             </div>
         );
 
@@ -564,17 +643,20 @@ export default class Slider extends Component
                     <div className = { cssMap.inputContainer }>
                         { values.map( ( val, i ) => (
                             <input
-                                key = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                ref = { this.handleInputRef }
-                                type = "range"
+                                key      = { i } // eslint-disable-line react/no-array-index-key, max-len
+                                id       = { `${id}_${i}` }
+                                ref      = { this.handleInputRef }
+                                type     = "range"
                                 readOnly = { isReadOnly }
                                 disabled = { isDisabled }
                                 max      = { maxValue }
                                 min      = { minValue }
                                 step     = { step }
                                 onChange = { onChange }
+                                onFocus  = { this.handleFocus }
+                                onBlur   = { this.handleBlur }
                                 value    = { val } />
-                         ) ) }
+                        ) ) }
                     </div>
 
                     { sliderLabelMarkUp }
@@ -584,8 +666,9 @@ export default class Slider extends Component
                                 stepLabelsTrack }
                         <div
                             aria-hidden
-                            className = { cssMap.track }
-                            ref       = { this.setTrackState }>
+                            className   = { cssMap.track }
+                            ref         = { this.setTrackState }
+                            onMouseDown = { this.handleTrackMouseDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>
