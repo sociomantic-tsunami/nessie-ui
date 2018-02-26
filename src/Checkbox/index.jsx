@@ -10,8 +10,12 @@ const Checkbox = ( props ) =>
 Checkbox.propTypes =
 {
     /**
-    *  Label text string
-    */
+     *  Label content (JSX node; overrides label prop)
+     */
+    children    : PropTypes.node,
+    /**
+     *  Label content (string)
+     */
     label       : PropTypes.string,
     /**
     *  Display as checked
