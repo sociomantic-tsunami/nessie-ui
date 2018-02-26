@@ -11,6 +11,7 @@ const Row = ( {
     cssMap,
     gutters,
     hasMinHeight,
+    hasWrap,
     role,
     spacing } ) =>
 
@@ -21,7 +22,8 @@ const Row = ( {
                 alignY  : verticalAlign,
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
-                spacing : spacing !== 'none' && spacing
+                spacing : spacing !== 'none' && spacing,
+                hasWrap : hasWrap,
 
             } }>
             <div
@@ -47,6 +49,10 @@ Row.propTypes =
     *  Set minimum height equal to average row.
     */
     hasMinHeight  : PropTypes.bool,
+    /**
+    *  Allows content to wrap to the next line.
+    */
+    hasWrap       : PropTypes.bool,
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
@@ -92,6 +98,7 @@ Row.defaultProps =
 {
     align         : 'auto',
     hasMinHeight  : false,
+    hasWrap       : false,
     verticalAlign : 'auto',
     spacing       : 'default',
     gutters       : 'L',
