@@ -1,0 +1,25 @@
+.sticky
+{
+    position:  sticky;
+    z-index:   999999;
+}
+
+.position__top
+{
+    top: 0;
+}
+
+.position__right
+{
+    right: 0;
+}
+
+.position__bottom
+{
+    bottom: 0;
+}
+
+.position__left
+{
+    left: 0;
+}
