@@ -29,11 +29,7 @@ const DimensionsInput = ( {
     widthValue,
 } ) => (
     <div
-        className = { buildClassName( className, cssMap, {
-            disabled    : isDisabled,
-            error       : !isDisabled && hasError,
-            fakeHovered : !isDisabled && forceHover,
-        } ) }
+        className   = { buildClassName( className, cssMap ) }
         onMouseOut  = { onMouseOut }
         onMouseOver = { onMouseOver }>
         <InputField
