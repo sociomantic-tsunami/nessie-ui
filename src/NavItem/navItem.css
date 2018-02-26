@@ -161,8 +161,6 @@
 {
     & > .link
     {
-        padding:    1.4rem 0 1.2rem;
-
         &::after
         {
             display:    none !important;

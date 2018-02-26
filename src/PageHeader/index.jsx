@@ -7,9 +7,7 @@ const PageHeader = ( { children, cssMap, className } ) =>
 
     <Css cssMap = { cssMap }>
         <header className = { className }>
-            <div className = { cssMap.content }>
-                { children }
-            </div>
+            { children }
         </header>
     </Css>;
 
