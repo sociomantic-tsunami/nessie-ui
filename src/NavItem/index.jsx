@@ -3,6 +3,7 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import NavDropdown          from '../NavDropdown';
+import styles               from './navItem.css';
 
 
 const NavItem = ( {
@@ -24,11 +25,10 @@ const NavItem = ( {
     role
 } ) =>
 {
-    if ( isCurrentPage === true )
+    if ( typeof isCurrentPage !== 'undefined' )
     {
-        console.warn( `${this.constructor.name}: isCurrentPage is \
-deprecated and will be removed in the next major release. Please use \
-isCurrent instead.` );
+        console.warn( `NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.` );
     }
 
     return (
@@ -69,9 +69,17 @@ isCurrent instead.` );
 NavItem.propTypes =
 {
     /**
-     *  Navigation role
+     *  Dropdown menu items
      */
-    role          : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
+    children      : PropTypes.node,
+    /*
+    * Dropdown menu alignment
+     */
+    dropdownAlign : PropTypes.oneOf( [ 'left', 'right' ] ),
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover    : PropTypes.bool,
     /**
      *  navItem text
      */
@@ -85,46 +93,49 @@ NavItem.propTypes =
      */
     iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
     /*
+    *  Item represents the current page and/or section
+     */
+    isCurrent     : PropTypes.bool,
+    /*
     *  Display as disabled/read-only
      */
     isDisabled    : PropTypes.bool,
     /*
-    * Dropdown menu alignment
+     * Display as current page/section
      */
-    dropdownAlign : PropTypes.oneOf( [ 'left', 'right' ] ),
+    isCurrent     : PropTypes.bool,
     /*
     * Dropdown menu is open
      */
     isOpen        : PropTypes.bool,
     /**
-     *  Dropdown menu items
+     *  onClick callback function
      */
-    children      : PropTypes.node,
-    /**
-     *  onMouseOver callback function
-     */
-    onMouseOver   : PropTypes.func,
+    onClick       : PropTypes.func,
     /**
      *  onMouseOut callback function
      */
     onMouseOut    : PropTypes.func,
     /**
-     *  onClick callback function
+     *  onMouseOver callback function
      */
-    onClick       : PropTypes.func,
+    onMouseOver   : PropTypes.func,
     /**
-     * Display as hover when required from another component
+     *  Navigation role
      */
-    forceHover    : PropTypes.bool
+    role          : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
 };
 
 NavItem.defaultProps =
 {
-    role          : 'default',
-    href          : '#',
+    cssMap        : styles,
     dropdownAlign : 'left',
+    href          : '#',
     iconType      : 'none',
-    cssMap        : require( './navItem.css' )
+    isCurrent     : false,
+    isDisabled    : false,
+    isOpen        : false,
+    role          : 'default',
 };
 
 export default NavItem;

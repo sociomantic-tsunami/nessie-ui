@@ -47,12 +47,13 @@ const DateTimeInput = ( {
 {
     const datePicker = (
         <DatePicker
+            key            = "datePicker"
             headers        = { mode !== 'month' ? days : undefined }
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             items          = { mode === 'month' ? months : weeks }
             label          = { mode === 'month' ?
-                currentYear : `${currentMonth} ${currentYear}` }
+                `${currentYear}` : `${currentMonth} ${currentYear}` }
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
             nextIsDisabled = { nextIsDisabled }
@@ -63,6 +64,7 @@ const DateTimeInput = ( {
 
     const timePicker = mode === 'default' && (
         <TimeInput
+            key               = "timeInput"
             hourIsDisabled    = { hourIsDisabled }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
@@ -80,6 +82,8 @@ const DateTimeInput = ( {
     const dropdownProps = {
         children : [ datePicker, timePicker ],
         hasError,
+        padding  : 'M',
+        size     : 'content',
     };
 
     return (

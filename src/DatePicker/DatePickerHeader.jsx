@@ -42,8 +42,8 @@ DatePickerHeader.propTypes = {
     isDisabled     : PropTypes.bool,
     isReadOnly     : PropTypes.bool,
     nextIsDisabled : PropTypes.bool,
-    onClickNext    : PropTypes.bool,
-    onClickPrev    : PropTypes.bool,
+    onClickNext    : PropTypes.func,
+    onClickPrev    : PropTypes.func,
     prevIsDisabled : PropTypes.bool,
 };
 

@@ -17,6 +17,7 @@ export Checkbox                 from './Checkbox';
 export CheckboxGroup            from './CheckboxGroup';
 export CodeEditor               from './CodeEditor';
 export Column                   from './Column';
+export ComboBox                 from './ComboBox';
 export DatePicker               from './DatePicker';
 export { WrappedDateTimeInput as DateTimeInput };
 export DimensionsInput          from './DimensionsInput';

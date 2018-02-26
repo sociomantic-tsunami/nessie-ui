@@ -1,18 +1,81 @@
 @import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
 
 .default
 {
-    overflow: auto;
+    .scrollBox
+    {
+        overflow:               auto;
+        overscroll-behavior:    contain;
+    }
 }
 
 .scroll__horizontal
 {
-    overflow-y: hidden;
+    .scrollBox
+    {
+        overflow-y: hidden;
+    }
+
 }
 
 .scroll__vertical
 {
-    overflow-x: hidden;
+    .scrollBox
+    {
+        overflow-x: hidden;
+    }
+}
+
+.content
+{
+
+}
+
+.icon__down,
+.icon__left,
+.icon__right,
+.icon__up
+{
+    position:         absolute;
+    z-index:          10;
+    background-color: var( --PC-WHITE );
+    border-radius:    2rem;
+    opacity:          0.8;
+
+    svg
+    {
+        fill:         var( --PC-BLUE );
+    }
+}
+
+.icon__down
+{
+    bottom: 1rem;
+    left:   calc( 50% - 1.6rem );
+}
+
+.icon__left
+{
+    top:    calc( 50% - 1.6rem );
+    left:   1rem;
+}
+
+.icon__right
+{
+    top:    calc( 50% - 1.6rem );
+    right:  1rem;
+}
+
+.icon__up
+{
+    top:    1rem;
+    left:   calc( 50% - 1.6rem );
+}
+
+.content
+{
+
 }
 
 .content

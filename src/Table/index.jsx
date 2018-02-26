@@ -1,132 +1,120 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                   from 'react';
+import PropTypes               from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import TableRow             from '../TableRow';
-import TableCell            from '../TableCell';
-import Text                 from '../Text';
-import Required             from '../Required';
+import TableCell               from '../TableCell';
+import TableRow                from '../TableRow';
+import Required                from '../Required';
+import { buildClassName }      from '../utils';
+import styles                  from './table.css';
+import { buildRowsFromValues } from './utils';
 
-
-const buildTableFromValues = ( values = [], isDataTable  ) =>
-    values.map( ( row, i ) =>
-        (
-            // eslint-disable-next-line react/no-array-index-key
-            <TableRow key = { i }>
-                {
-                    row.map( ( col, j ) =>
-                    // eslint-disable-next-line react/no-array-index-key
-                        <TableCell isDataTable = { isDataTable } key = { j }>
-                            <Text>{ col }</Text>
-                        </TableCell>
-                    )
-                }
-            </TableRow>
-        ) );
 
 const Table = ( {
+    align,
     children,
     className,
     columns = [],
     cssMap,
+    gutters,
     onToggle,
     values,
-    isDataTable,
     isZebra,
-    stickyHeader } ) =>
+    hasStickyHeader,
+    verticalAlign,
+} ) =>
 {
-    const _children = children || buildTableFromValues( values, isDataTable );
-
-    const header = columns.length ?
-        ( <TableRow
-            isSticky = { stickyHeader }
-            verticalAlign = "middle"
-            className = { cssMap.row }>
-            { columns.map( ( column, index ) =>
-            {
-                const title = column.title;
-                const text  = column.isRequired ?
-                    <Required>{ title }</Required> : title;
-                const stickyCell = column.isSticky;
-
-                return (
-                    <TableCell
-                        isHeader
-                        isSticky    = { stickyCell }
-                        isDataTable = { isDataTable }
-                        isSortable  = { column.isSortable }
-                        sort        = { column.sort }
-                        size        = { column.size }
-                        onToggle    = { onToggle }
-                        key         = { index } // eslint-disable-line react/no-array-index-key, max-len
-                    >
-                        { text }
-                    </TableCell>
-                );
-            } )
-            }
-        </TableRow> ) : null;
-
-
-    const rows = React.Children.toArray( _children ).map( ( row ) =>
+    const rows = React.Children.toArray( children ||
+        buildRowsFromValues( values ) ).map( row =>
     {
         const cells = React.Children.toArray( row.props.children );
 
-        return React.cloneElement( row,
+        return React.cloneElement( row, {
+            align    : row.props.align || align,
+            children : cells.map( ( cell, i ) =>
             {
-                children : cells.map( ( cell, index ) =>
-                {
-                    if ( typeof columns[ index ] === 'object' )
-                    {
-                        const title = columns[ index ].title;
-                        const size  = columns[ index ].size;
-                        const rowHeaderCell = columns[ index ].isRowHeader;
-                        const stickyCell = columns[ index ].isSticky;
+                const column      = columns[ i ];
+                const columnProps = column && {
+                    align       : cell.props.align || column.align,
+                    columnTitle : cell.props.columnTitle || column.title,
+                    size        : cell.props.size || column.size,
+                    isRowHeader : cell.props.isRowHeader ||
+                        column.isRowHeader,
+                    isSticky      : cell.props.isSticky || column.isSticky,
+                    verticalAlign : cell.props.verticalAlign ||
+                        column.verticalAlign,
+                };
 
-                        return React.cloneElement( cell,
-                            {
-                                className : cell.props.className ?
-                                    `${cell.props.className}  ${cssMap.cell}`
-                                    : cssMap.cell,
-                                columnTitle : title ||
-                                cell.props.columnTitle,
-                                size        : size || cell.props.size,
-                                isRowHeader : rowHeaderCell ||
-                                cell.props.isRowHeader,
-                                isSticky : stickyCell ||
-                                cell.props.isSticky
-                            } );
-                    }
-                    return cell;
-                } ),
-                className : row.props.className ?
-                    `${row.props.className}  ${cssMap.row}` : cssMap.row
-            } );
+                return React.cloneElement( cell, {
+                    ...columnProps,
+                    className : cell.props.className ?
+                        `${cell.props.className}  ${cssMap.cell}` : cssMap.cell,
+                } );
+            } ),
+            className : row.props.className ?
+                `${row.props.className}  ${cssMap.row}` : cssMap.row,
+            gutters       : row.props.gutters || gutters,
+            verticalAlign : row.props.verticalAlign || verticalAlign,
+        } );
     } );
 
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { zebra: isZebra } }>
-            <div role = "grid" className = { className }>
-                { header }
-                { rows }
-            </div>
-        </Css>
+        <div
+            className = { buildClassName( className, cssMap, {
+                zebra : isZebra,
+            } ) }
+            role = "grid">
+            { columns.length &&
+                <TableRow
+                    align         = { align }
+                    className     = { cssMap.row }
+                    gutters       = { gutters }
+                    isSticky      = { hasStickyHeader }
+                    verticalAlign = { verticalAlign } >
+                    { columns.map( ( column, i ) =>
+                    {
+                        const title = column.title;
+                        const text  = column.isRequired ?
+                            <Required>{ title }</Required> : title;
+                        const stickyCell = column.isSticky;
+
+                        return (
+                            <TableCell
+                                align         = { column.align }
+                                className     = { cssMap.cell }
+                                isHeader
+                                isSortable    = { column.isSortable }
+                                isSticky      = { stickyCell }
+                                key           = { i }
+                                onToggle      = { onToggle }
+                                size          = { column.size }
+                                sort          = { column.sort }
+                                verticalAlign = { column.verticalAlign }>
+                                { text }
+                            </TableCell>
+                        );
+                    } ) }
+                </TableRow>
+            }
+            { rows }
+        </div>
     );
 };
 
 Table.propTypes =
 {
     /**
-     * 2D Array of table values (for convenience)
+     *  Text alignment inside cells
      */
-    values  : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
+    align    : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    /**
+     *  Table content (TableRows containing TableCells; overrides values)
+     */
+    children : PropTypes.node,
     /**
      * Array of objects defining the table columns
      */
-    columns : PropTypes.arrayOf( PropTypes.shape( {
+    columns  : PropTypes.arrayOf( PropTypes.shape( {
         title       : PropTypes.string,
         size        : PropTypes.string,
         isRowHeader : PropTypes.bool,
@@ -135,34 +123,43 @@ Table.propTypes =
         isSortable  : PropTypes.bool,
         sort        : PropTypes.oneOf( [ 'asc', 'desc' ] )
     } ) ),
-    /**
-     *  Table content (TableRows containing TableCells; overrides values)
-     */
-    children     : PropTypes.node,
-    /**
-     *  Is Data Table (smaller fonts, zebra paddings)
-     */
-    isDataTable  : PropTypes.bool,
-    /**
-     *  Display as zebra-striped
-     */
-    isZebra      : PropTypes.bool,
-    /**
-     *  Column sorter onToggle callback function: ( e ) => { ... }
-     */
-    onToggle     : PropTypes.func,
+    gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      *  Makes header row sticky
      */
-    stickyHeader : PropTypes.bool
+    hasStickyHeader : PropTypes.bool,
+    /**
+     *  Display as zebra-striped
+     */
+    isZebra         : PropTypes.bool,
+    /**
+     *  Column sorter onToggle callback function: ( e ) => { ... }
+     */
+    onToggle        : PropTypes.func,
+    /**
+     * 2D Array of table values (for convenience)
+     */
+    values          : PropTypes.arrayOf(
+        PropTypes.arrayOf( PropTypes.string )
+    ),
+    /**
+     *  Vertical alignment inside cells
+     */
+    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =
 {
-    isZebra      : false,
-    isDataTable  : false,
-    stickyHeader : false,
-    cssMap       : require( './table.css' )
+    align           : 'auto',
+    children        : undefined,
+    columns         : undefined,
+    cssMap          : styles,
+    gutters         : 'M',
+    hasStickyHeader : false,
+    isZebra         : false,
+    onToggle        : undefined,
+    values          : undefined,
+    verticalAlign   : 'middle',
 };
 
 export default Table;
