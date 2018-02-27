@@ -14,7 +14,7 @@ const Row = ( {
 } ) =>
 
     <Grid
-        singleLine
+        hasWrap       = { false }
         align         = { align }
         hasMinHeight  = { hasMinHeight }
         verticalAlign = { verticalAlign }

@@ -11,7 +11,7 @@ const Grid = ( {
     cssMap,
     gutters,
     hasMinHeight,
-    singleLine,
+    hasWrap,
     role,
     spacing
 } ) =>
@@ -23,7 +23,7 @@ const Grid = ( {
             alignY  : verticalAlign,
             hasMinHeight,
             gutters : gutters !== 'none' && gutters,
-            singleLine,
+            hasWrap,
             spacing : spacing !== 'none' && spacing
 
         } }>
@@ -51,6 +51,10 @@ Grid.propTypes =
     */
     hasMinHeight  : PropTypes.bool,
     /**
+     * content in single line
+     */
+    hasWrap       : PropTypes.bool,
+    /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
      */
@@ -70,13 +74,9 @@ Grid.propTypes =
         'L'
     ] ),
     /**
-     * content in single line
-     */
-    singleLine : PropTypes.bool,
-    /**
      *  Row spacing
      */
-    spacing    : PropTypes.oneOf( [
+    spacing : PropTypes.oneOf( [
         'none',
         'default',
         'h1',
@@ -98,7 +98,7 @@ Grid.propTypes =
 Grid.defaultProps =
 {
     align         : 'auto',
-    singleLine    : false,
+    hasWrap       : true,
     hasMinHeight  : false,
     verticalAlign : 'auto',
     spacing       : 'default',
