@@ -164,9 +164,10 @@ export default class TagInput extends Component
                     { ...props }
                     id        = { id }
                     className = { className }>
-                    <div
+                    <label
                         className = { cssMap.container }
-                        style     = { minHeight }>
+                        style     = { minHeight }
+                        htmlFor   = { id }>
                         { updatedTagItems }
                         <input
                             ref         = { inputRef }
@@ -180,7 +181,7 @@ export default class TagInput extends Component
                             onKeyPress  = { onKeyPress }
                             disabled    = { isDisabled }
                             readOnly    = { isReadOnly } />
-                    </div>
+                    </label>
                 </InputContainer>
             </Css>
         );
