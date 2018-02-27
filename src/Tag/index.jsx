@@ -4,6 +4,7 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import IconButton           from '../IconButton';
 import Text                 from '../Text';
+import { generateId }       from '../utils';
 
 const Tag = ( {  children, className, cssMap, label, ...props } ) =>
 {
@@ -33,6 +34,10 @@ const Tag = ( {  children, className, cssMap, label, ...props } ) =>
 Tag.propTypes =
 {
     /**
+     *  component id
+     */
+    id         : PropTypes.string,
+    /**
      *  Display as disabled
      */
     isDisabled : PropTypes.bool,
@@ -61,6 +66,7 @@ Tag.propTypes =
 
 Tag.defaultProps =
 {
+    id         : generateId( 'Tag' ),
     isDisabled : false,
     isReadOnly : false,
     forceHover : false,

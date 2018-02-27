@@ -7,8 +7,28 @@ import InputContainer   from '../proto/InputContainer';
 import Tag              from '../Tag';
 
 
-const buildTagsFromStrings = ( strings = [] ) =>
-    strings.map( string => <Tag key = { string } label = { string } /> );
+const createEventHandler = ( func, id ) => func && ( e => func( e, id ) );
+
+
+const buildTagsFromStrings = ( values = [] ) =>
+    values.map( value =>
+    {
+        let tag;
+
+        if ( typeof value === 'string' )
+        {
+            tag = <Tag key = { value } label = { value } id = { value } />;
+        }
+        else
+        {
+            tag = ( <Tag
+                key     = { value.label }
+                label   = { value.label }
+                id      = { value.id || value.label } /> );
+        }
+
+        return tag;
+    } );
 
 
 export default class TagInput extends Component
@@ -68,9 +88,25 @@ export default class TagInput extends Component
          */
         name                  : PropTypes.string,
         /**
+         *  Input change callback function
+         */
+        onChange              : PropTypes.func,
+        /**
+         *  Button click callback function: ( e ) => { ... }
+         */
+        onClickClose          : PropTypes.func,
+        /**
          * onKeyPress callback function
          */
         onKeyPress            : PropTypes.func,
+        /**
+         *  Input mouseOver callback function
+         */
+        onMouseOver           : PropTypes.func,
+        /**
+         *  Input mouseOut callback function
+         */
+        onMouseOut            : PropTypes.func,
         /**
          * Display as hover when required from another component
          */
@@ -78,7 +114,11 @@ export default class TagInput extends Component
         /**
          * Array of strings to build Tag components
          */
-        tags                  : PropTypes.arrayOf( PropTypes.string ),
+        tags                  : PropTypes.arrayOf(
+            PropTypes.oneOfType( [
+                PropTypes.string,
+                PropTypes.object
+            ] ) ),
         /**
          * Node containing Tag components ( overrides tags prop )
          */
@@ -118,6 +158,7 @@ export default class TagInput extends Component
         this.setState( { isFocused: !this.state.isFocused  } );
     }
 
+
     render()
     {
         const { className, cssMap, ...props } = this.props;
@@ -130,7 +171,11 @@ export default class TagInput extends Component
             isDisabled,
             isReadOnly,
             name,
+            onChange,
+            onClickClose,
             onKeyPress,
+            onMouseOver,
+            onMouseOut,
             placeholder,
             tags,
             isResizable,
@@ -146,6 +191,7 @@ export default class TagInput extends Component
         const updatedTagItems = tagItems && tagItems.map( tag =>
             React.cloneElement( tag, {
                 ...tag.props,
+                onClick    : createEventHandler( onClickClose, tag.props.id ),
                 isDisabled : isDisabled || tag.props.isDisabled,
                 isReadOnly : isReadOnly || tag.props.isReadOnly
             } )
@@ -162,12 +208,14 @@ export default class TagInput extends Component
                 } }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }>
+                    id          = { id }
+                    className   = { className }>
                     <label
                         className = { cssMap.container }
                         style     = { minHeight }
-                        htmlFor   = { id }>
+                        htmlFor   = { id }
+                        onMouseOver = { onMouseOver }
+                        onMouseOut  = { onMouseOut }>
                         { updatedTagItems }
                         <input
                             ref         = { inputRef }
@@ -179,6 +227,7 @@ export default class TagInput extends Component
                             onFocus     = { this.toggleFocus }
                             onBlur      = { this.toggleFocus }
                             onKeyPress  = { onKeyPress }
+                            onChange    = { onChange }
                             disabled    = { isDisabled }
                             readOnly    = { isReadOnly } />
                     </label>
