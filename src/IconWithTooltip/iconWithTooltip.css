@@ -1,8 +1,8 @@
-@import '../proto/definitions/variables.css';
 
 :root
 {
-    --iconSize: 2.4rem;
+    --iconSize:     2.4rem;
+    --iconSpacing:  1rem;
 }
 
 .default
@@ -17,26 +17,12 @@
     font:           inherit;
     line-height:    inherit;
 
-    margin-bottom:  var( --spacing-2 );
+    margin-bottom:  2rem;
 
     &:last-child
     {
         margin-bottom:  0;
     }
-
-    .content
-    {
-        flex:                1 1 auto;
-        max-width:           100%;
-        min-width:           0;
-    }
-
-    .iconWithTooltip
-    {
-        display:            none;
-        flex:               0 0 auto;
-    }
-
 }
 
 .iconVisible
@@ -72,7 +58,7 @@
 
         & > .content
         {
-            margin-left:    var( --spacing-1 ) ;
+            margin-left:    var( --iconSpacing );
         }
     }
 
@@ -80,7 +66,7 @@
     {
         & > .content
         {
-            margin-right:   var( --spacing-1 ) ;
+            margin-right:   var( --iconSpacing );
         }
     }
 
@@ -90,8 +76,7 @@
         & > .iconWithTooltip
         {
             position:   absolute;
-            top:        50%;
-            margin-top: calc( -1 * ( var( --iconSize ) / 2 ) );
+            top:        calc( -var( --iconSize ) / 2 );
         }
     }
 
@@ -99,7 +84,7 @@
     {
         & > .iconWithTooltip
         {
-            right:  var( --spacing-1 );
+            right:  calc( -var( --iconSize ) / 2 );
         }
     }
 
@@ -107,7 +92,25 @@
     {
         & > .iconWithTooltip
         {
-            left:   var( --spacing-1 );
+            left:   calc( -var( --iconSize ) / 2 );
         }
     }
+}
+
+
+
+
+
+
+.content
+{
+    flex:                1 1 auto;
+    max-width:           100%;
+    min-width:           0;
+}
+
+.iconWithTooltip
+{
+    display:            none;
+    flex:               0 0 auto;
 }
