@@ -67,6 +67,7 @@ const TextInputWithDropdown = ( {
             onMouseOver           = { onMouseOver }>
             <Row
                 className    = { cssMap.row }
+                gutters      = "S"
                 onMouseOut   = { onMouseOut }
                 onMouseOver  = { onMouseOver }
                 verticalAlign = "middle">
