@@ -11215,26 +11215,65 @@ only used in type__carousel for now
     height: 1.8rem;
     width: 2.6rem;
 }
-.passwordInput__default__1KJw4 /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.passwordInput__default__1KJw4
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .passwordInput__default__1KJw4:last-child
+/* in case this is a flexbox child */
+
+.passwordInput__default__1KJw4:last-child
     {
         margin-bottom:  0;
     }
@@ -13942,26 +13981,65 @@ only used in type__carousel for now
     {
         resize: vertical;
     }
-.textArea__default__Dfi2- /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textArea__default__Dfi2-
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textArea__default__Dfi2-:last-child
+/* in case this is a flexbox child */
+
+.textArea__default__Dfi2-:last-child
     {
         margin-bottom:  0;
     }
@@ -13970,26 +14048,65 @@ only used in type__carousel for now
 {
     /* nothing to see here */
 }
-.textInput__default__9o_HN /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+     /* greyscale colors */
+
+
+     /* bluescale colors */
+
+     /* redscale colors */
+
+     /* orangescale colors */
+
+     /* yellowscale colors */
+
+     /* limescale colors */
+
+     /* greenscale colors */
+
+     /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textInput__default__9o_HN
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  1.6rem;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textInput__default__9o_HN:last-child
+/* in case this is a flexbox child */
+
+.textInput__default__9o_HN:last-child
     {
         margin-bottom:  0;
     }

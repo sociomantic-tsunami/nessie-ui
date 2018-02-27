@@ -35626,7 +35626,7 @@ function getScrollParent(el) {
 
     var style = getComputedStyle(el);
 
-    if ([document.body, document.documentElement].includes(el) || style.position === 'fixed') {
+    if ([document.body, document.documentElement].includes(el) || !el.parentElement || style.position === 'fixed') {
         return document.documentElement;
     } else if ((style.overflow + ' ' + style.overflowX + ' ' + style.overflowY).match(/(auto|scroll|hidden)/)) {
         return el;
