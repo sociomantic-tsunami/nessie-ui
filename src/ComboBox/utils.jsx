@@ -81,7 +81,7 @@ function getScrollParent( el )
     const style = getComputedStyle( el );
 
     if ( [ document.body, document.documentElement ].includes( el ) ||
-        style.position === 'fixed' )
+         !el.parentElement || style.position === 'fixed' )
     {
         return document.documentElement;
     }
