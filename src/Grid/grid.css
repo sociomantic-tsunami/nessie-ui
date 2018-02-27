@@ -7,7 +7,7 @@ $shark: 768px;
     display:        flex;
     flex-direction: column;
     align-items:    stretch;
-    flex-wrap:      nowrap;
+    flex-wrap:      wrap;
 
     max-width:      none;
 
@@ -162,6 +162,11 @@ $shark: 768px;
     {
         margin-bottom:  -1rem;
     }
+}
+
+.singleLine
+{
+    flex-wrap:      nowrap;
 }
 
 .gutters__S

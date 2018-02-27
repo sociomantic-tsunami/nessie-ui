@@ -1,30 +1,40 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Grid                 from '../Grid';
+import Css                  from '../hoc/Css';
 
-const Row = ( {
+const Grid = ( {
     align,
     verticalAlign,
     children,
+    className,
+    cssMap,
     gutters,
     hasMinHeight,
+    singleLine,
     role,
     spacing
 } ) =>
 
-    <Grid
-        singleLine
-        align         = { align }
-        hasMinHeight  = { hasMinHeight }
-        verticalAlign = { verticalAlign }
-        gutters       = { gutters }
-        spacing       = { spacing }
-        role          = { role }>
-        { children }
-    </Grid>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            alignX  : align,
+            alignY  : verticalAlign,
+            hasMinHeight,
+            gutters : gutters !== 'none' && gutters,
+            singleLine,
+            spacing : spacing !== 'none' && spacing
 
-Row.propTypes =
+        } }>
+        <div
+            className = { className }
+            role      = { role }>
+            { children }
+        </div>
+    </Css>;
+
+Grid.propTypes =
 {
     /**
      * Horizontal alignment of the columns (“auto” makes all columns equal
@@ -60,9 +70,13 @@ Row.propTypes =
         'L'
     ] ),
     /**
+     * content in single line
+     */
+    singleLine : PropTypes.bool,
+    /**
      *  Row spacing
      */
-    spacing : PropTypes.oneOf( [
+    spacing    : PropTypes.oneOf( [
         'none',
         'default',
         'h1',
@@ -81,13 +95,15 @@ Row.propTypes =
     children : PropTypes.node
 };
 
-Row.defaultProps =
+Grid.defaultProps =
 {
     align         : 'auto',
+    singleLine    : false,
     hasMinHeight  : false,
     verticalAlign : 'auto',
     spacing       : 'default',
     gutters       : 'L',
+    cssMap        : require( './grid.css' )
 };
 
-export default Row;
+export default Grid;
