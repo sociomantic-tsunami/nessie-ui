@@ -44,4 +44,9 @@
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
     }
+
+    .CodeMirror-scroll
+    {
+        overscroll-behavior-y:  contain;
+    }
 }
