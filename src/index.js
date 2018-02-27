@@ -1,5 +1,6 @@
 import 'normalize.css';
 import './foundations.css';
+import * as lib from './index';
 
 import withInputContainer from './proto/withInputContainer';
 import DateTimeInput      from './DateTimeInput';
@@ -82,3 +83,7 @@ export { WrappedTextInputWithIcon as TextInputWithIcon };
 export Tooltip                  from './Tooltip';
 export Uploader                 from './Uploader';
 export ValuedTextInput          from './ValuedTextInput';
+
+const { 'default': ignoreMe, ...defaultExport } = lib;
+
+export default defaultExport;
