@@ -94,7 +94,7 @@ Row.defaultProps =
     hasMinHeight  : false,
     verticalAlign : 'auto',
     spacing       : 'default',
-    gutters       : 'L',
+    gutters       : 'M',
     cssMap        : require( './row.css' )
 };
 
