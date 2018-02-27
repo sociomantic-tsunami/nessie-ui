@@ -23,7 +23,51 @@ export default class CheckboxGroup extends Component
         /**
         *  Array of selected strings (to build the Checkboxes)
         */
-        selectedValues : PropTypes.arrayOf( PropTypes.string ),
+        selectedValues        : PropTypes.arrayOf( PropTypes.string ),
+        /**
+        *  How to lay out the Checkboxes
+        */
+        layout                : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+        /**
+        *  Display as disabled
+        */
+        isDisabled            : PropTypes.bool,
+        /**
+        *  Display as read-only
+        */
+        isReadOnly            : PropTypes.bool,
+        /**
+         *  Display as error/invalid
+         */
+        hasError              : PropTypes.bool,
+        /**
+         *  Tooltip message text (string or JSX)
+         */
+        errorMessage          : PropTypes.node,
+        /**
+         *  Tooltip is displayed
+         */
+        errorMessageIsVisible : PropTypes.bool,
+        /**
+        *  HTML name attribute of Checkboxes in group (overrides default)
+        */
+        name                  : PropTypes.string,
+        /**
+        *  onChange callback function : ( e ) => { ... }
+        */
+        onChange              : PropTypes.func,
+        /**
+         *  onItemMouseOver callback function : ( e ) => { ... }
+         */
+        onItemMouseOver       : PropTypes.func,
+        /**
+         *  onItemMouseOut callback function : ( e ) => { ... }
+         */
+        onItemMouseOut        : PropTypes.func,
+        /**
+         * Display as hover when required from another component
+         */
+        forceHover            : PropTypes.bool
     };
 
     static defaultProps =
@@ -33,17 +77,11 @@ export default class CheckboxGroup extends Component
         hasError   : false
     };
 
-    render()
+    buildCheckboxes()
     {
-        const {
-            children,
-            selectedValues = [],
-            values = []
-        } = this.props;
+        const { values = [], selectedValues  } = this.props;
 
-        const name = name || this.state.id;
-
-        const buildCheckboxes = ( vals ) => vals.map( ( value ) =>
+        return values.map( ( value ) =>
         {
             let checkboxValue;
             let checkboxLabel;
@@ -72,10 +110,17 @@ export default class CheckboxGroup extends Component
                     isChecked   = { checkboxIsChecked } />
             );
         } );
+    }
+
+    render()
+    {
+        const { children } = this.props;
+
+        const name = name || this.state.id;
 
         return (
             <CheckableGroup name = { name } { ...this.props }>
-                { children || buildCheckboxes( values ) }
+                { children || this.buildCheckboxes() }
             </CheckableGroup>
         );
     }
