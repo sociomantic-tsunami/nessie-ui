@@ -32,6 +32,7 @@
     .mainWrapper.open .main
     {
         border-color:   var( --PC-BLUE );
+        background:     var( --PC-WHITE );
         box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
     }
 
