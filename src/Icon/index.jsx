@@ -29,14 +29,17 @@ const Icon = ( {
         'pending'
     ];
 
-    if ( statusIconArray.indexOf( type ) >= 0 )
+    if ( type !== 'none' )
     {
-        needsVariant = true;
-        xLink        = `#icon__${type}-${variant}`;
-    }
-    else
-    {
-        xLink        = `#icon__${type}`;
+        if ( statusIconArray.indexOf( type ) >= 0 )
+        {
+            needsVariant = true;
+            xLink        = `#icon__${type}-${variant}`;
+        }
+        else
+        {
+            xLink = `#icon__${type}`;
+        }
     }
 
     return (
@@ -55,7 +58,9 @@ const Icon = ( {
                 aria-label     = { children || label }
                 onMouseOver    = { onMouseOver }
                 onMouseOut     = { onMouseOut }>
-                <use xlinkHref = { xLink } />
+                { xLink &&
+                    <use xlinkHref = { xLink } />
+                }
             </svg>
         </Css>
     );
@@ -89,32 +94,33 @@ Icon.propTypes =
     type : PropTypes.oneOf( [
         'account',
         'add',
+        'alert',
+        'approved',
         'calendar',
         'close',
+        'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'ended',
+        'error',
+        'hide',
         'info',
         'inspect',
         'left',
         'link',
+        'pending',
         'preview',
         'reset',
         'right',
         'search',
+        'show',
         'up',
         'upload',
         'validation',
-        'alert',
-        'approved',
-        'declined',
-        'ended',
-        'error',
-        'pending',
-        'show',
-        'hide'
+        'none'
     ] ),
     /**
     *  Icon variant to show
@@ -153,6 +159,7 @@ Icon.defaultProps =
     forceHover : false,
     isDisabled : false,
     variant    : 'fill',
+    type       : 'none',
     cssMap     : require( './icon.css' )
 };
 
