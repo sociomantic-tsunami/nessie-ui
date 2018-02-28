@@ -265,6 +265,7 @@ export default class FlounderDropdown extends Component
         if ( flounderInstance )
         {
             flounderInstance.destroy();
+            this.flounderInstance = null;
         }
     }
 
@@ -352,19 +353,46 @@ export default class FlounderDropdown extends Component
                 search               : !props.isHeader && props.search
             };
 
-            const keepOpen = !!( flounderInstance &&
-                flounderInstance.refs.wrapper.className.match(
-                    props.cssMap.open ) );
+            const keepOpen = this.isOpen();
+
+            if ( flounderInstance && flounderInstance === flounderDiv.flounder )
+            {
+                flounderInstance.rebuild( flounderProps );
+            }
+            else
+            {
+                if ( flounderInstance )
+                {
+                    this.flounderInstance.destroy();
+                }
+
+                this.flounderInstance =
+                    new Flounder( flounderDiv, flounderProps );
+            }
 
             if ( keepOpen )
             {
-                flounderInstance.toggleList( {} );
+                flounderInstance.toggleList( new Event( {} ) );
             }
-
-            this.flounderInstance = flounderInstance ?
-                flounderInstance.rebuild( flounderProps ) :
-                new Flounder( flounderDiv, flounderProps );
         }
+    }
+
+    isOpen()
+    {
+        const { flounderInstance } = this;
+        const { cssMap } = this.props;
+
+        if ( flounderInstance )
+        {
+            const { wrapper } = flounderInstance.refs;
+
+            if ( wrapper.className.match( cssMap.open ) )
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     handleRef( node )
@@ -402,7 +430,7 @@ export default class FlounderDropdown extends Component
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
                         <div
-                            ref = { this.handleRef }
+                            ref         = { this.handleRef }
                             onMouseOver = { onMouseOver }
                             onMouseOut  = { onMouseOut }
                         />
