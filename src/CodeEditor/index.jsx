@@ -18,6 +18,10 @@ export default class CodeEditor extends Component
     static propTypes =
     {
         /**
+         *  callback ref to native CodeMirror object
+         */
+        codeMirrorRef         : PropTypes.func,
+        /**
          *  Label text string or JSX node
          */
         label                 : PropTypes.node,
@@ -120,6 +124,7 @@ export default class CodeEditor extends Component
         this.handleBlur           = this.handleBlur.bind( this );
         this.handleChange         = this.handleChange.bind( this );
         this.handleCursorActivity = this.handleCursorActivity.bind( this );
+        this.handleTextareaRef    = this.handleTextareaRef.bind( this );
     }
 
     componentDidMount()
@@ -147,7 +152,7 @@ export default class CodeEditor extends Component
         codeMirror.setValue( defaultValue || value );
 
         codeMirror.on( 'change', this.handleChange );
-        codeMirror.on( 'cursorActivity', this.handleCursorActivity);
+        codeMirror.on( 'cursorActivity', this.handleCursorActivity );
         codeMirror.on( 'focus', this.handleFocus );
         codeMirror.on( 'blur', this.handleBlur );
 
@@ -157,6 +162,8 @@ export default class CodeEditor extends Component
         }
 
         this.codeMirror = codeMirror;
+
+        this.propogateCodeMirrorRef();
     }
 
 
@@ -190,11 +197,24 @@ export default class CodeEditor extends Component
         {
             codeMirror.setCursor( cursor );
         }
+
+        this.propogateCodeMirrorRef();
     }
 
     componentWillUnmount()
     {
         this.codeMirror.toTextArea();
+    }
+
+    propogateCodeMirrorRef()
+    {
+        const { codeMirrorRef } = this.props;
+        const { codeMirror } = this;
+
+        if ( codeMirror && codeMirrorRef )
+        {
+            codeMirrorRef( codeMirror );
+        }
     }
 
     handleFocus( cm )
@@ -219,7 +239,7 @@ export default class CodeEditor extends Component
         }
     }
 
-    handleCursorActivity( cm )
+    handleCursorActivity()
     {
         const { onCursorActivity } = this.props;
         if ( onCursorActivity )
@@ -237,6 +257,13 @@ export default class CodeEditor extends Component
         }
     }
 
+    handleTextareaRef( ref )
+    {
+        if ( ref )
+        {
+            this.textarea = ref;
+        }
+    }
 
     render()
     {
@@ -273,7 +300,7 @@ export default class CodeEditor extends Component
                         onMouseOver = { onMouseOver }
                         onMouseOut  = { onMouseOut }>
                         <textarea
-                            ref          = { ref => this.textarea = ref }
+                            ref          = { this.handleTextareaRef }
                             defaultValue = { value }
                             autoComplete = "off" />
                     </div>
