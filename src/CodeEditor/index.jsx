@@ -130,6 +130,7 @@ export default class CodeEditor extends Component
     componentDidMount()
     {
         const {
+            codeMirrorRef,
             cursor,
             defaultValue,
             isDisabled,
@@ -161,9 +162,31 @@ export default class CodeEditor extends Component
             codeMirror.setCursor( cursor );
         }
 
-        this.codeMirror = codeMirror;
+        if( codeMirrorRef )
+        {
+            codeMirrorRef( codeMirror );
+        }
 
-        this.propogateCodeMirrorRef();
+        this.codeMirror = codeMirror;
+    }
+
+    componentWillUpdate( nextProps )
+    {
+        const { codeMirror } = this;
+        const { codeMirrorRef } = this.props;
+
+        if( nextProps.codeMirrorRef !== codeMirrorRef )
+        {
+            if ( codeMirrorRef )
+            {
+                codeMirrorRef( null );
+            }
+
+            if ( nextProps.codeMirrorRef )
+            {
+                nextProps.codeMirrorRef( codeMirror );
+            }
+        }
     }
 
 
@@ -197,23 +220,18 @@ export default class CodeEditor extends Component
         {
             codeMirror.setCursor( cursor );
         }
-
-        this.propogateCodeMirrorRef();
     }
 
     componentWillUnmount()
     {
-        this.codeMirror.toTextArea();
-    }
-
-    propogateCodeMirrorRef()
-    {
-        const { codeMirrorRef } = this.props;
         const { codeMirror } = this;
+        const { codeMirrorRef } = this.props;
 
-        if ( codeMirror && codeMirrorRef )
+        codeMirror.toTextArea();
+
+        if ( codeMirrorRef )
         {
-            codeMirrorRef( codeMirror );
+            codeMirrorRef( null );
         }
     }
 
