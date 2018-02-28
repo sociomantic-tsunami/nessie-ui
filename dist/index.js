@@ -25861,7 +25861,7 @@ var Table = function Table(_ref) {
                 zebra: isZebra
             }),
             role: 'grid' },
-        columns.length && _react2.default.createElement(
+        columns.length > 0 && _react2.default.createElement(
             _TableRow2.default,
             {
                 align: align,
