@@ -1,30 +1,40 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Grid                 from '../Grid';
+import Css                  from '../hoc/Css';
 
-const Row = ( {
+const Grid = ( {
     align,
     verticalAlign,
     children,
+    className,
+    cssMap,
     gutters,
     hasMinHeight,
+    hasWrap,
     role,
     spacing
 } ) =>
 
-    <Grid
-        hasWrap       = { false }
-        align         = { align }
-        hasMinHeight  = { hasMinHeight }
-        verticalAlign = { verticalAlign }
-        gutters       = { gutters }
-        spacing       = { spacing }
-        role          = { role }>
-        { children }
-    </Grid>;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { {
+            alignX  : align,
+            alignY  : verticalAlign,
+            hasMinHeight,
+            gutters : gutters !== 'none' && gutters,
+            hasWrap,
+            spacing : spacing !== 'none' && spacing
 
-Row.propTypes =
+        } }>
+        <div
+            className = { className }
+            role      = { role }>
+            { children }
+        </div>
+    </Css>;
+
+Grid.propTypes =
 {
     /**
      * Horizontal alignment of the columns (“auto” makes all columns equal
@@ -40,6 +50,10 @@ Row.propTypes =
     *  Set minimum height equal to average row.
     */
     hasMinHeight  : PropTypes.bool,
+    /**
+     * Wrap content
+     */
+    hasWrap       : PropTypes.bool,
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
@@ -72,22 +86,24 @@ Row.propTypes =
         'label'
     ] ),
     /**
-     *  Row role
+     *  Grid role
      */
     role     : PropTypes.string,
     /**
-     *  Row content (Columns)
+     *  Grid content (Columns)
      */
     children : PropTypes.node
 };
 
-Row.defaultProps =
+Grid.defaultProps =
 {
     align         : 'auto',
+    hasWrap       : true,
     hasMinHeight  : false,
     verticalAlign : 'auto',
     spacing       : 'default',
     gutters       : 'L',
+    cssMap        : require( './grid.css' )
 };
 
-export default Row;
+export default Grid;
