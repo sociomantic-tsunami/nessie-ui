@@ -51,7 +51,7 @@ Grid.propTypes =
     */
     hasMinHeight  : PropTypes.bool,
     /**
-     * content in single line
+     * Wrap content
      */
     hasWrap       : PropTypes.bool,
     /**
@@ -86,11 +86,11 @@ Grid.propTypes =
         'label'
     ] ),
     /**
-     *  Row role
+     *  Grid role
      */
     role     : PropTypes.string,
     /**
-     *  Row content (Columns)
+     *  Grid content (Columns)
      */
     children : PropTypes.node
 };
