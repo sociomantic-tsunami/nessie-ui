@@ -17,6 +17,7 @@ export default class Checkable extends Component
             hasError,
             inputRef,
             isChecked,
+            isDefaultChecked,
             isDisabled,
             isReadOnly,
             label,
@@ -55,16 +56,17 @@ export default class Checkable extends Component
                 } }>
                 <div className = { className }>
                     <input
-                        ref       = { inputRef }
-                        type      = { type }
-                        name      = { name }
-                        className = { cssMap.input }
-                        id        = { id }
-                        value     = { value }
-                        onChange  = { onChange }
-                        checked   = { isChecked }
-                        readOnly  = { isReadOnly }
-                        disabled  = { isDisabled } />
+                        ref            = { inputRef }
+                        type           = { type }
+                        name           = { name }
+                        className      = { cssMap.input }
+                        id             = { id }
+                        value          = { value }
+                        onChange       = { onChange }
+                        checked        = { isChecked }
+                        defaultChecked = { isDefaultChecked }
+                        readOnly       = { isReadOnly }
+                        disabled       = { isDisabled } />
                     <label
                         htmlFor     = { id }
                         onMouseOver = { onMouseOver }
