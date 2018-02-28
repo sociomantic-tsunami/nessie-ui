@@ -98,6 +98,10 @@
                             }
                         ]
     },
+    "Grid" :
+    {
+        "children": "{<Column size='1/3'><p>left<br/>column<br/>content</p></Column><Column size='1/3'><p>middle column content</p></Column><Column size='1/3'><p>right column content</p></Column>}"
+    },
     "H1" :
     {
         "title": "h1 element"

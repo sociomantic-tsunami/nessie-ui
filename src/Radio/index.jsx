@@ -11,64 +11,69 @@ Radio.propTypes =
     /**
     *  Label text string
     */
-    label       : PropTypes.string,
+    label            : PropTypes.string,
     /**
-    *  Display as checked
+    *  Display as checked by default (uncontrolled input)
     */
-    isChecked   : PropTypes.bool,
+    isDefaultChecked : PropTypes.bool,
+    /**
+    *  Display as checked (controlled input)
+    */
+    isChecked        : PropTypes.bool,
     /**
     *  Display as disabled
     */
-    isDisabled  : PropTypes.bool,
+    isDisabled       : PropTypes.bool,
     /**
     *  Display as read-only
     */
-    isReadOnly  : PropTypes.bool,
+    isReadOnly       : PropTypes.bool,
     /**
     *  Display as error/invalid
     */
-    hasError    : PropTypes.bool,
+    hasError         : PropTypes.bool,
     /**
      * Display as hover when required from another component
      */
-    forceHover  : PropTypes.bool,
+    forceHover       : PropTypes.bool,
     /**
     *  HTML value attribute
     */
-    value       : PropTypes.string,
+    value            : PropTypes.string,
     /**
     *  HTML id attribute (override default)
     */
-    id          : PropTypes.string,
+    id               : PropTypes.string,
     /**
     *  Radio group name
     */
-    name        : PropTypes.string,
+    name             : PropTypes.string,
     /**
      *  OnChange callback function: ( e ) => { ... }
      */
-    onChange    : PropTypes.func,
+    onChange         : PropTypes.func,
     /**
      *  onMouseOver callback function : ( e ) => { ... }
      */
-    onMouseOver : PropTypes.func,
+    onMouseOver      : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
-    onMouseOut  : PropTypes.func,
+    onMouseOut       : PropTypes.func,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef    : PropTypes.func,
+    inputRef         : PropTypes.func,
 };
 
 Radio.defaultProps =
 {
-    isChecked  : false,
-    isDisabled : false,
-    hasError   : false,
-    forceHover : false,
-    cssMap     : require( './radio.css' )
+    isDefaultChecked : false,
+    isChecked        : undefined,
+    isDisabled       : false,
+    hasError         : false,
+    forceHover       : false,
+    cssMap           : require( './radio.css' )
 };
 
 export default Radio;
