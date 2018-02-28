@@ -16,12 +16,12 @@
     {
         .label
         {
-            background-color:       color( var( --GS-2 ) shade( 15% ) );
+            background-color:       var( --PC-GREY--L70 );
         }
 
         .input:checked + .label
         {
-            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
+            background-color:       var( --PC-BLUE );
         }
     }
 
@@ -29,12 +29,13 @@
     {
         & + .label
         {
-            background-color:       color( var( --GS-2 ) shade( 15% ) );
+            background-color:       var( --PC-GREY--L70 );
+            box-shadow:             0 0 10px var( --PC-BLUE );
         }
 
         &:checked + .label
         {
-            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
+            background-color:       var( --PC-BLUE );
         }
     }
 }
@@ -42,19 +43,27 @@
 
 .disabled
 {
-    .label,
-    .input:checked + .label
+    .label
     {
         cursor:                 default;
-        background-color:       var( --GS-7 );
+        background-color:       var( --PC-GREY--L90 );
+    }
+
+    .input:checked + .label
+    {
+        background-color:       var( --PC-BLUE--L40 );
     }
 
     &:hover
     {
-        .label,
+        .label
+        {
+            background-color:       var( --PC-GREY--L90 );
+        }
+
         .input:checked + .label
         {
-            background-color:       var( --GS-7 );
+              background-color:     var( --PC-BLUE--L40 );
         }
     }
 }
@@ -69,11 +78,11 @@
     position:           relative;
     display:            flex;
 
-    min-height:         3.2rem; /* necessary if there's no label */
+    min-height:         24px; /* necessary if there's no label */
 
     border-radius:      2rem;
 
-    background-color:   var( --GS-2 );
+    background-color:   var( --PC-GREY--L70 );
 
     cursor:             pointer;
     transition:         var( --backgroundTransition );
@@ -86,11 +95,11 @@
         display:            block;
         position:           absolute;
 
-        top:                0.4rem;
-        left:               0.4rem;
+        top:                3px;
+        left:               3px;
 
-        width:              2.4rem;
-        height:             2.4rem;
+        width:              18px;
+        height:             18px;
 
         border-radius:      100%;
 
@@ -108,8 +117,8 @@
 
     width:                  100%;
 
-    padding-top:            0.8rem;
-    padding-bottom:         0.5rem;
+    padding-top:            4px;
+    padding-bottom:         3px;
 
     color:                  var( --PC-WHITE );
 
@@ -130,8 +139,8 @@
 
 .off
 {
-    padding-left:           4rem;
-    padding-right:          2.3rem;
+    padding-left:           34px;
+    padding-right:          13px;
 }
 
 .on
@@ -142,8 +151,8 @@
     left:                   0;
     right:                  0;
 
-    padding-left:           2.3rem;
-    padding-right:          4rem;
+    padding-left:           16px;
+    padding-right:          31px;
 
     opacity:                0;
 }
@@ -163,12 +172,12 @@
 
 .input:checked + .label
 {
-    background-color:       var( --PC-GREEN );
+    background-color:       var( --PC-BLUE );
     transition:             var( --backgroundTransition );
 
     &::before
     {
-        left:               calc( 100% - 28px);
+        left:               calc( 100% - 21px);
         transition:         var( --circleTransition );
     }
 
