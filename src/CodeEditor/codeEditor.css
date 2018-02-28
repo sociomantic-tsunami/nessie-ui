@@ -9,10 +9,6 @@
         height:         auto;
         border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
-        font-family:    monospace, sans-serif;
-        font-size:      1.1rem;
-        line-height:    1.25;
-
         &:hover,
         .fakeHovered&
         {
@@ -52,7 +48,6 @@
         box-sizing:     border-box;
         height:         100% !important;
         background:     transparent;
-        padding:        0.8rem 0 !important;
 
         font-family:    monospace, sans-serif !important;
         font-size:      1.1rem !important;

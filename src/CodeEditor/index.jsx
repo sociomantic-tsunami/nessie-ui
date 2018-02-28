@@ -32,7 +32,7 @@ export default class CodeEditor extends Component
         /**
          *  Number of lines shown
          */
-        height                : PropTypes.string,
+        codeEditorHeight      : PropTypes.string,
         /**
          *  Display as disabled
          */
@@ -166,7 +166,7 @@ export default class CodeEditor extends Component
             codeMirror.setCursor( cursor );
         }
 
-        if( codeMirrorRef )
+        if ( codeMirrorRef )
         {
             codeMirrorRef( codeMirror );
         }
@@ -179,7 +179,7 @@ export default class CodeEditor extends Component
         const { codeMirror } = this;
         const { codeMirrorRef } = this.props;
 
-        if( nextProps.codeMirrorRef !== codeMirrorRef )
+        if ( nextProps.codeMirrorRef !== codeMirrorRef )
         {
             if ( codeMirrorRef )
             {
@@ -300,7 +300,7 @@ export default class CodeEditor extends Component
             forceHover,
             isDisabled,
             hasError,
-            height,
+            codeEditorHeight,
             onMouseOut,
             onMouseOver,
             value,
@@ -322,7 +322,7 @@ export default class CodeEditor extends Component
                         className   = { cssMap.editor }
                         onMouseOver = { onMouseOver }
                         onMouseOut  = { onMouseOut }
-                        style = { { height } }>
+                        style = { { height: `${codeEditorHeight}` } }>
                         <textarea
                             ref          = { this.handleTextareaRef }
                             defaultValue = { value }
