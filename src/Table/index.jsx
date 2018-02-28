@@ -64,7 +64,7 @@ const Table = ( {
                 zebra : isZebra,
             } ) }
             role = "grid">
-            { columns.length &&
+            { columns.length > 0 &&
                 <TableRow
                     align         = { align }
                     className     = { cssMap.row }
