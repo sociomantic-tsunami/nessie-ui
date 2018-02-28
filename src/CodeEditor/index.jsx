@@ -30,6 +30,10 @@ export default class CodeEditor extends Component
          */
         labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
+         *  Number of lines shown
+         */
+        height                : PropTypes.string,
+        /**
          *  Display as disabled
          */
         isDisabled            : PropTypes.bool,
@@ -278,6 +282,7 @@ export default class CodeEditor extends Component
             forceHover,
             isDisabled,
             hasError,
+            height,
             onMouseOut,
             onMouseOver,
             value,
@@ -298,7 +303,8 @@ export default class CodeEditor extends Component
                     <div
                         className   = { cssMap.editor }
                         onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }>
+                        onMouseOut  = { onMouseOut }
+                        style = { { height } }>
                         <textarea
                             ref          = { this.handleTextareaRef }
                             defaultValue = { value }
