@@ -258,6 +258,16 @@ export default class FlounderDropdown extends Component
         this.setDisabled();
     }
 
+    componentWillUnmount()
+    {
+        const { flounderInstance } = this;
+
+        if ( flounderInstance )
+        {
+            flounderInstance.destroy();
+        }
+    }
+
     setDisabled()
     {
         const { flounderInstance, props } = this;
