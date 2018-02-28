@@ -154,7 +154,7 @@ Table.defaultProps =
     children        : undefined,
     columns         : undefined,
     cssMap          : styles,
-    gutters         : 'M',
+    gutters         : 'L',
     hasStickyHeader : false,
     isZebra         : false,
     onToggle        : undefined,
