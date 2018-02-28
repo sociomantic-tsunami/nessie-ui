@@ -272,25 +272,32 @@ export default class FlounderDropdown extends Component
     {
         const { flounderInstance } = this;
 
-        if ( value && flounderInstance )
+        if ( flounderInstance )
         {
             let values = [];
 
-            if ( Array.isArray( value ) )
+            if ( value )
             {
-                values = value;
-            }
-            else if ( value )
-            {
-                values = [ value ];
+                if ( Array.isArray( value ) )
+                {
+                    values = value;
+                }
+                else if ( value )
+                {
+                    values = [ value ];
+                }
             }
 
-            const selectedValues = flounderInstance.getSelectedValues() || [];
-
-            if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
+            if ( value || this.props.isReadOnly )
             {
-                flounderInstance.deselectAll( true );
-                flounderInstance.setByValue( values );
+                const selectedValues =
+                    flounderInstance.getSelectedValues() || [];
+
+                if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
+                {
+                    flounderInstance.deselectAll( true );
+                    flounderInstance.setByValue( values );
+                }
             }
         }
     }
