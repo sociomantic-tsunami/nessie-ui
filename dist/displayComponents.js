@@ -25930,7 +25930,7 @@ Table.defaultProps = {
     children: undefined,
     columns: undefined,
     cssMap: _table2.default,
-    gutters: 'M',
+    gutters: 'L',
     hasStickyHeader: false,
     isZebra: false,
     onToggle: undefined,
