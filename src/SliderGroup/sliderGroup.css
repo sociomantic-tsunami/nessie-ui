@@ -2,8 +2,8 @@
 
 :root
 {
-    --handleSize:               1.6rem;
-    --stepLabelsContainerWidth: 8rem;
+    --handleSize:               16px;
+    --stepLabelsContainerWidth: 80px;
     --slidersContainerWidth:    100%;
 }
 
@@ -15,7 +15,7 @@
 
         &:not( :last-child )
         {
-            margin-bottom:  1rem;
+            margin-bottom:  10px;
         }
     }
 

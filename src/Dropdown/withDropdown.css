@@ -29,7 +29,7 @@
     .dropdown
     {
         bottom:     0;
-        transform:  translateY( 100% ) translateY( 1rem );
+        transform:  translateY( 100% ) translateY( 10px );
     }
 }
 
@@ -38,6 +38,6 @@
     .dropdown
     {
         top:        0;
-        transform:  translateY( -100% ) translateY( -1rem );
+        transform:  translateY( -100% ) translateY( -10px );
     }
 }

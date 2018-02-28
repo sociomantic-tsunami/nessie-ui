@@ -39,7 +39,7 @@
 
     .previewTooltip
     {
-        width:  calc( 100% - 3.2rem );
+        width:  calc( 100% - 32px );
     }
 }
 
@@ -114,8 +114,8 @@
 .uploadedButton
 {
     flex:                   0 0 auto;
-    width:                  3.2rem;
-    height:                 3.2rem;
+    width:                  32px;
+    height:                 32px;
     padding:                0;
     border:                 none;
     background-color:       var( --PC-BLUE );
@@ -145,8 +145,8 @@
     align-items:        center;
     justify-content:    center;
     position:           relative;
-    width:              3.2rem;
-    height:             3.2rem;
+    width:              32px;
+    height:             32px;
     background-color:   var( --PC-BLUE );
     vertical-align:     top;
 

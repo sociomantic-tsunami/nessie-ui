@@ -9,7 +9,7 @@
     @extend %Nessie-Bold;
     font-size:      var( --typo-4 );
     line-height:    var( --line-height-l );
-    letter-spacing: 0.02rem;
+    letter-spacing: 0.2px;
 }
 
 .role__default

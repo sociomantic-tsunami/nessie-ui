@@ -2,8 +2,8 @@
 
 :root
 {
-    --controlsHeight:   2.4rem;
-    --errorBorder:      0.5rem;
+    --controlsHeight:   24px;
+    --errorBorder:      5px;
 }
 
 .default
@@ -17,7 +17,7 @@
 
     background:     var( --PC-WHITE );
 
-    box-shadow:     0 0.4rem 1rem 0 color( var( --PC-GREY ) a( 10% ) );
+    box-shadow:     0 4px 10px 0 color( var( --PC-GREY ) a( 10% ) );
 
     .default + .default
     {

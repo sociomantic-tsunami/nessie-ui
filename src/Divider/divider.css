@@ -5,7 +5,7 @@
     position: 		        relative;
     margin-top:             var( --spacing-2 );
     margin-bottom:          var( --spacing-3 );
-    height:                 0.1rem;
+    height:                 1px;
 
     border:                 none;
     background-color:       color( var( --GS-2 ) a( 20% ) );

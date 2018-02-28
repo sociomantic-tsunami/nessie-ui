@@ -2,8 +2,8 @@
 
 .default
 {
-    min-height: 3.2rem;
-    border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    min-height: 32px;
+    border:     1px solid color( var( --GS-2 ) a( 50% ) );
     background: var( --PC-WHITE );
 
     &.fakeHovered,

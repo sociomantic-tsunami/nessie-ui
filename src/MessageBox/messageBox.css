@@ -7,8 +7,8 @@
     align-content:      center;
     background-color:   var( --PC-WHITE );
 
-    padding:            2rem;
-    border:             0.1rem solid var( --GS-5 ) ;
+    padding:            20px;
+    border:             1px solid var( --GS-5 ) ;
 }
 
 .type__error

@@ -69,9 +69,9 @@
     position:           relative;
     display:            flex;
 
-    min-height:         3.2rem; /* necessary if there's no label */
+    min-height:         32px; /* necessary if there's no label */
 
-    border-radius:      2rem;
+    border-radius:      20px;
 
     background-color:   var( --GS-2 );
 
@@ -86,11 +86,11 @@
         display:            block;
         position:           absolute;
 
-        top:                0.4rem;
-        left:               0.4rem;
+        top:                4px;
+        left:               4px;
 
-        width:              2.4rem;
-        height:             2.4rem;
+        width:              24px;
+        height:             24px;
 
         border-radius:      100%;
 
@@ -108,8 +108,8 @@
 
     width:                  100%;
 
-    padding-top:            0.8rem;
-    padding-bottom:         0.5rem;
+    padding-top:            8px;
+    padding-bottom:         5px;
 
     color:                  var( --PC-WHITE );
 
@@ -117,7 +117,7 @@
 
     font-size:              var( --typo-2 );
     line-height:            var( --line-height-s );
-    letter-spacing:         0.04rem;
+    letter-spacing:         0.4px;
     text-transform:         uppercase;
     text-align:             center;
 
@@ -130,8 +130,8 @@
 
 .off
 {
-    padding-left:           4rem;
-    padding-right:          2.3rem;
+    padding-left:           40px;
+    padding-right:          23px;
 }
 
 .on
@@ -142,8 +142,8 @@
     left:                   0;
     right:                  0;
 
-    padding-left:           2.3rem;
-    padding-right:          4rem;
+    padding-left:           23px;
+    padding-right:          40px;
 
     opacity:                0;
 }

@@ -25,12 +25,12 @@
 {
     .input
     {
-        padding-left:    3.6rem;
+        padding-left:    36px;
     }
 
     .icon
     {
-        left:   1.1rem;
+        left:   11px;
     }
 }
 
@@ -38,11 +38,11 @@
 {
     .input
     {
-        padding-right:    3.6rem;
+        padding-right:    36px;
     }
 
     .icon
     {
-        right:   1.1rem;
+        right:   11px;
     }
 }

@@ -1,8 +1,8 @@
 
 :root
 {
-    --iconSize:     2.4rem;
-    --iconSpacing:  1rem;
+    --iconSize:     24px;
+    --iconSpacing:  10px;
 }
 
 .default
@@ -17,7 +17,7 @@
     font:           inherit;
     line-height:    inherit;
 
-    margin-bottom:  2rem;
+    margin-bottom:  20px;
 
     &:last-child
     {

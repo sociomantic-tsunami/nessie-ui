@@ -16,8 +16,8 @@
     box-sizing:	border-box;
     width:		80%;
     min-width:	320px;
-    max-width:	96rem;
-    margin:		2rem auto;
+    max-width:	960px;
+    margin:		20px auto;
 
     opacity:	0.3;
 }

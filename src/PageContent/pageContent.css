@@ -2,7 +2,7 @@
 
 :root
 {
-    --spinnerSize:  4rem;
+    --spinnerSize:  40px;
 }
 
 .default
@@ -14,12 +14,12 @@
 
 .content
 {
-    width:         102.4rem;
+    width:         124px;
 
     box-sizing:    border-box;
 
     margin:        0 auto;
-    padding:       8rem 0;
+    padding:       80px 0;
 }
 
 .loadingOverlay

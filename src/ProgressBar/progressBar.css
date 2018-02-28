@@ -2,8 +2,8 @@
 
 .default
 {
-    height:                     0.8rem;
-    border-radius:              2rem;
+    height:                     8px;
+    border-radius:              20px;
     background-color:           color( var( --PC-BLUE ) a( 35% ) );
 }
 
@@ -11,21 +11,21 @@
 {
     display:                    block;
     position:                   absolute;
-    left:                       0.4rem;
+    left:                       4px;
     height:                     100%;
-    max-width:                  calc( 100% - 0.4rem );
+    max-width:                  calc( 100% - 4px );
     background-color:           var( --PC-BLUE );
-    border-top-right-radius:    2rem;
-    border-bottom-right-radius: 2rem;
+    border-top-right-radius:    20px;
+    border-bottom-right-radius: 20px;
 
     &:before
     {
         content:                "";
         display:                block;
         position:               relative;
-        left:                   -0.4rem;
-        width:                  0.8rem;
-        height:                 0.8rem;
+        left:                   -4px;
+        width:                  8px;
+        height:                 8px;
         background-color:       var( --PC-BLUE );
         border-radius:          50%;
     }

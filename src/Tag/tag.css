@@ -8,8 +8,8 @@
     width:          auto;
 
     padding-left:   var( --spacing-2 );
-    padding-top:    0.4rem;
-    padding-bottom: 0.4rem;
+    padding-top:    4px;
+    padding-bottom: 4px;
 
     background:     var( --PC-BLUE--L90 );
 
@@ -17,7 +17,7 @@
     {
         @extend %Nessie-SemiBold;
 
-        letter-spacing: 0.04rem;
+        letter-spacing: 0.4px;
         white-space:    nowrap;
         color:          var( --PC-BLUE );
     }
