@@ -61,7 +61,7 @@ export default class CheckableGroup extends Component
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool
+        forceHover            : PropTypes.bool,
 
     };
 
@@ -73,7 +73,7 @@ export default class CheckableGroup extends Component
         isDisabled            : false,
         isReadOnly            : false,
         forceHover            : false,
-        cssMap                : require( './checkableGroup.css' )
+        cssMap                : require( './checkableGroup.css' ),
     };
 
     render()
@@ -93,20 +93,32 @@ export default class CheckableGroup extends Component
             onChange,
             onMouseOver,
             onMouseOut,
-            errorMessageIsVisible
+            errorMessageIsVisible,
         } = this.props;
 
-        const items = children && children.map( child =>
+        const { id } = this.state;
+
+        const items = children && children.map( child => (
             React.cloneElement( child, {
                 ...child.props,
                 isReadOnly : isReadOnly || child.props.isReadOnly,
                 isDisabled : isDisabled || child.props.isDisabled,
                 hasError   : hasError || child.props.hasError,
                 forceHover : forceHover || child.props.forceHover,
-                name       : name || this.state.id,
-                onChange
+                name       : name || id,
+                onChange   : ( ...args ) =>
+                {
+                    if ( onChange )
+                    {
+                        onChange( args );
+                    }
+                    if ( child.props.onChange )
+                    {
+                        child.props.onChange( args );
+                    }
+                }
             } )
-        );
+        ) );
 
         return (
             <Css
@@ -122,15 +134,13 @@ export default class CheckableGroup extends Component
                     onMouseOver           = { onMouseOver }
                     onMouseOut            = { onMouseOut }>
                     <ul className = { cssMap.list }>
-                        { items && items.map( ( item, index ) =>
-                            (
-                                <li
-                                    key       = { index } // eslint-disable-line react/no-array-index-key, max-len
-                                    className = { cssMap.listItem }>
-                                    { item }
-                                </li>
-                            ) )
-                        }
+                        { items && items.map( ( item, index ) => (
+                            <li
+                                key       = { index } // eslint-disable-line react/no-array-index-key, max-len
+                                className = { cssMap.listItem }>
+                                { item }
+                            </li>
+                        ) ) }
                     </ul>
                 </Fieldset>
             </Css>
