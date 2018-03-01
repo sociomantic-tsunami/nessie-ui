@@ -11,7 +11,7 @@
 
     margin:             0;
 
-    border-top:         0.1rem solid color( var( --GS-2 ) tint( 80% ) );
+    border-bottom:      0.1rem solid color( var( --GS-2 ) tint( 80% ) );
 
     background:         var( --PC-WHITE );
 }
