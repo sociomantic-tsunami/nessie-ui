@@ -1,8 +1,8 @@
 @import "../proto/definitions/variables.css";
 
-$overlaySize:           calc( 100% + 1rem );
-$borderWidth:           0.3rem;
-$overlayShift:          -0.8rem;
+$overlaySize:           calc( 100% + 10px );
+$borderWidth:           3px;
+$overlayShift:          -8px;
 
 .default
 {
@@ -34,13 +34,13 @@ $overlayShift:          -0.8rem;
     margin-left:                   $overlayShift;
 
     height:                 $overlaySize;
-    min-height:             8rem;
-    width:                  calc( 100% - 2rem );
+    min-height:             80px;
+    width:                  calc( 100% - 20px );
 
     z-index:                999;
 
     border:                 $borderWidth dashed var( --PC-BLUE );
-    border-radius:          0.5rem;
+    border-radius:          5px;
 
     background:             color( var( --PC-WHITE ) a( 50% ) );
 
@@ -58,8 +58,8 @@ $overlayShift:          -0.8rem;
 
     color:          color( var( --PC-BLUE ) a( 70%) );
 
-    font-size:      2.4rem;
-    line-height:    2.8rem;
+    font-size:      24px;
+    line-height:    28px;
     @extend %Nessie-Bold;
 
     text-align:     center;
@@ -70,9 +70,9 @@ $overlayShift:          -0.8rem;
         display:                block;
 
         width:                  100%;
-        height:                 4rem;
+        height:                 40px;
 
-        margin-bottom:          0.6rem;
+        margin-bottom:          6px;
 
         background-image:       url(./svg/upload__hover.svg);
         background-position:    center;

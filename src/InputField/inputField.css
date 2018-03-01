@@ -7,11 +7,11 @@
     box-sizing:         border-box;
     width:              100%;
 
-    border:             0.1rem solid var( --PC-GREY--L70 );
-    border-radius:      0.2rem;
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
 
-    padding-top:        1.1rem;
-    padding-bottom:     1.1rem;
+    padding-top:        11px;
+    padding-bottom:     11px;
     padding-left:       var( --spacing-2 );
     padding-right:      var( --spacing-2 );
 
@@ -42,7 +42,7 @@
     &:focus
     {
         border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
 
         outline:        none;
 
@@ -62,13 +62,13 @@
 .fakeHovered
 {
     border-color:   var( --PC-BLUE );
-    box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+    box-shadow:     0 0 0 1px var( --PC-BLUE );
 }
 
 .error
 {
     border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-    box-shadow:     0 0 0 0.1rem var( --PC-RED );
+    box-shadow:     0 0 0 1px var( --PC-RED );
     color:          var( --PC-RED ) !important; /* yes, always override other states */
 }
 

@@ -44,7 +44,7 @@
 {
     & > .container
     {
-        margin-left:    1rem;
+        margin-left:    10px;
     }
 }
 
@@ -54,6 +54,6 @@
 
     & > .container
     {
-        margin-right:   1rem;
+        margin-right:   10px;
     }
 }

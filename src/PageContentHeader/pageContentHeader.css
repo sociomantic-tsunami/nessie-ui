@@ -2,7 +2,7 @@
 
 .default
 {
-    padding:    0 3rem;
+    padding:    0 30px;
 }
 
 .header /* rules from base.css */
@@ -13,28 +13,28 @@
     box-sizing:     border-box;
     width:          100%;
 
-    font-size:      1.4rem;
-    line-height:    1.8rem;
+    font-size:      14px;
+    line-height:    18px;
 }
 
 .header
 {
-    margin-bottom:  3rem;
+    margin-bottom:  30px;
 
     &:last-child
     {
-        margin-bottom:  2rem;
+        margin-bottom:  20px;
     }
 }
 
 .controls
 {
-    min-height:     5.2rem;
+    min-height:     52px;
 }
 
 .title
 {
-    margin-bottom:  2rem;
+    margin-bottom:  20px;
 }
 
 .subtitle

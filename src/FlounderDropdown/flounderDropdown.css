@@ -3,12 +3,12 @@
 
 :root
 {
-    --inputHeight:          4rem;
-    --inputHeightMultiTag:  4.8rem;
-    --tagHeight:            3.2rem;
-    --optionHeight:         4.8rem;
-    --borderWidth:          0.1rem;
-    --iconSize:             2.4rem;
+    --inputHeight:          40px;
+    --inputHeightMultiTag:  48px;
+    --tagHeight:            32px;
+    --optionHeight:         48px;
+    --borderWidth:          1px;
+    --iconSize:             24px;
 }
 
 
@@ -17,7 +17,7 @@
     .main
     {
         border:             var( --borderWidth ) solid var( --PC-GREY--L70 );
-        border-radius:      0.2rem;
+        border-radius:      2px;
 
         letter-spacing:     0;
 
@@ -33,7 +33,7 @@
     {
         border-color:   var( --PC-BLUE );
         background:     var( --PC-WHITE );
-        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
     }
 
     .main:focus .arrowInner,
@@ -95,7 +95,7 @@
     {
         position:       absolute;
 
-        top:            calc( 100% + 1rem );
+        top:            calc( 100% + 10px );
         left:           calc( -1 * var( --borderWidth ) );
 
         width:          calc( 100% + ( var( --borderWidth ) * 2 ) );
@@ -104,7 +104,7 @@
         padding-top:    var( --spacing-1 );
         padding-bottom: var( --spacing-1 );
 
-        box-shadow:     0 0.5rem 1rem var( --PC-GREY--L75 );
+        box-shadow:     0 5px 10px var( --PC-GREY--L75 );
 
         background:     var( --PC-WHITE );
 
@@ -303,7 +303,7 @@
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-        letter-spacing: 0.04rem;
+        letter-spacing: 0.4px;
 
         &:focus
         {
@@ -381,7 +381,7 @@
         @extend %Nessie-SemiBold;
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-        letter-spacing: 0.04rem;
+        letter-spacing: 0.4px;
 
         white-space:    nowrap;
         overflow:       hidden;
@@ -514,7 +514,7 @@
     .optionIcon__blueDot
     {
         position:       relative;
-        padding-left:   calc( var( --spacing-2 ) + 1rem + var( --spacing-2 ) );
+        padding-left:   calc( var( --spacing-2 ) + 10px + var( --spacing-2 ) );
 
         &::before
         {
@@ -527,10 +527,10 @@
 
             transform:      translateY( -50% );
 
-            width:          1rem;
-            height:         1rem;
+            width:          10px;
+            height:         10px;
 
-            border-radius:  1rem;
+            border-radius:  10px;
             background:     var( --PC-BLUE );
         }
     }
@@ -539,7 +539,7 @@
 
 .headerMode /* Flounder as header */
 {
-    min-width:  40rem;
+    min-width:  400px;
 
     .mainWrapper
     {
@@ -607,22 +607,22 @@
     .selectedDisplayed
     {
         padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 3rem + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + 30px + var( --spacing-2 ) );
 
         font-size:      var( --typo-7 );
         line-height:    var( --line-height-l );
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.5px;
     }
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 3rem ) );
+        left:   calc( -1 * ( var( --spacing-2 ) + 30px ) );
     }
 
     .arrowInner
     {
-        width:  3rem;
-        height: 3rem;
+        width:  30px;
+        height: 30px;
     }
 }
 
@@ -631,22 +631,22 @@
     .selectedDisplayed
     {
         padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 2.2rem + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + 22px + var( --spacing-2 ) );
 
         font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.5px;
     }
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 2.2rem ) );
+        left:   calc( -1 * ( var( --spacing-2 ) + 22px ) );
     }
 
     .arrowInner
     {
-        height: 2.2rem;
-        width:  2.2rem;
+        height: 22px;
+        width:  22px;
     }
 }
 
@@ -655,22 +655,22 @@
     .selectedDisplayed
     {
         padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 2.2rem + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + 22px + var( --spacing-2 ) );
 
         font-size:      var( --typo-4 );
         line-height:    var( --line-height-l );
-        letter-spacing: 0.02rem;
+        letter-spacing: 0.2px;
     }
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 2rem ) );
+        left:   calc( -1 * ( var( --spacing-2 ) + 20px ) );
     }
 
     .arrowInner
     {
-        height: 2rem;
-        width:  2rem;
+        height: 20px;
+        width:  20px;
     }
 }
 
@@ -685,13 +685,13 @@
 
     /* .arrow
     {
-        top:    0.3rem;
+        top:    3px;
     } */
 
     .arrowInner
     {
-        height: 1.8rem;
-        width:  1.8rem;
+        height: 18px;
+        width:  18px;
     }
 }
 
@@ -706,7 +706,7 @@
     .mainWrapper.open .main:focus
     {
         border-color:    var( --PC-RED );
-        box-shadow:      0 0 0 0.1rem var( --PC-RED );
+        box-shadow:      0 0 0 1px var( --PC-RED );
 
         .selectedDisplayed
         {
@@ -761,7 +761,7 @@
 
     .multiTagList
     {
-        padding-right:  0.5rem;
+        padding-right:  5px;
     }
 }
 

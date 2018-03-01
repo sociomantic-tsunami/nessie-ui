@@ -2,10 +2,10 @@
 
 :root
 {
-    --inputHeight:          4rem;
+    --inputHeight:          40px;
 
     --switchHeight:         var( --line-height-m );
-    --switchLetterSpacing:  0.04rem;
+    --switchLetterSpacing:  0.04px;
 
     --circleSize:           calc( 0.75 * var( --switchHeight ) );
     --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) ) / 2 );
@@ -136,11 +136,11 @@
     {
         & + .label
         {
-            background:     var( --PC-GREY--L70 );
+            background: var( --PC-GREY--L70 );
 
             /* mimic native browser focus */
-            outline: auto 0.2rem highlight;
-            outline: auto 0.5rem -webkit-focus-ring-color;
+            outline:    auto 2px highlight;
+            outline:    auto 5px -webkit-focus-ring-color;
         }
 
         &:checked + .label

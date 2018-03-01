@@ -2,13 +2,13 @@
 
 :root
 {
-    --tooltipOffsetX:       1.1rem; /* 5px */
-    --tooltipOffsetY:       1.2rem; /* 5px */
-    --tooltipOffsetXY:      2.6rem;
-    --tooltipOffsetXYAfter: 2rem;
+    --tooltipOffsetX:       11px; /* 5px */
+    --tooltipOffsetY:       12px; /* 5px */
+    --tooltipOffsetXY:      26px;
+    --tooltipOffsetXYAfter: 20px;
 
-    --pointerSize:          1rem;
-    --halfPointer:          0.5rem;
+    --pointerSize:          10px;
+    --halfPointer:          5px;
 }
 
 
@@ -32,7 +32,7 @@
 
     margin-bottom:      0;
 
-    border-radius:      0.2rem;
+    border-radius:      2px;
 
     background-color:   var( --PC-GREY--D25 );
 

@@ -67,7 +67,7 @@
 
 .role__sub
 {
-    border-radius:         0.6rem;
+    border-radius:         6px;
 
     & > .link
     {
@@ -78,7 +78,7 @@
 
         background-color:  var( --PC-BLUE );
 
-        border-radius:     0.2rem;
+        border-radius:     2px;
 
         line-height:       var( --line-height-xxl );
         color:             var( --PC-WHITE );
@@ -146,23 +146,23 @@
 {
     position:   absolute;
     left:       -99999px;
-    margin-top: -0.2rem;
+    margin-top: -2px;
 }
 
 .hasIcon
 {
     & > .link
     {
-        padding-top:    1.3rem;
+        padding-top:    13px;
         padding-right:  var( --spacing-3 );
-        padding-bottom: 1.5rem;
+        padding-bottom: 15px;
         padding-left:   var( --spacing-3 );
     }
 
     & > .link > .icon
     {
         margin:        auto;
-        margin-bottom: 0.4rem;
+        margin-bottom: 4px;
     }
 
     & > .link[href]:hover > .icon,

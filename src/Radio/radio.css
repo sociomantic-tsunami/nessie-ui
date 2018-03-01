@@ -19,11 +19,11 @@
     background-color:   var( --PC-BLUE );
     border-radius:      50%;
 
-    width:              1.2rem;
-    height:             1.2rem;
+    width:              12px;
+    height:             12px;
 
-    top:                0.6rem;
-    left:               0.4rem;
+    top:                6px;
+    left:               4px;
 }
 
 .fakeHovered

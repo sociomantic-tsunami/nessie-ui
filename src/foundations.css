@@ -23,8 +23,8 @@ body
     overflow:       auto;
 
     font-size:      var( --typo-2 );
-    line-height:    1.6rem;
-    letter-spacing: 0.02rem;
+    line-height:    16px;
+    letter-spacing: 0.2px;
 
     color:          var( --GS-2 );
 }
@@ -44,13 +44,13 @@ i
 p
 {
     position:       relative;
-    top:            0.5rem;
+    top:            5px;
 
     margin:         0;
-    margin-top:     -0.8rem;
-    margin-bottom:  1rem;
+    margin-top:     -8px;
+    margin-bottom:  10px;
 
-    line-height:    1.6rem;
+    line-height:    1.6px;
 
     &:last-child
     {
@@ -60,7 +60,7 @@ p
 
 section
 {
-    margin-bottom:  4rem;
+    margin-bottom:  40px;
 }
 
 code

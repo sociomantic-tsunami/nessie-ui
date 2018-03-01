@@ -2,18 +2,18 @@
 
 :root
 {
-    --horizontalSliderHeight:   3.2rem;
-    --verticalSliderHeight:     30rem;
+    --horizontalSliderHeight:   32px;
+    --verticalSliderHeight:     300px;
 
-    --trackSize:                0.2rem;
-    --trackBorderWidth:         0.1rem;
+    --trackSize:                2px;
+    --trackBorderWidth:         1px;
 
-    --handleSize:               1.6rem;
+    --handleSize:               16px;
 
-    --tickSize:                 0.4rem;
+    --tickSize:                 4px;
 
-    --labelMargin:              1rem;
-    --stepLabelContainerHeight: 1.6rem; /*matches line height of labels*/
+    --labelMargin:              10px;
+    --stepLabelContainerHeight: 16px; /*matches line height of labels*/
 }
 
 
@@ -78,7 +78,7 @@
         &:active
         {
             cursor:         grabbing;
-            box-shadow:     0 0 0.7rem 0 var( --PC-GREY--L80 );
+            box-shadow:     0 0 7px 0 var( --PC-GREY--L80 );
 
             width:          calc(var( --handleSize ) * 1.2);
             height:         calc(var( --handleSize ) * 1.2);
@@ -182,12 +182,12 @@
 
     .stepLabelsContainer
     {
-        margin-bottom:      0.6rem;
+        margin-bottom:      6px;
 
         &:last-child
         {
-            margin-top:     0.8rem;
-            margin-bottom:  -0.5rem;
+            margin-top:     8px;
+            margin-bottom:  -5px;
         }
     }
 
@@ -295,7 +295,7 @@
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
            to avoid this */
-        top:    -1.6rem;
+        top:    -16px;
     }
 }
 
@@ -306,7 +306,7 @@
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
            to avoid this */
-        bottom: -1.6rem;
+        bottom: -16px;
     }
 }
 
@@ -317,7 +317,7 @@
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
            to avoid this */
-        left:   1.6rem;
+        left:   16px;
     }
 }
 
@@ -328,7 +328,7 @@
         /* This is a magic number, it’s just a coincidence that it happens to be
            the same number as the handle size. We should use the Text component
            to avoid this */
-        right:  1.6rem;
+        right:  16px;
     }
 }
 

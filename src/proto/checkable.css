@@ -2,8 +2,8 @@
 
 .default
 {
-    padding-top:        0.5rem;
-    padding-bottom:     0.5rem;
+    padding-top:        5px;
+    padding-bottom:     5px;
 
     width:              auto;
 
@@ -23,7 +23,7 @@
     .label::before,
     .input:focus + .label::before
     {
-        border:         0.2rem solid var( --PC-BLUE );
+        border:         2px solid var( --PC-BLUE );
     }
 }
 
@@ -45,11 +45,11 @@
         position:           relative;
 
         box-sizing:         border-box;
-        width:              2rem;
-        height:             2rem;
+        width:              20px;
+        height:             20px;
 
-        border:             0.1rem solid var( --PC-BLUE--LIGHT );
-        border-radius:      0.1rem;
+        border:             1px solid var( --PC-BLUE--LIGHT );
+        border-radius:      1px;
 
         background:         var( --PC-WHITE );
     }
@@ -81,7 +81,7 @@
     &:hover .label::before,
     .input:focus + .label::before
     {
-        border:       0.2rem solid var( --PC-RED );
+        border:       2px solid var( --PC-RED );
     }
 
     .label .text
@@ -125,6 +125,6 @@
 
     &:focus + .label::before
     {
-        border:             0.2rem solid var( --PC-BLUE );
+        border:             2px solid var( --PC-BLUE );
     }
 }

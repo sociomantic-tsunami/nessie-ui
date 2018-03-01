@@ -10,10 +10,10 @@
 
         box-sizing:         border-box;
         width:              100%;
-        min-height:         3.2rem;
+        min-height:         32px;
 
-        border:             0.1rem solid var( --PC-GREY--L70 );
-        border-radius:      0.2rem;
+        border:             1px solid var( --PC-GREY--L70 );
+        border-radius:      2px;
 
         padding-top:        var( --spacing-1 );
         padding-right:      var( --spacing-1 );
@@ -38,10 +38,10 @@
 
         box-sizing:     border-box;
         min-width:      5ch;
-        height:         2rem;
+        height:         20px;
 
         padding:        0;
-        padding-top:    0.1rem;
+        padding-top:    1px;
 
         border:         none;
         margin-right:   0;
@@ -51,8 +51,8 @@
         @extend         %Nessie-Regular;
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-        letter-spacing: 0.04rem;
-        text-indent:    0.5rem;
+        letter-spacing: 0.4px;
+        text-indent:    5px;
         color:          var( --PC-GREY--D5 );
 
         &:focus
@@ -103,7 +103,7 @@
     .container
     {
         border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-        box-shadow:     0 0 0 0.1rem var( --PC-RED );
+        box-shadow:     0 0 0 1px var( --PC-RED );
     }
 }
 

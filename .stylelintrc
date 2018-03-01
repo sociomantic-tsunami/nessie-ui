@@ -17,7 +17,7 @@
     "property-case": "lower",
     "selector-list-comma-newline-after": "always",
     "selector-list-comma-newline-before": "never-multi-line",
-    "unit-whitelist": ["ch", "rem", "%", "s", "ms", "vw", "vh", "deg"],
+    "unit-whitelist": ["px", "ch", "%", "s", "ms", "vw", "vh", "deg"],
     "unit-no-unknown": true,
     "unit-case" : "lower",
     "value-list-max-empty-lines": 1,

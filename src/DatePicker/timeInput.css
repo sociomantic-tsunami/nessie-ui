@@ -25,14 +25,14 @@
     .min
     {
         border:             0;
-        width:              3.6rem;
-        height:             2.4rem;
+        width:              36px;
+        height:             24px;
         padding:            0;
 
         text-align:         center;
         font:               inherit;
         line-height:        var( --line-height-s );
-        font-size:          1.3rem;
+        font-size:          13px;
         color:              var( --PC-WHITE );
 
         background-color:   var( --PC-BLUE--D5 );
@@ -40,7 +40,7 @@
         &::placeholder
         {
             line-height:    var( --line-height-s );
-            font-size:      1.3rem;
+            font-size:      13px;
             font-weight:    300;
             color:          var( --PC-WHITE );
         }
@@ -50,9 +50,9 @@
     {
         user-select:        none;
         line-height:        var( --line-height-s );
-        font-size:          1.3rem;
+        font-size:          13px;
         color:              var( --PC-WHITE );
-        margin:             0 0.3rem;
+        margin:             0 3px;
         display:            inline-block;
     }
 }
