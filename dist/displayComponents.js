@@ -14441,8 +14441,6 @@ var CheckableGroup = function (_Component) {
     _createClass(CheckableGroup, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             var _props = this.props,
                 children = _props.children,
                 className = _props.className,
@@ -14455,10 +14453,11 @@ var CheckableGroup = function (_Component) {
                 label = _props.label,
                 layout = _props.layout,
                 name = _props.name,
-                onChange = _props.onChange,
+                _onChange = _props.onChange,
                 onMouseOver = _props.onMouseOver,
                 onMouseOut = _props.onMouseOut,
                 errorMessageIsVisible = _props.errorMessageIsVisible;
+            var id = this.state.id;
 
 
             var items = children && children.map(function (child) {
@@ -14467,8 +14466,19 @@ var CheckableGroup = function (_Component) {
                     isDisabled: isDisabled || child.props.isDisabled,
                     hasError: hasError || child.props.hasError,
                     forceHover: forceHover || child.props.forceHover,
-                    name: name || _this2.state.id,
-                    onChange: onChange
+                    name: name || id,
+                    onChange: function onChange() {
+                        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                            args[_key] = arguments[_key];
+                        }
+
+                        if (_onChange) {
+                            _onChange(args);
+                        }
+                        if (child.props.onChange) {
+                            child.props.onChange(args);
+                        }
+                    }
                 }));
             });
 
