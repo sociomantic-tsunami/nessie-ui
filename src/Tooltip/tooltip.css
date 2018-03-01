@@ -29,7 +29,6 @@
     display:        inline-block;
 
     max-width:      100%;
-    z-index:        100;
 }
 
 .tooltip
@@ -45,6 +44,8 @@
     padding:            var( --tooltipPadding );
 
     background-color:   var( --PC-WHITE );
+
+    z-index:            100;
 
     &::before
     {
