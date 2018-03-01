@@ -353,7 +353,7 @@
 {
     .trackFill
     {
-        background:         color( var( --GS-4 ) a( 35% ) );
+        background:         var( --PC-GREY--L85 );
     }
 
     .handle
@@ -373,7 +373,7 @@
 
     .handleLabel
     {
-        color:              color( var( --GS-2 ) a( 50% ) );
+
     }
 
     .ticksContainer

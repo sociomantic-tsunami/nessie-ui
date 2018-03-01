@@ -2,26 +2,133 @@
 
 :root
 {
-    --backgroundTransition:  background-color 0.2s ease-in-out;
-    --circleTransition:      left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
-    --textTransition:        opacity 0.2s cubic-bezier( 0.23, 1, 0.32, 1 ); /* easeOutQuint */
+    --inputHeight:          40px;
+
+    --switchHeight:         var( --line-height-m );
+    --switchLetterSpacing:  0.04px;
+
+    --circleSize:           calc( 0.75 * var( --switchHeight ) );
+    --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) ) / 2 );
+
+    --backgroundTransition: background-color 0.2s ease-in-out;
+    --circleTransition:     left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
+    --textTransition:       opacity 0.2s cubic-bezier( 0.23, 1, 0.32, 1 ); /* easeOutQuint */
 }
 
 .default
 {
-    width:  auto;
+    display:        flex;
+    align-items:    center;
 
-    &:hover,
-    &.fakeHovered
+    width:          auto;
+    height:         var( --inputHeight );
+
+    .input
     {
-        .label
+        position:   absolute;
+        left:       -9999px;
+    }
+
+    .label
+    {
+        position:       relative;
+        display:        flex;
+
+        box-sizing:     border-box;
+        min-width:      calc( 2 * ( var( --circleSize ) + var( --circleOffset ) ) );
+        height:         var( --switchHeight );
+
+        border-radius:  calc( var( --switchHeight ) / 2 );
+
+        background:     var( --PC-GREY--L70 );
+
+        cursor:         pointer;
+        transition:     var( --backgroundTransition );
+
+        &::before
         {
-            background-color:       color( var( --GS-2 ) shade( 15% ) );
+            content:        '';
+
+            display:        block;
+            position:       absolute;
+
+            top:            var( --circleOffset );
+            left:           var( --circleOffset );
+
+            width:          var( --circleSize );
+            height:         var( --circleSize );
+
+            border-radius:  100%;
+
+            background:     var( --PC-WHITE );
+
+            transition:     var( --circleTransition );
+        }
+    }
+
+    .off,
+    .on
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+
+        box-sizing:         border-box;
+
+        width:              100%;
+
+        padding:            0 var( --spacing-1 );
+
+        @extend %Nessie-SemiBold;
+        color:              var( --PC-WHITE );
+        font-size:          var( --typo-2 );
+        line-height:        var( --line-height-m );
+        letter-spacing:     var( --switchLetterSpacing );
+        text-transform:     uppercase;
+
+        overflow:           hidden;
+        white-space:        nowrap;
+        text-overflow:      ellipsis;
+
+        transition:         var( --textTransition );
+    }
+
+    .off
+    {
+        padding-left:   calc( var( --circleOffset ) + var( --circleSize ) + var( --spacing-1 ) );
+    }
+
+    .on
+    {
+        position:       absolute; /* necessary to overlay on over off */
+        top:            0;
+        bottom:         0;
+        left:           0;
+        right:          0;
+
+        padding-right:  calc( var( --spacing-1 ) + var( --circleOffset ) + var( --circleSize )  );
+
+        opacity:        0;
+    }
+
+    .input:checked + .label
+    {
+        background: var( --PC-BLUE );
+        transition: var( --backgroundTransition );
+
+        &::before
+        {
+            left:   calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
         }
 
-        .input:checked + .label
+        .on
         {
-            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
+            opacity:    1;
+        }
+
+        .off
+        {
+            opacity:    0;
         }
     }
 
@@ -29,162 +136,58 @@
     {
         & + .label
         {
-            background-color:       color( var( --GS-2 ) shade( 15% ) );
+            background: var( --PC-GREY--L70 );
+
+            /* mimic native browser focus */
+            outline:    auto 2px highlight;
+            outline:    auto 5px -webkit-focus-ring-color;
         }
 
         &:checked + .label
         {
-            background-color:       color( var( --PC-GREEN ) shade( 15% ) );
+            background: var( --PC-BLUE );
+        }
+    }
+
+    :hover,
+    .fakeHovered
+    {
+        .label
+        {
+            background: var( --PC-GREY--L70 );
+        }
+
+        .input:checked + .label
+        {
+            background: var( --PC-BLUE );
         }
     }
 }
-
 
 .disabled
 {
-    .label,
-    .input:checked + .label
+    .label
     {
-        cursor:                 default;
-        background-color:       var( --GS-7 );
+        cursor:     default;
+        background: var( --PC-GREY--L90 );
     }
 
-    &:hover
+    .input:checked + &
     {
-        .label,
-        .input:checked + .label
+        background: var( --PC-BLUE--L40 );
+    }
+
+    :hover,
+    .fakeHovered
+    {
+        .label
         {
-            background-color:       var( --GS-7 );
+            background: var( --PC-GREY--L90 );
         }
-    }
-}
 
-
-
-
-
-
-.label
-{
-    position:           relative;
-    display:            flex;
-
-    min-height:         32px; /* necessary if there's no label */
-
-    border-radius:      20px;
-
-    background-color:   var( --GS-2 );
-
-    cursor:             pointer;
-    transition:         var( --backgroundTransition );
-
-
-    &::before
-    {
-        content:            '';
-
-        display:            block;
-        position:           absolute;
-
-        top:                4px;
-        left:               4px;
-
-        width:              24px;
-        height:             24px;
-
-        border-radius:      100%;
-
-        background-color:   var( --PC-WHITE );
-
-        transition:         var( --circleTransition );
-    }
-}
-
-.off,
-.on
-{
-    display:                block;
-    box-sizing:             border-box;
-
-    width:                  100%;
-
-    padding-top:            8px;
-    padding-bottom:         5px;
-
-    color:                  var( --PC-WHITE );
-
-    @extend %Nessie-SemiBold;
-
-    font-size:              var( --typo-2 );
-    line-height:            var( --line-height-s );
-    letter-spacing:         0.4px;
-    text-transform:         uppercase;
-    text-align:             center;
-
-    overflow:               hidden;
-    white-space:            nowrap;
-    text-overflow:          ellipsis;
-
-    transition:             var( --textTransition );
-}
-
-.off
-{
-    padding-left:           40px;
-    padding-right:          23px;
-}
-
-.on
-{
-    position:               absolute; /* necessary to overlay on over off */
-    top:                    0;
-    bottom:                 0;
-    left:                   0;
-    right:                  0;
-
-    padding-left:           23px;
-    padding-right:          40px;
-
-    opacity:                0;
-}
-
-/* INPUT */
-/* basics to hide native input */
-.input
-{
-    position:               absolute;
-    left:                   -9999px;
-
-    &:checked + .label::after
-    {
-        position:           absolute;
-    }
-}
-
-.input:checked + .label
-{
-    background-color:       var( --PC-GREEN );
-    transition:             var( --backgroundTransition );
-
-    &::before
-    {
-        left:               calc( 100% - 28px);
-        transition:         var( --circleTransition );
-    }
-
-    .off,
-    .on
-    {
-        transition:         var( --textTransition );
-    }
-
-    .on
-    {
-        opacity:            1;
-    }
-
-    .off
-    {
-        opacity:            0;
+        input:checked + .label
+        {
+            background: var( --PC-BLUE--L40 );
+        }
     }
 }

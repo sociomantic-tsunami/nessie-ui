@@ -37,11 +37,6 @@
 
         background-color:   var( --PC-BLUE--D5 );
 
-        &:focus
-        {
-            outline:        none;
-        }
-
         &::placeholder
         {
             line-height:    var( --line-height-s );
