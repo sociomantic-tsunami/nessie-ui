@@ -6,8 +6,8 @@
 {
     .editor
     {
-        height:         auto;
-        border:         0.1rem solid color( var( --GS-2 ) a( 50% ) );
+        height: auto;
+        border: 0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
         &:hover,
         .fakeHovered&
@@ -49,9 +49,8 @@
         height:         100% !important;
         background:     transparent;
 
-        font-family:    monospace, sans-serif !important;
-        font-size:      1.1rem !important;
-        line-height:    1.25 !important;
+        font-family:    monospace, sans-serif;
+        font-size:      1.1rem;
     }
 
     .CodeMirror-sizer
@@ -74,11 +73,6 @@
     .CodeMirror-linenumber
     {
         white-space:    normal;
-    }
-
-    .CodeMirror-lines
-    {
-        padding:    0 !important;
     }
 
     .CodeMirror-line
