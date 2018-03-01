@@ -74,7 +74,8 @@ export default class CheckboxGroup extends Component
     {
         isDisabled : false,
         forceHover : false,
-        hasError   : false
+        hasError   : false,
+        layout     : 'horizontal',
     };
 
     buildCheckboxes()
