@@ -41,13 +41,16 @@
 
 
 
+
 :global
 {
     .CodeMirror
     {
         box-sizing:     border-box;
-        height:         100% !important;
+        height:         100%;
+        padding:        0.8rem 0 0.9rem 0;
         background:     transparent;
+        line-height:    initial;
 
         font-family:    monospace, sans-serif;
         font-size:      1.1rem;
