@@ -30,6 +30,10 @@ export default class CodeEditor extends Component
          */
         labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
+         *  Code editor height (CSS length value)
+         */
+        height                : PropTypes.string,
+        /**
          *  Display as disabled
          */
         isDisabled            : PropTypes.bool,
@@ -162,7 +166,7 @@ export default class CodeEditor extends Component
             codeMirror.setCursor( cursor );
         }
 
-        if( codeMirrorRef )
+        if ( codeMirrorRef )
         {
             codeMirrorRef( codeMirror );
         }
@@ -175,7 +179,7 @@ export default class CodeEditor extends Component
         const { codeMirror } = this;
         const { codeMirrorRef } = this.props;
 
-        if( nextProps.codeMirrorRef !== codeMirrorRef )
+        if ( nextProps.codeMirrorRef !== codeMirrorRef )
         {
             if ( codeMirrorRef )
             {
@@ -296,6 +300,7 @@ export default class CodeEditor extends Component
             forceHover,
             isDisabled,
             hasError,
+            height,
             onMouseOut,
             onMouseOver,
             value,
@@ -316,7 +321,8 @@ export default class CodeEditor extends Component
                     <div
                         className   = { cssMap.editor }
                         onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }>
+                        onMouseOut  = { onMouseOut }
+                        style = { { height: `${height}` } }>
                         <textarea
                             ref          = { this.handleTextareaRef }
                             defaultValue = { value }
