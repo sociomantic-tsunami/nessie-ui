@@ -2,19 +2,29 @@
 
 .default
 {
-    position:           relative;
-    display:            table; /* flex doesn’t work here */
+    position:               relative;
+    display:                table; /* flex doesn’t work here */
 
-    width:              auto;
+    width:                  auto;
 
-    padding:            0;
+    padding:                0;
 
-    border:             none;
-    border-radius:      2px;
+    border:                 none;
+    border-radius:          2px;
 
-    background:         transparent;
-    cursor:             pointer;
-    text-transform:     uppercase;
+    background:             transparent;
+    cursor:                 pointer;
+    text-transform:         uppercase;
+
+    .iconContainer
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+
+        width:              var( --spacing-3 );
+        height:             var( --spacing-3 );
+    }
 }
 
 
@@ -55,7 +65,8 @@
 
     .iconContainer
     {
-        margin-left:    var( --spacing-1 );
+        margin-left:    4px;
+        margin-right:   -var( --spacing-1 );
     }
 }
 
@@ -64,7 +75,8 @@
 {
     .iconContainer
     {
-        margin-right:   var( --spacing-1 );
+        margin-right:   4px;
+        margin-left:    -var( --spacing-1 );
     }
 }
 
