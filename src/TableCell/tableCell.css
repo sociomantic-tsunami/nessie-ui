@@ -67,26 +67,6 @@ $shark: 768px;
     z-index:            1;
 }
 
-.data
-{
-    padding-left:       0.5rem;
-
-    &:first-child
-    {
-        padding-left:   0.5rem;
-    }
-
-    &:last-child
-    {
-        padding-right:  0.5rem;
-    }
-
-    &.header
-    {
-        @extend %Nessie-Bold;
-    }
-}
-
 .sticky
 {
     position:   sticky;
