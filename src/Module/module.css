@@ -21,7 +21,7 @@
 
     .default + .default
     {
-        margin-top: var( --spacing-3 );
+        margin-top: -var( --spacing-3 );
     }
 
     .header,
