@@ -1,79 +1,103 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import Checkable            from '../proto/Checkable';
+import Checkable      from '../proto/Checkable';
+import { generateId } from '../utils';
+import styles         from './radio.css';
 
-const Radio = ( props ) =>
-    <Checkable { ...props } type = "radio" />;
+const Checkbox = props => <Checkable { ...props } type = "radio" />;
 
-Radio.propTypes =
+Checkbox.propTypes =
 {
     /**
-    *  Label text string
-    */
-    label            : PropTypes.string,
+     *  Label content (JSX node; overrides label prop)
+     */
+    children         : PropTypes.node,
     /**
-    *  Display as checked by default (uncontrolled input)
-    */
-    isDefaultChecked : PropTypes.bool,
+     *  Extra CSS class name
+     */
+    className        : PropTypes.string,
     /**
-    *  Display as checked (controlled input)
-    */
-    isChecked        : PropTypes.bool,
-    /**
-    *  Display as disabled
-    */
-    isDisabled       : PropTypes.bool,
-    /**
-    *  Display as read-only
-    */
-    isReadOnly       : PropTypes.bool,
-    /**
-    *  Display as error/invalid
-    */
-    hasError         : PropTypes.bool,
+     *  CSS class map
+     */
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */
     forceHover       : PropTypes.bool,
     /**
-    *  HTML value attribute
-    */
-    value            : PropTypes.string,
+     *  Display as error/invalid
+     */
+    hasError         : PropTypes.bool,
     /**
-    *  HTML id attribute (override default)
-    */
+     *  HTML id attribute (override default)
+     */
     id               : PropTypes.string,
     /**
-    *  Radio group name
-    */
+     * Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef         : PropTypes.func,
+    /**
+     *  Display as checked (controlled input)
+     */
+    isChecked        : PropTypes.bool,
+    /**
+     *  Display as checked by default (uncontrolled input)
+     */
+    isDefaultChecked : PropTypes.bool,
+    /**
+     *  Display as disabled
+     */
+    isDisabled       : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly       : PropTypes.bool,
+    /**
+     *  Label content (string)
+     */
+    label            : PropTypes.string,
+    /**
+     *  Checkbox group name
+     */
     name             : PropTypes.string,
     /**
      *  OnChange callback function: ( e ) => { ... }
      */
     onChange         : PropTypes.func,
     /**
-     *  onMouseOver callback function : ( e ) => { ... }
-     */
-    onMouseOver      : PropTypes.func,
-    /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
     onMouseOut       : PropTypes.func,
     /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
+     *  onMouseOver callback function : ( e ) => { ... }
      */
-    inputRef         : PropTypes.func,
+    onMouseOver      : PropTypes.func,
+    /**
+     *  HTML value attribute
+     */
+    value            : PropTypes.string,
 };
 
-Radio.defaultProps =
+Checkbox.defaultProps =
 {
-    isDefaultChecked : false,
-    isChecked        : undefined,
-    isDisabled       : false,
-    hasError         : false,
+    children         : undefined,
+    className        : undefined,
+    cssMap           : styles,
     forceHover       : false,
-    cssMap           : require( './radio.css' )
+    hasError         : false,
+    id               : generateId( 'Radio' ),
+    inputRef         : undefined,
+    isDefaultChecked : false,
+    isDisabled       : false,
+    isChecked        : undefined,
+    isReadOnly       : false,
+    label            : undefined,
+    name             : undefined,
+    onChange         : undefined,
+    onMouseOut       : undefined,
+    onMouseOver      : undefined,
+    value            : undefined,
 };
 
-export default Radio;
+export default Checkbox;

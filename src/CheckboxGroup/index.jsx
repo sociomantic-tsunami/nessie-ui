@@ -80,7 +80,7 @@ export default class CheckboxGroup extends Component
 
     buildCheckboxes()
     {
-        const { values = [], selectedValues  } = this.props;
+        const { values = [], selectedValues } = this.props;
 
         return values.map( ( value ) =>
         {
@@ -97,8 +97,7 @@ export default class CheckboxGroup extends Component
                 checkboxValue = checkboxLabel = value;
             }
 
-            const checkboxIsChecked =
-                    selectedValues.indexOf( checkboxValue ) > -1;
+            const checkboxIsChecked = selectedValues.includes( checkboxValue );
 
             return (
                 <Checkbox
