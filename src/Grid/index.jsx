@@ -1,11 +1,11 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './grid.css';
 
 const Grid = ( {
     align,
-    verticalAlign,
     children,
     className,
     cssMap,
@@ -13,26 +13,22 @@ const Grid = ( {
     hasMinHeight,
     hasWrap,
     role,
-    spacing
-} ) =>
-
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { {
+    spacing,
+    verticalAlign,
+} ) => (
+    <div
+        className = { buildClassName( className, cssMap, {
             alignX  : align,
             alignY  : verticalAlign,
             hasMinHeight,
             gutters : gutters !== 'none' && gutters,
             hasWrap,
             spacing : spacing !== 'none' && spacing
-
-        } }>
-        <div
-            className = { className }
-            role      = { role }>
-            { children }
-        </div>
-    </Css>;
+        } ) }
+        role = { role }>
+        { children }
+    </div>
+);
 
 Grid.propTypes =
 {
@@ -40,43 +36,39 @@ Grid.propTypes =
      * Horizontal alignment of the columns (“auto” makes all columns equal
      * width)
      */
-    align : PropTypes.oneOf( [
-        'auto',
-        'left',
-        'center',
-        'right'
-    ] ),
+    align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
-    *  Set minimum height equal to average row.
-    */
-    hasMinHeight  : PropTypes.bool,
-    /**
-     * Wrap content
+     *  Grid content (Columns)
      */
-    hasWrap       : PropTypes.bool,
+    children     : PropTypes.node,
     /**
-     * Vertical alignment of the columns (“auto” makes all columns equal
-     * height)
+     *  Grid content (Columns)
      */
-    verticalAlign : PropTypes.oneOf( [
-        'auto',
-        'top',
-        'middle',
-        'bottom'
-    ] ),
+    className    : PropTypes.node,
+    /**
+     *  Grid content (Columns)
+     */
+    cssMap       : PropTypes.node,
     /**
      *  Gutter size
      */
-    gutters : PropTypes.oneOf( [
-        'none',
-        'S',
-        'M',
-        'L'
-    ] ),
+    gutters      : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+    *  Set minimum height equal to average row.
+    */
+    hasMinHeight : PropTypes.bool,
+    /**
+     * Wrap content
+     */
+    hasWrap      : PropTypes.bool,
+    /**
+     *  Grid role
+     */
+    role         : PropTypes.string,
     /**
      *  Row spacing
      */
-    spacing : PropTypes.oneOf( [
+    spacing      : PropTypes.oneOf( [
         'none',
         'default',
         'h1',
@@ -86,24 +78,24 @@ Grid.propTypes =
         'label'
     ] ),
     /**
-     *  Grid role
+     * Vertical alignment of the columns (“auto” makes all columns equal
+     * height)
      */
-    role     : PropTypes.string,
-    /**
-     *  Grid content (Columns)
-     */
-    children : PropTypes.node
+    verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
 
 Grid.defaultProps =
 {
     align         : 'auto',
-    hasWrap       : true,
-    hasMinHeight  : false,
-    verticalAlign : 'auto',
-    spacing       : 'default',
+    children      : undefined,
+    className     : undefined,
+    cssMap        : styles,
     gutters       : 'L',
-    cssMap        : require( './grid.css' )
+    hasMinHeight  : false,
+    hasWrap       : true,
+    role          : undefined,
+    spacing       : 'default',
+    verticalAlign : 'auto',
 };
 
 export default Grid;

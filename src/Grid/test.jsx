@@ -3,33 +3,31 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React      from 'react';
+import { mount }  from 'enzyme';
 
-import Grid         from './index';
+import { Column } from '../index';
 
-describe( 'Grid', () =>
+import Grid       from './index';
+
+
+describe( 'GridColumnDriver', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
     {
-        Wrapper = mount( <Grid /> );
+        wrapper = mount( <Grid /> );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
+    describe( 'getContent', () =>
     {
-        expect( Wrapper.find( '.grid__default' ) ).to.have.length( 1 );
-    } );
-
-    describe( 'Driver self-test', () =>
-    {
-        it( 'getContent', () =>
+        it( 'should return the content of the Grid or Column', () =>
         {
-            Wrapper = mount( <Grid><h2>Lightning Strike</h2></Grid> );
+            wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 
-            const content = Wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() )
+            const content = wrapper.driver().getContent();
+            expect( content.find( Column ).driver().getContent() )
                 .to.equal( 'Lightning Strike' );
         } );
     } );

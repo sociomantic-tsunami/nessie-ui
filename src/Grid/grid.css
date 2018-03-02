@@ -1,6 +1,5 @@
 @import "../proto/base.css";
 
-$shark: 768px;
 
 .default
 {
@@ -19,14 +18,8 @@ $shark: 768px;
     }*/
 }
 
-
-.hasMinHeight
-{
-    min-height: 7.1rem; /* label + input */
-}
-
 /*
-@media( min-width: $shark )
+@media( min-width: 768px )
 { */
     .default
     {
@@ -85,6 +78,43 @@ $shark: 768px;
 /* } */
 
 
+.gutters__S
+{
+    width:          calc( 100% + 1rem );
+    margin-left:    -0.5rem;
+    margin-right:   -0.5rem;
+
+    & > *
+    {
+        padding-left:   0.5rem;
+        padding-right:  0.5rem;
+    }
+}
+.gutters__M
+{
+    width:          calc( 100% + 2rem );
+    margin-left:    -1rem;
+    margin-right:   -1rem;
+
+    & > *
+    {
+        padding-left:   1rem;
+        padding-right:  1rem;
+    }
+}
+.gutters__L
+{
+    width:          calc( 100% + 3rem );
+    margin-left:    -1.5rem;
+    margin-right:   -1.5rem;
+
+    & > *
+    {
+        padding-left:   1.5rem;
+        padding-right:  1.5rem;
+    }
+}
+
 .spacing__default
 {
     & > *
@@ -97,7 +127,6 @@ $shark: 768px;
         margin-bottom:  -2rem;
     }
 }
-
 .spacing__h1
 {
     & > *
@@ -110,7 +139,6 @@ $shark: 768px;
         margin-bottom:  -7rem;
     }
 }
-
 .spacing__h2
 {
     & > *
@@ -123,7 +151,6 @@ $shark: 768px;
         margin-bottom:  -5rem;
     }
 }
-
 .spacing__h3
 {
     & > *
@@ -136,7 +163,6 @@ $shark: 768px;
         margin-bottom:  -2rem;
     }
 }
-
 .spacing__h4
 {
     & > *
@@ -149,7 +175,6 @@ $shark: 768px;
         margin-bottom:  -2rem;
     }
 }
-
 .spacing__label
 {
     & > *
@@ -168,41 +193,7 @@ $shark: 768px;
     flex-wrap:      wrap;
 }
 
-.gutters__S
+.hasMinHeight
 {
-    width:          calc( 100% + 1rem );
-    margin-left:    -0.5rem;
-    margin-right:   -0.5rem;
-
-    & > *
-    {
-        padding-left:   0.5rem;
-        padding-right:  0.5rem;
-    }
-}
-
-.gutters__M
-{
-    width:          calc( 100% + 2rem );
-    margin-left:    -1rem;
-    margin-right:   -1rem;
-
-    & > *
-    {
-        padding-left:   1rem;
-        padding-right:  1rem;
-    }
-}
-
-.gutters__L
-{
-    width:          calc( 100% + 3rem );
-    margin-left:    -1.5rem;
-    margin-right:   -1.5rem;
-
-    & > *
-    {
-        padding-left:   1.5rem;
-        padding-right:  1.5rem;
-    }
+    min-height: 7.1rem; /* label + input */
 }
