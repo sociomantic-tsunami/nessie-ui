@@ -29,9 +29,11 @@
 
 .label
 {
-    display:            inline-block;
+    display:            flex;
+    align-items:        center;
+
     position:           relative;
-    vertical-align:     middle;
+    height:             var( --spacing-3 );
 
     color:              var( --PC-GREY--D5 );
 

@@ -53,7 +53,7 @@ Checkbox.propTypes =
      *  OnChange callback function: ( e ) => { ... }
      */
     onChange    : PropTypes.func,
-     /*  onMouseOver callback function : ( e ) => { ... }
+    /*  onMouseOver callback function : ( e ) => { ... }
      */
     onMouseOver : PropTypes.func,
     /**
