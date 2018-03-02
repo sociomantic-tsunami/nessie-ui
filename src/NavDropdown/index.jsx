@@ -1,21 +1,21 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React, { Children } from 'react';
+import PropTypes           from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import NavList              from '..//NavList';
-
+import { buildClassName }  from '../utils';
+import NavList             from '../NavList';
+import styles              from './navDropdown.css';
 
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
-    const dropdownItems = children && children.map( child =>
+    const items = Children.toArray( children ).map( child =>
         React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
     return (
-        <Css cssMap = { cssMap }>
-            <NavList layout = "vertical" className = { className }>
-                { dropdownItems }
-            </NavList>
-        </Css>
+        <NavList
+            className = { buildClassName( className, cssMap ) }
+            layout    = "vertical">
+            { items }
+        </NavList>
     );
 };
 
@@ -24,12 +24,22 @@ NavDropdown.propTypes =
     /**
      *  Dropdown content (NavItems)
      */
-    children : PropTypes.node,
+    children  : PropTypes.node,
+    /**
+     *  CSS class name
+     */
+    className : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
 };
 
 NavDropdown.defaultProps =
 {
-    cssMap : require( './navDropdown.css' )
+    children  : undefined,
+    className : undefined,
+    cssMap    : styles,
 };
 
 export default NavDropdown;
