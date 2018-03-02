@@ -11,7 +11,7 @@ const Checkable = ( {
     cssMap,
     forceHover,
     hasError,
-    id,
+    id = generateId( 'Checkable' ),
     inputRef,
     isDefaultChecked,
     isDisabled,
@@ -54,11 +54,9 @@ const Checkable = ( {
                 ref            = { inputRef }
                 type           = { type }
                 value          = { value } />
-            { labelText &&
-                <label className = { cssMap.label } htmlFor = { id }>
-                    { labelText }
-                </label>
-            }
+            <label className = { cssMap.label } htmlFor = { id }>
+                { labelText }
+            </label>
         </div>
     );
 };
@@ -147,7 +145,7 @@ Checkable.defaultProps =
     cssMap           : undefined,
     forceHover       : false,
     hasError         : false,
-    id               : generateId( 'Checkable' ),
+    id               : undefined,
     inputRef         : undefined,
     isDefaultChecked : false,
     isDisabled       : false,

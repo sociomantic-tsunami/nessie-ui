@@ -5,9 +5,11 @@ import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
 import styles         from './radio.css';
 
-const Checkbox = props => <Checkable { ...props } type = "radio" />;
+const Radio = ( { id = generateId( 'Radio' ), ...props } ) => (
+    <Checkable { ...props } id = { id } type = "radio" />
+);
 
-Checkbox.propTypes =
+Radio.propTypes =
 {
     /**
      *  Label content (JSX node; overrides label prop)
@@ -58,7 +60,7 @@ Checkbox.propTypes =
      */
     label            : PropTypes.string,
     /**
-     *  Checkbox group name
+     *  Radio group name
      */
     name             : PropTypes.string,
     /**
@@ -79,14 +81,14 @@ Checkbox.propTypes =
     value            : PropTypes.string,
 };
 
-Checkbox.defaultProps =
+Radio.defaultProps =
 {
     children         : undefined,
     className        : undefined,
     cssMap           : styles,
     forceHover       : false,
     hasError         : false,
-    id               : generateId( 'Radio' ),
+    id               : undefined,
     inputRef         : undefined,
     isDefaultChecked : false,
     isDisabled       : false,
@@ -100,4 +102,4 @@ Checkbox.defaultProps =
     value            : undefined,
 };
 
-export default Checkbox;
+export default Radio;

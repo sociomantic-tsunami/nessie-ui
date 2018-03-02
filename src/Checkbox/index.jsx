@@ -5,7 +5,9 @@ import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
 import styles         from './checkbox.css';
 
-const Checkbox = props => <Checkable { ...props } type = "checkbox" />;
+const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
+    <Checkable { ...props } id = { id } type = "checkbox" />
+);
 
 Checkbox.propTypes =
 {
@@ -86,7 +88,7 @@ Checkbox.defaultProps =
     cssMap           : styles,
     forceHover       : false,
     hasError         : false,
-    id               : generateId( 'Checkbox' ),
+    id               : undefined,
     inputRef         : undefined,
     isDefaultChecked : false,
     isDisabled       : false,
