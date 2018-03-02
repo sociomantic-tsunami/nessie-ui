@@ -52,7 +52,7 @@ Tag.propTypes =
     /**
      *  Tag label (JSX node; overrides label prop)
      */
-    children   : PropTypes.ndoe,
+    children   : PropTypes.node,
     /**
      *  CSS class name
      */

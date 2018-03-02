@@ -19,11 +19,11 @@ Row.propTypes =
     /**
      *  CSS class name
      */
-    className    : PropTypes.node,
+    className    : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.node,
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Gutter size
      */

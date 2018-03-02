@@ -38,17 +38,17 @@ Grid.propTypes =
      */
     align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
+     *  Grid content (Columns)
+     */
+    children     : PropTypes.node,
+    /**
      *  CSS class name
      */
-    className    : PropTypes.node,
+    className    : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.node,
-    /**
-     *  Grid content (Columns)
-     */
-    cssMap       : PropTypes.node,
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Gutter size
      */
