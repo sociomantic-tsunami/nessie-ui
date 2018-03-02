@@ -6,7 +6,6 @@ import React       from 'react';
 import { shallow } from 'enzyme';
 
 import { Tag }     from '../index';
-import Css         from '../hoc/Css';
 
 import TagInput    from './index';
 
@@ -34,11 +33,6 @@ describe( 'TagInput', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
         it( 'should contain exactly one input', () =>
         {
             expect( wrapper.find( `.${cssMap.input}` ) ).to.have.length( 1 );

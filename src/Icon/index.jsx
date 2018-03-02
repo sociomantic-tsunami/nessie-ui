@@ -59,15 +59,15 @@ Icon.propTypes =
     /**
      * Icon label (overrides label prop)
      */
-    children    : PropTypes.string,
+    children    : PropTypes.node,
     /**
      *  CSS class name
      */
-    className   : PropTypes.node,
+    className   : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.node,
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */

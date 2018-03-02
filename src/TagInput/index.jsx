@@ -1,34 +1,10 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { Children, Component } from 'react';
+import PropTypes                      from 'prop-types';
 
-import Component        from '../proto/Component';
-import Css              from '../hoc/Css';
-import InputContainer   from '../proto/InputContainer';
-import Tag              from '../Tag';
-
-
-const createEventHandler = ( func, id ) => func && ( e => func( e, id ) );
-
-
-const buildTagsFromStrings = ( values = [] ) =>
-    values.map( value =>
-    {
-        let tag;
-
-        if ( typeof value === 'string' )
-        {
-            tag = <Tag key = { value } label = { value } id = { value } />;
-        }
-        else
-        {
-            tag = ( <Tag
-                key     = { value.label }
-                label   = { value.label }
-                id      = { value.id || value.label } /> );
-        }
-
-        return tag;
-    } );
+import { buildClassName, generateId } from '../utils';
+import { buildTagsFromValues }        from './utils';
+import styles                         from './tagInput.css';
+import InputContainer                 from '../proto/InputContainer';
 
 
 export default class TagInput extends Component
@@ -36,37 +12,17 @@ export default class TagInput extends Component
     static propTypes =
     {
         /**
-         *  Label text string or JSX node
+         * Node containing Tag components ( overrides tags prop )
          */
-        label                 : PropTypes.node,
+        children              : PropTypes.node,
         /**
-         *  Label position
+         *  CSS class name
          */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        className             : PropTypes.string,
         /**
-         *  Placeholder text
+         *  CSS class map
          */
-        placeholder           : PropTypes.string,
-        /**
-         *  Display as disabled
-         */
-        isDisabled            : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly            : PropTypes.bool,
-        /**
-        *  Allows container to be resize by the user
-        */
-        isResizable           : PropTypes.bool,
-        /**
-        *  specifies the height for the InputContainer
-        */
-        height                : PropTypes.number,
-        /**
-         *  Display as error/invalid
-         */
-        hasError              : PropTypes.bool,
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Tooltip message text (string or JSX)
          */
@@ -80,9 +36,45 @@ export default class TagInput extends Component
         */
         errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
         /**
+         * Display as hover when required from another component
+         */
+        forceHover            : PropTypes.bool,
+        /**
+        *  specifies the height for the InputContainer (CSS length value)
+        */
+        height                : PropTypes.string,
+        /**
+         *  Display as error/invalid
+         */
+        hasError              : PropTypes.bool,
+        /**
          *  HTML id attribute (overwrite default)
          */
         id                    : PropTypes.string,
+        /**
+         * Callback that receives the native <input>: ( ref ) => { ... }
+         */
+        inputRef              : PropTypes.func,
+        /**
+         *  Display as disabled
+         */
+        isDisabled            : PropTypes.bool,
+        /**
+         *  Display as read-only
+         */
+        isReadOnly            : PropTypes.bool,
+        /**
+        *  Allows container to be resize by the user
+        */
+        isResizable           : PropTypes.bool,
+        /**
+         *  Label text string or JSX node
+         */
+        label                 : PropTypes.node,
+        /**
+         *  Label position
+         */
+        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  HTML name attribute
          */
@@ -100,56 +92,58 @@ export default class TagInput extends Component
          */
         onKeyPress            : PropTypes.func,
         /**
-         *  Input mouseOver callback function
-         */
-        onMouseOver           : PropTypes.func,
-        /**
          *  Input mouseOut callback function
          */
         onMouseOut            : PropTypes.func,
         /**
-         * Display as hover when required from another component
+         *  Input mouseOver callback function
          */
-        forceHover            : PropTypes.bool,
+        onMouseOver           : PropTypes.func,
+        /**
+         *  Placeholder text
+         */
+        placeholder           : PropTypes.string,
         /**
          * Array of strings to build Tag components
          */
-        tags                  : PropTypes.arrayOf(
-            PropTypes.oneOfType( [
-                PropTypes.string,
-                PropTypes.object
-            ] ) ),
-        /**
-         * Node containing Tag components ( overrides tags prop )
-         */
-        children              : PropTypes.node,
-        /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef              : PropTypes.func,
+        tags                  : PropTypes.arrayOf( PropTypes.oneOfType( [
+            PropTypes.string,
+            PropTypes.object,
+        ] ) ),
     };
 
     static defaultProps =
     {
-        labelPosition         : 'top',
-        isDisabled            : false,
-        isReadOnly            : false,
-        hasError              : false,
+        children              : undefined,
+        className             : undefined,
+        cssMap                : styles,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         forceHover            : false,
-        cssMap                : require( './tagInput.css' ),
+        height                : undefined,
+        hasError              : false,
+        id                    : undefined,
+        inputRef              : undefined,
+        isDisabled            : false,
+        isReadOnly            : false,
+        isResizable           : false,
+        label                 : undefined,
+        labelPosition         : 'top',
+        name                  : undefined,
+        onChange              : undefined,
+        onClickClose          : undefined,
+        onKeyPress            : undefined,
+        onMouseOut            : undefined,
+        onMouseOver           : undefined,
+        placeholder           : undefined,
+        tags                  : undefined,
     };
 
-    constructor( props )
+    constructor()
     {
-        super( props );
-
-        this.state = {
-            ...this.state,
-            isFocused : false
-        };
-
+        super();
+        this.state = { isFocused: false };
         this.toggleFocus = this.toggleFocus.bind( this );
     }
 
@@ -158,81 +152,109 @@ export default class TagInput extends Component
         this.setState( { isFocused: !this.state.isFocused  } );
     }
 
-
     render()
     {
-        const { className, cssMap, ...props } = this.props;
-
         const {
             children,
+            className,
+            cssMap,
+            errorMessage,
+            errorMessageIsVisible,
+            errorMessagePosition,
             forceHover,
             hasError,
+            height,
+            id = generateId( 'TagInput' ),
             inputRef,
             isDisabled,
             isReadOnly,
+            isResizable,
+            label,
+            labelPosition,
             name,
             onChange,
             onClickClose,
             onKeyPress,
-            onMouseOver,
             onMouseOut,
+            onMouseOver,
             placeholder,
             tags,
-            isResizable,
-            height
-        } = props;
+        } = this.props;
 
-        const minHeight = { height: `${height}rem` };
+        const { isFocused } = this.state;
 
-        const { id, isFocused } = this.state;
+        let items = children ?
+            Children.toArray( children ) : buildTagsFromValues( tags );
 
-        const tagItems = children || buildTagsFromStrings( tags );
+        items = items.map( tag =>
+        {
+            let handleClick;
 
-        const updatedTagItems = tagItems && tagItems.map( tag =>
-            React.cloneElement( tag, {
+            if ( !onClickClose )
+            {
+                handleClick = tag.props.onClick;
+            }
+            else if ( !tag.props.onClick )
+            {
+                handleClick =  onClickClose;
+            }
+            else
+            {
+                handleClick = ( ...args ) =>
+                {
+                    onClickClose( args );
+                    tag.props.onClick( args );
+                };
+            }
+
+            return React.cloneElement( tag, {
                 ...tag.props,
-                onClick    : createEventHandler( onClickClose, tag.props.id ),
                 isDisabled : isDisabled || tag.props.isDisabled,
-                isReadOnly : isReadOnly || tag.props.isReadOnly
-            } )
-        );
+                isReadOnly : isReadOnly || tag.props.isReadOnly,
+                onClick    : handleClick,
+            } );
+        } );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
-                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
+            <InputContainer
+                className = { buildClassName( className, cssMap, {
                     disabled    : isDisabled,
                     error       : !isDisabled && hasError,
-                    resizable   : isResizable
-                } }>
-                <InputContainer
-                    { ...props }
-                    id          = { id }
-                    className   = { className }>
-                    <label
-                        className = { cssMap.container }
-                        style     = { minHeight }
-                        htmlFor   = { id }
-                        onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }>
-                        { updatedTagItems }
-                        <input
-                            ref         = { inputRef }
-                            className   = { cssMap.input }
-                            id          = { id }
-                            name        = { name }
-                            type        = "text"
-                            placeholder = { placeholder }
-                            onFocus     = { this.toggleFocus }
-                            onBlur      = { this.toggleFocus }
-                            onKeyPress  = { onKeyPress }
-                            onChange    = { onChange }
-                            disabled    = { isDisabled }
-                            readOnly    = { isReadOnly } />
-                    </label>
-                </InputContainer>
-            </Css>
+                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
+                    resizable   : isResizable,
+                } ) }
+                errorMessage          = { errorMessage }
+                errorMessageIsVisible = { errorMessageIsVisible }
+                errorMessagePosition  = { errorMessagePosition }
+                hasError              = { hasError }
+                id                    = { id }
+                isDisabled            = { isDisabled }
+                label                 = { label }
+                labelPosition         = { labelPosition }
+                onMouseOut            = { onMouseOut }
+                onMouseOver           = { onMouseOver }>
+                <label
+                    className   = { cssMap.container }
+                    htmlFor     = { id }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOver }
+                    style       = { height }>
+                    { items }
+                    <input
+                        className   = { cssMap.input }
+                        disabled    = { isDisabled }
+                        id          = { id }
+                        name        = { name }
+                        onBlur      = { this.toggleFocus }
+                        onChange    = { onChange }
+                        onFocus     = { this.toggleFocus }
+                        onKeyPress  = { onKeyPress }
+                        placeholder = { placeholder }
+                        readOnly    = { isReadOnly }
+                        ref         = { inputRef }
+                        type        = "text" />
+                </label>
+            </InputContainer>
         );
     }
 }
