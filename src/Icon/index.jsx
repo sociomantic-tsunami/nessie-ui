@@ -1,92 +1,106 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './icon.css';
+
+
+const iconsWithVariants = [
+    'alert',
+    'approved',
+    'declined',
+    'ended',
+    'error',
+    'pending',
+];
 
 const Icon = ( {
     children,
-    className = '',
+    className,
     cssMap,
     forceHover,
-    theme,
     isDisabled,
     label,
     onMouseOut,
     onMouseOver,
     size,
+    theme,
     type,
-    variant  } ) =>
+    variant,
+} ) =>
 {
     let xLink;
-    let needsVariant = false;
-
-    const statusIconArray = [
-        'alert',
-        'approved',
-        'declined',
-        'ended',
-        'error',
-        'pending'
-    ];
 
     if ( type !== 'none' )
     {
-        if ( statusIconArray.indexOf( type ) >= 0 )
-        {
-            needsVariant = true;
-            xLink        = `#icon__${type}-${variant}`;
-        }
-        else
-        {
-            xLink = `#icon__${type}`;
-        }
+        xLink = iconsWithVariants.includes( type ) ?
+            `#icon__${type}-${variant}` : `#icon__${type}`;
     }
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { size,
-                type,
-                theme,
-                variant     : needsVariant && variant,
-                disabled    : isDisabled,
+        <svg
+            className = { buildClassName( className, cssMap, {
                 fakeHovered : !isDisabled && forceHover,
-            } }>
-
-            <svg
-                className      = { className }
-                aria-label     = { children || label }
-                onMouseOver    = { onMouseOver }
-                onMouseOut     = { onMouseOut }>
-                { xLink &&
-                    <use xlinkHref = { xLink } />
-                }
-            </svg>
-        </Css>
+                disabled    : isDisabled,
+                theme,
+                type,
+                size,
+            } ) }
+            aria-label  = { children || label }
+            onMouseOut  = { onMouseOut }
+            onMouseOver = { onMouseOver }>
+            { xLink && <use xlinkHref = { xLink } /> }
+        </svg>
     );
 };
 
 Icon.propTypes =
 {
     /**
+     * Icon label (overrides label prop)
+     */
+    children    : PropTypes.string,
+    /**
+     *  CSS class name
+     */
+    className   : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap      : PropTypes.node,
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover  : PropTypes.bool,
+    /**
+     *  Display as disabled
+     */
+    isDisabled  : PropTypes.bool,
+    /**
+     * Icon label
+     */
+    label       : PropTypes.string,
+    /**
+     *  onMouseOut callback function: ( e ) = { ... }
+     */
+    onMouseOut  : PropTypes.func,
+    /**
+     *  onMouseOver callback function: ( e ) = { ... }
+     */
+    onMouseOver : PropTypes.func,
+    /**
      *  Icon size
      */
-    size : PropTypes.oneOf( [
-        'S',
-        'M',
-        'L',
-        'XL',
-        'XXL'
-    ] ),
+    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
     /**
      *  Icon theme
      */
-    theme : PropTypes.oneOf( [
+    theme       : PropTypes.oneOf( [
         'light',
         'dark',
         'control',
         'button',
-        'navigation'
+        'navigation',
     ] ),
     /**
      *  Icon to show
@@ -120,47 +134,29 @@ Icon.propTypes =
         'up',
         'upload',
         'validation',
-        'none'
+        'none',
     ] ),
     /**
     *  Icon variant to show
     */
-    variant : PropTypes.oneOf( [
-        'fill',
-        'stroke'
-    ] ),
-    /**
-     * Icon label
-     */
-    label       : PropTypes.string,
-    /**
-     * Display as hover when required from another component
-     */
-    forceHover  : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled  : PropTypes.bool,
-    /**
-     *  onMouseOver callback function: ( e ) = { ... }
-     */
-    onMouseOver : PropTypes.func,
-    /**
-     *  onMouseOut callback function: ( e ) = { ... }
-     */
-    onMouseOut  : PropTypes.func
-
+    variant : PropTypes.oneOf( [ 'fill', 'stroke' ] ),
 };
 
 Icon.defaultProps =
 {
-    size       : 'S',
-    theme      : 'light',
-    forceHover : false,
-    isDisabled : false,
-    variant    : 'fill',
-    type       : 'none',
-    cssMap     : require( './icon.css' )
+    children    : undefined,
+    className   : undefined,
+    cssMap      : styles,
+    forceHover  : false,
+    isDisabled  : false,
+    label       : undefined,
+    onMouseOut  : undefined,
+    onMouseOver : undefined,
+    size        : 'S',
+    theme       : 'light',
+    type        : 'none',
+    variant     : 'fill',
+
 };
 
 export default Icon;
