@@ -64,7 +64,7 @@ const Table = ( {
                 zebra : isZebra,
             } ) }
             role = "grid">
-            { columns.length &&
+            { columns.length > 0 &&
                 <TableRow
                     align         = { align }
                     className     = { cssMap.row }
@@ -154,7 +154,7 @@ Table.defaultProps =
     children        : undefined,
     columns         : undefined,
     cssMap          : styles,
-    gutters         : 'M',
+    gutters         : 'L',
     hasStickyHeader : false,
     isZebra         : false,
     onToggle        : undefined,
