@@ -10,8 +10,6 @@ const WrappedTextInputWithIcon = withInputContainer( TextInputWithIcon );
 
 export Animate                  from './Animate';
 export Button                   from './Button';
-export ButtonRadio              from './ButtonRadio';
-export ButtonRadioGroup         from './ButtonRadioGroup';
 export CheckableGroup           from './CheckableGroup';
 export Checkbox                 from './Checkbox';
 export CheckboxGroup            from './CheckboxGroup';
