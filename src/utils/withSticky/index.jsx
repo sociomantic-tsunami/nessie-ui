@@ -1,28 +1,28 @@
 import React                                from 'react';
 import PropTypes                            from 'prop-types';
 
-import styles                               from './sticky.css';
-import { buildClassName, buildDisplayName } from '../';
+import styles                               from './withSticky.css';
+import { buildClassName, buildDisplayName } from '../index';
 
 
-const sticky = Component =>
+const withSticky = Component =>
 {
-    const Sticky = ( {
+    const StickyComponent = ( {
         cssMap,
         isSticky,
         stickyPosition,
-        ...componentProps
+        ...componentProps,
     } ) => (
         <Component
             { ...componentProps }
-            className = { buildClassName( '', cssMap, {
+            className = { buildClassName( '', styles, {
                 sticky   : isSticky,
                 position : stickyPosition,
             } ) }
         />
     );
 
-    Sticky.propTypes = {
+    StickyComponent.propTypes = {
         ...Component.propTypes,
         /**
          *  Makes the component sticky
@@ -31,23 +31,19 @@ const sticky = Component =>
         /**
         *  Sticky component position
         */
-        position : PropTypes.oneOf( [
-            'left',
-            'right',
-            'top',
-            'bottom' ] )
+        position : PropTypes.oneOf( [ 'left', 'right', 'top', 'bottom' ] ),
     };
 
-    Sticky.defaultProps = {
+    StickyComponent.defaultProps = {
         ...Component.defaultProps,
-        cssMap         : styles,
         isSticky       : false,
         stickyPosition : 'top'
     };
 
-    Sticky.displayName = buildDisplayName( Sticky, Component );
+    StickyComponent.displayName =
+        buildDisplayName( StickyComponent, Component );
 
-    return Sticky;
+    return StickyComponent;
 };
 
-export default sticky;
+export default withSticky;
