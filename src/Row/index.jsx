@@ -1,28 +1,9 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import Grid                 from '../Grid';
+import { Grid }  from '../index';
 
-const Row = ( {
-    align,
-    verticalAlign,
-    children,
-    gutters,
-    hasMinHeight,
-    role,
-    spacing
-} ) =>
-
-    <Grid
-        hasWrap       = { false }
-        align         = { align }
-        hasMinHeight  = { hasMinHeight }
-        verticalAlign = { verticalAlign }
-        gutters       = { gutters }
-        spacing       = { spacing }
-        role          = { role }>
-        { children }
-    </Grid>;
+const Row = props => <Grid { ...props } hasWrap = { false } />;
 
 Row.propTypes =
 {
@@ -30,39 +11,35 @@ Row.propTypes =
      * Horizontal alignment of the columns (“auto” makes all columns equal
      * width)
      */
-    align : PropTypes.oneOf( [
-        'auto',
-        'left',
-        'center',
-        'right'
-    ] ),
+    align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
-    *  Set minimum height equal to average row.
-    */
-    hasMinHeight  : PropTypes.bool,
-    /**
-     * Vertical alignment of the columns (“auto” makes all columns equal
-     * height)
+     *  Row content (Columns)
      */
-    verticalAlign : PropTypes.oneOf( [
-        'auto',
-        'top',
-        'middle',
-        'bottom'
-    ] ),
+    children     : PropTypes.node,
+    /**
+     *  CSS class name
+     */
+    className    : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.node,
     /**
      *  Gutter size
      */
-    gutters : PropTypes.oneOf( [
-        'none',
-        'S',
-        'M',
-        'L'
-    ] ),
+    gutters      : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+    *  Set minimum height equal to average row.
+    */
+    hasMinHeight : PropTypes.bool,
+    /**
+     *  Row role
+     */
+    role         : PropTypes.string,
     /**
      *  Row spacing
      */
-    spacing : PropTypes.oneOf( [
+    spacing      : PropTypes.oneOf( [
         'none',
         'default',
         'h1',
@@ -72,22 +49,23 @@ Row.propTypes =
         'label'
     ] ),
     /**
-     *  Row role
+     * Vertical alignment of the columns (“auto” makes all columns equal
+     * height)
      */
-    role     : PropTypes.string,
-    /**
-     *  Row content (Columns)
-     */
-    children : PropTypes.node
+    verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
 
 Row.defaultProps =
 {
     align         : 'auto',
-    hasMinHeight  : false,
-    verticalAlign : 'auto',
-    spacing       : 'default',
+    children      : undefined,
+    className     : undefined,
+    cssMap        : undefined,
     gutters       : 'L',
+    hasMinHeight  : false,
+    role          : undefined,
+    spacing       : 'default',
+    verticalAlign : 'auto',
 };
 
 export default Row;
