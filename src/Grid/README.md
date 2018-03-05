@@ -12,8 +12,7 @@ We urge you to exercise restraint.)
 
 ### Setting up a Grid
 
-Let’s set up a simple grid with three Columns. We use the `size` prop to set
-each Column’s width:
+Let’s set up a simple grid with three Columns:
 
 ```
 <Grid>
@@ -23,7 +22,8 @@ each Column’s width:
 </Grid>
 ```
 
-The result is:
+Here we use the `size` prop of each Column to set its respective width. The
+result is:
 ```
 +---[ Grid ]---------------------------------------------------------+
 |  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
@@ -34,7 +34,7 @@ The result is:
 
 ### Column sizes
 
-Configure the width of Columns using the `size` prop.  The `size` prop accepts
+Configure the width of Columns using their `size` prop.  The `size` prop accepts
 any fraction down to 1/24 (expressed as a string: `"1/24"`) or the value
 `"content"`.
 
@@ -82,29 +82,34 @@ of 1/3:
 ### Grid gutters
 
 The horizontal space between any two Columns in a Grid is called the gutter. You
-can configure gutter size used in a given Grid using the `gutters` prop.
+can configure gutter size used in a given Grid using the Grid’s `gutters` prop.
 
 The prop accepts one of four values: `"S"`, `"M'` (default), `"L"` and `"none"`
 (no gutters).
 
 ### Grid spacing
 
-Configure the vertical spacing between Grids using the `spacing` prop. The prop
-accepts one of seven values: `"default"`, `"h1"`, `"h2"`, `"h3"`, `"h4"`,
-`"label"` and `"none"` (no spacing).
+Configure the vertical spacing between Grids using the Grid’s `spacing` prop.
+The prop accepts one of seven values: `"default"`, `"h1"`, `"h2"`, `"h3"`,
+`"h4"`, `"label"` and `"none"` (no spacing).
 
 `"h1"`, `"h2"`, `"h3"`, `"h4"` and `"label"` correspond to the default spacing
 following the H1, H2, H3, H4 and Label components, respectively.
 
+### Grid wrap
+
+You can control whether the Grid content will wrap using the `hasWrap` boolean
+prop (default `true`).
+
 ### Grid alignment — or, aligning Columns inside Grids
 
 You can control horizontal and vertical alignment of Columns inside a Grid using
-the `align` and `verticalAlign` props, respectively.
+the Grid’s `align` and `verticalAlign` props, respectively.
 
 #### Horizontal alignment
 
-The `align` prop accepts one of four values: `"auto"` (default), `"left"`,
-`"right"` and `"center"`.
+The Grid’s `align` prop accepts one of four values: `"auto"` (default),
+`"left"`, `"right"` and `"center"`.
 
 The default value (`"auto"`):
 ```
@@ -153,7 +158,7 @@ The value `"right"`:
 </Grid>
 ```
 
-will use the content width of each Column and align the Columns to the left of
+will use the content width of each Column and align the Columns to the right of
 the Grid:
 ```
 +---[ Grid ]---------------------------------------------------------+
@@ -172,7 +177,7 @@ The value `"center"`:
 </Grid>
 ```
 
-will use the content width of each Column and align the Columns to the left of
+will use the content width of each Column and align the Columns to the center of
 the Grid:
 ```
 +---[ Grid ]---------------------------------------------------------+
@@ -184,7 +189,7 @@ the Grid:
 
 #### Vertical alignment
 
-The `verticalAlign` prop accepts one of four values: `"auto"` (default),
+The Grid’s `verticalAlign` prop accepts one of four values: `"auto"` (default),
 `"top"`, `"middle"` and `"bottom"`.
 
 The default value (`"auto"`):
@@ -280,15 +285,15 @@ of the Grid:
 +--------------------------------------------------------------------+
 ```
 
-### Column alignment — or, aligning components _inside_ Columns
+### Aligning components _inside_ Columns
 
 You can control horizontal and vertical alignment of components inside a Column
-using the `align` and `verticalAlign` props, respectively.
+using the Column’s `align` and `verticalAlign` props, respectively.
 
 #### Horizontal alignment
 
-The `align` prop accepts one of four values: `"auto"` (default), `"left"`,
-`"right"` and `"center"`.
+The Column’s `align` prop accepts one of four values: `"auto"` (default),
+`"left"`, `"right"` and `"center"`.
 
 `"auto"` will make all components inside the Column full width. The other
 values will use the content width of the components and align them to the left,
@@ -296,8 +301,8 @@ right or center of the Column, respectively.
 
 #### Vertical alignment
 
-The `verticalAlign` prop accepts one of four values: `"auto"` (default),
-`"top"`, `"middle"` and `"bottom"`.
+The Column’s `verticalAlign` prop accepts one of four values: `"auto"`
+(default), `"top"`, `"middle"` and `"bottom"`.
 
 `"auto"` will distribute the heights of components inside the Column equally.
 The other values will use the content height of the components and align them
