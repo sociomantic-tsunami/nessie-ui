@@ -15,28 +15,13 @@ function buildRadiosFromValues( values = [] )
 {
     return values.map( value =>
     {
-        let checkboxValue;
-        let checkboxLabel;
+        const props = typeof value === 'object' ? value : {
+            id    : value,
+            label : value,
+            value,
+        };
 
-        if ( typeof value === 'object' )
-        {
-            checkboxValue = value.value;
-            checkboxLabel = value.label;
-        }
-        else
-        {
-            checkboxValue = checkboxLabel = value;
-        }
-
-        return (
-            <Radio
-                key         = { checkboxValue }
-                value       = { checkboxValue }
-                label       = { checkboxLabel }
-                isDisabled  = { value.isDisabled }
-                isReadOnly  = { value.isReadOnly }
-                hasError    = { value.hasError } />
-        );
+        return <Radio { ...props } />;
     } );
 }
 
