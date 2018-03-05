@@ -971,12 +971,6 @@ legend.label__default + *
 .icon__type__hide
     {
     }
-
-.icon__variant__fill
-{}
-
-.icon__variant__stroke
-{}
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2880,207 +2874,6 @@ textarea.inputField__resizable
 
             border-top-color:   #ffffff;
         }
-.radio__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .radio__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.radio__default
-{
-    padding-top:        0.5rem;
-    padding-bottom:     0.5rem;
-
-    width:              auto;
-}
-.radio__default:last-child
-    {
-        margin-bottom:      0;
-    }
-.radio__default:hover .radio__label
-    {
-        cursor:             pointer;
-    }
-.radio__default:hover .radio__label::before
-        {
-            border-color:   #289bc8;
-        }
-.radio__fakeHovered .radio__label::before, .radio__fakeHovered .radio__input:focus + .radio__label::before
-    {
-        border-color:   #289bc8;
-    }
-.radio__label
-{
-    display:            inline-block;
-    vertical-align:     middle;
-
-    white-space:        nowrap;
-}
-.radio__label::before
-    {
-        content:            '';
-
-        display:            inline-block;
-        vertical-align:     middle;
-
-        position:           relative;
-
-        -webkit-box-sizing:         border-box;
-
-                box-sizing:         border-box;
-        width:              2.2rem;
-        height:             2.2rem;
-
-        border:             0.1rem solid rgba(65, 75, 85, 0.5);
-
-        background:         #ffffff;
-    }
-.radio__label::after
-    {
-        content:            '';
-        display:            none;
-        background-size:    100%;
-        background-repeat:  no-repeat;
-    }
-.radio__label > :first-child
-    {
-        display:        inline-block;
-        vertical-align: middle;
-        margin-left:    1rem;
-    }
-.radio__error .radio__label::before, .radio__error:hover .radio__label::before, .radio__error .radio__input:focus + .radio__label::before
-    {
-        border-color:       #f55f69;
-    }
-.radio__disabled
-{
-    cursor:                 default;
-}
-.radio__disabled .radio__label, .radio__disabled .radio__label:hover
-    {
-        cursor:             default;
-    }
-.radio__disabled .radio__label::before, .radio__disabled:hover .radio__label::before, .radio__disabled .radio__input:focus + .radio__label::before
-    {
-        cursor:             default;
-        border-color:       #F0F0F0;
-        background-color:   #F0F0F0;
-    }
-.radio__input
-{
-    position:   absolute;
-    left:       -9999px;
-}
-.radio__input:checked + .radio__label::after
-    {
-        position:   absolute;
-    }
-.radio__input:focus + .radio__label::before
-    {
-        border-color:   #289bc8;
-    }
-.radio__default
-{
-}
-.radio__label
-{
-/*     line-height: 1.8rem;
- */}
-.radio__label::before
-{
-    border-radius:              50%;
-}
-.radio__input:checked + .radio__label::after
-{
-    display:                block;
-
-    background-color:       #289bc8;
-    border-radius:          50%;
-
-    width:                  0.8rem;
-    height:                 0.8rem;
-
-    top:                    1.2rem;
-    left:                   0.7rem;
-}
-.radio__fakeHovered
-{
-}
-.radio__disabled .radio__input:checked + .radio__label::after, .radio__disabled:hover .radio__input:checked + .radio__label::after
-    {
-        background-color:       rgba(65, 75, 85, 0.5);
-    }
-.radio__error .radio__input:checked + .radio__label::after, .radio__error:hover .radio__input:checked + .radio__label::after
-    {
-        background-color:       #f55f69;
-    }
-.buttonRadio__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .buttonRadio__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.buttonRadio__default
-{
-	display:	inline-block;
-	width:		auto;
-}
-
-.buttonRadio__input
-{
-	display:	none;
-}
-
-.buttonRadio__label
-{
-	display:	block;
-}
 .fieldset__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -3652,9 +3445,8 @@ div.CodeMirror-dragcursors {
 span.CodeMirror-selectedtext { background: none; }
 .codeEditor__default .codeEditor__editor
     {
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        border:     0.1rem solid rgba(65, 75, 85, 0.5);
+        height: auto;
+        border: 0.1rem solid rgba(65, 75, 85, 0.5);
     }
 .codeEditor__default .codeEditor__editor:hover, .codeEditor__fakeHovered.codeEditor__default .codeEditor__editor
         {
@@ -3673,7 +3465,9 @@ span.CodeMirror-selectedtext { background: none; }
     }
 .CodeMirror
     {
-        height:         auto;
+        -webkit-box-sizing:     border-box;
+                box-sizing:     border-box;
+        height:         100%;
         padding:        0.8rem 0 0.9rem 0;
         background:     transparent;
         line-height:    normal;
@@ -9727,6 +9521,282 @@ textarea.inputField__resizable
         content:                    'Loading...';
     }
 }
+.grid__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .grid__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+
+.grid__default
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align:    stretch;
+    -webkit-align-items:    stretch;
+        -ms-flex-align:    stretch;
+            align-items:    stretch;
+
+    max-width:      none;
+
+    margin-bottom:  0;
+
+    /*& > *
+    {
+        flex:       0 0 100%;
+        box-sizing: border-box;
+    }*/
+}
+
+
+/*
+@media( min-width: 768px )
+{ */
+
+
+.grid__default
+    {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+
+        /*& > *
+        {
+            flex:   1 0 0%;
+        }*/
+    }
+
+
+.grid__alignX__left > *, .grid__alignX__center > *, .grid__alignX__right > *
+        {
+            -webkit-box-flex:           0;
+            -webkit-flex:           0 0 auto;
+                -ms-flex:           0 0 auto;
+                    flex:           0 0 auto;
+        }
+
+
+.grid__alignX__left
+    {
+        -webkit-box-pack:    start;
+        -webkit-justify-content:    flex-start;
+            -ms-flex-pack:    start;
+                justify-content:    flex-start;
+    }
+
+
+.grid__alignX__center
+    {
+        -webkit-box-pack:    center;
+        -webkit-justify-content:    center;
+            -ms-flex-pack:    center;
+                justify-content:    center;
+    }
+
+
+.grid__alignX__right
+    {
+        -webkit-box-pack:    end;
+        -webkit-justify-content:    flex-end;
+            -ms-flex-pack:    end;
+                justify-content:    flex-end;
+    }
+
+
+.grid__alignY__top
+    {
+        -webkit-box-align:    start;
+        -webkit-align-items:    flex-start;
+            -ms-flex-align:    start;
+                align-items:    flex-start;
+    }
+
+
+.grid__alignY__middle
+    {
+        -webkit-box-align:    center;
+        -webkit-align-items:    center;
+            -ms-flex-align:    center;
+                align-items:    center;
+    }
+
+
+.grid__alignY__bottom
+    {
+        -webkit-box-align:    end;
+        -webkit-align-items:    flex-end;
+            -ms-flex-align:    end;
+                align-items:    flex-end;
+    }
+
+
+.grid__wrap
+    {
+        -webkit-flex-wrap:  wrap;
+            -ms-flex-wrap:  wrap;
+                flex-wrap:  wrap;
+    }
+
+
+/* } */
+
+
+.grid__gutters__S
+{
+    width:          calc(100% + 1rem);
+    margin-left:    -0.5rem;
+    margin-right:   -0.5rem;
+}
+
+
+.grid__gutters__S > *
+    {
+        padding-left:   0.5rem;
+        padding-right:  0.5rem;
+    }
+
+
+.grid__gutters__M
+{
+    width:          calc(100% + 2rem);
+    margin-left:    -1rem;
+    margin-right:   -1rem;
+}
+
+
+.grid__gutters__M > *
+    {
+        padding-left:   1rem;
+        padding-right:  1rem;
+    }
+
+
+.grid__gutters__L
+{
+    width:          calc(100% + 3rem);
+    margin-left:    -1.5rem;
+    margin-right:   -1.5rem;
+}
+
+
+.grid__gutters__L > *
+    {
+        padding-left:   1.5rem;
+        padding-right:  1.5rem;
+    }
+
+
+.grid__spacing__default > *
+    {
+        margin-bottom:  2rem;
+    }
+
+
+.grid__spacing__default:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+
+
+.grid__spacing__h1 > *
+    {
+        margin-bottom:  7rem;
+    }
+
+
+.grid__spacing__h1:last-child
+    {
+        margin-bottom:  -7rem;
+    }
+
+
+.grid__spacing__h2 > *
+    {
+        margin-bottom:  5rem;
+    }
+
+
+.grid__spacing__h2:last-child
+    {
+        margin-bottom:  -5rem;
+    }
+
+
+.grid__spacing__h3 > *
+    {
+        margin-bottom:  2rem;
+    }
+
+
+.grid__spacing__h3:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+
+
+.grid__spacing__h4 > *
+    {
+        margin-bottom:  2rem;
+    }
+
+
+.grid__spacing__h4:last-child
+    {
+        margin-bottom:  -2rem;
+    }
+
+
+.grid__spacing__label > *
+    {
+        margin-bottom:  1rem;
+    }
+
+
+.grid__spacing__label:last-child
+    {
+        margin-bottom:  -1rem;
+    }
+
+
+.grid__hasWrap
+{
+    -webkit-flex-wrap:      wrap;
+        -ms-flex-wrap:      wrap;
+            flex-wrap:      wrap;
+}
+
+
+.grid__hasMinHeight
+{
+    min-height: 7.1rem; /* label + input */
+}
 .messageBox__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -10259,6 +10329,8 @@ only used in type__carousel for now
     padding:    0;
     margin:     0;
 
+    width:      auto;
+
     list-style: none;
 }
 
@@ -10363,14 +10435,9 @@ only used in type__carousel for now
 
     margin:             0;
 
-    border-top:         0.1rem solid rgb(217, 219, 221);
     border-bottom:      0.1rem solid rgb(217, 219, 221);
 
     background:         #ffffff;
-}
-.navBar__list
-{
-   width:   auto;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -10457,6 +10524,7 @@ only used in type__carousel for now
     width:          auto;
     margin-bottom:  0;
     font-size:      1.4rem;
+    text-align:     left;
 }
 .navItem__default .navItem__link /* needs to go inside .default to override foundations.css */
     {
@@ -10549,10 +10617,6 @@ only used in type__carousel for now
     left:       -99999px;
     margin-top: -0.2rem;
 }
-.navItem__icon__account > .navItem__link
-    {
-        padding:    1.4rem 0 1.2rem;
-    }
 .navItem__icon__account > .navItem__link::after
         {
             display:    none !important;
@@ -10621,7 +10685,7 @@ only used in type__carousel for now
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.notificationBar__message
+.notificationBar__default .notificationBar__message
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
@@ -10666,31 +10730,33 @@ only used in type__carousel for now
     -webkit-align-items:        center;
         -ms-flex-align:        center;
             align-items:        center;
-    background-color:   #289bc8;
 
+    margin:             0;
     padding:            1.2rem;
+
+    background:         #289bc8;
 }
 
-.notificationBar__default > *
+.notificationBar__default .notificationBar__message, .notificationBar__default .notificationBar__info, .notificationBar__default .notificationBar__close
     {
         margin-bottom:  0;
     }
 
-.notificationBar__message
-{
-    color:  #ffffff;
-}
+.notificationBar__default .notificationBar__info
+    {
+        margin-right:   2rem;
+    }
 
-.notificationBar__info
-{
-    margin-right:   2rem;
-}
+.notificationBar__default .notificationBar__message
+    {
+        color:  #ffffff;
+    }
 
-.notificationBar__close
-{
-    position:   absolute;
-    right:      5rem;
-}
+.notificationBar__default .notificationBar__close
+    {
+        position:   absolute;
+        right:      5rem;
+    }
 
 .notificationBar__top
 {
@@ -10701,17 +10767,17 @@ only used in type__carousel for now
 
 .notificationBar__type__error
 {
-    background-color:   #f55f69;
+    background: #f55f69;
 }
 
 .notificationBar__type__alert
 {
-    background-color:   #ffb464;
+    background: #ffb464;
 }
 
 .notificationBar__type__success
 {
-    background-color:   #23a59b;
+    background: #23a59b;
 }
 .page__default /* all elements get default margin-bottom of 2rem */
 {
@@ -11016,12 +11082,14 @@ only used in type__carousel for now
             flex:           0 0 auto;
     width:          100%;
     margin:         0;
+    padding-top:    2.4rem;
+    padding-bottom: 2.4rem;
+    padding-right:  4rem;
+    padding-left:   4rem;
 
     background:     #ffffff;
-}
-.pageHeader__content
-{
-    margin: 3rem 4rem;
+
+    border-bottom:  0.1rem solid rgb(217, 219, 221);
 }
 .pageFooter__default /* all elements get default margin-bottom of 2rem */
 {
@@ -11564,16 +11632,7 @@ only used in type__carousel for now
             transform: rotateZ(360deg) scale(1);
   }
 }
-.required__default
-{
-    
-}
-
-.required__required::after
-    {
-        content:    '\A0*';
-    }
-.row__default /* all elements get default margin-bottom of 2rem */
+.radio__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
     margin-bottom:  2rem;
@@ -11592,226 +11651,157 @@ only used in type__carousel for now
     font-weight:    normal;
 }
 
-    .row__default:last-child
+    .radio__default:last-child
     {
         margin-bottom:  0;
     }
-
-.row__default
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
 {
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align:    stretch;
-    -webkit-align-items:    stretch;
-        -ms-flex-align:    stretch;
-            align-items:    stretch;
-    -webkit-flex-wrap:      nowrap;
-        -ms-flex-wrap:      nowrap;
-            flex-wrap:      nowrap;
+    /* primary colors */
 
-    max-width:      none;
+    /* accent colors */
 
-    margin-bottom:  0;
-
-    /*& > *
-    {
-        flex:       0 0 100%;
-        box-sizing: border-box;
-    }*/
+    /* greyscale colors */
 }
-
-.row__hasMinHeight
+.radio__default
 {
-    min-height: 7.1rem; /* label + input */
+    padding-top:        0.5rem;
+    padding-bottom:     0.5rem;
+
+    width:              auto;
 }
-
-/*
-@media( min-width: $shark )
-{ */
-
-.row__default
+.radio__default:last-child
     {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-                flex-direction: row;
-
-        /*& > *
-        {
-            flex:   1 0 0%;
-        }*/
+        margin-bottom:      0;
     }
-
-.row__alignX__left > *, .row__alignX__center > *, .row__alignX__right > *
+.radio__default:hover .radio__label
+    {
+        cursor:             pointer;
+    }
+.radio__default:hover .radio__label::before
         {
-            -webkit-box-flex:           0;
-            -webkit-flex:           0 0 auto;
-                -ms-flex:           0 0 auto;
-                    flex:           0 0 auto;
+            border-color:   #289bc8;
         }
-
-.row__alignX__left
+.radio__fakeHovered .radio__label::before, .radio__fakeHovered .radio__input:focus + .radio__label::before
     {
-        -webkit-box-pack:    start;
-        -webkit-justify-content:    flex-start;
-            -ms-flex-pack:    start;
-                justify-content:    flex-start;
+        border-color:   #289bc8;
     }
-
-.row__alignX__center
-    {
-        -webkit-box-pack:    center;
-        -webkit-justify-content:    center;
-            -ms-flex-pack:    center;
-                justify-content:    center;
-    }
-
-.row__alignX__right
-    {
-        -webkit-box-pack:    end;
-        -webkit-justify-content:    flex-end;
-            -ms-flex-pack:    end;
-                justify-content:    flex-end;
-    }
-
-.row__alignY__top
-    {
-        -webkit-box-align:    start;
-        -webkit-align-items:    flex-start;
-            -ms-flex-align:    start;
-                align-items:    flex-start;
-    }
-
-.row__alignY__middle
-    {
-        -webkit-box-align:    center;
-        -webkit-align-items:    center;
-            -ms-flex-align:    center;
-                align-items:    center;
-    }
-
-.row__alignY__bottom
-    {
-        -webkit-box-align:    end;
-        -webkit-align-items:    flex-end;
-            -ms-flex-align:    end;
-                align-items:    flex-end;
-    }
-
-.row__wrap
-    {
-        -webkit-flex-wrap:  wrap;
-            -ms-flex-wrap:  wrap;
-                flex-wrap:  wrap;
-    }
-
-/* } */
-
-.row__spacing__default > *
-    {
-        margin-bottom:  2rem;
-    }
-
-.row__spacing__default:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-.row__spacing__h1 > *
-    {
-        margin-bottom:  7rem;
-    }
-
-.row__spacing__h1:last-child
-    {
-        margin-bottom:  -7rem;
-    }
-
-.row__spacing__h2 > *
-    {
-        margin-bottom:  5rem;
-    }
-
-.row__spacing__h2:last-child
-    {
-        margin-bottom:  -5rem;
-    }
-
-.row__spacing__h3 > *
-    {
-        margin-bottom:  2rem;
-    }
-
-.row__spacing__h3:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-.row__spacing__h4 > *
-    {
-        margin-bottom:  2rem;
-    }
-
-.row__spacing__h4:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-.row__spacing__label > *
-    {
-        margin-bottom:  1rem;
-    }
-
-.row__spacing__label:last-child
-    {
-        margin-bottom:  -1rem;
-    }
-
-.row__gutters__S
+.radio__label
 {
-    width:          calc(100% + 1rem);
-    margin-left:    -0.5rem;
-    margin-right:   -0.5rem;
+    display:            inline-block;
+    vertical-align:     middle;
+
+    white-space:        nowrap;
+}
+.radio__label::before
+    {
+        content:            '';
+
+        display:            inline-block;
+        vertical-align:     middle;
+
+        position:           relative;
+
+        -webkit-box-sizing:         border-box;
+
+                box-sizing:         border-box;
+        width:              2.2rem;
+        height:             2.2rem;
+
+        border:             0.1rem solid rgba(65, 75, 85, 0.5);
+
+        background:         #ffffff;
+    }
+.radio__label::after
+    {
+        content:            '';
+        display:            none;
+        background-size:    100%;
+        background-repeat:  no-repeat;
+    }
+.radio__label > :first-child
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        margin-left:    1rem;
+    }
+.radio__error .radio__label::before, .radio__error:hover .radio__label::before, .radio__error .radio__input:focus + .radio__label::before
+    {
+        border-color:       #f55f69;
+    }
+.radio__disabled
+{
+    cursor:                 default;
+}
+.radio__disabled .radio__label, .radio__disabled .radio__label:hover
+    {
+        cursor:             default;
+    }
+.radio__disabled .radio__label::before, .radio__disabled:hover .radio__label::before, .radio__disabled .radio__input:focus + .radio__label::before
+    {
+        cursor:             default;
+        border-color:       #F0F0F0;
+        background-color:   #F0F0F0;
+    }
+.radio__input
+{
+    position:   absolute;
+    left:       -9999px;
+}
+.radio__input:checked + .radio__label::after
+    {
+        position:   absolute;
+    }
+.radio__input:focus + .radio__label::before
+    {
+        border-color:   #289bc8;
+    }
+.radio__default
+{
+}
+.radio__label
+{
+/*     line-height: 1.8rem;
+ */}
+.radio__label::before
+{
+    border-radius:              50%;
+}
+.radio__input:checked + .radio__label::after
+{
+    display:                block;
+
+    background-color:       #289bc8;
+    border-radius:          50%;
+
+    width:                  0.8rem;
+    height:                 0.8rem;
+
+    top:                    1.2rem;
+    left:                   0.7rem;
+}
+.radio__fakeHovered
+{
+}
+.radio__disabled .radio__input:checked + .radio__label::after, .radio__disabled:hover .radio__input:checked + .radio__label::after
+    {
+        background-color:       rgba(65, 75, 85, 0.5);
+    }
+.radio__error .radio__input:checked + .radio__label::after, .radio__error:hover .radio__input:checked + .radio__label::after
+    {
+        background-color:       #f55f69;
+    }
+.required__default
+{
+    
 }
 
-.row__gutters__S > *
+.required__required::after
     {
-        padding-left:   0.5rem;
-        padding-right:  0.5rem;
-    }
-
-.row__gutters__M
-{
-    width:          calc(100% + 2rem);
-    margin-left:    -1rem;
-    margin-right:   -1rem;
-}
-
-.row__gutters__M > *
-    {
-        padding-left:   1rem;
-        padding-right:  1rem;
-    }
-
-.row__gutters__L
-{
-    width:          calc(100% + 3rem);
-    margin-left:    -1.5rem;
-    margin-right:   -1.5rem;
-}
-
-.row__gutters__L > *
-    {
-        padding-left:   1.5rem;
-        padding-right:  1.5rem;
+        content:    '\A0*';
     }
 .section__default /* all elements get default margin-bottom of 2rem */
 {
@@ -11992,6 +11982,7 @@ only used in type__carousel for now
             -ms-user-select:    none;
 
                 user-select:    none;
+        cursor:         pointer;
     }
 
 .slider__default .slider__trackFill
@@ -12018,6 +12009,12 @@ only used in type__carousel for now
             cursor: -webkit-grabbing;
             cursor: grabbing;
         }
+
+.slider__default .slider__handleFocus
+    {
+        -webkit-box-shadow:         0 0 2pt 1pt #289bc8;
+                box-shadow:         0 0 2pt 1pt #289bc8;
+    }
 
 .slider__default .slider__handleLabel
     {
@@ -12516,10 +12513,6 @@ only used in type__carousel for now
 {
     top:    1rem;
     left:   calc(50% - 1.6rem);
-}
-.scrollBox__content
-{
-
 }
 .sorter__default /* all elements get default margin-bottom of 2rem */
 {
@@ -13890,7 +13883,10 @@ only used in type__carousel for now
         font:           inherit;
         line-height:    inherit;
         text-indent:    0.5rem;
+
+        resize:         none;
     }
+/* required for Safari */
 .tagInput__default .tagInput__input:focus
         {
             outline:    none;
@@ -14395,6 +14391,10 @@ only used in type__carousel for now
         {
             right:  -0.2rem;
         }
+.valuedTextInput__default:hover .valuedTextInput__valueLabel
+    {
+        border-color: #289bc8;
+    }
 .valuedTextInput__position__left .valuedTextInput__container
     {
         -webkit-box-orient:  horizontal;
