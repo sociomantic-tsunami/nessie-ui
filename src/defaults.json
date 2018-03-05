@@ -1,4 +1,10 @@
 {
+    "AccordionItem" :
+    {
+        "children"   : "{<TextInput label='Your name'/>}",
+        "headerText" : "Form",
+        "isOpen"     : true
+    },
     "Button" :
     {
         "label" : "Click me!"

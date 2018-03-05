@@ -8,6 +8,7 @@ import TextInputWithIcon  from './TextInputWithIcon';
 const WrappedDateTimeInput     = withInputContainer( DateTimeInput );
 const WrappedTextInputWithIcon = withInputContainer( TextInputWithIcon );
 
+export AccordionItem            from './AccordionItem';
 export Animate                  from './Animate';
 export Button                   from './Button';
 export ButtonRadio              from './ButtonRadio';

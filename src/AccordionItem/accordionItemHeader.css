@@ -1,0 +1,49 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+
+
+.default
+{
+    /* this needs to be a flex column for vertical alignment
+    * of header w/min-height (flexbugs #3) */
+    position:        relative;
+    display:         flex;
+    flex-direction:  row;
+    justify-content: flex-start;
+    align-items:     center;
+
+    margin-bottom:   0;
+
+    background:      var( --PC-WHITE );
+    box-shadow:      0 0.1rem 0.4rem 0 var( --GS-8 );
+
+    transition:      background-color 200ms ease-in-out;
+}
+
+.disabled
+{
+
+}
+
+.error
+{
+
+}
+
+.headerButton
+{
+    appearance:      none !important;
+
+    border:          none;
+
+    padding:         3rem;
+
+    background:     transparent;
+
+}
+
+.open
+{
+    background:      var( --GS-11 );
+}

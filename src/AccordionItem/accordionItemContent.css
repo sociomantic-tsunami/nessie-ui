@@ -1,0 +1,24 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+
+.default
+{
+    position:   relative;
+
+    margin:     0;
+    padding:    3rem;
+
+    background:     var( --PC-WHITE );
+    box-shadow:     0 0.1rem 0.4rem 0 var( --GS-8 );
+}
+
+.disabled
+{
+
+}
+
+.error
+{
+
+}
