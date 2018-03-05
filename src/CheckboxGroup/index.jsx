@@ -1,82 +1,129 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React, { Children }           from 'react';
+import PropTypes                     from 'prop-types';
 
-import Component        from '../proto/Component';
-import CheckableGroup   from '../CheckableGroup';
-import Checkbox         from '../Checkbox';
+import { CheckableGroup }            from '../index';
+import { generateId }                from '../utils';
+import { buildCheckboxesFromValues } from './utils';
 
 
-export default class CheckboxGroup extends Component
+const CheckboxGroup = ( {
+    children,
+    id = generateId( 'CheckboxGroup' ),
+    selectedValues = [],
+    values,
+    ...props,
+} ) =>
 {
-    static propTypes =
+    let items = children ?
+        Children.toArray( children ) : buildCheckboxesFromValues( values );
+
+    if ( selectedValues )
     {
-        /**
-        *  Array of strings or objects (to build the Checkboxes)
-        */
-        values : PropTypes.oneOfType( [
-            PropTypes.arrayOf( PropTypes.string ),
-            PropTypes.arrayOf( PropTypes.shape( {
-                value : PropTypes.string,
-                label : PropTypes.string
-            } ) ),
-        ] ),
-        /**
-        *  Array of selected strings (to build the Checkboxes)
-        */
-        selectedValues : PropTypes.arrayOf( PropTypes.string ),
-    };
-
-    static defaultProps =
-    {
-        isDisabled : false,
-        forceHover : false,
-        hasError   : false
-    };
-
-    render()
-    {
-        const {
-            children,
-            selectedValues = [],
-            values = []
-        } = this.props;
-
-        const name = name || this.state.id;
-
-        const buildCheckboxes = ( vals ) => vals.map( ( value ) =>
-        {
-            let checkboxValue;
-            let checkboxLabel;
-
-            if ( typeof value === 'object' )
-            {
-                checkboxValue = value.value;
-                checkboxLabel = value.label;
-            }
-            else
-            {
-                checkboxValue = checkboxLabel = value;
-            }
-
-            const checkboxIsChecked =
-                    selectedValues.indexOf( checkboxValue ) > -1;
-
-            return (
-                <Checkbox
-                    key         = { checkboxValue }
-                    value       = { checkboxValue }
-                    label       = { checkboxLabel }
-                    isDisabled  = { value.isDisabled }
-                    isReadOnly  = { value.isReadOnly }
-                    hasError    = { value.hasError }
-                    isChecked   = { checkboxIsChecked } />
-            );
-        } );
-
-        return (
-            <CheckableGroup name = { name } { ...this.props }>
-                { children || buildCheckboxes( values ) }
-            </CheckableGroup>
-        );
+        items = items.map( item => React.cloneElement( item, {
+            isChecked : selectedValues.includes( item.props.value ),
+        } ) );
     }
-}
+    return (
+        <CheckableGroup { ...props } id = { id }>
+            { items }
+        </CheckableGroup>
+    );
+};
+
+CheckboxGroup.propTypes =
+{
+    /**
+     *  Checkboxes in the group (overrides values prop)
+     */
+    children              : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className             : PropTypes.string,
+    /**
+     *  Tooltip message text (string or JSX)
+     */
+    errorMessage          : PropTypes.node,
+    /**
+     *  Tooltip is displayed
+     */
+    errorMessageIsVisible : PropTypes.bool,
+    /**
+     * Force display as hover
+     */
+    forceHover            : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError              : PropTypes.bool,
+    /**
+     *  Component id
+     */
+    id                    : PropTypes.string,
+    /**
+     *  Display as disabled
+     */
+    isDisabled            : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly            : PropTypes.bool,
+    /**
+     *  Group label text string or JSX node
+     */
+    label                 : PropTypes.node,
+    /**
+     *  How to lay out the Checkboxes
+     */
+    layout                : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    /**
+     *  HTML name attribute of Checkables in group
+     */
+    name                  : PropTypes.string,
+    /**
+     *  onChange callback function : ( e ) => { ... }
+     */
+    onChange              : PropTypes.func,
+    /**
+     *  onMouseOut callback function : ( e ) => { ... }
+     */
+    onMouseOut            : PropTypes.func,
+    /**
+     *  onMouseOver callback function : ( e ) => { ... }
+     */
+    onMouseOver           : PropTypes.func,
+    /**
+    *  Array of selected values
+    */
+    selectedValues        : PropTypes.arrayOf( PropTypes.string ),
+    /**
+    *  Array of values to build the Checkboxes
+    */
+    values                : PropTypes.oneOfType( [
+        PropTypes.arrayOf( PropTypes.string ),
+        PropTypes.arrayOf( PropTypes.object ),
+    ] ),
+};
+
+CheckboxGroup.defaultProps =
+{
+    children              : undefined,
+    className             : undefined,
+    cssMap                : undefined,
+    errorMessage          : undefined,
+    errorMessageIsVisible : false,
+    forceHover            : false,
+    hasError              : false,
+    id                    : undefined,
+    isDisabled            : false,
+    isReadOnly            : false,
+    layout                : 'horizontal',
+    name                  : undefined,
+    onChange              : undefined,
+    onMouseOut            : undefined,
+    onMouseOver           : undefined,
+    selectedValues        : undefined,
+    values                : undefined,
+};
+
+export default CheckboxGroup;

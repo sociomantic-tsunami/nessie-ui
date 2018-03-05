@@ -6,8 +6,8 @@
 {
     .editor
     {
-        box-sizing: border-box;
-        border:     0.1rem solid color( var( --GS-2 ) a( 50% ) );
+        height: auto;
+        border: 0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
         &:hover,
         .fakeHovered&
@@ -41,11 +41,13 @@
 
 
 
+
 :global
 {
     .CodeMirror
     {
-        height:         auto;
+        box-sizing:     border-box;
+        height:         100%;
         padding:        0.8rem 0 0.9rem 0;
         background:     transparent;
         line-height:    initial;

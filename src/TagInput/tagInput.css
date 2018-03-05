@@ -60,6 +60,8 @@
         line-height:    inherit;
         text-indent:    0.5rem;
 
+        resize:         none; /* required for Safari */
+
         &:focus
         {
             outline:    none;

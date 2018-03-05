@@ -76,7 +76,7 @@ InputContainer.propTypes = {
     /**
      *  Position of error tooltip relative to error icon
      */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topRight' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
      *  Whether error icon is shown
      */

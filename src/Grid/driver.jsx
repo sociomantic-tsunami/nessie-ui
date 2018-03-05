@@ -1,4 +1,4 @@
-export default class RowColumnDriver
+export default class GridColumnDriver
 {
     constructor( wrapper )
     {

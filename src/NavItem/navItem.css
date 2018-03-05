@@ -11,6 +11,7 @@
 
     @extend %Nessie-Regular;
     font-size:      1.4rem;
+    text-align:     left;
 
     .link /* needs to go inside .default to override foundations.css */
     {
@@ -161,8 +162,6 @@
 {
     & > .link
     {
-        padding:    1.4rem 0 1.2rem;
-
         &::after
         {
             display:    none !important;

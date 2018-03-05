@@ -98,6 +98,10 @@
                             }
                         ]
     },
+    "Grid" :
+    {
+        "children": "{<Column size='1/2'><Text>First column</Text></Column><Column size='1/2'><Text>Second column</Text></Column><Column size='1/2'><Text>Third column</Text></Column>}"
+    },
     "H1" :
     {
         "title": "h1 element"
@@ -228,7 +232,7 @@
     },
     "Row" :
     {
-        "children": "{<Column size='1/3'><p>left<br/>column<br/>content</p></Column><Column size='1/3'><p>middle column content</p></Column><Column size='1/3'><p>right column content</p></Column>}"
+        "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
     },
     "ScrollBox" :
     {

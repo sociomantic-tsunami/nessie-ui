@@ -1,11 +1,36 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { Grid }  from '../index';
+import { buildClassName } from '../utils';
+import styles             from './grid.css';
 
-const Row = props => <Grid { ...props } hasWrap = { false } />;
+const Grid = ( {
+    align,
+    children,
+    className,
+    cssMap,
+    gutters,
+    hasMinHeight,
+    hasWrap,
+    role,
+    spacing,
+    verticalAlign,
+} ) => (
+    <div
+        className = { buildClassName( className, cssMap, {
+            alignX  : align,
+            alignY  : verticalAlign,
+            hasMinHeight,
+            gutters : gutters !== 'none' && gutters,
+            hasWrap,
+            spacing : spacing !== 'none' && spacing
+        } ) }
+        role = { role }>
+        { children }
+    </div>
+);
 
-Row.propTypes =
+Grid.propTypes =
 {
     /**
      * Horizontal alignment of the columns (“auto” makes all columns equal
@@ -13,7 +38,7 @@ Row.propTypes =
      */
     align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
-     *  Row content (Columns)
+     *  Grid content (Columns)
      */
     children     : PropTypes.node,
     /**
@@ -33,7 +58,11 @@ Row.propTypes =
     */
     hasMinHeight : PropTypes.bool,
     /**
-     *  Row role
+     * Wrap content
+     */
+    hasWrap      : PropTypes.bool,
+    /**
+     *  Grid role
      */
     role         : PropTypes.string,
     /**
@@ -55,17 +84,18 @@ Row.propTypes =
     verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
 
-Row.defaultProps =
+Grid.defaultProps =
 {
     align         : 'auto',
     children      : undefined,
     className     : undefined,
-    cssMap        : undefined,
+    cssMap        : styles,
     gutters       : 'L',
     hasMinHeight  : false,
+    hasWrap       : true,
     role          : undefined,
     spacing       : 'default',
     verticalAlign : 'auto',
 };
 
-export default Row;
+export default Grid;
