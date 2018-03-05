@@ -6,6 +6,8 @@ import H2                              from '../H2';
 import H3                              from '../H3';
 import H4                              from '../H4';
 import { IconButton, IconWithTooltip } from '../index';
+import Text                            from '../Text';
+
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
@@ -162,6 +164,8 @@ export default class Module extends Component
         } = this.props;
 
         let header;
+        let childrenText;
+
         if ( customHeader )
         {
             header = (
@@ -216,6 +220,10 @@ export default class Module extends Component
             );
         }
 
+        if ( typeof children === 'string' )
+        {
+            childrenText = <Text>{ children }</Text>;
+        }
 
         return (
             <Css
@@ -231,7 +239,7 @@ export default class Module extends Component
                     { header }
                     { ( !isCollapsible || !isCollapsed ) &&
                         <div className = { cssMap.content }>
-                            { children }
+                            { childrenText || children }
                         </div>
                     }
                     { isLoading  &&

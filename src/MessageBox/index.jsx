@@ -12,14 +12,14 @@ const MessageBox = ( {
     messageType
 } ) =>
 {
-    const messageNode = <Text>{ message }</Text>;
+    const messageText = <Text>{ message }</Text>;
 
     return (
         <Css
             cssMap   = { cssMap }
             cssProps = { { type: messageType } }>
             <div className = { className }>
-                { children || messageNode }
+                { children || messageText }
             </div>
         </Css>
     );

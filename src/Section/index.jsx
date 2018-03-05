@@ -7,6 +7,7 @@ import H1           from '../H1';
 import H2           from '../H2';
 import H3           from '../H3';
 import H4           from '../H4';
+import Text         from '../Text';
 
 const headers = { 1: H1, 2: H2, 3: H3, 4: H4 };
 
@@ -43,6 +44,13 @@ export default class Section extends Component
 
         const SectionHeader = headers[ level ];
 
+        let childrenText;
+
+        if ( typeof children === 'string' )
+        {
+            childrenText = <Text>{ children }</Text>;
+        }
+
         return (
             <Css
                 cssMap   = { cssMap }
@@ -54,7 +62,7 @@ export default class Section extends Component
                         <SectionHeader>{ title }</SectionHeader>
                     }
                     <div className = { cssMap.content }>
-                        { children }
+                        { childrenText || children }
                     </div>
                 </section>
             </Css>

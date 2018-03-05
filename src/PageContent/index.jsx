@@ -1,6 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
+import Text                 from '../Text';
 import Css                  from '../hoc/Css';
 import Spinner              from '../Spinner';
 
@@ -10,10 +11,20 @@ const PageContent = ( {
     cssMap,
     className,
     isLoading  } ) =>
+
+{
+    let childrenText;
+
+    if ( typeof children === 'string' )
+    {
+        childrenText = <Text>{ children }</Text>;
+    }
+
+    return (
         <Css cssMap = { cssMap }>
             <div className = { className }>
                 <div className = { cssMap.content }>
-                    { children }
+                    { childrenText || children }
                 </div>
                 { isLoading &&
                     <div className = { cssMap.loadingOverlay }>
@@ -23,7 +34,9 @@ const PageContent = ( {
                     </div>
                 }
             </div>
-        </Css>;
+        </Css>
+    );
+};
 
 PageContent.propTypes =
 {

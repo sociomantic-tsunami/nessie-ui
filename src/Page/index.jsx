@@ -1,6 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
+import Text                 from '../Text';
 import Css                  from '../hoc/Css';
 
 const Page = ( {
@@ -8,13 +9,25 @@ const Page = ( {
     cssMap,
     className,
     overflow } ) =>
+
+{
+    let childrenText;
+
+    if ( typeof children === 'string' )
+    {
+        childrenText = <Text>{ children }</Text>;
+    }
+
+    return (
         <Css
             cssMap = { cssMap }
             cssProps = { { overflow } } >
             <div className = { className }>
-                { children }
+                { childrenText || children }
             </div>
-        </Css>;
+        </Css>
+    );
+};
 
 Page.propTypes =
 {

@@ -3,6 +3,7 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import Icon                 from '../Icon';
+import Text                 from '../Text';
 
 export default class Sorter extends Component
 {
@@ -63,6 +64,13 @@ export default class Sorter extends Component
 
         const toggleHover = () => this.setState( { isHovered: !isHovered  } );
 
+        let childrenText;
+
+        if ( typeof children === 'string' )
+        {
+            childrenText = <Text>{ children }</Text>;
+        }
+
         return (
             <Css
                 cssMap   = { cssMap }
@@ -79,7 +87,7 @@ export default class Sorter extends Component
                         className   = { cssMap.content }
                         onMouseOver = { toggleHover }
                         onMouseOut  = { toggleHover }>
-                        { children }
+                        { childrenText || children }
                     </div>
                     { sorterIsVisible &&
                         <div className = { cssMap.sorter }>

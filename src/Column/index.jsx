@@ -1,6 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
+import Text                 from '../Text';
 import Css                  from '../hoc/Css';
 
 const Column = ( {
@@ -13,6 +14,15 @@ const Column = ( {
     size,
     verticalAlign } ) =>
 
+{
+    let childrenText;
+
+    if ( typeof children === 'string' )
+    {
+        childrenText = <Text>{ children }</Text>;
+    }
+
+    return (
         <Css
             cssMap   = { cssMap }
             cssProps = { { size,
@@ -22,9 +32,11 @@ const Column = ( {
                 className         = { className }
                 role              = { role }
                 data-column-title = { columnTitle }>
-                { children }
+                {  childrenText || children }
             </div>
-        </Css>;
+        </Css>
+    );
+};
 
 Column.propTypes =
 {

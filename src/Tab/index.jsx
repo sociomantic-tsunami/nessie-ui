@@ -2,6 +2,7 @@ import React     from 'react';
 import PropTypes from 'prop-types';
 
 import Component from '../proto/Component';
+import Text      from '../Text';
 import Css       from '../hoc/Css';
 
 export default class Tab extends Component
@@ -37,6 +38,13 @@ export default class Tab extends Component
             label
         } = this.props;
 
+        let childrenText;
+
+        if ( typeof children === 'string' )
+        {
+            childrenText = <Text>{ children }</Text>;
+        }
+
         return (
             <Css cssMap   = { cssMap } >
                 <div
@@ -44,7 +52,7 @@ export default class Tab extends Component
                     onClick    = { onClick }
                     aria-label = { label }
                     role       = "tabpanel">
-                    { children }
+                    { childrenText || children }
                 </div>
             </Css>
         );

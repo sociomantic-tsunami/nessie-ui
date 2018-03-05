@@ -4,6 +4,7 @@ import PropTypes            from 'prop-types';
 import Css                  from '../hoc/Css';
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
+import Text                 from '../Text';
 
 const Fieldset = ( {
     children,
@@ -18,6 +19,15 @@ const Fieldset = ( {
     onMouseOver,
     onMouseOut } ) =>
 
+{
+    let childrenText;
+
+    if ( typeof children === 'string' )
+    {
+        childrenText = <Text>{ children }</Text>;
+    }
+
+    return (
         <Css cssMap = { cssMap }>
             <fieldset
                 className   = { className }
@@ -38,9 +48,11 @@ const Fieldset = ( {
                         </IconWithTooltip>
                     </Label>
                 }
-                { children }
+                { childrenText || children }
             </fieldset>
-        </Css>;
+        </Css>
+    );
+};
 
 Fieldset.propTypes =
 {
