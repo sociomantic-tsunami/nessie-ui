@@ -1,29 +1,27 @@
 import { ComponentDriver }    from 'componentDriver';
-
-import ButtonDriver            from './Button/driver';
-import ModuleDriver            from './Module/driver';
-import IconDriver              from './Icon/driver';
-import TooltipDriver           from './Tooltip/driver';
-import IconWithTooltipDriver   from './IconWithTooltip/driver';
-import FlounderDropdownDriver  from './FlounderDropdown/driver';
-import TextInputWithIconDriver from './TextInputWithIcon/driver';
-import PasswordInputDriver     from './PasswordInput/driver';
-import SectionDriver           from './Section/driver';
-import RowColumnDriver         from './Row/driver';
-import FormDriver              from './Form/driver';
-import NavItemDriver           from './NavItem/driver';
-import NotificationBarDriver   from './NotificationBar/driver';
-import ModalDialogDriver       from './ModalDialog/driver';
-import SwitchDriver            from './Switch/driver';
-
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
-         FlounderDropdown, PasswordInput, Form, Section, Row, Column,
-         TextInput, NavItem, NotificationBar, TextInputWithIcon,
-         ModalDialog, Switch }  from 'nessie-ui';
+    FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
+    TextInput, NavItem, NotificationBar, TextInputWithIcon,
+    ModalDialog, Switch, Row }  from 'nessie-ui';
 
-import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver';
-import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver';
-import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver';
+import ButtonDriver             from './Button/driver';
+import ModuleDriver             from './Module/driver';
+import IconDriver               from './Icon/driver';
+import TooltipDriver            from './Tooltip/driver';
+import IconWithTooltipDriver    from './IconWithTooltip/driver';
+import FlounderDropdownDriver   from './FlounderDropdown/driver';
+import TextInputWithIconDriver  from './TextInputWithIcon/driver';
+import PasswordInputDriver      from './PasswordInput/driver';
+import SectionDriver            from './Section/driver';
+import GridColumnDriver         from './Grid/driver';
+import FormDriver               from './Form/driver';
+import NavItemDriver            from './NavItem/driver';
+import NotificationBarDriver    from './NotificationBar/driver';
+import ModalDialogDriver        from './ModalDialog/driver';
+import SwitchDriver             from './Switch/driver';
+import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
+import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
+import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
 
 const drivers =
 [
@@ -72,12 +70,16 @@ const drivers =
         Driver    : SectionDriver
     },
     {
+        Component : Grid,
+        Driver    : GridColumnDriver
+    },
+    {
         Component : Row,
-        Driver    : RowColumnDriver
+        Driver    : GridColumnDriver
     },
     {
         Component : Column,
-        Driver    : RowColumnDriver
+        Driver    : GridColumnDriver
     },
     {
         Component : Form,
@@ -101,6 +103,7 @@ const drivers =
     }
 ];
 
-export { SimpleComponentDriver, ClickableComponentDriver, InputComponentDriver };
+export { SimpleComponentDriver, ClickableComponentDriver,
+    InputComponentDriver };
 
 export default ComponentDriver.createDriverSuite( drivers );

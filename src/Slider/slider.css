@@ -58,6 +58,7 @@
         background:     var( --PC-WHITE );
 
         user-select:    none;
+        cursor:         pointer;
     }
 
     .trackFill
@@ -72,7 +73,7 @@
         height:             var( --handleSize );
 
         border-radius:      50%;
-        background-color:   var( --PC-BLUE);
+        background-color:   var( --PC-BLUE );
 
         cursor:             grab;
 
@@ -80,6 +81,11 @@
         {
             cursor: grabbing;
         }
+    }
+
+    .handleFocus
+    {
+        box-shadow:         0 0 2pt 1pt var( --PC-BLUE );
     }
 
     .handleLabel

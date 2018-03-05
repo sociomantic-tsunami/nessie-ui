@@ -1,79 +1,105 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import Checkable            from '../proto/Checkable';
+import Checkable      from '../proto/Checkable';
+import { generateId } from '../utils';
+import styles         from './checkbox.css';
 
-
-const Checkbox = ( props ) =>
-    <Checkable { ...props } type = "checkbox" />;
+const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
+    <Checkable { ...props } id = { id } type = "checkbox" />
+);
 
 Checkbox.propTypes =
 {
     /**
      *  Label content (JSX node; overrides label prop)
      */
-    children    : PropTypes.node,
+    children         : PropTypes.node,
     /**
-     *  Label content (string)
+     *  Extra CSS class name
      */
-    label       : PropTypes.string,
+    className        : PropTypes.string,
     /**
-    *  Display as checked
-    */
-    isChecked   : PropTypes.bool,
-    /**
-    *  Display as disabled
-    */
-    isDisabled  : PropTypes.bool,
-    /**
-    *  Display as read-only
-    */
-    isReadOnly  : PropTypes.bool,
-    /**
-    *  Display as error/invalid
-    */
-    hasError    : PropTypes.bool,
+     *  CSS class map
+     */
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */
-    forceHover  : PropTypes.bool,
+    forceHover       : PropTypes.bool,
     /**
-    *  HTML value attribute
-    */
-    value       : PropTypes.string,
-    /**
-    *  HTML id attribute (override default)
-    */
-    id          : PropTypes.string,
-    /**
-    *  Checkbox group name
-    */
-    name        : PropTypes.string,
-    /**
-     *  OnChange callback function: ( e ) => { ... }
+     *  Display as error/invalid
      */
-    onChange    : PropTypes.func,
-     /*  onMouseOver callback function : ( e ) => { ... }
-     */
-    onMouseOver : PropTypes.func,
+    hasError         : PropTypes.bool,
     /**
-     *  onMouseOut callback function : ( e ) => { ... }
+     *  HTML id attribute (override default)
      */
-    onMouseOut  : PropTypes.func,
+    id               : PropTypes.string,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef    : PropTypes.func,
+    inputRef         : PropTypes.func,
+    /**
+     *  Display as checked (controlled input)
+     */
+    isChecked        : PropTypes.bool,
+    /**
+     *  Display as checked by default (uncontrolled input)
+     */
+    isDefaultChecked : PropTypes.bool,
+    /**
+     *  Display as disabled
+     */
+    isDisabled       : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly       : PropTypes.bool,
+    /**
+     *  Label content (string)
+     */
+    label            : PropTypes.string,
+    /**
+     *  Checkbox group name
+     */
+    name             : PropTypes.string,
+    /**
+     *  OnChange callback function: ( e ) => { ... }
+     */
+    onChange         : PropTypes.func,
+    /**
+     *  onMouseOut callback function : ( e ) => { ... }
+     */
+    onMouseOut       : PropTypes.func,
+    /**
+     *  onMouseOver callback function : ( e ) => { ... }
+     */
+    onMouseOver      : PropTypes.func,
+    /**
+     *  HTML value attribute
+     */
+    value            : PropTypes.string,
 };
 
 Checkbox.defaultProps =
 {
-    isChecked  : false,
-    isDisabled : false,
-    isReadOnly : false,
-    hasError   : false,
-    forceHover : false,
-    cssMap     : require( './checkbox.css' )
+    children         : undefined,
+    className        : undefined,
+    cssMap           : styles,
+    forceHover       : false,
+    hasError         : false,
+    id               : undefined,
+    inputRef         : undefined,
+    isDefaultChecked : false,
+    isDisabled       : false,
+    isChecked        : undefined,
+    isReadOnly       : false,
+    label            : undefined,
+    name             : undefined,
+    onChange         : undefined,
+    onMouseOut       : undefined,
+    onMouseOver      : undefined,
+    value            : undefined,
 };
 
 export default Checkbox;

@@ -7,31 +7,35 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-    background-color:   var( --PC-BLUE );
 
+    margin:             0;
     padding:            1.2rem;
 
-    & > *
+    background:         var( --PC-BLUE );
+
+    .message,
+    .info,
+    .close
     {
         margin-bottom:  0;
     }
-}
 
-.message
-{
-    @extend %Nessie-Bold;
-    color:  var( --PC-WHITE );
-}
+    .info
+    {
+        margin-right:   2rem;
+    }
 
-.info
-{
-    margin-right:   2rem;
-}
+    .message
+    {
+        @extend %Nessie-Bold;
+        color:  var( --PC-WHITE );
+    }
 
-.close
-{
-    position:   absolute;
-    right:      5rem;
+    .close
+    {
+        position:   absolute;
+        right:      5rem;
+    }
 }
 
 .top
@@ -43,15 +47,15 @@
 
 .type__error
 {
-    background-color:   var( --AC-2 );
+    background: var( --AC-2 );
 }
 
 .type__alert
 {
-    background-color:   var( --AC-5 );
+    background: var( --AC-5 );
 }
 
 .type__success
 {
-    background-color:   var(  --AC-12 );
+    background: var(  --AC-12 );
 }

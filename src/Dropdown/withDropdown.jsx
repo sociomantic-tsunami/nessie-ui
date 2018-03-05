@@ -9,17 +9,17 @@ import Dropdown                             from './index';
 
 const withDropdown = Component =>
 {
-    const WithDropdown = ( {
+    const ComponentWithDropdown = ( {
         cssMap,
         dropdownIsOpen,
         dropdownPosition,
         dropdownProps,
         wrapperRef,
-        ...componentProps
+        ...componentProps,
     } ) => (
         <div
             ref       = { wrapperRef }
-            className = { buildClassName( '', cssMap, {
+            className = { buildClassName( '', styles, {
                 open     : dropdownIsOpen,
                 position : dropdownPosition,
             } ) }>
@@ -28,7 +28,7 @@ const withDropdown = Component =>
         </div>
     );
 
-    WithDropdown.propTypes = {
+    ComponentWithDropdown.propTypes = {
         ...Component.propTypes,
         /**
          *  Show/hide the dropdown
@@ -48,18 +48,18 @@ const withDropdown = Component =>
         wrapperRef       : PropTypes.func,
     };
 
-    WithDropdown.defaultProps = {
+    ComponentWithDropdown.defaultProps = {
         ...Component.defaultProps,
-        cssMap           : styles,
         dropdownIsOpen   : false,
         dropdownPosition : 'bottom',
         dropdownProps    : undefined,
         wrapperRef       : undefined,
     };
 
-    WithDropdown.displayName = buildDisplayName( WithDropdown, Component );
+    ComponentWithDropdown.displayName =
+        buildDisplayName( ComponentWithDropdown, Component );
 
-    return WithDropdown;
+    return ComponentWithDropdown;
 };
 
 export default withDropdown;

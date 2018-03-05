@@ -1,37 +1,74 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import Css                  from '../hoc/Css';
-import IconButton           from '../IconButton';
-import Text                 from '../Text';
+import IconButton                     from '../IconButton';
+import Text                           from '../Text';
+import { buildClassName, generateId } from '../utils';
+import styles                         from './tag.css';
 
-const Tag = ( {  children, className, cssMap, label, ...props } ) =>
+const Tag = ( {
+    children,
+    className,
+    cssMap,
+    forceHover,
+    id = generateId( 'Tag' ),
+    isDisabled,
+    isReadOnly,
+    label,
+    onClick,
+} ) =>
 {
-    const { isDisabled } = props;
+    let labelText = children || label;
 
-    const labelString = typeof children === 'string' ? children : label;
+    if ( typeof labelText === 'string' )
+    {
+        labelText = (
+            <Text className = { cssMap.label } overflowisHidden>
+                { labelText }
+            </Text>
+        );
+    }
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { disabled: isDisabled } }
-        >
-            <div className = { className }>
-                <Text overflowIsHidden className = { cssMap.label }>
-                    { labelString }
-                </Text>
-                <IconButton
-                    { ...props }
-                    iconType   = "close"
-                    className  = { cssMap.delete }
-                />
-            </div>
-        </Css>
+        <div
+            className = { buildClassName( className, cssMap, {
+                disabled : isDisabled,
+            } ) }>
+            { labelText }
+            <IconButton
+                className  = { cssMap.delete }
+                forceHover = { forceHover }
+                iconType   = "close"
+                isDisabled = { isDisabled }
+                isReadOnly = { isReadOnly }
+                onClick    = { onClick }
+                value      = { id } />
+        </div>
     );
 };
 
 Tag.propTypes =
 {
+    /**
+     *  Tag label (JSX node; overrides label prop)
+     */
+    children   : PropTypes.node,
+    /**
+     *  CSS class name
+     */
+    className  : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap     : PropTypes.objectOf( PropTypes.string ),
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover : PropTypes.bool,
+    /**
+     *  component id
+     */
+    id         : PropTypes.string,
     /**
      *  Display as disabled
      */
@@ -45,26 +82,22 @@ Tag.propTypes =
      */
     label      : PropTypes.string,
     /**
-     *  Tag label (string; overrides label prop)
-     */
-    children   : PropTypes.string,
-    /**
      *   onClick callback function for delete icon
      */
     onClick    : PropTypes.func,
-    /**
-     * Display as hover when required from another component
-     */
-    forceHover : PropTypes.bool
-
 };
 
 Tag.defaultProps =
 {
+    children   : undefined,
+    className  : undefined,
+    cssMap     : styles,
+    forceHover : false,
+    id         : undefined,
     isDisabled : false,
     isReadOnly : false,
-    forceHover : false,
-    cssMap     : require( './tag.css' )
+    label      : undefined,
+    onClick    : undefined,
 };
 
 export default Tag;
