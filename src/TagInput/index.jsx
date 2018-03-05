@@ -238,7 +238,7 @@ export default class TagInput extends Component
                     htmlFor     = { id }
                     onMouseOut  = { onMouseOut }
                     onMouseOver = { onMouseOver }
-                    style       = { height }>
+                    style       = { { height } }>
                     { items }
                     <input
                         className   = { cssMap.input }
