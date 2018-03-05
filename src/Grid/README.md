@@ -84,7 +84,7 @@ of 1/3:
 The horizontal space between any two Columns in a Grid is called the gutter. You
 can configure gutter size used in a given Grid using the Grid’s `gutters` prop.
 
-The prop accepts one of four values: `"S"`, `"M'` (default), `"L"` and `"none"`
+The prop accepts one of four values: `"S"`, `"M'`, `"L"` (default) and `"none"`
 (no gutters).
 
 ### Grid spacing
