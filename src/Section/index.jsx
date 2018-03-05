@@ -44,12 +44,8 @@ export default class Section extends Component
 
         const SectionHeader = headers[ level ];
 
-        let childrenText;
-
-        if ( typeof children === 'string' )
-        {
-            childrenText = <Text>{ children }</Text>;
-        }
+        const childrenText = typeof children === 'string' ?
+            <Text>{ children }</Text> : children;
 
         return (
             <Css
@@ -62,7 +58,7 @@ export default class Section extends Component
                         <SectionHeader>{ title }</SectionHeader>
                     }
                     <div className = { cssMap.content }>
-                        { childrenText || children }
+                        { childrenText }
                     </div>
                 </section>
             </Css>

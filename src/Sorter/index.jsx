@@ -64,12 +64,8 @@ export default class Sorter extends Component
 
         const toggleHover = () => this.setState( { isHovered: !isHovered  } );
 
-        let childrenText;
-
-        if ( typeof children === 'string' )
-        {
-            childrenText = <Text>{ children }</Text>;
-        }
+        const childrenText = typeof children === 'string' ?
+            <Text>{ children }</Text> : children;
 
         return (
             <Css
@@ -87,7 +83,7 @@ export default class Sorter extends Component
                         className   = { cssMap.content }
                         onMouseOver = { toggleHover }
                         onMouseOut  = { toggleHover }>
-                        { childrenText || children }
+                        { childrenText }
                     </div>
                     { sorterIsVisible &&
                         <div className = { cssMap.sorter }>

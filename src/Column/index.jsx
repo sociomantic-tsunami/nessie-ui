@@ -15,12 +15,8 @@ const Column = ( {
     verticalAlign } ) =>
 
 {
-    let childrenText;
-
-    if ( typeof children === 'string' )
-    {
-        childrenText = <Text>{ children }</Text>;
-    }
+    const childrenText = typeof children === 'string' ?
+        <Text>{ children }</Text> : children;
 
     return (
         <Css
@@ -32,7 +28,7 @@ const Column = ( {
                 className         = { className }
                 role              = { role }
                 data-column-title = { columnTitle }>
-                {  childrenText || children }
+                {  childrenText }
             </div>
         </Css>
     );

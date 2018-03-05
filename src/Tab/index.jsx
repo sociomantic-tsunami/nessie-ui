@@ -38,12 +38,8 @@ export default class Tab extends Component
             label
         } = this.props;
 
-        let childrenText;
-
-        if ( typeof children === 'string' )
-        {
-            childrenText = <Text>{ children }</Text>;
-        }
+        const childrenText = typeof children === 'string' ?
+            <Text>{ children }</Text> : children;
 
         return (
             <Css cssMap   = { cssMap } >

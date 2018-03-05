@@ -164,7 +164,8 @@ export default class Module extends Component
         } = this.props;
 
         let header;
-        let childrenText;
+        const childrenText = typeof children === 'string' ?
+            <Text>{ children }</Text> : children;
 
         if ( customHeader )
         {
@@ -220,11 +221,6 @@ export default class Module extends Component
             );
         }
 
-        if ( typeof children === 'string' )
-        {
-            childrenText = <Text>{ children }</Text>;
-        }
-
         return (
             <Css
                 cssMap   = { cssMap }
@@ -239,7 +235,7 @@ export default class Module extends Component
                     { header }
                     { ( !isCollapsible || !isCollapsed ) &&
                         <div className = { cssMap.content }>
-                            { childrenText || children }
+                            { childrenText }
                         </div>
                     }
                     { isLoading  &&

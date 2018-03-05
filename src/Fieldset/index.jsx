@@ -20,12 +20,8 @@ const Fieldset = ( {
     onMouseOut } ) =>
 
 {
-    let childrenText;
-
-    if ( typeof children === 'string' )
-    {
-        childrenText = <Text>{ children }</Text>;
-    }
+    const childrenText = typeof children === 'string' ?
+        <Text>{ children }</Text> : children;
 
     return (
         <Css cssMap = { cssMap }>
@@ -48,7 +44,7 @@ const Fieldset = ( {
                         </IconWithTooltip>
                     </Label>
                 }
-                { childrenText || children }
+                { childrenText }
             </fieldset>
         </Css>
     );
