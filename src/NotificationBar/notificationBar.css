@@ -5,51 +5,54 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-    background-color:   var( --PC-BLUE );
 
-    padding:            12px;
+    padding:            var( --spacing-2 );
 
-    & > *
+    background:         var( --PC-BLUE );
+
+    .message,
+    .info,
+    .close
     {
         margin-bottom:  0;
     }
-}
 
-.message
-{
-    @extend %Nessie-Bold;
-    color:  var( --PC-WHITE );
-}
+    .info
+    {
+        margin-right:   var( --spacing-2 );
+    }
 
-.info
-{
-    margin-right:   20px;
-}
+    .info
+    {
+        margin-right:   20px;
+    }
 
-.close
-{
-    position:   absolute;
-    right:      50px;
+    .close
+    {
+        position:   absolute;
+        right:      var( --spacing-2 );
+    }
 }
 
 .top
 {
     position:   fixed;
     top:        0;
+    left:       0;
     z-index:    1000;
 }
 
 .type__error
 {
-    background-color:   var( --PC-RED );
+    background: var( --PC-RED );
 }
 
 .type__alert
 {
-    background-color:   var( --PC-YELLOW );
+    background: var( --PC-YELLOW );
 }
 
 .type__success
 {
-    background-color:   var(  --PC-GREEN );
+    background: var(  --PC-GREEN );
 }

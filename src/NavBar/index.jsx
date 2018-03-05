@@ -7,7 +7,7 @@ import NavList              from '..//NavList';
 const NavBar = ( { children, className, cssMap } ) =>
     <Css cssMap = { cssMap }>
         <nav className = { className }>
-            <NavList className = { cssMap.list }>
+            <NavList>
                 { children }
             </NavList>
         </nav>

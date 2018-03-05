@@ -20,6 +20,10 @@ export default class CodeEditor extends Component
     static propTypes =
     {
         /**
+         *  callback ref to native CodeMirror object
+         */
+        codeMirrorRef         : PropTypes.func,
+        /**
          *  Label text string or JSX node
          */
         label                 : PropTypes.node,
@@ -27,6 +31,10 @@ export default class CodeEditor extends Component
          *  Label position
          */
         labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        /**
+         *  Code editor height (CSS length value)
+         */
+        height                : PropTypes.string,
         /**
          *  Display as disabled
          */
@@ -122,11 +130,13 @@ export default class CodeEditor extends Component
         this.handleBlur           = this.handleBlur.bind( this );
         this.handleChange         = this.handleChange.bind( this );
         this.handleCursorActivity = this.handleCursorActivity.bind( this );
+        this.handleTextareaRef    = this.handleTextareaRef.bind( this );
     }
 
     componentDidMount()
     {
         const {
+            codeMirrorRef,
             cursor,
             defaultValue,
             isDisabled,
@@ -158,7 +168,31 @@ export default class CodeEditor extends Component
             codeMirror.setCursor( cursor );
         }
 
+        if ( codeMirrorRef )
+        {
+            codeMirrorRef( codeMirror );
+        }
+
         this.codeMirror = codeMirror;
+    }
+
+    componentWillUpdate( nextProps )
+    {
+        const { codeMirror } = this;
+        const { codeMirrorRef } = this.props;
+
+        if ( nextProps.codeMirrorRef !== codeMirrorRef )
+        {
+            if ( codeMirrorRef )
+            {
+                codeMirrorRef( null );
+            }
+
+            if ( nextProps.codeMirrorRef )
+            {
+                nextProps.codeMirrorRef( codeMirror );
+            }
+        }
     }
 
 
@@ -196,7 +230,15 @@ export default class CodeEditor extends Component
 
     componentWillUnmount()
     {
-        this.codeMirror.toTextArea();
+        const { codeMirror } = this;
+        const { codeMirrorRef } = this.props;
+
+        codeMirror.toTextArea();
+
+        if ( codeMirrorRef )
+        {
+            codeMirrorRef( null );
+        }
     }
 
     handleFocus( cm )
@@ -221,7 +263,7 @@ export default class CodeEditor extends Component
         }
     }
 
-    handleCursorActivity( cm )
+    handleCursorActivity()
     {
         const { onCursorActivity } = this.props;
         if ( onCursorActivity )
@@ -239,6 +281,13 @@ export default class CodeEditor extends Component
         }
     }
 
+    handleTextareaRef( ref )
+    {
+        if ( ref )
+        {
+            this.textarea = ref;
+        }
+    }
 
     render()
     {
@@ -253,6 +302,7 @@ export default class CodeEditor extends Component
             forceHover,
             isDisabled,
             hasError,
+            height,
             onMouseOut,
             onMouseOver,
             value,
@@ -272,9 +322,10 @@ export default class CodeEditor extends Component
                     <div
                         className   = { cssMap.editor }
                         onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }>
+                        onMouseOut  = { onMouseOut }
+                        style = { { height: `${height}` } }>
                         <textarea
-                            ref          = { ref => this.textarea = ref }
+                            ref          = { this.handleTextareaRef }
                             defaultValue = { value }
                             autoComplete = "off" />
                     </div>

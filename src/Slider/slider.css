@@ -55,7 +55,8 @@
 
         background:         var( --PC-WHITE );
 
-        user-select:        none;
+        user-select:    none;
+        cursor:         pointer;
     }
 
     .trackFill
@@ -83,6 +84,11 @@
             width:          calc(var( --handleSize ) * 1.2);
             height:         calc(var( --handleSize ) * 1.2);
         }
+    }
+
+    .handleFocus
+    {
+        box-shadow:         0 0 2pt 1pt var( --PC-BLUE );
     }
 
     .handleLabel

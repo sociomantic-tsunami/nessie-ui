@@ -5,7 +5,7 @@
 {
     .editor
     {
-        box-sizing: border-box;
+        height: auto;
 
         .fakeHovered&
         {
@@ -34,11 +34,16 @@
 
 
 
+
+
+
+
 :global
 {
     .CodeMirror
     {
-        height:         auto;
+        box-sizing:     border-box;
+        height:         100%;
 
         font-family:    monospace, sans-serif;
         font-size:      var( --typo-3 );

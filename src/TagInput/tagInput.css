@@ -55,6 +55,8 @@
         text-indent:    5px;
         color:          var( --PC-GREY--D5 );
 
+        resize:         none; /* required for Safari */
+
         &:focus
         {
             outline:    none;

@@ -1,13 +1,11 @@
 @import "../proto/base.css";
 
-$shark: 768px;
 
 .default
 {
     display:        flex;
     flex-direction: column;
     align-items:    stretch;
-    flex-wrap:      nowrap;
 
     max-width:      none;
 
@@ -20,14 +18,8 @@ $shark: 768px;
     }*/
 }
 
-
-.hasMinHeight
-{
-    min-height: 71px; /* label + input */
-}
-
 /*
-@media( min-width: $shark )
+@media( min-width: 768px )
 { */
 .default
 {
@@ -86,19 +78,30 @@ $shark: 768px;
 /* } */
 
 
-.spacing__label
+.spacing__h1
 {
     & > *
     {
-        margin-bottom:  var( --spacing-1 );
+        margin-bottom:  var( --spacing-7 );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-1 );
+        margin-bottom:  -var( --spacing-7 );
     }
 }
+.spacing__h2
+{
+    & > *
+    {
+        margin-bottom:  var( --spacing-5 );
+    }
 
+    &:last-child
+    {
+        margin-bottom:  -var( --spacing-5 );
+    }
+}
 .spacing__default,
 .spacing__h3,
 .spacing__h4
@@ -113,33 +116,18 @@ $shark: 768px;
         margin-bottom:  -var( --spacing-2 );
     }
 }
-
-.spacing__h1
+.spacing__label
 {
     & > *
     {
-        margin-bottom:  var( --spacing-7 );
+        margin-bottom:  var( --spacing-1 );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-7 );
+        margin-bottom:  -var( --spacing-1 );
     }
 }
-
-.spacing__h2
-{
-    & > *
-    {
-        margin-bottom:  var( --spacing-5 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  -var( --spacing-5 );
-    }
-}
-
 
 .gutters__S
 {
@@ -153,7 +141,6 @@ $shark: 768px;
         padding-right:  calc( var( --spacing-1 ) / 2 );
     }
 }
-
 .gutters__M
 {
     width:          calc( 100% + var( --spacing-2 ) );
@@ -166,7 +153,6 @@ $shark: 768px;
         padding-right:  calc( var( --spacing-2 ) / 2 );
     }
 }
-
 .gutters__L
 {
     width:          calc( 100% + var( --spacing-3 ) );
@@ -178,4 +164,14 @@ $shark: 768px;
         padding-left:   calc( var( --spacing-3 ) / 2 );
         padding-right:  calc( var( --spacing-3 ) / 2 );
     }
+}
+
+.hasWrap
+{
+    flex-wrap:  wrap;
+}
+
+.hasMinHeight
+{
+    min-height: calc( var( --spacing-3 ) + var( --spacing-1 ) + var( --spacing-5 ) ); /* label + spacing + input */
 }

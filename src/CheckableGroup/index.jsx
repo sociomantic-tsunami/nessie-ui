@@ -1,139 +1,174 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React, { Children }            from 'react';
+import PropTypes                      from 'prop-types';
 
-import Component    from '../proto/Component';
-import Css          from '../hoc/Css';
-import Fieldset     from '../Fieldset';
+import Fieldset                       from '../Fieldset';
+import { buildClassName, generateId } from '../utils';
+import styles                         from './checkableGroup.css';
 
 
-export default class CheckableGroup extends Component
+const CheckableGroup = ( {
+    children,
+    className,
+    cssMap,
+    errorMessage,
+    errorMessageIsVisible,
+    forceHover,
+    hasError,
+    id = generateId( 'CheckableGroup' ),
+    isDisabled,
+    isReadOnly,
+    label,
+    layout,
+    name,
+    onChange,
+    onMouseOut,
+    onMouseOver,
+} ) =>
 {
-    static propTypes =
+    const items = Children.toArray( children ).map( child =>
     {
-        /**
-         *  Group label text string or JSX node
-         */
-        label                 : PropTypes.node,
-        /**
-         *  Checkboxes, Radios, etc. to wrap
-         */
-        children              : PropTypes.node,
-        /**
-         *  How to lay out the Checkboxes, Radios, etc.
-         */
-        layout                : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
-        /**
-         *  Display as disabled
-         */
-        isDisabled            : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly            : PropTypes.bool,
-        /**
-         *  Display as error/invalid
-         */
-        hasError              : PropTypes.bool,
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-         *  HTML name attribute of ButtonRadios in group (overrides default)
-         */
-        name                  : PropTypes.string,
-        /**
-         *  onChange callback function : ( e ) => { ... }
-         */
-        onChange              : PropTypes.func,
-        /**
-         *  onMouseOver callback function : ( e ) => { ... }
-         */
-        onMouseOver           : PropTypes.func,
-        /**
-         *  onMouseOut callback function : ( e ) => { ... }
-         */
-        onMouseOut            : PropTypes.func,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover            : PropTypes.bool
+        let handleChange;
 
-    };
+        if ( !onChange )
+        {
+            handleChange = child.props.onChange;
+        }
+        else if ( !child.props.onChange )
+        {
+            handleChange = onChange;
+        }
+        else
+        {
+            handleChange = ( ...args ) =>
+            {
+                onChange( args );
+                child.props.onChange( args );
+            };
+        }
 
-    static defaultProps =
-    {
-        layout                : 'horizontal',
-        hasError              : false,
-        errorMessageIsVisible : false,
-        isDisabled            : false,
-        isReadOnly            : false,
-        forceHover            : false,
-        cssMap                : require( './checkableGroup.css' )
-    };
+        return React.cloneElement( child, {
+            ...child.props,
+            forceHover : forceHover || child.props.forceHover,
+            hasError   : hasError || child.props.hasError,
+            isDisabled : isDisabled || child.props.isDisabled,
+            isReadOnly : isReadOnly || child.props.isReadOnly,
+            name       : name || id,
+            onChange   : handleChange,
+        } );
+    } );
 
-    render()
-    {
-        const {
-            children,
-            className,
-            cssMap,
-            errorMessage,
-            forceHover,
-            hasError,
-            isDisabled,
-            isReadOnly,
-            label,
-            layout,
-            name,
-            onChange,
-            onMouseOver,
-            onMouseOut,
-            errorMessageIsVisible
-        } = this.props;
+    return (
+        <Fieldset
+            className = { buildClassName( className, cssMap, {
+                layout
+            } ) }
+            errorMessage          = { errorMessage }
+            errorMessageIsVisible = { errorMessageIsVisible }
+            hasError              = { hasError }
+            isDisabled            = { isDisabled }
+            label                 = { label }
+            onMouseOut            = { onMouseOut }
+            onMouseOver           = { onMouseOver }>
+            { items &&
+                <ul className = { cssMap.list }>
+                    { items.map( ( item, i ) => (
+                        <li
+                            className = { cssMap.listItem }
+                            key       = { item.props.id || i }>
+                            { item }
+                        </li>
+                    ) ) }
+                </ul>
+            }
+        </Fieldset>
+    );
+};
 
-        const items = children && children.map( child =>
-            React.cloneElement( child, {
-                ...child.props,
-                isReadOnly : isReadOnly || child.props.isReadOnly,
-                isDisabled : isDisabled || child.props.isDisabled,
-                hasError   : hasError || child.props.hasError,
-                forceHover : forceHover || child.props.forceHover,
-                name       : name || this.state.id,
-                onChange
-            } )
-        );
+CheckableGroup.propTypes =
+{
+    /**
+     *  Checkboxes, Radios, etc. in the group
+     */
+    children              : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className             : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap                : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Tooltip message text (string or JSX)
+     */
+    errorMessage          : PropTypes.node,
+    /**
+     *  Tooltip is displayed
+     */
+    errorMessageIsVisible : PropTypes.bool,
+    /**
+     * Force display as hover
+     */
+    forceHover            : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError              : PropTypes.bool,
+    /**
+     *  Component id
+     */
+    id                    : PropTypes.string,
+    /**
+     *  Display as disabled
+     */
+    isDisabled            : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly            : PropTypes.bool,
+    /**
+     *  Group label text string or JSX node
+     */
+    label                 : PropTypes.node,
+    /**
+     *  How to lay out the Checkboxes, Radios, etc.
+     */
+    layout                : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    /**
+     *  HTML name attribute of Checkables in group
+     */
+    name                  : PropTypes.string,
+    /**
+     *  onChange callback function : ( e ) => { ... }
+     */
+    onChange              : PropTypes.func,
+    /**
+     *  onMouseOut callback function : ( e ) => { ... }
+     */
+    onMouseOut            : PropTypes.func,
+    /**
+     *  onMouseOver callback function : ( e ) => { ... }
+     */
+    onMouseOver           : PropTypes.func,
+};
 
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { layout } }>
-                <Fieldset
-                    className             = { className }
-                    label                 = { label }
-                    isDisabled            = { isDisabled }
-                    hasError              = { hasError }
-                    errorMessage          = { errorMessage }
-                    errorMessageIsVisible = { errorMessageIsVisible }
-                    onMouseOver           = { onMouseOver }
-                    onMouseOut            = { onMouseOut }>
-                    <ul className = { cssMap.list }>
-                        { items && items.map( ( item, index ) =>
-                            (
-                                <li
-                                    key       = { index } // eslint-disable-line react/no-array-index-key, max-len
-                                    className = { cssMap.listItem }>
-                                    { item }
-                                </li>
-                            ) )
-                        }
-                    </ul>
-                </Fieldset>
-            </Css>
-        );
-    }
-}
+CheckableGroup.defaultProps =
+{
+    children              : undefined,
+    className             : undefined,
+    cssMap                : styles,
+    errorMessage          : undefined,
+    errorMessageIsVisible : false,
+    forceHover            : false,
+    hasError              : false,
+    id                    : undefined,
+    isDisabled            : false,
+    isReadOnly            : false,
+    layout                : 'horizontal',
+    name                  : undefined,
+    onChange              : undefined,
+    onMouseOut            : undefined,
+    onMouseOver           : undefined,
+};
+
+export default CheckableGroup;

@@ -1,15 +1,7 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie Column is a basic component that helps to layout other components in the page.
+The Column component is part of the Nessie layout system. Columns __must__ be
+direct children of Grid (or Row) components.
 
-This component in combination with the Nessie Row component allows to make complex layouts with other childs components.
-
-Example Usage
--------------
-
-    <Column>
-		<Row>
-			Some other components go here....
-		<Row/>
-    </Column>
+For full details about Grids and the Nessie layout system, see the Grid
+component.

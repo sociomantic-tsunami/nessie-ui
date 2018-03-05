@@ -65,6 +65,11 @@
             right:  0;
         }
     }
+
+    &:hover .valueLabel
+    {
+        border-color: var( --PC-BLUE );
+    }
 }
 
 
