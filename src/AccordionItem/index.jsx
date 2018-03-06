@@ -8,9 +8,9 @@ import AccordionItemHeader            from './AccordionItemHeader';
 import AccordionItemContent           from './AccordionItemContent';
 
 const AccordionItem = ( {
+    children,
     className,
     cssMap,
-    children,
     hasError,
     headerText,
     id = generateId( 'AccordionItem' ),
@@ -30,11 +30,11 @@ const AccordionItem = ( {
             id          = { id }
             idContent   = { `${id}-content` }
             isDisabled  = { isDisabled }
-            isOpen      = { isOpen }
+            isOpen      = { !isDisabled && isOpen }
             onClick     = { onClick }
             onMouseOver = { onMouseOver }
             onMouseOut  = { onMouseOut } />
-        { isOpen &&
+        { ( !isDisabled && isOpen ) &&
             <AccordionItemContent
                 id         = { `${id}-content` }
                 idHeader   = { id } >
@@ -46,6 +46,10 @@ const AccordionItem = ( {
 
 AccordionItem.propTypes =
 {
+    /**
+     *  Accordion Item content
+     */
+    children    : PropTypes.node,
     /**
      *  CSS class name
      */
@@ -90,9 +94,9 @@ AccordionItem.propTypes =
 
 AccordionItem.defaultProps =
 {
+    children    : undefined,
     className   : undefined,
     cssMap      : styles,
-    children    : undefined,
     hasError    : false,
     headerText  : undefined,
     id          : undefined,
