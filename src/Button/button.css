@@ -33,7 +33,7 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-    height:             40px; /************ replace with min-, or remove? */
+    min-height:         40px;
     padding:            0 var( --spacing-2 );
     text-align:         center;
 }
@@ -62,8 +62,8 @@
 
     .iconContainer
     {
-        margin-left:    4px;
-        margin-right:   -var( --spacing-1 );
+        margin-left:    4px; /* space between icon and text */
+        margin-right:   -var( --spacing-1 ); /* half of content padding */
     }
 }
 
@@ -72,8 +72,8 @@
 {
     .iconContainer
     {
-        margin-right:   4px;
-        margin-left:    -var( --spacing-1 );
+        margin-right:   4px; /* space between icon and text */
+        margin-left:    -var( --spacing-1 ); /* half of content padding */
     }
 }
 
