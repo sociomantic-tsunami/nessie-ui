@@ -61,10 +61,14 @@ export default class Button extends Component
             'validation',
             'none'
         ] ),
-        /*
+        /**
          *  Icon position relative to Button text
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
+        /**
+         *  Icon size
+         */
+        size         : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
         /**
         *  Display as disabled
         */
@@ -117,6 +121,7 @@ export default class Button extends Component
         role         : 'default',
         iconType     : 'none',
         iconPosition : 'left',
+        size         : 'M',
         isLoading    : false,
         isDisabled   : false,
         isReadOnly   : false,
@@ -172,6 +177,7 @@ export default class Button extends Component
             label,
             onClick,
             role,
+            size,
             type,
             value
         } = this.props;
@@ -186,6 +192,7 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
+                        size       = { size }
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
                         forceHover = { isHovered }

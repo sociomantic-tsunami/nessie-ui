@@ -21,9 +21,6 @@
         display:            flex;
         justify-content:    center;
         align-items:        center;
-
-        width:              var( --spacing-3 );
-        height:             var( --spacing-3 );
     }
 }
 
