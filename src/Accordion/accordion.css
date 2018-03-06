@@ -1,0 +1,8 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+
+.default
+{
+    padding:         2rem;
+    box-shadow:      0 0.1rem 0.4rem 0 var( --GS-8 );
+}

@@ -1,4 +1,9 @@
 {
+    "Accordion" :
+    {
+        "header"     : "Accordion Header",
+        "children"   : "{<AccordionItem headerText='Form1'/><AccordionItem isOpen headerText='Form2'><TextInput label='Your name'/></AccordionItem>}"
+    },
     "AccordionItem" :
     {
         "children"   : "{<TextInput label='Your name'/>}",
