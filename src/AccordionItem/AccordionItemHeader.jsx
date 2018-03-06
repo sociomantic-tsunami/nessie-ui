@@ -28,9 +28,12 @@ const AccordionItemHeader = ( {
             id            = { id }
             type          = "button"
             onClick       = { onClick }>
-            <H2>{ headerText }</H2>
+            <H2 className = { cssMap.text }>{ headerText }</H2>
+            <Icon
+                className = { cssMap.icon }
+                size = "M"
+                type = { isOpen ? 'up' : 'down' } />
         </button>
-        <Icon type = { isOpen ? 'up' : 'down' } />
     </div>
 );
 

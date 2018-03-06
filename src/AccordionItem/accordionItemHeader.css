@@ -1,29 +1,31 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 
-
-
 .default
 {
-    /* this needs to be a flex column for vertical alignment
-    * of header w/min-height (flexbugs #3) */
-    position:        relative;
-    display:         flex;
-    flex-direction:  row;
-    justify-content: flex-start;
-    align-items:     center;
-
     margin-bottom:   0;
 
-    background:      var( --PC-WHITE );
     box-shadow:      0 0.1rem 0.4rem 0 var( --GS-8 );
-
-    transition:      background-color 200ms ease-in-out;
 }
 
 .disabled
 {
+    .headerButton
+    {
+        cursor:         default;
+        pointer-events: none;
+    }
 
+    .text
+    {
+        color:          var( --PC-GREY );
+    }
+
+    .icon
+    {
+        fill:           var( --PC-GREY );
+        color:          var( --PC-GREY );
+    }
 }
 
 .error
@@ -31,19 +33,58 @@
 
 }
 
+.open
+{
+    .headerButton
+    {
+        background:  var( --GS-11 );
+    }
+}
+
 .headerButton
 {
     appearance:      none !important;
+
+    position:        relative;
+    display:         flex;
+    flex-direction:  row;
+    justify-content: flex-start;
+    align-items:     center;
+
+    width:           100%;
 
     border:          none;
 
     padding:         3rem;
 
-    background:     transparent;
+    transition:      background-color 200ms ease-in-out;
 
+    &:hover
+    {
+        background:  var( --GS-11 );
+        cursor:      pointer;
+    }
+
+    &:focus
+    {
+        .icon
+        {
+            fill:    var( --GS-2 );
+            color:   var( --GS-2 );
+        }
+    }
 }
 
-.open
+.text
 {
-    background:      var( --GS-11 );
+    margin-bottom:   0 !important;
+
+    text-align:      left;
+    color:           var( --GS-2 );
+}
+
+.icon
+{
+    fill:            var( --GS-2 );
+    color:           var( --GS-2 );
 }
