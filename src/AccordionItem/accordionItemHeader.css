@@ -83,7 +83,8 @@
     color:           var( --GS-2 );
 }
 
-.icon
+.icon,
+.icon:hover
 {
     fill:            var( --GS-2 );
     color:           var( --GS-2 );

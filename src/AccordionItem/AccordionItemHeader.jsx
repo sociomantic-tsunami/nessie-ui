@@ -13,7 +13,9 @@ const AccordionItemHeader = ( {
     idContent,
     isDisabled,
     isOpen,
-    onClick
+    onClick,
+    onMouseOver,
+    onMouseOut
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
@@ -27,7 +29,9 @@ const AccordionItemHeader = ( {
             className     = { cssMap.headerButton }
             id            = { id }
             type          = "button"
-            onClick       = { onClick }>
+            onClick       = { onClick }
+            onMouseOver   = { onMouseOver }
+            onMouseOut    = { onMouseOut } >
             <H2 className = { cssMap.text }>{ headerText }</H2>
             <Icon
                 className = { cssMap.icon }
@@ -42,47 +46,57 @@ AccordionItemHeader.propTypes =
     /**
      *  CSS class name
      */
-    className  : PropTypes.string,
+    className   : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Accordion Item title
      */
-    headerText : PropTypes.string,
+    headerText  : PropTypes.string,
     /**
      *  if of the header
      */
-    id         : PropTypes.string,
+    id          : PropTypes.string,
     /**
      *  id of the content
      */
-    idContent  : PropTypes.string,
+    idContent   : PropTypes.string,
     /**
      *  Display as disabled/read-only
      */
-    isDisabled : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
     /**
      *  Accordion item expanded
      */
-    isOpen     : PropTypes.bool,
+    isOpen      : PropTypes.bool,
     /**
      *  Button click callback function: ( e ) => { ... }
      */
-    onClick    : PropTypes.func
+    onClick     : PropTypes.func,
+    /**
+     *  Mouse over callback function: ( e ) => { ... }
+     */
+    onMouseOver : PropTypes.func,
+    /**
+     *  Mouse out callback function: ( e ) => { ... }
+     */
+    onMouseOut  : PropTypes.func
 };
 
 AccordionItemHeader.defaultProps =
 {
-    className  : undefined,
-    cssMap     : styles,
-    headerText : undefined,
-    id         : undefined,
-    idContent  : undefined,
-    isDisabled : false,
-    isOpen     : false,
-    onClick    : undefined,
+    className   : undefined,
+    cssMap      : styles,
+    headerText  : undefined,
+    id          : undefined,
+    idContent   : undefined,
+    isDisabled  : false,
+    isOpen      : false,
+    onClick     : undefined,
+    onMouseOver : undefined,
+    onMouseOut  : undefined
 };
 
 export default AccordionItemHeader;
