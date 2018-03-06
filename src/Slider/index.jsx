@@ -473,18 +473,18 @@ export default class Slider extends Component
         {
             const { clientX, clientY } = event;
 
-            const targetHandle = this.targetInput ?
-                this.targetInput : this.inputContainer[ 0 ];
+            this.targetInput = this.targetInput ||
+                this.inputContainer.childNodes[ 0 ];
 
             const { onChange } = this.props;
             const e = new Event( 'change' );
 
-            targetHandle.value = this.getStep(
+            this.targetInput.value = this.getStep(
                 this.getNewValue( clientX, clientY ) );
 
-            targetHandle.focus();
+            this.targetInput.focus();
 
-            targetHandle.dispatchEvent( e );
+            this.targetInput.dispatchEvent( e );
             if ( onChange )
             {
                 onChange( e );
