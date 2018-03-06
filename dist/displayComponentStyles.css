@@ -11283,26 +11283,65 @@ only used in type__carousel for now
     height: 1.8rem;
     width: 2.6rem;
 }
-.passwordInput__default__1KJw4 /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+    /* greyscale colors */
+
+
+    /* bluescale colors */
+
+    /* redscale colors */
+
+    /* orangescale colors */
+
+    /* yellowscale colors */
+
+    /* limescale colors */
+
+    /* greenscale colors */
+
+    /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.passwordInput__default__1KJw4
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  16px;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .passwordInput__default__1KJw4:last-child
+/* in case this is a flexbox child */
+
+.passwordInput__default__1KJw4:last-child
     {
         margin-bottom:  0;
     }
@@ -12467,53 +12506,54 @@ only used in type__carousel for now
 }
 .scrollBox__default__GWy-0 .scrollBox__scrollBox__2UBiX
     {
-        overflow:               auto;
-        overscroll-behavior:    contain;
+        overflow:   auto;
+    }
+.scrollBox__default__GWy-0 .scrollBox__content__tGMBF
+    {
+
+    }
+.scrollBox__default__GWy-0 .scrollBox__icon__down__29U1k, .scrollBox__default__GWy-0 .scrollBox__icon__left__1Wpwq, .scrollBox__default__GWy-0 .scrollBox__icon__right__2qnyF, .scrollBox__default__GWy-0 .scrollBox__icon__up__mnKCx
+    {
+        position:         absolute;
+        z-index:          10;
+        background-color: #ffffff;
+        border-radius:    2rem;
+        opacity:          0.8;
+    }
+.scrollBox__default__GWy-0 .scrollBox__icon__down__29U1k svg, .scrollBox__default__GWy-0 .scrollBox__icon__left__1Wpwq svg, .scrollBox__default__GWy-0 .scrollBox__icon__right__2qnyF svg, .scrollBox__default__GWy-0 .scrollBox__icon__up__mnKCx svg
+        {
+            fill:         #289bc8;
+        }
+.scrollBox__default__GWy-0 .scrollBox__icon__down__29U1k
+    {
+        bottom: 1rem;
+        left:   calc(50% - 1.6rem);
+    }
+.scrollBox__default__GWy-0 .scrollBox__icon__left__1Wpwq
+    {
+        top:    calc(50% - 1.6rem);
+        left:   1rem;
+    }
+.scrollBox__default__GWy-0 .scrollBox__icon__right__2qnyF
+    {
+        top:    calc(50% - 1.6rem);
+        right:  1rem;
+    }
+.scrollBox__default__GWy-0 .scrollBox__icon__up__mnKCx
+    {
+        top:    1rem;
+        left:   calc(50% - 1.6rem);
     }
 .scrollBox__scroll__horizontal__2cDkN .scrollBox__scrollBox__2UBiX
     {
-        overflow-y: hidden;
+        overflow-y:             hidden;
+        overscroll-behavior-x:  contain;
     }
 .scrollBox__scroll__vertical__2Fmp3 .scrollBox__scrollBox__2UBiX
     {
-        overflow-x: hidden;
+        overflow-x:             hidden;
+        overscroll-behavior-y:  contain;
     }
-.scrollBox__content__tGMBF
-{
-
-}
-.scrollBox__icon__down__29U1k, .scrollBox__icon__left__1Wpwq, .scrollBox__icon__right__2qnyF, .scrollBox__icon__up__mnKCx
-{
-    position:         absolute;
-    z-index:          10;
-    background-color: #ffffff;
-    border-radius:    2rem;
-    opacity:          0.8;
-}
-.scrollBox__icon__down__29U1k svg, .scrollBox__icon__left__1Wpwq svg, .scrollBox__icon__right__2qnyF svg, .scrollBox__icon__up__mnKCx svg
-    {
-        fill:         #289bc8;
-    }
-.scrollBox__icon__down__29U1k
-{
-    bottom: 1rem;
-    left:   calc(50% - 1.6rem);
-}
-.scrollBox__icon__left__1Wpwq
-{
-    top:    calc(50% - 1.6rem);
-    left:   1rem;
-}
-.scrollBox__icon__right__2qnyF
-{
-    top:    calc(50% - 1.6rem);
-    right:  1rem;
-}
-.scrollBox__icon__up__mnKCx
-{
-    top:    1rem;
-    left:   calc(50% - 1.6rem);
-}
 .sorter__default__3a0HN /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -13938,26 +13978,65 @@ only used in type__carousel for now
     {
         resize: vertical;
     }
-.textArea__default__Dfi2- /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+    /* greyscale colors */
+
+
+    /* bluescale colors */
+
+    /* redscale colors */
+
+    /* orangescale colors */
+
+    /* yellowscale colors */
+
+    /* limescale colors */
+
+    /* greenscale colors */
+
+    /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textArea__default__Dfi2-
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  16px;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textArea__default__Dfi2-:last-child
+/* in case this is a flexbox child */
+
+.textArea__default__Dfi2-:last-child
     {
         margin-bottom:  0;
     }
@@ -13966,26 +14045,65 @@ only used in type__carousel for now
 {
     /* nothing to see here */
 }
-.textInput__default__9o_HN /* all elements get default margin-bottom of 2rem */
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+
+    /* greyscale colors */
+
+
+    /* bluescale colors */
+
+    /* redscale colors */
+
+    /* orangescale colors */
+
+    /* yellowscale colors */
+
+    /* limescale colors */
+
+    /* greenscale colors */
+
+    /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+.textInput__default__9o_HN
 {
     position:       relative;
-    margin-bottom:  2rem;
+    margin:         0;
+    margin-bottom:  16px;
 
     -webkit-box-sizing:     border-box;
 
             box-sizing:     border-box;
     width:          100%;
     max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
+    min-width:      0;
 }
 
-    .textInput__default__9o_HN:last-child
+/* in case this is a flexbox child */
+
+.textInput__default__9o_HN:last-child
     {
         margin-bottom:  0;
     }

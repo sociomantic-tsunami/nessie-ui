@@ -28197,7 +28197,7 @@ module.exports = {"default":"required__default","required":"required__required"}
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"scrollBox__default","scrollBox":"scrollBox__scrollBox","scroll__horizontal":"scrollBox__scroll__horizontal","scroll__vertical":"scrollBox__scroll__vertical","content":"scrollBox__content","icon__down":"scrollBox__icon__down","icon__left":"scrollBox__icon__left","icon__right":"scrollBox__icon__right","icon__up":"scrollBox__icon__up"};
+module.exports = {"default":"scrollBox__default","scrollBox":"scrollBox__scrollBox","content":"scrollBox__content","icon__down":"scrollBox__icon__down","icon__left":"scrollBox__icon__left","icon__right":"scrollBox__icon__right","icon__up":"scrollBox__icon__up","scroll__horizontal":"scrollBox__scroll__horizontal","scroll__vertical":"scrollBox__scroll__vertical"};
 
 /***/ }),
 /* 174 */

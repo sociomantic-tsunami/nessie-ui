@@ -12467,53 +12467,54 @@ only used in type__carousel for now
 }
 .scrollBox__default .scrollBox__scrollBox
     {
-        overflow:               auto;
-        overscroll-behavior:    contain;
+        overflow:   auto;
+    }
+.scrollBox__default .scrollBox__content
+    {
+
+    }
+.scrollBox__default .scrollBox__icon__down, .scrollBox__default .scrollBox__icon__left, .scrollBox__default .scrollBox__icon__right, .scrollBox__default .scrollBox__icon__up
+    {
+        position:         absolute;
+        z-index:          10;
+        background-color: #ffffff;
+        border-radius:    2rem;
+        opacity:          0.8;
+    }
+.scrollBox__default .scrollBox__icon__down svg, .scrollBox__default .scrollBox__icon__left svg, .scrollBox__default .scrollBox__icon__right svg, .scrollBox__default .scrollBox__icon__up svg
+        {
+            fill:         #289bc8;
+        }
+.scrollBox__default .scrollBox__icon__down
+    {
+        bottom: 1rem;
+        left:   calc(50% - 1.6rem);
+    }
+.scrollBox__default .scrollBox__icon__left
+    {
+        top:    calc(50% - 1.6rem);
+        left:   1rem;
+    }
+.scrollBox__default .scrollBox__icon__right
+    {
+        top:    calc(50% - 1.6rem);
+        right:  1rem;
+    }
+.scrollBox__default .scrollBox__icon__up
+    {
+        top:    1rem;
+        left:   calc(50% - 1.6rem);
     }
 .scrollBox__scroll__horizontal .scrollBox__scrollBox
     {
-        overflow-y: hidden;
+        overflow-y:             hidden;
+        overscroll-behavior-x:  contain;
     }
 .scrollBox__scroll__vertical .scrollBox__scrollBox
     {
-        overflow-x: hidden;
+        overflow-x:             hidden;
+        overscroll-behavior-y:  contain;
     }
-.scrollBox__content
-{
-
-}
-.scrollBox__icon__down, .scrollBox__icon__left, .scrollBox__icon__right, .scrollBox__icon__up
-{
-    position:         absolute;
-    z-index:          10;
-    background-color: #ffffff;
-    border-radius:    2rem;
-    opacity:          0.8;
-}
-.scrollBox__icon__down svg, .scrollBox__icon__left svg, .scrollBox__icon__right svg, .scrollBox__icon__up svg
-    {
-        fill:         #289bc8;
-    }
-.scrollBox__icon__down
-{
-    bottom: 1rem;
-    left:   calc(50% - 1.6rem);
-}
-.scrollBox__icon__left
-{
-    top:    calc(50% - 1.6rem);
-    left:   1rem;
-}
-.scrollBox__icon__right
-{
-    top:    calc(50% - 1.6rem);
-    right:  1rem;
-}
-.scrollBox__icon__up
-{
-    top:    1rem;
-    left:   calc(50% - 1.6rem);
-}
 .sorter__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
