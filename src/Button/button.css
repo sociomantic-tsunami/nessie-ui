@@ -2,19 +2,26 @@
 
 .default
 {
-    position:           relative;
-    display:            table; /* flex doesn’t work here */
+    position:               relative;
+    display:                table; /* flex doesn’t work here */
 
-    width:              auto;
+    width:                  auto;
 
-    padding:            0;
+    padding:                0;
 
-    border:             none;
-    border-radius:      2px;
+    border:                 none;
+    border-radius:          2px;
 
-    background:         transparent;
-    cursor:             pointer;
-    text-transform:     uppercase;
+    background:             transparent;
+    cursor:                 pointer;
+    text-transform:         uppercase;
+
+    .iconContainer
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+    }
 }
 
 
@@ -26,7 +33,7 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-    height:             40px; /************ replace with min-, or remove? */
+    height:             40px;
     padding:            0 var( --spacing-2 );
     text-align:         center;
 }
@@ -55,7 +62,8 @@
 
     .iconContainer
     {
-        margin-left:    var( --spacing-1 );
+        margin-left:    4px; /* space between icon and text */
+        margin-right:   -var( --spacing-1 ); /* half of content padding */
     }
 }
 
@@ -64,7 +72,8 @@
 {
     .iconContainer
     {
-        margin-right:   var( --spacing-1 );
+        margin-right:   4px; /* space between icon and text */
+        margin-left:    -var( --spacing-1 ); /* half of content padding */
     }
 }
 

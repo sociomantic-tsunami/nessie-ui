@@ -61,7 +61,7 @@ export default class Button extends Component
             'validation',
             'none'
         ] ),
-        /*
+        /**
          *  Icon position relative to Button text
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
@@ -186,6 +186,7 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
+                        size       = "M"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
                         forceHover = { isHovered }
