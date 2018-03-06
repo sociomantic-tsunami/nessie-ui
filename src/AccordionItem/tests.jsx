@@ -96,3 +96,23 @@ describe( 'AccordionItemHeader', () =>
         } );
     } );
 } );
+
+describe( 'AccordionItemContent', () =>
+{
+    let wrapper;
+    // let instance;
+
+    beforeEach( () =>
+    {
+        wrapper  = shallow( <AccordionItemContent /> );
+        // instance = wrapper.instance();
+    } );
+
+    describe( 'render()', () =>
+    {
+        it( 'should contain exactly one <div>', () =>
+        {
+            expect( wrapper.find( 'div' ) ).to.have.length( 1 );
+        } );
+    } );
+} );
