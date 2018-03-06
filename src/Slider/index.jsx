@@ -377,6 +377,8 @@ export default class Slider extends Component
 
         addEventListener( 'mousemove', this.handleMouseMove );
         addEventListener( 'mouseup', this.handleMouseUp );
+
+        // this.setState( { isGrabbing: true } );
     }
 
 
@@ -411,6 +413,8 @@ export default class Slider extends Component
     {
         removeEventListener( 'mousemove', this.handleMouseMove );
         removeEventListener( 'mouseup', this.handleMouseUp );
+
+        // this.setState( { isGrabbing: false } );
     }
 
 
@@ -453,7 +457,8 @@ export default class Slider extends Component
     handleFocus( event )
     {
         this.setState( {
-            handleIndex : event.target.id
+            handleIndex : event.target.id,
+            isGrabbing  : true
         } );
     }
 
@@ -465,7 +470,8 @@ export default class Slider extends Component
     handleBlur()
     {
         this.setState( {
-            handleIndex : -1
+            handleIndex : -1,
+            isGrabbing  : false
         } );
     }
 
@@ -637,7 +643,8 @@ export default class Slider extends Component
                     handleLabelPosition : hasHandleLabels &&
                                           handleLabelPosition,
                     hasHandleLabels,
-                    orientation
+                    orientation,
+                    grabbing : this.state.isGrabbing,
                 } } >
                 <div className = { className }>
                     <div className = { cssMap.inputContainer }>

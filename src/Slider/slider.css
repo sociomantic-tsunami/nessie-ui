@@ -127,6 +127,15 @@
     }
 }
 
+.grabbing
+{
+    .handle,
+    .trackFill
+    {
+        transition: none;
+    }
+}
+
 
 
 
