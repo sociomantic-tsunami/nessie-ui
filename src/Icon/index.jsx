@@ -5,15 +5,6 @@ import { buildClassName } from '../utils';
 import styles             from './icon.css';
 
 
-const iconsWithVariants = [
-    'alert',
-    'approved',
-    'declined',
-    'ended',
-    'error',
-    'pending',
-];
-
 const Icon = ( {
     children,
     className,
@@ -25,16 +16,14 @@ const Icon = ( {
     onMouseOver,
     size,
     theme,
-    type,
-    variant,
+    type
 } ) =>
 {
     let xLink;
 
     if ( type !== 'none' )
     {
-        xLink = iconsWithVariants.includes( type ) ?
-            `#icon__${type}-${variant}` : `#icon__${type}`;
+        xLink = `#icon__${type}`;
     }
 
     return (
@@ -107,39 +96,34 @@ Icon.propTypes =
      */
     type : PropTypes.oneOf( [
         'account',
+        'active',
         'add',
-        'alert',
-        'approved',
         'calendar',
         'close',
+        'deactivated',
         'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
-        'ended',
         'error',
         'hide',
         'info',
         'inspect',
         'left',
         'link',
-        'pending',
         'preview',
         'reset',
         'right',
+        'scheduled',
         'search',
         'show',
         'up',
         'upload',
         'validation',
         'none',
-    ] ),
-    /**
-    *  Icon variant to show
-    */
-    variant : PropTypes.oneOf( [ 'fill', 'stroke' ] ),
+    ] )
 };
 
 Icon.defaultProps =
@@ -154,9 +138,7 @@ Icon.defaultProps =
     onMouseOver : undefined,
     size        : 'S',
     theme       : 'light',
-    type        : 'none',
-    variant     : 'fill',
-
+    type        : 'none'
 };
 
 export default Icon;
