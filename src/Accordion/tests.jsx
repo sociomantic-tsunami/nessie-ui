@@ -40,20 +40,21 @@ describe( 'Accordion', () =>
         } );
     } );
 
-    // describe( 'props()', () =>
-    // {
-    //     it( 'should pass isDisabled to all the childrens', () =>
-    //     {
-    //         wrapper.setProps( { children : [
-    //             <AccordionItem headerText = "Form1" />,
-    //             <AccordionItem isOpen headerText = "Form2">
-    //                 <TextInput label = "Your name" />
-    //             </AccordionItem> ],
-    //         isDisable : true } );
-    //         expect( wrapper.find( AccordionItem )[ 0 ].prop( 'isDisabled' ) )
-    //             .to.be.true;
-		// 				expect( wrapper.find( AccordionItem )[ 0 ].prop( 'isDisabled' ) )
-		//             .to.be.true;
-    //     } );
-    // } );
+    describe( 'props()', () =>
+    {
+        it( 'should pass isDisabled to all the childrens', () =>
+        {
+            wrapper.setProps( { children : [
+                <AccordionItem headerText = "Form1" />,
+                <AccordionItem isOpen headerText = "Form2">
+                    <TextInput label = "Your name" />
+                </AccordionItem> ],
+            isDisabled : true } );
+
+            wrapper.find( AccordionItem ).forEach( ( node ) =>
+            {
+                expect( node.prop( 'isDisabled' ) ).to.equal( true );
+            } );
+        } );
+    } );
 } );

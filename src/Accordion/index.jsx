@@ -65,12 +65,12 @@ Accordion.propTypes =
 
 Accordion.defaultProps =
 {
-    children  : undefined,
-    className : undefined,
-    cssMap    : styles,
-    hasError  : false,
-    header    : undefined,
-    isDisbled : false,
+    children   : undefined,
+    className  : undefined,
+    cssMap     : styles,
+    hasError   : false,
+    header     : undefined,
+    isDisabled : false,
 };
 
 export default Accordion;

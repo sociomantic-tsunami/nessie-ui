@@ -100,7 +100,7 @@ AccordionItem.defaultProps =
     hasError    : false,
     headerText  : undefined,
     id          : undefined,
-    isDisbled   : false,
+    isDisabled  : false,
     isOpen      : false,
     onClick     : undefined,
     onMouseOver : undefined,
