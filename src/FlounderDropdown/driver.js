@@ -72,9 +72,15 @@ export default class FlounderDropdownDriver
      */
     chooseItemByIndex( index )
     {
+        /* since the placeholder is always at index 0 in Flounder’s internal
+         * representation we increment the index (or indices) by 1
+         */
+        const internalIndex = Array.isArray( index ) ?
+            index.map( i => i + 1 ) : index + 1;
+
         return chooseItem( ( ...params ) =>
             this.innerFlounderComponent.clickByIndex( ...params ),
-            index,
+            internalIndex,
             'index',
             this.wrapper
         );
@@ -155,8 +161,7 @@ function chooseItem( method, searchTerm, errorByWhat, wrapper )
         throw new Error( ERRORS.DROPDOWN_READ_ONLY );
     }
 
-    const multiple = searchTerm instanceof Array;
-
+    const multiple = Array.isArray( searchTerm );
     const selected = method( searchTerm, multiple );
 
     if ( selected == null ||
