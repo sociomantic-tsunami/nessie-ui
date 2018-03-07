@@ -14,7 +14,6 @@
 
     background:             transparent;
     cursor:                 pointer;
-    text-transform:         uppercase;
 
     .iconContainer
     {
@@ -43,9 +42,8 @@
 {
     @extend %Nessie-SemiBold;
 
-    font-size:          var( --typo-2 );
+    font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
-    letter-spacing:     0.4px;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
@@ -86,7 +84,7 @@
     &.fakeHovered,
     &:hover
     {
-        background:     var( --PC-BLUE--DARK );
+        background:     var( --PC-BLUE--L10);
         color:          var( --PC-WHITE );
     }
 }
@@ -100,7 +98,7 @@
     &.fakeHovered,
     &:hover
     {
-        background:     var( --PC-GREY--L70 );
+        background:     var( --PC-GREY--L75 );
         color:          var( --PC-GREY--L25 );
     }
 
@@ -133,7 +131,7 @@
     &.fakeHovered,
     &:hover
     {
-        background: var( --PC-GREEN--DARK );
+        background: var( --PC-GREEN--L10 );
         color:      var( --PC-WHITE );
     }
 }
@@ -147,21 +145,7 @@
     &.fakeHovered,
     &:hover
     {
-        background: var( --PC-RED--DARK );
-        color:      var( --PC-WHITE );
-    }
-}
-
-
-.role__warning
-{
-    background:     var( --PC-ORANGE );
-    color:          var( --PC-WHITE );
-
-    &.fakeHovered,
-    &:hover
-    {
-        background: var( --PC-ORANGE--DARK );
+        background: var( --PC-RED--L10 );
         color:      var( --PC-WHITE );
     }
 }
@@ -174,29 +158,11 @@
 
     .content
     {
-        min-width:      70px;
-
-        border-radius:  15px;
+        height:         30px;
+        border-radius:  20px;
         border:         1px solid var( --PC-BLUE );
 
         box-sizing:     border-box;
-    }
-
-    &.fakeHovered,
-    &:hover
-    {
-        color:          var( --PC-WHITE );
-
-        .content
-        {
-            background: var( --PC-BLUE );
-        }
-
-        .icon
-        {
-            fill:       var( --PC-WHITE );
-            color:      var( --PC-WHITE );
-        }
     }
 
     .icon
@@ -292,6 +258,7 @@
     &.role__secondary
     {
         color:      var( --PC-GREY--L55 );
+        background: var( --PC-WHITE );
 
         .icon
         {
@@ -324,18 +291,6 @@
         }
     }
 
-    &.role__warning
-    {
-        background: var( --PC-ORANGE--LIGHT );
-        color:      var( --PC-ORANGE--L25 );
-
-        .icon
-        {
-            fill:   color( var( --PC-RED ) tint( 25% ) );
-            color:  color( var( --PC-RED ) tint( 25% ) );
-        }
-    }
-
     &.role__subtle
     {
         color:              var( --PC-BLUE--L40 );
@@ -343,7 +298,7 @@
         .content
         {
             background:     var( --PC-WHITE );
-            border-color:   var( --PC-BLUE--LIGHT );
+            border-color:   var( --PC-BLUE--L40 );
         }
 
         .icon

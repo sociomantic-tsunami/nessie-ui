@@ -27,7 +27,6 @@ export default class Button extends Component
             'subtle',
             'promoted',
             'critical',
-            'warning',
             'control'
         ] ),
         /**
