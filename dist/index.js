@@ -22258,7 +22258,7 @@ var FlounderDropdown = function (_Component) {
                     onInputChange: props.onInputChange,
                     onOpen: props.onOpen,
                     openOnHover: props.openOnHover,
-                    placeholder: props.placeholder,
+                    placeholder: props.placeholder || '',
                     search: !props.isHeader && props.search
                 };
 

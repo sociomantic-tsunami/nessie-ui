@@ -890,11 +890,18 @@ var FlounderDropdownDriver = function () {
         value: function chooseItemByIndex(index) {
             var _this3 = this;
 
+            /* since the placeholder is always at index 0 in Flounder’s internal
+             * representation we increment the index (or indices) by 1
+             */
+            var internalIndex = Array.isArray(index) ? index.map(function (i) {
+                return i + 1;
+            }) : index + 1;
+
             return chooseItem(function () {
                 var _innerFlounderCompone3;
 
                 return (_innerFlounderCompone3 = _this3.innerFlounderComponent).clickByIndex.apply(_innerFlounderCompone3, arguments);
-            }, index, 'index', this.wrapper);
+            }, internalIndex, 'index', this.wrapper);
         }
 
         /**
@@ -973,8 +980,7 @@ function chooseItem(method, searchTerm, errorByWhat, wrapper) {
         throw new Error(ERRORS.DROPDOWN_READ_ONLY);
     }
 
-    var multiple = searchTerm instanceof Array;
-
+    var multiple = Array.isArray(searchTerm);
     var selected = method(searchTerm, multiple);
 
     if (selected == null || selected instanceof Array && selected.indexOf(null) >= 0) {
