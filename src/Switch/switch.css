@@ -4,11 +4,14 @@
 {
     --inputHeight:          40px;
 
-    --switchHeight:         var( --line-height-m );
-    --switchLetterSpacing:  0.04px;
+    --switchHeight:         var( --line-height-s );
+    --switchLetterSpacing:  0.4px;
 
-    --circleSize:           calc( 0.75 * var( --switchHeight ) );
-    --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) ) / 2 );
+    --borderWidth:          1px;
+    --borderTotal:          calc( var( --borderWidth ) * 2 ); /* both sides when calculating size */
+
+    --circleSize:           calc( var( --line-height-m ) - var( --borderTotal ) );
+    --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) - var( --borderTotal ) ) / 2 );
 
     --backgroundTransition: background-color 0.2s ease-in-out;
     --circleTransition:     left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
@@ -59,6 +62,9 @@
             height:         var( --circleSize );
 
             border-radius:  100%;
+            border-style:   solid;
+            border-width:   var( --borderWidth );
+            border-color:   var( --PC-GREY--L70 );
 
             background:     var( --PC-WHITE );
 
@@ -81,8 +87,8 @@
 
         @extend %Nessie-SemiBold;
         color:              var( --PC-WHITE );
-        font-size:          var( --typo-2 );
-        line-height:        var( --line-height-m );
+        font-size:          var( --typo-1 );
+        line-height:        var( --line-height-s );
         letter-spacing:     var( --switchLetterSpacing );
         text-transform:     uppercase;
 
@@ -118,7 +124,8 @@
 
         &::before
         {
-            left:   calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
+            left:           calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
+            border-color:   var( --PC-BLUE );
         }
 
         .on
