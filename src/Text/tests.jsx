@@ -26,3 +26,46 @@ describe( 'Text', () =>
         expect( Wrapper.find( '.text__default' ) ).to.have.length( 1 );
     } );
 } );
+
+
+describe( 'TextDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Text /> );
+        driver  = wrapper.driver();
+    } );
+
+    describe( 'getContent', () =>
+    {
+        it( 'should return the content set by text prop', () =>
+        {
+            const text = 'the quick brown fox jumps over the lazy dog';
+            wrapper.setProps( { text } );
+            expect( driver.getContent() ).to.equal( text );
+        } );
+
+        it( 'should return the content set by children prop', () =>
+        {
+            const text = 'the quick brown fox jumps over the lazy dog';
+            const children = <div>{ text }</div>;
+
+            wrapper.setProps( { children } );
+            expect( driver.getContent().find( 'div' ).text() ).to.equal( text );
+        } );
+
+        it( 'should return the content set by children prop when both text and children props are set', () =>
+        {
+            const textProp  = 'All their equipment and instruments are alive.';
+            const textChild = 'the quick brown fox jumps over the lazy dog';
+            const children  = <div>{ textChild }</div>;
+
+            wrapper.setProps( { text: textProp, children } );
+            expect( driver.getContent().find( 'div' ).text() )
+                .to.equal( textChild );
+        } );
+    } );
+} );
