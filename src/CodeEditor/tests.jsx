@@ -67,7 +67,7 @@ describe( 'CodeEditor', () =>
     } );
 } );
 
-describe( 'CodeEditor drivers', () =>
+describe( 'CodeEditorDriver', () =>
 {
     let wrapper;
     let CodeMirror;
@@ -80,36 +80,42 @@ describe( 'CodeEditor drivers', () =>
         driver     = wrapper.driver();
     } );
 
-    it( 'setInputValue()', () =>
+    describe( 'setInputValue()', () =>
     {
-        const arg = 'foo';
-        driver.setInputValue( arg );
-        expect( CodeMirror.getValue() ).to.equal( arg );
-    } );
-
-    it( 'setInputValue() when readonly', () =>
-    {
-        wrapper.setProps( { isReadOnly: true } );
-        const arg = 'foo';
-        expect( () => driver.setInputValue( arg ) ).to.throw(
-            'Cannot change the CodeEditor value since it is read-only' );
-    } );
-
-    it( 'clearInputValue()', () =>
-    {
-        wrapper.setProps( { value: 'foo' } );
-        driver.clearInputValue();
-        expect( CodeMirror.getValue() ).to.equal( '' );
-    } );
-
-    it( 'clearInputValue() when readonly', () =>
-    {
-        wrapper.setProps( {
-            value      : 'foo',
-            isReadOnly : true
+        it( 'should set the input value to "foo"', () =>
+        {
+            const arg = 'foo';
+            driver.setInputValue( arg );
+            expect( CodeMirror.getValue() ).to.equal( arg );
         } );
-        expect( () => driver.clearInputValue() ).to.throw(
-            'Cannot change the CodeEditor value since it is read-only' );
+
+        it( 'should throw the expected error when component isReadOnly', () =>
+        {
+            wrapper.setProps( { isReadOnly: true } );
+            const arg = 'foo';
+            expect( () => driver.setInputValue( arg ) ).to.throw(
+                'Cannot change the CodeEditor value since it is read-only' );
+        } );
+    } );
+
+    describe( 'clearInputValue()', () =>
+    {
+        it( 'should set the input value to an empty string', () =>
+        {
+            wrapper.setProps( { value: 'foo' } );
+            driver.clearInputValue();
+            expect( CodeMirror.getValue() ).to.equal( '' );
+        } );
+
+        it( 'should throw the expected error when component isReadOnly', () =>
+        {
+            wrapper.setProps( {
+                value      : 'foo',
+                isReadOnly : true
+            } );
+            expect( () => driver.clearInputValue() ).to.throw(
+                'Cannot change the CodeEditor value since it is read-only' );
+        } );
     } );
 
     it( 'getInputValue()', () =>
