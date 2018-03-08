@@ -20,7 +20,13 @@ export default class CodeEditorDriver
 
     blur()
     {
-        this.control.focus();
+        /* eslint-disable no-undef */
+        if ( this.control.hasFocus() && Boolean( document ) &&
+            Boolean( document.activeElement ) )
+        {
+            document.activeElement.blur();
+        }
+        /* eslint-enable no-undef */
         return this;
     }
 
