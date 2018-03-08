@@ -18,7 +18,6 @@ import {
     stringifyObj,
 } from './utils';
 
-
 const headers = { 1: H1, 2: H2, 3: H3, 4: H4 };
 
 const rebuildOnProps = [
@@ -41,9 +40,91 @@ const rebuildOnProps = [
     'onOpen',
     'openOnHover',
     'placeholder',
-    'search',
+    'search'
 ];
 
+const buildFlounder = ( node, props = {} ) =>
+{
+    if ( node )
+    {
+        let flounder = node.flounder;
+
+        const keepOpen = !!( flounder &&
+            flounder.refs.wrapper.className.match( props.cssMap.open ) );
+
+        const onChange = ( ...args ) =>
+        {
+            const toChange = !props.isReadOnly && props.onChange;
+
+            if ( typeof props.value !== 'undefined' || props.isReadOnly )
+            {
+                setValue( flounder, props.value );
+            }
+
+            toChange && props.onChange( ...args );
+        };
+
+        const flounderProps =
+            {
+                classes : mapCssToFlounder( props.cssMap ),
+                data    : mapIconClassesToFlounder(
+                    props.data, props.cssMap ),
+                disableArrow         : props.icon === 'none',
+                multiple             : props.multiple,
+                multipleMessage      : props.multipleMessage,
+                multipleTags         : !props.isHeader && props.multipleTags,
+                noMoreOptionsMessage : props.noMoreOptionsMessage,
+                noMoreResultsMessage : props.noMoreResultsMessage,
+                onBlur               : props.onBlur,  // not yet implemented
+                onChange,
+                onClose              : props.onClose,
+                onFirstTouch         : props.onFirstTouch,
+                onFocus              : props.onFocus, // not yet implemented
+                onInputChange        : props.onInputChange,
+                onOpen               : props.onOpen,
+                openOnHover          : props.openOnHover,
+                placeholder          : props.placeholder,
+                search               : !props.isHeader && props.search
+            };
+
+        flounder = flounder ? flounder.rebuild( flounderProps ) :
+            new Flounder( node, flounderProps );
+
+        if ( keepOpen )
+        {
+            flounder.toggleList( {} );
+        }
+
+        return flounder;
+    }
+
+    return false;
+};
+
+const setValue = ( flounder, value ) =>
+{
+    if ( flounder )
+    {
+        let values = [];
+
+        if ( Array.isArray( value ) )
+        {
+            values = value;
+        }
+        else if ( value )
+        {
+            values = [ value ];
+        }
+
+        const selectedValues = flounder.getSelectedValues() || [];
+
+        if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
+        {
+            flounder.deselectAll( true );
+            flounder.setByValue( values );
+        }
+    }
+};
 
 export default class FlounderDropdown extends Component
 {
@@ -209,7 +290,6 @@ export default class FlounderDropdown extends Component
         headerLevel           : 'none',
         hasError              : false,
         errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
         isDisabled            : false,
         isReadOnly            : false,
         multiple              : false,
@@ -232,18 +312,22 @@ export default class FlounderDropdown extends Component
         this.handleRef = this.handleRef.bind( this );
     }
 
+
     componentDidMount()
     {
-        const { props } = this;
+        const { flounderDiv, props } = this;
+        const flounder = buildFlounder( flounderDiv, props );
 
-        this.buildFlounder();
-        this.setValue( props.value || props.defaultValue );
-        this.setDisabled();
+        setValue( flounder, props.value || props.defaultValue );
+        flounder.disable( props.isDisabled );
+
+        this.flounderInstance = flounder;
     }
 
     componentDidUpdate( prevProps )
     {
-        const { props } = this;
+        const { flounderDiv, props } = this;
+        let { flounderInstance } = this;
 
         // eslint-disable-next-line no-restricted-syntax
         for ( const propName of rebuildOnProps )
@@ -251,150 +335,13 @@ export default class FlounderDropdown extends Component
             if ( stringifyObj( prevProps[ propName ] ) !==
                 stringifyObj( props[ propName ] ) )
             {
-                this.buildFlounder();
+                flounderInstance = buildFlounder( flounderDiv, props );
                 break;
             }
         }
 
-        this.setValue();
-        this.setDisabled();
-    }
-
-    componentWillUnmount()
-    {
-        const { flounderInstance } = this;
-
-        if ( flounderInstance )
-        {
-            flounderInstance.destroy();
-            this.flounderInstance = null;
-        }
-    }
-
-    setDisabled()
-    {
-        const { flounderInstance, props } = this;
-
-        if ( flounderInstance )
-        {
-            flounderInstance.disable( props.isDisabled );
-        }
-    }
-
-    setValue( value = this.props.value )
-    {
-        const { flounderInstance } = this;
-
-        if ( flounderInstance )
-        {
-            let values = [];
-
-            if ( value )
-            {
-                if ( Array.isArray( value ) )
-                {
-                    values = value;
-                }
-                else if ( value )
-                {
-                    values = [ value ];
-                }
-            }
-
-            if ( value || this.props.isReadOnly )
-            {
-                const selectedValues =
-                    flounderInstance.getSelectedValues() || [];
-
-                if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
-                {
-                    flounderInstance.deselectAll( true );
-                    flounderInstance.setByValue( values );
-                }
-            }
-        }
-    }
-
-    buildFlounder()
-    {
-        const { flounderDiv } = this;
-
-        if ( flounderDiv )
-        {
-            const { flounderInstance, props } = this;
-
-            const onChange = ( ...args ) =>
-            {
-                this.setValue();
-
-                if ( !props.isReadOnly && props.onChange )
-                {
-                    props.onChange( ...args );
-                }
-            };
-
-            const flounderProps = {
-                classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder( props.data,
-                    props.cssMap ),
-                disableArrow         : props.icon === 'none',
-                multiple             : props.multiple,
-                multipleMessage      : props.multipleMessage,
-                multipleTags         : !props.isHeader && props.multipleTags,
-                noMoreOptionsMessage : props.noMoreOptionsMessage,
-                noMoreResultsMessage : props.noMoreResultsMessage,
-                onBlur               : props.onBlur,  // not yet implemented
-                onChange,
-                onClose              : props.onClose,
-                onFirstTouch         : props.onFirstTouch,
-                onFocus              : props.onFocus, // not yet implemented
-                onInputChange        : props.onInputChange,
-                onOpen               : props.onOpen,
-                openOnHover          : props.openOnHover,
-                placeholder          : props.placeholder,
-                search               : !props.isHeader && props.search
-            };
-
-            const keepOpen = this.isOpen();
-
-            if ( flounderInstance && flounderInstance === flounderDiv.flounder )
-            {
-                flounderInstance.rebuild( flounderProps );
-            }
-            else
-            {
-                if ( flounderInstance )
-                {
-                    this.flounderInstance.destroy();
-                }
-
-                this.flounderInstance =
-                    new Flounder( flounderDiv, flounderProps );
-            }
-
-            if ( keepOpen )
-            {
-                flounderInstance.toggleList( new Event( {} ) );
-            }
-        }
-    }
-
-    isOpen()
-    {
-        const { flounderInstance } = this;
-        const { cssMap } = this.props;
-
-        if ( flounderInstance )
-        {
-            const { wrapper } = flounderInstance.refs;
-
-            if ( wrapper.className.match( cssMap.open ) )
-            {
-                return true;
-            }
-        }
-
-        return false;
+        setValue( flounderInstance, props.value );
+        flounderInstance.disable( props.isDisabled );
     }
 
     handleRef( node )
@@ -427,12 +374,13 @@ export default class FlounderDropdown extends Component
                     headerLevel,
                     toggleIcon  : icon,
                     error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && !hasError && forceHover
+                    fakeHovered : !isDisabled && !hasError &&
+                                              forceHover
                 } }>
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
                         <div
-                            ref         = { this.handleRef }
+                            ref = { this.handleRef }
                             onMouseOver = { onMouseOver }
                             onMouseOut  = { onMouseOut }
                         />

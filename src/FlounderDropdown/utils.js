@@ -1,3 +1,5 @@
+import styles               from './flounderDropdown.css';
+
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
     ( {
@@ -35,11 +37,27 @@ const mapCssToFlounder = ( cssMap = {} ) =>
     } );
 
 const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
-    data.map( datum =>
+{
+    if ( !Array.isArray( data ) )
+    {
+        return data;
+    }
+
+    return data.map( datum =>
     {
         if ( typeof datum !== 'object' )
         {
             return datum;
+        }
+
+        if ( datum.description )
+        {
+            const descClass = styles.optionWithDescription;
+
+            const extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${descClass}` : descClass;
+
+            return { ...datum, extraClass };
         }
 
         return {
@@ -49,7 +67,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
             extraClass : cssMap[ `optionIcon__${datum.icon}` ]
         };
     } );
-
+};
 
 const stringifyArr = ( arr = [] ) => JSON.stringify( [ ...arr ].sort() );
 
