@@ -9,7 +9,7 @@ export default class CodeEditorDriver
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.control = wrapper.instance().codeMirror;
+        this.control = wrapper.node.codeMirror;
     }
 
     focus()
@@ -55,7 +55,7 @@ export default class CodeEditorDriver
 
     isReadOnly()
     {
-        return Boolean( this.control.options.readOnly );
+        return Boolean( this.control.options.readOnly ) && !this.isDisabled();
     }
 
     isDisabled()
