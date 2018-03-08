@@ -3,12 +3,12 @@
 /* global expect */
 /* eslint no-console: 0*/
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React              from 'react';
+import { shallow, mount } from 'enzyme';
 
-import Css         from '../hoc/Css';
+import Css                from '../hoc/Css';
 
-import CodeEditor  from './index';
+import CodeEditor         from './index';
 
 
 describe( 'CodeEditor', () =>
@@ -64,5 +64,70 @@ describe( 'CodeEditor', () =>
             expect( wrapper.find( `.${cssMap.editor}` )
                 .prop( 'onMouseOut' ) ).to.equal( onMouseOut );
         } );
+    } );
+} );
+
+describe( 'CodeEditor drivers', () =>
+{
+    let wrapper;
+    let CodeMirror;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper    = mount( <CodeEditor /> );
+        CodeMirror = wrapper.instance().codeMirror;
+        driver     = wrapper.driver();
+    } );
+
+    it( 'setInputValue()', () =>
+    {
+        const arg = 'foo';
+        driver.setInputValue( arg );
+        expect( CodeMirror.getValue() ).to.equal( arg );
+    } );
+
+    it( 'setInputValue() when readonly', () =>
+    {
+        wrapper.setProps( { isReadOnly: true } );
+        const arg = 'foo';
+        expect( () => driver.setInputValue( arg ) ).to.throw(
+            'Cannot change the CodeEditor value since it is read-only' );
+    } );
+
+    it( 'clearInputValue()', () =>
+    {
+        wrapper.setProps( { value: 'foo' } );
+        driver.clearInputValue();
+        expect( CodeMirror.getValue() ).to.equal( '' );
+    } );
+
+    it( 'clearInputValue() when readonly', () =>
+    {
+        wrapper.setProps( {
+            value      : 'foo',
+            isReadOnly : true
+        } );
+        expect( () => driver.clearInputValue() ).to.throw(
+            'Cannot change the CodeEditor value since it is read-only' );
+    } );
+
+    it( 'getInputValue()', () =>
+    {
+        wrapper.setProps( { value: 'foo' } );
+        expect( driver.getInputValue() ).to.equal( 'foo' );
+    } );
+
+    it( 'isReadOnly()', () =>
+    {
+        wrapper.setProps( { isReadOnly: true } );
+        expect( driver.isReadOnly() ).to.equal( true );
+    } );
+
+    it( 'isDisabled()', () =>
+    {
+        wrapper.setProps( { isDisabled: true } );
+        expect( driver.isDisabled() ).to.equal( true );
+        expect( driver.isReadOnly() ).to.equal( true );
     } );
 } );
