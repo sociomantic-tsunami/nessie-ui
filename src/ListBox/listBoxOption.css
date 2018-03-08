@@ -68,11 +68,12 @@
 
     .optionText
     {
-        color:          var( --PC-GREY--L40 );
+        color:          var( --PC-GREY--L70 );
     }
 
+    &.withDescription .optionText,
     .description
     {
-        color:          var( --PC-GREY--L55 );
+        color:          var( --PC-GREY--L40 );
     }
 }

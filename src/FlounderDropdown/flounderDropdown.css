@@ -261,11 +261,17 @@
     .option.disabled,
     .error .option.disabled
     {
+        color:  var( --PC-GREY--L70 );
+    }
+
+    .optionWithDescription.disabled,
+    .error .optionWithDescription.disabled
+    {
         color:  var( --PC-GREY--L40 );
 
         .description
         {
-            color:  var( --PC-GREY--L55 );
+            color:  var( --PC-GREY--L40 );
         }
     }
 
