@@ -1057,7 +1057,8 @@ var IconButton = function (_Component) {
           cssMap: cssMap,
           cssProps: {
             disabled: isDisabled,
-            size: iconSize } },
+            size: iconSize
+          } },
         _react2.default.createElement(
           'button',
           {
@@ -28006,7 +28007,7 @@ module.exports = {"default":"icon__default","size__S":"icon__size__S","size__M":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"iconButton__default","disabled":"iconButton__disabled"};
+module.exports = {"default":"iconButton__default","icon":"iconButton__icon","disabled":"iconButton__disabled"};
 
 /***/ }),
 /* 147 */
