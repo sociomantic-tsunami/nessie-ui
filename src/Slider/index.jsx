@@ -186,6 +186,7 @@ export default class Slider extends Component
         step                  : 1,
         isLogarithmic         : false,
         cssMap                : require( './slider.css' ),
+        value                 : 0,
     };
 
 
