@@ -147,7 +147,8 @@ export default class IconButton extends Component
                 cssMap   = { cssMap }
                 cssProps = { {
                     disabled : isDisabled,
-                    size     : iconSize } }>
+                    size     : iconSize,
+                } }>
                 <button
                     ref       = { buttonRef }
                     type      = "button"
