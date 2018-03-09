@@ -16579,8 +16579,8 @@ var Slider = function (_Component) {
         _this.state = _extends({}, _this.state, { track: {} });
 
         _this.setTrackState = _this.setTrackState.bind(_this);
-        _this.handleInputRef = _this.handleInputRef.bind(_this);
-        _this.inputs = [];
+
+        _this.handleInputContainerRef = _this.handleInputContainerRef.bind(_this);
 
         _this.handleMouseUp = _this.handleMouseUp.bind(_this);
         _this.handleMouseDown = _this.handleMouseDown.bind(_this);
@@ -16594,22 +16594,15 @@ var Slider = function (_Component) {
         return _this;
     }
 
+    // eslint-disable-next-line valid-jsdoc
+    /**
+    * Generate track fill style object depending on input values
+    * @param  {Array}   values    slider values
+    * @return {Object}            style object
+    */
+
+
     _createClass(Slider, [{
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps) {
-            if (JSON.stringify(nextProps.value) !== JSON.stringify(this.props.value)) {
-                this.inputs = [];
-            }
-        }
-
-        // eslint-disable-next-line valid-jsdoc
-        /**
-        * Generate track fill style object depending on input values
-        * @param  {Array}   values    slider values
-        * @return {Object}            style object
-        */
-
-    }, {
         key: 'getTrackFillStyle',
         value: function getTrackFillStyle(values) {
             var _props = this.props,
@@ -16791,7 +16784,7 @@ var Slider = function (_Component) {
                 return;
             }
 
-            this.targetInput = this.inputs[parseInt(event.target.dataset.index, 10)];
+            this.targetInput = this.inputContainer.childNodes[parseInt(event.target.dataset.index, 10)];
 
             this.targetInput.focus();
 
@@ -16903,16 +16896,18 @@ var Slider = function (_Component) {
                 var clientX = event.clientX,
                     clientY = event.clientY;
 
-                var targetHandle = this.targetInput ? this.targetInput : this.inputs[0];
+
+                this.targetInput = this.targetInput || this.inputContainer.childNodes[0];
+
                 var onChange = this.props.onChange;
 
                 var e = new Event('change');
 
-                targetHandle.value = this.getStep(this.getNewValue(clientX, clientY));
+                this.targetInput.value = this.getStep(this.getNewValue(clientX, clientY));
 
-                targetHandle.focus();
+                this.targetInput.focus();
 
-                targetHandle.dispatchEvent(e);
+                this.targetInput.dispatchEvent(e);
                 if (onChange) {
                     onChange(e);
                 }
@@ -16927,9 +16922,11 @@ var Slider = function (_Component) {
         */
 
     }, {
-        key: 'handleInputRef',
-        value: function handleInputRef(ref) {
-            this.inputs.push(ref);
+        key: 'handleInputContainerRef',
+        value: function handleInputContainerRef(ref) {
+            if (ref) {
+                this.inputContainer = ref;
+            }
         }
     }, {
         key: 'render',
@@ -17065,12 +17062,13 @@ var Slider = function (_Component) {
                     { className: className },
                     _react2.default.createElement(
                         'div',
-                        { className: cssMap.inputContainer },
+                        {
+                            className: cssMap.inputContainer,
+                            ref: this.handleInputContainerRef },
                         values.map(function (val, i) {
                             return _react2.default.createElement('input', {
                                 key: i // eslint-disable-line react/no-array-index-key, max-len
                                 , id: id + '_' + i,
-                                ref: _this2.handleInputRef,
                                 type: 'range',
                                 readOnly: isReadOnly,
                                 disabled: isDisabled,
