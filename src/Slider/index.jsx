@@ -137,6 +137,14 @@ export default class Slider extends Component
         */
         onMouseDown   : PropTypes.func,
         /**
+        *  onMouseOut callback function: ( e ) => { ... }
+        */
+        onMouseOut    : PropTypes.func,
+        /**
+        *  onMouseOver callback function: ( e ) => { ... }
+        */
+        onMouseOver   : PropTypes.func,
+        /**
         *  onMouseUp callback function: ( e ) => { ... }
         */
         onMouseUp     : PropTypes.func,
@@ -588,6 +596,8 @@ export default class Slider extends Component
             onKeyDown,
             onKeyUp,
             onMouseDown,
+            onMouseOut,
+            onMouseOver,
             onMouseUp,
             orientation,
             step,
@@ -698,7 +708,10 @@ export default class Slider extends Component
                     hasHandleLabels,
                     orientation
                 } } >
-                <div className = { className }>
+                <div
+                    className   = { className }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOut }>
                     <div
                         className = { cssMap.inputContainer }
                         ref       = { this.setInputContainerRef }>
