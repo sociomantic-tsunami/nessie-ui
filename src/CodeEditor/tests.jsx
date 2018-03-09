@@ -128,12 +128,13 @@ describe( 'CodeEditorDriver', () =>
     {
         wrapper.setProps( { isReadOnly: true } );
         expect( driver.isReadOnly() ).to.equal( true );
+        expect( driver.isDisabled() ).to.equal( false );
     } );
 
     it( 'isDisabled()', () =>
     {
         wrapper.setProps( { isDisabled: true } );
         expect( driver.isDisabled() ).to.equal( true );
-        expect( driver.isReadOnly() ).to.equal( true );
+        expect( driver.isReadOnly() ).to.equal( false );
     } );
 } );
