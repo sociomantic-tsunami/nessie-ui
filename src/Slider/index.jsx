@@ -711,7 +711,7 @@ export default class Slider extends Component
                 <div
                     className   = { className }
                     onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOut }>
+                    onMouseOver = { onMouseOver }>
                     <div
                         className = { cssMap.inputContainer }
                         ref       = { this.setInputContainerRef }>
@@ -734,7 +734,6 @@ export default class Slider extends Component
                                 step        = { step }
                                 type        = "range"
                                 value       = { val } />
-
                         ) ) }
                     </div>
 
