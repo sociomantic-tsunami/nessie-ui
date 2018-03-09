@@ -160,8 +160,9 @@ export default class Slider extends Component
         this.state = { ...this.state, track: {} };
 
         this.setTrackState = this.setTrackState.bind( this );
-        this.handleInputRef = this.handleInputRef.bind( this );
-        this.inputs = [];
+
+        this.handleInputContainerRef =
+            this.handleInputContainerRef.bind( this );
 
         this.handleMouseUp = this.handleMouseUp.bind( this );
         this.handleMouseDown = this.handleMouseDown.bind( this );
@@ -172,16 +173,6 @@ export default class Slider extends Component
         this.handleFocus = this.handleFocus.bind( this );
         this.handleBlur = this.handleBlur.bind( this );
         this.handleTrackMouseDown = this.handleTrackMouseDown.bind( this );
-    }
-
-
-    componentWillUpdate( nextProps )
-    {
-        if ( JSON.stringify( nextProps.value ) !==
-            JSON.stringify( this.props.value ) )
-        {
-            this.inputs = [];
-        }
     }
 
 
@@ -370,7 +361,7 @@ export default class Slider extends Component
             return;
         }
 
-        this.targetInput = this.inputs[
+        this.targetInput = this.inputContainer.childNodes[
             parseInt( event.target.dataset.index, 10 ) ];
 
         this.targetInput.focus();
@@ -481,17 +472,19 @@ export default class Slider extends Component
         if ( event.target.dataset.index === undefined )
         {
             const { clientX, clientY } = event;
-            const targetHandle         = this.targetInput ? this.targetInput :
-                this.inputs[ 0 ];
-            const { onChange }         = this.props;
+
+            this.targetInput = this.targetInput ||
+                this.inputContainer.childNodes[ 0 ];
+
+            const { onChange } = this.props;
             const e = new Event( 'change' );
 
-            targetHandle.value = this.getStep(
+            this.targetInput.value = this.getStep(
                 this.getNewValue( clientX, clientY ) );
 
-            targetHandle.focus();
+            this.targetInput.focus();
 
-            targetHandle.dispatchEvent( e );
+            this.targetInput.dispatchEvent( e );
             if ( onChange )
             {
                 onChange( e );
@@ -505,9 +498,12 @@ export default class Slider extends Component
     * callback refs handler
     * @param {Object}  ref  ref
     */
-    handleInputRef( ref )
+    handleInputContainerRef( ref )
     {
-        this.inputs.push( ref );
+        if ( ref )
+        {
+            this.inputContainer = ref;
+        }
     }
 
 
@@ -640,12 +636,13 @@ export default class Slider extends Component
                     orientation
                 } } >
                 <div className = { className }>
-                    <div className = { cssMap.inputContainer }>
+                    <div
+                        className = { cssMap.inputContainer }
+                        ref       = { this.handleInputContainerRef }>
                         { values.map( ( val, i ) => (
                             <input
                                 key      = { i } // eslint-disable-line react/no-array-index-key, max-len
                                 id       = { `${id}_${i}` }
-                                ref      = { this.handleInputRef }
                                 type     = "range"
                                 readOnly = { isReadOnly }
                                 disabled = { isDisabled }
