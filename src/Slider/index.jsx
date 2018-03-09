@@ -435,19 +435,20 @@ export default class Slider extends Component
     */
     handleMouseDown( event )
     {
-        event.preventDefault();
-
-        if ( this.props.isDisabled )
-        {
-            return;
-        }
-
         const { onMouseDown } = this.props;
 
         if ( onMouseDown )
         {
             onMouseDown( event );
         }
+
+        if ( event.defaultPrevented || this.props.isDisabled ||
+            event.button > 0 )
+        {
+            return;
+        }
+
+        event.preventDefault();
 
         const { index } = event.target.dataset;
 
@@ -506,16 +507,16 @@ export default class Slider extends Component
 
     handleClick( event )
     {
-        if ( event.target.dataset.index ) // target is handle
-        {
-            event.stopPropagation();
-        }
-
         const { onClick } = this.props;
 
         if ( onClick )
         {
             onClick( event );
+        }
+
+        if ( event.target.dataset.index ) // target is handle
+        {
+            event.stopPropagation();
         }
     }
 
@@ -526,6 +527,11 @@ export default class Slider extends Component
         if ( onFocus )
         {
             onFocus( event );
+        }
+
+        if ( event.defaultPrevented || this.props.isDisabled )
+        {
+            return;
         }
 
         this.setState( { handleIndex: event.target.id } );
@@ -539,6 +545,11 @@ export default class Slider extends Component
         if ( onBlur )
         {
             onBlur( event );
+        }
+
+        if ( event.defaultPrevented || this.props.isDisabled )
+        {
+            return;
         }
 
         this.setState( { handleIndex: -1 } );
