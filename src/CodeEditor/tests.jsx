@@ -80,7 +80,7 @@ describe( 'CodeEditorDriver', () =>
         driver     = wrapper.driver();
     } );
 
-    describe( 'setInputValue()', () =>
+    describe( 'setInputValue( value )', () =>
     {
         it( 'should set the input value to "foo"', () =>
         {
@@ -118,23 +118,32 @@ describe( 'CodeEditorDriver', () =>
         } );
     } );
 
-    it( 'getInputValue()', () =>
+    describe( 'getInputValue()', () =>
     {
-        wrapper.setProps( { value: 'foo' } );
-        expect( driver.getInputValue() ).to.equal( 'foo' );
+        it( 'should return the value of the Code Editor input', () =>
+        {
+            wrapper.setProps( { value: 'foo' } );
+            expect( driver.getInputValue() ).to.equal( 'foo' );
+        } );
     } );
 
-    it( 'isReadOnly()', () =>
+    describe( 'isReadOnly()', () =>
     {
-        wrapper.setProps( { isReadOnly: true } );
-        expect( driver.isReadOnly() ).to.equal( true );
-        expect( driver.isDisabled() ).to.equal( false );
+        it( 'should return true if the editor cannot be edited', () =>
+        {
+            wrapper.setProps( { isReadOnly: true } );
+            expect( driver.isReadOnly() ).to.equal( true );
+            expect( driver.isDisabled() ).to.equal( false );
+        } );
     } );
 
-    it( 'isDisabled()', () =>
+    describe( 'isDisabled()', () =>
     {
-        wrapper.setProps( { isDisabled: true } );
-        expect( driver.isDisabled() ).to.equal( true );
-        expect( driver.isReadOnly() ).to.equal( false );
+        it( 'should return true if the editor is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            expect( driver.isDisabled() ).to.equal( true );
+            expect( driver.isReadOnly() ).to.equal( false );
+        } );
     } );
 } );
