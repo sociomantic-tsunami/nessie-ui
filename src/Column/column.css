@@ -23,6 +23,7 @@ $shark: 768px;
 
     .default /* hack for IE */
     {
+        flex:           0 0 auto;
         align-items:    flex-start;
     }
 }
@@ -34,6 +35,7 @@ $shark: 768px;
 
     .default /* hack for IE */
     {
+        flex:           0 0 auto;
         align-items:    center;
     }
 }
@@ -45,6 +47,7 @@ $shark: 768px;
 
     .default /* hack for IE */
     {
+        flex:           0 0 auto;
         align-items:    flex-end;
     }
 }
@@ -92,6 +95,12 @@ $shark: 768px;
 .size__content
 {
     flex:   0 0 auto;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    center;
+    }
 }
 
 .size__icon-S,
