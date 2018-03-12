@@ -335,11 +335,16 @@ export default class FlounderDropdown extends Component
                 }
             };
 
+            let data = addExtraClasses(
+                props.data,
+                props.cssMap.optionWithDescription
+            );
+
+            data = mapIconClassesToFlounder( data, props.cssMap );
+
             const flounderProps = {
-                classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder(
-                    addExtraClasses( props.data ),
-                    props.cssMap ),
+                classes              : mapCssToFlounder( props.cssMap ),
+                data,
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
                 multipleMessage      : props.multipleMessage,

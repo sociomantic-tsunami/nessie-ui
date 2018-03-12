@@ -1,5 +1,3 @@
-import styles               from './flounderDropdown.css';
-
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
     ( {
@@ -60,7 +58,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
         };
     } );
 
-const addExtraClasses = ( data = [] ) => (
+const addExtraClasses = ( data = [], className ) => (
     data.map( datum =>
     {
         if ( typeof datum !== 'object' )
@@ -70,10 +68,8 @@ const addExtraClasses = ( data = [] ) => (
 
         if ( datum.description )
         {
-            const descClass = styles.optionWithDescription;
-
             const extraClass = datum.extraClass ?
-                `${datum.extraClass}  ${descClass}` : descClass;
+                `${datum.extraClass}  ${className}` : className;
 
             return { ...datum, extraClass };
         }
