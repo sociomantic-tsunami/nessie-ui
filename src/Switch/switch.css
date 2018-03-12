@@ -4,14 +4,14 @@
 {
     --inputHeight:          40px;
 
-    --switchHeight:         var( --line-height-s );
-    --switchLetterSpacing:  0.4px;
+    --trackHeight:         var( --line-height-s );
+    --trackLetterSpacing:  0.4px;
 
     --borderWidth:          1px;
     --borderTotal:          calc( var( --borderWidth ) * 2 ); /* both sides when calculating size */
 
     --circleSize:           calc( var( --line-height-m ) - var( --borderTotal ) );
-    --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) - var( --borderTotal ) ) / 2 );
+    --circleOffset:         calc( ( var( --trackHeight ) - var( --circleSize ) - var( --borderTotal ) ) / 2 );
 
     --backgroundTransition: background-color 0.2s ease-in-out;
     --circleTransition:     left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
@@ -39,9 +39,9 @@
 
         box-sizing:     border-box;
         min-width:      calc( 2 * ( var( --circleSize ) + var( --circleOffset ) ) );
-        height:         var( --switchHeight );
+        height:         var( --trackHeight );
 
-        border-radius:  calc( var( --switchHeight ) / 2 );
+        border-radius:  calc( var( --trackHeight ) / 2 );
 
         background:     var( --PC-GREY );
 
@@ -89,7 +89,7 @@
         color:              var( --PC-WHITE );
         font-size:          var( --typo-1 );
         line-height:        var( --line-height-s );
-        letter-spacing:     var( --switchLetterSpacing );
+        letter-spacing:     var( --trackLetterSpacing );
         text-transform:     uppercase;
 
         overflow:           hidden;
