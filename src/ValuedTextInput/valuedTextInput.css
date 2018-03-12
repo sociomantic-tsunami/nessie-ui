@@ -67,7 +67,8 @@
         }
     }
 
-    &:hover .valueLabel
+    &:hover .valueLabel,
+    &:hover .input
     {
         border-color: var( --PC-BLUE );
     }
@@ -117,7 +118,10 @@
 
 .error
 {
-    .valueLabel
+    &:hover .valueLabel,
+    .valueLabel,
+    &:hover .input,
+    .input
     {
         border-color:   var( --AC-2 );
     }
