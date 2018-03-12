@@ -23,7 +23,7 @@ $shark: 768px;
 
     .default /* hack for IE */
     {
-        align-items:    lex-start;
+        align-items:    flex-start;
     }
 }
 
@@ -34,7 +34,7 @@ $shark: 768px;
 
     .default /* hack for IE */
     {
-        align-items:     center;
+        align-items:    center;
     }
 }
 
