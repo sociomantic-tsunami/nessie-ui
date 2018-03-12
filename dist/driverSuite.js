@@ -64,12 +64,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 240);
+/******/ 	return __webpack_require__(__webpack_require__.s = 241);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,7 +105,7 @@ exports.default = SectionDriver;
 
 /***/ }),
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -176,7 +176,7 @@ exports.default = SwitchDriver;
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,7 +232,7 @@ exports.default = TextInputWithIconDriver;
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -317,7 +317,7 @@ function checkContentAccessiblity(driver, method) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, exports) {
 
 module.exports = require("nessie-ui/dist/componentDriver.js");
@@ -379,7 +379,7 @@ exports.default = ClickableComponentDriver;
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -390,7 +390,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.InputComponentDriver = exports.ClickableComponentDriver = exports.SimpleComponentDriver = undefined;
 
-var _componentDriver = __webpack_require__(121);
+var _componentDriver = __webpack_require__(122);
 
 var _nessieUi = __webpack_require__(14);
 
@@ -398,59 +398,59 @@ var _driver = __webpack_require__(57);
 
 var _driver2 = _interopRequireDefault(_driver);
 
-var _driver3 = __webpack_require__(79);
+var _driver3 = __webpack_require__(80);
 
 var _driver4 = _interopRequireDefault(_driver3);
 
-var _driver5 = __webpack_require__(74);
+var _driver5 = __webpack_require__(75);
 
 var _driver6 = _interopRequireDefault(_driver5);
 
-var _driver7 = __webpack_require__(117);
+var _driver7 = __webpack_require__(118);
 
 var _driver8 = _interopRequireDefault(_driver7);
 
-var _driver9 = __webpack_require__(75);
+var _driver9 = __webpack_require__(76);
 
 var _driver10 = _interopRequireDefault(_driver9);
 
-var _driver11 = __webpack_require__(68);
+var _driver11 = __webpack_require__(69);
 
 var _driver12 = _interopRequireDefault(_driver11);
 
-var _driver13 = __webpack_require__(116);
+var _driver13 = __webpack_require__(117);
 
 var _driver14 = _interopRequireDefault(_driver13);
 
-var _driver15 = __webpack_require__(93);
+var _driver15 = __webpack_require__(94);
 
 var _driver16 = _interopRequireDefault(_driver15);
 
-var _driver17 = __webpack_require__(100);
+var _driver17 = __webpack_require__(101);
 
 var _driver18 = _interopRequireDefault(_driver17);
 
-var _driver19 = __webpack_require__(72);
+var _driver19 = __webpack_require__(73);
 
 var _driver20 = _interopRequireDefault(_driver19);
 
-var _driver21 = __webpack_require__(70);
+var _driver21 = __webpack_require__(71);
 
 var _driver22 = _interopRequireDefault(_driver21);
 
-var _driver23 = __webpack_require__(82);
+var _driver23 = __webpack_require__(83);
 
 var _driver24 = _interopRequireDefault(_driver23);
 
-var _driver25 = __webpack_require__(85);
+var _driver25 = __webpack_require__(86);
 
 var _driver26 = _interopRequireDefault(_driver25);
 
-var _driver27 = __webpack_require__(77);
+var _driver27 = __webpack_require__(78);
 
 var _driver28 = _interopRequireDefault(_driver27);
 
-var _driver29 = __webpack_require__(105);
+var _driver29 = __webpack_require__(106);
 
 var _driver30 = _interopRequireDefault(_driver29);
 
@@ -466,9 +466,11 @@ var _inputComponentDriver = __webpack_require__(29);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _driver31 = __webpack_require__(61);
 
-// eslint-disable-line max-len
+var _driver32 = _interopRequireDefault(_driver31);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // eslint-disable-line max-len
 var drivers = [{
@@ -528,7 +530,11 @@ var drivers = [{
 }, {
     Component: _nessieUi.Switch,
     Driver: _driver30.default
+}, {
+    Component: _nessieUi.CodeEditor,
+    Driver: _driver32.default
 }]; // eslint-disable-line max-len
+// eslint-disable-line max-len
 exports.SimpleComponentDriver = _simpleComponentDriver2.default;
 exports.ClickableComponentDriver = _clickableComponentDriver2.default;
 exports.InputComponentDriver = _inputComponentDriver2.default;
@@ -790,7 +796,92 @@ exports.default = ButtonDriver;
 
 /***/ }),
 
-/***/ 68:
+/***/ 61:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ERRORS = {
+    EDITOR_READ_ONLY: 'Cannot change the CodeEditor value since it is read-only' // eslint-disable-line max-len
+};
+
+var CodeEditorDriver = function () {
+    function CodeEditorDriver(wrapper) {
+        _classCallCheck(this, CodeEditorDriver);
+
+        // Nessie Control
+        this.wrapper = wrapper;
+        // the 3rd party control
+        this.control = wrapper.node.codeMirror;
+    }
+
+    _createClass(CodeEditorDriver, [{
+        key: 'focus',
+        value: function focus() {
+            this.control.focus();
+            return this;
+        }
+    }, {
+        key: 'blur',
+        value: function blur() {
+            /* eslint-disable no-undef */
+            if (this.control.hasFocus() && Boolean(document) && Boolean(document.activeElement)) {
+                document.activeElement.blur();
+            }
+            /* eslint-enable no-undef */
+            return this;
+        }
+    }, {
+        key: 'setInputValue',
+        value: function setInputValue(value) {
+            if (this.isReadOnly()) {
+                throw new Error(ERRORS.EDITOR_READ_ONLY);
+            }
+
+            this.focus();
+            this.control.setValue(value);
+            this.blur();
+            return this;
+        }
+    }, {
+        key: 'clearInputValue',
+        value: function clearInputValue() {
+            return this.setInputValue('');
+        }
+    }, {
+        key: 'getInputValue',
+        value: function getInputValue() {
+            return this.control.getValue();
+        }
+    }, {
+        key: 'isReadOnly',
+        value: function isReadOnly() {
+            return Boolean(this.control.options.readOnly) && !this.isDisabled();
+        }
+    }, {
+        key: 'isDisabled',
+        value: function isDisabled() {
+            return this.control.options.readOnly === 'nocursor';
+        }
+    }]);
+
+    return CodeEditorDriver;
+}();
+
+exports.default = CodeEditorDriver;
+
+/***/ }),
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -991,7 +1082,7 @@ function chooseItem(method, searchTerm, errorByWhat, wrapper) {
 
 /***/ }),
 
-/***/ 70:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1033,7 +1124,7 @@ exports.default = FormDriver;
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1068,7 +1159,7 @@ exports.default = GridColumnDriver;
 
 /***/ }),
 
-/***/ 74:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1110,7 +1201,7 @@ exports.default = IconDriver;
 
 /***/ }),
 
-/***/ 75:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1166,7 +1257,7 @@ exports.default = IconWithTooltipDriver;
 
 /***/ }),
 
-/***/ 77:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1259,7 +1350,7 @@ exports.default = ModalDialogDriver;
 
 /***/ }),
 
-/***/ 79:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1349,7 +1440,7 @@ exports.default = ModuleDriver;
 
 /***/ }),
 
-/***/ 82:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1409,7 +1500,7 @@ exports.default = NavItemDriver;
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1526,7 +1617,7 @@ exports.default = SimpleComponentDriver;
 
 /***/ }),
 
-/***/ 93:
+/***/ 94:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
