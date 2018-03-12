@@ -1,11 +1,18 @@
-import React                from 'react';
+import React from 'react';
 
-import Css                  from '../hoc/Css';
+import Css   from '../hoc/Css';
 
 const Divider = ( { cssMap, className } ) =>
-    <Css cssMap = { cssMap }>
-        <hr className = { className } />
-    </Css>;
+{
+    console.warn( 'Divider is deprecated and will be removed in the next major \
+release');
+
+    return (
+        <Css cssMap = { cssMap }>
+            <hr className = { className } />
+        </Css>
+    );
+};
 
 Divider.defaultProps =
 {
