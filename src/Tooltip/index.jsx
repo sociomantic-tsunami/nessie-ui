@@ -58,6 +58,15 @@ export default class Tooltip extends Component
             'topRight',
             'bottomLeft',
             'bottomRight' ] ),
+        /**
+         *  Tooltip role/style
+         */
+        role : PropTypes.oneOf( [
+            'default',
+            'critical',
+            'promoted',
+            'warning'
+        ] )
     };
 
     static defaultProps =
@@ -66,7 +75,8 @@ export default class Tooltip extends Component
         isVisible      : true,
         noWrap         : false,
         overflowHidden : false,
-        cssMap         : require( './tooltip.css' )
+        cssMap         : require( './tooltip.css' ),
+        role           : 'default'
     };
 
     render()
@@ -83,7 +93,8 @@ export default class Tooltip extends Component
             onClickClose,
             onMouseOver,
             onMouseOut,
-            overflowIsHidden
+            overflowIsHidden,
+            role
         } = this.props;
 
         const { id } = this.state;
@@ -139,7 +150,7 @@ export default class Tooltip extends Component
         return (
             <Css
                 cssMap   = { cssMap }
-                cssProps = { { noWrap, position } }>
+                cssProps = { { role, noWrap, position } }>
                 <div
                     className   = { className }
                     onMouseOver = { onMouseOver }
