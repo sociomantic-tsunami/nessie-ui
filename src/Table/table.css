@@ -30,7 +30,7 @@
 
 .zebra
 {
-    .row:nth-child( even )
+    .row:nth-child( even ) .cell
     {
         background: var( --GS-10 );
     }
