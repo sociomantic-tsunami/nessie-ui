@@ -50,7 +50,7 @@ Row.propTypes =
     /**
      *  Row role
      */
-    role          : PropTypes.string,
+    role          : PropTypes.oneOf( 'none', 'row' ),
     /**
      *  Row spacing
      */
