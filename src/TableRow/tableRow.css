@@ -2,7 +2,7 @@
 
 .default
 {
-
+    margin: 0;
 }
 
 .sticky
@@ -11,4 +11,20 @@
     top:         0;
     background:  var( --PC-WHITE );
     z-index:     2;
+}
+
+.active
+{
+    background: var( --GS-11 );
+}
+
+.clickable
+{
+    cursor: pointer;
+
+    &:hover,
+    &.fakeHovered
+    {
+        background: var( --GS-11 );
+    }
 }

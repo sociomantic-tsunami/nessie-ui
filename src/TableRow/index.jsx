@@ -10,28 +10,31 @@ const TableRow = ( {
     children,
     className,
     cssMap,
-    gutters,
+    isActive,
+    isClickable,
     isSticky,
+    onClick,
     verticalAlign,
+    ...props,
 } ) =>
 {
     const cells = React.Children.toArray( children ).map( cell =>
-        React.cloneElement( cell,
-            {
-                align         : cell.props.align || align,
-                verticalAlign : cell.props.verticalAlign || verticalAlign,
-            }
-        )
+        React.cloneElement( cell, {
+            align         : cell.props.align || align,
+            verticalAlign : cell.props.verticalAlign || verticalAlign,
+        } )
     );
 
     return (
         <Row
+            { ...props }
             className = { buildClassName( className, cssMap, {
-                sticky : isSticky,
+                active    : isActive,
+                clickable : isClickable,
+                sticky    : isSticky,
             } ) }
-            role    = "row"
-            gutters = { gutters }
-            spacing = "none">
+            onClick = { isClickable ? onClick : null }
+            role    = "row">
             { cells }
         </Row>
     );
@@ -40,8 +43,8 @@ const TableRow = ( {
 TableRow.propTypes =
 {
     /**
-     *  Globally sets cell horizonal alignment
-     *  for this row (individual cell alignment will override)
+     *  Globally sets cell horizonal alignment for this row (individual cell
+     *  alignment will override)
      */
     align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
@@ -49,16 +52,41 @@ TableRow.propTypes =
      */
     children      : PropTypes.node,
     /**
+     *  Extra CSS class name
+     */
+    className     : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap        : PropTypes.objectOf( PropTypes.string ),
+    /**
      *  Gutter size
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Display as active/highlighted
+     */
+    isActive      : PropTypes.bool,
+    /**
+     *  Row is clickable
+     */
+    isClickable   : PropTypes.bool,
     /**
      *  Makes the row sticky
      */
     isSticky      : PropTypes.bool,
     /**
-     *  Globally sets cell vertical alignment
-     *  for this row (individual cell alignment will overrides)
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  Row spacing
+     */
+    spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Globally sets cell vertical alignment for this row (individual cell
+     *  alignment will overrides)
      */
     verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
@@ -67,9 +95,13 @@ TableRow.defaultProps =
 {
     align         : undefined,
     children      : undefined,
+    className     : undefined,
     cssMap        : styles,
     gutters       : undefined,
+    isClickable   : false,
     isSticky      : false,
+    onClick       : undefined,
+    spacing       : undefined,
     verticalAlign : undefined,
 };
 
