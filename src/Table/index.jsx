@@ -19,6 +19,8 @@ const Table = ( {
     hasBorders,
     hasStickyHeader,
     isZebra,
+    onMouseOut,
+    onMouseOver,
     onToggle,
     rows = [],
     spacing,
@@ -69,7 +71,9 @@ const Table = ( {
                 borders : hasBorders,
                 zebra   : isZebra,
             } ) }
-            role = "grid">
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }
+            role         = "grid">
             { columns.length > 0 &&
                 <TableRow
                     align         = { align }
@@ -131,6 +135,10 @@ Table.propTypes =
      */
     gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
+     *  Display table with borders
+     */
+    hasBorders      : PropTypes.bool,
+    /**
      *  Makes header row sticky
      */
     hasStickyHeader : PropTypes.bool,
@@ -138,6 +146,16 @@ Table.propTypes =
      *  Display as zebra-striped
      */
     isZebra         : PropTypes.bool,
+    /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut      : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver     : PropTypes.func,
     /**
      *  Column sorter onToggle callback function: ( e ) => { ... }
      */
@@ -153,7 +171,9 @@ Table.propTypes =
     /**
      * 2D Array of table values (for convenience)
      */
-    values        : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
+    values          : PropTypes.arrayOf(
+        PropTypes.arrayOf( PropTypes.string )
+    ),
     /**
      *  Vertical alignment inside cells
      */
@@ -168,8 +188,11 @@ Table.defaultProps =
     columns         : undefined,
     cssMap          : styles,
     gutters         : 'L',
+    hasBorders      : false,
     hasStickyHeader : false,
     isZebra         : false,
+    onMouseOut      : undefined,
+    onMouseOver     : undefined,
     onToggle        : undefined,
     rows            : undefined,
     spacing         : 'M',
