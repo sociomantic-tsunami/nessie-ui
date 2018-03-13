@@ -16,23 +16,26 @@ const Table = ( {
     columns = [],
     cssMap,
     gutters,
-    onToggle,
-    values,
-    isZebra,
     hasStickyHeader,
+    isZebra,
+    onToggle,
+    rows = [],
+    spacing,
+    values,
     verticalAlign,
 } ) =>
 {
-    const rows = React.Children.toArray( children ||
-        buildRowsFromValues( values ) ).map( row =>
+    const body = React.Children.toArray( children ||
+        buildRowsFromValues( values ) ).map( ( row, i ) =>
     {
         const cells = React.Children.toArray( row.props.children );
 
         return React.cloneElement( row, {
+            ...rows[ i ],
             align    : row.props.align || align,
-            children : cells.map( ( cell, i ) =>
+            children : cells.map( ( cell, j ) =>
             {
-                const column      = columns[ i ];
+                const column      = columns[ j ];
                 const columnProps = column && {
                     align       : cell.props.align || column.align,
                     columnTitle : cell.props.columnTitle || column.title,
@@ -53,6 +56,7 @@ const Table = ( {
             className : row.props.className ?
                 `${row.props.className}  ${cssMap.row}` : cssMap.row,
             gutters       : row.props.gutters || gutters,
+            spacing       : row.props.spacing || spacing,
             verticalAlign : row.props.verticalAlign || verticalAlign,
         } );
     } );
@@ -70,6 +74,7 @@ const Table = ( {
                     className     = { cssMap.row }
                     gutters       = { gutters }
                     isSticky      = { hasStickyHeader }
+                    spacing       = { spacing }
                     verticalAlign = { verticalAlign } >
                     { columns.map( ( column, i ) =>
                     {
@@ -96,7 +101,7 @@ const Table = ( {
                     } ) }
                 </TableRow>
             }
-            { rows }
+            { body }
         </div>
     );
 };
@@ -106,23 +111,22 @@ Table.propTypes =
     /**
      *  Text alignment inside cells
      */
-    align    : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    align           : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */
-    children : PropTypes.node,
+    children        : PropTypes.node,
     /**
-     * Array of objects defining the table columns
+     *  Extra CSS class name
      */
-    columns  : PropTypes.arrayOf( PropTypes.shape( {
-        title       : PropTypes.string,
-        size        : PropTypes.string,
-        isRowHeader : PropTypes.bool,
-        isSticky    : PropTypes.bool,
-        isRequired  : PropTypes.bool,
-        isSortable  : PropTypes.bool,
-        sort        : PropTypes.oneOf( [ 'asc', 'desc' ] )
-    } ) ),
+    className       : PropTypes.string,
+    /**
+     *  Array of objects defining the table columns
+     */
+    columns         : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Gutter size
+     */
     gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      *  Makes header row sticky
@@ -137,11 +141,17 @@ Table.propTypes =
      */
     onToggle        : PropTypes.func,
     /**
+     *  Array of objects defining the table rows
+     */
+    rows            : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Row spacing
+     */
+    spacing         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
+    /**
      * 2D Array of table values (for convenience)
      */
-    values          : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.string )
-    ),
+    values        : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
     /**
      *  Vertical alignment inside cells
      */
@@ -152,12 +162,15 @@ Table.defaultProps =
 {
     align           : 'auto',
     children        : undefined,
+    className       : undefined,
     columns         : undefined,
     cssMap          : styles,
     gutters         : 'L',
     hasStickyHeader : false,
     isZebra         : false,
     onToggle        : undefined,
+    rows            : undefined,
+    spacing         : 'M',
     values          : undefined,
     verticalAlign   : 'middle',
 };
