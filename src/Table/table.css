@@ -7,6 +7,14 @@
     overflow-wrap:          break-word;
 }
 
+.borders
+{
+    .row:not( :first-child )
+    {
+        box-shadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+    }
+}
+
 .zebra
 {
     .row:nth-child(even) > .cell

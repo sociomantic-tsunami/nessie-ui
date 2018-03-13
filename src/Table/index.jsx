@@ -16,6 +16,7 @@ const Table = ( {
     columns = [],
     cssMap,
     gutters,
+    hasBorders,
     hasStickyHeader,
     isZebra,
     onToggle,
@@ -65,7 +66,8 @@ const Table = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                zebra : isZebra,
+                borders : hasBorders,
+                zebra   : isZebra,
             } ) }
             role = "grid">
             { columns.length > 0 &&
