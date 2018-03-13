@@ -1,7 +1,8 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './column.css';
 
 const Column = ( {
     align,
@@ -11,20 +12,19 @@ const Column = ( {
     cssMap,
     role,
     size,
-    verticalAlign } ) =>
-
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { size,
-                alignX : align,
-                alignY : verticalAlign } }>
-            <div
-                className         = { className }
-                role              = { role }
-                data-column-title = { columnTitle }>
-                { children }
-            </div>
-        </Css>;
+    verticalAlign,
+} ) => (
+    <div
+        className = { buildClassName( className, cssMap, {
+            size,
+            alignX : align,
+            alignY : verticalAlign
+        } ) }
+        role              = { role }
+        data-column-title = { columnTitle }>
+        { children }
+    </div>
+);
 
 Column.propTypes =
 {
@@ -101,7 +101,7 @@ Column.propTypes =
 Column.defaultProps =
 {
     align  : 'auto',
-    cssMap : require( './column.css' )
+    cssMap : styles,
 };
 
 export default Column;
