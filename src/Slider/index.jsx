@@ -325,7 +325,6 @@ export default class Slider extends Component
             return isVertical ? minValue : maxValue;
         }
 
-
         let position = mouse - start;
         if ( isVertical ) // account for y-axis inversion
         {
@@ -339,14 +338,12 @@ export default class Slider extends Component
             const max = Math.log( maxValue );
             v = Math.exp( ( min + ( ( max - min ) * v ) ) / maxValue );
 
-            v = minValue + this.getStep( v - minValue );
+            v = minValue + ( v - minValue );
             return v;
         }
 
         // linear solution
-        return this.getStep(
-            Math.round( ( ( position / length ) * range ) + minValue )
-        );
+        return Math.round( ( ( position / length ) * range ) + minValue );
     }
 
 
