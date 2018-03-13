@@ -2,6 +2,8 @@ $shark: 768px;
 
 .default
 {
+    flex:               1 0 0%;
+
     position:           relative;
     display:            flex;
     flex-direction:     column;
@@ -12,26 +14,42 @@ $shark: 768px;
 
     max-width:          100%;
     min-width:          0;
-
-    flex:               1 0 0%;
 }
 
 .alignX__left
 {
     align-items:    flex-start;
     text-align:     left;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    flex-start;
+    }
 }
 
 .alignX__center
 {
     align-items:    center;
     text-align:     center;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    center;
+    }
 }
 
 .alignX__right
 {
     align-items:    flex-end;
     text-align:     right;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    flex-end;
+    }
 }
 
 .alignY__middle
@@ -77,6 +95,12 @@ $shark: 768px;
 .size__content
 {
     flex:   0 0 auto;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    center;
+    }
 }
 
 .size__icon-S,
