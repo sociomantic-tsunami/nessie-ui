@@ -4,8 +4,13 @@ import Css   from '../hoc/Css';
 
 const Divider = ( { cssMap, className } ) =>
 {
-    console.warn( 'Divider is deprecated and will be removed in the next major \
-release');
+    if ( !Divider.didWarn )
+    {
+        console.warn( 'Divider is deprecated and will be removed in the next \
+major release' );
+
+        Divider.didWarn = true;
+    }
 
     return (
         <Css cssMap = { cssMap }>
