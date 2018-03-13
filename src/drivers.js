@@ -2,7 +2,7 @@ import { ComponentDriver }    from 'componentDriver';
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
-    ModalDialog, Switch, Row, CodeEditor }  from 'nessie-ui';
+    ModalDialog, Switch, Row, Text, CodeEditor }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import ModuleDriver             from './Module/driver';
@@ -106,6 +106,10 @@ const drivers =
     {
         Component : Text,
         Driver    : TextDriver
+    },
+    {
+        Component : CodeEditor,
+        Driver    : CodeEditorDriver
     },
 ];
 
