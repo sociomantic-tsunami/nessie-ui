@@ -17,7 +17,7 @@ const CheckboxGroup = ( {
     let items = children ?
         Children.toArray( children ) : buildCheckboxesFromValues( values );
 
-    if ( selectedValues )
+    if ( selectedValues.length )
     {
         items = items.map( item => React.cloneElement( item, {
             isChecked : selectedValues.includes( item.props.value ),
