@@ -1,23 +1,36 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 
+:root
+{
+    --borderShadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+}
+
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
     overflow-wrap:          break-word;
 }
 
-.borders
+.borders__rows
 {
     .row:not( :first-child )
     {
-        box-shadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+        box-shadow: var( --borderShadow );
+    }
+}
+
+.borders__cells
+{
+    .row:not( :first-child ) .cell
+    {
+        box-shadow: var( --borderShadow );
     }
 }
 
 .zebra
 {
-    .row:nth-child(even) > .cell
+    .row:nth-child( even )
     {
         background: var( --GS-10 );
     }

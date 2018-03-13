@@ -5,6 +5,8 @@ $shark: 768px;
 
 .default
 {
+    background: var( --PC-WHITE );
+
     &::before
     {
         content:        attr( data-column-title );

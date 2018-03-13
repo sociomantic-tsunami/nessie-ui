@@ -16,7 +16,7 @@ const Table = ( {
     columns = [],
     cssMap,
     gutters,
-    hasBorders,
+    borders,
     hasStickyHeader,
     isZebra,
     onMouseOut,
@@ -68,8 +68,8 @@ const Table = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                borders : hasBorders,
-                zebra   : isZebra,
+                borders,
+                zebra : isZebra,
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }
@@ -137,7 +137,7 @@ Table.propTypes =
     /**
      *  Display table with borders
      */
-    hasBorders      : PropTypes.bool,
+    borders         : PropTypes.oneOf( [ 'cells', 'rows', 'none' ] ),
     /**
      *  Makes header row sticky
      */
@@ -188,7 +188,7 @@ Table.defaultProps =
     columns         : undefined,
     cssMap          : styles,
     gutters         : 'L',
-    hasBorders      : false,
+    borders         : 'none',
     hasStickyHeader : false,
     isZebra         : false,
     onMouseOut      : undefined,
