@@ -12,6 +12,18 @@
     overflow-wrap:          break-word;
 }
 
+.borders__rows,
+.borders__cells,
+.zebra
+{
+    .row
+    {
+        margin-left:    0;
+        margin-right:   0;
+        margin-bottom:  0;
+    }
+}
+
 .borders__rows
 {
     .row:not( :first-child )
