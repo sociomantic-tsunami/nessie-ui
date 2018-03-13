@@ -2,7 +2,7 @@ import { ComponentDriver }    from 'componentDriver';
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
-    ModalDialog, Switch, Row }  from 'nessie-ui';
+    ModalDialog, Switch, Row, CodeEditor }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import ModuleDriver             from './Module/driver';
@@ -22,6 +22,7 @@ import SwitchDriver             from './Switch/driver';
 import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
 import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
+import CodeEditorDriver         from './CodeEditor/driver';
 
 const drivers =
 [
@@ -100,6 +101,10 @@ const drivers =
     {
         Component : Switch,
         Driver    : SwitchDriver
+    },
+    {
+        Component : CodeEditor,
+        Driver    : CodeEditorDriver
     }
 ];
 
