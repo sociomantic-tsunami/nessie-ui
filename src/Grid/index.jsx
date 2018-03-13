@@ -6,9 +6,11 @@ import styles             from './grid.css';
 
 const Grid = ( {
     align,
+    aria,
     children,
     className,
     cssMap,
+    onClick,
     gutters,
     hasMinHeight,
     hasWrap,
@@ -25,7 +27,8 @@ const Grid = ( {
             hasWrap,
             spacing : spacing !== 'none' && spacing
         } ) }
-        role = { role }>
+        onClick = { onClick }
+        role    = { role }>
         { children }
     </div>
 );
@@ -36,47 +39,44 @@ Grid.propTypes =
      * Horizontal alignment of the columns (“auto” makes all columns equal
      * width)
      */
-    align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    /**
+     * ARIA object
+     */
+    aria          : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Grid content (Columns)
      */
-    children     : PropTypes.node,
+    children      : PropTypes.node,
     /**
      *  CSS class name
      */
-    className    : PropTypes.string,
+    className     : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    cssMap        : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
     /**
      *  Gutter size
      */
-    gutters      : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
     *  Set minimum height equal to average row.
     */
-    hasMinHeight : PropTypes.bool,
+    hasMinHeight  : PropTypes.bool,
     /**
      * Wrap content
      */
-    hasWrap      : PropTypes.bool,
-    /**
-     *  Grid role
-     */
-    role         : PropTypes.string,
+    hasWrap       : PropTypes.bool,
     /**
      *  Row spacing
      */
-    spacing      : PropTypes.oneOf( [
-        'none',
-        'default',
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'label'
-    ] ),
+    spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
@@ -87,14 +87,15 @@ Grid.propTypes =
 Grid.defaultProps =
 {
     align         : 'auto',
+    aria          : undefined,
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
+    on            : undefined,
     gutters       : 'L',
     hasMinHeight  : false,
     hasWrap       : true,
-    role          : undefined,
-    spacing       : 'default',
+    spacing       : 'M',
     verticalAlign : 'auto',
 };
 
