@@ -16,14 +16,15 @@
 .borders__cells,
 .zebra
 {
-    .row
+    .row,
+    .headerRow
     {
         margin-left:    0;
         margin-right:   0;
         margin-bottom:  0;
     }
 
-    .row:not( :first-child ) .cell
+    .cell
     {
         background: var( --PC-WHITE );
     }
@@ -31,7 +32,7 @@
 
 .borders__rows
 {
-    .row:not( :first-child )
+    .row
     {
         box-shadow: var( --borderShadow );
     }
@@ -39,7 +40,7 @@
 
 .borders__cells
 {
-    .row:not( :first-child ) .cell
+    .row .cell
     {
         box-shadow: var( --borderShadow );
     }
@@ -47,7 +48,7 @@
 
 .zebra
 {
-    .row:nth-child( even ) .cell
+    .row:nth-child( odd ) .cell
     {
         background: var( --GS-10 );
     }

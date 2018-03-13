@@ -33,6 +33,9 @@ const Table = ( {
     {
         const cells = React.Children.toArray( row.props.children );
 
+        const rowClass = i === 0 && columns.length < 1 ?
+            cssMap.headerRow : cssMap.row;
+
         return React.cloneElement( row, {
             ...rows[ i ],
             align    : row.props.align || align,
@@ -57,7 +60,7 @@ const Table = ( {
                 } );
             } ),
             className : row.props.className ?
-                `${row.props.className}  ${cssMap.row}` : cssMap.row,
+                `${row.props.className}  ${rowClass}` : rowClass,
             gutters       : row.props.gutters || gutters,
             spacing       : row.props.spacing || spacing,
             verticalAlign : row.props.verticalAlign || verticalAlign,
@@ -77,7 +80,7 @@ const Table = ( {
             { columns.length > 0 &&
                 <TableRow
                     align         = { align }
-                    className     = { cssMap.row }
+                    className     = { cssMap.headerRow }
                     gutters       = { gutters }
                     isSticky      = { hasStickyHeader }
                     spacing       = { spacing }

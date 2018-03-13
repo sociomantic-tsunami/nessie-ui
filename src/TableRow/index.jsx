@@ -22,7 +22,9 @@ const TableRow = ( {
 {
     const cells = React.Children.toArray( children ).map( cell =>
         React.cloneElement( cell, {
-            align         : cell.props.align || align,
+            align     : cell.props.align || align,
+            className : cell.props.className ?
+                `${cell.props.className}  ${cssMap.cell}` : cssMap.cell,
             verticalAlign : cell.props.verticalAlign || verticalAlign,
         } )
     );
