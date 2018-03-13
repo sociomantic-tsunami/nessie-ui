@@ -4,9 +4,10 @@ import PropTypes          from 'prop-types';
 import { buildClassName } from '../utils';
 import styles             from './grid.css';
 
+const deprecatedSpacingOptions = [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
+
 const Grid = ( {
     align,
-    aria,
     children,
     className,
     cssMap,
@@ -19,23 +20,34 @@ const Grid = ( {
     role,
     spacing,
     verticalAlign,
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            alignX  : align,
-            alignY  : verticalAlign,
-            hasMinHeight,
-            gutters : gutters !== 'none' && gutters,
-            hasWrap,
-            spacing : spacing !== 'none' && spacing
-        } ) }
-        onClick      = { onClick }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }
-        role         = { role }>
-        { children }
-    </div>
-);
+} ) =>
+{
+    if ( deprecatedSpacingOptions.includes( spacing ) &&
+        !Grid.didWarn[ spacing ] )
+    {
+        console.warn( `Grid spacing option '${spacing}' is depreacted. Please \
+use one of 'S', 'M', 'L' or 'none' instead.` );
+        Grid.didWarn[ spacing ] = true;
+    }
+
+    return (
+        <div
+            className = { buildClassName( className, cssMap, {
+                alignX  : align,
+                alignY  : verticalAlign,
+                hasMinHeight,
+                gutters : gutters !== 'none' && gutters,
+                hasWrap,
+                spacing : spacing !== 'none' && spacing
+            } ) }
+            onClick      = { onClick }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }
+            role         = { role && role !== 'none' ? role : null }>
+            { children }
+        </div>
+    );
+};
 
 Grid.propTypes =
 {
@@ -84,6 +96,11 @@ Grid.propTypes =
      */
     onMouseOver   : PropTypes.func,
     /**
+     *  Grid role
+     */
+    role          : PropTypes.oneOf( 'none', 'row' ),
+    /**
+    /**
      *  Row spacing
      */
     spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
@@ -100,14 +117,17 @@ Grid.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
+    hasMinHeight  : false,
+    hasWrap       : true,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,
     gutters       : 'L',
-    hasMinHeight  : false,
-    hasWrap       : true,
+    role          : undefined,
     spacing       : 'M',
     verticalAlign : 'auto',
 };
+
+Grid.didWarn = {};
 
 export default Grid;
