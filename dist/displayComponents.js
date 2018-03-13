@@ -20194,7 +20194,7 @@ var CheckboxGroup = function CheckboxGroup(_ref) {
 
   var items = children ? _react.Children.toArray(children) : (0, _utils2.buildCheckboxesFromValues)(values);
 
-  if (selectedValues) {
+  if (selectedValues.length) {
     items = items.map(function (item) {
       return _react2.default.cloneElement(item, {
         isChecked: selectedValues.includes(item.props.value)
