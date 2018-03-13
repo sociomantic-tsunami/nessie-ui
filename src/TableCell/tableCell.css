@@ -5,11 +5,6 @@ $shark: 768px;
 
 .default
 {
-    padding-top:    1rem;
-    padding-bottom: 1rem;
-    /* background-color:     var( --PC-WHITE ); */
-    /*flex-direction: row;*/
-
     &::before
     {
         content:        attr( data-column-title );

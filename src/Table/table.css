@@ -13,10 +13,4 @@
     {
         background: var( --GS-10 );
     }
-
-    .row
-    {
-        width:  100%;
-        margin: 0;
-    }
 }
