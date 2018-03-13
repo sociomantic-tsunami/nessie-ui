@@ -14,6 +14,8 @@ const TableRow = ( {
     isClickable,
     isSticky,
     onClick,
+    onMouseOut,
+    onMouseOver,
     verticalAlign,
     ...props,
 } ) =>
@@ -33,8 +35,10 @@ const TableRow = ( {
                 clickable : isClickable,
                 sticky    : isSticky,
             } ) }
-            onClick = { isClickable ? onClick : null }
-            role    = "row">
+            onClick     = { isClickable ? onClick : null }
+            onMouseOut  = { onMouseOut }
+            onMouseOver = { onMouseOver }
+            role        = "row">
             { cells }
         </Row>
     );
@@ -81,6 +85,16 @@ TableRow.propTypes =
      */
     onClick       : PropTypes.func,
     /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver   : PropTypes.func,
+    /**
      *  Row spacing
      */
     spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
@@ -101,6 +115,8 @@ TableRow.defaultProps =
     isClickable   : undefined,
     isSticky      : undefined,
     onClick       : undefined,
+    onMouseOut    : undefined,
+    onMouseOVer   : undefined,
     spacing       : undefined,
     verticalAlign : undefined,
 };

@@ -11,6 +11,8 @@ const Grid = ( {
     className,
     cssMap,
     onClick,
+    onMouseOut,
+    onMouseOver,
     gutters,
     hasMinHeight,
     hasWrap,
@@ -27,8 +29,10 @@ const Grid = ( {
             hasWrap,
             spacing : spacing !== 'none' && spacing
         } ) }
-        onClick = { onClick }
-        role    = { role }>
+        onClick      = { onClick }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }
+        role         = { role }>
         { children }
     </div>
 );
@@ -40,10 +44,6 @@ Grid.propTypes =
      * width)
      */
     align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
-    /**
-     * ARIA object
-     */
-    aria          : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Grid content (Columns)
      */
@@ -57,11 +57,6 @@ Grid.propTypes =
      */
     cssMap        : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick       : PropTypes.func,
-    /**
      *  Gutter size
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
@@ -73,6 +68,21 @@ Grid.propTypes =
      * Wrap content
      */
     hasWrap       : PropTypes.bool,
+    /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver   : PropTypes.func,
     /**
      *  Row spacing
      */
@@ -87,11 +97,12 @@ Grid.propTypes =
 Grid.defaultProps =
 {
     align         : 'auto',
-    aria          : undefined,
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
-    on            : undefined,
+    onClick       : undefined,
+    onMouseOut    : undefined,
+    onMouseOver   : undefined,
     gutters       : 'L',
     hasMinHeight  : false,
     hasWrap       : true,

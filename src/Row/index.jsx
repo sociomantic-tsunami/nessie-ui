@@ -33,6 +33,21 @@ Row.propTypes =
     */
     hasMinHeight  : PropTypes.bool,
     /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  onMouseOut callback function:
+     *  () => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  () => { ... }
+     */
+    onMouseOver   : PropTypes.func,
+    /**
      *  Row role
      */
     role          : PropTypes.string,
@@ -55,6 +70,9 @@ Row.defaultProps =
     cssMap        : undefined,
     gutters       : 'L',
     hasMinHeight  : false,
+    onClick       : undefined,
+    onMouseOut    : undefined,
+    onMouseOver   : undefined,
     role          : undefined,
     spacing       : 'M',
     verticalAlign : 'auto',
