@@ -13,9 +13,12 @@
     z-index:     2;
 }
 
-.active
+.default.active /* make rule more specific */
 {
-    background: var( --GS-11 );
+    .cell
+    {
+        background: var( --GS-11 );
+    }
 }
 
 .clickable
@@ -25,6 +28,9 @@
     &:hover,
     &.fakeHovered
     {
-        background: var( --GS-11 );
+        .cell
+        {
+            background: var( --GS-11 );
+        }
     }
 }
