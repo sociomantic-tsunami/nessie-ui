@@ -18,7 +18,7 @@ describe( 'Slider', () =>
     let fakeBoundingRect;
 
     beforeEach( () =>
-{
+    {
         Wrapper = mount( <Slider /> );
 
         fakeBoundingRect = {
@@ -95,20 +95,20 @@ describe( 'Slider', () =>
 
     it( 'should contain class slider__stepLabel if stepLabels Array is \
     populated', () =>
-    {
-        const props = {
-            stepLabelStart : 'Today',
-            stepLabelEnd   : 'Future',
-            stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
-                                { 'stepLabel': '50', 'step': 50 },
-                                { 'stepLabel': '75', 'step': 75 }
-            ]
-        };
+        {
+            const props = {
+                stepLabelStart : 'Today',
+                stepLabelEnd   : 'Future',
+                stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
+                    { 'stepLabel': '50', 'step': 50 },
+                    { 'stepLabel': '75', 'step': 75 }
+                ]
+            };
 
-        Wrapper = mount( <Slider { ...props } /> );
+            Wrapper = mount( <Slider { ...props } /> );
 
-        expect( Wrapper.find( '.slider__stepLabel' ) ).to.have.length( 5 );
-    } );
+            expect( Wrapper.find( '.slider__stepLabel' ) ).to.have.length( 5 );
+        } );
 
 
     it( 'should contain N inputs if value is array of length N', () =>
@@ -201,11 +201,11 @@ describe( 'Slider', () =>
     } );
 
 
-    describe( 'getNewValue', () =>
+    describe( 'getValue', () =>
     {
         it( 'should return a number', () =>
         {
-            const result = Wrapper.instance().getNewValue( 1, 5 );
+            const result = Wrapper.instance().getValue( 1, 5 );
 
             expect( result ).to.be.a.number;
         } );
@@ -222,16 +222,14 @@ describe( 'Slider', () =>
 
             Wrapper = mount( <Slider { ...props } /> );
 
-            const slider = Wrapper.instance();
+            const slider   = Wrapper.instance();
 
-            slider.state = { ...slider.state,
-                track : { start: 0, end: 200, length: 200 }
-            };
+            sinon.stub( slider.track, 'getBoundingClientRect' )
+                .callsFake( () => ( fakeBoundingRect ) );
 
-            const getNewValue = Wrapper.instance().getNewValue;
-            expect( getNewValue( 5, 3 ) ).to.be.at.least( 0 );
-            expect( getNewValue( 5, 3 ) ).to.be.at.most( 200 );
-            expect( getNewValue( 154, 250 ) ).to.equal( 154 );
+            expect( Wrapper.instance().getValue( 5, 3 ) ).to.be.at.least( 0 );
+            expect( Wrapper.instance().getValue( 5, 3 ) ).to.be.at.most( 200 );
+            expect( Wrapper.instance().getValue( 154, 250 ) ).to.equal( 154 );
         } );
     } );
 
@@ -257,20 +255,21 @@ describe( 'Slider', () =>
         } );
 
         it( 'should trigger addEventListener when mousedown on the handle',
-        () =>
-        {
-            const props = {
-                value : [ 50 ]
-            };
-            Wrapper = mount( <Slider { ...props } /> );
+            () =>
+            {
+                const props = {
+                    value : [ 50 ]
+                };
+                Wrapper = mount( <Slider { ...props } /> );
 
-            const eventListenerSpy = sinon.spy( global, 'addEventListener' );
+                const eventListenerSpy =
+                    sinon.spy( global, 'addEventListener' );
 
-            Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
-            expect( eventListenerSpy.calledTwice ).to.be.true;
-            expect( eventListenerSpy.calledWith( 'mousemove' ) ).to.be.true;
-            expect( eventListenerSpy.calledWith( 'mouseup' ) ).to.be.true;
-        } );
+                Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
+                expect( eventListenerSpy.calledTwice ).to.be.true;
+                expect( eventListenerSpy.calledWith( 'mousemove' ) ).to.be.true;
+                expect( eventListenerSpy.calledWith( 'mouseup' ) ).to.be.true;
+            } );
     } );
 
 
