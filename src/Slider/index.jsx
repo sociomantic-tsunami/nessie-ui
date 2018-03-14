@@ -194,6 +194,8 @@ export default class Slider extends Component
     {
         super( props );
 
+        this.state = { inputIndex: -1 };
+
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
 
@@ -531,7 +533,10 @@ export default class Slider extends Component
             return;
         }
 
-        this.setState( { handleIndex: event.target.id } );
+        this.setState( {
+            inputIndex : parseInt( event.target.dataset.index, 10 ),
+            isGrabbing : true,
+        } );
     }
 
 
@@ -549,7 +554,7 @@ export default class Slider extends Component
             return;
         }
 
-        this.setState( { handleIndex: -1 } );
+        this.setState( { inputIndex: -1, isGrabbing: false } );
     }
 
 
@@ -674,8 +679,7 @@ export default class Slider extends Component
         const buildHandle = ( val, i ) =>
         {
             let handleClassName = cssMap.handle;
-            if ( this.state.handleIndex && this.state.handleIndex !== -1 &&
-                      parseInt( this.state.handleIndex.slice( -1 ), 10 ) === i )
+            if ( this.state.inputIndex === i )
             {
                 handleClassName = `${cssMap.handle} ${cssMap.handleFocus}`;
             }
@@ -715,7 +719,8 @@ export default class Slider extends Component
                     handleLabelPosition : hasHandleLabels &&
                                           handleLabelPosition,
                     hasHandleLabels,
-                    orientation
+                    orientation,
+                    grabbing : this.state.isGrabbing,
                 } } >
                 <div
                     className   = { className }
@@ -726,6 +731,7 @@ export default class Slider extends Component
                         ref       = { this.setInputContainerRef }>
                         { values.map( ( val, i ) => (
                             <input
+                                data-index  = { i }
                                 disabled    = { isDisabled }
                                 id          = { `${id}_${i}` }
                                 key         = { i } // eslint-disable-line react/no-array-index-key, max-len

@@ -73,15 +73,10 @@ module.exports = Object.assign( {}, baseConfig, {
             },
             {
                 test : /\.jsx?$/,
-                use  : [
-                    {
-                        loader  : 'happypack/loader',
-                        options : {
-                            id      : 'js',
-                            presets : [ 'airbnb' ]
-                        }
-                    }
-                ],
+                use  : {
+                    loader  : 'happypack/loader',
+                    options : { id: 'js' }
+                },
                 include : /\/src/,
             },
             {
