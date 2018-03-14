@@ -213,11 +213,11 @@ describe( 'Slider', () =>
     } );
 
 
-    describe( 'getNewValue', () =>
+    describe( 'getValue', () =>
     {
         it( 'should return a number', () =>
         {
-            const result = Wrapper.instance().getNewValue( 1, 5 );
+            const result = Wrapper.instance().getValue( 1, 5 );
 
             expect( result ).to.be.a.number;
         } );
@@ -235,16 +235,14 @@ describe( 'Slider', () =>
 
             Wrapper = mount( <Slider { ...props } /> );
 
-            const slider = Wrapper.instance();
+            const slider   = Wrapper.instance();
 
-            slider.state = { ...slider.state,
-                track : { start: 0, end: 200, length: 200 }
-            };
+            sinon.stub( slider.track, 'getBoundingClientRect' )
+                .callsFake( () => ( fakeBoundingRect ) );
 
-            const getNewValue = Wrapper.instance().getNewValue;
-            expect( getNewValue( 5, 3 ) ).to.be.at.least( 0 );
-            expect( getNewValue( 5, 3 ) ).to.be.at.most( 200 );
-            expect( getNewValue( 154, 250 ) ).to.equal( 154 );
+            expect( Wrapper.instance().getValue( 5, 3 ) ).to.be.at.least( 0 );
+            expect( Wrapper.instance().getValue( 5, 3 ) ).to.be.at.most( 200 );
+            expect( Wrapper.instance().getValue( 154, 250 ) ).to.equal( 154 );
         } );
     } );
 
