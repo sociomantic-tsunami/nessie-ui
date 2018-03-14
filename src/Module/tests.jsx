@@ -163,8 +163,6 @@ describe( 'Module', () =>
                 const onMouseOverHeader = sinon.spy();
                 wrapper.setProps( { onMouseOverHeader, title: 'hello' } );
 
-                console.log( wrapper.find( H2 ).length );
-
                 expect( wrapper.find( 'header' ).prop( 'onMouseOver' ) )
                     .to.equal( onMouseOverHeader );
             } );

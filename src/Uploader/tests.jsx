@@ -35,11 +35,11 @@ describe( 'Uploader', () =>
         } );
 
         it( 'should render component based on Button which isLoading=true',
-        () =>
-        {
-            expect( Wrapper.find( 'Button', 'Upload', 'Spinner' ) )
-                .to.have.length( 1 );
-        } );
+            () =>
+            {
+                expect( Wrapper.find( 'Button', 'Upload', 'Spinner' ) )
+                    .to.have.length( 1 );
+            } );
     } );
 
     describe( 'uploaded state', () =>
@@ -56,11 +56,11 @@ describe( 'Uploader', () =>
         } );
 
         it( 'should render a component based on IconButton iconType=close',
-        () =>
-        {
-            expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
-                .to.have.length( 1 );
-        } );
+            () =>
+            {
+                expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
+                    .to.have.length( 1 );
+            } );
 
         describe( 'readOnly state', () =>
         {
@@ -73,12 +73,12 @@ describe( 'Uploader', () =>
 
             it( 'should render a component with on Button with a readonly \
 state', () =>
-            {
-                expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
-                    .to.have.length( 1 );
-                expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' )
-                    .prop( 'isReadOnly' ) ).to.be.true;
-            } );
+                {
+                    expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
+                        .to.have.length( 1 );
+                    expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' )
+                        .prop( 'isReadOnly' ) ).to.be.true;
+                } );
         } );
     } );
 
@@ -90,10 +90,11 @@ state', () =>
         } );
 
         it( 'should render a component based on Button with a readonly state',
-        () =>
-        {
-            expect( Wrapper.find( 'Button' ) ).to.have.length( 1 );
-            expect( Wrapper.find( 'Button' ).prop( 'isReadOnly' ) ).to.be.true;
-        } );
+            () =>
+            {
+                expect( Wrapper.find( 'Button' ) ).to.have.length( 1 );
+                expect( Wrapper.find( 'Button' ).prop( 'isReadOnly' )
+                ).to.be.true;
+            } );
     } );
 } );

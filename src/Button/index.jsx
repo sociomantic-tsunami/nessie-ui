@@ -207,6 +207,7 @@ export default class Button extends Component
                 cssProps = { {
                     role,
                     iconPosition,
+                    iconType,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
                     fakeHovered : forceHover
