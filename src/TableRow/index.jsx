@@ -13,9 +13,6 @@ const TableRow = ( {
     isActive,
     isClickable,
     isSticky,
-    onClick,
-    onMouseOut,
-    onMouseOver,
     verticalAlign,
     ...props,
 } ) =>
@@ -37,10 +34,7 @@ const TableRow = ( {
                 clickable : isClickable,
                 sticky    : isSticky,
             } ) }
-            onClick     = { isClickable ? onClick : null }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }
-            role        = "row">
+            role = "row">
             { cells }
         </Row>
     );
