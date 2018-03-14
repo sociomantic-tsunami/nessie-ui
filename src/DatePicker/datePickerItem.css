@@ -17,7 +17,7 @@
 
     .text
     {
-        color:                  var( --PC-GREY--D25 );
+        color:                  var( --PC-GREY--D15 );
         font-variant-numeric:   lining-nums tabular-nums;
         font-size:              var( --typo-3 );
         font-weight:            300;
@@ -47,17 +47,29 @@
 
 .type__day
 {
-    height:             var( --spacing-4 );
+    height:             calc( var( --spacing-4 ) - 2px );
     width:              var( --spacing-4 );
     min-width:          var( --spacing-4 ); /* IE fix */
     border-radius:      100%;
+    margin:             4px;
+
+    &:last-child
+    {
+        margin-bottom:  4px;
+    }
 }
 
 .type__month
 {
-    height:                 32px;
-    width:                  64px;
+    height:                 42px;
+    width:                  68px;
     border-radius:          3px;
+    margin:                 1px;
+
+    &:last-child
+    {
+        margin-bottom:      1px;
+    }
 }
 
 

@@ -4,11 +4,14 @@
 {
     --inputHeight:          40px;
 
-    --switchHeight:         var( --line-height-m );
-    --switchLetterSpacing:  0.04px;
+    --trackHeight:         var( --line-height-s );
+    --trackLetterSpacing:  0.4px;
 
-    --circleSize:           calc( 0.75 * var( --switchHeight ) );
-    --circleOffset:         calc( ( var( --switchHeight ) - var( --circleSize ) ) / 2 );
+    --borderWidth:          1px;
+    --borderTotal:          calc( var( --borderWidth ) * 2 ); /* both sides when calculating size */
+
+    --circleSize:           calc( var( --line-height-m ) - var( --borderTotal ) );
+    --circleOffset:         calc( ( var( --trackHeight ) - var( --circleSize ) - var( --borderTotal ) ) / 2 );
 
     --backgroundTransition: background-color 0.2s ease-in-out;
     --circleTransition:     left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
@@ -36,11 +39,11 @@
 
         box-sizing:     border-box;
         min-width:      calc( 2 * ( var( --circleSize ) + var( --circleOffset ) ) );
-        height:         var( --switchHeight );
+        height:         var( --trackHeight );
 
-        border-radius:  calc( var( --switchHeight ) / 2 );
+        border-radius:  calc( var( --trackHeight ) / 2 );
 
-        background:     var( --PC-GREY--L70 );
+        background:     var( --PC-GREY );
 
         cursor:         pointer;
         transition:     var( --backgroundTransition );
@@ -59,6 +62,9 @@
             height:         var( --circleSize );
 
             border-radius:  100%;
+            border-style:   solid;
+            border-width:   var( --borderWidth );
+            border-color:   var( --PC-GREY );
 
             background:     var( --PC-WHITE );
 
@@ -81,9 +87,9 @@
 
         @extend %Nessie-SemiBold;
         color:              var( --PC-WHITE );
-        font-size:          var( --typo-2 );
-        line-height:        var( --line-height-m );
-        letter-spacing:     var( --switchLetterSpacing );
+        font-size:          var( --typo-1 );
+        line-height:        var( --line-height-s );
+        letter-spacing:     var( --trackLetterSpacing );
         text-transform:     uppercase;
 
         overflow:           hidden;
@@ -118,7 +124,8 @@
 
         &::before
         {
-            left:   calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
+            left:           calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
+            border-color:   var( --PC-BLUE );
         }
 
         .on
@@ -136,7 +143,7 @@
     {
         & + .label
         {
-            background: var( --PC-GREY--L70 );
+            background: var( --PC-GREY );
 
             /* mimic native browser focus */
             outline:    auto 2px highlight;
@@ -154,7 +161,7 @@
     {
         .label
         {
-            background: var( --PC-GREY--L70 );
+            background: var( --PC-GREY );
         }
 
         .input:checked + .label
@@ -169,12 +176,22 @@
     .label
     {
         cursor:     default;
-        background: var( --PC-GREY--L90 );
+        background: var( --PC-GREY--L40 );
+
+        &::before
+        {
+            border-color: var( --PC-GREY--L40 );
+        }
     }
 
-    .input:checked + &
+    .input:checked + .label
     {
-        background: var( --PC-BLUE--L40 );
+        background: var( --PC-BLUE--L55 );
+
+        &::before
+        {
+            border-color: var( --PC-BLUE--L55 );
+        }
     }
 
     :hover,
@@ -182,12 +199,22 @@
     {
         .label
         {
-            background: var( --PC-GREY--L90 );
+            background: var( --PC-GREY--L40 );
+
+            &::before
+            {
+                border-color: var( --PC-GREY--L40 );
+            }
         }
 
         input:checked + .label
         {
-            background: var( --PC-BLUE--L40 );
+            background: var( --PC-BLUE--L55 );
+
+            &::before
+            {
+                border-color: var( --PC-BLUE--L55 );
+            }
         }
     }
 }
