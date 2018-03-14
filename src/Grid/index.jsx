@@ -29,6 +29,12 @@ const Grid = ( {
 use one of 'S', 'M', 'L' or 'none' instead.` );
         Grid.didWarn[ spacing ] = true;
     }
+    if ( !Grid.didWarn.hasMinHeight )
+    {
+        console.warn( 'Grid: hasMinHeight prop is deprecated. Please use an \
+alternative layout.' );
+        Grid.didWarn.hasMinHeight = true;
+    }
 
     return (
         <div
@@ -73,33 +79,13 @@ Grid.propTypes =
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-    *  Set minimum height equal to average row.
-    */
-    hasMinHeight  : PropTypes.bool,
-    /**
      * Wrap content
      */
     hasWrap       : PropTypes.bool,
     /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick       : PropTypes.func,
-    /**
-     *  onMouseOut callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOut    : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOver   : PropTypes.func,
-    /**
      *  Grid role
      */
-    role          : PropTypes.oneOf( 'none', 'row' ),
-    /**
+    role          : PropTypes.string,
     /**
      *  Row spacing
      */
@@ -117,12 +103,11 @@ Grid.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
-    hasMinHeight  : false,
+    gutters       : 'L',
     hasWrap       : true,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,
-    gutters       : 'L',
     role          : undefined,
     spacing       : 'M',
     verticalAlign : 'auto',

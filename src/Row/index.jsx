@@ -29,28 +29,9 @@ Row.propTypes =
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-    *  Set minimum height equal to average row.
-    */
-    hasMinHeight  : PropTypes.bool,
-    /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick       : PropTypes.func,
-    /**
-     *  onMouseOut callback function:
-     *  () => { ... }
-     */
-    onMouseOut    : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  () => { ... }
-     */
-    onMouseOver   : PropTypes.func,
-    /**
      *  Row role
      */
-    role          : PropTypes.oneOf( 'none', 'row' ),
+    role          : PropTypes.string,
     /**
      *  Row spacing
      */
@@ -69,7 +50,6 @@ Row.defaultProps =
     className     : undefined,
     cssMap        : undefined,
     gutters       : 'L',
-    hasMinHeight  : false,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,

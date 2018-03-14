@@ -256,8 +256,3 @@
 {
     flex-wrap:  wrap;
 }
-
-.hasMinHeight
-{
-    min-height: 7.1rem; /* label + input */
-}
