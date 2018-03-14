@@ -444,7 +444,8 @@ export default class Slider extends Component
     handleFocus( event )
     {
         this.setState( {
-            handleIndex : event.target.id
+            handleIndex : event.target.id,
+            isGrabbing  : true
         } );
     }
 
@@ -456,7 +457,8 @@ export default class Slider extends Component
     handleBlur()
     {
         this.setState( {
-            handleIndex : -1
+            handleIndex : -1,
+            isGrabbing  : false
         } );
     }
 
@@ -633,7 +635,8 @@ export default class Slider extends Component
                     handleLabelPosition : hasHandleLabels &&
                                           handleLabelPosition,
                     hasHandleLabels,
-                    orientation
+                    orientation,
+                    grabbing : this.state.isGrabbing,
                 } } >
                 <div className = { className }>
                     <div
