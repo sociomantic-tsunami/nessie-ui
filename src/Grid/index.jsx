@@ -83,6 +83,21 @@ Grid.propTypes =
      */
     hasWrap       : PropTypes.bool,
     /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver   : PropTypes.func,
+    /**
      *  Grid role
      */
     role          : PropTypes.string,
