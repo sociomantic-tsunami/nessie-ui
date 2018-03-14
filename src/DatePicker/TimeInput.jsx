@@ -10,6 +10,7 @@ const TimeInput = ( {
     cssMap,
     forceHover,
     hourPlaceholder,
+    hourInputRef,
     hourIsDisabled,
     hourValue,
     id,
@@ -20,6 +21,7 @@ const TimeInput = ( {
     onFocus,
     onKeyPress,
     minuteIsDisabled,
+    minuteInputRef,
     minutePlaceholder,
     minuteValue
 } ) => (
@@ -38,7 +40,8 @@ const TimeInput = ( {
             onFocus     = { eventHandler( onFocus, 'hour' ) }
             onBlur      = { eventHandler( onBlur, 'hour' ) }
             onChange    = { eventHandler( onChange, 'hour' ) }
-            onKeyPress  = { eventHandler( onKeyPress, 'hour' ) } />
+            onKeyPress  = { eventHandler( onKeyPress, 'hour' ) }
+            ref         = { houreInputRef } />
         <span>:</span>
         <input
             id          = { `${id}-input-minute` }
@@ -51,7 +54,8 @@ const TimeInput = ( {
             onFocus     = { eventHandler( onFocus, 'minute' ) }
             onBlur      = { eventHandler( onBlur, 'minute' ) }
             onChange    = { eventHandler( onChange, 'minute' ) }
-            onKeyPress  = { eventHandler( onKeyPress, 'minute' ) } />
+            onKeyPress  = { eventHandler( onKeyPress, 'minute' ) }
+            ref         = { minuteInputRef } />
     </div>
 );
 
@@ -60,6 +64,7 @@ TimeInput.propTypes = {
     cssMap            : PropTypes.objectOf( PropTypes.string ),
     forceHover        : PropTypes.bool,
     hourPlaceholder   : PropTypes.string,
+    hourInputRef      : PropTypes.func,
     hourIsDisabled    : PropTypes.bool,
     hourValue         : PropTypes.string,
     id                : PropTypes.string,
@@ -70,6 +75,7 @@ TimeInput.propTypes = {
     onFocus           : PropTypes.func,
     onKeyPress        : PropTypes.func,
     minuteIsDisabled  : PropTypes.bool,
+    minuteInputRef    : PropTypes.func,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
 
@@ -81,6 +87,7 @@ TimeInput.defaultProps = {
     forceHover        : false,
     hourPlaceholder   : undefined,
     hourIsDisabled    : false,
+    hourInputRef      : undefined,
     hourValue         : undefined,
     id                : generateId( 'TimeInput' ),
     isDisabled        : false,
@@ -90,6 +97,7 @@ TimeInput.defaultProps = {
     onFocus           : undefined,
     onKeyPress        : undefined,
     minuteIsDisabled  : false,
+    minuteInputRef    : undefined,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
 };
