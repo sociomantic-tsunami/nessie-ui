@@ -116,11 +116,10 @@
     }
 }
 
-.error
+.error,
+.error:hover
 {
-    &:hover .valueLabel,
     .valueLabel,
-    &:hover .input,
     .input
     {
         border-color:   var( --AC-2 );
@@ -128,9 +127,11 @@
 }
 
 
-.disabled
+.disabled,
+.disabled:hover
 {
-    .valueLabel
+    .valueLabel,
+    .input
     {
         background:     var( --GS-10 );
         border-color:   var( --GS-10 );
