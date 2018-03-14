@@ -377,8 +377,6 @@ export default class Slider extends Component
 
         addEventListener( 'mousemove', this.handleMouseMove );
         addEventListener( 'mouseup', this.handleMouseUp );
-
-        // this.setState( { isGrabbing: true } );
     }
 
 
@@ -413,8 +411,6 @@ export default class Slider extends Component
     {
         removeEventListener( 'mousemove', this.handleMouseMove );
         removeEventListener( 'mouseup', this.handleMouseUp );
-
-        // this.setState( { isGrabbing: false } );
     }
 
 
