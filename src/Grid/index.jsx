@@ -37,7 +37,7 @@ use one of 'S', 'M', 'L' or 'none' instead.` );
                 alignY  : verticalAlign,
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
-                hasWrap,
+                wrap    : hasWrap,
                 spacing : spacing !== 'none' && spacing
             } ) }
             onClick      = { onClick }
