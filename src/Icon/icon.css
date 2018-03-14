@@ -143,7 +143,7 @@
 }
 
 
-@each $icon in (account, accounts, active, add, bell, calendar, campaigns, close, creatives, dashboard, deactivated, declined, delete, down, download, duplicate, edit, error, graph, info, inspect, integrations, left, link, options, preview, reports, reset, right, scheduled, search, up, upload, validation, show, sociomantic, star-stroke, star, table, hide)
+@each $icon in (add, account, accounts, active, arrow, arrow-up, arrow-down, bell, calendar, campaigns, close, close-thick, creatives, dash, dashboard, deactivated, declined, down, download, duplicate, edit, error, graph, info, inspect, integrations, left, link, options, preview, reports, reset, right, scheduled, search, up, upload, validation, show, sociomantic, sorting, star-stroke, star, table, trash, hide)
 {
     .type__$(icon)
     {
