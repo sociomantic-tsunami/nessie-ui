@@ -15,20 +15,30 @@ const Grid = ( {
     role,
     spacing,
     verticalAlign,
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            alignX  : align,
-            alignY  : verticalAlign,
-            hasMinHeight,
-            gutters : gutters !== 'none' && gutters,
-            hasWrap,
-            spacing : spacing !== 'none' && spacing
-        } ) }
-        role = { role }>
-        { children }
-    </div>
-);
+} ) =>
+{
+    if ( !Grid.didWarn && hasMinHeight )
+    {
+        console.warn( 'Grid: hasMinHeight prop is deprecated. Please use an \
+alternative layout.' );
+        Grid.didWarn = true;
+    }
+
+    return (
+        <div
+            className = { buildClassName( className, cssMap, {
+                alignX  : align,
+                alignY  : verticalAlign,
+                hasMinHeight,
+                gutters : gutters !== 'none' && gutters,
+                hasWrap,
+                spacing : spacing !== 'none' && spacing
+            } ) }
+            role = { role }>
+            { children }
+        </div>
+    );
+};
 
 Grid.propTypes =
 {
@@ -36,39 +46,35 @@ Grid.propTypes =
      * Horizontal alignment of the columns (“auto” makes all columns equal
      * width)
      */
-    align        : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    align     : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
      *  Grid content (Columns)
      */
-    children     : PropTypes.node,
+    children  : PropTypes.node,
     /**
      *  CSS class name
      */
-    className    : PropTypes.string,
+    className : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Gutter size
      */
-    gutters      : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    /**
-    *  Set minimum height equal to average row.
-    */
-    hasMinHeight : PropTypes.bool,
+    gutters   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      * Wrap content
      */
-    hasWrap      : PropTypes.bool,
+    hasWrap   : PropTypes.bool,
     /**
      *  Grid role
      */
-    role         : PropTypes.string,
+    role      : PropTypes.string,
     /**
      *  Row spacing
      */
-    spacing      : PropTypes.oneOf( [
+    spacing   : PropTypes.oneOf( [
         'none',
         'default',
         'h1',
@@ -91,7 +97,6 @@ Grid.defaultProps =
     className     : undefined,
     cssMap        : styles,
     gutters       : 'L',
-    hasMinHeight  : false,
     hasWrap       : true,
     role          : undefined,
     spacing       : 'default',
