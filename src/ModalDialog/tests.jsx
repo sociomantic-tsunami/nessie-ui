@@ -29,7 +29,7 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : false,
-            children  : [ <span className = "thisguy">boom</span> ]
+            children  : <span className = "thisguy">boom</span>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
 
@@ -41,7 +41,7 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : true,
-            children  : [ <span className = "thisguy">boom</span> ]
+            children  : <span className = "thisguy">boom</span>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
 

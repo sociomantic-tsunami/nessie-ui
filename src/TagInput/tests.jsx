@@ -49,10 +49,10 @@ describe( 'TagInput', () =>
         expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
 
-    it( 'should have Tag components when passed as tags prop )', () =>
+    it( 'should have Tag components when passed as tags prop', () =>
     {
         wrapper.setProps( {
-            tags : [ 'TagLabelString 1', 'TagLabelString 2' ]
+            tags : [ 'TagLabelString 1', 'TagLabelString 2' ],
         } );
 
         expect( wrapper.find( Tag ) ).to.have.length( 2 );

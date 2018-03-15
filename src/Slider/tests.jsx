@@ -12,6 +12,8 @@ import Label                      from '../Label/index';
 import Slider                     from './index';
 
 
+const noop = () => null;
+
 describe( 'Slider', () =>
 {
     let Wrapper;
@@ -114,15 +116,18 @@ describe( 'Slider', () =>
     it( 'should contain N inputs if value is array of length N', () =>
     {
         let props = {
-            value : [ 1 ]
+            value    : [ 1 ],
+            onChange : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
 
+
         expect( Wrapper.find( 'input' ) ).to.have.length( 1 );
 
         props = {
-            value : [ 1, 2, 3 ]
+            value    : [ 1, 2, 3 ],
+            onChange : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -133,15 +138,18 @@ describe( 'Slider', () =>
     it( 'should contain N handle labels if value is array of length N', () =>
     {
         let props = {
-            value : [ 1 ]
+            value    : [ 1 ],
+            onChange : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
 
+
         expect( Wrapper.find( '.slider__handleLabel' ) ).to.have.length( 1 );
 
         props = {
-            value : [ 1, 2, 3 ]
+            value    : [ 1, 2, 3 ],
+            onChange : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -154,7 +162,8 @@ describe( 'Slider', () =>
         let props = {
             value               : [ 1 ],
             handleLabelPosition : 'top',
-            hasHandleLabels     : true
+            hasHandleLabels     : true,
+            onChange            : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -166,7 +175,8 @@ describe( 'Slider', () =>
         props = {
             value               : [ 1 ],
             handleLabelPosition : 'right',
-            hasHandleLabels     : true
+            hasHandleLabels     : true,
+            onChange            : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -178,7 +188,8 @@ describe( 'Slider', () =>
         props = {
             value               : [ 1 ],
             handleLabelPosition : 'bottom',
-            hasHandleLabels     : true
+            hasHandleLabels     : true,
+            onChange            : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -190,7 +201,8 @@ describe( 'Slider', () =>
         props = {
             value               : [ 1 ],
             handleLabelPosition : 'left',
-            hasHandleLabels     : true
+            hasHandleLabels     : true,
+            onChange            : noop
         };
 
         Wrapper = mount( <Slider { ...props } /> );
@@ -217,7 +229,8 @@ describe( 'Slider', () =>
                 isLogarithmic : false,
                 value         : [ 50, 150 ],
                 minValue      : 0,
-                maxValue      : 200
+                maxValue      : 200,
+                onChange      : noop
             };
 
             Wrapper = mount( <Slider { ...props } /> );
@@ -239,7 +252,8 @@ describe( 'Slider', () =>
         it( 'should be triggered when mousedown in the handle', () =>
         {
             const props = {
-                value : 150
+                value    : 150,
+                onChange : noop
             };
 
             Wrapper = mount( <Slider { ...props } /> );
@@ -258,12 +272,12 @@ describe( 'Slider', () =>
             () =>
             {
                 const props = {
-                    value : [ 50 ]
+                    value    : [ 50 ],
+                    onChange : noop
                 };
                 Wrapper = mount( <Slider { ...props } /> );
 
-                const eventListenerSpy =
-                    sinon.spy( global, 'addEventListener' );
+                const eventListenerSpy = sinon.spy( global, 'addEventListener' );
 
                 Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
                 expect( eventListenerSpy.calledTwice ).to.be.true;

@@ -68,7 +68,7 @@ InputContainer.propTypes = {
     /**
      *  Error tooltip message to show
      */
-    errorMessage          : PropTypes.string,
+    errorMessage          : PropTypes.node,
     /**
      *  Whether error tooltip is shown
      */

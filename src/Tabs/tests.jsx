@@ -7,34 +7,33 @@ import React              from 'react';
 import { shallow }        from 'enzyme';
 
 import { Tab, TabButton } from '../index';
+
 import Tabs               from './index';
 
 
 describe( 'Tabs', () =>
 {
     let wrapper;
-    let instance;
+    // let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Tabs /> );
-        instance = wrapper.instance();
+        // instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
         it( 'should accept a single Tab as children', () =>
         {
-            wrapper.setProps( { children: <Tab/> } )
+            wrapper.setProps( { children: <Tab /> } );
             expect( wrapper.find( TabButton ) ).to.have.length( 1 );
         } );
 
         it( 'should accept an array of Tabs as children', () =>
         {
-            wrapper.setProps( { children: [ <Tab/>, <Tab/> ] } )
+            wrapper.setProps( { children: [ <Tab />, <Tab /> ] } );
             expect( wrapper.find( TabButton ) ).to.have.length( 2 );
         } );
-
     } );
-
 } );

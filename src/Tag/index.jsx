@@ -23,7 +23,7 @@ const Tag = ( {
     if ( typeof labelText === 'string' )
     {
         labelText = (
-            <Text className = { cssMap.label } overflowisHidden>
+            <Text className = { cssMap.label } overflowIsHidden>
                 { labelText }
             </Text>
         );
@@ -32,7 +32,7 @@ const Tag = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                disabled : isDisabled,
+                disabled : isDisabled
             } ) }>
             { labelText }
             <IconButton

@@ -42,7 +42,7 @@ TabButton.propTypes =
     /**
     *  Label text
     */
-    label      : PropTypes.string.isRequired,
+    label      : PropTypes.string,
     /**
      * Subtitle text
      */

@@ -19,6 +19,7 @@ function buildTagsFromValues( values = [] )
         const props = typeof value === 'object' ? value : {
             id    : value,
             label : value,
+            key   : value,
             value,
         };
 
