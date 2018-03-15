@@ -723,9 +723,9 @@ export default class Slider extends Component
                     grabbing : this.state.isGrabbing,
                 } } >
                 <div
-                    className   = { className }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }>
+                    className    = { className }
+                    onMouseLeave = { onMouseOut }
+                    onMouseEnter = { onMouseOver }>
                     <div
                         className = { cssMap.inputContainer }
                         ref       = { this.setInputContainerRef }>

@@ -40,8 +40,8 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }>
+            onMouseLeave = { onMouseOut }
+            onMouseEnter = { onMouseOver }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }

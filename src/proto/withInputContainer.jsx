@@ -23,8 +23,8 @@ const withInputContainer = Component =>
             isDisabled            = { inputProps.isDisabled }
             label                 = { label }
             labelPosition         = { labelPosition }
-            onMouseOut            = { inputProps.onMouseOut }
-            onMouseOver           = { inputProps.onMouseOver }>
+            onMouseLeave          = { inputProps.onMouseOut }
+            onMouseEnter          = { inputProps.onMouseOver }>
             <Component { ...inputProps } />
         </InputContainer>
     );

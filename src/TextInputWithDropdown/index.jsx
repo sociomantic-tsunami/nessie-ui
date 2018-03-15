@@ -97,43 +97,43 @@ export default class TextInputWithDropdown extends Component
         /**
          * Input text alignment
          */
-        textAlign  : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign            : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          * HTML id attribute (overwrite default)
          */
-        id         : PropTypes.string,
-         /**
+        id                   : PropTypes.string,
+        /**
          * HTML name attribute
          */
-        name       : PropTypes.string,
+        name                 : PropTypes.string,
         /**
          *  onChange callback function: ( e ) => { ... }
          */
-        onChange   : PropTypes.func,
+        onChange             : PropTypes.func,
         /**
          *  onFocus callback function: ( e ) => { ... }
          */
-        onFocus    : PropTypes.func,
+        onFocus              : PropTypes.func,
         /**
          *  onBlur callback function: ( e ) => { ... }
          */
-        onBlur     : PropTypes.func,
+        onBlur               : PropTypes.func,
         /**
          *  onMouseOver callback function: ( e ) => { ... }
          */
-        onMouseOve : PropTypes.func,
+        onMouseOver          : PropTypes.func,
         /**
          *  onMouseOut callback function: ( e ) => { ... }
          */
-        onMouseOut : PropTypes.func,
+        onMouseOut           : PropTypes.func,
         /**
          * Display as hover when required from another component
          */
-        forceHover : PropTypes.bool,
+        forceHover           : PropTypes.bool,
         /**
          * Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef   : PropTypes.func,
+        inputRef             : PropTypes.func,
     };
 
     static defaultProps =
@@ -265,8 +265,8 @@ export default class TextInputWithDropdown extends Component
                             value        = { inputValue }
                             textAlign    = { alignText }
                             forceHover   = { fakeHovered }
-                            onMouseOver  = { this.handleMouseOver }
-                            onMouseOut   = { this.handleMouseOut }
+                            onMouseEnter = { this.handleMouseOver }
+                            onMouseLeave = { this.handleMouseOut }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur } />
                         <FlounderDropdown
@@ -277,8 +277,8 @@ export default class TextInputWithDropdown extends Component
                             defaultValue = { dropdownDefaultValue }
                             value        = { dropdownValue }
                             forceHover   = { fakeHovered }
-                            onMouseOver  = { this.handleMouseOver }
-                            onMouseOut   = { this.handleMouseOut }
+                            onMouseEnter = { this.handleMouseOver }
+                            onMouseLeave = { this.handleMouseOut }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur } />
                     </div>

@@ -231,14 +231,14 @@ export default class TagInput extends Component
                 isDisabled            = { isDisabled }
                 label                 = { label }
                 labelPosition         = { labelPosition }
-                onMouseOut            = { onMouseOut }
-                onMouseOver           = { onMouseOver }>
+                onMouseLeave          = { onMouseOut }
+                onMouseEnter          = { onMouseOver }>
                 <label
-                    className   = { cssMap.container }
-                    htmlFor     = { id }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }
-                    style       = { { height } }>
+                    className    = { cssMap.container }
+                    htmlFor      = { id }
+                    onMouseLeave = { onMouseOut }
+                    onMouseEnter = { onMouseOver }
+                    style        = { { height } }>
                     { items }
                     <input
                         className   = { cssMap.input }

@@ -53,7 +53,7 @@ describe( 'CodeEditor', () =>
             wrapper.setProps( { onMouseOver } );
 
             expect( wrapper.find( `.${cssMap.editor}` )
-                .prop( 'onMouseOver' ) ).to.equal( onMouseOver );
+                .prop( 'onMouseEnter' ) ).to.equal( onMouseOver );
         } );
 
         it( 'should pass onMouseOut to the container div', () =>
@@ -62,7 +62,7 @@ describe( 'CodeEditor', () =>
             wrapper.setProps( { onMouseOut } );
 
             expect( wrapper.find( `.${cssMap.editor}` )
-                .prop( 'onMouseOut' ) ).to.equal( onMouseOut );
+                .prop( 'onMouseLeave' ) ).to.equal( onMouseOut );
         } );
     } );
 } );

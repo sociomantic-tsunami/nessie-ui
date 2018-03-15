@@ -107,7 +107,7 @@ describe( 'Module', () =>
                     title        : 'hello',
                 } );
 
-                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseLeave' ) )
                     .to.equal( onMouseOutError );
             } );
         } );
@@ -129,7 +129,7 @@ describe( 'Module', () =>
                     title        : 'hello',
                 } );
 
-                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseEnter' ) )
                     .to.equal( onMouseOverError );
             } );
         } );
@@ -146,7 +146,7 @@ describe( 'Module', () =>
                 const onMouseOutHeader = sinon.spy();
                 wrapper.setProps( { onMouseOutHeader, title: 'hello' } );
 
-                expect( wrapper.find( 'header' ).prop( 'onMouseOut' ) )
+                expect( wrapper.find( 'header' ).prop( 'onMouseLeave' ) )
                     .to.equal( onMouseOutHeader );
             } );
         } );
@@ -163,7 +163,7 @@ describe( 'Module', () =>
                 const onMouseOverHeader = sinon.spy();
                 wrapper.setProps( { onMouseOverHeader, title: 'hello' } );
 
-                expect( wrapper.find( 'header' ).prop( 'onMouseOver' ) )
+                expect( wrapper.find( 'header' ).prop( 'onMouseEnter' ) )
                     .to.equal( onMouseOverHeader );
             } );
         } );

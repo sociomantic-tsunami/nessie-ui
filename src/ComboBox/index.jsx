@@ -439,19 +439,19 @@ export default class ComboBox extends Component
                     hasError,
                     padding  : options.length ? 'none' : 'S',
                 } }
-                name        = { name }
-                onBlur      = { onBlur }
-                onChange    = { onChangeInput }
-                onClick     = { onClickInput }
-                onFocus     = { onFocus }
-                onKeyDown   = { onKeyDown }
-                onKeyPress  = { onKeyPress }
-                onKeyUp     = { onKeyUp }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }
-                placeholder = { inputPlaceholder }
-                value       = { inputValue }
-                wrapperRef  = { this.setWrapperRef } />
+                name         = { name }
+                onBlur       = { onBlur }
+                onChange     = { onChangeInput }
+                onClick      = { onClickInput }
+                onFocus      = { onFocus }
+                onKeyDown    = { onKeyDown }
+                onKeyPress   = { onKeyPress }
+                onKeyUp      = { onKeyUp }
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }
+                placeholder  = { inputPlaceholder }
+                value        = { inputValue }
+                wrapperRef   = { this.setWrapperRef } />
         );
     }
 }

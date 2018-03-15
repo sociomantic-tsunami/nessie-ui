@@ -237,13 +237,13 @@ export default class ValuedTextInput extends Component
                     <div className = { cssMap.container }>
                         <InputField
                             { ...props }
-                            id          = { id }
-                            className   = { cssMap.input }
-                            onFocus     = { this.handleFocus }
-                            onBlur      = { this.handleBlur }
-                            textAlign   = { alignText }
-                            onMouseOver = { onMouseOver }
-                            onMouseOut  = { onMouseOut } />
+                            id           = { id }
+                            className    = { cssMap.input }
+                            onFocus      = { this.handleFocus }
+                            onBlur       = { this.handleBlur }
+                            textAlign    = { alignText }
+                            onMouseEnter = { onMouseOver }
+                            onMouseLeave = { onMouseOut } />
                         <label
                             className = { cssMap.valueLabel }
                             htmlFor   = { id }>

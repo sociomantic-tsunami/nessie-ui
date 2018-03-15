@@ -42,10 +42,10 @@ const ListBoxOption = ( {
             active   : isActive,
             selected : isSelected,
         } ) }
-        id          = { id }
-        onClick     = { eventHandler( onClick, id ) }
-        onMouseOut  = { eventHandler( onMouseOut, id ) }
-        onMouseOver = { eventHandler( onMouseOver, id ) }>
+        id           = { id }
+        onClick      = { eventHandler( onClick, id ) }
+        onMouseLeave = { eventHandler( onMouseOut, id ) }
+        onMouseEnter = { eventHandler( onMouseOver, id ) }>
         { ( iconType && iconType !== 'none' ) &&
             <Icon
                 className = { cssMap.icon }

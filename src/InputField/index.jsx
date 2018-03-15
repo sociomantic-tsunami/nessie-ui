@@ -174,8 +174,8 @@ deprecated. Please use onChange instead.` );
                 onKeyDown    = { onKeyDown }
                 onKeyPress   = { onKeyPress }
                 onKeyUp      = { onKeyUp }
-                onMouseOut   = { onMouseOut }
-                onMouseOver  = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }
                 placeholder  = { placeholder }
                 readOnly     = { isReadOnly }
                 ref          = { inputRef }

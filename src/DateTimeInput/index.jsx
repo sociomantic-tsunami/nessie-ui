@@ -101,8 +101,8 @@ const DateTimeInput = ( {
             onClickIcon    = { onClickIcon }
             onFocus        = { eventHandler( onFocus, 'main' ) }
             onKeyPress     = { eventHandler( onKeyPress, 'main' ) }
-            onMouseOut     = { onMouseOut }
-            onMouseOver    = { onMouseOver }
+            onMouseLeave   = { onMouseOut }
+            onMouseEnter   = { onMouseOver }
             placeholder    = { inputPlaceholder }
             value          = { inputValue } />
     );
