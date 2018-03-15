@@ -600,7 +600,7 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
-    describe( 'setValueByKeys( keyCode, index )', () =>
+    describe( 'setValueByKeys( dir, index )', () =>
     {
         let focus;
         let keyDown;
