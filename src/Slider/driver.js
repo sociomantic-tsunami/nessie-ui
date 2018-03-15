@@ -1,6 +1,6 @@
 const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Slider '${label}' cannot be clicked since it is ${state}`
+    DISABLED : ( label, action ) =>
+        `Slider '${label}' cannot be ${action} since it is disabled`,
 };
 
 
@@ -17,6 +17,13 @@ export default class SliderDriver
 
     blur( index = 0 )
     {
+        const label = this.wrapper.prop( 'label' );
+
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( label, 'blurred' ) );
+        }
+
         this.inputContainer.childAt( index ).simulate( 'blur' );
         return this;
     }
@@ -29,13 +36,11 @@ export default class SliderDriver
 
     click()
     {
-        const label = this.wrapper.prop( label );
+        const label = this.wrapper.prop( 'label' );
 
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error(
-                ERRORS.BUTTON_CANNOT_BE_CLICKED( label, 'disabled' )
-            );
+            throw new Error( ERRORS.DISABLED( label, 'clicked' ) );
         }
 
         this.track.simulate( 'click' );
@@ -44,6 +49,13 @@ export default class SliderDriver
 
     focus( index = 0 )
     {
+        const label = this.wrapper.prop( 'label' );
+
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( label, 'focused' ) );
+        }
+
         this.inputContainer.childAt( index ).simulate( 'focus' );
         return this;
     }
