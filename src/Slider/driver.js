@@ -75,7 +75,7 @@ export default class SliderDriver
         return this;
     }
 
-    keyUp( keyCode, index = 0  )
+    keyUp( keyCode, index = 0 )
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
@@ -110,17 +110,53 @@ export default class SliderDriver
         return this;
     }
 
-    setInputValue( value, index = 0 )
+    setValueByClick( value = '', index = 0 )
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
+
         this.mouseOver();
         this.mouseDown( index );
         this.focus( index );
         this.change( value, index );
         this.mouseUp();
         this.click( index );
+    }
+
+    setValueByKeys( dir = 'up', index = 0 )
+    {
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+
+        const upKey   = 38;
+        const downKey = 40;
+
+        let keyCode;
+
+        const { maxValue, minValue, step, value } = this.wrapper.props();
+
+        let newValue = Array.isArray( value ) ? value[ index ] : value;
+
+        if ( dir === 'up' )
+        {
+            keyCode  = upKey;
+            newValue += step;
+        }
+        else if ( dir === 'down' )
+        {
+            keyCode  = downKey;
+            newValue -= step;
+        }
+
+        newValue = Math.min( Math.max( newValue, minValue ), maxValue );
+
+        this.focus( index );
+        this.keyDown( keyCode );
+        this.change( newValue, index );
+        this.keyUp( keyCode );
     }
 }
