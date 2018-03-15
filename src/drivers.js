@@ -2,7 +2,7 @@ import { ComponentDriver }    from 'componentDriver';
 import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
-    ModalDialog, Switch, Row, Text, CodeEditor }  from 'nessie-ui';
+    ModalDialog, Slider, Switch, Row, Text, CodeEditor }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import ModuleDriver             from './Module/driver';
@@ -18,6 +18,7 @@ import FormDriver               from './Form/driver';
 import NavItemDriver            from './NavItem/driver';
 import NotificationBarDriver    from './NotificationBar/driver';
 import ModalDialogDriver        from './ModalDialog/driver';
+import SliderDriver             from './Slider/driver';
 import SwitchDriver             from './Switch/driver';
 import TextDriver               from './Text/driver';
 import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
@@ -98,6 +99,10 @@ const drivers =
     {
         Component : ModalDialog,
         Driver    : ModalDialogDriver
+    },
+    {
+        Component : Slider,
+        Driver    : SliderDriver
     },
     {
         Component : Switch,
