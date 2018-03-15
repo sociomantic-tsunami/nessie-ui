@@ -110,7 +110,7 @@
     &__declined,
     &__error
     {
-        color:                       var( --PC-RED );
+        fill:                       var( --PC-RED );
     }
 
     &__ended
@@ -143,7 +143,7 @@
 }
 
 
-@each $icon in (add, account, accounts, active, arrow, arrow-up, arrow-down, bell, calendar, campaigns, close, close-thick, creatives, dash, dashboard, deactivated, declined, down, download, duplicate, edit, error, graph, info, inspect, integrations, left, link, options, preview, reports, reset, right, scheduled, search, up, upload, validation, show, sociomantic, sorting, star-stroke, star, table, trash, hide)
+@each $icon in (account, accounts, active, add, arrow-down, arrow-up, arrow, bell, calendar, campaigns, close-thick, close, creatives, dash, dashboard, deactivated, declined, down, download, duplicate, edit-circle, edit, error, graph, hide, info, inspect, integrations, left, link, loader, options, plus, preview, reports, reset, right, scheduled, search, show, sociomantic, sorting, spinner, star-stroke, star, table, trash, up, upload, validation, warning)
 {
     .type__$(icon)
     {
