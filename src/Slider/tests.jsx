@@ -393,6 +393,16 @@ describe( 'SliderDriver', () =>
             expect( event.target ).to.equal( firstInput );
         } );
 
+        it( 'event target should be the slider input at index', () =>
+        {
+            const index = 1;
+            driver.blur( index );
+            const event = onBlur.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+
         it( 'should not fire onBlur when slider is disabled ', () =>
         {
             wrapper.setProps( { isDisabled: true } );
@@ -433,6 +443,173 @@ describe( 'SliderDriver', () =>
             const firstInput = inputContainer.childAt( 0 ).node;
 
             expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'event target should be the slider input at index', () =>
+        {
+            const index = 1;
+            driver.focus( index );
+            const event = onFocus.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'keyDown( keyCode, index )', () =>
+    {
+        const keyCode = 40; // down arrow
+        let onKeyDown;
+
+        beforeEach( () =>
+        {
+            onKeyDown = sinon.spy();
+            wrapper.setProps( { onKeyDown } );
+        } );
+
+        it( 'should fire the onKeyDown callback prop', () =>
+        {
+            driver.keyDown();
+            expect( onKeyDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should receive keyCode as event keyCode', () =>
+        {
+            driver.keyDown( keyCode );
+            const event = onKeyDown.lastCall.args[ 0 ];
+            expect( event.keyCode ).to.equal( keyCode );
+        } );
+
+        it( 'should receive first input as event target when no index', () =>
+        {
+            driver.keyDown();
+            const event = onKeyDown.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'should receive input at index as event target', () =>
+        {
+            const index = 1;
+            driver.keyDown( null, index );
+            const event = onKeyDown.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'keyUp( keyCode, index )', () =>
+    {
+        const keyCode = 40; // down arrow
+        let onKeyUp;
+
+        beforeEach( () =>
+        {
+            onKeyUp = sinon.spy();
+            wrapper.setProps( { onKeyUp } );
+        } );
+
+        it( 'should fire the onKeyUp callback prop', () =>
+        {
+            driver.keyUp();
+            expect( onKeyUp.calledOnce ).to.be.true;
+        } );
+
+        it( 'should receive keyCode as event keyCode', () =>
+        {
+            driver.keyUp( keyCode );
+            const event = onKeyUp.lastCall.args[ 0 ];
+            expect( event.keyCode ).to.equal( keyCode );
+        } );
+
+        it( 'should receive first input as event target when no index', () =>
+        {
+            driver.keyUp();
+            const event = onKeyUp.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'should receive input at index as event target', () =>
+        {
+            const index = 1;
+            driver.keyUp( null, index );
+            const event = onKeyUp.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'setInputValue( value, index )', () =>
+    {
+        let onMouseOut;
+        let onMouseOver;
+        let onMouseDown;
+        let onFocus;
+        let onChange;
+        let onMouseUp;
+        let onClick;
+
+        beforeEach( () =>
+        {
+            onMouseOut  = sinon.spy();
+            onMouseOver = sinon.spy();
+            onMouseDown = sinon.spy();
+            onFocus     = sinon.spy();
+            onChange    = sinon.spy();
+            onMouseUp   = sinon.spy();
+            onClick     = sinon.spy();
+
+            wrapper.setProps( {
+                onMouseOut,
+                onMouseOver,
+                onMouseDown,
+                onFocus,
+                onChange,
+                onMouseUp,
+                onClick,
+            } );
+        } );
+
+        it( 'should fire the onMouseOver callback prop', () =>
+        {
+            driver.setInputValue();
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the onMouseDown callback prop', () =>
+        {
+            driver.setInputValue();
+            expect( onMouseDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the onFocus callback prop', () =>
+        {
+            driver.setInputValue();
+            expect( onFocus.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the onChange callback prop... twice?!', () =>
+        {
+            driver.setInputValue();
+            console.log( onChange.callCount );
+            expect( onChange.called ).to.be.true;
+        } );
+
+        it( 'should fire the onMouseUp callback prop', () =>
+        {
+            driver.setInputValue();
+            expect( onMouseUp.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the onClick callback prop', () =>
+        {
+            driver.setInputValue();
+            expect( onClick.calledOnce ).to.be.true;
         } );
     } );
 } );
