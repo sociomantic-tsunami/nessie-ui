@@ -99,38 +99,40 @@
 {
     &__alert
     {
-        color:                       var( --PC-YELLOW );
+        color:                      var( --PC-YELLOW );
+        fill:                       var( --PC-YELLOW );
     }
 
-    &__approved
+    &__approved,
+    &__validation
     {
-        color:                       var( --PC-GREEN );
+        color:                      var( --PC-GREEN );
+        fill:                       var( --PC-GREEN );
     }
 
     &__declined,
     &__error
     {
+        color:                      var( --PC-RED );
         fill:                       var( --PC-RED );
     }
 
     &__ended
     {
-        color:                       var( --GS-2 );
+        color:                      var( --PC-GREY--L10 );
+        fill:                       var( --PC-GREY--L10 );
     }
 
     &__info
     {
-        color:                       var( --GS-5 );
+        color:                      var( --PC-BLUE  );
+        fill:                       var( --PC-BLUE  );
     }
 
     &__pending
     {
-        color:                       var( --PC-ORANGE );
-    }
-
-    &__validation
-    {
-        fill:                        var( --PC-GREEN );
+        color:                      var( --PC-ORANGE );
+        fill:                       var( --PC-ORANGE );
     }
 }
 
@@ -143,7 +145,7 @@
 }
 
 
-@each $icon in (account, accounts, active, add, arrow-down, arrow-up, arrow, bell, calendar, campaigns, close-thick, close, creatives, dash, dashboard, deactivated, declined, down, download, duplicate, edit-circle, edit, error, graph, hide, info, inspect, integrations, left, link, loader, options, plus, preview, reports, reset, right, scheduled, search, show, sociomantic, sorting, spinner, star-stroke, star, table, trash, up, upload, validation, warning)
+@each $icon in (account, accounts, add, alert, approved, arrow-down, arrow-up, arrow, bell, calendar, campaigns, close-circle, close-thick, creatives, dash, dashboard, declined, delete, down, download, duplicate, edit-circle, edit, ended, error, graph, hide, info, inspect, integrations, left, link, loader, options, pending, plus, preview, reports, reset, right, search, show, sociomantic, sorting, spinner, star-stroke, star, table, up, upload, validation)
 {
     .type__$(icon)
     {
