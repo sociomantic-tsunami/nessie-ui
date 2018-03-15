@@ -27,8 +27,8 @@ const NavItem = ( {
 {
     if ( typeof isCurrentPage !== 'undefined' )
     {
-        console.warn( `NavItem: isCurrentPage is deprecated and will be \
-removed in the next major release. Please use isCurrent instead.` );
+        console.warn( 'NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.' );
     }
 
     return (
@@ -45,8 +45,8 @@ removed in the next major release. Please use isCurrent instead.` );
             } }>
             <li
                 className   = { className }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
+                onMouseEnter = { onMouseOver }
+                onMouseLeave  = { onMouseOut }>
                 <a
                     className = { cssMap.link }
                     href      = { href }

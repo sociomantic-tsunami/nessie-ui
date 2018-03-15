@@ -79,47 +79,5 @@ describe( 'Tooltip', () =>
             const message = wrapper.driver().getMessage();
             expect( message.find( 'h2' ) ).to.have.length( 1 );
         } );
-
-        describe( 'testing errors', () =>
-        {
-            let onMouseOverHandler;
-            let onMouseOutHandler;
-            let Wrapper;
-
-            beforeEach( () =>
-            {
-                onMouseOverHandler = sinon.spy();
-                onMouseOutHandler = sinon.spy();
-
-                const props = {
-                    message     : 'Pikachu!',
-                    onMouseOver : onMouseOverHandler,
-                    onMouseOut  : onMouseOutHandler
-                };
-
-                Wrapper = mount( <Tooltip { ...props } /> );
-            } );
-
-            it( 'mouseOver tooltip without content should throw an error', () =>
-            {
-                const expectedError = 'Cannot mouseover on tooltip. No content \
-available';
-                expect( () => Wrapper.driver().mouseOver() )
-                    .to.throw( expectedError );
-                expect( onMouseOverHandler.notCalled ).to.be.true;
-                expect( onMouseOutHandler.notCalled ).to.be.true;
-            } );
-
-            it( 'mouseOut tooltip without content should throw an error', () =>
-            {
-                const expectedError = 'Cannot mouseout on tooltip. No content \
-available';
-                expect( () => Wrapper.driver().mouseOut() )
-                    .to.throw( expectedError );
-                expect( onMouseOverHandler.notCalled ).to.be.true;
-                expect( onMouseOutHandler.notCalled ).to.be.true;
-            } );
-        } );
     } );
-
 } );
