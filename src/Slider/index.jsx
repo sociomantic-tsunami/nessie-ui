@@ -490,7 +490,7 @@ export default class Slider extends Component
     *  Removes mouseMove and mouseUp listeners
     *  @param {Event}   event   event being passed
     */
-    handleMouseUp( event )
+    handleMouseUp( event = new Event( 'mouseup' ) )
     {
         const { onMouseUp } = this.props;
 
