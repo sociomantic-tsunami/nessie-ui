@@ -1,6 +1,7 @@
 const ERRORS = {
     DISABLED : ( label, action ) =>
-        `Slider '${label}' cannot be ${action} since it is disabled`,
+        `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
+disabled`,
 };
 
 
@@ -9,38 +10,43 @@ export default class SliderDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
 
-        this.track          = wrapper.find( `.${this.cssMap.track}` );
+        this.cssMap = wrapper.prop( 'cssMap' );
+        this.label  = wrapper.prop( 'label' );
+
         this.inputContainer = wrapper.find( `.${this.cssMap.inputContainer}` );
+        this.track          = wrapper.find( `.${this.cssMap.track}` );
     }
 
     blur( index = 0 )
     {
-        const label = this.wrapper.prop( 'label' );
-
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( label, 'blurred' ) );
+            throw new Error( ERRORS.DISABLED( this.label, 'blurred' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'blur' );
         return this;
     }
 
-    change( index = 0 )
+    change( value, index = 0 )
     {
-        this.inputContainer.childAt( index ).simulate( 'change' );
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+
+        this.inputContainer.childAt( index ).simulate( 'change', {
+            target : { value }
+        } );
         return this;
     }
 
     click()
     {
-        const label = this.wrapper.prop( 'label' );
-
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( label, 'clicked' ) );
+            throw new Error( ERRORS.DISABLED( this.label, 'clicked' ) );
         }
 
         this.track.simulate( 'click' );
@@ -49,26 +55,34 @@ export default class SliderDriver
 
     focus( index = 0 )
     {
-        const label = this.wrapper.prop( 'label' );
-
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( label, 'focused' ) );
+            throw new Error( ERRORS.DISABLED( this.label, 'focused' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'focus' );
         return this;
     }
 
-    keyDown( index = 0 )
+    keyDown( keyCode, index = 0 )
     {
-        this.inputContainer.childAt( index ).simulate( 'keyDown' );
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+
+        this.inputContainer.childAt( index ).simulate( 'keyDown', { keyCode } );
         return this;
     }
 
-    keyUp( index = 0 )
+    keyUp( keyCode, index = 0  )
     {
-        this.inputContainer.childAt( index ).simulate( 'keyup' );
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+
+        this.inputContainer.childAt( index ).simulate( 'keyUp', { keyCode } );
         return this;
     }
 
@@ -90,9 +104,23 @@ export default class SliderDriver
         return this;
     }
 
-    mouseUp()
+    mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.simulate( 'mouseUp' );
+        this.wrapper.instance().handleMouseUp();
         return this;
+    }
+
+    setInputValue( value, index = 0 )
+    {
+        if ( this.wrapper.prop( 'isDisabled' ) )
+        {
+            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+        this.mouseOver();
+        this.mouseDown( index );
+        this.focus( index );
+        this.change( value, index );
+        this.mouseUp();
+        this.click( index );
     }
 }
