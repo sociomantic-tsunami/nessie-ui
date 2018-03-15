@@ -317,76 +317,122 @@ describe( 'SliderDriver', () =>
 {
     let wrapper;
     let driver;
+    let cssMap;
+    let inputContainer;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Slider /> );
+        const props = {
+            label    : 'Pikaboo',
+            maxValue : 200,
+            minValue : 0,
+            value    : [ 25, 75 ],
+        };
+
+        wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
+        cssMap  = wrapper.prop( 'cssMap' );
+        inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
     } );
 
-    describe( 'click', () =>
+    describe( 'click()', () =>
     {
         let clickSpy;
 
         beforeEach( () =>
         {
             clickSpy = sinon.spy();
+            wrapper.setProps( { onClick: clickSpy } );
         } );
 
-        it( 'should have the slider clicked', () =>
+        it( 'should fire the onClick callback prop', () =>
         {
-            wrapper.setProps( { onClick: clickSpy } );
             driver.click();
             expect( clickSpy.calledOnce ).to.be.true;
         } );
 
-        it( 'click on a disabled slider should produce an error', () =>
+        it( 'should not fire onClick when slider is disabled ', () =>
         {
-            wrapper.setProps( {
-                label      : 'Pikaboo',
-                isDisabled : true,
-                onClick    : clickSpy
-            } );
+            wrapper.setProps( { isDisabled: true } );
+            expect( () => driver.click() ).to.throw;
+            expect( clickSpy.notCalled ).to.be.true;
+        } );
 
+        it( 'should throw the expected error when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
             const expectedError =
                 'Slider \'Pikaboo\' cannot be clicked since it is disabled';
 
             expect( () => driver.click() ).to.throw( expectedError );
-            expect( clickSpy.notCalled ).to.be.true;
         } );
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur( index )', () =>
     {
+        let onBlur;
+
+        beforeEach( () =>
+        {
+            onBlur = sinon.spy();
+            wrapper.setProps( { onBlur } );
+        } );
+
         it( 'should fire the onBlur callback prop', () =>
         {
-            const blurSpy = sinon.spy();
-            wrapper.setProps( {
-                value    : [ 25, 75 ],
-                onBlur   : blurSpy,
-                minValue : 0,
-                maxValue : 200
-            } );
-
             driver.blur();
-            expect( blurSpy.calledOnce ).to.be.true;
+            expect( onBlur.calledOnce ).to.be.true;
+        } );
+
+        it( 'event target should be the first slider input when no index', () =>
+        {
+            driver.blur();
+            const event = onBlur.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'should not fire onBlur when slider is disabled ', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            expect( () => driver.click() ).to.throw;
+            expect( onBlur.notCalled ).to.be.true;
+        } );
+
+        it( 'should throw the expected error when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            const expectedError =
+                'Slider \'Pikaboo\' cannot be blurred since it is disabled';
+
+            expect( () => driver.blur() ).to.throw( expectedError );
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus( index )', () =>
     {
+        let onFocus;
+
+        beforeEach( () =>
+        {
+            onFocus = sinon.spy();
+            wrapper.setProps( { onFocus } );
+        } );
+
         it( 'should fire the onFocus callback prop', () =>
         {
-            const focusSpy = sinon.spy();
-            wrapper.setProps( {
-                onFocus  : focusSpy,
-                value    : [ 25, 75 ],
-                minValue : 0,
-                maxValue : 200
-            } );
-
             driver.focus();
-            expect( focusSpy.calledOnce ).to.be.true;
+            expect( onFocus.calledOnce ).to.be.true;
+        } );
+
+        it( 'event target should be the first slider input when no index', () =>
+        {
+            driver.focus();
+            const event = onFocus.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
         } );
     } );
 } );
