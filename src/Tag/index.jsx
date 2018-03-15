@@ -32,8 +32,7 @@ const Tag = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                disabled : isDisabled,
-                key      : { id }
+                disabled : isDisabled
             } ) }>
             { labelText }
             <IconButton

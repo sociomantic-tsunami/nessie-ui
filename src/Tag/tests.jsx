@@ -52,12 +52,12 @@ describe( 'Tag', () =>
 
     it( 'should have an IconButton with control theme and close icon as a \
 child', () =>
-    {
-        expect( Wrapper.find( IconButton ).props().iconTheme )
-            .to.equal( 'control' );
-        expect( Wrapper.find( IconButton ).props().iconType )
-            .to.equal( 'close' );
-    } );
+        {
+            expect( Wrapper.find( IconButton ).props().iconTheme )
+                .to.equal( 'control' );
+            expect( Wrapper.find( IconButton ).props().iconType )
+                .to.equal( 'close' );
+        } );
 
     it( 'should have a string as a label when prop label is passed', () =>
     {
