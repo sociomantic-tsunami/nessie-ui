@@ -345,7 +345,7 @@ describe( 'SliderDriver', () =>
             wrapper.setProps( { onClick: clickSpy } );
         } );
 
-        it( 'should fire the onClick callback prop', () =>
+        it( 'should fire the onClick callback prop exactly once', () =>
         {
             driver.click();
             expect( clickSpy.calledOnce ).to.be.true;
@@ -378,7 +378,7 @@ describe( 'SliderDriver', () =>
             wrapper.setProps( { onBlur } );
         } );
 
-        it( 'should fire the onBlur callback prop', () =>
+        it( 'should fire the onBlur callback prop exactly once', () =>
         {
             driver.blur();
             expect( onBlur.calledOnce ).to.be.true;
@@ -430,7 +430,7 @@ describe( 'SliderDriver', () =>
             wrapper.setProps( { onFocus } );
         } );
 
-        it( 'should fire the onFocus callback prop', () =>
+        it( 'should fire the onFocus callback prop exactly once', () =>
         {
             driver.focus();
             expect( onFocus.calledOnce ).to.be.true;
@@ -467,7 +467,7 @@ describe( 'SliderDriver', () =>
             wrapper.setProps( { onKeyDown } );
         } );
 
-        it( 'should fire the onKeyDown callback prop', () =>
+        it( 'should fire the onKeyDown callback prop exactly once', () =>
         {
             driver.keyDown();
             expect( onKeyDown.calledOnce ).to.be.true;
@@ -511,7 +511,7 @@ describe( 'SliderDriver', () =>
             wrapper.setProps( { onKeyUp } );
         } );
 
-        it( 'should fire the onKeyUp callback prop', () =>
+        it( 'should fire the onKeyUp callback prop exactly once', () =>
         {
             driver.keyUp();
             expect( onKeyUp.calledOnce ).to.be.true;
@@ -575,38 +575,38 @@ describe( 'SliderDriver', () =>
             } );
         } );
 
-        it( 'should fire the onMouseOver callback prop', () =>
+        it( 'should fire the onMouseOver callback prop exactly once', () =>
         {
             driver.setInputValue();
             expect( onMouseOver.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onMouseDown callback prop', () =>
+        it( 'should fire the onMouseDown callback prop exactly once', () =>
         {
             driver.setInputValue();
             expect( onMouseDown.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onFocus callback prop', () =>
+        it( 'should fire the onFocus callback prop exactly once', () =>
         {
             driver.setInputValue();
             expect( onFocus.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onChange callback prop... twice?!', () =>
+        it( 'should fire the onChange callback prop exactly twice', () =>
         {
+            // mouseDown also fires onChange...
             driver.setInputValue();
-            console.log( onChange.callCount );
-            expect( onChange.called ).to.be.true;
+            expect( onChange.calledTwice ).to.be.true;
         } );
 
-        it( 'should fire the onMouseUp callback prop', () =>
+        it( 'should fire the onMouseUp callback prop exactly once', () =>
         {
             driver.setInputValue();
             expect( onMouseUp.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onClick callback prop', () =>
+        it( 'should fire the onClick callback prop exactly once', () =>
         {
             driver.setInputValue();
             expect( onClick.calledOnce ).to.be.true;
