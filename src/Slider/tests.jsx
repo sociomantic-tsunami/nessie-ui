@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 /* global expect */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -277,7 +276,8 @@ describe( 'Slider', () =>
                 };
                 Wrapper = mount( <Slider { ...props } /> );
 
-                const eventListenerSpy = sinon.spy( global, 'addEventListener' );
+                const eventListenerSpy =
+                    sinon.spy( global, 'addEventListener' );
 
                 Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
                 expect( eventListenerSpy.calledTwice ).to.be.true;
@@ -308,6 +308,85 @@ describe( 'Slider', () =>
                 'mousemove', mouseMoveSpy ) ).to.be.true;
             expect( removeEventListenerSpy.calledWith(
                 'mouseup', mouseUpSpy ) ).to.be.true;
+        } );
+    } );
+} );
+
+
+describe( 'SliderDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Slider /> );
+        driver  = wrapper.driver();
+    } );
+
+    describe( 'click', () =>
+    {
+        let clickSpy;
+
+        beforeEach( () =>
+        {
+            clickSpy = sinon.spy();
+        } );
+
+        it( 'should have the slider clicked', () =>
+        {
+            wrapper.setProps( { onClick: clickSpy } );
+            driver.click();
+            expect( clickSpy.calledOnce ).to.be.true;
+        } );
+
+        it( 'click on a disabled slider should produce an error', () =>
+        {
+            wrapper.setProps( {
+                label      : 'Pikaboo',
+                isDisabled : true,
+                onClick    : clickSpy
+            } );
+
+            const expectedError =
+                'Slider \'Pikaboo\' cannot be clicked since it is disabled';
+
+            expect( () => driver.click() ).to.throw( expectedError );
+            expect( clickSpy.notCalled ).to.be.true;
+        } );
+    } );
+
+    describe( 'blur()', () =>
+    {
+        it( 'should fire the onBlur callback prop', () =>
+        {
+            const blurSpy = sinon.spy();
+            wrapper.setProps( {
+                value    : [ 25, 75 ],
+                onBlur   : blurSpy,
+                minValue : 0,
+                maxValue : 200
+            } );
+
+            driver.blur();
+            expect( blurSpy.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'focus()', () =>
+    {
+        it( 'should fire the onFocus callback prop', () =>
+        {
+            const focusSpy = sinon.spy();
+            wrapper.setProps( {
+                onFocus  : focusSpy,
+                value    : [ 25, 75 ],
+                minValue : 0,
+                maxValue : 200
+            } );
+
+            driver.focus();
+            expect( focusSpy.calledOnce ).to.be.true;
         } );
     } );
 } );
