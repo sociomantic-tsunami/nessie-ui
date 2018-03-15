@@ -544,72 +544,113 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
-    describe( 'setInputValue( value, index )', () =>
+    describe( 'setValueByClick( value, index )', () =>
     {
-        let onMouseOut;
-        let onMouseOver;
-        let onMouseDown;
-        let onFocus;
-        let onChange;
-        let onMouseUp;
-        let onClick;
+        let mouseOver;
+        let mouseDown;
+        let focus;
+        let change;
+        let mouseUp;
+        let click;
 
         beforeEach( () =>
         {
-            onMouseOut  = sinon.spy();
-            onMouseOver = sinon.spy();
-            onMouseDown = sinon.spy();
-            onFocus     = sinon.spy();
-            onChange    = sinon.spy();
-            onMouseUp   = sinon.spy();
-            onClick     = sinon.spy();
-
-            wrapper.setProps( {
-                onMouseOut,
-                onMouseOver,
-                onMouseDown,
-                onFocus,
-                onChange,
-                onMouseUp,
-                onClick,
-            } );
+            mouseOver = sinon.spy( driver, 'mouseOver' );
+            mouseDown = sinon.spy( driver, 'mouseDown' );
+            focus     = sinon.spy( driver, 'focus' );
+            change    = sinon.spy( driver, 'change' );
+            mouseUp   = sinon.spy( driver, 'mouseUp' );
+            click     = sinon.spy( driver, 'click' );
         } );
 
-        it( 'should fire the onMouseOver callback prop exactly once', () =>
+        it( 'should call the mouseOver driver method exactly once', () =>
         {
-            driver.setInputValue();
-            expect( onMouseOver.calledOnce ).to.be.true;
+            driver.setValueByClick();
+            expect( mouseOver.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onMouseDown callback prop exactly once', () =>
+        it( 'should call the mouseDown driver method exactly once', () =>
         {
-            driver.setInputValue();
-            expect( onMouseDown.calledOnce ).to.be.true;
+            driver.setValueByClick();
+            expect( mouseDown.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onFocus callback prop exactly once', () =>
+        it( 'should call the focus driver method exactly once', () =>
         {
-            driver.setInputValue();
-            expect( onFocus.calledOnce ).to.be.true;
+            driver.setValueByClick();
+            expect( focus.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onChange callback prop exactly twice', () =>
+        it( 'should call the change driver method exactly once', () =>
         {
-            // mouseDown also fires onChange...
-            driver.setInputValue();
-            expect( onChange.calledTwice ).to.be.true;
+            driver.setValueByClick();
+            expect( change.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onMouseUp callback prop exactly once', () =>
+        it( 'should call the mouseUp driver method exactly once', () =>
         {
-            driver.setInputValue();
-            expect( onMouseUp.calledOnce ).to.be.true;
+            driver.setValueByClick();
+            expect( mouseUp.calledOnce ).to.be.true;
         } );
 
-        it( 'should fire the onClick callback prop exactly once', () =>
+        it( 'should call the click driver method exactly once', () =>
         {
-            driver.setInputValue();
-            expect( onClick.calledOnce ).to.be.true;
+            driver.setValueByClick();
+            expect( click.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'setValueByKeys( keyCode, index )', () =>
+    {
+        let focus;
+        let keyDown;
+        let change;
+        let keyUp;
+
+        beforeEach( () =>
+        {
+            focus   = sinon.spy( driver, 'focus' );
+            keyDown = sinon.spy( driver, 'keyDown' );
+            change  = sinon.spy( driver, 'change' );
+            keyUp   = sinon.spy( driver, 'keyUp' );
+        } );
+
+        it( 'should call the driver focus method exactly once', () =>
+        {
+            driver.setValueByKeys();
+            expect( focus.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the driver keyDown method exactly once', () =>
+        {
+            driver.setValueByKeys();
+            expect( keyDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire the driver change method exactly once', () =>
+        {
+            driver.setValueByKeys();
+            expect( change.calledOnce ).to.be.true;
+        } );
+
+        it( 'should call driver change method with the incremented value', () =>
+        {
+            const currentValue = wrapper.prop( 'value' )[ 0 ];
+            driver.setValueByKeys();
+            expect( change.lastCall.args[ 0 ] ).to.equal( currentValue + 1 );
+        } );
+
+        it( 'calls change with the decremented value when dir is down', () =>
+        {
+            const currentValue = wrapper.prop( 'value' )[ 0 ];
+            driver.setValueByKeys( 'down' );
+            expect( change.lastCall.args[ 0 ] ).to.equal( currentValue - 1 );
+        } );
+
+        it( 'should fire the driver keyUp method exactly once', () =>
+        {
+            driver.setValueByKeys();
+            expect( keyUp.calledOnce ).to.be.true;
         } );
     } );
 } );
