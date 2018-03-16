@@ -4,6 +4,8 @@ const ERRORS = {
 disabled`,
 };
 
+const INCREMENT_KEYS = [ 38, 39 ];
+const DECREMENT_KEYS = [ 37, 40 ];
 
 export default class SliderDriver
 {
@@ -110,53 +112,56 @@ export default class SliderDriver
         return this;
     }
 
-    setValueByClick( value = '', index = 0 )
+    setValue( value, { inputMethod = 'mouse' } )
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
 
-        this.mouseOver();
-        this.mouseDown( index );
-        this.focus( index );
-        this.change( value, index );
-        this.mouseUp();
-        this.click( index );
+        if( inputMethod === 'mouse')
+
+        let values = Array.isArray( value ) ? value : [ value ];
+
+        values.forEach( ( val, i ) =>
+        {
+            this.mouseOver();
+            this.mouseDown();
+            this.focus( index );
+            this.change( val, i );
+            this.mouseUp();
+            this.click();
+            this.mouseOut();
+        } );
     }
 
-    setValueByKeys( dir = 'up', index = 0 )
+    setValueByKeys( keyCode, index = 0 )
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
 
+        const { maxValue, minValue, step, value } = this.wrapper.props();
         const upKey   = 38;
         const downKey = 40;
 
-        let keyCode;
-
-        const { maxValue, minValue, step, value } = this.wrapper.props();
-
         let newValue = Array.isArray( value ) ? value[ index ] : value;
 
-        if ( dir === 'up' )
+        if ( INCREMENT_KEYS.includes( keyCode ) )
         {
-            keyCode  = upKey;
             newValue += step;
         }
-        else if ( dir === 'down' )
+        else if ( DECREMENT_KEYS.includes( keyCode ) )
         {
-            keyCode  = downKey;
             newValue -= step;
         }
 
         newValue = Math.min( Math.max( newValue, minValue ), maxValue );
 
         this.focus( index );
-        this.keyDown( keyCode );
+        this.keyDown( keyCode, index );
         this.change( newValue, index );
-        this.keyUp( keyCode );
+        this.keyUp( keyCode, index );
     }
 }
