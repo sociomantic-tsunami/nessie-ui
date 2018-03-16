@@ -168,8 +168,8 @@ export default class Module extends Component
                 <header
                     className    = { cssMap.header }
                     onClick      = { onClickHeader }
-                    onMouseLeave = { onMouseOutError }
-                    onMouseEnter = { onMouseOverError }>
+                    onMouseOut   = { onMouseOutHeader }
+                    onMouseOver  = { onMouseOverHeader }>
                     { customHeader }
                 </header>
             );
@@ -180,10 +180,10 @@ export default class Module extends Component
 
             header = (
                 <header
-                    className     = { cssMap.header }
-                    onClick       = { onClickHeader }
-                    onMouseLeave  = { onMouseOutHeader }
-                    onMouseEnter  = { onMouseOverHeader }>
+                    className      = { cssMap.header }
+                    onClick        = { onClickHeader }
+                    onMouseOut     = { onMouseOutHeader }
+                    onMouseOver    = { onMouseOverHeader }>
                     <div className = { cssMap.title }>
                         <ModuleHeader>{ title }</ModuleHeader>
                     </div>
@@ -193,8 +193,8 @@ export default class Module extends Component
                                 message          = { errorMessage }
                                 iconType         = "error"
                                 tooltipIsVisible = { errorMessageIsVisible }
-                                onMouseLeave     = { onMouseOutError }
-                                onMouseEnter     = { onMouseOverError } />
+                                onMouseOut     = { onMouseOutError }
+                                onMouseOver    = { onMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton

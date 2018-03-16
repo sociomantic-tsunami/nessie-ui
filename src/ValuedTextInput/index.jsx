@@ -242,8 +242,8 @@ export default class ValuedTextInput extends Component
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur }
                             textAlign    = { alignText }
-                            onMouseEnter = { onMouseOver }
-                            onMouseLeave = { onMouseOut } />
+                            onMouseOver  = { onMouseOver }
+                            onMouseOut   = { onMouseOut } />
                         <label
                             className = { cssMap.valueLabel }
                             htmlFor   = { id }>

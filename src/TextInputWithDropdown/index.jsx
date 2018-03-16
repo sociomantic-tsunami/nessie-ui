@@ -265,8 +265,8 @@ export default class TextInputWithDropdown extends Component
                             value        = { inputValue }
                             textAlign    = { alignText }
                             forceHover   = { fakeHovered }
-                            onMouseEnter = { this.handleMouseOver }
-                            onMouseLeave = { this.handleMouseOut }
+                            onMouseOver  = { this.handleMouseOver }
+                            onMouseOut   = { this.handleMouseOut }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur } />
                         <FlounderDropdown
@@ -277,8 +277,8 @@ export default class TextInputWithDropdown extends Component
                             defaultValue = { dropdownDefaultValue }
                             value        = { dropdownValue }
                             forceHover   = { fakeHovered }
-                            onMouseEnter = { this.handleMouseOver }
-                            onMouseLeave = { this.handleMouseOut }
+                            onMouseOver  = { this.handleMouseOver }
+                            onMouseOut   = { this.handleMouseOut }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur } />
                     </div>

@@ -43,7 +43,10 @@ const IconWithTooltip = ( {
                 iconVisible : iconIsVisible,
                 position    : !!children && iconPosition
             } }>
-            <div className = { className }>
+            <div
+                className = { className }
+                onMouseOver = { onMouseOver }
+                onMouseOut  = { onMouseOut }>
                 { children &&
                     <div className = { cssMap.content }>
                         { contentNode }

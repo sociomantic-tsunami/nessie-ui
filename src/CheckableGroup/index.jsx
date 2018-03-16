@@ -67,8 +67,8 @@ const CheckableGroup = ( {
             hasError              = { hasError }
             isDisabled            = { isDisabled }
             label                 = { label }
-            onMouseLeave          = { onMouseOut }
-            onMouseEnter          = { onMouseOver }>
+            onMouseOut            = { onMouseOut }
+            onMouseOver           = { onMouseOver }>
             { items &&
                 <ul className = { cssMap.list }>
                     { items.map( ( item, i ) => (

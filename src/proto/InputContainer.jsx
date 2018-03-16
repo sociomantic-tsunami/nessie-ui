@@ -33,8 +33,8 @@ const InputContainer = ( {
                 htmlFor          = { id }
                 role             = { labelPosition === 'top' ?
                     'header' : 'default' }
-                onMouseEnter     = { onMouseOver }
-                onMouseLeave     = { onMouseOut }>
+                onMouseOver      = { onMouseOver }
+                onMouseOut       = { onMouseOut }>
                 { label }
             </Label>
         }
@@ -48,8 +48,8 @@ const InputContainer = ( {
             iconIsVisible    = { !isDisabled &&
                                  !!errorMessage &&
                                  hasError }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            onMouseOver      = { onMouseOver }
+            onMouseOut       = { onMouseOut }>
             { children }
         </IconWithTooltip>
     </div>

@@ -447,8 +447,8 @@ export default class ComboBox extends Component
                 onKeyDown    = { onKeyDown }
                 onKeyPress   = { onKeyPress }
                 onKeyUp      = { onKeyUp }
-                onMouseLeave = { onMouseOut }
-                onMouseEnter = { onMouseOver }
+                onMouseOut   = { onMouseOut }
+                onMouseOver  = { onMouseOver }
                 placeholder  = { inputPlaceholder }
                 value        = { inputValue }
                 wrapperRef   = { this.setWrapperRef } />
