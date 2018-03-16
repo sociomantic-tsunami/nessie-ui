@@ -99,38 +99,41 @@
 {
     &__alert
     {
-        color:                       var( --PC-YELLOW );
+        color:                      var( --PC-YELLOW );
+        fill:                       var( --PC-YELLOW );
     }
 
-    &__approved
+    &__approved,
+    &__validation
     {
-        color:                       var( --PC-GREEN );
+        color:                      var( --PC-GREEN );
+        fill:                       var( --PC-GREEN );
     }
 
     &__declined,
     &__error
     {
-        color:                       var( --PC-RED );
+        color:                      var( --PC-RED );
+        fill:                       var( --PC-RED );
     }
 
     &__ended
     {
-        color:                       var( --GS-2 );
+        color:                      var( --PC-GREY--L10 );
+        fill:                       var( --PC-GREY--L10 );
     }
 
-    &__info
+    &__info,
+    &__running
     {
-        color:                       var( --GS-5 );
+        color:                      var( --PC-BLUE  );
+        fill:                       var( --PC-BLUE  );
     }
 
     &__pending
     {
-        color:                       var( --PC-ORANGE );
-    }
-
-    &__validation
-    {
-        fill:                        var( --PC-GREEN );
+        color:                      var( --PC-ORANGE );
+        fill:                       var( --PC-ORANGE );
     }
 }
 
@@ -143,7 +146,7 @@
 }
 
 
-@each $icon in (account, add, calendar, close, delete, down, download, duplicate, edit, info, inspect, left, link, preview, reset, right, search, up, upload, validation, show, hide)
+@each $icon in (account, add, add-circle, alert, approved, bell, board, calendar, close-circle, close-thick, dash, dashboard, declined, delete, down, download, duplicate, edit-circle, edit, ended, error, file, graph, hide, info, inspect, left, lightbulb, link, megaphone, options, pending, preview, puzzle-piece, reset, right, search, show, star-stroke, star, swap, table, up, upload, validation)
 {
     .type__$(icon)
     {
