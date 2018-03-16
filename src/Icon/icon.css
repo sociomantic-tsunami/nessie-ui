@@ -123,7 +123,8 @@
         fill:                       var( --PC-GREY--L10 );
     }
 
-    &__info
+    &__info,
+    &__running
     {
         color:                      var( --PC-BLUE  );
         fill:                       var( --PC-BLUE  );
@@ -145,7 +146,7 @@
 }
 
 
-@each $icon in (account, accounts, add, alert, approved, arrow-down, arrow-up, arrow, bell, calendar, campaigns, close-circle, close-thick, creatives, dash, dashboard, declined, delete, down, download, duplicate, edit-circle, edit, ended, error, graph, hide, info, inspect, integrations, left, link, loader, options, pending, plus, preview, reports, reset, right, search, show, sociomantic, sorting, spinner, star-stroke, star, table, up, upload, validation)
+@each $icon in (account, accounts, add, alert, approved, arrow-down, arrow-up, arrow, bell, calendar, campaigns, close-circle, close-thick, creatives, dash, dashboard, declined, delete, down, download, duplicate, edit-circle, edit, ended, error, graph, hide, info, inspect, integrations, left, link, loader, options, pending, plus, preview, reports, reset, right, running, search, show, sociomantic, sorting, spinner, star-stroke, star, table, up, upload, validation)
 {
     .type__$(icon)
     {

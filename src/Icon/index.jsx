@@ -136,6 +136,7 @@ Icon.propTypes =
         'reports',
         'reset',
         'right',
+        'running',
         'search',
         'show',
         'sociomantic',
