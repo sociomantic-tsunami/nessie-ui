@@ -193,8 +193,8 @@ export default class Module extends Component
                                 message          = { errorMessage }
                                 iconType         = "error"
                                 tooltipIsVisible = { errorMessageIsVisible }
-                                onMouseOut     = { onMouseOutError }
-                                onMouseOver    = { onMouseOverError } />
+                                onMouseOut       = { onMouseOutError }
+                                onMouseOver      = { onMouseOverError } />
                         }
                         { isDeletable &&
                             <IconButton

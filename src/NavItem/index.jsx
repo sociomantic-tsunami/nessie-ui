@@ -44,8 +44,8 @@ removed in the next major release. Please use isCurrent instead.' );
                 icon        : iconType
             } }>
             <li
-                className   = { className }
-                onMouseEnter = { onMouseOver }
+                className     = { className }
+                onMouseEnter  = { onMouseOver }
                 onMouseLeave  = { onMouseOut }>
                 <a
                     className = { cssMap.link }
@@ -95,7 +95,7 @@ NavItem.propTypes =
     /*
     *  Item represents the current page and/or section
      */
-    isCurrent     : PropTypes.bool,
+    isCurrentPage : PropTypes.bool,
     /*
     *  Display as disabled/read-only
      */
