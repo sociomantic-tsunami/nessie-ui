@@ -106,7 +106,6 @@ Icon.propTypes =
         'close-circle',
         'close-thick',
         'close',
-        'creatives',
         'dash',
         'dashboard',
         'declined',
