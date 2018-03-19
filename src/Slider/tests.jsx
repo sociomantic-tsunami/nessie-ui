@@ -543,6 +543,22 @@ describe.only( 'SliderDriver', () =>
         } );
     } );
 
+    describe( 'mouseUp()', () =>
+    {
+        let handleMouseUp;
+
+        beforeEach( () =>
+        {
+            handleMouseUp = sinon.spy( wrapper.node, 'handleMouseUp' );
+        } );
+
+        it( 'should fire handleMouseUp on the component instance', () =>
+        {
+            driver.mouseUp();
+            expect( handleMouseUp.calledOnce ).to.be.true;
+        } );
+    } );
+
     describe( 'setInputValue( value )', () =>
     {
         let mouseDown;
