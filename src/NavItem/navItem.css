@@ -57,14 +57,6 @@
     }
 }
 
-.role__primary
-{
-    & > .link
-    {
-        text-transform: uppercase;
-    }
-}
-
 .role__sub
 {
     border-radius:         6px;
