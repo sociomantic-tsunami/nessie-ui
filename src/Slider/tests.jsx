@@ -319,7 +319,7 @@ describe( 'Slider', () =>
 } );
 
 
-describe( 'SliderDriver', () =>
+describe.only( 'SliderDriver', () =>
 {
     let wrapper;
     let driver;
@@ -550,25 +550,15 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
-    describe( 'setValue( value, index )', () =>
+    describe( 'setInputValue( value, index )', () =>
     {
-        let mouseOver;
         let mouseDown;
-        let focus;
         let change;
-        let mouseUp;
-        let click;
-        let mouseOut;
 
         beforeEach( () =>
         {
-            mouseOver = sinon.spy( driver, 'mouseOver' );
             mouseDown = sinon.spy( driver, 'mouseDown' );
-            focus     = sinon.spy( driver, 'focus' );
             change    = sinon.spy( driver, 'change' );
-            mouseUp   = sinon.spy( driver, 'mouseUp' );
-            click     = sinon.spy( driver, 'click' );
-            mouseOut  = sinon.spy( driver, 'mouseOut' );
         } );
 
         it( 'should throw the expected error when slider is disabled', () =>
@@ -577,254 +567,31 @@ describe( 'SliderDriver', () =>
             const expectedError =
                 'Slider \'Pikaboo\' cannot be changed since it is disabled';
 
-            expect( () => driver.setValue() ).to.throw( expectedError );
+            expect( () => driver.setInputValue() ).to.throw( expectedError );
         } );
 
-        it( 'should call the mouseOver driver method exactly once', () =>
+        it( 'should call the change method exactly once if single value', () =>
         {
-            driver.setValue();
-            expect( mouseOver.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call mouseOver with no arguments', () =>
-        {
-            driver.setValue();
-            expect( mouseOver.lastCall.args.length ).to.equal( 0 );
-        } );
-
-        it( 'should call the mouseDown driver method exactly once', () =>
-        {
-            driver.setValue();
-            expect( mouseDown.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call mouseDown with no arguments', () =>
-        {
-            driver.setValue();
-            expect( mouseDown.lastCall.args.length ).to.equal( 0 );
-        } );
-
-        it( 'should call the focus driver method exactly once', () =>
-        {
-            driver.setValue();
-            expect( focus.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call focus with index', () =>
-        {
-            const index = 1;
-            driver.setValue( null, index );
-            expect( focus.lastCall.args[ 0 ] ).to.equal( index );
-        } );
-
-        it( 'should call the change driver method exactly once', () =>
-        {
-            driver.setValue();
+            const value = 20;
+            driver.setInputValue( value );
             expect( change.calledOnce ).to.be.true;
         } );
 
-        it( 'should call change with value and index', () =>
+        it( 'should call change method once per value if array of values', () =>
         {
-            const value = 100;
-            const index = 1;
-            driver.setValue( value, index );
-            expect( change.lastCall.args ).to.eql( [ value, index ] );
+            const value = [ 10, 20 ];
+            driver.setInputValue( value );
+            expect( change.calledTwice ).to.be.true;
         } );
 
-        it( 'should call the mouseUp driver method exactly once', () =>
+        it( 'should call change with value and index for each array value', () =>
         {
-            driver.setValue();
-            expect( mouseUp.calledOnce ).to.be.true;
-        } );
+            const value = [ 10, 20 ];
+            driver.setInputValue( value );
 
-        it( 'should call mouseUp with no arguments', () =>
-        {
-            driver.setValue();
-            expect( mouseUp.lastCall.args.length ).to.equal( 0 );
-        } );
-
-        it( 'should call the click driver method exactly once', () =>
-        {
-            driver.setValue();
-            expect( click.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call click with no arguments', () =>
-        {
-            driver.setValue();
-            expect( click.lastCall.args.length ).to.equal( 0 );
-        } );
-
-        it( 'should call the mouseOut driver method exactly once', () =>
-        {
-            driver.setValue();
-            expect( mouseOut.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call mouseOut with no arguments', () =>
-        {
-            driver.setValue();
-            expect( mouseOut.lastCall.args.length ).to.equal( 0 );
-        } );
-    } );
-
-    describe( 'setValueByKeys( dir, index )', () =>
-    {
-        let focus;
-        let keyDown;
-        let change;
-        let keyUp;
-
-        beforeEach( () =>
-        {
-            focus   = sinon.spy( driver, 'focus' );
-            keyDown = sinon.spy( driver, 'keyDown' );
-            change  = sinon.spy( driver, 'change' );
-            keyUp   = sinon.spy( driver, 'keyUp' );
-        } );
-
-        it( 'should throw the expected error when slider is disabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            const expectedError =
-                'Slider \'Pikaboo\' cannot be changed since it is disabled';
-
-            expect( () => driver.setValueByKeys() ).to.throw( expectedError );
-        } );
-
-        it( 'should call the driver focus method exactly once', () =>
-        {
-            driver.setValueByKeys();
-            expect( focus.calledOnce ).to.be.true;
-        } );
-
-        it( 'should fire the driver keyDown method exactly once', () =>
-        {
-            driver.setValueByKeys();
-            expect( keyDown.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call keyDown with keyCode as its first arg', () =>
-        {
-            const key = KEYS.DOWN;
-            driver.setValueByKeys( key );
-            expect( keyDown.lastCall.args[ 0 ] ).to.equal( key );
-        } );
-
-        it( 'should call keyDown with index as its second arg', () =>
-        {
-            const index = 1;
-            driver.setValueByKeys( null, index );
-            expect( keyDown.lastCall.args[ 1 ] ).to.eql( index );
-        } );
-
-        it( 'should fire the driver change method exactly once', () =>
-        {
-            driver.setValueByKeys();
-            expect( change.calledOnce ).to.be.true;
-        } );
-
-        it( 'calls change with incremented value if up key', () =>
-        {
-            const value = 10;
-            wrapper.setProps( { value } );
-
-            driver.setValueByKeys( KEYS.UP );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value + 1 );
-        } );
-
-        it( 'calls change with incremented value if right key', () =>
-        {
-            const value = 10;
-            wrapper.setProps( { value } );
-
-            driver.setValueByKeys( KEYS.RIGHT );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value + 1 );
-        } );
-
-        it( 'calls change with decremented value if down key', () =>
-        {
-            const value = 10;
-            wrapper.setProps( { value } );
-
-            driver.setValueByKeys( KEYS.DOWN );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value - 1 );
-        } );
-
-        it( 'calls change with decremented value if left key', () =>
-        {
-            const value   = 10;
-            wrapper.setProps( { value } );
-
-            driver.setValueByKeys( KEYS.LEFT );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value - 1 );
-        } );
-
-        it( 'calls change with value incremented by step', () =>
-        {
-            const value = 10;
-            const step  = 5;
-            wrapper.setProps( { step, value } );
-
-            driver.setValueByKeys( KEYS.UP );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value + step );
-        } );
-
-        it( 'calls change with value decremented by step', () =>
-        {
-            const value   = 10;
-            const step    = 5;
-            wrapper.setProps( { step, value } );
-
-            driver.setValueByKeys( KEYS.DOWN );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value - step );
-        } );
-
-        it( 'doesn’t call change with a value less than minValue', () =>
-        {
-            const value    = 10;
-            const minValue = 10;
-            wrapper.setProps( { minValue, value } );
-
-            driver.setValueByKeys( KEYS.DOWN );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value );
-        } );
-
-        it( 'doesn’t call change with a value greater than maxValue', () =>
-        {
-            const value    = 10;
-            const maxValue = 10;
-            wrapper.setProps( { maxValue, value } );
-
-            driver.setValueByKeys( KEYS.UP );
-            expect( change.lastCall.args[ 0 ] ).to.equal( value );
-        } );
-
-        it( 'should call change with index as its second arg', () =>
-        {
-            const index = 1;
-            driver.setValueByKeys( null, index );
-            expect( change.lastCall.args[ 1 ] ).to.eql( index );
-        } );
-
-        it( 'should fire the driver keyUp method exactly once', () =>
-        {
-            driver.setValueByKeys();
-            expect( keyUp.calledOnce ).to.be.true;
-        } );
-
-        it( 'should call keyUp with keyCode as its first arg', () =>
-        {
-            const key = KEYS.UP;
-            driver.setValueByKeys( key );
-            expect( keyUp.lastCall.args[ 0 ] ).to.equal( key );
-        } );
-
-        it( 'should call keyUp with index as its second arg', () =>
-        {
-            const index = 1;
-            driver.setValueByKeys( null, index );
-            expect( keyUp.lastCall.args[ 1 ] ).to.eql( index );
+            value.forEach( ( value, i ) =>
+                expect( change.getCalls()[ i ].args ).to.eql( [ value, i ] )
+            );
         } );
     } );
 } );

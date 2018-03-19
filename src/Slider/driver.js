@@ -4,8 +4,14 @@ const ERRORS = {
 disabled`,
 };
 
-const INCREMENT_KEYS = [ 38, 39 ];
-const DECREMENT_KEYS = [ 37, 40 ];
+const KEYS = {
+    LEFT  : 37,
+    UP    : 38,
+    RIGHT : 39,
+    DOWN  : 40,
+};
+
+const toArray = value => Array.isArray( value ) ? value : [ value ];
 
 export default class SliderDriver
 {
@@ -112,56 +118,25 @@ export default class SliderDriver
         return this;
     }
 
-    setValue( value, { inputMethod = 'mouse' } )
+    setInputValue( value, options = {} )
     {
-        if ( this.wrapper.prop( 'isDisabled' ) )
+        const props = this.wrapper.props();
+
+        if ( props.isDisabled )
         {
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
 
-        if( inputMethod === 'mouse')
+        const oldValues = toArray( props.value );
+        const newValues = toArray( value );
 
-        let values = Array.isArray( value ) ? value : [ value ];
-
-        values.forEach( ( val, i ) =>
+        oldValues.forEach( ( val, i ) =>
         {
-            this.mouseOver();
-            this.mouseDown();
-            this.focus( index );
-            this.change( val, i );
-            this.mouseUp();
-            this.click();
-            this.mouseOut();
+            const newValue = newValues[ i ];
+            if ( Number.isFinite( newValue ) )
+            {
+                this.change( newValues[ i ], i );
+            }
         } );
-    }
-
-    setValueByKeys( keyCode, index = 0 )
-    {
-        if ( this.wrapper.prop( 'isDisabled' ) )
-        {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
-        }
-
-        const { maxValue, minValue, step, value } = this.wrapper.props();
-        const upKey   = 38;
-        const downKey = 40;
-
-        let newValue = Array.isArray( value ) ? value[ index ] : value;
-
-        if ( INCREMENT_KEYS.includes( keyCode ) )
-        {
-            newValue += step;
-        }
-        else if ( DECREMENT_KEYS.includes( keyCode ) )
-        {
-            newValue -= step;
-        }
-
-        newValue = Math.min( Math.max( newValue, minValue ), maxValue );
-
-        this.focus( index );
-        this.keyDown( keyCode, index );
-        this.change( newValue, index );
-        this.keyUp( keyCode, index );
     }
 }
