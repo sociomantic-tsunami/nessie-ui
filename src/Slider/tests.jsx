@@ -10,13 +10,6 @@ import Label                      from '../Label/index';
 
 import Slider                     from './index';
 
-const KEYS = {
-    LEFT  : 37,
-    UP    : 38,
-    RIGHT : 39,
-    DOWN  : 40,
-};
-
 const noop = () => null;
 
 describe( 'Slider', () =>
