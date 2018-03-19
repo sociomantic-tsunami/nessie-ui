@@ -543,7 +543,7 @@ describe.only( 'SliderDriver', () =>
         } );
     } );
 
-    describe( 'setInputValue( value, index )', () =>
+    describe( 'setInputValue( value )', () =>
     {
         let mouseDown;
         let change;
