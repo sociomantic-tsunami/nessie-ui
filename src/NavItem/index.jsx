@@ -93,10 +93,6 @@ NavItem.propTypes =
      */
     iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
     /*
-    *  Item represents the current page and/or section
-     */
-    isCurrentPage : PropTypes.bool,
-    /*
     *  Display as disabled/read-only
      */
     isDisabled    : PropTypes.bool,
