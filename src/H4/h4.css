@@ -9,12 +9,13 @@
     @extend %Nessie-Bold;
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-l );
+    color:          var( --PC-GREY--D25 );
     letter-spacing: 0;
 }
 
 .role__default
 {
-    color:  var( --PC-GREY--D25 );
+
 }
 
 .role__subtle

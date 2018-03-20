@@ -19,6 +19,11 @@
 
     box-shadow:     0 4px 10px 0 color( var( --PC-GREY ) a( 10% ) );
 
+    .default .header:after
+    {
+        display:   none;
+    }
+
     .default + .default
     {
         margin-top: -var( --spacing-3 );
