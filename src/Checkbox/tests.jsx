@@ -64,7 +64,7 @@ describe( 'Checkbox', () =>
 } );
 
 
-describe.only( 'CheckboxDriver', () =>
+describe( 'CheckboxDriver', () =>
 {
     let wrapper;
 
