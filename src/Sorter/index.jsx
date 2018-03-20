@@ -76,9 +76,9 @@ export default class Sorter extends Component
                     className = { className }
                     onClick   = { onToggle }>
                     <div
-                        className   = { cssMap.content }
-                        onMouseOver = { toggleHover }
-                        onMouseOut  = { toggleHover }>
+                        className    = { cssMap.content }
+                        onMouseEnter = { toggleHover }
+                        onMouseLeave = { toggleHover }>
                         { children }
                     </div>
                     { sorterIsVisible &&
