@@ -30,7 +30,10 @@
         position:   relative;
         margin:     0;
 
-        padding:    var( --spacing-2 ) var( --spacing-3 );
+        padding-top:     var( --spacing-3 );
+        padding-right:   var( --spacing-4 );
+        padding-bottom:  var( --spacing-1 );
+        padding-left:    var( --spacing-4 );
     }
 
     .header
@@ -43,10 +46,22 @@
         flex-direction:     row;
         justify-content:    flex-start;
         align-items:        center;
+
+        &:after
+        {
+            content:            '';
+            position:           absolute;
+            bottom:             0;
+            display:            inline-block;
+            width:              50px;
+            height:             3px;
+            background-color:   var( --PC-GREY--D25 );
+        }
     }
 
     .content
     {
+        padding-top:    var( --spacing-5 );
         padding-bottom: var( --spacing-5 );
     }
 
