@@ -132,5 +132,7 @@ export default class SliderDriver
                 this.change( newValues[ i ], i );
             }
         } );
+
+        return this;
     }
 }
