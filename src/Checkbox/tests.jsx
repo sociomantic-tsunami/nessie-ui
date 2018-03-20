@@ -2,12 +2,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global expect */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React              from 'react';
+import { shallow, mount } from 'enzyme';
 
-import Checkable   from '../proto/Checkable';
+import Checkable          from '../proto/Checkable';
 
-import Checkbox    from './index';
+import Checkbox           from './index';
 
 describe( 'Checkbox', () =>
 {
@@ -59,6 +59,158 @@ describe( 'Checkbox', () =>
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
                     .to.be.true;
             } );
+        } );
+    } );
+} );
+
+
+describe.only( 'CheckboxDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Checkbox /> );
+    } );
+
+    describe( 'focus()', () =>
+    {
+        it( 'should call onFocus once', () =>
+        {
+            const onFocus = sinon.spy();
+            wrapper.setProps( { onFocus } );
+
+            wrapper.driver().focus();
+
+            expect( onFocus.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'blur()', () =>
+    {
+        it( 'should call onFocus once', () =>
+        {
+            const onBlur = sinon.spy();
+            wrapper.setProps( { onBlur } );
+
+            wrapper.driver().blur();
+
+            expect( onBlur.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'setChecked()', () =>
+    {
+        it( 'should call onChange once', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+
+            wrapper.driver().setChecked();
+
+            expect( onChange.calledOnce ).to.be.true;
+        } );
+
+        it( 'should be called with checked as true', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+
+            wrapper.driver().setChecked();
+
+            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'setUnchecked()', () =>
+    {
+        it( 'should call onChange once', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+
+            wrapper.driver().setUnchecked();
+
+            expect( onChange.calledOnce ).to.be.true;
+        } );
+
+        it( 'should be called with checked as false', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+
+            wrapper.driver().setUnchecked();
+
+            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.false;
+        } );
+    } );
+
+
+    describe( 'toggleChecked()', () =>
+    {
+        it( 'should call onChange once', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+
+            wrapper.driver().toggleChecked();
+
+            expect( onChange.calledOnce ).to.be.true;
+        } );
+
+        it( 'should toggle the value of checked', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange, isChecked: true } );
+
+            wrapper.driver().toggleChecked();
+
+            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.false;
+        } );
+    } );
+
+
+    describe( 'click()', () =>
+    {
+        it( 'should call onClick once', () =>
+        {
+            const onClick = sinon.spy();
+
+            wrapper.setProps( { onClick } );
+            wrapper.driver().click();
+
+            expect( onClick.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        it( 'should call onMouseOver once', () =>
+        {
+            const onMouseOver = sinon.spy();
+            wrapper.setProps( { onMouseOver } );
+
+            wrapper.driver().mouseOver();
+
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        it( 'should call onMouseOut once', () =>
+        {
+            const onMouseOut = sinon.spy();
+            wrapper.setProps( { onMouseOut } );
+
+            wrapper.driver().mouseOut();
+
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 } );
