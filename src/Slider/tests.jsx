@@ -312,11 +312,13 @@ describe( 'Slider', () =>
 } );
 
 
-describe.only( 'SliderDriver', () =>
+describe( 'SliderDriver', () =>
 {
     let wrapper;
     let driver;
     let cssMap;
+    let outer;
+    let track;
     let inputContainer;
 
     beforeEach( () =>
@@ -331,6 +333,8 @@ describe.only( 'SliderDriver', () =>
         wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
         cssMap  = wrapper.prop( 'cssMap' );
+        outer   = wrapper.find( `.${cssMap.default}` );
+        track   = wrapper.find( `.${cssMap.track}` );
         inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
     } );
 
@@ -543,6 +547,99 @@ describe.only( 'SliderDriver', () =>
         } );
     } );
 
+    describe( 'mouseOut()', () =>
+    {
+        let onMouseOut;
+
+        beforeEach( () =>
+        {
+            onMouseOut = sinon.spy();
+            wrapper.setProps( { onMouseOut } );
+        } );
+
+        it( 'should fire the onMouseOut callback prop exactly once', () =>
+        {
+            driver.mouseOut();
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOut with outer wrapper as event target', () =>
+        {
+            driver.mouseOut();
+            const event = onMouseOut.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( outer.getNode() );
+        } );
+
+        it( 'should still fire onMouseOut when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseOut();
+            expect( onMouseOut.called ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseOver()', () =>
+    {
+        let onMouseOver;
+
+        beforeEach( () =>
+        {
+            onMouseOver = sinon.spy();
+            wrapper.setProps( { onMouseOver } );
+        } );
+
+        it( 'should fire the onMouseOver callback prop exactly once', () =>
+        {
+            driver.mouseOver();
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOver with outer wrapper as event target', () =>
+        {
+            driver.mouseOver();
+            const event = onMouseOver.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( outer.getNode() );
+        } );
+
+        it( 'should still fire onMouseOver when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseOver();
+            expect( onMouseOver.called ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseDown()', () =>
+    {
+        let onMouseDown;
+
+        beforeEach( () =>
+        {
+            onMouseDown = sinon.spy();
+            wrapper.setProps( { onMouseDown } );
+        } );
+
+        it( 'should fire the onMouseDown callback prop exactly once', () =>
+        {
+            driver.mouseDown();
+            expect( onMouseDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOver with track as event target', () =>
+        {
+            driver.mouseDown();
+            const event = onMouseDown.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( track.getNode() );
+        } );
+
+        it( 'should still fire onMouseDown when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseDown();
+            expect( onMouseDown.called ).to.be.true;
+        } );
+    } );
+
     describe( 'mouseUp()', () =>
     {
         let handleMouseUp;
@@ -561,12 +658,10 @@ describe.only( 'SliderDriver', () =>
 
     describe( 'setInputValue( value )', () =>
     {
-        let mouseDown;
         let change;
 
         beforeEach( () =>
         {
-            mouseDown = sinon.spy( driver, 'mouseDown' );
             change    = sinon.spy( driver, 'change' );
         } );
 
@@ -593,13 +688,13 @@ describe.only( 'SliderDriver', () =>
             expect( change.calledTwice ).to.be.true;
         } );
 
-        it( 'should call change with value and index for each array value', () =>
+        it( 'should call change with value and index for each value', () =>
         {
             const value = [ 10, 20 ];
             driver.setInputValue( value );
 
-            value.forEach( ( value, i ) =>
-                expect( change.getCalls()[ i ].args ).to.eql( [ value, i ] )
+            value.forEach( ( val, i ) =>
+                expect( change.getCalls()[ i ].args ).to.eql( [ val, i ] )
             );
         } );
     } );
