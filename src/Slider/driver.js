@@ -112,7 +112,7 @@ export default class SliderDriver
         return this;
     }
 
-    setInputValue( value, options = {} )
+    setInputValue( value )
     {
         const props = this.wrapper.props();
 
