@@ -66,7 +66,7 @@ describe( 'Radio', () =>
 } );
 
 
-describe.only( 'RadioDriver', () =>
+describe( 'RadioDriver', () =>
 {
     let wrapper;
 
