@@ -19,6 +19,9 @@ const Checkable = ( {
     isReadOnly,
     label,
     name,
+    onBlur,
+    onClick,
+    onFocus,
     onChange,
     onMouseOut,
     onMouseOver,
@@ -49,7 +52,10 @@ const Checkable = ( {
                 disabled       = { isDisabled }
                 id             = { id }
                 name           = { name }
+                onClick        = { onClick }
                 onChange       = { onChange }
+                onFocus        = { onFocus }
+                onBlur         = { onBlur }
                 readOnly       = { isReadOnly }
                 ref            = { inputRef }
                 type           = { type }
@@ -117,9 +123,21 @@ Checkable.propTypes =
      */
     name             : PropTypes.string,
     /**
+     *  OnBlur callback function: ( e ) => { ... }
+     */
+    onBlur           : PropTypes.func,
+    /**
+     *  OnClick callback function: ( e ) => { ... }
+     */
+    onClick          : PropTypes.func,
+    /**
      *  OnChange callback function: ( e ) => { ... }
      */
     onChange         : PropTypes.func,
+    /**
+     *  onFocus callback function: ( e ) => { ... }
+     */
+    onFocus          : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
