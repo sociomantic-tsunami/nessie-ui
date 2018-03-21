@@ -68,7 +68,7 @@
 .error
 {
     border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-    box-shadow:     0 0 0 1px var( --PC-RED );
+    box-shadow:     0 0 0 1px var( --PC-RED ) !important; /* yes, always override other states */
     color:          var( --PC-RED ) !important; /* yes, always override other states */
 }
 
