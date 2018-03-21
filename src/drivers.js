@@ -3,7 +3,8 @@ import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
     ModalDialog, Switch, Row, Text, CodeEditor,
-    Checkbox, Radio, CheckableGroup }  from 'nessie-ui';
+    Checkbox, Radio, CheckableGroup, CheckboxGroup,
+    RadioGroup }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import CheckboxDriver           from './Checkbox/driver';
@@ -124,6 +125,14 @@ const drivers =
     },
     {
         Component : CheckableGroup,
+        Driver    : CheckableGroupDriver
+    },
+    {
+        Component : CheckboxGroup,
+        Driver    : CheckableGroupDriver
+    },
+    {
+        Component : RadioGroup,
         Driver    : CheckableGroupDriver
     }
 ];
