@@ -17,6 +17,8 @@
 
     background:     var( --PC-WHITE );
 
+    border-radius:  3px;
+
     box-shadow:     0 4px 10px 0 color( var( --PC-GREY ) a( 10% ) );
 
     .default .header:after
