@@ -3,7 +3,7 @@ import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
     ModalDialog, Switch, Row, Text, CodeEditor,
-    CheckboxGroup }  from 'nessie-ui';
+    CheckableGroup }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import ModuleDriver             from './Module/driver';
@@ -25,7 +25,7 @@ import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDri
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
 import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
 import CodeEditorDriver         from './CodeEditor/driver';
-import CheckboxGroupDriver      from './CheckboxGroup/driver';
+import CheckableGroupDriver     from './CheckableGroup/driver';
 
 const drivers =
 [
@@ -114,9 +114,9 @@ const drivers =
         Driver    : CodeEditorDriver
     },
     {
-        Component : CheckboxGroup,
-        Driver    : CheckboxGroupDriver
-    },
+        Component : CheckableGroup,
+        Driver    : CheckableGroupDriver
+    }
 ];
 
 export { SimpleComponentDriver, ClickableComponentDriver,

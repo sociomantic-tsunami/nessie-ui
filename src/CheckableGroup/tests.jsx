@@ -3,9 +3,9 @@
 /* global expect */
 
 import React            from 'react';
-import { shallow }      from 'enzyme';
+import { mount }        from 'enzyme';
 
-import CheckboxGroup    from './index';
+import CheckableGroup   from './index';
 
 describe.only( 'CheckboxDriver', () =>
 {
@@ -13,18 +13,16 @@ describe.only( 'CheckboxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <CheckboxGroup /> );
+        wrapper  = mount( <CheckableGroup /> );
     } );
 
     describe( 'selectByIndex()', () =>
     {
         it( 'should select Checkbox by index', () =>
         {
-            wrapper.find( 'items' )
-                .setProps( { selectedValues: [ 'apples', 'kaki' ] } );
-            wrapper.driver().selectByIndex();
+            wrapper.driver().selectByIndex( 1 );
 
-            expect( wrapper.prop( 'selectedValues' ) ).to.have.length( 2 );
+            expect( wrapper.children ).to.have.length( 1 );
         } );
     } );
 } );
