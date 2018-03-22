@@ -9,7 +9,7 @@ import { Checkbox }            from '../index';
 
 import CheckableGroup          from './index';
 
-describe( 'CheckboxDriver', () =>
+describe( 'CheckableGroupDriver', () =>
 {
     let wrapper;
     let cssMap;
@@ -68,6 +68,22 @@ describe( 'CheckboxDriver', () =>
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
                 .to.be.true;
         } );
+
+        it( 'should set Checkbox at indexes to checked when uncontrolled', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />,
+                    <Checkbox label = "three" value = "third check" />,
+                    <Checkbox label = "four" value = "fourth check" />
+                ],
+            } );
+            wrapper.driver().selectByIndex( [ 1, 3 ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [ 'second check', 'fourth check' ] );
+        } );
     } );
 
     describe( 'selectByValue()', () =>
@@ -86,6 +102,23 @@ describe( 'CheckboxDriver', () =>
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
                 .to.be.true;
+        } );
+
+        it( 'should set check to Checkboxes with values', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />,
+                    <Checkbox label = "three" value = "third check" />,
+                    <Checkbox label = "four" value = "fourth check" />
+                ],
+            } );
+
+            wrapper.driver().selectByValue( [ 'second check', 'third check' ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [ 'second check', 'third check' ] );
         } );
     } );
 

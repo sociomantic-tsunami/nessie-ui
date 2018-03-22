@@ -16,23 +16,49 @@ export default class CheckableGroupDriver
     selectByIndex( index )
     {
         const items = this.getContent();
-        items[ index ].driver().setChecked();
+
+        if ( Array.isArray( index ) )
+        {
+            index.forEach( i =>
+            {
+                items[ i ].driver().setChecked();
+            } );
+        }
+        else
+        {
+            items[ index ].driver().setChecked();
+        }
+
         return this;
     }
 
     selectByValue( value )
     {
-        const item =
-            this.wrapper.findWhere( n => n.prop( 'value' ) === value ).first();
+        if ( Array.isArray( value ) )
+        {
+            value.forEach( i =>
+            {
+                const item =
+                    this.wrapper.findWhere( n =>
+                        n.prop( 'value' ) === i ).first();
+                item.driver().setChecked();
+            } );
+        }
+        else
+        {
+            const item =
+                this.wrapper.findWhere( n =>
+                    n.prop( 'value' ) === value ).first();
+            item.driver().setChecked();
+        }
 
-        item.driver().setChecked();
         return this;
     }
 
     getSelectedValues()
     {
         const items =
-            this.wrapper.findWhere( n => n.prop( 'checked' ) === true );
+            this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
     }
