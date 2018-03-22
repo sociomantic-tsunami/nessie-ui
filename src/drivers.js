@@ -3,7 +3,7 @@ import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
     ModalDialog, Switch, Row, Text, CodeEditor,
-    Checkbox, Radio }  from 'nessie-ui';
+    Checkbox, Radio, DateTimeInput }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import CheckboxDriver           from './Checkbox/driver';
@@ -26,6 +26,7 @@ import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDri
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
 import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
 import CodeEditorDriver         from './CodeEditor/driver';
+import DateTimeInputDriver      from './DateTimeInput/driver';
 
 const drivers =
 [
@@ -120,6 +121,10 @@ const drivers =
     {
         Component : CodeEditor,
         Driver    : CodeEditorDriver
+    },
+    {
+        Component : DateTimeInput,
+        Driver    : DateTimeInputDriver
     },
 ];
 
