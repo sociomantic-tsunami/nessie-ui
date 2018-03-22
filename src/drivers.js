@@ -3,7 +3,7 @@ import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
     FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
     TextInput, NavItem, NotificationBar, TextInputWithIcon,
     ModalDialog, Switch, Row, Text, CodeEditor,
-    Checkbox, Radio, DateTimeInput }  from 'nessie-ui';
+    Checkbox, Radio, DateTimeInput, TextInputWithDropdown }  from 'nessie-ui';
 
 import ButtonDriver             from './Button/driver';
 import CheckboxDriver           from './Checkbox/driver';
@@ -79,6 +79,10 @@ const drivers =
         Driver    : InputComponentDriver
     },
     {
+        Component : TextInputWithDropdown,
+        Driver    : InputComponentDriver
+    },
+    {
         Component : Section,
         Driver    : SectionDriver
     },
@@ -125,7 +129,7 @@ const drivers =
     {
         Component : DateTimeInput,
         Driver    : DateTimeInputDriver
-    },
+    }
 ];
 
 export { SimpleComponentDriver, ClickableComponentDriver,
