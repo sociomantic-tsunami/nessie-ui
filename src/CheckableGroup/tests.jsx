@@ -9,7 +9,7 @@ import { Checkbox }            from '../index';
 
 import CheckableGroup          from './index';
 
-describe.only( 'CheckboxDriver', () =>
+describe( 'CheckboxDriver', () =>
 {
     let wrapper;
     let cssMap;
