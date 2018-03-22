@@ -102,7 +102,7 @@ Checkbox.defaultProps =
     hasError         : false,
     id               : undefined,
     inputRef         : undefined,
-    isDefaultChecked : false,
+    isDefaultChecked : undefined,
     isDisabled       : false,
     isChecked        : undefined,
     isReadOnly       : false,
