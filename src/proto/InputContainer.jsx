@@ -48,8 +48,8 @@ const InputContainer = ( {
             iconIsVisible    = { !isDisabled &&
                                  !!errorMessage &&
                                  hasError }
-            onMouseOver = { onMouseOver }
-            onMouseOut  = { onMouseOut }>
+            onMouseOver      = { onMouseOver }
+            onMouseOut       = { onMouseOut }>
             { children }
         </IconWithTooltip>
     </div>

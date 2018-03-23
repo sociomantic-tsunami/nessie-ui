@@ -428,9 +428,9 @@ export default class FlounderDropdown extends Component
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
                         <div
-                            ref         = { this.handleRef }
-                            onMouseOver = { onMouseOver }
-                            onMouseOut  = { onMouseOut }
+                            ref          = { this.handleRef }
+                            onMouseEnter = { onMouseOver }
+                            onMouseLeave = { onMouseOut }
                         />
                     </InputContainer>
                 </Wrapper>

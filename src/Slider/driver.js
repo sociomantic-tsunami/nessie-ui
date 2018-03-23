@@ -96,13 +96,13 @@ export default class SliderDriver
 
     mouseOut()
     {
-        this.default.simulate( 'mouseOut' );
+        this.default.simulate( 'mouseLeave' );
         return this;
     }
 
     mouseOver()
     {
-        this.default.simulate( 'mouseOver' );
+        this.default.simulate( 'mouseEnter' );
         return this;
     }
 

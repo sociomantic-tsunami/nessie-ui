@@ -1,30 +1,57 @@
-import { ComponentDriver }    from 'componentDriver';
-import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
-    FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
-    TextInput, NavItem, NotificationBar, TextInputWithIcon,
-    ModalDialog, Slider, Switch, Row, Text, CodeEditor }  from 'nessie-ui';
+import { ComponentDriver } from 'componentDriver';
+import {
+    Button,
+    Checkbox,
+    CodeEditor,
+    Column,
+    FlounderDropdown,
+    Form,
+    Grid,
+    Icon,
+    IconButton,
+    IconWithTooltip,
+    ModalDialog,
+    Module,
+    NavItem,
+    NotificationBar,
+    PasswordInput,
+    Radio,
+    Row,
+    Section,
+    Slider,
+    Switch,
+    Text,
+    TextInput,
+    TextInputWithIcon,
+    Tooltip,
+} from 'nessie-ui';
 
-import ButtonDriver             from './Button/driver';
-import ModuleDriver             from './Module/driver';
-import IconDriver               from './Icon/driver';
-import TooltipDriver            from './Tooltip/driver';
-import IconWithTooltipDriver    from './IconWithTooltip/driver';
-import FlounderDropdownDriver   from './FlounderDropdown/driver';
-import TextInputWithIconDriver  from './TextInputWithIcon/driver';
-import PasswordInputDriver      from './PasswordInput/driver';
-import SectionDriver            from './Section/driver';
-import GridColumnDriver         from './Grid/driver';
-import FormDriver               from './Form/driver';
-import NavItemDriver            from './NavItem/driver';
-import NotificationBarDriver    from './NotificationBar/driver';
-import ModalDialogDriver        from './ModalDialog/driver';
-import SliderDriver             from './Slider/driver';
-import SwitchDriver             from './Switch/driver';
-import TextDriver               from './Text/driver';
-import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
-import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
-import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
-import CodeEditorDriver         from './CodeEditor/driver';
+import ButtonDriver   from './Button/driver';
+import CheckboxDriver from './Checkbox/driver';
+import ClickableComponentDriver
+    from './Testing/CommonDrivers/clickableComponentDriver';
+import CodeEditorDriver       from './CodeEditor/driver';
+import FlounderDropdownDriver from './FlounderDropdown/driver';
+import FormDriver             from './Form/driver';
+import GridColumnDriver       from './Grid/driver';
+import IconDriver             from './Icon/driver';
+import IconWithTooltipDriver  from './IconWithTooltip/driver';
+import InputComponentDriver
+    from './Testing/CommonDrivers/inputComponentDriver';
+import ModalDialogDriver     from './ModalDialog/driver';
+import ModuleDriver          from './Module/driver';
+import NavItemDriver         from './NavItem/driver';
+import NotificationBarDriver from './NotificationBar/driver';
+import PasswordInputDriver   from './PasswordInput/driver';
+import SectionDriver         from './Section/driver';
+import SimpleComponentDriver
+    from './Testing/CommonDrivers/simpleComponentDriver';
+import SliderDriver            from './Slider/driver';
+import SwitchDriver            from './Switch/driver';
+import TextDriver              from './Text/driver';
+import TextInputWithIconDriver from './TextInputWithIcon/driver';
+import TooltipDriver           from './Tooltip/driver';
+
 
 const drivers =
 [
@@ -33,60 +60,48 @@ const drivers =
         Driver    : ButtonDriver
     },
     {
-        Component : Module,
-        Driver    : ModuleDriver
+        Component : Checkbox,
+        Driver    : CheckboxDriver
     },
     {
-        Component : TextInputWithIcon,
-        Driver    : TextInputWithIconDriver,
-    },
-    {
-        Component : PasswordInput,
-        Driver    : PasswordInputDriver
-    },
-    {
-        Component : Icon,
-        Driver    : IconDriver
-    },
-    {
-        Component : Tooltip,
-        Driver    : TooltipDriver
-    },
-    {
-        Component : IconWithTooltip,
-        Driver    : IconWithTooltipDriver
-    },
-    {
-        Component : IconButton,
-        Driver    : ButtonDriver
-    },
-    {
-        Component : FlounderDropdown,
-        Driver    : FlounderDropdownDriver
-    },
-    {
-        Component : TextInput,
-        Driver    : InputComponentDriver
-    },
-    {
-        Component : Section,
-        Driver    : SectionDriver
-    },
-    {
-        Component : Grid,
-        Driver    : GridColumnDriver
-    },
-    {
-        Component : Row,
-        Driver    : GridColumnDriver
+        Component : CodeEditor,
+        Driver    : CodeEditorDriver
     },
     {
         Component : Column,
         Driver    : GridColumnDriver
     },
     {
+        Component : FlounderDropdown,
+        Driver    : FlounderDropdownDriver
+    },
+    {
         Component : Form,
         Driver    : FormDriver
+    },
+    {
+        Component : Grid,
+        Driver    : GridColumnDriver
+    },
+    {
+        Component : Icon,
+        Driver    : IconDriver
+    },
+    {
+        Component : IconButton,
+        Driver    : ButtonDriver
+    },
+    {
+        Component : IconWithTooltip,
+        Driver    : IconWithTooltipDriver
+    },
+    {
+        Component : ModalDialog,
+        Driver    : ModalDialogDriver
+    },
+    {
+        Component : Module,
+        Driver    : ModuleDriver
     },
     {
         Component : NavItem,
@@ -97,8 +112,20 @@ const drivers =
         Driver    : NotificationBarDriver
     },
     {
-        Component : ModalDialog,
-        Driver    : ModalDialogDriver
+        Component : PasswordInput,
+        Driver    : PasswordInputDriver
+    },
+    {
+        Component : Radio,
+        Driver    : CheckboxDriver
+    },
+    {
+        Component : Row,
+        Driver    : GridColumnDriver
+    },
+    {
+        Component : Section,
+        Driver    : SectionDriver
     },
     {
         Component : Slider,
@@ -113,12 +140,23 @@ const drivers =
         Driver    : TextDriver
     },
     {
-        Component : CodeEditor,
-        Driver    : CodeEditorDriver
+        Component : TextInput,
+        Driver    : InputComponentDriver
+    },
+    {
+        Component : TextInputWithIcon,
+        Driver    : TextInputWithIconDriver,
+    },
+    {
+        Component : Tooltip,
+        Driver    : TooltipDriver
     },
 ];
 
-export { SimpleComponentDriver, ClickableComponentDriver,
-    InputComponentDriver };
+export {
+    ClickableComponentDriver,
+    InputComponentDriver,
+    SimpleComponentDriver,
+};
 
 export default ComponentDriver.createDriverSuite( drivers );
