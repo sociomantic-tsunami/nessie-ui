@@ -6,6 +6,7 @@ import {
     CheckboxGroup,
     CodeEditor,
     Column,
+    DateTimeInput,
     FlounderDropdown,
     Form,
     Grid,
@@ -25,6 +26,7 @@ import {
     Switch,
     Text,
     TextInput,
+    TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
 } from 'nessie-ui';
@@ -35,6 +37,7 @@ import CheckboxDriver       from './Checkbox/driver';
 import ClickableComponentDriver
     from './Testing/CommonDrivers/clickableComponentDriver';
 import CodeEditorDriver       from './CodeEditor/driver';
+import DateTimeInputDriver    from './DateTimeInput/driver';
 import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
 import GridColumnDriver       from './Grid/driver';
@@ -82,6 +85,10 @@ const drivers =
     {
         Component : Column,
         Driver    : GridColumnDriver,
+    },
+    {
+        Component : DateTimeInput,
+        Driver    : DateTimeInputDriver
     },
     {
         Component : FlounderDropdown,
@@ -160,13 +167,17 @@ const drivers =
         Driver    : InputComponentDriver,
     },
     {
+        Component : TextInputWithDropdown,
+        Driver    : InputComponentDriver
+    },
+    {
         Component : TextInputWithIcon,
         Driver    : TextInputWithIconDriver,
     },
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
-    },
+    }
 ];
 
 export {
