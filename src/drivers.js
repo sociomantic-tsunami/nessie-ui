@@ -1,7 +1,9 @@
 import { ComponentDriver } from 'componentDriver';
 import {
     Button,
+    CheckableGroup,
     Checkbox,
+    CheckboxGroup,
     CodeEditor,
     Column,
     FlounderDropdown,
@@ -16,6 +18,7 @@ import {
     NotificationBar,
     PasswordInput,
     Radio,
+    RadioGroup,
     Row,
     Section,
     Slider,
@@ -60,8 +63,16 @@ const drivers =
         Driver    : ButtonDriver
     },
     {
+        Component : CheckableGroup,
+        Driver    : CheckableGroupDriver
+    },
+    {
         Component : Checkbox,
         Driver    : CheckboxDriver
+    },
+    {
+        Component : CheckboxGroup,
+        Driver    : CheckableGroupDriver
     },
     {
         Component : CodeEditor,
@@ -119,6 +130,10 @@ const drivers =
         Component : Radio,
         Driver    : CheckboxDriver
     },
+    {
+        Component : RadioGroup,
+        Driver    : CheckableGroupDriver
+    }
     {
         Component : Row,
         Driver    : GridColumnDriver
