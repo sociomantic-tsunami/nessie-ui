@@ -11,8 +11,17 @@ const Column = ( {
     cssMap,
     role,
     size,
-    verticalAlign } ) =>
+    verticalAlign,
+} ) =>
+{
+    if ( !Column.didWarn && verticalAlign === 'space-around' )
+    {
+        console.warn( 'Column: \'space-around\' option for verticalAlign prop \
+is deprecated. Please use an alternative layout.' );
+        Column.didWarn = true;
+    }
 
+    return (
         <Css
             cssMap   = { cssMap }
             cssProps = { { size,
@@ -24,7 +33,9 @@ const Column = ( {
                 data-column-title = { columnTitle }>
                 { children }
             </div>
-        </Css>;
+        </Css>
+    );
+};
 
 Column.propTypes =
 {
@@ -86,7 +97,6 @@ Column.propTypes =
         'top',
         'middle',
         'bottom',
-        'space-around'
     ] ),
     /**
      *  Column content
