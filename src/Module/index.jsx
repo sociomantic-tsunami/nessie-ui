@@ -166,10 +166,10 @@ export default class Module extends Component
         {
             header = (
                 <header
-                    className   = { cssMap.header }
-                    onClick     = { onClickHeader }
-                    onMouseOut  = { onMouseOutError }
-                    onMouseOver = { onMouseOverError }>
+                    className    = { cssMap.header }
+                    onClick      = { onClickHeader }
+                    onMouseOut   = { onMouseOutHeader }
+                    onMouseOver  = { onMouseOverHeader }>
                     { customHeader }
                 </header>
             );
@@ -180,10 +180,10 @@ export default class Module extends Component
 
             header = (
                 <header
-                    className   = { cssMap.header }
-                    onClick     = { onClickHeader }
-                    onMouseOut  = { onMouseOutHeader }
-                    onMouseOver = { onMouseOverHeader }>
+                    className      = { cssMap.header }
+                    onClick        = { onClickHeader }
+                    onMouseOut     = { onMouseOutHeader }
+                    onMouseOver    = { onMouseOverHeader }>
                     <div className = { cssMap.title }>
                         <ModuleHeader>{ title }</ModuleHeader>
                     </div>

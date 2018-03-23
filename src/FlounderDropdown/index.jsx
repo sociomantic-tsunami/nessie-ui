@@ -283,32 +283,30 @@ export default class FlounderDropdown extends Component
     {
         const { flounderInstance } = this;
 
-        if ( flounderInstance )
+        if ( !flounderInstance )
+        {
+            return;
+        }
+
+        if ( value !== undefined || this.props.isReadOnly )
         {
             let values = [];
 
-            if ( value )
+            if ( Array.isArray( value ) )
             {
-                if ( Array.isArray( value ) )
-                {
-                    values = value;
-                }
-                else if ( value )
-                {
-                    values = [ value ];
-                }
+                values = value;
+            }
+            else if ( value )
+            {
+                values = [ value ];
             }
 
-            if ( value || this.props.isReadOnly )
-            {
-                const selectedValues =
-                    flounderInstance.getSelectedValues() || [];
+            const selectedValues = flounderInstance.getSelectedValues() || [];
 
-                if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
-                {
-                    flounderInstance.deselectAll( true );
-                    flounderInstance.setByValue( values );
-                }
+            if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
+            {
+                flounderInstance.deselectAll( true );
+                flounderInstance.setByValue( values );
             }
         }
     }
@@ -430,9 +428,9 @@ export default class FlounderDropdown extends Component
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
                         <div
-                            ref         = { this.handleRef }
-                            onMouseOver = { onMouseOver }
-                            onMouseOut  = { onMouseOut }
+                            ref          = { this.handleRef }
+                            onMouseEnter = { onMouseOver }
+                            onMouseLeave = { onMouseOut }
                         />
                     </InputContainer>
                 </Wrapper>

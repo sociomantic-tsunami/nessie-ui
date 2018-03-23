@@ -47,22 +47,23 @@ describe( 'CodeEditor', () =>
                 .to.equal( 'code!' );
         } );
 
-        it( 'should pass onMouseOver to the container div', () =>
-        {
-            const onMouseOver = sinon.spy();
-            wrapper.setProps( { onMouseOver } );
+        it( 'should pass onMouseOver to the container div as onMouseEnter',
+            () =>
+            {
+                const onMouseOver = sinon.spy();
+                wrapper.setProps( { onMouseOver } );
 
-            expect( wrapper.find( `.${cssMap.editor}` )
-                .prop( 'onMouseOver' ) ).to.equal( onMouseOver );
-        } );
+                expect( wrapper.find( `.${cssMap.editor}` )
+                    .prop( 'onMouseEnter' ) ).to.equal( onMouseOver );
+            } );
 
-        it( 'should pass onMouseOut to the container div', () =>
+        it( 'should pass onMouseOut to the container div as onMouseLeave', () =>
         {
             const onMouseOut = sinon.spy();
             wrapper.setProps( { onMouseOut } );
 
             expect( wrapper.find( `.${cssMap.editor}` )
-                .prop( 'onMouseOut' ) ).to.equal( onMouseOut );
+                .prop( 'onMouseLeave' ) ).to.equal( onMouseOut );
         } );
     } );
 } );

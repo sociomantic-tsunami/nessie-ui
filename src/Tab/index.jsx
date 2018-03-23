@@ -11,7 +11,7 @@ export default class Tab extends Component
         /**
         *  Label to show in TabButton of this tab
         */
-        label    : PropTypes.string.isRequired,
+        label    : PropTypes.string,
         /**
         *  Contents of the Tab
         */

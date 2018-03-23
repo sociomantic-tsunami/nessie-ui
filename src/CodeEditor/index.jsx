@@ -319,9 +319,9 @@ export default class CodeEditor extends Component
                 } }>
                 <InputContainer { ...props } className = { className }>
                     <div
-                        className   = { cssMap.editor }
-                        onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }
+                        className    = { cssMap.editor }
+                        onMouseEnter = { onMouseOver }
+                        onMouseLeave = { onMouseOut }
                         style = { { height: `${height}` } }>
                         <textarea
                             ref          = { this.handleTextareaRef }

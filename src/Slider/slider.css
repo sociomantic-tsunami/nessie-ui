@@ -31,7 +31,7 @@
     /* Track + handles */
 
     .handle,
-    .track,
+    .track
     {
         box-sizing: border-box;
     }
@@ -41,6 +41,7 @@
     {
         position:   absolute;
         z-index:    1;
+        transition: ease 0.2s all;
     }
 
     .trackContainer
@@ -124,6 +125,15 @@
     {
         position:   absolute;
         @extend %Nessie-Bold;
+    }
+}
+
+.grabbing
+{
+    .handle,
+    .trackFill
+    {
+        transition: none;
     }
 }
 

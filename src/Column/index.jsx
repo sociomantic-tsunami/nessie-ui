@@ -13,18 +13,28 @@ const Column = ( {
     role,
     size,
     verticalAlign,
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            size,
-            alignX : align,
-            alignY : verticalAlign
-        } ) }
-        role              = { role }
-        data-column-title = { columnTitle }>
-        { children }
-    </div>
-);
+} ) =>
+{
+    if ( !Column.didWarn && verticalAlign === 'space-around' )
+    {
+        console.warn( 'Column: \'space-around\' option for verticalAlign prop \
+is deprecated. Please use an alternative layout.' );
+        Column.didWarn = true;
+    }
+
+    return (
+        <div
+            className = { buildClassName( className, cssMap, {
+                size,
+                alignX : align,
+                alignY : verticalAlign
+            } ) }
+            role              = { role }
+            data-column-title = { columnTitle }>
+            { children }
+        </div>
+    );
+};
 
 Column.propTypes =
 {
@@ -86,7 +96,6 @@ Column.propTypes =
         'top',
         'middle',
         'bottom',
-        'space-around'
     ] ),
     /**
      *  Column content

@@ -6,7 +6,6 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
     constructor( wrapper )
     {
         super( wrapper, 'IconWithTooltip > Tooltip' );
-        this.tooltip = this.control;
     }
 
     getContent()
@@ -16,6 +15,18 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
 
     getMessage()
     {
-        return this.tooltip.driver().getMessage();
+        return this.control.driver().getMessage();
+    }
+
+    mouseOver()
+    {
+        this.control.driver().mouseOver();
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.control.driver().mouseOut();
+        return this;
     }
 }
