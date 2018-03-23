@@ -8,6 +8,8 @@ export default class DateTimeInputDriver
         this.hourInput   = wrapper.find( 'input' ).at( 1 );
         this.minuteInput = wrapper.find( 'input' ).at( 2 );
         this.calendar    = wrapper.find( 'table button' );
+        this.prev        = wrapper.find( 'button' ).at( 1 );
+        this.next        = wrapper.find( 'button' ).at( 2 );
     }
 
     getMainInputValue()
@@ -104,6 +106,18 @@ export default class DateTimeInputDriver
         const day = this.calendar.findWhere( n =>
             n.prop( 'value' ) === value ).first();
         day.simulate( 'click' );
+        return this;
+    }
+
+    clickPrev()
+    {
+        this.prev.simulate( 'click' );
+        return this;
+    }
+
+    clickNext()
+    {
+        this.next.simulate( 'click' );
         return this;
     }
 }

@@ -214,4 +214,40 @@ describe.only( 'DateTimeInputDriver', () =>
             expect( onClickCell.lastCall.args[ 0 ] ).to.equal( '3' );
         } );
     } );
+
+
+    describe( 'clickPrev()', () =>
+    {
+        let onClickPrev;
+
+        it( 'should fire onClickPrev exactly once', () =>
+        {
+            onClickPrev = sinon.spy();
+            wrapper.setProps( {
+                onClickPrev
+            } );
+
+            wrapper.driver().clickPrev();
+
+            expect( onClickPrev.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'clickNext()', () =>
+    {
+        let onClickNext;
+
+        it( 'should fire onClickNext exactly once', () =>
+        {
+            onClickNext = sinon.spy();
+            wrapper.setProps( {
+                onClickNext
+            } );
+
+            wrapper.driver().clickNext();
+
+            expect( onClickNext.calledOnce ).to.be.true;
+        } );
+    } );
 } );
