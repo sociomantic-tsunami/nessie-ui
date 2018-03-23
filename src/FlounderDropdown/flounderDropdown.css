@@ -315,26 +315,23 @@
         {
             outline:    none;
         }
+    }
+    .main > .search
+    {
+        position:       absolute;
+        top:            0;
 
-        .main > &
-        {
-            position:       absolute;
-            top:            0;
+        box-sizing:     border-box;
+        width:          100%;
+        height:         100%;
 
-            box-sizing:     border-box;
-            width:          100%;
-            height:         100%;
-
-            text-indent:    var( --spacing-2 );
-
-        }
-
-        .multiTagList > &
-        {
-            flex:           1 0 0%;
-            min-width:      5ch;
-            text-indent:    var( --spacing-1 );
-        }
+        text-indent:    var( --spacing-2 );
+    }
+    .multiTagList > .search
+    {
+        flex:           1 0 0%;
+        min-width:      5ch;
+        text-indent:    var( --spacing-1 );
     }
 
     .multiTagList
