@@ -28,7 +28,7 @@ import {
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
-    Tooltip,
+    Tooltip
 } from 'nessie-ui';
 
 import ButtonDriver         from './Button/driver';
@@ -58,6 +58,8 @@ import SwitchDriver            from './Switch/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
+import WrapperDriver
+    from './Testing/CommonDrivers/wrapperDriver';
 
 
 const drivers =
@@ -184,6 +186,7 @@ export {
     ClickableComponentDriver,
     InputComponentDriver,
     SimpleComponentDriver,
+    WrapperDriver
 };
 
 export default ComponentDriver.createDriverSuite( drivers );
