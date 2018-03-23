@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 /* global expect */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -10,7 +9,6 @@ import { mount }                  from 'enzyme';
 import Label                      from '../Label/index';
 
 import Slider                     from './index';
-
 
 const noop = () => null;
 
@@ -277,7 +275,8 @@ describe( 'Slider', () =>
                 };
                 Wrapper = mount( <Slider { ...props } /> );
 
-                const eventListenerSpy = sinon.spy( global, 'addEventListener' );
+                const eventListenerSpy =
+                    sinon.spy( global, 'addEventListener' );
 
                 Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
                 expect( eventListenerSpy.calledTwice ).to.be.true;
@@ -308,6 +307,395 @@ describe( 'Slider', () =>
                 'mousemove', mouseMoveSpy ) ).to.be.true;
             expect( removeEventListenerSpy.calledWith(
                 'mouseup', mouseUpSpy ) ).to.be.true;
+        } );
+    } );
+} );
+
+
+describe( 'SliderDriver', () =>
+{
+    let wrapper;
+    let driver;
+    let cssMap;
+    let outer;
+    let track;
+    let inputContainer;
+
+    beforeEach( () =>
+    {
+        const props = {
+            label    : 'Pikaboo',
+            maxValue : 200,
+            minValue : 0,
+            value    : [ 25, 75 ],
+        };
+
+        wrapper = mount( <Slider { ...props } /> );
+        driver  = wrapper.driver();
+        cssMap  = wrapper.prop( 'cssMap' );
+        outer   = wrapper.find( `.${cssMap.default}` );
+        track   = wrapper.find( `.${cssMap.track}` );
+        inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
+    } );
+
+    describe( 'click()', () =>
+    {
+        let clickSpy;
+
+        beforeEach( () =>
+        {
+            clickSpy = sinon.spy();
+            wrapper.setProps( { onClick: clickSpy } );
+        } );
+
+        it( 'should fire the onClick callback prop exactly once', () =>
+        {
+            driver.click();
+            expect( clickSpy.calledOnce ).to.be.true;
+        } );
+
+        it( 'should not fire onClick when slider is disabled ', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            expect( () => driver.click() ).to.throw;
+            expect( clickSpy.notCalled ).to.be.true;
+        } );
+
+        it( 'should throw the expected error when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            const expectedError =
+                'Slider \'Pikaboo\' cannot be clicked since it is disabled';
+
+            expect( () => driver.click() ).to.throw( expectedError );
+        } );
+    } );
+
+    describe( 'blur( index )', () =>
+    {
+        let onBlur;
+
+        beforeEach( () =>
+        {
+            onBlur = sinon.spy();
+            wrapper.setProps( { onBlur } );
+        } );
+
+        it( 'should fire the onBlur callback prop exactly once', () =>
+        {
+            driver.blur();
+            expect( onBlur.calledOnce ).to.be.true;
+        } );
+
+        it( 'event target should be the first slider input when no index', () =>
+        {
+            driver.blur();
+            const event = onBlur.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'event target should be the slider input at index', () =>
+        {
+            const index = 1;
+            driver.blur( index );
+            const event = onBlur.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+
+        it( 'should not fire onBlur when slider is disabled ', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            expect( () => driver.click() ).to.throw;
+            expect( onBlur.notCalled ).to.be.true;
+        } );
+
+        it( 'should throw the expected error when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            const expectedError =
+                'Slider \'Pikaboo\' cannot be blurred since it is disabled';
+
+            expect( () => driver.blur() ).to.throw( expectedError );
+        } );
+    } );
+
+    describe( 'focus( index )', () =>
+    {
+        let onFocus;
+
+        beforeEach( () =>
+        {
+            onFocus = sinon.spy();
+            wrapper.setProps( { onFocus } );
+        } );
+
+        it( 'should fire the onFocus callback prop exactly once', () =>
+        {
+            driver.focus();
+            expect( onFocus.calledOnce ).to.be.true;
+        } );
+
+        it( 'event target should be the first slider input when no index', () =>
+        {
+            driver.focus();
+            const event = onFocus.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'event target should be the slider input at index', () =>
+        {
+            const index = 1;
+            driver.focus( index );
+            const event = onFocus.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'keyDown( keyCode, index )', () =>
+    {
+        const keyCode = 40; // down arrow
+        let onKeyDown;
+
+        beforeEach( () =>
+        {
+            onKeyDown = sinon.spy();
+            wrapper.setProps( { onKeyDown } );
+        } );
+
+        it( 'should fire the onKeyDown callback prop exactly once', () =>
+        {
+            driver.keyDown();
+            expect( onKeyDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should receive keyCode as event keyCode', () =>
+        {
+            driver.keyDown( keyCode );
+            const event = onKeyDown.lastCall.args[ 0 ];
+            expect( event.keyCode ).to.equal( keyCode );
+        } );
+
+        it( 'should receive first input as event target when no index', () =>
+        {
+            driver.keyDown();
+            const event = onKeyDown.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'should receive input at index as event target', () =>
+        {
+            const index = 1;
+            driver.keyDown( null, index );
+            const event = onKeyDown.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'keyUp( keyCode, index )', () =>
+    {
+        const keyCode = 40; // down arrow
+        let onKeyUp;
+
+        beforeEach( () =>
+        {
+            onKeyUp = sinon.spy();
+            wrapper.setProps( { onKeyUp } );
+        } );
+
+        it( 'should fire the onKeyUp callback prop exactly once', () =>
+        {
+            driver.keyUp();
+            expect( onKeyUp.calledOnce ).to.be.true;
+        } );
+
+        it( 'should receive keyCode as event keyCode', () =>
+        {
+            driver.keyUp( keyCode );
+            const event = onKeyUp.lastCall.args[ 0 ];
+            expect( event.keyCode ).to.equal( keyCode );
+        } );
+
+        it( 'should receive first input as event target when no index', () =>
+        {
+            driver.keyUp();
+            const event = onKeyUp.lastCall.args[ 0 ];
+            const firstInput = inputContainer.childAt( 0 ).node;
+
+            expect( event.target ).to.equal( firstInput );
+        } );
+
+        it( 'should receive input at index as event target', () =>
+        {
+            const index = 1;
+            driver.keyUp( null, index );
+            const event = onKeyUp.lastCall.args[ 0 ];
+            const input = inputContainer.childAt( index ).node;
+
+            expect( event.target ).to.equal( input );
+        } );
+    } );
+
+    describe( 'mouseOut()', () =>
+    {
+        let onMouseOut;
+
+        beforeEach( () =>
+        {
+            onMouseOut = sinon.spy();
+            wrapper.setProps( { onMouseOut } );
+        } );
+
+        it( 'should fire the onMouseOut callback prop exactly once', () =>
+        {
+            driver.mouseOut();
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOut with outer wrapper as event target', () =>
+        {
+            driver.mouseOut();
+            const event = onMouseOut.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( outer.getNode() );
+        } );
+
+        it( 'should still fire onMouseOut when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseOut();
+            expect( onMouseOut.called ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseOver()', () =>
+    {
+        let onMouseOver;
+
+        beforeEach( () =>
+        {
+            onMouseOver = sinon.spy();
+            wrapper.setProps( { onMouseOver } );
+        } );
+
+        it( 'should fire the onMouseOver callback prop exactly once', () =>
+        {
+            driver.mouseOver();
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOver with outer wrapper as event target', () =>
+        {
+            driver.mouseOver();
+            const event = onMouseOver.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( outer.getNode() );
+        } );
+
+        it( 'should still fire onMouseOver when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseOver();
+            expect( onMouseOver.called ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseDown()', () =>
+    {
+        let onMouseDown;
+
+        beforeEach( () =>
+        {
+            onMouseDown = sinon.spy();
+            wrapper.setProps( { onMouseDown } );
+        } );
+
+        it( 'should fire the onMouseDown callback prop exactly once', () =>
+        {
+            driver.mouseDown();
+            expect( onMouseDown.calledOnce ).to.be.true;
+        } );
+
+        it( 'should fire onMouseOver with track as event target', () =>
+        {
+            driver.mouseDown();
+            const event = onMouseDown.lastCall.args[ 0 ];
+            expect( event.target ).to.equal( track.getNode() );
+        } );
+
+        it( 'should still fire onMouseDown when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            driver.mouseDown();
+            expect( onMouseDown.called ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseUp()', () =>
+    {
+        let handleMouseUp;
+
+        beforeEach( () =>
+        {
+            handleMouseUp = sinon.spy( wrapper.node, 'handleMouseUp' );
+        } );
+
+        it( 'should fire handleMouseUp on the component instance', () =>
+        {
+            driver.mouseUp();
+            expect( handleMouseUp.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'setInputValue( value )', () =>
+    {
+        let change;
+
+        beforeEach( () =>
+        {
+            change    = sinon.spy( driver, 'change' );
+        } );
+
+        it( 'should throw the expected error when slider is disabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+            const expectedError =
+                'Slider \'Pikaboo\' cannot be changed since it is disabled';
+
+            expect( () => driver.setInputValue() ).to.throw( expectedError );
+        } );
+
+        it( 'should call the change method exactly once if single value', () =>
+        {
+            const value = 20;
+            driver.setInputValue( value );
+            expect( change.calledOnce ).to.be.true;
+        } );
+
+        it( 'should call change method once per value if array of values', () =>
+        {
+            const value = [ 10, 20 ];
+            driver.setInputValue( value );
+            expect( change.calledTwice ).to.be.true;
+        } );
+
+        it( 'should call change with value and index for each value', () =>
+        {
+            const value = [ 10, 20 ];
+            driver.setInputValue( value );
+
+            value.forEach( ( val, i ) =>
+                expect( change.getCalls()[ i ].args ).to.eql( [ val, i ] )
+            );
         } );
     } );
 } );
