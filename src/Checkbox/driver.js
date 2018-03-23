@@ -11,12 +11,14 @@ export default class CheckboxDriver extends InputComponentDriver
 
     setChecked()
     {
+        this.control.node.checked = true;
         this.control.simulate( 'change', { target: { checked: true } } );
         return this;
     }
 
     setUnchecked()
     {
+        this.control.node.checked = false;
         this.control.simulate( 'change', { target: { checked: false } } );
         return this;
     }
@@ -24,6 +26,7 @@ export default class CheckboxDriver extends InputComponentDriver
     toggleChecked()
     {
         const status = this.getChecked();
+        this.control.node.checked = !status;
         this.control.simulate( 'change', { target: { checked: !status } } );
         return this;
     }

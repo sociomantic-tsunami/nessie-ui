@@ -1,138 +1,189 @@
-import { ComponentDriver }    from 'componentDriver';
-import { Button, Module, Icon, IconButton, Tooltip, IconWithTooltip,
-    FlounderDropdown, PasswordInput, Form, Section, Grid, Column,
-    TextInput, NavItem, NotificationBar, TextInputWithIcon,
-    ModalDialog, Switch, Row, Text, CodeEditor,
-    Checkbox, Radio, DateTimeInput, TextInputWithDropdown }  from 'nessie-ui';
+import { ComponentDriver } from 'componentDriver';
+import {
+    Button,
+    CheckableGroup,
+    Checkbox,
+    CheckboxGroup,
+    CodeEditor,
+    Column,
+    DateTimeInput,
+    FlounderDropdown,
+    Form,
+    Grid,
+    Icon,
+    IconButton,
+    IconWithTooltip,
+    ModalDialog,
+    Module,
+    NavItem,
+    NotificationBar,
+    PasswordInput,
+    Radio,
+    RadioGroup,
+    Row,
+    Section,
+    Slider,
+    Switch,
+    Text,
+    TextInput,
+    TextInputWithDropdown,
+    TextInputWithIcon,
+    Tooltip,
+} from 'nessie-ui';
 
-import ButtonDriver             from './Button/driver';
-import CheckboxDriver           from './Checkbox/driver';
-import ModuleDriver             from './Module/driver';
-import IconDriver               from './Icon/driver';
-import TooltipDriver            from './Tooltip/driver';
-import IconWithTooltipDriver    from './IconWithTooltip/driver';
-import FlounderDropdownDriver   from './FlounderDropdown/driver';
-import TextInputWithIconDriver  from './TextInputWithIcon/driver';
-import PasswordInputDriver      from './PasswordInput/driver';
-import SectionDriver            from './Section/driver';
-import GridColumnDriver         from './Grid/driver';
-import FormDriver               from './Form/driver';
-import NavItemDriver            from './NavItem/driver';
-import NotificationBarDriver    from './NotificationBar/driver';
-import ModalDialogDriver        from './ModalDialog/driver';
-import SwitchDriver             from './Switch/driver';
-import TextDriver               from './Text/driver';
-import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
-import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
-import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
-import CodeEditorDriver         from './CodeEditor/driver';
-import DateTimeInputDriver      from './DateTimeInput/driver';
+import ButtonDriver         from './Button/driver';
+import CheckableGroupDriver from './CheckableGroup/driver';
+import CheckboxDriver       from './Checkbox/driver';
+import ClickableComponentDriver
+    from './Testing/CommonDrivers/clickableComponentDriver';
+import CodeEditorDriver       from './CodeEditor/driver';
+import DateTimeInputDriver    from './DateTimeInput/driver';
+import FlounderDropdownDriver from './FlounderDropdown/driver';
+import FormDriver             from './Form/driver';
+import GridColumnDriver       from './Grid/driver';
+import IconDriver             from './Icon/driver';
+import IconWithTooltipDriver  from './IconWithTooltip/driver';
+import InputComponentDriver
+    from './Testing/CommonDrivers/inputComponentDriver';
+import ModalDialogDriver     from './ModalDialog/driver';
+import ModuleDriver          from './Module/driver';
+import NavItemDriver         from './NavItem/driver';
+import NotificationBarDriver from './NotificationBar/driver';
+import PasswordInputDriver   from './PasswordInput/driver';
+import SectionDriver         from './Section/driver';
+import SimpleComponentDriver
+    from './Testing/CommonDrivers/simpleComponentDriver';
+import SliderDriver            from './Slider/driver';
+import SwitchDriver            from './Switch/driver';
+import TextDriver              from './Text/driver';
+import TextInputWithIconDriver from './TextInputWithIcon/driver';
+import TooltipDriver           from './Tooltip/driver';
+
 
 const drivers =
 [
     {
         Component : Button,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
+    },
+    {
+        Component : CheckableGroup,
+        Driver    : CheckableGroupDriver,
     },
     {
         Component : Checkbox,
-        Driver    : CheckboxDriver
+        Driver    : CheckboxDriver,
     },
     {
-        Component : Radio,
-        Driver    : CheckboxDriver
+        Component : CheckboxGroup,
+        Driver    : CheckableGroupDriver,
     },
     {
-        Component : Module,
-        Driver    : ModuleDriver
+        Component : CodeEditor,
+        Driver    : CodeEditorDriver,
     },
     {
-        Component : TextInputWithIcon,
-        Driver    : TextInputWithIconDriver,
+        Component : Column,
+        Driver    : GridColumnDriver,
     },
     {
-        Component : PasswordInput,
-        Driver    : PasswordInputDriver
-    },
-    {
-        Component : Icon,
-        Driver    : IconDriver
-    },
-    {
-        Component : Tooltip,
-        Driver    : TooltipDriver
-    },
-    {
-        Component : IconWithTooltip,
-        Driver    : IconWithTooltipDriver
-    },
-    {
-        Component : IconButton,
-        Driver    : ButtonDriver
+        Component : DateTimeInput,
+        Driver    : DateTimeInputDriver
     },
     {
         Component : FlounderDropdown,
-        Driver    : FlounderDropdownDriver
+        Driver    : FlounderDropdownDriver,
     },
     {
-        Component : TextInput,
-        Driver    : InputComponentDriver
+        Component : Form,
+        Driver    : FormDriver,
     },
     {
-        Component : TextInputWithDropdown,
-        Driver    : InputComponentDriver
+        Component : Grid,
+        Driver    : GridColumnDriver,
+    },
+    {
+        Component : Icon,
+        Driver    : IconDriver,
+    },
+    {
+        Component : IconButton,
+        Driver    : ButtonDriver,
+    },
+    {
+        Component : IconWithTooltip,
+        Driver    : IconWithTooltipDriver,
+    },
+    {
+        Component : ModalDialog,
+        Driver    : ModalDialogDriver,
+    },
+    {
+        Component : Module,
+        Driver    : ModuleDriver,
+    },
+    {
+        Component : NavItem,
+        Driver    : NavItemDriver,
+    },
+    {
+        Component : NotificationBar,
+        Driver    : NotificationBarDriver,
+    },
+    {
+        Component : PasswordInput,
+        Driver    : PasswordInputDriver,
+    },
+    {
+        Component : Radio,
+        Driver    : CheckboxDriver,
+    },
+    {
+        Component : RadioGroup,
+        Driver    : CheckableGroupDriver,
+    },
+    {
+        Component : Row,
+        Driver    : GridColumnDriver,
     },
     {
         Component : Section,
         Driver    : SectionDriver
     },
     {
-        Component : Grid,
-        Driver    : GridColumnDriver
-    },
-    {
-        Component : Row,
-        Driver    : GridColumnDriver
-    },
-    {
-        Component : Column,
-        Driver    : GridColumnDriver
-    },
-    {
-        Component : Form,
-        Driver    : FormDriver
-    },
-    {
-        Component : NavItem,
-        Driver    : NavItemDriver
-    },
-    {
-        Component : NotificationBar,
-        Driver    : NotificationBarDriver
-    },
-    {
-        Component : ModalDialog,
-        Driver    : ModalDialogDriver
+        Component : Slider,
+        Driver    : SliderDriver,
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : Text,
-        Driver    : TextDriver
+        Driver    : TextDriver,
     },
     {
-        Component : CodeEditor,
-        Driver    : CodeEditorDriver
+        Component : TextInput,
+        Driver    : InputComponentDriver,
     },
     {
-        Component : DateTimeInput,
-        Driver    : DateTimeInputDriver
+        Component : TextInputWithDropdown,
+        Driver    : InputComponentDriver
+    },
+    {
+        Component : TextInputWithIcon,
+        Driver    : TextInputWithIconDriver,
+    },
+    {
+        Component : Tooltip,
+        Driver    : TooltipDriver,
     }
 ];
 
-export { SimpleComponentDriver, ClickableComponentDriver,
-    InputComponentDriver };
+export {
+    ClickableComponentDriver,
+    InputComponentDriver,
+    SimpleComponentDriver,
+};
 
 export default ComponentDriver.createDriverSuite( drivers );
