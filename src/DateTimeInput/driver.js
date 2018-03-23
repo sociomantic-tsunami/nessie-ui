@@ -20,10 +20,9 @@ export default class DateTimeInputDriver
     setMainInputValue( value )
     {
         const newValue = ( value == null ) ? '' : String( value );
-        const $input = this.mainInput;
 
-        $input.node.value = value;
-        $input.simulate( 'change', { target: { value: newValue } } );
+        this.mainInput.node.value = value;
+        this.mainInput.simulate( 'change', { target: { value: newValue } } );
 
         return this;
     }

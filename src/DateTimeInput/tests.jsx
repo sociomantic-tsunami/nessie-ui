@@ -3,7 +3,7 @@ import { mount }                from 'enzyme';
 
 import { DateTimeInput }        from '../index';
 
-describe.only( 'DateTimeInputDriver', () =>
+describe( 'DateTimeInputDriver', () =>
 {
     let wrapper;
     let driver;
