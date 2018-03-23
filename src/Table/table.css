@@ -1,22 +1,55 @@
 @import "../proto/base.css";
 @import "../proto/definitions/_colors.css";
 
+:root
+{
+    --borderShadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+}
+
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
     overflow-wrap:          break-word;
 }
 
+.borders__rows,
+.borders__cells,
 .zebra
 {
-    .row:nth-child(even) > .cell
+    .row,
+    .headerRow
     {
-        background: var( --GS-10 );
+        margin-left:    0;
+        margin-right:   0;
+        margin-bottom:  0;
     }
 
+    .cell
+    {
+        background: var( --PC-WHITE );
+    }
+}
+
+.borders__rows
+{
     .row
     {
-        width:  100%;
-        margin: 0;
+        box-shadow: var( --borderShadow );
+    }
+}
+
+.borders__cells
+{
+    .row .cell
+    {
+        box-shadow: var( --borderShadow );
+    }
+}
+
+.zebra
+{
+    .row:nth-child( odd ) .cell
+    {
+        background: var( --GS-10 );
     }
 }

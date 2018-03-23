@@ -8,19 +8,17 @@ import { buildClassName } from '../utils';
 import styles             from './tableCell.css';
 
 const TableCell = ( {
-    align,
     children,
     className,
-    columnTitle,
     cssMap,
     isHeader,
     isRowHeader,
     isSortable,
     isSticky,
     onToggle,
-    size,
     sort,
-    verticalAlign } ) =>
+    ...props
+} ) =>
 {
     let contentNode = typeof children === 'string' ?
         <Text>{ children }</Text> : children;
@@ -36,20 +34,18 @@ const TableCell = ( {
 
     return (
         <Column
+            { ...props }
             className = { buildClassName( className, cssMap, {
                 header    : isHeader,
                 rowHeader : isRowHeader,
                 sticky    : isSticky,
             } ) }
-            size          = { size }
-            role          = { isHeader ? 'columnheader' : 'gridcell' }
-            columnTitle   = { columnTitle }
-            align         = { align }
-            verticalAlign = { verticalAlign }>
+            role          = { isHeader ? 'columnheader' : 'gridcell' }>
             { contentNode }
         </Column>
     );
 };
+
 TableCell.propTypes =
 {
     /**

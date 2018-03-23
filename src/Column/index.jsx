@@ -1,7 +1,8 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './column.css';
 
 const Column = ( {
     align,
@@ -22,18 +23,16 @@ is deprecated. Please use an alternative layout.' );
     }
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { size,
+        <div
+            className = { buildClassName( className, cssMap, {
+                size,
                 alignX : align,
-                alignY : verticalAlign } }>
-            <div
-                className         = { className }
-                role              = { role }
-                data-column-title = { columnTitle }>
-                { children }
-            </div>
-        </Css>
+                alignY : verticalAlign
+            } ) }
+            role              = { role }
+            data-column-title = { columnTitle }>
+            { children }
+        </div>
     );
 };
 
@@ -111,7 +110,7 @@ Column.propTypes =
 Column.defaultProps =
 {
     align  : 'auto',
-    cssMap : require( './column.css' )
+    cssMap : styles,
 };
 
 export default Column;
