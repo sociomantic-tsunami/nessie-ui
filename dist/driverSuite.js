@@ -64,12 +64,12 @@ module.exports =
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 241);
+/******/ 	return __webpack_require__(__webpack_require__.s = 246);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 101:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106,6 +106,173 @@ exports.default = SectionDriver;
 /***/ }),
 
 /***/ 106:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ERRORS = {
+    DISABLED: function DISABLED(label, action) {
+        return 'Slider ' + (label ? '\'' + label + '\'' : '') + ' cannot be ' + action + ' since it is disabled';
+    }
+};
+
+var toArray = function toArray(value) {
+    return Array.isArray(value) ? value : [value];
+};
+
+var SliderDriver = function () {
+    function SliderDriver(wrapper) {
+        _classCallCheck(this, SliderDriver);
+
+        this.wrapper = wrapper;
+
+        this.cssMap = wrapper.prop('cssMap');
+        this.label = wrapper.prop('label');
+
+        this.default = wrapper.find('.' + this.cssMap.default);
+        this.inputContainer = wrapper.find('.' + this.cssMap.inputContainer);
+        this.track = wrapper.find('.' + this.cssMap.track);
+    }
+
+    _createClass(SliderDriver, [{
+        key: 'blur',
+        value: function blur() {
+            var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'blurred'));
+            }
+
+            this.inputContainer.childAt(index).simulate('blur');
+            return this;
+        }
+    }, {
+        key: 'change',
+        value: function change(value) {
+            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'changed'));
+            }
+
+            this.inputContainer.childAt(index).simulate('change', {
+                target: { value: value }
+            });
+            return this;
+        }
+    }, {
+        key: 'click',
+        value: function click() {
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'clicked'));
+            }
+
+            this.track.simulate('click');
+            return this;
+        }
+    }, {
+        key: 'focus',
+        value: function focus() {
+            var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'focused'));
+            }
+
+            this.inputContainer.childAt(index).simulate('focus');
+            return this;
+        }
+    }, {
+        key: 'keyDown',
+        value: function keyDown(keyCode) {
+            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'changed'));
+            }
+
+            this.inputContainer.childAt(index).simulate('keyDown', { keyCode: keyCode });
+            return this;
+        }
+    }, {
+        key: 'keyUp',
+        value: function keyUp(keyCode) {
+            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            if (this.wrapper.prop('isDisabled')) {
+                throw new Error(ERRORS.DISABLED(this.label, 'changed'));
+            }
+
+            this.inputContainer.childAt(index).simulate('keyUp', { keyCode: keyCode });
+            return this;
+        }
+    }, {
+        key: 'mouseDown',
+        value: function mouseDown() {
+            this.track.simulate('mouseDown');
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.default.simulate('mouseLeave');
+            return this;
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.default.simulate('mouseEnter');
+            return this;
+        }
+    }, {
+        key: 'mouseUp',
+        value: function mouseUp() // not a React SyntheticEvent
+        {
+            this.wrapper.node.handleMouseUp();
+            return this;
+        }
+    }, {
+        key: 'setInputValue',
+        value: function setInputValue(value) {
+            var _this = this;
+
+            var props = this.wrapper.props();
+
+            if (props.isDisabled) {
+                throw new Error(ERRORS.DISABLED(this.label, 'changed'));
+            }
+
+            var oldValues = toArray(props.value);
+            var newValues = toArray(value);
+
+            oldValues.forEach(function (val, i) {
+                var newValue = newValues[i];
+                if (Number.isFinite(newValue)) {
+                    _this.change(newValues[i], i);
+                }
+            });
+
+            return this;
+        }
+    }]);
+
+    return SliderDriver;
+}();
+
+exports.default = SliderDriver;
+
+/***/ }),
+
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -176,7 +343,7 @@ exports.default = SwitchDriver;
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -188,7 +355,47 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _inputComponentDriver = __webpack_require__(29);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TextDriver = function () {
+    function TextDriver(wrapper) {
+        _classCallCheck(this, TextDriver);
+
+        this.wrapper = wrapper;
+        this.cssMap = wrapper.prop('cssMap');
+    }
+
+    _createClass(TextDriver, [{
+        key: 'getContent',
+        value: function getContent() {
+            if (this.wrapper.prop('children')) {
+                return this.wrapper.find('.' + this.cssMap.default).children();
+            }
+
+            return this.wrapper.find('.' + this.cssMap.default).text();
+        }
+    }]);
+
+    return TextDriver;
+}();
+
+exports.default = TextDriver;
+
+/***/ }),
+
+/***/ 122:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _inputComponentDriver = __webpack_require__(24);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
@@ -232,7 +439,7 @@ exports.default = TextInputWithIconDriver;
 
 /***/ }),
 
-/***/ 118:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -243,8 +450,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _simpleComponentDriver = __webpack_require__(9);
 
@@ -260,38 +465,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // eslint-disable-line max-len
 
-var ERRORS = {
-    TOOLTIP_HAS_NO_CONTENT: function TOOLTIP_HAS_NO_CONTENT(action) {
-        return 'Cannot ' + action + ' on tooltip. No content available';
-    }
-};
 /**
  * This driver simulate actions on the content rather than on the tooltip
  * itself, as this is how a user would act.
  */
-
 var TooltipDriver = function (_SimpleComponentDrive) {
     _inherits(TooltipDriver, _SimpleComponentDrive);
 
     function TooltipDriver(wrapper) {
         _classCallCheck(this, TooltipDriver);
 
-        return _possibleConstructorReturn(this, (TooltipDriver.__proto__ || Object.getPrototypeOf(TooltipDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.content));
+        return _possibleConstructorReturn(this, (TooltipDriver.__proto__ || Object.getPrototypeOf(TooltipDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.default));
     }
 
     _createClass(TooltipDriver, [{
-        key: 'mouseOver',
-        value: function mouseOver() {
-            checkContentAccessiblity(this, 'mouseover');
-            return _get(TooltipDriver.prototype.__proto__ || Object.getPrototypeOf(TooltipDriver.prototype), 'mouseOver', this).call(this);
-        }
-    }, {
-        key: 'mouseOut',
-        value: function mouseOut() {
-            checkContentAccessiblity(this, 'mouseout');
-            return _get(TooltipDriver.prototype.__proto__ || Object.getPrototypeOf(TooltipDriver.prototype), 'mouseOut', this).call(this);
-        }
-    }, {
         key: 'getContent',
         value: function getContent() {
             return this.control.children();
@@ -308,16 +495,9 @@ var TooltipDriver = function (_SimpleComponentDrive) {
 
 exports.default = TooltipDriver;
 
-
-function checkContentAccessiblity(driver, method) {
-    if (driver.control.length === 0) {
-        throw new Error(ERRORS.TOOLTIP_HAS_NO_CONTENT(method));
-    }
-}
-
 /***/ }),
 
-/***/ 122:
+/***/ 127:
 /***/ (function(module, exports) {
 
 module.exports = require("nessie-ui/dist/componentDriver.js");
@@ -379,170 +559,7 @@ exports.default = ClickableComponentDriver;
 
 /***/ }),
 
-/***/ 241:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.InputComponentDriver = exports.ClickableComponentDriver = exports.SimpleComponentDriver = undefined;
-
-var _componentDriver = __webpack_require__(122);
-
-var _nessieUi = __webpack_require__(14);
-
-var _driver = __webpack_require__(57);
-
-var _driver2 = _interopRequireDefault(_driver);
-
-var _driver3 = __webpack_require__(80);
-
-var _driver4 = _interopRequireDefault(_driver3);
-
-var _driver5 = __webpack_require__(75);
-
-var _driver6 = _interopRequireDefault(_driver5);
-
-var _driver7 = __webpack_require__(118);
-
-var _driver8 = _interopRequireDefault(_driver7);
-
-var _driver9 = __webpack_require__(76);
-
-var _driver10 = _interopRequireDefault(_driver9);
-
-var _driver11 = __webpack_require__(69);
-
-var _driver12 = _interopRequireDefault(_driver11);
-
-var _driver13 = __webpack_require__(117);
-
-var _driver14 = _interopRequireDefault(_driver13);
-
-var _driver15 = __webpack_require__(94);
-
-var _driver16 = _interopRequireDefault(_driver15);
-
-var _driver17 = __webpack_require__(101);
-
-var _driver18 = _interopRequireDefault(_driver17);
-
-var _driver19 = __webpack_require__(73);
-
-var _driver20 = _interopRequireDefault(_driver19);
-
-var _driver21 = __webpack_require__(71);
-
-var _driver22 = _interopRequireDefault(_driver21);
-
-var _driver23 = __webpack_require__(83);
-
-var _driver24 = _interopRequireDefault(_driver23);
-
-var _driver25 = __webpack_require__(86);
-
-var _driver26 = _interopRequireDefault(_driver25);
-
-var _driver27 = __webpack_require__(78);
-
-var _driver28 = _interopRequireDefault(_driver27);
-
-var _driver29 = __webpack_require__(106);
-
-var _driver30 = _interopRequireDefault(_driver29);
-
-var _simpleComponentDriver = __webpack_require__(9);
-
-var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
-
-var _clickableComponentDriver = __webpack_require__(23);
-
-var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
-
-var _inputComponentDriver = __webpack_require__(29);
-
-var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
-
-var _driver31 = __webpack_require__(61);
-
-var _driver32 = _interopRequireDefault(_driver31);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// eslint-disable-line max-len
-var drivers = [{
-    Component: _nessieUi.Button,
-    Driver: _driver2.default
-}, {
-    Component: _nessieUi.Module,
-    Driver: _driver4.default
-}, {
-    Component: _nessieUi.TextInputWithIcon,
-    Driver: _driver14.default
-}, {
-    Component: _nessieUi.PasswordInput,
-    Driver: _driver16.default
-}, {
-    Component: _nessieUi.Icon,
-    Driver: _driver6.default
-}, {
-    Component: _nessieUi.Tooltip,
-    Driver: _driver8.default
-}, {
-    Component: _nessieUi.IconWithTooltip,
-    Driver: _driver10.default
-}, {
-    Component: _nessieUi.IconButton,
-    Driver: _driver2.default
-}, {
-    Component: _nessieUi.FlounderDropdown,
-    Driver: _driver12.default
-}, {
-    Component: _nessieUi.TextInput,
-    Driver: _inputComponentDriver2.default
-}, {
-    Component: _nessieUi.Section,
-    Driver: _driver18.default
-}, {
-    Component: _nessieUi.Grid,
-    Driver: _driver20.default
-}, {
-    Component: _nessieUi.Row,
-    Driver: _driver20.default
-}, {
-    Component: _nessieUi.Column,
-    Driver: _driver20.default
-}, {
-    Component: _nessieUi.Form,
-    Driver: _driver22.default
-}, {
-    Component: _nessieUi.NavItem,
-    Driver: _driver24.default
-}, {
-    Component: _nessieUi.NotificationBar,
-    Driver: _driver26.default
-}, {
-    Component: _nessieUi.ModalDialog,
-    Driver: _driver28.default
-}, {
-    Component: _nessieUi.Switch,
-    Driver: _driver30.default
-}, {
-    Component: _nessieUi.CodeEditor,
-    Driver: _driver32.default
-}]; // eslint-disable-line max-len
-// eslint-disable-line max-len
-exports.SimpleComponentDriver = _simpleComponentDriver2.default;
-exports.ClickableComponentDriver = _clickableComponentDriver2.default;
-exports.InputComponentDriver = _inputComponentDriver2.default;
-exports.default = _componentDriver.ComponentDriver.createDriverSuite(drivers);
-
-/***/ }),
-
-/***/ 29:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -729,6 +746,215 @@ function isCharPrintable(keyCode) {
 
 /***/ }),
 
+/***/ 246:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.SimpleComponentDriver = exports.InputComponentDriver = exports.ClickableComponentDriver = undefined;
+
+var _componentDriver = __webpack_require__(127);
+
+var _nessieUi = __webpack_require__(14);
+
+var _driver = __webpack_require__(57);
+
+var _driver2 = _interopRequireDefault(_driver);
+
+var _driver3 = __webpack_require__(58);
+
+var _driver4 = _interopRequireDefault(_driver3);
+
+var _driver5 = __webpack_require__(60);
+
+var _driver6 = _interopRequireDefault(_driver5);
+
+var _clickableComponentDriver = __webpack_require__(23);
+
+var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
+
+var _driver7 = __webpack_require__(63);
+
+var _driver8 = _interopRequireDefault(_driver7);
+
+var _driver9 = __webpack_require__(67);
+
+var _driver10 = _interopRequireDefault(_driver9);
+
+var _driver11 = __webpack_require__(72);
+
+var _driver12 = _interopRequireDefault(_driver11);
+
+var _driver13 = __webpack_require__(74);
+
+var _driver14 = _interopRequireDefault(_driver13);
+
+var _driver15 = __webpack_require__(76);
+
+var _driver16 = _interopRequireDefault(_driver15);
+
+var _driver17 = __webpack_require__(78);
+
+var _driver18 = _interopRequireDefault(_driver17);
+
+var _driver19 = __webpack_require__(79);
+
+var _driver20 = _interopRequireDefault(_driver19);
+
+var _inputComponentDriver = __webpack_require__(24);
+
+var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
+
+var _driver21 = __webpack_require__(81);
+
+var _driver22 = _interopRequireDefault(_driver21);
+
+var _driver23 = __webpack_require__(83);
+
+var _driver24 = _interopRequireDefault(_driver23);
+
+var _driver25 = __webpack_require__(86);
+
+var _driver26 = _interopRequireDefault(_driver25);
+
+var _driver27 = __webpack_require__(89);
+
+var _driver28 = _interopRequireDefault(_driver27);
+
+var _driver29 = __webpack_require__(97);
+
+var _driver30 = _interopRequireDefault(_driver29);
+
+var _driver31 = __webpack_require__(104);
+
+var _driver32 = _interopRequireDefault(_driver31);
+
+var _simpleComponentDriver = __webpack_require__(9);
+
+var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
+
+var _driver33 = __webpack_require__(106);
+
+var _driver34 = _interopRequireDefault(_driver33);
+
+var _driver35 = __webpack_require__(110);
+
+var _driver36 = _interopRequireDefault(_driver35);
+
+var _driver37 = __webpack_require__(118);
+
+var _driver38 = _interopRequireDefault(_driver37);
+
+var _driver39 = __webpack_require__(122);
+
+var _driver40 = _interopRequireDefault(_driver39);
+
+var _driver41 = __webpack_require__(123);
+
+var _driver42 = _interopRequireDefault(_driver41);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var drivers = [{
+    Component: _nessieUi.Button,
+    Driver: _driver2.default
+}, {
+    Component: _nessieUi.CheckableGroup,
+    Driver: _driver4.default
+}, {
+    Component: _nessieUi.Checkbox,
+    Driver: _driver6.default
+}, {
+    Component: _nessieUi.CheckboxGroup,
+    Driver: _driver4.default
+}, {
+    Component: _nessieUi.CodeEditor,
+    Driver: _driver8.default
+}, {
+    Component: _nessieUi.Column,
+    Driver: _driver16.default
+}, {
+    Component: _nessieUi.DateTimeInput,
+    Driver: _driver10.default
+}, {
+    Component: _nessieUi.FlounderDropdown,
+    Driver: _driver12.default
+}, {
+    Component: _nessieUi.Form,
+    Driver: _driver14.default
+}, {
+    Component: _nessieUi.Grid,
+    Driver: _driver16.default
+}, {
+    Component: _nessieUi.Icon,
+    Driver: _driver18.default
+}, {
+    Component: _nessieUi.IconButton,
+    Driver: _driver2.default
+}, {
+    Component: _nessieUi.IconWithTooltip,
+    Driver: _driver20.default
+}, {
+    Component: _nessieUi.ModalDialog,
+    Driver: _driver22.default
+}, {
+    Component: _nessieUi.Module,
+    Driver: _driver24.default
+}, {
+    Component: _nessieUi.NavItem,
+    Driver: _driver26.default
+}, {
+    Component: _nessieUi.NotificationBar,
+    Driver: _driver28.default
+}, {
+    Component: _nessieUi.PasswordInput,
+    Driver: _driver30.default
+}, {
+    Component: _nessieUi.Radio,
+    Driver: _driver6.default
+}, {
+    Component: _nessieUi.RadioGroup,
+    Driver: _driver4.default
+}, {
+    Component: _nessieUi.Row,
+    Driver: _driver16.default
+}, {
+    Component: _nessieUi.Section,
+    Driver: _driver32.default
+}, {
+    Component: _nessieUi.Slider,
+    Driver: _driver34.default
+}, {
+    Component: _nessieUi.Switch,
+    Driver: _driver36.default
+}, {
+    Component: _nessieUi.Text,
+    Driver: _driver38.default
+}, {
+    Component: _nessieUi.TextInput,
+    Driver: _inputComponentDriver2.default
+}, {
+    Component: _nessieUi.TextInputWithDropdown,
+    Driver: _inputComponentDriver2.default
+}, {
+    Component: _nessieUi.TextInputWithIcon,
+    Driver: _driver40.default
+}, {
+    Component: _nessieUi.Tooltip,
+    Driver: _driver42.default
+}];
+
+exports.ClickableComponentDriver = _clickableComponentDriver2.default;
+exports.InputComponentDriver = _inputComponentDriver2.default;
+exports.SimpleComponentDriver = _simpleComponentDriver2.default;
+exports.default = _componentDriver.ComponentDriver.createDriverSuite(drivers);
+
+/***/ }),
+
 /***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -796,7 +1022,190 @@ exports.default = ButtonDriver;
 
 /***/ }),
 
-/***/ 61:
+/***/ 58:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CheckableGroupDriver = function () {
+    function CheckableGroupDriver(wrapper) {
+        _classCallCheck(this, CheckableGroupDriver);
+
+        this.wrapper = wrapper;
+        this.cssMap = wrapper.props().cssMap;
+        this.outer = wrapper.find('.' + wrapper.props().cssMap.default);
+    }
+
+    _createClass(CheckableGroupDriver, [{
+        key: 'getContent',
+        value: function getContent() {
+            var items = this.wrapper.find('.' + this.cssMap.listItem);
+            return items.map(function (item) {
+                return item.childAt(0);
+            });
+        }
+    }, {
+        key: 'selectByIndex',
+        value: function selectByIndex(index) {
+            var items = this.getContent();
+
+            if (Array.isArray(index)) {
+                index.forEach(function (i) {
+                    items[i].driver().setChecked();
+                });
+            } else {
+                items[index].driver().setChecked();
+            }
+
+            return this;
+        }
+    }, {
+        key: 'selectByValue',
+        value: function selectByValue(value) {
+            var _this = this;
+
+            if (Array.isArray(value)) {
+                value.forEach(function (i) {
+                    var item = _this.wrapper.findWhere(function (n) {
+                        return n.prop('value') === i;
+                    }).first();
+                    item.driver().setChecked();
+                });
+            } else {
+                var item = this.wrapper.findWhere(function (n) {
+                    return n.prop('value') === value;
+                }).first();
+                item.driver().setChecked();
+            }
+
+            return this;
+        }
+    }, {
+        key: 'getSelectedValues',
+        value: function getSelectedValues() {
+            var items = this.wrapper.findWhere(function (n) {
+                return n.node.checked === true;
+            });
+
+            return items.map(function (item) {
+                return item.prop('value');
+            });
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.outer.simulate('mouseenter');
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.outer.simulate('mouseleave');
+            return this;
+        }
+    }]);
+
+    return CheckableGroupDriver;
+}();
+
+exports.default = CheckableGroupDriver;
+
+/***/ }),
+
+/***/ 60:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _inputComponentDriver = __webpack_require__(24);
+
+var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CheckboxDriver = function (_InputComponentDriver) {
+    _inherits(CheckboxDriver, _InputComponentDriver);
+
+    function CheckboxDriver(wrapper) {
+        _classCallCheck(this, CheckboxDriver);
+
+        var _this = _possibleConstructorReturn(this, (CheckboxDriver.__proto__ || Object.getPrototypeOf(CheckboxDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.input));
+
+        _this.outer = wrapper.find('.' + wrapper.props().cssMap.default);
+        return _this;
+    }
+
+    _createClass(CheckboxDriver, [{
+        key: 'setChecked',
+        value: function setChecked() {
+            this.control.node.checked = true;
+            this.control.simulate('change', { target: { checked: true } });
+            return this;
+        }
+    }, {
+        key: 'setUnchecked',
+        value: function setUnchecked() {
+            this.control.node.checked = false;
+            this.control.simulate('change', { target: { checked: false } });
+            return this;
+        }
+    }, {
+        key: 'toggleChecked',
+        value: function toggleChecked() {
+            var status = this.getChecked();
+            this.control.node.checked = !status;
+            this.control.simulate('change', { target: { checked: !status } });
+            return this;
+        }
+    }, {
+        key: 'getChecked',
+        value: function getChecked() {
+            return this.control.getNode().checked;
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.outer.simulate('mouseenter');
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.outer.simulate('mouseleave');
+            return this;
+        }
+    }]);
+
+    return CheckboxDriver;
+}(_inputComponentDriver2.default);
+
+exports.default = CheckboxDriver;
+
+/***/ }),
+
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -881,7 +1290,153 @@ exports.default = CodeEditorDriver;
 
 /***/ }),
 
-/***/ 69:
+/***/ 67:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DateTimeInputDriver = function () {
+    function DateTimeInputDriver(wrapper) {
+        _classCallCheck(this, DateTimeInputDriver);
+
+        this.wrapper = wrapper;
+        this.cssMap = wrapper.props().cssMap;
+        this.mainInput = wrapper.find('input').at(0);
+        this.hourInput = wrapper.find('input').at(1);
+        this.minuteInput = wrapper.find('input').at(2);
+        this.calendar = wrapper.find('table button');
+        this.prev = wrapper.find('button').at(1);
+        this.next = wrapper.find('button').at(2);
+    }
+
+    _createClass(DateTimeInputDriver, [{
+        key: 'getMainInputValue',
+        value: function getMainInputValue() {
+            return this.mainInput.node.value;
+        }
+    }, {
+        key: 'setMainInputValue',
+        value: function setMainInputValue(value) {
+            var newValue = value == null ? '' : String(value);
+
+            this.mainInput.node.value = value;
+            this.mainInput.simulate('change', { target: { value: newValue } });
+
+            return this;
+        }
+    }, {
+        key: 'blurMainInput',
+        value: function blurMainInput() {
+            this.mainInput.simulate('blur');
+            return this;
+        }
+    }, {
+        key: 'focusMainInput',
+        value: function focusMainInput() {
+            this.mainInput.simulate('focus');
+            return this;
+        }
+    }, {
+        key: 'getHourInputValue',
+        value: function getHourInputValue() {
+            return this.hourInput.node.value;
+        }
+    }, {
+        key: 'setHourInputValue',
+        value: function setHourInputValue(value) {
+            var newValue = value == null ? '' : String(value);
+
+            this.hourInput.node.value = value;
+            this.hourInput.simulate('change', { target: { value: newValue } });
+
+            return this;
+        }
+    }, {
+        key: 'blurHourInput',
+        value: function blurHourInput() {
+            this.hourInput.simulate('blur');
+            return this;
+        }
+    }, {
+        key: 'focusHourInput',
+        value: function focusHourInput() {
+            this.hourInput.simulate('focus');
+            return this;
+        }
+    }, {
+        key: 'getMinuteInputValue',
+        value: function getMinuteInputValue() {
+            return this.minuteInput.node.value;
+        }
+    }, {
+        key: 'setMinuteInputValue',
+        value: function setMinuteInputValue(value) {
+            var newValue = value == null ? '' : String(value);
+
+            this.minuteInput.node.value = value;
+            this.minuteInput.simulate('change', { target: { value: newValue } });
+
+            return this;
+        }
+    }, {
+        key: 'blurMinuteInput',
+        value: function blurMinuteInput() {
+            this.minuteInput.simulate('blur');
+            return this;
+        }
+    }, {
+        key: 'focusMinuteInput',
+        value: function focusMinuteInput() {
+            this.minuteInput.simulate('focus');
+            return this;
+        }
+    }, {
+        key: 'clickCellByIndex',
+        value: function clickCellByIndex(index) {
+            var day = this.calendar.at(index);
+            day.simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickCellByValue',
+        value: function clickCellByValue(value) {
+            var day = this.calendar.findWhere(function (n) {
+                return n.prop('value') === value;
+            }).first();
+            day.simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickPrev',
+        value: function clickPrev() {
+            this.prev.simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickNext',
+        value: function clickNext() {
+            this.next.simulate('click');
+            return this;
+        }
+    }]);
+
+    return DateTimeInputDriver;
+}();
+
+exports.default = DateTimeInputDriver;
+
+/***/ }),
+
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1082,7 +1637,7 @@ function chooseItem(method, searchTerm, errorByWhat, wrapper) {
 
 /***/ }),
 
-/***/ 71:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1124,7 +1679,7 @@ exports.default = FormDriver;
 
 /***/ }),
 
-/***/ 73:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1159,7 +1714,7 @@ exports.default = GridColumnDriver;
 
 /***/ }),
 
-/***/ 75:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1201,7 +1756,7 @@ exports.default = IconDriver;
 
 /***/ }),
 
-/***/ 76:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1232,10 +1787,7 @@ var IconWithTooltipDriver = function (_SimpleComponentDrive) {
     function IconWithTooltipDriver(wrapper) {
         _classCallCheck(this, IconWithTooltipDriver);
 
-        var _this = _possibleConstructorReturn(this, (IconWithTooltipDriver.__proto__ || Object.getPrototypeOf(IconWithTooltipDriver)).call(this, wrapper, 'IconWithTooltip > Tooltip'));
-
-        _this.tooltip = _this.control;
-        return _this;
+        return _possibleConstructorReturn(this, (IconWithTooltipDriver.__proto__ || Object.getPrototypeOf(IconWithTooltipDriver)).call(this, wrapper, 'IconWithTooltip > Tooltip'));
     }
 
     _createClass(IconWithTooltipDriver, [{
@@ -1246,7 +1798,19 @@ var IconWithTooltipDriver = function (_SimpleComponentDrive) {
     }, {
         key: 'getMessage',
         value: function getMessage() {
-            return this.tooltip.driver().getMessage();
+            return this.control.driver().getMessage();
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.control.driver().mouseOver();
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.control.driver().mouseOut();
+            return this;
         }
     }]);
 
@@ -1257,7 +1821,7 @@ exports.default = IconWithTooltipDriver;
 
 /***/ }),
 
-/***/ 78:
+/***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1350,7 +1914,7 @@ exports.default = ModalDialogDriver;
 
 /***/ }),
 
-/***/ 80:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1440,7 +2004,7 @@ exports.default = ModuleDriver;
 
 /***/ }),
 
-/***/ 83:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1473,7 +2037,7 @@ var NavItemDriver = function (_ClickableComponentDr) {
     function NavItemDriver(wrapper) {
         _classCallCheck(this, NavItemDriver);
 
-        return _possibleConstructorReturn(this, (NavItemDriver.__proto__ || Object.getPrototypeOf(NavItemDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.link));
+        return _possibleConstructorReturn(this, (NavItemDriver.__proto__ || Object.getPrototypeOf(NavItemDriver)).call(this, wrapper, '.' + wrapper.props().cssMap.default));
     }
 
     _createClass(NavItemDriver, [{
@@ -1491,6 +2055,12 @@ var NavItemDriver = function (_ClickableComponentDr) {
 
             return dropdown.children(_nessieUi.NavItem);
         }
+    }, {
+        key: 'click',
+        value: function click() {
+            this.control.find('.' + this.cssMap.link).simulate('click');
+            return this;
+        }
     }]);
 
     return NavItemDriver;
@@ -1500,7 +2070,7 @@ exports.default = NavItemDriver;
 
 /***/ }),
 
-/***/ 86:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1599,13 +2169,13 @@ var SimpleComponentDriver = function () {
     }, {
         key: 'mouseOver',
         value: function mouseOver() {
-            this.control.simulate('mouseover');
+            this.control.simulate('mouseenter');
             return this;
         }
     }, {
         key: 'mouseOut',
         value: function mouseOut() {
-            this.control.simulate('mouseout');
+            this.control.simulate('mouseleave');
             return this;
         }
     }]);
@@ -1617,7 +2187,7 @@ exports.default = SimpleComponentDriver;
 
 /***/ }),
 
-/***/ 94:
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1631,7 +2201,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _nessieUi = __webpack_require__(14);
 
-var _inputComponentDriver = __webpack_require__(29);
+var _inputComponentDriver = __webpack_require__(24);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 

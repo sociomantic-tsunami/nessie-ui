@@ -918,7 +918,7 @@ InputContainer.propTypes = {
   /**
    *  Error tooltip message to show
    */
-  errorMessage: _propTypes2.default.string,
+  errorMessage: _propTypes2.default.node,
   /**
    *  Whether error tooltip is shown
    */
@@ -13530,8 +13530,8 @@ var Icon = function Icon(_ref) {
                 size: size
             }),
             'aria-label': children || label,
-            onMouseOut: onMouseOut,
-            onMouseOver: onMouseOver },
+            onMouseLeave: onMouseOut,
+            onMouseEnter: onMouseOver },
         xLink && _react2.default.createElement('use', { xlinkHref: xLink })
     );
 };
@@ -13715,8 +13715,8 @@ var InputField = function (_Component) {
         onKeyDown: onKeyDown,
         onKeyPress: onKeyPress,
         onKeyUp: onKeyUp,
-        onMouseOut: onMouseOut,
-        onMouseOver: onMouseOver,
+        onMouseLeave: onMouseOut,
+        onMouseEnter: onMouseOver,
         placeholder: placeholder,
         readOnly: isReadOnly,
         ref: inputRef,
@@ -13877,8 +13877,8 @@ var Label = function Label(_ref) {
             {
                 className: className,
                 htmlFor: element === 'label' ? htmlFor : null,
-                onMouseOver: onMouseOver,
-                onMouseOut: onMouseOut },
+                onMouseEnter: onMouseOver,
+                onMouseLeave: onMouseOut },
             _react2.default.createElement(
                 _Text2.default,
                 {
@@ -14217,7 +14217,10 @@ var IconWithTooltip = function IconWithTooltip(_ref) {
             } },
         _react2.default.createElement(
             'div',
-            { className: className },
+            {
+                className: className,
+                onMouseOver: onMouseOver,
+                onMouseOut: onMouseOut },
             children && _react2.default.createElement(
                 'div',
                 { className: cssMap.content },
@@ -15128,8 +15131,8 @@ var Tooltip = function (_Component) {
                     'div',
                     {
                         className: className,
-                        onMouseOver: onMouseOver,
-                        onMouseOut: onMouseOut },
+                        onMouseEnter: onMouseOver,
+                        onMouseLeave: onMouseOut },
                     contentNode && _react2.default.createElement(
                         'div',
                         {
@@ -15291,6 +15294,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -15319,20 +15324,19 @@ var _tableCell2 = _interopRequireDefault(_tableCell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var TableCell = function TableCell(_ref) {
-    var align = _ref.align,
-        children = _ref.children,
+    var children = _ref.children,
         className = _ref.className,
-        columnTitle = _ref.columnTitle,
         cssMap = _ref.cssMap,
         isHeader = _ref.isHeader,
         isRowHeader = _ref.isRowHeader,
         isSortable = _ref.isSortable,
         isSticky = _ref.isSticky,
         onToggle = _ref.onToggle,
-        size = _ref.size,
         sort = _ref.sort,
-        verticalAlign = _ref.verticalAlign;
+        props = _objectWithoutProperties(_ref, ['children', 'className', 'cssMap', 'isHeader', 'isRowHeader', 'isSortable', 'isSticky', 'onToggle', 'sort']);
 
     var contentNode = typeof children === 'string' ? _react2.default.createElement(
         _Text2.default,
@@ -15350,20 +15354,17 @@ var TableCell = function TableCell(_ref) {
 
     return _react2.default.createElement(
         _Column2.default,
-        {
+        _extends({}, props, {
             className: (0, _utils.buildClassName)(className, cssMap, {
                 header: isHeader,
                 rowHeader: isRowHeader,
                 sticky: isSticky
             }),
-            size: size,
-            role: isHeader ? 'columnheader' : 'gridcell',
-            columnTitle: columnTitle,
-            align: align,
-            verticalAlign: verticalAlign },
+            role: isHeader ? 'columnheader' : 'gridcell' }),
         contentNode
     );
 };
+
 TableCell.propTypes = {
     /**
      *  Horizontal alignment of content (“auto” makes all items 100% width)
@@ -15402,7 +15403,7 @@ TableCell.propTypes = {
      */
     size: _propTypes2.default.oneOf(['icon-S', 'icon-M', 'icon-L', 'icon-XL', 'icon-XXL', '1/1', '1/2', '2/2', '1/3', '2/3', '3/3', '1/4', '2/4', '3/4', '4/4', '1/5', '2/5', '3/5', '4/5', '5/5', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6', '1/7', '2/7', '3/7', '4/7', '5/7', '6/7', '7/7', '1/8', '2/8', '3/8', '4/8', '5/8', '6/8', '7/8', '8/8', '1/9', '2/9', '3/9', '4/9', '5/9', '6/9', '7/9', '8/9', '9/9',
     /* eslint-disable max-len */
-    '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/16', '2/16', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24', 'content'
+    '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10', '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11', '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '1/13', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13', '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14', '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15', '1/16', '2/16', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16', '1/17', '2/17', '3/17', '4/17', '5/17', '6/17', '7/17', '8/17', '9/17', '10/17', '11/17', '12/17', '13/17', '14/17', '15/17', '16/17', '17/17', '1/18', '2/18', '3/18', '4/18', '5/18', '6/18', '7/18', '8/18', '9/18', '10/18', '11/18', '12/18', '13/18', '14/18', '15/18', '16/18', '17/18', '18/18', '1/19', '2/19', '3/19', '4/19', '5/19', '6/19', '7/19', '8/19', '9/19', '10/19', '11/19', '12/19', '13/19', '14/19', '15/19', '16/19', '17/19', '18/19', '19/19', '1/20', '2/20', '3/20', '4/20', '5/20', '6/20', '7/20', '8/20', '9/20', '10/20', '11/20', '12/20', '13/20', '14/20', '15/20', '16/20', '17/20', '18/20', '19/20', '20/20', '1/21', '2/21', '3/21', '4/21', '5/21', '6/21', '7/21', '8/21', '9/21', '10/21', '11/21', '12/21', '13/21', '14/21', '15/21', '16/21', '17/21', '18/21', '19/21', '20/21', '21/21', '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22', '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23', '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24', 'content'
     /* eslint-enable max-len */
     ]),
     /**
@@ -15439,8 +15440,10 @@ exports.default = TableCell;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = __webpack_require__(0);
 
@@ -15462,67 +15465,113 @@ var _tableRow2 = _interopRequireDefault(_tableRow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var TableRow = function TableRow(_ref) {
-    var align = _ref.align,
-        children = _ref.children,
-        className = _ref.className,
-        cssMap = _ref.cssMap,
-        gutters = _ref.gutters,
-        isSticky = _ref.isSticky,
-        verticalAlign = _ref.verticalAlign;
+  var align = _ref.align,
+      children = _ref.children,
+      className = _ref.className,
+      cssMap = _ref.cssMap,
+      isActive = _ref.isActive,
+      isClickable = _ref.isClickable,
+      isSticky = _ref.isSticky,
+      verticalAlign = _ref.verticalAlign,
+      props = _objectWithoutProperties(_ref, ['align', 'children', 'className', 'cssMap', 'isActive', 'isClickable', 'isSticky', 'verticalAlign']);
 
-    var cells = _react2.default.Children.toArray(children).map(function (cell) {
-        return _react2.default.cloneElement(cell, {
-            align: cell.props.align || align,
-            verticalAlign: cell.props.verticalAlign || verticalAlign
-        });
+  var cells = _react2.default.Children.toArray(children).map(function (cell) {
+    return _react2.default.cloneElement(cell, {
+      align: cell.props.align || align,
+      className: cell.props.className ? cell.props.className + '  ' + cssMap.cell : cssMap.cell,
+      verticalAlign: cell.props.verticalAlign || verticalAlign
     });
+  });
 
-    return _react2.default.createElement(
-        _Row2.default,
-        {
-            className: (0, _utils.buildClassName)(className, cssMap, {
-                sticky: isSticky
-            }),
-            role: 'row',
-            gutters: gutters,
-            spacing: 'none' },
-        cells
-    );
+  return _react2.default.createElement(
+    _Row2.default,
+    _extends({}, props, {
+      className: (0, _utils.buildClassName)(className, cssMap, {
+        active: isActive,
+        clickable: isClickable,
+        sticky: isSticky
+      }),
+      role: 'row' }),
+    cells
+  );
 };
 
 TableRow.propTypes = {
-    /**
-     *  Globally sets cell horizonal alignment
-     *  for this row (individual cell alignment will override)
-     */
-    align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
-    /**
-     *  Row content (TableCells)
-     */
-    children: _propTypes2.default.node,
-    /**
-     *  Gutter size
-     */
-    gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
-    /**
-     *  Makes the row sticky
-     */
-    isSticky: _propTypes2.default.bool,
-    /**
-     *  Globally sets cell vertical alignment
-     *  for this row (individual cell alignment will overrides)
-     */
-    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom'])
+  /**
+   *  Globally sets cell horizonal alignment for this row (individual cell
+   *  alignment will override)
+   */
+  align: _propTypes2.default.oneOf(['auto', 'left', 'center', 'right']),
+  /**
+   *  Row content (TableCells)
+   */
+  children: _propTypes2.default.node,
+  /**
+   *  Extra CSS class name
+   */
+  className: _propTypes2.default.node,
+  /**
+   *  CSS class map
+   */
+  cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
+  /**
+   *  Gutter size
+   */
+  gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
+  /**
+   *  Display as active/highlighted
+   */
+  isActive: _propTypes2.default.bool,
+  /**
+   *  Row is clickable
+   */
+  isClickable: _propTypes2.default.bool,
+  /**
+   *  Makes the row sticky
+   */
+  isSticky: _propTypes2.default.bool,
+  /**
+   *  onClick callback function:
+   *  ( e ) => { ... }
+   */
+  onClick: _propTypes2.default.func,
+  /**
+   *  onMouseOut callback function:
+   *  ( e ) => { ... }
+   */
+  onMouseOut: _propTypes2.default.func,
+  /**
+   *  onMouseOver callback function:
+   *  ( e ) => { ... }
+   */
+  onMouseOver: _propTypes2.default.func,
+  /**
+   *  Row spacing
+   */
+  spacing: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
+  /**
+   *  Globally sets cell vertical alignment for this row (individual cell
+   *  alignment will overrides)
+   */
+  verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom'])
 };
 
 TableRow.defaultProps = {
-    align: undefined,
-    children: undefined,
-    cssMap: _tableRow2.default,
-    gutters: undefined,
-    isSticky: false,
-    verticalAlign: undefined
+  align: undefined,
+  children: undefined,
+  className: undefined,
+  cssMap: _tableRow2.default,
+  gutters: undefined,
+  isClickable: undefined,
+  isSticky: undefined,
+  onClick: undefined,
+  onMouseOut: undefined,
+  onMouseOVer: undefined,
+  spacing: undefined,
+  verticalAlign: undefined
 };
 
 exports.default = TableRow;
@@ -16356,8 +16405,8 @@ var Button = function (_Component) {
                         value: value,
                         disabled: isDisabled || isLoading || isReadOnly,
                         onClick: onClick,
-                        onMouseOver: this.handleMouseOver,
-                        onMouseOut: this.handleMouseOut },
+                        onMouseEnter: this.handleMouseOver,
+                        onMouseLeave: this.handleMouseOut },
                     content,
                     isLoading && !isDisabled && _react2.default.createElement(
                         'div',
@@ -16470,9 +16519,11 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Css = __webpack_require__(2);
+var _utils = __webpack_require__(3);
 
-var _Css2 = _interopRequireDefault(_Css);
+var _column = __webpack_require__(105);
+
+var _column2 = _interopRequireDefault(_column);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16485,21 +16536,24 @@ var Column = function Column(_ref) {
         role = _ref.role,
         size = _ref.size,
         verticalAlign = _ref.verticalAlign;
+
+    if (!Column.didWarn && verticalAlign === 'space-around') {
+        console.warn('Column: \'space-around\' option for verticalAlign prop \
+is deprecated. Please use an alternative layout.');
+        Column.didWarn = true;
+    }
+
     return _react2.default.createElement(
-        _Css2.default,
+        'div',
         {
-            cssMap: cssMap,
-            cssProps: { size: size,
+            className: (0, _utils.buildClassName)(className, cssMap, {
+                size: size,
                 alignX: align,
-                alignY: verticalAlign } },
-        _react2.default.createElement(
-            'div',
-            {
-                className: className,
-                role: role,
-                'data-column-title': columnTitle },
-            children
-        )
+                alignY: verticalAlign
+            }),
+            role: role,
+            'data-column-title': columnTitle },
+        children
     );
 };
 
@@ -16523,7 +16577,7 @@ Column.propTypes = {
     /**
      *  Vertical alignment of content (“auto” is equivalent to “top”)
      */
-    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom', 'space-around']),
+    verticalAlign: _propTypes2.default.oneOf(['auto', 'top', 'middle', 'bottom']),
     /**
      *  Column content
      */
@@ -16536,7 +16590,7 @@ Column.propTypes = {
 
 Column.defaultProps = {
     align: 'auto',
-    cssMap: __webpack_require__(105)
+    cssMap: _column2.default
 };
 
 exports.default = Column;
@@ -16593,8 +16647,8 @@ var Fieldset = function Fieldset(_ref) {
             'fieldset',
             {
                 className: className,
-                onMouseOver: onMouseOver,
-                onMouseOut: onMouseOut },
+                onMouseEnter: onMouseOver,
+                onMouseLeave: onMouseOut },
             label && _react2.default.createElement(
                 _Label2.default,
                 { element: 'legend' },
@@ -16853,17 +16907,13 @@ Row.propTypes = {
    */
   gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
   /**
-  *  Set minimum height equal to average row.
-  */
-  hasMinHeight: _propTypes2.default.bool,
-  /**
    *  Row role
    */
   role: _propTypes2.default.string,
   /**
    *  Row spacing
    */
-  spacing: _propTypes2.default.oneOf(['none', 'default', 'h1', 'h2', 'h3', 'h4', 'label']),
+  spacing: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
   /**
    * Vertical alignment of the columns (“auto” makes all columns equal
    * height)
@@ -16877,9 +16927,11 @@ Row.defaultProps = {
   className: undefined,
   cssMap: undefined,
   gutters: 'L',
-  hasMinHeight: false,
+  onClick: undefined,
+  onMouseOut: undefined,
+  onMouseOver: undefined,
   role: undefined,
-  spacing: 'default',
+  spacing: 'M',
   verticalAlign: 'auto'
 };
 
@@ -16895,8 +16947,6 @@ exports.default = Row;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -16943,25 +16993,20 @@ var Slider = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
 
-        _this.state = _extends({}, _this.state, { track: {} });
+        _this.state = { inputIndex: -1 };
 
-        _this.setTrackState = _this.setTrackState.bind(_this);
+        _this.setInputContainerRef = _this.setInputContainerRef.bind(_this);
+        _this.setTrackRef = _this.setTrackRef.bind(_this);
 
-        _this.handleInputContainerRef = _this.handleInputContainerRef.bind(_this);
-
-        _this.handleMouseUp = _this.handleMouseUp.bind(_this);
+        _this.handleBlur = _this.handleBlur.bind(_this);
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleFocus = _this.handleFocus.bind(_this);
         _this.handleMouseDown = _this.handleMouseDown.bind(_this);
         _this.handleMouseMove = _this.handleMouseMove.bind(_this);
-
-        _this.getNewValue = _this.getNewValue.bind(_this);
-
-        _this.handleFocus = _this.handleFocus.bind(_this);
-        _this.handleBlur = _this.handleBlur.bind(_this);
-        _this.handleTrackMouseDown = _this.handleTrackMouseDown.bind(_this);
+        _this.handleMouseUp = _this.handleMouseUp.bind(_this);
         return _this;
     }
 
-    // eslint-disable-next-line valid-jsdoc
     /**
     * Generate track fill style object depending on input values
     * @param  {Array}   values    slider values
@@ -17033,7 +17078,6 @@ var Slider = function (_Component) {
             return (value - minValue) / range * 100;
         }
 
-        // eslint-disable-next-line valid-jsdoc
         /**
         * Generate a style object for handle based on input value
         * @param  {Number}  value   slider value
@@ -17058,20 +17102,24 @@ var Slider = function (_Component) {
         */
 
     }, {
-        key: 'getNewValue',
-        value: function getNewValue(x, y) {
+        key: 'getValue',
+        value: function getValue(x, y) {
             var _props3 = this.props,
                 isLogarithmic = _props3.isLogarithmic,
                 orientation = _props3.orientation,
                 maxValue = _props3.maxValue,
                 minValue = _props3.minValue;
-            var _state$track = this.state.track,
-                start = _state$track.start,
-                end = _state$track.end,
-                length = _state$track.length;
+            var track = this.track;
 
 
             var isVertical = orientation === 'vertical';
+
+            var rect = track.getBoundingClientRect();
+
+            var start = isVertical ? rect.top : rect.left;
+            var end = isVertical ? rect.bottom : rect.right;
+            var length = isVertical ? rect.height : rect.width;
+
             var range = maxValue - minValue;
             var mouse = isVertical ? y : x;
 
@@ -17093,12 +17141,12 @@ var Slider = function (_Component) {
                 var max = Math.log(maxValue);
                 v = Math.exp((min + (max - min) * v) / maxValue);
 
-                v = minValue + this.getStep(v - minValue);
+                v = minValue + (v - minValue);
                 return v;
             }
 
             // linear solution
-            return this.getStep(Math.round(position / length * range + minValue));
+            return Math.round(position / length * range + minValue);
         }
 
         /**
@@ -17114,46 +17162,103 @@ var Slider = function (_Component) {
 
             return Math.round(value / step) * step;
         }
-
-        // eslint-disable-next-line valid-jsdoc
-        /**
-        * Updates state with current track geometry
-        */
-
     }, {
-        key: 'setTrackState',
-        value: function setTrackState(ref) {
+        key: 'setInputContainerRef',
+        value: function setInputContainerRef(ref) {
             if (ref) {
-                var isVertical = this.props.orientation === 'vertical';
-                var rect = ref.getBoundingClientRect();
-
-                this.setState({
-                    track: {
-                        start: isVertical ? rect.top : rect.left,
-                        end: isVertical ? rect.bottom : rect.right,
-                        length: isVertical ? rect.height : rect.width
-                    }
-                });
+                this.inputContainer = ref;
             }
+        }
+    }, {
+        key: 'setTrackRef',
+        value: function setTrackRef(ref) {
+            if (ref) {
+                this.track = ref;
+            }
+        }
+    }, {
+        key: 'setTargetInput',
+        value: function setTargetInput(index) {
+            var inputContainer = this.inputContainer;
+
+
+            if (index) {
+                this.targetInput = inputContainer.childNodes[index];
+            } else {
+                this.targetInput = this.targetInput || inputContainer.childNodes[0];
+            }
+        }
+    }, {
+        key: 'setTargetInputValue',
+        value: function setTargetInputValue(value) {
+            if (String(value) === this.targetInput.value) {
+                return;
+            }
+
+            var onChange = this.props.onChange;
+
+            var event = new Event('change');
+
+            this.targetInput.value = String(value);
+            this.targetInput.dispatchEvent(event);
+
+            if (onChange) {
+                onChange(event);
+            }
+
+            this.forceUpdate();
+        }
+    }, {
+        key: 'focusTargetInput',
+        value: function focusTargetInput() {
+            if (!this.targetInput) {
+                this.setTargetInput();
+            }
+
+            this.targetInput.focus();
         }
 
         /**
-        * Sets target input ref and adds mouseUp and MouseMove listeners
-        * @param {Event}   event   event being passed
+        * Updates target input with new value from the mouse down on track position
+        * @param {Event}  event   event being passed
         */
 
     }, {
         key: 'handleMouseDown',
         value: function handleMouseDown(event) {
-            var props = this.props;
+            var onMouseDown = this.props.onMouseDown;
 
-            if (props.isReadOnly || props.isDisabled) {
+
+            if (onMouseDown) {
+                onMouseDown(event);
+            }
+
+            if (event.defaultPrevented || this.props.isDisabled || event.button > 0) {
                 return;
             }
 
-            this.targetInput = this.inputContainer.childNodes[parseInt(event.target.dataset.index, 10)];
+            event.preventDefault();
 
-            this.targetInput.focus();
+            var index = event.target.dataset.index;
+
+
+            if (event.target.dataset.index) // target is handle
+                {
+                    event.stopPropagation();
+                    this.setTargetInput(index);
+                } else // target is track
+                {
+                    var clientX = event.clientX,
+                        clientY = event.clientY;
+
+
+                    var newValue = this.getStep(this.getValue(clientX, clientY));
+
+                    this.setTargetInput();
+                    this.setTargetInputValue(newValue);
+                }
+
+            this.focusTargetInput();
 
             addEventListener('mousemove', this.handleMouseMove);
             addEventListener('mouseup', this.handleMouseUp);
@@ -17169,30 +17274,80 @@ var Slider = function (_Component) {
         value: function handleMouseMove(event) {
             var clientX = event.clientX,
                 clientY = event.clientY;
-            var targetInput = this.targetInput;
-            var onChange = this.props.onChange;
 
-            var e = new Event('change');
 
-            targetInput.value = this.getStep(this.getNewValue(clientX, clientY));
-
-            targetInput.dispatchEvent(e);
-            if (onChange) {
-                onChange(e);
-            }
-
-            this.forceUpdate();
+            var newValue = this.getStep(this.getValue(clientX, clientY));
+            this.setTargetInputValue(newValue);
         }
 
         /**
-        * Removes mouseMove and mouseUp listeners
+        *  Removes mouseMove and mouseUp listeners
+        *  @param {Event}   event   event being passed
         */
 
     }, {
         key: 'handleMouseUp',
         value: function handleMouseUp() {
+            var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Event('mouseup');
+            var onMouseUp = this.props.onMouseUp;
+
+
+            if (onMouseUp) {
+                onMouseUp(event);
+            }
+
             removeEventListener('mousemove', this.handleMouseMove);
             removeEventListener('mouseup', this.handleMouseUp);
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick(event) {
+            var onClick = this.props.onClick;
+
+
+            if (onClick) {
+                onClick(event);
+            }
+
+            if (event.target.dataset.index) // target is handle
+                {
+                    event.stopPropagation();
+                }
+        }
+    }, {
+        key: 'handleFocus',
+        value: function handleFocus(event) {
+            var onFocus = this.props.onFocus;
+
+
+            if (onFocus) {
+                onFocus(event);
+            }
+
+            if (event.defaultPrevented || this.props.isDisabled) {
+                return;
+            }
+
+            this.setState({
+                inputIndex: parseInt(event.target.dataset.index, 10),
+                isGrabbing: true
+            });
+        }
+    }, {
+        key: 'handleBlur',
+        value: function handleBlur(event) {
+            var onBlur = this.props.onBlur;
+
+
+            if (onBlur) {
+                onBlur(event);
+            }
+
+            if (event.defaultPrevented || this.props.isDisabled) {
+                return;
+            }
+
+            this.setState({ inputIndex: -1, isGrabbing: false });
         }
 
         /**
@@ -17207,7 +17362,8 @@ var Slider = function (_Component) {
         key: 'mergeStepLabels',
         value: function mergeStepLabels() {
             var _props4 = this.props,
-                stepLabels = _props4.stepLabels,
+                _props4$stepLabels = _props4.stepLabels,
+                stepLabels = _props4$stepLabels === undefined ? [] : _props4$stepLabels,
                 stepLabelStart = _props4.stepLabelStart,
                 stepLabelEnd = _props4.stepLabelEnd,
                 minValue = _props4.minValue,
@@ -17215,85 +17371,10 @@ var Slider = function (_Component) {
 
 
             if (stepLabelStart || stepLabelEnd) {
-                var newStepLabels = [{ 'stepLabel': stepLabelStart, 'step': minValue }].concat(_toConsumableArray(stepLabels), [{ 'stepLabel': stepLabelEnd, 'step': maxValue }]);
-
-                return newStepLabels;
+                return [].concat(_toConsumableArray(stepLabels), [{ 'stepLabel': stepLabelStart, 'step': minValue }, { 'stepLabel': stepLabelEnd, 'step': maxValue }]);
             }
 
             return stepLabels;
-        }
-
-        /**
-        * Updates state with current focused handle id
-        * @param {Event}   event   event being passed
-        */
-
-    }, {
-        key: 'handleFocus',
-        value: function handleFocus(event) {
-            this.setState({
-                handleIndex: event.target.id
-            });
-        }
-
-        /**
-        * Updates state with a non-valid handle id to
-        * remove focused style
-        */
-
-    }, {
-        key: 'handleBlur',
-        value: function handleBlur() {
-            this.setState({
-                handleIndex: -1
-            });
-        }
-
-        /**
-        * Updates target input with new value from the mouse down on track position
-        * @param {Event}  event   event being passed
-        */
-
-    }, {
-        key: 'handleTrackMouseDown',
-        value: function handleTrackMouseDown(event) {
-            event.preventDefault();
-
-            if (event.target.dataset.index === undefined) {
-                var clientX = event.clientX,
-                    clientY = event.clientY;
-
-
-                this.targetInput = this.targetInput || this.inputContainer.childNodes[0];
-
-                var onChange = this.props.onChange;
-
-                var e = new Event('change');
-
-                this.targetInput.value = this.getStep(this.getNewValue(clientX, clientY));
-
-                this.targetInput.focus();
-
-                this.targetInput.dispatchEvent(e);
-                if (onChange) {
-                    onChange(e);
-                }
-
-                this.forceUpdate();
-            }
-        }
-
-        /**
-        * callback refs handler
-        * @param {Object}  ref  ref
-        */
-
-    }, {
-        key: 'handleInputContainerRef',
-        value: function handleInputContainerRef(ref) {
-            if (ref) {
-                this.inputContainer = ref;
-            }
         }
     }, {
         key: 'render',
@@ -17316,6 +17397,13 @@ var Slider = function (_Component) {
                 maxValue = _props5.maxValue,
                 minValue = _props5.minValue,
                 onChange = _props5.onChange,
+                onClick = _props5.onClick,
+                onKeyDown = _props5.onKeyDown,
+                onKeyUp = _props5.onKeyUp,
+                onMouseDown = _props5.onMouseDown,
+                onMouseOut = _props5.onMouseOut,
+                onMouseOver = _props5.onMouseOver,
+                onMouseUp = _props5.onMouseUp,
                 orientation = _props5.orientation,
                 step = _props5.step,
                 stepLabelsPosition = _props5.stepLabelsPosition,
@@ -17379,7 +17467,7 @@ var Slider = function (_Component) {
 
             var buildHandle = function buildHandle(val, i) {
                 var handleClassName = cssMap.handle;
-                if (_this2.state.handleIndex && _this2.state.handleIndex !== -1 && parseInt(_this2.state.handleIndex.slice(-1), 10) === i) {
+                if (_this2.state.inputIndex === i) {
                     handleClassName = cssMap.handle + ' ' + cssMap.handleFocus;
                 }
                 return _react2.default.createElement(
@@ -17388,7 +17476,6 @@ var Slider = function (_Component) {
                         key: i // eslint-disable-line react/no-array-index-key, max-len
                         , 'data-index': i,
                         className: handleClassName,
-                        onMouseDown: _this2.handleMouseDown,
                         style: _this2.getHandleStyle(val) },
                     _react2.default.createElement(
                         'span',
@@ -17422,29 +17509,39 @@ var Slider = function (_Component) {
                         disabled: isDisabled,
                         handleLabelPosition: hasHandleLabels && handleLabelPosition,
                         hasHandleLabels: hasHandleLabels,
-                        orientation: orientation
+                        orientation: orientation,
+                        grabbing: this.state.isGrabbing
                     } },
                 _react2.default.createElement(
                     'div',
-                    { className: className },
+                    {
+                        className: className,
+                        onMouseEnter: onMouseOver,
+                        onMouseLeave: onMouseOut },
                     _react2.default.createElement(
                         'div',
                         {
                             className: cssMap.inputContainer,
-                            ref: this.handleInputContainerRef },
+                            ref: this.setInputContainerRef },
                         values.map(function (val, i) {
                             return _react2.default.createElement('input', {
-                                key: i // eslint-disable-line react/no-array-index-key, max-len
-                                , id: id + '_' + i,
-                                type: 'range',
-                                readOnly: isReadOnly,
+                                'data-index': i,
                                 disabled: isDisabled,
-                                max: maxValue,
+                                id: id + '_' + i,
+                                key: i // eslint-disable-line react/no-array-index-key, max-len
+                                , max: maxValue,
                                 min: minValue,
-                                step: step,
-                                onChange: onChange,
-                                onFocus: _this2.handleFocus,
                                 onBlur: _this2.handleBlur,
+                                onChange: onChange,
+                                onClick: onClick,
+                                onFocus: _this2.handleFocus,
+                                onKeyDown: onKeyDown,
+                                onKeyUp: onKeyUp,
+                                onMouseDown: onMouseDown,
+                                onMouseUp: onMouseUp,
+                                readOnly: isReadOnly,
+                                step: step,
+                                type: 'range',
                                 value: val });
                         })
                     ),
@@ -17458,8 +17555,9 @@ var Slider = function (_Component) {
                             {
                                 'aria-hidden': true,
                                 className: cssMap.track,
-                                ref: this.setTrackState,
-                                onMouseDown: this.handleTrackMouseDown },
+                                ref: this.setTrackRef,
+                                onClick: this.handleClick,
+                                onMouseDown: this.handleMouseDown },
                             trackFillMarkUp,
                             values.map(function (val, i) {
                                 return buildHandle(val, i);
@@ -17558,9 +17656,45 @@ Slider.propTypes = {
     */
     isLogarithmic: _propTypes2.default.bool,
     /**
-    * Input onChange callback function
+    *  onBlur callback function: ( e ) => { ... }
+    */
+    onBlur: _propTypes2.default.func,
+    /**
+    *  onChange callback function: ( e ) => { ... }
     */
     onChange: _propTypes2.default.func,
+    /**
+    *  onClick callback function: ( e ) => { ... }
+    */
+    onClick: _propTypes2.default.func,
+    /**
+    *  onFocus callback function: ( e ) => { ... }
+    */
+    onFocus: _propTypes2.default.func,
+    /**
+    *  onKeyDown callback function: ( e ) => { ... }
+    */
+    onKeyDown: _propTypes2.default.func,
+    /**
+    *  onKeyUp callback function: ( e ) => { ... }
+    */
+    onKeyUp: _propTypes2.default.func,
+    /**
+    *  onMouseDown callback function: ( e ) => { ... }
+    */
+    onMouseDown: _propTypes2.default.func,
+    /**
+    *  onMouseOut callback function: ( e ) => { ... }
+    */
+    onMouseOut: _propTypes2.default.func,
+    /**
+    *  onMouseOver callback function: ( e ) => { ... }
+    */
+    onMouseOver: _propTypes2.default.func,
+    /**
+    *  onMouseUp callback function: ( e ) => { ... }
+    */
+    onMouseUp: _propTypes2.default.func,
     /**
     * Step labels
     */
@@ -17592,7 +17726,8 @@ Slider.defaultProps = {
     minValue: 0,
     step: 1,
     isLogarithmic: false,
-    cssMap: __webpack_require__(153)
+    cssMap: __webpack_require__(153),
+    value: 0
 };
 exports.default = Slider;
 
@@ -17687,8 +17822,8 @@ var Sorter = function (_Component) {
                         'div',
                         {
                             className: cssMap.content,
-                            onMouseOver: toggleHover,
-                            onMouseOut: toggleHover },
+                            onMouseEnter: toggleHover,
+                            onMouseLeave: toggleHover },
                         children
                     ),
                     sorterIsVisible && _react2.default.createElement(
@@ -17816,7 +17951,7 @@ TabButton.propTypes = {
     /**
     *  Label text
     */
-    label: _propTypes2.default.string.isRequired,
+    label: _propTypes2.default.string,
     /**
      * Subtitle text
      */
@@ -19664,8 +19799,8 @@ var ListBoxOption = function ListBoxOption(_ref) {
             }),
             id: id,
             onClick: (0, _utils.eventHandler)(onClick, id),
-            onMouseOut: (0, _utils.eventHandler)(onMouseOut, id),
-            onMouseOver: (0, _utils.eventHandler)(onMouseOver, id) }),
+            onMouseLeave: (0, _utils.eventHandler)(onMouseOut, id),
+            onMouseEnter: (0, _utils.eventHandler)(onMouseOver, id) }),
         iconType && iconType !== 'none' && _react2.default.createElement(_index.Icon, {
             className: cssMap.icon,
             size: iconSize || description ? 'M' : 'S',
@@ -20003,6 +20138,9 @@ var Checkable = function Checkable(_ref) {
       isReadOnly = _ref.isReadOnly,
       label = _ref.label,
       name = _ref.name,
+      onBlur = _ref.onBlur,
+      onClick = _ref.onClick,
+      onFocus = _ref.onFocus,
       onChange = _ref.onChange,
       onMouseOut = _ref.onMouseOut,
       onMouseOver = _ref.onMouseOver,
@@ -20027,8 +20165,8 @@ var Checkable = function Checkable(_ref) {
         error: !isDisabled && hasError,
         fakeHovered: !isDisabled && forceHover
       }),
-      onMouseOut: onMouseOut,
-      onMouseOver: onMouseOver },
+      onMouseLeave: onMouseOut,
+      onMouseEnter: onMouseOver },
     _react2.default.createElement('input', {
       checked: isChecked,
       className: cssMap.input,
@@ -20036,7 +20174,10 @@ var Checkable = function Checkable(_ref) {
       disabled: isDisabled,
       id: id,
       name: name,
+      onClick: onClick,
       onChange: onChange,
+      onFocus: onFocus,
+      onBlur: onBlur,
       readOnly: isReadOnly,
       ref: inputRef,
       type: type,
@@ -20103,9 +20244,21 @@ Checkable.propTypes = {
    */
   name: _propTypes2.default.string,
   /**
+   *  OnBlur callback function: ( e ) => { ... }
+   */
+  onBlur: _propTypes2.default.func,
+  /**
+   *  OnClick callback function: ( e ) => { ... }
+   */
+  onClick: _propTypes2.default.func,
+  /**
    *  OnChange callback function: ( e ) => { ... }
    */
   onChange: _propTypes2.default.func,
+  /**
+   *  onFocus callback function: ( e ) => { ... }
+   */
+  onFocus: _propTypes2.default.func,
   /**
    *  onMouseOut callback function : ( e ) => { ... }
    */
@@ -20132,7 +20285,7 @@ Checkable.defaultProps = {
   hasError: false,
   id: undefined,
   inputRef: undefined,
-  isDefaultChecked: false,
+  isDefaultChecked: undefined,
   isDisabled: false,
   isChecked: undefined,
   isReadOnly: false,
@@ -20546,9 +20699,21 @@ Checkbox.propTypes = {
    */
   name: _propTypes2.default.string,
   /**
+   *  OnBlur callback function: ( e ) => { ... }
+   */
+  onBlur: _propTypes2.default.func,
+  /**
+   *  OnClick callback function: ( e ) => { ... }
+   */
+  onClick: _propTypes2.default.func,
+  /**
    *  OnChange callback function: ( e ) => { ... }
    */
   onChange: _propTypes2.default.func,
+  /**
+   *  onFocus callback function: ( e ) => { ... }
+   */
+  onFocus: _propTypes2.default.func,
   /**
    *  onMouseOut callback function : ( e ) => { ... }
    */
@@ -20571,13 +20736,16 @@ Checkbox.defaultProps = {
   hasError: false,
   id: undefined,
   inputRef: undefined,
-  isDefaultChecked: false,
+  isDefaultChecked: undefined,
   isDisabled: false,
   isChecked: undefined,
   isReadOnly: false,
   label: undefined,
   name: undefined,
+  onBlur: undefined,
   onChange: undefined,
+  onClick: undefined,
+  onFocus: undefined,
   onMouseOut: undefined,
   onMouseOver: undefined,
   value: undefined
@@ -20980,8 +21148,8 @@ var CodeEditor = function (_Component) {
                         'div',
                         {
                             className: cssMap.editor,
-                            onMouseOver: onMouseOver,
-                            onMouseOut: onMouseOut,
+                            onMouseEnter: onMouseOver,
+                            onMouseLeave: onMouseOut,
                             style: { height: '' + height } },
                         _react2.default.createElement('textarea', {
                             ref: this.handleTextareaRef,
@@ -21744,6 +21912,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       forceHover = _ref.forceHover,
       hasError = _ref.hasError,
       hourIsDisabled = _ref.hourIsDisabled,
+      hourInputRef = _ref.hourInputRef,
       hourPlaceholder = _ref.hourPlaceholder,
       hourValue = _ref.hourValue,
       inputPlaceholder = _ref.inputPlaceholder,
@@ -21752,6 +21921,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       isOpen = _ref.isOpen,
       isReadOnly = _ref.isReadOnly,
       minuteIsDisabled = _ref.minuteIsDisabled,
+      minuteInputRef = _ref.minuteInputRef,
       minutePlaceholder = _ref.minutePlaceholder,
       minuteValue = _ref.minuteValue,
       mode = _ref.mode,
@@ -21788,11 +21958,13 @@ var DateTimeInput = function DateTimeInput(_ref) {
   var timePicker = mode === 'default' && _react2.default.createElement(_TimeInput2.default, {
     key: 'timeInput',
     hourIsDisabled: hourIsDisabled,
+    hourInputRef: hourInputRef,
     hourPlaceholder: hourPlaceholder,
     hourValue: hourValue,
     isDisabled: isDisabled,
     isReadOnly: isReadOnly,
     minuteIsDisabled: minuteIsDisabled,
+    minuteInputRef: minuteInputRef,
     minutePlaceholder: minutePlaceholder,
     minuteValue: minuteValue,
     onBlur: onBlur,
@@ -21893,11 +22065,11 @@ DateTimeInput.propTypes = {
    */
   nextIsDisabled: _propTypes2.default.bool,
   /**
-   *  "Hour" input is disabled
+   *  Hour input is disabled
    */
   hourIsDisabled: _propTypes2.default.bool,
   /**
-   *  "Minute" input is disabled
+   *  Minute input is disabled
    */
   minuteIsDisabled: _propTypes2.default.bool,
   /**
@@ -21971,7 +22143,17 @@ DateTimeInput.propTypes = {
   /**
    * Callback that receives the native <input>: ( ref ) => { ... }
    */
-  inputRef: _propTypes2.default.func
+  inputRef: _propTypes2.default.func,
+  /**
+   *  Hour input ref callback function:
+   *  ( ref ) = { ... }
+   */
+  hourInputRef: _propTypes2.default.func,
+  /**
+   *  Minute input ref callback function:
+   *  ( ref ) = { ... }
+   */
+  minuteInputRef: _propTypes2.default.func
 };
 
 DateTimeInput.defaultProps = {
@@ -21981,6 +22163,7 @@ DateTimeInput.defaultProps = {
   forceHover: false,
   hasError: false,
   hourIsDisabled: false,
+  hourInputRef: undefined,
   hourPlaceholder: undefined,
   hourValue: undefined,
   inputPlaceholder: undefined,
@@ -21989,6 +22172,7 @@ DateTimeInput.defaultProps = {
   isReadOnly: false,
   inputRef: undefined,
   minuteIsDisabled: false,
+  minuteInputRef: undefined,
   minutePlaceholder: undefined,
   minuteValue: undefined,
   mode: 'default',
@@ -22329,6 +22513,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Divider = function Divider(_ref) {
     var cssMap = _ref.cssMap,
         className = _ref.className;
+
+    if (!Divider.didWarn) {
+        console.warn('Divider is deprecated and will be removed in the next \
+major release');
+
+        Divider.didWarn = true;
+    }
+
     return _react2.default.createElement(
         _Css2.default,
         { cssMap: cssMap },
@@ -22767,8 +22959,8 @@ var FlounderDropdown = function (_Component) {
                         _extends({}, props, { label: !isHeader && label }),
                         _react2.default.createElement('div', {
                             ref: this.handleRef,
-                            onMouseOver: onMouseOver,
-                            onMouseOut: onMouseOut
+                            onMouseEnter: onMouseOver,
+                            onMouseLeave: onMouseOut
                         })
                     )
                 )
@@ -23046,17 +23238,33 @@ var _grid2 = _interopRequireDefault(_grid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var deprecatedSpacingOptions = ['default', 'h1', 'h2', 'h3', 'h4', 'label'];
+
 var Grid = function Grid(_ref) {
   var align = _ref.align,
       children = _ref.children,
       className = _ref.className,
       cssMap = _ref.cssMap,
+      onClick = _ref.onClick,
+      onMouseOut = _ref.onMouseOut,
+      onMouseOver = _ref.onMouseOver,
       gutters = _ref.gutters,
       hasMinHeight = _ref.hasMinHeight,
       hasWrap = _ref.hasWrap,
       role = _ref.role,
       spacing = _ref.spacing,
       verticalAlign = _ref.verticalAlign;
+
+  if (deprecatedSpacingOptions.includes(spacing) && !Grid.didWarn[spacing]) {
+    console.warn('Grid spacing option \'' + spacing + '\' is depreacted. Please use one of \'S\', \'M\', \'L\' or \'none\' instead.');
+    Grid.didWarn[spacing] = true;
+  }
+  if (!Grid.didWarn.hasMinHeight) {
+    console.warn('Grid: hasMinHeight prop is deprecated. Please use an \
+alternative layout.');
+    Grid.didWarn.hasMinHeight = true;
+  }
+
   return _react2.default.createElement(
     'div',
     {
@@ -23065,10 +23273,13 @@ var Grid = function Grid(_ref) {
         alignY: verticalAlign,
         hasMinHeight: hasMinHeight,
         gutters: gutters !== 'none' && gutters,
-        hasWrap: hasWrap,
+        wrap: hasWrap,
         spacing: spacing !== 'none' && spacing
       }),
-      role: role },
+      onClick: onClick,
+      onMouseEnter: onMouseOver,
+      onMouseLeave: onMouseOut,
+      role: role && role !== 'none' ? role : null },
     children
   );
 };
@@ -23096,13 +23307,24 @@ Grid.propTypes = {
    */
   gutters: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
   /**
-  *  Set minimum height equal to average row.
-  */
-  hasMinHeight: _propTypes2.default.bool,
-  /**
    * Wrap content
    */
   hasWrap: _propTypes2.default.bool,
+  /**
+   *  onClick callback function:
+   *  ( e ) => { ... }
+   */
+  onClick: _propTypes2.default.func,
+  /**
+   *  onMouseOut callback function:
+   *  ( e ) => { ... }
+   */
+  onMouseOut: _propTypes2.default.func,
+  /**
+   *  onMouseOver callback function:
+   *  ( e ) => { ... }
+   */
+  onMouseOver: _propTypes2.default.func,
   /**
    *  Grid role
    */
@@ -23110,7 +23332,7 @@ Grid.propTypes = {
   /**
    *  Row spacing
    */
-  spacing: _propTypes2.default.oneOf(['none', 'default', 'h1', 'h2', 'h3', 'h4', 'label']),
+  spacing: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
   /**
    * Vertical alignment of the columns (“auto” makes all columns equal
    * height)
@@ -23124,12 +23346,16 @@ Grid.defaultProps = {
   className: undefined,
   cssMap: _grid2.default,
   gutters: 'L',
-  hasMinHeight: false,
   hasWrap: true,
+  onClick: undefined,
+  onMouseOut: undefined,
+  onMouseOver: undefined,
   role: undefined,
-  spacing: 'default',
+  spacing: 'M',
   verticalAlign: 'auto'
 };
+
+Grid.didWarn = {};
 
 exports.default = Grid;
 
@@ -23490,8 +23716,8 @@ var Module = function (_Component) {
                     {
                         className: cssMap.header,
                         onClick: onClickHeader,
-                        onMouseOut: onMouseOutError,
-                        onMouseOver: onMouseOverError },
+                        onMouseOut: onMouseOutHeader,
+                        onMouseOver: onMouseOverHeader },
                     customHeader
                 );
             } else if (title) {
@@ -23732,10 +23958,8 @@ exports.default = NavBar;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-
-var _NavItem$propTypes;
 
 var _react = __webpack_require__(0);
 
@@ -23759,115 +23983,134 @@ var _navItem2 = _interopRequireDefault(_navItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var NavItem = function NavItem(_ref) {
-  var children = _ref.children,
-      label = _ref.label,
-      className = _ref.className,
-      cssMap = _ref.cssMap,
-      dropdownAlign = _ref.dropdownAlign,
-      forceHover = _ref.forceHover,
-      href = _ref.href,
-      iconType = _ref.iconType,
-      isCurrentPage = _ref.isCurrentPage,
-      isCurrent = _ref.isCurrent,
-      isOpen = _ref.isOpen,
-      isDisabled = _ref.isDisabled,
-      onClick = _ref.onClick,
-      onMouseOut = _ref.onMouseOut,
-      onMouseOver = _ref.onMouseOver,
-      role = _ref.role;
+    var children = _ref.children,
+        label = _ref.label,
+        className = _ref.className,
+        cssMap = _ref.cssMap,
+        dropdownAlign = _ref.dropdownAlign,
+        forceHover = _ref.forceHover,
+        href = _ref.href,
+        iconType = _ref.iconType,
+        isCurrentPage = _ref.isCurrentPage,
+        isCurrent = _ref.isCurrent,
+        isOpen = _ref.isOpen,
+        isDisabled = _ref.isDisabled,
+        onClick = _ref.onClick,
+        onMouseOut = _ref.onMouseOut,
+        onMouseOver = _ref.onMouseOver,
+        role = _ref.role;
 
-  if (typeof isCurrentPage !== 'undefined') {
-    console.warn('NavItem: isCurrentPage is deprecated and will be removed in the next major release. Please use isCurrent instead.');
-  }
+    if (typeof isCurrentPage !== 'undefined') {
+        console.warn('NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.');
+    }
 
-  return _react2.default.createElement(
-    _Css2.default,
-    {
-      cssMap: cssMap,
-      cssProps: {
-        role: role,
-        disabled: isDisabled,
-        current: isCurrent || isCurrentPage,
-        dropdownAlign: dropdownAlign,
-        open: isOpen,
-        fakeHovered: forceHover,
-        icon: iconType
-      } },
-    _react2.default.createElement(
-      'li',
-      {
-        className: className,
-        onMouseOver: onMouseOver,
-        onMouseOut: onMouseOut },
-      _react2.default.createElement(
-        'a',
+    return _react2.default.createElement(
+        _Css2.default,
         {
-          className: cssMap.link,
-          href: href,
-          onClick: onClick },
+            cssMap: cssMap,
+            cssProps: {
+                role: role,
+                disabled: isDisabled,
+                current: isCurrent || isCurrentPage,
+                dropdownAlign: dropdownAlign,
+                open: isOpen,
+                fakeHovered: forceHover,
+                icon: iconType
+            } },
         _react2.default.createElement(
-          'span',
-          null,
-          label
-        ),
-        iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
-      ),
-      children && _react2.default.createElement(
-        _NavDropdown2.default,
-        { className: cssMap.dropdown },
-        children
-      )
-    )
-  );
+            'li',
+            {
+                className: className,
+                onMouseEnter: onMouseOver,
+                onMouseLeave: onMouseOut },
+            _react2.default.createElement(
+                'a',
+                {
+                    className: cssMap.link,
+                    href: href,
+                    onClick: onClick },
+                _react2.default.createElement(
+                    'span',
+                    null,
+                    label
+                ),
+                iconType && iconType !== 'none' && _react2.default.createElement('div', { className: cssMap.icon })
+            ),
+            children && _react2.default.createElement(
+                _NavDropdown2.default,
+                { className: cssMap.dropdown },
+                children
+            )
+        )
+    );
 };
 
-NavItem.propTypes = (_NavItem$propTypes = {
-  /**
-   *  Dropdown menu items
-   */
-  children: _propTypes2.default.node,
-  /*
-  * Dropdown menu alignment
-   */
-  dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
-  /**
-   * Display as hover when required from another component
-   */
-  forceHover: _propTypes2.default.bool,
-  /**
-   *  navItem text
-   */
-  label: _propTypes2.default.node,
-  /**
-   *  HTML href attribute
-   */
-  href: _propTypes2.default.string,
-  /**
-   *  Icon to show
-   */
-  iconType: _propTypes2.default.oneOf(['account', 'none']),
-  /*
-  *  Item represents the current page and/or section
-   */
-  isCurrent: _propTypes2.default.bool,
-  /*
-  *  Display as disabled/read-only
-   */
-  isDisabled: _propTypes2.default.bool
-}, _defineProperty(_NavItem$propTypes, 'isCurrent', _propTypes2.default.bool), _defineProperty(_NavItem$propTypes, 'isOpen', _propTypes2.default.bool), _defineProperty(_NavItem$propTypes, 'onClick', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'onMouseOut', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'onMouseOver', _propTypes2.default.func), _defineProperty(_NavItem$propTypes, 'role', _propTypes2.default.oneOf(['default', 'primary', 'sub'])), _NavItem$propTypes);
+NavItem.propTypes = {
+    /**
+     *  Dropdown menu items
+     */
+    children: _propTypes2.default.node,
+    /*
+    * Dropdown menu alignment
+     */
+    dropdownAlign: _propTypes2.default.oneOf(['left', 'right']),
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover: _propTypes2.default.bool,
+    /**
+     *  navItem text
+     */
+    label: _propTypes2.default.node,
+    /**
+     *  HTML href attribute
+     */
+    href: _propTypes2.default.string,
+    /**
+     *  Icon to show
+     */
+    iconType: _propTypes2.default.oneOf(['account', 'none']),
+    /*
+    *  Display as disabled/read-only
+     */
+    isDisabled: _propTypes2.default.bool,
+    /*
+     * Display as current page/section
+     */
+    isCurrent: _propTypes2.default.bool,
+    /*
+    * Dropdown menu is open
+     */
+    isOpen: _propTypes2.default.bool,
+    /**
+     *  onClick callback function
+     */
+    onClick: _propTypes2.default.func,
+    /**
+     *  onMouseOut callback function
+     */
+    onMouseOut: _propTypes2.default.func,
+    /**
+     *  onMouseOver callback function
+     */
+    onMouseOver: _propTypes2.default.func,
+    /**
+     *  Navigation role
+     */
+    role: _propTypes2.default.oneOf(['default', 'primary', 'sub'])
+};
 
 NavItem.defaultProps = {
-  cssMap: _navItem2.default,
-  dropdownAlign: 'left',
-  href: '#',
-  iconType: 'none',
-  isCurrent: false,
-  isDisabled: false,
-  isOpen: false,
-  role: 'default'
+    cssMap: _navItem2.default,
+    dropdownAlign: 'left',
+    href: '#',
+    iconType: 'none',
+    isCurrent: false,
+    isDisabled: false,
+    isOpen: false,
+    role: 'default'
 };
 
 exports.default = NavItem;
@@ -25007,9 +25250,21 @@ Radio.propTypes = {
    */
   name: _propTypes2.default.string,
   /**
+   *  OnBlur callback function: ( e ) => { ... }
+   */
+  onBlur: _propTypes2.default.func,
+  /**
+   *  OnClick callback function: ( e ) => { ... }
+   */
+  onClick: _propTypes2.default.func,
+  /**
    *  OnChange callback function: ( e ) => { ... }
    */
   onChange: _propTypes2.default.func,
+  /**
+   *  onFocus callback function: ( e ) => { ... }
+   */
+  onFocus: _propTypes2.default.func,
   /**
    *  onMouseOut callback function : ( e ) => { ... }
    */
@@ -25032,13 +25287,16 @@ Radio.defaultProps = {
   hasError: false,
   id: undefined,
   inputRef: undefined,
-  isDefaultChecked: false,
+  isDefaultChecked: undefined,
   isDisabled: false,
   isChecked: undefined,
   isReadOnly: false,
   label: undefined,
   name: undefined,
+  onBlur: undefined,
   onChange: undefined,
+  onClick: undefined,
+  onFocus: undefined,
   onMouseOut: undefined,
   onMouseOver: undefined,
   value: undefined
@@ -26080,7 +26338,7 @@ Tab.propTypes = {
     /**
     *  Label to show in TabButton of this tab
     */
-    label: _propTypes2.default.string.isRequired,
+    label: _propTypes2.default.string,
     /**
     *  Contents of the Tab
     */
@@ -26146,19 +26404,27 @@ var Table = function Table(_ref) {
         columns = _ref$columns === undefined ? [] : _ref$columns,
         cssMap = _ref.cssMap,
         gutters = _ref.gutters,
-        onToggle = _ref.onToggle,
-        values = _ref.values,
-        isZebra = _ref.isZebra,
+        borders = _ref.borders,
         hasStickyHeader = _ref.hasStickyHeader,
+        isZebra = _ref.isZebra,
+        onMouseOut = _ref.onMouseOut,
+        onMouseOver = _ref.onMouseOver,
+        onToggle = _ref.onToggle,
+        _ref$rows = _ref.rows,
+        rows = _ref$rows === undefined ? [] : _ref$rows,
+        spacing = _ref.spacing,
+        values = _ref.values,
         verticalAlign = _ref.verticalAlign;
 
-    var rows = _react2.default.Children.toArray(children || (0, _utils2.buildRowsFromValues)(values)).map(function (row) {
+    var body = _react2.default.Children.toArray(children || (0, _utils2.buildRowsFromValues)(values)).map(function (row, i) {
         var cells = _react2.default.Children.toArray(row.props.children);
 
-        return _react2.default.cloneElement(row, {
+        var rowClass = i === 0 && columns.length < 1 ? cssMap.headerRow : cssMap.row;
+
+        return _react2.default.cloneElement(row, _extends({}, rows[i], {
             align: row.props.align || align,
-            children: cells.map(function (cell, i) {
-                var column = columns[i];
+            children: cells.map(function (cell, j) {
+                var column = columns[j];
                 var columnProps = column && {
                     align: cell.props.align || column.align,
                     columnTitle: cell.props.columnTitle || column.title,
@@ -26172,26 +26438,31 @@ var Table = function Table(_ref) {
                     className: cell.props.className ? cell.props.className + '  ' + cssMap.cell : cssMap.cell
                 }));
             }),
-            className: row.props.className ? row.props.className + '  ' + cssMap.row : cssMap.row,
+            className: row.props.className ? row.props.className + '  ' + rowClass : rowClass,
             gutters: row.props.gutters || gutters,
+            spacing: row.props.spacing || spacing,
             verticalAlign: row.props.verticalAlign || verticalAlign
-        });
+        }));
     });
 
     return _react2.default.createElement(
         'div',
         {
             className: (0, _utils.buildClassName)(className, cssMap, {
+                borders: borders,
                 zebra: isZebra
             }),
+            onMouseEnter: onMouseOver,
+            onMouseLeave: onMouseOut,
             role: 'grid' },
         columns.length > 0 && _react2.default.createElement(
             _TableRow2.default,
             {
                 align: align,
-                className: cssMap.row,
+                className: cssMap.headerRow,
                 gutters: gutters,
                 isSticky: hasStickyHeader,
+                spacing: spacing,
                 verticalAlign: verticalAlign },
             columns.map(function (column, i) {
                 var title = column.title;
@@ -26219,7 +26490,7 @@ var Table = function Table(_ref) {
                 );
             })
         ),
-        rows
+        body
     );
 };
 
@@ -26233,18 +26504,21 @@ Table.propTypes = {
      */
     children: _propTypes2.default.node,
     /**
-     * Array of objects defining the table columns
+     *  Extra CSS class name
      */
-    columns: _propTypes2.default.arrayOf(_propTypes2.default.shape({
-        title: _propTypes2.default.string,
-        size: _propTypes2.default.string,
-        isRowHeader: _propTypes2.default.bool,
-        isSticky: _propTypes2.default.bool,
-        isRequired: _propTypes2.default.bool,
-        isSortable: _propTypes2.default.bool,
-        sort: _propTypes2.default.oneOf(['asc', 'desc'])
-    })),
+    className: _propTypes2.default.string,
+    /**
+     *  Array of objects defining the table columns
+     */
+    columns: _propTypes2.default.arrayOf(_propTypes2.default.object),
+    /**
+     *  Gutter size
+     */
     gutters: _propTypes2.default.oneOf(['S', 'M', 'L', 'none']),
+    /**
+     *  Display table with borders
+     */
+    borders: _propTypes2.default.oneOf(['cells', 'rows', 'none']),
     /**
      *  Makes header row sticky
      */
@@ -26254,9 +26528,27 @@ Table.propTypes = {
      */
     isZebra: _propTypes2.default.bool,
     /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut: _propTypes2.default.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver: _propTypes2.default.func,
+    /**
      *  Column sorter onToggle callback function: ( e ) => { ... }
      */
     onToggle: _propTypes2.default.func,
+    /**
+     *  Array of objects defining the table rows
+     */
+    rows: _propTypes2.default.arrayOf(_propTypes2.default.object),
+    /**
+     *  Row spacing
+     */
+    spacing: _propTypes2.default.oneOf(['S', 'M', 'L', 'none']),
     /**
      * 2D Array of table values (for convenience)
      */
@@ -26270,12 +26562,18 @@ Table.propTypes = {
 Table.defaultProps = {
     align: 'auto',
     children: undefined,
+    className: undefined,
     columns: undefined,
     cssMap: _table2.default,
     gutters: 'L',
+    borders: 'none',
     hasStickyHeader: false,
     isZebra: false,
+    onMouseOut: undefined,
+    onMouseOver: undefined,
     onToggle: undefined,
+    rows: undefined,
+    spacing: 'M',
     values: undefined,
     verticalAlign: 'middle'
 };
@@ -26480,7 +26778,7 @@ var Tag = function Tag(_ref) {
     if (typeof labelText === 'string') {
         labelText = _react2.default.createElement(
             _Text2.default,
-            { className: cssMap.label, overflowisHidden: true },
+            { className: cssMap.label, overflowIsHidden: true },
             labelText
         );
     }
@@ -26700,8 +26998,6 @@ var TagInput = function (_Component) {
           {
             className: cssMap.container,
             htmlFor: id,
-            onMouseOut: onMouseOut,
-            onMouseOver: onMouseOver,
             style: { height: height } },
           items,
           _react2.default.createElement('input', {
@@ -27521,8 +27817,8 @@ TextInputWithDropdown.propTypes = {
      */
     id: _propTypes2.default.string,
     /**
-    * HTML name attribute
-    */
+     * HTML name attribute
+     */
     name: _propTypes2.default.string,
     /**
      *  onChange callback function: ( e ) => { ... }
@@ -27539,7 +27835,7 @@ TextInputWithDropdown.propTypes = {
     /**
      *  onMouseOver callback function: ( e ) => { ... }
      */
-    onMouseOve: _propTypes2.default.func,
+    onMouseOver: _propTypes2.default.func,
     /**
      *  onMouseOut callback function: ( e ) => { ... }
      */
@@ -27676,11 +27972,11 @@ var Uploader = function (_Component) {
 
             if (uploadState === 'uploading') {
                 isLoading = true;
-                iconType = '';
+                iconType = 'none';
                 uploaderButtonClass = cssMap.uploaderButton;
             } else if (uploadState === 'uploaded') {
                 uploaded = true;
-                iconType = '';
+                iconType = 'none';
                 isLoading = false;
                 uploaderButtonClass = cssMap.uploaderButton;
             }
@@ -28376,7 +28672,7 @@ module.exports = {"default":"form__default__16h5S","content":"form__content__2VF
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"grid__default__1hhZ1","alignX__left":"grid__alignX__left__T1Dub","alignX__center":"grid__alignX__center__1kgBJ","alignX__right":"grid__alignX__right__1ilMD","alignY__top":"grid__alignY__top__3RXlS","alignY__middle":"grid__alignY__middle__1Hnvq","alignY__bottom":"grid__alignY__bottom__2KpLO","wrap":"grid__wrap__YsdZZ","gutters__S":"grid__gutters__S__3JLl1","gutters__M":"grid__gutters__M__2uOgY","gutters__L":"grid__gutters__L__2g3Bd","spacing__default":"grid__spacing__default__1IenX","spacing__h1":"grid__spacing__h1__iDicB","spacing__h2":"grid__spacing__h2__2mIV1","spacing__h3":"grid__spacing__h3__30axA","spacing__h4":"grid__spacing__h4__361J1","spacing__label":"grid__spacing__label__3i8Fg","hasWrap":"grid__hasWrap__YsYTo","hasMinHeight":"grid__hasMinHeight__jwk7n"};
+module.exports = {"default":"grid__default__1hhZ1","alignX__left":"grid__alignX__left__T1Dub","alignX__center":"grid__alignX__center__1kgBJ","alignX__right":"grid__alignX__right__1ilMD","alignY__top":"grid__alignY__top__3RXlS","alignY__middle":"grid__alignY__middle__1Hnvq","alignY__bottom":"grid__alignY__bottom__2KpLO","wrap":"grid__wrap__YsdZZ","gutters__S":"grid__gutters__S__3JLl1","gutters__M":"grid__gutters__M__2uOgY","gutters__L":"grid__gutters__L__2g3Bd","spacing__S":"grid__spacing__S__37KYC","spacing__M":"grid__spacing__M__18o9j","spacing__L":"grid__spacing__L___uD8F","spacing__default":"grid__spacing__default__1IenX","spacing__h3":"grid__spacing__h3__30axA","spacing__h4":"grid__spacing__h4__361J1","spacing__label":"grid__spacing__label__3i8Fg","spacing__h1":"grid__spacing__h1__iDicB","spacing__h2":"grid__spacing__h2__2mIV1"};
 
 /***/ }),
 /* 119 */
@@ -28621,7 +28917,7 @@ module.exports = {"default":"section__default__1RKjM","content":"section__conten
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"slider__default__20oIL","stepLabel":"slider__stepLabel__1t8SF","inputContainer":"slider__inputContainer__3VL0Q","handle":"slider__handle__1ztac","track":"slider__track__1YpS7","trackFill":"slider__trackFill__3sE-C","trackContainer":"slider__trackContainer__3nwI6","handleFocus":"slider__handleFocus__qQ8dl","handleLabel":"slider__handleLabel__2uauA","ticksContainer":"slider__ticksContainer__xPkAF","tick":"slider__tick__1De3L","stepLabelsContainer":"slider__stepLabelsContainer__2EG-O","orientation__horizontal":"slider__orientation__horizontal__WBsKX","orientation__vertical":"slider__orientation__vertical__MG37D","hasHandleLabels":"slider__hasHandleLabels__2SY48","handleLabelPosition__top":"slider__handleLabelPosition__top__1JcMk","handleLabelPosition__bottom":"slider__handleLabelPosition__bottom__1pwPY","handleLabelPosition__right":"slider__handleLabelPosition__right__ImoIR","handleLabelPosition__left":"slider__handleLabelPosition__left__37HX-","error":"slider__error__2jyFq","disabled":"slider__disabled__19QJe"};
+module.exports = {"default":"slider__default__20oIL","stepLabel":"slider__stepLabel__1t8SF","inputContainer":"slider__inputContainer__3VL0Q","handle":"slider__handle__1ztac","track":"slider__track__1YpS7","trackFill":"slider__trackFill__3sE-C","trackContainer":"slider__trackContainer__3nwI6","handleFocus":"slider__handleFocus__qQ8dl","handleLabel":"slider__handleLabel__2uauA","ticksContainer":"slider__ticksContainer__xPkAF","tick":"slider__tick__1De3L","stepLabelsContainer":"slider__stepLabelsContainer__2EG-O","grabbing":"slider__grabbing__oeOnb","orientation__horizontal":"slider__orientation__horizontal__WBsKX","orientation__vertical":"slider__orientation__vertical__MG37D","hasHandleLabels":"slider__hasHandleLabels__2SY48","handleLabelPosition__top":"slider__handleLabelPosition__top__1JcMk","handleLabelPosition__bottom":"slider__handleLabelPosition__bottom__1pwPY","handleLabelPosition__right":"slider__handleLabelPosition__right__ImoIR","handleLabelPosition__left":"slider__handleLabelPosition__left__37HX-","error":"slider__error__2jyFq","disabled":"slider__disabled__19QJe"};
 
 /***/ }),
 /* 154 */
@@ -28677,7 +28973,7 @@ module.exports = {"label":"tabButton__label__s-MZG","role__control":"tabButton__
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"table__default__fpQba","zebra":"table__zebra__1Wxas","row":"table__row__1YGNP","cell":"table__cell__3NkUW"};
+module.exports = {"default":"table__default__fpQba","borders__rows":"table__borders__rows__UCxfS","row":"table__row__1YGNP","headerRow":"table__headerRow__3nmry","borders__cells":"table__borders__cells__2eSO-","zebra":"table__zebra__1Wxas","cell":"table__cell__3NkUW"};
 
 /***/ }),
 /* 162 */
@@ -28691,7 +28987,7 @@ module.exports = {"header":"tableCell__header__2c3IP","rowHeader":"tableCell__ro
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"default":"tableRow__default__15hF0","sticky":"tableRow__sticky__WCV6I"};
+module.exports = {"default":"tableRow__default__15hF0","sticky":"tableRow__sticky__WCV6I","active":"tableRow__active__3ZClk","cell":"tableRow__cell__1CR3q","clickable":"tableRow__clickable__2IoqS","fakeHovered":"tableRow__fakeHovered__3i9KM"};
 
 /***/ }),
 /* 164 */
@@ -36438,6 +36734,7 @@ var TimeInput = function TimeInput(_ref) {
         cssMap = _ref.cssMap,
         forceHover = _ref.forceHover,
         hourPlaceholder = _ref.hourPlaceholder,
+        hourInputRef = _ref.hourInputRef,
         hourIsDisabled = _ref.hourIsDisabled,
         hourValue = _ref.hourValue,
         id = _ref.id,
@@ -36448,6 +36745,7 @@ var TimeInput = function TimeInput(_ref) {
         onFocus = _ref.onFocus,
         onKeyPress = _ref.onKeyPress,
         minuteIsDisabled = _ref.minuteIsDisabled,
+        minuteInputRef = _ref.minuteInputRef,
         minutePlaceholder = _ref.minutePlaceholder,
         minuteValue = _ref.minuteValue;
     return _react2.default.createElement(
@@ -36467,7 +36765,8 @@ var TimeInput = function TimeInput(_ref) {
             onFocus: (0, _utils.eventHandler)(onFocus, 'hour'),
             onBlur: (0, _utils.eventHandler)(onBlur, 'hour'),
             onChange: (0, _utils.eventHandler)(onChange, 'hour'),
-            onKeyPress: (0, _utils.eventHandler)(onKeyPress, 'hour') }),
+            onKeyPress: (0, _utils.eventHandler)(onKeyPress, 'hour'),
+            ref: hourInputRef }),
         _react2.default.createElement(
             'span',
             null,
@@ -36484,7 +36783,8 @@ var TimeInput = function TimeInput(_ref) {
             onFocus: (0, _utils.eventHandler)(onFocus, 'minute'),
             onBlur: (0, _utils.eventHandler)(onBlur, 'minute'),
             onChange: (0, _utils.eventHandler)(onChange, 'minute'),
-            onKeyPress: (0, _utils.eventHandler)(onKeyPress, 'minute') })
+            onKeyPress: (0, _utils.eventHandler)(onKeyPress, 'minute'),
+            ref: minuteInputRef })
     );
 };
 
@@ -36493,6 +36793,7 @@ TimeInput.propTypes = {
     cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
     forceHover: _propTypes2.default.bool,
     hourPlaceholder: _propTypes2.default.string,
+    hourInputRef: _propTypes2.default.func,
     hourIsDisabled: _propTypes2.default.bool,
     hourValue: _propTypes2.default.string,
     id: _propTypes2.default.string,
@@ -36503,6 +36804,7 @@ TimeInput.propTypes = {
     onFocus: _propTypes2.default.func,
     onKeyPress: _propTypes2.default.func,
     minuteIsDisabled: _propTypes2.default.bool,
+    minuteInputRef: _propTypes2.default.func,
     minutePlaceholder: _propTypes2.default.string,
     minuteValue: _propTypes2.default.string
 
@@ -36513,6 +36815,7 @@ TimeInput.defaultProps = {
     cssMap: _timeInput2.default,
     forceHover: false,
     hourPlaceholder: undefined,
+    hourInputRef: undefined,
     hourIsDisabled: false,
     hourValue: undefined,
     id: (0, _utils.generateId)('TimeInput'),
@@ -36523,6 +36826,7 @@ TimeInput.defaultProps = {
     onFocus: undefined,
     onKeyPress: undefined,
     minuteIsDisabled: false,
+    minuteInputRef: undefined,
     minutePlaceholder: undefined,
     minuteValue: undefined
 };
@@ -36997,6 +37301,7 @@ function buildTagsFromValues() {
         var props = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value : {
             id: value,
             label: value,
+            key: value,
             value: value
         };
 

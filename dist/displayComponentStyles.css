@@ -9597,7 +9597,6 @@ textarea.inputField__resizable__2CfEu
         margin-bottom:  0;
     }
 
-
 .grid__default__1hhZ1
 {
     display:        -webkit-box;
@@ -9626,11 +9625,9 @@ textarea.inputField__resizable__2CfEu
     }*/
 }
 
-
 /*
 @media( min-width: 768px )
 { */
-
 
 .grid__default__1hhZ1
     {
@@ -9646,15 +9643,13 @@ textarea.inputField__resizable__2CfEu
         }*/
     }
 
-
 .grid__alignX__left__T1Dub > *, .grid__alignX__center__1kgBJ > *, .grid__alignX__right__1ilMD > *
         {
-            -webkit-box-flex:           0;
-            -webkit-flex:           0 0 auto;
-                -ms-flex:           0 0 auto;
-                    flex:           0 0 auto;
+            -webkit-box-flex:   0;
+            -webkit-flex:   0 0 auto;
+                -ms-flex:   0 0 auto;
+                    flex:   0 0 auto;
         }
-
 
 .grid__alignX__left__T1Dub
     {
@@ -9664,7 +9659,6 @@ textarea.inputField__resizable__2CfEu
                 justify-content:    flex-start;
     }
 
-
 .grid__alignX__center__1kgBJ
     {
         -webkit-box-pack:    center;
@@ -9672,7 +9666,6 @@ textarea.inputField__resizable__2CfEu
             -ms-flex-pack:    center;
                 justify-content:    center;
     }
-
 
 .grid__alignX__right__1ilMD
     {
@@ -9682,7 +9675,6 @@ textarea.inputField__resizable__2CfEu
                 justify-content:    flex-end;
     }
 
-
 .grid__alignY__top__3RXlS
     {
         -webkit-box-align:    start;
@@ -9690,7 +9682,6 @@ textarea.inputField__resizable__2CfEu
             -ms-flex-align:    start;
                 align-items:    flex-start;
     }
-
 
 .grid__alignY__middle__1Hnvq
     {
@@ -9700,7 +9691,6 @@ textarea.inputField__resizable__2CfEu
                 align-items:    center;
     }
 
-
 .grid__alignY__bottom__2KpLO
     {
         -webkit-box-align:    end;
@@ -9709,7 +9699,6 @@ textarea.inputField__resizable__2CfEu
                 align-items:    flex-end;
     }
 
-
 .grid__wrap__YsdZZ
     {
         -webkit-flex-wrap:  wrap;
@@ -9717,9 +9706,7 @@ textarea.inputField__resizable__2CfEu
                 flex-wrap:  wrap;
     }
 
-
 /* } */
-
 
 .grid__gutters__S__3JLl1
 {
@@ -9727,13 +9714,11 @@ textarea.inputField__resizable__2CfEu
     margin-right:   -0.5rem;
 }
 
-
 .grid__gutters__S__3JLl1 > *
     {
         padding-left:   0.5rem;
         padding-right:  0.5rem;
     }
-
 
 .grid__gutters__M__2uOgY
 {
@@ -9741,13 +9726,11 @@ textarea.inputField__resizable__2CfEu
     margin-right:   -1rem;
 }
 
-
 .grid__gutters__M__2uOgY > *
     {
         padding-left:   1rem;
         padding-right:  1rem;
     }
-
 
 .grid__gutters__L__2g3Bd
 {
@@ -9755,97 +9738,131 @@ textarea.inputField__resizable__2CfEu
     margin-right:   -1.5rem;
 }
 
-
 .grid__gutters__L__2g3Bd > *
     {
         padding-left:   1.5rem;
         padding-right:  1.5rem;
     }
 
-
-.grid__spacing__default__1IenX > *
+.grid__spacing__S__37KYC > *
     {
-        margin-bottom:  2rem;
+        padding-top:    0.5rem;
+        padding-bottom: 0.5rem;
     }
 
-
-.grid__spacing__default__1IenX:last-child
+.grid__spacing__S__37KYC:first-child
     {
-        margin-bottom:  -2rem;
+        margin-top: -0.5rem;
     }
 
-
-.grid__spacing__h1__iDicB > *
+.grid__spacing__S__37KYC:last-child
     {
-        margin-bottom:  7rem;
+        margin-bottom:  -0.5rem;
     }
 
-
-.grid__spacing__h1__iDicB:last-child
+.grid__spacing__M__18o9j > *
     {
-        margin-bottom:  -7rem;
+        padding-top:    1rem;
+        padding-bottom: 1rem;
     }
 
-
-.grid__spacing__h2__2mIV1 > *
+.grid__spacing__M__18o9j:first-child
     {
-        margin-bottom:  5rem;
+        margin-top: -1rem;
     }
 
-
-.grid__spacing__h2__2mIV1:last-child
-    {
-        margin-bottom:  -5rem;
-    }
-
-
-.grid__spacing__h3__30axA > *
-    {
-        margin-bottom:  2rem;
-    }
-
-
-.grid__spacing__h3__30axA:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-
-.grid__spacing__h4__361J1 > *
-    {
-        margin-bottom:  2rem;
-    }
-
-
-.grid__spacing__h4__361J1:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-
-.grid__spacing__label__3i8Fg > *
-    {
-        margin-bottom:  1rem;
-    }
-
-
-.grid__spacing__label__3i8Fg:last-child
+.grid__spacing__M__18o9j:last-child
     {
         margin-bottom:  -1rem;
     }
 
+.grid__spacing__L___uD8F > *
+    {
+        padding-top:     1.5rem;
+        padding-bottom:  1.5rem;
+    }
 
-.grid__hasWrap__YsYTo
+.grid__spacing__L___uD8F:first-child
+    {
+        margin-top: -1.5rem;
+    }
+
+.grid__spacing__L___uD8F:last-child
+    {
+        margin-bottom:  -1.5rem;
+    }
+
+/* legacy spacing options (deprecated) */
+
+.grid__spacing__default__1IenX > *, .grid__spacing__h3__30axA > *, .grid__spacing__h4__361J1 > *
+    {
+        padding-top:     1rem;
+        padding-bottom:  1rem;
+    }
+
+.grid__spacing__default__1IenX:first-child, .grid__spacing__h3__30axA:first-child, .grid__spacing__h4__361J1:first-child
+    {
+        margin-top: -1rem;
+    }
+
+.grid__spacing__default__1IenX:last-child, .grid__spacing__h3__30axA:last-child, .grid__spacing__h4__361J1:last-child
+    {
+        margin-bottom:  -1rem;
+    }
+
+.grid__spacing__label__3i8Fg > *
+    {
+        padding-top:     0.5rem;
+        padding-bottom:  0.5rem;
+    }
+
+.grid__spacing__label__3i8Fg:first-child
+    {
+        margin-top: -0.5rem;
+    }
+
+.grid__spacing__label__3i8Fg:last-child
+    {
+        margin-bottom:  -0.5rem;
+    }
+
+.grid__spacing__h1__iDicB > *
+    {
+        padding-top:     3.5rem;
+        padding-bottom:  3.5rem;
+    }
+
+.grid__spacing__h1__iDicB:first-child
+    {
+        margin-top: -3.5rem;
+    }
+
+.grid__spacing__h1__iDicB:last-child
+    {
+        margin-bottom:  -3.5rem;
+    }
+
+.grid__spacing__h2__2mIV1 > *
+    {
+        padding-top:     2.5rem;
+        padding-bottom:  2.5rem;
+    }
+
+.grid__spacing__h2__2mIV1:first-child
+    {
+        margin-top: -2.5rem;
+    }
+
+.grid__spacing__h2__2mIV1:last-child
+    {
+        margin-bottom:  -2.5rem;
+    }
+
+.grid__wrap__YsdZZ
 {
-    -webkit-flex-wrap:      wrap;
-        -ms-flex-wrap:      wrap;
-            flex-wrap:      wrap;
-}
-
-
-.grid__hasMinHeight__jwk7n
-{
-    min-height: 7.1rem; /* label + input */
+    -webkit-flex-wrap:  wrap;
+        -ms-flex-wrap:  wrap;
+            flex-wrap:  wrap;
 }
 .messageBox__default__3hsFC /* all elements get default margin-bottom of 2rem */
 {
@@ -11996,7 +12013,7 @@ only used in type__carousel for now
 
 /* Track + handles */
 
-.slider__default__20oIL .slider__handle__1ztac, .slider__default__20oIL .slider__track__1YpS7, .slider__default__20oIL
+.slider__default__20oIL .slider__handle__1ztac, .slider__default__20oIL .slider__track__1YpS7
     {
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
@@ -12006,6 +12023,8 @@ only used in type__carousel for now
     {
         position:   absolute;
         z-index:    1;
+        -webkit-transition: ease 0.2s all;
+        transition: ease 0.2s all;
     }
 
 .slider__default__20oIL .slider__trackContainer__3nwI6
@@ -12100,6 +12119,12 @@ only used in type__carousel for now
 .slider__default__20oIL .slider__stepLabel__1t8SF
     {
         position:   absolute;
+    }
+
+.slider__grabbing__oeOnb .slider__handle__1ztac, .slider__grabbing__oeOnb .slider__trackFill__3sE-C
+    {
+        -webkit-transition: none;
+        transition: none;
     }
 
 .slider__orientation__horizontal__WBsKX .slider__trackContainer__3nwI6
@@ -13534,9 +13559,6 @@ only used in type__carousel for now
 
 .tableCell__default__2dIPU
 {
-    padding-top:    1rem;
-    padding-bottom: 1rem;
-    /* background-color:     var( --PC-WHITE ); */
 
     /*@media( min-width: $shark )
     {*/
@@ -13555,8 +13577,6 @@ only used in type__carousel for now
         } */
     /*}*/
 }
-
-/*flex-direction: row;*/
 
 .tableCell__default__2dIPU::before
     {
@@ -13640,6 +13660,21 @@ only used in type__carousel for now
     background:  #ffffff;
     z-index:     2;
 }
+
+.tableRow__default__15hF0.tableRow__active__3ZClk .tableRow__cell__1CR3q
+    {
+        background: #F5F5F5;
+    }
+
+.tableRow__clickable__2IoqS
+{
+    cursor: pointer;
+}
+
+.tableRow__clickable__2IoqS:hover .tableRow__cell__1CR3q, .tableRow__clickable__2IoqS.tableRow__fakeHovered__3i9KM .tableRow__cell__1CR3q
+        {
+            background: #F5F5F5;
+        }
 .table__default__fpQba /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -13681,14 +13716,29 @@ only used in type__carousel for now
     font-variant-numeric:	lining-nums tabular-nums;
     word-wrap:          break-word;
 }
-.table__zebra__1Wxas .table__row__1YGNP:nth-child(even) > .table__cell__3NkUW
+.table__borders__rows__UCxfS .table__row__1YGNP, .table__borders__rows__UCxfS .table__headerRow__3nmry, .table__borders__cells__2eSO- .table__row__1YGNP, .table__borders__cells__2eSO- .table__headerRow__3nmry, .table__zebra__1Wxas .table__row__1YGNP, .table__zebra__1Wxas .table__headerRow__3nmry
+    {
+        margin-left:    0;
+        margin-right:   0;
+        margin-bottom:  0;
+    }
+.table__borders__rows__UCxfS .table__cell__3NkUW, .table__borders__cells__2eSO- .table__cell__3NkUW, .table__zebra__1Wxas .table__cell__3NkUW
+    {
+        background: #ffffff;
+    }
+.table__borders__rows__UCxfS .table__row__1YGNP
+    {
+        -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+                box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+    }
+.table__borders__cells__2eSO- .table__row__1YGNP .table__cell__3NkUW
+    {
+        -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+                box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+    }
+.table__zebra__1Wxas .table__row__1YGNP:nth-child( odd ) .table__cell__3NkUW
     {
         background: #F0F0F0;
-    }
-.table__zebra__1Wxas .table__row__1YGNP
-    {
-        width:  100%;
-        margin: 0;
     }
 .tabs__default__3DOQh /* all elements get default margin-bottom of 2rem */
 {
@@ -14442,7 +14492,7 @@ only used in type__carousel for now
         {
             right:  -0.2rem;
         }
-.valuedTextInput__default__3aCux:hover .valuedTextInput__valueLabel__6keAU
+.valuedTextInput__default__3aCux:hover .valuedTextInput__valueLabel__6keAU, .valuedTextInput__default__3aCux:hover .valuedTextInput__input__3UKXA
     {
         border-color: #289bc8;
     }
@@ -14476,11 +14526,11 @@ only used in type__carousel for now
     {
         border-color:   #289bc8;
     }
-.valuedTextInput__error__3d4pL .valuedTextInput__valueLabel__6keAU
+.valuedTextInput__error__3d4pL .valuedTextInput__valueLabel__6keAU, .valuedTextInput__error__3d4pL .valuedTextInput__input__3UKXA, .valuedTextInput__error__3d4pL:hover .valuedTextInput__valueLabel__6keAU, .valuedTextInput__error__3d4pL:hover .valuedTextInput__input__3UKXA
     {
         border-color:   #f55f69;
     }
-.valuedTextInput__disabled__3CMPp .valuedTextInput__valueLabel__6keAU
+.valuedTextInput__disabled__3CMPp .valuedTextInput__valueLabel__6keAU, .valuedTextInput__disabled__3CMPp .valuedTextInput__input__3UKXA, .valuedTextInput__disabled__3CMPp:hover .valuedTextInput__valueLabel__6keAU, .valuedTextInput__disabled__3CMPp:hover .valuedTextInput__input__3UKXA
     {
         background:     #F0F0F0;
         border-color:   #F0F0F0;

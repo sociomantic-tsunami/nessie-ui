@@ -9597,7 +9597,6 @@ textarea.inputField__resizable
         margin-bottom:  0;
     }
 
-
 .grid__default
 {
     display:        -webkit-box;
@@ -9626,11 +9625,9 @@ textarea.inputField__resizable
     }*/
 }
 
-
 /*
 @media( min-width: 768px )
 { */
-
 
 .grid__default
     {
@@ -9646,15 +9643,13 @@ textarea.inputField__resizable
         }*/
     }
 
-
 .grid__alignX__left > *, .grid__alignX__center > *, .grid__alignX__right > *
         {
-            -webkit-box-flex:           0;
-            -webkit-flex:           0 0 auto;
-                -ms-flex:           0 0 auto;
-                    flex:           0 0 auto;
+            -webkit-box-flex:   0;
+            -webkit-flex:   0 0 auto;
+                -ms-flex:   0 0 auto;
+                    flex:   0 0 auto;
         }
-
 
 .grid__alignX__left
     {
@@ -9664,7 +9659,6 @@ textarea.inputField__resizable
                 justify-content:    flex-start;
     }
 
-
 .grid__alignX__center
     {
         -webkit-box-pack:    center;
@@ -9672,7 +9666,6 @@ textarea.inputField__resizable
             -ms-flex-pack:    center;
                 justify-content:    center;
     }
-
 
 .grid__alignX__right
     {
@@ -9682,7 +9675,6 @@ textarea.inputField__resizable
                 justify-content:    flex-end;
     }
 
-
 .grid__alignY__top
     {
         -webkit-box-align:    start;
@@ -9690,7 +9682,6 @@ textarea.inputField__resizable
             -ms-flex-align:    start;
                 align-items:    flex-start;
     }
-
 
 .grid__alignY__middle
     {
@@ -9700,7 +9691,6 @@ textarea.inputField__resizable
                 align-items:    center;
     }
 
-
 .grid__alignY__bottom
     {
         -webkit-box-align:    end;
@@ -9709,7 +9699,6 @@ textarea.inputField__resizable
                 align-items:    flex-end;
     }
 
-
 .grid__wrap
     {
         -webkit-flex-wrap:  wrap;
@@ -9717,9 +9706,7 @@ textarea.inputField__resizable
                 flex-wrap:  wrap;
     }
 
-
 /* } */
-
 
 .grid__gutters__S
 {
@@ -9727,13 +9714,11 @@ textarea.inputField__resizable
     margin-right:   -0.5rem;
 }
 
-
 .grid__gutters__S > *
     {
         padding-left:   0.5rem;
         padding-right:  0.5rem;
     }
-
 
 .grid__gutters__M
 {
@@ -9741,13 +9726,11 @@ textarea.inputField__resizable
     margin-right:   -1rem;
 }
 
-
 .grid__gutters__M > *
     {
         padding-left:   1rem;
         padding-right:  1rem;
     }
-
 
 .grid__gutters__L
 {
@@ -9755,97 +9738,131 @@ textarea.inputField__resizable
     margin-right:   -1.5rem;
 }
 
-
 .grid__gutters__L > *
     {
         padding-left:   1.5rem;
         padding-right:  1.5rem;
     }
 
-
-.grid__spacing__default > *
+.grid__spacing__S > *
     {
-        margin-bottom:  2rem;
+        padding-top:    0.5rem;
+        padding-bottom: 0.5rem;
     }
 
-
-.grid__spacing__default:last-child
+.grid__spacing__S:first-child
     {
-        margin-bottom:  -2rem;
+        margin-top: -0.5rem;
     }
 
-
-.grid__spacing__h1 > *
+.grid__spacing__S:last-child
     {
-        margin-bottom:  7rem;
+        margin-bottom:  -0.5rem;
     }
 
-
-.grid__spacing__h1:last-child
+.grid__spacing__M > *
     {
-        margin-bottom:  -7rem;
+        padding-top:    1rem;
+        padding-bottom: 1rem;
     }
 
-
-.grid__spacing__h2 > *
+.grid__spacing__M:first-child
     {
-        margin-bottom:  5rem;
+        margin-top: -1rem;
     }
 
-
-.grid__spacing__h2:last-child
-    {
-        margin-bottom:  -5rem;
-    }
-
-
-.grid__spacing__h3 > *
-    {
-        margin-bottom:  2rem;
-    }
-
-
-.grid__spacing__h3:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-
-.grid__spacing__h4 > *
-    {
-        margin-bottom:  2rem;
-    }
-
-
-.grid__spacing__h4:last-child
-    {
-        margin-bottom:  -2rem;
-    }
-
-
-.grid__spacing__label > *
-    {
-        margin-bottom:  1rem;
-    }
-
-
-.grid__spacing__label:last-child
+.grid__spacing__M:last-child
     {
         margin-bottom:  -1rem;
     }
 
+.grid__spacing__L > *
+    {
+        padding-top:     1.5rem;
+        padding-bottom:  1.5rem;
+    }
 
-.grid__hasWrap
+.grid__spacing__L:first-child
+    {
+        margin-top: -1.5rem;
+    }
+
+.grid__spacing__L:last-child
+    {
+        margin-bottom:  -1.5rem;
+    }
+
+/* legacy spacing options (deprecated) */
+
+.grid__spacing__default > *, .grid__spacing__h3 > *, .grid__spacing__h4 > *
+    {
+        padding-top:     1rem;
+        padding-bottom:  1rem;
+    }
+
+.grid__spacing__default:first-child, .grid__spacing__h3:first-child, .grid__spacing__h4:first-child
+    {
+        margin-top: -1rem;
+    }
+
+.grid__spacing__default:last-child, .grid__spacing__h3:last-child, .grid__spacing__h4:last-child
+    {
+        margin-bottom:  -1rem;
+    }
+
+.grid__spacing__label > *
+    {
+        padding-top:     0.5rem;
+        padding-bottom:  0.5rem;
+    }
+
+.grid__spacing__label:first-child
+    {
+        margin-top: -0.5rem;
+    }
+
+.grid__spacing__label:last-child
+    {
+        margin-bottom:  -0.5rem;
+    }
+
+.grid__spacing__h1 > *
+    {
+        padding-top:     3.5rem;
+        padding-bottom:  3.5rem;
+    }
+
+.grid__spacing__h1:first-child
+    {
+        margin-top: -3.5rem;
+    }
+
+.grid__spacing__h1:last-child
+    {
+        margin-bottom:  -3.5rem;
+    }
+
+.grid__spacing__h2 > *
+    {
+        padding-top:     2.5rem;
+        padding-bottom:  2.5rem;
+    }
+
+.grid__spacing__h2:first-child
+    {
+        margin-top: -2.5rem;
+    }
+
+.grid__spacing__h2:last-child
+    {
+        margin-bottom:  -2.5rem;
+    }
+
+.grid__wrap
 {
-    -webkit-flex-wrap:      wrap;
-        -ms-flex-wrap:      wrap;
-            flex-wrap:      wrap;
-}
-
-
-.grid__hasMinHeight
-{
-    min-height: 7.1rem; /* label + input */
+    -webkit-flex-wrap:  wrap;
+        -ms-flex-wrap:  wrap;
+            flex-wrap:  wrap;
 }
 .messageBox__default /* all elements get default margin-bottom of 2rem */
 {
@@ -11996,7 +12013,7 @@ only used in type__carousel for now
 
 /* Track + handles */
 
-.slider__default .slider__handle, .slider__default .slider__track, .slider__default
+.slider__default .slider__handle, .slider__default .slider__track
     {
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
@@ -12006,6 +12023,8 @@ only used in type__carousel for now
     {
         position:   absolute;
         z-index:    1;
+        -webkit-transition: ease 0.2s all;
+        transition: ease 0.2s all;
     }
 
 .slider__default .slider__trackContainer
@@ -12100,6 +12119,12 @@ only used in type__carousel for now
 .slider__default .slider__stepLabel
     {
         position:   absolute;
+    }
+
+.slider__grabbing .slider__handle, .slider__grabbing .slider__trackFill
+    {
+        -webkit-transition: none;
+        transition: none;
     }
 
 .slider__orientation__horizontal .slider__trackContainer
@@ -13534,9 +13559,6 @@ only used in type__carousel for now
 
 .tableCell__default
 {
-    padding-top:    1rem;
-    padding-bottom: 1rem;
-    /* background-color:     var( --PC-WHITE ); */
 
     /*@media( min-width: $shark )
     {*/
@@ -13555,8 +13577,6 @@ only used in type__carousel for now
         } */
     /*}*/
 }
-
-/*flex-direction: row;*/
 
 .tableCell__default::before
     {
@@ -13640,6 +13660,21 @@ only used in type__carousel for now
     background:  #ffffff;
     z-index:     2;
 }
+
+.tableRow__default.tableRow__active .tableRow__cell
+    {
+        background: #F5F5F5;
+    }
+
+.tableRow__clickable
+{
+    cursor: pointer;
+}
+
+.tableRow__clickable:hover .tableRow__cell, .tableRow__clickable.tableRow__fakeHovered .tableRow__cell
+        {
+            background: #F5F5F5;
+        }
 .table__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -13681,14 +13716,29 @@ only used in type__carousel for now
     font-variant-numeric:	lining-nums tabular-nums;
     word-wrap:          break-word;
 }
-.table__zebra .table__row:nth-child(even) > .table__cell
+.table__borders__rows .table__row, .table__borders__rows .table__headerRow, .table__borders__cells .table__row, .table__borders__cells .table__headerRow, .table__zebra .table__row, .table__zebra .table__headerRow
+    {
+        margin-left:    0;
+        margin-right:   0;
+        margin-bottom:  0;
+    }
+.table__borders__rows .table__cell, .table__borders__cells .table__cell, .table__zebra .table__cell
+    {
+        background: #ffffff;
+    }
+.table__borders__rows .table__row
+    {
+        -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+                box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+    }
+.table__borders__cells .table__row .table__cell
+    {
+        -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+                box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+    }
+.table__zebra .table__row:nth-child( odd ) .table__cell
     {
         background: #F0F0F0;
-    }
-.table__zebra .table__row
-    {
-        width:  100%;
-        margin: 0;
     }
 .tabs__default /* all elements get default margin-bottom of 2rem */
 {
@@ -14442,7 +14492,7 @@ only used in type__carousel for now
         {
             right:  -0.2rem;
         }
-.valuedTextInput__default:hover .valuedTextInput__valueLabel
+.valuedTextInput__default:hover .valuedTextInput__valueLabel, .valuedTextInput__default:hover .valuedTextInput__input
     {
         border-color: #289bc8;
     }
@@ -14476,11 +14526,11 @@ only used in type__carousel for now
     {
         border-color:   #289bc8;
     }
-.valuedTextInput__error .valuedTextInput__valueLabel
+.valuedTextInput__error .valuedTextInput__valueLabel, .valuedTextInput__error .valuedTextInput__input, .valuedTextInput__error:hover .valuedTextInput__valueLabel, .valuedTextInput__error:hover .valuedTextInput__input
     {
         border-color:   #f55f69;
     }
-.valuedTextInput__disabled .valuedTextInput__valueLabel
+.valuedTextInput__disabled .valuedTextInput__valueLabel, .valuedTextInput__disabled .valuedTextInput__input, .valuedTextInput__disabled:hover .valuedTextInput__valueLabel, .valuedTextInput__disabled:hover .valuedTextInput__input
     {
         background:     #F0F0F0;
         border-color:   #F0F0F0;
