@@ -48,8 +48,8 @@ const InputContainer = ( {
             iconIsVisible    = { !isDisabled &&
                                  !!errorMessage &&
                                  hasError }
-            onMouseOver = { onMouseOver }
-            onMouseOut  = { onMouseOut }>
+            onMouseOver      = { onMouseOver }
+            onMouseOut       = { onMouseOut }>
             { children }
         </IconWithTooltip>
     </div>
@@ -68,7 +68,7 @@ InputContainer.propTypes = {
     /**
      *  Error tooltip message to show
      */
-    errorMessage          : PropTypes.string,
+    errorMessage          : PropTypes.node,
     /**
      *  Whether error tooltip is shown
      */

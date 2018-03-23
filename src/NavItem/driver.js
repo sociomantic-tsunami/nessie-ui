@@ -6,7 +6,7 @@ export default class NavItemDriver extends ClickableComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.link}` );
+        super( wrapper, `.${wrapper.props().cssMap.default}` );
     }
 
     getLabel()
@@ -24,5 +24,11 @@ export default class NavItemDriver extends ClickableComponentDriver
         }
 
         return dropdown.children( NavItem );
+    }
+
+    click()
+    {
+        this.control.find( `.${this.cssMap.link}` ).simulate( 'click' );
+        return this;
     }
 }
