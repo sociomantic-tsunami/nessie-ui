@@ -29,8 +29,9 @@ import {
     Tooltip,
 } from 'nessie-ui';
 
-import ButtonDriver   from './Button/driver';
-import CheckboxDriver from './Checkbox/driver';
+import ButtonDriver         from './Button/driver';
+import CheckableGroupDriver from './CheckableGroup/driver';
+import CheckboxDriver       from './Checkbox/driver';
 import ClickableComponentDriver
     from './Testing/CommonDrivers/clickableComponentDriver';
 import CodeEditorDriver       from './CodeEditor/driver';
@@ -60,83 +61,83 @@ const drivers =
 [
     {
         Component : Button,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : CheckableGroup,
-        Driver    : CheckableGroupDriver
+        Driver    : CheckableGroupDriver,
     },
     {
         Component : Checkbox,
-        Driver    : CheckboxDriver
+        Driver    : CheckboxDriver,
     },
     {
         Component : CheckboxGroup,
-        Driver    : CheckableGroupDriver
+        Driver    : CheckableGroupDriver,
     },
     {
         Component : CodeEditor,
-        Driver    : CodeEditorDriver
+        Driver    : CodeEditorDriver,
     },
     {
         Component : Column,
-        Driver    : GridColumnDriver
+        Driver    : GridColumnDriver,
     },
     {
         Component : FlounderDropdown,
-        Driver    : FlounderDropdownDriver
+        Driver    : FlounderDropdownDriver,
     },
     {
         Component : Form,
-        Driver    : FormDriver
+        Driver    : FormDriver,
     },
     {
         Component : Grid,
-        Driver    : GridColumnDriver
+        Driver    : GridColumnDriver,
     },
     {
         Component : Icon,
-        Driver    : IconDriver
+        Driver    : IconDriver,
     },
     {
         Component : IconButton,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : IconWithTooltip,
-        Driver    : IconWithTooltipDriver
+        Driver    : IconWithTooltipDriver,
     },
     {
         Component : ModalDialog,
-        Driver    : ModalDialogDriver
+        Driver    : ModalDialogDriver,
     },
     {
         Component : Module,
-        Driver    : ModuleDriver
+        Driver    : ModuleDriver,
     },
     {
         Component : NavItem,
-        Driver    : NavItemDriver
+        Driver    : NavItemDriver,
     },
     {
         Component : NotificationBar,
-        Driver    : NotificationBarDriver
+        Driver    : NotificationBarDriver,
     },
     {
         Component : PasswordInput,
-        Driver    : PasswordInputDriver
+        Driver    : PasswordInputDriver,
     },
     {
         Component : Radio,
-        Driver    : CheckboxDriver
+        Driver    : CheckboxDriver,
     },
     {
         Component : RadioGroup,
-        Driver    : CheckableGroupDriver
-    }
+        Driver    : CheckableGroupDriver,
+    },
     {
         Component : Row,
-        Driver    : GridColumnDriver
+        Driver    : GridColumnDriver,
     },
     {
         Component : Section,
@@ -144,19 +145,19 @@ const drivers =
     },
     {
         Component : Slider,
-        Driver    : SliderDriver
+        Driver    : SliderDriver,
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : Text,
-        Driver    : TextDriver
+        Driver    : TextDriver,
     },
     {
         Component : TextInput,
-        Driver    : InputComponentDriver
+        Driver    : InputComponentDriver,
     },
     {
         Component : TextInputWithIcon,
@@ -164,7 +165,7 @@ const drivers =
     },
     {
         Component : Tooltip,
-        Driver    : TooltipDriver
+        Driver    : TooltipDriver,
     },
 ];
 
