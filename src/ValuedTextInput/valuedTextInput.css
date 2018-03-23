@@ -67,7 +67,8 @@
         }
     }
 
-    &:hover .valueLabel
+    &:hover .valueLabel,
+    &:hover .input
     {
         border-color: var( --PC-BLUE );
     }
@@ -115,18 +116,22 @@
     }
 }
 
-.error
+.error,
+.error:hover
 {
-    .valueLabel
+    .valueLabel,
+    .input
     {
         border-color:   var( --AC-2 );
     }
 }
 
 
-.disabled
+.disabled,
+.disabled:hover
 {
-    .valueLabel
+    .valueLabel,
+    .input
     {
         background:     var( --GS-10 );
         border-color:   var( --GS-10 );

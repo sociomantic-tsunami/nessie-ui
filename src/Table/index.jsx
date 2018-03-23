@@ -16,23 +16,32 @@ const Table = ( {
     columns = [],
     cssMap,
     gutters,
-    onToggle,
-    values,
-    isZebra,
+    borders,
     hasStickyHeader,
+    isZebra,
+    onMouseOut,
+    onMouseOver,
+    onToggle,
+    rows = [],
+    spacing,
+    values,
     verticalAlign,
 } ) =>
 {
-    const rows = React.Children.toArray( children ||
-        buildRowsFromValues( values ) ).map( row =>
+    const body = React.Children.toArray( children ||
+        buildRowsFromValues( values ) ).map( ( row, i ) =>
     {
         const cells = React.Children.toArray( row.props.children );
 
+        const rowClass = i === 0 && columns.length < 1 ?
+            cssMap.headerRow : cssMap.row;
+
         return React.cloneElement( row, {
+            ...rows[ i ],
             align    : row.props.align || align,
-            children : cells.map( ( cell, i ) =>
+            children : cells.map( ( cell, j ) =>
             {
-                const column      = columns[ i ];
+                const column      = columns[ j ];
                 const columnProps = column && {
                     align       : cell.props.align || column.align,
                     columnTitle : cell.props.columnTitle || column.title,
@@ -51,8 +60,9 @@ const Table = ( {
                 } );
             } ),
             className : row.props.className ?
-                `${row.props.className}  ${cssMap.row}` : cssMap.row,
+                `${row.props.className}  ${rowClass}` : rowClass,
             gutters       : row.props.gutters || gutters,
+            spacing       : row.props.spacing || spacing,
             verticalAlign : row.props.verticalAlign || verticalAlign,
         } );
     } );
@@ -61,15 +71,19 @@ const Table = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
+                borders,
                 zebra : isZebra,
             } ) }
-            role = "grid">
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }
+            role         = "grid">
             { columns.length > 0 &&
                 <TableRow
                     align         = { align }
-                    className     = { cssMap.row }
+                    className     = { cssMap.headerRow }
                     gutters       = { gutters }
                     isSticky      = { hasStickyHeader }
+                    spacing       = { spacing }
                     verticalAlign = { verticalAlign } >
                     { columns.map( ( column, i ) =>
                     {
@@ -96,7 +110,7 @@ const Table = ( {
                     } ) }
                 </TableRow>
             }
-            { rows }
+            { body }
         </div>
     );
 };
@@ -106,24 +120,27 @@ Table.propTypes =
     /**
      *  Text alignment inside cells
      */
-    align    : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    align           : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */
-    children : PropTypes.node,
+    children        : PropTypes.node,
     /**
-     * Array of objects defining the table columns
+     *  Extra CSS class name
      */
-    columns  : PropTypes.arrayOf( PropTypes.shape( {
-        title       : PropTypes.string,
-        size        : PropTypes.string,
-        isRowHeader : PropTypes.bool,
-        isSticky    : PropTypes.bool,
-        isRequired  : PropTypes.bool,
-        isSortable  : PropTypes.bool,
-        sort        : PropTypes.oneOf( [ 'asc', 'desc' ] )
-    } ) ),
+    className       : PropTypes.string,
+    /**
+     *  Array of objects defining the table columns
+     */
+    columns         : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Gutter size
+     */
     gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
+    /**
+     *  Display table with borders
+     */
+    borders         : PropTypes.oneOf( [ 'cells', 'rows', 'none' ] ),
     /**
      *  Makes header row sticky
      */
@@ -133,9 +150,27 @@ Table.propTypes =
      */
     isZebra         : PropTypes.bool,
     /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut      : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver     : PropTypes.func,
+    /**
      *  Column sorter onToggle callback function: ( e ) => { ... }
      */
     onToggle        : PropTypes.func,
+    /**
+     *  Array of objects defining the table rows
+     */
+    rows            : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Row spacing
+     */
+    spacing         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      * 2D Array of table values (for convenience)
      */
@@ -152,12 +187,18 @@ Table.defaultProps =
 {
     align           : 'auto',
     children        : undefined,
+    className       : undefined,
     columns         : undefined,
     cssMap          : styles,
     gutters         : 'L',
+    borders         : 'none',
     hasStickyHeader : false,
     isZebra         : false,
+    onMouseOut      : undefined,
+    onMouseOver     : undefined,
     onToggle        : undefined,
+    rows            : undefined,
+    spacing         : 'M',
     values          : undefined,
     verticalAlign   : 'middle',
 };

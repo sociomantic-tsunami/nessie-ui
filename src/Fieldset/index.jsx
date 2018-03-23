@@ -18,29 +18,29 @@ const Fieldset = ( {
     onMouseOver,
     onMouseOut } ) =>
 
-        <Css cssMap = { cssMap }>
-            <fieldset
-                className   = { className }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
-                { label &&
-                    <Label element = "legend">
-                        <IconWithTooltip
-                            iconType         = "error"
-                            iconPosition     = "right"
-                            message          = { errorMessage }
-                            tooltipIsVisible = { errorMessageIsVisible }
-                            tooltipPosition  = { errorMessagePosition }
-                            iconIsVisible    = { !isDisabled &&
-                                                 !!errorMessage &&
-                                                 hasError }>
-                            { label }
-                        </IconWithTooltip>
-                    </Label>
-                }
-                { children }
-            </fieldset>
-        </Css>;
+    ( <Css cssMap = { cssMap }>
+        <fieldset
+            className    = { className }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
+            { label &&
+                <Label element = "legend">
+                    <IconWithTooltip
+                        iconType         = "error"
+                        iconPosition     = "right"
+                        message          = { errorMessage }
+                        tooltipIsVisible = { errorMessageIsVisible }
+                        tooltipPosition  = { errorMessagePosition }
+                        iconIsVisible    = { !isDisabled &&
+                                             !!errorMessage &&
+                                             hasError }>
+                        { label }
+                    </IconWithTooltip>
+                </Label>
+            }
+            { children }
+        </fieldset>
+    </Css> );
 
 Fieldset.propTypes =
 {

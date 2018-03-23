@@ -146,13 +146,13 @@ export default class Uploader extends Component
         if ( uploadState === 'uploading' )
         {
             isLoading  = true;
-            iconType   = '';
+            iconType   = 'none';
             uploaderButtonClass = cssMap.uploaderButton;
         }
         else if ( uploadState === 'uploaded' )
         {
             uploaded   = true;
-            iconType   = '';
+            iconType   = 'none';
             isLoading  = false;
             uploaderButtonClass = cssMap.uploaderButton;
         }

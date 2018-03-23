@@ -27,8 +27,8 @@ const NavItem = ( {
 {
     if ( typeof isCurrentPage !== 'undefined' )
     {
-        console.warn( `NavItem: isCurrentPage is deprecated and will be \
-removed in the next major release. Please use isCurrent instead.` );
+        console.warn( 'NavItem: isCurrentPage is deprecated and will be \
+removed in the next major release. Please use isCurrent instead.' );
     }
 
     return (
@@ -44,9 +44,9 @@ removed in the next major release. Please use isCurrent instead.` );
                 icon        : iconType
             } }>
             <li
-                className   = { className }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
+                className     = { className }
+                onMouseEnter  = { onMouseOver }
+                onMouseLeave  = { onMouseOut }>
                 <a
                     className = { cssMap.link }
                     href      = { href }
@@ -92,10 +92,6 @@ NavItem.propTypes =
      *  Icon to show
      */
     iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
-    /*
-    *  Item represents the current page and/or section
-     */
-    isCurrent     : PropTypes.bool,
     /*
     *  Display as disabled/read-only
      */

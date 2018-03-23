@@ -92,7 +92,7 @@ export default class Tabs extends NessieComponent
         const header = this.renderHeader( children );
 
         const content = Array.isArray( children ) ?
-          children[ activeTabIndex ] : children;
+            children[ activeTabIndex ] : children;
 
         return (
             <div className = { cssMap.default } >
@@ -106,5 +106,4 @@ export default class Tabs extends NessieComponent
             </div>
         );
     }
-
 }

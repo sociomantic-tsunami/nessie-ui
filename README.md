@@ -21,14 +21,14 @@ how these should be implemented (the options are outlined below).
 
 If you want _everything_:
 ```
-import * as Nessie from 'nessie';
+import * as Nessie from 'nessie-ui';
 ```
 
 #### Importing individual components:
 
 If you want specific components:
 ```
-import { ComponentName } from 'nessie';
+import { ComponentName } from 'nessie-ui';
 ```
 
 ### CSS
