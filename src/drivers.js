@@ -8,7 +8,6 @@ import {
     Column,
     DateTimeInput,
     DragNDrop,
-    Dropdown,
     Fieldset,
     FlounderDropdown,
     Form,
@@ -82,7 +81,7 @@ import SwitchDriver            from './Switch/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
-import WrapperDriver    from './Testing/CommonDrivers/wrapperDriver';
+import WrapperDriver           from './Testing/CommonDrivers/wrapperDriver';
 
 
 const drivers =
@@ -115,18 +114,14 @@ const drivers =
         Component : DateTimeInput,
         Driver    : DateTimeInputDriver
     },
-    // {
-    //     Component : DragNDrop,
-    //     Driver    : WrapperDriver
-    // },
-    // {
-    //     Component : Dropdown,
-    //     Driver    : WrapperDriver
-    // },
-    // {
-    //     Component : Fieldset,
-    //     Driver    : WrapperDriver
-    // },
+    {
+        Component : DragNDrop,
+        Driver    : WrapperDriver
+    },
+    {
+        Component : Fieldset,
+        Driver    : WrapperDriver
+    },
     {
         Component : FlounderDropdown,
         Driver    : FlounderDropdownDriver,
@@ -139,22 +134,22 @@ const drivers =
         Component : Grid,
         Driver    : GridColumnDriver,
     },
-    // {
-    //     Component : H1,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : H2,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : H3,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : H4,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : H1,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H2,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H3,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H4,
+        Driver    : WrapperDriver,
+    },
     {
         Component : Icon,
         Driver    : IconDriver,
@@ -167,14 +162,14 @@ const drivers =
         Component : IconWithTooltip,
         Driver    : IconWithTooltipDriver,
     },
-    // {
-    //     Component : Label,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : MessageBox,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : Label,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : MessageBox,
+        Driver    : WrapperDriver,
+    },
     {
         Component : ModalDialog,
         Driver    : ModalDialogDriver,
@@ -183,46 +178,46 @@ const drivers =
         Component : Module,
         Driver    : ModuleDriver,
     },
-    // {
-    //     Component : NavBar,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : NavDropdown,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : NavBar,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : NavDropdown,
+        Driver    : WrapperDriver,
+    },
     {
         Component : NavItem,
         Driver    : NavItemDriver,
     },
-    // {
-    //     Component : NavList,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : NavList,
+        Driver    : WrapperDriver,
+    },
     {
         Component : NotificationBar,
         Driver    : NotificationBarDriver,
     },
-    // {
-    //     Component : Page,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : PageContent,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : PageContentHeader,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : PageFooter,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : PageHeader,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : Page,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageContent,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageContentHeader,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageFooter,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageHeader,
+        Driver    : WrapperDriver,
+    },
     {
         Component : PasswordInput,
         Driver    : PasswordInputDriver,
@@ -251,34 +246,34 @@ const drivers =
         Component : Slider,
         Driver    : SliderDriver,
     },
-    // {
-    //     Component : StatusIndicator,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : StatusIndicator,
+        Driver    : WrapperDriver,
+    },
     {
         Component : Switch,
         Driver    : SwitchDriver,
     },
-    // {
-    //     Component : Tab,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : TabButton,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : Table,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : TableCell,
-    //     Driver    : WrapperDriver,
-    // },
-    // {
-    //     Component : TableRow,
-    //     Driver    : WrapperDriver,
-    // },
+    {
+        Component : Tab,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TabButton,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : Table,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TableCell,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TableRow,
+        Driver    : WrapperDriver,
+    },
     {
         Component : Text,
         Driver    : TextDriver,
