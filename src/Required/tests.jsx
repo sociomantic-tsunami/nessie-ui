@@ -7,7 +7,7 @@ import { mount }    from 'enzyme';
 
 import { Required } from '../index';
 
-describe.only( 'Required', () =>
+describe( 'Required', () =>
 {
     let wrapper;
 
