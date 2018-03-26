@@ -8,7 +8,7 @@ import { mount }      from 'enzyme';
 import { InputField } from '../index';
 
 
-describe.only( 'InputField', () =>
+describe( 'InputField', () =>
 {
     let wrapper;
     let instance;
