@@ -13,6 +13,7 @@ import {
     Icon,
     IconButton,
     IconWithTooltip,
+    InputField,
     ModalDialog,
     Module,
     NavItem,
@@ -25,10 +26,12 @@ import {
     Slider,
     Switch,
     Text,
+    TextArea,
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
+    ValuedTextInput,
 } from 'nessie-ui';
 
 import ButtonDriver         from './Button/driver';
@@ -115,6 +118,10 @@ const drivers =
         Driver    : IconWithTooltipDriver,
     },
     {
+        Component : InputField,
+        Driver    : InputComponentDriver,
+    },
+    {
         Component : ModalDialog,
         Driver    : ModalDialogDriver,
     },
@@ -163,6 +170,10 @@ const drivers =
         Driver    : TextDriver,
     },
     {
+        Component : TextArea,
+        Driver    : InputComponentDriver,
+    },
+    {
         Component : TextInput,
         Driver    : InputComponentDriver,
     },
@@ -177,6 +188,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : ValuedTextInput,
+        Driver    : InputComponentDriver,
     }
 ];
 
