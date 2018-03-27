@@ -284,7 +284,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -395,7 +395,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _inputComponentDriver = __webpack_require__(24);
+var _inputComponentDriver = __webpack_require__(23);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
@@ -451,7 +451,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -481,7 +481,7 @@ var TooltipDriver = function (_SimpleComponentDrive) {
     _createClass(TooltipDriver, [{
         key: 'getContent',
         value: function getContent() {
-            return this.control.children();
+            return this.wrapper.find('.' + this.cssMap.content).children();
         }
     }, {
         key: 'getMessage',
@@ -523,57 +523,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _simpleComponentDriver = __webpack_require__(9);
-
-var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ClickableComponentDriver = function (_SimpleComponentDrive) {
-    _inherits(ClickableComponentDriver, _SimpleComponentDrive);
-
-    function ClickableComponentDriver() {
-        _classCallCheck(this, ClickableComponentDriver);
-
-        return _possibleConstructorReturn(this, (ClickableComponentDriver.__proto__ || Object.getPrototypeOf(ClickableComponentDriver)).apply(this, arguments));
-    }
-
-    _createClass(ClickableComponentDriver, [{
-        key: 'click',
-        value: function click() {
-            this.control.simulate('click');
-            return this;
-        }
-    }]);
-
-    return ClickableComponentDriver;
-}(_simpleComponentDriver2.default);
-
-exports.default = ClickableComponentDriver;
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _clickableComponentDriver = __webpack_require__(23);
+var _clickableComponentDriver = __webpack_require__(29);
 
 var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
 
@@ -773,7 +725,7 @@ var _driver5 = __webpack_require__(60);
 
 var _driver6 = _interopRequireDefault(_driver5);
 
-var _clickableComponentDriver = __webpack_require__(23);
+var _clickableComponentDriver = __webpack_require__(29);
 
 var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
 
@@ -805,7 +757,7 @@ var _driver19 = __webpack_require__(79);
 
 var _driver20 = _interopRequireDefault(_driver19);
 
-var _inputComponentDriver = __webpack_require__(24);
+var _inputComponentDriver = __webpack_require__(23);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
@@ -833,7 +785,7 @@ var _driver31 = __webpack_require__(104);
 
 var _driver32 = _interopRequireDefault(_driver31);
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -955,6 +907,54 @@ exports.default = _componentDriver.ComponentDriver.createDriverSuite(drivers);
 
 /***/ }),
 
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _simpleComponentDriver = __webpack_require__(7);
+
+var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ClickableComponentDriver = function (_SimpleComponentDrive) {
+    _inherits(ClickableComponentDriver, _SimpleComponentDrive);
+
+    function ClickableComponentDriver() {
+        _classCallCheck(this, ClickableComponentDriver);
+
+        return _possibleConstructorReturn(this, (ClickableComponentDriver.__proto__ || Object.getPrototypeOf(ClickableComponentDriver)).apply(this, arguments));
+    }
+
+    _createClass(ClickableComponentDriver, [{
+        key: 'click',
+        value: function click() {
+            this.control.simulate('click');
+            return this;
+        }
+    }]);
+
+    return ClickableComponentDriver;
+}(_simpleComponentDriver2.default);
+
+exports.default = ClickableComponentDriver;
+
+/***/ }),
+
 /***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -969,7 +969,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _clickableComponentDriver = __webpack_require__(23);
+var _clickableComponentDriver = __webpack_require__(29);
 
 var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
 
@@ -1133,7 +1133,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _inputComponentDriver = __webpack_require__(24);
+var _inputComponentDriver = __webpack_require__(23);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
@@ -1436,6 +1436,62 @@ exports.default = DateTimeInputDriver;
 
 /***/ }),
 
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SimpleComponentDriver = function () {
+    function SimpleComponentDriver(wrapper, selector) {
+        _classCallCheck(this, SimpleComponentDriver);
+
+        this.wrapper = wrapper;
+        this.control = wrapper.find(selector).first();
+        this.cssMap = this.wrapper.props().cssMap;
+    }
+
+    _createClass(SimpleComponentDriver, [{
+        key: 'focus',
+        value: function focus() {
+            this.control.simulate('focus');
+            return this;
+        }
+    }, {
+        key: 'blur',
+        value: function blur() {
+            this.control.simulate('blur');
+            return this;
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.control.simulate('mouseenter');
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.control.simulate('mouseleave');
+            return this;
+        }
+    }]);
+
+    return SimpleComponentDriver;
+}();
+
+exports.default = SimpleComponentDriver;
+
+/***/ }),
+
 /***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1724,7 +1780,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -1768,7 +1824,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -1835,7 +1891,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _nessieUi = __webpack_require__(14);
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -2016,11 +2072,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _clickableComponentDriver = __webpack_require__(23);
-
-var _clickableComponentDriver2 = _interopRequireDefault(_clickableComponentDriver);
-
 var _nessieUi = __webpack_require__(14);
+
+var _simpleComponentDriver = __webpack_require__(7);
+
+var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2028,11 +2084,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // eslint-disable-next-line max-len
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-
-var NavItemDriver = function (_ClickableComponentDr) {
-    _inherits(NavItemDriver, _ClickableComponentDr);
+var NavItemDriver = function (_SimpleComponentDrive) {
+    _inherits(NavItemDriver, _SimpleComponentDrive);
 
     function NavItemDriver(wrapper) {
         _classCallCheck(this, NavItemDriver);
@@ -2041,6 +2096,11 @@ var NavItemDriver = function (_ClickableComponentDr) {
     }
 
     _createClass(NavItemDriver, [{
+        key: 'click',
+        value: function click() {
+            return this.wrapper.find('.' + this.cssMap.link).first().simulate('click');
+        }
+    }, {
         key: 'getLabel',
         value: function getLabel() {
             return this.wrapper.find('.' + this.cssMap.link + ' span').first().children();
@@ -2055,16 +2115,10 @@ var NavItemDriver = function (_ClickableComponentDr) {
 
             return dropdown.children(_nessieUi.NavItem);
         }
-    }, {
-        key: 'click',
-        value: function click() {
-            this.control.find('.' + this.cssMap.link).simulate('click');
-            return this;
-        }
     }]);
 
     return NavItemDriver;
-}(_clickableComponentDriver2.default);
+}(_simpleComponentDriver2.default);
 
 exports.default = NavItemDriver;
 
@@ -2082,7 +2136,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _simpleComponentDriver = __webpack_require__(9);
+var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
@@ -2131,62 +2185,6 @@ exports.default = NotificationBarDriver;
 
 /***/ }),
 
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var SimpleComponentDriver = function () {
-    function SimpleComponentDriver(wrapper, selector) {
-        _classCallCheck(this, SimpleComponentDriver);
-
-        this.wrapper = wrapper;
-        this.control = wrapper.find(selector).first();
-        this.cssMap = this.wrapper.props().cssMap;
-    }
-
-    _createClass(SimpleComponentDriver, [{
-        key: 'focus',
-        value: function focus() {
-            this.control.simulate('focus');
-            return this;
-        }
-    }, {
-        key: 'blur',
-        value: function blur() {
-            this.control.simulate('blur');
-            return this;
-        }
-    }, {
-        key: 'mouseOver',
-        value: function mouseOver() {
-            this.control.simulate('mouseenter');
-            return this;
-        }
-    }, {
-        key: 'mouseOut',
-        value: function mouseOut() {
-            this.control.simulate('mouseleave');
-            return this;
-        }
-    }]);
-
-    return SimpleComponentDriver;
-}();
-
-exports.default = SimpleComponentDriver;
-
-/***/ }),
-
 /***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2201,7 +2199,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _nessieUi = __webpack_require__(14);
 
-var _inputComponentDriver = __webpack_require__(24);
+var _inputComponentDriver = __webpack_require__(23);
 
 var _inputComponentDriver2 = _interopRequireDefault(_inputComponentDriver);
 
