@@ -13,7 +13,7 @@ export default class TooltipDriver extends SimpleComponentDriver
 
     getContent()
     {
-        return this.control.children();
+        return this.wrapper.find( `.${this.cssMap.content}` ).children();
     }
 
     getMessage()
