@@ -9,13 +9,21 @@ import { Text }         from '../index';
 
 import DragNDrop        from './index';
 
-xdescribe( 'DragNDrop', () =>
+describe( 'DragNDrop', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
         wrapper = mount( <DragNDrop /> );
+    } );
+
+    describe( 'render()', () =>
+    {
+        it( 'should contain exactly one DragNDrop', () =>
+        {
+            expect( wrapper ).to.have.length( 1 );
+        } );
     } );
 
     describe( 'wrapperDriver', () =>
