@@ -31,6 +31,12 @@
 .loading,
 .uploaded
 {
+    .uploaderButton
+    {
+        border-top-right-radius:    0;
+        border-bottom-right-radius: 0;
+    }
+
     .iconWithTooltip
     {
         display:    block;
@@ -113,12 +119,14 @@
 
 .uploadedButton
 {
-    flex:                   0 0 auto;
-    width:                  32px;
-    height:                 32px;
-    padding:                0;
-    border:                 none;
-    background-color:       var( --PC-BLUE );
+    flex:                       0 0 auto;
+    width:                      40px;
+    height:                     40px;
+    padding:                    0;
+    border:                     none;
+    background-color:           var( --PC-BLUE );
+    border-top-right-radius:    2px;
+    border-bottom-right-radius: 2px;
 
     &:focus
     {
@@ -141,14 +149,16 @@
 
 .loadingOverlay
 {
-    display:            inline-flex;
-    align-items:        center;
-    justify-content:    center;
-    position:           relative;
-    width:              32px;
-    height:             32px;
-    background-color:   var( --PC-BLUE );
-    vertical-align:     top;
+    display:                    inline-flex;
+    align-items:                center;
+    justify-content:            center;
+    position:                   relative;
+    min-width:                  40px;
+    height:                     40px;
+    background-color:           var( --PC-BLUE );
+    vertical-align:             top;
+    border-top-right-radius:    2px;
+    border-bottom-right-radius: 2px;
 
     &:focus
     {
