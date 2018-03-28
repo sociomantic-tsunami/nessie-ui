@@ -17,6 +17,7 @@ import {
     Module,
     NavItem,
     NotificationBar,
+    Paginator,
     PasswordInput,
     Radio,
     RadioGroup,
@@ -49,6 +50,7 @@ import ModalDialogDriver     from './ModalDialog/driver';
 import ModuleDriver          from './Module/driver';
 import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
+import PaginatorDriver       from './Paginator/driver';
 import PasswordInputDriver   from './PasswordInput/driver';
 import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
@@ -129,6 +131,10 @@ const drivers =
     {
         Component : NotificationBar,
         Driver    : NotificationBarDriver,
+    },
+    {
+        Component : Paginator,
+        Driver    : PaginatorDriver,
     },
     {
         Component : PasswordInput,
