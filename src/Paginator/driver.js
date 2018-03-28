@@ -2,9 +2,7 @@ export default class PaginatorDriver
 {
     constructor( wrapper )
     {
-        this.wrapper     = wrapper;
-        this.cssMap      = wrapper.props().cssMap;
-        this.shownPages  = wrapper.props().shownPages;
+        this.wrapper = wrapper;
     }
 
     getShownPages()
@@ -19,13 +17,6 @@ export default class PaginatorDriver
             shownPages : value
         } );
     }
-
-    // clickPage()
-    // {
-    //     this.simulate( 'click' );
-    //
-    //     return this.wrapper.
-    // }
 
     clickPrev()
     {

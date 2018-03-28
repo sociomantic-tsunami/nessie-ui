@@ -37,24 +37,6 @@ describe.only( 'PaginatorDriver', () =>
     } );
 
 
-    // describe( 'clickPage()', () =>
-    // {
-    //     let onClickPage;
-    //
-    //     it( 'should fire onClickPrev exactly once', () =>
-    //     {
-    //         onClickPage = sinon.spy();
-    //         wrapper.setProps( {
-    //             onClickPage
-    //         } );
-    //
-    //         driver.clickPrev();
-    //
-    //         expect( onClickPage.calledOnce ).to.be.true;
-    //     } );
-    // } );
-    //
-    //
     describe( 'clickPrev()', () =>
     {
         let onClickPrev;
