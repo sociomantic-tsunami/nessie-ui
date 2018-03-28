@@ -26,11 +26,6 @@
     }
 }
 
-.icon
-{
-    background:     var( --PC-WHITE );
-}
-
 .iconVisible
 {
     & > .iconWithTooltip
