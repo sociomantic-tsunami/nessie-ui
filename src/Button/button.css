@@ -258,7 +258,7 @@
     &.role__secondary
     {
         color:      var( --PC-GREY--L55 );
-        background: var( --PC-WHITE );
+        background: transparent;
 
         .icon
         {
