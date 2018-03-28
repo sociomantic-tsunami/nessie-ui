@@ -5,8 +5,6 @@ export default class PaginatorDriver
         this.wrapper     = wrapper;
         this.cssMap      = wrapper.props().cssMap;
         this.shownPages  = wrapper.props().shownPages;
-        this.prev        = wrapper.childAt( 0 );
-        this.next        = wrapper.find( 'button' ).at( 3 );
     }
 
     getShownPages()
@@ -22,15 +20,22 @@ export default class PaginatorDriver
         } );
     }
 
+    // clickPage()
+    // {
+    //     this.simulate( 'click' );
+    //
+    //     return this.wrapper.
+    // }
+
     clickPrev()
     {
-        this.prev.simulate( 'click' );
+        this.wrapper.find( 'IconButton' ).first().simulate( 'click' );
         return this;
     }
 
     clickNext()
     {
-        this.next.simulate( 'click' );
+        this.wrapper.find( 'IconButton' ).last().simulate( 'click' );
         return this;
     }
 }

@@ -185,8 +185,7 @@ Paginator.defaultProps =
     showPrevEllipsis : true,
     showNextEllipsis : true,
     ellipsisText     : '…',
-    cssMap           : require( './paginator.css' ),
-    shownPages       : []
+    cssMap           : require( './paginator.css' )
 };
 
 export default Paginator;

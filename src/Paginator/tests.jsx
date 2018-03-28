@@ -55,39 +55,40 @@ describe.only( 'PaginatorDriver', () =>
     // } );
     //
     //
-    // describe( 'clickPrev()', () =>
-    // {
-    //     let onClickPrev;
-    //
-    //     it( 'should fire onClickPrev exactly once', () =>
-    //     {
-    //         onClickPrev = sinon.spy();
-    //         wrapper.setProps( {
-    //             onClickPrev,
-    //             showPrev : true,
-    //         } );
-    //
-    //         driver.clickPrev();
-    //
-    //         expect( onClickPrev.calledOnce ).to.be.true;
-    //     } );
-    // } );
-    //
-    //
-    // describe( 'clickNext()', () =>
-    // {
-    //     let onClickNext;
-    //
-    //     it( 'should fire onClickNext exactly once', () =>
-    //     {
-    //         onClickNext = sinon.spy();
-    //         wrapper.setProps( {
-    //             onClickNext
-    //         } );
-    //
-    //         driver.clickNext();
-    //
-    //         expect( onClickNext.calledOnce ).to.be.true;
-    //     } );
-    // } );
+    describe( 'clickPrev()', () =>
+    {
+        let onClickPrev;
+
+        it( 'should fire onClickPrev exactly once', () =>
+        {
+            onClickPrev = sinon.spy();
+            wrapper.setProps( {
+                onClickPrev,
+                showPrev : true,
+            } );
+
+            driver.clickPrev();
+
+            expect( onClickPrev.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'clickNext()', () =>
+    {
+        let onClickNext;
+
+        it( 'should fire onClickNext exactly once', () =>
+        {
+            onClickNext = sinon.spy();
+            wrapper.setProps( {
+                onClickNext,
+                showNext : true,
+            } );
+
+            driver.clickNext();
+
+            expect( onClickNext.calledOnce ).to.be.true;
+        } );
+    } );
 } );
