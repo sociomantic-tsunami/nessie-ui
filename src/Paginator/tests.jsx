@@ -3,7 +3,7 @@ import { mount }                from 'enzyme';
 
 import { Paginator }            from '../index';
 
-describe.only( 'PaginatorDriver', () =>
+describe( 'PaginatorDriver', () =>
 {
     let wrapper;
     let driver;
