@@ -9,7 +9,7 @@ import { mount }                  from 'enzyme';
 
 import Uploader                   from './index';
 
-describe( 'Uploader', () =>
+describe.only( 'Uploader', () =>
 {
     let Wrapper;
 
