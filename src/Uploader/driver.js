@@ -17,9 +17,9 @@ export default class UploaderDriver
         return this;
     }
 
-    change()
+    change( value )
     {
-        this.wrapper.simulate( 'change' );
+        this.wrapper.simulate( 'change', { target: { value } } );
         return this;
     }
 }
