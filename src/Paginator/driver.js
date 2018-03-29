@@ -29,4 +29,11 @@ export default class PaginatorDriver
         this.wrapper.find( 'IconButton' ).last().simulate( 'click' );
         return this;
     }
+
+    clickPage( i )
+    {
+        this.wrapper.find( `.${this.wrapper.props().cssMap.pageButton}` )
+            .at( i ).simulate( 'click' );
+        return this;
+    }
 }

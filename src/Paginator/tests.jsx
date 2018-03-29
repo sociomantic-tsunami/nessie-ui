@@ -73,4 +73,23 @@ describe( 'PaginatorDriver', () =>
             expect( onClickNext.calledOnce ).to.be.true;
         } );
     } );
+
+
+    describe( 'clickPage()', () =>
+    {
+        let onClickPage;
+
+        it( 'should fire onClickPage exactly once', () =>
+        {
+            onClickPage = sinon.spy();
+            wrapper.setProps( {
+                onClickPage,
+                shownPages : [ 10, 11, 12 ],
+            } );
+
+            driver.clickPage( 1 );
+
+            expect( onClickPage.calledOnce ).to.be.true;
+        } );
+    } );
 } );
