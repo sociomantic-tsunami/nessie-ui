@@ -19,6 +19,30 @@ export default class PaginatorDriver
         } );
     }
 
+    getStartPage()
+    {
+        return this.wrapper.props().startPages;
+    }
+
+    setStartPage( value )
+    {
+        return this.wrapper.setProps( {
+            startPages : value
+        } );
+    }
+
+    getEndPage()
+    {
+        return this.wrapper.props().endPages;
+    }
+
+    setEndPages( value )
+    {
+        return this.wrapper.setProps( {
+            endPages : value
+        } );
+    }
+
     clickPrev()
     {
         this.wrapper.find( `.${this.cssMap.arrows}` )

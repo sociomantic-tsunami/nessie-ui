@@ -37,6 +37,52 @@ describe( 'PaginatorDriver', () =>
     } );
 
 
+    describe( 'getStartPage()', () =>
+    {
+        it( 'should get value of start page', () =>
+        {
+            wrapper.setProps( {
+                startPages : 1
+            } );
+
+            expect( driver.getStartPage() ).to.eql( 1 );
+        } );
+    } );
+
+    describe( 'setStartPage()', () =>
+    {
+        it( 'should set start page value', () =>
+        {
+            driver.setStartPage( 2 );
+
+            expect( driver.getStartPage() ).to.eql( 2 );
+        } );
+    } );
+
+
+    describe( 'getEndPage()', () =>
+    {
+        it( 'should get value of end page', () =>
+        {
+            wrapper.setProps( {
+                endPages : 42
+            } );
+
+            expect( driver.getEndPage() ).to.eql( 42 );
+        } );
+    } );
+
+    describe( 'setEndPage()', () =>
+    {
+        it( 'should set end page value', () =>
+        {
+            driver.setEndPages( 86 );
+
+            expect( driver.getEndPage() ).to.eql( 86 );
+        } );
+    } );
+
+
     describe( 'clickPrev()', () =>
     {
         let onClickPrev;
