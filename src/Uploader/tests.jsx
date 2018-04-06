@@ -9,7 +9,7 @@ import { mount }                  from 'enzyme';
 
 import Uploader                   from './index';
 
-describe.only( 'Uploader', () =>
+describe( 'Uploader', () =>
 {
     let Wrapper;
 
@@ -96,5 +96,39 @@ state', () =>
                 expect( Wrapper.find( 'Button' ).prop( 'isReadOnly' )
                 ).to.be.true;
             } );
+    } );
+} );
+
+describe( 'UploaderDriver', () =>
+{
+    let Wrapper;
+
+    beforeEach( () =>
+    {
+        Wrapper = mount( <Uploader /> );
+    } );
+
+    it( 'should trigger onClick event', () =>
+    {
+        const onClick = sinon.spy();
+        Wrapper.setProps( {
+            onClick,
+            uploadState : 'default'
+        } );
+
+        Wrapper.driver().click();
+        expect( onClick.calledOnce ).to.be.true;
+    } );
+
+    it( 'should trigger onClick event when clicked on secondary', () =>
+    {
+        const onClickSecondary = sinon.spy();
+        Wrapper.setProps( {
+            onClickSecondary,
+            uploadState : 'uploaded'
+        } );
+
+        Wrapper.driver().clickSecondary();
+        expect( onClickSecondary.calledOnce ).to.be.true;
     } );
 } );
