@@ -16,10 +16,4 @@ export default class UploaderDriver
         this.wrapper.find( 'IconButton' ).simulate( 'click' );
         return this;
     }
-
-    change( value )
-    {
-        this.wrapper.simulate( 'change', { target: { value } } );
-        return this;
-    }
 }

@@ -108,27 +108,39 @@ describe( 'UploaderDriver', () =>
         Wrapper = mount( <Uploader /> );
     } );
 
-    it( 'should trigger onClick event', () =>
+    describe( 'onClick', () =>
     {
-        const onClick = sinon.spy();
-        Wrapper.setProps( {
-            onClick,
-            uploadState : 'default'
+        it( 'should trigger onClick event', () =>
+        {
+            const onClick = sinon.spy();
+            Wrapper.setProps( {
+                onClick,
+                uploadState : 'default'
+            } );
+
+            Wrapper.driver().click();
+            expect( onClick.calledOnce ).to.be.true;
         } );
 
-        Wrapper.driver().click();
-        expect( onClick.calledOnce ).to.be.true;
+        it( 'should trigger onClick event when clicked on secondary', () =>
+        {
+            const onClickSecondary = sinon.spy();
+            Wrapper.setProps( {
+                onClickSecondary,
+                uploadState : 'uploaded'
+            } );
+
+            Wrapper.driver().clickSecondary();
+            expect( onClickSecondary.calledOnce ).to.be.true;
+        } );
     } );
 
-    it( 'should trigger onClick event when clicked on secondary', () =>
+    describe( 'onChange', () =>
     {
-        const onClickSecondary = sinon.spy();
-        Wrapper.setProps( {
-            onClickSecondary,
-            uploadState : 'uploaded'
+        it( 'should be undefined by default', () =>
+        {
+            Wrapper = mount( <Uploader /> );
+            expect( Wrapper.prop( 'onChange' ) ).to.be.undefined;
         } );
-
-        Wrapper.driver().clickSecondary();
-        expect( onClickSecondary.calledOnce ).to.be.true;
     } );
 } );
