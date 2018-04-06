@@ -3,29 +3,29 @@
 /* eslint no-console: 0*/
 
 
-import React                      from 'react';
-import { shallow, render, mount } from 'enzyme';
+import React         from 'react';
+import { mount }     from 'enzyme';
 
-import ScrollBox                  from './index';
+import ScrollBox     from './index';
 
 describe( 'ScrollBox', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
     {
-        Wrapper = null;
+        wrapper = null;
     } );
 
-    it( 'should conatain a single ScrollBox', () =>
+    it( 'should contain a single ScrollBox', () =>
     {
         const props = {
             title : 'Boom'
         };
-        Wrapper = mount( <ScrollBox { ...props } /> );
+        wrapper = mount( <ScrollBox { ...props } /> );
 
-        expect( Wrapper.find( ScrollBox ) ).to.have.length( 1 );
-        expect( Wrapper.find( ScrollBox ) ).to.not.have.length( 2 );
+        expect( wrapper.find( ScrollBox ) ).to.have.length( 1 );
+        expect( wrapper.find( ScrollBox ) ).to.not.have.length( 2 );
     } );
 
     it( 'should have its component name and hash as default className', () =>
@@ -34,7 +34,32 @@ describe( 'ScrollBox', () =>
             title : 'Boom'
         };
 
-        Wrapper = mount( <ScrollBox { ...props } /> );
-        expect( Wrapper.find( '.scrollBox__default' ) ).to.have.length( 1 );
+        wrapper = mount( <ScrollBox { ...props } /> );
+        expect( wrapper.find( '.scrollBox__default' ) ).to.have.length( 1 );
+    } );
+} );
+
+
+describe.only( 'ScrollBoxDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <ScrollBox scrollUpIsVisible = "true" /> );
+    } );
+
+    it( 'should trigger onClick when clicked', () =>
+    {
+        const onClickScrollUp = sinon.spy();
+
+        wrapper.props( {
+            onClickScrollUp
+        } );
+
+        console.log( wrapper.find( 'IconButton' ).first().debug() );
+        wrapper.driver().click();
+
+        expect( onClickScrollUp.calledOnce ).to.be.true;
     } );
 } );
