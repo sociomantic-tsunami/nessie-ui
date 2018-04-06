@@ -46,7 +46,7 @@ describe.only( 'ScrollBoxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox scrollUpIsVisible = "true" /> );
+        wrapper = mount( <ScrollBox scrollUpIsVisible /> );
     } );
 
     it( 'should trigger onClick when clicked', () =>
