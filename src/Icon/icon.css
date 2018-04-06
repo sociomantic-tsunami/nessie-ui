@@ -48,7 +48,7 @@
     &.fakeHovered,
     button:focus > &
     {
-        fill:                   var( --PC-WHITE );
+        fill:                   var( --PC-BLUE );
     }
 }
 
