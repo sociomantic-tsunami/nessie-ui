@@ -30,9 +30,9 @@ describe( 'PaginatorDriver', () =>
     {
         it( 'should set main input value', () =>
         {
-            driver.setShownPages( [ 10, 11, 12 ] );
+            driver.setShownPages( [ 21, 22, 23 ] );
 
-            expect( driver.getShownPages() ).to.eql( [ 10, 11, 12 ] );
+            expect( driver.getShownPages() ).to.eql( [ 21, 22, 23 ] );
         } );
     } );
 
