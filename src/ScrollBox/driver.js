@@ -28,7 +28,6 @@ export default class ScrollBoxDriver
 
     clickScrollLeft()
     {
-        console.log( this.wrapper.debug() );
         this.wrapper.find( '.scrollBox__icon__left' ).first()
             .simulate( 'click' );
         return this;
