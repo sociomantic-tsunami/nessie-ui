@@ -8,7 +8,7 @@ import { mount }    from 'enzyme';
 
 import ScrollBox    from './index';
 
-describe.only( 'ScrollBox', () =>
+describe( 'ScrollBox', () =>
 {
     let wrapper;
 
