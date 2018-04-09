@@ -1,0 +1,83 @@
+@import "../proto/base.css";
+
+.default
+{
+  width:              auto;
+  height:             40px;
+  padding:            0 var( --spacing-2 );
+  border:             none;
+  display:            flex;
+  align-items:        center;
+}
+
+.role__primary
+{
+    background-color:   var(--PC-GREY--L90);
+    color:              var(--PC-GREY--D15);
+
+    .icon
+    {
+        fill: var(--PC-GREY--D15);
+    }
+
+    &.isPressed
+    {
+        background-color: var(--PC-ORANGE);
+        color: var(--PC-WHITE);
+
+        .icon
+        {
+            fill: var(--PC-WHITE);
+        }
+    }
+
+    &.isDisabled
+    {
+        .icon:hover
+        {
+            fill: var(--PC-GREY--D15);
+        }
+    }
+
+}
+
+.role__secondary
+{
+    color:   #41556f;
+    opacity: .5;
+
+    &.isPressed
+    {
+        opacity: 1;
+    }
+
+    .icon
+    {
+        fill:   #41556f;
+    }
+}
+
+.isDisabled
+{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+
+
+.iconPosition__left
+{
+    .icon
+    {
+        margin-right: 4px;
+    }
+}
+
+.iconPosition__right
+{
+    .icon
+    {
+        order: 2;
+        margin-left: 4px;
+    }
+}

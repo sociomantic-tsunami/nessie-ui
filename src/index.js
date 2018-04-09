@@ -78,6 +78,7 @@ export TextArea                 from './TextArea';
 export TextInput                from './TextInput';
 export TextInputWithDropdown    from './TextInputWithDropdown';
 export { WrappedTextInputWithIcon as TextInputWithIcon };
+export ToggleButton             from './ToggleButton';
 export Tooltip                  from './Tooltip';
 export Uploader                 from './Uploader';
 export ValuedTextInput          from './ValuedTextInput';
