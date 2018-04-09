@@ -44,66 +44,117 @@ describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
 
-    it( 'should trigger onClickScrollUp when clicked on scrollUp', () =>
+    describe( 'onClickScroll', () =>
     {
-        const onClickScrollUp = sinon.spy();
-        const props = {
-            scrollUpIsVisible : true,
-            onClickScrollUp
-        };
+        it( 'should trigger onClickScrollUp when clicked on scrollUp',
+            () =>
+            {
+                const onClickScrollUp = sinon.spy();
+                const props = {
+                    scrollUpIsVisible : true,
+                    onClickScrollUp
+                };
 
-        wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-        wrapper.driver().clickScrollUp();
+                wrapper.driver().clickScrollUp();
 
-        expect( onClickScrollUp.calledOnce ).to.be.true;
+                expect( onClickScrollUp.calledOnce ).to.be.true;
+            } );
+
+
+        it( 'should trigger onClickScrollRight when clicked on scrollRight',
+            () =>
+            {
+                const onClickScrollRight = sinon.spy();
+                const props = {
+                    scrollRightIsVisible : true,
+                    onClickScrollRight
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                wrapper.driver().clickScrollRight();
+
+                expect( onClickScrollRight.calledOnce ).to.be.true;
+            } );
+
+
+        it( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
+        {
+            const onClickScrollDown = sinon.spy();
+            const props = {
+                scrollDownIsVisible : true,
+                onClickScrollDown
+            };
+
+            wrapper = mount( <ScrollBox { ...props } /> );
+
+            wrapper.driver().clickScrollDown();
+
+            expect( onClickScrollDown.calledOnce ).to.be.true;
+        } );
+
+
+        it( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
+        {
+            const onClickScrollLeft = sinon.spy();
+            const props = {
+                scrollLeftIsVisible : true,
+                onClickScrollLeft
+            };
+
+            wrapper = mount( <ScrollBox { ...props } /> );
+
+            wrapper.driver().clickScrollLeft();
+
+            expect( onClickScrollLeft.calledOnce ).to.be.true;
+        } );
     } );
 
 
-    it( 'should trigger onClickScrollRight when clicked on scrollRight', () =>
+    describe( 'contentWidth', () =>
     {
-        const onClickScrollRight = sinon.spy();
-        const props = {
-            scrollRightIsVisible : true,
-            onClickScrollRight
-        };
+        it( 'should get contentWidth', () =>
+        {
+            const props = {
+                contentWidth : '125%'
+            };
 
-        wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper = mount( <ScrollBox { ...props } /> );
 
-        wrapper.driver().clickScrollRight();
+            expect( wrapper.driver().getContentWidth() ).to.equal( '125%' );
+        } );
 
-        expect( onClickScrollRight.calledOnce ).to.be.true;
+        it( 'should set contentWidth', () =>
+        {
+            wrapper = mount( <ScrollBox /> );
+            wrapper.driver().setContentWidth( '150%' );
+
+            expect( wrapper.driver().getContentWidth() ).to.equal( '150%' );
+        } );
     } );
 
 
-    it( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
+    describe( 'height', () =>
     {
-        const onClickScrollDown = sinon.spy();
-        const props = {
-            scrollDownIsVisible : true,
-            onClickScrollDown
-        };
+        it( 'should get height', () =>
+        {
+            const props = {
+                height : '75px'
+            };
 
-        wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper = mount( <ScrollBox { ...props } /> );
 
-        wrapper.driver().clickScrollDown();
+            expect( wrapper.driver().getHeight() ).to.equal( '75px' );
+        } );
 
-        expect( onClickScrollDown.calledOnce ).to.be.true;
-    } );
+        it( 'should set height', () =>
+        {
+            wrapper = mount( <ScrollBox /> );
+            wrapper.driver().setHeight( '50vh' );
 
-
-    it( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
-    {
-        const onClickScrollLeft = sinon.spy();
-        const props = {
-            scrollLeftIsVisible : true,
-            onClickScrollLeft
-        };
-
-        wrapper = mount( <ScrollBox { ...props } /> );
-
-        wrapper.driver().clickScrollLeft();
-
-        expect( onClickScrollLeft.calledOnce ).to.be.true;
+            expect( wrapper.driver().getHeight() ).to.equal( '50vh' );
+        } );
     } );
 } );

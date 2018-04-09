@@ -28,8 +28,37 @@ export default class ScrollBoxDriver
 
     clickScrollLeft()
     {
+        console.log( this.wrapper.debug() );
         this.wrapper.find( '.scrollBox__icon__left' ).first()
             .simulate( 'click' );
         return this;
+    }
+
+    getContentWidth()
+    {
+        return this.wrapper.props().contentWidth;
+    }
+
+    setContentWidth( width )
+    {
+        const newValue = ( width == null ) ? '' : String( width );
+
+        return this.wrapper.setProps( {
+            contentWidth : newValue
+        } );
+    }
+
+    getHeight()
+    {
+        return this.wrapper.props().height;
+    }
+
+    setHeight( height )
+    {
+        const newValue = ( height == null ) ? '' : String( height );
+
+        return this.wrapper.setProps( {
+            height : newValue
+        } );
     }
 }
