@@ -2,12 +2,12 @@
 /* global expect */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { Tag }     from '../index';
+import { Tag }            from '../index';
 
-import TagInput    from './index';
+import TagInput           from './index';
 
 
 describe( 'TagInput', () =>
@@ -78,6 +78,80 @@ describe( 'TagInput', () =>
         {
             expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) )
                 .to.be.true;
+        } );
+    } );
+} );
+
+
+describe( 'TagInputDriver', () =>
+{
+    let wrapper;
+    let instance;
+    let cssMap;
+
+    beforeEach( () =>
+    {
+        wrapper  = mount( <TagInput /> );
+        instance = wrapper.instance();
+        cssMap   = instance.props.cssMap;
+    } );
+
+    describe( 'height', () =>
+    {
+        it( 'should get "height" prop', () =>
+        {
+            wrapper.setProps( {
+                height : '25vh'
+            } );
+
+            expect( wrapper.driver().getHeight() ).to.equal( '25vh' );
+        } );
+
+        it( 'should set "height" when passed as prop ', () =>
+        {
+            wrapper.driver().setHeight( '86px' );
+
+            expect( wrapper.driver().getHeight() ).to.equal( '86px' );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        it( 'should call onMouseOut once', () =>
+        {
+            const onMouseOut = sinon.spy();
+            wrapper.setProps( {
+                onMouseOut,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOut' );
+
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        it( 'should call onMouseOver once', () =>
+        {
+            const onMouseOver = sinon.spy();
+            wrapper.setProps( {
+                onMouseOver,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOver' );
+
+            expect( onMouseOver.calledOnce ).to.be.true;
         } );
     } );
 } );
