@@ -5,9 +5,31 @@ export default class ScrollBoxDriver
         this.wrapper = wrapper;
     }
 
-    click()
+    clickScrollUp()
     {
-        this.wrapper.find( 'IconButton' ).first().simulate( 'click' );
+        this.wrapper.find( '.scrollBox__icon__up' ).first()
+            .simulate( 'click' );
+        return this;
+    }
+
+    clickScrollRight()
+    {
+        this.wrapper.find( '.scrollBox__icon__right' ).first()
+            .simulate( 'click' );
+        return this;
+    }
+
+    clickScrollDown()
+    {
+        this.wrapper.find( '.scrollBox__icon__down' ).first()
+            .simulate( 'click' );
+        return this;
+    }
+
+    clickScrollLeft()
+    {
+        this.wrapper.find( '.scrollBox__icon__left' ).first()
+            .simulate( 'click' );
         return this;
     }
 }

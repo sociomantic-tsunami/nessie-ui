@@ -40,26 +40,70 @@ describe( 'ScrollBox', () =>
 } );
 
 
-describe.only( 'ScrollBoxDriver', () =>
+describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
-    {
-        wrapper = mount( <ScrollBox scrollUpIsVisible /> );
-    } );
-
-    it( 'should trigger onClick when clicked', () =>
+    it( 'should trigger onClickScrollUp when clicked on scrollUp', () =>
     {
         const onClickScrollUp = sinon.spy();
-
-        wrapper.props( {
+        const props = {
+            scrollUpIsVisible : true,
             onClickScrollUp
-        } );
+        };
 
-        console.log( wrapper.find( 'IconButton' ).first().debug() );
-        wrapper.driver().click();
+        wrapper = mount( <ScrollBox { ...props } /> );
+
+        wrapper.driver().clickScrollUp();
 
         expect( onClickScrollUp.calledOnce ).to.be.true;
+    } );
+
+
+    it( 'should trigger onClickScrollRight when clicked on scrollRight', () =>
+    {
+        const onClickScrollRight = sinon.spy();
+        const props = {
+            scrollRightIsVisible : true,
+            onClickScrollRight
+        };
+
+        wrapper = mount( <ScrollBox { ...props } /> );
+
+        wrapper.driver().clickScrollRight();
+
+        expect( onClickScrollRight.calledOnce ).to.be.true;
+    } );
+
+
+    it( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
+    {
+        const onClickScrollDown = sinon.spy();
+        const props = {
+            scrollDownIsVisible : true,
+            onClickScrollDown
+        };
+
+        wrapper = mount( <ScrollBox { ...props } /> );
+
+        wrapper.driver().clickScrollDown();
+
+        expect( onClickScrollDown.calledOnce ).to.be.true;
+    } );
+
+
+    it( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
+    {
+        const onClickScrollLeft = sinon.spy();
+        const props = {
+            scrollLeftIsVisible : true,
+            onClickScrollLeft
+        };
+
+        wrapper = mount( <ScrollBox { ...props } /> );
+
+        wrapper.driver().clickScrollLeft();
+
+        expect( onClickScrollLeft.calledOnce ).to.be.true;
     } );
 } );
