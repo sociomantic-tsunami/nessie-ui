@@ -6,8 +6,6 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import H1           from '../index';
-
 import ScrollBox    from './index';
 
 describe.only( 'ScrollBox', () =>
