@@ -3,12 +3,14 @@
 /* eslint no-console: 0*/
 
 
-import React         from 'react';
-import { mount }     from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import ScrollBox     from './index';
+import H1           from '../index';
 
-describe( 'ScrollBox', () =>
+import ScrollBox    from './index';
+
+describe.only( 'ScrollBox', () =>
 {
     let wrapper;
 
@@ -36,6 +38,16 @@ describe( 'ScrollBox', () =>
 
         wrapper = mount( <ScrollBox { ...props } /> );
         expect( wrapper.find( '.scrollBox__default' ) ).to.have.length( 1 );
+    } );
+
+    it( 'should have content when children props is defined', () =>
+    {
+        const props = {
+            children : 'testing'
+        };
+
+        wrapper = mount( <ScrollBox { ...props } /> );
+        expect( wrapper.find( '.scrollBox__content' ) ).to.have.length( 1 );
     } );
 } );
 
