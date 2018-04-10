@@ -110,25 +110,24 @@ describe( 'TagInputDriver', () =>
         cssMap   = instance.props.cssMap;
     } );
 
-    describe( 'height', () =>
+    describe( 'clickClose()', () =>
     {
-        it( 'should get "height" prop', () =>
+        it( 'should call onClickClose once', () =>
         {
+            const onClickClose = sinon.spy();
             wrapper.setProps( {
-                height : '25vh'
+                onClickClose,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
             } );
 
-            expect( wrapper.driver().getHeight() ).to.equal( '25vh' );
-        } );
+            wrapper.driver().clickClose();
 
-        it( 'should set "height" when passed as prop ', () =>
-        {
-            wrapper.driver().setHeight( '86px' );
-
-            expect( wrapper.driver().getHeight() ).to.equal( '86px' );
+            expect( onClickClose.calledOnce ).to.be.true;
         } );
     } );
-
 
     describe( 'mouseOut()', () =>
     {
@@ -149,7 +148,6 @@ describe( 'TagInputDriver', () =>
         } );
     } );
 
-
     describe( 'mouseOver()', () =>
     {
         it( 'should call onMouseOver once', () =>
@@ -166,26 +164,6 @@ describe( 'TagInputDriver', () =>
             wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOver' );
 
             expect( onMouseOver.calledOnce ).to.be.true;
-        } );
-    } );
-
-
-    describe( 'clickClose()', () =>
-    {
-        it( 'should call onClickClose once', () =>
-        {
-            const onClickClose = sinon.spy();
-            wrapper.setProps( {
-                onClickClose,
-                children : [
-                    <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
-            } );
-
-            wrapper.driver().clickClose();
-
-            expect( onClickClose.calledOnce ).to.be.true;
         } );
     } );
 } );

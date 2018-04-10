@@ -17,20 +17,6 @@ export default class TagInputDriver
         return this;
     }
 
-    getHeight()
-    {
-        return this.wrapper.props().height;
-    }
-
-    setHeight( height )
-    {
-        const newValue = ( height == null ) ? '' : String( height );
-
-        return this.wrapper.setProps( {
-            height : newValue
-        } );
-    }
-
     mouseOut()
     {
         this.wrapper.simulate( 'mouseleave' );
