@@ -69,9 +69,6 @@ ToggleButton.propTypes =
      */
     children     : PropTypes.string,
     /**
-     * HTML id attribute (overwrite default)
-     */
-    /**
      *  Icon position relative to Button text
      */
     iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
@@ -138,6 +135,9 @@ ToggleButton.propTypes =
      *  Button click callback function: ( e ) => { ... }
      */
     onClick     : PropTypes.func,
+    /**
+     *  Button focus callback function: ( e ) => { ... }
+     */
     onFocus     : PropTypes.func,
     /**
      *  Mouse out callback function: ( e ) => { ... }
