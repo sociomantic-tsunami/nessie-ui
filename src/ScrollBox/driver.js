@@ -33,31 +33,19 @@ export default class ScrollBoxDriver
         return this;
     }
 
-    getContentWidth()
+    scrollVertical( scrollOffset )
     {
-        return this.wrapper.props().contentWidth;
-    }
-
-    setContentWidth( width )
-    {
-        const newValue = ( width == null ) ? '' : String( width );
-
-        return this.wrapper.setProps( {
-            contentWidth : newValue
+        this.wrapper.find( '.scrollBox__scrollBox' ).simulate( 'scroll', {
+            target : { scrollTop: scrollOffset }
         } );
+        return this;
     }
 
-    getHeight()
+    scrollHorizontal( scrollOffset )
     {
-        return this.wrapper.props().height;
-    }
-
-    setHeight( height )
-    {
-        const newValue = ( height == null ) ? '' : String( height );
-
-        return this.wrapper.setProps( {
-            height : newValue
+        this.wrapper.find( '.scrollBox__scrollBox' ).simulate( 'scroll', {
+            target : { scrollLeft: scrollOffset }
         } );
+        return this;
     }
 }

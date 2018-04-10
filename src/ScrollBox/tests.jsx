@@ -68,6 +68,7 @@ describe( 'ScrollBoxDriver', () =>
                 wrapper = mount( <ScrollBox { ...props } /> );
 
                 wrapper.driver().clickScrollUp();
+                console.log( wrapper.debug() );
 
                 expect( onClickScrollUp.calledOnce ).to.be.true;
             } );
@@ -123,48 +124,36 @@ describe( 'ScrollBoxDriver', () =>
     } );
 
 
-    describe( 'contentWidth', () =>
+    describe.only( 'onScroll()', () =>
     {
-        it( 'should get contentWidth', () =>
+        it( 'should trigger onScroll() for vertical scroll', () =>
         {
+            const onScroll = sinon.spy();
             const props = {
-                contentWidth : '125%'
+                scroll : 'vertical',
+                onScroll
             };
 
             wrapper = mount( <ScrollBox { ...props } /> );
 
-            expect( wrapper.driver().getContentWidth() ).to.equal( '125%' );
+            wrapper.driver().scrollVertical( 0.25 );
+
+            expect( onScroll.calledOnce ).to.be.true;
         } );
 
-        it( 'should set contentWidth', () =>
+        it( 'should trigger onScroll() for horizontal scroll', () =>
         {
-            wrapper = mount( <ScrollBox /> );
-            wrapper.driver().setContentWidth( '150%' );
-
-            expect( wrapper.driver().getContentWidth() ).to.equal( '150%' );
-        } );
-    } );
-
-
-    describe( 'height', () =>
-    {
-        it( 'should get height', () =>
-        {
+            const onScroll = sinon.spy();
             const props = {
-                height : '75px'
+                scroll : 'horizontal',
+                onScroll
             };
 
             wrapper = mount( <ScrollBox { ...props } /> );
 
-            expect( wrapper.driver().getHeight() ).to.equal( '75px' );
-        } );
+            wrapper.driver().scrollHorizontal( 0.64 );
 
-        it( 'should set height', () =>
-        {
-            wrapper = mount( <ScrollBox /> );
-            wrapper.driver().setHeight( '50vh' );
-
-            expect( wrapper.driver().getHeight() ).to.equal( '50vh' );
+            expect( onScroll.calledOnce ).to.be.true;
         } );
     } );
 } );
