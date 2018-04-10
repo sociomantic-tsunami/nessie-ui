@@ -326,6 +326,9 @@
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
     },
+    "ToggleButton" : {
+      "label": "Toggle me"
+    },
     "Tooltip" :
     {
         "message"  : "Cost per click",

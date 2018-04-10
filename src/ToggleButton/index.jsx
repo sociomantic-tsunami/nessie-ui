@@ -6,16 +6,16 @@ import styles              from './toggleButton.css';
 import Icon                from '../Icon/';
 
 const ToggleButton = ( {
+    children,
     className,
     cssMap,
-    children,
     iconPosition,
-    iconType,
     iconSize,
+    iconType,
     id,
     isDisabled,
-    isReadOnly,
     isPressed,
+    isReadOnly,
     label,
     onBlur,
     onClick,
@@ -31,24 +31,25 @@ const ToggleButton = ( {
                 isDisabled,
                 isPressed,
                 iconPosition,
-                role,
+                role
             } ) }
-            disabled = { isDisabled }
-            readOnly = { isReadOnly }
-            onBlur = { onBlur }
-            onClick = { onClick }
-            onFocus = { onFocus }
-            onMouseOut = { onMouseOut }
+            disabled    = { isDisabled }
+            readOnly    = { isReadOnly }
+            id          = { id }
+            onBlur      = { onBlur }
+            onClick     = { onClick }
+            onFocus     = { onFocus }
+            onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
         >
             { iconType && iconType !== 'none' &&
             <Icon
-                className =  { cssMap.icon }
-                type = { iconType }
-                size = { iconSize }
+                className = { cssMap.icon }
+                type      = { iconType }
+                size      = { iconSize }
             />
             }
-            <div>{ label }</div>
+            <div>{ children || label }</div>
 
         </button>
     );
@@ -58,32 +59,29 @@ ToggleButton.propTypes =
     /**
      *  CSS class name
      */
-    className : PropTypes.string,
+    className    : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Children 1 description
      */
-    children  : PropTypes.string,
+    children     : PropTypes.string,
     /**
-     *  IconPosition 2 description
+     * HTML id attribute (overwrite default)
      */
-
-    id           : PropTypes.string,
-    isDisabled   : PropTypes.bool,
-    isReadOnly   : PropTypes.bool,
-    isPressed    : PropTypes.bool,
-    label        : PropTypes.string,
-    onBlur       : PropTypes.func,
-    onClick      : PropTypes.func,
-    onFocus      : PropTypes.func,
-    onMouseOut   : PropTypes.func,
-    onMouseOver  : PropTypes.func,
-    role         : PropTypes.oneOf( [ 'primary', 'secondary' ] ),
+    /**
+     *  Icon position relative to Button text
+     */
     iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
+    /**
+     *  Icon size to display
+     */
     iconSize     : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+    /**
+     *  Icon type to display (overrides customIcon)
+     */
     iconType     : PropTypes.oneOf( [
         'add',
         'alert',
@@ -111,22 +109,63 @@ ToggleButton.propTypes =
         'upload',
         'validation',
         'none'
-    ] )
+    ] ),
+    /**
+     * HTML id attribute (overwrite default)
+     */
+    id          : PropTypes.string,
+    /**
+    *  Display as disabled
+    */
+    isDisabled  : PropTypes.bool,
+    /**
+    *  Display as read-only
+    */
+    isReadOnly  : PropTypes.bool,
+    /**
+    *  Display as pressed state
+    */
+    isPressed   : PropTypes.bool,
+    /**
+    *  Label text
+    */
+    label       : PropTypes.string,
+    /**
+     *  Button blur callback function: ( e ) => { ... }
+     */
+    onBlur      : PropTypes.func,
+    /**
+     *  Button click callback function: ( e ) => { ... }
+     */
+    onClick     : PropTypes.func,
+    onFocus     : PropTypes.func,
+    /**
+     *  Mouse out callback function: ( e ) => { ... }
+     */
+    onMouseOut  : PropTypes.func,
+    /**
+     *  Mouse over callback function: ( e ) => { ... }
+     */
+    onMouseOver : PropTypes.func,
+    /**
+    *  Button role/style
+    */
+    role        : PropTypes.oneOf( [ 'primary', 'secondary' ] )
 };
 
 ToggleButton.defaultProps =
 {
+    children     : undefined,
     className    : undefined,
     cssMap       : styles,
-    children     : undefined,
-    iconType     : 'add',
-    iconPosition : 'right',
+    iconPosition : 'left',
     iconSize     : 'M',
+    iconType     : 'none',
     id           : undefined,
     isDisabled   : false,
-    isReadOnly   : false,
     isPressed    : false,
-    label        : 'Toggle',
+    isReadOnly   : false,
+    label        : undefined,
     onBlur       : undefined,
     onClick      : undefined,
     onFocus      : undefined,
