@@ -7,7 +7,13 @@ export default class TagInputDriver
 
     click()
     {
-        this.wrapper.find( 'IconButton' ).first().simulate( 'click' );
+        this.wrapper.find( 'Tag' ).first().simulate( 'click' );
+        return this;
+    }
+
+    clickClose()
+    {
+        this.wrapper.find( '.tag__delete' ).first().simulate( 'click' );
         return this;
     }
 

@@ -80,6 +80,20 @@ describe( 'TagInput', () =>
                 .to.be.true;
         } );
     } );
+
+    describe( 'disabled state', () =>
+    {
+        beforeEach( () =>
+        {
+            wrapper.setProps( { isDisabled: true } );
+        } );
+
+        it( 'input should receive isDisabled', () =>
+        {
+            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
+                .to.be.true;
+        } );
+    } );
 } );
 
 
@@ -152,6 +166,26 @@ describe( 'TagInputDriver', () =>
             wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOver' );
 
             expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+    } );
+
+
+    describe( 'clickClose()', () =>
+    {
+        it( 'should call onClickClose once', () =>
+        {
+            const onClickClose = sinon.spy();
+            wrapper.setProps( {
+                onClickClose,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.driver().clickClose();
+
+            expect( onClickClose.calledOnce ).to.be.true;
         } );
     } );
 } );
