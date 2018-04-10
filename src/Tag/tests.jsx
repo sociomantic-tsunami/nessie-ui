@@ -76,29 +76,7 @@ child', () =>
             onClick : callBack
         };
         wrapper = mount( <Tag { ...props } /> );
-        wrapper.find( IconButton ).simulate( 'click' );
-        expect( callBack.calledOnce ).to.equal( true );
-    } );
-} );
-
-describe( 'TagDriver', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <Tag /> );
-    } );
-
-    it( 'should trigger onClick when clicked on close icon', () =>
-    {
-        const onClick = sinon.spy();
-        wrapper.setProps( {
-            onClick
-        } );
-
         wrapper.driver().clickClose();
-
-        expect( onClick.calledOnce ).to.be.true;
+        expect( callBack.calledOnce ).to.be.true;
     } );
 } );
