@@ -23,6 +23,7 @@ import {
     Row,
     Section,
     Slider,
+    Sorter,
     Switch,
     Text,
     TextInput,
@@ -54,6 +55,7 @@ import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
 import SliderDriver            from './Slider/driver';
+import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
@@ -153,6 +155,10 @@ const drivers =
     {
         Component : Slider,
         Driver    : SliderDriver,
+    },
+    {
+        Component : Sorter,
+        Driver    : SorterDriver,
     },
     {
         Component : Switch,
