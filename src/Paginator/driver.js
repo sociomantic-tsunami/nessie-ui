@@ -6,43 +6,6 @@ export default class PaginatorDriver
         this.cssMap  = this.wrapper.props().cssMap;
     }
 
-    getShownPages()
-    {
-        const items = this.wrapper.find( 'Text div' ).children();
-        return items.map( item => parseInt( item.node.value, 10 ) );
-    }
-
-    setShownPages( value )
-    {
-        return this.wrapper.setProps( {
-            shownPages : value
-        } );
-    }
-
-    getStartPage()
-    {
-        return this.wrapper.props().startPages;
-    }
-
-    setStartPage( value )
-    {
-        return this.wrapper.setProps( {
-            startPages : value
-        } );
-    }
-
-    getEndPage()
-    {
-        return this.wrapper.props().endPages;
-    }
-
-    setEndPages( value )
-    {
-        return this.wrapper.setProps( {
-            endPages : value
-        } );
-    }
-
     clickPrev()
     {
         this.wrapper.find( `.${this.cssMap.arrows}` )

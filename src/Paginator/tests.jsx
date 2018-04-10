@@ -14,75 +14,6 @@ describe( 'PaginatorDriver', () =>
         driver   = wrapper.driver();
     } );
 
-    describe( 'getShownPages()', () =>
-    {
-        it( 'should get value of currently shown pages', () =>
-        {
-            wrapper.setProps( {
-                shownPages : [ 10, 11, 12 ]
-            } );
-
-            expect( driver.getShownPages() ).to.eql( [ 10, 11, 12 ] );
-        } );
-    } );
-
-    describe( 'setShownPages()', () =>
-    {
-        it( 'should set main input value', () =>
-        {
-            driver.setShownPages( [ 21, 22, 23 ] );
-
-            expect( driver.getShownPages() ).to.eql( [ 21, 22, 23 ] );
-        } );
-    } );
-
-
-    describe( 'getStartPage()', () =>
-    {
-        it( 'should get value of start page', () =>
-        {
-            wrapper.setProps( {
-                startPages : 1
-            } );
-
-            expect( driver.getStartPage() ).to.eql( 1 );
-        } );
-    } );
-
-    describe( 'setStartPage()', () =>
-    {
-        it( 'should set start page value', () =>
-        {
-            driver.setStartPage( 2 );
-
-            expect( driver.getStartPage() ).to.eql( 2 );
-        } );
-    } );
-
-
-    describe( 'getEndPage()', () =>
-    {
-        it( 'should get value of end page', () =>
-        {
-            wrapper.setProps( {
-                endPages : 42
-            } );
-
-            expect( driver.getEndPage() ).to.eql( 42 );
-        } );
-    } );
-
-    describe( 'setEndPage()', () =>
-    {
-        it( 'should set end page value', () =>
-        {
-            driver.setEndPages( 86 );
-
-            expect( driver.getEndPage() ).to.eql( 86 );
-        } );
-    } );
-
-
     describe( 'clickPrev()', () =>
     {
         let onClickPrev;
@@ -101,7 +32,6 @@ describe( 'PaginatorDriver', () =>
         } );
     } );
 
-
     describe( 'clickNext()', () =>
     {
         let onClickNext;
@@ -119,7 +49,6 @@ describe( 'PaginatorDriver', () =>
             expect( onClickNext.calledOnce ).to.be.true;
         } );
     } );
-
 
     describe( 'clickPage()', () =>
     {
