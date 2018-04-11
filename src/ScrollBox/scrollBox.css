@@ -38,13 +38,25 @@
 {
     position:         absolute;
     z-index:          10;
-    background-color: var( --PC-WHITE );
+    background-color: var( --PC-BLUE );
     border-radius:    20px;
-    opacity:          0.8;
+    opacity:          0.4;
+    width:            32px;
+    height:           32px;
+
 
     svg
     {
-        fill:         var( --PC-BLUE );
+        fill:         var( --PC-WHITE );
+        &:hover
+        {
+            fill:     var( --PC-WHITE );
+        }
+    }
+
+    &:hover
+    {
+        opacity:      1;
     }
 }
 
