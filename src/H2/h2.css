@@ -6,7 +6,7 @@
     min-height:     var( --line-height-l );
     margin-bottom:  var( --spacing-4 );
 
-    @extend %Nessie-Bold;
+    @extend %Nessie-Regular;
     font-size:      var( --typo-6 );
     line-height:    var( --line-height-l );
     color:          var( --PC-GREY--D25 );
