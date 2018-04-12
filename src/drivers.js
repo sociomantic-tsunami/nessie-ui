@@ -19,6 +19,7 @@ import {
     Icon,
     IconButton,
     IconWithTooltip,
+    InputField,
     Label,
     MessageBox,
     ModalDialog,
@@ -48,10 +49,12 @@ import {
     TableCell,
     TableRow,
     Text,
+    TextArea,
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
-    Tooltip
+    Tooltip,
+    ValuedTextInput,
 } from 'nessie-ui';
 
 import ButtonDriver         from './Button/driver';
@@ -161,6 +164,10 @@ const drivers =
     {
         Component : IconWithTooltip,
         Driver    : IconWithTooltipDriver,
+    },
+    {
+        Component : InputField,
+        Driver    : InputComponentDriver,
     },
     {
         Component : Label,
@@ -279,6 +286,10 @@ const drivers =
         Driver    : TextDriver,
     },
     {
+        Component : TextArea,
+        Driver    : InputComponentDriver,
+    },
+    {
         Component : TextInput,
         Driver    : InputComponentDriver,
     },
@@ -293,6 +304,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : ValuedTextInput,
+        Driver    : InputComponentDriver,
     }
 ];
 
