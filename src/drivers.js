@@ -49,6 +49,7 @@ import {
     Table,
     TableCell,
     TableRow,
+    Tag,
     Text,
     TextArea,
     TextInput,
@@ -83,6 +84,7 @@ import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
 import SliderDriver            from './Slider/driver';
 import SwitchDriver            from './Switch/driver';
+import TagDriver               from './Tag/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -286,6 +288,10 @@ const drivers =
     {
         Component : TableRow,
         Driver    : WrapperDriver,
+    },
+    {
+        Component : Tag,
+        Driver    : TagDriver,
     },
     {
         Component : Text,
