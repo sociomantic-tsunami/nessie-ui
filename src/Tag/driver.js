@@ -7,7 +7,8 @@ export default class TagDriver
 
     clickClose()
     {
-        this.wrapper.find( '.tag__delete' ).first().simulate( 'click' );
+        this.wrapper.find( `.${this.wrapper.props().cssMap.delete}` ).first()
+            .simulate( 'click' );
         return this;
     }
 }
