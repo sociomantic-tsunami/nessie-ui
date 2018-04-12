@@ -124,36 +124,74 @@ describe( 'ScrollBoxDriver', () =>
     } );
 
 
-    describe.only( 'onScroll()', () =>
+    describe( 'scroll', () =>
     {
-        it( 'should trigger onScroll() for vertical scroll', () =>
+        describe( 'scrollVertical()', () =>
         {
-            const onScroll = sinon.spy();
-            const props = {
-                scroll : 'vertical',
-                onScroll
-            };
+            it( 'should trigger onScroll() for vertical scroll', () =>
+            {
+                const onScroll = sinon.spy();
+                const props = {
+                    scroll : 'vertical',
+                    onScroll
+                };
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-            wrapper.driver().scrollVertical( 0.25 );
+                wrapper.driver().scrollVertical( 0.25 );
 
-            expect( onScroll.calledOnce ).to.be.true;
+                expect( onScroll.calledOnce ).to.be.true;
+            } );
+
+            it( 'should call onScroll with scrollOffset', () =>
+            {
+                const onScroll = sinon.spy();
+                const props = {
+                    scroll : 'vertical',
+                    onScroll
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                wrapper.driver().scrollVertical( 0.72 );
+
+                expect( onScroll.lastCall.args[ 0 ].target.scrollTop )
+                    .to.equal( 0.72 );
+            } );
         } );
 
-        it( 'should trigger onScroll() for horizontal scroll', () =>
+        describe( 'scrollHorizontal()', () =>
         {
-            const onScroll = sinon.spy();
-            const props = {
-                scroll : 'horizontal',
-                onScroll
-            };
+            it( 'should trigger onScroll() for horizontal scroll', () =>
+            {
+                const onScroll = sinon.spy();
+                const props = {
+                    scroll : 'horizontal',
+                    onScroll
+                };
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-            wrapper.driver().scrollHorizontal( 0.64 );
+                wrapper.driver().scrollHorizontal( 0.64 );
 
-            expect( onScroll.calledOnce ).to.be.true;
+                expect( onScroll.calledOnce ).to.be.true;
+            } );
+
+            it( 'should call onScroll with scrollOffset', () =>
+            {
+                const onScroll = sinon.spy();
+                const props = {
+                    scroll : 'horizontal',
+                    onScroll
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                wrapper.driver().scrollHorizontal( 0.48 );
+
+                expect( onScroll.lastCall.args[ 0 ].target.scrollLeft )
+                    .to.equal( 0.48 );
+            } );
         } );
     } );
 } );
