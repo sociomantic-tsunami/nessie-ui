@@ -20,19 +20,20 @@ const Paginator = ( {
     showPrevEllipsis,
     showNextEllipsis,
     showNext,
-    shownPages = [], showPrev } ) =>
+    shownPages = [],
+    showPrev } ) =>
 {
     const pageButtons = shownPages.map( ( pageNum ) =>
-    (
-        <button
-            className = { cssMap.pageButton }
-            disabled  = { pageNum === currentPage }
-            key       = { pageNum }
-            onClick   = { onClickPage }
-            type      = "button"
-            value     = { String( pageNum ) }>
-            { String( pageNum ) }
-        </button>
+        (
+            <button
+                className = { cssMap.pageButton }
+                disabled  = { pageNum === currentPage }
+                key       = { pageNum }
+                onClick   = { onClickPage }
+                type      = "button"
+                value     = { String( pageNum ) }>
+                { String( pageNum ) }
+            </button>
         ) );
 
     const showStartPage = typeof startPage === 'number';
