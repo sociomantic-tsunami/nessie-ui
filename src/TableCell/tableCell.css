@@ -48,14 +48,16 @@ $shark: 768px;
 
 .header /* required until we have a TableHeader text component */
 {
-    /* display:        none; */
-
-    @extend %Nessie-Bold;
-
-    /*@media( min-width: $shark )
-    {*/
     display:    flex;
-    /*}*/
+
+    @extend %Nessie-SemiBold;
+    font-size:          var( --typo-2 );
+    line-height:        var( --line-height-m );
+    letter-spacing:     0.5px;
+    text-transform:     uppercase;
+    text-decoration:    none;
+    color:              var( --PC-GREY--D15 );
+    cursor:             text;
 }
 
 .rowHeader
