@@ -7,8 +7,7 @@ export default class TagDriver
 
     clickClose()
     {
-        this.wrapper.find( `.${this.wrapper.props().cssMap.delete}` ).first()
-            .simulate( 'click' );
+        this.wrapper.find( 'IconButton' ).first().driver().click();
         return this;
     }
 }
