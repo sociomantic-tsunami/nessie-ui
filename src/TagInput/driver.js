@@ -5,12 +5,6 @@ export default class TagInputDriver
         this.wrapper = wrapper;
     }
 
-    click()
-    {
-        this.wrapper.find( 'Tag' ).first().simulate( 'click' );
-        return this;
-    }
-
     clickClose()
     {
         this.wrapper.find( '.tag__delete' ).first().simulate( 'click' );

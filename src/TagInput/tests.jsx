@@ -88,7 +88,7 @@ describe( 'TagInput', () =>
             wrapper.setProps( { isDisabled: true } );
         } );
 
-        it( 'input should receive isDisabled', () =>
+        it( 'input should receive isDisabled as "disabled"', () =>
         {
             expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
                 .to.be.true;
