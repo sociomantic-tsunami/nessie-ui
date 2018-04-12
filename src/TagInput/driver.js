@@ -7,7 +7,7 @@ export default class TagInputDriver
 
     clickClose()
     {
-        this.wrapper.find( '.tag__delete' ).first().simulate( 'click' );
+        this.wrapper.find( 'Tag' ).first().driver().clickClose();
         return this;
     }
 

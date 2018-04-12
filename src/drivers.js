@@ -24,6 +24,7 @@ import {
     Section,
     Slider,
     Switch,
+    Tag,
     TagInput,
     Text,
     TextInput,
@@ -56,6 +57,7 @@ import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
 import SliderDriver            from './Slider/driver';
 import SwitchDriver            from './Switch/driver';
+import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
@@ -159,6 +161,10 @@ const drivers =
     {
         Component : Switch,
         Driver    : SwitchDriver,
+    },
+    {
+        Component : Tag,
+        Driver    : TagDriver,
     },
     {
         Component : TagInput,
