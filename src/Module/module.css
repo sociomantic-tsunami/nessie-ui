@@ -62,7 +62,7 @@
             display:            inline-block;
             width:              50px;
             height:             3px;
-            background-color:   var( --PC-GREY--D25 );
+            background-color:   var( --PC-GREY--D15 );
         }
     }
 
@@ -151,7 +151,6 @@
     {
         background: var( --PC-GREY--L95 );
     }
-
 }
 
 .collapsed
