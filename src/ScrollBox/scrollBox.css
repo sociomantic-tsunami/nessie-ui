@@ -47,8 +47,10 @@
 
     svg
     {
-        fill:         var( --PC-WHITE );
-        &:hover
+        fill:         var( --PC-WHITE ) ;
+
+        &:hover,
+        &:focus
         {
             fill:     var( --PC-WHITE );
         }
