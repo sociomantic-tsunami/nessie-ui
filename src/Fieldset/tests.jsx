@@ -42,14 +42,6 @@ describe( 'Fieldset', () =>
             {
                 expect( props.hasError ).to.be.false;
             } );
-
-            it( 'should be passed to the Fieldset', () =>
-            {
-                wrapper.setProps( { hasError: true } );
-
-                expect( wrapper.find( Fieldset ).prop( 'hasError' ) ).to.be
-                    .true;
-            } );
         } );
 
         describe( 'isDisabled', () =>
@@ -57,14 +49,6 @@ describe( 'Fieldset', () =>
             it( 'should be undefined by default', () =>
             {
                 expect( props.isDisabled ).to.be.undefined;
-            } );
-
-            it( 'should be passed to the Fieldset', () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( wrapper.find( Fieldset ).prop( 'isDisabled' ) ).to.be
-                    .true;
             } );
         } );
 
@@ -74,16 +58,6 @@ describe( 'Fieldset', () =>
             {
                 expect( props.onMouseOut ).to.be.undefined;
             } );
-
-            it( 'should be passed to the Fieldset', () =>
-            {
-                const onMouseOut = () => undefined;
-
-                wrapper.setProps( { onMouseOut } );
-
-                expect( wrapper.find( Fieldset ).prop( 'onMouseOut' ) ).to
-                    .equal( onMouseOut );
-            } );
         } );
 
         describe( 'onMouseOver', () =>
@@ -91,16 +65,6 @@ describe( 'Fieldset', () =>
             it( 'should be undefined by default', () =>
             {
                 expect( props.onMouseOver ).to.be.undefined;
-            } );
-
-            it( 'should be passed to the Fieldset', () =>
-            {
-                const onMouseOver = () => undefined;
-
-                wrapper.setProps( { onMouseOver } );
-
-                expect( wrapper.prop( 'onMouseOver' ) ).to
-                    .equal( onMouseOver );
             } );
         } );
     } );
