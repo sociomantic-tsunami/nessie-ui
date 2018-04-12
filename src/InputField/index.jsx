@@ -102,6 +102,7 @@ export default class InputField extends Component
         type       : 'text',
         textAlign  : 'left',
         isDisabled : false,
+        isReadOnly : false,
         hasError   : false,
         forceHover : false,
         cssMap     : styles,
