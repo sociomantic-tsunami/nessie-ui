@@ -7,7 +7,7 @@ export default class SorterDriver
 
     toggle()
     {
-        this.wrapper.find( '.sorter__sorter' ).simulate( 'click' );
+        this.wrapper.simulate( 'click' );
         return this;
     }
 }
