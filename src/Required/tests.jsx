@@ -10,10 +10,12 @@ import { Required } from '../index';
 describe( 'Required', () =>
 {
     let wrapper;
+    let cssMap;
 
     beforeEach( () =>
     {
         wrapper  = mount( <Required /> );
+        cssMap = wrapper.prop( 'cssMap' );
     } );
 
     describe( 'render()', () =>
@@ -32,13 +34,6 @@ describe( 'Required', () =>
             {
                 expect( wrapper.prop( 'isRequired' ) ).to.be.true;
             } );
-
-            it( 'should be passed to the Required', () =>
-            {
-                wrapper.setProps( { isRequired: false } );
-
-                expect( wrapper.prop( 'isRequired' ) ).to.be.false;
-            } );
         } );
 
         describe( 'text', () =>
@@ -47,7 +42,8 @@ describe( 'Required', () =>
             {
                 wrapper.setProps( { text: 'Nanananananana' } );
 
-                expect( wrapper.prop( 'text' ) ).to.equal( 'Nanananananana' );
+                expect( wrapper.driver().getContent( `.${cssMap.required}` ) )
+                    .to.have.length( 1 );
             } );
         } );
     } );
