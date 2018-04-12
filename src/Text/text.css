@@ -13,6 +13,8 @@
     line-height:    var( --line-height-m );
     letter-spacing: 0;
 
+    text-transform: none;
+
     .default
     {
         display:    inline;
@@ -32,7 +34,7 @@
 
 .role__subtle
 {
-    color:  var( --GS-5 );
+    color:  var( --PC-GREY--D25 );
 }
 
 .role__promoted
