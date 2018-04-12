@@ -12,12 +12,10 @@ import CheckableGroup          from './index';
 describe( 'CheckableGroupDriver', () =>
 {
     let wrapper;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper = mount( <CheckableGroup /> );
-        cssMap = wrapper.prop( 'cssMap' );
     } );
 
     describe( 'getContent()', () =>
@@ -63,7 +61,7 @@ describe( 'CheckableGroupDriver', () =>
                 ],
             } );
             wrapper.driver().selectByIndex( 1 );
-            const items = wrapper.find( `.${cssMap.listItem}` );
+            const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
                 .to.be.true;
@@ -98,7 +96,7 @@ describe( 'CheckableGroupDriver', () =>
             } );
 
             wrapper.driver().selectByValue( 'second check' );
-            const items = wrapper.find( `.${cssMap.listItem}` );
+            const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
                 .to.be.true;

@@ -7,29 +7,55 @@ import {
     CodeEditor,
     Column,
     DateTimeInput,
+    DragNDrop,
+    Fieldset,
     FlounderDropdown,
     Form,
     Grid,
+    H1,
+    H2,
+    H3,
+    H4,
     Icon,
     IconButton,
     IconWithTooltip,
+    InputField,
+    Label,
+    MessageBox,
     ModalDialog,
     Module,
+    NavBar,
+    NavDropdown,
     NavItem,
+    NavList,
     NotificationBar,
+    Page,
+    PageContent,
+    PageContentHeader,
+    PageFooter,
+    PageHeader,
     Paginator,
     PasswordInput,
     Radio,
     RadioGroup,
+    Required,
     Row,
     Section,
     Slider,
+    StatusIndicator,
     Switch,
+    Tab,
+    TabButton,
+    Table,
+    TableCell,
+    TableRow,
     Text,
+    TextArea,
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
+    ValuedTextInput,
 } from 'nessie-ui';
 
 import ButtonDriver         from './Button/driver';
@@ -60,6 +86,7 @@ import SwitchDriver            from './Switch/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
+import WrapperDriver           from './Testing/CommonDrivers/wrapperDriver';
 
 
 const drivers =
@@ -93,6 +120,14 @@ const drivers =
         Driver    : DateTimeInputDriver
     },
     {
+        Component : DragNDrop,
+        Driver    : WrapperDriver
+    },
+    {
+        Component : Fieldset,
+        Driver    : WrapperDriver
+    },
+    {
         Component : FlounderDropdown,
         Driver    : FlounderDropdownDriver,
     },
@@ -103,6 +138,22 @@ const drivers =
     {
         Component : Grid,
         Driver    : GridColumnDriver,
+    },
+    {
+        Component : H1,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H2,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H3,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : H4,
+        Driver    : WrapperDriver,
     },
     {
         Component : Icon,
@@ -117,6 +168,18 @@ const drivers =
         Driver    : IconWithTooltipDriver,
     },
     {
+        Component : InputField,
+        Driver    : InputComponentDriver,
+    },
+    {
+        Component : Label,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : MessageBox,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : ModalDialog,
         Driver    : ModalDialogDriver,
     },
@@ -125,12 +188,44 @@ const drivers =
         Driver    : ModuleDriver,
     },
     {
+        Component : NavBar,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : NavDropdown,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : NavItem,
         Driver    : NavItemDriver,
     },
     {
+        Component : NavList,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : NotificationBar,
         Driver    : NotificationBarDriver,
+    },
+    {
+        Component : Page,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageContent,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageContentHeader,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageFooter,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : PageHeader,
+        Driver    : WrapperDriver,
     },
     {
         Component : Paginator,
@@ -149,6 +244,10 @@ const drivers =
         Driver    : CheckableGroupDriver,
     },
     {
+        Component : Required,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : Row,
         Driver    : GridColumnDriver,
     },
@@ -161,12 +260,40 @@ const drivers =
         Driver    : SliderDriver,
     },
     {
+        Component : StatusIndicator,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : Switch,
         Driver    : SwitchDriver,
     },
     {
+        Component : Tab,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TabButton,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : Table,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TableCell,
+        Driver    : WrapperDriver,
+    },
+    {
+        Component : TableRow,
+        Driver    : WrapperDriver,
+    },
+    {
         Component : Text,
         Driver    : TextDriver,
+    },
+    {
+        Component : TextArea,
+        Driver    : InputComponentDriver,
     },
     {
         Component : TextInput,
@@ -183,6 +310,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : ValuedTextInput,
+        Driver    : InputComponentDriver,
     }
 ];
 
@@ -190,6 +321,7 @@ export {
     ClickableComponentDriver,
     InputComponentDriver,
     SimpleComponentDriver,
+    WrapperDriver
 };
 
 export default ComponentDriver.createDriverSuite( drivers );
