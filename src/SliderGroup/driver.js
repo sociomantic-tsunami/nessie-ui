@@ -9,14 +9,14 @@ export default class SliderGroupDriver
     {
         if ( Array.isArray( index ) )
         {
-            const items = this.wrapper.find( 'Slider' ).map( item => item );
-            console.log( items.debug() );
-
             let sliders = [];
-            index.forEach( i =>
-            {
-                sliders += items.i;
+            const items = this.wrapper.find( 'Slider' ).map( ( item, i ) => {
+                if ( index.includes( i ) )
+                {
+                    sliders.push( item );
+                }
             } );
+
             return sliders;
         }
 

@@ -223,7 +223,7 @@ describe.only( 'SliderGroupDriver', () =>
             expect( wrapper.driver().getSlider( 1 ).props().value ).to.equal( 80 );
         } );
 
-        xit( 'should get Sliders when indexes are passed as an array', () =>
+        it( 'should get Sliders when indexes are passed as an array', () =>
         {
             wrapper.setProps( {
                 sliders : [
