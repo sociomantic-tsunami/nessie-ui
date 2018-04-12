@@ -3,13 +3,11 @@ export default class CheckableGroupDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
-        this.outer   = wrapper.find( `.${wrapper.props().cssMap.default}` );
     }
 
     getContent()
     {
-        const items = this.wrapper.find( `.${this.cssMap.listItem}` );
+        const items = this.wrapper.find( 'li' );
         return items.map( item => item.childAt( 0 ) );
     }
 
@@ -65,13 +63,13 @@ export default class CheckableGroupDriver
 
     mouseOver()
     {
-        this.outer.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.outer.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }
