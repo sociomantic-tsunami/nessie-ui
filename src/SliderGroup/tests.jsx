@@ -236,5 +236,20 @@ describe.only( 'SliderGroupDriver', () =>
 
             expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).to.have.length( 2 );
         } );
+
+        it( 'should return a Slider at certain index in array', () =>
+        {
+            wrapper.setProps( {
+                sliders : [
+                    { value: 40 },
+                    { value: 20 },
+                    { value: 10 },
+                    { value: 30 }
+                ],
+            } );
+
+            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value )
+                .to.equal( 20 );
+        } );
     } );
 } );
