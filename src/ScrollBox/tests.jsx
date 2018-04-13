@@ -54,7 +54,7 @@ describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
 
-    describe( 'onClickScroll', () =>
+    describe( 'clickScroll', () =>
     {
         it( 'should trigger onClickScrollUp when clicked on scrollUp',
             () =>
