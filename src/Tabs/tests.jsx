@@ -4,7 +4,7 @@
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React              from 'react';
-import { shallow }        from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { Tab, TabButton } from '../index';
 
@@ -34,6 +34,30 @@ describe( 'Tabs', () =>
         {
             wrapper.setProps( { children: [ <Tab />, <Tab /> ] } );
             expect( wrapper.find( TabButton ) ).to.have.length( 2 );
+        } );
+    } );
+} );
+
+describe( 'TabsDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper  = mount( <Tabs /> );
+        driver   = wrapper.driver();
+    } );
+
+    describe( 'getTabButtons', () =>
+    {
+        it( 'should return TabButton instances in Tabs', () =>
+        {
+            wrapper.setProps( {
+                children : [ <Tab label = "Taby" />, <Tab label = "Tabity" /> ]
+            } );
+
+            expect( driver.getTabButtons() ).to.have.length( 2 );
         } );
     } );
 } );

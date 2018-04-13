@@ -47,6 +47,7 @@ import {
     Switch,
     Tab,
     TabButton,
+    Tabs,
     Table,
     TableCell,
     TableRow,
@@ -87,6 +88,7 @@ import SimpleComponentDriver
 import SliderDriver            from './Slider/driver';
 import SliderGroupDriver       from './SliderGroup/driver';
 import SwitchDriver            from './Switch/driver';
+import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
@@ -284,6 +286,10 @@ const drivers =
     {
         Component : TabButton,
         Driver    : WrapperDriver,
+    },
+    {
+        Component : Tabs,
+        Driver    : TabsDriver,
     },
     {
         Component : Table,
