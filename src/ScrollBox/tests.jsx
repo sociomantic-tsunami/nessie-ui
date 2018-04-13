@@ -158,6 +158,18 @@ describe( 'ScrollBoxDriver', () =>
                 expect( onScroll.lastCall.args[ 0 ].target.scrollTop )
                     .to.equal( 0.72 );
             } );
+
+            it( 'should throw an error when scroll direction is wrong', () =>
+            {
+                const props = {
+                    scroll : 'horizontal'
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                expect( () => wrapper.driver().scrollVertical( 0.1 ) )
+                    .to.throw( 'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\'' ); // eslint-disable-line max-len
+            } );
         } );
 
         describe( 'scrollHorizontal()', () =>
@@ -191,6 +203,18 @@ describe( 'ScrollBoxDriver', () =>
 
                 expect( onScroll.lastCall.args[ 0 ].target.scrollLeft )
                     .to.equal( 0.48 );
+            } );
+
+            it( 'should throw an error when scroll direction is wrong', () =>
+            {
+                const props = {
+                    scroll : 'vertical'
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                expect( () => wrapper.driver().scrollHorizontal( 0.27 ) )
+                    .to.throw( 'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\'' ); // eslint-disable-line max-len
             } );
         } );
     } );
