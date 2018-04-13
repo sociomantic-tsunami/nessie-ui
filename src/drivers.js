@@ -42,6 +42,7 @@ import {
     Row,
     Section,
     Slider,
+    SliderGroup,
     StatusIndicator,
     Switch,
     Tab,
@@ -84,6 +85,7 @@ import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
 import SliderDriver            from './Slider/driver';
+import SliderGroupDriver       from './SliderGroup/driver';
 import SwitchDriver            from './Switch/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
@@ -262,6 +264,10 @@ const drivers =
     {
         Component : Slider,
         Driver    : SliderDriver,
+    },
+    {
+        Component : SliderGroup,
+        Driver    : SliderGroupDriver,
     },
     {
         Component : StatusIndicator,
