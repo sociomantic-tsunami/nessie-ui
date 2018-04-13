@@ -198,7 +198,7 @@ describe( 'SliderGroup', () =>
     } );
 } );
 
-describe.only( 'SliderGroupDriver', () =>
+describe( 'SliderGroupDriver', () =>
 {
     let wrapper;
 
