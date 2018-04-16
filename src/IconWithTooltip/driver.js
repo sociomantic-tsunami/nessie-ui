@@ -9,6 +9,18 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
         this.tooltip = wrapper.find( 'IconWithTooltip > Tooltip' ).first();
     }
 
+    mouseOverIcon()
+    {
+        this.tooltip.driver().mouseOver();
+        return this;
+    }
+
+    mouseOutIcon()
+    {
+        this.tooltip.driver().mouseOut();
+        return this;
+    }
+
     getContent()
     {
         return this.wrapper.find( `.${this.cssMap.content}` ).children();
