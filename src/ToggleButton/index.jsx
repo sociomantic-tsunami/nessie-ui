@@ -14,7 +14,7 @@ const ToggleButton = ( {
     iconType,
     id,
     isDisabled,
-    isPressed,
+    isChecked,
     isReadOnly,
     label,
     onBlur,
@@ -31,10 +31,11 @@ const ToggleButton = ( {
         <button
             className = { buildClassName( className, cssMap, {
                 isDisabled,
-                isPressed,
+                isChecked,
                 iconPosition,
                 role
             } ) }
+            checked     = { isChecked }
             disabled    = { isDisabled }
             readOnly    = { isReadOnly }
             id          = { id }
@@ -126,7 +127,7 @@ ToggleButton.propTypes =
     /**
     *  Display as pressed state
     */
-    isPressed   : PropTypes.bool,
+    isChecked   : PropTypes.bool,
     /**
     *  Label text
     */
@@ -167,7 +168,7 @@ ToggleButton.defaultProps =
     iconType     : 'none',
     id           : undefined,
     isDisabled   : false,
-    isPressed    : false,
+    isChecked    : false,
     isReadOnly   : false,
     label        : undefined,
     onBlur       : undefined,

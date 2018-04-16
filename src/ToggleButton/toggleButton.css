@@ -20,7 +20,7 @@
         fill: var(--PC-GREY--D15);
     }
 
-    &.isPressed
+    &.isChecked
     {
         background-color: var(--PC-ORANGE);
         color: var(--PC-WHITE);
@@ -46,7 +46,7 @@
     color:   #41556f;
     opacity: .5;
 
-    &.isPressed
+    &.isChecked
     {
         opacity: 1;
     }

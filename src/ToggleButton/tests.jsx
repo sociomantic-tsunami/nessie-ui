@@ -4,12 +4,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
-import React        from 'react';
-import { shallow }  from 'enzyme';
+import React               from 'react';
+import { shallow, mount }  from 'enzyme';
 
-import Icon         from '../Icon';
+import Icon                from '../Icon';
 
-import ToggleButton from './index';
+import ToggleButton        from './index';
 
 
 describe( 'ToggleButton', () =>
@@ -108,7 +108,7 @@ describe( 'ToggleButton', () =>
     } );
 
 
-    describe.only( 'onClick', () =>
+    describe( 'onClick', () =>
     {
         it( 'should be undefined by default', () =>
         {
@@ -166,6 +166,37 @@ describe( 'ToggleButton', () =>
             {};
             wrapper.setProps( { onMouseOut } );
             expect( wrapper.prop( 'onMouseOut' ) ).to.be.equal( onMouseOut );
+        } );
+    } );
+} );
+
+describe( 'ToggleButtonDriver', () =>
+{
+    let wrapper;
+    beforeEach( () =>
+    {
+        wrapper = mount( <ToggleButton /> );
+    } );
+    describe.only( 'onClick', () =>
+    {
+        it( 'should call onClick once', () =>
+        {
+            const onClick = sinon.spy();
+            wrapper.setProps( { onClick } );
+
+            wrapper.driver().toggle();
+
+            expect( onClick.calledOnce ).to.be.true;
+        } );
+
+        it( 'should toggle the value of checked', () =>
+        {
+            const onClick = sinon.spy();
+            wrapper.setProps( { onClick, checked: true } );
+
+            wrapper.driver().toggle();
+
+            expect( wrapper.props().isChecked ).to.be.false;
         } );
     } );
 } );
