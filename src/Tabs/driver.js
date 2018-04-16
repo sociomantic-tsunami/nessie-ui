@@ -7,6 +7,12 @@ export default class TabsDriver
 
     getTabButtons()
     {
-        return this.wrapper.props().children;
+        return this.wrapper.find( 'TabButton' );
+    }
+
+    changeActiveTab( index )
+    {
+        this.wrapper.find( 'TabButton' ).at( index );
+        return this;
     }
 }

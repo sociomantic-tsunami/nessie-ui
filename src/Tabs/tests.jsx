@@ -38,7 +38,7 @@ describe( 'Tabs', () =>
     } );
 } );
 
-describe( 'TabsDriver', () =>
+xdescribe( 'TabsDriver', () =>
 {
     let wrapper;
     let driver;
@@ -49,15 +49,38 @@ describe( 'TabsDriver', () =>
         driver   = wrapper.driver();
     } );
 
-    describe( 'getTabButtons', () =>
+    describe( 'getTabButtons()', () =>
     {
         it( 'should return TabButton instances in Tabs', () =>
         {
             wrapper.setProps( {
-                children : [ <Tab label = "Taby" />, <Tab label = "Tabity" /> ]
+                children : [ <Tab label = "Tabity" />, <Tab label = "Taby" /> ]
             } );
 
             expect( driver.getTabButtons() ).to.have.length( 2 );
+        } );
+    } );
+
+    describe( 'changeActiveTab()', () =>
+    {
+        beforeEach( () =>
+        {
+            const onChange = sinon.spy;
+            wrapper.setProps( {
+                children : [
+                    <Tab label = "Tabity" />,
+                    <Tab label = "Taby" />
+                ],
+                onChange,
+                activeTabIndex : 0
+            } );
+        } );
+
+        it( 'should trigger onChange', () =>
+        {
+            driver.changeActiveTab( 1 );
+
+            expect( onChange.calledOnce ).to.be.true;
         } );
     } );
 } );
