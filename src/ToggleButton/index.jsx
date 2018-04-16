@@ -25,7 +25,9 @@ const ToggleButton = ( {
     role
 
 } ) =>
-    (
+{
+    const clickProp = !isReadOnly ? onClick : false;
+    return (
         <button
             className = { buildClassName( className, cssMap, {
                 isDisabled,
@@ -37,7 +39,7 @@ const ToggleButton = ( {
             readOnly    = { isReadOnly }
             id          = { id }
             onBlur      = { onBlur }
-            onClick     = { onClick }
+            onClick     = { clickProp }
             onFocus     = { onFocus }
             onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
@@ -53,6 +55,7 @@ const ToggleButton = ( {
 
         </button>
     );
+};
 
 ToggleButton.propTypes =
 {
@@ -167,7 +170,7 @@ ToggleButton.defaultProps =
     isReadOnly   : false,
     label        : undefined,
     onBlur       : undefined,
-    onClick      : undefined,
+    onClick      : () => console.log( 'd' ),
     onFocus      : undefined,
     onMouseOut   : undefined,
     onMouseOver  : undefined,
