@@ -35,7 +35,7 @@
     border-radius:      2px;
 
     background-color:   var( --PC-BLUE );
-    box-shadow:         0 2px 4px 0 color( #000 a(50%) );
+    box-shadow:         var( --boxShadow );
 
     z-index:            100;
 
