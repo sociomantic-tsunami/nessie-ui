@@ -64,7 +64,7 @@ describe( 'TabsDriver', () =>
 
     describe( 'getTabButtonsByIndex()', () =>
     {
-        it( 'should return TabButton in given index', () =>
+        it( 'should return TabButton with given index', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -75,6 +75,19 @@ describe( 'TabsDriver', () =>
 
             expect( driver.getTabButtonsByIndex( 1 ).props().label )
                 .to.equal( 'Taby' );
+        } );
+
+        it( 'should return TabButtons when passed indexes as an array', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Tab label = "Tabity" />,
+                    <Tab label = "Taby" />
+                ]
+            } );
+
+            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) )
+                .to.have.length( 2 );
         } );
     } );
 

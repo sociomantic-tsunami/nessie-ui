@@ -12,6 +12,18 @@ export default class TabsDriver
 
     getTabButtonsByIndex( index )
     {
+        if ( Array.isArray( index ) )
+        {
+            const tabButtons = [];
+
+            index.forEach( i =>
+            {
+                tabButtons.push( index[ i ] );
+            } );
+
+            return tabButtons;
+        }
+
         return this.wrapper.find( 'TabButton' ).at( index );
     }
 
