@@ -4,7 +4,7 @@
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount }          from 'enzyme';
 
 import { Tab, TabButton } from '../index';
 
@@ -14,12 +14,10 @@ import Tabs               from './index';
 describe( 'Tabs', () =>
 {
     let wrapper;
-    // let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Tabs /> );
-        // instance = wrapper.instance();
+        wrapper  = mount( <Tabs /> );
     } );
 
     describe( 'render()', () =>
@@ -38,7 +36,7 @@ describe( 'Tabs', () =>
     } );
 } );
 
-xdescribe( 'TabsDriver', () =>
+describe( 'TabsDriver', () =>
 {
     let wrapper;
     let driver;
@@ -51,10 +49,13 @@ xdescribe( 'TabsDriver', () =>
 
     describe( 'getTabButtons()', () =>
     {
-        it( 'should return TabButton instances in Tabs', () =>
+        it( 'should return TabButton instances in Tabs when passed array of Tabs as children', () => // eslint-disable-line max-len
         {
             wrapper.setProps( {
-                children : [ <Tab label = "Tabity" />, <Tab label = "Taby" /> ]
+                children : [
+                    <Tab label = "Tabity" />,
+                    <Tab label = "Taby" />
+                ]
             } );
 
             expect( driver.getTabButtons() ).to.have.length( 2 );
@@ -63,24 +64,19 @@ xdescribe( 'TabsDriver', () =>
 
     describe( 'changeActiveTab()', () =>
     {
-        beforeEach( () =>
+        it( 'should change activeTabIndex', () =>
         {
-            const onChange = sinon.spy;
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
                     <Tab label = "Taby" />
                 ],
-                onChange,
                 activeTabIndex : 0
             } );
-        } );
 
-        it( 'should trigger onChange', () =>
-        {
             driver.changeActiveTab( 1 );
 
-            expect( onChange.calledOnce ).to.be.true;
+            expect( wrapper.props().activeTabIndex ).to.equal( 1 );
         } );
     } );
 } );

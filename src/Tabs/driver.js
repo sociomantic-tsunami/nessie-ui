@@ -12,7 +12,7 @@ export default class TabsDriver
 
     changeActiveTab( index )
     {
-        this.wrapper.find( 'TabButton' ).at( index );
+        this.wrapper.setProps( { activeTabIndex: index } );
         return this;
     }
 }
