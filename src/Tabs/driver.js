@@ -10,9 +10,14 @@ export default class TabsDriver
         return this.wrapper.find( 'TabButton' );
     }
 
-    changeActiveTab( index )
+    getTabButtonsByIndex( index )
     {
-        this.wrapper.setProps( { activeTabIndex: index } );
-        return this;
+        return this.wrapper.find( 'TabButton' ).at( index );
+    }
+
+    getTabButtonsByLabel( label )
+    {
+        return this.wrapper.findWhere( n =>
+            n.prop( 'label' ) === label ).first();
     }
 }

@@ -62,21 +62,35 @@ describe( 'TabsDriver', () =>
         } );
     } );
 
-    describe( 'changeActiveTab()', () =>
+    describe( 'getTabButtonsByIndex()', () =>
     {
-        it( 'should change activeTabIndex', () =>
+        it( 'should return TabButton in given index', () =>
         {
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
                     <Tab label = "Taby" />
-                ],
-                activeTabIndex : 0
+                ]
             } );
 
-            driver.changeActiveTab( 1 );
+            expect( driver.getTabButtonsByIndex( 1 ).props().label )
+                .to.equal( 'Taby' );
+        } );
+    } );
 
-            expect( wrapper.props().activeTabIndex ).to.equal( 1 );
+    describe( 'getTabButtonsByLabel()', () =>
+    {
+        it( 'should return TabButton with given label', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Tab label = "Tabity" />,
+                    <Tab label = "Taby" />
+                ]
+            } );
+
+            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
+                .to.equal( 'Tabity' );
         } );
     } );
 } );
