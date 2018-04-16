@@ -13,7 +13,8 @@
 
     .date
     {
-        @extend %Nessie;
+
+        @extend %Nessie-Light;
         color:          var( --PC-WHITE );
         font-size:      var( --typo-7 );
         font-weight:    300;
@@ -30,6 +31,7 @@
 
     .year
     {
+        @extend %Nessie-Bold;
         font-size:      13px;
         font-weight:    400;
         line-height:    var( --line-height-s );
