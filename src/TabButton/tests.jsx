@@ -51,7 +51,7 @@ describe( 'TabButton Driver', () =>
                 onClick
             } );
 
-            wrapper.driver().click();
+            driver.click();
 
             expect( onClick.calledOnce ).to.be.true;
         } );
