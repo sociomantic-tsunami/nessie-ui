@@ -22,7 +22,32 @@ describe( 'ToggleButton', () =>
         wrapper = shallow( <ToggleButton /> );
         instance = wrapper.instance();
     } );
-
+    describe( 'label', () =>
+    {
+        it( 'should be undefined by "default"', () =>
+        {
+            expect( instance.props.id ).to.be.undefined;
+        } );
+    } );
+    describe( 'role', () =>
+    {
+        it( 'should be "primary" by "default"', () =>
+        {
+            expect( instance.props.role ).to.equal( 'primary' );
+        } );
+        it( 'should be "secondary" as well when it passed to', () =>
+        {
+            wrapper.setProps( { role: 'secondary' } );
+            expect( wrapper.prop( 'role' ) ).to.equal( 'secondary' );
+        } );
+    } );
+    describe( 'id', () =>
+    {
+        it( 'should be undefined by "default"', () =>
+        {
+            expect( instance.props.id ).to.be.undefined;
+        } );
+    } );
     describe( 'icon', () =>
     {
         describe( 'iconType', () =>
@@ -75,7 +100,7 @@ describe( 'ToggleButton', () =>
         {
             expect( instance.props.isReadOnly ).to.be.false;
         } );
-        it( 'should be passed to the button as "disabled" when true', () =>
+        it( 'should be passed to the button as "readOnly" when true', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
             expect( wrapper.prop( 'readOnly' ) ).to.be.true;
@@ -83,7 +108,7 @@ describe( 'ToggleButton', () =>
     } );
 
 
-    describe( 'onClick', () =>
+    describe.only( 'onClick', () =>
     {
         it( 'should be undefined by default', () =>
         {
@@ -143,5 +168,4 @@ describe( 'ToggleButton', () =>
             expect( wrapper.prop( 'onMouseOut' ) ).to.be.equal( onMouseOut );
         } );
     } );
-
 } );

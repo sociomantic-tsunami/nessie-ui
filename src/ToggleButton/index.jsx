@@ -43,6 +43,7 @@ const ToggleButton = ( {
             onFocus     = { onFocus }
             onMouseOut  = { onMouseOut }
             onMouseOver = { onMouseOver }
+            role        = { role }
         >
             { iconType && iconType !== 'none' &&
             <Icon
@@ -170,7 +171,7 @@ ToggleButton.defaultProps =
     isReadOnly   : false,
     label        : undefined,
     onBlur       : undefined,
-    onClick      : () => console.log( 'd' ),
+    onClick      : undefined,
     onFocus      : undefined,
     onMouseOut   : undefined,
     onMouseOver  : undefined,
