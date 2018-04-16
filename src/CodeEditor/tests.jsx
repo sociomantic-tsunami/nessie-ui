@@ -39,31 +39,12 @@ describe( 'CodeEditor', () =>
 
     describe( 'props', () =>
     {
-        it( 'should pass value to CodeEditor', () =>
+        it( 'should pass value to the textarea as defaultValue', () =>
         {
             wrapper.setProps( { value: 'code!' } );
 
             expect( wrapper.find( 'textarea' ).prop( 'defaultValue' ) )
                 .to.equal( 'code!' );
-        } );
-
-        it( 'should pass onMouseOver to the container div as onMouseEnter',
-            () =>
-            {
-                const onMouseOver = sinon.spy();
-                wrapper.setProps( { onMouseOver } );
-
-                expect( wrapper.find( `.${cssMap.editor}` )
-                    .prop( 'onMouseEnter' ) ).to.equal( onMouseOver );
-            } );
-
-        it( 'should pass onMouseOut to the container div as onMouseLeave', () =>
-        {
-            const onMouseOut = sinon.spy();
-            wrapper.setProps( { onMouseOut } );
-
-            expect( wrapper.find( `.${cssMap.editor}` )
-                .prop( 'onMouseLeave' ) ).to.equal( onMouseOut );
         } );
     } );
 } );

@@ -5,8 +5,7 @@ export default class TextInputWithIconDriver extends InputComponentDriver
 {
     getErrorMessage()
     {
-        const iconWithTooltip = this.wrapper.children()
-                                    .filter( IconWithTooltip );
+        const iconWithTooltip = this.wrapper.find( IconWithTooltip ).first();
         return iconWithTooltip.driver().getMessage();
     }
 

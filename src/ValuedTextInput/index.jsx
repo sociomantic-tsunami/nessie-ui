@@ -196,22 +196,27 @@ export default class ValuedTextInput extends Component
 
     render()
     {
-        const { className, cssMap, ...props } = this.props;
+        const {
+            className,
+            cssMap,
+            onMouseOut,
+            onMouseOver,
+            ...props
+        } = this.props;
+
         const {
             forceHover,
             hasError,
             isDisabled,
-            onMouseOut,
-            onMouseOver,
             textAlign,
             valueLabel,
-            valueLabelPosition
+            valueLabelPosition,
         } = props;
 
         const {
             id,
             isFocused,
-            isHovered
+            isHovered,
         } = this.state;
 
         let alignText = textAlign;
@@ -232,8 +237,10 @@ export default class ValuedTextInput extends Component
                 } }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }>
+                    className   = { className }
+                    id          = { id }
+                    onMouseOver = { onMouseOver }
+                    onMouseOut  = { onMouseOut }>
                     <div className = { cssMap.container }>
                         <InputField
                             { ...props }
@@ -241,9 +248,7 @@ export default class ValuedTextInput extends Component
                             className    = { cssMap.input }
                             onFocus      = { this.handleFocus }
                             onBlur       = { this.handleBlur }
-                            textAlign    = { alignText }
-                            onMouseOver  = { onMouseOver }
-                            onMouseOut   = { onMouseOut } />
+                            textAlign    = { alignText }  />
                         <label
                             className = { cssMap.valueLabel }
                             htmlFor   = { id }>
