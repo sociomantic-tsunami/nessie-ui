@@ -8,11 +8,13 @@
     box-shadow: var( --boxShadow );
 
     background: var( --PC-WHITE );
+
+    border-radius: 2px;
 }
 
 .error
 {
-    border-color:   var( --AC-RED);
+    border-color:   var( --PC-RED );
 }
 
 .padding__S
