@@ -4,7 +4,7 @@
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React              from 'react';
-import { mount }          from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { Tab, TabButton } from '../index';
 
@@ -17,7 +17,7 @@ describe( 'Tabs', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Tabs /> );
+        wrapper  = shallow( <Tabs /> );
     } );
 
     describe( 'render()', () =>
