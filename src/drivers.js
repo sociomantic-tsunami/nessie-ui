@@ -88,6 +88,7 @@ import SimpleComponentDriver
 import SliderDriver            from './Slider/driver';
 import SliderGroupDriver       from './SliderGroup/driver';
 import SwitchDriver            from './Switch/driver';
+import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
@@ -285,7 +286,7 @@ const drivers =
     },
     {
         Component : TabButton,
-        Driver    : WrapperDriver,
+        Driver    : TabButtonDriver,
     },
     {
         Component : Tabs,
