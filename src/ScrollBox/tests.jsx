@@ -68,7 +68,6 @@ describe( 'ScrollBoxDriver', () =>
                 wrapper = mount( <ScrollBox { ...props } /> );
 
                 wrapper.driver().clickScrollUp();
-                console.log( wrapper.debug() );
 
                 expect( onClickScrollUp.calledOnce ).to.be.true;
             } );

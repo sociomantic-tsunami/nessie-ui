@@ -20,13 +20,6 @@ export default class ScrollBoxDriver
             );
         }
 
-        if ( !this.props.onClickScrollUp )
-        {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'onClickScrollUp' )
-            );
-        }
-
         this.wrapper.find( '.scrollBox__icon__up' ).first()
             .simulate( 'click' );
         return this;
@@ -38,13 +31,6 @@ export default class ScrollBoxDriver
         {
             throw new Error(
                 ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' )
-            );
-        }
-
-        if ( !this.props.onClickScrollRight )
-        {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'onClickScrollRight' )
             );
         }
 
@@ -62,13 +48,6 @@ export default class ScrollBoxDriver
             );
         }
 
-        if ( !this.props.onClickScrollDown )
-        {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'onClickScrollDown' )
-            );
-        }
-
         this.wrapper.find( '.scrollBox__icon__down' ).first()
             .simulate( 'click' );
         return this;
@@ -80,13 +59,6 @@ export default class ScrollBoxDriver
         {
             throw new Error(
                 ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' )
-            );
-        }
-
-        if ( !this.props.onClickScrollLeft )
-        {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'onClickScrollLeft' )
             );
         }
 
