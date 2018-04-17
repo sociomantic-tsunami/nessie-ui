@@ -21,6 +21,7 @@ import {
     IconWithTooltip,
     InputField,
     Label,
+    ListBox,
     MessageBox,
     ModalDialog,
     Module,
@@ -75,6 +76,7 @@ import IconDriver             from './Icon/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
 import InputComponentDriver
     from './Testing/CommonDrivers/inputComponentDriver';
+import ListBoxDriver         from './ListBox/driver';
 import ModalDialogDriver     from './ModalDialog/driver';
 import ModuleDriver          from './Module/driver';
 import NavItemDriver         from './NavItem/driver';
@@ -180,6 +182,10 @@ const drivers =
     {
         Component : Label,
         Driver    : WrapperDriver,
+    },
+    {
+        Component : ListBox,
+        Driver    : ListBoxDriver,
     },
     {
         Component : MessageBox,
