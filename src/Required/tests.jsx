@@ -10,12 +10,10 @@ import { Required } from '../index';
 describe( 'Required', () =>
 {
     let wrapper;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper  = mount( <Required /> );
-        cssMap = wrapper.prop( 'cssMap' );
     } );
 
     describe( 'render()', () =>
@@ -33,17 +31,6 @@ describe( 'Required', () =>
             it( 'should be "true" by default', () =>
             {
                 expect( wrapper.prop( 'isRequired' ) ).to.be.true;
-            } );
-        } );
-
-        describe( 'text', () =>
-        {
-            it( 'should be passed to the Required', () =>
-            {
-                wrapper.setProps( { text: 'Nanananananana' } );
-
-                expect( wrapper.driver().getContent( `.${cssMap.default}` ) )
-                    .to.have.length( 1 );
             } );
         } );
     } );

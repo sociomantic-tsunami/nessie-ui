@@ -6,8 +6,9 @@ export default class WrapperDriver
         this.cssMap  = this.wrapper.props().cssMap;
     }
 
-    getContent( selector = `.${this.cssMap.default}` )
+    getContent()
     {
-        return this.wrapper.find( selector ).first().children();
+        return this.wrapper.find( `.${this.cssMap.default}` )
+            .first().children();
     }
 }
