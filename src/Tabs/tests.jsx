@@ -81,8 +81,8 @@ describe( 'TabsDriver', () =>
         {
             wrapper.setProps( {
                 children : [
-                    <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />
+                    <Tab label = "Tabity">Ytibat</Tab>,
+                    <Tab label = "Taby">Ybat</Tab>
                 ]
             } );
 
@@ -104,6 +104,21 @@ describe( 'TabsDriver', () =>
 
             expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
                 .to.equal( 'Tabity' );
+        } );
+    } );
+
+    describe( 'getTabContent()', () =>
+    {
+        it( 'should return Tab content', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Tab label = "Tabity"><div>Ytibat</div></Tab>,
+                    <Tab label = "Taby">Ybat</Tab>
+                ]
+            } );
+
+            expect( driver.getTabContent() ).to.have.length( 1 );
         } );
     } );
 } );
