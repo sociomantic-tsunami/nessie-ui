@@ -1,13 +1,14 @@
 /* global document */
 
-import React, { Component }         from 'react';
-import PropTypes                    from 'prop-types';
+import React, { Component }           from 'react';
+import PropTypes                      from 'prop-types';
 
-import { ScrollBox, Text }          from '../index';
-import ListBox                      from '../ListBox';
-import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Dropdown/withDropdown';
-import { generateId }               from '../utils';
+import { ScrollBox, Text }            from '../index';
+import ListBox                        from '../ListBox';
+import TextInputWithIcon              from '../TextInputWithIcon';
+import withDropdown                   from '../Dropdown/withDropdown';
+import { generateId }                 from '../utils';
+import styles                         from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -407,7 +408,11 @@ export default class ComboBox extends Component
         else
         {
             dropdownContent = (
-                <Text noWrap overflowIsHidden role = "subtle">
+                <Text
+                    className = { styles.dropdownPlaceholder }
+                    noWrap
+                    overflowIsHidden
+                    role = "subtle">
                     { dropdownPlaceholder }
                 </Text>
             );

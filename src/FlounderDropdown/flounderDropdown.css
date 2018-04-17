@@ -82,6 +82,13 @@
         {
             color:          var( --PC-GREY--D5 );
             opacity:        0.5;
+
+            &[data-value=""]
+            {
+                @extend %Nessie-RegularIt;
+
+                color:  var( --PC-GREY--L40 );
+            }
         }
 
         &.multipleTag
@@ -143,6 +150,13 @@
         .description
         {
             display:    none;
+        }
+
+        &[data-value=""]
+        {
+            @extend %Nessie-RegularIt;
+
+            color:  var( --PC-GREY--L70 );
         }
     }
 
