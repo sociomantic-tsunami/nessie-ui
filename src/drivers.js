@@ -40,6 +40,7 @@ import {
     RadioGroup,
     Required,
     Row,
+    ScrollBox,
     Section,
     Slider,
     SliderGroup,
@@ -83,6 +84,7 @@ import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
 import PasswordInputDriver   from './PasswordInput/driver';
+import ScrollBoxDriver       from './ScrollBox/driver';
 import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
@@ -261,6 +263,10 @@ const drivers =
     {
         Component : Row,
         Driver    : GridColumnDriver,
+    },
+    {
+        Component : ScrollBox,
+        Driver    : ScrollBoxDriver
     },
     {
         Component : Section,
