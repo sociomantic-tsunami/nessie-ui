@@ -42,6 +42,7 @@ import {
     Row,
     Section,
     Slider,
+    SliderGroup,
     StatusIndicator,
     Switch,
     Tab,
@@ -49,6 +50,8 @@ import {
     Table,
     TableCell,
     TableRow,
+    Tag,
+    TagInput,
     Text,
     TextArea,
     TextInput,
@@ -83,7 +86,10 @@ import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
     from './Testing/CommonDrivers/simpleComponentDriver';
 import SliderDriver            from './Slider/driver';
+import SliderGroupDriver       from './SliderGroup/driver';
 import SwitchDriver            from './Switch/driver';
+import TagDriver               from './Tag/driver';
+import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -262,6 +268,10 @@ const drivers =
         Driver    : SliderDriver,
     },
     {
+        Component : SliderGroup,
+        Driver    : SliderGroupDriver,
+    },
+    {
         Component : StatusIndicator,
         Driver    : WrapperDriver,
     },
@@ -288,6 +298,14 @@ const drivers =
     {
         Component : TableRow,
         Driver    : WrapperDriver,
+    },
+    {
+        Component : Tag,
+        Driver    : TagDriver,
+    },
+    {
+        Component : TagInput,
+        Driver    : TagInputDriver
     },
     {
         Component : Text,
