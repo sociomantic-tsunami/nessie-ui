@@ -194,7 +194,7 @@ export default class Slider extends Component
     {
         super( props );
 
-        this.state = { inputIndex: -1 };
+        this.state = { ...this.state, inputIndex: -1 };
 
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
