@@ -104,7 +104,7 @@
         padding-top:    var( --spacing-1 );
         padding-bottom: var( --spacing-1 );
 
-        box-shadow:     0 5px 10px var( --PC-GREY--L75 );
+        box-shadow:     var( --boxShadow );
 
         background:     var( --PC-WHITE );
 
