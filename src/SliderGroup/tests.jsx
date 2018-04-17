@@ -1,6 +1,7 @@
 /* eslint-env node, mocha */
 /* global expect */
 /* eslint no-console: 0*/
+/* eslint-disable max-len */
 
 import React                      from 'react';
 import { shallow, mount }         from 'enzyme';
@@ -173,12 +174,12 @@ describe( 'SliderGroup', () =>
 
             Wrapper = shallow( <SliderGroup { ...props } /> );
 
-            const onChange = Wrapper.find( Slider ).simulate( 'change' );
+            Wrapper.find( Slider ).simulate( 'change' );
 
             expect( onChangeSlider.calledOnce ).to.be.true;
         } );
 
-        it( 'Individual slider onChange event should also trigger SldierGroup onchange event if the function is provided in proptype OnChange', () =>
+        it( 'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange', () =>
         {
             const onChangeSlider = sinon.spy();
             const onChangeSliderGroup = sinon.spy();
@@ -189,10 +190,66 @@ describe( 'SliderGroup', () =>
 
             Wrapper = shallow( <SliderGroup { ...props } /> );
 
-            const onChange = Wrapper.find( Slider ).simulate( 'change' );
+            Wrapper.find( Slider ).simulate( 'change' );
 
             expect( onChangeSlider.calledOnce ).to.be.true;
             expect( onChangeSliderGroup.calledOnce ).to.be.true;
+        } );
+    } );
+} );
+
+describe( 'SliderGroupDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <SliderGroup /> );
+    } );
+
+    describe( 'getSlider()', () =>
+    {
+        it( 'should get Slider at given index', () =>
+        {
+            wrapper.setProps( {
+                sliders : [
+                    { value: 50 },
+                    { value: 80 },
+                    { value: 60 },
+                    { value: 70 }
+                ],
+            } );
+
+            expect( wrapper.driver().getSlider( 1 ).props().value ).to.equal( 80 );
+        } );
+
+        it( 'should get Sliders when indexes are passed as an array', () =>
+        {
+            wrapper.setProps( {
+                sliders : [
+                    { value: 50 },
+                    { value: 80 },
+                    { value: 60 },
+                    { value: 70 }
+                ],
+            } );
+
+            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).to.have.length( 2 );
+        } );
+
+        it( 'should return a Slider at certain index in array', () =>
+        {
+            wrapper.setProps( {
+                sliders : [
+                    { value: 40 },
+                    { value: 20 },
+                    { value: 10 },
+                    { value: 30 }
+                ],
+            } );
+
+            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value )
+                .to.equal( 20 );
         } );
     } );
 } );
