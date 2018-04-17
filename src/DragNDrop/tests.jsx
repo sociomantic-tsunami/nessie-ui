@@ -35,7 +35,7 @@ describe( 'DragNDrop', () =>
                 children : <Text>something</Text>
             } );
 
-            expect( driver.getContent( 'Text' ) ).to.have.length( 1 );
+            expect( driver.getContent() ).to.have.length( 1 );
         } );
     } );
 } );
