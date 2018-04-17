@@ -45,6 +45,7 @@
 {
     color:   #41556f;
     opacity: .5;
+    background-color: transparent;
 
     &.isChecked
     {
