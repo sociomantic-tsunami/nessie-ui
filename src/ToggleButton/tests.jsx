@@ -177,7 +177,7 @@ describe( 'ToggleButtonDriver', () =>
     {
         wrapper = mount( <ToggleButton /> );
     } );
-    describe.only( 'onClick', () =>
+    describe( 'onClick', () =>
     {
         it( 'should call onClick once', () =>
         {
