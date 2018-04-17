@@ -32,16 +32,6 @@ describe( 'TabButton Driver', () =>
         driver   = wrapper.driver();
     } );
 
-    describe( 'setDisabled()', () =>
-    {
-        it( 'should change isDisabled to true', () =>
-        {
-            driver.setDisabled();
-
-            expect( wrapper.props().isDisabled ).to.be.true;
-        } );
-    } );
-
     describe( 'click()', () =>
     {
         it( 'should trigger onClick', () =>
@@ -60,23 +50,12 @@ describe( 'TabButton Driver', () =>
         {
             const onClick = sinon.spy();
             wrapper.setProps( {
-                onClick
+                onClick,
+                isDisabled : true
             } );
-
-            driver.setDisabled();
 
             expect( () => driver.click() )
                 .to.throw( 'Button cannot be clicked because it is disabled' );
-        } );
-    } );
-
-    describe( 'setActive()', () =>
-    {
-        it( 'should change isActive to true', () =>
-        {
-            driver.setActive();
-
-            expect( wrapper.props().isActive ).to.be.true;
         } );
     } );
 } );

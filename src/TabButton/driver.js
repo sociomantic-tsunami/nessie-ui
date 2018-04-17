@@ -20,16 +20,4 @@ export default class TabButtonDriver
 
         return this.wrapper.simulate( 'click' );
     }
-
-    setActive()
-    {
-        this.wrapper.setProps( { isActive: true } );
-        return this;
-    }
-
-    setDisabled()
-    {
-        this.wrapper.setProps( { isDisabled: true } );
-        return this;
-    }
 }
