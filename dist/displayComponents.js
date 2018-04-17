@@ -1548,17 +1548,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   // Returns the value from the range [`from`; `to`] that satisfies
-  // `pred` and is closest to `from`. Assumes that at least `to` satisfies `pred`.
+  // `pred` and is closest to `from`. Assumes that at least `to`
+  // satisfies `pred`. Supports `from` being greater than `to`.
   function findFirst(pred, from, to) {
+    // At any point we are certain `to` satisfies `pred`, don't know
+    // whether `from` does.
+    var dir = from > to ? -1 : 1;
     for (;;) {
-      if (Math.abs(from - to) <= 1) {
-        return pred(from) ? from : to;
+      if (from == to) {
+        return from;
       }
-      var mid = Math.floor((from + to) / 2);
+      var midF = (from + to) / 2,
+          mid = dir < 0 ? Math.ceil(midF) : Math.floor(midF);
+      if (mid == from) {
+        return pred(mid) ? from : to;
+      }
       if (pred(mid)) {
         to = mid;
       } else {
-        from = mid;
+        from = mid + dir;
       }
     }
   }
@@ -2344,13 +2352,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   function iterateBidiSections(order, from, to, f) {
     if (!order) {
-      return f(from, to, "ltr");
+      return f(from, to, "ltr", 0);
     }
     var found = false;
     for (var i = 0; i < order.length; ++i) {
       var part = order[i];
       if (part.from < to && part.to > from || from == to && part.to == from) {
-        f(Math.max(part.from, from), Math.min(part.to, to), part.level == 1 ? "rtl" : "ltr");
+        f(Math.max(part.from, from), Math.min(part.to, to), part.level == 1 ? "rtl" : "ltr", i);
         found = true;
       }
     }
@@ -2582,13 +2590,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }
       }
-      if (order[0].level == 1 && (m = str.match(/^\s+/))) {
-        order[0].from = m[0].length;
-        order.unshift(new BidiSpan(0, 0, m[0].length));
-      }
-      if (lst(order).level == 1 && (m = str.match(/\s+$/))) {
-        lst(order).to -= m[0].length;
-        order.push(new BidiSpan(0, len - m[0].length, len));
+      if (direction == "ltr") {
+        if (order[0].level == 1 && (m = str.match(/^\s+/))) {
+          order[0].from = m[0].length;
+          order.unshift(new BidiSpan(0, 0, m[0].length));
+        }
+        if (lst(order).level == 1 && (m = str.match(/\s+$/))) {
+          lst(order).to -= m[0].length;
+          order.push(new BidiSpan(0, len - m[0].length, len));
+        }
       }
 
       return direction == "rtl" ? order.reverse() : order;
@@ -2604,133 +2614,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       order = line.order = bidiOrdering(line.text, direction);
     }
     return order;
-  }
-
-  function moveCharLogically(line, ch, dir) {
-    var target = skipExtendingChars(line.text, ch + dir, dir);
-    return target < 0 || target > line.text.length ? null : target;
-  }
-
-  function moveLogically(line, start, dir) {
-    var ch = moveCharLogically(line, start.ch, dir);
-    return ch == null ? null : new Pos(start.line, ch, dir < 0 ? "after" : "before");
-  }
-
-  function endOfLine(visually, cm, lineObj, lineNo, dir) {
-    if (visually) {
-      var order = getOrder(lineObj, cm.doc.direction);
-      if (order) {
-        var part = dir < 0 ? lst(order) : order[0];
-        var moveInStorageOrder = dir < 0 == (part.level == 1);
-        var sticky = moveInStorageOrder ? "after" : "before";
-        var ch;
-        // With a wrapped rtl chunk (possibly spanning multiple bidi parts),
-        // it could be that the last bidi part is not on the last visual line,
-        // since visual lines contain content order-consecutive chunks.
-        // Thus, in rtl, we are looking for the first (content-order) character
-        // in the rtl chunk that is on the last line (that is, the same line
-        // as the last (content-order) character).
-        if (part.level > 0) {
-          var prep = prepareMeasureForLine(cm, lineObj);
-          ch = dir < 0 ? lineObj.text.length - 1 : 0;
-          var targetTop = measureCharPrepared(cm, prep, ch).top;
-          ch = findFirst(function (ch) {
-            return measureCharPrepared(cm, prep, ch).top == targetTop;
-          }, dir < 0 == (part.level == 1) ? part.from : part.to - 1, ch);
-          if (sticky == "before") {
-            ch = moveCharLogically(lineObj, ch, 1);
-          }
-        } else {
-          ch = dir < 0 ? part.to : part.from;
-        }
-        return new Pos(lineNo, ch, sticky);
-      }
-    }
-    return new Pos(lineNo, dir < 0 ? lineObj.text.length : 0, dir < 0 ? "before" : "after");
-  }
-
-  function moveVisually(cm, line, start, dir) {
-    var bidi = getOrder(line, cm.doc.direction);
-    if (!bidi) {
-      return moveLogically(line, start, dir);
-    }
-    if (start.ch >= line.text.length) {
-      start.ch = line.text.length;
-      start.sticky = "before";
-    } else if (start.ch <= 0) {
-      start.ch = 0;
-      start.sticky = "after";
-    }
-    var partPos = getBidiPartAt(bidi, start.ch, start.sticky),
-        part = bidi[partPos];
-    if (cm.doc.direction == "ltr" && part.level % 2 == 0 && (dir > 0 ? part.to > start.ch : part.from < start.ch)) {
-      // Case 1: We move within an ltr part in an ltr editor. Even with wrapped lines,
-      // nothing interesting happens.
-      return moveLogically(line, start, dir);
-    }
-
-    var mv = function mv(pos, dir) {
-      return moveCharLogically(line, pos instanceof Pos ? pos.ch : pos, dir);
-    };
-    var prep;
-    var getWrappedLineExtent = function getWrappedLineExtent(ch) {
-      if (!cm.options.lineWrapping) {
-        return { begin: 0, end: line.text.length };
-      }
-      prep = prep || prepareMeasureForLine(cm, line);
-      return wrappedLineExtentChar(cm, line, prep, ch);
-    };
-    var wrappedLineExtent = getWrappedLineExtent(start.sticky == "before" ? mv(start, -1) : start.ch);
-
-    if (cm.doc.direction == "rtl" || part.level == 1) {
-      var moveInStorageOrder = part.level == 1 == dir < 0;
-      var ch = mv(start, moveInStorageOrder ? 1 : -1);
-      if (ch != null && (!moveInStorageOrder ? ch >= part.from && ch >= wrappedLineExtent.begin : ch <= part.to && ch <= wrappedLineExtent.end)) {
-        // Case 2: We move within an rtl part or in an rtl editor on the same visual line
-        var sticky = moveInStorageOrder ? "before" : "after";
-        return new Pos(start.line, ch, sticky);
-      }
-    }
-
-    // Case 3: Could not move within this bidi part in this visual line, so leave
-    // the current bidi part
-
-    var searchInVisualLine = function searchInVisualLine(partPos, dir, wrappedLineExtent) {
-      var getRes = function getRes(ch, moveInStorageOrder) {
-        return moveInStorageOrder ? new Pos(start.line, mv(ch, 1), "before") : new Pos(start.line, ch, "after");
-      };
-
-      for (; partPos >= 0 && partPos < bidi.length; partPos += dir) {
-        var part = bidi[partPos];
-        var moveInStorageOrder = dir > 0 == (part.level != 1);
-        var ch = moveInStorageOrder ? wrappedLineExtent.begin : mv(wrappedLineExtent.end, -1);
-        if (part.from <= ch && ch < part.to) {
-          return getRes(ch, moveInStorageOrder);
-        }
-        ch = moveInStorageOrder ? part.from : mv(part.to, -1);
-        if (wrappedLineExtent.begin <= ch && ch < wrappedLineExtent.end) {
-          return getRes(ch, moveInStorageOrder);
-        }
-      }
-    };
-
-    // Case 3a: Look for other bidi parts on the same visual line
-    var res = searchInVisualLine(partPos + dir, dir, wrappedLineExtent);
-    if (res) {
-      return res;
-    }
-
-    // Case 3b: Look for other bidi parts on the next visual line
-    var nextCh = dir > 0 ? wrappedLineExtent.end : mv(wrappedLineExtent.begin, -1);
-    if (nextCh != null && !(dir > 0 && nextCh == line.text.length)) {
-      res = searchInVisualLine(dir > 0 ? 0 : bidi.length - 1, dir, getWrappedLineExtent(nextCh));
-      if (res) {
-        return res;
-      }
-    }
-
-    // Case 4: Nowhere to move
-    return null;
   }
 
   // EVENT HANDLING
@@ -3098,12 +2981,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // Fed to the mode parsers, provides helper functions to make
   // parsers more succinct.
 
-  var StringStream = function StringStream(string, tabSize) {
+  var StringStream = function StringStream(string, tabSize, lineOracle) {
     this.pos = this.start = 0;
     this.string = string;
     this.tabSize = tabSize || 8;
     this.lastColumnPos = this.lastColumnValue = 0;
     this.lineStart = 0;
+    this.lineOracle = lineOracle;
   };
 
   StringStream.prototype.eol = function () {
@@ -3202,27 +3086,94 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       this.lineStart -= n;
     }
   };
+  StringStream.prototype.lookAhead = function (n) {
+    var oracle = this.lineOracle;
+    return oracle && oracle.lookAhead(n);
+  };
+  StringStream.prototype.baseToken = function () {
+    var oracle = this.lineOracle;
+    return oracle && oracle.baseToken(this.pos);
+  };
+
+  var SavedContext = function SavedContext(state, lookAhead) {
+    this.state = state;
+    this.lookAhead = lookAhead;
+  };
+
+  var Context = function Context(doc, state, line, lookAhead) {
+    this.state = state;
+    this.doc = doc;
+    this.line = line;
+    this.maxLookAhead = lookAhead || 0;
+    this.baseTokens = null;
+    this.baseTokenPos = 1;
+  };
+
+  Context.prototype.lookAhead = function (n) {
+    var line = this.doc.getLine(this.line + n);
+    if (line != null && n > this.maxLookAhead) {
+      this.maxLookAhead = n;
+    }
+    return line;
+  };
+
+  Context.prototype.baseToken = function (n) {
+    var this$1 = this;
+
+    if (!this.baseTokens) {
+      return null;
+    }
+    while (this.baseTokens[this.baseTokenPos] <= n) {
+      this$1.baseTokenPos += 2;
+    }
+    var type = this.baseTokens[this.baseTokenPos + 1];
+    return { type: type && type.replace(/( |^)overlay .*/, ""),
+      size: this.baseTokens[this.baseTokenPos] - n };
+  };
+
+  Context.prototype.nextLine = function () {
+    this.line++;
+    if (this.maxLookAhead > 0) {
+      this.maxLookAhead--;
+    }
+  };
+
+  Context.fromSaved = function (doc, saved, line) {
+    if (saved instanceof SavedContext) {
+      return new Context(doc, copyState(doc.mode, saved.state), line, saved.lookAhead);
+    } else {
+      return new Context(doc, copyState(doc.mode, saved), line);
+    }
+  };
+
+  Context.prototype.save = function (copy) {
+    var state = copy !== false ? copyState(this.doc.mode, this.state) : this.state;
+    return this.maxLookAhead > 0 ? new SavedContext(state, this.maxLookAhead) : state;
+  };
 
   // Compute a style array (an array starting with a mode generation
   // -- for invalidation -- followed by pairs of end positions and
   // style strings), which is used to highlight the tokens on the
   // line.
-  function highlightLine(cm, line, state, forceToEnd) {
+  function highlightLine(cm, line, context, forceToEnd) {
     // A styles array always starts with a number identifying the
     // mode/overlays that it is based on (for easy invalidation).
     var st = [cm.state.modeGen],
         lineClasses = {};
     // Compute the base array of styles
-    runMode(cm, line.text, cm.doc.mode, state, function (end, style) {
+    runMode(cm, line.text, cm.doc.mode, context, function (end, style) {
       return st.push(end, style);
     }, lineClasses, forceToEnd);
+    var state = context.state;
 
     // Run overlays, adjust style array.
     var loop = function loop(o) {
+      context.baseTokens = st;
       var overlay = cm.state.overlays[o],
           i = 1,
           at = 0;
-      runMode(cm, line.text, overlay.mode, true, function (end, style) {
+      context.state = true;
+      runMode(cm, line.text, overlay.mode, context, function (end, style) {
         var start = i;
         // Ensure there's a token end at the current position, and that i points at it
         while (at < end) {
@@ -3246,6 +3197,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }
       }, lineClasses);
+      context.state = state;
+      context.baseTokens = null;
+      context.baseTokenPos = 1;
     };
 
     for (var o = 0; o < cm.state.overlays.length; ++o) {
@@ -3255,59 +3209,60 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   function getLineStyles(cm, line, updateFrontier) {
     if (!line.styles || line.styles[0] != cm.state.modeGen) {
-      var state = getStateBefore(cm, lineNo(line));
-      var result = highlightLine(cm, line, line.text.length > cm.options.maxHighlightLength ? copyState(cm.doc.mode, state) : state);
-      line.stateAfter = state;
+      var context = getContextBefore(cm, lineNo(line));
+      var resetState = line.text.length > cm.options.maxHighlightLength && copyState(cm.doc.mode, context.state);
+      var result = highlightLine(cm, line, context);
+      if (resetState) {
+        context.state = resetState;
+      }
+      line.stateAfter = context.save(!resetState);
       line.styles = result.styles;
       if (result.classes) {
         line.styleClasses = result.classes;
       } else if (line.styleClasses) {
         line.styleClasses = null;
       }
-      if (updateFrontier === cm.doc.frontier) {
-        cm.doc.frontier++;
+      if (updateFrontier === cm.doc.highlightFrontier) {
+        cm.doc.modeFrontier = Math.max(cm.doc.modeFrontier, ++cm.doc.highlightFrontier);
       }
     }
     return line.styles;
   }
 
-  function getStateBefore(cm, n, precise) {
+  function getContextBefore(cm, n, precise) {
     var doc = cm.doc,
         display = cm.display;
     if (!doc.mode.startState) {
-      return true;
+      return new Context(doc, true, n);
     }
-    var pos = findStartLine(cm, n, precise),
-        state = pos > doc.first && getLine(doc, pos - 1).stateAfter;
-    if (!state) {
-      state = startState(doc.mode);
-    } else {
-      state = copyState(doc.mode, state);
-    }
-    doc.iter(pos, n, function (line) {
-      processLine(cm, line.text, state);
-      var save = pos == n - 1 || pos % 5 == 0 || pos >= display.viewFrom && pos < display.viewTo;
-      line.stateAfter = save ? copyState(doc.mode, state) : null;
-      ++pos;
+    var start = findStartLine(cm, n, precise);
+    var saved = start > doc.first && getLine(doc, start - 1).stateAfter;
+    var context = saved ? Context.fromSaved(doc, saved, start) : new Context(doc, startState(doc.mode), start);
+
+    doc.iter(start, n, function (line) {
+      processLine(cm, line.text, context);
+      var pos = context.line;
+      line.stateAfter = pos == n - 1 || pos % 5 == 0 || pos >= display.viewFrom && pos < display.viewTo ? context.save() : null;
+      context.nextLine();
     });
     if (precise) {
-      doc.frontier = pos;
+      doc.modeFrontier = context.line;
     }
-    return state;
+    return context;
   }
 
   // Lightweight form of highlight -- proceed over this line and
   // update state, but don't save a style array. Used for lines that
   // aren't currently visible.
-  function processLine(cm, text, state, startAt) {
+  function processLine(cm, text, context, startAt) {
     var mode = cm.doc.mode;
-    var stream = new StringStream(text, cm.options.tabSize);
+    var stream = new StringStream(text, cm.options.tabSize, context);
     stream.start = stream.pos = startAt || 0;
     if (text == "") {
-      callBlankLine(mode, state);
+      callBlankLine(mode, context.state);
     }
     while (!stream.eol()) {
-      readToken(mode, stream, state);
+      readToken(mode, stream, context.state);
       stream.start = stream.pos;
     }
   }
@@ -3338,36 +3293,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     throw new Error("Mode " + mode.name + " failed to advance stream.");
   }
 
+  var Token = function Token(stream, type, state) {
+    this.start = stream.start;this.end = stream.pos;
+    this.string = stream.current();
+    this.type = type || null;
+    this.state = state;
+  };
+
   // Utility for getTokenAt and getLineTokens
   function takeToken(cm, pos, precise, asArray) {
-    var getObj = function getObj(copy) {
-      return {
-        start: stream.start, end: stream.pos,
-        string: stream.current(),
-        type: style || null,
-        state: copy ? copyState(doc.mode, state) : state
-      };
-    };
-
     var doc = cm.doc,
         mode = doc.mode,
         style;
     pos = _clipPos(doc, pos);
     var line = getLine(doc, pos.line),
-        state = getStateBefore(cm, pos.line, precise);
-    var stream = new StringStream(line.text, cm.options.tabSize),
+        context = getContextBefore(cm, pos.line, precise);
+    var stream = new StringStream(line.text, cm.options.tabSize, context),
         tokens;
     if (asArray) {
       tokens = [];
     }
     while ((asArray || stream.pos < pos.ch) && !stream.eol()) {
       stream.start = stream.pos;
-      style = readToken(mode, stream, state);
+      style = readToken(mode, stream, context.state);
       if (asArray) {
-        tokens.push(getObj(true));
+        tokens.push(new Token(stream, style, copyState(doc.mode, context.state)));
       }
     }
-    return asArray ? tokens : getObj();
+    return asArray ? tokens : new Token(stream, style, context.state);
   }
 
   function extractLineClasses(type, output) {
@@ -3390,29 +3343,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   // Run the given mode's parser over a line, calling f for each token.
-  function runMode(cm, text, mode, state, f, lineClasses, forceToEnd) {
+  function runMode(cm, text, mode, context, f, lineClasses, forceToEnd) {
     var flattenSpans = mode.flattenSpans;
     if (flattenSpans == null) {
       flattenSpans = cm.options.flattenSpans;
     }
     var curStart = 0,
         curStyle = null;
-    var stream = new StringStream(text, cm.options.tabSize),
+    var stream = new StringStream(text, cm.options.tabSize, context),
         style;
     var inner = cm.options.addModeClass && [null];
     if (text == "") {
-      extractLineClasses(callBlankLine(mode, state), lineClasses);
+      extractLineClasses(callBlankLine(mode, context.state), lineClasses);
     }
     while (!stream.eol()) {
       if (stream.pos > cm.options.maxHighlightLength) {
         flattenSpans = false;
         if (forceToEnd) {
-          processLine(cm, text, state, stream.pos);
+          processLine(cm, text, context, stream.pos);
         }
         stream.pos = text.length;
         style = null;
       } else {
-        style = extractLineClasses(readToken(mode, stream, state, inner), lineClasses);
+        style = extractLineClasses(readToken(mode, stream, context.state, inner), lineClasses);
       }
       if (inner) {
         var mName = inner[0].name;
@@ -3453,8 +3406,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (search <= doc.first) {
         return doc.first;
       }
-      var line = getLine(doc, search - 1);
-      if (line.stateAfter && (!precise || search <= doc.frontier)) {
+      var line = getLine(doc, search - 1),
+          after = line.stateAfter;
+      if (after && (!precise || search + (after instanceof SavedContext ? after.lookAhead : 0) <= doc.modeFrontier)) {
         return search;
       }
       var indented = countColumn(line.text, null, cm.options.tabSize);
@@ -3464,6 +3418,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     }
     return minline;
+  }
+
+  function retreatFrontier(doc, n) {
+    doc.modeFrontier = Math.min(doc.modeFrontier, n);
+    if (doc.highlightFrontier < n - 10) {
+      return;
+    }
+    var start = doc.first;
+    for (var line = n - 1; line > start; line--) {
+      var saved = getLine(doc, line).stateAfter;
+      // change is on 3
+      // state on line 1 looked ahead 2 -- so saw 3
+      // test 1 + 2 < 3 should cover this
+      if (saved && (!(saved instanceof SavedContext) || line + saved.lookAhead < n)) {
+        start = line + 1;
+        break;
+      }
+    }
+    doc.highlightFrontier = Math.min(doc.highlightFrontier, start);
   }
 
   // LINE DATA STRUCTURE
@@ -4577,18 +4550,26 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     return window.pageYOffset || (document.documentElement || document.body).scrollTop;
   }
 
+  function widgetTopHeight(lineObj) {
+    var height = 0;
+    if (lineObj.widgets) {
+      for (var i = 0; i < lineObj.widgets.length; ++i) {
+        if (lineObj.widgets[i].above) {
+          height += widgetHeight(lineObj.widgets[i]);
+        }
+      }
+    }
+    return height;
+  }
+
   // Converts a {top, bottom, left, right} box from line-local
   // coordinates into another coordinate system. Context may be one of
   // "line", "div" (display.lineDiv), "local"./null (editor), "window",
   // or "page".
   function intoCoordSystem(cm, lineObj, rect, context, includeWidgets) {
-    if (!includeWidgets && lineObj.widgets) {
-      for (var i = 0; i < lineObj.widgets.length; ++i) {
-        if (lineObj.widgets[i].above) {
-          var size = widgetHeight(lineObj.widgets[i]);
-          rect.top += size;rect.bottom += size;
-        }
-      }
+    if (!includeWidgets) {
+      var height = widgetTopHeight(lineObj);
+      rect.top += height;rect.bottom += height;
     }
     if (context == "line") {
       return rect;
@@ -4687,7 +4668,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     function getBidi(ch, partPos, invert) {
       var part = order[partPos],
-          right = part.level % 2 != 0;
+          right = part.level == 1;
       return get(invert ? ch - 1 : ch, right != invert);
     }
     var partPos = getBidiPartAt(order, ch, sticky);
@@ -4758,84 +4739,171 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   function wrappedLineExtent(cm, lineObj, preparedMeasure, y) {
-    var measure = function measure(ch) {
-      return intoCoordSystem(cm, lineObj, measureCharPrepared(cm, preparedMeasure, ch), "line");
-    };
+    y -= widgetTopHeight(lineObj);
     var end = lineObj.text.length;
     var begin = findFirst(function (ch) {
-      return measure(ch - 1).bottom <= y;
+      return measureCharPrepared(cm, preparedMeasure, ch - 1).bottom <= y;
     }, end, 0);
     end = findFirst(function (ch) {
-      return measure(ch).top > y;
+      return measureCharPrepared(cm, preparedMeasure, ch).top > y;
     }, begin, end);
     return { begin: begin, end: end };
   }
 
   function wrappedLineExtentChar(cm, lineObj, preparedMeasure, target) {
+    if (!preparedMeasure) {
+      preparedMeasure = prepareMeasureForLine(cm, lineObj);
+    }
     var targetTop = intoCoordSystem(cm, lineObj, measureCharPrepared(cm, preparedMeasure, target), "line").top;
     return wrappedLineExtent(cm, lineObj, preparedMeasure, targetTop);
   }
 
+  // Returns true if the given side of a box is after the given
+  // coordinates, in top-to-bottom, left-to-right order.
+  function boxIsAfter(box, x, y, left) {
+    return box.bottom <= y ? false : box.top > y ? true : (left ? box.left : box.right) > x;
+  }
+
   function coordsCharInner(cm, lineObj, lineNo$$1, x, y) {
+    // Move y into line-local coordinate space
     y -= _heightAtLine(lineObj);
-    var begin = 0,
-        end = lineObj.text.length;
     var preparedMeasure = prepareMeasureForLine(cm, lineObj);
-    var pos;
+    // When directly calling `measureCharPrepared`, we have to adjust
+    // for the widgets at this line.
+    var widgetHeight$$1 = widgetTopHeight(lineObj);
+    var begin = 0,
+        end = lineObj.text.length,
+        ltr = true;
+
     var order = getOrder(lineObj, cm.doc.direction);
+    // If the line isn't plain left-to-right text, first figure out
+    // which bidi section the coordinates fall into.
     if (order) {
-      if (cm.options.lineWrapping) {
-        var assign;
-        assign = wrappedLineExtent(cm, lineObj, preparedMeasure, y), begin = assign.begin, end = assign.end, assign;
+      var part = (cm.options.lineWrapping ? coordsBidiPartWrapped : coordsBidiPart)(cm, lineObj, lineNo$$1, preparedMeasure, order, x, y);
+      ltr = part.level != 1;
+      // The awkward -1 offsets are needed because findFirst (called
+      // on these below) will treat its first bound as inclusive,
+      // second as exclusive, but we want to actually address the
+      // characters in the part's range
+      begin = ltr ? part.from : part.to - 1;
+      end = ltr ? part.to : part.from - 1;
+    }
+
+    // A binary search to find the first character whose bounding box
+    // starts after the coordinates. If we run across any whose box wrap
+    // the coordinates, store that.
+    var chAround = null,
+        boxAround = null;
+    var ch = findFirst(function (ch) {
+      var box = measureCharPrepared(cm, preparedMeasure, ch);
+      box.top += widgetHeight$$1;box.bottom += widgetHeight$$1;
+      if (!boxIsAfter(box, x, y, false)) {
+        return false;
       }
-      pos = new Pos(lineNo$$1, begin);
-      var beginLeft = _cursorCoords(cm, pos, "line", lineObj, preparedMeasure).left;
-      var dir = beginLeft < x ? 1 : -1;
-      var prevDiff,
-          diff = beginLeft - x,
-          prevPos;
-      do {
-        prevDiff = diff;
-        prevPos = pos;
-        pos = moveVisually(cm, lineObj, pos, dir);
-        if (pos == null || pos.ch < begin || end <= (pos.sticky == "before" ? pos.ch - 1 : pos.ch)) {
-          pos = prevPos;
-          break;
-        }
-        diff = _cursorCoords(cm, pos, "line", lineObj, preparedMeasure).left - x;
-      } while (dir < 0 != diff < 0 && Math.abs(diff) <= Math.abs(prevDiff));
-      if (Math.abs(diff) > Math.abs(prevDiff)) {
-        if (diff < 0 == prevDiff < 0) {
-          throw new Error("Broke out of infinite loop in coordsCharInner");
-        }
-        pos = prevPos;
+      if (box.top <= y && box.left <= x) {
+        chAround = ch;
+        boxAround = box;
       }
+      return true;
+    }, begin, end);
+
+    var baseX,
+        sticky,
+        outside = false;
+    // If a box around the coordinates was found, use that
+    if (boxAround) {
+      // Distinguish coordinates nearer to the left or right side of the box
+      var atLeft = x - boxAround.left < boxAround.right - x,
+          atStart = atLeft == ltr;
+      ch = chAround + (atStart ? 0 : 1);
+      sticky = atStart ? "after" : "before";
+      baseX = atLeft ? boxAround.left : boxAround.right;
     } else {
-      var ch = findFirst(function (ch) {
-        var box = intoCoordSystem(cm, lineObj, measureCharPrepared(cm, preparedMeasure, ch), "line");
-        if (box.top > y) {
-          // For the cursor stickiness
-          end = Math.min(ch, end);
-          return true;
-        } else if (box.bottom <= y) {
-          return false;
-        } else if (box.left > x) {
-          return true;
-        } else if (box.right < x) {
-          return false;
-        } else {
-          return x - box.left < box.right - x;
-        }
-      }, begin, end);
-      ch = skipExtendingChars(lineObj.text, ch, 1);
-      pos = new Pos(lineNo$$1, ch, ch == end ? "before" : "after");
+      // (Adjust for extended bound, if necessary.)
+      if (!ltr && (ch == end || ch == begin)) {
+        ch++;
+      }
+      // To determine which side to associate with, get the box to the
+      // left of the character and compare it's vertical position to the
+      // coordinates
+      sticky = ch == 0 ? "after" : ch == lineObj.text.length ? "before" : measureCharPrepared(cm, preparedMeasure, ch - (ltr ? 1 : 0)).bottom + widgetHeight$$1 <= y == ltr ? "after" : "before";
+      // Now get accurate coordinates for this place, in order to get a
+      // base X position
+      var coords = _cursorCoords(cm, Pos(lineNo$$1, ch, sticky), "line", lineObj, preparedMeasure);
+      baseX = coords.left;
+      outside = y < coords.top || y >= coords.bottom;
     }
-    var coords = _cursorCoords(cm, pos, "line", lineObj, preparedMeasure);
-    if (y < coords.top || coords.bottom < y) {
-      pos.outside = true;
+
+    ch = skipExtendingChars(lineObj.text, ch, 1);
+    return PosWithInfo(lineNo$$1, ch, sticky, outside, x - baseX);
+  }
+
+  function coordsBidiPart(cm, lineObj, lineNo$$1, preparedMeasure, order, x, y) {
+    // Bidi parts are sorted left-to-right, and in a non-line-wrapping
+    // situation, we can take this ordering to correspond to the visual
+    // ordering. This finds the first part whose end is after the given
+    // coordinates.
+    var index = findFirst(function (i) {
+      var part = order[i],
+          ltr = part.level != 1;
+      return boxIsAfter(_cursorCoords(cm, Pos(lineNo$$1, ltr ? part.to : part.from, ltr ? "before" : "after"), "line", lineObj, preparedMeasure), x, y, true);
+    }, 0, order.length - 1);
+    var part = order[index];
+    // If this isn't the first part, the part's start is also after
+    // the coordinates, and the coordinates aren't on the same line as
+    // that start, move one part back.
+    if (index > 0) {
+      var ltr = part.level != 1;
+      var start = _cursorCoords(cm, Pos(lineNo$$1, ltr ? part.from : part.to, ltr ? "after" : "before"), "line", lineObj, preparedMeasure);
+      if (boxIsAfter(start, x, y, true) && start.top > y) {
+        part = order[index - 1];
+      }
     }
-    pos.xRel = x < coords.left ? -1 : x > coords.right ? 1 : 0;
-    return pos;
+    return part;
+  }
+
+  function coordsBidiPartWrapped(cm, lineObj, _lineNo, preparedMeasure, order, x, y) {
+    // In a wrapped line, rtl text on wrapping boundaries can do things
+    // that don't correspond to the ordering in our `order` array at
+    // all, so a binary search doesn't work, and we want to return a
+    // part that only spans one line so that the binary search in
+    // coordsCharInner is safe. As such, we first find the extent of the
+    // wrapped line, and then do a flat search in which we discard any
+    // spans that aren't on the line.
+    var ref = wrappedLineExtent(cm, lineObj, preparedMeasure, y);
+    var begin = ref.begin;
+    var end = ref.end;
+    if (/\s/.test(lineObj.text.charAt(end - 1))) {
+      end--;
+    }
+    var part = null,
+        closestDist = null;
+    for (var i = 0; i < order.length; i++) {
+      var p = order[i];
+      if (p.from >= end || p.to <= begin) {
+        continue;
+      }
+      var ltr = p.level != 1;
+      var endX = measureCharPrepared(cm, preparedMeasure, ltr ? Math.min(end, p.to) - 1 : Math.max(begin, p.from)).right;
+      // Weigh against spans ending before this, so that they are only
+      // picked if nothing ends after
+      var dist = endX < x ? x - endX + 1e9 : endX - x;
+      if (!part || closestDist > dist) {
+        part = p;
+        closestDist = dist;
+      }
+    }
+    if (!part) {
+      part = order[order.length - 1];
+    }
+    // Clip the part to the wrapped line.
+    if (part.from < begin) {
+      part = { from: begin, to: part.to, level: part.level };
+    }
+    if (part.to > end) {
+      part = { from: part.from, to: end, level: part.level };
+    }
+    return part;
   }
 
   var measureText;
@@ -4997,13 +5065,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   function prepareSelection(cm, primary) {
+    if (primary === void 0) primary = true;
+
     var doc = cm.doc,
         result = {};
     var curFragment = result.cursors = document.createDocumentFragment();
     var selFragment = result.selection = document.createDocumentFragment();
 
     for (var i = 0; i < doc.sel.ranges.length; i++) {
-      if (primary === false && i == doc.sel.primIndex) {
+      if (!primary && i == doc.sel.primIndex) {
         continue;
       }
       var range$$1 = doc.sel.ranges[i];
@@ -5040,6 +5110,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
   }
 
+  function cmpCoords(a, b) {
+    return a.top - b.top || a.left - b.left;
+  }
+
   // Draws the given range as a highlighted selection
   function drawSelectionRange(cm, range$$1, output) {
     var display = cm.display,
@@ -5048,6 +5122,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var padding = paddingH(cm.display),
         leftSide = padding.left;
     var rightSide = Math.max(display.sizerWidth, displayWidth(cm) - display.sizer.offsetLeft) - padding.right;
+    var docLTR = doc.direction == "ltr";
 
     function add(left, top, width, bottom) {
       if (top < 0) {
@@ -5066,46 +5141,63 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return _charCoords(cm, Pos(line, ch), "div", lineObj, bias);
       }
 
-      iterateBidiSections(getOrder(lineObj, doc.direction), fromArg || 0, toArg == null ? lineLen : toArg, function (from, to, dir) {
-        var leftPos = coords(from, "left"),
-            rightPos,
-            left,
-            right;
-        if (from == to) {
-          rightPos = leftPos;
-          left = right = leftPos.left;
+      function wrapX(pos, dir, side) {
+        var extent = wrappedLineExtentChar(cm, lineObj, null, pos);
+        var prop = dir == "ltr" == (side == "after") ? "left" : "right";
+        var ch = side == "after" ? extent.begin : extent.end - (/\s/.test(lineObj.text.charAt(extent.end - 1)) ? 2 : 1);
+        return coords(ch, prop)[prop];
+      }
+
+      var order = getOrder(lineObj, doc.direction);
+      iterateBidiSections(order, fromArg || 0, toArg == null ? lineLen : toArg, function (from, to, dir, i) {
+        var ltr = dir == "ltr";
+        var fromPos = coords(from, ltr ? "left" : "right");
+        var toPos = coords(to - 1, ltr ? "right" : "left");
+
+        var openStart = fromArg == null && from == 0,
+            openEnd = toArg == null && to == lineLen;
+        var first = i == 0,
+            last = !order || i == order.length - 1;
+        if (toPos.top - fromPos.top <= 3) {
+          // Single line
+          var openLeft = (docLTR ? openStart : openEnd) && first;
+          var openRight = (docLTR ? openEnd : openStart) && last;
+          var left = openLeft ? leftSide : (ltr ? fromPos : toPos).left;
+          var right = openRight ? rightSide : (ltr ? toPos : fromPos).right;
+          add(left, fromPos.top, right - left, fromPos.bottom);
         } else {
-          rightPos = coords(to - 1, "right");
-          if (dir == "rtl") {
-            var tmp = leftPos;leftPos = rightPos;rightPos = tmp;
+          // Multiple lines
+          var topLeft, topRight, botLeft, botRight;
+          if (ltr) {
+            topLeft = docLTR && openStart && first ? leftSide : fromPos.left;
+            topRight = docLTR ? rightSide : wrapX(from, dir, "before");
+            botLeft = docLTR ? leftSide : wrapX(to, dir, "after");
+            botRight = docLTR && openEnd && last ? rightSide : toPos.right;
+          } else {
+            topLeft = !docLTR ? leftSide : wrapX(from, dir, "before");
+            topRight = !docLTR && openStart && first ? rightSide : fromPos.right;
+            botLeft = !docLTR && openEnd && last ? leftSide : toPos.left;
+            botRight = !docLTR ? rightSide : wrapX(to, dir, "after");
           }
-          left = leftPos.left;
-          right = rightPos.right;
-        }
-        if (fromArg == null && from == 0) {
-          left = leftSide;
-        }
-        if (rightPos.top - leftPos.top > 3) {
-          // Different lines, draw top part
-          add(left, leftPos.top, null, leftPos.bottom);
-          left = leftSide;
-          if (leftPos.bottom < rightPos.top) {
-            add(left, leftPos.bottom, null, rightPos.top);
+          add(topLeft, fromPos.top, topRight - topLeft, fromPos.bottom);
+          if (fromPos.bottom < toPos.top) {
+            add(leftSide, fromPos.bottom, null, toPos.top);
           }
+          add(botLeft, toPos.top, botRight - botLeft, toPos.bottom);
         }
-        if (toArg == null && to == lineLen) {
-          right = rightSide;
+
+        if (!start || cmpCoords(fromPos, start) < 0) {
+          start = fromPos;
         }
-        if (!start || leftPos.top < start.top || leftPos.top == start.top && leftPos.left < start.left) {
-          start = leftPos;
+        if (cmpCoords(toPos, start) < 0) {
+          start = toPos;
         }
-        if (!end || rightPos.bottom > end.bottom || rightPos.bottom == end.bottom && rightPos.right > end.right) {
-          end = rightPos;
+        if (!end || cmpCoords(fromPos, end) < 0) {
+          end = fromPos;
         }
-        if (left < leftSide + 1) {
-          left = leftSide;
+        if (cmpCoords(toPos, end) < 0) {
+          end = toPos;
         }
-        add(left, rightPos.top, right - left, rightPos.bottom);
       });
       return { start: start, end: end };
     }
@@ -5238,7 +5330,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (height < 2) {
         height = textHeight(display);
       }
-      if (diff > .001 || diff < -.001) {
+      if (diff > .005 || diff < -.005) {
         updateLineHeight(cur.line, height);
         updateWidgetHeight(cur.line);
         if (cur.rest) {
@@ -5255,7 +5347,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   function updateWidgetHeight(line) {
     if (line.widgets) {
       for (var i = 0; i < line.widgets.length; ++i) {
-        line.widgets[i].height = line.widgets[i].node.parentNode.offsetHeight;
+        var w = line.widgets[i],
+            parent = w.node.parentNode;
+        if (parent) {
+          w.height = parent.offsetHeight;
+        }
       }
     }
   }
@@ -5378,6 +5474,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       margin = 0;
     }
     var rect;
+    if (!cm.options.lineWrapping && pos == end) {
+      // Set pos and end to the cursor positions around the character pos sticks to
+      // If pos.sticky == "before", that is around pos.ch - 1, otherwise around pos.ch
+      // If pos == Pos(_, 0, "before"), pos and end are unchanged
+      pos = pos.ch ? Pos(pos.line, pos.sticky == "before" ? pos.ch - 1 : pos.ch, "after") : pos;
+      end = pos.sticky == "before" ? Pos(pos.line, pos.ch + 1, "before") : pos;
+    }
     for (var limit = 0; limit < 5; limit++) {
       var changed = false;
       var coords = _cursorCoords(cm, pos);
@@ -5477,14 +5580,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // shown.
   function ensureCursorVisible(cm) {
     resolveScrollToPos(cm);
-    var cur = cm.getCursor(),
-        from = cur,
-        to = cur;
-    if (!cm.options.lineWrapping) {
-      from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
-      to = Pos(cur.line, cur.ch + 1);
-    }
-    cm.curOp.scrollToPos = { from: from, to: to, margin: cm.options.cursorScrollMargin };
+    var cur = cm.getCursor();
+    cm.curOp.scrollToPos = { from: cur, to: cur, margin: cm.options.cursorScrollMargin };
   }
 
   function scrollToCoords(cm, x, y) {
@@ -5797,7 +5894,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   var nextOpId = 0;
   // Start a new operation.
-  function startOperation(cm) {
+  function _startOperation(cm) {
     cm.curOp = {
       cm: cm,
       viewChanged: false, // Flag that indicates that lines might need to be redrawn
@@ -5819,7 +5916,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   // Finish an operation, updating the display and signalling delayed events
-  function endOperation(cm) {
+  function _endOperation(cm) {
     var op = cm.curOp;
     finishOperation(op, function (group) {
       for (var i = 0; i < group.ops.length; i++) {
@@ -5891,7 +5988,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
 
     if (op.updatedDisplay || op.selectionChanged) {
-      op.preparedSelection = display.input.prepareSelection(op.focus);
+      op.preparedSelection = display.input.prepareSelection();
     }
   }
 
@@ -5906,7 +6003,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       cm.display.maxLineChanged = false;
     }
 
-    var takeFocus = op.focus && op.focus == activeElt() && (!document.hasFocus || document.hasFocus());
+    var takeFocus = op.focus && op.focus == activeElt();
     if (op.preparedSelection) {
       cm.display.input.showSelection(op.preparedSelection, takeFocus);
     }
@@ -5994,11 +6091,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (cm.curOp) {
       return f();
     }
-    startOperation(cm);
+    _startOperation(cm);
     try {
       return f();
     } finally {
-      endOperation(cm);
+      _endOperation(cm);
     }
   }
   // Wraps a function in an operation. Returns the wrapped function.
@@ -6007,11 +6104,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (cm.curOp) {
         return f.apply(cm, arguments);
       }
-      startOperation(cm);
+      _startOperation(cm);
       try {
         return f.apply(cm, arguments);
       } finally {
-        endOperation(cm);
+        _endOperation(cm);
       }
     };
   }
@@ -6022,11 +6119,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (this.curOp) {
         return f.apply(this, arguments);
       }
-      startOperation(this);
+      _startOperation(this);
       try {
         return f.apply(this, arguments);
       } finally {
-        endOperation(this);
+        _endOperation(this);
       }
     };
   }
@@ -6036,11 +6133,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (!cm || cm.curOp) {
         return f.apply(this, arguments);
       }
-      startOperation(cm);
+      _startOperation(cm);
       try {
         return f.apply(this, arguments);
       } finally {
-        endOperation(cm);
+        _endOperation(cm);
       }
     };
   }
@@ -6230,29 +6327,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // HIGHLIGHT WORKER
 
   function startWorker(cm, time) {
-    if (cm.doc.mode.startState && cm.doc.frontier < cm.display.viewTo) {
+    if (cm.doc.highlightFrontier < cm.display.viewTo) {
       cm.state.highlight.set(time, bind(highlightWorker, cm));
     }
   }
 
   function highlightWorker(cm) {
     var doc = cm.doc;
-    if (doc.frontier < doc.first) {
-      doc.frontier = doc.first;
-    }
-    if (doc.frontier >= cm.display.viewTo) {
+    if (doc.highlightFrontier >= cm.display.viewTo) {
       return;
     }
     var end = +new Date() + cm.options.workTime;
-    var state = copyState(doc.mode, getStateBefore(cm, doc.frontier));
+    var context = getContextBefore(cm, doc.highlightFrontier);
     var changedLines = [];
 
-    doc.iter(doc.frontier, Math.min(doc.first + doc.size, cm.display.viewTo + 500), function (line) {
-      if (doc.frontier >= cm.display.viewFrom) {
+    doc.iter(context.line, Math.min(doc.first + doc.size, cm.display.viewTo + 500), function (line) {
+      if (context.line >= cm.display.viewFrom) {
         // Visible
-        var oldStyles = line.styles,
-            tooLong = line.text.length > cm.options.maxHighlightLength;
-        var highlighted = highlightLine(cm, line, tooLong ? copyState(doc.mode, state) : state, true);
+        var oldStyles = line.styles;
+        var resetState = line.text.length > cm.options.maxHighlightLength ? copyState(doc.mode, context.state) : null;
+        var highlighted = highlightLine(cm, line, context, true);
+        if (resetState) {
+          context.state = resetState;
+        }
         line.styles = highlighted.styles;
         var oldCls = line.styleClasses,
             newCls = highlighted.classes;
@@ -6266,21 +6363,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           ischange = oldStyles[i] != line.styles[i];
         }
         if (ischange) {
-          changedLines.push(doc.frontier);
+          changedLines.push(context.line);
         }
-        line.stateAfter = tooLong ? state : copyState(doc.mode, state);
+        line.stateAfter = context.save();
+        context.nextLine();
       } else {
         if (line.text.length <= cm.options.maxHighlightLength) {
-          processLine(cm, line.text, state);
+          processLine(cm, line.text, context);
         }
-        line.stateAfter = doc.frontier % 5 == 0 ? copyState(doc.mode, state) : null;
+        line.stateAfter = context.line % 5 == 0 ? context.save() : null;
+        context.nextLine();
       }
-      ++doc.frontier;
       if (+new Date() > end) {
         startWorker(cm, cm.options.workDelay);
         return true;
       }
     });
+    doc.highlightFrontier = context.line;
+    doc.modeFrontier = Math.max(doc.modeFrontier, context.line);
     if (changedLines.length) {
       runInOp(cm, function () {
         for (var i = 0; i < changedLines.length; i++) {
@@ -6473,6 +6573,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       updateSelection(cm);
       updateScrollbars(cm, barMeasure);
       setDocumentHeight(cm, barMeasure);
+      update.force = false;
     }
 
     update.signal(cm, "update", cm);
@@ -6924,7 +7025,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         line.styles = null;
       }
     });
-    cm.doc.frontier = cm.doc.first;
+    cm.doc.modeFrontier = cm.doc.highlightFrontier = cm.doc.first;
     startWorker(cm, 100);
     cm.state.modeGen++;
     if (cm.curOp) {
@@ -7313,8 +7414,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // include a given position (and optionally a second position).
   // Otherwise, simply returns the range between the given positions.
   // Used for cursor motion and such.
-  function extendRange(doc, range, head, other) {
-    if (doc.cm && doc.cm.display.shift || doc.extend) {
+  function extendRange(range, head, other, extend) {
+    if (extend) {
       var anchor = range.anchor;
       if (other) {
         var posBefore = cmp(head, anchor) < 0;
@@ -7332,16 +7433,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   // Extend the primary selection range, discard the rest.
-  function extendSelection(doc, head, other, options) {
-    setSelection(doc, new Selection([extendRange(doc, doc.sel.primary(), head, other)], 0), options);
+  function extendSelection(doc, head, other, options, extend) {
+    if (extend == null) {
+      extend = doc.cm && (doc.cm.display.shift || doc.extend);
+    }
+    setSelection(doc, new Selection([extendRange(doc.sel.primary(), head, other, extend)], 0), options);
   }
 
   // Extend all selections (pos is an array of selections with length
   // equal the number of selections)
   function extendSelections(doc, heads, options) {
     var out = [];
+    var extend = doc.cm && (doc.cm.display.shift || doc.extend);
     for (var i = 0; i < doc.sel.ranges.length; i++) {
-      out[i] = extendRange(doc, doc.sel.ranges[i], heads[i], null);
+      out[i] = extendRange(doc.sel.ranges[i], heads[i], null, extend);
     }
     var newSel = normalizeSelection(out, doc.sel.primIndex);
     setSelection(doc, newSel, options);
@@ -7595,7 +7700,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var split = sawReadOnlySpans && !ignoreReadOnly && removeReadOnlyRanges(doc, change.from, change.to);
     if (split) {
       for (var i = split.length - 1; i >= 0; --i) {
-        makeChangeInner(doc, { from: split[i].from, to: split[i].to, text: i ? [""] : change.text });
+        makeChangeInner(doc, { from: split[i].from, to: split[i].to, text: i ? [""] : change.text, origin: change.origin });
       }
     } else {
       makeChangeInner(doc, change);
@@ -7623,7 +7728,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   // Revert a change stored in a document's history.
   function makeChangeFromHistory(doc, type, allowSelectionOnly) {
-    if (doc.cm && doc.cm.state.suppressEdits && !allowSelectionOnly) {
+    var suppress = doc.cm && doc.cm.state.suppressEdits;
+    if (suppress && !allowSelectionOnly) {
       return;
     }
 
@@ -7656,6 +7762,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           return;
         }
         selAfter = event;
+      } else if (suppress) {
+        source.push(event);
+        return;
       } else {
         break;
       }
@@ -7804,8 +7913,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     }
 
-    // Adjust frontier, schedule worker
-    doc.frontier = Math.min(doc.frontier, from.line);
+    retreatFrontier(doc, from.line);
     startWorker(cm, 400);
 
     var lendiff = change.text.length - (to.line - from.line) - 1;
@@ -7842,7 +7950,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       to = from;
     }
     if (cmp(to, from) < 0) {
-      var tmp = to;to = from;from = tmp;
+      var assign;
+      assign = [to, from], from = assign[0], to = assign[1], assign;
     }
     if (typeof code == "string") {
       code = doc.splitLines(code);
@@ -7940,7 +8049,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   //
   // See also http://marijnhaverbeke.nl/blog/codemirror-line-tree.html
 
-  var LeafChunk = function LeafChunk(lines) {
+  function LeafChunk(lines) {
     var this$1 = this;
 
     this.lines = lines;
@@ -7951,54 +8060,56 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       height += lines[i].height;
     }
     this.height = height;
-  };
+  }
 
-  LeafChunk.prototype.chunkSize = function () {
-    return this.lines.length;
-  };
+  LeafChunk.prototype = {
+    chunkSize: function chunkSize() {
+      return this.lines.length;
+    },
 
-  // Remove the n lines at offset 'at'.
-  LeafChunk.prototype.removeInner = function (at, n) {
-    var this$1 = this;
+    // Remove the n lines at offset 'at'.
+    removeInner: function removeInner(at, n) {
+      var this$1 = this;
 
-    for (var i = at, e = at + n; i < e; ++i) {
-      var line = this$1.lines[i];
-      this$1.height -= line.height;
-      cleanUpLine(line);
-      signalLater(line, "delete");
-    }
-    this.lines.splice(at, n);
-  };
+      for (var i = at, e = at + n; i < e; ++i) {
+        var line = this$1.lines[i];
+        this$1.height -= line.height;
+        cleanUpLine(line);
+        signalLater(line, "delete");
+      }
+      this.lines.splice(at, n);
+    },
 
-  // Helper used to collapse a small branch into a single leaf.
-  LeafChunk.prototype.collapse = function (lines) {
-    lines.push.apply(lines, this.lines);
-  };
+    // Helper used to collapse a small branch into a single leaf.
+    collapse: function collapse(lines) {
+      lines.push.apply(lines, this.lines);
+    },
 
-  // Insert the given array of lines at offset 'at', count them as
-  // having the given height.
-  LeafChunk.prototype.insertInner = function (at, lines, height) {
-    var this$1 = this;
+    // Insert the given array of lines at offset 'at', count them as
+    // having the given height.
+    insertInner: function insertInner(at, lines, height) {
+      var this$1 = this;
 
-    this.height += height;
-    this.lines = this.lines.slice(0, at).concat(lines).concat(this.lines.slice(at));
-    for (var i = 0; i < lines.length; ++i) {
-      lines[i].parent = this$1;
-    }
-  };
+      this.height += height;
+      this.lines = this.lines.slice(0, at).concat(lines).concat(this.lines.slice(at));
+      for (var i = 0; i < lines.length; ++i) {
+        lines[i].parent = this$1;
+      }
+    },
 
-  // Used to iterate over a part of the tree.
-  LeafChunk.prototype.iterN = function (at, n, op) {
-    var this$1 = this;
+    // Used to iterate over a part of the tree.
+    iterN: function iterN(at, n, op) {
+      var this$1 = this;
 
-    for (var e = at + n; at < e; ++at) {
-      if (op(this$1.lines[at])) {
-        return true;
+      for (var e = at + n; at < e; ++at) {
+        if (op(this$1.lines[at])) {
+          return true;
+        }
       }
     }
   };
 
-  var BranchChunk = function BranchChunk(children) {
+  function BranchChunk(children) {
     var this$1 = this;
 
     this.children = children;
@@ -8012,125 +8123,127 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     this.size = size;
     this.height = height;
     this.parent = null;
-  };
+  }
 
-  BranchChunk.prototype.chunkSize = function () {
-    return this.size;
-  };
+  BranchChunk.prototype = {
+    chunkSize: function chunkSize() {
+      return this.size;
+    },
 
-  BranchChunk.prototype.removeInner = function (at, n) {
-    var this$1 = this;
+    removeInner: function removeInner(at, n) {
+      var this$1 = this;
 
-    this.size -= n;
-    for (var i = 0; i < this.children.length; ++i) {
-      var child = this$1.children[i],
-          sz = child.chunkSize();
-      if (at < sz) {
-        var rm = Math.min(n, sz - at),
-            oldHeight = child.height;
-        child.removeInner(at, rm);
-        this$1.height -= oldHeight - child.height;
-        if (sz == rm) {
-          this$1.children.splice(i--, 1);child.parent = null;
-        }
-        if ((n -= rm) == 0) {
-          break;
-        }
-        at = 0;
-      } else {
-        at -= sz;
-      }
-    }
-    // If the result is smaller than 25 lines, ensure that it is a
-    // single leaf node.
-    if (this.size - n < 25 && (this.children.length > 1 || !(this.children[0] instanceof LeafChunk))) {
-      var lines = [];
-      this.collapse(lines);
-      this.children = [new LeafChunk(lines)];
-      this.children[0].parent = this;
-    }
-  };
-
-  BranchChunk.prototype.collapse = function (lines) {
-    var this$1 = this;
-
-    for (var i = 0; i < this.children.length; ++i) {
-      this$1.children[i].collapse(lines);
-    }
-  };
-
-  BranchChunk.prototype.insertInner = function (at, lines, height) {
-    var this$1 = this;
-
-    this.size += lines.length;
-    this.height += height;
-    for (var i = 0; i < this.children.length; ++i) {
-      var child = this$1.children[i],
-          sz = child.chunkSize();
-      if (at <= sz) {
-        child.insertInner(at, lines, height);
-        if (child.lines && child.lines.length > 50) {
-          // To avoid memory thrashing when child.lines is huge (e.g. first view of a large file), it's never spliced.
-          // Instead, small slices are taken. They're taken in order because sequential memory accesses are fastest.
-          var remaining = child.lines.length % 25 + 25;
-          for (var pos = remaining; pos < child.lines.length;) {
-            var leaf = new LeafChunk(child.lines.slice(pos, pos += 25));
-            child.height -= leaf.height;
-            this$1.children.splice(++i, 0, leaf);
-            leaf.parent = this$1;
+      this.size -= n;
+      for (var i = 0; i < this.children.length; ++i) {
+        var child = this$1.children[i],
+            sz = child.chunkSize();
+        if (at < sz) {
+          var rm = Math.min(n, sz - at),
+              oldHeight = child.height;
+          child.removeInner(at, rm);
+          this$1.height -= oldHeight - child.height;
+          if (sz == rm) {
+            this$1.children.splice(i--, 1);child.parent = null;
           }
-          child.lines = child.lines.slice(0, remaining);
-          this$1.maybeSpill();
+          if ((n -= rm) == 0) {
+            break;
+          }
+          at = 0;
+        } else {
+          at -= sz;
         }
-        break;
       }
-      at -= sz;
-    }
-  };
-
-  // When a node has grown, check whether it should be split.
-  BranchChunk.prototype.maybeSpill = function () {
-    if (this.children.length <= 10) {
-      return;
-    }
-    var me = this;
-    do {
-      var spilled = me.children.splice(me.children.length - 5, 5);
-      var sibling = new BranchChunk(spilled);
-      if (!me.parent) {
-        // Become the parent node
-        var copy = new BranchChunk(me.children);
-        copy.parent = me;
-        me.children = [copy, sibling];
-        me = copy;
-      } else {
-        me.size -= sibling.size;
-        me.height -= sibling.height;
-        var myIndex = indexOf(me.parent.children, me);
-        me.parent.children.splice(myIndex + 1, 0, sibling);
+      // If the result is smaller than 25 lines, ensure that it is a
+      // single leaf node.
+      if (this.size - n < 25 && (this.children.length > 1 || !(this.children[0] instanceof LeafChunk))) {
+        var lines = [];
+        this.collapse(lines);
+        this.children = [new LeafChunk(lines)];
+        this.children[0].parent = this;
       }
-      sibling.parent = me.parent;
-    } while (me.children.length > 10);
-    me.parent.maybeSpill();
-  };
+    },
 
-  BranchChunk.prototype.iterN = function (at, n, op) {
-    var this$1 = this;
+    collapse: function collapse(lines) {
+      var this$1 = this;
 
-    for (var i = 0; i < this.children.length; ++i) {
-      var child = this$1.children[i],
-          sz = child.chunkSize();
-      if (at < sz) {
-        var used = Math.min(n, sz - at);
-        if (child.iterN(at, used, op)) {
-          return true;
-        }
-        if ((n -= used) == 0) {
+      for (var i = 0; i < this.children.length; ++i) {
+        this$1.children[i].collapse(lines);
+      }
+    },
+
+    insertInner: function insertInner(at, lines, height) {
+      var this$1 = this;
+
+      this.size += lines.length;
+      this.height += height;
+      for (var i = 0; i < this.children.length; ++i) {
+        var child = this$1.children[i],
+            sz = child.chunkSize();
+        if (at <= sz) {
+          child.insertInner(at, lines, height);
+          if (child.lines && child.lines.length > 50) {
+            // To avoid memory thrashing when child.lines is huge (e.g. first view of a large file), it's never spliced.
+            // Instead, small slices are taken. They're taken in order because sequential memory accesses are fastest.
+            var remaining = child.lines.length % 25 + 25;
+            for (var pos = remaining; pos < child.lines.length;) {
+              var leaf = new LeafChunk(child.lines.slice(pos, pos += 25));
+              child.height -= leaf.height;
+              this$1.children.splice(++i, 0, leaf);
+              leaf.parent = this$1;
+            }
+            child.lines = child.lines.slice(0, remaining);
+            this$1.maybeSpill();
+          }
           break;
         }
-        at = 0;
-      } else {
         at -= sz;
+      }
+    },
+
+    // When a node has grown, check whether it should be split.
+    maybeSpill: function maybeSpill() {
+      if (this.children.length <= 10) {
+        return;
+      }
+      var me = this;
+      do {
+        var spilled = me.children.splice(me.children.length - 5, 5);
+        var sibling = new BranchChunk(spilled);
+        if (!me.parent) {
+          // Become the parent node
+          var copy = new BranchChunk(me.children);
+          copy.parent = me;
+          me.children = [copy, sibling];
+          me = copy;
+        } else {
+          me.size -= sibling.size;
+          me.height -= sibling.height;
+          var myIndex = indexOf(me.parent.children, me);
+          me.parent.children.splice(myIndex + 1, 0, sibling);
+        }
+        sibling.parent = me.parent;
+      } while (me.children.length > 10);
+      me.parent.maybeSpill();
+    },
+
+    iterN: function iterN(at, n, op) {
+      var this$1 = this;
+
+      for (var i = 0; i < this.children.length; ++i) {
+        var child = this$1.children[i],
+            sz = child.chunkSize();
+        if (at < sz) {
+          var used = Math.min(n, sz - at);
+          if (child.iterN(at, used, op)) {
+            return true;
+          }
+          if ((n -= used) == 0) {
+            break;
+          }
+          at = 0;
+        } else {
+          at -= sz;
+        }
       }
     }
   };
@@ -8232,7 +8345,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       return true;
     });
-    signalLater(cm, "lineWidgetAdded", cm, widget, typeof handle == "number" ? handle : lineNo(handle));
+    if (cm) {
+      signalLater(cm, "lineWidgetAdded", cm, widget, typeof handle == "number" ? handle : lineNo(handle));
+    }
     return widget;
   }
 
@@ -8270,7 +8385,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var cm = this.doc.cm,
         withOp = cm && !cm.curOp;
     if (withOp) {
-      startOperation(cm);
+      _startOperation(cm);
     }
     if (hasHandler(this, "clear")) {
       var found = this.find();
@@ -8325,7 +8440,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       signalLater(cm, "markerCleared", cm, this, min, max);
     }
     if (withOp) {
-      endOperation(cm);
+      _endOperation(cm);
     }
     if (this.parent) {
       this.parent.clear();
@@ -8624,7 +8739,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     this.scrollTop = this.scrollLeft = 0;
     this.cantEdit = false;
     this.cleanGeneration = 1;
-    this.frontier = firstLine;
+    this.modeFrontier = this.highlightFrontier = firstLine;
     var start = Pos(firstLine, 0);
     this.sel = simpleSelection(start);
     this.history = new History(null);
@@ -9324,10 +9439,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // garbage collected.
 
   function forEachCodeMirror(f) {
-    if (!document.body.getElementsByClassName) {
+    if (!document.getElementsByClassName) {
       return;
     }
-    var byClass = document.body.getElementsByClassName("CodeMirror");
+    var byClass = document.getElementsByClassName("CodeMirror");
     for (var i = 0; i < byClass.length; i++) {
       var cm = byClass[i].CodeMirror;
       if (cm) {
@@ -9373,11 +9488,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   var keyNames = {
-    3: "Enter", 8: "Backspace", 9: "Tab", 13: "Enter", 16: "Shift", 17: "Ctrl", 18: "Alt",
+    3: "Pause", 8: "Backspace", 9: "Tab", 13: "Enter", 16: "Shift", 17: "Ctrl", 18: "Alt",
     19: "Pause", 20: "CapsLock", 27: "Esc", 32: "Space", 33: "PageUp", 34: "PageDown", 35: "End",
     36: "Home", 37: "Left", 38: "Up", 39: "Right", 40: "Down", 44: "PrintScrn", 45: "Insert",
     46: "Delete", 59: ";", 61: "=", 91: "Mod", 92: "Mod", 93: "Mod",
-    106: "*", 107: "=", 109: "-", 110: ".", 111: "/", 127: "Delete",
+    106: "*", 107: "=", 109: "-", 110: ".", 111: "/", 127: "Delete", 145: "ScrollLock",
     173: "-", 186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/", 192: "`", 219: "[", 220: "\\",
     221: "]", 222: "'", 63232: "Up", 63233: "Down", 63234: "Left", 63235: "Right", 63272: "Delete",
     63273: "Home", 63275: "End", 63276: "PageUp", 63277: "PageDown", 63302: "Insert"
@@ -9551,16 +9666,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     return name == "Ctrl" || name == "Alt" || name == "Shift" || name == "Mod";
   }
 
-  // Look up the name of a key as indicated by an event object.
-  function keyName(event, noShift) {
-    if (presto && event.keyCode == 34 && event["char"]) {
-      return false;
-    }
-    var base = keyNames[event.keyCode],
-        name = base;
-    if (name == null || event.altGraphKey) {
-      return false;
-    }
+  function addModifierNames(name, event, noShift) {
+    var base = name;
     if (event.altKey && base != "Alt") {
       name = "Alt-" + name;
     }
@@ -9574,6 +9681,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       name = "Shift-" + name;
     }
     return name;
+  }
+
+  // Look up the name of a key as indicated by an event object.
+  function keyName(event, noShift) {
+    if (presto && event.keyCode == 34 && event["char"]) {
+      return false;
+    }
+    var name = keyNames[event.keyCode];
+    if (name == null || event.altGraphKey) {
+      return false;
+    }
+    // Ctrl-ScrollLock has keyCode 3, same as Ctrl-Pause,
+    // so we'll use event.code when available (Chrome 48+, FF 38+, Safari 10.1+)
+    if (event.keyCode == 3 && event.code) {
+      name = event.code;
+    }
+    return addModifierNames(name, event, noShift);
   }
 
   function getKeyMap(val) {
@@ -9605,6 +9729,133 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       ensureCursorVisible(cm);
     });
+  }
+
+  function moveCharLogically(line, ch, dir) {
+    var target = skipExtendingChars(line.text, ch + dir, dir);
+    return target < 0 || target > line.text.length ? null : target;
+  }
+
+  function moveLogically(line, start, dir) {
+    var ch = moveCharLogically(line, start.ch, dir);
+    return ch == null ? null : new Pos(start.line, ch, dir < 0 ? "after" : "before");
+  }
+
+  function endOfLine(visually, cm, lineObj, lineNo, dir) {
+    if (visually) {
+      var order = getOrder(lineObj, cm.doc.direction);
+      if (order) {
+        var part = dir < 0 ? lst(order) : order[0];
+        var moveInStorageOrder = dir < 0 == (part.level == 1);
+        var sticky = moveInStorageOrder ? "after" : "before";
+        var ch;
+        // With a wrapped rtl chunk (possibly spanning multiple bidi parts),
+        // it could be that the last bidi part is not on the last visual line,
+        // since visual lines contain content order-consecutive chunks.
+        // Thus, in rtl, we are looking for the first (content-order) character
+        // in the rtl chunk that is on the last line (that is, the same line
+        // as the last (content-order) character).
+        if (part.level > 0 || cm.doc.direction == "rtl") {
+          var prep = prepareMeasureForLine(cm, lineObj);
+          ch = dir < 0 ? lineObj.text.length - 1 : 0;
+          var targetTop = measureCharPrepared(cm, prep, ch).top;
+          ch = findFirst(function (ch) {
+            return measureCharPrepared(cm, prep, ch).top == targetTop;
+          }, dir < 0 == (part.level == 1) ? part.from : part.to - 1, ch);
+          if (sticky == "before") {
+            ch = moveCharLogically(lineObj, ch, 1);
+          }
+        } else {
+          ch = dir < 0 ? part.to : part.from;
+        }
+        return new Pos(lineNo, ch, sticky);
+      }
+    }
+    return new Pos(lineNo, dir < 0 ? lineObj.text.length : 0, dir < 0 ? "before" : "after");
+  }
+
+  function moveVisually(cm, line, start, dir) {
+    var bidi = getOrder(line, cm.doc.direction);
+    if (!bidi) {
+      return moveLogically(line, start, dir);
+    }
+    if (start.ch >= line.text.length) {
+      start.ch = line.text.length;
+      start.sticky = "before";
+    } else if (start.ch <= 0) {
+      start.ch = 0;
+      start.sticky = "after";
+    }
+    var partPos = getBidiPartAt(bidi, start.ch, start.sticky),
+        part = bidi[partPos];
+    if (cm.doc.direction == "ltr" && part.level % 2 == 0 && (dir > 0 ? part.to > start.ch : part.from < start.ch)) {
+      // Case 1: We move within an ltr part in an ltr editor. Even with wrapped lines,
+      // nothing interesting happens.
+      return moveLogically(line, start, dir);
+    }
+
+    var mv = function mv(pos, dir) {
+      return moveCharLogically(line, pos instanceof Pos ? pos.ch : pos, dir);
+    };
+    var prep;
+    var getWrappedLineExtent = function getWrappedLineExtent(ch) {
+      if (!cm.options.lineWrapping) {
+        return { begin: 0, end: line.text.length };
+      }
+      prep = prep || prepareMeasureForLine(cm, line);
+      return wrappedLineExtentChar(cm, line, prep, ch);
+    };
+    var wrappedLineExtent = getWrappedLineExtent(start.sticky == "before" ? mv(start, -1) : start.ch);
+
+    if (cm.doc.direction == "rtl" || part.level == 1) {
+      var moveInStorageOrder = part.level == 1 == dir < 0;
+      var ch = mv(start, moveInStorageOrder ? 1 : -1);
+      if (ch != null && (!moveInStorageOrder ? ch >= part.from && ch >= wrappedLineExtent.begin : ch <= part.to && ch <= wrappedLineExtent.end)) {
+        // Case 2: We move within an rtl part or in an rtl editor on the same visual line
+        var sticky = moveInStorageOrder ? "before" : "after";
+        return new Pos(start.line, ch, sticky);
+      }
+    }
+
+    // Case 3: Could not move within this bidi part in this visual line, so leave
+    // the current bidi part
+
+    var searchInVisualLine = function searchInVisualLine(partPos, dir, wrappedLineExtent) {
+      var getRes = function getRes(ch, moveInStorageOrder) {
+        return moveInStorageOrder ? new Pos(start.line, mv(ch, 1), "before") : new Pos(start.line, ch, "after");
+      };
+
+      for (; partPos >= 0 && partPos < bidi.length; partPos += dir) {
+        var part = bidi[partPos];
+        var moveInStorageOrder = dir > 0 == (part.level != 1);
+        var ch = moveInStorageOrder ? wrappedLineExtent.begin : mv(wrappedLineExtent.end, -1);
+        if (part.from <= ch && ch < part.to) {
+          return getRes(ch, moveInStorageOrder);
+        }
+        ch = moveInStorageOrder ? part.from : mv(part.to, -1);
+        if (wrappedLineExtent.begin <= ch && ch < wrappedLineExtent.end) {
+          return getRes(ch, moveInStorageOrder);
+        }
+      }
+    };
+
+    // Case 3a: Look for other bidi parts on the same visual line
+    var res = searchInVisualLine(partPos + dir, dir, wrappedLineExtent);
+    if (res) {
+      return res;
+    }
+
+    // Case 3b: Look for other bidi parts on the next visual line
+    var nextCh = dir > 0 ? wrappedLineExtent.end : mv(wrappedLineExtent.begin, -1);
+    if (nextCh != null && !(dir > 0 && nextCh == line.text.length)) {
+      res = searchInVisualLine(dir > 0 ? 0 : bidi.length - 1, dir, getWrappedLineExtent(nextCh));
+      if (res) {
+        return res;
+      }
+    }
+
+    // Case 4: Nowhere to move
+    return null;
   }
 
   // Commands are parameter-less actions that can be performed on an
@@ -9692,19 +9943,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     },
     goLineRight: function goLineRight(cm) {
       return cm.extendSelectionsBy(function (range) {
-        var top = cm.charCoords(range.head, "div").top + 5;
+        var top = cm.cursorCoords(range.head, "div").top + 5;
         return cm.coordsChar({ left: cm.display.lineDiv.offsetWidth + 100, top: top }, "div");
       }, sel_move);
     },
     goLineLeft: function goLineLeft(cm) {
       return cm.extendSelectionsBy(function (range) {
-        var top = cm.charCoords(range.head, "div").top + 5;
+        var top = cm.cursorCoords(range.head, "div").top + 5;
         return cm.coordsChar({ left: 0, top: top }, "div");
       }, sel_move);
     },
     goLineLeftSmart: function goLineLeftSmart(cm) {
       return cm.extendSelectionsBy(function (range) {
-        var top = cm.charCoords(range.head, "div").top + 5;
+        var top = cm.cursorCoords(range.head, "div").top + 5;
         var pos = cm.coordsChar({ left: 0, top: top }, "div");
         if (pos.ch < cm.getLine(pos.line).search(/\S/)) {
           return lineStartSmart(cm, range.head);
@@ -9920,21 +10171,35 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     return cm.options.extraKeys && lookupKey(name, cm.options.extraKeys, handle, cm) || lookupKey(name, cm.options.keyMap, handle, cm);
   }
 
+  // Note that, despite the name, this function is also used to check
+  // for bound mouse clicks.
+
   var stopSeq = new Delayed();
+
   function dispatchKey(cm, name, e, handle) {
     var seq = cm.state.keySeq;
     if (seq) {
       if (isModifierKey(name)) {
         return "handled";
       }
-      stopSeq.set(50, function () {
-        if (cm.state.keySeq == seq) {
-          cm.state.keySeq = null;
-          cm.display.input.reset();
-        }
-      });
-      name = seq + " " + name;
+      if (/\'$/.test(name)) {
+        cm.state.keySeq = null;
+      } else {
+        stopSeq.set(50, function () {
+          if (cm.state.keySeq == seq) {
+            cm.state.keySeq = null;
+            cm.display.input.reset();
+          }
+        });
+      }
+      if (dispatchKeyInner(cm, seq + " " + name, e, handle)) {
+        return true;
+      }
     }
+    return dispatchKeyInner(cm, name, e, handle);
+  }
+
+  function dispatchKeyInner(cm, name, e, handle) {
     var result = lookupKeyForEditor(cm, name, handle);
 
     if (result == "multi") {
@@ -9949,10 +10214,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       restartBlink(cm);
     }
 
-    if (seq && !result && /\'$/.test(name)) {
-      e_preventDefault(e);
-      return true;
-    }
     return !!result;
   }
 
@@ -10062,6 +10323,36 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     cm.display.input.onKeyPress(e);
   }
 
+  var DOUBLECLICK_DELAY = 400;
+
+  var PastClick = function PastClick(time, pos, button) {
+    this.time = time;
+    this.pos = pos;
+    this.button = button;
+  };
+
+  PastClick.prototype.compare = function (time, pos, button) {
+    return this.time + DOUBLECLICK_DELAY > time && cmp(pos, this.pos) == 0 && button == this.button;
+  };
+
+  var lastClick;
+  var lastDoubleClick;
+  function clickRepeat(pos, button) {
+    var now = +new Date();
+    if (lastDoubleClick && lastDoubleClick.compare(now, pos, button)) {
+      lastClick = lastDoubleClick = null;
+      return "triple";
+    } else if (lastClick && lastClick.compare(now, pos, button)) {
+      lastDoubleClick = new PastClick(now, pos, button);
+      lastClick = null;
+      return "double";
+    } else {
+      lastClick = new PastClick(now, pos, button);
+      lastDoubleClick = null;
+      return "single";
+    }
+  }
+
   // A mouse down can be a single click, double click, triple click,
   // start of selection drag, start of text drag, new cursor
   // (ctrl-click), rectangle drag (alt-drag), or xwin
@@ -10090,76 +10381,111 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (clickInGutter(cm, e)) {
       return;
     }
-    var start = posFromMouse(cm, e);
+    var pos = posFromMouse(cm, e),
+        button = e_button(e),
+        repeat = pos ? clickRepeat(pos, button) : "single";
     window.focus();
 
-    switch (e_button(e)) {
-      case 1:
-        // #3261: make sure, that we're not starting a second selection
-        if (cm.state.selectingText) {
-          cm.state.selectingText(e);
-        } else if (start) {
-          leftButtonDown(cm, e, start);
-        } else if (e_target(e) == display.scroller) {
-          e_preventDefault(e);
-        }
-        break;
-      case 2:
-        if (webkit) {
-          cm.state.lastMiddleDown = +new Date();
-        }
-        if (start) {
-          extendSelection(cm.doc, start);
-        }
-        setTimeout(function () {
-          return display.input.focus();
-        }, 20);
+    // #3261: make sure, that we're not starting a second selection
+    if (button == 1 && cm.state.selectingText) {
+      cm.state.selectingText(e);
+    }
+
+    if (pos && handleMappedButton(cm, button, pos, repeat, e)) {
+      return;
+    }
+
+    if (button == 1) {
+      if (pos) {
+        leftButtonDown(cm, pos, repeat, e);
+      } else if (e_target(e) == display.scroller) {
         e_preventDefault(e);
-        break;
-      case 3:
-        if (captureRightClick) {
-          onContextMenu(cm, e);
-        } else {
-          delayBlurEvent(cm);
-        }
-        break;
+      }
+    } else if (button == 2) {
+      if (pos) {
+        extendSelection(cm.doc, pos);
+      }
+      setTimeout(function () {
+        return display.input.focus();
+      }, 20);
+    } else if (button == 3) {
+      if (captureRightClick) {
+        onContextMenu(cm, e);
+      } else {
+        delayBlurEvent(cm);
+      }
     }
   }
 
-  var lastClick;
-  var lastDoubleClick;
-  function leftButtonDown(cm, e, start) {
+  function handleMappedButton(cm, button, pos, repeat, event) {
+    var name = "Click";
+    if (repeat == "double") {
+      name = "Double" + name;
+    } else if (repeat == "triple") {
+      name = "Triple" + name;
+    }
+    name = (button == 1 ? "Left" : button == 2 ? "Middle" : "Right") + name;
+
+    return dispatchKey(cm, addModifierNames(name, event), event, function (bound) {
+      if (typeof bound == "string") {
+        bound = commands[bound];
+      }
+      if (!bound) {
+        return false;
+      }
+      var done = false;
+      try {
+        if (cm.isReadOnly()) {
+          cm.state.suppressEdits = true;
+        }
+        done = bound(cm, pos) != Pass;
+      } finally {
+        cm.state.suppressEdits = false;
+      }
+      return done;
+    });
+  }
+
+  function configureMouse(cm, repeat, event) {
+    var option = cm.getOption("configureMouse");
+    var value = option ? option(cm, repeat, event) : {};
+    if (value.unit == null) {
+      var rect = chromeOS ? event.shiftKey && event.metaKey : event.altKey;
+      value.unit = rect ? "rectangle" : repeat == "single" ? "char" : repeat == "double" ? "word" : "line";
+    }
+    if (value.extend == null || cm.doc.extend) {
+      value.extend = cm.doc.extend || event.shiftKey;
+    }
+    if (value.addNew == null) {
+      value.addNew = mac ? event.metaKey : event.ctrlKey;
+    }
+    if (value.moveOnDrag == null) {
+      value.moveOnDrag = !(mac ? event.altKey : event.ctrlKey);
+    }
+    return value;
+  }
+
+  function leftButtonDown(cm, pos, repeat, event) {
     if (ie) {
       setTimeout(bind(ensureFocus, cm), 0);
     } else {
       cm.curOp.focus = activeElt();
     }
 
-    var now = +new Date(),
-        type;
-    if (lastDoubleClick && lastDoubleClick.time > now - 400 && cmp(lastDoubleClick.pos, start) == 0) {
-      type = "triple";
-    } else if (lastClick && lastClick.time > now - 400 && cmp(lastClick.pos, start) == 0) {
-      type = "double";
-      lastDoubleClick = { time: now, pos: start };
-    } else {
-      type = "single";
-      lastClick = { time: now, pos: start };
-    }
+    var behavior = configureMouse(cm, repeat, event);
 
     var sel = cm.doc.sel,
-        modifier = mac ? e.metaKey : e.ctrlKey,
         contained;
-    if (cm.options.dragDrop && dragAndDrop && !cm.isReadOnly() && type == "single" && (contained = sel.contains(start)) > -1 && (cmp((contained = sel.ranges[contained]).from(), start) < 0 || start.xRel > 0) && (cmp(contained.to(), start) > 0 || start.xRel < 0)) {
-      leftButtonStartDrag(cm, e, start, modifier);
+    if (cm.options.dragDrop && dragAndDrop && !cm.isReadOnly() && repeat == "single" && (contained = sel.contains(pos)) > -1 && (cmp((contained = sel.ranges[contained]).from(), pos) < 0 || pos.xRel > 0) && (cmp(contained.to(), pos) > 0 || pos.xRel < 0)) {
+      leftButtonStartDrag(cm, event, pos, behavior);
     } else {
-      leftButtonSelect(cm, e, start, type, modifier);
+      leftButtonSelect(cm, event, pos, behavior);
     }
   }
 
   // Start a text drag. When it ends, see if any dragging actually
   // happen, and treat as a click if it didn't.
-  function leftButtonStartDrag(cm, e, start, modifier) {
+  function leftButtonStartDrag(cm, event, pos, behavior) {
     var display = cm.display,
         moved = false;
     var dragEnd = operation(cm, function (e) {
@@ -10173,8 +10499,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       off(display.scroller, "drop", dragEnd);
       if (!moved) {
         e_preventDefault(e);
-        if (!modifier) {
-          extendSelection(cm.doc, start);
+        if (!behavior.addNew) {
+          extendSelection(cm.doc, pos, null, null, behavior.extend);
         }
         // Work around unexplainable focus problem in IE9 (#2127) and Chrome (#3081)
         if (webkit || ie && ie_version == 9) {
@@ -10187,7 +10513,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     });
     var mouseMove = function mouseMove(e2) {
-      moved = moved || Math.abs(e.clientX - e2.clientX) + Math.abs(e.clientY - e2.clientY) >= 10;
+      moved = moved || Math.abs(event.clientX - e2.clientX) + Math.abs(event.clientY - e2.clientY) >= 10;
     };
     var dragStart = function dragStart() {
       return moved = true;
@@ -10197,7 +10523,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       display.scroller.draggable = true;
     }
     cm.state.draggingText = dragEnd;
-    dragEnd.copy = mac ? e.altKey : e.ctrlKey;
+    dragEnd.copy = !behavior.moveOnDrag;
     // IE's approach to draggable
     if (display.scroller.dragDrop) {
       display.scroller.dragDrop();
@@ -10213,17 +10539,31 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, 20);
   }
 
+  function rangeForUnit(cm, pos, unit) {
+    if (unit == "char") {
+      return new Range(pos, pos);
+    }
+    if (unit == "word") {
+      return cm.findWordAt(pos);
+    }
+    if (unit == "line") {
+      return new Range(Pos(pos.line, 0), _clipPos(cm.doc, Pos(pos.line + 1, 0)));
+    }
+    var result = unit(cm, pos);
+    return new Range(result.from, result.to);
+  }
+
   // Normal selection, as opposed to text dragging.
-  function leftButtonSelect(cm, e, start, type, addNew) {
+  function leftButtonSelect(cm, event, start, behavior) {
     var display = cm.display,
         doc = cm.doc;
-    e_preventDefault(e);
+    e_preventDefault(event);
 
     var ourRange,
         ourIndex,
         startSel = doc.sel,
         ranges = startSel.ranges;
-    if (addNew && !e.shiftKey) {
+    if (behavior.addNew && !behavior.extend) {
       ourIndex = doc.sel.contains(start);
       if (ourIndex > -1) {
         ourRange = ranges[ourIndex];
@@ -10235,39 +10575,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       ourIndex = doc.sel.primIndex;
     }
 
-    if (chromeOS ? e.shiftKey && e.metaKey : e.altKey) {
-      type = "rect";
-      if (!addNew) {
+    if (behavior.unit == "rectangle") {
+      if (!behavior.addNew) {
         ourRange = new Range(start, start);
       }
-      start = posFromMouse(cm, e, true, true);
+      start = posFromMouse(cm, event, true, true);
       ourIndex = -1;
-    } else if (type == "double") {
-      var word = cm.findWordAt(start);
-      if (cm.display.shift || doc.extend) {
-        ourRange = extendRange(doc, ourRange, word.anchor, word.head);
-      } else {
-        ourRange = word;
-      }
-    } else if (type == "triple") {
-      var line = new Range(Pos(start.line, 0), _clipPos(doc, Pos(start.line + 1, 0)));
-      if (cm.display.shift || doc.extend) {
-        ourRange = extendRange(doc, ourRange, line.anchor, line.head);
-      } else {
-        ourRange = line;
-      }
     } else {
-      ourRange = extendRange(doc, ourRange, start);
+      var range$$1 = rangeForUnit(cm, start, behavior.unit);
+      if (behavior.extend) {
+        ourRange = extendRange(ourRange, range$$1.anchor, range$$1.head, behavior.extend);
+      } else {
+        ourRange = range$$1;
+      }
     }
 
-    if (!addNew) {
+    if (!behavior.addNew) {
       ourIndex = 0;
       setSelection(doc, new Selection([ourRange], 0), sel_mouse);
       startSel = doc.sel;
     } else if (ourIndex == -1) {
       ourIndex = ranges.length;
       setSelection(doc, normalizeSelection(ranges.concat([ourRange]), ourIndex), { scroll: false, origin: "*mouse" });
-    } else if (ranges.length > 1 && ranges[ourIndex].empty() && type == "single" && !e.shiftKey) {
+    } else if (ranges.length > 1 && ranges[ourIndex].empty() && behavior.unit == "char" && !behavior.extend) {
       setSelection(doc, normalizeSelection(ranges.slice(0, ourIndex).concat(ranges.slice(ourIndex + 1)), 0), { scroll: false, origin: "*mouse" });
       startSel = doc.sel;
     } else {
@@ -10281,7 +10611,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       lastPos = pos;
 
-      if (type == "rect") {
+      if (behavior.unit == "rectangle") {
         var ranges = [],
             tabSize = cm.options.tabSize;
         var startCol = countColumn(getLine(doc, start.line).text, start.ch, tabSize);
@@ -10304,25 +10634,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         cm.scrollIntoView(pos);
       } else {
         var oldRange = ourRange;
+        var range$$1 = rangeForUnit(cm, pos, behavior.unit);
         var anchor = oldRange.anchor,
-            head = pos;
-        if (type != "single") {
-          var range$$1;
-          if (type == "double") {
-            range$$1 = cm.findWordAt(pos);
-          } else {
-            range$$1 = new Range(Pos(pos.line, 0), _clipPos(doc, Pos(pos.line + 1, 0)));
-          }
-          if (cmp(range$$1.anchor, anchor) > 0) {
-            head = range$$1.head;
-            anchor = minPos(oldRange.from(), range$$1.anchor);
-          } else {
-            head = range$$1.anchor;
-            anchor = maxPos(oldRange.to(), range$$1.head);
-          }
+            head;
+        if (cmp(range$$1.anchor, anchor) > 0) {
+          head = range$$1.head;
+          anchor = minPos(oldRange.from(), range$$1.anchor);
+        } else {
+          head = range$$1.anchor;
+          anchor = maxPos(oldRange.to(), range$$1.head);
         }
         var ranges$1 = startSel.ranges.slice(0);
-        ranges$1[ourIndex] = new Range(_clipPos(doc, anchor), head);
+        ranges$1[ourIndex] = bidiSimplify(cm, new Range(_clipPos(doc, anchor), head));
         setSelection(doc, normalizeSelection(ranges$1, ourIndex), sel_mouse);
       }
     }
@@ -10336,7 +10659,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     function extend(e) {
       var curCount = ++counter;
-      var cur = posFromMouse(cm, e, true, type == "rect");
+      var cur = posFromMouse(cm, e, true, behavior.unit == "rectangle");
       if (!cur) {
         return;
       }
@@ -10388,14 +10711,64 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     on(document, "mouseup", up);
   }
 
+  // Used when mouse-selecting to adjust the anchor to the proper side
+  // of a bidi jump depending on the visual position of the head.
+  function bidiSimplify(cm, range$$1) {
+    var anchor = range$$1.anchor;
+    var head = range$$1.head;
+    var anchorLine = getLine(cm.doc, anchor.line);
+    if (cmp(anchor, head) == 0 && anchor.sticky == head.sticky) {
+      return range$$1;
+    }
+    var order = getOrder(anchorLine);
+    if (!order) {
+      return range$$1;
+    }
+    var index = getBidiPartAt(order, anchor.ch, anchor.sticky),
+        part = order[index];
+    if (part.from != anchor.ch && part.to != anchor.ch) {
+      return range$$1;
+    }
+    var boundary = index + (part.from == anchor.ch == (part.level != 1) ? 0 : 1);
+    if (boundary == 0 || boundary == order.length) {
+      return range$$1;
+    }
+
+    // Compute the relative visual position of the head compared to the
+    // anchor (<0 is to the left, >0 to the right)
+    var leftSide;
+    if (head.line != anchor.line) {
+      leftSide = (head.line - anchor.line) * (cm.doc.direction == "ltr" ? 1 : -1) > 0;
+    } else {
+      var headIndex = getBidiPartAt(order, head.ch, head.sticky);
+      var dir = headIndex - index || (head.ch - anchor.ch) * (part.level == 1 ? -1 : 1);
+      if (headIndex == boundary - 1 || headIndex == boundary) {
+        leftSide = dir < 0;
+      } else {
+        leftSide = dir > 0;
+      }
+    }
+
+    var usePart = order[boundary + (leftSide ? -1 : 0)];
+    var from = leftSide == (usePart.level == 1);
+    var ch = from ? usePart.from : usePart.to,
+        sticky = from ? "after" : "before";
+    return anchor.ch == ch && anchor.sticky == sticky ? range$$1 : new Range(new Pos(anchor.line, ch, sticky), head);
+  }
+
   // Determines whether an event happened in the gutter, and fires the
   // handlers for the corresponding event.
   function gutterEvent(cm, e, type, prevent) {
     var mX, mY;
-    try {
-      mX = e.clientX;mY = e.clientY;
-    } catch (e) {
-      return false;
+    if (e.touches) {
+      mX = e.touches[0].clientX;
+      mY = e.touches[0].clientY;
+    } else {
+      try {
+        mX = e.clientX;mY = e.clientY;
+      } catch (e) {
+        return false;
+      }
     }
     if (mX >= Math.floor(cm.display.gutters.getBoundingClientRect().right)) {
       return false;
@@ -10498,6 +10871,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       clearCaches(cm);
       regChange(cm);
     }, true);
+
     option("lineSeparator", null, function (cm, val) {
       cm.doc.lineSep = val;
       if (!val) {
@@ -10554,6 +10928,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     });
     option("extraKeys", null);
+    option("configureMouse", null);
 
     option("lineWrapping", false, wrappingChanged, true);
     option("gutters", [], function (cm) {
@@ -10585,14 +10960,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     option("resetSelectionOnContextMenu", true);
     option("lineWiseCopyCut", true);
+    option("pasteLinesPerSelection", true);
 
     option("readOnly", false, function (cm, val) {
       if (val == "nocursor") {
         onBlur(cm);
         cm.display.input.blur();
-        cm.display.disabled = true;
-      } else {
-        cm.display.disabled = false;
       }
       cm.display.input.readOnlyChanged(val);
     });
@@ -10734,7 +11107,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     registerEventHandlers(this);
     ensureGlobalHandlers();
 
-    startOperation(this);
+    _startOperation(this);
     this.curOp.forceUpdate = true;
     attachDoc(this, doc);
 
@@ -10756,7 +11129,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     for (var i = 0; i < initHooks.length; ++i) {
       initHooks[i](this$1);
     }
-    endOperation(this);
+    _endOperation(this);
     // Suppress optimizelegibility in Webkit, since it breaks text
     // measuring on line wrapping boundaries.
     if (webkit && options.lineWrapping && getComputedStyle(display.lineDiv).textRendering == "optimizelegibility") {
@@ -10829,7 +11202,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       return dx * dx + dy * dy > 20 * 20;
     }
     on(d.scroller, "touchstart", function (e) {
-      if (!signalDOMEvent(cm, e) && !isMouseLikeTouchEvent(e)) {
+      if (!signalDOMEvent(cm, e) && !isMouseLikeTouchEvent(e) && !clickInGutter(cm, e)) {
         d.input.ensurePolled();
         clearTimeout(touchFinished);
         var now = +new Date();
@@ -10950,7 +11323,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (!doc.mode.indent) {
         how = "prev";
       } else {
-        state = getStateBefore(cm, n);
+        state = getContextBefore(cm, n).state;
       }
     }
 
@@ -11037,7 +11410,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var paste = cm.state.pasteIncoming || origin == "paste";
     var textLines = splitLinesAuto(inserted),
         multiPaste = null;
-    // When pasing N lines into N selections, insert one line per selection
+    // When pasting N lines into N selections, insert one line per selection
     if (paste && sel.ranges.length > 1) {
       if (lastCopied && lastCopied.text.join("\n") == inserted) {
         if (sel.ranges.length % lastCopied.text.length == 0) {
@@ -11046,7 +11419,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             multiPaste.push(doc.splitLines(lastCopied.text[i]));
           }
         }
-      } else if (textLines.length == sel.ranges.length) {
+      } else if (textLines.length == sel.ranges.length && cm.options.pasteLinesPerSelection) {
         multiPaste = map(textLines, function (l) {
           return [l];
         });
@@ -11373,7 +11746,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       getStateAfter: function getStateAfter(line, precise) {
         var doc = this.doc;
         line = clipLine(doc, line == null ? doc.first + doc.size - 1 : line);
-        return getStateBefore(this, line + 1, precise);
+        return getContextBefore(this, line + 1, precise).state;
       },
 
       cursorCoords: function cursorCoords(start, mode) {
@@ -11475,6 +11848,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       triggerOnKeyDown: methodOp(onKeyDown),
       triggerOnKeyPress: methodOp(onKeyPress),
       triggerOnKeyUp: onKeyUp,
+      triggerOnMouseDown: methodOp(onMouseDown),
 
       execCommand: function execCommand(cmd) {
         if (commands.hasOwnProperty(cmd)) {
@@ -11697,6 +12071,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       operation: function operation(f) {
         return runInOp(this, f);
+      },
+      startOperation: function startOperation() {
+        return _startOperation(this);
+      },
+      endOperation: function endOperation() {
+        return _endOperation(this);
       },
 
       refresh: methodOp(function () {
@@ -12371,7 +12751,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             range$$1;
         if (markerID) {
           var found = cm.findMarks(Pos(fromLine, 0), Pos(toLine + 1, 0), recognizeMarker(+markerID));
-          if (found.length && (range$$1 = found[0].find())) {
+          if (found.length && (range$$1 = found[0].find(0))) {
             addText(getBetween(cm.doc, range$$1.from, range$$1.to).join(lineSep));
           }
           return;
@@ -12512,9 +12892,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     this.pollingFast = false;
     // Self-resetting timeout for the poller
     this.polling = new Delayed();
-    // Tracks when input.reset has punted to just putting a short
-    // string into the textarea instead of the full selection.
-    this.inaccurateSelection = false;
     // Used to work around IE issue with selection being forgotten when focus moves away from textarea
     this.hasSelection = false;
     this.composing = null;
@@ -12560,12 +12937,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       if (cm.somethingSelected()) {
         setLastCopied({ lineWise: false, text: cm.getSelections() });
-        if (input.inaccurateSelection) {
-          input.prevInput = "";
-          input.inaccurateSelection = false;
-          te.value = lastCopied.text.join("\n");
-          selectInput(te);
-        }
       } else if (!cm.options.lineWiseCopyCut) {
         return;
       } else {
@@ -12656,15 +13027,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (this.contextMenuPending || this.composing) {
       return;
     }
-    var minimal,
-        selected,
-        cm = this.cm,
-        doc = cm.doc;
+    var cm = this.cm;
     if (cm.somethingSelected()) {
       this.prevInput = "";
-      var range$$1 = doc.sel.primary();
-      minimal = hasCopyEvent && (range$$1.to().line - range$$1.from().line > 100 || (selected = cm.getSelection()).length > 1000);
-      var content = minimal ? "-" : selected || cm.getSelection();
+      var content = cm.getSelection();
       this.textarea.value = content;
       if (cm.state.focused) {
         selectInput(this.textarea);
@@ -12678,7 +13044,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         this.hasSelection = null;
       }
     }
-    this.inaccurateSelection = minimal;
   };
 
   TextareaInput.prototype.getField = function () {
@@ -12926,6 +13291,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (!val) {
       this.reset();
     }
+    this.textarea.disabled = val == "nocursor";
   };
 
   TextareaInput.prototype.setUneditable = function () {};
@@ -13099,7 +13465,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   addLegacyProps(CodeMirror$1);
 
-  CodeMirror$1.version = "5.26.0";
+  CodeMirror$1.version = "5.35.0";
 
   return CodeMirror$1;
 });
@@ -16582,6 +16948,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -16627,7 +16995,7 @@ var Slider = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
 
-        _this.state = { inputIndex: -1 };
+        _this.state = _extends({}, _this.state, { inputIndex: -1 });
 
         _this.setInputContainerRef = _this.setInputContainerRef.bind(_this);
         _this.setTrackRef = _this.setTrackRef.bind(_this);
@@ -17874,11 +18242,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(function (CodeMirror) {
   "use strict";
 
-  function expressionAllowed(stream, state, backUp) {
-    return (/^(?:operator|sof|keyword c|case|new|export|default|[\[{}\(,;:]|=>)$/.test(state.lastType) || state.lastType == "quasi" && /\{\s*$/.test(stream.string.slice(0, stream.pos - (backUp || 0)))
-    );
-  }
-
   CodeMirror.defineMode("javascript", function (config, parserConfig) {
     var indentUnit = config.indentUnit;
     var statementIndent = parserConfig.statementIndent;
@@ -17895,53 +18258,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       var A = kw("keyword a"),
           B = kw("keyword b"),
-          C = kw("keyword c");
+          C = kw("keyword c"),
+          D = kw("keyword d");
       var operator = kw("operator"),
           atom = { type: "atom", style: "atom" };
 
-      var jsKeywords = {
+      return {
         "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
-        "return": C, "break": C, "continue": C, "new": kw("new"), "delete": C, "throw": C, "debugger": C,
-        "var": kw("var"), "const": kw("var"), "let": kw("var"),
+        "return": D, "break": D, "continue": D, "new": kw("new"), "delete": C, "void": C, "throw": C,
+        "debugger": kw("debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
         "function": kw("function"), "catch": kw("catch"),
         "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
         "in": operator, "typeof": operator, "instanceof": operator,
         "true": atom, "false": atom, "null": atom, "undefined": atom, "NaN": atom, "Infinity": atom,
         "this": kw("this"), "class": kw("class"), "super": kw("atom"),
         "yield": C, "export": kw("export"), "import": kw("import"), "extends": C,
-        "await": C, "async": kw("async")
+        "await": C
       };
-
-      // Extend the 'normal' keywords with the TypeScript language extensions
-      if (isTS) {
-        var type = { type: "variable", style: "variable-3" };
-        var tsKeywords = {
-          // object-like things
-          "interface": kw("class"),
-          "implements": C,
-          "namespace": C,
-          "module": kw("module"),
-          "enum": kw("module"),
-
-          // scope modifiers
-          "public": kw("modifier"),
-          "private": kw("modifier"),
-          "protected": kw("modifier"),
-          "abstract": kw("modifier"),
-
-          // operators
-          "as": operator,
-
-          // types
-          "string": type, "number": type, "boolean": type, "any": type
-        };
-
-        for (var attr in tsKeywords) {
-          jsKeywords[attr] = tsKeywords[attr];
-        }
-      }
-
-      return jsKeywords;
     }();
 
     var isOperatorChar = /[+\-*&%=<>!?|~^@]/;
@@ -18004,7 +18337,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           stream.match(/^\b(([gimyu])(?![gimyu]*\2))+\b/);
           return ret("regexp", "string-2");
         } else {
-          stream.eatWhile(isOperatorChar);
+          stream.eat("=");
           return ret("operator", "operator", stream.current());
         }
       } else if (ch == "`") {
@@ -18014,13 +18347,26 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         stream.skipToEnd();
         return ret("error", "error");
       } else if (isOperatorChar.test(ch)) {
-        if (ch != ">" || !state.lexical || state.lexical.type != ">") stream.eatWhile(isOperatorChar);
+        if (ch != ">" || !state.lexical || state.lexical.type != ">") {
+          if (stream.eat("=")) {
+            if (ch == "!" || ch == "=") stream.eat("=");
+          } else if (/[<>*+\-]/.test(ch)) {
+            stream.eat(ch);
+            if (ch == ">") stream.eat(ch);
+          }
+        }
         return ret("operator", "operator", stream.current());
       } else if (wordRE.test(ch)) {
         stream.eatWhile(wordRE);
-        var word = stream.current(),
-            known = keywords.propertyIsEnumerable(word) && keywords[word];
-        return known && state.lastType != "." ? ret(known.type, known.style, word) : ret("variable", "variable", word);
+        var word = stream.current();
+        if (state.lastType != ".") {
+          if (keywords.propertyIsEnumerable(word)) {
+            var kw = keywords[word];
+            return ret(kw.type, kw.style, word);
+          }
+          if (word == "async" && stream.match(/^(\s|\/\*.*?\*\/)*[\(\w]/, false)) return ret("async", "keyword", word);
+        }
+        return ret("variable", "variable", word);
       }
     }
 
@@ -18184,6 +18530,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     }
 
+    function isModifier(name) {
+      return name == "public" || name == "private" || name == "protected" || name == "abstract" || name == "readonly";
+    }
+
     // Combinators
 
     var defaultVars = { name: "this", next: { name: "arguments" } };
@@ -18226,6 +18576,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (type == "var") return cont(pushlex("vardef", value.length), vardef, expect(";"), poplex);
       if (type == "keyword a") return cont(pushlex("form"), parenExpr, statement, poplex);
       if (type == "keyword b") return cont(pushlex("form"), statement, poplex);
+      if (type == "keyword d") return cx.stream.match(/^\s*$/, false) ? cont() : cont(pushlex("stat"), maybeexpression, expect(";"), poplex);
+      if (type == "debugger") return cont(expect(";"));
       if (type == "{") return cont(pushlex("}"), block, poplex);
       if (type == ";") return cont();
       if (type == "if") {
@@ -18234,10 +18586,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
       if (type == "function") return cont(functiondef);
       if (type == "for") return cont(pushlex("form"), forspec, statement, poplex);
+      if (type == "class" || isTS && value == "interface") {
+        cx.marked = "keyword";return cont(pushlex("form"), className, poplex);
+      }
       if (type == "variable") {
-        if (isTS && value == "type") {
+        if (isTS && value == "declare") {
           cx.marked = "keyword";
-          return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+          return cont(statement);
+        } else if (isTS && (value == "module" || value == "enum" || value == "type") && cx.stream.match(/^\s*\w/, false)) {
+          cx.marked = "keyword";
+          if (value == "enum") return cont(enumdef);else if (value == "type") return cont(typeexpr, expect("operator"), typeexpr, expect(";"));else return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex);
+        } else if (isTS && value == "namespace") {
+          cx.marked = "keyword";
+          return cont(pushlex("form"), expression, block, poplex);
         } else {
           return cont(pushlex("stat"), maybelabel);
         }
@@ -18246,50 +18607,47 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (type == "case") return cont(expression, expect(":"));
       if (type == "default") return cont(expect(":"));
       if (type == "catch") return cont(pushlex("form"), pushcontext, expect("("), funarg, expect(")"), statement, poplex, popcontext);
-      if (type == "class") return cont(pushlex("form"), className, poplex);
       if (type == "export") return cont(pushlex("stat"), afterExport, poplex);
       if (type == "import") return cont(pushlex("stat"), afterImport, poplex);
-      if (type == "module") return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex);
       if (type == "async") return cont(statement);
       if (value == "@") return cont(expression, statement);
       return pass(pushlex("stat"), expression, expect(";"), poplex);
     }
-    function expression(type) {
-      return expressionInner(type, false);
+    function expression(type, value) {
+      return expressionInner(type, value, false);
     }
-    function expressionNoComma(type) {
-      return expressionInner(type, true);
+    function expressionNoComma(type, value) {
+      return expressionInner(type, value, true);
     }
     function parenExpr(type) {
       if (type != "(") return pass();
       return cont(pushlex(")"), expression, expect(")"), poplex);
     }
-    function expressionInner(type, noComma) {
+    function expressionInner(type, value, noComma) {
       if (cx.state.fatArrowAt == cx.stream.start) {
         var body = noComma ? arrowBodyNoComma : arrowBody;
-        if (type == "(") return cont(pushcontext, pushlex(")"), commasep(pattern, ")"), poplex, expect("=>"), body, popcontext);else if (type == "variable") return pass(pushcontext, pattern, expect("=>"), body, popcontext);
+        if (type == "(") return cont(pushcontext, pushlex(")"), commasep(funarg, ")"), poplex, expect("=>"), body, popcontext);else if (type == "variable") return pass(pushcontext, pattern, expect("=>"), body, popcontext);
       }
 
       var maybeop = noComma ? maybeoperatorNoComma : maybeoperatorComma;
       if (atomicTypes.hasOwnProperty(type)) return cont(maybeop);
       if (type == "function") return cont(functiondef, maybeop);
-      if (type == "class") return cont(pushlex("form"), classExpression, poplex);
-      if (type == "keyword c" || type == "async") return cont(noComma ? maybeexpressionNoComma : maybeexpression);
+      if (type == "class" || isTS && value == "interface") {
+        cx.marked = "keyword";return cont(pushlex("form"), classExpression, poplex);
+      }
+      if (type == "keyword c" || type == "async") return cont(noComma ? expressionNoComma : expression);
       if (type == "(") return cont(pushlex(")"), maybeexpression, expect(")"), poplex, maybeop);
       if (type == "operator" || type == "spread") return cont(noComma ? expressionNoComma : expression);
       if (type == "[") return cont(pushlex("]"), arrayLiteral, poplex, maybeop);
       if (type == "{") return contCommasep(objprop, "}", null, maybeop);
       if (type == "quasi") return pass(quasi, maybeop);
       if (type == "new") return cont(maybeTarget(noComma));
+      if (type == "import") return cont(expression);
       return cont();
     }
     function maybeexpression(type) {
       if (type.match(/[;\}\)\],]/)) return pass();
       return pass(expression);
-    }
-    function maybeexpressionNoComma(type) {
-      if (type.match(/[;\}\)\],]/)) return pass();
-      return pass(expressionNoComma);
     }
 
     function maybeoperatorComma(type, value) {
@@ -18301,7 +18659,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       var expr = noComma == false ? expression : expressionNoComma;
       if (type == "=>") return cont(pushcontext, noComma ? arrowBodyNoComma : arrowBody, popcontext);
       if (type == "operator") {
-        if (/\+\+|--/.test(value)) return cont(me);
+        if (/\+\+|--/.test(value) || isTS && value == "!") return cont(me);
+        if (isTS && value == "<" && cx.stream.match(/^([^>]|<.*?>)*>\s*\(/, false)) return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, me);
         if (value == "?") return cont(expression, expect(":"), expr);
         return cont(expr);
       }
@@ -18312,6 +18671,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (type == "(") return contCommasep(expressionNoComma, ")", "call", me);
       if (type == ".") return cont(property, me);
       if (type == "[") return cont(pushlex("]"), maybeexpression, expect("]"), poplex, me);
+      if (isTS && value == "as") {
+        cx.marked = "keyword";return cont(typeexpr, me);
+      }
+      if (type == "regexp") {
+        cx.state.lastType = cx.marked = "operator";
+        cx.stream.backUp(cx.stream.pos - cx.stream.start - 1);
+        return cont(expr);
+      }
     }
     function quasi(type, value) {
       if (type != "quasi") return pass();
@@ -18335,7 +18702,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
     function maybeTarget(noComma) {
       return function (type) {
-        if (type == ".") return cont(noComma ? targetNoComma : target);else return pass(noComma ? expressionNoComma : expression);
+        if (type == ".") return cont(noComma ? targetNoComma : target);else if (type == "variable" && isTS) return cont(maybeTypeArgs, noComma ? maybeoperatorNoComma : maybeoperatorComma);else return pass(noComma ? expressionNoComma : expression);
       };
     }
     function target(_, value) {
@@ -18364,18 +18731,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       } else if (type == "variable" || cx.style == "keyword") {
         cx.marked = "property";
         if (value == "get" || value == "set") return cont(getterSetter);
+        var m; // Work around fat-arrow-detection complication for detecting typescript typed arrow params
+        if (isTS && cx.state.fatArrowAt == cx.stream.start && (m = cx.stream.match(/^\s*:\s*/, false))) cx.state.fatArrowAt = cx.stream.pos + m[0].length;
         return cont(afterprop);
       } else if (type == "number" || type == "string") {
         cx.marked = jsonldMode ? "property" : cx.style + " property";
         return cont(afterprop);
       } else if (type == "jsonld-keyword") {
         return cont(afterprop);
-      } else if (type == "modifier") {
+      } else if (isTS && isModifier(value)) {
+        cx.marked = "keyword";
         return cont(objprop);
       } else if (type == "[") {
-        return cont(expression, expect("]"), afterprop);
+        return cont(expression, maybetype, expect("]"), afterprop);
       } else if (type == "spread") {
-        return cont(expression);
+        return cont(expressionNoComma, afterprop);
+      } else if (value == "*") {
+        cx.marked = "keyword";
+        return cont(objprop);
       } else if (type == ":") {
         return pass(afterprop);
       }
@@ -18422,11 +18795,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         if (value == "?") return cont(maybetype);
       }
     }
-    function typeexpr(type) {
-      if (type == "variable") {
-        cx.marked = "variable-3";return cont(afterType);
+    function mayberettype(type) {
+      if (isTS && type == ":") {
+        if (cx.stream.match(/^\s*\w+\s+is\b/, false)) return cont(expression, isKW, typeexpr);else return cont(typeexpr);
+      }
+    }
+    function isKW(_, value) {
+      if (value == "is") {
+        cx.marked = "keyword";
+        return cont();
+      }
+    }
+    function typeexpr(type, value) {
+      if (type == "variable" || value == "void") {
+        if (value == "keyof") {
+          cx.marked = "keyword";
+          return cont(typeexpr);
+        } else {
+          cx.marked = "type";
+          return cont(afterType);
+        }
       }
       if (type == "string" || type == "number" || type == "atom") return cont(afterType);
+      if (type == "[") return cont(pushlex("]"), commasep(typeexpr, "]", ","), poplex, afterType);
       if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex, afterType);
       if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType);
     }
@@ -18450,15 +18841,31 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
     function afterType(type, value) {
       if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType);
-      if (value == "|" || type == ".") return cont(typeexpr);
+      if (value == "|" || type == "." || value == "&") return cont(typeexpr);
       if (type == "[") return cont(expect("]"), afterType);
-      if (value == "extends") return cont(typeexpr);
+      if (value == "extends" || value == "implements") {
+        cx.marked = "keyword";return cont(typeexpr);
+      }
     }
-    function vardef() {
+    function maybeTypeArgs(_, value) {
+      if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType);
+    }
+    function typeparam() {
+      return pass(typeexpr, maybeTypeDefault);
+    }
+    function maybeTypeDefault(_, value) {
+      if (value == "=") return cont(typeexpr);
+    }
+    function vardef(_, value) {
+      if (value == "enum") {
+        cx.marked = "keyword";return cont(enumdef);
+      }
       return pass(pattern, maybetype, maybeAssign, vardefCont);
     }
     function pattern(type, value) {
-      if (type == "modifier") return cont(pattern);
+      if (isTS && isModifier(value)) {
+        cx.marked = "keyword";return cont(pattern);
+      }
       if (type == "variable") {
         register(value);return cont();
       }
@@ -18485,7 +18892,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     function maybeelse(type, value) {
       if (type == "keyword b" && value == "else") return cont(pushlex("form", "else"), statement, poplex);
     }
-    function forspec(type) {
+    function forspec(type, value) {
+      if (value == "await") return cont(forspec);
       if (type == "(") return cont(pushlex(")"), forspec1, expect(")"), poplex);
     }
     function forspec1(type) {
@@ -18517,11 +18925,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (type == "variable") {
         register(value);return cont(functiondef);
       }
-      if (type == "(") return cont(pushcontext, pushlex(")"), commasep(funarg, ")"), poplex, maybetype, statement, popcontext);
-      if (isTS && value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, functiondef);
+      if (type == "(") return cont(pushcontext, pushlex(")"), commasep(funarg, ")"), poplex, mayberettype, statement, popcontext);
+      if (isTS && value == "<") return cont(pushlex(">"), commasep(typeparam, ">"), poplex, functiondef);
     }
-    function funarg(type) {
+    function funarg(type, value) {
+      if (value == "@") cont(expression, funarg);
       if (type == "spread") return cont(funarg);
+      if (isTS && isModifier(value)) {
+        cx.marked = "keyword";return cont(funarg);
+      }
       return pass(pattern, maybetype, maybeAssign);
     }
     function classExpression(type, value) {
@@ -18535,20 +18947,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     }
     function classNameAfter(type, value) {
-      if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, classNameAfter);
-      if (value == "extends" || value == "implements" || isTS && type == ",") return cont(isTS ? typeexpr : expression, classNameAfter);
+      if (value == "<") return cont(pushlex(">"), commasep(typeparam, ">"), poplex, classNameAfter);
+      if (value == "extends" || value == "implements" || isTS && type == ",") {
+        if (value == "implements") cx.marked = "keyword";
+        return cont(isTS ? typeexpr : expression, classNameAfter);
+      }
       if (type == "{") return cont(pushlex("}"), classBody, poplex);
     }
     function classBody(type, value) {
+      if (type == "async" || type == "variable" && (value == "static" || value == "get" || value == "set" || isTS && isModifier(value)) && cx.stream.match(/^\s+[\w$\xa1-\uffff]/, false)) {
+        cx.marked = "keyword";
+        return cont(classBody);
+      }
       if (type == "variable" || cx.style == "keyword") {
-        if ((value == "async" || value == "static" || value == "get" || value == "set" || isTS && (value == "public" || value == "private" || value == "protected" || value == "readonly" || value == "abstract")) && cx.stream.match(/^\s+[\w$\xa1-\uffff]/, false)) {
-          cx.marked = "keyword";
-          return cont(classBody);
-        }
         cx.marked = "property";
         return cont(isTS ? classfield : functiondef, classBody);
       }
-      if (type == "[") return cont(expression, expect("]"), isTS ? classfield : functiondef, classBody);
+      if (type == "[") return cont(expression, maybetype, expect("]"), isTS ? classfield : functiondef, classBody);
       if (value == "*") {
         cx.marked = "keyword";
         return cont(classBody);
@@ -18581,6 +18996,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
     function afterImport(type) {
       if (type == "string") return cont();
+      if (type == "(") return pass(expression);
       return pass(importSpec, maybeMoreImports, maybeFrom);
     }
     function importSpec(type, value) {
@@ -18606,9 +19022,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       if (type == "]") return cont();
       return pass(commasep(expressionNoComma, "]"));
     }
+    function enumdef() {
+      return pass(pushlex("form"), pattern, expect("{"), pushlex("}"), commasep(enummember, "}"), poplex, poplex);
+    }
+    function enummember() {
+      return pass(pattern, maybeAssign);
+    }
 
     function isContinuedStatement(state, textAfter) {
       return state.lastType == "operator" || state.lastType == "," || isOperatorChar.test(textAfter.charAt(0)) || /[,.]/.test(textAfter.charAt(0));
+    }
+
+    function expressionAllowed(stream, state, backUp) {
+      return state.tokenize == tokenBase && /^(?:operator|sof|keyword [bcd]|case|new|export|default|spread|[\[{}\(,;:]|=>)$/.test(state.lastType) || state.lastType == "quasi" && /\{\s*$/.test(stream.string.slice(0, stream.pos - (backUp || 0)));
     }
 
     // Interface
@@ -18664,6 +19090,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       electricInput: /^\s*(?:case .*?:|default:|\{|\})$/,
       blockCommentStart: jsonMode ? null : "/*",
       blockCommentEnd: jsonMode ? null : "*/",
+      blockCommentContinue: jsonMode ? null : " * ",
       lineComment: jsonMode ? null : "//",
       fold: "brace",
       closeBrackets: "()[]{}''\"\"``",
@@ -18673,6 +19100,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       jsonMode: jsonMode,
 
       expressionAllowed: expressionAllowed,
+
       skipExpression: function skipExpression(state) {
         var top = state.cc[state.cc.length - 1];
         if (top == expression || top == expressionNoComma) state.cc.pop();
@@ -18759,6 +19187,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     doNotIndent: {},
     allowUnquoted: false,
     allowMissing: false,
+    allowMissingTagName: false,
     caseFold: false
   };
 
@@ -18931,6 +19360,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         state.tagName = stream.current();
         setStyle = "tag";
         return attrState;
+      } else if (config.allowMissingTagName && type == "endTag") {
+        setStyle = "tag bracket";
+        return attrState(type, stream, state);
       } else {
         setStyle = "error";
         return tagNameState;
@@ -18947,6 +19379,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           setStyle = "tag error";
           return closeStateErr;
         }
+      } else if (config.allowMissingTagName && type == "endTag") {
+        setStyle = "tag bracket";
+        return closeState(type, stream, state);
       } else {
         setStyle = "error";
         return closeStateErr;
@@ -28777,7 +29212,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   CodeMirror.defineMode("jsx", function (config, modeConfig) {
-    var xmlMode = CodeMirror.getMode(config, { name: "xml", allowMissing: true, multilineTagIndentPastTag: false });
+    var xmlMode = CodeMirror.getMode(config, { name: "xml", allowMissing: true, multilineTagIndentPastTag: false, allowMissingTagName: true });
     var jsMode = CodeMirror.getMode(config, modeConfig && modeConfig.base || "javascript");
 
     function flatXMLIndent(state) {
@@ -36882,7 +37317,7 @@ exports.buildTagsFromValues = buildTagsFromValues;
 /* 218 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
+module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FFB464;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#23A59B;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#414B55;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;} .st1{fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#F55F69;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746c-.213.863-.884 1.534-1.745 1.747zm6.25-7.445l-11.95 11.95c-.466.47-1.22.473-1.69.006 0-.002-.004-.003-.006-.006-.47-.465-.472-1.22-.007-1.69l.007-.006 1.72-1.72c-1.013-.887-1.88-1.927-2.57-3.085L.125 8l.203-.323C2.418 4.318 5 2.62 8 2.62c1.043-.02 2.077.186 3.036.6l2.09-2.045c.47-.468 1.23-.468 1.696 0 .472.468.472 1.227 0 1.697zM9.542 4.76C9.057 4.533 8.532 4.415 8 4.41c-1.98 0-3.585 1.606-3.585 3.585.003.534.12 1.06.347 1.542l.932-.933c-.058-.2-.085-.403-.083-.61 0-1.32 1.07-2.39 2.39-2.39.208 0 .413.027.61.083l.932-.93zm6.117 2.915c-.556-.905-1.21-1.747-1.948-2.51l-2.186 2.2c.018.21.018.422 0 .632 0 1.98-1.606 3.587-3.585 3.587-.21.018-.422.018-.634 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3 0 5.58-1.696 7.672-5.055L15.875 8l-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}\n    </style>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <style>\n        .st0{fill:#FF9164;}\n    </style>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.06-7.666-5.06S2.42 4.32.328 7.68L.125 8l.203.323c2.093 3.36 4.677 5.058 7.678 5.058s5.584-1.695 7.666-5.057L15.875 8l-.203-.322zm-7.666 3.91C6.026 11.588 4.42 9.982 4.42 8c0-1.98 1.605-3.587 3.586-3.587 1.982 0 3.587 1.606 3.587 3.587 0 1.98-1.605 3.588-3.587 3.588zM10.398 8c0 1.32-1.07 2.39-2.393 2.39-1.32 0-2.392-1.07-2.392-2.39s1.07-2.392 2.392-2.392c1.322 0 2.393 1.072 2.393 2.392z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
 
 /***/ }),
 /* 219 */
