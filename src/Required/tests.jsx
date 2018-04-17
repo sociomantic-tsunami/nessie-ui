@@ -42,7 +42,7 @@ describe( 'Required', () =>
             {
                 wrapper.setProps( { text: 'Nanananananana' } );
 
-                expect( wrapper.driver().getContent( `.${cssMap.required}` ) )
+                expect( wrapper.driver().getContent( `.${cssMap.default}` ) )
                     .to.have.length( 1 );
             } );
         } );
