@@ -90,6 +90,7 @@ import SliderDriver            from './Slider/driver';
 import SliderGroupDriver       from './SliderGroup/driver';
 import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
+import TabButtonDriver         from './TabButton/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
@@ -291,7 +292,7 @@ const drivers =
     },
     {
         Component : TabButton,
-        Driver    : WrapperDriver,
+        Driver    : TabButtonDriver,
     },
     {
         Component : Table,
