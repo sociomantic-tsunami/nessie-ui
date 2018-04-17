@@ -98,3 +98,49 @@ state', () =>
             } );
     } );
 } );
+
+describe( 'UploaderDriver', () =>
+{
+    let Wrapper;
+
+    beforeEach( () =>
+    {
+        Wrapper = mount( <Uploader /> );
+    } );
+
+    describe( 'onClick', () =>
+    {
+        it( 'should trigger onClick event', () =>
+        {
+            const onClick = sinon.spy();
+            Wrapper.setProps( {
+                onClick,
+                uploadState : 'default'
+            } );
+
+            Wrapper.driver().click();
+            expect( onClick.calledOnce ).to.be.true;
+        } );
+
+        it( 'should trigger onClick event when clicked on secondary', () =>
+        {
+            const onClickSecondary = sinon.spy();
+            Wrapper.setProps( {
+                onClickSecondary,
+                uploadState : 'uploaded'
+            } );
+
+            Wrapper.driver().clickSecondary();
+            expect( onClickSecondary.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'onChange', () =>
+    {
+        it( 'should be undefined by default', () =>
+        {
+            Wrapper = mount( <Uploader /> );
+            expect( Wrapper.prop( 'onChange' ) ).to.be.undefined;
+        } );
+    } );
+} );

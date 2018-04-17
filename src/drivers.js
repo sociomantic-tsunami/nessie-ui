@@ -58,6 +58,7 @@ import {
     TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
+    Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
 
@@ -92,6 +93,7 @@ import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
+import UploaderDriver          from './Uploader/driver';
 import WrapperDriver           from './Testing/CommonDrivers/wrapperDriver';
 
 
@@ -328,6 +330,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : Uploader,
+        Driver    : UploaderDriver,
     },
     {
         Component : ValuedTextInput,
