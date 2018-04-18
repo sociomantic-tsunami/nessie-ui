@@ -8,6 +8,7 @@ import {
     Column,
     DateTimeInput,
     DragNDrop,
+    Dropdown,
     Fieldset,
     FlounderDropdown,
     Form,
@@ -136,6 +137,10 @@ const drivers =
     },
     {
         Component : DragNDrop,
+        Driver    : WrapperDriver
+    },
+    {
+        Component : Dropdown,
         Driver    : WrapperDriver
     },
     {

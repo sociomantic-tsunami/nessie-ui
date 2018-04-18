@@ -71,6 +71,10 @@
         "message"  : "Drop image file to upload",
         "children" : "{<Label><Required>Image</Required></Label><Uploader/>}"
     },
+    "Dropdown" :
+    {
+        "children" : "{<ul><li>List item A</li><li>List item B</li><li>List item C</li></ul>}"
+    },
     "Fieldset" :
     {
         "label"    : "Fieldset legend",

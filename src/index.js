@@ -21,6 +21,7 @@ export { WrappedDateTimeInput as DateTimeInput };
 export DimensionsInput          from './DimensionsInput';
 export Divider                  from './Divider';
 export DragNDrop                from './DragNDrop';
+export Dropdown                 from './Dropdown';
 export Fieldset                 from './Fieldset';
 export Form                     from './Form';
 export FlounderDropdown         from './FlounderDropdown';
