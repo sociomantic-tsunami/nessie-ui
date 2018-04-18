@@ -10,13 +10,13 @@ const Required = ( {
     isRequired,
     text } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { required: isRequired } }>
-            <span className = { className }>
-                { children || text }
-            </span>
-        </Css>;
+    ( <Css
+        cssMap   = { cssMap }
+        cssProps = { { required: isRequired } }>
+        <span className = { className }>
+            { children || text }
+        </span>
+    </Css> );
 
 Required.propTypes =
 {

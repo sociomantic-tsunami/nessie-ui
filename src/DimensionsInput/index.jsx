@@ -177,7 +177,15 @@ export default class DimensionsInput extends Component
 
     render()
     {
-        const { className, cssMap, forceHover, label, ...props } = this.props;
+        const {
+            className,
+            cssMap,
+            forceHover,
+            label,
+            onMouseOut,
+            onMouseOver,
+            ...props
+        }  = this.props;
 
         const {
             hasError,
@@ -206,9 +214,11 @@ export default class DimensionsInput extends Component
                 } }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }
-                    label     = { label }>
+                    className   = { className }
+                    id          = { id }
+                    label       = { label }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOver }>
                     <div className = { cssMap.container }>
                         <InputField
                             { ...props }

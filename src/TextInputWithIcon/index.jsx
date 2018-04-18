@@ -440,9 +440,7 @@ export default class TextInputWithIcon extends Component
                             isFocusable = { false }
                             isReadOnly  = { isReadOnly }
                             hasError    = { hasError }
-                            onClick     = { onClickIcon }
-                            onMouseOut  = { onMouseOut }
-                            onMouseOver = { onMouseOver } />
+                            onClick     = { onClickIcon } />
                     </Tooltip>
                 }
             </div>

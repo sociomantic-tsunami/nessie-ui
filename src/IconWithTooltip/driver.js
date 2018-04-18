@@ -1,11 +1,24 @@
-// eslint-disable-next-line max-len
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver';
+import SimpleComponentDriver
+    from '../Testing/CommonDrivers/simpleComponentDriver';
 
 export default class IconWithTooltipDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, 'IconWithTooltip > Tooltip' );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.tooltip = wrapper.find( 'IconWithTooltip > Tooltip' ).first();
+    }
+
+    mouseOverIcon()
+    {
+        this.tooltip.driver().mouseOver();
+        return this;
+    }
+
+    mouseOutIcon()
+    {
+        this.tooltip.driver().mouseOut();
+        return this;
     }
 
     getContent()
@@ -15,18 +28,6 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
 
     getMessage()
     {
-        return this.control.driver().getMessage();
-    }
-
-    mouseOver()
-    {
-        this.control.driver().mouseOver();
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.control.driver().mouseOut();
-        return this;
+        return this.tooltip.driver().getMessage();
     }
 }

@@ -138,6 +138,8 @@ export default class TextInput extends Component
         const {
             className,
             cssMap,
+            onMouseOut,
+            onMouseOver,
             ...props
         } = this.props;
         const { id } = this.state;
@@ -146,8 +148,10 @@ export default class TextInput extends Component
             <Css cssMap = { cssMap }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }>
+                    id          = { id }
+                    className   = { className }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOver }>
                     <InputField { ...props } id = { id } />
                 </InputContainer>
             </Css>

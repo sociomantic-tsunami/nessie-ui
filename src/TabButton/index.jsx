@@ -14,28 +14,28 @@ const TabButton = ( {
     subtitle,
     tabIndex } ) =>
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { active: isActive } }>
-            <button
-                ref       = { buttonRef }
-                className = { className }
-                role      = "tab"
-                value     = { String( tabIndex ) }
-                disabled  = { isDisabled }
-                onClick   = { onClick }>
-                <div className = { cssMap.content }>
-                    <div className = { cssMap.label }>
-                        { label }
-                        { subtitle &&
-                            <span className = { cssMap.subtitle }>
-                                { subtitle }
-                            </span>
-                        }
-                    </div>
+    ( <Css
+        cssMap   = { cssMap }
+        cssProps = { { active: isActive } }>
+        <button
+            ref       = { buttonRef }
+            className = { className }
+            role      = "tab"
+            value     = { String( tabIndex ) }
+            disabled  = { isDisabled }
+            onClick   = { onClick }>
+            <div className = { cssMap.content }>
+                <div className = { cssMap.label }>
+                    { label }
+                    { subtitle &&
+                        <span className = { cssMap.subtitle }>
+                            { subtitle }
+                        </span>
+                    }
                 </div>
-            </button>
-        </Css>;
+            </div>
+        </button>
+    </Css> );
 
 TabButton.propTypes =
 {

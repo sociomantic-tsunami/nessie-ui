@@ -14,6 +14,8 @@ const withDropdown = Component =>
         dropdownIsOpen,
         dropdownPosition,
         dropdownProps,
+        onMouseOut,
+        onMouseOver,
         wrapperRef,
         ...componentProps,
     } ) => (
@@ -22,7 +24,9 @@ const withDropdown = Component =>
             className = { buildClassName( '', styles, {
                 open     : dropdownIsOpen,
                 position : dropdownPosition,
-            } ) }>
+            } ) }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
             <Component { ...componentProps } />
             <Dropdown { ...dropdownProps } className = { styles.dropdown } />
         </div>

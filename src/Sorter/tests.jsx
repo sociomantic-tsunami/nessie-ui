@@ -3,30 +3,50 @@
 /* eslint no-console: 0*/
 
 
-import React                      from 'react';
-import { shallow, render, mount } from 'enzyme';
-// import sinon from 'sinon';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-
-import Sorter                     from './index';
-
+import Sorter       from './index';
 
 describe( 'Sorter', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
-{
-        Wrapper = mount( <Sorter /> );
+    {
+        wrapper = mount( <Sorter /> );
     } );
 
 
     it( 'should render <Sorter/>', () =>
-{
-        expect( Wrapper.find( Sorter ) ).to.have.length( 1 );
+    {
+        expect( wrapper.find( Sorter ) ).to.have.length( 1 );
     } );
 
-  // it('should have its component name and hash as default className', () => {
-  //     expect(Wrapper.find('.sorter__default') ).to.have.length(1);
-  // });
+    it( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( '.sorter__default' ) ).to.have.length( 1 );
+    } );
+} );
+
+describe( 'SorterDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Sorter /> );
+    } );
+
+    it( 'should call onToggle callback function', () =>
+    {
+        const onToggle = sinon.spy();
+        wrapper.setProps( {
+            onToggle
+        } );
+
+        wrapper.driver().toggle();
+
+        expect( onToggle.calledOnce ).to.be.true;
+    } );
 } );
