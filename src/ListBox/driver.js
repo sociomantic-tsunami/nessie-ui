@@ -1,6 +1,6 @@
-// const ERRORS = {
-//     OPTION_CANNOT_BE_CLICKED : () => `Option cannot be clicked since it's disabled`, // eslint-disable-line max-len
-// };
+const ERRORS = {
+    OPTION_CANNOT_BE_CLICKED : () => `Option cannot be clicked since it's disabled`, // eslint-disable-line max-len
+};
 
 export default class ListBoxDriver
 {
@@ -11,14 +11,16 @@ export default class ListBoxDriver
 
     clickOption( index = 0 )
     {
-        // if ( this.props.disabled )
-        // {
-        //     throw new Error(
-        //         ERRORS.OPTION_CANNOT_BE_CLICKED()
-        //     );
-        // }
+        const listBox = this.wrapper.find( 'ListBoxOption' ).at( index );
 
-        this.wrapper.find( 'ListBoxOption' ).at( index ).simulate( 'click' );
+        if ( listBox.props().disabled )
+        {
+            throw new Error(
+                ERRORS.OPTION_CANNOT_BE_CLICKED()
+            );
+        }
+
+        listBox.simulate( 'click' );
     }
 
     mouseOverOption( index = 0 )

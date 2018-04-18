@@ -86,7 +86,7 @@ ListBoxOption at given index', () =>
                     } ]
                 } );
 
-                driver.clickOption( 2 );
+                driver.clickOption( 1 );
 
                 expect( onClickOption.calledOnce ).to.be.true;
             } );
