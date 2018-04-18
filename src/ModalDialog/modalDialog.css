@@ -70,11 +70,11 @@ $wideWidth : 900px;
     width:              500px;
     padding:            40px;
     box-sizing:         border-box;
-    box-shadow:         0 2px 20px 0 color( var( --PC-GREY--D45 ) a( 30% ) );
+    box-shadow:         var( --boxShadow );
     background:         var( --PC-WHITE );
     text-align:         left;
     z-index:            9999;
-    border-radius:      5px;
+    border-radius:      4px;
 
     .type__carousel &
     {
