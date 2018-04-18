@@ -170,7 +170,7 @@
             left:           0;
             right:          0;
 
-            min-height:     var( --inputHeightMultiTag );
+            min-height:     var( --spacing-5 );
 
             padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-m ) ) / 2 );
             padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-m ) ) / 2 );
@@ -359,16 +359,16 @@
         box-sizing:         border-box;
 
         width:              100%;
-        min-height:         calc( var( --inputHeightMultiTag ) - ( 2 * var( --borderWidth ) ) );
+        min-height:         calc( var( --spacing-5 )  - ( 2 * var( --borderWidth ) ) );
 
-        padding-top:        calc( var( --spacing-1 ) - var( --borderWidth ) );
+        padding-top:        3px;
         padding-right:      calc( var( --spacing-1 ) + var( --iconSize ) + var( --spacing-1 ) );
         padding-left:       var( --spacing-1 );
 
         & > *
         {
             margin-right:   var( --spacing-1 );
-            margin-bottom:  calc( var( --spacing-1 ) - var( --borderWidth ) );
+            margin-bottom:  3px;
 
             &:last-child
             {
