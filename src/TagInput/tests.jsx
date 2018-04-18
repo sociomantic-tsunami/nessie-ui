@@ -142,7 +142,7 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOut' );
+            wrapper.driver().mouseOut();
 
             expect( onMouseOut.calledOnce ).to.be.true;
         } );
@@ -161,7 +161,7 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.find( `.${cssMap.input}` ).simulate( 'mouseOver' );
+            wrapper.driver().mouseOver();
 
             expect( onMouseOver.calledOnce ).to.be.true;
         } );
