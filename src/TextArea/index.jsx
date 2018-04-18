@@ -14,34 +14,27 @@ export default class TextArea extends Component
         /**
          *  Label text (string or JSX node)
          */
-        label         : PropTypes.node,
+        label                 : PropTypes.node,
         /**
          *  Label position
          */
-        labelPosition : PropTypes.oneOf( [
-            'top',
-            'left',
-            'right'
-        ] ),
+        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  Placeholder text
          */
-        placeholder : PropTypes.string,
+        placeholder           : PropTypes.string,
         /**
          *  Number of text input rows
          */
-        rows        : PropTypes.number,
-         /**
+        rows                  : PropTypes.number,
+        /**
           * Sets the text area to be vertically resizable
           */
-        isResizable : PropTypes.bool,
+        isResizable           : PropTypes.bool,
         /**
          *  Alignment of the input text
          */
-        textAlign   : PropTypes.oneOf( [
-            'left',
-            'right'
-        ] ),
+        textAlign             : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Display as disabled
          */
@@ -65,54 +58,51 @@ export default class TextArea extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [
-            'top',
-            'topLeft'
-        ] ),
+        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
         /**
          * Initial input string value
          */
-        defaultValue : PropTypes.string,
+        defaultValue          : PropTypes.string,
         /**
          * Input string value
          */
-        value        : PropTypes.string,
+        value                 : PropTypes.string,
         /**
          * HTML id attribute (overwrite default)
          */
-        id           : PropTypes.string,
+        id                    : PropTypes.string,
         /**
          *  HTML name attribute
          */
-        name         : PropTypes.string,
+        name                  : PropTypes.string,
         /**
          *  Input change callback function
          */
-        onChange     : PropTypes.func,
+        onChange              : PropTypes.func,
         /**
          *  Input focus callback function
          */
-        onFocus      : PropTypes.func,
+        onFocus               : PropTypes.func,
         /**
          *  Input blur callback function
          */
-        onBlur       : PropTypes.func,
+        onBlur                : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver  : PropTypes.func,
+        onMouseOver           : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut   : PropTypes.func,
+        onMouseOut            : PropTypes.func,
         /**
          * Display as hover when required from another component
          */
-        forceHover   : PropTypes.bool,
+        forceHover            : PropTypes.bool,
         /**
          * Callback that receives the native <textarea>: ( ref ) => { ... }
          */
-        inputRef     : PropTypes.func,
+        inputRef              : PropTypes.func,
     };
 
     static defaultProps =
@@ -136,16 +126,21 @@ export default class TextArea extends Component
         const {
             className,
             cssMap,
+            onMouseOut,
+            onMouseOver,
             ...props
         } = this.props;
+
         const { id } = this.state;
 
         return (
             <Css cssMap = { cssMap }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }>
+                    className   = { className }
+                    id          = { id }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOver }>
                     <InputField { ...props } id = { id } element = "textarea" />
                 </InputContainer>
             </Css>

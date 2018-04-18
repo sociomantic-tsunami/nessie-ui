@@ -185,30 +185,25 @@ export default class TextInputWithDropdown extends Component
             onBlur( e );
         }
     }
-    handleMouseOver( e )
+    handleMouseOver()
     {
         this.setState( { isHovered: true  } );
-
-        const { onMouseOver } = this.props;
-        if ( onMouseOver )
-        {
-            onMouseOver( e );
-        }
     }
-    handleMouseOut( e )
+    handleMouseOut()
     {
         this.setState( { isHovered: false } );
-
-        const { onMouseOut } = this.props;
-        if ( onMouseOut )
-        {
-            onMouseOut( e );
-        }
     }
 
     render()
     {
-        const { className, cssMap, label, ...props } = this.props;
+        const {
+            className,
+            cssMap,
+            label,
+            onMouseOut,
+            onMouseOver,
+            ...props
+        } = this.props;
 
         const {
             dropdownData,
@@ -252,9 +247,11 @@ export default class TextInputWithDropdown extends Component
                 } }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }
-                    label     = { label }>
+                    id          = { id }
+                    className   = { className }
+                    label       = { label }
+                    onMouseOut  = { onMouseOut }
+                    onMouseOver = { onMouseOver }>
                     <div className = { cssMap.container }>
                         <InputField
                             { ...props }
