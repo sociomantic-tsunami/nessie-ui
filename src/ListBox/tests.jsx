@@ -35,7 +35,7 @@ describe( 'ListBox', () =>
 } );
 
 
-describe.only( 'ListBoxDriver', () =>
+describe( 'ListBoxDriver', () =>
 {
     let wrapper;
     let driver;
@@ -184,5 +184,35 @@ ListBoxOption at given index', () =>
 
                 expect( onMouseOutOption.calledOnce ).to.be.true;
             } );
+    } );
+
+
+    describe( 'keyPress', () =>
+    {
+        it( 'should trigger onKeyPress', () =>
+        {
+            const onKeyPress = sinon.spy();
+
+            wrapper.setProps( {
+                onKeyPress,
+                options : [ {
+                    'text' : 'Option'
+                },
+                {
+                    'text'        : 'Option with description',
+                    'value'       : 'value2',
+                    'description' : 'Option description'
+                },
+                {
+                    'text'     : 'Disabled option',
+                    'value'    : 'value3',
+                    'disabled' : true
+                } ]
+            } );
+
+            driver.keyPress();
+
+            expect( onKeyPress.calledOnce ).to.be.true;
+        } );
     } );
 } );

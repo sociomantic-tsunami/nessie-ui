@@ -21,17 +21,26 @@ export default class ListBoxDriver
         }
 
         listBox.simulate( 'click' );
+        return this;
     }
 
     mouseOverOption( index = 0 )
     {
         this.wrapper.find( 'ListBoxOption' ).at( index )
             .simulate( 'mouseenter' );
+        return this;
     }
 
     mouseOutOption( index = 0 )
     {
         this.wrapper.find( 'ListBoxOption' ).at( index )
             .simulate( 'mouseleave' );
+        return this;
+    }
+
+    keyPress()
+    {
+        this.wrapper.simulate( 'keyPress' );
+        return this;
     }
 }
