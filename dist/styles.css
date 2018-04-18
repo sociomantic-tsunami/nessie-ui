@@ -10133,7 +10133,7 @@ textarea.inputField__resizable
             align-items:        center;
 
     position:   absolute;
-    z-index:    1;
+    z-index:    9999999;
 
     top:        0;
     bottom:     0;

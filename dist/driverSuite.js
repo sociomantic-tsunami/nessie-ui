@@ -64,12 +64,116 @@ module.exports =
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 246);
+/******/ 	return __webpack_require__(__webpack_require__.s = 256);
 /******/ })
 /************************************************************************/
 /******/ ({
 
 /***/ 104:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ERRORS = {
+    SCROLL_CANNOT_BE_CLICKED: function SCROLL_CANNOT_BE_CLICKED(prop) {
+        return 'Button cannot be clicked since it doesn\'t have ' + prop + ' prop';
+    }, // eslint-disable-line max-len
+    CANNOT_SCROLL_IN_DIRECTION: function CANNOT_SCROLL_IN_DIRECTION(direction) {
+        return 'Cannot scroll because scroll direction is neither \'' + direction + '\' nor \'both\'';
+    } // eslint-disable-line max-len
+};
+
+var ScrollBoxDriver = function () {
+    function ScrollBoxDriver(wrapper) {
+        _classCallCheck(this, ScrollBoxDriver);
+
+        this.wrapper = wrapper;
+        this.props = this.wrapper.props();
+    }
+
+    _createClass(ScrollBoxDriver, [{
+        key: 'clickScrollUp',
+        value: function clickScrollUp() {
+            if (!this.props.scrollUpIsVisible) {
+                throw new Error(ERRORS.SCROLL_CANNOT_BE_CLICKED('scrollUpIsVisible'));
+            }
+
+            this.wrapper.find('.scrollBox__icon__up').first().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickScrollRight',
+        value: function clickScrollRight() {
+            if (!this.props.scrollRightIsVisible) {
+                throw new Error(ERRORS.SCROLL_CANNOT_BE_CLICKED('scrollRightIsVisible'));
+            }
+
+            this.wrapper.find('.scrollBox__icon__right').first().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickScrollDown',
+        value: function clickScrollDown() {
+            if (!this.props.scrollDownIsVisible) {
+                throw new Error(ERRORS.SCROLL_CANNOT_BE_CLICKED('scrollDownIsVisible'));
+            }
+
+            this.wrapper.find('.scrollBox__icon__down').first().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickScrollLeft',
+        value: function clickScrollLeft() {
+            if (!this.props.scrollLeftIsVisible) {
+                throw new Error(ERRORS.SCROLL_CANNOT_BE_CLICKED('scrollLeftIsVisible'));
+            }
+
+            this.wrapper.find('.scrollBox__icon__left').first().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'scrollVertical',
+        value: function scrollVertical(scrollOffset) {
+            if (!(this.props.scroll === 'vertical' || this.props.scroll === 'both')) {
+                throw new Error(ERRORS.CANNOT_SCROLL_IN_DIRECTION('vertical'));
+            }
+
+            this.wrapper.find('.scrollBox__scrollBox').simulate('scroll', {
+                target: { scrollTop: scrollOffset }
+            });
+            return this;
+        }
+    }, {
+        key: 'scrollHorizontal',
+        value: function scrollHorizontal(scrollOffset) {
+            if (!(this.props.scroll === 'horizontal' || this.props.scroll === 'both')) {
+                throw new Error(ERRORS.CANNOT_SCROLL_IN_DIRECTION('horizontal'));
+            }
+
+            this.wrapper.find('.scrollBox__scrollBox').simulate('scroll', {
+                target: { scrollLeft: scrollOffset }
+            });
+            return this;
+        }
+    }]);
+
+    return ScrollBoxDriver;
+}();
+
+exports.default = ScrollBoxDriver;
+
+/***/ }),
+
+/***/ 106:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,7 +209,7 @@ exports.default = SectionDriver;
 
 /***/ }),
 
-/***/ 106:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -272,7 +376,89 @@ exports.default = SliderDriver;
 
 /***/ }),
 
-/***/ 110:
+/***/ 109:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SliderGroupDriver = function () {
+    function SliderGroupDriver(wrapper) {
+        _classCallCheck(this, SliderGroupDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(SliderGroupDriver, [{
+        key: 'getSlider',
+        value: function getSlider(index) {
+            if (Array.isArray(index)) {
+                var sliders = [];
+                this.wrapper.find('Slider').map(function (item, i) {
+                    if (index.includes(i)) {
+                        sliders.push(item);
+                    }
+                });
+
+                return sliders;
+            }
+
+            return this.wrapper.find('Slider').at(index);
+        }
+    }]);
+
+    return SliderGroupDriver;
+}();
+
+exports.default = SliderGroupDriver;
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SorterDriver = function () {
+    function SorterDriver(wrapper) {
+        _classCallCheck(this, SorterDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(SorterDriver, [{
+        key: 'toggle',
+        value: function toggle() {
+            this.wrapper.simulate('click');
+            return this;
+        }
+    }]);
+
+    return SorterDriver;
+}();
+
+exports.default = SorterDriver;
+
+/***/ }),
+
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -343,7 +529,234 @@ exports.default = SwitchDriver;
 
 /***/ }),
 
-/***/ 118:
+/***/ 117:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ERRORS = {
+    CANNOT_BE_CLICKED: function CANNOT_BE_CLICKED() {
+        return 'Button cannot be clicked because it is disabled';
+    }
+};
+
+var TabButtonDriver = function () {
+    function TabButtonDriver(wrapper) {
+        _classCallCheck(this, TabButtonDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(TabButtonDriver, [{
+        key: 'click',
+        value: function click() {
+            if (this.wrapper.props().isDisabled) {
+                throw new Error(ERRORS.CANNOT_BE_CLICKED());
+            }
+
+            return this.wrapper.simulate('click');
+        }
+    }]);
+
+    return TabButtonDriver;
+}();
+
+exports.default = TabButtonDriver;
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TabsDriver = function () {
+    function TabsDriver(wrapper) {
+        _classCallCheck(this, TabsDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(TabsDriver, [{
+        key: 'getTabButtons',
+        value: function getTabButtons() {
+            return this.wrapper.find('TabButton');
+        }
+    }, {
+        key: 'getTabButtonsByIndex',
+        value: function getTabButtonsByIndex(index) {
+            if (Array.isArray(index)) {
+                var tabButtons = [];
+
+                index.forEach(function (i) {
+                    tabButtons.push(index[i]);
+                });
+
+                return tabButtons;
+            }
+
+            return this.wrapper.find('TabButton').at(index);
+        }
+    }, {
+        key: 'getTabButtonsByLabel',
+        value: function getTabButtonsByLabel(label) {
+            return this.wrapper.findWhere(function (n) {
+                return n.prop('label') === label;
+            }).first();
+        }
+    }, {
+        key: 'getTabContent',
+        value: function getTabContent() {
+            return this.wrapper.find('Tab').driver().getContent();
+        }
+    }]);
+
+    return TabsDriver;
+}();
+
+exports.default = TabsDriver;
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TagDriver = function () {
+    function TagDriver(wrapper) {
+        _classCallCheck(this, TagDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(TagDriver, [{
+        key: 'clickClose',
+        value: function clickClose() {
+            this.wrapper.find('IconButton').first().driver().click();
+            return this;
+        }
+    }]);
+
+    return TagDriver;
+}();
+
+exports.default = TagDriver;
+
+/***/ }),
+
+/***/ 123:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TagInputDriver = function () {
+    function TagInputDriver(wrapper) {
+        _classCallCheck(this, TagInputDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(TagInputDriver, [{
+        key: 'clickClose',
+        value: function clickClose() {
+            this.wrapper.find('Tag').first().driver().clickClose();
+            return this;
+        }
+    }, {
+        key: 'mouseOut',
+        value: function mouseOut() {
+            this.wrapper.simulate('mouseleave');
+            return this;
+        }
+    }, {
+        key: 'mouseOver',
+        value: function mouseOver() {
+            this.wrapper.simulate('mouseenter');
+            return this;
+        }
+    }]);
+
+    return TagInputDriver;
+}();
+
+exports.default = TagInputDriver;
+
+/***/ }),
+
+/***/ 125:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var WrapperDriver = function () {
+    function WrapperDriver(wrapper) {
+        _classCallCheck(this, WrapperDriver);
+
+        this.wrapper = wrapper;
+        this.cssMap = this.wrapper.props().cssMap;
+    }
+
+    _createClass(WrapperDriver, [{
+        key: "getContent",
+        value: function getContent() {
+            return this.wrapper.find("." + this.cssMap.default).first().children();
+        }
+    }]);
+
+    return WrapperDriver;
+}();
+
+exports.default = WrapperDriver;
+
+/***/ }),
+
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -383,7 +796,7 @@ exports.default = TextDriver;
 
 /***/ }),
 
-/***/ 122:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -421,7 +834,7 @@ var TextInputWithIconDriver = function (_InputComponentDriver) {
     _createClass(TextInputWithIconDriver, [{
         key: 'getErrorMessage',
         value: function getErrorMessage() {
-            var iconWithTooltip = this.wrapper.children().filter(_nessieUi.IconWithTooltip);
+            var iconWithTooltip = this.wrapper.find(_nessieUi.IconWithTooltip).first();
             return iconWithTooltip.driver().getMessage();
         }
     }, {
@@ -439,7 +852,7 @@ exports.default = TextInputWithIconDriver;
 
 /***/ }),
 
-/***/ 123:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +910,49 @@ exports.default = TooltipDriver;
 
 /***/ }),
 
-/***/ 127:
+/***/ 133:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var UploaderDriver = function () {
+    function UploaderDriver(wrapper) {
+        _classCallCheck(this, UploaderDriver);
+
+        this.wrapper = wrapper;
+    }
+
+    _createClass(UploaderDriver, [{
+        key: 'click',
+        value: function click() {
+            this.wrapper.find('Button').simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickSecondary',
+        value: function clickSecondary() {
+            this.wrapper.find('IconButton').simulate('click');
+            return this;
+        }
+    }]);
+
+    return UploaderDriver;
+}();
+
+exports.default = UploaderDriver;
+
+/***/ }),
+
+/***/ 137:
 /***/ (function(module, exports) {
 
 module.exports = require("nessie-ui/dist/componentDriver.js");
@@ -698,7 +1153,7 @@ function isCharPrintable(keyCode) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -707,9 +1162,9 @@ function isCharPrintable(keyCode) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.SimpleComponentDriver = exports.InputComponentDriver = exports.ClickableComponentDriver = undefined;
+exports.WrapperDriver = exports.SimpleComponentDriver = exports.InputComponentDriver = exports.ClickableComponentDriver = undefined;
 
-var _componentDriver = __webpack_require__(127);
+var _componentDriver = __webpack_require__(137);
 
 var _nessieUi = __webpack_require__(14);
 
@@ -777,37 +1232,77 @@ var _driver27 = __webpack_require__(89);
 
 var _driver28 = _interopRequireDefault(_driver27);
 
-var _driver29 = __webpack_require__(97);
+var _driver29 = __webpack_require__(96);
 
 var _driver30 = _interopRequireDefault(_driver29);
 
-var _driver31 = __webpack_require__(104);
+var _driver31 = __webpack_require__(98);
 
 var _driver32 = _interopRequireDefault(_driver31);
+
+var _driver33 = __webpack_require__(104);
+
+var _driver34 = _interopRequireDefault(_driver33);
+
+var _driver35 = __webpack_require__(106);
+
+var _driver36 = _interopRequireDefault(_driver35);
 
 var _simpleComponentDriver = __webpack_require__(7);
 
 var _simpleComponentDriver2 = _interopRequireDefault(_simpleComponentDriver);
 
-var _driver33 = __webpack_require__(106);
-
-var _driver34 = _interopRequireDefault(_driver33);
-
-var _driver35 = __webpack_require__(110);
-
-var _driver36 = _interopRequireDefault(_driver35);
-
-var _driver37 = __webpack_require__(118);
+var _driver37 = __webpack_require__(108);
 
 var _driver38 = _interopRequireDefault(_driver37);
 
-var _driver39 = __webpack_require__(122);
+var _driver39 = __webpack_require__(109);
 
 var _driver40 = _interopRequireDefault(_driver39);
 
-var _driver41 = __webpack_require__(123);
+var _driver41 = __webpack_require__(111);
 
 var _driver42 = _interopRequireDefault(_driver41);
+
+var _driver43 = __webpack_require__(114);
+
+var _driver44 = _interopRequireDefault(_driver43);
+
+var _driver45 = __webpack_require__(117);
+
+var _driver46 = _interopRequireDefault(_driver45);
+
+var _driver47 = __webpack_require__(119);
+
+var _driver48 = _interopRequireDefault(_driver47);
+
+var _driver49 = __webpack_require__(121);
+
+var _driver50 = _interopRequireDefault(_driver49);
+
+var _driver51 = __webpack_require__(123);
+
+var _driver52 = _interopRequireDefault(_driver51);
+
+var _driver53 = __webpack_require__(127);
+
+var _driver54 = _interopRequireDefault(_driver53);
+
+var _driver55 = __webpack_require__(131);
+
+var _driver56 = _interopRequireDefault(_driver55);
+
+var _driver57 = __webpack_require__(132);
+
+var _driver58 = _interopRequireDefault(_driver57);
+
+var _driver59 = __webpack_require__(133);
+
+var _driver60 = _interopRequireDefault(_driver59);
+
+var _wrapperDriver = __webpack_require__(125);
+
+var _wrapperDriver2 = _interopRequireDefault(_wrapperDriver);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -833,6 +1328,12 @@ var drivers = [{
     Component: _nessieUi.DateTimeInput,
     Driver: _driver10.default
 }, {
+    Component: _nessieUi.DragNDrop,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.Fieldset,
+    Driver: _wrapperDriver2.default
+}, {
     Component: _nessieUi.FlounderDropdown,
     Driver: _driver12.default
 }, {
@@ -841,6 +1342,18 @@ var drivers = [{
 }, {
     Component: _nessieUi.Grid,
     Driver: _driver16.default
+}, {
+    Component: _nessieUi.H1,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.H2,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.H3,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.H4,
+    Driver: _wrapperDriver2.default
 }, {
     Component: _nessieUi.Icon,
     Driver: _driver18.default
@@ -851,20 +1364,56 @@ var drivers = [{
     Component: _nessieUi.IconWithTooltip,
     Driver: _driver20.default
 }, {
+    Component: _nessieUi.InputField,
+    Driver: _inputComponentDriver2.default
+}, {
+    Component: _nessieUi.Label,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.MessageBox,
+    Driver: _wrapperDriver2.default
+}, {
     Component: _nessieUi.ModalDialog,
     Driver: _driver22.default
 }, {
     Component: _nessieUi.Module,
     Driver: _driver24.default
 }, {
+    Component: _nessieUi.NavBar,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.NavDropdown,
+    Driver: _wrapperDriver2.default
+}, {
     Component: _nessieUi.NavItem,
     Driver: _driver26.default
+}, {
+    Component: _nessieUi.NavList,
+    Driver: _wrapperDriver2.default
 }, {
     Component: _nessieUi.NotificationBar,
     Driver: _driver28.default
 }, {
-    Component: _nessieUi.PasswordInput,
+    Component: _nessieUi.Page,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.PageContent,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.PageContentHeader,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.PageFooter,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.PageHeader,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.Paginator,
     Driver: _driver30.default
+}, {
+    Component: _nessieUi.PasswordInput,
+    Driver: _driver32.default
 }, {
     Component: _nessieUi.Radio,
     Driver: _driver6.default
@@ -872,20 +1421,62 @@ var drivers = [{
     Component: _nessieUi.RadioGroup,
     Driver: _driver4.default
 }, {
+    Component: _nessieUi.Required,
+    Driver: _wrapperDriver2.default
+}, {
     Component: _nessieUi.Row,
     Driver: _driver16.default
 }, {
-    Component: _nessieUi.Section,
-    Driver: _driver32.default
-}, {
-    Component: _nessieUi.Slider,
+    Component: _nessieUi.ScrollBox,
     Driver: _driver34.default
 }, {
-    Component: _nessieUi.Switch,
+    Component: _nessieUi.Section,
     Driver: _driver36.default
 }, {
-    Component: _nessieUi.Text,
+    Component: _nessieUi.Slider,
     Driver: _driver38.default
+}, {
+    Component: _nessieUi.SliderGroup,
+    Driver: _driver40.default
+}, {
+    Component: _nessieUi.Sorter,
+    Driver: _driver42.default
+}, {
+    Component: _nessieUi.StatusIndicator,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.Switch,
+    Driver: _driver44.default
+}, {
+    Component: _nessieUi.Tab,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.TabButton,
+    Driver: _driver46.default
+}, {
+    Component: _nessieUi.Tabs,
+    Driver: _driver48.default
+}, {
+    Component: _nessieUi.Table,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.TableCell,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.TableRow,
+    Driver: _wrapperDriver2.default
+}, {
+    Component: _nessieUi.Tag,
+    Driver: _driver50.default
+}, {
+    Component: _nessieUi.TagInput,
+    Driver: _driver52.default
+}, {
+    Component: _nessieUi.Text,
+    Driver: _driver54.default
+}, {
+    Component: _nessieUi.TextArea,
+    Driver: _inputComponentDriver2.default
 }, {
     Component: _nessieUi.TextInput,
     Driver: _inputComponentDriver2.default
@@ -894,15 +1485,22 @@ var drivers = [{
     Driver: _inputComponentDriver2.default
 }, {
     Component: _nessieUi.TextInputWithIcon,
-    Driver: _driver40.default
+    Driver: _driver56.default
 }, {
     Component: _nessieUi.Tooltip,
-    Driver: _driver42.default
+    Driver: _driver58.default
+}, {
+    Component: _nessieUi.Uploader,
+    Driver: _driver60.default
+}, {
+    Component: _nessieUi.ValuedTextInput,
+    Driver: _inputComponentDriver2.default
 }];
 
 exports.ClickableComponentDriver = _clickableComponentDriver2.default;
 exports.InputComponentDriver = _inputComponentDriver2.default;
 exports.SimpleComponentDriver = _simpleComponentDriver2.default;
+exports.WrapperDriver = _wrapperDriver2.default;
 exports.default = _componentDriver.ComponentDriver.createDriverSuite(drivers);
 
 /***/ }),
@@ -1041,14 +1639,12 @@ var CheckableGroupDriver = function () {
         _classCallCheck(this, CheckableGroupDriver);
 
         this.wrapper = wrapper;
-        this.cssMap = wrapper.props().cssMap;
-        this.outer = wrapper.find('.' + wrapper.props().cssMap.default);
     }
 
     _createClass(CheckableGroupDriver, [{
         key: 'getContent',
         value: function getContent() {
-            var items = this.wrapper.find('.' + this.cssMap.listItem);
+            var items = this.wrapper.find('li');
             return items.map(function (item) {
                 return item.childAt(0);
             });
@@ -1103,13 +1699,13 @@ var CheckableGroupDriver = function () {
     }, {
         key: 'mouseOver',
         value: function mouseOver() {
-            this.outer.simulate('mouseenter');
+            this.wrapper.simulate('mouseenter');
             return this;
         }
     }, {
         key: 'mouseOut',
         value: function mouseOut() {
-            this.outer.simulate('mouseleave');
+            this.wrapper.simulate('mouseleave');
             return this;
         }
     }]);
@@ -1161,22 +1757,25 @@ var CheckboxDriver = function (_InputComponentDriver) {
         key: 'setChecked',
         value: function setChecked() {
             this.control.node.checked = true;
-            this.control.simulate('change', { target: { checked: true } });
+            var value = this.control.node.value;
+            this.control.simulate('change', { target: { checked: true, value: value } });
             return this;
         }
     }, {
         key: 'setUnchecked',
         value: function setUnchecked() {
             this.control.node.checked = false;
-            this.control.simulate('change', { target: { checked: false } });
+            var value = this.control.node.value;
+            this.control.simulate('change', { target: { checked: false, value: value } });
             return this;
         }
     }, {
         key: 'toggleChecked',
         value: function toggleChecked() {
             var status = this.getChecked();
+            var value = this.control.node.value;
             this.control.node.checked = !status;
-            this.control.simulate('change', { target: { checked: !status } });
+            this.control.simulate('change', { target: { checked: !status, value: value } });
             return this;
         }
     }, {
@@ -1834,8 +2433,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // eslint-disable-next-line max-len
-
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var IconWithTooltipDriver = function (_SimpleComponentDrive) {
     _inherits(IconWithTooltipDriver, _SimpleComponentDrive);
@@ -1843,10 +2441,25 @@ var IconWithTooltipDriver = function (_SimpleComponentDrive) {
     function IconWithTooltipDriver(wrapper) {
         _classCallCheck(this, IconWithTooltipDriver);
 
-        return _possibleConstructorReturn(this, (IconWithTooltipDriver.__proto__ || Object.getPrototypeOf(IconWithTooltipDriver)).call(this, wrapper, 'IconWithTooltip > Tooltip'));
+        var _this = _possibleConstructorReturn(this, (IconWithTooltipDriver.__proto__ || Object.getPrototypeOf(IconWithTooltipDriver)).call(this, wrapper, '.' + wrapper.prop('cssMap').default));
+
+        _this.tooltip = wrapper.find('IconWithTooltip > Tooltip').first();
+        return _this;
     }
 
     _createClass(IconWithTooltipDriver, [{
+        key: 'mouseOverIcon',
+        value: function mouseOverIcon() {
+            this.tooltip.driver().mouseOver();
+            return this;
+        }
+    }, {
+        key: 'mouseOutIcon',
+        value: function mouseOutIcon() {
+            this.tooltip.driver().mouseOut();
+            return this;
+        }
+    }, {
         key: 'getContent',
         value: function getContent() {
             return this.wrapper.find('.' + this.cssMap.content).children();
@@ -1854,19 +2467,7 @@ var IconWithTooltipDriver = function (_SimpleComponentDrive) {
     }, {
         key: 'getMessage',
         value: function getMessage() {
-            return this.control.driver().getMessage();
-        }
-    }, {
-        key: 'mouseOver',
-        value: function mouseOver() {
-            this.control.driver().mouseOver();
-            return this;
-        }
-    }, {
-        key: 'mouseOut',
-        value: function mouseOut() {
-            this.control.driver().mouseOut();
-            return this;
+            return this.tooltip.driver().getMessage();
         }
     }]);
 
@@ -2185,7 +2786,56 @@ exports.default = NotificationBarDriver;
 
 /***/ }),
 
-/***/ 97:
+/***/ 96:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PaginatorDriver = function () {
+    function PaginatorDriver(wrapper) {
+        _classCallCheck(this, PaginatorDriver);
+
+        this.wrapper = wrapper;
+        this.cssMap = this.wrapper.props().cssMap;
+    }
+
+    _createClass(PaginatorDriver, [{
+        key: 'clickPrev',
+        value: function clickPrev() {
+            this.wrapper.find('.' + this.cssMap.arrows).first().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickNext',
+        value: function clickNext() {
+            this.wrapper.find('.' + this.cssMap.arrows).last().simulate('click');
+            return this;
+        }
+    }, {
+        key: 'clickPage',
+        value: function clickPage(i) {
+            this.wrapper.find('.' + this.cssMap.pageButton).at(i).simulate('click');
+            return this;
+        }
+    }]);
+
+    return PaginatorDriver;
+}();
+
+exports.default = PaginatorDriver;
+
+/***/ }),
+
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
