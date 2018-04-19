@@ -25,7 +25,7 @@ describe( 'Dropdown', () =>
 
     describe( 'Wrapper driver getContent', () =>
     {
-        it( 'should return content of p as string', () =>
+        it( 'should return the dropdown content', () =>
         {
             wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
 
