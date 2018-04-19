@@ -15,6 +15,50 @@
             border: 0.1rem solid var( --PC-BLUE );
         }
     }
+
+    :global .CodeMirror
+    {
+        box-sizing:     border-box;
+        height:         100%;
+        padding:        0;
+        background:     transparent;
+        line-height:    initial;
+
+        font-family:    monospace, sans-serif;
+        font-size:      1.1rem;
+
+        &-sizer
+        {
+            margin-left:    0 !important;
+        }
+
+        &-gutters
+        {
+            border:             none;
+            background-color:   transparent;
+            left:               0 !important;
+        }
+
+        &-gutter-wrapper
+        {
+            left:   0 !important;
+        }
+
+        &-linenumber
+        {
+            white-space:    normal;
+        }
+
+        &-lines
+        {
+            padding:    0.8rem 0 0.9rem 0;
+        }
+
+        &-line
+        {
+            text-indent:    4rem;
+        }
+    }
 }
 
 .error
@@ -34,59 +78,4 @@
         background:     var( --GS-10 ) !important;
         color:          color( var( --GS-2 ) a( 50% ) ) !important;
     }
-}
-
-
-
-
-
-
-
-:global
-{
-    .CodeMirror
-    {
-        box-sizing:     border-box;
-        height:         100%;
-        padding:        0.8rem 0 0.9rem 0;
-        background:     transparent;
-        line-height:    initial;
-
-        font-family:    monospace, sans-serif;
-        font-size:      1.1rem;
-    }
-
-    .CodeMirror-sizer
-    {
-        margin-left:        0 !important;
-    }
-
-    .CodeMirror-gutters
-    {
-        border:             none;
-        background-color:   transparent;
-        left:               0 !important;
-    }
-
-    .CodeMirror-gutter-wrapper
-    {
-        left:               0 !important;
-    }
-
-    .CodeMirror-linenumber
-    {
-        white-space:    normal;
-    }
-
-    .CodeMirror-line
-    {
-        text-indent:    4rem;
-    }
-}
-
-:global @keyframes blink
-{
-  0% {}
-  50% { background-color: transparent; }
-  100% {}
 }
