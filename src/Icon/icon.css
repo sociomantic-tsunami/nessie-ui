@@ -123,7 +123,8 @@
         fill:                       var( --PC-GREY--L10 );
     }
 
-    &__running
+    &__running,
+    &__info
     {
         color:                      var( --PC-BLUE  );
         fill:                       var( --PC-BLUE  );
