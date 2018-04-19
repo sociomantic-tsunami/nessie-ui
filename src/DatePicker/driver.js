@@ -1,3 +1,7 @@
+const ERRORS = {
+    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled'
+};
+
 export default class DatePickerDriver
 {
     constructor( wrapper )
@@ -8,21 +12,48 @@ export default class DatePickerDriver
 
     clickItem( index = 0 )
     {
-        this.wrapper.find( '.datePickerItem__default' ).at( index )
-            .simulate( 'click' );
-        return this;
-    }
+        const dateItem = this.wrapper.find( 'DatePickerItem' ).at( index );
 
-    clickNext()
-    {
-        this.wrapper.find( '.datePickerHeader__next' )
+        if ( dateItem.props().isDisabled )
+        {
+            throw new Error(
+                ERRORS.OPTION_CANNOT_BE_CLICKED()
+            );
+        }
+
+        this.wrapper.find( 'DatePickerItem' ).at( index )
             .simulate( 'click' );
         return this;
     }
 
     clickPrev()
     {
-        this.wrapper.find( '.datePickerHeader__prev' )
+        const header = this.wrapper.find( 'DatePickerHeader' ).props();
+
+        if ( header.prevIsDisabled )
+        {
+            throw new Error(
+                ERRORS.OPTION_CANNOT_BE_CLICKED()
+            );
+        }
+
+        this.wrapper.find( 'IconButton' ).first()
+            .simulate( 'click' );
+        return this;
+    }
+
+    clickNext()
+    {
+        const header = this.wrapper.find( 'DatePickerHeader' ).props();
+
+        if ( header.nextIsDisabled )
+        {
+            throw new Error(
+                ERRORS.OPTION_CANNOT_BE_CLICKED()
+            );
+        }
+
+        this.wrapper.find( 'IconButton' ).last()
             .simulate( 'click' );
         return this;
     }
