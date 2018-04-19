@@ -106,7 +106,7 @@
         left:           calc( -1 * var( --borderWidth ) );
 
         width:          calc( 100% + ( var( --borderWidth ) * 2 ) );
-        max-height:     50vh;
+        max-height:     35vh;
 
         padding-top:    var( --spacing-1 );
         padding-bottom: var( --spacing-1 );
