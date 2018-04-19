@@ -4,73 +4,86 @@ const ERR = {
 
 export default class ComboBoxDriver
 {
-    constuctor( wrapper )
+    constructor( wrapper )
     {
         this.wrapper = wrapper;
     }
 
     blur()
     {
-        this.wrapper.simulate( 'blur' );
+        this.wrapper.find( 'InputField' ).simulate( 'blur' );
         return this;
     }
 
-    onChangeInput()
+    changeInput()
     {
-        return this;
-    }
-    onKeyDown()
-    {
+        this.wrapper.find( 'TextInputWithIcon' ).simulate( 'change' );
         return this;
     }
 
-    onKeyPress()
+    clickInput()
     {
+        this.wrapper.find( 'Input' ).simulate( 'click' );
         return this;
     }
 
-    onKeyUp()
+    clickOption()
     {
+        this.wrapper.find( 'Option' ).simulate( 'click' );
         return this;
     }
 
-    onFocus()
+    focus()
     {
+        this.wrapper.find( 'TextInputWithIcon' ).simulate( 'focus' );
         return this;
     }
 
-    onMouseOver()
+    keyDown()
     {
+        this.wrapper.simulate( 'keyDown' );
         return this;
     }
 
-    onMouseOut()
+    keyPress()
     {
+        this.wrapper.simulate( 'keyPress' );
         return this;
     }
 
-    onClickInput()
+    keyUp()
     {
+        this.wrapper.simulate( 'keyUp' );
         return this;
     }
 
-    onClickOption()
+    mouseOut()
     {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 
-    onMouseOutOption()
+    mouseOutOption()
     {
+        this.wrapper.find( 'Option' ).simulate( 'mouseleave' );
         return this;
     }
 
-    onMouseOverOption()
+    mouseOver()
     {
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
-    onScroll()
+    mouseOverOption()
     {
+        this.wrapper.find( 'Option' ).simulate( 'mouseenter' );
+        return this;
+    }
+
+    scroll()
+    {
+        this.wrapper.simulate( 'scroll' );
         return this;
     }
 }
