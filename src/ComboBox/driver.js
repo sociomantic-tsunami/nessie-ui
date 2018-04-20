@@ -79,7 +79,7 @@ export default class ComboBoxDriver
 
     scroll()
     {
-        this.wrapper.simulate( 'scroll' );
+        this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( 0.3 );
         return this;
     }
 }

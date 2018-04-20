@@ -185,4 +185,35 @@ describe.only( 'ComboBoxDriver', () =>
             expect( onMouseOverOption.calledOnce ).to.be.true;
         } );
     } );
+
+    describe( 'scroll', () =>
+    {
+        it( 'should trigger onScroll() callback function', () =>
+        {
+            const onScroll = sinon.spy();
+            wrapper.setProps( {
+                onScroll,
+                options : [
+                    {
+                        header  : 'Section 1',
+                        options : [
+                            { id: 'option1', text: 'Option 1' },
+                            { id: 'option2', text: 'Option 2' }
+                        ]
+                    },
+                    {
+                        header  : 'Section 2',
+                        options : [
+                            { id: 'option4', text: 'Option 3' },
+                            { id: 'option5', text: 'Option 4' }
+                        ]
+                    }
+                ]
+            } );
+
+            driver.scroll();
+
+            expect( onScroll.calledOnce ).to.be.true;
+        } );
+    } );
 } );
