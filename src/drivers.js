@@ -6,6 +6,7 @@ import {
     CheckboxGroup,
     CodeEditor,
     Column,
+    DatePicker,
     DateTimeInput,
     DragNDrop,
     Fieldset,
@@ -71,6 +72,7 @@ import CheckboxDriver       from './Checkbox/driver';
 import ClickableComponentDriver
     from './Testing/CommonDrivers/clickableComponentDriver';
 import CodeEditorDriver       from './CodeEditor/driver';
+import DatePickerDriver       from './DatePicker/driver';
 import DateTimeInputDriver    from './DateTimeInput/driver';
 import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
@@ -129,6 +131,10 @@ const drivers =
     {
         Component : Column,
         Driver    : GridColumnDriver,
+    },
+    {
+        Component : DatePicker,
+        Driver    : DatePickerDriver
     },
     {
         Component : DateTimeInput,
