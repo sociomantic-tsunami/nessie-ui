@@ -1,5 +1,5 @@
 const ERR = {
-    DISABLED : item => `Cannot trigger click on the "${item}"`
+    DISABLED : () => 'Cannot trigger event on the disabled option'
 };
 
 export default class ComboBoxDriver
@@ -23,7 +23,16 @@ export default class ComboBoxDriver
 
     clickOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).at( index ).simulate( 'click' );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+
+        if ( option.props().isDisabled )
+        {
+            throw new Error(
+                ERR.DISABLED()
+            );
+        }
+
+        option.simulate( 'click' );
         return this;
     }
 
@@ -59,8 +68,16 @@ export default class ComboBoxDriver
 
     mouseOutOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseleave' );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+
+        if ( option.props().isDisabled )
+        {
+            throw new Error(
+                ERR.DISABLED()
+            );
+        }
+
+        option.simulate( 'mouseleave' );
         return this;
     }
 
@@ -72,8 +89,16 @@ export default class ComboBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseenter' );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+
+        if ( option.props().isDisabled )
+        {
+            throw new Error(
+                ERR.DISABLED()
+            );
+        }
+
+        option.simulate( 'mouseenter' );
         return this;
     }
 
