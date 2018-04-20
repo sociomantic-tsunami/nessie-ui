@@ -21,21 +21,15 @@ export default class ComboBoxDriver
         return this;
     }
 
-    clickInput()
+    clickOption( index = 0 )
     {
-        this.wrapper.find( 'Input' ).simulate( 'click' );
-        return this;
-    }
-
-    clickOption()
-    {
-        this.wrapper.find( 'Option' ).simulate( 'click' );
+        this.wrapper.find( 'ListBoxOption' ).at( index ).simulate( 'click' );
         return this;
     }
 
     focus()
     {
-        this.wrapper.find( 'TextInputWithIcon' ).simulate( 'focus' );
+        this.wrapper.find( 'InputField' ).simulate( 'focus' );
         return this;
     }
 
@@ -63,9 +57,10 @@ export default class ComboBoxDriver
         return this;
     }
 
-    mouseOutOption()
+    mouseOutOption( index = 0 )
     {
-        this.wrapper.find( 'Option' ).simulate( 'mouseleave' );
+        this.wrapper.find( 'ListBoxOption' ).at( index )
+            .simulate( 'mouseleave' );
         return this;
     }
 
@@ -75,9 +70,10 @@ export default class ComboBoxDriver
         return this;
     }
 
-    mouseOverOption()
+    mouseOverOption( index = 0 )
     {
-        this.wrapper.find( 'Option' ).simulate( 'mouseenter' );
+        this.wrapper.find( 'ListBoxOption' ).at( index )
+            .simulate( 'mouseenter' );
         return this;
     }
 
