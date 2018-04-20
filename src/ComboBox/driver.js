@@ -11,13 +11,19 @@ export default class ComboBoxDriver
 
     blur()
     {
-        this.wrapper.find( 'InputField' ).simulate( 'blur' );
+        this.wrapper.find( 'InputField' ).driver().blur();
         return this;
     }
 
     changeInput()
     {
-        this.wrapper.find( 'TextInputWithIcon' ).simulate( 'change' );
+        this.wrapper.find( 'InputField' ).driver().pressKey( 'c' );
+        return this;
+    }
+
+    clickInput()
+    {
+        this.wrapper.find( 'InputField' ).driver().click();
         return this;
     }
 
@@ -38,25 +44,25 @@ export default class ComboBoxDriver
 
     focus()
     {
-        this.wrapper.find( 'InputField' ).simulate( 'focus' );
+        this.wrapper.find( 'InputField' ).driver().focus();
         return this;
     }
 
     keyDown()
     {
-        this.wrapper.simulate( 'keyDown' );
+        this.wrapper.find( 'InputField' ).simulate( 'keyDown' );
         return this;
     }
 
     keyPress()
     {
-        this.wrapper.simulate( 'keyPress' );
+        this.wrapper.find( 'InputField' ).driver().pressKey( 'a' );
         return this;
     }
 
     keyUp()
     {
-        this.wrapper.simulate( 'keyUp' );
+        this.wrapper.find( 'InputField' ).simulate( 'keyUp' );
         return this;
     }
 

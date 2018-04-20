@@ -48,9 +48,39 @@ describe.only( 'ComboBoxDriver', () =>
         } );
     } );
 
+    describe( 'changeInput', () =>
+    {
+        it( 'should trigger onChangeInput() callback function', () =>
+        {
+            const onChangeInput = sinon.spy();
+            wrapper.setProps( {
+                onChangeInput
+            } );
+
+            driver.changeInput();
+
+            expect( onChangeInput.calledOnce ).to.be.true;
+        } );
+    } );
+
+    // describe( 'clickInput', () =>
+    // {
+    //     it( 'should trigger onClickInput() callback function', () =>
+    //     {
+    //         const onClickInput = sinon.spy();
+    //         wrapper.setProps( {
+    //             onClickInput
+    //         } );
+    //
+    //         driver.clickInput();
+    //
+    //         expect( onClickInput.calledOnce ).to.be.true;
+    //     } );
+    // } );
+
     describe( 'clickOption', () =>
     {
-        it( 'should trigger onClickInput() callback function', () =>
+        it( 'should trigger onClickOption() callback function', () =>
         {
             const onClickOption = sinon.spy();
             wrapper.setProps( {
@@ -91,6 +121,51 @@ describe.only( 'ComboBoxDriver', () =>
             driver.focus();
 
             expect( onFocus.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'keyDown', () =>
+    {
+        it( 'should trigger onKeyDown() callback function', () =>
+        {
+            const onKeyDown = sinon.spy();
+            wrapper.setProps( {
+                onKeyDown
+            } );
+
+            driver.keyDown();
+
+            expect( onKeyDown.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'keyPress', () =>
+    {
+        it( 'should trigger onKeyPress() callback function', () =>
+        {
+            const onKeyPress = sinon.spy();
+            wrapper.setProps( {
+                onKeyPress
+            } );
+
+            driver.keyPress();
+
+            expect( onKeyPress.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'keyUp', () =>
+    {
+        it( 'should trigger onKeyUp() callback function', () =>
+        {
+            const onKeyUp = sinon.spy();
+            wrapper.setProps( {
+                onKeyUp
+            } );
+
+            driver.keyUp();
+
+            expect( onKeyUp.calledOnce ).to.be.true;
         } );
     } );
 
