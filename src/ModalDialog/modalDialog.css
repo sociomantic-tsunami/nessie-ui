@@ -37,7 +37,7 @@ $wideWidth : 900px;
 
     .header
     {
-        box-shadow:         0 0 40px color( var( --GS-2 ) a( 10% ) );
+        box-shadow:     var( --boxShadow );
     }
 }
 
@@ -86,7 +86,7 @@ $wideWidth : 900px;
         line-height:        0;
     }
 
-    .type__neutral &,
+    /* .type__neutral &,
     .type__crucial &,
     .type__promoted &
     {
@@ -108,7 +108,7 @@ $wideWidth : 900px;
     .type__promoted &
     {
         border-color:   var( --PC-GREEN );
-    }
+    } */
 }
 
 
@@ -148,7 +148,7 @@ only used in type__carousel for now
     font-size:          18px;
     letter-spacing:     0.2px;
     line-height:        22px;
-    color:              var( --GS-2 );
+    color:              var( --PC-GREY--D15 );
 }
 
 .navigation
