@@ -153,16 +153,17 @@
 
 .role__subtle
 {
-    color:          var( --PC-BLUE );
     background:     transparent;
 
     .content
     {
-        height:         30px;
+        height:         32px;
         border-radius:  20px;
         border:         1px solid var( --PC-BLUE );
 
         box-sizing:     border-box;
+
+        color:          var( --PC-BLUE );
     }
 
     .icon
@@ -181,6 +182,21 @@
             {
                 border-top-color:   var( --PC-BLUE );
             }
+        }
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        .content
+        {
+            background-color: var( --PC-BLUE );
+            color:            var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-WHITE );
         }
     }
 }
