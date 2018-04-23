@@ -157,6 +157,10 @@ export default class TextInputWithIcon extends Component
          */
         onChange        : PropTypes.func,
         /**
+         *  Input click callback function
+         */
+        onClick         : PropTypes.func,
+        /**
          * key down callback function
          */
         onKeyDown        : PropTypes.func,
@@ -370,6 +374,7 @@ export default class TextInputWithIcon extends Component
             isReadOnly,
             name,
             onChange,
+            onClick,
             onClickIcon,
             onKeyDown,
             onKeyPress,
@@ -412,6 +417,7 @@ export default class TextInputWithIcon extends Component
                     name         = { name }
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
+                    onClick      = { onClick }
                     onFocus      = { this.handleFocus }
                     onKeyDown    = { onKeyDown }
                     onKeyPress   = { onKeyPress }

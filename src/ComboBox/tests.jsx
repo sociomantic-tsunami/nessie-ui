@@ -22,7 +22,7 @@ describe( 'ComboBox', () =>
 } );
 
 
-describe.only( 'ComboBoxDriver', () =>
+describe( 'ComboBoxDriver', () =>
 {
     let wrapper;
     let driver;
@@ -63,20 +63,20 @@ describe.only( 'ComboBoxDriver', () =>
         } );
     } );
 
-    // describe( 'clickInput', () =>
-    // {
-    //     it( 'should trigger onClickInput() callback function', () =>
-    //     {
-    //         const onClickInput = sinon.spy();
-    //         wrapper.setProps( {
-    //             onClickInput
-    //         } );
-    //
-    //         driver.clickInput();
-    //
-    //         expect( onClickInput.calledOnce ).to.be.true;
-    //     } );
-    // } );
+    describe( 'clickInput', () =>
+    {
+        it( 'should trigger onClickInput() callback function', () =>
+        {
+            const onClickInput = sinon.spy();
+            wrapper.setProps( {
+                onClickInput
+            } );
+
+            driver.clickInput();
+
+            expect( onClickInput.calledOnce ).to.be.true;
+        } );
+    } );
 
     describe( 'clickOption', () =>
     {

@@ -147,11 +147,11 @@ export default class ComboBox extends Component
          */
         inputPlaceholder  : PropTypes.string,
         /*
-         * On click callback funciton for input
+         * On click callback function for input
          */
         onClickInput      : PropTypes.func,
         /*
-         * On click callback function for doropdown option
+         * On click callback function for dropdown option
          */
         onClickOption     : PropTypes.func,
         /*
