@@ -34,7 +34,7 @@ export default class SwitchDriver extends SimpleComponentDriver
         }
 
         this.input.simulate( 'change',
-            { target : { checked : !props.isChecked } } );
+            { target: { checked: !props.isChecked } } );
 
         return this.wrapper;
     }
