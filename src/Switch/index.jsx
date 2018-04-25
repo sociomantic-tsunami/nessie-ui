@@ -37,9 +37,17 @@ export default class Switch extends Component
          */
         offLabel    : PropTypes.string,
         /**
+         * onBlur callback function: ( e ) => { ... }
+         */
+        onBlur      : PropTypes.func,
+        /**
          * onChange callback function: ( e ) => { ... }
          */
         onChange    : PropTypes.func,
+        /**
+         *  onFocus callback function: ( e ) => { ... }
+         */
+        onFocus     : PropTypes.func,
         /**
          *  “On”/checked label text
          */
@@ -85,7 +93,9 @@ export default class Switch extends Component
             isReadOnly,
             name,
             offLabel,
+            onBlur,
             onChange,
+            onFocus,
             onLabel,
             onMouseOut,
             onMouseOver,
@@ -111,7 +121,9 @@ export default class Switch extends Component
                         id           = { id }
                         className    = { cssMap.input }
                         defaultValue = { value }
+                        onBlur       = { onBlur }
                         onChange     = { !isReadOnly && onChange }
+                        onFocus      = { onFocus }
                         checked      = { isChecked }
                         disabled     = { isDisabled || isReadOnly } />
                     <label

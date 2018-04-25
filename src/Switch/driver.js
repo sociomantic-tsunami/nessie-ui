@@ -11,11 +11,6 @@ export default class SwitchDriver extends SimpleComponentDriver
         super( wrapper, `.${wrapper.props().cssMap.default}` );
     }
 
-    get input()
-    {
-        return this.wrapper.find( `.${this.cssMap.input}` );
-    }
-
     toggle()
     {
         const props = this.wrapper.props();
@@ -37,5 +32,35 @@ export default class SwitchDriver extends SimpleComponentDriver
             { target: { checked: !props.isChecked } } );
 
         return this.wrapper;
+    }
+
+    blur()
+    {
+        const props = this.wrapper.props();
+
+        if ( props.isDisabled )
+        {
+            throw new Error(
+                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
+            );
+        }
+
+        this.wrapper.find( 'input' ).simulate( 'blur' );
+        return this;
+    }
+
+    focus()
+    {
+        const props = this.wrapper.props();
+
+        if ( props.isDisabled )
+        {
+            throw new Error(
+                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
+            );
+        }
+
+        this.wrapper.find( 'input' ).simulate( 'focus' );
+        return this;
     }
 }

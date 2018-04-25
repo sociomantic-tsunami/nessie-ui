@@ -3,12 +3,10 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-// Uncomment the following lines to use the react test utilities
-import React                      from 'react';
-import { mount }                  from 'enzyme';
-
-import Switch                     from './index';
+import Switch       from './index';
 
 describe( 'Switch', () =>
 {
@@ -68,6 +66,38 @@ describe( 'Switch', () =>
             wrapper.driver().mouseOver();
 
             expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'blur', () =>
+    {
+        it( 'should trigger onBlur callback function', () =>
+        {
+            const onBlur = sinon.spy();
+
+            wrapper.setProps( {
+                onBlur
+            } );
+
+            wrapper.driver().blur();
+
+            expect( onBlur.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'focus', () =>
+    {
+        it( 'should trigger onFocus callback function', () =>
+        {
+            const onFocus = sinon.spy();
+
+            wrapper.setProps( {
+                onFocus
+            } );
+
+            wrapper.driver().focus();
+
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 } );
