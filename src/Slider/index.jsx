@@ -571,19 +571,17 @@ export default class Slider extends Component
         }
 
         const sliderLabelMarkUp = label && (
-            <Label
-                htmlFor = { `${id}_0` }>
-                <IconWithTooltip
-                    iconType         = "error"
-                    iconPosition     = "right"
-                    message          = { errorMessage }
-                    tooltipIsVisible = { errorMessageIsVisible }
-                    tooltipPosition  = { errorMessagePosition }
-                    iconIsVisible    = { !!errorMessage && hasError
-                        && !isDisabled } >
-                    { label }
-                </IconWithTooltip>
-            </Label>
+            <IconWithTooltip
+                className        = { cssMap.labelContainer }
+                iconType         = "error"
+                iconPosition     = "right"
+                message          = { errorMessage }
+                tooltipIsVisible = { errorMessageIsVisible }
+                tooltipPosition  = { errorMessagePosition }
+                iconIsVisible    = { !!errorMessage && hasError
+                    && !isDisabled } >
+                <Label htmlFor = { `${id}_0` }>{ label }</Label>
+            </IconWithTooltip>
         );
 
         const trackFillMarkUp = hasFill && (

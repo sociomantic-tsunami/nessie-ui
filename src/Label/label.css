@@ -7,10 +7,6 @@
 
     width:          auto;
 
-    @extend %Nessie-Bold;
-
-    text-transform: uppercase;
-
     white-space:    nowrap;
 
     &[for]
@@ -30,8 +26,10 @@
 
 .label
 {
+    @extend %Nessie-SemiBold;
     font-size:      var( --typo-2 );
     line-height:    var( --line-height-m );
     letter-spacing: 0.5px;
     color:          var( --PC-GREY--D15 );
+    text-transform: uppercase;
 }
