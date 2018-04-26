@@ -68,12 +68,12 @@
         vertical-align: middle;
         margin-left:    var( --spacing-1 );
     }
+}
 
-    .labelText
-    {
-        @extend             %Nessie-SemiBold;
-        color:              var( --PC-GREY--D15 );
-    }
+.labelText
+{
+    @extend             %Nessie-SemiBold;
+    color:              var( --PC-GREY--D15 );
 }
 
 .error
