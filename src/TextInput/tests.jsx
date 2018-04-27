@@ -147,7 +147,6 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = sinon.spy();
             wrapper.setProps( {
                 label      : 'test',
-                value      : 'pikachu',
                 isDisabled : true,
                 onChange   : onChangeSpy
             } );
@@ -166,7 +165,6 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = sinon.spy();
             wrapper.setProps( {
                 label      : 'test',
-                value      : 'pikachu',
                 isReadOnly : true,
                 onChange   : onChangeSpy
             } );

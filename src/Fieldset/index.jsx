@@ -17,8 +17,7 @@ const Fieldset = ( {
     label,
     onMouseOver,
     onMouseOut
-} ) =>
-
+} ) => (
     <Css cssMap = { cssMap }>
         <fieldset
             className   = { className }
@@ -40,7 +39,8 @@ const Fieldset = ( {
             }
             { children }
         </fieldset>
-    </Css>;
+    </Css>
+);
 
 Fieldset.propTypes =
 {

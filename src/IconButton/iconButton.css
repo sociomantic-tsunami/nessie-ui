@@ -2,24 +2,26 @@
 
 .default
 {
-    display:            flex;
-    justify-content:    center;
-    align-items:        center;
+    display:    flex;
+    appearance: none !important;
 
-    width:              auto;
+    width:      auto;
 
-    margin:             0;
-    border:             none;
+    margin:     0;
+    border:     none;
+    padding:    0;
 
-    padding:            0;
-
-    background:         transparent;
-
-    cursor:             pointer;
+    background: transparent;
+    cursor:     pointer;
 
     &:focus
     {
         outline:    none;
+    }
+
+    .icon
+    {
+        flex:   none;
     }
 }
 

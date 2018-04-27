@@ -16,6 +16,7 @@ const DateTimeInput = ( {
     forceHover,
     hasError,
     hourIsDisabled,
+    hourInputRef,
     hourPlaceholder,
     hourValue,
     inputPlaceholder,
@@ -24,6 +25,7 @@ const DateTimeInput = ( {
     isOpen,
     isReadOnly,
     minuteIsDisabled,
+    minuteInputRef,
     minutePlaceholder,
     minuteValue,
     mode,
@@ -60,9 +62,11 @@ const DateTimeInput = ( {
             onClickItem    = { onClickCell }
             type           = { mode === 'month' ? 'month' : 'day' }
             hourIsDisabled    = { hourIsDisabled }
+            hourInputRef      = { hourInputRef }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
             minuteIsDisabled  = { minuteIsDisabled }
+            minuteInputRef    = { minuteInputRef }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
             mode              = { mode }
@@ -172,11 +176,11 @@ DateTimeInput.propTypes =
      */
     nextIsDisabled   : PropTypes.bool,
     /**
-     *  "Hour" input is disabled
+     *  Hour input is disabled
      */
     hourIsDisabled   : PropTypes.bool,
     /**
-     *  "Minute" input is disabled
+     *  Minute input is disabled
      */
     minuteIsDisabled : PropTypes.bool,
     /**
@@ -196,63 +200,73 @@ DateTimeInput.propTypes =
     /**
      *  Months to display in month mode
      */
-    months       : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
+    months         : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
      *  Current month to disaplay in default/day mode
      */
-    currentMonth : PropTypes.string,
+    currentMonth   : PropTypes.string,
     /**
      *  Current year to display
      */
-    currentYear  : PropTypes.string,
+    currentYear    : PropTypes.string,
     /**
      *  Display as hovered
      */
-    forceHover   : PropTypes.bool,
+    forceHover     : PropTypes.bool,
     /**
      *  onChange callback function
      */
-    onChange     : PropTypes.func,
+    onChange       : PropTypes.func,
     /**
      *  onKeyPress callback function
      */
-    onKeyPress   : PropTypes.func,
+    onKeyPress     : PropTypes.func,
     /**
      *  onFocus callback function
      */
-    onFocus      : PropTypes.func,
+    onFocus        : PropTypes.func,
     /**
      *  onBlur callback function
      */
-    onBlur       : PropTypes.func,
+    onBlur         : PropTypes.func,
     /**
      *  onMouseOver callback function
      */
-    onMouseOver  : PropTypes.func,
+    onMouseOver    : PropTypes.func,
     /**
      *  onMouseOut callback function
      */
-    onMouseOut   : PropTypes.func,
+    onMouseOut     : PropTypes.func,
     /**
      *  onClick callback function for “Next” button
      */
-    onClickPrev  : PropTypes.func,
+    onClickPrev    : PropTypes.func,
     /**
      *  onClick callback function for “Previous” button
      */
-    onClickNext  : PropTypes.func,
+    onClickNext    : PropTypes.func,
     /**
      *  onClick callback function for calendar icon
      */
-    onClickIcon  : PropTypes.func,
+    onClickIcon    : PropTypes.func,
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell  : PropTypes.func,
+    onClickCell    : PropTypes.func,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef     : PropTypes.func,
+    inputRef       : PropTypes.func,
+    /**
+     *  Hour input ref callback function:
+     *  ( ref ) = { ... }
+     */
+    hourInputRef   : PropTypes.func,
+    /**
+     *  Minute input ref callback function:
+     *  ( ref ) = { ... }
+     */
+    minuteInputRef : PropTypes.func,
 };
 
 DateTimeInput.defaultProps =
@@ -263,6 +277,7 @@ DateTimeInput.defaultProps =
     forceHover        : false,
     hasError          : false,
     hourIsDisabled    : false,
+    hourInputRef      : undefined,
     hourPlaceholder   : undefined,
     hourValue         : undefined,
     inputPlaceholder  : undefined,
@@ -271,6 +286,7 @@ DateTimeInput.defaultProps =
     isReadOnly        : false,
     inputRef          : undefined,
     minuteIsDisabled  : false,
+    minuteInputRef    : undefined,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
     mode              : 'default',

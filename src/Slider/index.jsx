@@ -109,9 +109,45 @@ export default class Slider extends Component
         */
         isLogarithmic : PropTypes.bool,
         /**
-        * Input onChange callback function
+        *  onBlur callback function: ( e ) => { ... }
+        */
+        onBlur        : PropTypes.func,
+        /**
+        *  onChange callback function: ( e ) => { ... }
         */
         onChange      : PropTypes.func,
+        /**
+        *  onClick callback function: ( e ) => { ... }
+        */
+        onClick       : PropTypes.func,
+        /**
+        *  onFocus callback function: ( e ) => { ... }
+        */
+        onFocus       : PropTypes.func,
+        /**
+        *  onKeyDown callback function: ( e ) => { ... }
+        */
+        onKeyDown     : PropTypes.func,
+        /**
+        *  onKeyUp callback function: ( e ) => { ... }
+        */
+        onKeyUp       : PropTypes.func,
+        /**
+        *  onMouseDown callback function: ( e ) => { ... }
+        */
+        onMouseDown   : PropTypes.func,
+        /**
+        *  onMouseOut callback function: ( e ) => { ... }
+        */
+        onMouseOut    : PropTypes.func,
+        /**
+        *  onMouseOver callback function: ( e ) => { ... }
+        */
+        onMouseOver   : PropTypes.func,
+        /**
+        *  onMouseUp callback function: ( e ) => { ... }
+        */
+        onMouseUp     : PropTypes.func,
         /**
         * Step labels
         */
@@ -150,6 +186,7 @@ export default class Slider extends Component
         step                  : 1,
         isLogarithmic         : false,
         cssMap                : require( './slider.css' ),
+        value                 : 0,
     };
 
 
@@ -157,35 +194,20 @@ export default class Slider extends Component
     {
         super( props );
 
-        this.state = { ...this.state, track: {} };
+        this.state = { ...this.state, inputIndex: -1 };
 
-        this.setTrackState = this.setTrackState.bind( this );
-        this.handleInputRef = this.handleInputRef.bind( this );
-        this.inputs = [];
+        this.setInputContainerRef = this.setInputContainerRef.bind( this );
+        this.setTrackRef          = this.setTrackRef.bind( this );
 
-        this.handleMouseUp = this.handleMouseUp.bind( this );
+        this.handleBlur      = this.handleBlur.bind( this );
+        this.handleClick     = this.handleClick.bind( this );
+        this.handleFocus     = this.handleFocus.bind( this );
         this.handleMouseDown = this.handleMouseDown.bind( this );
         this.handleMouseMove = this.handleMouseMove.bind( this );
-
-        this.getNewValue = this.getNewValue.bind( this );
-
-        this.handleFocus = this.handleFocus.bind( this );
-        this.handleBlur = this.handleBlur.bind( this );
-        this.handleTrackMouseDown = this.handleTrackMouseDown.bind( this );
+        this.handleMouseUp   = this.handleMouseUp.bind( this );
     }
 
 
-    componentWillUpdate( nextProps )
-    {
-        if ( JSON.stringify( nextProps.value ) !==
-            JSON.stringify( this.props.value ) )
-        {
-            this.inputs = [];
-        }
-    }
-
-
-    // eslint-disable-next-line valid-jsdoc
     /**
     * Generate track fill style object depending on input values
     * @param  {Array}   values    slider values
@@ -259,7 +281,6 @@ export default class Slider extends Component
     }
 
 
-    // eslint-disable-next-line valid-jsdoc
     /**
     * Generate a style object for handle based on input value
     * @param  {Number}  value   slider value
@@ -281,12 +302,19 @@ export default class Slider extends Component
     * @param  {Number}   y the vertical mouse coordinate
     * @return {Number}
     */
-    getNewValue( x, y )
+    getValue( x, y )
     {
         const { isLogarithmic, orientation, maxValue, minValue } = this.props;
-        const { track : { start, end, length } } = this.state;
+        const { track } = this;
 
         const isVertical = orientation === 'vertical';
+
+        const rect = track.getBoundingClientRect();
+
+        const start  = isVertical ? rect.top    : rect.left;
+        const end    = isVertical ? rect.bottom : rect.right;
+        const length = isVertical ? rect.height : rect.width;
+
         const range = maxValue - minValue;
         const mouse = isVertical ? y : x;
 
@@ -298,7 +326,6 @@ export default class Slider extends Component
         {
             return isVertical ? minValue : maxValue;
         }
-
 
         let position = mouse - start;
         if ( isVertical ) // account for y-axis inversion
@@ -313,14 +340,12 @@ export default class Slider extends Component
             const max = Math.log( maxValue );
             v = Math.exp( ( min + ( ( max - min ) * v ) ) / maxValue );
 
-            v = minValue + this.getStep( v - minValue );
+            v = minValue + ( v - minValue );
             return v;
         }
 
         // linear solution
-        return this.getStep(
-            Math.round( ( ( position / length ) * range ) + minValue )
-        );
+        return Math.round( ( ( position / length ) * range ) + minValue );
     }
 
 
@@ -336,44 +361,112 @@ export default class Slider extends Component
     }
 
 
-    // eslint-disable-next-line valid-jsdoc
-    /**
-    * Updates state with current track geometry
-    */
-    setTrackState( ref )
+    setInputContainerRef( ref )
     {
         if ( ref )
         {
-            const isVertical = this.props.orientation === 'vertical';
-            const rect = ref.getBoundingClientRect();
-
-            this.setState( {
-                track : {
-                    start  : isVertical ? rect.top : rect.left,
-                    end    : isVertical ? rect.bottom : rect.right,
-                    length : isVertical ? rect.height : rect.width
-                }
-            } );
+            this.inputContainer = ref;
         }
     }
 
 
-    /**
-    * Sets target input ref and adds mouseUp and MouseMove listeners
-    * @param {Event}   event   event being passed
-    */
-    handleMouseDown( event )
+    setTrackRef( ref )
     {
-        const { props } = this;
-        if ( props.isReadOnly || props.isDisabled )
+        if ( ref )
+        {
+            this.track = ref;
+        }
+    }
+
+
+    setTargetInput( index )
+    {
+        const { inputContainer } = this;
+
+        if ( index )
+        {
+            this.targetInput = inputContainer.childNodes[ index ];
+        }
+        else
+        {
+            this.targetInput =
+                this.targetInput || inputContainer.childNodes[ 0 ];
+        }
+    }
+
+
+    setTargetInputValue( value )
+    {
+        if ( String( value ) === this.targetInput.value )
         {
             return;
         }
 
-        this.targetInput = this.inputs[
-            parseInt( event.target.dataset.index, 10 ) ];
+        const { onChange } = this.props;
+        const event = new Event( 'change' );
+
+        this.targetInput.value = String( value );
+        this.targetInput.dispatchEvent( event );
+
+        if ( onChange )
+        {
+            onChange( event );
+        }
+
+        this.forceUpdate();
+    }
+
+
+    focusTargetInput()
+    {
+        if ( !this.targetInput )
+        {
+            this.setTargetInput();
+        }
 
         this.targetInput.focus();
+    }
+
+
+    /**
+    * Updates target input with new value from the mouse down on track position
+    * @param {Event}  event   event being passed
+    */
+    handleMouseDown( event )
+    {
+        const { onMouseDown } = this.props;
+
+        if ( onMouseDown )
+        {
+            onMouseDown( event );
+        }
+
+        if ( event.defaultPrevented || this.props.isDisabled ||
+            event.button > 0 )
+        {
+            return;
+        }
+
+        event.preventDefault();
+
+        const { index } = event.target.dataset;
+
+        if ( event.target.dataset.index ) // target is handle
+        {
+            event.stopPropagation();
+            this.setTargetInput( index );
+        }
+        else // target is track
+        {
+            const { clientX, clientY } = event;
+
+            const newValue = this.getStep( this.getValue( clientX, clientY ) );
+
+            this.setTargetInput();
+            this.setTargetInputValue( newValue );
+        }
+
+        this.focusTargetInput();
 
         addEventListener( 'mousemove', this.handleMouseMove );
         addEventListener( 'mouseup', this.handleMouseUp );
@@ -387,30 +480,81 @@ export default class Slider extends Component
     handleMouseMove( event )
     {
         const { clientX, clientY } = event;
-        const { targetInput }      = this;
-        const { onChange }         = this.props;
-        const e = new Event( 'change' );
 
-        targetInput.value = this.getStep(
-            this.getNewValue( clientX, clientY ) );
-
-        targetInput.dispatchEvent( e );
-        if ( onChange )
-        {
-            onChange( e );
-        }
-
-        this.forceUpdate();
+        const newValue = this.getStep( this.getValue( clientX, clientY ) );
+        this.setTargetInputValue( newValue );
     }
 
 
     /**
-    * Removes mouseMove and mouseUp listeners
+    *  Removes mouseMove and mouseUp listeners
+    *  @param {Event}   event   event being passed
     */
-    handleMouseUp()
+    handleMouseUp( event = new Event( 'mouseup' ) )
     {
+        const { onMouseUp } = this.props;
+
+        if ( onMouseUp )
+        {
+            onMouseUp( event );
+        }
+
         removeEventListener( 'mousemove', this.handleMouseMove );
         removeEventListener( 'mouseup', this.handleMouseUp );
+    }
+
+
+    handleClick( event )
+    {
+        const { onClick } = this.props;
+
+        if ( onClick )
+        {
+            onClick( event );
+        }
+
+        if ( event.target.dataset.index ) // target is handle
+        {
+            event.stopPropagation();
+        }
+    }
+
+    handleFocus( event )
+    {
+        const { onFocus } = this.props;
+
+        if ( onFocus )
+        {
+            onFocus( event );
+        }
+
+        if ( event.defaultPrevented || this.props.isDisabled )
+        {
+            return;
+        }
+
+        this.setState( {
+            inputIndex : parseInt( event.target.dataset.index, 10 ),
+            isGrabbing : true,
+        } );
+    }
+
+
+    handleBlur( event )
+    {
+        const { onBlur } = this.props;
+
+        if ( onBlur )
+        {
+            onBlur( event );
+        }
+
+        if ( event.defaultPrevented || this.props.isDisabled )
+        {
+            return;
+        }
+
+        this.setState( { inputIndex: -1, isGrabbing: false } );
     }
 
 
@@ -424,90 +568,23 @@ export default class Slider extends Component
     mergeStepLabels()
     {
         const {
-            stepLabels,
+            stepLabels = [],
             stepLabelStart,
             stepLabelEnd,
             minValue,
-            maxValue
+            maxValue,
         } = this.props;
 
         if ( stepLabelStart || stepLabelEnd )
         {
-            const newStepLabels = [
-                { 'stepLabel': stepLabelStart, 'step': minValue },
+            return [
                 ...stepLabels,
-                { 'stepLabel': stepLabelEnd, 'step': maxValue }
+                { 'stepLabel': stepLabelStart, 'step': minValue },
+                { 'stepLabel': stepLabelEnd, 'step': maxValue },
             ];
-
-            return newStepLabels;
         }
 
         return stepLabels;
-    }
-
-
-    /**
-    * Updates state with current focused handle id
-    * @param {Event}   event   event being passed
-    */
-    handleFocus( event )
-    {
-        this.setState( {
-            handleIndex : event.target.id
-        } );
-    }
-
-
-    /**
-    * Updates state with a non-valid handle id to
-    * remove focused style
-    */
-    handleBlur()
-    {
-        this.setState( {
-            handleIndex : -1
-        } );
-    }
-
-
-    /**
-    * Updates target input with new value from the mouse down on track position
-    * @param {Event}  event   event being passed
-    */
-    handleTrackMouseDown( event )
-    {
-        event.preventDefault();
-
-        if ( event.target.dataset.index === undefined )
-        {
-            const { clientX, clientY } = event;
-            const targetHandle         = this.targetInput ? this.targetInput :
-                this.inputs[ 0 ];
-            const { onChange }         = this.props;
-            const e = new Event( 'change' );
-
-            targetHandle.value = this.getStep(
-                this.getNewValue( clientX, clientY ) );
-
-            targetHandle.focus();
-
-            targetHandle.dispatchEvent( e );
-            if ( onChange )
-            {
-                onChange( e );
-            }
-
-            this.forceUpdate();
-        }
-    }
-
-    /**
-    * callback refs handler
-    * @param {Object}  ref  ref
-    */
-    handleInputRef( ref )
-    {
-        this.inputs.push( ref );
     }
 
 
@@ -529,6 +606,13 @@ export default class Slider extends Component
             maxValue,
             minValue,
             onChange,
+            onClick,
+            onKeyDown,
+            onKeyUp,
+            onMouseDown,
+            onMouseOut,
+            onMouseOver,
+            onMouseUp,
             orientation,
             step,
             stepLabelsPosition,
@@ -593,8 +677,7 @@ export default class Slider extends Component
         const buildHandle = ( val, i ) =>
         {
             let handleClassName = cssMap.handle;
-            if ( this.state.handleIndex && this.state.handleIndex !== -1 &&
-                      parseInt( this.state.handleIndex.slice( -1 ), 10 ) === i )
+            if ( this.state.inputIndex === i )
             {
                 handleClassName = `${cssMap.handle} ${cssMap.handleFocus}`;
             }
@@ -603,7 +686,6 @@ export default class Slider extends Component
                     key         = { i } // eslint-disable-line react/no-array-index-key, max-len
                     data-index  = { i }
                     className   = { handleClassName }
-                    onMouseDown = { this.handleMouseDown }
                     style       = { this.getHandleStyle( val ) } >
                     <span className = { cssMap.handleLabel }>
                         { val }
@@ -635,25 +717,36 @@ export default class Slider extends Component
                     handleLabelPosition : hasHandleLabels &&
                                           handleLabelPosition,
                     hasHandleLabels,
-                    orientation
+                    orientation,
+                    grabbing : this.state.isGrabbing,
                 } } >
-                <div className = { className }>
-                    <div className = { cssMap.inputContainer }>
+                <div
+                    className    = { className }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }>
+                    <div
+                        className = { cssMap.inputContainer }
+                        ref       = { this.setInputContainerRef }>
                         { values.map( ( val, i ) => (
                             <input
-                                key      = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                id       = { `${id}_${i}` }
-                                ref      = { this.handleInputRef }
-                                type     = "range"
-                                readOnly = { isReadOnly }
-                                disabled = { isDisabled }
-                                max      = { maxValue }
-                                min      = { minValue }
-                                step     = { step }
-                                onChange = { onChange }
-                                onFocus  = { this.handleFocus }
-                                onBlur   = { this.handleBlur }
-                                value    = { val } />
+                                data-index  = { i }
+                                disabled    = { isDisabled }
+                                id          = { `${id}_${i}` }
+                                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                                max         = { maxValue }
+                                min         = { minValue }
+                                onBlur      = { this.handleBlur }
+                                onChange    = { onChange }
+                                onClick     = { onClick }
+                                onFocus     = { this.handleFocus }
+                                onKeyDown   = { onKeyDown }
+                                onKeyUp     = { onKeyUp }
+                                onMouseDown = { onMouseDown }
+                                onMouseUp   = { onMouseUp }
+                                readOnly    = { isReadOnly }
+                                step        = { step }
+                                type        = "range"
+                                value       = { val } />
                         ) ) }
                     </div>
 
@@ -665,8 +758,9 @@ export default class Slider extends Component
                         <div
                             aria-hidden
                             className   = { cssMap.track }
-                            ref         = { this.setTrackState }
-                            onMouseDown = { this.handleTrackMouseDown }>
+                            ref         = { this.setTrackRef }
+                            onClick     = { this.handleClick }
+                            onMouseDown = { this.handleMouseDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>

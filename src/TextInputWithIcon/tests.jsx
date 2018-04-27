@@ -828,7 +828,7 @@ is the <button>', () =>
                     .equal( onMouseOver );
             } );
 
-            it( 'should be passed to the IconButton', () =>
+            it( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOver = () => undefined;
 
@@ -837,8 +837,8 @@ is the <button>', () =>
                     onMouseOver
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) ).to
-                    .equal( onMouseOver );
+                expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) ).not
+                    .to.equal( onMouseOver );
             } );
         } );
 
@@ -872,7 +872,7 @@ is the <button>', () =>
                     .equal( onMouseOut );
             } );
 
-            it( 'should be passed to the IconButton', () =>
+            it( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOut = () => undefined;
 
@@ -881,7 +881,7 @@ is the <button>', () =>
                     onMouseOut
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) ).to
+                expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) ).not.to
                     .equal( onMouseOut );
             } );
         } );

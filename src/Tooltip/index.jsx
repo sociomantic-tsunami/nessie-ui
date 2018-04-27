@@ -152,9 +152,9 @@ export default class Tooltip extends Component
                 cssMap   = { cssMap }
                 cssProps = { { role, noWrap, position } }>
                 <div
-                    className   = { className }
-                    onMouseOver = { onMouseOver }
-                    onMouseOut  = { onMouseOut }>
+                    className    = { className }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }>
                     { contentNode &&
                         <div
                             className        = { cssMap.content }
