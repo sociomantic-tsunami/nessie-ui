@@ -7,27 +7,27 @@ export default class SimpleComponentDriver
         this.cssMap = this.wrapper.props().cssMap;
     }
 
-    focus()
-    {
-        this.control.simulate( 'focus' );
-        return this;
-    }
-
     blur()
     {
         this.control.simulate( 'blur' );
         return this;
     }
 
-    mouseOver()
+    focus()
     {
-        this.control.simulate( 'mouseenter' );
+        this.control.simulate( 'focus' );
         return this;
     }
 
     mouseOut()
     {
         this.control.simulate( 'mouseleave' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.control.simulate( 'mouseenter' );
         return this;
     }
 }
