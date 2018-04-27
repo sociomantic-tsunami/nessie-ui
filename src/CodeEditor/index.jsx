@@ -5,6 +5,7 @@ import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
 import InputContainer       from '../proto/InputContainer';
+import styles               from './codeEditor.css';
 
 import 'codemirror/mode/jsx/jsx';
 
@@ -12,6 +13,8 @@ const defaultOptions = {
     lineNumbers  : true,
     lineWrapping : true
 };
+
+const SCROLL_CLASS = 'CodeMirror-scroll';
 
 export default class CodeEditor extends Component
 {
@@ -33,6 +36,10 @@ export default class CodeEditor extends Component
          *  Code editor height (CSS length value)
          */
         height                : PropTypes.string,
+        /**
+         *  Code editor max height (CSS length value)
+         */
+        maxHeight             : PropTypes.string,
         /**
          *  Display as disabled
          */
@@ -108,14 +115,16 @@ export default class CodeEditor extends Component
 
     static defaultProps =
     {
-        labelPosition         : 'top',
-        isDisabled            : false,
-        isReadOnly            : false,
-        hasError              : false,
+        cssMap                : styles,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         forceHover            : false,
-        cssMap                : require( './codeEditor.css' )
+        hasError              : false,
+        height                : undefined,
+        isDisabled            : false,
+        isReadOnly            : false,
+        labelPosition         : 'top',
+        maxHeight             : undefined,
     };
 
     constructor( props )
@@ -129,6 +138,7 @@ export default class CodeEditor extends Component
         this.handleChange         = this.handleChange.bind( this );
         this.handleCursorActivity = this.handleCursorActivity.bind( this );
         this.handleTextareaRef    = this.handleTextareaRef.bind( this );
+        this.handleWrapperRef     = this.handleWrapperRef.bind( this );
     }
 
     componentDidMount()
@@ -172,6 +182,8 @@ export default class CodeEditor extends Component
         }
 
         this.codeMirror = codeMirror;
+
+        this.setMaxHeight();
     }
 
     componentWillUpdate( nextProps )
@@ -224,6 +236,8 @@ export default class CodeEditor extends Component
         {
             codeMirror.setCursor( cursor );
         }
+
+        this.setMaxHeight();
     }
 
     componentWillUnmount()
@@ -236,6 +250,20 @@ export default class CodeEditor extends Component
         if ( codeMirrorRef )
         {
             codeMirrorRef( null );
+        }
+    }
+
+    setMaxHeight()
+    {
+        const { wrapper }   = this;
+        const { maxHeight } = this.props;
+
+        if ( wrapper && maxHeight )
+        {
+            const scrollEl =
+                wrapper.getElementsByClassName( SCROLL_CLASS )[ 0 ];
+
+            scrollEl.style.maxHeight = String( maxHeight );
         }
     }
 
@@ -287,6 +315,14 @@ export default class CodeEditor extends Component
         }
     }
 
+    handleWrapperRef( ref )
+    {
+        if ( ref )
+        {
+            this.wrapper = ref;
+        }
+    }
+
     render()
     {
         const {
@@ -298,9 +334,10 @@ export default class CodeEditor extends Component
 
         const {
             forceHover,
-            isDisabled,
             hasError,
             height,
+            isDisabled,
+            maxHeight,
             value,
         } = props;
 
@@ -318,7 +355,11 @@ export default class CodeEditor extends Component
                 <InputContainer { ...props } className = { className }>
                     <div
                         className = { cssMap.editor }
-                        style     = { { height: `${height}` } }>
+                        ref       = { this.handleWrapperRef }
+                        style     = { {
+                            height    : String( height ),
+                            maxHeight : String( maxHeight ),
+                        } }>
                         <textarea
                             ref          = { this.handleTextareaRef }
                             defaultValue = { value }
