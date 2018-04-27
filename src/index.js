@@ -14,6 +14,7 @@ export DateTimeInput            from './DateTimeInput';
 export DimensionsInput          from './DimensionsInput';
 export Divider                  from './Divider';
 export DragNDrop                from './DragNDrop';
+export Dropdown                 from './Dropdown';
 export Fieldset                 from './Fieldset';
 export FlounderDropdown         from './FlounderDropdown';
 export Form                     from './Form';
