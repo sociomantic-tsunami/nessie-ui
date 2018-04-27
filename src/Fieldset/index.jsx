@@ -20,9 +20,9 @@ const Fieldset = ( {
 } ) => (
     <Css cssMap = { cssMap }>
         <fieldset
-            className   = { className }
-            onMouseOver = { onMouseOver }
-            onMouseOut  = { onMouseOut }>
+            className    = { className }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
             { label &&
                 <IconWithTooltip
                     className        = { cssMap.labelContainer }
