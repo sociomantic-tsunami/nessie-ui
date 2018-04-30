@@ -34,6 +34,7 @@ export IconWithTooltip          from './IconWithTooltip';
 export IconButton               from './IconButton';
 export InputField               from './InputField';
 export Label                    from './Label';
+export ListBox                  from './ListBox';
 export MessageBox               from './MessageBox';
 export Module                   from './Module';
 export ModalDialog              from './ModalDialog';
