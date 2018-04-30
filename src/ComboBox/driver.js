@@ -1,7 +1,3 @@
-const ERR = {
-    DISABLED : () => 'Cannot trigger event on the disabled option'
-};
-
 export default class ComboBoxDriver
 {
     constructor( wrapper )
@@ -29,7 +25,7 @@ export default class ComboBoxDriver
 
     clickOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).driver().clickOption( index );
+        this.wrapper.find( 'ListBox' ).driver().clickOption( index );
         return this;
     }
 
@@ -39,21 +35,9 @@ export default class ComboBoxDriver
         return this;
     }
 
-    keyDown()
+    keyPress( string )
     {
-        this.wrapper.find( 'InputField' ).simulate( 'keyDown' );
-        return this;
-    }
-
-    keyPress()
-    {
-        this.wrapper.find( 'InputField' ).driver().pressKey( 'a' );
-        return this;
-    }
-
-    keyUp()
-    {
-        this.wrapper.find( 'InputField' ).simulate( 'keyUp' );
+        this.wrapper.find( 'InputField' ).driver().pressKey( string );
         return this;
     }
 
@@ -65,16 +49,7 @@ export default class ComboBoxDriver
 
     mouseOutOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
-
-        if ( option.props().isDisabled )
-        {
-            throw new Error(
-                ERR.DISABLED()
-            );
-        }
-
-        option.simulate( 'mouseleave' );
+        this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
         return this;
     }
 
@@ -86,16 +61,7 @@ export default class ComboBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
-
-        if ( option.props().isDisabled )
-        {
-            throw new Error(
-                ERR.DISABLED()
-            );
-        }
-
-        option.simulate( 'mouseenter' );
+        this.wrapper.find( 'ListBox' ).driver().mouseOverOption( index );
         return this;
     }
 

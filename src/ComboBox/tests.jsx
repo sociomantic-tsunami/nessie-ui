@@ -133,7 +133,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyDown
             } );
 
-            driver.keyDown();
+            driver.keyPress( 'abc' );
 
             expect( onKeyDown.calledOnce ).to.be.true;
         } );
@@ -148,7 +148,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyPress
             } );
 
-            driver.keyPress();
+            driver.keyPress( 'abc' );
 
             expect( onKeyPress.calledOnce ).to.be.true;
         } );
@@ -163,7 +163,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyUp
             } );
 
-            driver.keyUp();
+            driver.keyPress( 'abc' );
 
             expect( onKeyUp.calledOnce ).to.be.true;
         } );
