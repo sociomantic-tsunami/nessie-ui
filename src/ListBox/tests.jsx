@@ -20,13 +20,13 @@ describe( 'ListBox', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should accept a single Tab as children', () =>
+        it( 'should accept a single ListBox as children', () =>
         {
             wrapper.setProps( { children: <ListBox /> } );
             expect( wrapper.find( ListBox ) ).to.have.length( 1 );
         } );
 
-        it( 'should accept an array of Tabs as children', () =>
+        it( 'should accept an array of ListBoxes as children', () =>
         {
             wrapper.setProps( { children: [ <ListBox />, <ListBox /> ] } );
             expect( wrapper.find( ListBox ) ).to.have.length( 2 );
@@ -64,9 +64,9 @@ ListBoxOption at given index', () =>
                         'description' : 'Option description'
                     },
                     {
-                        'text'     : 'Disabled option',
-                        'value'    : 'value3',
-                        'disabled' : true
+                        'text'       : 'Disabled option',
+                        'value'      : 'value3',
+                        'isDisabled' : true
                     },
                     {
                         header  : 'Subsection 1',
@@ -111,9 +111,9 @@ ListBoxOption at given index', () =>
                         'description' : 'Option description'
                     },
                     {
-                        'text'     : 'Disabled option',
-                        'value'    : 'value3',
-                        'disabled' : true
+                        'text'       : 'Disabled option',
+                        'value'      : 'value3',
+                        'isDisabled' : true
                     },
                     {
                         header  : 'Subsection 1',
@@ -158,9 +158,9 @@ ListBoxOption at given index', () =>
                         'description' : 'Option description'
                     },
                     {
-                        'text'     : 'Disabled option',
-                        'value'    : 'value3',
-                        'disabled' : true
+                        'text'       : 'Disabled option',
+                        'value'      : 'value3',
+                        'isDisabled' : true
                     },
                     {
                         header  : 'Subsection 1',
@@ -204,9 +204,9 @@ ListBoxOption at given index', () =>
                     'description' : 'Option description'
                 },
                 {
-                    'text'     : 'Disabled option',
-                    'value'    : 'value3',
-                    'disabled' : true
+                    'text'       : 'Disabled option',
+                    'value'      : 'value3',
+                    'isDisabled' : true
                 } ]
             } );
 
