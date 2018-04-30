@@ -59,17 +59,41 @@ const ListBox = ( {
 
 ListBox.propTypes = {
     aria              : PropTypes.objectOf( PropTypes.string ),
+    /**
+    *  Highlights option
+    */
     activeOption      : PropTypes.string,
     children          : PropTypes.node,
+    /**
+    *  css class
+    */
     className         : PropTypes.string,
     cssMap            : PropTypes.objectOf( PropTypes.string ),
     isFocusable       : PropTypes.bool,
     isMultiselect     : PropTypes.bool,
+    /**
+    *  ListBox ID
+    */
     id                : PropTypes.string,
+    /**
+    *  Array of strings or objects (to build the options)
+    */
     options           : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  onClickOption callback function ( e ) => { ... }
+     */
     onClickOption     : PropTypes.func,
+    /**
+     *  onMouseOutOption callback function ( e ) => { ... }
+     */
     onMouseOutOption  : PropTypes.func,
+    /**
+     *  onMouseOverOption callback function ( e ) => { ... }
+     */
     onMouseOverOption : PropTypes.func,
+    /**
+     *  onKeyPress callback function ( e ) => { ... }
+     */
     onKeyPress        : PropTypes.func,
     selection         : PropTypes.oneOfType( [
         PropTypes.string,
