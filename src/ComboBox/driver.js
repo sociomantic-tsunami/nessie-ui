@@ -29,16 +29,7 @@ export default class ComboBoxDriver
 
     clickOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
-
-        if ( option.props().isDisabled )
-        {
-            throw new Error(
-                ERR.DISABLED()
-            );
-        }
-
-        option.simulate( 'click' );
+        this.wrapper.find( 'ListBoxOption' ).driver().clickOption( index );
         return this;
     }
 
@@ -108,9 +99,9 @@ export default class ComboBoxDriver
         return this;
     }
 
-    scroll()
+    scroll( offset )
     {
-        this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( 0.3 );
+        this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( offset );
         return this;
     }
 }

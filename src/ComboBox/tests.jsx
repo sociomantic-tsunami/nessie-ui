@@ -286,7 +286,7 @@ describe( 'ComboBoxDriver', () =>
                 ]
             } );
 
-            driver.scroll();
+            driver.scroll( 0.3 );
 
             expect( onScroll.calledOnce ).to.be.true;
         } );
