@@ -3,8 +3,8 @@
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React                               from 'react';
-import { ReactWrapper, mount, shallow }    from 'enzyme';
+import React                            from 'react';
+import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import {
     IconButton,
@@ -13,7 +13,7 @@ import {
     Tooltip
 } from '../index';
 
-import TextInputWithIcon                   from './index';
+import { TextInputWithIcon } from './index';
 
 
 describe( 'TextInputWithIcon', () =>

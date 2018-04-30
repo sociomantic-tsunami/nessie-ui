@@ -1,14 +1,12 @@
-import React, { Component }             from 'react';
-import PropTypes                        from 'prop-types';
+import React, { Component }                from 'react';
+import PropTypes                           from 'prop-types';
 
-import { buildClassName, generateId }   from '../utils';
-import styles                           from './textInputWithIcon.css';
-import InputField                       from '../InputField';
-import IconButton                       from '../IconButton';
-import Tooltip                          from '../Tooltip';
+import { buildClassName, generateId }      from '../utils';
+import styles                              from './textInputWithIcon.css';
+import { IconButton, InputField, Tooltip } from '../index';
+import withInputContainer                  from '../proto/withInputContainer';
 
-
-export default class TextInputWithIcon extends Component
+class TextInputWithIcon extends Component
 {
     static propTypes =
     {
@@ -453,3 +451,6 @@ export default class TextInputWithIcon extends Component
         );
     }
 }
+
+export { TextInputWithIcon };
+export default withInputContainer( TextInputWithIcon );
