@@ -638,12 +638,12 @@ export default class Slider extends Component
             stepLabelsTrack = (
                 <div className = { cssMap.stepLabelsContainer }>
                     { mergedStepLabelsArray.map( ( val, i ) =>
-                        <label
+                        <div
                             key       = { i } // eslint-disable-line react/no-array-index-key, max-len
                             className = { cssMap.stepLabel }
                             style     = { this.getHandleStyle( val.step ) } >
                             { val.stepLabel }
-                        </label>
+                        </div>
                     ) }
                 </div>
             );

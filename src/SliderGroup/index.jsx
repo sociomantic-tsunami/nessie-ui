@@ -81,17 +81,17 @@ const SliderGroup = ( {
     } );
 
     const sliderLabelsNode = sliderLabels.map( ( label, i ) =>
-    (
-        <div
-            key       = { i } // eslint-disable-line react/no-array-index-key, max-len
-            className = { cssMap.sliderLabelWrapper }>
-            <Label
-                className        = { cssMap.sliderLabel }
-                label            = { label }
-                overflowIsHidden
-              />
-        </div>
-      ) );
+        (
+            <div
+                key       = { i } // eslint-disable-line react/no-array-index-key, max-len
+                className = { cssMap.sliderLabelWrapper }>
+                <Label
+                    className        = { cssMap.sliderLabel }
+                    label            = { label }
+                    overflowIsHidden
+                />
+            </div>
+        ) );
 
     return (
         <Css
@@ -118,11 +118,10 @@ const SliderGroup = ( {
                                                 maxValue
                                             )}%`
                                         } } >
-                                        <Label
-                                            className = { cssMap.stepLabel }
-                                            overflowIsHidden >
-                                            {value.stepLabel}
-                                        </Label>
+                                        <div
+                                            className = { cssMap.stepLabel } >
+                                            { value.stepLabel }
+                                        </div>
                                     </div>
                                 )}
                             </div>

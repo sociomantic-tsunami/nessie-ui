@@ -33,11 +33,18 @@
         position:        absolute;
         transform:       translateY( 50% );
         max-width:       100%;
+
+        overflow:       hidden;
+        overflow-wrap:  normal;
+        text-overflow:  ellipsis;
     }
 
     .stepLabel
     {
-        @extend %Nessie-Regular;
+        @extend %Nessie-RegularIt;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--L40 );
     }
 
     .slidersContainer

@@ -134,10 +134,10 @@
 
     .stepLabel
     {
-        @extend %Nessie-SemiBold;
-        font-size:          var( --typo-3 );
-        line-height:        var( --line-height-s );
-        color:              var( --PC-GREY--D15 );
+        @extend %Nessie-RegularIt;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--L40 );
 
         position:           absolute;
     }
