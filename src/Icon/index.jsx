@@ -80,7 +80,7 @@ Icon.propTypes =
     /**
      *  Icon size
      */
-    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
      *  Icon theme
      */

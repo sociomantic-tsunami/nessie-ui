@@ -9,29 +9,23 @@
 
 .size__S
 {
-    width:                  16px;
-    height:                 16px;
-}
-
-.size__M
-{
     width:                  24px;
     height:                 24px;
 }
 
-.size__L
+.size__M
 {
     width:                  32px;
     height:                 32px;
 }
 
-.size__XL
+.size__L
 {
     width:                  40px;
     height:                 40px;
 }
 
-.size__XXL
+.size__XL
 {
     width:                  48px;
     height:                 48px;
@@ -42,7 +36,7 @@
 
 .theme__control
 {
-    fill:                       var( --GS-2 );
+    /* fill:                       var( --GS-2 ); */
 
     &:hover,
     &.fakeHovered,
@@ -62,7 +56,7 @@
 .theme__dark,
 .theme__navigation
 {
-    fill:                       color( var( --GS-2 ) a( 50% ) );
+    /* fill:                       color( var( --GS-2 ) a( 50% ) ); */
 }
 
 .theme__light
@@ -91,7 +85,7 @@
     &.fakeHovered,
     button:focus > &
     {
-        fill:                   var( --GS-2 );
+        /* fill:                   var( --GS-2 ); */
     }
 }
 
@@ -141,8 +135,8 @@
 .disabled:not( .theme__button )
 {
     pointer-events:                 none;
-    fill:                           var( --GS-7 );
-    color:                          var( --GS-7 );
+    /* fill:                           var( --GS-7 ); */
+    /* color:                          var( --GS-7 ); */
 }
 
 
