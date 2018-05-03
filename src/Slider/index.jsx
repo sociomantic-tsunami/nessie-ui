@@ -447,19 +447,24 @@ export default class Slider extends Component
             return;
         }
 
-        event.preventDefault();
-
         const { index } = event.target.dataset;
+
+        event.stopPropagation();
 
         if ( event.target.dataset.index ) // target is handle
         {
-            event.stopPropagation();
             this.setTargetInput( index );
+
+            addEventListener( event.type === 'touchstart' ?
+                'touchmove' : 'mousemove', this.handleMouseMove );
+            addEventListener( event.type === 'touchstart' ?
+                'touchend' : 'mouseup', this.handleMouseUp );
         }
         else // target is track
         {
-            const { clientX, clientY } = event;
+            if ( event.type === 'touchstart' ) return;
 
+            const { clientX, clientY } = event;
             const newValue = this.getStep( this.getValue( clientX, clientY ) );
 
             this.setTargetInput();
@@ -467,9 +472,6 @@ export default class Slider extends Component
         }
 
         this.focusTargetInput();
-
-        addEventListener( 'mousemove', this.handleMouseMove );
-        addEventListener( 'mouseup', this.handleMouseUp );
     }
 
 
@@ -479,7 +481,12 @@ export default class Slider extends Component
     */
     handleMouseMove( event )
     {
-        const { clientX, clientY } = event;
+        let { clientX, clientY } = event;
+        if ( event.touches )
+        {
+            clientX  = event.touches[ 0 ].clientX;
+            clientY  = event.touches[ 0 ].clientY;
+        }
 
         const newValue = this.getStep( this.getValue( clientX, clientY ) );
         this.setTargetInputValue( newValue );
@@ -499,8 +506,10 @@ export default class Slider extends Component
             onMouseUp( event );
         }
 
-        removeEventListener( 'mousemove', this.handleMouseMove );
-        removeEventListener( 'mouseup', this.handleMouseUp );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchmove' : 'mousemove', this.handleMouseMove );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchend' : 'mouseup', this.handleMouseUp );
     }
 
 
@@ -759,10 +768,11 @@ export default class Slider extends Component
                                 stepLabelsTrack }
                         <div
                             aria-hidden
-                            className   = { cssMap.track }
-                            ref         = { this.setTrackRef }
-                            onClick     = { this.handleClick }
-                            onMouseDown = { this.handleMouseDown }>
+                            className    = { cssMap.track }
+                            ref          = { this.setTrackRef }
+                            onClick      = { this.handleClick }
+                            onMouseDown  = { this.handleMouseDown }
+                            onTouchStart = { this.handleMouseDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>

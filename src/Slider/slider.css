@@ -60,6 +60,7 @@
 
         user-select:    none;
         cursor:         pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .trackFill
