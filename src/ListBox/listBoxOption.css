@@ -38,11 +38,6 @@
         {
             color:      var( --PC-WHITE );
         }
-
-        .icon
-        {
-            fill:       var( --PC-WHITE );
-        }
     }
 }
 
