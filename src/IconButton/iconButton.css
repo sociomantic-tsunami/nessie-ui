@@ -2,7 +2,8 @@
 
 .default
 {
-    display:    flex;
+    display:         flex;
+    justify-content: center;
     appearance: none !important;
 
     width:      auto;
