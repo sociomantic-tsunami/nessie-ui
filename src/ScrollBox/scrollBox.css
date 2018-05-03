@@ -17,6 +17,7 @@
     .icon__right,
     .icon__up
     {
+
         position:         absolute;
         z-index:          10;
         background-color: var( --PC-BLUE );
@@ -28,8 +29,12 @@
         &:hover,
         &:focus
         {
-            fill:       var( --PC-WHITE );
             opacity:    1;
+        }
+
+        svg
+        {
+            fill:       var( --PC-WHITE );
         }
     }
 
