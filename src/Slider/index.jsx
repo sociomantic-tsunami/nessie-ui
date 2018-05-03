@@ -28,7 +28,8 @@ export default class Slider extends Component
         */
         hasError              : PropTypes.bool,
         /**
-        *  Ref to native input; or array of refs to native inputs
+        *  Callback that receives ref to native input; or array of refs to
+        *  native inputs
         */
         inputRef              : PropTypes.func,
         /**
