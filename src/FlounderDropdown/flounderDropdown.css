@@ -39,12 +39,12 @@
     .main:focus .arrowInner,
     &.fakeHovered .main .arrowInner
     {
-        background-image:   url( './images/light/down__hover.svg' );
+        background-image:   url( './images/down--blue.svg' );
     }
 
     .mainWrapper.open .main .arrowInner
     {
-        background-image:   url( './images/light/up__hover.svg' );
+        background-image:   url( './images/up--blue.svg' );
     }
 
     .main.disabled
@@ -75,7 +75,7 @@
 
         .arrowInner
         {
-            background-image:   url( './images/light/down.svg' );
+            background-image:   url( './images/down--lightgrey.svg' );
         }
 
         .selectedDisplayed
@@ -310,7 +310,7 @@
 
     .arrowInner
     {
-        background-image:  url( './images/light/down.svg' );
+        background-image:  url( './images/down.svg' );
     }
 
     .search
@@ -414,13 +414,13 @@
 
         margin-left:    var( --spacing-1 );
 
-        background:     url( './images/control/close.svg' ) no-repeat 100%;
+        background:     url( './images/close.svg' ) no-repeat 100%;
 
         cursor:         pointer;
 
         &:hover
         {
-            background-image:   url( './images/control/close__hover.svg' );
+            background-image:   url( './images/close--blue.svg' );
         }
     }
 
@@ -614,7 +614,7 @@
 
     .arrowInner
     {
-        background-image:   url( './images/control/down__hover.svg' );
+        background-image:   url( './images/down--blue.svg' );
     }
 }
 
