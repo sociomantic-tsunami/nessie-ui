@@ -214,16 +214,14 @@ export default class Slider extends Component
 
     componentDidMount()
     {
-        this.setInputRefs();
+        this.attachInputRefs();
     }
 
     componentWillUpdate( nextProps )
     {
-        const { inputRef } = this.props;
-
-        if ( inputRef && nextProps.inputRef !== inputRef )
+        if ( nextProps.inputRef !== this.props.inputRef )
         {
-            inputRef( null );
+            this.detachInputRefs();
         }
     }
 
@@ -231,21 +229,16 @@ export default class Slider extends Component
     {
         if ( prevProps.value.length !== this.props.value.length )
         {
-            this.setInputRefs();
+            this.attachInputRefs();
         }
     }
 
     componentWillUnmount()
     {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            inputRef( null );
-        }
+        this.detachInputRefs();
     }
 
-    setInputRefs()
+    attachInputRefs()
     {
         const { inputRef } = this.props;
 
@@ -265,6 +258,16 @@ export default class Slider extends Component
             {
                 inputRef( null );
             }
+        }
+    }
+
+    detachInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            inputRef( null );
         }
     }
 
