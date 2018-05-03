@@ -5,6 +5,9 @@
     display:                block;
     background-repeat:      no-repeat;
     background-position:    center;
+
+    fill:                   var( --PC-GREY--D25 );
+    color:                  var( --PC-GREY--D25 );
 }
 
 .size__S
@@ -135,8 +138,8 @@
 .disabled:not( .theme__button )
 {
     pointer-events:                 none;
-    /* fill:                           var( --GS-7 ); */
-    /* color:                          var( --GS-7 ); */
+    fill:                           var( --PC-GREY--L70 );
+    color:                          var( --PC-GREY--L70 );
 }
 
 
