@@ -28,6 +28,10 @@ export default class Slider extends Component
         */
         hasError              : PropTypes.bool,
         /**
+        *  Ref to native input; or array of refs to native inputs
+        */
+        inputRef              : PropTypes.func,
+        /**
         *  Tooltip message text (string or JSX)
         */
         errorMessage          : PropTypes.node,
@@ -207,6 +211,61 @@ export default class Slider extends Component
         this.handleMouseUp   = this.handleMouseUp.bind( this );
     }
 
+    componentDidMount()
+    {
+        this.setInputRefs();
+    }
+
+    componentWillUpdate( nextProps )
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef && nextProps.inputRef !== inputRef )
+        {
+            inputRef( null );
+        }
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        if ( prevProps.value.length !== this.props.value.length )
+        {
+            this.setInputRefs();
+        }
+    }
+
+    componentWillUnmount()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            inputRef( null );
+        }
+    }
+
+    setInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            const inputs = Array.from( this.inputContainer.childNodes );
+
+            if ( inputs.length === 1 )
+            {
+                inputRef( inputs[ 0 ] );
+            }
+            else if ( inputs.length > 1 )
+            {
+                inputRef( inputs )
+            }
+            else
+            {
+                inputRef( null );
+            }
+        }
+    }
 
     /**
     * Generate track fill style object depending on input values
