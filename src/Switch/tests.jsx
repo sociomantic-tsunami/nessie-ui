@@ -2,13 +2,34 @@
 /* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-return-assign */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import Switch       from './index';
+import Switch               from './index';
 
 describe( 'Switch', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = shallow( <Switch /> );
+    } );
+
+    it( 'should pass isDisabled to <input> as “disabled”', () =>
+    {
+        wrapper.setProps( { isDisabled: true } );
+
+        const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
+
+        expect( input.prop( 'disabled' ) ).to.be.true;
+    } );
+} );
+
+describe( 'SwitchDriver', () =>
 {
     let wrapper;
 
@@ -17,25 +38,31 @@ describe( 'Switch', () =>
         wrapper = mount( <Switch /> );
     } );
 
-    it( 'should have .switch__default as default className', () =>
+    describe( 'toggle()', () =>
     {
-        expect( wrapper.find( '.switch__default' ) ).to.have.length( 1 );
-    } );
-
-    it( 'should contain an Switch component', () =>
-    {
-        expect( wrapper.find( Switch ) ).to.have.length( 1 );
-    } );
-
-    it( 'should have .disabled className when isDisabled is true',
-        () =>
+        it( 'should call onChange once', () =>
         {
-            wrapper.setProps( {
-                isDisabled : true
-            } );
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
 
-            expect( wrapper.find( '.switch__disabled' ) ).to.have.length( 1 );
+            wrapper.driver().toggle();
+
+            expect( onChange.calledOnce ).to.be.true;
         } );
+
+        it( 'should toggle target.checked', () =>
+        {
+            let targetChecked;
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
+            wrapper.setProps( { isChecked: true, onChange } );
+
+            wrapper.driver().toggle();
+
+            expect( targetChecked ).to.be.false;
+        } );
+    } );
 
     describe( 'mouseOut', () =>
     {
@@ -43,9 +70,7 @@ describe( 'Switch', () =>
         {
             const onMouseOut = sinon.spy();
 
-            wrapper.setProps( {
-                onMouseOut
-            } );
+            wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
 
@@ -59,9 +84,7 @@ describe( 'Switch', () =>
         {
             const onMouseOver = sinon.spy();
 
-            wrapper.setProps( {
-                onMouseOver
-            } );
+            wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
 
@@ -75,9 +98,7 @@ describe( 'Switch', () =>
         {
             const onBlur = sinon.spy();
 
-            wrapper.setProps( {
-                onBlur
-            } );
+            wrapper.setProps( { onBlur } );
 
             wrapper.driver().blur();
 
@@ -91,9 +112,7 @@ describe( 'Switch', () =>
         {
             const onFocus = sinon.spy();
 
-            wrapper.setProps( {
-                onFocus
-            } );
+            wrapper.setProps( { onFocus } );
 
             wrapper.driver().focus();
 
