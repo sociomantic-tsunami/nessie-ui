@@ -202,9 +202,9 @@ export default class Slider extends Component
         this.handleBlur      = this.handleBlur.bind( this );
         this.handleClick     = this.handleClick.bind( this );
         this.handleFocus     = this.handleFocus.bind( this );
-        this.handleMouseDown = this.handleMouseDown.bind( this );
-        this.handleMouseMove = this.handleMouseMove.bind( this );
-        this.handleMouseUp   = this.handleMouseUp.bind( this );
+        this.handleDown = this.handleDown.bind( this );
+        this.handleMove = this.handleMove.bind( this );
+        this.handleUp   = this.handleUp.bind( this );
     }
 
 
@@ -432,7 +432,7 @@ export default class Slider extends Component
     * Updates target input with new value from the mouse down on track position
     * @param {Event}  event   event being passed
     */
-    handleMouseDown( event )
+    handleDown( event )
     {
         const { onMouseDown } = this.props;
 
@@ -449,16 +449,14 @@ export default class Slider extends Component
 
         const { index } = event.target.dataset;
 
-        event.stopPropagation();
-
         if ( event.target.dataset.index ) // target is handle
         {
             this.setTargetInput( index );
 
             addEventListener( event.type === 'touchstart' ?
-                'touchmove' : 'mousemove', this.handleMouseMove );
+                'touchmove' : 'mousemove', this.handleMove );
             addEventListener( event.type === 'touchstart' ?
-                'touchend' : 'mouseup', this.handleMouseUp );
+                'touchend' : 'mouseup', this.handleUp );
         }
         else // target is track
         {
@@ -479,7 +477,7 @@ export default class Slider extends Component
     * Updates target input with new value from handle position
     * @param {Event}  event   event being passed
     */
-    handleMouseMove( event )
+    handleMove( event )
     {
         let { clientX, clientY } = event;
         if ( event.touches )
@@ -497,7 +495,7 @@ export default class Slider extends Component
     *  Removes mouseMove and mouseUp listeners
     *  @param {Event}   event   event being passed
     */
-    handleMouseUp( event = new Event( 'mouseup' ) )
+    handleUp( event = new Event( 'mouseup' ) )
     {
         const { onMouseUp } = this.props;
 
@@ -507,9 +505,9 @@ export default class Slider extends Component
         }
 
         removeEventListener( event.type === 'touchmove' ?
-            'touchmove' : 'mousemove', this.handleMouseMove );
+            'touchmove' : 'mousemove', this.handleMove );
         removeEventListener( event.type === 'touchmove' ?
-            'touchend' : 'mouseup', this.handleMouseUp );
+            'touchend' : 'mouseup', this.handleUp );
     }
 
 
@@ -771,8 +769,8 @@ export default class Slider extends Component
                             className    = { cssMap.track }
                             ref          = { this.setTrackRef }
                             onClick      = { this.handleClick }
-                            onMouseDown  = { this.handleMouseDown }
-                            onTouchStart = { this.handleMouseDown }>
+                            onMouseDown  = { this.handleDown }
+                            onTouchStart = { this.handleDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>

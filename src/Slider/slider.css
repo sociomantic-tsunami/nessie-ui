@@ -51,16 +51,16 @@
 
     .track
     {
-        position:       relative;
+        position:                       relative;
 
-        border:         var( --trackBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
-        border-radius:  var( --trackSize );
+        border:                         var( --trackBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+        border-radius:                  var( --trackSize );
 
-        background:     var( --PC-WHITE );
+        background:                     var( --PC-WHITE );
 
-        user-select:    none;
-        cursor:         pointer;
-        -webkit-tap-highlight-color: transparent;
+        user-select:                    none;
+        cursor:                         pointer;
+        -webkit-tap-highlight-color:    transparent;
     }
 
     .trackFill
