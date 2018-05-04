@@ -60,7 +60,7 @@
     --PC-BLUE--L55:        #97d5f1;
     --PC-BLUE--L70:        #bae3f6;
     --PC-BLUE--L90:        #e8f5fc;
-    --PC-BLUE--L90:        #f3fafd;
+    --PC-BLUE--L95:        #f3fafd;
 
     --PC-BLUE--DARK:        var( --PC-BLUE--D15 );
     --PC-BLUE--LIGHT:       var( --PC-BLUE--L70 );

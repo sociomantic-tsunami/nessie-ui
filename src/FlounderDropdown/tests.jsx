@@ -87,7 +87,7 @@ describe( 'FlounderDropdownDriver', () =>
                 onChange : changeSpy
             } );
 
-            driver.chooseItemByIndex( 2 );
+            driver.chooseItemByIndex( 1 );
 
             const selected = driver.getSelectedValues();
 
@@ -106,7 +106,7 @@ describe( 'FlounderDropdownDriver', () =>
                 multiple : true
             } );
 
-            driver.chooseItemByIndex( [ 2, 4 ] );
+            driver.chooseItemByIndex( [ 1, 3 ] );
 
             const selected = driver.getSelectedValues();
 

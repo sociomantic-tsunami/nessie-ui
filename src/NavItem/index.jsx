@@ -45,9 +45,9 @@ removed in the next major release. Please use isCurrent instead.' );
                 hasIcon     : iconType !== 'none'
             } }>
             <li
-                className   = { className }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
+                className     = { className }
+                onMouseEnter  = { onMouseOver }
+                onMouseLeave  = { onMouseOut }>
                 <a
                     className = { cssMap.link }
                     href      = { href }
@@ -96,35 +96,35 @@ NavItem.propTypes =
      *  Icon to show
      */
     iconType      : PropTypes.oneOf( [
-        'none',
         'account',
         'add',
+        'alert',
+        'approved',
         'calendar',
         'close',
+        'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'ended',
+        'error',
+        'hide',
         'info',
         'inspect',
         'left',
         'link',
+        'pending',
         'preview',
         'reset',
         'right',
         'search',
+        'show',
         'up',
         'upload',
         'validation',
-        'alert',
-        'approved',
-        'declined',
-        'ended',
-        'error',
-        'pending',
-        'show',
-        'hide'
+        'none',
     ] ),
     /*
     *  Display as disabled/read-only

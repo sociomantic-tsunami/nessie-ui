@@ -28,22 +28,22 @@ const ScrollBox = ( {
         { scrollDownIsVisible && <IconButton
             className = { cssMap.icon__down }
             iconType = "down"
-            iconSize = "L"
+            iconSize = "S"
             onClick = { onClickScrollDown } /> }
         { scrollLeftIsVisible && <IconButton
             className = { cssMap.icon__left }
             iconType = "left"
-            iconSize = "L"
+            iconSize = "S"
             onClick = { onClickScrollLeft  } /> }
         { scrollRightIsVisible && <IconButton
             className = { cssMap.icon__right }
             iconType = "right"
-            iconSize = "L"
+            iconSize = "S"
             onClick = { onClickScrollRight } /> }
         { scrollUpIsVisible && <IconButton
             className = { cssMap.icon__up }
             iconType = "up"
-            iconSize = "L"
+            iconSize = "S"
             onClick = { onClickScrollUp } /> }
         <div
             className = { cssMap.scrollBox }

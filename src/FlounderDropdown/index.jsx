@@ -287,32 +287,30 @@ export default class FlounderDropdown extends Component
     {
         const { flounderInstance } = this;
 
-        if ( flounderInstance )
+        if ( !flounderInstance )
+        {
+            return;
+        }
+
+        if ( value !== undefined || this.props.isReadOnly )
         {
             let values = [];
 
-            if ( value )
+            if ( Array.isArray( value ) )
             {
-                if ( Array.isArray( value ) )
-                {
-                    values = value;
-                }
-                else if ( value )
-                {
-                    values = [ value ];
-                }
+                values = value;
+            }
+            else if ( value )
+            {
+                values = [ value ];
             }
 
-            if ( value || this.props.isReadOnly )
-            {
-                const selectedValues =
-                    flounderInstance.getSelectedValues() || [];
+            const selectedValues = flounderInstance.getSelectedValues() || [];
 
-                if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
-                {
-                    flounderInstance.deselectAll( true );
-                    flounderInstance.setByValue( values );
-                }
+            if ( stringifyArr( selectedValues ) !== stringifyArr( values ) )
+            {
+                flounderInstance.deselectAll( true );
+                flounderInstance.setByValue( values );
             }
         }
     }
@@ -359,7 +357,7 @@ export default class FlounderDropdown extends Component
                 onInputChange        : props.onInputChange,
                 onOpen               : props.onOpen,
                 openOnHover          : props.openOnHover,
-                placeholder          : props.placeholder,
+                placeholder          : props.placeholder || '',
                 search               : !props.isHeader && props.search
             };
 
@@ -420,8 +418,6 @@ export default class FlounderDropdown extends Component
             headerLevel,
             icon,
             isDisabled,
-            onMouseOut,
-            onMouseOver
         } = props;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
@@ -439,11 +435,7 @@ export default class FlounderDropdown extends Component
                 } }>
                 <Wrapper className = { className }>
                     <InputContainer { ...props } label = { !isHeader && label }>
-                        <div
-                            ref         = { this.handleRef }
-                            onMouseOver = { onMouseOver }
-                            onMouseOut  = { onMouseOut }
-                        />
+                        <div ref = { this.handleRef } />
                     </InputContainer>
                 </Wrapper>
             </Css>

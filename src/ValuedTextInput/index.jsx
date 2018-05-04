@@ -172,22 +172,24 @@ export default class ValuedTextInput extends Component
 
     render()
     {
-        const { className, cssMap, ...props } = this.props;
+        const {
+            className,
+            cssMap,
+            onMouseOut,
+            onMouseOver,
+            ...props
+        } = this.props;
+
         const {
             forceHover,
             hasError,
             isDisabled,
-            onMouseOut,
-            onMouseOver,
             textAlign,
             valueLabel,
-            valueLabelPosition
+            valueLabelPosition,
         } = props;
 
-        const {
-            id,
-            isFocused,
-        } = this.state;
+        const { id, isFocused } = this.state;
 
         let alignText = textAlign;
 
@@ -207,18 +209,18 @@ export default class ValuedTextInput extends Component
                 } }>
                 <InputContainer
                     { ...props }
-                    id        = { id }
-                    className = { className }>
+                    className   = { className }
+                    id          = { id }
+                    onMouseOver = { onMouseOver }
+                    onMouseOut  = { onMouseOut }>
                     <div className = { cssMap.container }>
                         <InputField
                             { ...props }
-                            id          = { id }
-                            className   = { cssMap.input }
-                            onFocus     = { this.handleFocus }
-                            onBlur      = { this.handleBlur }
-                            textAlign   = { alignText }
-                            onMouseOver = { onMouseOver }
-                            onMouseOut  = { onMouseOut } />
+                            id           = { id }
+                            className    = { cssMap.input }
+                            onFocus      = { this.handleFocus }
+                            onBlur       = { this.handleBlur }
+                            textAlign    = { alignText }  />
                         <label
                             className = { cssMap.valueLabel }
                             htmlFor   = { id }>

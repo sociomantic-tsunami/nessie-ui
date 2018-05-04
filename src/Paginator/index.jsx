@@ -20,7 +20,8 @@ const Paginator = ( {
     showPrevEllipsis,
     showNextEllipsis,
     showNext,
-    shownPages = [], showPrev } ) =>
+    shownPages = [],
+    showPrev } ) =>
 {
     const pageButtons = shownPages.map( ( pageNum ) =>
         (

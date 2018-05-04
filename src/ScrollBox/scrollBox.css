@@ -4,70 +4,77 @@
 {
     .scrollBox
     {
-        overflow:               auto;
-        overscroll-behavior-y:  contain;
+        overflow:   auto;
+    }
+
+    .content
+    {
+
+    }
+
+    .icon__down,
+    .icon__left,
+    .icon__right,
+    .icon__up
+    {
+
+        position:         absolute;
+        z-index:          10;
+        background-color: var( --PC-BLUE );
+        border-radius:    20px;
+        opacity:          0.4;
+        width:            32px;
+        height:           32px;
+
+        &:hover,
+        &:focus
+        {
+            opacity:    1;
+        }
+
+        svg
+        {
+            fill:       var( --PC-WHITE );
+        }
+    }
+
+    .icon__down
+    {
+        bottom: 10px;
+        left:   calc( 50% - 16px );
+    }
+    .icon__left
+    {
+        top:    calc( 50% - 16px );
+        left:   10px;
+    }
+    .icon__right
+    {
+        top:    calc( 50% - 16px );
+        right:  10px;
+    }
+    .icon__up
+    {
+        top:    10px;
+        left:   calc( 50% - 16px );
     }
 }
+
 
 .scroll__horizontal
 {
     .scrollBox
     {
-        overflow-y: hidden;
+        overflow-y:             hidden;
+        overscroll-behavior-x:  contain;
     }
 
 }
-
 .scroll__vertical
 {
     .scrollBox
     {
-        overflow-x: hidden;
+        overflow-x:             hidden;
+        overscroll-behavior-y:  contain;
     }
-}
-
-.content
-{
-
-}
-
-.icon__down,
-.icon__left,
-.icon__right,
-.icon__up
-{
-    position:         absolute;
-    z-index:          10;
-    background-color: var( --PC-WHITE );
-    border-radius:    20px;
-    opacity:          0.8;
-
-    svg
-    {
-        fill:         var( --PC-BLUE );
-    }
-}
-
-.icon__down
-{
-    bottom: 10px;
-    left:   calc( 50% - 16px );
-}
-
-.icon__left
-{
-    top:    calc( 50% - 16px );
-    left:   10px;
-}
-
-.icon__right
-{
-    top:    calc( 50% - 16px );
-    right:  10px;
-}
-
-.icon__up
-{
-    top:    10px;
-    left:   calc( 50% - 16px );
 }

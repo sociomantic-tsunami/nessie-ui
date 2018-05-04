@@ -36,7 +36,7 @@
     &::placeholder
     {
         @extend %Nessie-RegularIt;
-        color:         var( --PC-GREY--L80 );
+        color:         var( --PC-GREY--L70 );
     }
 
     &:focus
@@ -81,6 +81,12 @@
     &:focus
     {
         border-color:   var( --PC-GREY--L70 );
+    }
+
+    &::placeholder
+    {
+        @extend %Nessie-RegularIt;
+        color:         var( --PC-GREY--L40 );
     }
 }
 

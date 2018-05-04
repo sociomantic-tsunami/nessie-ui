@@ -18,10 +18,13 @@ const IconWithTooltip = ( {
     message,
     noWrap,
     onMouseOut,
+    onMouseOutIcon,
     onMouseOver,
+    onMouseOverIcon,
     overflowIsHidden,
     tooltipIsVisible,
-    tooltipPosition } ) =>
+    tooltipPosition,
+} ) =>
 {
     let contentNode = children;
 
@@ -43,7 +46,10 @@ const IconWithTooltip = ( {
                 iconVisible : iconIsVisible,
                 position    : !!children && iconPosition
             } }>
-            <div className = { className }>
+            <div
+                className    = { className }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 { children &&
                     <div className = { cssMap.content }>
                         { contentNode }
@@ -52,11 +58,11 @@ const IconWithTooltip = ( {
                 { iconIsVisible &&
                     <Tooltip
                         className   = { cssMap.iconWithTooltip }
-                        message     = { message }
                         isVisible   = { tooltipIsVisible }
-                        position    = { tooltipPosition }
-                        onMouseOver = { onMouseOver }
-                        onMouseOut  = { onMouseOut }>
+                        message     = { message }
+                        onMouseOut  = { onMouseOutIcon }
+                        onMouseOver = { onMouseOverIcon }
+                        position    = { tooltipPosition }>
                         <Icon
                             className = { cssMap.icon }
                             isDisabled = { isDisabled }
@@ -130,9 +136,17 @@ IconWithTooltip.propTypes =
     */
     onMouseOut       : PropTypes.func,
     /**
+    *  onMouseOut callback function for icon: ( e ) = { ... }
+    */
+    onMouseOutIcon   : PropTypes.func,
+    /**
     *  onMouseOver callback function: ( e ) = { ... }
     */
     onMouseOver      : PropTypes.func,
+    /**
+    *  onMouseOver callback function for icon: ( e ) = { ... }
+    */
+    onMouseOverIcon  : PropTypes.func,
     /**
     *  Hides wrapped content overflow
     */
@@ -140,21 +154,21 @@ IconWithTooltip.propTypes =
     /**
      *  Text won´t wrap to the next line.
      */
-    noWrap           : PropTypes.bool
+    noWrap           : PropTypes.bool,
 };
 
 IconWithTooltip.defaultProps =
 {
-    iconType         : 'info',
-    iconSize         : 'M',
+    cssMap           : require( './iconWithTooltip.css' ),
     iconIsVisible    : true,
     iconPosition     : 'right',
+    iconSize         : 'M',
+    iconType         : 'info',
     isDisabled       : false,
     noWrap           : false,
-    tooltipPosition  : 'top',
-    tooltipIsVisible : false,
     overflowIsHidden : false,
-    cssMap           : require( './iconWithTooltip.css' )
+    tooltipIsVisible : false,
+    tooltipPosition  : 'top',
 };
 
 export default IconWithTooltip;

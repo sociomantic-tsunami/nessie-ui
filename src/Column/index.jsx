@@ -1,7 +1,8 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './column.css';
 
 const Column = ( {
     align,
@@ -11,20 +12,29 @@ const Column = ( {
     cssMap,
     role,
     size,
-    verticalAlign } ) =>
+    verticalAlign,
+} ) =>
+{
+    if ( !Column.didWarn && verticalAlign === 'space-around' )
+    {
+        console.warn( 'Column: \'space-around\' option for verticalAlign prop \
+is deprecated. Please use an alternative layout.' );
+        Column.didWarn = true;
+    }
 
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { size,
+    return (
+        <div
+            className = { buildClassName( className, cssMap, {
+                size,
                 alignX : align,
-                alignY : verticalAlign } }>
-            <div
-                className         = { className }
-                role              = { role }
-                data-column-title = { columnTitle }>
-                { children }
-            </div>
-        </Css>;
+                alignY : verticalAlign
+            } ) }
+            role              = { role }
+            data-column-title = { columnTitle }>
+            { children }
+        </div>
+    );
+};
 
 Column.propTypes =
 {
@@ -86,7 +96,6 @@ Column.propTypes =
         'top',
         'middle',
         'bottom',
-        'space-around'
     ] ),
     /**
      *  Column content
@@ -101,7 +110,7 @@ Column.propTypes =
 Column.defaultProps =
 {
     align  : 'auto',
-    cssMap : require( './column.css' )
+    cssMap : styles,
 };
 
 export default Column;

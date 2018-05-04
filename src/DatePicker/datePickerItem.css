@@ -24,24 +24,11 @@
         line-height:            var( --line-height-s );
     }
 
-    &:hover
-    {
-        border-color:   var( --PC-BLUE );
-        background:     var( --PC-WHITE );
-        color:          var( --GS-2 );
-    }
-
     &.fakeHovered,
-    &:focus,
     &:hover
     {
-        border-color:   var( --PC-BLUE );
-        background:     var( --PC-WHITE );
-
-        .text
-        {
-            color:      var( --GS-2 );
-        }
+        border-color:   var( --PC-BLUE--L90 );
+        background:     var( --PC-BLUE--L90 );
     }
 }
 
@@ -73,7 +60,10 @@
 }
 
 
-.selected
+.selected,
+.selected.fakeHovered,
+.selected:focus,
+.selected:hover
 {
     border-color:   var( --PC-BLUE );
     background:     var( --PC-BLUE );
@@ -82,20 +72,6 @@
     {
         color:      var( --PC-WHITE );
     }
-
-    &.fakeHovered,
-    &:focus,
-    &:hover
-    {
-        background:     color( var( --PC-BLUE ) tint( 15% ) );
-        border-color:   color( var( --PC-BLUE ) tint( 15% ) );
-
-        .text
-        {
-            color:      var( --PC-WHITE );
-        }
-    }
-
 }
 
 

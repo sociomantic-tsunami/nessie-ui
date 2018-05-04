@@ -35,9 +35,9 @@ const Icon = ( {
                 type,
                 size,
             } ) }
-            aria-label  = { children || label }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }>
+            aria-label   = { children || label }
+            onMouseLeave = { onMouseOut }
+            onMouseEnter = { onMouseOver }>
             { xLink && <use xlinkHref = { xLink } /> }
         </svg>
     );
@@ -80,7 +80,7 @@ Icon.propTypes =
     /**
      *  Icon size
      */
-    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
      *  Icon theme
      */

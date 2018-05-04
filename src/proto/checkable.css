@@ -35,8 +35,6 @@
     position:           relative;
     height:             var( --spacing-3 );
 
-    color:              var( --PC-GREY--D5 );
-
     &::before
     {
         content:            '';
@@ -70,11 +68,12 @@
         vertical-align: middle;
         margin-left:    var( --spacing-1 );
     }
+}
 
-    .text
-    {
-        color: var( --PC-GREY--D15 );
-    }
+.labelText
+{
+    @extend             %Nessie-SemiBold;
+    color:              var( --PC-GREY--D15 );
 }
 
 .error
@@ -83,12 +82,7 @@
     &:hover .label::before,
     .input:focus + .label::before
     {
-        border:       2px solid var( --PC-RED );
-    }
-
-    .label .text
-    {
-        color:  var( --PC-RED );
+        border:       1px solid var( --PC-RED );
     }
 }
 
@@ -109,7 +103,7 @@
         cursor:             default;
     }
 
-    .label .text
+    .labelText
     {
         color:  var( --PC-GREY--L70 );
     }

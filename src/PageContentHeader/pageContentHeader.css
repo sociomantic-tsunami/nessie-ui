@@ -19,7 +19,7 @@
 
 .header
 {
-    margin-bottom:  30px;
+    margin-bottom:      30px;
 
     &:last-child
     {
@@ -34,7 +34,9 @@
 
 .title
 {
-    margin-bottom:  20px;
+    margin-bottom:  8px;
+
+    z-index:        2;
 }
 
 .subtitle
@@ -44,6 +46,7 @@
     font-size:      var( --typo-4 );
     line-height:    var( --line-height-m );
     letter-spacing: 0;
+    color:          var( --PC-GREY--D5 );
 
     min-height:     var( --line-height-m );
 }

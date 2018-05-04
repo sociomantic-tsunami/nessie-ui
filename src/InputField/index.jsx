@@ -102,6 +102,7 @@ export default class InputField extends Component
         type       : 'text',
         textAlign  : 'left',
         isDisabled : false,
+        isReadOnly : false,
         hasError   : false,
         forceHover : false,
         cssMap     : styles,
@@ -174,8 +175,8 @@ deprecated. Please use onChange instead.` );
                 onKeyDown    = { onKeyDown }
                 onKeyPress   = { onKeyPress }
                 onKeyUp      = { onKeyUp }
-                onMouseOut   = { onMouseOut }
-                onMouseOver  = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }
                 placeholder  = { placeholder }
                 readOnly     = { isReadOnly }
                 ref          = { inputRef }

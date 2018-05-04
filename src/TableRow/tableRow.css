@@ -12,3 +12,25 @@
     background:  var( --PC-WHITE );
     z-index:     2;
 }
+
+.default.active /* make rule more specific */
+{
+    .cell
+    {
+        background: var( --GS-11 );
+    }
+}
+
+.clickable
+{
+    cursor: pointer;
+
+    &:hover,
+    &.fakeHovered
+    {
+        .cell
+        {
+            background: var( --GS-11 );
+        }
+    }
+}

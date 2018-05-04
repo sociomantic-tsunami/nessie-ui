@@ -21,10 +21,10 @@ const Label = ( {
     return (
         <Css cssMap = { cssMap }>
             <LabelElement
-                className   = { className }
-                htmlFor     = { element === 'label' ? htmlFor : null }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut } >
+                className    = { className }
+                htmlFor      = { element === 'label' ? htmlFor : null }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut } >
                 <Text
                     className        = { cssMap.label }
                     noWrap           = { noWrap }

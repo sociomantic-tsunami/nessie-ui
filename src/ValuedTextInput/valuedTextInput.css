@@ -148,19 +148,14 @@
 }
 
 
-.disabled
+.disabled,
+.disabled:hover
 {
-    .valueLabel
+    .valueLabel,
+    .input
     {
         background:     var( --PC-GREY--L90 );
         border-color:   var( --PC-GREY--L70 );
-        color:          var( --PC-GREY--L80 );
         pointer-events: none;
-
-        &::before,
-        &::after
-        {
-            background: var( --PC-GREY--L80 );
-        }
     }
 }

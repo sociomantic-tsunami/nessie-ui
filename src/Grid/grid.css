@@ -1,5 +1,11 @@
 @import "../proto/base.css";
 
+:root
+{
+    --S:    8px;
+    --M:    16px;
+    --L:    24px;
+}
 
 .default
 {
@@ -7,6 +13,7 @@
     flex-direction: column;
     align-items:    stretch;
 
+    width:          auto;
     max-width:      none;
 
     margin-bottom:  0;
@@ -21,157 +28,231 @@
 /*
 @media( min-width: 768px )
 { */
-.default
-{
-    flex-direction: row;
+    .default
+    {
+        flex-direction: row;
 
-    /*& > *
+        /*& > *
         {
             flex:   1 0 0%;
         }*/
-}
-
-.alignX__left,
-.alignX__center,
-.alignX__right
-{
-    & > *
-    {
-        flex:           0 0 auto;
     }
-}
 
-.alignX__left
-{
-    justify-content:    flex-start;
-}
+    .alignX__left,
+    .alignX__center,
+    .alignX__right
+    {
+        & > *
+        {
+            flex:   0 0 auto;
+        }
+    }
 
-.alignX__center
-{
-    justify-content:    center;
-}
+    .alignX__left
+    {
+        justify-content:    flex-start;
+    }
 
-.alignX__right
-{
-    justify-content:    flex-end;
-}
+    .alignX__center
+    {
+        justify-content:    center;
+    }
 
-.alignY__top
-{
-    align-items:    flex-start;
-}
+    .alignX__right
+    {
+        justify-content:    flex-end;
+    }
 
-.alignY__middle
-{
-    align-items:    center;
-}
+    .alignY__top
+    {
+        align-items:    flex-start;
+    }
 
-.alignY__bottom
-{
-    align-items:    flex-end;
-}
+    .alignY__middle
+    {
+        align-items:    center;
+    }
 
-.wrap
-{
-    flex-wrap:  wrap;
-}
+    .alignY__bottom
+    {
+        align-items:    flex-end;
+    }
+
+    .wrap
+    {
+        flex-wrap:  wrap;
+    }
 /* } */
 
 
-.spacing__h1
+.gutters__S
+{
+    margin-left:    calc( -1 * ( var( --S ) / 2 ) );
+    margin-right:   calc( -1 * ( var( --S ) / 2 ) );
+
+    & > *
+    {
+        padding-left:   calc( var( --S ) / 2 );
+        padding-right:  calc( var( --S ) / 2 );
+    }
+}
+.gutters__M
+{
+    margin-left:    calc( -1 * ( var( --M ) / 2 ) );
+    margin-right:   calc( -1 * ( var( --M ) / 2 ) );
+
+    & > *
+    {
+        padding-left:   calc( var( --M ) / 2 );
+        padding-right:  calc( var( --M ) / 2 );
+    }
+}
+.gutters__L
+{
+    margin-left:    calc( -1 * ( var( --L ) / 2 ) );
+    margin-right:   calc( -1 * ( var( --L ) / 2 ) );
+
+    & > *
+    {
+        padding-left:   calc( var( --L ) / 2 );
+        padding-right:  calc( var( --L ) / 2 );
+    }
+}
+
+
+.spacing__S
 {
     & > *
     {
-        margin-bottom:  var( --spacing-7 );
+        padding-top:    calc( var( --S ) / 2 );
+        padding-bottom: calc( var( --S ) / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * ( var( --S ) / 2 ) );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-7 );
+        margin-bottom:  calc( -1 * ( var( --S ) / 2 ) );
     }
 }
-.spacing__h2
+.spacing__M
 {
     & > *
     {
-        margin-bottom:  var( --spacing-5 );
+        padding-top:    calc( var( --M ) / 2 );
+        padding-bottom: calc( var( --M ) / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * ( var( --M ) / 2 ) );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-5 );
+        margin-bottom:  calc( -1 * ( var( --M ) / 2 ) );
     }
 }
+.spacing__L
+{
+    & > *
+    {
+        padding-top:     calc( var( --L ) / 2 );
+        padding-bottom:  calc( var( --L ) / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * ( var( --L ) / 2 ) );
+    }
+
+    &:last-child
+    {
+        margin-bottom:  calc( -1 * ( var( --L ) / 2 ) );
+    }
+}
+
+/* legacy spacing options (deprecated) */
 .spacing__default,
 .spacing__h3,
 .spacing__h4
 {
     & > *
     {
-        margin-bottom:  var( --spacing-2 );
+        padding-top:     calc( 16px / 2 );
+        padding-bottom:  calc( 16px / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * calc( 16px / 2 ) );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-2 );
+        margin-bottom:  calc( -1 * calc( 16px / 2 ) );
     }
 }
 .spacing__label
 {
     & > *
     {
-        margin-bottom:  var( --spacing-1 );
+        padding-top:     calc( 16px / 2 );
+        padding-bottom:  calc( 16px / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * calc( 16px / 2 ) );
     }
 
     &:last-child
     {
-        margin-bottom:  -var( --spacing-1 );
+        margin-bottom:  calc( -1 * calc( 16px / 2 ) );
     }
 }
-
-.gutters__S
+.spacing__h1
 {
-    width:          calc( 100% + var( --spacing-1 ) );
-    margin-left:    calc( -var( --spacing-1 ) / 2 );
-    margin-right:   calc( -var(--spacing-1 ) / 2 );
-
     & > *
     {
-        padding-left:   calc( var( --spacing-1 ) / 2 );
-        padding-right:  calc( var( --spacing-1 ) / 2 );
+        padding-top:     calc( 56px / 2 );
+        padding-bottom:  calc( 56px / 2 );
+    }
+
+    &:first-child
+    {
+        margin-top: calc( -1 * calc( 56px / 2 ) );
+    }
+
+    &:last-child
+    {
+        margin-bottom:  calc( -1 * calc( 56px / 2 ) );
     }
 }
-.gutters__M
+.spacing__h2
 {
-    width:          calc( 100% + var( --spacing-2 ) );
-    margin-left:    calc( -var( --spacing-2 ) / 2 );
-    margin-right:   calc( -var( --spacing-2 ) / 2 );
-
     & > *
     {
-        padding-left:   calc( var( --spacing-2 ) / 2 );
-        padding-right:  calc( var( --spacing-2 ) / 2 );
+        padding-top:     calc( 40px / 2 );
+        padding-bottom:  calc( 40px / 2 );
     }
-}
-.gutters__L
-{
-    width:          calc( 100% + var( --spacing-3 ) );
-    margin-left:    calc( -var( --spacing-3 ) / 2 );
-    margin-right:   calc( -var( --spacing-3 ) / 2 );
 
-    & > *
+    &:first-child
     {
-        padding-left:   calc( var( --spacing-3 ) / 2 );
-        padding-right:  calc( var( --spacing-3 ) / 2 );
+        margin-top: calc( -1 * calc( 40px / 2 ) );
+    }
+
+    &:last-child
+    {
+        margin-bottom:  calc( -1 * calc( 40px / 2 ) );
     }
 }
 
-.hasWrap
+
+.wrap
 {
     flex-wrap:  wrap;
-}
-
-.hasMinHeight
-{
-    min-height: calc( var( --spacing-3 ) + var( --spacing-1 ) + var( --spacing-5 ) ); /* label + spacing + input */
 }

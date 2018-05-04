@@ -214,16 +214,16 @@ export default class Button extends Component
                     fakeHovered : forceHover
                 } }>
                 <button
-                    ref          = { buttonRef }
-                    type         = { type }
-                    className    = { className }
-                    id           = { id }
-                    defaultValue = { defaultValue }
-                    value        = { value }
-                    disabled     = { isDisabled || isLoading || isReadOnly }
-                    onClick      = { onClick }
-                    onMouseOver  = { this.handleMouseOver }
-                    onMouseOut   = { this.handleMouseOut }>
+                    ref            = { buttonRef }
+                    type           = { type }
+                    className      = { className }
+                    id             = { id }
+                    defaultValue   = { defaultValue }
+                    value          = { value }
+                    disabled       = { isDisabled || isLoading || isReadOnly }
+                    onClick        = { onClick }
+                    onMouseEnter   = { this.handleMouseOver }
+                    onMouseLeave   = { this.handleMouseOut }>
                     { content }
                     { ( isLoading && !isDisabled ) &&
                         <div className = { cssMap.loadingOverlay }>

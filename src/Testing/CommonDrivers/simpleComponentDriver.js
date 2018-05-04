@@ -21,13 +21,13 @@ export default class SimpleComponentDriver
 
     mouseOver()
     {
-        this.control.simulate( 'mouseover' );
+        this.control.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.control.simulate( 'mouseout' );
+        this.control.simulate( 'mouseleave' );
         return this;
     }
 }

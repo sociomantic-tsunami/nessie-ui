@@ -64,9 +64,21 @@ Radio.propTypes =
      */
     name             : PropTypes.string,
     /**
+     *  OnBlur callback function: ( e ) => { ... }
+     */
+    onBlur           : PropTypes.func,
+    /**
+     *  OnClick callback function: ( e ) => { ... }
+     */
+    onClick          : PropTypes.func,
+    /**
      *  OnChange callback function: ( e ) => { ... }
      */
     onChange         : PropTypes.func,
+    /**
+     *  onFocus callback function: ( e ) => { ... }
+     */
+    onFocus          : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
@@ -90,13 +102,16 @@ Radio.defaultProps =
     hasError         : false,
     id               : undefined,
     inputRef         : undefined,
-    isDefaultChecked : false,
+    isDefaultChecked : undefined,
     isDisabled       : false,
     isChecked        : undefined,
     isReadOnly       : false,
     label            : undefined,
     name             : undefined,
+    onBlur           : undefined,
     onChange         : undefined,
+    onClick          : undefined,
+    onFocus          : undefined,
     onMouseOut       : undefined,
     onMouseOver      : undefined,
     value            : undefined,

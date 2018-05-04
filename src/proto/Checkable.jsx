@@ -19,6 +19,9 @@ const Checkable = ( {
     isReadOnly,
     label,
     name,
+    onBlur,
+    onClick,
+    onFocus,
     onChange,
     onMouseOut,
     onMouseOver,
@@ -30,7 +33,7 @@ const Checkable = ( {
 
     if ( typeof labelText === 'string' )
     {
-        labelText = <Text>{ labelText }</Text>;
+        labelText = <Text className = { cssMap.labelText }>{ labelText }</Text>;
     }
 
     return (
@@ -40,8 +43,8 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }>
+            onMouseLeave = { onMouseOut }
+            onMouseEnter = { onMouseOver }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
@@ -49,7 +52,10 @@ const Checkable = ( {
                 disabled       = { isDisabled }
                 id             = { id }
                 name           = { name }
+                onClick        = { onClick }
                 onChange       = { onChange }
+                onFocus        = { onFocus }
+                onBlur         = { onBlur }
                 readOnly       = { isReadOnly }
                 ref            = { inputRef }
                 type           = { type }
@@ -117,9 +123,21 @@ Checkable.propTypes =
      */
     name             : PropTypes.string,
     /**
+     *  OnBlur callback function: ( e ) => { ... }
+     */
+    onBlur           : PropTypes.func,
+    /**
+     *  OnClick callback function: ( e ) => { ... }
+     */
+    onClick          : PropTypes.func,
+    /**
      *  OnChange callback function: ( e ) => { ... }
      */
     onChange         : PropTypes.func,
+    /**
+     *  onFocus callback function: ( e ) => { ... }
+     */
+    onFocus          : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
@@ -147,7 +165,7 @@ Checkable.defaultProps =
     hasError         : false,
     id               : undefined,
     inputRef         : undefined,
-    isDefaultChecked : false,
+    isDefaultChecked : undefined,
     isDisabled       : false,
     isChecked        : undefined,
     isReadOnly       : false,

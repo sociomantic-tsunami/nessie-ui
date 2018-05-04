@@ -1,18 +1,25 @@
-// eslint-disable-next-line max-len
-import ClickableComponentDriver
-    from '../Testing/CommonDrivers/clickableComponentDriver';
 import { NavItem, NavDropdown } from 'nessie-ui';
-export default class NavItemDriver extends ClickableComponentDriver
+
+import SimpleComponentDriver
+    from '../Testing/CommonDrivers/simpleComponentDriver';
+
+export default class NavItemDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.link}` );
+        super( wrapper, `.${wrapper.props().cssMap.default}` );
+    }
+
+    click()
+    {
+        return this.wrapper.find( `.${this.cssMap.link}` )
+            .first().simulate( 'click' );
     }
 
     getLabel()
     {
         return this.wrapper.find( `.${this.cssMap.link} span` )
-                        .first().children();
+            .first().children();
     }
 
     getChildNavItems()
