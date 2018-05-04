@@ -103,48 +103,74 @@ describe( 'CheckboxDriver', () =>
 
     describe( 'setChecked()', () =>
     {
-        it( 'should call onChange once', () =>
+        it( 'should not call onChange when already checked', () =>
         {
             const onChange = sinon.spy();
-            wrapper.setProps( { onChange } );
+            wrapper.setProps( { isChecked: true, onChange } );
+
+            wrapper.driver().setChecked();
+
+            expect( onChange.calledOnce ).to.be.false;
+        } );
+
+        it( 'should call onChange once when unchecked', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { isChecked: false, onChange } );
 
             wrapper.driver().setChecked();
 
             expect( onChange.calledOnce ).to.be.true;
         } );
 
-        it( 'should be called with checked as true', () =>
+        it( 'should set target.checked to true', () =>
         {
-            const onChange = sinon.spy();
-            wrapper.setProps( { onChange } );
+            let targetChecked;
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
+            wrapper.setProps( { isChecked: false, onChange } );
 
             wrapper.driver().setChecked();
 
-            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.true;
+            expect( targetChecked ).to.be.true;
         } );
     } );
 
 
     describe( 'setUnchecked()', () =>
     {
-        it( 'should call onChange once', () =>
+        it( 'should not call onChange when already unchecked', () =>
         {
             const onChange = sinon.spy();
-            wrapper.setProps( { onChange } );
+            wrapper.setProps( { isChecked: false, onChange } );
+
+            wrapper.driver().setUnchecked();
+
+            expect( onChange.calledOnce ).to.be.false;
+        } );
+
+        it( 'should call onChange once when checked', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().setUnchecked();
 
             expect( onChange.calledOnce ).to.be.true;
         } );
 
-        it( 'should be called with checked as false', () =>
+        it( 'should set target.checked to false', () =>
         {
-            const onChange = sinon.spy();
-            wrapper.setProps( { onChange } );
+            let targetChecked;
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
+            wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().setUnchecked();
 
-            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.false;
+            expect( targetChecked ).to.be.false;
         } );
     } );
 
@@ -161,14 +187,17 @@ describe( 'CheckboxDriver', () =>
             expect( onChange.calledOnce ).to.be.true;
         } );
 
-        it( 'should toggle the value of checked', () =>
+        it( 'should toggle the value of target.checked', () =>
         {
-            const onChange = sinon.spy();
+            let targetChecked;
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
             wrapper.setProps( { onChange, isChecked: true } );
 
             wrapper.driver().toggleChecked();
 
-            expect( onChange.lastCall.args[ 0 ].target.checked ).to.be.false;
+            expect( targetChecked ).to.be.false;
         } );
     } );
 

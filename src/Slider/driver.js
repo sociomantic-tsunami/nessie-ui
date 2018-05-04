@@ -38,9 +38,12 @@ export default class SliderDriver
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'change', {
-            target : { value }
-        } );
+        const input = this.inputContainer.childAt( index );
+        const node  = input.getNode();
+
+        node.value = value;
+        input.simulate( 'change' );
+
         return this;
     }
 

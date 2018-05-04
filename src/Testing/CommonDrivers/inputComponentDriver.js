@@ -26,13 +26,14 @@ export default class InputComponentDriver extends ClickableComponentDriver
     setInputValue( value )
     {
         checkIfSimulationIsValid( this.wrapper,
-                                  ERRORS.INPUT_CANNOT_CHANGE_VALUE );
+            ERRORS.INPUT_CANNOT_CHANGE_VALUE );
 
-        const newValue = ( value == null ) ? '' : String( value );
-        const $input = this.control;
+        const input = this.control;
+        const node  = input.getNode();
+
         this.focus();
-        $input.node.value = value;
-        $input.simulate( 'change', { target: { value: newValue } } );
+        node.value = value;
+        input.simulate( 'change' );
         this.blur();
 
         return this;
@@ -58,10 +59,10 @@ export default class InputComponentDriver extends ClickableComponentDriver
 
         if ( isCharPrintable( keyCode ) )
         {
-            this.control.node.value += String.fromCharCode( keyCode );
-            this.control.simulate( 'change', {
-                target : { value: this.control.node.value }
-            } );
+            const node = this.control.getNode();
+
+            node.value += String.fromCharCode( keyCode );
+            this.control.simulate( 'change' );
         }
 
         this.control.simulate( 'keyUp', { which: keyCode } );
@@ -100,7 +101,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
      */
     getInputValue()
     {
-        return this.control.node.value;
+        return this.control.getNode().value;
     }
 
     click()
