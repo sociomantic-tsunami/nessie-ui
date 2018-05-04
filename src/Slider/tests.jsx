@@ -245,7 +245,7 @@ describe( 'Slider', () =>
     } );
 
 
-    describe( 'handleMouseDown', () =>
+    describe( 'handleDown', () =>
     {
         it( 'should be triggered when mousedown in the handle', () =>
         {
@@ -256,14 +256,14 @@ describe( 'Slider', () =>
 
             Wrapper = mount( <Slider { ...props } /> );
             const slider = Wrapper.instance();
-            const handleMouseDown = sinon.stub( slider, 'handleMouseDown' );
+            const handleDown = sinon.stub( slider, 'handleDown' );
 
             slider.forceUpdate();
             Wrapper.update();
 
             Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
 
-            expect( handleMouseDown.called ).to.be.true;
+            expect( handleDown.called ).to.be.true;
         } );
 
         it( 'should trigger addEventListener when mousedown on the handle',
@@ -286,21 +286,21 @@ describe( 'Slider', () =>
     } );
 
 
-    describe( 'handleMouseUp', () =>
+    describe( 'handleUp', () =>
     {
         it( 'should trigger removeEventListener', () =>
         {
-            const handleMouseUp = Wrapper.instance().handleMouseUp;
+            const handleUp = Wrapper.instance().handleUp;
 
             const removeEventListenerSpy = sinon.spy(
                 global, 'removeEventListener' );
 
             const slider = Wrapper.instance();
 
-            const mouseMoveSpy = sinon.spy( slider, 'handleMouseMove' );
-            const mouseUpSpy   = sinon.spy( slider, 'handleMouseUp' );
+            const mouseMoveSpy = sinon.spy( slider, 'handleMove' );
+            const mouseUpSpy   = sinon.spy( slider, 'handleUp' );
 
-            handleMouseUp();
+            handleUp();
 
             expect( removeEventListenerSpy.calledTwice ).to.be.true;
             expect( removeEventListenerSpy.calledWith(
@@ -642,17 +642,17 @@ describe( 'SliderDriver', () =>
 
     describe( 'mouseUp()', () =>
     {
-        let handleMouseUp;
+        let handleUp;
 
         beforeEach( () =>
         {
-            handleMouseUp = sinon.spy( wrapper.node, 'handleMouseUp' );
+            handleUp = sinon.spy( wrapper.node, 'handleUp' );
         } );
 
-        it( 'should fire handleMouseUp on the component instance', () =>
+        it( 'should fire handleUp on the component instance', () =>
         {
             driver.mouseUp();
-            expect( handleMouseUp.calledOnce ).to.be.true;
+            expect( handleUp.calledOnce ).to.be.true;
         } );
     } );
 
