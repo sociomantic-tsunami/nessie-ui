@@ -101,18 +101,17 @@
         "react/jsx-wrap-multilines"          : [ "error", { "arrow": false } ],
         "react/no-unused-prop-types"         : "warn",
         "react/prop-types"                   : [
-            "error", { ignore: [ "children", "className", "cssMap" ] }
+            "error", { "ignore" : [ "children", "className", "cssMap" ] }
         ],
         "react/require-default-props" : "off",
         "require-jsdoc"               : [
             "error",
             {
-                "require" :
-            {
-                "ClassDeclaration"    : false,
-                "FunctionDeclaration" : true,
-                "MethodDefinition"    : false
-            }
+                "require" : {
+                    "ClassDeclaration"    : false,
+                    "FunctionDeclaration" : true,
+                    "MethodDefinition"    : false
+                }
             }
         ],
         "semi-spacing" : [
