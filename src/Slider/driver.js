@@ -108,7 +108,7 @@ export default class SliderDriver
 
     mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.node.handleMouseUp();
+        this.wrapper.node.handleUp();
         return this;
     }
 
