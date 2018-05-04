@@ -20,7 +20,7 @@
         fill: var(--PC-GREY--D15);
     }
 
-    &.isChecked
+    &.pressed
     {
         background-color: var(--PC-ORANGE);
         color: var(--PC-WHITE);
@@ -31,7 +31,7 @@
         }
     }
 
-    &.isDisabled
+    &.disabled
     {
         .icon:hover
         {
@@ -47,7 +47,7 @@
     opacity: .5;
     background-color: transparent;
 
-    &.isChecked
+    &.pressed
     {
         opacity: 1;
     }
@@ -58,10 +58,9 @@
     }
 }
 
-.isDisabled
+.disabled
 {
     opacity: .5;
-    cursor: not-allowed;
 }
 
 

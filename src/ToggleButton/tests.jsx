@@ -24,28 +24,23 @@ describe( 'ToggleButton', () =>
     } );
     describe( 'label', () =>
     {
-        it( 'should be undefined by "default"', () =>
+        it( 'should be undefined by default', () =>
         {
-            expect( instance.props.id ).to.be.undefined;
+            expect( instance.props.label ).to.be.undefined;
         } );
     } );
     describe( 'role', () =>
     {
-        it( 'should be "primary" by "default"', () =>
+        it( 'should be "primary" by default', () =>
         {
             expect( instance.props.role ).to.equal( 'primary' );
-        } );
-        it( 'should be "secondary" as well when it passed to', () =>
-        {
-            wrapper.setProps( { role: 'secondary' } );
-            expect( wrapper.prop( 'role' ) ).to.equal( 'secondary' );
         } );
     } );
     describe( 'id', () =>
     {
-        it( 'should be undefined by "default"', () =>
+        it( 'should be defined', () =>
         {
-            expect( instance.props.id ).to.be.undefined;
+            expect( instance.props.id ).to.be.defined;
         } );
     } );
     describe( 'icon', () =>
@@ -107,6 +102,13 @@ describe( 'ToggleButton', () =>
         } );
     } );
 
+    describe( 'type', () =>
+    {
+        it( 'should be "button" by default', () =>
+        {
+            expect( wrapper.find( 'button' ).prop( 'type' ) ).to.equal( 'button' );
+        } );
+    } );
 
     describe( 'onClick', () =>
     {
@@ -166,37 +168,6 @@ describe( 'ToggleButton', () =>
             {};
             wrapper.setProps( { onMouseOut } );
             expect( wrapper.prop( 'onMouseOut' ) ).to.be.equal( onMouseOut );
-        } );
-    } );
-} );
-
-describe( 'ToggleButtonDriver', () =>
-{
-    let wrapper;
-    beforeEach( () =>
-    {
-        wrapper = mount( <ToggleButton /> );
-    } );
-    describe( 'onClick', () =>
-    {
-        it( 'should call onClick once', () =>
-        {
-            const onClick = sinon.spy();
-            wrapper.setProps( { onClick } );
-
-            wrapper.driver().toggle();
-
-            expect( onClick.calledOnce ).to.be.true;
-        } );
-
-        it( 'should toggle the value of checked', () =>
-        {
-            const onClick = sinon.spy();
-            wrapper.setProps( { onClick, checked: true } );
-
-            wrapper.driver().toggle();
-
-            expect( wrapper.props().isChecked ).to.be.false;
         } );
     } );
 } );

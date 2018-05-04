@@ -21,7 +21,6 @@ import NavItemDriver            from './NavItem/driver';
 import NotificationBarDriver    from './NotificationBar/driver';
 import ModalDialogDriver        from './ModalDialog/driver';
 import SwitchDriver             from './Switch/driver';
-import ToggleButtonDriver       from './ToggleButton/driver';
 import SimpleComponentDriver    from './Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
 import ClickableComponentDriver from './Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
 import InputComponentDriver     from './Testing/CommonDrivers/inputComponentDriver'; // eslint-disable-line max-len
@@ -106,7 +105,7 @@ const drivers =
     },
     {
         Component : ToggleButton,
-        Driver    : ToggleButtonDriver
+        Driver    : ClickableComponentDriver
     }
 ];
 

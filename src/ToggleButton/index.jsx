@@ -2,6 +2,7 @@ import React               from 'react';
 import PropTypes           from 'prop-types';
 
 import { buildClassName }  from '../utils';
+import { generateId }      from '../utils';
 import styles              from './toggleButton.css';
 import Icon                from '../Icon/';
 
@@ -12,9 +13,9 @@ const ToggleButton = ( {
     iconPosition,
     iconSize,
     iconType,
-    id,
+    id = generateId( 'ToggleButton' ),
     isDisabled,
-    isChecked,
+    isPressed,
     isReadOnly,
     label,
     onBlur,
@@ -26,32 +27,31 @@ const ToggleButton = ( {
 
 } ) =>
 {
-    const clickProp = !isReadOnly ? onClick : false;
     return (
         <button
-            className = { buildClassName( className, cssMap, {
-                isDisabled,
-                isChecked,
+            aria-pressed = { isPressed ? 'true' : 'false' }
+            className    = { buildClassName( className, cssMap, {
+                disabled : isDisabled,
+                pressed  : isPressed,
                 iconPosition,
                 role
             } ) }
-            checked     = { isChecked }
-            disabled    = { isDisabled }
-            readOnly    = { isReadOnly }
-            id          = { id }
-            onBlur      = { onBlur }
-            onClick     = { clickProp }
-            onFocus     = { onFocus }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }
-            role        = { role }
-        >
+            disabled     = { isDisabled }
+            readOnly     = { isReadOnly }
+            id           = { id }
+            isPressed    = { isPressed }
+            onBlur       = { onBlur }
+            onClick      = { onClick }
+            onFocus      = { onFocus }
+            onMouseOut   = { onMouseOut }
+            onMouseOver  = { onMouseOver }
+            role         = { role }
+            type         = "button" >
             { iconType && iconType !== 'none' &&
             <Icon
                 className = { cssMap.icon }
                 type      = { iconType }
-                size      = { iconSize }
-            />
+                size      = { iconSize } />
             }
             <div>{ children || label }</div>
 
@@ -70,7 +70,7 @@ ToggleButton.propTypes =
      */
     cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Children 1 description
+     *  Nested child tags, it gets replaced if label has a value
      */
     children     : PropTypes.string,
     /**
@@ -82,7 +82,7 @@ ToggleButton.propTypes =
      */
     iconSize     : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
     /**
-     *  Icon type to display (overrides customIcon)
+     *  Icon type to display
      */
     iconType     : PropTypes.oneOf( [
         'add',
@@ -127,7 +127,7 @@ ToggleButton.propTypes =
     /**
     *  Display as pressed state
     */
-    isChecked   : PropTypes.bool,
+    isPressed   : PropTypes.bool,
     /**
     *  Label text
     */
@@ -168,7 +168,7 @@ ToggleButton.defaultProps =
     iconType     : 'none',
     id           : undefined,
     isDisabled   : false,
-    isChecked    : false,
+    isPressed    : false,
     isReadOnly   : false,
     label        : undefined,
     onBlur       : undefined,
