@@ -227,7 +227,10 @@ export default class Slider extends Component
 
     componentDidUpdate( prevProps )
     {
-        if ( prevProps.value.length !== this.props.value.length )
+        const { props } = this;
+
+        if ( prevProps.inputRef !== props.inputRef ||
+            prevProps.value.length !== props.value.length )
         {
             this.attachInputRefs();
         }
