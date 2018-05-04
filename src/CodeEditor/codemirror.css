@@ -338,3 +338,10 @@
     /* Help users use markselection to safely style text background */
     span.CodeMirror-selectedtext { background: none; }
 }
+
+:global @keyframes blink
+{
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}

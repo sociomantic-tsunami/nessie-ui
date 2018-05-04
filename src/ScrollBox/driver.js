@@ -7,8 +7,9 @@ export default class ScrollBoxDriver
 {
     constructor( wrapper )
     {
-        this.wrapper = wrapper;
-        this.props = this.wrapper.props();
+        this.wrapper   = wrapper;
+        this.props     = this.wrapper.props();
+        this.scrollBox = this.wrapper.find( '.scrollBox__scrollBox' );
     }
 
     clickScrollUp()
@@ -77,9 +78,10 @@ export default class ScrollBoxDriver
             );
         }
 
-        this.wrapper.find( '.scrollBox__scrollBox' ).simulate( 'scroll', {
-            target : { scrollTop: scrollOffset }
-        } );
+        const node     = this.scrollBox.getNode();
+        node.scrollTop = scrollOffset;
+        this.scrollBox.simulate( 'scroll' );
+
         return this;
     }
 
@@ -93,9 +95,11 @@ export default class ScrollBoxDriver
             );
         }
 
-        this.wrapper.find( '.scrollBox__scrollBox' ).simulate( 'scroll', {
-            target : { scrollLeft: scrollOffset }
-        } );
+        const node      = this.scrollBox.getNode();
+        node.scrollLeft = scrollOffset;
+        this.scrollBox.simulate( 'scroll' );
+
+
         return this;
     }
 }
