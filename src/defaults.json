@@ -1,4 +1,8 @@
 {
+    "Animate" :
+    {
+        "lochness" : { "isDeprecated" : true }
+    },
     "Button" :
     {
         "label" : "Click me!"
