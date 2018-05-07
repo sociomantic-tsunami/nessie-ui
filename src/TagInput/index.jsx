@@ -80,6 +80,10 @@ export default class TagInput extends Component
          */
         name                  : PropTypes.string,
         /**
+         * onBlur callback function
+         */
+        onBlur                : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChange              : PropTypes.func,
@@ -88,7 +92,19 @@ export default class TagInput extends Component
          */
         onClickClose          : PropTypes.func,
         /**
+         * onFocus callback function
+         */
+        onFocus               : PropTypes.func,
+        /**
+         * onKeyDown callback function
+         */
+        onKeyDown             : PropTypes.func,
+        /**
          * onKeyPress callback function
+         */
+        onKeyUp               : PropTypes.func,
+        /**
+         * onKeyUp callback function
          */
         onKeyPress            : PropTypes.func,
         /**
@@ -131,8 +147,12 @@ export default class TagInput extends Component
         label                 : undefined,
         labelPosition         : 'top',
         name                  : undefined,
+        onBlur                : undefined,
         onChange              : undefined,
         onClickClose          : undefined,
+        onFocus               : undefined,
+        onKeyDown             : undefined,
+        onKeyUp               : undefined,
         onKeyPress            : undefined,
         onMouseOut            : undefined,
         onMouseOver           : undefined,
@@ -172,8 +192,12 @@ export default class TagInput extends Component
             label,
             labelPosition,
             name,
+            onBlur,
             onChange,
             onClickClose,
+            onFocus,
+            onKeyDown,
+            onKeyUp,
             onKeyPress,
             onMouseOut,
             onMouseOver,
@@ -243,9 +267,11 @@ export default class TagInput extends Component
                         disabled    = { isDisabled }
                         id          = { id }
                         name        = { name }
-                        onBlur      = { this.toggleFocus }
+                        onBlur      = { onBlur }
                         onChange    = { onChange }
-                        onFocus     = { this.toggleFocus }
+                        onFocus     = { onFocus }
+                        onKeyDown   = { onKeyDown }
+                        onKeyUp     = { onKeyUp }
                         onKeyPress  = { onKeyPress }
                         placeholder = { placeholder }
                         readOnly    = { isReadOnly }
