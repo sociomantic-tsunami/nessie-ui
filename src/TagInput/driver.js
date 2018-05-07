@@ -5,6 +5,18 @@ export default class TagInputDriver
         this.wrapper = wrapper;
     }
 
+    blur()
+    {
+        this.wrapper.find( 'input' ).first().simulate( 'blur' );
+        return this;
+    }
+
+    focus()
+    {
+        this.wrapper.find( 'input' ).first().simulate( 'focus' );
+        return this;
+    }
+
     clickClose()
     {
         this.wrapper.find( 'Tag' ).first().driver().clickClose();

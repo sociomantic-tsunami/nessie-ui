@@ -163,13 +163,35 @@ export default class TagInput extends Component
     constructor()
     {
         super();
+
         this.state = { isFocused: false };
-        this.toggleFocus = this.toggleFocus.bind( this );
+
+        this.handleBlur  = this.handleBlur.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
     }
 
-    toggleFocus()
+    handleBlur( event )
     {
-        this.setState( { isFocused: !this.state.isFocused  } );
+        const { onBlur } = this.props;
+
+        if ( onBlur )
+        {
+            onBlur( event );
+        }
+
+        this.setState( { isFocused: false } );
+    }
+
+    handleFocus( event )
+    {
+        const { onFocus } = this.props;
+
+        if ( onFocus )
+        {
+            onFocus( event );
+        }
+
+        this.setState( { isFocused: true } );
     }
 
     render()
@@ -192,10 +214,8 @@ export default class TagInput extends Component
             label,
             labelPosition,
             name,
-            onBlur,
             onChange,
             onClickClose,
-            onFocus,
             onKeyDown,
             onKeyUp,
             onKeyPress,
@@ -267,9 +287,9 @@ export default class TagInput extends Component
                         disabled    = { isDisabled }
                         id          = { id }
                         name        = { name }
-                        onBlur      = { onBlur }
+                        onBlur      = { this.handleBlur }
                         onChange    = { onChange }
-                        onFocus     = { onFocus }
+                        onFocus     = { this.handleFocus }
                         onKeyDown   = { onKeyDown }
                         onKeyUp     = { onKeyUp }
                         onKeyPress  = { onKeyPress }
