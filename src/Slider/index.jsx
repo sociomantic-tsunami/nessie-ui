@@ -241,6 +241,7 @@ export default class Slider extends Component
         this.detachInputRefs();
     }
 
+    /* eslint-disable react/sort-comp */
     attachInputRefs()
     {
         const { inputRef } = this.props;
@@ -255,7 +256,7 @@ export default class Slider extends Component
             }
             else if ( inputs.length > 1 )
             {
-                inputRef( inputs )
+                inputRef( inputs );
             }
             else
             {
