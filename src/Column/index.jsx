@@ -96,6 +96,7 @@ Column.propTypes =
         'top',
         'middle',
         'bottom',
+        'space-around'
     ] ),
     /**
      *  Column content
