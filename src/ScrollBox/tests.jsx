@@ -137,25 +137,9 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                wrapper.driver().scrollVertical( 0.25 );
+                wrapper.driver().scrollVertical( 250 );
 
                 expect( onScroll.calledOnce ).to.be.true;
-            } );
-
-            it( 'should call onScroll with scrollOffset', () =>
-            {
-                const onScroll = sinon.spy();
-                const props = {
-                    scroll : 'vertical',
-                    onScroll
-                };
-
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                wrapper.driver().scrollVertical( 0.72 );
-
-                expect( onScroll.lastCall.args[ 0 ].target.scrollTop )
-                    .to.equal( 0.72 );
             } );
 
             it( 'should throw an error when scroll direction is wrong', () =>
@@ -166,7 +150,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollVertical( 0.1 ) )
+                expect( () => wrapper.driver().scrollVertical( 10 ) )
                     .to.throw( 'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\'' ); // eslint-disable-line max-len
             } );
         } );
@@ -183,25 +167,9 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                wrapper.driver().scrollHorizontal( 0.64 );
+                wrapper.driver().scrollHorizontal( 640 );
 
                 expect( onScroll.calledOnce ).to.be.true;
-            } );
-
-            it( 'should call onScroll with scrollOffset', () =>
-            {
-                const onScroll = sinon.spy();
-                const props = {
-                    scroll : 'horizontal',
-                    onScroll
-                };
-
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                wrapper.driver().scrollHorizontal( 0.48 );
-
-                expect( onScroll.lastCall.args[ 0 ].target.scrollLeft )
-                    .to.equal( 0.48 );
             } );
 
             it( 'should throw an error when scroll direction is wrong', () =>
@@ -212,7 +180,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollHorizontal( 0.27 ) )
+                expect( () => wrapper.driver().scrollHorizontal( 270 ) )
                     .to.throw( 'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\'' ); // eslint-disable-line max-len
             } );
         } );

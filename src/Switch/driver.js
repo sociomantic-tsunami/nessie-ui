@@ -1,7 +1,9 @@
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
+import SimpleComponentDriver from
+    '../Testing/CommonDrivers/simpleComponentDriver';
 
 const ERRORS = {
-    SWITCH_CANNOT_BE_TOGGLED : ( state ) => `Switch cannot be toggled since it is ${state}` // eslint-disable-line max-len
+    SWITCH_CANNOT_BE_TOGGLED : ( state ) =>
+        `Switch cannot be toggled since it is ${state}`
 };
 
 export default class SwitchDriver extends SimpleComponentDriver
@@ -9,11 +11,7 @@ export default class SwitchDriver extends SimpleComponentDriver
     constructor( wrapper )
     {
         super( wrapper, `.${wrapper.props().cssMap.default}` );
-    }
-
-    get input()
-    {
-        return this.wrapper.find( `.${this.cssMap.input}` );
+        this.input = wrapper.find( `.${wrapper.props().cssMap.input}` );
     }
 
     toggle()
@@ -33,9 +31,41 @@ export default class SwitchDriver extends SimpleComponentDriver
             );
         }
 
-        this.input.simulate( 'change',
-            { target : { checked : !props.isChecked } } );
+        const node = this.input.getNode();
+
+        node.checked = !node.checked;
+        this.input.simulate( 'change' );
 
         return this.wrapper;
+    }
+
+    blur()
+    {
+        const props = this.wrapper.props();
+
+        if ( props.isDisabled )
+        {
+            throw new Error(
+                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
+            );
+        }
+
+        this.input.simulate( 'blur' );
+        return this;
+    }
+
+    focus()
+    {
+        const props = this.wrapper.props();
+
+        if ( props.isDisabled )
+        {
+            throw new Error(
+                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
+            );
+        }
+
+        this.input.simulate( 'focus' );
+        return this;
     }
 }

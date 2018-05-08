@@ -1,19 +1,20 @@
 /* global document */
 
-import React, { Component }         from 'react';
-import PropTypes                    from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { ScrollBox, Text }          from '../index';
-import ListBox                      from '../ListBox';
-import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Dropdown/withDropdown';
-import { generateId }               from '../utils';
+import { ScrollBox, Text }  from '../index';
+import TextInputWithIcon    from '../TextInputWithIcon';
+import ListBox              from '../ListBox';
+import withDropdown         from '../Dropdown/withDropdown';
+import { generateId }       from '../utils';
 import {
     addPrefix,
     buildListBoxOptions,
     getScrollParent,
     removePrefix,
 } from './utils';
+
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
@@ -25,31 +26,43 @@ export default class ComboBox extends Component
         /*
          * Active option in dropdown list
          */
-        activeOption        : PropTypes.string,
+        activeOption          : PropTypes.string,
         /**
          * Placeholder text to show when no dropdown list options
          */
-        dropdownPlaceholder : PropTypes.string,
+        dropdownPlaceholder   : PropTypes.string,
         /**
          * Position of the dropdown relative to the text input
          */
-        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        dropdownPosition      : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        /**
+         *  Tooltip message text (string or JSX)
+         */
+        errorMessage          : PropTypes.node,
+        /**
+         *  Error Tooltip is displayed
+         */
+        errorMessageIsVisible : PropTypes.bool,
+        /**
+        *  Error message position relative to the icon
+        */
+        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
         /**
          * Display as hover when required from another component
          */
-        forceHover          : PropTypes.bool,
+        forceHover            : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete     : PropTypes.bool,
+        hasAutocomplete       : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError            : PropTypes.bool,
+        hasError              : PropTypes.bool,
         /**
          *  Icon type to display
          */
-        iconType            : PropTypes.oneOf( [
+        iconType              : PropTypes.oneOf( [
             'account',
             'add',
             'calendar',
@@ -107,6 +120,14 @@ export default class ComboBox extends Component
          */
         isOpen            : PropTypes.bool,
         /**
+         *  Label text (string or JSX node)
+         */
+        label             : PropTypes.node,
+        /**
+         *  Label position
+         */
+        labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        /**
          *  HTML name attribute
          */
         name              : PropTypes.string,
@@ -147,11 +168,11 @@ export default class ComboBox extends Component
          */
         inputPlaceholder  : PropTypes.string,
         /*
-         * On click callback funciton for input
+         * On click callback function for input
          */
         onClickInput      : PropTypes.func,
         /*
-         * On click callback function for doropdown option
+         * On click callback function for dropdown option
          */
         onClickOption     : PropTypes.func,
         /*
@@ -180,39 +201,43 @@ export default class ComboBox extends Component
     };
 
     static defaultProps = {
-        activeOption        : undefined,
-        dropdownPlaceholder : undefined,
-        dropdownPosition    : 'auto',
-        forceHover          : false,
-        inputPlaceholder    : undefined,
-        hasAutocomplete     : false,
-        hasError            : false,
-        iconType            : 'none',
-        id                  : generateId( 'ComboBox' ),
-        inputIsReadOnly     : false,
-        inputRef            : undefined,
-        inputType           : 'text',
-        inputValue          : undefined,
-        isDisabled          : false,
-        isOpen              : false,
-        isMultiselect       : false,
-        name                : undefined,
-        noOptiosText        : undefined,
-        onChangeInput       : undefined,
-        onBlur              : undefined,
-        onClickInput        : undefined,
-        onKeyDown           : undefined,
-        onKeyPress          : undefined,
-        onKeyUp             : undefined,
-        onFocus             : undefined,
-        onClickOption       : undefined,
-        onMouseOut          : undefined,
-        onMouseOutOption    : undefined,
-        onMouseOver         : undefined,
-        onMouseOverOption   : undefined,
-        onScroll            : undefined,
-        options             : undefined,
-        selection           : undefined,
+        activeOption          : undefined,
+        dropdownPlaceholder   : undefined,
+        dropdownPosition      : 'auto',
+        errorMessageIsVisible : false,
+        errorMessagePosition  : 'top',
+        forceHover            : false,
+        hasAutocomplete       : false,
+        hasError              : false,
+        iconType              : 'none',
+        id                    : generateId( 'ComboBox' ),
+        inputIsReadOnly       : false,
+        inputPlaceholder      : undefined,
+        inputRef              : undefined,
+        inputType             : 'text',
+        inputValue            : undefined,
+        isDisabled            : false,
+        isMultiselect         : false,
+        isOpen                : false,
+        label                 : undefined,
+        labelPosition         : 'top',
+        name                  : undefined,
+        noOptiosText          : undefined,
+        onBlur                : undefined,
+        onChangeInput         : undefined,
+        onClickInput          : undefined,
+        onClickOption         : undefined,
+        onFocus               : undefined,
+        onKeyDown             : undefined,
+        onKeyPress            : undefined,
+        onKeyUp               : undefined,
+        onMouseOut            : undefined,
+        onMouseOutOption      : undefined,
+        onMouseOver           : undefined,
+        onMouseOverOption     : undefined,
+        onScroll              : undefined,
+        options               : undefined,
+        selection             : undefined,
     };
 
     constructor( props )
@@ -350,11 +375,15 @@ export default class ComboBox extends Component
         const {
             activeOption,
             dropdownPlaceholder,
+            errorMessage,
+            errorMessageIsVisible,
+            errorMessagePosition,
             forceHover,
             hasAutocomplete,
             hasError,
             iconType,
             id,
+            inputIsReadOnly,
             inputPlaceholder,
             inputRef,
             inputType,
@@ -362,7 +391,8 @@ export default class ComboBox extends Component
             isDisabled,
             isMultiselect,
             isOpen,
-            inputIsReadOnly,
+            label,
+            labelPosition,
             name,
             onBlur,
             onChangeInput,
@@ -439,19 +469,24 @@ export default class ComboBox extends Component
                     hasError,
                     padding  : options.length ? 'none' : 'S',
                 } }
-                name         = { name }
-                onBlur       = { onBlur }
-                onChange     = { onChangeInput }
-                onClick      = { onClickInput }
-                onFocus      = { onFocus }
-                onKeyDown    = { onKeyDown }
-                onKeyPress   = { onKeyPress }
-                onKeyUp      = { onKeyUp }
-                onMouseOut   = { onMouseOut }
-                onMouseOver  = { onMouseOver }
-                placeholder  = { inputPlaceholder }
-                value        = { inputValue }
-                wrapperRef   = { this.setWrapperRef } />
+                errorMessage          = { errorMessage }
+                errorMessageIsVisible = { errorMessageIsVisible }
+                errorMessagePosition  = { errorMessagePosition }
+                label                 = { label }
+                labelPosition         = { labelPosition }
+                name                  = { name }
+                onBlur                = { onBlur }
+                onChange              = { onChangeInput }
+                onClick               = { onClickInput }
+                onFocus               = { onFocus }
+                onKeyDown             = { onKeyDown }
+                onKeyPress            = { onKeyPress }
+                onKeyUp               = { onKeyUp }
+                onMouseOut            = { onMouseOut }
+                onMouseOver           = { onMouseOver }
+                placeholder           = { inputPlaceholder }
+                value                 = { inputValue }
+                wrapperRef            = { this.setWrapperRef } />
         );
     }
 }

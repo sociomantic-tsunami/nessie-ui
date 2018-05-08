@@ -22,7 +22,7 @@ function addPrefix( str, prefix )
 {
     if ( Array.isArray( str ) )
     {
-        return str.map( s => addPrefix( s ) );
+        return str.map( s => addPrefix( s, prefix ) );
     }
 
     return ( str && prefix ) ? `${prefix}-${str}` : str;

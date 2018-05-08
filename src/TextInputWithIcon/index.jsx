@@ -1,14 +1,12 @@
-import React, { Component }             from 'react';
-import PropTypes                        from 'prop-types';
+import React, { Component }                from 'react';
+import PropTypes                           from 'prop-types';
 
-import { buildClassName, generateId }   from '../utils';
-import styles                           from './textInputWithIcon.css';
-import InputField                       from '../InputField';
-import IconButton                       from '../IconButton';
-import Tooltip                          from '../Tooltip';
+import { buildClassName, generateId }      from '../utils';
+import styles                              from './textInputWithIcon.css';
+import { IconButton, InputField, Tooltip } from '../index';
+import withInputContainer                  from '../proto/withInputContainer';
 
-
-export default class TextInputWithIcon extends Component
+class TextInputWithIcon extends Component
 {
     static propTypes =
     {
@@ -156,6 +154,10 @@ export default class TextInputWithIcon extends Component
          *  Input change callback function
          */
         onChange        : PropTypes.func,
+        /**
+         *  Input click callback function
+         */
+        onClick         : PropTypes.func,
         /**
          * key down callback function
          */
@@ -370,6 +372,7 @@ export default class TextInputWithIcon extends Component
             isReadOnly,
             name,
             onChange,
+            onClick,
             onClickIcon,
             onKeyDown,
             onKeyPress,
@@ -412,6 +415,7 @@ export default class TextInputWithIcon extends Component
                     name         = { name }
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
+                    onClick      = { onClick }
                     onFocus      = { this.handleFocus }
                     onKeyDown    = { onKeyDown }
                     onKeyPress   = { onKeyPress }
@@ -447,3 +451,6 @@ export default class TextInputWithIcon extends Component
         );
     }
 }
+
+export { TextInputWithIcon };
+export default withInputContainer( TextInputWithIcon );

@@ -9,49 +9,65 @@ export default class Switch extends Component
     static propTypes =
     {
         /**
-         *  “On”/checked label text
-         */
-        onLabel    : PropTypes.string,
-        /**
-         *  “Off”/unchecked label text
-         */
-        offLabel   : PropTypes.string,
-        /**
-         *  input name
-         */
-        name       : PropTypes.string,
-        /**
-         *  Show “on/off” label text
-         */
-        showLabel  : PropTypes.bool,
-        /**
-         *  Display as checked/“on”
-         */
-        isChecked  : PropTypes.bool,
-        /**
-         *  Display as disabled
-         */
-        isDisabled : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly : PropTypes.bool,
-        /**
          * Display as hover when required from another component
          */
-        forceHover : PropTypes.bool,
-        /**
-         * HTML value attribute
-         */
-        value      : PropTypes.string,
+        forceHover  : PropTypes.bool,
         /**
          * HTML id attribute (overrides default)
          */
-        id         : PropTypes.string,
+        id          : PropTypes.string,
+        /**
+         *  Display as checked/“on”
+         */
+        isChecked   : PropTypes.bool,
+        /**
+         *  Display as disabled
+         */
+        isDisabled  : PropTypes.bool,
+        /**
+         *  Display as read-only
+         */
+        isReadOnly  : PropTypes.bool,
+        /**
+         *  input name
+         */
+        name        : PropTypes.string,
+        /**
+         *  “Off”/unchecked label text
+         */
+        offLabel    : PropTypes.string,
+        /**
+         * onBlur callback function: ( e ) => { ... }
+         */
+        onBlur      : PropTypes.func,
         /**
          * onChange callback function: ( e ) => { ... }
          */
-        onChange   : PropTypes.func
+        onChange    : PropTypes.func,
+        /**
+         *  onFocus callback function: ( e ) => { ... }
+         */
+        onFocus     : PropTypes.func,
+        /**
+         *  “On”/checked label text
+         */
+        onLabel     : PropTypes.string,
+        /**
+         *  onMouseOut callback function: ( e ) => { ... }
+         */
+        onMouseOut  : PropTypes.func,
+        /**
+         *  onMouseOver callback function: ( e ) => { ... }
+         */
+        onMouseOver : PropTypes.func,
+        /**
+         *  Show “on/off” label text
+         */
+        showLabel   : PropTypes.bool,
+        /**
+         * HTML value attribute
+         */
+        value       : PropTypes.string
     };
 
     static defaultProps =
@@ -72,13 +88,17 @@ export default class Switch extends Component
             className,
             cssMap,
             forceHover,
-            onChange,
             isChecked,
             isDisabled,
             isReadOnly,
             name,
-            onLabel,
             offLabel,
+            onBlur,
+            onChange,
+            onFocus,
+            onLabel,
+            onMouseOut,
+            onMouseOver,
             showLabel,
             value } = this.props;
 
@@ -91,19 +111,24 @@ export default class Switch extends Component
                     disabled    : isDisabled,
                     fakeHovered : !isDisabled && forceHover
                 } }>
-                <div className = { className }>
+                <div
+                    className    = { className }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }>
                     <input
                         type         = "checkbox"
                         name         = { name }
                         id           = { id }
                         className    = { cssMap.input }
                         defaultValue = { value }
+                        onBlur       = { onBlur }
                         onChange     = { !isReadOnly && onChange }
+                        onFocus      = { onFocus }
                         checked      = { isChecked }
                         disabled     = { isDisabled || isReadOnly } />
                     <label
-                        htmlFor   = { id }
-                        className = { cssMap.label }>
+                        htmlFor      = { id }
+                        className    = { cssMap.label }>
                         <div className = { cssMap.on }>
                             { showLabel && onLabel }
                         </div>

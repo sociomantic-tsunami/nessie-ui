@@ -28,6 +28,11 @@ export default class Slider extends Component
         */
         hasError              : PropTypes.bool,
         /**
+        *  Callback that receives ref to native input; or array of refs to
+        *  native inputs
+        */
+        inputRef              : PropTypes.func,
+        /**
         *  Tooltip message text (string or JSX)
         */
         errorMessage          : PropTypes.node,
@@ -202,11 +207,73 @@ export default class Slider extends Component
         this.handleBlur      = this.handleBlur.bind( this );
         this.handleClick     = this.handleClick.bind( this );
         this.handleFocus     = this.handleFocus.bind( this );
-        this.handleMouseDown = this.handleMouseDown.bind( this );
-        this.handleMouseMove = this.handleMouseMove.bind( this );
-        this.handleMouseUp   = this.handleMouseUp.bind( this );
+        this.handleDown = this.handleDown.bind( this );
+        this.handleMove = this.handleMove.bind( this );
+        this.handleUp   = this.handleUp.bind( this );
     }
 
+    componentDidMount()
+    {
+        this.attachInputRefs();
+    }
+
+    componentWillUpdate( nextProps )
+    {
+        if ( nextProps.inputRef !== this.props.inputRef )
+        {
+            this.detachInputRefs();
+        }
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        const { props } = this;
+
+        if ( prevProps.inputRef !== props.inputRef ||
+            prevProps.value.length !== props.value.length )
+        {
+            this.attachInputRefs();
+        }
+    }
+
+    componentWillUnmount()
+    {
+        this.detachInputRefs();
+    }
+
+    /* eslint-disable react/sort-comp */
+    attachInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            const inputs = Array.from( this.inputContainer.childNodes );
+
+            if ( inputs.length === 1 )
+            {
+                inputRef( inputs[ 0 ] );
+            }
+            else if ( inputs.length > 1 )
+            {
+                inputRef( inputs );
+            }
+            else
+            {
+                inputRef( null );
+            }
+        }
+    }
+
+    detachInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            inputRef( null );
+        }
+    }
 
     /**
     * Generate track fill style object depending on input values
@@ -432,7 +499,7 @@ export default class Slider extends Component
     * Updates target input with new value from the mouse down on track position
     * @param {Event}  event   event being passed
     */
-    handleMouseDown( event )
+    handleDown( event )
     {
         const { onMouseDown } = this.props;
 
@@ -447,19 +514,22 @@ export default class Slider extends Component
             return;
         }
 
-        event.preventDefault();
-
         const { index } = event.target.dataset;
 
         if ( event.target.dataset.index ) // target is handle
         {
-            event.stopPropagation();
             this.setTargetInput( index );
+
+            addEventListener( event.type === 'touchstart' ?
+                'touchmove' : 'mousemove', this.handleMove );
+            addEventListener( event.type === 'touchstart' ?
+                'touchend' : 'mouseup', this.handleUp );
         }
         else // target is track
         {
-            const { clientX, clientY } = event;
+            if ( event.type === 'touchstart' ) return;
 
+            const { clientX, clientY } = event;
             const newValue = this.getStep( this.getValue( clientX, clientY ) );
 
             this.setTargetInput();
@@ -467,9 +537,6 @@ export default class Slider extends Component
         }
 
         this.focusTargetInput();
-
-        addEventListener( 'mousemove', this.handleMouseMove );
-        addEventListener( 'mouseup', this.handleMouseUp );
     }
 
 
@@ -477,9 +544,14 @@ export default class Slider extends Component
     * Updates target input with new value from handle position
     * @param {Event}  event   event being passed
     */
-    handleMouseMove( event )
+    handleMove( event )
     {
-        const { clientX, clientY } = event;
+        let { clientX, clientY } = event;
+        if ( event.touches )
+        {
+            clientX  = event.touches[ 0 ].clientX;
+            clientY  = event.touches[ 0 ].clientY;
+        }
 
         const newValue = this.getStep( this.getValue( clientX, clientY ) );
         this.setTargetInputValue( newValue );
@@ -490,7 +562,7 @@ export default class Slider extends Component
     *  Removes mouseMove and mouseUp listeners
     *  @param {Event}   event   event being passed
     */
-    handleMouseUp( event = new Event( 'mouseup' ) )
+    handleUp( event = new Event( 'mouseup' ) )
     {
         const { onMouseUp } = this.props;
 
@@ -499,8 +571,10 @@ export default class Slider extends Component
             onMouseUp( event );
         }
 
-        removeEventListener( 'mousemove', this.handleMouseMove );
-        removeEventListener( 'mouseup', this.handleMouseUp );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchmove' : 'mousemove', this.handleMove );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchend' : 'mouseup', this.handleUp );
     }
 
 
@@ -759,10 +833,11 @@ export default class Slider extends Component
                                 stepLabelsTrack }
                         <div
                             aria-hidden
-                            className   = { cssMap.track }
-                            ref         = { this.setTrackRef }
-                            onClick     = { this.handleClick }
-                            onMouseDown = { this.handleMouseDown }>
+                            className    = { cssMap.track }
+                            ref          = { this.setTrackRef }
+                            onClick      = { this.handleClick }
+                            onMouseDown  = { this.handleDown }
+                            onTouchStart = { this.handleDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>

@@ -67,6 +67,10 @@ export default class InputField extends Component
          */
         onChange     : PropTypes.func,
         /**
+         *  Input click callback function
+         */
+        onClick      : PropTypes.func,
+        /**
          *  Input focus callback function
          */
         onFocus      : PropTypes.func,
@@ -137,6 +141,7 @@ deprecated. Please use onChange instead.` );
             onBlur,
             onInput,
             onChange,
+            onClick,
             onFocus,
             onKeyDown,
             onKeyPress,
@@ -171,6 +176,7 @@ deprecated. Please use onChange instead.` );
                 name         = { name }
                 onBlur       = { onBlur }
                 onChange     = { onChange || onInput }
+                onClick      = { onClick }
                 onFocus      = { onFocus }
                 onKeyDown    = { onKeyDown }
                 onKeyPress   = { onKeyPress }

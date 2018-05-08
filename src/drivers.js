@@ -6,8 +6,11 @@ import {
     CheckboxGroup,
     CodeEditor,
     Column,
+    ComboBox,
+    DatePicker,
     DateTimeInput,
     DragNDrop,
+    Dropdown,
     Fieldset,
     FlounderDropdown,
     Form,
@@ -21,6 +24,7 @@ import {
     IconWithTooltip,
     InputField,
     Label,
+    ListBox,
     MessageBox,
     ModalDialog,
     Module,
@@ -71,6 +75,8 @@ import CheckboxDriver       from './Checkbox/driver';
 import ClickableComponentDriver
     from './Testing/CommonDrivers/clickableComponentDriver';
 import CodeEditorDriver       from './CodeEditor/driver';
+import ComboBoxDriver         from './ComboBox/driver';
+import DatePickerDriver       from './DatePicker/driver';
 import DateTimeInputDriver    from './DateTimeInput/driver';
 import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
@@ -79,6 +85,7 @@ import IconDriver             from './Icon/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
 import InputComponentDriver
     from './Testing/CommonDrivers/inputComponentDriver';
+import ListBoxDriver         from './ListBox/driver';
 import ModalDialogDriver     from './ModalDialog/driver';
 import ModuleDriver          from './Module/driver';
 import NavItemDriver         from './NavItem/driver';
@@ -131,11 +138,23 @@ const drivers =
         Driver    : GridColumnDriver,
     },
     {
+        Component : ComboBox,
+        Driver    : ComboBoxDriver,
+    },
+    {
+        Component : DatePicker,
+        Driver    : DatePickerDriver
+    },
+    {
         Component : DateTimeInput,
         Driver    : DateTimeInputDriver
     },
     {
         Component : DragNDrop,
+        Driver    : WrapperDriver
+    },
+    {
+        Component : Dropdown,
         Driver    : WrapperDriver
     },
     {
@@ -189,6 +208,10 @@ const drivers =
     {
         Component : Label,
         Driver    : WrapperDriver,
+    },
+    {
+        Component : ListBox,
+        Driver    : ListBoxDriver,
     },
     {
         Component : MessageBox,
