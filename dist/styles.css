@@ -529,1347 +529,6 @@ a:hover, a:active
 {
     display:    none !important;
 }
-.inputContainer__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .inputContainer__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
-.inputContainer__default
-{
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    font:           inherit;
-    line-height:    inherit;
-}
-.inputContainer__default .inputContainer__container
-    {
-        -webkit-box-flex:       1;
-        -webkit-flex:       1 1 auto;
-            -ms-flex:       1 1 auto;
-                flex:       1 1 auto;
-        min-width:  0;
-    }
-.inputContainer__default .inputContainer__label
-    {
-        -webkit-box-flex:   0;
-        -webkit-flex:   0 0 auto;
-            -ms-flex:   0 0 auto;
-                flex:   0 0 auto;
-    }
-.inputContainer__labelPosition__top
-{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-}
-.inputContainer__labelPosition__top .inputContainer__label
-    {
-        -webkit-align-self: flex-start;
-            -ms-flex-item-align: start;
-                align-self: flex-start;
-    }
-.inputContainer__labelPosition__left, .inputContainer__labelPosition__right
-{
-    -webkit-box-align:    center;
-    -webkit-align-items:    center;
-        -ms-flex-align:    center;
-            align-items:    center;
-}
-.inputContainer__labelPosition__left > *, .inputContainer__labelPosition__right > *
-    {
-        margin-bottom:  0;
-    }
-.inputContainer__labelPosition__left .inputContainer__label, .inputContainer__labelPosition__right .inputContainer__label
-    {
-        max-width:  50%;
-    }
-.inputContainer__labelPosition__left > .inputContainer__container
-    {
-        margin-left:   1rem;
-    }
-.inputContainer__labelPosition__right
-{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -webkit-flex-direction: row-reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
-}
-.inputContainer__labelPosition__right > .inputContainer__container
-    {
-        margin-right:   1rem;
-    }
-.text__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .text__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
-.text__default
-{
-    top:            0.5rem;
-
-    width:          auto;
-
-    margin:         0;
-    margin-top:     -0.8rem;
-
-    margin-bottom:  1rem;
-}
-.text__default .text__default
-    {
-        display:    inline;
-        position:   static;
-    }
-.text__noWrap
-{
-    white-space: nowrap;
-}
-.text__role__default
-{
-    color:  #283237;
-}
-.text__role__subtle
-{
-    color:  #96a3aa;
-}
-.text__role__promoted
-{
-    color:  #23a59b;
-}
-.text__role__critical
-{
-    color:  #f55f69;
-}
-.text__overflowHidden
-{
-    overflow:       hidden;
-    word-wrap:  normal;
-    text-overflow:  ellipsis;
-}
-.label__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .label__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
-.label__default
-{
-    font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-}
-.label__default
-{
-    display:        block;
-    margin-bottom:  1rem;
-
-    width:          auto;
-
-    white-space:    nowrap;
-}
-.label__default[for]
-    {
-        cursor: pointer;
-    }
-legend.label__default /* fix for buggy <legend> element */
-    {
-        float:  left;
-    }
-legend.label__default + *
-        {
-            clear: left;
-        }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-
-.icon__default
-{
-    display:                block;
-    background-repeat:      no-repeat;
-    background-position:    center;
-}
-
-.icon__size__S
-{
-    width:                  1.6rem;
-    height:                 1.6rem;
-}
-
-.icon__size__M
-{
-    width:                  2.4rem;
-    height:                 2.4rem;
-}
-
-.icon__size__L
-{
-    width:                  3.2rem;
-    height:                 3.2rem;
-}
-
-.icon__size__XL
-{
-    width:                  4rem;
-    height:                 4rem;
-}
-
-.icon__size__XXL
-{
-    width:                  4.8rem;
-    height:                 4.8rem;
-}
-
-.icon__theme__control
-{
-    fill:                       #414B55;
-}
-
-.icon__theme__control:hover, .icon__theme__control.icon__fakeHovered, button:focus > .icon__theme__control
-    {
-        fill:                   #289bc8;
-    }
-
-.icon__theme__button
-{
-    fill:                       #ffffff;
-    color:                      #ffffff;
-}
-
-.icon__theme__light, .icon__theme__dark, .icon__theme__navigation
-{
-    fill:                       rgba(65, 75, 85, 0.5);
-}
-
-.icon__theme__light:hover, .icon__theme__light.icon__fakeHovered, button:focus > .icon__theme__light
-    {
-        fill:                   #289bc8;
-    }
-
-.icon__theme__dark:hover, .icon__theme__dark.icon__fakeHovered, button:focus > .icon__theme__dark
-    {
-        fill:                   #ffffff;
-    }
-
-.icon__theme__navigation:hover, .icon__theme__navigation.icon__fakeHovered, button:focus > .icon__theme__navigation
-    {
-        fill:                   #414B55;
-    }
-
-:not(.icon__theme__button).icon__type__alert
-    {
-        color:                       #ffb464;
-    }
-
-:not(.icon__theme__button).icon__type__approved
-    {
-        color:                       #23a59b;
-    }
-
-:not(.icon__theme__button).icon__type__declined, :not(.icon__theme__button).icon__type__error
-    {
-        color:                       #f55f69;
-    }
-
-:not(.icon__theme__button).icon__type__ended
-    {
-        color:                       #414B55;
-    }
-
-:not(.icon__theme__button).icon__type__info
-    {
-        color:                       #96A3AA;
-    }
-
-:not(.icon__theme__button).icon__type__pending
-    {
-        color:                       #ff9164;
-    }
-
-:not(.icon__theme__button).icon__type__validation
-    {
-        fill:                        #23a59b;
-    }
-
-.icon__disabled:not(.icon__theme__button)
-{
-    pointer-events:                 none;
-    fill:                           #D2D7D9;
-    color:                          #D2D7D9;
-}
-
-.icon__type__account
-    {
-    }
-
-.icon__type__add
-    {
-    }
-
-.icon__type__calendar
-    {
-    }
-
-.icon__type__close
-    {
-    }
-
-.icon__type__delete
-    {
-    }
-
-.icon__type__down
-    {
-    }
-
-.icon__type__download
-    {
-    }
-
-.icon__type__duplicate
-    {
-    }
-
-.icon__type__edit
-    {
-    }
-
-.icon__type__info
-    {
-    }
-
-.icon__type__inspect
-    {
-    }
-
-.icon__type__left
-    {
-    }
-
-.icon__type__link
-    {
-    }
-
-.icon__type__preview
-    {
-    }
-
-.icon__type__reset
-    {
-    }
-
-.icon__type__right
-    {
-    }
-
-.icon__type__search
-    {
-    }
-
-.icon__type__up
-    {
-    }
-
-.icon__type__upload
-    {
-    }
-
-.icon__type__validation
-    {
-    }
-
-.icon__type__show
-    {
-    }
-
-.icon__type__hide
-    {
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
-
-.tooltip__message
-{
-    font-family: Nessie-Regular, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-}
-
-:root
-{ /* 5px */ /* 5px */
-}
-
-.tooltip__default
-{
-    position:       relative;
-    display:        inline-block;
-
-    max-width:      100%;
-}
-
-.tooltip__tooltip
-{
-    display:            block;
-    position:           absolute;
-
-    width:              auto;
-
-    margin-bottom:      0;
-
-    border:             0.1rem solid rgba(65, 75, 85, 0.5);
-    padding:            2rem;
-
-    background-color:   #ffffff;
-
-    z-index:            100;
-}
-
-.tooltip__tooltip::before
-    {
-        content:            "";
-        position:           absolute;
-        -webkit-box-sizing:         border-box;
-                box-sizing:         border-box;
-    }
-
-.tooltip__tooltip::after
-    {
-        content:            "";
-        position:           absolute;
-        -webkit-box-sizing:         border-box;
-                box-sizing:         border-box;
-
-        width:              1rem;
-        height:             1rem;
-
-        border:             0.1rem solid rgba(65, 75, 85, 0.5);
-
-        background-color:   #ffffff;
-
-        -webkit-transform:          rotate( 45deg );
-
-                transform:          rotate( 45deg );
-    }
-
-.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
-        {
-            left:   -0.1rem;
-            width:  calc(100% + 0.2rem);
-            height: 1.2rem;
-        }
-
-.tooltip__position__top .tooltip__tooltip, .tooltip__position__bottom .tooltip__tooltip
-    {
-        left:   50%;
-    }
-
-.tooltip__position__top .tooltip__tooltip::after, .tooltip__position__bottom .tooltip__tooltip::after
-        {
-            right:  calc(50% - 0.5rem);
-        }
-
-.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before
-        {
-            bottom: -1.3rem;
-        }
-
-.tooltip__position__top .tooltip__tooltip
-    {
-        top:        0;
-        -webkit-transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
-                transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
-    }
-
-.tooltip__position__top .tooltip__tooltip::after
-        {
-            bottom:         -0.6rem;
-            border-top:     none;
-            border-left:    none;
-        }
-
-.tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
-        {
-            top:    -1.3rem;
-        }
-
-.tooltip__position__bottom .tooltip__tooltip
-    {
-        bottom:     0;
-        -webkit-transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
-                transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
-    }
-
-.tooltip__position__bottom .tooltip__tooltip::after
-        {
-            top:            -0.6rem;
-
-            border-bottom:  none;
-            border-right:   none;
-        }
-
-.tooltip__position__left .tooltip__tooltip, .tooltip__position__right .tooltip__tooltip
-    {
-        top:    50%;
-    }
-
-.tooltip__position__left .tooltip__tooltip::before, .tooltip__position__right .tooltip__tooltip::before
-        {
-            top:    -0.1rem;
-            width:  1.2rem;
-            height: calc(100% + 0.2rem);
-        }
-
-.tooltip__position__left .tooltip__tooltip::after, .tooltip__position__right .tooltip__tooltip::after
-        {
-            top:         calc(50% - 0.6rem);
-        }
-
-.tooltip__position__left .tooltip__tooltip
-    {
-        top:        50%;
-        left:       0;
-
-        -webkit-transform:  translateX(-100%) translateX( -1.1rem  ) translateY( -50% );
-
-                transform:  translateX(-100%) translateX( -1.1rem  ) translateY( -50% );
-    }
-
-.tooltip__position__left .tooltip__tooltip::before
-        {
-            right:  -1.2rem;
-        }
-
-.tooltip__position__left .tooltip__tooltip::after
-        {
-            right:          -0.6rem;
-            top:            calc(50% - 0.5rem);
-
-            border-bottom:  none;
-            border-left:    none;
-        }
-
-.tooltip__position__right .tooltip__tooltip
-    {
-        top:        50%;
-        right:      0;
-
-        -webkit-transform:  translateX(100%) translateX( 1.1rem  ) translateY( -50% );
-
-                transform:  translateX(100%) translateX( 1.1rem  ) translateY( -50% );
-    }
-
-.tooltip__position__right .tooltip__tooltip::before
-        {
-            left:   -1.2rem;
-        }
-
-.tooltip__position__right .tooltip__tooltip::after
-        {
-            top:            calc(50% - 0.5rem);
-            left:           -0.6rem;
-            border-top:     none;
-            border-right:   none;
-        }
-
-.tooltip__position__topLeft .tooltip__tooltip, .tooltip__position__topRight .tooltip__tooltip
-    {
-        top:    0;
-        left:   50%;
-    }
-
-.tooltip__position__topLeft .tooltip__tooltip::after, .tooltip__position__topRight .tooltip__tooltip::after
-        {
-            bottom:         -0.6rem;
-            border-top:     none;
-            border-left:    none;
-        }
-
-.tooltip__position__bottomLeft .tooltip__tooltip, .tooltip__position__bottomRight .tooltip__tooltip
-    {
-        bottom:     0;
-        left:       50%;
-    }
-
-.tooltip__position__bottomLeft .tooltip__tooltip::after, .tooltip__position__bottomRight .tooltip__tooltip::after
-        {
-            top:         -0.6rem;
-            right:       calc(50% - 0.5rem);
-
-            border-bottom:  none;
-            border-right:   none;
-        }
-
-.tooltip__position__topLeft .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -100% ) translateX( 2.6rem ) translateY( -100% ) translateY( -1.2rem );
-                transform:  translateX( -100% ) translateX( 2.6rem ) translateY( -100% ) translateY( -1.2rem );
-    }
-
-.tooltip__position__topLeft .tooltip__tooltip::after
-        {
-            right:  2rem;
-        }
-
-.tooltip__position__topRight .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
-                transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
-    }
-
-.tooltip__position__topRight .tooltip__tooltip::after
-        {
-            left:   2rem;
-        }
-
-.tooltip__position__bottomLeft .tooltip__tooltip
-    {
-        -webkit-transform: translateX( -100% ) translateX( 2.6rem ) translateY( 100% ) translateY( 1.2rem );
-                transform: translateX( -100% ) translateX( 2.6rem ) translateY( 100% ) translateY( 1.2rem );
-    }
-
-.tooltip__position__bottomLeft .tooltip__tooltip::after
-        {
-            right:  2rem;
-        }
-
-.tooltip__position__bottomRight .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
-                transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
-    }
-
-.tooltip__position__bottomRight .tooltip__tooltip::after
-        {
-            left:  2rem;
-        }
-
-.tooltip__message
-{
-    position:           relative;
-    top:                0.4rem;
-
-    margin-top:         -0.7rem;
-    margin-right:       auto;
-    margin-left:        auto;
-
-    white-space:        nowrap;
-
-    /* reset the font and pointer so we don’t inherit from parent ...*/
-
-    color:              #414B55;
-
-    font-size:          1.2rem;
-    line-height:        1.6rem;
-    letter-spacing:     0.02rem;
-    font-weight:        normal;
-    text-transform:     none;
-    text-align:         left;
-
-    cursor:             default;
-}
-
-.tooltip__content
-{
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-}
-
-.iconWithTooltip__default
-{
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-align:    center;
-    -webkit-align-items:    center;
-        -ms-flex-align:    center;
-            align-items:    center;
-
-    position:       relative;
-
-    max-width:      100%;
-
-    font:           inherit;
-    line-height:    inherit;
-
-    margin-bottom:  2rem;
-}
-
-    .iconWithTooltip__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.iconWithTooltip__iconVisible > .iconWithTooltip__iconWithTooltip
-    {
-        display:    block;
-    }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__right, .iconWithTooltip__iconVisible.iconWithTooltip__position__left
-    {
-        -webkit-box-pack:    start;
-        -webkit-justify-content:    flex-start;
-            -ms-flex-pack:    start;
-                justify-content:    flex-start;
-    }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content, .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
-        {
-            -webkit-box-flex:           0;
-            -webkit-flex:           0 1 auto;
-                -ms-flex:           0 1 auto;
-                    flex:           0 1 auto;
-            max-width:      100%;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content + .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content + .iconWithTooltip__iconWithTooltip
-        {
-            position:       relative;
-            margin-top:     -50%;
-            margin-bottom:  -50%;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__left
-    {
-        -webkit-box-orient:     horizontal;
-        -webkit-box-direction:     reverse;
-        -webkit-flex-direction:     row-reverse;
-            -ms-flex-direction:     row-reverse;
-                flex-direction:     row-reverse;
-        -webkit-box-pack:    end;
-        -webkit-justify-content:    flex-end;
-            -ms-flex-pack:    end;
-                justify-content:    flex-end;
-    }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
-        {
-            margin-left:    1rem;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content
-        {
-            margin-right:   1rem;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
-        {
-            position:   absolute;
-            top:        -1.2rem;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip
-        {
-            right:  -1.2rem;
-        }
-
-.iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
-        {
-            left:   -1.2rem;
-        }
-
-.iconWithTooltip__content
-{
-    -webkit-box-flex:                1;
-    -webkit-flex:                1 1 auto;
-        -ms-flex:                1 1 auto;
-            flex:                1 1 auto;
-    max-width:           100%;
-    min-width:           0;
-}
-
-.iconWithTooltip__iconWithTooltip
-{
-    display:            none;
-    -webkit-box-flex:               0;
-    -webkit-flex:               0 0 auto;
-        -ms-flex:               0 0 auto;
-            flex:               0 0 auto;
-}
-.textInputWithIcon__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .textInputWithIcon__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.textInputWithIcon__default
-{
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align:    center;
-    -webkit-align-items:    center;
-        -ms-flex-align:    center;
-            align-items:    center;
-}
-
-.textInputWithIcon__default .textInputWithIcon__input
-    {
-        -webkit-box-flex:           1;
-        -webkit-flex:           1 1 auto;
-            -ms-flex:           1 1 auto;
-                flex:           1 1 auto;
-        min-width:      0;
-        margin-bottom:  0;
-    }
-
-.textInputWithIcon__icon
-{
-    position:   absolute;
-    top:        50%;
-    -webkit-transform:  translateY( -50% );
-            transform:  translateY( -50% );
-}
-
-.textInputWithIcon__position__left .textInputWithIcon__input
-    {
-        padding-left:    3.6rem
-    }
-
-.textInputWithIcon__position__left .textInputWithIcon__icon
-    {
-        left:   1.1rem;
-    }
-
-.textInputWithIcon__position__right .textInputWithIcon__input
-    {
-        padding-right:    3.6rem
-    }
-
-.textInputWithIcon__position__right .textInputWithIcon__icon
-    {
-        right:   1.1rem;
-    }
-.inputField__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .inputField__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.inputField__default
-{
-    display:            block;
-
-    -webkit-box-sizing:         border-box;
-
-            box-sizing:         border-box;
-    width:              100%;
-
-    border:             0.1rem solid rgba(65, 75, 85, 0.5);
-
-    padding-top:        0.8rem;
-    padding-bottom:     0.6rem;
-    padding-left:       1rem;
-    padding-right:      1rem;
-
-    background-color:   #ffffff;
-    color:              #414B55;
-
-    /* make sure we inherit all font styles */
-    font:               inherit;
-    line-height:        inherit;
-}
-/* removes clear and reveal password icons from IE */
-.inputField__default::-ms-reveal
-    {
-        display: none;
-    }
-.inputField__default::-ms-clear
-    {
-        display: none;
-    }
-.inputField__default::-webkit-input-placeholder
-    {
-        color:  rgba(65, 75, 85, 0.5);
-    }
-.inputField__default:-ms-input-placeholder
-    {
-        color:  rgba(65, 75, 85, 0.5);
-    }
-.inputField__default::placeholder
-    {
-        color:  rgba(65, 75, 85, 0.5);
-    }
-.inputField__default:hover, .inputField__default:focus
-    {
-        border-color:   #289bc8;
-    }
-.inputField__default:focus
-    {
-        outline:    none;
-    }
-.inputField__default:focus::-webkit-input-placeholder
-        {
-            color: transparent !important;
-        }
-.inputField__default:focus:-ms-input-placeholder
-        {
-            color: transparent !important;
-        }
-.inputField__default:focus::placeholder
-        {
-            color: transparent !important;
-        }
-textarea.inputField__default
-    {
-        resize: none;
-    }
-.inputField__fakeHovered
-{
-    border-color:   #289bc8;
-}
-.inputField__error
-{
-    border-color:   #f55f69 !important; /* yes, always override other states */
-}
-.inputField__disabled
-{
-    background:     #F0F0F0;
-    color:          rgba(65, 75, 85, 0.5);
-    border-color:   #F0F0F0;
-}
-.inputField__disabled:hover, .inputField__disabled:focus
-    {
-        border-color:   #F0F0F0;
-    }
-.inputField__align__left
-{
-    text-align: left;
-}
-.inputField__align__right
-{
-    text-align: right;
-}
-textarea.inputField__resizable
-    {
-        resize: vertical;
-    }
-.iconButton__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .iconButton__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.iconButton__default
-{
-    display:    -webkit-box;
-    display:    -webkit-flex;
-    display:    -ms-flexbox;
-    display:    flex;
-    -webkit-appearance: none !important;
-       -moz-appearance: none !important;
-            appearance: none !important;
-
-    width:      auto;
-
-    margin:     0;
-    border:     none;
-    padding:    0;
-
-    background: transparent;
-    cursor:     pointer;
-}
-
-.iconButton__default:focus
-    {
-        outline:    none;
-    }
-
-.iconButton__default .iconButton__icon
-    {
-        -webkit-box-flex:   0;
-        -webkit-flex:   none;
-            -ms-flex:   none;
-                flex:   none;
-    }
-
-.iconButton__disabled
-{
-    cursor:         default;
-    pointer-events: none;
-}
-.withDropdown__default
-{
-    position:   relative;
-}
-
-    .withDropdown__default .withDropdown__dropdown
-    {
-        position:   absolute;
-        left:       0;
-        z-index:    9999;
-    }
-
-    .withDropdown__default:not(.withDropdown__open) .withDropdown__dropdown
-        {
-            display:    none;
-        }
-
-    .withDropdown__default > *
-    {
-        margin-bottom:  0;
-    }
-
-
-.withDropdown__position__bottom .withDropdown__dropdown
-    {
-        bottom:     0;
-        -webkit-transform:  translateY( 100% ) translateY( -0.1rem );
-                transform:  translateY( 100% ) translateY( -0.1rem );
-    }
-
-
-.withDropdown__position__top .withDropdown__dropdown
-    {
-        top:        0;
-        -webkit-transform:  translateY( -100% ) translateY( 0.1rem );
-                transform:  translateY( -100% ) translateY( 0.1rem );
-    }
-.dropdown__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .dropdown__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.dropdown__default
-{
-    min-width:  0;
-    max-width:  none;
-
-    border:     0.1rem solid #289bc8;
-    -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
-            box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
-
-    background: #ffffff;
-}
-.dropdown__error
-{
-    border-color:   #e64b6e;
-}
-.dropdown__padding__S
-{
-    padding:    1rem;
-}
-.dropdown__padding__M
-{
-    padding:    2rem;
-}
-.dropdown__padding__L
-{
-    padding:    3rem;
-}
-.dropdown__size__default
-{
-    width: 100%;
-}
-.dropdown__size__content
-{
-    width: auto;
-}
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-
-.timeInput__default
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-    position:           relative;
-
-    font-size:          1.2rem;
-    line-height:        1.6rem;
-    text-align:         center;
-    color:              rgb(160, 165, 170);
-
-    width:              12rem;
-    margin:             2rem auto 0;
-
-    padding-top:        0.8rem;
-    padding-bottom:     0.6rem;
-
-    border-width:       0.1rem;
-    border-style:       solid;
-    border-color:       rgb(160, 165, 170);
-    border-radius:      2rem;
-    -webkit-box-sizing:         border-box;
-            box-sizing:         border-box;
-}
-
-.timeInput__default:hover, .timeInput__default.timeInput__fakeHovered
-    {
-        border-color:   #289bc8;
-    }
-
-.timeInput__default .timeInput__hour, .timeInput__default .timeInput__min
-    {
-        padding:        0;
-        border:         0;
-        width:          3rem;
-        text-align:     center;
-
-        font:           inherit;
-        line-height:    inherit;
-    }
-
-.timeInput__default .timeInput__hour:fakeHovered, .timeInput__default .timeInput__hour:hover, .timeInput__default .timeInput__hour:focus, .timeInput__default .timeInput__min:fakeHovered, .timeInput__default .timeInput__min:hover, .timeInput__default .timeInput__min:focus
-        {
-            color:  #414B55;
-        }
-
-.timeInput__default .timeInput__hour:focus, .timeInput__default .timeInput__min:focus
-        {
-            outline:    none;
-        }
-
-.timeInput__default .timeInput__hour::-webkit-input-placeholder, .timeInput__default .timeInput__min::-webkit-input-placeholder
-        {
-            font:           inherit;
-            line-height:    inherit;
-        }
-
-.timeInput__default .timeInput__hour:-ms-input-placeholder, .timeInput__default .timeInput__min:-ms-input-placeholder
-        {
-            font:           inherit;
-            line-height:    inherit;
-        }
-
-.timeInput__default .timeInput__hour::placeholder, .timeInput__default .timeInput__min::placeholder
-        {
-            font:           inherit;
-            line-height:    inherit;
-        }
-
-.timeInput__default span
-    {
-        -webkit-user-select:    none;
-           -moz-user-select:    none;
-            -ms-user-select:    none;
-                user-select:    none;
-    }
 .animate__default
 {
 
@@ -2242,6 +901,221 @@ textarea.inputField__resizable
     -webkit-animation: animate__slideOutUp 1000ms;
             animation: animate__slideOutUp 1000ms;
 }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+.icon__default
+{
+    display:                block;
+    background-repeat:      no-repeat;
+    background-position:    center;
+}
+
+.icon__size__S
+{
+    width:                  1.6rem;
+    height:                 1.6rem;
+}
+
+.icon__size__M
+{
+    width:                  2.4rem;
+    height:                 2.4rem;
+}
+
+.icon__size__L
+{
+    width:                  3.2rem;
+    height:                 3.2rem;
+}
+
+.icon__size__XL
+{
+    width:                  4rem;
+    height:                 4rem;
+}
+
+.icon__size__XXL
+{
+    width:                  4.8rem;
+    height:                 4.8rem;
+}
+
+.icon__theme__control
+{
+    fill:                       #414B55;
+}
+
+.icon__theme__control:hover, .icon__theme__control.icon__fakeHovered, button:focus > .icon__theme__control
+    {
+        fill:                   #289bc8;
+    }
+
+.icon__theme__button
+{
+    fill:                       #ffffff;
+    color:                      #ffffff;
+}
+
+.icon__theme__light, .icon__theme__dark, .icon__theme__navigation
+{
+    fill:                       rgba(65, 75, 85, 0.5);
+}
+
+.icon__theme__light:hover, .icon__theme__light.icon__fakeHovered, button:focus > .icon__theme__light
+    {
+        fill:                   #289bc8;
+    }
+
+.icon__theme__dark:hover, .icon__theme__dark.icon__fakeHovered, button:focus > .icon__theme__dark
+    {
+        fill:                   #ffffff;
+    }
+
+.icon__theme__navigation:hover, .icon__theme__navigation.icon__fakeHovered, button:focus > .icon__theme__navigation
+    {
+        fill:                   #414B55;
+    }
+
+:not(.icon__theme__button).icon__type__alert
+    {
+        color:                       #ffb464;
+    }
+
+:not(.icon__theme__button).icon__type__approved
+    {
+        color:                       #23a59b;
+    }
+
+:not(.icon__theme__button).icon__type__declined, :not(.icon__theme__button).icon__type__error
+    {
+        color:                       #f55f69;
+    }
+
+:not(.icon__theme__button).icon__type__ended
+    {
+        color:                       #414B55;
+    }
+
+:not(.icon__theme__button).icon__type__info
+    {
+        color:                       #96A3AA;
+    }
+
+:not(.icon__theme__button).icon__type__pending
+    {
+        color:                       #ff9164;
+    }
+
+:not(.icon__theme__button).icon__type__validation
+    {
+        fill:                        #23a59b;
+    }
+
+.icon__disabled:not(.icon__theme__button)
+{
+    pointer-events:                 none;
+    fill:                           #D2D7D9;
+    color:                          #D2D7D9;
+}
+
+.icon__type__account
+    {
+    }
+
+.icon__type__add
+    {
+    }
+
+.icon__type__calendar
+    {
+    }
+
+.icon__type__close
+    {
+    }
+
+.icon__type__delete
+    {
+    }
+
+.icon__type__down
+    {
+    }
+
+.icon__type__download
+    {
+    }
+
+.icon__type__duplicate
+    {
+    }
+
+.icon__type__edit
+    {
+    }
+
+.icon__type__info
+    {
+    }
+
+.icon__type__inspect
+    {
+    }
+
+.icon__type__left
+    {
+    }
+
+.icon__type__link
+    {
+    }
+
+.icon__type__preview
+    {
+    }
+
+.icon__type__reset
+    {
+    }
+
+.icon__type__right
+    {
+    }
+
+.icon__type__search
+    {
+    }
+
+.icon__type__up
+    {
+    }
+
+.icon__type__upload
+    {
+    }
+
+.icon__type__validation
+    {
+    }
+
+.icon__type__show
+    {
+    }
+
+.icon__type__hide
+    {
+    }
 .spinner__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -2875,6 +1749,560 @@ textarea.inputField__resizable
 
             border-top-color:   #ffffff;
         }
+.text__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .text__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+.text__default
+{
+    top:            0.5rem;
+
+    width:          auto;
+
+    margin:         0;
+    margin-top:     -0.8rem;
+
+    margin-bottom:  1rem;
+}
+.text__default .text__default
+    {
+        display:    inline;
+        position:   static;
+    }
+.text__noWrap
+{
+    white-space: nowrap;
+}
+.text__role__default
+{
+    color:  #283237;
+}
+.text__role__subtle
+{
+    color:  #96a3aa;
+}
+.text__role__promoted
+{
+    color:  #23a59b;
+}
+.text__role__critical
+{
+    color:  #f55f69;
+}
+.text__overflowHidden
+{
+    overflow:       hidden;
+    word-wrap:  normal;
+    text-overflow:  ellipsis;
+}
+.label__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .label__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+.label__default
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+.label__default
+{
+    display:        block;
+    margin-bottom:  1rem;
+
+    width:          auto;
+
+    white-space:    nowrap;
+}
+.label__default[for]
+    {
+        cursor: pointer;
+    }
+legend.label__default /* fix for buggy <legend> element */
+    {
+        float:  left;
+    }
+legend.label__default + *
+        {
+            clear: left;
+        }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+.tooltip__message
+{
+    font-family: Nessie-Regular, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root
+{ /* 5px */ /* 5px */
+}
+
+.tooltip__default
+{
+    position:       relative;
+    display:        inline-block;
+
+    max-width:      100%;
+}
+
+.tooltip__tooltip
+{
+    display:            block;
+    position:           absolute;
+
+    width:              auto;
+
+    margin-bottom:      0;
+
+    border:             0.1rem solid rgba(65, 75, 85, 0.5);
+    padding:            2rem;
+
+    background-color:   #ffffff;
+
+    z-index:            100;
+}
+
+.tooltip__tooltip::before
+    {
+        content:            "";
+        position:           absolute;
+        -webkit-box-sizing:         border-box;
+                box-sizing:         border-box;
+    }
+
+.tooltip__tooltip::after
+    {
+        content:            "";
+        position:           absolute;
+        -webkit-box-sizing:         border-box;
+                box-sizing:         border-box;
+
+        width:              1rem;
+        height:             1rem;
+
+        border:             0.1rem solid rgba(65, 75, 85, 0.5);
+
+        background-color:   #ffffff;
+
+        -webkit-transform:          rotate( 45deg );
+
+                transform:          rotate( 45deg );
+    }
+
+.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+        {
+            left:   -0.1rem;
+            width:  calc(100% + 0.2rem);
+            height: 1.2rem;
+        }
+
+.tooltip__position__top .tooltip__tooltip, .tooltip__position__bottom .tooltip__tooltip
+    {
+        left:   50%;
+    }
+
+.tooltip__position__top .tooltip__tooltip::after, .tooltip__position__bottom .tooltip__tooltip::after
+        {
+            right:  calc(50% - 0.5rem);
+        }
+
+.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before
+        {
+            bottom: -1.3rem;
+        }
+
+.tooltip__position__top .tooltip__tooltip
+    {
+        top:        0;
+        -webkit-transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
+                transform:  translateX(-50%) translateY( -100% ) translateY( -1.2rem );
+    }
+
+.tooltip__position__top .tooltip__tooltip::after
+        {
+            bottom:         -0.6rem;
+            border-top:     none;
+            border-left:    none;
+        }
+
+.tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+        {
+            top:    -1.3rem;
+        }
+
+.tooltip__position__bottom .tooltip__tooltip
+    {
+        bottom:     0;
+        -webkit-transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
+                transform:  translateX(-50%) translateY( 100% ) translateY( 1.2rem );
+    }
+
+.tooltip__position__bottom .tooltip__tooltip::after
+        {
+            top:            -0.6rem;
+
+            border-bottom:  none;
+            border-right:   none;
+        }
+
+.tooltip__position__left .tooltip__tooltip, .tooltip__position__right .tooltip__tooltip
+    {
+        top:    50%;
+    }
+
+.tooltip__position__left .tooltip__tooltip::before, .tooltip__position__right .tooltip__tooltip::before
+        {
+            top:    -0.1rem;
+            width:  1.2rem;
+            height: calc(100% + 0.2rem);
+        }
+
+.tooltip__position__left .tooltip__tooltip::after, .tooltip__position__right .tooltip__tooltip::after
+        {
+            top:         calc(50% - 0.6rem);
+        }
+
+.tooltip__position__left .tooltip__tooltip
+    {
+        top:        50%;
+        left:       0;
+
+        -webkit-transform:  translateX(-100%) translateX( -1.1rem  ) translateY( -50% );
+
+                transform:  translateX(-100%) translateX( -1.1rem  ) translateY( -50% );
+    }
+
+.tooltip__position__left .tooltip__tooltip::before
+        {
+            right:  -1.2rem;
+        }
+
+.tooltip__position__left .tooltip__tooltip::after
+        {
+            right:          -0.6rem;
+            top:            calc(50% - 0.5rem);
+
+            border-bottom:  none;
+            border-left:    none;
+        }
+
+.tooltip__position__right .tooltip__tooltip
+    {
+        top:        50%;
+        right:      0;
+
+        -webkit-transform:  translateX(100%) translateX( 1.1rem  ) translateY( -50% );
+
+                transform:  translateX(100%) translateX( 1.1rem  ) translateY( -50% );
+    }
+
+.tooltip__position__right .tooltip__tooltip::before
+        {
+            left:   -1.2rem;
+        }
+
+.tooltip__position__right .tooltip__tooltip::after
+        {
+            top:            calc(50% - 0.5rem);
+            left:           -0.6rem;
+            border-top:     none;
+            border-right:   none;
+        }
+
+.tooltip__position__topLeft .tooltip__tooltip, .tooltip__position__topRight .tooltip__tooltip
+    {
+        top:    0;
+        left:   50%;
+    }
+
+.tooltip__position__topLeft .tooltip__tooltip::after, .tooltip__position__topRight .tooltip__tooltip::after
+        {
+            bottom:         -0.6rem;
+            border-top:     none;
+            border-left:    none;
+        }
+
+.tooltip__position__bottomLeft .tooltip__tooltip, .tooltip__position__bottomRight .tooltip__tooltip
+    {
+        bottom:     0;
+        left:       50%;
+    }
+
+.tooltip__position__bottomLeft .tooltip__tooltip::after, .tooltip__position__bottomRight .tooltip__tooltip::after
+        {
+            top:         -0.6rem;
+            right:       calc(50% - 0.5rem);
+
+            border-bottom:  none;
+            border-right:   none;
+        }
+
+.tooltip__position__topLeft .tooltip__tooltip
+    {
+        -webkit-transform:  translateX( -100% ) translateX( 2.6rem ) translateY( -100% ) translateY( -1.2rem );
+                transform:  translateX( -100% ) translateX( 2.6rem ) translateY( -100% ) translateY( -1.2rem );
+    }
+
+.tooltip__position__topLeft .tooltip__tooltip::after
+        {
+            right:  2rem;
+        }
+
+.tooltip__position__topRight .tooltip__tooltip
+    {
+        -webkit-transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
+                transform:  translateX( -2.6rem ) translateY( -100% ) translateY( -1.2rem );
+    }
+
+.tooltip__position__topRight .tooltip__tooltip::after
+        {
+            left:   2rem;
+        }
+
+.tooltip__position__bottomLeft .tooltip__tooltip
+    {
+        -webkit-transform: translateX( -100% ) translateX( 2.6rem ) translateY( 100% ) translateY( 1.2rem );
+                transform: translateX( -100% ) translateX( 2.6rem ) translateY( 100% ) translateY( 1.2rem );
+    }
+
+.tooltip__position__bottomLeft .tooltip__tooltip::after
+        {
+            right:  2rem;
+        }
+
+.tooltip__position__bottomRight .tooltip__tooltip
+    {
+        -webkit-transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
+                transform:  translateX( -2.6rem ) translateY( 100% ) translateY( 1.2rem );
+    }
+
+.tooltip__position__bottomRight .tooltip__tooltip::after
+        {
+            left:  2rem;
+        }
+
+.tooltip__message
+{
+    position:           relative;
+    top:                0.4rem;
+
+    margin-top:         -0.7rem;
+    margin-right:       auto;
+    margin-left:        auto;
+
+    white-space:        nowrap;
+
+    /* reset the font and pointer so we don’t inherit from parent ...*/
+
+    color:              #414B55;
+
+    font-size:          1.2rem;
+    line-height:        1.6rem;
+    letter-spacing:     0.02rem;
+    font-weight:        normal;
+    text-transform:     none;
+    text-align:         left;
+
+    cursor:             default;
+}
+
+.tooltip__content
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.iconWithTooltip__default
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-align:    center;
+    -webkit-align-items:    center;
+        -ms-flex-align:    center;
+            align-items:    center;
+
+    position:       relative;
+
+    max-width:      100%;
+
+    font:           inherit;
+    line-height:    inherit;
+
+    margin-bottom:  2rem;
+}
+
+    .iconWithTooltip__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+.iconWithTooltip__iconVisible > .iconWithTooltip__iconWithTooltip
+    {
+        display:    block;
+    }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__right, .iconWithTooltip__iconVisible.iconWithTooltip__position__left
+    {
+        -webkit-box-pack:    start;
+        -webkit-justify-content:    flex-start;
+            -ms-flex-pack:    start;
+                justify-content:    flex-start;
+    }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content, .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
+        {
+            -webkit-box-flex:           0;
+            -webkit-flex:           0 1 auto;
+                -ms-flex:           0 1 auto;
+                    flex:           0 1 auto;
+            max-width:      100%;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content + .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content + .iconWithTooltip__iconWithTooltip
+        {
+            position:       relative;
+            margin-top:     -50%;
+            margin-bottom:  -50%;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__left
+    {
+        -webkit-box-orient:     horizontal;
+        -webkit-box-direction:     reverse;
+        -webkit-flex-direction:     row-reverse;
+            -ms-flex-direction:     row-reverse;
+                flex-direction:     row-reverse;
+        -webkit-box-pack:    end;
+        -webkit-justify-content:    flex-end;
+            -ms-flex-pack:    end;
+                justify-content:    flex-end;
+    }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__left > .iconWithTooltip__content
+        {
+            margin-left:    1rem;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__right > .iconWithTooltip__content
+        {
+            margin-right:   1rem;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip, .iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
+        {
+            position:   absolute;
+            top:        -1.2rem;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__topRight > .iconWithTooltip__iconWithTooltip
+        {
+            right:  -1.2rem;
+        }
+
+.iconWithTooltip__iconVisible.iconWithTooltip__position__topLeft > .iconWithTooltip__iconWithTooltip
+        {
+            left:   -1.2rem;
+        }
+
+.iconWithTooltip__content
+{
+    -webkit-box-flex:                1;
+    -webkit-flex:                1 1 auto;
+        -ms-flex:                1 1 auto;
+            flex:                1 1 auto;
+    max-width:           100%;
+    min-width:           0;
+}
+
+.iconWithTooltip__iconWithTooltip
+{
+    display:            none;
+    -webkit-box-flex:               0;
+    -webkit-flex:               0 0 auto;
+        -ms-flex:               0 0 auto;
+            flex:               0 0 auto;
+}
 .fieldset__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -3121,6 +2549,101 @@ textarea.inputField__resizable
 .checkbox__error .checkbox__input:checked + .checkbox__label::after, .checkbox__error:hover .checkbox__input:checked + .checkbox__label::after
     {
         background:         url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRjU1RjY5O30KPC9zdHlsZT4KPGcgaWQ9IkxheWVyXzIiPgo8L2c+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNC40LDMuNEMxNCwzLDEzLjQsMywxMywzLjRsLTcuMSw3LjFMMy4xLDcuN2MtMC40LTAuNC0xLTAuNC0xLjQsMGMtMC40LDAuNC0wLjQsMSwwLDEuNGwzLjUsMy41CgljMC4yLDAuMiwwLjUsMC4zLDAuNywwLjNjMC4zLDAsMC41LTAuMSwwLjctMC4zbDcuOC03LjhDMTQuOCw0LjQsMTQuOCwzLjgsMTQuNCwzLjR6Ii8+Cjwvc3ZnPgo=);
+    }
+.inputContainer__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .inputContainer__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+.inputContainer__default
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    font:           inherit;
+    line-height:    inherit;
+}
+.inputContainer__default .inputContainer__container
+    {
+        -webkit-box-flex:       1;
+        -webkit-flex:       1 1 auto;
+            -ms-flex:       1 1 auto;
+                flex:       1 1 auto;
+        min-width:  0;
+    }
+.inputContainer__default .inputContainer__label
+    {
+        -webkit-box-flex:   0;
+        -webkit-flex:   0 0 auto;
+            -ms-flex:   0 0 auto;
+                flex:   0 0 auto;
+    }
+.inputContainer__labelPosition__top
+{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+.inputContainer__labelPosition__top .inputContainer__label
+    {
+        -webkit-align-self: flex-start;
+            -ms-flex-item-align: start;
+                align-self: flex-start;
+    }
+.inputContainer__labelPosition__left, .inputContainer__labelPosition__right
+{
+    -webkit-box-align:    center;
+    -webkit-align-items:    center;
+        -ms-flex-align:    center;
+            align-items:    center;
+}
+.inputContainer__labelPosition__left > *, .inputContainer__labelPosition__right > *
+    {
+        margin-bottom:  0;
+    }
+.inputContainer__labelPosition__left .inputContainer__label, .inputContainer__labelPosition__right .inputContainer__label
+    {
+        max-width:  50%;
+    }
+.inputContainer__labelPosition__left > .inputContainer__container
+    {
+        margin-left:   1rem;
+    }
+.inputContainer__labelPosition__right
+{
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+}
+.inputContainer__labelPosition__right > .inputContainer__container
+    {
+        margin-right:   1rem;
     }
 .codeEditor__default /* all elements get default margin-bottom of 2rem */
 {
@@ -3444,6 +2967,9 @@ div.CodeMirror-dragcursors {
 .cm-tab-wrap-hack:after { content: ''; }
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
+@keyframes blink 0% {}
+@keyframes blink 50% { background-color: transparent; }
+@keyframes blink 100% {}
 .codeEditor__default .codeEditor__editor
     {
         height: auto;
@@ -3452,6 +2978,45 @@ span.CodeMirror-selectedtext { background: none; }
 .codeEditor__default .codeEditor__editor:hover, .codeEditor__fakeHovered.codeEditor__default .codeEditor__editor
         {
             border: 0.1rem solid #289bc8;
+        }
+.codeEditor__default .CodeMirror
+    {
+        -webkit-box-sizing:     border-box;
+                box-sizing:     border-box;
+        height:         100%;
+        padding:        0;
+        background:     transparent;
+        line-height:    normal;
+        line-height:    initial;
+
+        font-family:    monospace, sans-serif;
+        font-size:      1.1rem;
+    }
+.codeEditor__default .CodeMirror-sizer
+        {
+            margin-left:    0 !important;
+        }
+.codeEditor__default .CodeMirror-gutters
+        {
+            border:             none;
+            background-color:   transparent;
+            left:               0 !important;
+        }
+.codeEditor__default .CodeMirror-gutter-wrapper
+        {
+            left:   0 !important;
+        }
+.codeEditor__default .CodeMirror-linenumber
+        {
+            white-space:    normal;
+        }
+.codeEditor__default .CodeMirror-lines
+        {
+            padding:    0.8rem 1rem 0.9rem 1rem;
+        }
+.codeEditor__default .CodeMirror-line
+        {
+            text-indent:    4rem;
         }
 .codeEditor__error .codeEditor__editor
     {
@@ -3464,44 +3029,6 @@ span.CodeMirror-selectedtext { background: none; }
         background:     #F0F0F0 !important;
         color:          rgba(65, 75, 85, 0.5) !important;
     }
-.CodeMirror
-    {
-        -webkit-box-sizing:     border-box;
-                box-sizing:     border-box;
-        height:         100%;
-        padding:        0.8rem 0 0.9rem 0;
-        background:     transparent;
-        line-height:    normal;
-        line-height:    initial;
-
-        font-family:    monospace, sans-serif;
-        font-size:      1.1rem;
-    }
-.CodeMirror-sizer
-    {
-        margin-left:        0 !important;
-    }
-.CodeMirror-gutters
-    {
-        border:             none;
-        background-color:   transparent;
-        left:               0 !important;
-    }
-.CodeMirror-gutter-wrapper
-    {
-        left:               0 !important;
-    }
-.CodeMirror-linenumber
-    {
-        white-space:    normal;
-    }
-.CodeMirror-line
-    {
-        text-indent:    4rem;
-    }
-@keyframes blink 0% {}
-@keyframes blink 50% { background-color: transparent; }
-@keyframes blink 100% {}
 .column__default
 {
     -webkit-box-flex:               1;
@@ -7721,6 +7248,84 @@ span.CodeMirror-selectedtext { background: none; }
     min-width:  4.8rem;
     max-width:  4.8rem;
 }
+.textInputWithIcon__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .textInputWithIcon__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+.textInputWithIcon__default
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align:    center;
+    -webkit-align-items:    center;
+        -ms-flex-align:    center;
+            align-items:    center;
+}
+
+.textInputWithIcon__default .textInputWithIcon__input
+    {
+        -webkit-box-flex:           1;
+        -webkit-flex:           1 1 auto;
+            -ms-flex:           1 1 auto;
+                flex:           1 1 auto;
+        min-width:      0;
+        margin-bottom:  0;
+    }
+
+.textInputWithIcon__icon
+{
+    position:   absolute;
+    top:        50%;
+    -webkit-transform:  translateY( -50% );
+            transform:  translateY( -50% );
+}
+
+.textInputWithIcon__position__left .textInputWithIcon__input
+    {
+        padding-left:    3.6rem
+    }
+
+.textInputWithIcon__position__left .textInputWithIcon__icon
+    {
+        left:   1.1rem;
+    }
+
+.textInputWithIcon__position__right .textInputWithIcon__input
+    {
+        padding-right:    3.6rem
+    }
+
+.textInputWithIcon__position__right .textInputWithIcon__icon
+    {
+        right:   1.1rem;
+    }
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -7818,6 +7423,112 @@ span.CodeMirror-selectedtext { background: none; }
     display:    block;
     margin:     0;
     padding:    0;
+}
+.withDropdown__default
+{
+    position:   relative;
+}
+
+    .withDropdown__default .withDropdown__dropdown
+    {
+        position:   absolute;
+        left:       0;
+        z-index:    9999;
+    }
+
+    .withDropdown__default:not(.withDropdown__open) .withDropdown__dropdown
+        {
+            display:    none;
+        }
+
+    .withDropdown__default > *
+    {
+        margin-bottom:  0;
+    }
+
+
+.withDropdown__position__bottom .withDropdown__dropdown
+    {
+        bottom:     0;
+        -webkit-transform:  translateY( 100% ) translateY( -0.1rem );
+                transform:  translateY( 100% ) translateY( -0.1rem );
+    }
+
+
+.withDropdown__position__top .withDropdown__dropdown
+    {
+        top:        0;
+        -webkit-transform:  translateY( -100% ) translateY( 0.1rem );
+                transform:  translateY( -100% ) translateY( 0.1rem );
+    }
+.dropdown__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .dropdown__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.dropdown__default
+{
+    min-width:  0;
+    max-width:  none;
+
+    border:     0.1rem solid #289bc8;
+    -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+            box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+
+    background: #ffffff;
+}
+.dropdown__error
+{
+    border-color:   #e64b6e;
+}
+.dropdown__padding__S
+{
+    padding:    1rem;
+}
+.dropdown__padding__M
+{
+    padding:    2rem;
+}
+.dropdown__padding__L
+{
+    padding:    3rem;
+}
+.dropdown__size__default
+{
+    width: 100%;
+}
+.dropdown__size__content
+{
+    width: auto;
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -8086,6 +7797,237 @@ span.CodeMirror-selectedtext { background: none; }
 .datePickerHeader__default .datePickerHeader__next
     {
         right:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+
+.timeInput__default
+{
+    display:            -webkit-box;
+    display:            -webkit-flex;
+    display:            -ms-flexbox;
+    display:            flex;
+    -webkit-box-pack:    center;
+    -webkit-justify-content:    center;
+        -ms-flex-pack:    center;
+            justify-content:    center;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+    position:           relative;
+
+    font-size:          1.2rem;
+    line-height:        1.6rem;
+    text-align:         center;
+    color:              rgb(160, 165, 170);
+
+    width:              12rem;
+    margin:             2rem auto 0;
+
+    padding-top:        0.8rem;
+    padding-bottom:     0.6rem;
+
+    border-width:       0.1rem;
+    border-style:       solid;
+    border-color:       rgb(160, 165, 170);
+    border-radius:      2rem;
+    -webkit-box-sizing:         border-box;
+            box-sizing:         border-box;
+}
+
+.timeInput__default:hover, .timeInput__default.timeInput__fakeHovered
+    {
+        border-color:   #289bc8;
+    }
+
+.timeInput__default .timeInput__hour, .timeInput__default .timeInput__min
+    {
+        padding:        0;
+        border:         0;
+        width:          3rem;
+        text-align:     center;
+
+        font:           inherit;
+        line-height:    inherit;
+    }
+
+.timeInput__default .timeInput__hour:fakeHovered, .timeInput__default .timeInput__hour:hover, .timeInput__default .timeInput__hour:focus, .timeInput__default .timeInput__min:fakeHovered, .timeInput__default .timeInput__min:hover, .timeInput__default .timeInput__min:focus
+        {
+            color:  #414B55;
+        }
+
+.timeInput__default .timeInput__hour:focus, .timeInput__default .timeInput__min:focus
+        {
+            outline:    none;
+        }
+
+.timeInput__default .timeInput__hour::-webkit-input-placeholder, .timeInput__default .timeInput__min::-webkit-input-placeholder
+        {
+            font:           inherit;
+            line-height:    inherit;
+        }
+
+.timeInput__default .timeInput__hour:-ms-input-placeholder, .timeInput__default .timeInput__min:-ms-input-placeholder
+        {
+            font:           inherit;
+            line-height:    inherit;
+        }
+
+.timeInput__default .timeInput__hour::placeholder, .timeInput__default .timeInput__min::placeholder
+        {
+            font:           inherit;
+            line-height:    inherit;
+        }
+
+.timeInput__default span
+    {
+        -webkit-user-select:    none;
+           -moz-user-select:    none;
+            -ms-user-select:    none;
+                user-select:    none;
+    }
+.inputField__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .inputField__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.inputField__default
+{
+    display:            block;
+
+    -webkit-box-sizing:         border-box;
+
+            box-sizing:         border-box;
+    width:              100%;
+
+    border:             0.1rem solid rgba(65, 75, 85, 0.5);
+
+    padding-top:        0.8rem;
+    padding-bottom:     0.6rem;
+    padding-left:       1rem;
+    padding-right:      1rem;
+
+    background-color:   #ffffff;
+    color:              #414B55;
+
+    /* make sure we inherit all font styles */
+    font:               inherit;
+    line-height:        inherit;
+}
+/* removes clear and reveal password icons from IE */
+.inputField__default::-ms-reveal
+    {
+        display: none;
+    }
+.inputField__default::-ms-clear
+    {
+        display: none;
+    }
+.inputField__default::-webkit-input-placeholder
+    {
+        color:  rgba(65, 75, 85, 0.5);
+    }
+.inputField__default:-ms-input-placeholder
+    {
+        color:  rgba(65, 75, 85, 0.5);
+    }
+.inputField__default::placeholder
+    {
+        color:  rgba(65, 75, 85, 0.5);
+    }
+.inputField__default:hover, .inputField__default:focus
+    {
+        border-color:   #289bc8;
+    }
+.inputField__default:focus
+    {
+        outline:    none;
+    }
+.inputField__default:focus::-webkit-input-placeholder
+        {
+            color: transparent !important;
+        }
+.inputField__default:focus:-ms-input-placeholder
+        {
+            color: transparent !important;
+        }
+.inputField__default:focus::placeholder
+        {
+            color: transparent !important;
+        }
+textarea.inputField__default
+    {
+        resize: none;
+    }
+.inputField__fakeHovered
+{
+    border-color:   #289bc8;
+}
+.inputField__error
+{
+    border-color:   #f55f69 !important; /* yes, always override other states */
+}
+.inputField__disabled
+{
+    background:     #F0F0F0;
+    color:          rgba(65, 75, 85, 0.5);
+    border-color:   #F0F0F0;
+}
+.inputField__disabled:hover, .inputField__disabled:focus
+    {
+        border-color:   #F0F0F0;
+    }
+.inputField__align__left
+{
+    text-align: left;
+}
+.inputField__align__right
+{
+    text-align: right;
+}
+textarea.inputField__resizable
+    {
+        resize: vertical;
     }
 .inputField__default /* all elements get default margin-bottom of 2rem */
 {
@@ -8520,84 +8462,6 @@ textarea.inputField__resizable
     {
         border-top-color:   #289bc8;
     }
-.form__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .form__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.form__default
-{
-    margin-bottom:  4rem;
-}
-
-.form__content
-{
-    margin-bottom:  4rem;
-}
-
-.form__buttons
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-orient:     horizontal;
-    -webkit-box-direction:     normal;
-    -webkit-flex-direction:     row;
-        -ms-flex-direction:     row;
-            flex-direction:     row;
-    -webkit-box-pack:    justify;
-    -webkit-justify-content:    space-between;
-        -ms-flex-pack:    justify;
-            justify-content:    space-between;
-    -webkit-box-align:        start;
-    -webkit-align-items:        flex-start;
-        -ms-flex-align:        start;
-            align-items:        flex-start;
-
-    margin-bottom:      2rem;
-}
-
-.form__buttons > *
-    {
-        -webkit-box-flex:           0;
-        -webkit-flex:           0 0 auto;
-            -ms-flex:           0 0 auto;
-                flex:           0 0 auto;
-        margin-bottom:  0;
-    }
-
-.form__buttons:last-child
-    {
-        margin-bottom: 0;
-    }
-
-.form__message
-{
-    -webkit-box-flex:   1;
-    -webkit-flex:   1 1 auto;
-        -ms-flex:   1 1 auto;
-            flex:   1 1 auto;
-}
 .h1__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -9573,6 +9437,84 @@ textarea.inputField__resizable
         content:                    'Loading...';
     }
 }
+.form__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .form__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+.form__default
+{
+    margin-bottom:  4rem;
+}
+
+.form__content
+{
+    margin-bottom:  4rem;
+}
+
+.form__buttons
+{
+    display:            -webkit-box;
+    display:            -webkit-flex;
+    display:            -ms-flexbox;
+    display:            flex;
+    -webkit-box-orient:     horizontal;
+    -webkit-box-direction:     normal;
+    -webkit-flex-direction:     row;
+        -ms-flex-direction:     row;
+            flex-direction:     row;
+    -webkit-box-pack:    justify;
+    -webkit-justify-content:    space-between;
+        -ms-flex-pack:    justify;
+            justify-content:    space-between;
+    -webkit-box-align:        start;
+    -webkit-align-items:        flex-start;
+        -ms-flex-align:        start;
+            align-items:        flex-start;
+
+    margin-bottom:      2rem;
+}
+
+.form__buttons > *
+    {
+        -webkit-box-flex:           0;
+        -webkit-flex:           0 0 auto;
+            -ms-flex:           0 0 auto;
+                flex:           0 0 auto;
+        margin-bottom:  0;
+    }
+
+.form__buttons:last-child
+    {
+        margin-bottom: 0;
+    }
+
+.form__message
+{
+    -webkit-box-flex:   1;
+    -webkit-flex:   1 1 auto;
+        -ms-flex:   1 1 auto;
+            flex:   1 1 auto;
+}
 .grid__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -9643,7 +9585,9 @@ textarea.inputField__resizable
         }*/
     }
 
-.grid__alignX__left > *, .grid__alignX__center > *, .grid__alignX__right > *
+.grid__alignX__left > *, 
+        .grid__alignX__center > *, 
+        .grid__alignX__right > * /* Columns */
         {
             -webkit-box-flex:   0;
             -webkit-flex:   0 0 auto;
@@ -9714,7 +9658,7 @@ textarea.inputField__resizable
     margin-right:   -0.5rem;
 }
 
-.grid__gutters__S > *
+.grid__gutters__S > * /* Columns */
     {
         padding-left:   0.5rem;
         padding-right:  0.5rem;
@@ -9726,7 +9670,7 @@ textarea.inputField__resizable
     margin-right:   -1rem;
 }
 
-.grid__gutters__M > *
+.grid__gutters__M > * /* Columns */
     {
         padding-left:   1rem;
         padding-right:  1rem;
@@ -9738,124 +9682,116 @@ textarea.inputField__resizable
     margin-right:   -1.5rem;
 }
 
-.grid__gutters__L > *
+.grid__gutters__L > * /* Columns */
     {
         padding-left:   1.5rem;
         padding-right:  1.5rem;
     }
 
-.grid__spacing__S > *
+.grid__spacing__S > * /* Columns */
     {
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    0.5rem;
         padding-bottom: 0.5rem;
-    }
 
-.grid__spacing__S:first-child
-    {
-        margin-top: -0.5rem;
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     -0.5rem;
+        margin-bottom:  0.5rem;
     }
 
 .grid__spacing__S:last-child
     {
-        margin-bottom:  -0.5rem;
+        margin-bottom:  -1rem;
     }
 
-.grid__spacing__M > *
+.grid__spacing__M > * /* Columns */
     {
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    1rem;
         padding-bottom: 1rem;
-    }
 
-.grid__spacing__M:first-child
-    {
-        margin-top: -1rem;
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     -1rem;
+        margin-bottom:  1rem;
     }
 
 .grid__spacing__M:last-child
     {
-        margin-bottom:  -1rem;
+        margin-bottom:  -2rem;
     }
 
-.grid__spacing__L > *
+.grid__spacing__L > * /* Columns */
     {
-        padding-top:     1.5rem;
-        padding-bottom:  1.5rem;
-    }
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
+        padding-top:    1.5rem;
+        padding-bottom: 1.5rem;
 
-.grid__spacing__L:first-child
-    {
-        margin-top: -1.5rem;
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     -1.5rem;
+        margin-bottom:  1.5rem;
     }
 
 .grid__spacing__L:last-child
     {
-        margin-bottom:  -1.5rem;
+        margin-bottom:  -3rem;
     }
 
 /* legacy spacing options (deprecated) */
 
 .grid__spacing__default > *, .grid__spacing__h3 > *, .grid__spacing__h4 > *
     {
-        padding-top:     1rem;
-        padding-bottom:  1rem;
-    }
+        padding-top:    1rem;
+        padding-bottom: 1rem;
 
-.grid__spacing__default:first-child, .grid__spacing__h3:first-child, .grid__spacing__h4:first-child
-    {
-        margin-top: -1rem;
+        margin-top:     -1rem;
+        margin-bottom:  1rem;
     }
 
 .grid__spacing__default:last-child, .grid__spacing__h3:last-child, .grid__spacing__h4:last-child
     {
-        margin-bottom:  -1rem;
+        margin-bottom:  -2rem;
     }
 
 .grid__spacing__label > *
     {
-        padding-top:     0.5rem;
-        padding-bottom:  0.5rem;
-    }
+        padding-top:    0.5rem;
+        padding-bottom: 0.5rem;
 
-.grid__spacing__label:first-child
-    {
-        margin-top: -0.5rem;
+        margin-top:     -0.5rem;
+        margin-bottom:  0.5rem;
     }
 
 .grid__spacing__label:last-child
     {
-        margin-bottom:  -0.5rem;
+        margin-bottom:  -1rem;
     }
 
 .grid__spacing__h1 > *
     {
-        padding-top:     3.5rem;
-        padding-bottom:  3.5rem;
-    }
+        padding-top:    3.5rem;
+        padding-bottom: 3.5rem;
 
-.grid__spacing__h1:first-child
-    {
-        margin-top: -3.5rem;
+        margin-top:     -3.5rem;
+        margin-bottom:  3.5rem;
     }
 
 .grid__spacing__h1:last-child
     {
-        margin-bottom:  -3.5rem;
+        margin-bottom:  -7rem;
     }
 
 .grid__spacing__h2 > *
     {
-        padding-top:     2.5rem;
-        padding-bottom:  2.5rem;
-    }
+        padding-top:    2.5rem;
+        padding-bottom: 2.5rem;
 
-.grid__spacing__h2:first-child
-    {
-        margin-top: -2.5rem;
+        margin-top:     -2.5rem;
+        margin-bottom:  2.5rem;
     }
 
 .grid__spacing__h2:last-child
     {
-        margin-bottom:  -2.5rem;
+        margin-bottom:  -5rem;
     }
 
 .grid__wrap
@@ -9863,6 +9799,68 @@ textarea.inputField__resizable
     -webkit-flex-wrap:  wrap;
         -ms-flex-wrap:  wrap;
             flex-wrap:  wrap;
+}
+.iconButton__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .iconButton__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+.iconButton__default
+{
+    display:    -webkit-box;
+    display:    -webkit-flex;
+    display:    -ms-flexbox;
+    display:    flex;
+    -webkit-appearance: none !important;
+       -moz-appearance: none !important;
+            appearance: none !important;
+
+    width:      auto;
+
+    margin:     0;
+    border:     none;
+    padding:    0;
+
+    background: transparent;
+    cursor:     pointer;
+}
+
+.iconButton__default:focus
+    {
+        outline:    none;
+    }
+
+.iconButton__default .iconButton__icon
+    {
+        -webkit-box-flex:   0;
+        -webkit-flex:   none;
+            -ms-flex:   none;
+                flex:   none;
+    }
+
+.iconButton__disabled
+{
+    cursor:         default;
+    pointer-events: none;
 }
 .messageBox__default /* all elements get default margin-bottom of 2rem */
 {
@@ -9927,224 +9925,6 @@ textarea.inputField__resizable
 .messageBox__type__success
 {
     border-color:   #23a59b;
-}
-.module__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .module__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.module__default
-{
-    /* this needs to be a flex column for vertical alignment
-    * of header w/min-height (flexbugs #3) */
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-
-    margin-bottom:  3rem;
-
-    background:     #ffffff;
-
-    -webkit-box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
-
-            box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
-
-}
-.module__default .module__default + .module__default
-    {
-        margin-top: -3rem;
-    }
-.module__level__3 > .module__header, .module__level__3 > .module__content, .module__level__4 > .module__header, .module__level__4 > .module__content
-     {
-         padding-top:    2rem;
-         padding-bottom: 2rem;
-     }
-.module__collapsible > .module__header
-    {
-        cursor:     pointer;
-    }
-.module__default .module__collapsible > .module__header
-    {
-        background: #F5F5F5;
-    }
-.module__default .module__collapsible.module__collapsed > .module__header
-        {
-            background: transparent;
-        }
-.module__default .module__collapsible.module__collapsed > .module__header:hover
-            {
-                background: #F5F5F5;
-            }
-.module__collapsed > .module__content
-    {
-        display:    none;
-    }
-.module__moduleError
-{
-    border-left: 0.5rem solid #e64b6e;
-}
-.module__moduleError > .module__header, .module__moduleError > .module__content
-    {
-        padding-left: 2.5rem
-    }
-.module__header
-{
-    -webkit-transition:         background-color 200ms ease-in-out;
-    transition:         background-color 200ms ease-in-out;
-
-    position:           relative;
-
-    display:            -webkit-box;
-
-    display:            -webkit-flex;
-
-    display:            -ms-flexbox;
-
-    display:            flex;
-    -webkit-box-orient:     horizontal;
-    -webkit-box-direction:     normal;
-    -webkit-flex-direction:     row;
-        -ms-flex-direction:     row;
-            flex-direction:     row;
-    -webkit-box-pack:    start;
-    -webkit-justify-content:    flex-start;
-        -ms-flex-pack:    start;
-            justify-content:    flex-start;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-
-    padding:            3rem;
-}
-.module__title
-{
-    -webkit-box-flex:       0;
-    -webkit-flex:       0 0 100%;
-        -ms-flex:       0 0 100%;
-            flex:       0 0 100%;
-    max-width:  100%;
-}
-.module__controls
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    position:           absolute;
-
-    height:             2.2rem;
-    top:                calc(50% - 1.1rem);
-
-    right:              3rem;
-
-    -webkit-box-orient:     horizontal;
-
-    -webkit-box-direction:     normal;
-
-    -webkit-flex-direction:     row;
-
-        -ms-flex-direction:     row;
-
-            flex-direction:     row;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-    -webkit-box-pack:    end;
-    -webkit-justify-content:    flex-end;
-        -ms-flex-pack:    end;
-            justify-content:    flex-end;
-}
-.module__controls > *
-    {
-        -webkit-box-flex:           0;
-        -webkit-flex:           0 0 auto;
-            -ms-flex:           0 0 auto;
-                flex:           0 0 auto;
-
-        margin-right:   3rem;
-        margin-bottom:  0;
-    }
-.module__controls > *:last-child
-        {
-            margin-right:   0;
-        }
-.module__content
-{
-    position:   relative;
-
-    margin:     0;
-    padding:    3rem;
-}
-.module__loadingOverlay
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-orient:     horizontal;
-    -webkit-box-direction:     normal;
-    -webkit-flex-direction:     row;
-        -ms-flex-direction:     row;
-            flex-direction:     row;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-
-    position:   absolute;
-    z-index:    9999999;
-
-    top:        0;
-    bottom:     0;
-
-    left:       0;
-    right:      0;
-
-    width:      100%;
-    height:     100%;
-
-    background-color:   rgba(255, 255, 255, 0.5);
 }
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -10363,6 +10143,224 @@ only used in type__carousel for now
         {
             right:  15rem;
         }
+.module__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .module__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.module__default
+{
+    /* this needs to be a flex column for vertical alignment
+    * of header w/min-height (flexbugs #3) */
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+
+    margin-bottom:  3rem;
+
+    background:     #ffffff;
+
+    -webkit-box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
+
+            box-shadow:     0 0.1rem 0.4rem 0 #DEDEDE;
+
+}
+.module__default .module__default + .module__default
+    {
+        margin-top: -3rem;
+    }
+.module__level__3 > .module__header, .module__level__3 > .module__content, .module__level__4 > .module__header, .module__level__4 > .module__content
+     {
+         padding-top:    2rem;
+         padding-bottom: 2rem;
+     }
+.module__collapsible > .module__header
+    {
+        cursor:     pointer;
+    }
+.module__default .module__collapsible > .module__header
+    {
+        background: #F5F5F5;
+    }
+.module__default .module__collapsible.module__collapsed > .module__header
+        {
+            background: transparent;
+        }
+.module__default .module__collapsible.module__collapsed > .module__header:hover
+            {
+                background: #F5F5F5;
+            }
+.module__collapsed > .module__content
+    {
+        display:    none;
+    }
+.module__moduleError
+{
+    border-left: 0.5rem solid #e64b6e;
+}
+.module__moduleError > .module__header, .module__moduleError > .module__content
+    {
+        padding-left: 2.5rem
+    }
+.module__header
+{
+    -webkit-transition:         background-color 200ms ease-in-out;
+    transition:         background-color 200ms ease-in-out;
+
+    position:           relative;
+
+    display:            -webkit-box;
+
+    display:            -webkit-flex;
+
+    display:            -ms-flexbox;
+
+    display:            flex;
+    -webkit-box-orient:     horizontal;
+    -webkit-box-direction:     normal;
+    -webkit-flex-direction:     row;
+        -ms-flex-direction:     row;
+            flex-direction:     row;
+    -webkit-box-pack:    start;
+    -webkit-justify-content:    flex-start;
+        -ms-flex-pack:    start;
+            justify-content:    flex-start;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+
+    padding:            3rem;
+}
+.module__title
+{
+    -webkit-box-flex:       0;
+    -webkit-flex:       0 0 100%;
+        -ms-flex:       0 0 100%;
+            flex:       0 0 100%;
+    max-width:  100%;
+}
+.module__controls
+{
+    display:            -webkit-box;
+    display:            -webkit-flex;
+    display:            -ms-flexbox;
+    display:            flex;
+    position:           absolute;
+
+    height:             2.2rem;
+    top:                calc(50% - 1.1rem);
+
+    right:              3rem;
+
+    -webkit-box-orient:     horizontal;
+
+    -webkit-box-direction:     normal;
+
+    -webkit-flex-direction:     row;
+
+        -ms-flex-direction:     row;
+
+            flex-direction:     row;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+    -webkit-box-pack:    end;
+    -webkit-justify-content:    flex-end;
+        -ms-flex-pack:    end;
+            justify-content:    flex-end;
+}
+.module__controls > *
+    {
+        -webkit-box-flex:           0;
+        -webkit-flex:           0 0 auto;
+            -ms-flex:           0 0 auto;
+                flex:           0 0 auto;
+
+        margin-right:   3rem;
+        margin-bottom:  0;
+    }
+.module__controls > *:last-child
+        {
+            margin-right:   0;
+        }
+.module__content
+{
+    position:   relative;
+
+    margin:     0;
+    padding:    3rem;
+}
+.module__loadingOverlay
+{
+    display:            -webkit-box;
+    display:            -webkit-flex;
+    display:            -ms-flexbox;
+    display:            flex;
+    -webkit-box-orient:     horizontal;
+    -webkit-box-direction:     normal;
+    -webkit-flex-direction:     row;
+        -ms-flex-direction:     row;
+            flex-direction:     row;
+    -webkit-box-pack:    center;
+    -webkit-justify-content:    center;
+        -ms-flex-pack:    center;
+            justify-content:    center;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+
+    position:   absolute;
+    z-index:    9999999;
+
+    top:        0;
+    bottom:     0;
+
+    left:       0;
+    right:      0;
+
+    width:      100%;
+    height:     100%;
+
+    background-color:   rgba(255, 255, 255, 0.5);
+}
 .navList__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -11107,57 +11105,6 @@ only used in type__carousel for now
     top:            0.4rem;
     margin-top:     -0.6rem;
 }
-.pageHeader__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .pageHeader__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.pageHeader__default
-{
-    -webkit-box-flex:           0;
-    -webkit-flex:           0 0 auto;
-        -ms-flex:           0 0 auto;
-            flex:           0 0 auto;
-    width:          100%;
-    margin:         0;
-    padding-top:    2.4rem;
-    padding-bottom: 2.4rem;
-    padding-right:  4rem;
-    padding-left:   4rem;
-
-    background:     #ffffff;
-
-    border-bottom:  0.1rem solid rgb(217, 219, 221);
-}
 .pageFooter__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -11215,6 +11162,57 @@ only used in type__carousel for now
  	margin:		2rem auto;
 
  	opacity:	0.3;
+}
+.pageHeader__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .pageHeader__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.pageHeader__default
+{
+    -webkit-box-flex:           0;
+    -webkit-flex:           0 0 auto;
+        -ms-flex:           0 0 auto;
+            flex:           0 0 auto;
+    width:          100%;
+    margin:         0;
+    padding-top:    2.4rem;
+    padding-bottom: 2.4rem;
+    padding-right:  4rem;
+    padding-left:   4rem;
+
+    background:     #ffffff;
+
+    border-bottom:  0.1rem solid rgb(217, 219, 221);
 }
 .paginator__default /* all elements get default margin-bottom of 2rem */
 {
@@ -11870,6 +11868,90 @@ only used in type__carousel for now
     {
         content:    '\A0*';
     }
+.scrollBox__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .scrollBox__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.scrollBox__default .scrollBox__scrollBox
+    {
+        overflow:   auto;
+    }
+.scrollBox__default .scrollBox__content
+    {
+
+    }
+.scrollBox__default .scrollBox__icon__down, .scrollBox__default .scrollBox__icon__left, .scrollBox__default .scrollBox__icon__right, .scrollBox__default .scrollBox__icon__up
+    {
+        position:         absolute;
+        z-index:          10;
+        background-color: #ffffff;
+        border-radius:    2rem;
+        opacity:          0.8;
+    }
+.scrollBox__default .scrollBox__icon__down svg, .scrollBox__default .scrollBox__icon__left svg, .scrollBox__default .scrollBox__icon__right svg, .scrollBox__default .scrollBox__icon__up svg
+        {
+            fill:         #289bc8;
+        }
+.scrollBox__default .scrollBox__icon__down
+    {
+        bottom: 1rem;
+        left:   calc(50% - 1.6rem);
+    }
+.scrollBox__default .scrollBox__icon__left
+    {
+        top:    calc(50% - 1.6rem);
+        left:   1rem;
+    }
+.scrollBox__default .scrollBox__icon__right
+    {
+        top:    calc(50% - 1.6rem);
+        right:  1rem;
+    }
+.scrollBox__default .scrollBox__icon__up
+    {
+        top:    1rem;
+        left:   calc(50% - 1.6rem);
+    }
+.scrollBox__scroll__horizontal .scrollBox__scrollBox
+    {
+        overflow-y:             hidden;
+        overscroll-behavior-x:  contain;
+    }
+.scrollBox__scroll__vertical .scrollBox__scrollBox
+    {
+        overflow-x:             hidden;
+        overscroll-behavior-y:  contain;
+    }
 .section__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -12037,21 +12119,22 @@ only used in type__carousel for now
 
 .slider__default .slider__track
     {
-        position:       relative;
+        position:                       relative;
 
-        border:         0.1rem solid rgba(65, 75, 85, 0.5);
-        border-radius:  1rem;
+        border:                         0.1rem solid rgba(65, 75, 85, 0.5);
+        border-radius:                  1rem;
 
-        background:     #ffffff;
+        background:                     #ffffff;
 
-        -webkit-user-select:    none;
+        -webkit-user-select:                    none;
 
-           -moz-user-select:    none;
+           -moz-user-select:                    none;
 
-            -ms-user-select:    none;
+            -ms-user-select:                    none;
 
-                user-select:    none;
-        cursor:         pointer;
+                user-select:                    none;
+        cursor:                         pointer;
+        -webkit-tap-highlight-color:    transparent;
     }
 
 .slider__default .slider__trackFill
@@ -12506,90 +12589,6 @@ only used in type__carousel for now
 {
 
 }
-.scrollBox__default /* all elements get default margin-bottom of 2rem */
-{
-    position:       relative;
-    margin-bottom:  2rem;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0; /* in case this is a flexbox child */
-
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing:	0.02rem;
-
-    font-weight:    normal;
-}
-
-    .scrollBox__default:last-child
-    {
-        margin-bottom:  0;
-    }
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-:root
-{
-    /* primary colors */
-
-    /* accent colors */
-
-    /* greyscale colors */
-}
-.scrollBox__default .scrollBox__scrollBox
-    {
-        overflow:   auto;
-    }
-.scrollBox__default .scrollBox__content
-    {
-
-    }
-.scrollBox__default .scrollBox__icon__down, .scrollBox__default .scrollBox__icon__left, .scrollBox__default .scrollBox__icon__right, .scrollBox__default .scrollBox__icon__up
-    {
-        position:         absolute;
-        z-index:          10;
-        background-color: #ffffff;
-        border-radius:    2rem;
-        opacity:          0.8;
-    }
-.scrollBox__default .scrollBox__icon__down svg, .scrollBox__default .scrollBox__icon__left svg, .scrollBox__default .scrollBox__icon__right svg, .scrollBox__default .scrollBox__icon__up svg
-        {
-            fill:         #289bc8;
-        }
-.scrollBox__default .scrollBox__icon__down
-    {
-        bottom: 1rem;
-        left:   calc(50% - 1.6rem);
-    }
-.scrollBox__default .scrollBox__icon__left
-    {
-        top:    calc(50% - 1.6rem);
-        left:   1rem;
-    }
-.scrollBox__default .scrollBox__icon__right
-    {
-        top:    calc(50% - 1.6rem);
-        right:  1rem;
-    }
-.scrollBox__default .scrollBox__icon__up
-    {
-        top:    1rem;
-        left:   calc(50% - 1.6rem);
-    }
-.scrollBox__scroll__horizontal .scrollBox__scrollBox
-    {
-        overflow-y:             hidden;
-        overscroll-behavior-x:  contain;
-    }
-.scrollBox__scroll__vertical .scrollBox__scrollBox
-    {
-        overflow-x:             hidden;
-        overscroll-behavior-y:  contain;
-    }
 .sorter__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
@@ -13716,14 +13715,21 @@ only used in type__carousel for now
     font-variant-numeric:	lining-nums tabular-nums;
     word-wrap:          break-word;
 }
+.table__default .table__row
+    {
+        margin-bottom: 0;
+    }
+.table__borders__rows, .table__borders__cells, .table__zebra
+{
+    margin-bottom:  2rem;
+}
 .table__borders__rows .table__row, .table__borders__rows .table__headerRow, .table__borders__cells .table__row, .table__borders__cells .table__headerRow, .table__zebra .table__row, .table__zebra .table__headerRow
     {
-        margin-left:    0;
-        margin-right:   0;
-        margin-bottom:  0;
+        margin: 0;
     }
 .table__borders__rows .table__cell, .table__borders__cells .table__cell, .table__zebra .table__cell
     {
+        margin:     0;
         background: #ffffff;
     }
 .table__borders__rows .table__row
