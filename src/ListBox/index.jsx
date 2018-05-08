@@ -31,30 +31,38 @@ const ListBox = ( {
     onKeyPress,
     options,
     selection,
-} ) => (
-    <ul
-        { ...mapAria( {
-            ...aria,
-            activeDescendant : isFocusable ? activeOption : null,
-            multiSelectable  : isMultiselect,
-            role             : 'listbox',
-        } ) }
-        className   = { buildClassName( className, cssMap ) }
-        id          = { id }
-        onKeyPress  = { onKeyPress }
-        onMouseDown = { !isFocusable && killFocus }
-        tabIndex    = { isFocusable ? '0' : '-1' }>
-        { updateOptions( children || buildOptions( options ),
-            {
-                activeOption,
-                onClickOption,
-                onMouseOutOption,
-                onMouseOverOption,
-                selection,
-            } )
-        }
-    </ul>
-);
+} ) =>
+{
+    let realSelection = selection;
+    if ( Array.isArray( selection ) )
+    {
+        realSelection = isMultiselect ? selection : selection[ 0 ];
+    }
+    return (
+        <ul
+            { ...mapAria( {
+                ...aria,
+                activeDescendant : isFocusable ? activeOption : null,
+                multiSelectable  : isMultiselect,
+                role             : 'listbox',
+            } ) }
+            className   = { buildClassName( className, cssMap ) }
+            id          = { id }
+            onKeyPress  = { onKeyPress }
+            onMouseDown = { !isFocusable && killFocus }
+            tabIndex    = { isFocusable ? '0' : '-1' }>
+            { updateOptions( children || buildOptions( options ),
+                {
+                    activeOption,
+                    onClickOption,
+                    onMouseOutOption,
+                    onMouseOverOption,
+                    selection : realSelection,
+                } )
+            }
+        </ul>
+    );
+};
 
 
 ListBox.propTypes = {
