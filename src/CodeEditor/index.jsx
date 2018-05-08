@@ -298,10 +298,10 @@ export default class CodeEditor extends Component
         }
     }
 
-    handleChange( cm )
+    handleChange( cm, change )
     {
         const { onChange } = this.props;
-        if ( onChange )
+        if ( onChange && change.origin !== 'setValue' )
         {
             onChange( cm.getValue() );
         }

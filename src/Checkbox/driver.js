@@ -11,28 +11,35 @@ export default class CheckboxDriver extends InputComponentDriver
 
     setChecked()
     {
-        this.control.node.checked = true;
-        const value = this.control.node.value;
-        this.control.simulate( 'change', { target: { checked: true, value } } );
+        const node = this.control.getNode();
+
+        if ( !node.checked )
+        {
+            node.checked  = true;
+            this.control.simulate( 'change' );
+        }
+
         return this;
     }
 
     setUnchecked()
     {
-        this.control.node.checked = false;
-        const value = this.control.node.value;
-        this.control.simulate( 'change',
-            { target: { checked: false, value } } );
+        const node = this.control.getNode();
+
+        if ( node.checked )
+        {
+            node.checked = false;
+            this.control.simulate( 'change' );
+        }
+
         return this;
     }
 
     toggleChecked()
     {
-        const status = this.getChecked();
-        const value = this.control.node.value;
-        this.control.node.checked = !status;
-        this.control.simulate( 'change',
-            { target: { checked: !status, value } } );
+        const node   = this.control.getNode();
+        node.checked = !node.checked;
+        this.control.simulate( 'change' );
         return this;
     }
 
