@@ -1,17 +1,15 @@
-import React               from 'react';
-import PropTypes           from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
-import { buildClassName }  from '../utils';
-import { generateId }      from '../utils';
-import styles              from './toggleButton.css';
-import Icon                from '../Icon/';
+import { buildClassName, generateId }  from '../utils';
+import styles                          from './toggleButton.css';
+import Icon                            from '../Icon/';
 
 const ToggleButton = ( {
     children,
     className,
     cssMap,
     iconPosition,
-    iconSize,
     iconType,
     id = generateId( 'ToggleButton' ),
     isDisabled,
@@ -24,40 +22,35 @@ const ToggleButton = ( {
     onMouseOut,
     onMouseOver,
     role
-
-} ) =>
-{
-    return (
-        <button
-            aria-pressed = { isPressed ? 'true' : 'false' }
-            className    = { buildClassName( className, cssMap, {
-                disabled : isDisabled,
-                pressed  : isPressed,
-                iconPosition,
-                role
-            } ) }
-            disabled     = { isDisabled }
-            readOnly     = { isReadOnly }
-            id           = { id }
-            isPressed    = { isPressed }
-            onBlur       = { onBlur }
-            onClick      = { onClick }
-            onFocus      = { onFocus }
-            onMouseOut   = { onMouseOut }
-            onMouseOver  = { onMouseOver }
-            role         = { role }
-            type         = "button" >
-            { iconType && iconType !== 'none' &&
+} ) => (
+    <button
+        aria-pressed = { isPressed ? 'true' : 'false' }
+        className    = { buildClassName( className, cssMap, {
+            disabled : isDisabled,
+            pressed  : isPressed,
+            iconPosition,
+            role
+        } ) }
+        disabled     = { isDisabled }
+        readOnly     = { isReadOnly }
+        id           = { id }
+        isPressed    = { isPressed }
+        onBlur       = { onBlur }
+        onClick      = { onClick }
+        onFocus      = { onFocus }
+        onMouseLeave = { onMouseOut }
+        onMouseEnter = { onMouseOver }
+        role         = { role }
+        type         = "button" >
+        { iconType && iconType !== 'none' &&
             <Icon
                 className = { cssMap.icon }
                 type      = { iconType }
-                size      = { iconSize } />
-            }
-            <div>{ children || label }</div>
-
-        </button>
-    );
-};
+                size      =  "M" />
+        }
+        <div>{ children || label }</div>
+    </button>
+);
 
 ToggleButton.propTypes =
 {
@@ -70,17 +63,13 @@ ToggleButton.propTypes =
      */
     cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Nested child tags, it gets replaced if label has a value
+     *  ToggleButton content, replaces label in case of value/node
      */
-    children     : PropTypes.string,
+    children     : PropTypes.node,
     /**
      *  Icon position relative to Button text
      */
     iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
-    /**
-     *  Icon size to display
-     */
-    iconSize     : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
     /**
      *  Icon type to display
      */
@@ -164,7 +153,6 @@ ToggleButton.defaultProps =
     className    : undefined,
     cssMap       : styles,
     iconPosition : 'left',
-    iconSize     : 'M',
     iconType     : 'none',
     id           : undefined,
     isDisabled   : false,
