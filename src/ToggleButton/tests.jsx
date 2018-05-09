@@ -43,7 +43,7 @@ describe( 'ToggleButton', () =>
             expect( instance.props.id ).to.be.defined;
         } );
     } );
-    describe( 'icon', () =>
+    describe( 'Icon', () =>
     {
         describe( 'iconType', () =>
         {
@@ -60,19 +60,12 @@ describe( 'ToggleButton', () =>
                 expect( instance.props.iconPosition ).to.equal( 'left' );
             } );
         } );
-
-
         describe( 'iconSize', () =>
         {
-            it( 'should be "M" by default', () =>
+            it( 'should always be "M"', () =>
             {
-                expect( instance.props.iconSize ).to.equal( 'M' );
-            } );
-
-            it( 'should be passed to the Icon as "size"', () =>
-            {
-                wrapper.setProps( { iconType: 'add', iconSize: 'S' } );
-                expect( wrapper.find( Icon ).prop( 'size' ) ).to.equal( 'S' );
+                wrapper.setProps( { iconType: 'add' } );
+                expect( wrapper.find( Icon ).first().prop( 'size' ) ).to.equal( 'M' );
             } );
         } );
     } );
@@ -147,12 +140,12 @@ describe( 'ToggleButton', () =>
         {
             expect( instance.props.onMouseOver ).to.be.undefined;
         } );
-        it( 'should be passed to the button element', () =>
+        it( 'should be passed to the button element as onMouseEnter', () =>
         {
             const onMouseOver = () =>
             {};
             wrapper.setProps( { onMouseOver } );
-            expect( wrapper.prop( 'onMouseOver' ) ).to.be.equal( onMouseOver );
+            expect( wrapper.prop( 'onMouseEnter' ) ).to.be.equal( onMouseOver );
         } );
     } );
 
@@ -162,12 +155,12 @@ describe( 'ToggleButton', () =>
         {
             expect( instance.props.onMouseOut ).to.be.undefined;
         } );
-        it( 'should be passed to the button element', () =>
+        it( 'should be passed to the button element as onMouseLeave', () =>
         {
             const onMouseOut = () =>
             {};
             wrapper.setProps( { onMouseOut } );
-            expect( wrapper.prop( 'onMouseOut' ) ).to.be.equal( onMouseOut );
+            expect( wrapper.prop( 'onMouseLeave' ) ).to.be.equal( onMouseOut );
         } );
     } );
 } );
