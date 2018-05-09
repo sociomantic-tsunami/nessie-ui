@@ -1978,8 +1978,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/* global document */
+
 var ERRORS = {
-    EDITOR_READ_ONLY: 'Cannot change the CodeEditor value since it is read-only' // eslint-disable-line max-len
+    EDITOR_READ_ONLY: 'Cannot change the CodeEditor value since it’s read only'
 };
 
 var CodeEditorDriver = function () {
@@ -2001,11 +2003,9 @@ var CodeEditorDriver = function () {
     }, {
         key: 'blur',
         value: function blur() {
-            /* eslint-disable no-undef */
             if (this.control.hasFocus() && Boolean(document) && Boolean(document.activeElement)) {
                 document.activeElement.blur();
             }
-            /* eslint-enable no-undef */
             return this;
         }
     }, {
@@ -2015,8 +2015,13 @@ var CodeEditorDriver = function () {
                 throw new Error(ERRORS.EDITOR_READ_ONLY);
             }
 
+            var onChange = this.wrapper.prop('onChange');
+
             this.focus();
             this.control.setValue(value);
+            if (onChange) {
+                onChange(this.getInputValue());
+            }
             this.blur();
             return this;
         }
