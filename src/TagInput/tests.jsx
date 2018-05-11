@@ -58,6 +58,24 @@ describe( 'TagInput', () =>
         expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
 
+    it( 'should trigger onKeyDown callbacks when key pressed', () =>
+    {
+        const onKeyDown = sinon.spy();
+        wrapper.setProps( { onKeyDown } );
+
+        wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
+        expect( onKeyDown.called ).to.be.true;
+    } );
+
+    it( 'should trigger onKeyUp callbacks when key pressed', () =>
+    {
+        const onKeyUp = sinon.spy();
+        wrapper.setProps( { onKeyUp } );
+
+        wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
+        expect( onKeyUp.called ).to.be.true;
+    } );
+
     it( 'should trigger onKeyPress callbacks when key pressed', () =>
     {
         const onKeyPress = sinon.spy();
@@ -108,6 +126,44 @@ describe( 'TagInputDriver', () =>
         wrapper  = mount( <TagInput /> );
         instance = wrapper.instance();
         cssMap   = instance.props.cssMap;
+    } );
+
+    describe( 'blur()', () =>
+    {
+        it( 'should call blur once', () =>
+        {
+            const onBlur = sinon.spy();
+            wrapper.setProps( {
+                onBlur,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.driver().blur();
+
+            expect( onBlur.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'focus()', () =>
+    {
+        it( 'should call focus once', () =>
+        {
+            const onFocus = sinon.spy();
+            wrapper.setProps( {
+                onFocus,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.driver().focus();
+
+            expect( onFocus.calledOnce ).to.be.true;
+        } );
     } );
 
     describe( 'clickClose()', () =>
