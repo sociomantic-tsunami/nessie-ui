@@ -62,6 +62,29 @@ describe( 'CodeEditorDriver', () =>
         driver     = wrapper.driver();
     } );
 
+    describe( 'pressKey( keyCode )', () =>
+    {
+        it( 'should add the character corresponding to keyCode to the end of\
+the code editor’s value', () =>
+            {
+                wrapper.setProps( { value: 'hello' } );
+
+                driver.pressKey( 49 ); // 1 key
+                expect( driver.getInputValue() ).to.equal( 'hello1' );
+            } );
+    } );
+
+    describe( 'inputValue( value )', () =>
+    {
+        it( 'should add the value string to end of codeEditor’s value', () =>
+        {
+            wrapper.setProps( { value: 'hello' } );
+
+            driver.inputValue( 'world' );
+            expect( driver.getInputValue() ).to.equal( 'helloworld' );
+        } );
+    } );
+
     describe( 'setInputValue( value )', () =>
     {
         it( 'should set the input value to "foo"', () =>

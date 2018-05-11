@@ -45,7 +45,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
     }
 
     /**
-     * Simulates the pressing of a give key. In case of a printible character
+     * Simulates the pressing of a given key. In case of a printable character
      * the input will be updated accordingly as well.
      * @param {Integer} keyCode the integer code of a key
      * @return {InputComponentDriver} this driver (for chaining commands)
