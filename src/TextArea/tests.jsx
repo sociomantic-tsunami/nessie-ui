@@ -1,26 +1,25 @@
 /* eslint-env node, mocha */
-/* global expect document */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React          from 'react';
-import { shallow }    from 'enzyme';
+import React                 from 'react';
+import { shallow, mount }    from 'enzyme';
 
-import { InputField } from '../index';
-import InputContainer from '../proto/InputContainer';
-import Css            from '../hoc/Css';
+import { InputField }        from '../index';
+import InputContainer        from '../proto/InputContainer';
+import Css                   from '../hoc/Css';
 
-import TextInput      from './index';
+import TextArea              from './index';
 
 
-describe( 'TextInput', () =>
+describe( 'TextArea', () =>
 {
     let wrapper;
     let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextInput /> );
+        wrapper  = shallow( <TextArea /> );
         instance = wrapper.instance();
     } );
 
