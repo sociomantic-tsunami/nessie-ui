@@ -136,6 +136,10 @@ export default class ComboBox extends Component
          */
         onBlur            : PropTypes.func,
         /**
+         *  Icon click callback function
+         */
+        onClickIcon       : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChangeInput     : PropTypes.func,
@@ -225,6 +229,7 @@ export default class ComboBox extends Component
         noOptiosText          : undefined,
         onBlur                : undefined,
         onChangeInput         : undefined,
+        onClickIcon           : undefined,
         onClickInput          : undefined,
         onClickOption         : undefined,
         onFocus               : undefined,
@@ -396,6 +401,7 @@ export default class ComboBox extends Component
             name,
             onBlur,
             onChangeInput,
+            onClickIcon,
             onClickInput,
             onFocus,
             onKeyDown,
@@ -478,6 +484,7 @@ export default class ComboBox extends Component
                 onBlur                = { onBlur }
                 onChange              = { onChangeInput }
                 onClick               = { onClickInput }
+                onClickIcon           = { onClickIcon }
                 onFocus               = { onFocus }
                 onKeyDown             = { onKeyDown }
                 onKeyPress            = { onKeyPress }
