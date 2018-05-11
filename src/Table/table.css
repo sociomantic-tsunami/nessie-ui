@@ -9,22 +9,28 @@
 {
     font-variant-numeric:	lining-nums tabular-nums;
     overflow-wrap:          break-word;
+
+    .row
+    {
+        margin-bottom: 0;
+    }
 }
 
 .borders__rows,
 .borders__cells,
 .zebra
 {
+    margin-bottom:  16px;
+
     .row,
     .headerRow
     {
-        margin-left:    0;
-        margin-right:   0;
-        margin-bottom:  0;
+        margin: 0;
     }
 
     .cell
     {
+        margin:     0;
         background: var( --PC-WHITE );
     }
 }

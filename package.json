@@ -1,7 +1,20 @@
 {
   "name": "nessie-ui",
-  "version": "5.12.0",
+  "version": "5.13.1",
   "description": "Nessie React Components",
+  "author": "Sociomantic Labs GmbH",
+  "contributors": [
+    "Conor Cafferkey (https://github.com/conor-cafferkey-sociomantic)",
+    "daniel-martic-sociomantic (https://github.com/daniel-martic-sociomantic)",
+    "Eric (https://github.com/eric-martinez-sociomantic)",
+    "Damian Rodriguez (https://github.com/damian-rodriguez-sociomantic)",
+    "Mihail Alexe (https://github.com/mihail-alexe-sociomantic)",
+    "Andrei Placinta (https://github.com/andrei-placinta-sociomantic)",
+    "Joppe Rhebergen (https://github.com/joppe-rhebergen-sociomantic)",
+    "Eric Martinez Solis (https://github.com/ericgraficode)",
+    "Josh Wilson <josh.wilson@sociomantic.com> (https://github.com/josh-wilson-sociomantic)",
+    "Mahmoud Zakria (https://github.com/mahmoud-zakria-sociomantic)"
+  ],
   "main": "dist",
   "scripts": {
     "build": "mkdir dist; yarn updateSprite && CSS_NANO=true yarn updateStyles",

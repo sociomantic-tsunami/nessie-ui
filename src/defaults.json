@@ -73,6 +73,10 @@
         "message"  : "Drop image file to upload",
         "children" : "{<Label><Required>Image</Required></Label><Uploader/>}"
     },
+    "Dropdown" :
+    {
+        "children" : "{<ul><li>List item A</li><li>List item B</li><li>List item C</li></ul>}"
+    },
     "Fieldset" :
     {
         "label"    : "Fieldset legend",
@@ -138,6 +142,39 @@
     "Label" :
     {
         "label": " Label example"
+    },
+    "ListBox" :
+    {
+        "options" : [
+                        {
+                            "text" : "Option"
+                        },
+                        {
+                            "text" : "Option with description",
+                            "value" : "value2",
+                            "description":"Option description"
+                        },
+                        {
+                            "text" : "Disabled option",
+                            "value" : "value3",
+                            "disabled" : true
+                        },
+                        {
+                            "header" : "Subsection 1",
+                            "options"   : [
+                                {
+                                    "text" : "Subsection option 1"
+                                },
+                                {
+                                    "text" : "Subsection option 2"
+                                },
+                                {
+                                    "text"        : "Subsection option with really, really, long text and a long description",
+                                    "description" : "Option description is also really, really, long",
+                                    "value"       : "value12"
+                                } ]
+                        }
+                    ]
     },
     "MessageBox" :
     {

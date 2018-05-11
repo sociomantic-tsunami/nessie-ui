@@ -48,15 +48,17 @@
 
     .track
     {
-        position:           relative;
+        position:                       relative;
 
-        width:              var( --trackSize );
-        border-radius:      var( --trackSize );
+        width:                          var( --trackSize );
+        border-radius:                  var( --trackSize );
 
-        background:         var( --PC-GREY--L90 );
+        background:                     var( --PC-GREY--L90 );
 
-        user-select:        none;
-        cursor:             pointer;
+        user-select:                    none;
+        cursor:                         pointer;
+
+        -webkit-tap-highlight-color:    transparent;
 
         &:hover
         {

@@ -81,7 +81,7 @@
     .container
     {
         border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
     }
 }
 

@@ -4,20 +4,23 @@ import PropTypes                      from 'prop-types';
 import { buildClassName, generateId } from '../utils';
 import styles                         from './switch.css';
 
-
 const Switch = ( {
     className,
     cssMap,
     forceHover,
-    id,
-    isDefaultChecked,
+    id = generateId( 'Switch' ),
     isChecked,
+    isDefaultChecked,
     isDisabled,
     isReadOnly,
     name,
-    onChange,
-    onLabel,
     offLabel,
+    onBlur,
+    onChange,
+    onFocus,
+    onLabel,
+    onMouseOut,
+    onMouseOver,
     showLabel,
     value,
 } ) => (
@@ -25,20 +28,24 @@ const Switch = ( {
         className = { buildClassName( className, cssMap, {
             disabled    : isDisabled,
             fakeHovered : !isDisabled && forceHover
-        } ) }>
+        } ) }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }>
         <input
+            type           = "checkbox"
+            name           = { name }
+            id             = { id }
             className      = { cssMap.input }
             defaultChecked = { isDefaultChecked }
-            defaultValue   = { value }
-            disabled       = { isDisabled || isReadOnly }
-            checked        = { isChecked }
-            id             = { id }
-            name           = { name }
+            onBlur         = { onBlur }
             onChange       = { !isReadOnly && onChange }
-            type           = "checkbox" />
+            onFocus        = { onFocus }
+            checked        = { isChecked }
+            disabled       = { isDisabled || isReadOnly }
+            value          = { value } />
         <label
-            className = { cssMap.label }
-            htmlFor   = { id }>
+            htmlFor      = { id }
+            className    = { cssMap.label }>
             <div className = { cssMap.on }>
                 { showLabel && onLabel }
             </div>
@@ -52,14 +59,6 @@ const Switch = ( {
 Switch.propTypes =
 {
     /**
-     *  Extra CSS class name
-     */
-    className        : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
-    /**
      * Display as hover when required from another component
      */
     forceHover       : PropTypes.bool,
@@ -68,13 +67,13 @@ Switch.propTypes =
      */
     id               : PropTypes.string,
     /**
-     *  Display as checked/“on” by default (uncontrolled input)
-     */
-    isDefaultChecked : PropTypes.bool,
-    /**
-     *  Display as checked/“on” (controlled input)
+     *  Display as checked/“on”
      */
     isChecked        : PropTypes.bool,
+    /**
+     *  Display as checked/“on” by default
+     */
+    isDefaultChecked : PropTypes.bool,
     /**
      *  Display as disabled
      */
@@ -84,29 +83,45 @@ Switch.propTypes =
      */
     isReadOnly       : PropTypes.bool,
     /**
-     * onChange callback function: ( e ) => { ... }
+     *  input name
      */
-    onChange         : PropTypes.func,
-    /**
-     *  “On”/checked label text
-     */
-    onLabel          : PropTypes.string,
+    name             : PropTypes.string,
     /**
      *  “Off”/unchecked label text
      */
     offLabel         : PropTypes.string,
     /**
-     *  HTML name attribute for input
+     * onBlur callback function: ( e ) => { ... }
      */
-    name             : PropTypes.string,
+    onBlur           : PropTypes.func,
+    /**
+     * onChange callback function: ( e ) => { ... }
+     */
+    onChange         : PropTypes.func,
+    /**
+     *  onFocus callback function: ( e ) => { ... }
+     */
+    onFocus          : PropTypes.func,
+    /**
+     *  “On”/checked label text
+     */
+    onLabel          : PropTypes.string,
+    /**
+     *  onMouseOut callback function: ( e ) => { ... }
+     */
+    onMouseOut       : PropTypes.func,
+    /**
+     *  onMouseOver callback function: ( e ) => { ... }
+     */
+    onMouseOver      : PropTypes.func,
     /**
      *  Show “on/off” label text
      */
     showLabel        : PropTypes.bool,
     /**
-     * HTML value attribute for input
+     * HTML value attribute
      */
-    value            : PropTypes.string,
+    value            : PropTypes.string
 };
 
 Switch.defaultProps =
@@ -114,14 +129,14 @@ Switch.defaultProps =
     className        : undefined,
     cssMap           : styles,
     forceHover       : false,
-    id               : generateId( 'Switch' ),
-    isDefaultChecked : false,
+    id               : undefined,
     isChecked        : undefined,
+    isDefaultChecked : false,
     isDisabled       : false,
     isReadOnly       : false,
+    offLabel         : 'Off',
     onChange         : undefined,
     onLabel          : 'On',
-    offLabel         : 'Off',
     showLabel        : true,
     value            : undefined,
 };

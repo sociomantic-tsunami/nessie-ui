@@ -14,15 +14,15 @@ export default class DateTimeInputDriver
 
     getMainInputValue()
     {
-        return this.mainInput.node.value;
+        return this.mainInput.getNode().value;
     }
 
     setMainInputValue( value )
     {
-        const newValue = ( value == null ) ? '' : String( value );
+        const node = this.mainInput.getNode();
 
-        this.mainInput.node.value = value;
-        this.mainInput.simulate( 'change', { target: { value: newValue } } );
+        node.value = value;
+        this.mainInput.simulate( 'change' );
 
         return this;
     }
@@ -41,15 +41,15 @@ export default class DateTimeInputDriver
 
     getHourInputValue()
     {
-        return this.hourInput.node.value;
+        return this.hourInput.getNode().value;
     }
 
     setHourInputValue( value )
     {
-        const newValue = ( value == null ) ? '' : String( value );
+        const node = this.hourInput.getNode();
 
-        this.hourInput.node.value = value;
-        this.hourInput.simulate( 'change', { target: { value: newValue } } );
+        node.value = value;
+        this.hourInput.simulate( 'change' );
 
         return this;
     }
@@ -68,15 +68,15 @@ export default class DateTimeInputDriver
 
     getMinuteInputValue()
     {
-        return this.minuteInput.node.value;
+        return this.minuteInput.getNode().value;
     }
 
     setMinuteInputValue( value )
     {
-        const newValue = ( value == null ) ? '' : String( value );
+        const node = this.minuteInput.getNode();
 
-        this.minuteInput.node.value = value;
-        this.minuteInput.simulate( 'change', { target: { value: newValue } } );
+        node.value = value;
+        this.minuteInput.simulate( 'change' );
 
         return this;
     }
