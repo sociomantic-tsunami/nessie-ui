@@ -90,6 +90,10 @@ export default class ValuedTextInput extends Component
          */
         name        : PropTypes.string,
         /**
+         *  Input click callback function
+         */
+        onClick               : PropTypes.func,
+        /**
          * onChange callback function: ( e ) => { ... }
          */
         onChange    : PropTypes.func,
