@@ -1,20 +1,12 @@
-export default class TagInputDriver
+import InputComponentDriver
+    from '../Testing/CommonDrivers/inputComponentDriver';
+
+export default class TagInputDriver extends InputComponentDriver
 {
     constructor( wrapper )
     {
+        super( wrapper );
         this.wrapper = wrapper;
-    }
-
-    blur()
-    {
-        this.wrapper.find( 'input' ).first().simulate( 'blur' );
-        return this;
-    }
-
-    focus()
-    {
-        this.wrapper.find( 'input' ).first().simulate( 'focus' );
-        return this;
     }
 
     clickClose()
