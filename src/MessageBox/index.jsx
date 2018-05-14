@@ -9,7 +9,7 @@ const MessageBox = ( {
     className,
     children,
     message,
-    messageType
+    messageType,
 } ) =>
 {
     const messageNode = <Text>{ message }</Text>;

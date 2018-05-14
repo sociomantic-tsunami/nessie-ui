@@ -8,6 +8,8 @@
 
     padding:            var( --spacing-2 );
 
+    border-radius:      2px;
+
     .text
     {
         color: var( --PC-WHITE );
