@@ -2,7 +2,7 @@
 
 .default
 {
-    padding:    0 30px;
+    padding:    0 var( --spacing-4 );
 }
 
 .header /* rules from base.css */
