@@ -5,23 +5,31 @@
     display:            flex;
     justify-content:    center;
     align-content:      center;
-    background-color:   var( --PC-WHITE );
 
-    padding:            20px;
-    border:             1px solid var( --GS-5 ) ;
+    padding:            var( --spacing-2 );
+
+    .text
+    {
+        color: var( --PC-WHITE );
+    }
+}
+
+.type__info
+{
+    background: var( --PC-GREY--L10 );
 }
 
 .type__error
 {
-    border-color:   var( --PC-RED );
+    background: var( --PC-RED );
 }
 
 .type__alert
 {
-    border-color:   var( --PC-YELLOW );
+    background: var( --PC-YELLOW );
 }
 
 .type__success
 {
-    border-color:   var(  --PC-GREEN );
+    background: var(  --PC-GREEN );
 }
