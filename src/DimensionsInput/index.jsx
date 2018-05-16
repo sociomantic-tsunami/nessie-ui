@@ -67,6 +67,10 @@ export default class DimensionsInput extends Component
          */
         id                    : PropTypes.string,
         /**
+         *  Input click callback function
+         */
+        onClick               : PropTypes.func,
+        /**
         *  onChange callback function: ( e ) => { ... }
         */
         onChange              : PropTypes.func,
