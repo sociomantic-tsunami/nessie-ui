@@ -8,6 +8,7 @@ import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
 import { generateId }       from '../utils';
+import InputContainer       from '../proto/InputContainer';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -444,10 +445,11 @@ export default class ComboBox extends Component
         }
 
         return (
-            <div>
-                { label &&
-                    <Label>{ label }</Label>
-                }
+            <InputContainer
+                onMouseOut          = { onMouseOut }
+                onMouseOver         = { onMouseOver }
+                label               = { label }
+                labelPosition       = { labelPosition } >
                 <InputWithDropdown
                     aria = { {
                         autocomplete     : hasAutocomplete ? 'both' : 'list',
@@ -476,8 +478,6 @@ export default class ComboBox extends Component
                     errorMessage          = { errorMessage }
                     errorMessageIsVisible = { errorMessageIsVisible }
                     errorMessagePosition  = { errorMessagePosition }
-                    // label                 = { label }
-                    labelPosition         = { labelPosition }
                     name                  = { name }
                     onBlur                = { onBlur }
                     onChange              = { onChangeInput }
@@ -486,12 +486,10 @@ export default class ComboBox extends Component
                     onKeyDown             = { onKeyDown }
                     onKeyPress            = { onKeyPress }
                     onKeyUp               = { onKeyUp }
-                    onMouseOut            = { onMouseOut }
-                    onMouseOver           = { onMouseOver }
                     placeholder           = { inputPlaceholder }
                     value                 = { inputValue }
                     wrapperRef            = { this.setWrapperRef } />
-            </div>
+            </InputContainer>
         );
     }
 }
