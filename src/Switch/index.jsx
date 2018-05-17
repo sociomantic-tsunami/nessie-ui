@@ -137,7 +137,7 @@ Switch.defaultProps =
     offLabel         : 'Off',
     onChange         : undefined,
     onLabel          : 'On',
-    showLabel        : true,
+    showLabel        : false,
     value            : undefined,
 };
 
