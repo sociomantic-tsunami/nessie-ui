@@ -26,8 +26,7 @@ const NotificationBar = ( {
 
                 <Icon
                     className  = { cssMap.info }
-                    type       = "info"
-                    theme      = "button" />
+                    type       = "info"/>
 
                 { ( children || message ) &&
                 <Text className = { cssMap.message }>

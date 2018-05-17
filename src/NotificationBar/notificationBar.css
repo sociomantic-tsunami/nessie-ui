@@ -56,3 +56,13 @@
 {
     background: var(  --PC-GREEN );
 }
+
+.message
+{
+    color: var( --PC-WHITE );
+}
+
+.info
+{
+    fill: var( --PC-WHITE ) !important;
+}
