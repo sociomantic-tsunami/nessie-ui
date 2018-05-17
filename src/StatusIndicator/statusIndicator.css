@@ -6,10 +6,10 @@
 
     padding:            6px 20px;
 
-    border:             2px solid var( --GS-2 );
+    border:             2px solid var( --PC-GREY--L10 );
     border-radius:      16px;
 
-    color:              var( --GS-2 );
+    color:              var( --PC-GREY--L10 );
 
     @extend %Nessie-SemiBold;
 
