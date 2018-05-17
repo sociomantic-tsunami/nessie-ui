@@ -104,6 +104,7 @@ import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
+import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -355,7 +356,7 @@ const drivers =
     },
     {
         Component : TextArea,
-        Driver    : InputComponentDriver,
+        Driver    : TextAreaDriver,
     },
     {
         Component : TextInput,
