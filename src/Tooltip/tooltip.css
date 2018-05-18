@@ -59,7 +59,12 @@
 
 .messageText
 {
-    color:              var( --PC-WHITE );
+    & a,
+    & a:hover
+    {
+        color:              var( --PC-WHITE );
+        text-decoration:    underline;
+    }
 }
 
 
