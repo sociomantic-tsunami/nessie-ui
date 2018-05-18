@@ -118,7 +118,7 @@ Grid.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
-    gutters       : 'L',
+    gutters       : 'M',
     hasWrap       : true,
     onClick       : undefined,
     onMouseOut    : undefined,

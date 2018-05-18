@@ -96,8 +96,8 @@
 {
     &__alert
     {
-        color:                      var( --PC-YELLOW );
-        fill:                       var( --PC-YELLOW );
+        color:                      var( --PC-ORANGE );
+        fill:                       var( --PC-ORANGE );
     }
 
     &__approved,
