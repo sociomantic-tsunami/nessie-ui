@@ -21,7 +21,7 @@ const TableCell = ( {
 } ) =>
 {
     let contentNode = typeof children === 'string' ?
-        <Text>{ children }</Text> : children;
+        <Text className = { cssMap.text }>{ children }</Text> : children;
 
     if ( isHeader && isSortable )
     {
