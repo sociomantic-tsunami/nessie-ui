@@ -5,11 +5,6 @@
     margin-bottom:  var( --spacing-5 );
 }
 
-.content
-{
-    margin-bottom:  var( --spacing-5 );
-}
-
 .buttons
 {
     display:            flex;

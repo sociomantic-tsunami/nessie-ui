@@ -2,7 +2,7 @@
 
 :root
 {
-    --iconSpacing:  10px;
+    --iconSpacing:  var( --spacing-1 )
 }
 
 .default
@@ -17,7 +17,7 @@
     font:           inherit;
     line-height:    inherit;
 
-    margin-bottom:  20px;
+    margin-bottom:   var( --spacing-2 );
 
     &:last-child
     {

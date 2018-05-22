@@ -56,3 +56,8 @@
 {
     background: var(  --PC-GREEN );
 }
+
+.message
+{
+    color: var( --PC-WHITE );
+}

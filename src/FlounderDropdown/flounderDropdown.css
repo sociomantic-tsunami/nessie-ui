@@ -293,7 +293,7 @@
     .arrow
     {
         position:       absolute;
-        top:            50%;
+        top:            20px;
         right:          calc( var( --spacing-1 ) + var( --borderWidth ) );
 
         transform:      translateY( -50% );

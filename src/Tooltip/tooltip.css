@@ -2,8 +2,8 @@
 
 :root
 {
-    --tooltipOffsetX:       11px; /* 5px */
-    --tooltipOffsetY:       12px; /* 5px */
+    --tooltipOffsetX:       8px; /* 5px */
+    --tooltipOffsetY:       8px; /* 5px */
     --tooltipOffsetXY:      26px;
     --tooltipOffsetXYAfter: 20px;
 
@@ -34,7 +34,7 @@
 
     border-radius:      2px;
 
-    background-color:   var( --PC-BLUE );
+    background-color:   var( --PC-GREY--D15 );
     box-shadow:         var( --boxShadow );
 
     z-index:            100;
@@ -54,12 +54,18 @@
     padding-right:      var( --spacing-2 );
     padding-bottom:     var( --spacing-1 );
     padding-left:       var( --spacing-2 );
+    color:              var( --PC-WHITE );
 }
 
 
 .messageText
 {
-    color:              var( --PC-WHITE );
+    & a,
+    & a:hover
+    {
+        color:              var( --PC-WHITE );
+        text-decoration:    underline;
+    }
 }
 
 
