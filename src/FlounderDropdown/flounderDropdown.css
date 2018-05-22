@@ -119,6 +119,10 @@
 
         overflow:       auto;
         z-index:        50;
+        @media( min-height: 768px )
+        {
+            max-height: 450px;
+        }
     }
 
     .list
