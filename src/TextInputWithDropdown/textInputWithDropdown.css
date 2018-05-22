@@ -2,7 +2,7 @@
 
 .default
 {
-    /* nothing to do here */
+    margin-bottom: var( --spacing-2 );
 }
 
 .position__left
