@@ -273,6 +273,11 @@
         cursor:         auto;
     }
 
+    .option.noResults
+    {
+        @extend         %Nessie-RegularIt;
+    }
+
     .option.disabled,
     .error .option.disabled
     {
