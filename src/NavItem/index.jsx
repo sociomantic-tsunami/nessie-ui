@@ -56,7 +56,7 @@ removed in the next major release. Please use isCurrent instead.' );
                         <Icon
                             className = { cssMap.icon }
                             type = { iconType }
-                            size = "M" />
+                            size = "S" />
                     }
                     <span>{ label }</span>
                 </a>
