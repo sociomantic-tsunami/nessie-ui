@@ -4,29 +4,3 @@
 {
 
 }
-
-.buttons
-{
-    display:            flex;
-    flex-direction:     row;
-    justify-content:    space-between;
-    align-items:        flex-start;
-
-    margin-bottom:      var( --spacing-2 );
-
-    & > *
-    {
-        flex:           0 0 auto;
-        margin-bottom:  0;
-    }
-
-    &:last-child
-    {
-        margin-bottom: 0;
-    }
-}
-
-.message
-{
-    flex:   1 1 auto;
-}
