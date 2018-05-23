@@ -143,4 +143,33 @@ describe( 'UploaderDriver', () =>
             expect( Wrapper.prop( 'onChange' ) ).to.be.undefined;
         } );
     } );
+
+    describe( 'mouseOut', () =>
+    {
+        it( 'should trigger onMouseOut() callback function', () =>
+        {
+            const onMouseOut = sinon.spy();
+            Wrapper.setProps( {
+                onMouseOut
+            } );
+
+            Wrapper.driver().mouseOut();
+
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
+    } );
+    describe( 'mouseOver', () =>
+    {
+        it( 'should trigger onMouseOver() callback function', () =>
+        {
+            const onMouseOver = sinon.spy();
+            Wrapper.setProps( {
+                onMouseOver
+            } );
+
+            Wrapper.driver().mouseOver();
+
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+    } );
 } );
