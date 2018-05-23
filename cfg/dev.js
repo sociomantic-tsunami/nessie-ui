@@ -30,12 +30,22 @@ const config = Object.assign( {}, baseConfig, {
         'react-dom'  : 'ReactDOM',
     },
 
+    optimization : {
+        splitChunks : {
+            cacheGroups : {
+                commons : {
+                    test      : /[\\/]node_modules[\\/]/,
+                    name      : 'commonchunks',
+                    chunks    : 'all',
+                    minChunks : 4,
+                    children  : true
+                }
+            }
+        },
+        runtimeChunk : false,
+    },
+
     plugins : [
-        new webpack.optimize.CommonsChunkPlugin( {
-            children  : true,
-            minChunks : 4,
-            name      : 'commonchunks'
-        } ),
         new ExtractTextPlugin( {
             fallback  : 'style-loader',
             filename  : 'displayComponentStyles.css',
