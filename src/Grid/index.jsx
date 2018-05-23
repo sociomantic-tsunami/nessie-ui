@@ -29,7 +29,7 @@ const Grid = ( {
 use one of 'S', 'M', 'L' or 'none' instead.` );
         Grid.didWarn[ spacing ] = true;
     }
-    if ( !Grid.didWarn.hasMinHeight )
+    if ( !Grid.didWarn.hasMinHeight && hasMinHeight !== undefined )
     {
         console.warn( 'Grid: hasMinHeight prop is deprecated. Please use an \
 alternative layout.' );

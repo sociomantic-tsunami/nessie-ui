@@ -135,7 +135,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * ( var( --S ) / 2 ) );
+        margin-bottom:  calc( -1 * var( --S ) );
     }
 }
 .spacing__M
@@ -171,7 +171,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * ( var( --L ) / 2 ) );
+        margin-bottom:  calc( -1 * var( --L ) );
     }
 }
 
@@ -191,7 +191,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 2rem / 2 ) );
+        margin-bottom:  calc( -2rem );
     }
 }
 .spacing__label
@@ -207,7 +207,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 1rem / 2 ) );
+        margin-bottom:  calc( -1rem );
     }
 }
 .spacing__h1
@@ -223,7 +223,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 7rem / 2 ) );
+        margin-bottom:  calc( -7rem );
     }
 }
 .spacing__h2
@@ -239,7 +239,7 @@
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 5rem / 2 ) );
+        margin-bottom:  calc( -5rem );
     }
 }
 
