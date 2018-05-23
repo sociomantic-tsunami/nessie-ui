@@ -126,6 +126,10 @@ export default class TagInput extends Component
             PropTypes.string,
             PropTypes.object,
         ] ) ),
+        /**
+         * Input's value
+         */
+        value                 : PropTypes.string
     };
 
     static defaultProps =
@@ -158,6 +162,7 @@ export default class TagInput extends Component
         onMouseOver           : undefined,
         placeholder           : undefined,
         tags                  : undefined,
+        value                 : undefined
     };
 
     constructor()
@@ -223,6 +228,7 @@ export default class TagInput extends Component
             onMouseOver,
             placeholder,
             tags,
+            value
         } = this.props;
 
         const { isFocused } = this.state;
@@ -296,7 +302,8 @@ export default class TagInput extends Component
                         placeholder = { placeholder }
                         readOnly    = { isReadOnly }
                         ref         = { inputRef }
-                        type        = "text" />
+                        type        = "text"
+                        value       = { value } />
                 </label>
             </InputContainer>
         );
