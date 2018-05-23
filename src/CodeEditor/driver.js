@@ -42,6 +42,11 @@ export default class CodeEditorDriver
         {
             const oldVal = this.control.getValue();
             this.control.setValue( oldVal + String.fromCharCode( keyCode ) );
+            const onChange = this.wrapper.prop( 'onChange' );
+            if ( onChange )
+            {
+                onChange( this.getInputValue() );
+            }
         }
 
         return this;

@@ -72,6 +72,13 @@ the code editor’s value', () =>
                 driver.pressKey( 49 ); // 1 key
                 expect( driver.getInputValue() ).to.equal( 'hello1' );
             } );
+        it( 'should call the onChange callback exactly once ', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+            driver.pressKey( 50 );
+            expect( onChange.calledOnce ).to.be.true;
+        } );
     } );
 
     describe( 'inputValue( value )', () =>
@@ -83,6 +90,14 @@ the code editor’s value', () =>
             driver.inputValue( 'world' );
             expect( driver.getInputValue() ).to.equal( 'helloworld' );
         } );
+        it( `should call the onChange callback once per
+            printable character in value`, () =>
+            {
+                const onChange = sinon.spy();
+                wrapper.setProps( { onChange } );
+                driver.inputValue( 'foo' );
+                expect( onChange.callCount ).to.equal( 3 );
+            } );
     } );
 
     describe( 'setInputValue( value )', () =>
@@ -134,6 +149,13 @@ the code editor’s value', () =>
             } );
             expect( () => driver.clearInputValue() ).to.throw(
                 'Cannot change the CodeEditor value since it’s read only' );
+        } );
+        it( 'should call the onChange callback exactly once', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+            driver.clearInputValue();
+            expect( onChange.calledWith( '' ) ).to.be.true;
         } );
     } );
 
