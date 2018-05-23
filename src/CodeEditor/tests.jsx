@@ -89,17 +89,31 @@ the code editor’s value', () =>
     {
         it( 'should set the input value to "foo"', () =>
         {
-            const arg = 'foo';
-            driver.setInputValue( arg );
-            expect( CodeMirror.getValue() ).to.equal( arg );
+            driver.setInputValue( 'foo' );
+            expect( CodeMirror.getValue() ).to.equal( 'foo'  );
+        } );
+
+        it( 'should fire the onChange callback prop', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+            driver.setInputValue( 'foo' );
+            expect( onChange.calledOnce ).to.be.true;
+        } );
+
+        it( 'should call onChange with new value as argument', () =>
+        {
+            const onChange = sinon.spy();
+            wrapper.setProps( { onChange } );
+            driver.setInputValue( 'foo' );
+            expect( onChange.calledWith( 'foo' ) ).to.be.true;
         } );
 
         it( 'should throw the expected error when component isReadOnly', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-            const arg = 'foo';
-            expect( () => driver.setInputValue( arg ) ).to.throw(
-                'Cannot change the CodeEditor value since it is read-only' );
+            expect( () => driver.setInputValue( 'foo' ) ).to.throw(
+                'Cannot change the CodeEditor value since it’s read only' );
         } );
     } );
 
@@ -119,7 +133,7 @@ the code editor’s value', () =>
                 isReadOnly : true
             } );
             expect( () => driver.clearInputValue() ).to.throw(
-                'Cannot change the CodeEditor value since it is read-only' );
+                'Cannot change the CodeEditor value since it’s read only' );
         } );
     } );
 

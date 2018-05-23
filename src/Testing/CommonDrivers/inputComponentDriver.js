@@ -8,11 +8,13 @@ const ERRORS = {
     INPUT_CANNOT_PRESS_KEY : ( label, state ) =>
         `Cannot press a key on Input '${label}' since it is ${state}`
 };
+
+
 export default class InputComponentDriver extends ClickableComponentDriver
 {
-    constructor( wrapper )
+    constructor( wrapper, selector )
     {
-        super( wrapper, 'input' );
+        super( wrapper, selector || 'input' );
     }
 
     /**

@@ -1,5 +1,7 @@
+/* global document */
+
 const ERRORS = {
-    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it is read-only' // eslint-disable-line max-len
+    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it’s read only'
 };
 
 export default class CodeEditorDriver
@@ -20,13 +22,11 @@ export default class CodeEditorDriver
 
     blur()
     {
-        /* eslint-disable no-undef */
         if ( this.control.hasFocus() && Boolean( document ) &&
             Boolean( document.activeElement ) )
         {
             document.activeElement.blur();
         }
-        /* eslint-enable no-undef */
         return this;
     }
 
@@ -74,8 +74,14 @@ export default class CodeEditorDriver
             throw new Error( ERRORS.EDITOR_READ_ONLY );
         }
 
+        const onChange = this.wrapper.prop( 'onChange' );
+
         this.focus();
         this.control.setValue( value );
+        if ( onChange )
+        {
+            onChange( this.getInputValue() );
+        }
         this.blur();
         return this;
     }

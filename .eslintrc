@@ -1,201 +1,166 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "env": {
-    "browser": false,
-    "node": true,
-    "mocha": true,
-    "es6" : true
-  },
-  "rules": {
-    "arca/import-align" : "error",
-    "arrow-parens": ["off"],
-    "brace-style": ["error", "allman"],
-    "block-scoped-var": "error",              // disallow use of variables outside of the scope they were defined in
-    "compat/compat": "error",
-    "consistent-return": "off",
-    "comma-dangle": "off",
-    "camelcase":                        // require camel case names, except for properties
-        [
-            "error", { "properties": "never" }
-        ],
-    "generator-star-spacing": "off",
-    "global-require": "off",
-    "import/no-unresolved": "error",
-    "import/first": "off",
-    "import/order":
-        [ "error",
+    "parser"  : "babel-eslint",
+    "extends" : "airbnb",
+    "env"     : {
+        "browser" : false,
+        "es6"     : true,
+        "mocha"   : true,
+        "node"    : true
+    },
+    "rules" : {
+        "arca/import-align"         : "error",
+        "array-bracket-spacing"     : [ "error", "always" ],
+        "arrow-parens"              : [ "off" ],
+        "block-scoped-var"          : "error",
+        "brace-style"               : [ "error", "allman" ],
+        "camelcase"                 : [ "error", { "properties": "never" } ],
+        "comma-dangle"              : "off",
+        "compat/compat"             : "error",
+        "computed-property-spacing" : [ "error", "always" ],
+        "consistent-return"         : "off",
+        "func-call-spacing"         : [ "error", "never" ],
+        "generator-star-spacing"    : "off",
+        "global-require"            : "off",
+        "import/first"              : "off",
+        "import/no-unresolved"      : "error",
+        "import/order"              : [
+            "error",
             {
-                "newlines-between": "always",
-                "groups": [
-                  'builtin', // Built-in types are first
-                  'external',
-                  'internal',
-                  ['sibling', 'parent'], // Then sibling and parent types. They can be mingled together
-                  'index', // Then the index file
+                "newlines-between" : "always",
+                "groups"           : [
+                    "builtin",
+                    "external",
+                    "internal",
+                    [ "sibling", "parent" ],
+                    "index"
                 ]
-        }],
-    "indent": [ "error", 4 ],
-    "import/no-extraneous-dependencies": "off",
-    "linebreak-style": [ "error", "unix" ],   // newline: only \n, without \r
-    "key-spacing": [ "error", {
-        "singleLine": {
-            "beforeColon": false,
-            "afterColon": true
-        },
-        "multiLine": {
-            "beforeColon": true,
-            "afterColon": true,
-            "align": "colon"
-        }
-    }],
-    "keyword-spacing": "error",               // space after keywords (if, switch etc.)
-    "strict": [ "error", "safe"],             // requires "use strict"; in global scope
-    "no-duplicate-imports": "error",
-    "no-use-before-define": "off",
-    "no-multi-assign": "off",
-    "no-eval": "error",                       // disallow use of eval()
-    "no-with": "error",                       // disallow use of the with statement
-    "no-continue": "warn",                   // disallow use of continue
-    "promise/param-names": "error",
-    "promise/always-return": "warn",
-    "promise/catch-or-return": "error",
-    "promise/no-native": "off",
-    "quotes": [ "error", "single" ],          // single quotes
-    "sort-imports": "off",
-    "space-in-parens":            // require spaces in parens but not for empty parens.
-        [
-            "error",
-            "always",
-            { "exceptions": ["empty"] }
+            } ],
+        "import/no-extraneous-dependencies" : "off",
+        "indent"                            : [ "error", 4 ],
+        "jsx-a11y/aria-role"                : [
+            "error", { "ignoreNonDOM": true }
         ],
-    "valid-typeof": "error",                  // ensure that the results of typeof are compared against a valid string
-    "quote-props":                      // quotes around object properties
-        [
-            "error",
-            "as-needed",                // only apply them when they are needed
-            {
-                "keywords": true,       // JavaScript keywords
-                "unnecessary": false    // quoted property keys are allowed
-            }
-        ],
-    "no-debugger": "error",                   // disallow use of debugger
-    "spaced-comment": ["error", "always"],    // /* or // should be followed by a whitespace
-    "space-before-function-paren":      // function and (...) should not be separated by spaces
-        [
-            "error",
-            "never"
-        ],
-    "func-call-spacing" :
-        [
-            "error",
-            "never"
-        ],
-    "array-bracket-spacing":            // enforces space inside array brackets
-         [
-            "error", "always"
-         ],
-    "react/require-default-props": "off",
-    "react/jsx-curly-spacing": ["error", "always"],
-    "react/jsx-equals-spacing": ["error", "always"],
-    "react/jsx-indent": ["error", 4],
-    "react/jsx-indent-props": ["error", 4],
-    "react/jsx-closing-bracket-location": "off",
-    "jsx-a11y/label-has-for": "warn",
-    "react/jsx-wrap-multilines":
-        [
-            "error",
-            { "arrow": false }
-        ],
-    "react/jsx-first-prop-new-line": ["error","multiline"],
-    "react/prop-types": ["error", { ignore: ["children","className","cssMap"]}],
-    "no-multi-spaces": "off",
-    "require-jsdoc":                    // requires jsdoc comments for...
-        [
+        "jsx-a11y/label-has-for"                  : "warn",
+        "jsx-a11y/no-static-element-interactions" : "warn",
+        "key-spacing"                             : [
             "error",
             {
-                "require":
-                {
-                    "FunctionDeclaration": true,  // functions
-                    "MethodDefinition": false,    // not for methods
-                    "ClassDeclaration": false     // not for classes
+                "singleLine" : {
+                    "afterColon"  : true,
+                    "beforeColon" : false
+                },
+                "multiLine" : {
+                    "afterColon"  : true,
+                    "align"       : "colon",
+                    "beforeColon" : true
                 }
             }
         ],
-    "valid-jsdoc":                      // jsdoc should be valid
-        [
+        "keyword-spacing"          : "error",
+        "linebreak-style"          : [ "error", "unix" ],
+        "max-len"                  : [ "error", 80, 4 ],
+        "no-console"               : "warn",
+        "no-constant-condition"    : "warn",
+        "no-continue"              : "warn",
+        "no-debugger"              : "error",
+        "no-dupe-args"             : "warn",
+        "no-dupe-keys"             : "warn",
+        "no-duplicate-imports"     : "error",
+        "no-empty-character-class" : "warn",
+        "no-empty"                 : "warn",
+        "no-eval"                  : "error",
+        "no-extra-semi"            : "warn",
+        "no-func-assign"           : "warn",
+        "no-invalid-regexp"        : "warn",
+        "no-irregular-whitespace"  : "warn",
+        "no-magic-numbers"         : "warn",
+        "no-multi-assign"          : "off",
+        "no-multi-spaces"          : "off",
+        "no-multi-str"             : "warn",
+        "no-sparse-arrays"         : "warn",
+        "no-underscore-dangle"     : "off",
+        "no-unreachable"           : "warn",
+        "no-unused-expressions"    : "warn",
+        "no-unused-vars"           : "error",
+        "no-use-before-define"     : "off",
+        "no-with"                  : "error",
+        "promise/always-return"    : "warn",
+        "promise/catch-or-return"  : "error",
+        "promise/no-native"        : "off",
+        "promise/param-names"      : "error",
+        "quote-props"              : [
+            "error", "as-needed", { "keywords": true, "unnecessary": false }
+        ],
+        "quotes"                             : [ "error", "single" ],
+        "react/jsx-closing-bracket-location" : "off",
+        "react/jsx-curly-spacing"            : [ "error", "always" ],
+        "react/jsx-equals-spacing"           : [ "error", "always" ],
+        "react/jsx-first-prop-new-line"      : [ "error", "multiline" ],
+        "react/jsx-indent-props"             : [ "error", 4 ],
+        "react/jsx-indent"                   : [ "error", 4 ],
+        "react/jsx-wrap-multilines"          : [ "error", { "arrow": false } ],
+        "react/no-unused-prop-types"         : "warn",
+        "react/prop-types"                   : [
+            "error", { "ignore" : [ "children", "className", "cssMap" ] }
+        ],
+        "react/require-default-props" : "off",
+        "require-jsdoc"               : [
             "error",
             {
-                "prefer":
-                {
-                    "returns": "return"
-                },
-                "requireReturn": false,
-                "requireReturnDescription": false,
-                "requireReturnType": false,
-                "preferType":
-                {
-                    "string"   : "String",
-                    "object"   : "Object",
-                    "number"   : "Number",
-                    "integer"  : "Integer",
+                "require" : {
+                    "ClassDeclaration"    : false,
+                    "FunctionDeclaration" : true,
+                    "MethodDefinition"    : false
+                }
+            }
+        ],
+        "semi-spacing" : [
+            "error", { "before": false, "after": true }
+        ],
+        "sort-imports"                : "off",
+        "space-before-function-paren" : [ "error", "never" ],
+        "space-in-parens"             : [
+            "error", "always", { "exceptions": [ "empty" ] }
+        ],
+        "spaced-comment" : [ "error", "always" ],
+        "strict"         : [ "error", "safe" ],
+        "valid-jsdoc"    : [
+            "error",
+            {
+                "prefer"     : { "returns": "return" },
+                "preferType" : {
+                    "boolean"  : "Boolean",
                     "float"    : "Float",
                     "function" : "Function",
-                    "boolean"  : "Boolean"
-                }
+                    "integer"  : "Integer",
+                    "number"   : "Number",
+                    "object"   : "Object",
+                    "string"   : "String"
+                },
+                "requireReturn"            : false,
+                "requireReturnDescription" : false,
+                "requireReturnType"        : false
             }
         ],
-    "computed-property-spacing":        // spaces inside prop[ key ]
-        [
-            "error", "always"
-        ],
-    "no-constant-condition": "warn",         // disallow use of constant expressions in conditions (e.g. if( true ))
-    "no-dupe-args": "warn",                  // all arguments have to be unique in a function/method
-    "no-dupe-keys": "warn",                  // disallow duplicate keys when creating object literals
-    "no-empty-character-class": "warn",      // for regexs /^abc[]/;
-    "no-empty": "warn",                      // disallow empty statements
-    "no-extra-semi": "warn",                 // disallow unnecessary semicolons
-    "no-func-assign": "warn",                // disallow overwriting functions written as function declarations
-    "no-invalid-regexp": "warn",             // disallow invalid regular expression strings in the RegExp constructor
-    "no-irregular-whitespace": "warn",       // disallow irregular whitespace outside of strings and comments
-    "no-sparse-arrays": "warn",              // no sparse arrays ["warn",,"error"]
-    "no-unreachable": "warn",                // disallow unreachable statements after a return, throw, continue, or break statement
-    "no-unused-vars": "error",                // disallow unused variables
-    "react/no-unused-prop-types": "warn",     // disallow unused proptypes
-    "no-console": "warn",                    // console.log|warn|error|... in the code results in a warning
-    "max-len": ["error", 80, 4],              // specify the maximum length of a line in your program
-    "semi-spacing":                     // enforce spacing before and after semicolons
-        [
-            "error",
-            {
-                "before":false,
-                "after": true
-            }
-        ],
-    "no-underscore-dangle": "off",
-    //disabled in tests
-    "jsx-a11y/no-static-element-interactions": "warn",
-    "no-magic-numbers": "warn",              // the same number should not occur multiple times in the code without explanation
-    "no-multi-str": "warn",
-    "no-unused-expressions": "warn"         // disallow usage of expressions in statement position
-  },
-  "globals" : {
-      "fetch",
-      "describe": true,
-      "expect": true,
-      "sinon": true,
-        "it": true,
-        "xit": true,
-        "beforeEach": true,
-        "afterEach": true,
-        "before": true,
-        "after": true,
-      },
-  "plugins": [
-    "arca",
-    "import",
-    "promise",
-    "compat",
-    "jsx-a11y"
-  ]
+        "valid-typeof" : "error"
+    },
+    "globals" : {
+        "after"      : true,
+        "afterEach"  : true,
+        "before"     : true,
+        "beforeEach" : true,
+        "describe"   : true,
+        "expect"     : true,
+        "fetch"      : true,
+        "it"         : true,
+        "sinon"      : true,
+        "xit"        : true
+    },
+    "plugins" : [
+        "arca",
+        "compat",
+        "import",
+        "jsx-a11y",
+        "promise"
+    ]
 }

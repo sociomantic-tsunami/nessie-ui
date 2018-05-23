@@ -3,11 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
+import { Label, ScrollBox, Text }  from '../index';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
 import { generateId }       from '../utils';
+import InputContainer       from '../proto/InputContainer';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -136,6 +137,10 @@ export default class ComboBox extends Component
          */
         onBlur            : PropTypes.func,
         /**
+         *  Icon click callback function
+         */
+        onClickIcon       : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChangeInput     : PropTypes.func,
@@ -225,6 +230,7 @@ export default class ComboBox extends Component
         noOptiosText          : undefined,
         onBlur                : undefined,
         onChangeInput         : undefined,
+        onClickIcon           : undefined,
         onClickInput          : undefined,
         onClickOption         : undefined,
         onFocus               : undefined,
@@ -396,6 +402,7 @@ export default class ComboBox extends Component
             name,
             onBlur,
             onChangeInput,
+            onClickIcon,
             onClickInput,
             onFocus,
             onKeyDown,
@@ -444,49 +451,52 @@ export default class ComboBox extends Component
         }
 
         return (
-            <InputWithDropdown
-                aria = { {
-                    autocomplete     : hasAutocomplete ? 'both' : 'list',
-                    activeDescendant :
-                        activeOption && addPrefix( activeOption, id ),
-                    expanded : isOpen,
-                    hasPopup : 'listbox',
-                    owns     : addPrefix( 'listbox', id ),
-                    role     : 'combobox',
-                } }
-                forceHover       = { forceHover || isOpen }
-                hasError         = { hasError }
-                iconType         = { iconType }
-                id               = { id }
-                inputRef         = { inputRef }
-                inputType        = { inputType }
-                isDisabled       = { isDisabled }
-                isReadOnly       = { inputIsReadOnly }
-                dropdownIsOpen   = { isOpen }
-                dropdownPosition = { dropdownPosition }
-                dropdownProps    = { {
-                    children : dropdownContent,
-                    hasError,
-                    padding  : options.length ? 'none' : 'S',
-                } }
-                errorMessage          = { errorMessage }
-                errorMessageIsVisible = { errorMessageIsVisible }
-                errorMessagePosition  = { errorMessagePosition }
-                label                 = { label }
-                labelPosition         = { labelPosition }
-                name                  = { name }
-                onBlur                = { onBlur }
-                onChange              = { onChangeInput }
-                onClick               = { onClickInput }
-                onFocus               = { onFocus }
-                onKeyDown             = { onKeyDown }
-                onKeyPress            = { onKeyPress }
-                onKeyUp               = { onKeyUp }
-                onMouseOut            = { onMouseOut }
-                onMouseOver           = { onMouseOver }
-                placeholder           = { inputPlaceholder }
-                value                 = { inputValue }
-                wrapperRef            = { this.setWrapperRef } />
+            <InputContainer
+                onMouseOut          = { onMouseOut }
+                onMouseOver         = { onMouseOver }
+                label               = { label }
+                labelPosition       = { labelPosition } >
+                <InputWithDropdown
+                    aria = { {
+                        autocomplete     : hasAutocomplete ? 'both' : 'list',
+                        activeDescendant :
+                            activeOption && addPrefix( activeOption, id ),
+                        expanded : isOpen,
+                        hasPopup : 'listbox',
+                        owns     : addPrefix( 'listbox', id ),
+                        role     : 'combobox',
+                    } }
+                    forceHover       = { forceHover || isOpen }
+                    hasError         = { hasError }
+                    iconType         = { iconType }
+                    id               = { id }
+                    inputRef         = { inputRef }
+                    inputType        = { inputType }
+                    isDisabled       = { isDisabled }
+                    isReadOnly       = { inputIsReadOnly }
+                    dropdownIsOpen   = { isOpen }
+                    dropdownPosition = { dropdownPosition }
+                    dropdownProps    = { {
+                        children : dropdownContent,
+                        hasError,
+                        padding  : options.length ? 'none' : 'S',
+                    } }
+                    errorMessage          = { errorMessage }
+                    errorMessageIsVisible = { errorMessageIsVisible }
+                    errorMessagePosition  = { errorMessagePosition }
+                    name                  = { name }
+                    onBlur                = { onBlur }
+                    onChange              = { onChangeInput }
+                    onClick               = { onClickInput }
+                    onClickIcon           = { onClickIcon }
+                    onFocus               = { onFocus }
+                    onKeyDown             = { onKeyDown }
+                    onKeyPress            = { onKeyPress }
+                    onKeyUp               = { onKeyUp }
+                    placeholder           = { inputPlaceholder }
+                    value                 = { inputValue }
+                    wrapperRef            = { this.setWrapperRef } />
+            </InputContainer>
         );
     }
 }

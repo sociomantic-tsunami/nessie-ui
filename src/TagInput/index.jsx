@@ -80,6 +80,10 @@ export default class TagInput extends Component
          */
         name                  : PropTypes.string,
         /**
+         * onBlur callback function
+         */
+        onBlur                : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChange              : PropTypes.func,
@@ -88,7 +92,19 @@ export default class TagInput extends Component
          */
         onClickClose          : PropTypes.func,
         /**
+         * onFocus callback function
+         */
+        onFocus               : PropTypes.func,
+        /**
+         * onKeyDown callback function
+         */
+        onKeyDown             : PropTypes.func,
+        /**
          * onKeyPress callback function
+         */
+        onKeyUp               : PropTypes.func,
+        /**
+         * onKeyUp callback function
          */
         onKeyPress            : PropTypes.func,
         /**
@@ -131,8 +147,12 @@ export default class TagInput extends Component
         label                 : undefined,
         labelPosition         : 'top',
         name                  : undefined,
+        onBlur                : undefined,
         onChange              : undefined,
         onClickClose          : undefined,
+        onFocus               : undefined,
+        onKeyDown             : undefined,
+        onKeyUp               : undefined,
         onKeyPress            : undefined,
         onMouseOut            : undefined,
         onMouseOver           : undefined,
@@ -143,13 +163,35 @@ export default class TagInput extends Component
     constructor()
     {
         super();
+
         this.state = { isFocused: false };
-        this.toggleFocus = this.toggleFocus.bind( this );
+
+        this.handleBlur  = this.handleBlur.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
     }
 
-    toggleFocus()
+    handleBlur( event )
     {
-        this.setState( { isFocused: !this.state.isFocused  } );
+        const { onBlur } = this.props;
+
+        if ( onBlur )
+        {
+            onBlur( event );
+        }
+
+        this.setState( { isFocused: false } );
+    }
+
+    handleFocus( event )
+    {
+        const { onFocus } = this.props;
+
+        if ( onFocus )
+        {
+            onFocus( event );
+        }
+
+        this.setState( { isFocused: true } );
     }
 
     render()
@@ -174,6 +216,8 @@ export default class TagInput extends Component
             name,
             onChange,
             onClickClose,
+            onKeyDown,
+            onKeyUp,
             onKeyPress,
             onMouseOut,
             onMouseOver,
@@ -243,9 +287,11 @@ export default class TagInput extends Component
                         disabled    = { isDisabled }
                         id          = { id }
                         name        = { name }
-                        onBlur      = { this.toggleFocus }
+                        onBlur      = { this.handleBlur }
                         onChange    = { onChange }
-                        onFocus     = { this.toggleFocus }
+                        onFocus     = { this.handleFocus }
+                        onKeyDown   = { onKeyDown }
+                        onKeyUp     = { onKeyUp }
                         onKeyPress  = { onKeyPress }
                         placeholder = { placeholder }
                         readOnly    = { isReadOnly }
