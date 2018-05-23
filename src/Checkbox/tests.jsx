@@ -60,6 +60,44 @@ describe( 'Checkbox', () =>
                     .to.be.true;
             } );
         } );
+
+        describe( 'onChange', () =>
+        {
+            it( 'should be `undefined` by default', () =>
+            {
+                const onChange = sinon.stub().callsFake( e =>
+                    targetChecked = e.target.checked
+                );
+                wrapper.setProps( { onChange } );
+
+                expect( wrapper.prop( onChange ) )
+                    .to.equal( undefined );
+            } );
+
+            it( 'should not be passed to Checkable if isReadOnly',
+                () =>
+                {
+                    const onChange = sinon.stub().callsFake( e =>
+                        targetChecked = e.target.checked
+                    );
+                    wrapper.setProps( { isReadOnly: true, onChange } );
+
+                    expect( wrapper.find( Checkable ).prop( onChange ) )
+                        .to.equal( undefined );
+                } );
+
+            it( 'should be passed to Checkable if not isReadOnly', () =>
+            {
+                const onChange = sinon.stub().callsFake( e =>
+                    targetChecked = e.target.checked
+                );
+                wrapper.setProps( { onChange } );
+
+                expect( wrapper.find( Checkable ).prop( onChange ) )
+                    .to.equal( wrapper.instance().onChange );
+            } );
+        } );
+
     } );
 } );
 
