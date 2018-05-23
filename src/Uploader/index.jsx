@@ -81,6 +81,14 @@ export default class Uploader extends Component
          */
         onChange                : PropTypes.func,
         /**
+         * onMouseOut callback function: ( e ) => { ... }
+         */
+        onMouseOut              : PropTypes.func,
+        /**
+         * onMouseOver callback function: ( e ) => { ... }
+         */
+        onMouseOver             : PropTypes.func,
+        /**
         *  Error message position relative to the icon
         */
         errorMessagePosition    : PropTypes.oneOf( [ 'left',
@@ -120,6 +128,8 @@ export default class Uploader extends Component
             onChange,
             onClick,
             onClickSecondary,
+            onMouseOut,
+            onMouseOver,
             previewisDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
@@ -181,12 +191,15 @@ export default class Uploader extends Component
                     disabled        : isDisabled,
                     previewDisabled : previewisDisabled
                 } }>
-                <div className = { className }>
+                <div
+                    className    = { className }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut } >
                     <input
-                        type      = "file"
-                        name      = { `${id}-file` }
-                        className = { cssMap.input }
-                        onChange  = { onChange } />
+                        type         = "file"
+                        name         = { `${id}-file` }
+                        className    = { cssMap.input }
+                        onChange     = { onChange } />
                     { label &&
                         <Label
                             overflowIsHidden
