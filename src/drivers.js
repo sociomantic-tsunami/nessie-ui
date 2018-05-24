@@ -92,6 +92,7 @@ import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
 import PasswordInputDriver   from './PasswordInput/driver';
+import RadioGroupDriver      from './RadioGroup/driver';
 import ScrollBoxDriver       from './ScrollBox/driver';
 import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
@@ -280,7 +281,7 @@ const drivers =
     },
     {
         Component : RadioGroup,
-        Driver    : CheckableGroupDriver,
+        Driver    : RadioGroupDriver,
     },
     {
         Component : Required,
