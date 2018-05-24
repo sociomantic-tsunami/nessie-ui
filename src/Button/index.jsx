@@ -185,7 +185,7 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
-                        size       = "M"
+                        size       = "S"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
                         forceHover = { isHovered }

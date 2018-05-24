@@ -40,10 +40,9 @@
 
 .label
 {
-    @extend %Nessie-SemiBold;
-
     font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
+    letter-spacing:     0.5px;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
