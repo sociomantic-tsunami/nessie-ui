@@ -70,7 +70,7 @@ const ListBoxOption = ( {
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
                     className = { cssMap.icon }
-                    size      = { iconSize || ( description ? 'M' : 'S' )  }
+                    size      = { iconSize || 'S'  }
                     type      = { iconType }
                     variant   = "stroke" />
             }
