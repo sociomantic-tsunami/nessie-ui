@@ -83,6 +83,48 @@ describe( 'CheckableGroupDriver', () =>
                 .to.eql( [ 'second check', 'fourth check' ] );
         } );
     } );
+    describe( 'toggleByIndex( index )', () =>
+    {
+        it( 'should toggle Checkbox with index', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" />,
+                    <Checkbox label = "two" />
+                ],
+            } );
+            wrapper.driver().toggleByIndex( 1 );
+            const items = wrapper.find( 'li' );
+
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .to.be.true;
+
+            wrapper.driver().toggleByIndex( 1 );
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .to.be.false;
+        } );
+
+        it( 'should toggle Checkboxes with indexes', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />,
+                    <Checkbox label = "three" value = "third check" />,
+                    <Checkbox label = "four" value = "fourth check" />
+                ],
+            } );
+            wrapper.driver().toggleByIndex( [ 1, 3 ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [ 'second check', 'fourth check' ] );
+
+            wrapper.driver().toggleByIndex( [ 1, 3 ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [] );
+        } );
+    } );
 
     describe( 'selectByValue()', () =>
     {
@@ -117,6 +159,51 @@ describe( 'CheckableGroupDriver', () =>
 
             expect( wrapper.driver().getSelectedValues() )
                 .to.eql( [ 'second check', 'third check' ] );
+        } );
+    } );
+
+    describe( 'toggleByValue( value )', () =>
+    {
+        it( 'should toggle Checkbox with value', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />
+                ],
+            } );
+
+            wrapper.driver().toggleByValue( 'second check' );
+            const items = wrapper.find( 'li' );
+
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .to.be.true;
+
+            wrapper.driver().toggleByValue( 'second check' );
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .to.be.false;
+        } );
+
+        it( 'should toggle Checkboxes with values', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />,
+                    <Checkbox label = "three" value = "third check" />,
+                    <Checkbox label = "four" value = "fourth check" />
+                ],
+            } );
+
+            wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [ 'second check', 'third check' ] );
+
+            wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
+
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [] );
         } );
     } );
 

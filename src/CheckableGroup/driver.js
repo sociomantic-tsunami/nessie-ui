@@ -53,6 +53,48 @@ export default class CheckableGroupDriver
         return this;
     }
 
+    toggleByIndex( index )
+    {
+        const items = this.getContent();
+
+        if ( Array.isArray( index ) )
+        {
+            index.forEach( i =>
+            {
+                items[ i ].driver().toggleChecked();
+            } );
+        }
+        else
+        {
+            items[ index ].driver().toggleChecked();
+        }
+
+        return this;
+    }
+
+    toggleByValue( value )
+    {
+        if ( Array.isArray( value ) )
+        {
+            value.forEach( i =>
+            {
+                const item =
+                    this.wrapper.findWhere( n =>
+                        n.prop( 'value' ) === i ).first();
+                item.driver().toggleChecked();
+            } );
+        }
+        else
+        {
+            const item =
+                this.wrapper.findWhere( n =>
+                    n.prop( 'value' ) === value ).first();
+            item.driver().toggleChecked();
+        }
+
+        return this;
+    }
+
     getSelectedValues()
     {
         const items =
