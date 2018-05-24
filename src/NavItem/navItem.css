@@ -59,6 +59,7 @@
 
 .role__sub
 {
+    background:            var( --PC-BLUE );
     border-radius:         6px;
 
     & > .link
@@ -67,8 +68,6 @@
         padding-right:     var( --spacing-2 );
         padding-bottom:    0;
         padding-left:      var( --spacing-2 );
-
-        background-color:  var( --PC-BLUE );
 
         border-radius:     2px;
 
