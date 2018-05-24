@@ -111,10 +111,6 @@ export default class TextInputWithDropdown extends Component
          */
         onChange             : PropTypes.func,
         /**
-         *  onClick callback function: ( e ) => { ... }
-         */
-        onClick              : PropTypes.func,
-        /**
          *  onFocus callback function: ( e ) => { ... }
          */
         onFocus              : PropTypes.func,
