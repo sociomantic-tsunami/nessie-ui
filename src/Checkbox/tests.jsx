@@ -39,6 +39,23 @@ describe( 'Checkbox', () =>
             } );
         } );
 
+        describe( 'isReadOnly', () =>
+        {
+            it( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isReadOnly' ) ).to.be.false;
+            } );
+
+            it( 'should be passed to Checkable', () =>
+            {
+                const onChange = sinon.stub();
+                wrapper.setProps( { isReadOnly: true, onChange } );
+
+                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                    .to.equal( onChange );
+            } );
+        } );
+
         describe( 'hasError', () =>
         {
             it( 'should be passed to the Checkable', () =>
@@ -63,41 +80,20 @@ describe( 'Checkbox', () =>
 
         describe( 'onChange', () =>
         {
-            it( 'should be `undefined` by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                const onChange = sinon.stub().callsFake( e =>
-                    targetChecked = e.target.checked
-                );
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.prop( onChange ) )
-                    .to.equal( undefined );
+                expect( wrapper.prop( 'onChange' ) ).to.be.undefined;
             } );
 
-            it( 'should not be passed to Checkable if isReadOnly',
-                () =>
-                {
-                    const onChange = sinon.stub().callsFake( e =>
-                        targetChecked = e.target.checked
-                    );
-                    wrapper.setProps( { isReadOnly: true, onChange } );
-
-                    expect( wrapper.find( Checkable ).prop( onChange ) )
-                        .to.equal( undefined );
-                } );
-
-            it( 'should be passed to Checkable if not isReadOnly', () =>
+            it( 'should be passed to Checkable', () =>
             {
-                const onChange = sinon.stub().callsFake( e =>
-                    targetChecked = e.target.checked
-                );
-                wrapper.setProps( { onChange } );
+                const onChange = sinon.stub();
+                wrapper.setProps( { isReadOnly: true, onChange } );
 
-                expect( wrapper.find( Checkable ).prop( onChange ) )
-                    .to.equal( wrapper.instance().onChange );
+                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                    .to.equal( onChange );
             } );
         } );
-
     } );
 } );
 
