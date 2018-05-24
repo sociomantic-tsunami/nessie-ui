@@ -84,22 +84,30 @@ of 1/3:
 The horizontal space between any two Columns in a Grid is called the gutter. You
 can configure gutter size used in a given Grid using the Grid’s `gutters` prop.
 
-The prop accepts one of four values: `"S"`, `"M'`, `"L"` (default) and `"none"`
+The prop accepts one of four values: `"S"`, `"M'` (default), `"L"` and `"none"`
 (no gutters).
 
 ### Grid spacing
 
 Configure the vertical spacing between Grids using the Grid’s `spacing` prop.
-The prop accepts one of seven values: `"default"`, `"h1"`, `"h2"`, `"h3"`,
-`"h4"`, `"label"` and `"none"` (no spacing).
-
-`"h1"`, `"h2"`, `"h3"`, `"h4"` and `"label"` correspond to the default spacing
-following the H1, H2, H3, H4 and Label components, respectively.
+The prop accepts one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
+(no spacing).
 
 ### Grid wrap
 
 You can control whether the Grid content will wrap using the `hasWrap` boolean
 prop (default `true`).
+
+For convenience, a Row component is also avaiable: it’s simply a Grid whose 
+`hasWrap` prop is always `false`. Use it the same as you’d use Grid:
+
+```
+<Row>
+    <Column>...</Column>
+    <Column>...</Column>
+    <Column>...</Column>
+</Row>
+```
 
 ### Grid alignment — or, aligning Columns inside Grids
 
