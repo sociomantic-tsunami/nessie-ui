@@ -68,7 +68,7 @@ $wideWidth : 900px;
 .content
 {
     width:              500px;
-    padding:            40px;
+    padding:            var( --spacing-3 );
     box-sizing:         border-box;
     box-shadow:         var( --boxShadow );
     background:         var( --PC-WHITE );
