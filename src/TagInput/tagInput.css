@@ -10,12 +10,11 @@
 
         box-sizing:         border-box;
         width:              100%;
-        min-height:         32px;
 
         border:             1px solid var( --PC-GREY--L70 );
         border-radius:      2px;
 
-        padding-top:        3px;
+        padding-top:        var( --spacing-1 );
         padding-right:      var( --spacing-1 );
         padding-bottom:     0;
         padding-left:       var( --spacing-1 );
@@ -28,7 +27,7 @@
         & > *
         {
             margin-right:   var( --spacing-1 );
-            margin-bottom:  3px;
+            margin-bottom:  var( --spacing-1 );
         }
     }
 
