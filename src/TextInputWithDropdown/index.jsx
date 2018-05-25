@@ -200,6 +200,7 @@ export default class TextInputWithDropdown extends Component
             className,
             cssMap,
             label,
+            onClick,
             onMouseOut,
             onMouseOver,
             ...props
@@ -262,6 +263,7 @@ export default class TextInputWithDropdown extends Component
                             value        = { inputValue }
                             textAlign    = { alignText }
                             forceHover   = { fakeHovered }
+                            onClick      = { onClick }
                             onMouseOver  = { this.handleMouseOver }
                             onMouseOut   = { this.handleMouseOut }
                             onFocus      = { this.handleFocus }

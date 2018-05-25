@@ -80,6 +80,10 @@ export default class TextArea extends Component
          */
         onChange              : PropTypes.func,
         /**
+         *  Input click callback function
+         */
+        onClick               : PropTypes.func,
+        /**
          *  Input focus callback function
          */
         onFocus               : PropTypes.func,

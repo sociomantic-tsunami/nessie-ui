@@ -39,6 +39,23 @@ describe( 'Checkbox', () =>
             } );
         } );
 
+        describe( 'isReadOnly', () =>
+        {
+            it( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isReadOnly' ) ).to.be.false;
+            } );
+
+            it( 'should be passed to Checkable', () =>
+            {
+                const onChange = sinon.stub();
+                wrapper.setProps( { isReadOnly: true, onChange } );
+
+                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                    .to.equal( onChange );
+            } );
+        } );
+
         describe( 'hasError', () =>
         {
             it( 'should be passed to the Checkable', () =>
@@ -58,6 +75,23 @@ describe( 'Checkbox', () =>
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
                     .to.be.true;
+            } );
+        } );
+
+        describe( 'onChange', () =>
+        {
+            it( 'should be undefined by default', () =>
+            {
+                expect( wrapper.prop( 'onChange' ) ).to.be.undefined;
+            } );
+
+            it( 'should be passed to Checkable', () =>
+            {
+                const onChange = sinon.stub();
+                wrapper.setProps( { isReadOnly: true, onChange } );
+
+                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                    .to.equal( onChange );
             } );
         } );
     } );
