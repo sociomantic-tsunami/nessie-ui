@@ -39,10 +39,6 @@ module.exports = Object.assign( {}, baseConfig, {
                     }
                 ]
             },
-            // {
-            //     test : /\.json$/,
-            //     use  : 'null-loader'
-            // },
             {
                 test : /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 use  : [

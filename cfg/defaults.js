@@ -21,16 +21,6 @@ function getDefaultModules()
 {
     return {
         rules : [
-            // {
-            //     test    : /\.(js|jsx)$/,
-            //     include : srcPath,
-            //     enforce : 'pre',
-            //     use     : [ {
-            //
-            //         loader  : 'eslint-loader',
-            //         options : { modules: true }
-            //     } ]
-            // },
             {
                 test : /\.jsx?$/,
                 use  : 'happypack/loader?id=js'

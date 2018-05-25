@@ -1,13 +1,12 @@
-const path              = require( 'path' );
+const path                 = require( 'path' );
 
-const webpack           = require( 'webpack' );
-const HappyPack         = require( 'happypack' );
-// const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const webpack              = require( 'webpack' );
+const HappyPack            = require( 'happypack' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const cloneDeep         = require( 'lodash.clonedeep' );
+const cloneDeep            = require( 'lodash.clonedeep' );
 
-const baseConfig        = require( './base' );
-const defaultSettings   = require( './defaults' );
+const baseConfig           = require( './base' );
+const defaultSettings      = require( './defaults' );
 
 
 const commonDistPLugins = [
