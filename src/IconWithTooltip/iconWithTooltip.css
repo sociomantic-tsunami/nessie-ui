@@ -76,7 +76,7 @@
         & > .iconWithTooltip
         {
             position:   absolute;
-            top:        calc( -var( --iconSize ) / 2 );
+            top:        calc( -1 * var( --iconSize ) / 2 );
         }
     }
 
@@ -84,7 +84,7 @@
     {
         & > .iconWithTooltip
         {
-            right:  calc( -var( --iconSize ) / 2 );
+            right:  calc( -1 * var( --iconSize ) / 2 );
         }
     }
 
@@ -92,7 +92,7 @@
     {
         & > .iconWithTooltip
         {
-            left:   calc( -var( --iconSize ) / 2 );
+            left:   calc( -1 * var( --iconSize ) / 2 );
         }
     }
 }

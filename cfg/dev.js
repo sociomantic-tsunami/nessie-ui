@@ -2,6 +2,7 @@ const path              = require( 'path' );
 
 const HappyPack         = require( 'happypack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const webpack           = require( 'webpack' );
 
 const baseConfig        = require( './base' );
@@ -37,8 +38,7 @@ const config = Object.assign( {}, baseConfig, {
                     test      : /[\\/]node_modules[\\/]/,
                     name      : 'commonchunks',
                     chunks    : 'all',
-                    minChunks : 4,
-                    children  : true
+                    minChunks : 4
                 }
             }
         },
@@ -46,7 +46,7 @@ const config = Object.assign( {}, baseConfig, {
     },
 
     plugins : [
-        new ExtractTextPlugin( {
+        new MiniCssExtractPlugin( {
             fallback  : 'style-loader',
             filename  : 'displayComponentStyles.css',
             allChunks : true

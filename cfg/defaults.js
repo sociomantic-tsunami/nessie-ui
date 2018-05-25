@@ -11,6 +11,7 @@ const srcPath = path.join( __dirname, '/../src' );
 const dfltPort = 8000;
 
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 /**
  * Get the default modules object for webpack
@@ -36,12 +37,10 @@ function getDefaultModules()
             },
             {
                 test : /\.(css|sass|scss|less|styl)$/,
-                use  : ExtractTextPlugin.extract( {
-                    fallback : 'style-loader',
-                    loader   : [
-                        'happypack/loader?id=styles'
-                    ]
-                } )
+                use  : [
+                    MiniCssExtractPlugin.loader,
+                    'happypack/loader?id=styles'
+                ],
             },
             {
                 test : /\.(png|jpg|gif)$/,

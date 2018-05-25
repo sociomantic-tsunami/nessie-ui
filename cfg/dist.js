@@ -2,7 +2,8 @@ const path              = require( 'path' );
 
 const webpack           = require( 'webpack' );
 const HappyPack         = require( 'happypack' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+// const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const cloneDeep         = require( 'lodash.clonedeep' );
 
 const baseConfig        = require( './base' );
@@ -77,9 +78,9 @@ const commonJsConfig = Object.assign( {}, baseConfig, {
     },
 
     plugins : commonDistPLugins.concat( [
-        new ExtractTextPlugin( {
+        new MiniCssExtractPlugin( {
             fallback  : 'style-loader',
-            filename  : 'styles.css',
+            filename  : '[name].css',
             allChunks : true
         } ),
         new HappyPack( {
@@ -116,7 +117,7 @@ windowConfig.output.filename = 'displayComponents.js';
 windowConfig.output.libraryTarget = 'window';
 windowConfig.output.library = 'DisplayComponents';
 windowConfig.plugins = commonDistPLugins.concat( [
-    new ExtractTextPlugin( {
+    new MiniCssExtractPlugin( {
         fallback  : 'style-loader',
         filename  : 'displayComponentStyles.css',
         allChunks : true
