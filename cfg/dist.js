@@ -31,7 +31,11 @@ const commonJsConfig = Object.assign( {}, baseConfig, {
         index           : path.join( __dirname, '../src/index.js' ),
         componentDriver : path.join( __dirname, '../src/Testing/index.js' ),
         driverSuite     : path.join( __dirname, '../src/drivers.js' ),
-        addons          : path.join( __dirname, '../src/addons.js' )
+        addons          : path.join( __dirname, '../src/addons.js' ),
+        css             : [
+            path.join( __dirname, '../src/index.js' ),
+            path.join( __dirname, '../src/addons.js' ),
+        ],
     },
     output : {
         path          : path.join( __dirname, '/../dist' ),
