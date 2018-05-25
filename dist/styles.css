@@ -9800,6 +9800,11 @@ textarea.inputField__resizable
         -ms-flex-wrap:  wrap;
             flex-wrap:  wrap;
 }
+
+.grid__hasMinHeight
+{
+    min-height: 7.7rem; /* label + input */
+}
 .iconButton__default /* all elements get default margin-bottom of 2rem */
 {
     position:       relative;
