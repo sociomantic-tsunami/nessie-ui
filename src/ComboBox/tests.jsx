@@ -18,6 +18,22 @@ describe( 'ComboBox', () =>
         {
             expect( wrapper ).to.have.length( 1 );
         } );
+        it( 'should render ComboBox without label by default', () =>
+        {
+            const label = '';
+            wrapper.setProps( {
+                label
+            } );
+            expect( wrapper.find( 'label' ).length ).to.equal( 0 );
+        } );
+        it( 'should render ComboBox with label if defined', () =>
+        {
+            const label = 'label';
+            wrapper.setProps( {
+                label
+            } );
+            expect( wrapper.find( 'label' ).length ).to.equal( 1 );
+        } );
     } );
 } );
 
