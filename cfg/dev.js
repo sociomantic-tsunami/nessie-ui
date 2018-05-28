@@ -1,11 +1,11 @@
-const path              = require( 'path' );
+const path                 = require( 'path' );
 
-const HappyPack         = require( 'happypack' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const webpack           = require( 'webpack' );
+const HappyPack            = require( 'happypack' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const webpack              = require( 'webpack' );
 
-const baseConfig        = require( './base' );
-const defaultSettings   = require( './defaults' );
+const baseConfig           = require( './base' );
+const defaultSettings      = require( './defaults' );
 
 
 const config = Object.assign( {}, baseConfig, {
@@ -30,13 +30,22 @@ const config = Object.assign( {}, baseConfig, {
         'react-dom'  : 'ReactDOM',
     },
 
+    optimization : {
+        splitChunks : {
+            cacheGroups : {
+                commons : {
+                    test      : /[\\/]node_modules[\\/]/,
+                    name      : 'commonchunks',
+                    chunks    : 'all',
+                    minChunks : 4
+                }
+            }
+        },
+        runtimeChunk : false,
+    },
+
     plugins : [
-        new webpack.optimize.CommonsChunkPlugin( {
-            children  : true,
-            minChunks : 4,
-            name      : 'commonchunks'
-        } ),
-        new ExtractTextPlugin( {
+        new MiniCssExtractPlugin( {
             fallback  : 'style-loader',
             filename  : 'displayComponentStyles.css',
             allChunks : true

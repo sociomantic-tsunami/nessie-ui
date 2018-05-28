@@ -40,7 +40,7 @@ module.exports = {
         advancedVariables,
         customSelectors,
         customMedia,
-        customProperties,
+        customProperties( { preserve: false } ),
         mediaMinMax,
         nested,
         extend,

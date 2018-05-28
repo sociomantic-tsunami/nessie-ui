@@ -1,7 +1,8 @@
 const fs                = require( 'fs' );
 const path              = require( 'path' );
 
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+// const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const HappyPack         = require( 'happypack' );
 
 const defaultSettings   = require( './defaults' );
@@ -39,10 +40,6 @@ module.exports = Object.assign( {}, baseConfig, {
                 ]
             },
             {
-                test : /\.json$/,
-                use  : 'null-loader'
-            },
-            {
                 test : /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 use  : [
                     {
@@ -56,20 +53,11 @@ module.exports = Object.assign( {}, baseConfig, {
                 ]
             },
             {
-                test : /\.css$/,
-                use  : ExtractTextPlugin.extract( {
-                    fallback : 'style-loader',
-                    loader   : [
-                        {
-                            loader  : 'happypack/loader',
-                            options :
-                            {
-                                id : 'styles',
-                            }
-                        }
-                    ],
-                    publicPath : '/dist'
-                } )
+                test : /\.(css|sass|scss|less|styl)$/,
+                use  : [
+                    MiniCssExtractPlugin.loader,
+                    'happypack/loader?id=styles'
+                ],
             },
             {
                 test : /\.jsx?$/,
@@ -101,7 +89,7 @@ module.exports = Object.assign( {}, baseConfig, {
     },
     plugins :
     [
-        new ExtractTextPlugin( {
+        new MiniCssExtractPlugin( {
             fallback  : 'style-loader',
             filename  : 'styles.css',
             allChunks : true
