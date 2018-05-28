@@ -12,9 +12,6 @@ const defaultSettings         = require( './defaults' );
 
 
 const commonDistPLugins = [
-    new webpack.DefinePlugin( {
-        'process.env.NODE_ENV' : '"production"'
-    } ),
 
     new webpack.LoaderOptionsPlugin( {
         debug : false
