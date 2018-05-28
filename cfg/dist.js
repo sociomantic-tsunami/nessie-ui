@@ -1,4 +1,4 @@
-const path                 = require( 'path' );
+const path                    = require( 'path' );
 
 const merge                = require( 'lodash.merge' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
