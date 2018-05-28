@@ -1,77 +1,33 @@
 const path                 = require( 'path' );
 
-const webpack              = require( 'webpack' );
-const HappyPack            = require( 'happypack' );
+const merge                = require( 'lodash.merge' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const cloneDeep            = require( 'lodash.clonedeep' );
 
 const baseConfig           = require( './base' );
-const defaultSettings      = require( './defaults' );
 
 
-const commonDistPLugins = [
-    new webpack.DefinePlugin( {
-        'process.env.NODE_ENV' : '"production"'
-    } ),
+const distConfig = merge( {}, baseConfig, {
+    output : { libraryTarget: 'umd' },
 
-    new webpack.LoaderOptionsPlugin( {
-        debug : false
-    } ),
-
-    new HappyPack( {
-        id      : 'js',
-        loaders : [ 'babel-loader' ],
-        threads : 2
-    } )
-
-];
-
-const commonJsConfig = Object.assign( {}, baseConfig, {
-    entry : {
-        index           : path.join( __dirname, '../src/index.js' ),
-        componentDriver : path.join( __dirname, '../src/Testing/index.js' ),
-        driverSuite     : path.join( __dirname, '../src/drivers.js' ),
-        addons          : path.join( __dirname, '../src/addons.js' ),
-        css             : [
-            path.join( __dirname, '../src/index.js' ),
-            path.join( __dirname, '../src/addons.js' ),
-        ],
-    },
-    output : {
-        path          : path.join( __dirname, '/../dist' ),
-        filename      : '[name].js',
-        publicPath    : defaultSettings.publicPath,
-        libraryTarget : 'commonjs2'
-    },
-
-    cache : false,
-
-    devtool : 'source-map',
-
-    externals :
-    {
-        'nessie-ui' : 'nessie-ui/dist/index.js',
-
-        'componentDriver' : 'nessie-ui/dist/componentDriver.js',
-
-        'prop-types' :
-        {
+    devtool   : 'source-map',
+    externals : {
+        componentDriver : 'nessie-ui/dist/componentDriver',
+        'nessie-ui'     : 'nessie-ui',
+        'prop-types'    : {
             window    : 'PropTypes',
             root      : 'PropTypes',
             commonjs2 : 'prop-types',
             commonjs  : 'prop-types',
             amd       : 'prop-types'
         },
-        react :
-        {
+        react : {
             window    : 'React',
             root      : 'React',
             commonjs2 : 'react',
             commonjs  : 'react',
             amd       : 'react'
         },
-        'react-dom' :
-        {
+        'react-dom' : {
             window    : 'ReactDOM',
             root      : 'ReactDOM',
             commonjs2 : 'react-dom',
@@ -79,71 +35,44 @@ const commonJsConfig = Object.assign( {}, baseConfig, {
             amd       : 'react-dom'
         }
     },
-
-    plugins : commonDistPLugins.concat( [
-        new MiniCssExtractPlugin( {
-            fallback  : 'style-loader',
-            filename  : '[name].css',
-            allChunks : true
-        } ),
-        new HappyPack( {
-            id      : 'styles',
-            loaders : [
-                {
-                    loader  : 'css-loader',
-                    options :
-                    {
-                        modules        : true,
-                        localIdentName : '[name]__[local]',
-                        importLoaders  : 1
-                    }
-                },
-                {
-                    loader : 'postcss-loader'
-                }
-            ],
-            threads : 2
-        } ),
-
-    ] ),
-
-    module : defaultSettings.getDefaultModules()
+    mode : 'production',
 } );
 
 
-// Setup
-const windowConfig = cloneDeep( commonJsConfig );
+const addons = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/addons.js' ),
+    output : { filename: 'addons.js' },
 
-windowConfig.entry =  path.join( __dirname, '../src/index.js' );
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            fallback  : 'css-loader',
+            filename  : 'addons.css',
+        } ),
+    ],
+} );
 
-windowConfig.output.filename = 'displayComponents.js';
-windowConfig.output.libraryTarget = 'window';
-windowConfig.output.library = 'DisplayComponents';
-windowConfig.plugins = commonDistPLugins.concat( [
-    new MiniCssExtractPlugin( {
-        fallback  : 'style-loader',
-        filename  : 'displayComponentStyles.css',
-        allChunks : true
-    } ),
-    new HappyPack( {
-        id      : 'styles',
-        loaders : [
-            {
-                loader  : 'css-loader',
-                options :
-                {
-                    modules        : true,
-                    localIdentName : '[name]__[local]__[hash:base64:5]',
-                    importLoaders  : 1
-                }
-            },
-            {
-                loader : 'postcss-loader'
-            }
-        ],
-        threads : 2
-    } ),
+const components = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/index.js' ),
+    output : { filename: 'index.js' },
 
-] );
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.css',
+        } ),
+    ],
+} );
 
-module.exports = [ commonJsConfig, windowConfig ];
+const componentDriver = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/Testing/index.js' ),
+    output : { filename: 'componentDriver.js' },
+} );
+
+const driverSuite = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/drivers.js' ),
+    output : { filename: 'driverSuite.js' },
+} );
+
+
+module.exports = [ addons, components, componentDriver, driverSuite ];

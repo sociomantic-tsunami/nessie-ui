@@ -1,12 +1,5 @@
-/*
- * ATTENTION: you MUST delete the happypack cache ( ./.happypack ) after
- * changing anything in here.
- *
- */
-
 const calc = require( 'postcss-calc' );
 const autoprefixer = require( 'autoprefixer' );
-const cssnano = require( 'cssnano' );
 const partialImport = require( 'postcss-partial-import' );
 const advancedVariables = require( 'postcss-advanced-variables' );
 const customSelectors = require( 'postcss-custom-selectors' );
@@ -25,13 +18,6 @@ const initial = require( 'postcss-initial' );
 const attributeCaseInsensitive =
     require( 'postcss-attribute-case-insensitive' );
 
-
-let cssNanoInclude;
-
-if ( process.env.CSS_NANO )
-{
-    // cssNanoInclude = cssnano();
-}
 
 module.exports = {
     plugins :
@@ -56,6 +42,5 @@ module.exports = {
         autoprefixer( {
             browsers : [ 'last 2 versions', 'ie 10', 'ie 11', 'safari 8' ]
         } ),
-        cssNanoInclude
     ]
 };
