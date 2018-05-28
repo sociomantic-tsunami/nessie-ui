@@ -23,6 +23,8 @@ const config = Object.assign( {}, baseConfig, {
 
     devtool : 'source-map',
 
+    mode : 'development',
+
     externals :
     {
         'prop-types' : 'PropTypes',
