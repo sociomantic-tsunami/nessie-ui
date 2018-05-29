@@ -7,6 +7,13 @@ const baseConfig           = require( './base' );
 
 
 module.exports = merge( {}, baseConfig, {
+    externals : {
+        'react/addons'                   : true,
+        'react/lib/ExecutionEnvironment' : true,
+        'react/lib/ReactContext'         : true,
+        'react-dom/test-utils'           : true,
+        'react-test-renderer/shallow'    : true,
+    },
     mode    : 'development',
     plugins : [ new MiniCssExtractPlugin() ],
     resolve : {
