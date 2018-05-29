@@ -6,13 +6,10 @@
     max-width:              none;
     max-height:             50vh;
 
-    background:             var( --PC-BLUE );
+    background:             var( --PC-WHITE );
     box-shadow:             var( --boxShadow );
 
-    padding-top:            var( --spacing-1 );
-    padding-right:          var( --spacing-2 );
-    padding-bottom:         var( --spacing-1 );
-    padding-left:           var( --spacing-2 );
+    padding:                var( --spacing-2 );
 
     overflow-y:             auto;
     overscroll-behavior-y:  contain;

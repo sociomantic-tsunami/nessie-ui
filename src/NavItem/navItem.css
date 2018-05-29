@@ -59,7 +59,7 @@
 
 .role__sub
 {
-    background:            var( --PC-BLUE );
+    background:            var( --PC-WHITE );
     border-radius:         6px;
 
     & > .link
@@ -72,11 +72,11 @@
         border-radius:     2px;
 
         line-height:       var( --line-height-xxl );
-        color:             var( --PC-WHITE );
+        color:             var( --PC-GREY--D15 );
 
         &:visited
         {
-            color:         var( --PC-WHITE );
+            color:         var( --PC-GREY--D15 );
         }
     }
 
@@ -87,12 +87,25 @@
     &.open > .link,
     &.current > .link
     {
-        background-color:   var( --PC-BLUE--L25 );
+        background-color:   var( --PC-BLUE );
+        color:              var( --PC-WHITE );
     }
 }
 
 .open
 {
+    &:not( .role__sub ):after
+    {
+        content:            '';
+        position:           absolute;
+        display:            inline-block;
+
+        height:             var( --spacing-1 );
+        width:              100%;
+
+        background-color:   transparent;
+    }
+
     .dropdown
     {
         left:   auto;
@@ -115,7 +128,7 @@
 
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );
-    color:          var( --PC-GREY--L25 );
+    color:          var( --PC-GREY--L70 );
 
     &[href]
     {
@@ -129,7 +142,7 @@
 
     &:visited
     {
-        color:      var( --PC-GREY--L25 );
+        color:      var( --PC-GREY--L70 );
     }
 }
 
@@ -137,7 +150,7 @@
 {
     position:   absolute;
     left:       -99999px;
-    margin-top: -2px;
+    margin-top: var( --spacing-1 );
 }
 
 .hasIcon
@@ -169,6 +182,6 @@
     & > .link > .icon,
     &.disabled > .link > .icon
     {
-        fill: var( --PC-GREY--L25 );
+        fill: var( --PC-GREY--L70 );
     }
 }
