@@ -4,8 +4,9 @@ import PropTypes                                from 'prop-types';
 import Component                                from '../proto/Component';
 import { buildClassName }                       from '../utils';
 import styles                                   from './scrollBox.css';
-import { createScrollHandler, handleScroll }    from './utils';
+import { createScrollHandler }                  from './utils';
 import IconButton                               from '../IconButton';
+import ScrollBar                                from '../ScrollBar';
 
 export default class ScrollBox extends Component
 {
@@ -94,23 +95,35 @@ export default class ScrollBox extends Component
     constructor( props )
     {
         super( props );
-        this.state = {};
-        this.handleScroll = this.handleScroll.bind( this );
+        this.scrollBoxRef = null;
+        this.state = {
+            scrollMove : 0,
+            wheelMove  : 0
+        };
+        this.handleChange = this.handleChange.bind( this );
+        this.handleWheel = this.handleWheel.bind( this );
     }
 
-    handleScroll( e )
+    componentDidUpdate()
     {
+        const { scrollMove } = this.state;
         const { scroll } = this.props;
-        const target = e.target.value;
-        const delta = Math.floor( e.deltaY );
-
-        const type = e.type === 'change' || e.type === 'input';
-        const val = type ? parseInt( target ) : parseInt( target ) + delta;
-
-        this.scrollBoxRef[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = val;
-        console.log( scroll );
+        this.scrollBoxRef[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = scrollMove;
     }
 
+    handleWheel( e )
+    {
+        this.setState( {
+            scrollMove: this.state.scrollMove + e.deltaY
+        } )
+    }
+
+    handleChange( newVal )
+    {
+        this.setState( {
+            scrollMove : newVal
+        } );
+    }
     render()
     {
         const {
@@ -132,8 +145,10 @@ export default class ScrollBox extends Component
             scrollUpIsVisible
         } = this.props;
 
+        const { scrollMove } = this.state;
+
         return (
-            <div className = { buildClassName( className, cssMap, { scroll } ) }>
+            <div className = { buildClassName( className, cssMap, { scroll } ) } onWheel = { this.handleWheel }>
                 { scrollDownIsVisible && <IconButton
                     className = { cssMap.icon__down }
                     iconType = "down"
@@ -154,17 +169,16 @@ export default class ScrollBox extends Component
                     iconType = "up"
                     iconSize = "L"
                     onClick = { onClickScrollUp } /> }
-                <input
-                    defaultValue = "0"
-                    type         = "range"
-                    onChange     = { this.handleScroll }
-                    onInput      = { this.handleScroll }
-                    onWheel      = { this.handleScroll } />
+                <ScrollBar
+                    defaultValue = { 0 }
+                    scrollPos    = { scrollMove }
+                    onChange     = { this.handleChange }
+                     />
                 <div
                     className = { cssMap.scrollBox }
                     onScroll  = { createScrollHandler( onScroll, scroll ) }
-                    ref       = { r => this.scrollBoxRef = r }
-                    style     = { { maxHeight: height ? `${height}` : null } } >
+                    style     = { { maxHeight: height ? `${height}` : null } }
+                    ref       = { e => this.scrollBoxRef = e } >
 
 
                     <div
