@@ -611,6 +611,8 @@
         padding-top:    0 !important; /* yes, always */
         padding-bottom: 0 !important; /* yes, always */
         padding-left:   0 !important; /* yes, always */
+
+        flex-grow:      unset;
     }
 
     .arrow
