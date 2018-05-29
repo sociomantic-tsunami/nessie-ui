@@ -1,46 +1,47 @@
-var webpackCfg = require('./webpack.config');
+const webpackCfg = require( './cfg/test.js' );
 
-module.exports = function(config) {
-  config.set({
-    basePath: '',
+module.exports = function( config )
+{
+    config.set( {
+        basePath : '',
 
-    browsers: ['PhantomJS'], // You may use 'ChromeCanary', 'Chromium' or any other supported browser
-    files: [
-     'node_modules/babel-polyfill/dist/polyfill.js',
-      'loadtests.js'
-    ],
-
-
-    port: 8080,
-    captureTimeout: 60000,
-    frameworks: [ 'mocha', 'sinon-chai' ],
+        browsers : [ 'PhantomJS' ],
+        files    : [
+            'node_modules/babel-polyfill/dist/polyfill.js',
+            'loadtests.js'
+        ],
 
 
-    client: {
-      mocha: {},
-      chai: {
-        includeStack: true
-      }
-    },
+        port           : 8080,
+        captureTimeout : 60000,
+        frameworks     : [ 'mocha', 'sinon-chai' ],
 
-    singleRun: true,
-    preprocessors: {
-      'loadtests.js': [ 'webpack', 'sourcemap' ]
-    },
-    webpack: webpackCfg,
-    webpackServer: {
-       noInfo: true,
-       stats: {
-          // options i.e.
-          chunks: false
-      }
-    },
-    coverageReporter: {
-      dir: 'coverage/',
-      reporters: [
-        { type: 'html' },
-        { type: 'text' }
-      ]
-    }
-  });
+
+        client : {
+            mocha : {},
+            chai  : {
+                includeStack : true
+            }
+        },
+
+        singleRun     : true,
+        preprocessors : {
+            'loadtests.js' : [ 'webpack', 'sourcemap' ]
+        },
+        webpack       : webpackCfg,
+        webpackServer : {
+            noInfo : true,
+            stats  : {
+                // options i.e.
+                chunks : false
+            }
+        },
+        coverageReporter : {
+            dir       : 'coverage/',
+            reporters : [
+                { type: 'html' },
+                { type: 'text' }
+            ]
+        }
+    } );
 };
