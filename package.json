@@ -128,7 +128,6 @@
     "raw-loader": "^0.5.1",
     "react": "15.6.2",
     "react-addons-css-transition-group": "15.6.2",
-    "react-addons-test-utils": "15.6.2",
     "react-dom": "15.6.2",
     "react-test-renderer": "15.6.2",
     "release-it": "^3.0.2",
