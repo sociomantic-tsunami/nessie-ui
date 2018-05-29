@@ -5,7 +5,7 @@
 {
     .scrollBox
     {
-        overflow:   auto;
+        overflow:   hidden;
     }
 
     .content
@@ -71,4 +71,9 @@
         overflow-x:             hidden;
         overscroll-behavior-y:  contain;
     }
+}
+
+.scroller
+{
+    
 }

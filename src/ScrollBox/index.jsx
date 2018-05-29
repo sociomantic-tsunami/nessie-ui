@@ -3,7 +3,7 @@ import PropTypes                from 'prop-types';
 
 import { buildClassName }       from '../utils';
 import styles                   from './scrollBox.css';
-import { createScrollHandler }  from './utils';
+import { createScrollHandler, handleScroll, handleTranslate }  from './utils';
 import IconButton               from '../IconButton';
 
 const ScrollBox = ( {
@@ -22,7 +22,8 @@ const ScrollBox = ( {
     scrollDownIsVisible,
     scrollLeftIsVisible,
     scrollRightIsVisible,
-    scrollUpIsVisible
+    scrollUpIsVisible,
+    translate
 } ) =>
     <div className = { buildClassName( className, cssMap, { scroll } ) }>
         { scrollDownIsVisible && <IconButton
@@ -49,7 +50,14 @@ const ScrollBox = ( {
             className = { cssMap.scrollBox }
             onScroll  = { createScrollHandler( onScroll, scroll ) }
             ref       = { scrollBoxRef }
-            style     = { { maxHeight: height ? `${height}` : null } }>
+            style     = { { maxHeight: height ? `${height}` : null, ...handleTranslate( scroll, translate ) } } >
+            <input
+                value      = { 0 }
+                type       = "range"
+                onChange  = { handleScroll( scrollBoxRef ) }
+                onInput   = { handleScroll( scrollBoxRef ) }
+                onWheel   = { handleScroll( scrollBoxRef ) } />
+
             <div
                 className = { cssMap.content }
                 style     = { { width: contentWidth } }>
@@ -57,6 +65,7 @@ const ScrollBox = ( {
             </div>
         </div>
     </div>;
+
 
 ScrollBox.propTypes =
 {
@@ -101,9 +110,9 @@ ScrollBox.propTypes =
         'both'
     ] ),
     /**
-     * Callback ref: ( ref ) => { ... }
+     * DOM element "Scrollbox"
      */
-    scrollBoxRef         : PropTypes.func,
+    scrollBoxRef         : PropTypes.string,
     /**
      *  Display Scroll left icon
      */
@@ -119,7 +128,11 @@ ScrollBox.propTypes =
     /**
      *  Display Scroll down icon
      */
-    scrollDownIsVisible  : PropTypes.bool
+    scrollDownIsVisible  : PropTypes.bool,
+    /**
+     *  Translate value for the scroller movement
+     */
+    translate            : PropTypes.Number
 };
 
 ScrollBox.defaultProps =

@@ -51,6 +51,46 @@ function getScroll( el, dir )
     return scrollLength ? scrollPos / scrollLength : 0;
 }
 
+/**
+* ## handleScroll
+* Controls the movement of the scroller
+*
+* @param   {Object} e event object
+*
+* @param   {Object} ref target DOM element
+*
+* @return {Void}
+*
+*/
+function handleScroll( e, ref )
+{
+    return function()
+    {
+        e = e || window.event;
+        let target = e.target.value;
+        const delta = Math.floor( e.deltaY );
+        const type = e.type === 'change' || e.type === 'input';
+        target = type ? parseInt( target ) : parseInt( target ) + delta;
+        ref.scrollTop = target;
+    };
+}
 
-export { createScrollHandler };
+/**
+* ## handleTranslate
+* detect the scroll and return css object of the translate values
+*
+* @param   {String} dir scroll direction
+*
+* @param   {String} scrollVal scroll value
+*
+* @return  {Object}
+*
+*/
+function handleTranslate( dir, scrollVal )
+{
+    return dir === 'horizontal' ? { left: scrollVal } : { top: scrollVal };
+}
+
+
+export { createScrollHandler, handleScroll, handleTranslate };
 export default { createScrollHandler };
