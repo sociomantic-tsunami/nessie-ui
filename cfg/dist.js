@@ -1,4 +1,4 @@
-const path                    = require( 'path' );
+const path                 = require( 'path' );
 
 const merge                = require( 'lodash.merge' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
@@ -7,33 +7,15 @@ const baseConfig           = require( './base' );
 
 
 const distConfig = merge( {}, baseConfig, {
-    output : { libraryTarget: 'umd' },
+    output : { libraryTarget: 'commonjs2' },
 
     devtool   : 'source-map',
     externals : {
         componentDriver : 'nessie-ui/dist/componentDriver',
         'nessie-ui'     : 'nessie-ui',
-        'prop-types'    : {
-            window    : 'PropTypes',
-            root      : 'PropTypes',
-            commonjs2 : 'prop-types',
-            commonjs  : 'prop-types',
-            amd       : 'prop-types'
-        },
-        react : {
-            window    : 'React',
-            root      : 'React',
-            commonjs2 : 'react',
-            commonjs  : 'react',
-            amd       : 'react'
-        },
-        'react-dom' : {
-            window    : 'ReactDOM',
-            root      : 'ReactDOM',
-            commonjs2 : 'react-dom',
-            commonjs  : 'react-dom',
-            amd       : 'react-dom'
-        }
+        'prop-types'    : 'prop-types',
+        react           : 'react',
+        'react-dom'     : 'react-dom',
     },
     mode : 'production',
 } );
