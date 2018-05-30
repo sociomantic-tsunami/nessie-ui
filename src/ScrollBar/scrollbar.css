@@ -31,7 +31,7 @@
     input[type=range]::-webkit-slider-thumb
     {
       height: 100%;
-      width: 39px;
+      width: var( --thumbSize );
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
@@ -55,7 +55,7 @@
     input[type=range]::-moz-range-thumb
     {
       height: 8px;
-      width: 39px;
+      width: var( --thumbSize );
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
@@ -92,7 +92,7 @@
     input[type=range]::-ms-thumb
     {
       height: 8px;
-      width: 39px;
+      width: var( --thumbSize );
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
