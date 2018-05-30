@@ -8,6 +8,7 @@ module.exports = function karmaConfig( config )
         ],
         frameworks    : [ 'mocha', 'sinon-chai' ],
         preprocessors : { 'loadtests.js': 'webpack' },
+        singleRun     : true,
         webpack       : require( './cfg/test.js' ),
     } );
 };
