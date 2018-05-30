@@ -45,7 +45,7 @@
     "test:visuals": "yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
-    "build": "mkdir dist; yarn updateSprite && CSS_NANO=true yarn updateStyles",
+    "build": "mkdir dist; yarn updateSprite && CSS_NANO=true yarn updateStyles"
   },
   "keywords": [
     "scotland",
