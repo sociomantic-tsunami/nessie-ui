@@ -32,6 +32,7 @@
     {
       height: 100%;
       width: var( --thumbSize );
+      min-width: 20px;
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
@@ -56,6 +57,7 @@
     {
       height: 8px;
       width: var( --thumbSize );
+      min-width: 20px;
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
@@ -93,6 +95,7 @@
     {
       height: 8px;
       width: var( --thumbSize );
+      min-width: 20px;
       border-radius: 7px;
       background: #9ebad2;
       cursor: pointer;
