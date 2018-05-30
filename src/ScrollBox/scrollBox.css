@@ -73,7 +73,11 @@
     }
 }
 
-.scroller
+.scrollBar
 {
-    
+    margin-bottom: 0;
+    input[type=range]
+    {
+        margin: 0;
+    }
 }

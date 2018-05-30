@@ -4,13 +4,16 @@
 
 .default
 {
+    width: auto;
+    max-width: none;
+    min-width: auto;
+    
     input[type=range]
     {
       -webkit-appearance: none;
       margin: 10px 0;
-      width: 100%;
       display: block;
-      transform-origin: left top;
+      background: transparent;
     }
     input[type=range]:focus
     {
@@ -109,10 +112,28 @@
       box-shadow: none
     }
 }
-.orientation__vertical
+
+.orientation__horizontal
 {
     input
     {
-        transform: rotate( 90deg );
+        width: 100%;
+    }
+}
+
+.orientation__vertical
+{
+    position: absolute;
+    z-index: 9999999;
+    top: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    transform: rotate( 90deg );
+    transform-origin: left top;
+    input[type=range]
+    {
+        position: absolute;
+        bottom: 0;
     }
 }

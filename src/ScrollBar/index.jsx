@@ -6,21 +6,18 @@ import styles                           from './scrollbar.css';
 
 
 const ScrollBar = ( {
-    children,
     className,
     cssMap,
-    defaultValue,
     id,
     orientation,
     onChange,
-    onInput,
     onMouseOut,
     onMouseOver,
-    ref,
     thumbSize,
     scrollPos,
     scrollMax,
-    scrollMin
+    scrollMin,
+    width
 } ) =>
     (
         <div
@@ -33,92 +30,86 @@ const ScrollBar = ( {
                 max          = { scrollMax }
                 min          = { scrollMin }
                 onChange     = { e => onChange( parseInt( e.target.value ) ) }
-                onInput      = { onInput }
-                ref          = { ref }
-                style        = { thumbSize }
+                style        = { { width: `${width}` } }
                 type         = "range" />
-            { children }
         </div>
     );
 
 ScrollBar.propTypes =
 {
     /**
-     *  ScrollBar content (if any)
-     */
-    children     : PropTypes.node,
-    /**
      *  Extra CSS class name
      */
-    className    : PropTypes.string,
+    className   : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Default value
-     */
-    defaultValue : PropTypes.number,
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
     *  Component id
     */
-    id           : PropTypes.string,
+    id          : PropTypes.string,
     /**
      *  orientation of the scrollBox 'horizontal || vertical'
      */
-    orientation  : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    orientation : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
      *  onChange callback function : ( e ) => { ... }
      */
-    onChange     : PropTypes.func,
+    onChange    : PropTypes.func,
     /**
      *  onInput callback function : ( e ) => { ... }
      */
-    onInput      : PropTypes.func,
+    onInput     : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
-    onMouseOut   : PropTypes.func,
+    onMouseOut  : PropTypes.func,
     /**
      *  onMouseOver callback function : ( e ) => { ... }
      */
-    onMouseOver  : PropTypes.func,
+    onMouseOver : PropTypes.func,
     /**
      *  Callback ref DOM
      */
-    ref          : PropTypes.func,
+    ref         : PropTypes.func,
     /**
      *  Scroll thumb/indicator width/height
      */
-    thumbSize    : PropTypes.number,
+    thumbSize   : PropTypes.number,
     /**
      *  Scroll Top/Left value
      */
-    scrollPos    : PropTypes.number,
+    scrollPos   : PropTypes.number,
     /**
      *  Max value of the ScrollBar
      */
-    scrollMax    : PropTypes.number,
+    scrollMax   : PropTypes.number,
     /**
      *  Min value of the ScrollBar
      */
-    scrollMin    : PropTypes.number,
+    scrollMin   : PropTypes.number,
+    /**
+     *  width of the scrollBar track
+     */
+    width       : PropTypes.number,
 };
 
 ScrollBar.defaultProps =
 {
-    children    : undefined,
     className   : undefined,
     cssMap      : styles,
     id          : generateId( 'ScrollBox' ),
-    orientation : undefined,
+    orientation : 'horizontal',
     onChange    : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
     thumbSize   : undefined,
     scrollPos   : undefined,
     scrollMax   : undefined,
-    scrollMin   : undefined
+    scrollMin   : undefined,
+    value       : 0,
+    width       : undefined
 };
 
 export default ScrollBar;

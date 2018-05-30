@@ -95,13 +95,21 @@ export default class ScrollBox extends Component
     constructor( props )
     {
         super( props );
-        this.scrollBoxRef = null;
         this.state = {
-            scrollMove : 0,
-            wheelMove  : 0
+            scrollMove     : 0,
+            scrollMax      : 0,
+            scrollBarWidth : 0
         };
         this.handleChange = this.handleChange.bind( this );
         this.handleWheel = this.handleWheel.bind( this );
+        this.getScrollMax = this.getScrollMax.bind( this );
+        this.updateScrollBarWidth = this.updateScrollBarWidth.bind( this );
+    }
+
+    componentDidMount()
+    {
+        this.getScrollMax();
+        this.updateScrollBarWidth();
     }
 
     componentDidUpdate()
@@ -109,20 +117,44 @@ export default class ScrollBox extends Component
         const { scrollMove } = this.state;
         const { scroll } = this.props;
         this.scrollBoxRef[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = scrollMove;
+        this.getScrollMax();
+        this.updateScrollBarWidth();
     }
 
+    getScrollMax()
+    {
+        const { scroll } = this.props;
+        const horizontal = this.scrollBoxRef.scrollWidth - this.scrollBoxRef.clientWidth;
+        const vertical   = this.scrollBoxRef.scrollHeight - this.scrollBoxRef.clientHeight;
+        this.setState( prevState => ( {
+            ...prevState,
+            scrollMax : scroll === 'horizontal' ?  horizontal : vertical
+        } ) );
+    }
+
+    updateScrollBarWidth()
+    {
+        const { scroll } = this.props;
+        const { scrollBarWidth } = this.state;
+        this.setState( prevState => ( {
+            ...prevState,
+            scrollBarWidth : scroll === 'horizontal' ?  this.scrollBoxRef.clientWidth : this.scrollBoxRef.clientHeight
+        } ) );
+    }
     handleWheel( e )
     {
-        this.setState( {
-            scrollMove: this.state.scrollMove + e.deltaY
-        } )
+        this.setState( prevState => ( {
+            ...prevState,
+            scrollMove : this.state.scrollMove + e.deltaY
+        } ) );
     }
 
     handleChange( newVal )
     {
-        this.setState( {
+        this.setState( prevState => ( {
+            ...prevState,
             scrollMove : newVal
-        } );
+        } ) );
     }
     render()
     {
@@ -145,10 +177,14 @@ export default class ScrollBox extends Component
             scrollUpIsVisible
         } = this.props;
 
-        const { scrollMove } = this.state;
+        const {
+            scrollMove,
+            scrollMax,
+            scrollBarWidth
+        } = this.state;
 
         return (
-            <div className = { buildClassName( className, cssMap, { scroll } ) } onWheel = { this.handleWheel }>
+            <div className = { buildClassName( className, cssMap, { scroll } ) }>
                 { scrollDownIsVisible && <IconButton
                     className = { cssMap.icon__down }
                     iconType = "down"
@@ -169,24 +205,26 @@ export default class ScrollBox extends Component
                     iconType = "up"
                     iconSize = "L"
                     onClick = { onClickScrollUp } /> }
-                <ScrollBar
-                    defaultValue = { 0 }
-                    scrollPos    = { scrollMove }
-                    onChange     = { this.handleChange }
-                     />
                 <div
                     className = { cssMap.scrollBox }
                     onScroll  = { createScrollHandler( onScroll, scroll ) }
+                    onWheel   = { this.handleWheel }
                     style     = { { maxHeight: height ? `${height}` : null } }
                     ref       = { e => this.scrollBoxRef = e } >
-
-
                     <div
                         className = { cssMap.content }
                         style     = { { width: contentWidth } }>
                         { children }
                     </div>
                 </div>
+                <ScrollBar
+                    className    = { cssMap.scrollBar }
+                    defaultValue = { 0 }
+                    scrollPos    = { scrollMove }
+                    onChange     = { this.handleChange }
+                    orientation  = { scroll }
+                    scrollMax    = { scrollMax }
+                    width        = { scrollBarWidth } />
             </div>
         );
     }
