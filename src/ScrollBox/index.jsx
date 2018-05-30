@@ -96,7 +96,7 @@ export default class ScrollBox extends Component
     {
         super( props );
         this.state = {
-            scrollMove     : 0,
+            scrollPos     : 0,
             scrollMax      : 0,
             scrollBarWidth : 0
         };
@@ -114,9 +114,9 @@ export default class ScrollBox extends Component
 
     componentDidUpdate()
     {
-        const { scrollMove } = this.state;
+        const { scrollPos } = this.state;
         const { scroll } = this.props;
-        this.scrollBoxRef[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = scrollMove;
+        this.scrollBoxRef[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = scrollPos;
         this.getScrollMax();
         this.updateScrollBarWidth();
     }
@@ -145,7 +145,7 @@ export default class ScrollBox extends Component
     {
         this.setState( prevState => ( {
             ...prevState,
-            scrollMove : this.state.scrollMove + e.deltaY
+            scrollPos : prevState.scrollPos + e.deltaY
         } ) );
     }
 
@@ -153,7 +153,7 @@ export default class ScrollBox extends Component
     {
         this.setState( prevState => ( {
             ...prevState,
-            scrollMove : newVal
+            scrollPos : newVal
         } ) );
     }
     render()
@@ -178,7 +178,7 @@ export default class ScrollBox extends Component
         } = this.props;
 
         const {
-            scrollMove,
+            scrollPos,
             scrollMax,
             scrollBarWidth
         } = this.state;
@@ -220,7 +220,7 @@ export default class ScrollBox extends Component
                 <ScrollBar
                     className    = { cssMap.scrollBar }
                     defaultValue = { 0 }
-                    scrollPos    = { scrollMove }
+                    scrollPos    = { scrollPos }
                     onChange     = { this.handleChange }
                     orientation  = { scroll }
                     scrollMax    = { scrollMax }

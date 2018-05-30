@@ -7,7 +7,7 @@
     width: auto;
     max-width: none;
     min-width: auto;
-    
+
     input[type=range]
     {
       -webkit-appearance: none;
