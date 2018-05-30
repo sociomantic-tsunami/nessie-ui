@@ -48,10 +48,6 @@ describe( 'CheckableGroupDriver', () =>
 
     describe( 'selectByIndex()', () =>
     {
-        xit( 'should simulate check on Checkbox at index', () =>
-        {
-        } );
-
         it( 'should set Checkbox at index to checked when uncontrolled', () =>
         {
             wrapper.setProps( {
