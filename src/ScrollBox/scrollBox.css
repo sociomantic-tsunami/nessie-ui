@@ -76,6 +76,8 @@
 .scrollBar
 {
     margin-bottom: 0;
+    right: 0;
+    left: auto;
     input[type=range]
     {
         margin: 0;
