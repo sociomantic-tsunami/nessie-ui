@@ -34,27 +34,6 @@ const addons = merge( {}, distConfig, {
     ],
 } );
 
-const displayComponents = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : {
-        filename      : 'displayComponents.js',
-        library       : 'DisplayComponents',
-        libraryTarget : 'window'
-    },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
-} );
-
 const components = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
     output : { filename: 'index.js' },
@@ -78,10 +57,4 @@ const driverSuite = merge( {}, distConfig, {
 } );
 
 
-module.exports = [
-    addons,
-    components,
-    componentDriver,
-    displayComponents,
-    driverSuite,
-];
+module.exports = [ addons, components, componentDriver, driverSuite ];
