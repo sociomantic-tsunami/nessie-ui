@@ -30,10 +30,10 @@
     "loch:clean": "rimraf .lochness",
     "npm-publish": "npm publish --registry=https://registry.npmjs.org/",
     "post-bump": "git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify",
-    "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn updateStyles && yarn updateSprite && git add . && git commit -m 'compiled styles and sprite'",
+    "pre-bump": "git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn build && git add . && git commit -m 'compiled styles and sprite'",
     "serve": "loch -e dev -c ./ -j src/defaults.json",
     "start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
-    "svgSprite": "./.prep-icon.sh > /dev/null && ./.generate-sprite.sh > /dev/null",
+    "svgSprite": "./.prep-icon.sh && ./.generate-sprite.sh",
     "tdd": "karma start --autoWatch=true --reporters=mocha,notification --singleRun=false",
     "test": "karma start --reporters=mocha",
     "test:Chrome": "karma start --singleRun=false --browsers Chrome",
@@ -45,7 +45,7 @@
     "test:visuals": "yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
     "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
-    "build": "mkdir dist; yarn updateSprite && CSS_NANO=true yarn updateStyles"
+    "build": "yarn updateStyles && yarn updateSprite"
   },
   "keywords": [
     "scotland",
@@ -136,7 +136,7 @@
     "sinon-chai": "^3.1.0",
     "svg-loader": "^0.0.2",
     "svg-sprite-generator": "^0.0.7",
-    "svgo": "^1.0.5",
+    "svgo": "^0.7.2",
     "url-loader": "^1.0.1",
     "webpack": "^4.10.2",
     "webpack-cli": "^2.1.4"
