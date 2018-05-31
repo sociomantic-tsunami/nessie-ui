@@ -11,15 +11,14 @@ module.exports = merge( {}, baseConfig, {
         'react/addons'                   : true,
         'react/lib/ExecutionEnvironment' : true,
         'react/lib/ReactContext'         : true,
-        'react-dom/test-utils'           : true,
-        'react-test-renderer/shallow'    : true,
+        'react-addons-test-utils'        : true,
     },
     mode    : 'development',
     plugins : [ new MiniCssExtractPlugin() ],
     resolve : {
         alias : {
-            'nessie-ui'     : path.join( __dirname, '../src/index' ),
             componentDriver : path.join( __dirname, '../src/Testing/index' ),
-        }
+            'nessie-ui'     : path.join( __dirname, '../src/index' ),
+        },
     },
 } );
