@@ -84,7 +84,7 @@ export default class ScrollBox extends Component
         onClickScrollRight   : undefined,
         onClickScrollUp      : undefined,
         onScroll             : undefined,
-        scroll               : undefined,
+        scroll               : 'both',
         scrollBoxRef         : undefined,
         scrollDownIsVisible  : false,
         scrollLeftIsVisible  : false,
@@ -96,11 +96,11 @@ export default class ScrollBox extends Component
     {
         super( props );
         this.state = {
-            scrollPosX      : 0,
+            scrollPosX     : 0,
             scrollPosY     : 0,
-            scrollMax      : 0,
-            scrollBarWidth : 0,
-            thumbSize      : 0
+            scrollMax      : {},
+            scrollBarWidth : {},
+            thumbSize      : {}
         };
         this.handleChangeX = this.handleChangeX.bind( this );
         this.handleChangeY = this.handleChangeY.bind( this );
@@ -257,7 +257,6 @@ export default class ScrollBox extends Component
                 { ( scroll === 'horizontal' || scroll === 'both' )  &&
                 <ScrollBar
                     className    = { cssMap.scrollBar }
-                    defaultValue = { 0 }
                     scrollPos    = { scrollPosX }
                     onChange     = { this.handleChangeX }
                     orientation  = { 'horizontal' }
@@ -268,7 +267,6 @@ export default class ScrollBox extends Component
                 { ( scroll === 'vertical' || scroll === 'both' ) &&
                     <ScrollBar
                         className    = { cssMap.scrollBar }
-                        defaultValue = { 0 }
                         scrollPos    = { scrollPosY }
                         onChange     = { this.handleChangeY }
                         orientation  = { 'vertical' }

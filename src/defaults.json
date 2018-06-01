@@ -239,7 +239,7 @@
         "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
     },
     "ScrollBar" : {
-        "orientation": "horizontal"
+        "orientation": "vertical"
     },
     "ScrollBox" :
     {

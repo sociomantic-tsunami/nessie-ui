@@ -106,9 +106,9 @@ ScrollBar.defaultProps =
     onMouseOut  : undefined,
     onMouseOver : undefined,
     thumbSize   : 50,
-    scrollPos   : undefined,
+    scrollPos   : 0,
     scrollMax   : undefined,
-    scrollMin   : undefined,
+    scrollMin   : 0,
     value       : 0,
     width       : undefined
 };
