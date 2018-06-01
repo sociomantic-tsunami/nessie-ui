@@ -18,9 +18,9 @@ describe( 'NavItem', () =>
 
     beforeEach( () =>
     {
-        onClickSpy.reset();
-        onMouseOverSpy.reset();
-        onMouseOutSpy.reset();
+        onClickSpy.resetHistory();
+        onMouseOverSpy.resetHistory();
+        onMouseOutSpy.resetHistory();
 
         Wrapper = mount( <NavItem
             label       = "testLabel"

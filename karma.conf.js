@@ -1,46 +1,14 @@
-var webpackCfg = require('./webpack.config');
-
-module.exports = function(config) {
-  config.set({
-    basePath: '',
-
-    browsers: ['PhantomJS'], // You may use 'ChromeCanary', 'Chromium' or any other supported browser
-    files: [
-     'node_modules/babel-polyfill/dist/polyfill.js',
-      'loadtests.js'
-    ],
-
-
-    port: 8080,
-    captureTimeout: 60000,
-    frameworks: [ 'mocha', 'sinon-chai' ],
-
-
-    client: {
-      mocha: {},
-      chai: {
-        includeStack: true
-      }
-    },
-
-    singleRun: true,
-    preprocessors: {
-      'loadtests.js': [ 'webpack', 'sourcemap' ]
-    },
-    webpack: webpackCfg,
-    webpackServer: {
-       noInfo: true,
-       stats: {
-          // options i.e.
-          chunks: false
-      }
-    },
-    coverageReporter: {
-      dir: 'coverage/',
-      reporters: [
-        { type: 'html' },
-        { type: 'text' }
-      ]
-    }
-  });
+module.exports = function karmaConfig( config )
+{
+    config.set( {
+        browsers : [ 'PhantomJS' ],
+        files    : [
+            'node_modules/babel-polyfill/dist/polyfill.js',
+            'loadtests.js',
+        ],
+        frameworks    : [ 'mocha', 'sinon-chai' ],
+        preprocessors : { 'loadtests.js': 'webpack' },
+        singleRun     : true,
+        webpack       : require( './cfg/test.js' ),
+    } );
 };

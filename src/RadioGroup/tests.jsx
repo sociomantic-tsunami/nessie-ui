@@ -48,10 +48,6 @@ describe( 'RadioGroupDriver', () =>
 
     describe( 'selectByIndex()', () =>
     {
-        xit( 'should simulate check on Radio at index', () =>
-        {
-        } );
-
         it( 'should set Radio at index to checked when uncontrolled', () =>
         {
             wrapper.setProps( {
