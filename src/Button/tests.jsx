@@ -328,45 +328,4 @@ describe.only( 'ButtonDriver', () =>
             expect( driver.click() ).to.equal( driver );
         } );
     } );
-
-
-    describe( 'blur', () =>
-    {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
-        {
-            driver.blur();
-            expect( simulate.calledOnce ).to.be.true;
-        } );
-
-        it( 'calls simulate( event ) with event \'blur\'', () =>
-        {
-            driver.blur();
-            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'blur' );
-        } );
-
-        it( 'returns the driver instance', () =>
-        {
-            expect( driver.click() ).to.equal( driver );
-        } );
-    } );
-
-    describe( 'focus', () =>
-    {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
-        {
-            driver.focus();
-            expect( simulate.calledOnce ).to.be.true;
-        } );
-
-        it( 'calls simulate( event ) with event \'focus\'', () =>
-        {
-            driver.focus();
-            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'focus' );
-        } );
-
-        it( 'returns the driver instance', () =>
-        {
-            expect( driver.click() ).to.equal( driver );
-        } );
-    } );
 } );

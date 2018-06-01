@@ -33,27 +33,15 @@ export default class ButtonDriver
         return this;
     }
 
-    mouseOver()
-    {
-        this.button.simulate( 'mouseEnter' );
-        return this;
-    }
-
     mouseOut()
     {
         this.button.simulate( 'mouseLeave' );
         return this;
     }
 
-    focus()
+    mouseOver()
     {
-        this.button.simulate( 'focus' );
-        return this;
-    }
-
-    blur()
-    {
-        this.button.simulate( 'blur' );
+        this.button.simulate( 'mouseEnter' );
         return this;
     }
 }
