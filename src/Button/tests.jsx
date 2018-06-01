@@ -12,7 +12,7 @@ import Spinner            from '../Spinner';
 import Button             from './index';
 
 
-describe( 'Button', () =>
+describe.only( 'Button', () =>
 {
     let wrapper;
     let instance;
@@ -25,31 +25,77 @@ describe( 'Button', () =>
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name Button', () =>
+        it( 'has name Button', () =>
         {
             expect( instance.constructor.name ).to.equal( 'Button' );
         } );
     } );
 
+    describe( 'handleMouseOver( e )', () =>
+    {
+        it( 'calls the onMouseOver callback prop', () =>
+        {
+            const onMouseOver = sinon.spy();
+            wrapper.setProps( { onMouseOver } );
+
+            instance.handleMouseOver();
+
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+
+        it( 'sets isHovered state to true', () =>
+        {
+            const onMouseOver = sinon.spy();
+            wrapper.setProps( { onMouseOver } );
+
+            instance.handleMouseOver();
+
+            expect( instance.state.isHovered ).to.be.true;
+        } );
+    } );
+
+    describe( 'handleMouseOut( e )', () =>
+    {
+        it( 'calls the onMouseOver callback prop', () =>
+        {
+            const onMouseOut = sinon.spy();
+            wrapper.setProps( { onMouseOut } );
+
+            instance.handleMouseOut();
+
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
+
+        it( 'sets isHovered state to false', () =>
+        {
+            const onMouseOut = sinon.spy();
+            wrapper.setProps( { onMouseOut } );
+
+            instance.handleMouseOut();
+
+            expect( instance.state.isHovered ).to.be.false;
+        } );
+    } );
+
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
+        it( 'implements the Css injector component', () =>
         {
             expect( wrapper.find( Css ) ).to.have.length( 1 );
         } );
 
-        it( 'should contain exactly one <button>', () =>
+        it( 'renders exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).to.have.length( 1 );
         } );
 
-        it( 'should have a exactly one Icon when configured', () =>
+        it( 'renders exactly one Icon when configured', () =>
         {
             wrapper.setProps( { iconType: 'add' } );
             expect( wrapper.find( Icon ) ).to.have.length( 1 );
         } );
 
-        it( 'should have a exactly one Spinner when loading', () =>
+        it( 'renders exactly one Spinner when isLoading', () =>
         {
             wrapper.setProps( { isLoading: true } );
             expect( wrapper.find( Spinner ) ).to.have.length( 1 );
@@ -60,12 +106,12 @@ describe( 'Button', () =>
     {
         describe( 'iconType', () =>
         {
-            it( 'should be "none" by default', () =>
+            it( 'is "none" by default', () =>
             {
                 expect( instance.props.iconType ).to.equal( 'none' );
             } );
 
-            it( 'should be passed to the Icon as type', () =>
+            it( 'is passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
 
@@ -76,7 +122,7 @@ describe( 'Button', () =>
 
         describe( 'iconPosition', () =>
         {
-            it( 'should be "left" by default', () =>
+            it( 'is "left" by default', () =>
             {
                 expect( instance.props.iconPosition ).to.equal( 'left' );
             } );
@@ -84,12 +130,12 @@ describe( 'Button', () =>
 
         describe( 'role', () =>
         {
-            it( 'should be "default" by default', () =>
+            it( 'is "default" by default', () =>
             {
                 expect( instance.props.role ).to.equal( 'default' );
             } );
 
-            it( 'should be passed to Icon as theme when "control"', () =>
+            it( 'is passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
@@ -103,12 +149,12 @@ describe( 'Button', () =>
 
         describe( 'isLoading', () =>
         {
-            it( 'should be false by default', () =>
+            it( 'is false by default', () =>
             {
                 expect( instance.props.isLoading ).to.be.false;
             } );
 
-            it( 'should be passed to Icon as theme when "control"', () =>
+            it( 'is passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
@@ -120,9 +166,42 @@ describe( 'Button', () =>
             } );
         } );
 
+        describe( 'onClick', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onClick ).to.be.undefined;
+            } );
+
+            it( 'is passed to <button>', () =>
+            {
+                const onClick = sinon.spy();
+                wrapper.setProps( { onClick } );
+
+                expect( wrapper.find( 'button' ).prop( 'onClick' ) )
+                    .to.equal( onClick );
+            } );
+        } );
+
+        describe( 'onMouseOver', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onMouseOver ).to.be.undefined;
+            } );
+        } );
+
+        describe( 'onMouseOut', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onMouseOut ).to.be.undefined;
+            } );
+        } );
+
         describe( 'buttonRef', () =>
         {
-            it( 'should be undefined by default', () =>
+            it( 'is undefined by default', () =>
             {
                 expect( instance.props.buttonRef ).to.be.undefined;
             } );
@@ -131,61 +210,163 @@ describe( 'Button', () =>
 } );
 
 
-describe( 'ButtonDriver', () =>
+describe.only( 'ButtonDriver', () =>
 {
     let wrapper;
     let driver;
+    let button;
+    let simulate;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Button /> );
-        driver  = wrapper.driver();
+        wrapper  = mount( <Button /> );
+        driver   = wrapper.driver();
+        button   = wrapper.find( 'button' ).first();
+        simulate = sinon.spy( driver.button, 'simulate' );
+    } );
+
+    describe( 'constructor', () =>
+    {
+        it( 'assigns the <button> to this.button', () =>
+        {
+            expect( driver.button.getNode() ).to.equal( button.getNode() );
+        } );
     } );
 
     describe( 'click', () =>
     {
-        let clickSpy;
-
-        beforeEach( () =>
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
         {
-            clickSpy = sinon.spy();
-        } );
-
-        it( 'should have the button clicked', () =>
-        {
-            wrapper.setProps( { onClick: clickSpy } );
             driver.click();
-            expect( clickSpy.calledOnce ).to.be.true;
+            expect( simulate.calledOnce ).to.be.true;
         } );
 
-        it( 'click on a disabled button should produce an error', () =>
+        it( 'calls simulate( event ) with event \'click\'', () =>
         {
-            wrapper.setProps( {
-                label      : 'Pikaboo',
-                isDisabled : true,
-                onClick    : clickSpy
-            } );
+            driver.click();
+            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'click' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).to.equal( driver );
+        } );
+
+        it( 'throws the expected error when isDisabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is disabled';
 
             expect( () => driver.click() ).to.throw( expectedError );
-            expect( clickSpy.notCalled ).to.be.true;
         } );
 
-        it( 'click on a loading button should produce an error', () =>
+        it( 'does not call simulate( event ) when isDisabled', () =>
         {
-            wrapper.setProps( {
-                label     : 'Pikaboo',
-                isLoading : true,
-                onClick   : clickSpy
-            } );
+            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+            expect( () => driver.click() );
+            expect( simulate.notCalled ).to.be.true;
+        } );
+
+        it( 'throws the expected error when isLoading', () =>
+        {
+            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
             expect( () => driver.click() ).to.throw( expectedError );
-            expect( clickSpy.notCalled ).to.be.true;
+        } );
+
+        it( 'does not call simulate( event ) when isLoading', () =>
+        {
+            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
+
+            expect( () => driver.click() );
+            expect( simulate.notCalled ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseOver', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.mouseOver();
+            expect( simulate.calledOnce ).to.be.true;
+        } );
+
+        it( 'calls simulate( event ) with event \'mouseEnter\'', () =>
+        {
+            driver.mouseOver();
+            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'mouseEnter' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).to.equal( driver );
+        } );
+    } );
+
+    describe( 'mouseOut', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.mouseOut();
+            expect( simulate.calledOnce ).to.be.true;
+        } );
+
+        it( 'calls simulate( event ) with event \'mouseLeave\'', () =>
+        {
+            driver.mouseOut();
+            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'mouseLeave' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).to.equal( driver );
+        } );
+    } );
+
+
+    describe( 'blur', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.blur();
+            expect( simulate.calledOnce ).to.be.true;
+        } );
+
+        it( 'calls simulate( event ) with event \'blur\'', () =>
+        {
+            driver.blur();
+            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'blur' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).to.equal( driver );
+        } );
+    } );
+
+    describe( 'focus', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.focus();
+            expect( simulate.calledOnce ).to.be.true;
+        } );
+
+        it( 'calls simulate( event ) with event \'focus\'', () =>
+        {
+            driver.focus();
+            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'focus' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).to.equal( driver );
         } );
     } );
 } );
