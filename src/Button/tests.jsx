@@ -32,7 +32,7 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-        
+
         test( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).toHaveLength( 1 );
@@ -125,64 +125,163 @@ describe( 'Button', () =>
 } );
 
 
-describe( 'ButtonDriver', () =>
+describe.only( 'ButtonDriver', () =>
 {
     let wrapper;
     let driver;
+    let button;
+    let simulate;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Button /> );
-        driver  = wrapper.driver();
+        wrapper  = mount( <Button /> );
+        driver   = wrapper.driver();
+        button   = wrapper.find( 'button' ).first();
+        simulate = jest.spyOn( driver.button, 'simulate' );
+    } );
+
+    describe( 'constructor', () =>
+    {
+        test( 'assigns the <button> to this.button', () =>
+        {
+            expect( driver.button.getNode() ).toEqual( button.getNode() );
+        } );
     } );
 
     describe( 'click', () =>
     {
-        let clickSpy;
-
-        beforeEach( () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
-            clickSpy = jest.fn();
-        } );
-
-        test( 'should have the button clicked once', () =>
-        {
-            wrapper.setProps( { onClick: clickSpy } );
             driver.click();
-
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        test( 'click on a disabled button should produce an error', () =>
+        test( 'calls simulate( event ) with event \'click\'', () =>
         {
+            driver.click();
+            expect( simulate ).toBeCalledWith( 'click' );
+        } );
+
+        test( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
+        } );
+
+        test( 'throws the expected error when isDisabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is disabled';
 
-            wrapper.setProps( {
-                label      : 'Pikaboo',
-                isDisabled : true,
-                onClick    : clickSpy
-            } );
-
-            expect( () => driver.click() )
-                .toThrow( expectedError );
-            expect( clickSpy ).toHaveBeenCalledTimes( 0 );
+            expect( () => driver.click() ).toThrow( expectedError );
         } );
 
-        test( 'click on a loading button should produce an error', () =>
+        test( 'does not call simulate( event ) when isDisabled', () =>
         {
-            wrapper.setProps( {
-                label     : 'Pikaboo',
-                isLoading : true,
-                onClick   : clickSpy
-            } );
+            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+            expect( () => driver.click() );
+            expect( simulate ).not.toBeCalled();
+        } );
+
+        test( 'throws the expected error when isLoading', () =>
+        {
+            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => driver.click() )
-                .toThrow( expectedError );
-            expect( clickSpy ).toHaveBeenCalledTimes( 0 );
+            expect( () => driver.click() ).toThrow( expectedError );
+        } );
+
+        test( 'does not call simulate( event ) when isLoading', () =>
+        {
+            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
+
+            expect( () => driver.click() );
+            expect( simulate ).not.toBeCalled();
+        } );
+    } );
+
+    describe( 'mouseOver', () =>
+    {
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.mouseOver();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'calls simulate( event ) with event \'mouseEnter\'', () =>
+        {
+            driver.mouseOver();
+            expect( simulate ).toBeCalledWith( 'mouseEnter' );
+        } );
+
+        test( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
+        } );
+    } );
+
+    describe( 'mouseOut', () =>
+    {
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.mouseOut();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'calls simulate( event ) with event \'mouseLeave\'', () =>
+        {
+            driver.mouseOut();
+            expect( simulate ).toBeCalledWith( 'mouseLeave' );
+        } );
+
+        test( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
+        } );
+    } );
+
+
+    describe( 'blur', () =>
+    {
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.blur();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'calls simulate( event ) with event \'blur\'', () =>
+        {
+            driver.blur();
+            expect( simulate ).toBeCalledWith( 'blur' );
+        } );
+
+        test( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
+        } );
+    } );
+
+    describe( 'focus', () =>
+    {
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.focus();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'calls simulate( event ) with event \'focus\'', () =>
+        {
+            driver.focus();
+            expect( simulate ).toBeCalledWith( 'focus' );
+        } );
+
+        test( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
         } );
     } );
 } );
