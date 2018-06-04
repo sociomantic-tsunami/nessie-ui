@@ -3,10 +3,10 @@
 /* eslint no-console: 0*/
 
 
-import React        from 'react';
-import { shallow }  from 'enzyme';
+import React               from 'react';
+import { mount, shallow }  from 'enzyme';
 
-import ScrollBar    from './index';
+import ScrollBar           from './index';
 
 describe( 'ScrollBar', () =>
 {
@@ -100,5 +100,57 @@ describe( 'ScrollBar', () =>
             expect( wrapper.find( 'input' ).first().prop( 'max' ) )
                 .to.equal( 20 );
         } )
+    } );
+} );
+
+
+describe( 'ScrollBarDriver', ()=>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <ScrollBar /> );
+    } );
+
+    describe( 'change()', ()=>
+    {
+        it( 'should change the value of the <input />', ()=> {
+
+            const onChange = sinon.spy();
+            wrapper.setProps( {
+                onChange
+            } );
+            wrapper.driver().change( 100 );
+
+            expect( onChange.calledOnce ).to.be.true;
+        } );
+    } );
+    describe( 'mouseOver()', ()=>
+    {
+        it( 'should change the value of the <input />', ()=> {
+
+            const onMouseOver = sinon.spy();
+            wrapper.setProps( {
+                onMouseOver
+            } );
+            wrapper.driver().mouseOver();
+
+            expect( onMouseOver.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'mouseOut()', ()=>
+    {
+        it( 'should change the value of the <input />', ()=> {
+
+            const onMouseOut = sinon.spy();
+            wrapper.setProps( {
+                onMouseOut
+            } );
+            wrapper.driver().mouseOut();
+
+            expect( onMouseOut.calledOnce ).to.be.true;
+        } );
     } );
 } );

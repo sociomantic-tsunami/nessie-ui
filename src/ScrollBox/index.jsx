@@ -222,7 +222,7 @@ export default class ScrollBox extends Component
             thumbSize } = this.state;
 
         return (
-            <div className = { buildClassName( className, cssMap, { scroll } ) } onWheel = { this.handleWheel } >
+            <div className = { buildClassName( className, cssMap, { scroll } ) } >
                 { scrollDownIsVisible && <IconButton
                     className = { cssMap.icon__down }
                     iconType = "down"
@@ -246,6 +246,7 @@ export default class ScrollBox extends Component
                 <div
                     className = { cssMap.scrollBox }
                     onScroll  = { createScrollHandler( onScroll, scroll ) }
+                    onWheel   = { this.handleWheel }
                     style     = { { maxHeight: height ? `${height}` : null } }
                     ref       = { e => this.scrollBoxRef = e } >
                     <div

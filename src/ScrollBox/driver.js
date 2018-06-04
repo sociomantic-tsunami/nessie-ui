@@ -81,6 +81,7 @@ export default class ScrollBoxDriver
         const node     = this.scrollBox.getNode();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
+        this.scrollBox.simulate( 'wheel' );
 
         return this;
     }
@@ -98,7 +99,7 @@ export default class ScrollBoxDriver
         const node      = this.scrollBox.getNode();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
-
+        this.scrollBox.simulate( 'wheel' );
 
         return this;
     }

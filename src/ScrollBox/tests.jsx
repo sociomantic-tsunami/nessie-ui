@@ -9,7 +9,7 @@ import { mount, shallow }    from 'enzyme';
 import ScrollBox    from './index';
 import ScrollBar          from '../ScrollBar';
 
-describe.only( 'ScrollBox', () =>
+describe( 'ScrollBox', () =>
 {
     let wrapper;
     let instance;

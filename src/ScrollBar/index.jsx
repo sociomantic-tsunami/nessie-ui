@@ -26,6 +26,7 @@ const ScrollBar = ( {
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut } >
             <input
+                className    = { cssMap.range }
                 value        = { scrollPos }
                 max          = { scrollMax }
                 min          = { scrollMin }
