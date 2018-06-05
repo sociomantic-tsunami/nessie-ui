@@ -8,11 +8,13 @@ const ERRORS = {
     INPUT_CANNOT_PRESS_KEY : ( label, state ) =>
         `Cannot press a key on Input '${label}' since it is ${state}`
 };
+
+
 export default class InputComponentDriver extends ClickableComponentDriver
 {
-    constructor( wrapper )
+    constructor( wrapper, selector )
     {
-        super( wrapper, 'input' );
+        super( wrapper, selector || 'input' );
     }
 
     /**
@@ -45,7 +47,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
     }
 
     /**
-     * Simulates the pressing of a give key. In case of a printible character
+     * Simulates the pressing of a given key. In case of a printable character
      * the input will be updated accordingly as well.
      * @param {Integer} keyCode the integer code of a key
      * @return {InputComponentDriver} this driver (for chaining commands)

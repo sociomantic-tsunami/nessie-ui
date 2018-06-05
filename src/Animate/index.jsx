@@ -14,24 +14,34 @@ const Animate = ( {
     transitionEnterTimeout,
     transitionLeaveTimeout,
 } ) =>
+{
+    if ( !Animate.didWarn )
+    {
+        console.warn( 'Animate: This component is deprecated and will be \
+removed in the next major release.' );
+        Animate.didWarn = true;
+    }
 
-    <Css cssMap = { cssMap }>
-        <div className = { className }>
-            <ReactCSSTransitionGroup
-                transitionName = { {
-                    enter : `animate__${enterAnimation}`,
-                    leave : `animate__${outAnimation}`,
-                } }
-                component              = "div"
-                className              = {
-                    `animate__${enterAnimation}__${outAnimation}`
-                }
-                transitionEnterTimeout = { transitionEnterTimeout }
-                transitionLeaveTimeout = { transitionLeaveTimeout }>
-                { children }
-            </ReactCSSTransitionGroup>
-        </div>
-    </Css>;
+    return (
+        <Css cssMap = { cssMap }>
+            <div className = { className }>
+                <ReactCSSTransitionGroup
+                    transitionName = { {
+                        enter : `animate__${enterAnimation}`,
+                        leave : `animate__${outAnimation}`,
+                    } }
+                    component              = "div"
+                    className              = {
+                        `animate__${enterAnimation}__${outAnimation}`
+                    }
+                    transitionEnterTimeout = { transitionEnterTimeout }
+                    transitionLeaveTimeout = { transitionLeaveTimeout }>
+                    { children }
+                </ReactCSSTransitionGroup>
+            </div>
+        </Css>
+    );
+};
 
 Animate.propTypes =
 {

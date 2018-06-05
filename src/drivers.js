@@ -92,6 +92,7 @@ import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
 import PasswordInputDriver   from './PasswordInput/driver';
+import RadioGroupDriver      from './RadioGroup/driver';
 import ScrollBoxDriver       from './ScrollBox/driver';
 import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
@@ -104,6 +105,7 @@ import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
+import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -279,7 +281,7 @@ const drivers =
     },
     {
         Component : RadioGroup,
-        Driver    : CheckableGroupDriver,
+        Driver    : RadioGroupDriver,
     },
     {
         Component : Required,
@@ -355,7 +357,7 @@ const drivers =
     },
     {
         Component : TextArea,
-        Driver    : InputComponentDriver,
+        Driver    : TextAreaDriver,
     },
     {
         Component : TextInput,

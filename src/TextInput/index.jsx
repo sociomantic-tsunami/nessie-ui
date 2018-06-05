@@ -82,6 +82,10 @@ export default class TextInput extends Component
          */
         name                  : PropTypes.string,
         /**
+         *  Input click callback function
+         */
+        onClick               : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChange              : PropTypes.func,

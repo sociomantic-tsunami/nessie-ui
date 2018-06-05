@@ -1,19 +1,11 @@
 {
+    "Animate" :
+    {
+        "lochness" : { "isDeprecated" : true }
+    },
     "Button" :
     {
         "label" : "Click me!"
-    },
-    "ButtonRadio" :
-    {
-        "label"     : "I’m really a Radio",
-        "lochness"  : { "isBeta" : true }
-    },
-    "ButtonRadioGroup" :
-    {
-        "label"         : "What’s your favorite fruit?",
-        "values"        : [ { "label":"apples","value":"apples","icon":"add"}, {"label":"oranges","value":"oranges","icon":"close"}, {"label":"kaki","value":"kaki","icon":"up" } ],
-        "selectedValue" : "oranges",
-        "lochness"      : { "isBeta" : true }
     },
     "CheckableGroup" :
     {
@@ -67,6 +59,10 @@
     {
         "label"         : "Banner size",
         "errorMessage"  : "Wrong size!"
+    },
+    "Divider" :
+    {
+        "lochness" : { "isDeprecated" : true }
     },
     "DragNDrop" :
     {
@@ -206,38 +202,9 @@
     {
         "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
     },
-    "NessieLogo" :
-    {
-        "lochness" : { "isBeta" : true }
-    },
     "NotificationBar" :
     {
         "message" : "Here you can view your campaign settings"
-    },
-    "Page" :
-    {
-        "children" : "{<PageHeader><Row verticalAlign='middle'><Column size='1/6'><NessieLogo/></Column><Column size='5/6'><H1>Nessie Page</H1></Column></Row></PageHeader><PageContent><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form></PageContent><PageFooter>Footer content...</PageFooter>}",
-        "lochness" : { "isBeta" : true }
-    },
-    "PageContent" :
-    {
-        "children" : "{<PageContentHeader><H1>Page Title</H1><Text>Page Subtitle</Text></PageContentHeader><Form><ControlPanel><IconButton showLabel={false} iconType='preview'>Preview</IconButton><IconButton showLabel={false} iconType='edit'>Edit</IconButton><IconButton showLabel={false} iconType='duplicate'>Copy</IconButton><Switch onLabel='Active' offLabel='Deactivated'/></ControlPanel><Module title='Module 1'>Module 1 content...</Module><Module title='Module 2'>Module 2 content...</Module></Form>}",
-        "lochness" : { "isBeta" : true }
-    },
-    "PageContentHeader" :
-    {
-        "children" : "{<H1>Page Title</H1><Text>Page Subtitle</Text>}",
-        "lochness" : { "isBeta" : true }
-    },
-    "PageHeader" :
-    {
-        "children" : "{<Row verticalAlign='middle'><Column size='1/6'><NessieLogo/></Column><Column size='5/6'><H1>Nessie Page Header</H1></Column></Row>}",
-        "lochness" : { "isBeta" : true }
-    },
-    "PageFooter" :
-    {
-        "children" : "{<Text>Footer content...</Text>}",
-        "lochness" : { "isBeta" : true }
     },
     "Paginator" :
     {
