@@ -128,7 +128,7 @@
 
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );
-    color:          var( --PC-GREY--L70 );
+    color:          var( --PC-GREY--L25 );
 
     &[href]
     {
@@ -142,7 +142,7 @@
 
     &:visited
     {
-        color:      var( --PC-GREY--L70 );
+        color:      var( --PC-GREY--L25 );
     }
 }
 
@@ -182,6 +182,6 @@
     & > .link > .icon,
     &.disabled > .link > .icon
     {
-        fill: var( --PC-GREY--L70 );
+        fill: var( --PC-GREY--L25 );
     }
 }
