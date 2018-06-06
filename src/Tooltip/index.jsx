@@ -77,6 +77,17 @@ export default class Tooltip extends Component
 
         const { id } = this.state;
 
+        const prototype = Object.getPrototypeOf( this );
+        if ( !prototype.didWarn && typeof children !== 'undefined' )
+        {
+            console.warn( 'Using Tooltip as a wrapper is deprecated and will \
+be removed in a future major release. Please position the tooltip using a \
+library such as Popper.js instead.' )
+
+            prototype.didWarn = true;
+        }
+
+
         let messageLines = message;
 
         if ( typeof message === 'string' )
