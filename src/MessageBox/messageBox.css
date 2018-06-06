@@ -9,7 +9,13 @@
     padding:            var( --spacing-2 );
 
     border-radius:      2px;
+}
 
+.type__info,
+.type__error,
+.type__alert,
+.type__success
+{
     .text
     {
         color: var( --PC-WHITE );
@@ -28,7 +34,7 @@
 
 .type__alert
 {
-    background: var( --PC-YELLOW );
+    background: var( --PC-ORANGE );
 }
 
 .type__success
