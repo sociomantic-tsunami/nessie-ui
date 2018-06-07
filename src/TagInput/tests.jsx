@@ -166,7 +166,7 @@ describe( 'TagInputDriver', () =>
         } );
     } );
 
-    describe( 'clickClose()', () =>
+    describe( 'closeTagByIndex()', () =>
     {
         it( 'should call onClickClose once', () =>
         {
@@ -179,7 +179,26 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().clickClose();
+            wrapper.driver().closeTagByIndex( 1 );
+
+            expect( onClickClose.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'closeTagByLabel()', () =>
+    {
+        it( 'should call onClickClose once', () =>
+        {
+            const onClickClose = sinon.spy();
+            wrapper.setProps( {
+                onClickClose,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.driver().closeTagByLabel( "TagLabel 1" );
 
             expect( onClickClose.calledOnce ).to.be.true;
         } );
