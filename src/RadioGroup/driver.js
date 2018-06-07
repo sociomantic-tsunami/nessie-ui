@@ -11,7 +11,7 @@ export default class RadioGroupDriver
         return items.map( item => item.childAt( 0 ) );
     }
 
-    selectByIndex( index )
+    selectByIndex( index = 0 )
     {
         const items = this.getContent();
         items[ index ].driver().setChecked();
@@ -26,7 +26,7 @@ export default class RadioGroupDriver
         return this;
     }
 
-    toggleByIndex( index )
+    toggleByIndex( index = 0 )
     {
         const items = this.getContent();
         items[ index ].driver().toggleChecked();
