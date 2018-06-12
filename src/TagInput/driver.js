@@ -9,14 +9,14 @@ export default class TagInputDriver extends InputComponentDriver
         this.wrapper = wrapper;
     }
 
-    closeTagByIndex( index = 0 )
+    clickCloseTagByIndex( index = 0 )
     {
 
         this.wrapper.find( 'Tag' ).at( index ).driver().clickClose();
         return this;
     }
 
-    closeTagByLabel( label )
+    clickCloseTagByLabel( label )
     {
         if ( Array.isArray( label ) )
         {
