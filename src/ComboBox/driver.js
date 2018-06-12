@@ -65,7 +65,7 @@ export default class ComboBoxDriver
         return this;
     }
 
-    scroll( offset = 23 )
+    scroll( offset = 1 )
     {
         this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( offset );
         return this;
