@@ -15,7 +15,7 @@
 
     margin:             0;
 
-    background:         var( --GS-10 );
+    background:         var( --PC-GREY--L95 );
 }
 
 .overflow__hidden
