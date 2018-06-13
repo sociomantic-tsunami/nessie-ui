@@ -28524,7 +28524,7 @@ var Uploader = function (_Component) {
                 onClickSecondary = _props.onClickSecondary,
                 onMouseOut = _props.onMouseOut,
                 onMouseOver = _props.onMouseOver,
-                previewisDisabled = _props.previewisDisabled,
+                previewIsDisabled = _props.previewIsDisabled,
                 previewTooltipIsVisible = _props.previewTooltipIsVisible,
                 previewTooltipMessage = _props.previewTooltipMessage,
                 tooltipIsVisible = _props.tooltipIsVisible,
@@ -28575,7 +28575,7 @@ var Uploader = function (_Component) {
                         loading: isLoading,
                         uploaded: uploaded,
                         disabled: isDisabled,
-                        previewDisabled: previewisDisabled
+                        previewDisabled: previewIsDisabled
                     } },
                 _react2.default.createElement(
                     'div',
@@ -28701,7 +28701,7 @@ Uploader.propTypes = {
     /**
      * Preview button is disabled
      */
-    previewisDisabled: _propTypes2.default.bool,
+    previewIsDisabled: _propTypes2.default.bool,
     /**
      * onClick callback function: ( e ) => { ... }
      */

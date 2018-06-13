@@ -1,0 +1,110 @@
+.withDropdown__default
+{
+    position:   relative;
+}
+
+    .withDropdown__default .withDropdown__dropdown
+    {
+        position:   absolute;
+        left:       0;
+        z-index:    999;
+    }
+
+    .withDropdown__default:not(.withDropdown__open) .withDropdown__dropdown
+        {
+            display:    none;
+        }
+
+    .withDropdown__default > *
+    {
+        margin-bottom:  0;
+    }
+
+
+.withDropdown__position__bottom .withDropdown__dropdown
+    {
+        bottom:     0;
+        -webkit-transform:  translateY( 100% ) translateY( -0.1rem );
+                transform:  translateY( 100% ) translateY( -0.1rem );
+    }
+
+
+.withDropdown__position__top .withDropdown__dropdown
+    {
+        top:        0;
+        -webkit-transform:  translateY( -100% ) translateY( 0.1rem );
+                transform:  translateY( -100% ) translateY( 0.1rem );
+    }
+
+.dropdown__default /* all elements get default margin-bottom of 2rem */
+{
+    position:       relative;
+    margin-bottom:  2rem;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0; /* in case this is a flexbox child */
+
+    font-size:      1.2rem;
+    line-height:    1.6rem;
+    letter-spacing:	0.02rem;
+
+    font-weight:    normal;
+}
+
+    .dropdown__default:last-child
+    {
+        margin-bottom:  0;
+    }
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+:root
+{
+    /* primary colors */
+
+    /* accent colors */
+
+    /* greyscale colors */
+}
+.dropdown__default
+{
+    min-width:  0;
+    max-width:  none;
+
+    border:     0.1rem solid #289bc8;
+    -webkit-box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+            box-shadow: 0 0.1rem 0.4rem 0 #DEDEDE;
+
+    background: #ffffff;
+}
+.dropdown__error
+{
+    border-color:   #e64b6e;
+}
+.dropdown__padding__S
+{
+    padding:    1rem;
+}
+.dropdown__padding__M
+{
+    padding:    2rem;
+}
+.dropdown__padding__L
+{
+    padding:    3rem;
+}
+.dropdown__size__default
+{
+    width: 100%;
+}
+.dropdown__size__content
+{
+    width: auto;
+}
+
+
+/*# sourceMappingURL=addons.css.map*/
