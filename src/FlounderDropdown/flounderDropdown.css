@@ -376,14 +376,14 @@
         width:              100%;
         min-height:         calc( var( --spacing-5 )  - ( 2 * var( --borderWidth ) ) );
 
-        padding-top:        var( --spacing-1 );
+        padding-top:        3px;
         padding-right:      calc( var( --spacing-1 ) + var( --iconSize ) + var( --spacing-1 ) );
-        padding-left:       var( --spacing-1 );
+        padding-left:       3px;
 
         & > *
         {
             margin-right:   var( --spacing-1 );
-            margin-bottom:  var( --spacing-1 );
+            margin-bottom:  3px;
 
             &:last-child
             {
@@ -402,7 +402,7 @@
 
         box-sizing:     border-box;
         max-width:      100%;
-        height:         calc( var( --line-height-m ) - ( var( --borderWidth ) * 2 ) );
+        height:         var( --line-height-l );
 
         padding-left:   var( --spacing-2 );
         padding-right:  var( --spacing-2 );
