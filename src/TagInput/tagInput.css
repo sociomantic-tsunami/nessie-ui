@@ -14,10 +14,10 @@
         border:             1px solid var( --PC-GREY--L70 );
         border-radius:      2px;
 
-        padding-top:        var( --spacing-1 );
-        padding-right:      var( --spacing-1 );
+        padding-top:        3px;
+        padding-right:      3px;
         padding-bottom:     0;
-        padding-left:       var( --spacing-1 );
+        padding-left:       3px;
 
         background-color:   var( --PC-WHITE );
         outline:            none;
@@ -27,7 +27,7 @@
         & > *
         {
             margin-right:   var( --spacing-1 );
-            margin-bottom:  var( --spacing-1 );
+            margin-bottom:  3px;
         }
     }
 

@@ -6,7 +6,7 @@
     align-items:    center;
 
     width:          auto;
-    height:         calc( var( --line-height-m ) - 2px ); /* border-width of TagInput container */
+    height:         var( --line-height-l );
 
     padding-left:   var( --spacing-2 );
 
