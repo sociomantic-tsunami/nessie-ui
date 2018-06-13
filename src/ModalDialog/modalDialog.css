@@ -37,6 +37,7 @@ $wideWidth : 900px;
 
     .header
     {
+        border:         1px solid color( var( --PC-GREY ) a(12%) );
         box-shadow:     var( --boxShadow );
     }
 }
@@ -70,6 +71,7 @@ $wideWidth : 900px;
     width:              500px;
     padding:            var( --spacing-3 );
     box-sizing:         border-box;
+    border:             1px solid color( var( --PC-GREY ) a(12%) );
     box-shadow:         var( --boxShadow );
     background:         var( --PC-WHITE );
     text-align:         left;

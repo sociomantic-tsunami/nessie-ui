@@ -17,6 +17,8 @@
 
     border-radius:  3px;
 
+    border:         1px solid color( var( --PC-GREY ) a(12%) );
+
     box-shadow:     var( --boxShadow );
 
     .default .header:after
