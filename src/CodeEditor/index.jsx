@@ -230,6 +230,11 @@ export default class CodeEditor extends Component
         if ( typeof value !== 'undefined' && codeMirror.getValue() !== value )
         {
             codeMirror.setValue( value || '' );
+            const that = this;
+            setTimeout( () =>
+            {
+                that.codeMirror.refresh();
+            }, 1 );
         }
 
         if ( cursor )
