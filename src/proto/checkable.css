@@ -47,7 +47,8 @@
         display:            inline-block;
         vertical-align:     middle;
 
-        position:           relative;
+        position:           absolute;
+        top:                3px;
 
         box-sizing:         border-box;
         width:              2.2rem;
@@ -68,9 +69,8 @@
 
     & > :first-child
     {
-        display:        inline-block;
         vertical-align: middle;
-        margin-left:    1rem;
+        margin-left:    3.2rem;
     }
 }
 
