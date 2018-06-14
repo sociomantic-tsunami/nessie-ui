@@ -69,9 +69,8 @@
 
     & > :first-child
     {
-        /* display:        inline-block; */
         vertical-align: middle;
-        margin-left:    3rem;
+        margin-left:    3.2rem;
     }
 }
 
