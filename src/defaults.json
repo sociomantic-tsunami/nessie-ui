@@ -78,6 +78,7 @@
     },
     "Form" :
     {
+        "lochness" : { "isDeprecated" : true },
         "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
     },
     "FlounderDropdown" :

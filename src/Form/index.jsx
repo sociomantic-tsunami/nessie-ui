@@ -9,8 +9,16 @@ const Form = ( {
     className,
     cssMap,
     method,
-    onSubmit, } ) =>
-
+    onSubmit,
+} ) =>
+{
+    if ( !Form.didWarn )
+    {
+        console.warn( 'Form: This component is deprecated and will be \
+removed in the next major release.' );
+        Form.didWarn = true;
+    }
+    return (
         <Css cssMap = { cssMap }>
             <form
                 className = { className }
@@ -21,7 +29,9 @@ const Form = ( {
                     { children }
                 </div>
             </form>
-        </Css>;
+        </Css>
+    );
+};
 
 Form.propTypes =
 {
