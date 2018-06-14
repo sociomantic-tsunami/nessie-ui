@@ -494,27 +494,27 @@
 
     .option.optionIcon__approved
     {
-        background-image:   url("./images/stroke-colours/approved.svg");
+        background-image:   url("./images/approved.svg");
     }
     .option.optionIcon__declined
     {
-        background-image:   url("./images/stroke-colours/declined.svg");
+        background-image:   url("./images/declined.svg");
     }
     .option.optionIcon__ended
     {
-        background-image:   url("./images/stroke-colours/ended.svg");
+        background-image:   url("./images/ended.svg");
     }
     .option.optionIcon__pending
     {
-        background-image:   url("./images/stroke-colours/pending.svg");
+        background-image:   url("./images/pending.svg");
     }
     .option.optionIcon__alert
     {
-        background-image:   url("./images/fill/alert.svg");
+        background-image:   url("./images/alert.svg");
     }
     .option.optionIcon__error
     {
-        background-image:   url("./images/fill/error.svg");
+        background-image:   url("./images/error.svg");
     }
     .optionIcon__include
     {
@@ -770,7 +770,7 @@
     {
         .arrowInner
         {
-            background-image:   url( './images/light/search__hover.svg' );
+            background-image:   url( './images/search__hover.svg' );
         }
     }
 
@@ -779,10 +779,11 @@
     {
         .arrowInner
         {
-            background-image:   url( './images/light/search.svg' );
+            background-image:   url( './images/search.svg' );
         }
     }
 }
+
 
 .toggleIcon__none
 {
