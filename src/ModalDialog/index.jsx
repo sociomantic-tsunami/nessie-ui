@@ -41,17 +41,16 @@ const ModalDialog = ( {
                 </div>
                 <div className = { cssMap.navigation }>
                     <IconButton
-                        iconType  = "left"
+                        iconType  = "arrow"
                         onClick   = { onClickPrev }
                         iconTheme = "navigation"
-                        iconSize  = "XXL"
+                        iconSize  = "XL"
                     />
-
                     <IconButton
-                        iconType  = "right"
+                        iconType  = "arrow"
                         onClick   = { onClickNext }
                         iconTheme = "navigation"
-                        iconSize  = "XXL"
+                        iconSize  = "XL"
                     />
                 </div>
             </div>

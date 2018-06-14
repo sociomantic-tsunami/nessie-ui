@@ -159,23 +159,27 @@ only used in type__carousel for now
 
     button
     {
-        position:   absolute;
-        top:        calc( 50% - 20px );
+        position:       absolute;
+        top:            calc( 50% - 20px );
 
-        width:      auto;
+        width:          auto;
 
-        margin:     0;
-        border:     none;
-        padding:    0;
+        margin:         0;
+        border:         none;
+        border-radius:  50%;
+        padding:        0;
 
-        background: transparent;
+        background:     var( --PC-WHITE );
 
-        cursor:     pointer;
-        z-index:    9999;
+        cursor:         pointer;
+        z-index:        9999;
+
+        opacity:        0.9;
 
         &:first-child
         {
-            left:   150px;
+            left:       150px;
+            transform:  rotate(180deg);
         }
 
         &:last-child
