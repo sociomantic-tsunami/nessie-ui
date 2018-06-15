@@ -232,7 +232,7 @@
         &:hover,
         &:hover .description
         {
-            background: var( --PC-BLUE );
+            background-color: var( --PC-BLUE );
             color:      var( --PC-WHITE );
         }
 
