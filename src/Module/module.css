@@ -2,6 +2,7 @@
 
 :root
 {
+    --border:           1px;
     --controlsHeight:   24px;
     --errorBorder:      5px;
 }
@@ -17,7 +18,7 @@
 
     border-radius:  3px;
 
-    border:         1px solid color( var( --PC-GREY ) a(12%) );
+    border:         var( --border ) solid color( var( --PC-GREY ) a(12%) );
 
     box-shadow:     var( --boxShadow );
 
@@ -28,7 +29,7 @@
 
     .default + .default
     {
-        margin-top: -var( --spacing-3 );
+        margin-top: calc( -1 * ( var( --spacing-2 ) + var( --border ) ) );
     }
 
     .header,
