@@ -337,6 +337,8 @@
 
         background:     transparent;
 
+        @extend %Nessie-Regular;
+        color:          var( --PC-GREY--D5 );
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
         letter-spacing: 0.4px;
