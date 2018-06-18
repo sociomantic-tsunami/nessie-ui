@@ -16,14 +16,13 @@ describe( 'StatusIndicator', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <StatusIndicator /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.statusIndicator__default' ) )
-            .to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.statusIndicator__default' ) ).toHaveLength(1);
+    });
 } );

@@ -13,13 +13,13 @@ describe( 'NavDropdown', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         Wrapper = mount( <NavDropdown /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.navDropdown__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.navDropdown__default' ) ).toHaveLength(1);
+    });
 } );

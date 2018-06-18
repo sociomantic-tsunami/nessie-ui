@@ -12,41 +12,41 @@ describe( 'ScrollBox', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = null;
-    } );
+    });
 
-    it( 'should contain a single ScrollBox', () =>
+    test('should contain a single ScrollBox', () =>
     {
         const props = {
             title : 'Boom'
         };
         wrapper = mount( <ScrollBox { ...props } /> );
 
-        expect( wrapper.find( ScrollBox ) ).to.have.length( 1 );
-        expect( wrapper.find( ScrollBox ) ).to.not.have.length( 2 );
-    } );
+        expect( wrapper.find( ScrollBox ) ).toHaveLength(1);
+        expect( wrapper.find( ScrollBox ) ).not.toHaveLength(2);
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
         const props = {
             title : 'Boom'
         };
 
         wrapper = mount( <ScrollBox { ...props } /> );
-        expect( wrapper.find( '.scrollBox__default' ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( '.scrollBox__default' ) ).toHaveLength(1);
+    });
 
-    it( 'should have content when children props is defined', () =>
+    test('should have content when children props is defined', () =>
     {
         const props = {
             children : 'testing'
         };
 
         wrapper = mount( <ScrollBox { ...props } /> );
-        expect( wrapper.find( '.scrollBox__content' ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( '.scrollBox__content' ) ).toHaveLength(1);
+    });
 } );
 
 
@@ -56,41 +56,39 @@ describe( 'ScrollBoxDriver', () =>
 
     describe( 'clickScroll', () =>
     {
-        it( 'should trigger onClickScrollUp when clicked on scrollUp',
-            () =>
-            {
-                const onClickScrollUp = sinon.spy();
-                const props = {
-                    scrollUpIsVisible : true,
-                    onClickScrollUp
-                };
+        test('should trigger onClickScrollUp when clicked on scrollUp', () =>
+        {
+            const onClickScrollUp = sinon.spy();
+            const props = {
+                scrollUpIsVisible : true,
+                onClickScrollUp
+            };
 
-                wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper = mount( <ScrollBox { ...props } /> );
 
-                wrapper.driver().clickScrollUp();
+            wrapper.driver().clickScrollUp();
 
-                expect( onClickScrollUp.calledOnce ).to.be.true;
-            } );
-
-
-        it( 'should trigger onClickScrollRight when clicked on scrollRight',
-            () =>
-            {
-                const onClickScrollRight = sinon.spy();
-                const props = {
-                    scrollRightIsVisible : true,
-                    onClickScrollRight
-                };
-
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                wrapper.driver().clickScrollRight();
-
-                expect( onClickScrollRight.calledOnce ).to.be.true;
-            } );
+            expect( onClickScrollUp.calledOnce ).toBe(true);
+        });
 
 
-        it( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
+        test('should trigger onClickScrollRight when clicked on scrollRight', () =>
+        {
+            const onClickScrollRight = sinon.spy();
+            const props = {
+                scrollRightIsVisible : true,
+                onClickScrollRight
+            };
+
+            wrapper = mount( <ScrollBox { ...props } /> );
+
+            wrapper.driver().clickScrollRight();
+
+            expect( onClickScrollRight.calledOnce ).toBe(true);
+        });
+
+
+        test('should trigger onClickScrollDown when clicked on scrollDown', () =>
         {
             const onClickScrollDown = sinon.spy();
             const props = {
@@ -102,11 +100,11 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollDown();
 
-            expect( onClickScrollDown.calledOnce ).to.be.true;
-        } );
+            expect( onClickScrollDown.calledOnce ).toBe(true);
+        });
 
 
-        it( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
+        test('should trigger onClickScrollLeft when clicked on scrollLeft', () =>
         {
             const onClickScrollLeft = sinon.spy();
             const props = {
@@ -118,8 +116,8 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollLeft();
 
-            expect( onClickScrollLeft.calledOnce ).to.be.true;
-        } );
+            expect( onClickScrollLeft.calledOnce ).toBe(true);
+        });
     } );
 
 
@@ -127,7 +125,7 @@ describe( 'ScrollBoxDriver', () =>
     {
         describe( 'scrollVertical()', () =>
         {
-            it( 'should trigger onScroll() for vertical scroll', () =>
+            test('should trigger onScroll() for vertical scroll', () =>
             {
                 const onScroll = sinon.spy();
                 const props = {
@@ -139,10 +137,10 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollVertical( 250 );
 
-                expect( onScroll.calledOnce ).to.be.true;
-            } );
+                expect( onScroll.calledOnce ).toBe(true);
+            });
 
-            it( 'should throw an error when scroll direction is wrong', () =>
+            test('should throw an error when scroll direction is wrong', () =>
             {
                 const props = {
                     scroll : 'horizontal'
@@ -150,14 +148,15 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollVertical( 10 ) )
-                    .to.throw( 'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\'' ); // eslint-disable-line max-len
-            } );
+                expect( () => wrapper.driver().scrollVertical( 10 ) ).toThrowError(
+                    'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\''
+                ); // eslint-disable-line max-len
+            });
         } );
 
         describe( 'scrollHorizontal()', () =>
         {
-            it( 'should trigger onScroll() for horizontal scroll', () =>
+            test('should trigger onScroll() for horizontal scroll', () =>
             {
                 const onScroll = sinon.spy();
                 const props = {
@@ -169,10 +168,10 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollHorizontal( 640 );
 
-                expect( onScroll.calledOnce ).to.be.true;
-            } );
+                expect( onScroll.calledOnce ).toBe(true);
+            });
 
-            it( 'should throw an error when scroll direction is wrong', () =>
+            test('should throw an error when scroll direction is wrong', () =>
             {
                 const props = {
                     scroll : 'vertical'
@@ -180,9 +179,10 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollHorizontal( 270 ) )
-                    .to.throw( 'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\'' ); // eslint-disable-line max-len
-            } );
+                expect( () => wrapper.driver().scrollHorizontal( 270 ) ).toThrowError(
+                    'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\''
+                ); // eslint-disable-line max-len
+            });
         } );
     } );
 } );

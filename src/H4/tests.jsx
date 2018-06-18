@@ -13,13 +13,13 @@ describe( 'H4', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <H4 /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.h4__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.h4__default' ) ).toHaveLength(1);
+    });
 } );

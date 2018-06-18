@@ -14,13 +14,13 @@ describe( 'NavBar', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <NavBar /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.navBar__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.navBar__default' ) ).toHaveLength(1);
+    });
 } );

@@ -17,41 +17,40 @@ describe( 'TextArea', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <TextArea /> );
         instance = wrapper.instance();
-    } );
+    });
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name TextArea', () =>
+        test('should have name TextArea', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'TextArea' );
-        } );
+            expect( instance.constructor.name ).toBe('TextArea');
+        });
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
+        test('should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Css ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly one InputContainer', () =>
+        test('should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( InputContainer ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly one InputField', () =>
+        test('should contain exactly one InputField', () =>
         {
-            expect( wrapper.find( InputField ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( InputField ) ).toHaveLength(1);
+        });
 
-        it( 'InputField should have element="textarea"', () =>
+        test('InputField should have element="textarea"', () =>
         {
-            expect( wrapper.find( InputField ).prop( 'element' ) )
-                .to.equal( 'textarea' );
-        } );
+            expect( wrapper.find( InputField ).prop( 'element' ) ).toBe('textarea');
+        });
     } );
 } );

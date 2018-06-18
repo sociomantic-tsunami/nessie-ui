@@ -13,13 +13,13 @@ describe( 'NavList', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <NavList /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.navList__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.navList__default' ) ).toHaveLength(1);
+    });
 } );

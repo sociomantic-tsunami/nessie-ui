@@ -13,24 +13,24 @@ describe( 'ListBox', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <ListBox /> );
-    } );
+    });
 
     describe( 'render()', () =>
     {
-        it( 'should accept a single ListBox as children', () =>
+        test('should accept a single ListBox as children', () =>
         {
             wrapper.setProps( { children: <ListBox /> } );
-            expect( wrapper.find( ListBox ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( ListBox ) ).toHaveLength(1);
+        });
 
-        it( 'should accept an array of ListBoxes as children', () =>
+        test('should accept an array of ListBoxes as children', () =>
         {
             wrapper.setProps( { children: [ <ListBox />, <ListBox /> ] } );
-            expect( wrapper.find( ListBox ) ).to.have.length( 2 );
-        } );
+            expect( wrapper.find( ListBox ) ).toHaveLength(2);
+        });
     } );
 } );
 
@@ -40,15 +40,15 @@ describe( 'ListBoxDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <ListBox /> );
         driver   = wrapper.driver();
-    } );
+    });
 
     describe( 'clickOption', () =>
     {
-        it( 'should trigger onClickOption when clicked on \
+        test('should trigger onClickOption when clicked on \
 ListBoxOption at given index', () =>
             {
                 const onClickOption = sinon.spy();
@@ -88,14 +88,14 @@ ListBoxOption at given index', () =>
 
                 driver.clickOption( 1 );
 
-                expect( onClickOption.calledOnce ).to.be.true;
-            } );
+                expect( onClickOption.calledOnce ).toBe(true);
+            });
     } );
 
 
     describe( 'mouseOverOption', () =>
     {
-        it( 'should trigger onMouseOverOption when hovered on \
+        test('should trigger onMouseOverOption when hovered on \
 ListBoxOption at given index', () =>
             {
                 const onMouseOverOption = sinon.spy();
@@ -135,14 +135,14 @@ ListBoxOption at given index', () =>
 
                 driver.mouseOverOption( 1 );
 
-                expect( onMouseOverOption.calledOnce ).to.be.true;
-            } );
+                expect( onMouseOverOption.calledOnce ).toBe(true);
+            });
     } );
 
 
     describe( 'mouseOutOption', () =>
     {
-        it( 'should trigger onMouseOutOption when hovered on \
+        test('should trigger onMouseOutOption when hovered on \
 ListBoxOption at given index', () =>
             {
                 const onMouseOutOption = sinon.spy();
@@ -182,14 +182,14 @@ ListBoxOption at given index', () =>
 
                 driver.mouseOutOption( 0 );
 
-                expect( onMouseOutOption.calledOnce ).to.be.true;
-            } );
+                expect( onMouseOutOption.calledOnce ).toBe(true);
+            });
     } );
 
 
     describe( 'keyPress', () =>
     {
-        it( 'should trigger onKeyPress', () =>
+        test('should trigger onKeyPress', () =>
         {
             const onKeyPress = sinon.spy();
 
@@ -212,7 +212,7 @@ ListBoxOption at given index', () =>
 
             driver.keyPress();
 
-            expect( onKeyPress.calledOnce ).to.be.true;
-        } );
+            expect( onKeyPress.calledOnce ).toBe(true);
+        });
     } );
 } );

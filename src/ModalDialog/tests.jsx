@@ -13,19 +13,19 @@ describe( 'ModalDialog', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         Wrapper = null;
-    } );
+    });
 
-    it( 'should render <ModalDialog/>', () =>
+    test('should render <ModalDialog/>', () =>
     {
         Wrapper = mount( <ModalDialog /> );
 
-        expect( Wrapper.find( ModalDialog ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( ModalDialog ) ).toHaveLength(1);
+    });
 
-    it( 'should not contain child elements when not visible', () =>
+    test('should not contain child elements when not visible', () =>
     {
         const props = {
             isVisible : false,
@@ -34,10 +34,10 @@ describe( 'ModalDialog', () =>
         Wrapper = mount( <ModalDialog { ...props } /> );
 
         const children = Wrapper.driver().getContent();
-        expect( children ).to.have.length( 0 );
-    } );
+        expect( children ).toHaveLength(0);
+    });
 
-    it( 'should contain child elements when visible', () =>
+    test('should contain child elements when visible', () =>
     {
         const props = {
             isVisible : true,
@@ -46,12 +46,11 @@ describe( 'ModalDialog', () =>
         Wrapper = mount( <ModalDialog { ...props } /> );
 
         const children = Wrapper.driver().getContent();
-        expect( children ).to.have.length( 1 );
-        expect( children.html() )
-            .to.be.equal( '<span class="thisguy">boom</span>' );
-    } );
+        expect( children ).toHaveLength(1);
+        expect( children.html() ).toBe('<span class="thisguy">boom</span>');
+    });
 
-    it( 'should trigger `onClickOverlay` callback when overlay clicked', () =>
+    test('should trigger `onClickOverlay` callback when overlay clicked', () =>
     {
         const callBack = sinon.spy();
 
@@ -61,10 +60,10 @@ describe( 'ModalDialog', () =>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
         Wrapper.driver().clickOverlay();
-        expect( callBack.calledOnce ).to.equal( true );
-    } );
+        expect( callBack.calledOnce ).toBe(true);
+    });
 
-    it( 'should trigger `onClickOverlay` when close button is clicked', () =>
+    test('should trigger `onClickOverlay` when close button is clicked', () =>
     {
         const callBack = sinon.spy();
 
@@ -75,10 +74,10 @@ describe( 'ModalDialog', () =>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
         Wrapper.driver().clickClose();
-        expect( callBack.calledOnce ).to.equal( true );
-    } );
+        expect( callBack.calledOnce ).toBe(true);
+    });
 
-    it( 'should trigger `onClickPrev` when prev button is clicked', () =>
+    test('should trigger `onClickPrev` when prev button is clicked', () =>
     {
         const callBack = sinon.spy();
 
@@ -89,10 +88,10 @@ describe( 'ModalDialog', () =>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
         Wrapper.driver().clickPrev();
-        expect( callBack.calledOnce ).to.equal( true );
-    } );
+        expect( callBack.calledOnce ).toBe(true);
+    });
 
-    it( 'should trigger `onClickNext` when next button is clicked', () =>
+    test('should trigger `onClickNext` when next button is clicked', () =>
     {
         const callBack = sinon.spy();
 
@@ -103,12 +102,12 @@ describe( 'ModalDialog', () =>
         };
         Wrapper = mount( <ModalDialog { ...props } /> );
         Wrapper.driver().clickNext();
-        expect( callBack.calledOnce ).to.equal( true );
-    } );
+        expect( callBack.calledOnce ).toBe(true);
+    });
 
     describe( 'driver', () =>
     {
-        it( 'should throw an error when clicking the close button on a modal \
+        test('should throw an error when clicking the close button on a modal \
 that\'s not a carousel', () =>
         {
             const callBack = sinon.spy();
@@ -120,13 +119,12 @@ that\'s not a carousel', () =>
 
             Wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickClose() ).to
-                .throw( 'Cannot trigger click on the "Close Button" because \
-the modal is not a Carousel' );
-            expect( callBack.calledOnce ).to.equal( false );
-        } );
+            expect( () => Wrapper.driver().clickClose() ).toThrowError('Cannot trigger click on the "Close Button" because \
+the modal is not a Carousel');
+            expect( callBack.calledOnce ).toBe(false);
+        });
 
-        it( 'should throw an error when clicking the prev button on a modal \
+        test('should throw an error when clicking the prev button on a modal \
 that\'s not a carousel', () =>
         {
             const callBack = sinon.spy();
@@ -138,13 +136,12 @@ that\'s not a carousel', () =>
 
             Wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickPrev() ).to
-                .throw( 'Cannot trigger click on the "Prev Button" because the \
-modal is not a Carousel' );
-            expect( callBack.calledOnce ).to.equal( false );
-        } );
+            expect( () => Wrapper.driver().clickPrev() ).toThrowError('Cannot trigger click on the "Prev Button" because the \
+modal is not a Carousel');
+            expect( callBack.calledOnce ).toBe(false);
+        });
 
-        it( 'should throw an error when clicking the next button on a modal \
+        test('should throw an error when clicking the next button on a modal \
                 that\'s not a carousel', () =>
         {
             const callBack = sinon.spy();
@@ -156,10 +153,9 @@ modal is not a Carousel' );
 
             Wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickNext() )
-                .to.throw( 'Cannot trigger click on the "Next Button" because \
-the modal is not a Carousel' );
-            expect( callBack.calledOnce ).to.equal( false );
-        } );
+            expect( () => Wrapper.driver().clickNext() ).toThrowError('Cannot trigger click on the "Next Button" because \
+the modal is not a Carousel');
+            expect( callBack.calledOnce ).toBe(false);
+        });
     } );
 } );

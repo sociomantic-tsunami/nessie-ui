@@ -18,48 +18,47 @@ describe( 'DimensionsInput', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <DimensionsInput /> );
         instance = wrapper.instance();
-    } );
+    });
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name DimensionsInput', () =>
+        test('should have name DimensionsInput', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'DimensionsInput' );
-        } );
+            expect( instance.constructor.name ).toBe('DimensionsInput');
+        });
     } );
 
     describe( 'handleFocus( e )', () =>
     {
-        it( 'should call setState with { isFocused: true } }', () =>
+        test('should call setState with { isFocused: true } }', () =>
         {
             const setState = sinon.spy( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: true } ) ) )
-                .to.be.true;
-        } );
+            expect( setState.calledWith( sinon.match( { isFocused: true } ) ) ).toBe(true);
+        });
 
-        it( 'should call setState exactly once', () =>
+        test('should call setState exactly once', () =>
         {
             const setState = sinon.spy( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState.calledOnce ).to.be.true;
-        } );
+            expect( setState.calledOnce ).toBe(true);
+        });
 
-        it( 'should set lastFocused property on instance', () =>
+        test('should set lastFocused property on instance', () =>
         {
             const input = document.createElement( 'input' );
             instance.handleFocus( { target: input } );
 
-            expect( instance.lastFocused ).to.equal( input );
-        } );
+            expect( instance.lastFocused ).toBe(input);
+        });
 
-        it( 'should call onFocus with e', () =>
+        test('should call onFocus with e', () =>
         {
             const onFocus = sinon.spy();
             const e = new Event( 'focus' );
@@ -67,20 +66,20 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onFocus } );
             instance.handleFocus( e );
 
-            expect( onFocus.calledWith( e ) ).to.be.true;
-        } );
+            expect( onFocus.calledWith( e ) ).toBe(true);
+        });
 
-        it( 'should call onFocus exactly once', () =>
+        test('should call onFocus exactly once', () =>
         {
             const onFocus = sinon.spy();
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( onFocus.calledOnce ).to.be.true;
-        } );
+            expect( onFocus.calledOnce ).toBe(true);
+        });
 
-        it( 'shouldn’t call onFocus when relatedTarget is width <input>', () =>
+        test('shouldn’t call onFocus when relatedTarget is width <input>', () =>
         {
             const onFocus = sinon.spy();
             const input   = document.createElement( 'input' );
@@ -93,10 +92,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleFocus( e );
 
-            expect( onFocus.called ).to.be.false;
-        } );
+            expect( onFocus.called ).toBe(false);
+        });
 
-        it( 'shouldn’t call onFocus when relatedTarget is height <input>', () =>
+        test('shouldn’t call onFocus when relatedTarget is height <input>', () =>
         {
             const onFocus = sinon.spy();
             const input   = document.createElement( 'input' );
@@ -109,10 +108,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleFocus( e );
 
-            expect( onFocus.called ).to.be.false;
-        } );
+            expect( onFocus.called ).toBe(false);
+        });
 
-        it( 'should stopPropagation when relatedTarget is width <input>', () =>
+        test('should stopPropagation when relatedTarget is width <input>', () =>
         {
             const input = document.createElement( 'input' );
 
@@ -124,10 +123,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleFocus( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+            expect( stopPropagation.calledOnce ).toBe(true);
+        });
 
-        it( 'should stopPropagation when relatedTarget is height <input>', () =>
+        test('should stopPropagation when relatedTarget is height <input>', () =>
         {
             const input = document.createElement( 'input' );
 
@@ -139,41 +138,40 @@ describe( 'DimensionsInput', () =>
 
             instance.handleFocus( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+            expect( stopPropagation.calledOnce ).toBe(true);
+        });
 
-        it( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
+        test('shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'focus' );
             const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
             instance.handleFocus( e );
 
-            expect( stopPropagation.called ).to.be.false;
-        } );
+            expect( stopPropagation.called ).toBe(false);
+        });
     } );
 
     describe( 'handleBlur( e )', () =>
     {
-        it( 'should call setState with { isFocused: false } }', () =>
+        test('should call setState with { isFocused: false } }', () =>
         {
             const setState = sinon.spy( instance, 'setState' );
 
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: false } ) ) )
-                .to.be.true;
-        } );
+            expect( setState.calledWith( sinon.match( { isFocused: false } ) ) ).toBe(true);
+        });
 
-        it( 'should call setState exactly once', () =>
+        test('should call setState exactly once', () =>
         {
             const setState = sinon.spy( instance, 'setState' );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState.calledOnce ).to.be.true;
-        } );
+            expect( setState.calledOnce ).toBe(true);
+        });
 
-        it( 'should call onBlur with e', () =>
+        test('should call onBlur with e', () =>
         {
             const onBlur = sinon.spy();
             const e = new Event( 'blur' );
@@ -181,20 +179,20 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onBlur } );
             instance.handleBlur( e );
 
-            expect( onBlur.calledWith( e ) ).to.be.true;
-        } );
+            expect( onBlur.calledWith( e ) ).toBe(true);
+        });
 
-        it( 'should call onBlur exactly once', () =>
+        test('should call onBlur exactly once', () =>
         {
             const onBlur = sinon.spy();
 
             wrapper.setProps( { onBlur } );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( onBlur.calledOnce ).to.be.true;
-        } );
+            expect( onBlur.calledOnce ).toBe(true);
+        });
 
-        it( 'shouldn’t call onBlur when relatedTarget is width <input>', () =>
+        test('shouldn’t call onBlur when relatedTarget is width <input>', () =>
         {
             const onBlur = sinon.spy();
             const input   = document.createElement( 'input' );
@@ -207,10 +205,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleBlur( e );
 
-            expect( onBlur.called ).to.be.false;
-        } );
+            expect( onBlur.called ).toBe(false);
+        });
 
-        it( 'shouldn’t call onBlur when relatedTarget is height <input>', () =>
+        test('shouldn’t call onBlur when relatedTarget is height <input>', () =>
         {
             const onBlur = sinon.spy();
             const input   = document.createElement( 'input' );
@@ -223,10 +221,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleBlur( e );
 
-            expect( onBlur.called ).to.be.false;
-        } );
+            expect( onBlur.called ).toBe(false);
+        });
 
-        it( 'should stopPropagation when relatedTarget is width <input>', () =>
+        test('should stopPropagation when relatedTarget is width <input>', () =>
         {
             const input = document.createElement( 'input' );
 
@@ -238,10 +236,10 @@ describe( 'DimensionsInput', () =>
 
             instance.handleBlur( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+            expect( stopPropagation.calledOnce ).toBe(true);
+        });
 
-        it( 'should stopPropagation when relatedTarget is height <input>', () =>
+        test('should stopPropagation when relatedTarget is height <input>', () =>
         {
             const input = document.createElement( 'input' );
 
@@ -253,35 +251,35 @@ describe( 'DimensionsInput', () =>
 
             instance.handleBlur( e );
 
-            expect( stopPropagation.calledOnce ).to.be.true;
-        } );
+            expect( stopPropagation.calledOnce ).toBe(true);
+        });
 
-        it( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
+        test('shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'blur' );
             const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
             instance.handleBlur( e );
 
-            expect( stopPropagation.called ).to.be.false;
-        } );
+            expect( stopPropagation.called ).toBe(false);
+        });
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
+        test('should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Css ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly one InputContainer', () =>
+        test('should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( InputContainer ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly two InputFields', () =>
+        test('should contain exactly two InputFields', () =>
         {
-            expect( wrapper.find( InputField ) ).to.have.length( 2 );
-        } );
+            expect( wrapper.find( InputField ) ).toHaveLength(2);
+        });
     } );
 } );

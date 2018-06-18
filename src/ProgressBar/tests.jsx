@@ -16,17 +16,17 @@ describe( 'ProgressBar', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <ProgressBar /> );
-    } );
+    });
 
-    it( 'should have its component name as default className', () =>
+    test('should have its component name as default className', () =>
 {
-        expect( Wrapper.find( '.progressBar__default' ) ).to.have.length( 1 );
-    } );
-    it( 'should contain a ProgressBar', () =>
+        expect( Wrapper.find( '.progressBar__default' ) ).toHaveLength(1);
+    });
+    test('should contain a ProgressBar', () =>
 {
-        expect( Wrapper.find( ProgressBar ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( ProgressBar ) ).toHaveLength(1);
+    });
 } );

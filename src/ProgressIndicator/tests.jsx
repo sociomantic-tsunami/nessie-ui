@@ -16,18 +16,17 @@ describe( 'ProgressIndicator', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <ProgressIndicator /> );
-    } );
+    });
 
-    it( 'should have its component name as default className', () =>
+    test('should have its component name as default className', () =>
 {
-        expect( Wrapper.find( '.progressIndicator__default' ) )
-            .to.have.length( 1 );
-    } );
-    it( 'should contain a ProgressIndicator', () =>
+        expect( Wrapper.find( '.progressIndicator__default' ) ).toHaveLength(1);
+    });
+    test('should contain a ProgressIndicator', () =>
 {
-        expect( Wrapper.find( ProgressIndicator ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( ProgressIndicator ) ).toHaveLength(1);
+    });
 } );

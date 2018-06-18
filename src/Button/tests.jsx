@@ -17,115 +17,112 @@ describe( 'Button', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <Button /> );
         instance = wrapper.instance();
-    } );
+    });
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name Button', () =>
+        test('should have name Button', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'Button' );
-        } );
+            expect( instance.constructor.name ).toBe('Button');
+        });
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
+        test('should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Css ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly one <button>', () =>
+        test('should contain exactly one <button>', () =>
         {
-            expect( wrapper.find( 'button' ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( 'button' ) ).toHaveLength(1);
+        });
 
-        it( 'should have a exactly one Icon when configured', () =>
+        test('should have a exactly one Icon when configured', () =>
         {
             wrapper.setProps( { iconType: 'add' } );
-            expect( wrapper.find( Icon ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Icon ) ).toHaveLength(1);
+        });
 
-        it( 'should have a exactly one Spinner when loading', () =>
+        test('should have a exactly one Spinner when loading', () =>
         {
             wrapper.setProps( { isLoading: true } );
-            expect( wrapper.find( Spinner ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Spinner ) ).toHaveLength(1);
+        });
     } );
 
     describe( 'props', () =>
     {
         describe( 'iconType', () =>
         {
-            it( 'should be "none" by default', () =>
+            test('should be "none" by default', () =>
             {
-                expect( instance.props.iconType ).to.equal( 'none' );
-            } );
+                expect( instance.props.iconType ).toBe('none');
+            });
 
-            it( 'should be passed to the Icon as type', () =>
+            test('should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
 
-                expect( wrapper.find( Icon ).prop( 'type' ) )
-                    .to.equal( 'add' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe('add');
+            });
         } );
 
         describe( 'iconPosition', () =>
         {
-            it( 'should be "left" by default', () =>
+            test('should be "left" by default', () =>
             {
-                expect( instance.props.iconPosition ).to.equal( 'left' );
-            } );
+                expect( instance.props.iconPosition ).toBe('left');
+            });
         } );
 
         describe( 'role', () =>
         {
-            it( 'should be "default" by default', () =>
+            test('should be "default" by default', () =>
             {
-                expect( instance.props.role ).to.equal( 'default' );
-            } );
+                expect( instance.props.role ).toBe('default');
+            });
 
-            it( 'should be passed to Icon as theme when "control"', () =>
+            test('should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
                     role     : 'control'
                 } );
 
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .to.equal( 'control' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe('control');
+            });
         } );
 
         describe( 'isLoading', () =>
         {
-            it( 'should be false by default', () =>
+            test('should be false by default', () =>
             {
-                expect( instance.props.isLoading ).to.be.false;
-            } );
+                expect( instance.props.isLoading ).toBe(false);
+            });
 
-            it( 'should be passed to Icon as theme when "control"', () =>
+            test('should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
                     role     : 'control'
                 } );
 
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .to.equal( 'control' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe('control');
+            });
         } );
 
         describe( 'buttonRef', () =>
         {
-            it( 'should be undefined by default', () =>
+            test('should be undefined by default', () =>
             {
-                expect( instance.props.buttonRef ).to.be.undefined;
-            } );
+                expect( instance.props.buttonRef ).toBeUndefined();
+            });
         } );
     } );
 } );
@@ -136,29 +133,29 @@ describe( 'ButtonDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Button /> );
         driver  = wrapper.driver();
-    } );
+    });
 
     describe( 'click', () =>
     {
         let clickSpy;
 
-        beforeEach( () =>
+        beforeEach(() =>
         {
             clickSpy = sinon.spy();
-        } );
+        });
 
-        it( 'should have the button clicked', () =>
+        test('should have the button clicked', () =>
         {
             wrapper.setProps( { onClick: clickSpy } );
             driver.click();
-            expect( clickSpy.calledOnce ).to.be.true;
-        } );
+            expect( clickSpy.calledOnce ).toBe(true);
+        });
 
-        it( 'click on a disabled button should produce an error', () =>
+        test('click on a disabled button should produce an error', () =>
         {
             wrapper.setProps( {
                 label      : 'Pikaboo',
@@ -169,11 +166,11 @@ describe( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).to.throw( expectedError );
-            expect( clickSpy.notCalled ).to.be.true;
-        } );
+            expect( () => driver.click() ).toThrowError(expectedError);
+            expect( clickSpy.notCalled ).toBe(true);
+        });
 
-        it( 'click on a loading button should produce an error', () =>
+        test('click on a loading button should produce an error', () =>
         {
             wrapper.setProps( {
                 label     : 'Pikaboo',
@@ -184,8 +181,8 @@ describe( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => driver.click() ).to.throw( expectedError );
-            expect( clickSpy.notCalled ).to.be.true;
-        } );
+            expect( () => driver.click() ).toThrowError(expectedError);
+            expect( clickSpy.notCalled ).toBe(true);
+        });
     } );
 } );

@@ -14,21 +14,21 @@ describe( 'Icon', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <Icon /> );
         instance = wrapper.instance();
-    } );
+    });
 
-    it( 'should have size S by default', () =>
+    test('should have size S by default', () =>
     {
-        expect( instance.props.size ).to.equal( 'S' );
-    } );
+        expect( instance.props.size ).toBe('S');
+    });
 
-    it( 'should have light theme by default', () =>
+    test('should have light theme by default', () =>
     {
-        expect( instance.props.theme ).to.equal( 'light' );
-    } );
+        expect( instance.props.theme ).toBe('light');
+    });
 } );
 
 
@@ -36,12 +36,12 @@ describe( 'IconDriver', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Icon /> );
-    } );
+    });
 
-    it( 'should fire onMouseOver event', () =>
+    test('should fire onMouseOver event', () =>
     {
         const onMouseOver = sinon.spy();
         const onMouseOut = sinon.spy();
@@ -49,11 +49,11 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOver.calledOnce ).to.be.true;
-        expect( onMouseOut.notCalled ).to.be.true;
-    } );
+        expect( onMouseOver.calledOnce ).toBe(true);
+        expect( onMouseOut.notCalled ).toBe(true);
+    });
 
-    it( 'should fire onMouseOver event', () =>
+    test('should fire onMouseOver event', () =>
     {
         const onMouseOver = sinon.spy();
         const onMouseOut = sinon.spy();
@@ -61,7 +61,7 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOut.calledOnce ).to.be.true;
-        expect( onMouseOver.notCalled ).to.be.true;
-    } );
+        expect( onMouseOut.calledOnce ).toBe(true);
+        expect( onMouseOver.notCalled ).toBe(true);
+    });
 } );

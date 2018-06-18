@@ -14,18 +14,18 @@ describe( 'Label', () =>
     const props = {
         label : 'Boom'
     };
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <Label { ...props } /> );
-    } );
+    });
 
-    it( 'should conatain a single label element', () =>
+    test('should conatain a single label element', () =>
 {
-        expect( Wrapper.find( 'label' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( 'label' ) ).toHaveLength(1);
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.label__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.label__default' ) ).toHaveLength(1);
+    });
 } );

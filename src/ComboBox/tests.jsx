@@ -7,33 +7,33 @@ describe( 'ComboBox', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <ComboBox /> );
-    } );
+    });
 
     describe( 'render()', () =>
     {
-        it( 'should render ComboBox', () =>
+        test('should render ComboBox', () =>
         {
-            expect( wrapper ).to.have.length( 1 );
-        } );
-        it( 'should render ComboBox without label by default', () =>
+            expect( wrapper ).toHaveLength(1);
+        });
+        test('should render ComboBox without label by default', () =>
         {
             const label = '';
             wrapper.setProps( {
                 label
             } );
-            expect( wrapper.find( 'label' ).length ).to.equal( 0 );
-        } );
-        it( 'should render ComboBox with label if defined', () =>
+            expect( wrapper.find( 'label' ).length ).toBe(0);
+        });
+        test('should render ComboBox with label if defined', () =>
         {
             const label = 'label';
             wrapper.setProps( {
                 label
             } );
-            expect( wrapper.find( 'label' ).length ).to.equal( 1 );
-        } );
+            expect( wrapper.find( 'label' ).length ).toBe(1);
+        });
     } );
 } );
 
@@ -43,15 +43,15 @@ describe( 'ComboBoxDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <ComboBox /> );
         driver   = wrapper.driver();
-    } );
+    });
 
     describe( 'blur', () =>
     {
-        it( 'should trigger onBlur() callback function', () =>
+        test('should trigger onBlur() callback function', () =>
         {
             const onBlur = sinon.spy();
             wrapper.setProps( {
@@ -60,13 +60,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.blur();
 
-            expect( onBlur.calledOnce ).to.be.true;
-        } );
+            expect( onBlur.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'changeInput', () =>
     {
-        it( 'should trigger onChangeInput() callback function', () =>
+        test('should trigger onChangeInput() callback function', () =>
         {
             const onChangeInput = sinon.spy();
             wrapper.setProps( {
@@ -75,13 +75,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.changeInput();
 
-            expect( onChangeInput.calledOnce ).to.be.true;
-        } );
+            expect( onChangeInput.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickInput', () =>
     {
-        it( 'should trigger onClickInput() callback function', () =>
+        test('should trigger onClickInput() callback function', () =>
         {
             const onClickInput = sinon.spy();
             wrapper.setProps( {
@@ -90,13 +90,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.clickInput();
 
-            expect( onClickInput.calledOnce ).to.be.true;
-        } );
+            expect( onClickInput.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickOption', () =>
     {
-        it( 'should trigger onClickOption() callback function', () =>
+        test('should trigger onClickOption() callback function', () =>
         {
             const onClickOption = sinon.spy();
             wrapper.setProps( {
@@ -121,13 +121,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.clickOption();
 
-            expect( onClickOption.calledOnce ).to.be.true;
-        } );
+            expect( onClickOption.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'focus', () =>
     {
-        it( 'should trigger onFocus() callback function', () =>
+        test('should trigger onFocus() callback function', () =>
         {
             const onFocus = sinon.spy();
             wrapper.setProps( {
@@ -136,13 +136,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.focus();
 
-            expect( onFocus.calledOnce ).to.be.true;
-        } );
+            expect( onFocus.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'keyDown', () =>
     {
-        it( 'should trigger onKeyDown() callback function', () =>
+        test('should trigger onKeyDown() callback function', () =>
         {
             const onKeyDown = sinon.spy();
             wrapper.setProps( {
@@ -151,13 +151,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyDown.calledOnce ).to.be.true;
-        } );
+            expect( onKeyDown.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'keyPress', () =>
     {
-        it( 'should trigger onKeyPress() callback function', () =>
+        test('should trigger onKeyPress() callback function', () =>
         {
             const onKeyPress = sinon.spy();
             wrapper.setProps( {
@@ -166,13 +166,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyPress.calledOnce ).to.be.true;
-        } );
+            expect( onKeyPress.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'keyUp', () =>
     {
-        it( 'should trigger onKeyUp() callback function', () =>
+        test('should trigger onKeyUp() callback function', () =>
         {
             const onKeyUp = sinon.spy();
             wrapper.setProps( {
@@ -181,13 +181,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyUp.calledOnce ).to.be.true;
-        } );
+            expect( onKeyUp.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOut', () =>
     {
-        it( 'should trigger onMouseOut() callback function', () =>
+        test('should trigger onMouseOut() callback function', () =>
         {
             const onMouseOut = sinon.spy();
             wrapper.setProps( {
@@ -196,13 +196,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOut.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOutOption', () =>
     {
-        it( 'should trigger onMouseOutOption() callback function', () =>
+        test('should trigger onMouseOutOption() callback function', () =>
         {
             const onMouseOutOption = sinon.spy();
             wrapper.setProps( {
@@ -227,13 +227,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOutOption();
 
-            expect( onMouseOutOption.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOutOption.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOver', () =>
     {
-        it( 'should trigger onMouseOver() callback function', () =>
+        test('should trigger onMouseOver() callback function', () =>
         {
             const onMouseOver = sinon.spy();
             wrapper.setProps( {
@@ -242,13 +242,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOver.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOverOption', () =>
     {
-        it( 'should trigger onMouseOverOption() callback function', () =>
+        test('should trigger onMouseOverOption() callback function', () =>
         {
             const onMouseOverOption = sinon.spy();
             wrapper.setProps( {
@@ -273,13 +273,13 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOverOption();
 
-            expect( onMouseOverOption.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOverOption.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'scroll', () =>
     {
-        it( 'should trigger onScroll() callback function', () =>
+        test('should trigger onScroll() callback function', () =>
         {
             const onScroll = sinon.spy();
             wrapper.setProps( {
@@ -304,7 +304,7 @@ describe( 'ComboBoxDriver', () =>
 
             driver.scroll( 0.3 );
 
-            expect( onScroll.calledOnce ).to.be.true;
-        } );
+            expect( onScroll.calledOnce ).toBe(true);
+        });
     } );
 } );

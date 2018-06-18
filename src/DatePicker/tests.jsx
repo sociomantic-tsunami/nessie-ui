@@ -13,15 +13,15 @@ describe( 'DatePicker', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <DatePicker /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( '.datePicker__default' ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( '.datePicker__default' ) ).toHaveLength(1);
+    });
 } );
 
 
@@ -30,16 +30,16 @@ describe( 'DatePickerDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <DatePicker /> );
         driver = wrapper.driver();
-    } );
+    });
 
 
     describe( 'clickItem', () =>
     {
-        it( 'should simulate and trigger onClickItem()', () =>
+        test('should simulate and trigger onClickItem()', () =>
         {
             const onClickItem = sinon.spy();
             wrapper.setProps( {
@@ -78,13 +78,13 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickItem();
 
-            expect( onClickItem.calledOnce ).to.be.true;
-        } );
+            expect( onClickItem.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickNext', () =>
     {
-        it( 'should simulate and trigger onClickNext()', () =>
+        test('should simulate and trigger onClickNext()', () =>
         {
             const onClickNext = sinon.spy();
             wrapper.setProps( {
@@ -93,13 +93,13 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext.calledOnce ).to.be.true;
-        } );
+            expect( onClickNext.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickPrev', () =>
     {
-        it( 'should simulate and trigger onClickPrev()', () =>
+        test('should simulate and trigger onClickPrev()', () =>
         {
             const onClickPrev = sinon.spy();
             wrapper.setProps( {
@@ -108,7 +108,7 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev.calledOnce ).to.be.true;
-        } );
+            expect( onClickPrev.calledOnce ).toBe(true);
+        });
     } );
 } );

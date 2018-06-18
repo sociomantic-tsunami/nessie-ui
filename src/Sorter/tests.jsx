@@ -12,33 +12,33 @@ describe( 'Sorter', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Sorter /> );
-    } );
+    });
 
 
-    it( 'should render <Sorter/>', () =>
+    test('should render <Sorter/>', () =>
     {
-        expect( wrapper.find( Sorter ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( Sorter ) ).toHaveLength(1);
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( '.sorter__default' ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( '.sorter__default' ) ).toHaveLength(1);
+    });
 } );
 
 describe( 'SorterDriver', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Sorter /> );
-    } );
+    });
 
-    it( 'should call onToggle callback function', () =>
+    test('should call onToggle callback function', () =>
     {
         const onToggle = sinon.spy();
         wrapper.setProps( {
@@ -47,6 +47,6 @@ describe( 'SorterDriver', () =>
 
         wrapper.driver().toggle();
 
-        expect( onToggle.calledOnce ).to.be.true;
-    } );
+        expect( onToggle.calledOnce ).toBe(true);
+    });
 } );

@@ -16,30 +16,30 @@ describe( 'TagInput', () =>
     let instance;
     let cssMap;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <TagInput /> );
         instance = wrapper.instance();
         cssMap   = instance.props.cssMap;
-    } );
+    });
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name TagInput', () =>
+        test('should have name TagInput', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'TagInput' );
-        } );
+            expect( instance.constructor.name ).toBe('TagInput');
+        });
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one input', () =>
+        test('should contain exactly one input', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( `.${cssMap.input}` ) ).toHaveLength(1);
+        });
     } );
 
-    it( 'should have Tag components when passed as children', () =>
+    test('should have Tag components when passed as children', () =>
     {
         wrapper.setProps( {
             children : [
@@ -48,71 +48,69 @@ describe( 'TagInput', () =>
             ]
         } );
 
-        expect( wrapper.find( Tag ) ).to.have.length( 2 );
-    } );
+        expect( wrapper.find( Tag ) ).toHaveLength(2);
+    });
 
-    it( 'should have Tag components when passed as tags prop', () =>
+    test('should have Tag components when passed as tags prop', () =>
     {
         wrapper.setProps( {
             tags : [ 'TagLabelString 1', 'TagLabelString 2' ],
         } );
 
-        expect( wrapper.find( Tag ) ).to.have.length( 2 );
-    } );
+        expect( wrapper.find( Tag ) ).toHaveLength(2);
+    });
 
-    it( 'should trigger onKeyDown callbacks when key pressed', () =>
+    test('should trigger onKeyDown callbacks when key pressed', () =>
     {
         const onKeyDown = sinon.spy();
         wrapper.setProps( { onKeyDown } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
-        expect( onKeyDown.called ).to.be.true;
-    } );
+        expect( onKeyDown.called ).toBe(true);
+    });
 
-    it( 'should trigger onKeyUp callbacks when key pressed', () =>
+    test('should trigger onKeyUp callbacks when key pressed', () =>
     {
         const onKeyUp = sinon.spy();
         wrapper.setProps( { onKeyUp } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
-        expect( onKeyUp.called ).to.be.true;
-    } );
+        expect( onKeyUp.called ).toBe(true);
+    });
 
-    it( 'should trigger onKeyPress callbacks when key pressed', () =>
+    test('should trigger onKeyPress callbacks when key pressed', () =>
     {
         const onKeyPress = sinon.spy();
         wrapper.setProps( { onKeyPress } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyPress' );
-        expect( onKeyPress.called ).to.be.true;
-    } );
+        expect( onKeyPress.called ).toBe(true);
+    });
 
     describe( 'readOnly state', () =>
     {
-        beforeEach( () =>
+        beforeEach(() =>
         {
             wrapper.setProps( { isReadOnly: true } );
-        } );
+        });
 
-        it( 'input should receive readonly', () =>
+        test('input should receive readonly', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) )
-                .to.be.true;
-        } );
+            expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) ).toBe(true);
+        });
     } );
 
     describe( 'disabled state', () =>
     {
-        beforeEach( () =>
+        beforeEach(() =>
         {
             wrapper.setProps( { isDisabled: true } );
-        } );
+        });
 
-        it( 'input should receive isDisabled as "disabled"', () =>
+        test('input should receive isDisabled as "disabled"', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
-                .to.be.true;
-        } );
+            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) ).toBe(true);
+        });
     } );
 } );
 
@@ -121,14 +119,14 @@ describe( 'TagInputDriver', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <TagInput /> );
-    } );
+    });
 
     describe( 'blur()', () =>
     {
-        it( 'should call blur once', () =>
+        test('should call blur once', () =>
         {
             const onBlur = sinon.spy();
             wrapper.setProps( {
@@ -141,13 +139,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur.calledOnce ).to.be.true;
-        } );
+            expect( onBlur.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'focus()', () =>
     {
-        it( 'should call focus once', () =>
+        test('should call focus once', () =>
         {
             const onFocus = sinon.spy();
             wrapper.setProps( {
@@ -160,13 +158,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus.calledOnce ).to.be.true;
-        } );
+            expect( onFocus.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickCloseTagByIndex()', () =>
     {
-        it( 'should call onClickClose once', () =>
+        test('should call onClickClose once', () =>
         {
             const onClickClose = sinon.spy();
             wrapper.setProps( {
@@ -179,13 +177,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByIndex( 1 );
 
-            expect( onClickClose.calledOnce ).to.be.true;
-        } );
+            expect( onClickClose.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickCloseTagByLabel()', () =>
     {
-        it( 'should call onClickClose once', () =>
+        test('should call onClickClose once', () =>
         {
             const onClickClose = sinon.spy();
             wrapper.setProps( {
@@ -198,13 +196,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
 
-            expect( onClickClose.calledOnce ).to.be.true;
-        } );
+            expect( onClickClose.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOut()', () =>
     {
-        it( 'should call onMouseOut once', () =>
+        test('should call onMouseOut once', () =>
         {
             const onMouseOut = sinon.spy();
             wrapper.setProps( {
@@ -217,13 +215,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOut.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOver()', () =>
     {
-        it( 'should call onMouseOver once', () =>
+        test('should call onMouseOver once', () =>
         {
             const onMouseOver = sinon.spy();
             wrapper.setProps( {
@@ -236,7 +234,7 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOver.calledOnce ).toBe(true);
+        });
     } );
 } );

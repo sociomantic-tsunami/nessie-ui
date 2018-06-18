@@ -15,17 +15,17 @@ describe( 'Spinner', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <Spinner /> );
-    } );
+    });
 
-    it( 'should have its component name as default className', () =>
+    test('should have its component name as default className', () =>
 {
-        expect( Wrapper.find( '.spinner__default' ) ).to.have.length( 1 );
-    } );
-    it( 'should contain a Spinner', () =>
+        expect( Wrapper.find( '.spinner__default' ) ).toHaveLength(1);
+    });
+    test('should contain a Spinner', () =>
 {
-        expect( Wrapper.find( Spinner ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( Spinner ) ).toHaveLength(1);
+    });
 } );

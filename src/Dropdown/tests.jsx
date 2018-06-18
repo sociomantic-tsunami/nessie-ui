@@ -13,25 +13,24 @@ describe( 'Dropdown', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Dropdown /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( '.dropdown__default' ) ).to.have.length( 1 );
-    } );
+        expect( wrapper.find( '.dropdown__default' ) ).toHaveLength(1);
+    });
 
     describe( 'Wrapper driver getContent', () =>
     {
-        it( 'should return the dropdown content', () =>
+        test('should return the dropdown content', () =>
         {
             wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
 
             const content = wrapper.driver().getContent();
-            expect( content.find( 'p' ).text() )
-                .to.equal( 'Lightning Strike' );
-        } );
+            expect( content.find( 'p' ).text() ).toBe('Lightning Strike');
+        });
     } );
 } );

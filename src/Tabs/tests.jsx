@@ -15,24 +15,24 @@ describe( 'Tabs', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <Tabs /> );
-    } );
+    });
 
     describe( 'render()', () =>
     {
-        it( 'should accept a single Tab as children', () =>
+        test('should accept a single Tab as children', () =>
         {
             wrapper.setProps( { children: <Tab /> } );
-            expect( wrapper.find( TabButton ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( TabButton ) ).toHaveLength(1);
+        });
 
-        it( 'should accept an array of Tabs as children', () =>
+        test('should accept an array of Tabs as children', () =>
         {
             wrapper.setProps( { children: [ <Tab />, <Tab /> ] } );
-            expect( wrapper.find( TabButton ) ).to.have.length( 2 );
-        } );
+            expect( wrapper.find( TabButton ) ).toHaveLength(2);
+        });
     } );
 } );
 
@@ -41,30 +41,33 @@ describe( 'TabsDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <Tabs /> );
         driver   = wrapper.driver();
-    } );
+    });
 
     describe( 'getTabButtons()', () =>
     {
-        it( 'should return TabButton instances in Tabs when passed array of Tabs as children', () => // eslint-disable-line max-len
-        {
-            wrapper.setProps( {
-                children : [
-                    <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />
-                ]
-            } );
+        test(
+            'should return TabButton instances in Tabs when passed array of Tabs as children',
+            () => // eslint-disable-line max-len
+            {
+                wrapper.setProps( {
+                    children : [
+                        <Tab label = "Tabity" />,
+                        <Tab label = "Taby" />
+                    ]
+                } );
 
-            expect( driver.getTabButtons() ).to.have.length( 2 );
-        } );
+                expect( driver.getTabButtons() ).toHaveLength(2);
+            }
+        );
     } );
 
     describe( 'getTabButtonsByIndex()', () =>
     {
-        it( 'should return TabButton with given index', () =>
+        test('should return TabButton with given index', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -73,11 +76,10 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByIndex( 1 ).props().label )
-                .to.equal( 'Taby' );
-        } );
+            expect( driver.getTabButtonsByIndex( 1 ).props().label ).toBe('Taby');
+        });
 
-        it( 'should return TabButtons when passed indexes as an array', () =>
+        test('should return TabButtons when passed indexes as an array', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -86,14 +88,13 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) )
-                .to.have.length( 2 );
-        } );
+            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) ).toHaveLength(2);
+        });
     } );
 
     describe( 'getTabButtonsByLabel()', () =>
     {
-        it( 'should return TabButton with given label', () =>
+        test('should return TabButton with given label', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -102,14 +103,13 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
-                .to.equal( 'Tabity' );
-        } );
+            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label ).toBe('Tabity');
+        });
     } );
 
     describe( 'getTabContent()', () =>
     {
-        it( 'should return Tab content', () =>
+        test('should return Tab content', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -118,7 +118,7 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabContent() ).to.have.length( 1 );
-        } );
+            expect( driver.getTabContent() ).toHaveLength(1);
+        });
     } );
 } );

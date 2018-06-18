@@ -8,17 +8,17 @@ describe( 'PaginatorDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <Paginator /> );
         driver   = wrapper.driver();
-    } );
+    });
 
     describe( 'clickPrev()', () =>
     {
         let onClickPrev;
 
-        it( 'should fire onClickPrev exactly once', () =>
+        test('should fire onClickPrev exactly once', () =>
         {
             onClickPrev = sinon.spy();
             wrapper.setProps( {
@@ -28,15 +28,15 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev.calledOnce ).to.be.true;
-        } );
+            expect( onClickPrev.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickNext()', () =>
     {
         let onClickNext;
 
-        it( 'should fire onClickNext exactly once', () =>
+        test('should fire onClickNext exactly once', () =>
         {
             onClickNext = sinon.spy();
             wrapper.setProps( {
@@ -46,15 +46,15 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext.calledOnce ).to.be.true;
-        } );
+            expect( onClickNext.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'clickPage()', () =>
     {
         let onClickPage;
 
-        it( 'should fire onClickPage exactly once', () =>
+        test('should fire onClickPage exactly once', () =>
         {
             onClickPage = sinon.spy();
             wrapper.setProps( {
@@ -64,7 +64,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPage( 1 );
 
-            expect( onClickPage.calledOnce ).to.be.true;
-        } );
+            expect( onClickPage.calledOnce ).toBe(true);
+        });
     } );
 } );

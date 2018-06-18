@@ -13,13 +13,13 @@ describe( 'MessageBox', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <MessageBox /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.messageBox__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.messageBox__default' ) ).toHaveLength(1);
+    });
 } );

@@ -13,59 +13,59 @@ describe( 'Fieldset', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = mount( <Fieldset /> );
         instance = wrapper.instance();
-    } );
+    });
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one Fieldset', () =>
+        test('should contain exactly one Fieldset', () =>
         {
-            expect( wrapper ).to.have.length( 1 );
-        } );
+            expect( wrapper ).toHaveLength(1);
+        });
     } );
 
     describe( 'props', () =>
     {
         let props;
 
-        beforeEach( () =>
+        beforeEach(() =>
         {
             props = instance.props;
-        } );
+        });
 
         describe( 'hasError', () =>
         {
-            it( 'should be false by default', () =>
+            test('should be false by default', () =>
             {
-                expect( props.hasError ).to.be.false;
-            } );
+                expect( props.hasError ).toBe(false);
+            });
         } );
 
         describe( 'isDisabled', () =>
         {
-            it( 'should be undefined by default', () =>
+            test('should be undefined by default', () =>
             {
-                expect( props.isDisabled ).to.be.undefined;
-            } );
+                expect( props.isDisabled ).toBeUndefined();
+            });
         } );
 
         describe( 'onMouseOut', () =>
         {
-            it( 'should be undefined by default', () =>
+            test('should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).to.be.undefined;
-            } );
+                expect( props.onMouseOut ).toBeUndefined();
+            });
         } );
 
         describe( 'onMouseOver', () =>
         {
-            it( 'should be undefined by default', () =>
+            test('should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).to.be.undefined;
-            } );
+                expect( props.onMouseOver ).toBeUndefined();
+            });
         } );
     } );
 } );

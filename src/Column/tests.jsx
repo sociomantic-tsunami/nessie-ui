@@ -13,25 +13,24 @@ describe( 'Column', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         Wrapper = mount( <Column /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.column__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.column__default' ) ).toHaveLength(1);
+    });
 
     describe( 'Driver self-test', () =>
     {
-        it( 'getContent', () =>
+        test('getContent', () =>
         {
             Wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
 
             const content = Wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() )
-                .to.equal( 'Lightning Strike' );
-        } );
+            expect( content.find( 'h2' ).text() ).toBe('Lightning Strike');
+        });
     } );
 } );

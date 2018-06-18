@@ -13,14 +13,13 @@ describe( 'NotificationBar', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
 {
         Wrapper = mount( <NotificationBar /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
 {
-        expect( Wrapper.find( '.notificationBar__default' ) )
-            .to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.notificationBar__default' ) ).toHaveLength(1);
+    });
 } );

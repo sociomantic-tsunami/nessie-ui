@@ -14,43 +14,43 @@ describe( 'Switch', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = shallow( <Switch /> );
-    } );
+    });
 
-    it( 'should pass isDisabled to <input> as “disabled”', () =>
+    test('should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
 
         const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
 
-        expect( input.prop( 'disabled' ) ).to.be.true;
-    } );
+        expect( input.prop( 'disabled' ) ).toBe(true);
+    });
 } );
 
 describe( 'SwitchDriver', () =>
 {
     let wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <Switch /> );
-    } );
+    });
 
     describe( 'toggle()', () =>
     {
-        it( 'should call onChange once', () =>
+        test('should call onChange once', () =>
         {
             const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
 
             wrapper.driver().toggle();
 
-            expect( onChange.calledOnce ).to.be.true;
-        } );
+            expect( onChange.calledOnce ).toBe(true);
+        });
 
-        it( 'should toggle target.checked', () =>
+        test('should toggle target.checked', () =>
         {
             let targetChecked;
             const onChange = sinon.stub().callsFake( e =>
@@ -60,13 +60,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().toggle();
 
-            expect( targetChecked ).to.be.false;
-        } );
+            expect( targetChecked ).toBe(false);
+        });
     } );
 
     describe( 'mouseOut', () =>
     {
-        it( 'should trigger onMouseOut callback function', () =>
+        test('should trigger onMouseOut callback function', () =>
         {
             const onMouseOut = sinon.spy();
 
@@ -74,13 +74,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOut.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'mouseOver', () =>
     {
-        it( 'should trigger onMouseOver callback function', () =>
+        test('should trigger onMouseOver callback function', () =>
         {
             const onMouseOver = sinon.spy();
 
@@ -88,13 +88,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
-        } );
+            expect( onMouseOver.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'blur', () =>
     {
-        it( 'should trigger onBlur callback function', () =>
+        test('should trigger onBlur callback function', () =>
         {
             const onBlur = sinon.spy();
 
@@ -102,13 +102,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur.calledOnce ).to.be.true;
-        } );
+            expect( onBlur.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'focus', () =>
     {
-        it( 'should trigger onFocus callback function', () =>
+        test('should trigger onFocus callback function', () =>
         {
             const onFocus = sinon.spy();
 
@@ -116,7 +116,7 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus.calledOnce ).to.be.true;
-        } );
+            expect( onFocus.calledOnce ).toBe(true);
+        });
     } );
 } );

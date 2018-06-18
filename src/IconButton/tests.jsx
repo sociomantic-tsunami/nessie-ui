@@ -16,78 +16,75 @@ describe( 'IconButton', () =>
     let wrapper;
     let instance;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper  = shallow( <IconButton /> );
         instance = wrapper.instance();
-    } );
+    });
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name IconButton', () =>
+        test('should have name IconButton', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'IconButton' );
-        } );
+            expect( instance.constructor.name ).toBe('IconButton');
+        });
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css higher-order component', () =>
+        test('should implement the Css higher-order component', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Css ) ).toHaveLength(1);
+        });
 
-        it( 'should contain exactly one Icon', () =>
+        test('should contain exactly one Icon', () =>
         {
-            expect( wrapper.find( Icon ) ).to.have.length( 1 );
-        } );
+            expect( wrapper.find( Icon ) ).toHaveLength(1);
+        });
     } );
 
     describe( 'props', () =>
     {
         describe( 'iconTheme', () =>
         {
-            it( 'should be "control" by default', () =>
+            test('should be "control" by default', () =>
             {
-                expect( instance.props.iconTheme ).to.equal( 'control' );
-            } );
+                expect( instance.props.iconTheme ).toBe('control');
+            });
 
-            it( 'should be passed to the Icon as theme', () =>
+            test('should be passed to the Icon as theme', () =>
             {
                 wrapper.setProps( { iconTheme: 'light' } );
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .to.equal( 'light' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe('light');
+            });
         } );
 
         describe( 'iconSize', () =>
         {
-            it( 'should be "S" by default', () =>
+            test('should be "S" by default', () =>
             {
-                expect( instance.props.iconSize ).to.equal( 'S' );
-            } );
+                expect( instance.props.iconSize ).toBe('S');
+            });
 
-            it( 'should be passed to the Icon as size', () =>
+            test('should be passed to the Icon as size', () =>
             {
                 wrapper.setProps( { iconSize: 'L' } );
-                expect( wrapper.find( Icon ).prop( 'size' ) )
-                    .to.equal( 'L' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'size' ) ).toBe('L');
+            });
         } );
 
         describe( 'iconType', () =>
         {
-            it( 'should be undefiend by default', () =>
+            test('should be undefiend by default', () =>
             {
-                expect( instance.props.iconType ).to.be.undefined;
-            } );
+                expect( instance.props.iconType ).toBeUndefined();
+            });
 
-            it( 'should be passed to the Icon as type', () =>
+            test('should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
-                expect( wrapper.find( Icon ).prop( 'type' ) )
-                    .to.equal( 'add' );
-            } );
+                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe('add');
+            });
         } );
     } );
 } );
@@ -97,45 +94,45 @@ describe( 'IconButtonDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         wrapper = mount( <IconButton /> );
         driver  = wrapper.driver();
-    } );
+    });
 
     describe( 'click()', () =>
     {
-        it( 'should fire the onClick callback prop', () =>
+        test('should fire the onClick callback prop', () =>
         {
             const clickSpy = sinon.spy();
             wrapper.setProps( { onClick: clickSpy } );
 
             driver.click();
-            expect( clickSpy.calledOnce ).to.be.true;
-        } );
+            expect( clickSpy.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'focus()', () =>
     {
-        it( 'should fire the onFocus callback prop', () =>
+        test('should fire the onFocus callback prop', () =>
         {
             const focusSpy = sinon.spy();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
-            expect( focusSpy.calledOnce ).to.be.true;
-        } );
+            expect( focusSpy.calledOnce ).toBe(true);
+        });
     } );
 
     describe( 'blur()', () =>
     {
-        it( 'should fire the onBlur callback prop', () =>
+        test('should fire the onBlur callback prop', () =>
         {
             const blurSpy = sinon.spy();
             wrapper.setProps( { onBlur: blurSpy } );
 
             driver.blur();
-            expect( blurSpy.calledOnce ).to.be.true;
-        } );
+            expect( blurSpy.calledOnce ).toBe(true);
+        });
     } );
 } );

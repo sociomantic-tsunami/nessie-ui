@@ -13,33 +13,31 @@ describe( 'Animate', () =>
 {
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         Wrapper = mount( <Animate /> );
-    } );
+    });
 
-    it( 'should contain a Animate component', () =>
+    test('should contain a Animate component', () =>
     {
-        expect( Wrapper.find( Animate ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( Animate ) ).toHaveLength(1);
+    });
 
-    it( 'should have animate__default as default className', () =>
+    test('should have animate__default as default className', () =>
     {
-        expect( Wrapper.find( '.animate__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.animate__default' ) ).toHaveLength(1);
+    });
 
-    it( 'should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
-        props are selected',
-        () =>
-        {
-            const props = {
-                enterAnimation : 'fadeIn',
-                outAnimation   : 'fadeOut'
-            };
+    test('should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
+        props are selected', () =>
+    {
+        const props = {
+            enterAnimation : 'fadeIn',
+            outAnimation   : 'fadeOut'
+        };
 
-            Wrapper = mount( <Animate { ...props } /> );
+        Wrapper = mount( <Animate { ...props } /> );
 
-            expect( Wrapper.find( '.animate__fadeIn__fadeOut' ) )
-                .to.have.length( 1 );
-        } );
+        expect( Wrapper.find( '.animate__fadeIn__fadeOut' ) ).toHaveLength(1);
+    });
 } );

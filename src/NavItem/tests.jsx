@@ -16,7 +16,7 @@ describe( 'NavItem', () =>
 
     let Wrapper;
 
-    beforeEach( () =>
+    beforeEach(() =>
     {
         onClickSpy.resetHistory();
         onMouseOverSpy.resetHistory();
@@ -28,35 +28,35 @@ describe( 'NavItem', () =>
             onMouseOver = { onMouseOverSpy }
             onMouseOut  = { onMouseOutSpy }
         /> );
-    } );
+    });
 
-    it( 'should have its component name and hash as default className', () =>
+    test('should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.navItem__default' ) ).to.have.length( 1 );
-    } );
+        expect( Wrapper.find( '.navItem__default' ) ).toHaveLength(1);
+    });
 
-    it( 'should trigger callback on click', () =>
+    test('should trigger callback on click', () =>
     {
         Wrapper.driver().click();
 
-        expect( onClickSpy.calledOnce ).to.be.true;
-    } );
+        expect( onClickSpy.calledOnce ).toBe(true);
+    });
 
-    it( 'should trigger callback on mouse over', () =>
+    test('should trigger callback on mouse over', () =>
     {
         Wrapper.driver().mouseOver();
 
-        expect( onMouseOverSpy.calledOnce ).to.be.true;
-    } );
+        expect( onMouseOverSpy.calledOnce ).toBe(true);
+    });
 
-    it( 'should trigger callback on mouse out', () =>
+    test('should trigger callback on mouse out', () =>
     {
         Wrapper.driver().mouseOut();
 
-        expect( onMouseOutSpy.calledOnce ).to.be.true;
-    } );
+        expect( onMouseOutSpy.calledOnce ).toBe(true);
+    });
 
-    it( 'driver method `getLabel` should return the component label', () =>
+    test('driver method `getLabel` should return the component label', () =>
     {
         Wrapper = mount( <NavItem
             label = { <span>testLabel</span> }
@@ -64,6 +64,6 @@ describe( 'NavItem', () =>
 
         const label = Wrapper.driver().getLabel();
 
-        expect( label.html() ).to.be.equal( '<span>testLabel</span>' );
-    } );
+        expect( label.html() ).toBe('<span>testLabel</span>');
+    });
 } );
