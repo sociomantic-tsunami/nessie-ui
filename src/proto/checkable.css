@@ -2,8 +2,8 @@
 
 .default
 {
-    padding-top:        5px;
-    padding-bottom:     5px;
+    padding-top:        var( --spacing-1 );
+    padding-bottom:     var( --spacing-1 );
 
     width:              auto;
 
@@ -45,8 +45,8 @@
         position:           relative;
 
         box-sizing:         border-box;
-        width:              24px;
-        height:             24px;
+        width:              var( --spacing-3 );
+        height:             var( --spacing-3 );
 
         border:             1px solid var( --PC-BLUE--L55 );
         border-radius:      2px;
