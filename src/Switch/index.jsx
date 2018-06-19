@@ -13,15 +13,13 @@ const Switch = ( {
     isDefaultChecked,
     isDisabled,
     isReadOnly,
+    label,
     name,
-    offLabel,
     onBlur,
     onChange,
     onFocus,
-    onLabel,
     onMouseOut,
     onMouseOver,
-    showLabel,
     value,
 } ) => (
     <div
@@ -32,32 +30,34 @@ const Switch = ( {
         onMouseEnter = { onMouseOver }
         onMouseLeave = { onMouseOut }>
         <input
-            type           = "checkbox"
-            name           = { name }
-            id             = { id }
+            checked        = { isChecked }
             className      = { cssMap.input }
             defaultChecked = { isDefaultChecked }
+            disabled       = { isDisabled || isReadOnly }
+            id             = { id }
+            name           = { name }
             onBlur         = { onBlur }
             onChange       = { !isReadOnly && onChange }
             onFocus        = { onFocus }
-            checked        = { isChecked }
-            disabled       = { isDisabled || isReadOnly }
+            type           = "checkbox"
             value          = { value } />
         <label
-            htmlFor      = { id }
-            className    = { cssMap.label }>
-            <div className = { cssMap.on }>
-                { showLabel && onLabel }
-            </div>
-            <div className = { cssMap.off }>
-                { showLabel && offLabel }
-            </div>
-        </label>
+            aria-label = { label }
+            className  = { cssMap.label }
+            htmlFor    = { id } />
     </div>
 );
 
 Switch.propTypes =
 {
+    /**
+     * extra CSS classname
+     */
+    className        : PropTypes.bool,
+    /**
+     * CSS classname map
+     */
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */
@@ -83,13 +83,13 @@ Switch.propTypes =
      */
     isReadOnly       : PropTypes.bool,
     /**
+     *  switch label (used as aria-label)
+     */
+    label            : PropTypes.string,
+    /**
      *  input name
      */
     name             : PropTypes.string,
-    /**
-     *  “Off”/unchecked label text
-     */
-    offLabel         : PropTypes.string,
     /**
      * onBlur callback function: ( e ) => { ... }
      */
@@ -103,10 +103,6 @@ Switch.propTypes =
      */
     onFocus          : PropTypes.func,
     /**
-     *  “On”/checked label text
-     */
-    onLabel          : PropTypes.string,
-    /**
      *  onMouseOut callback function: ( e ) => { ... }
      */
     onMouseOut       : PropTypes.func,
@@ -114,10 +110,6 @@ Switch.propTypes =
      *  onMouseOver callback function: ( e ) => { ... }
      */
     onMouseOver      : PropTypes.func,
-    /**
-     *  Show “on/off” label text
-     */
-    showLabel        : PropTypes.bool,
     /**
      * HTML value attribute
      */
@@ -134,10 +126,8 @@ Switch.defaultProps =
     isDefaultChecked : false,
     isDisabled       : false,
     isReadOnly       : false,
-    offLabel         : 'Off',
+    label            : undefined,
     onChange         : undefined,
-    onLabel          : 'On',
-    showLabel        : false,
     value            : undefined,
 };
 

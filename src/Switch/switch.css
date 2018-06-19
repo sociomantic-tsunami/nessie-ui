@@ -4,27 +4,27 @@
 {
     --inputHeight:          40px;
 
-    --trackHeight:         var( --line-height-s );
-    --trackLetterSpacing:  0.4px;
+    --trackWidth:           40px;
+    --trackHeight:          16px;
 
-    --borderWidth:          1px;
-    --borderTotal:          calc( var( --borderWidth ) * 2 ); /* both sides when calculating size */
+    --borderWidth:          2px;
 
-    --circleSize:           calc( var( --line-height-m ) - var( --borderTotal ) );
-    --circleOffset:         calc( ( var( --trackHeight ) - var( --circleSize ) - var( --borderTotal ) ) / 2 );
+    --circleSize:           25px;
+    --circleOffset:         4px;
 
     --backgroundTransition: background-color 0.2s ease-in-out;
-    --circleTransition:     left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
-    --textTransition:       opacity 0.2s cubic-bezier( 0.23, 1, 0.32, 1 ); /* easeOutQuint */
+    --circleTransition:     background-color 0.2s ease-in-out, left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
 }
 
 .default
 {
-    display:        flex;
-    align-items:    center;
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
 
-    width:          auto;
-    height:         var( --inputHeight );
+
+    width:              calc( var( --trackWidth ) + ( var( --circleOffset ) * 2 ) );
+    height:             var( --inputHeight );
 
     .input
     {
@@ -34,11 +34,11 @@
 
     .label
     {
-        position:       relative;
         display:        flex;
 
         box-sizing:     border-box;
-        min-width:      calc( 2 * ( var( --circleSize ) + var( --circleOffset ) ) );
+
+        width:          var( --trackWidth );
         height:         var( --trackHeight );
 
         border-radius:  calc( var( --trackHeight ) / 2 );
@@ -55,8 +55,11 @@
             display:        block;
             position:       absolute;
 
-            top:            var( --circleOffset );
-            left:           var( --circleOffset );
+            box-sizing:     border-box;
+
+            top:            50%;
+            left:           0;
+            transform:      translateY( -50% );
 
             width:          var( --circleSize );
             height:         var( --circleSize );
@@ -72,51 +75,6 @@
         }
     }
 
-    .off,
-    .on
-    {
-        display:            flex;
-        justify-content:    center;
-        align-items:        center;
-
-        box-sizing:         border-box;
-
-        width:              100%;
-
-        padding:            0 var( --spacing-1 );
-
-        @extend %Nessie-SemiBold;
-        color:              var( --PC-WHITE );
-        font-size:          var( --typo-1 );
-        line-height:        var( --line-height-s );
-        letter-spacing:     var( --trackLetterSpacing );
-        text-transform:     uppercase;
-
-        overflow:           hidden;
-        white-space:        nowrap;
-        text-overflow:      ellipsis;
-
-        transition:         var( --textTransition );
-    }
-
-    .off
-    {
-        padding-left:   calc( var( --circleOffset ) + var( --circleSize ) + var( --spacing-1 ) );
-    }
-
-    .on
-    {
-        position:       absolute; /* necessary to overlay on over off */
-        top:            0;
-        bottom:         0;
-        left:           0;
-        right:          0;
-
-        padding-right:  calc( var( --spacing-1 ) + var( --circleOffset ) + var( --circleSize )  );
-
-        opacity:        0;
-    }
-
     .input:checked + .label
     {
         background: var( --PC-BLUE );
@@ -124,18 +82,8 @@
 
         &::before
         {
-            left:           calc( 100% - ( var( --circleOffset ) + var( --circleSize ) ) );
+            left:           calc( 100% - var( --circleSize ) );
             border-color:   var( --PC-BLUE );
-        }
-
-        .on
-        {
-            opacity:    1;
-        }
-
-        .off
-        {
-            opacity:    0;
         }
     }
 
