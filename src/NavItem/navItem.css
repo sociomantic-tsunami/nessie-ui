@@ -21,7 +21,7 @@
 
     & > .link
     {
-        color:  color( var( --GS-2 ) a( 50% ) ) !important;
+        color:  var( --PC-GREY--L70 ) !important;
         cursor: default !important;
 
         & > .icon
