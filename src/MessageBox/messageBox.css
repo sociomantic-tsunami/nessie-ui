@@ -11,6 +11,12 @@
     border-radius:      2px;
 }
 
+.type__default
+{
+    /* nothing to do here */
+}
+
+
 .type__info,
 .type__error,
 .type__alert,
