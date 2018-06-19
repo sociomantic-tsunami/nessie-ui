@@ -12,7 +12,7 @@ const MessageBox = ( {
     messageType,
 } ) =>
 {
-    const messageNode = <Text>{ message }</Text>;
+    const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
 
     return (
         <Css
