@@ -13,8 +13,7 @@ module.exports = {
         modules    : [ path.join( __dirname, '../node_modules' ) ],
     },
     alias : {
-        config$ : './configs/app-config.js',
-        react   : './node_modules/react',
+        react : './node_modules/react'
     },
     module : {
         rules : [

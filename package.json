@@ -30,14 +30,15 @@
             "shared"
         ],
         "moduleNameMapper": {
-            "^react(.*)$": "<rootDir>/node_modules/react",
-            "^config$": "<rootDir>/configs/app-config.js",
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-            "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-            "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+            "\\.(css|scss)$": "identity-obj-proxy"
+        },
+        "transform": {
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":
+                "<rootDir>/__mocks__/fileMock.js",
+            "^.+\\.(js|jsx)$": "babel-jest"
         },
         "transformIgnorePatterns": [
-            "node_modules/(?!(react-native|my-project|react-native-button)/)"
+            "node_modules/(?!(react)/)"
         ]
     },
     "scripts": {
