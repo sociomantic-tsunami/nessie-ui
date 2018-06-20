@@ -10,10 +10,7 @@ module.exports = {
     output  : { path: path.join( __dirname, '../dist' ) },
     resolve : {
         extensions : [ '.js', '.json', '.jsx' ],
-        modules    : [ path.join( __dirname, '../node_modules' ) ],
-    },
-    alias : {
-        react : './node_modules/react'
+        modules    : [ path.join( __dirname, '../node_modules' ) ]
     },
     module : {
         rules : [
