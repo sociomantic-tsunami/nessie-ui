@@ -67,7 +67,7 @@ export default class Uploader extends Component
         /**
          * Preview button is disabled
          */
-        previewisDisabled       : PropTypes.bool,
+        previewIsDisabled       : PropTypes.bool,
         /**
          * onClick callback function: ( e ) => { ... }
          */
@@ -130,7 +130,7 @@ export default class Uploader extends Component
             onClickSecondary,
             onMouseOut,
             onMouseOver,
-            previewisDisabled,
+            previewIsDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
             tooltipIsVisible,
@@ -189,7 +189,7 @@ export default class Uploader extends Component
                     loading         : isLoading,
                     uploaded,
                     disabled        : isDisabled,
-                    previewDisabled : previewisDisabled
+                    previewDisabled : previewIsDisabled
                 } }>
                 <div
                     className    = { className }
