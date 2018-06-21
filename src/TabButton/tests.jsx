@@ -36,7 +36,7 @@ describe( 'TabButton Driver', () =>
     {
         test('should trigger onClick', () =>
         {
-            const onClick = sinon.spy();
+            const onClick = jest.fn();
             wrapper.setProps( {
                 onClick
             } );
@@ -48,7 +48,7 @@ describe( 'TabButton Driver', () =>
 
         test('should return error if disabled', () =>
         {
-            const onClick = sinon.spy();
+            const onClick = jest.fn();
             wrapper.setProps( {
                 onClick,
                 isDisabled : true

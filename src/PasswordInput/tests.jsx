@@ -108,7 +108,7 @@ describe( 'PasswordInputDriver', () =>
     {
         test('should fire the onFocus callback prop', () =>
         {
-            const focusSpy = sinon.spy();
+            const focusSpy = jest.fn();
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
@@ -124,7 +124,7 @@ describe( 'PasswordInputDriver', () =>
     {
         test('should fire the onBlur callback prop', () =>
         {
-            const blurSpy = sinon.spy();
+            const blurSpy = jest.fn();
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
@@ -140,7 +140,7 @@ describe( 'PasswordInputDriver', () =>
     {
         test('should fire the onChange callback prop', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
@@ -157,7 +157,7 @@ describe( 'PasswordInputDriver', () =>
         test('should fire the onKeyPress callback prop', () =>
         {
             const keyCodeEnter = 13;
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy
             } );
@@ -169,7 +169,7 @@ describe( 'PasswordInputDriver', () =>
         test('should fire the onInput callback prop', () =>
         {
             const keyCodeChar = String.fromCharCode( 74 );
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onChange : onChangeSpy
             } );
@@ -180,8 +180,8 @@ describe( 'PasswordInputDriver', () =>
 
         test('inputValue should fire event for each key', () =>
         {
-            const keyPressSpy = sinon.spy();
-            const onChangeSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
                 onChange   : onChangeSpy
@@ -204,7 +204,7 @@ describe( 'PasswordInputDriver', () =>
     {
         test('should throw an error when PasswordInput is disabled', () =>
         {
-            const clickSpy = sinon.spy();
+            const clickSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,

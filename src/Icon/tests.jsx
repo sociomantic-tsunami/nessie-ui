@@ -43,8 +43,8 @@ describe( 'IconDriver', () =>
 
     test('should fire onMouseOver event', () =>
     {
-        const onMouseOver = sinon.spy();
-        const onMouseOut = sinon.spy();
+        const onMouseOver = jest.fn();
+        const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOver();
@@ -55,8 +55,8 @@ describe( 'IconDriver', () =>
 
     test('should fire onMouseOver event', () =>
     {
-        const onMouseOver = sinon.spy();
-        const onMouseOut = sinon.spy();
+        const onMouseOver = jest.fn();
+        const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOut();

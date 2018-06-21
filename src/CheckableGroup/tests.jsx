@@ -210,7 +210,7 @@ describe( 'CheckableGroupDriver', () =>
     {
         test('should call onMouseOver once', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
@@ -224,7 +224,7 @@ describe( 'CheckableGroupDriver', () =>
     {
         test('should call onMouseOut once', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();

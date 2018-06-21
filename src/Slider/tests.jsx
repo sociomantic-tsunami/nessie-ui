@@ -270,7 +270,7 @@ describe( 'Slider', () =>
             Wrapper = mount( <Slider { ...props } /> );
 
             const eventListenerSpy =
-                sinon.spy( global, 'addEventListener' );
+                jest.fn( global, 'addEventListener' );
 
             Wrapper.find( '.slider__handle' ).simulate( 'mousedown' );
             expect( eventListenerSpy.calledTwice ).toBe(true);
@@ -286,13 +286,13 @@ describe( 'Slider', () =>
         {
             const handleUp = Wrapper.instance().handleUp;
 
-            const removeEventListenerSpy = sinon.spy(
+            const removeEventListenerSpy = jest.fn(
                 global, 'removeEventListener' );
 
             const slider = Wrapper.instance();
 
-            const mouseMoveSpy = sinon.spy( slider, 'handleMove' );
-            const mouseUpSpy   = sinon.spy( slider, 'handleUp' );
+            const mouseMoveSpy = jest.fn( slider, 'handleMove' );
+            const mouseUpSpy   = jest.fn( slider, 'handleUp' );
 
             handleUp();
 
@@ -338,7 +338,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            clickSpy = sinon.spy();
+            clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
         });
 
@@ -371,7 +371,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onBlur = sinon.spy();
+            onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
         });
 
@@ -423,7 +423,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onFocus = sinon.spy();
+            onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
         });
 
@@ -460,7 +460,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onKeyDown = sinon.spy();
+            onKeyDown = jest.fn();
             wrapper.setProps( { onKeyDown } );
         });
 
@@ -504,7 +504,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onKeyUp = sinon.spy();
+            onKeyUp = jest.fn();
             wrapper.setProps( { onKeyUp } );
         });
 
@@ -547,7 +547,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onMouseOut = sinon.spy();
+            onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
         });
 
@@ -578,7 +578,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onMouseOver = sinon.spy();
+            onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
         });
 
@@ -609,7 +609,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            onMouseDown = sinon.spy();
+            onMouseDown = jest.fn();
             wrapper.setProps( { onMouseDown } );
         });
 
@@ -640,7 +640,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            handleUp = sinon.spy( wrapper.node, 'handleUp' );
+            handleUp = jest.fn( wrapper.node, 'handleUp' );
         });
 
         test('should fire handleUp on the component instance', () =>
@@ -656,7 +656,7 @@ describe( 'SliderDriver', () =>
 
         beforeEach(() =>
         {
-            change    = sinon.spy( driver, 'change' );
+            change    = jest.fn( driver, 'change' );
         });
 
         test('should throw the expected error when slider is disabled', () =>

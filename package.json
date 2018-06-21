@@ -43,7 +43,6 @@
         "test:v:ref": "visualTest -e dev -c ./ -j src/defaults.json -t reference",
         "test:v": "visualTest -e dev -c ./ -j src/defaults.json",
         "test:visuals": "yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v",
-
         "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
         "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
         "jest-test": "jest-webpack",
@@ -110,6 +109,7 @@
         "microbejs": "^0.5.2",
         "mini-css-extract-plugin": "^0.4.0",
         "mocha": "^5.2.0",
+        "mock-local-storage": "^1.0.5",
         "normalize.css": "^8.0.0",
         "null-loader": "^0.1.1",
         "postcss": "^6.0.22",

@@ -14,8 +14,8 @@ describe( 'Tooltip', () =>
 {
     test('should fire onMouseOver event', () =>
     {
-        const onMouseOverHandler = sinon.spy();
-        const onMouseOutHandler = sinon.spy();
+        const onMouseOverHandler = jest.fn();
+        const onMouseOutHandler = jest.fn();
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
@@ -34,8 +34,8 @@ describe( 'Tooltip', () =>
 
     test('should fire onMouseOut event', () =>
     {
-        const onMouseOverHandler = sinon.spy();
-        const onMouseOutHandler = sinon.spy();
+        const onMouseOverHandler = jest.fn();
+        const onMouseOutHandler = jest.fn();
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,

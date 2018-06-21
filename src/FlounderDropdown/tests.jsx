@@ -80,7 +80,7 @@ describe( 'FlounderDropdownDriver', () =>
     {
         test('should choose an item by index when Flounder is uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
@@ -98,7 +98,7 @@ describe( 'FlounderDropdownDriver', () =>
 
         test('should choose multiple items by index when uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
@@ -143,7 +143,7 @@ is disabled');
     {
         test('should choose item by text when Flounder is uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -161,7 +161,7 @@ is disabled');
 
         test('should choose multiple items by text when uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -206,7 +206,7 @@ is disabled');
     {
         test('should choose an item by value when Flounder is uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -224,7 +224,7 @@ is disabled');
 
         test('should choose multiple items by value when uncontolled', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -269,7 +269,7 @@ is disabled');
     {
         test('should remove all tags from an uncontrolled Flounder', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             const props = {
                 label        : 'Flounder Label',
                 data         : pokemonList,

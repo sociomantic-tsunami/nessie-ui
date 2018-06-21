@@ -9,4 +9,4 @@ const allowedEnvs = [ 'dev', 'dist', 'test' ];
 const env = allowedEnvs.includes( args.env ) ? args.env : 'dev';
 process.env.REACT_WEBPACK_ENV = env;
 
-module.exports = require( path.join( __dirname, `cfg/${env}` ) );
+module.exports = require( path.join( __dirname, `cfg/test` ) );

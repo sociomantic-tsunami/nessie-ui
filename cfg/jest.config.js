@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/**/tests.js?(x)'
+        '<rootDir>/src/Button/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
@@ -28,10 +28,13 @@ module.exports = {
         '<rootDir>/src'
     ],
 
-    // setupFiles :
-    // [
-    //     '<rootDir>/Testing/setupTestEnvironment.js'
-    // ],
+    setupFiles :
+    [
+        '<rootDir>/src/Testing/setupTestEnvironment.js'
+    ],
+
+    setupTestFrameworkScriptFile :
+        '<rootDir>/src/Testing/setupTestFramework.js',
 
     moduleNameMapper : Object.assign(
         {},
@@ -39,12 +42,12 @@ module.exports = {
         aliases,
         // Mock assets
         {
-            '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
-                '<rootDir>/Testing/mocks/fileMock.js',
+            '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
+                '<rootDir>/src/Testing/mocks/fileMock.js',
             '\\.(css|less|scss)$' : 'identity-obj-proxy'
         }
     ),
 
-    'bail'  : true,
+    // 'bail'  : true,
     verbose : true,
 };

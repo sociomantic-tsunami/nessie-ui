@@ -75,7 +75,7 @@ describe( 'FormDriver', () =>
     {
         test('should fire the onSubmit callback prop', () =>
         {
-            const onSubmit = sinon.spy();
+            const onSubmit = jest.fn();
 
             wrapper.setProps( { onSubmit } );
             wrapper.driver().submit();

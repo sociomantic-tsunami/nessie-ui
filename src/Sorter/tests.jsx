@@ -40,7 +40,7 @@ describe( 'SorterDriver', () =>
 
     test('should call onToggle callback function', () =>
     {
-        const onToggle = sinon.spy();
+        const onToggle = jest.fn();
         wrapper.setProps( {
             onToggle
         } );

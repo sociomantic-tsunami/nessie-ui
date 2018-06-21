@@ -68,7 +68,7 @@ child', () =>
 
     test('should trigger onClick callbacks when IconButton clicked', () =>
     {
-        const callBack = sinon.spy();
+        const callBack = jest.fn();
         const props = {
             onClick : callBack
         };

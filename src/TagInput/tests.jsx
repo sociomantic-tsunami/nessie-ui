@@ -62,7 +62,7 @@ describe( 'TagInput', () =>
 
     test('should trigger onKeyDown callbacks when key pressed', () =>
     {
-        const onKeyDown = sinon.spy();
+        const onKeyDown = jest.fn();
         wrapper.setProps( { onKeyDown } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
@@ -71,7 +71,7 @@ describe( 'TagInput', () =>
 
     test('should trigger onKeyUp callbacks when key pressed', () =>
     {
-        const onKeyUp = sinon.spy();
+        const onKeyUp = jest.fn();
         wrapper.setProps( { onKeyUp } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
@@ -80,7 +80,7 @@ describe( 'TagInput', () =>
 
     test('should trigger onKeyPress callbacks when key pressed', () =>
     {
-        const onKeyPress = sinon.spy();
+        const onKeyPress = jest.fn();
         wrapper.setProps( { onKeyPress } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyPress' );
@@ -128,7 +128,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call blur once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( {
                 onBlur,
                 children : [
@@ -147,7 +147,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call focus once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( {
                 onFocus,
                 children : [
@@ -166,7 +166,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call onClickClose once', () =>
         {
-            const onClickClose = sinon.spy();
+            const onClickClose = jest.fn();
             wrapper.setProps( {
                 onClickClose,
                 children : [
@@ -185,7 +185,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call onClickClose once', () =>
         {
-            const onClickClose = sinon.spy();
+            const onClickClose = jest.fn();
             wrapper.setProps( {
                 onClickClose,
                 children : [
@@ -204,7 +204,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call onMouseOut once', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( {
                 onMouseOut,
                 children : [
@@ -223,7 +223,7 @@ describe( 'TagInputDriver', () =>
     {
         test('should call onMouseOver once', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( {
                 onMouseOver,
                 children : [

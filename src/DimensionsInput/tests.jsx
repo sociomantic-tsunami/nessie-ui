@@ -36,7 +36,7 @@ describe( 'DimensionsInput', () =>
     {
         test('should call setState with { isFocused: true } }', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
             expect( setState.calledWith( sinon.match( { isFocused: true } ) ) ).toBe(true);
@@ -44,7 +44,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call setState exactly once', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
             expect( setState.calledOnce ).toBe(true);
@@ -60,7 +60,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call onFocus with e', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const e = new Event( 'focus' );
 
             wrapper.setProps( { onFocus } );
@@ -71,7 +71,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call onFocus exactly once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( 'focus' ) );
@@ -81,7 +81,7 @@ describe( 'DimensionsInput', () =>
 
         test('shouldn’t call onFocus when relatedTarget is width <input>', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const input   = document.createElement( 'input' );
 
             const e = new Event( 'focus' );
@@ -97,7 +97,7 @@ describe( 'DimensionsInput', () =>
 
         test('shouldn’t call onFocus when relatedTarget is height <input>', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const input   = document.createElement( 'input' );
 
             const e = new Event( 'focus' );
@@ -117,7 +117,7 @@ describe( 'DimensionsInput', () =>
 
             const e = new Event( 'focus' );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.widthInput = input;
 
@@ -132,7 +132,7 @@ describe( 'DimensionsInput', () =>
 
             const e = new Event( 'focus' );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.heightInput = input;
 
@@ -144,7 +144,7 @@ describe( 'DimensionsInput', () =>
         test('shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'focus' );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.handleFocus( e );
 
@@ -156,7 +156,7 @@ describe( 'DimensionsInput', () =>
     {
         test('should call setState with { isFocused: false } }', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
 
             instance.handleBlur( new Event( 'blur' ) );
 
@@ -165,7 +165,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call setState exactly once', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
             instance.handleBlur( new Event( 'blur' ) );
 
             expect( setState.calledOnce ).toBe(true);
@@ -173,7 +173,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call onBlur with e', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const e = new Event( 'blur' );
 
             wrapper.setProps( { onBlur } );
@@ -184,7 +184,7 @@ describe( 'DimensionsInput', () =>
 
         test('should call onBlur exactly once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
 
             wrapper.setProps( { onBlur } );
             instance.handleBlur( new Event( 'blur' ) );
@@ -194,7 +194,7 @@ describe( 'DimensionsInput', () =>
 
         test('shouldn’t call onBlur when relatedTarget is width <input>', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const input   = document.createElement( 'input' );
 
             const e = new Event( 'blur' );
@@ -210,7 +210,7 @@ describe( 'DimensionsInput', () =>
 
         test('shouldn’t call onBlur when relatedTarget is height <input>', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const input   = document.createElement( 'input' );
 
             const e = new Event( 'blur' );
@@ -230,7 +230,7 @@ describe( 'DimensionsInput', () =>
 
             const e = new Event( 'blur' );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.widthInput = input;
 
@@ -245,7 +245,7 @@ describe( 'DimensionsInput', () =>
 
             const e = new Event( 'blur' );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.heightInput = input;
 
@@ -257,7 +257,7 @@ describe( 'DimensionsInput', () =>
         test('shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'blur' );
-            const stopPropagation = sinon.spy( e, 'stopPropagation' );
+            const stopPropagation = jest.fn( e, 'stopPropagation' );
 
             instance.handleBlur( e );
 

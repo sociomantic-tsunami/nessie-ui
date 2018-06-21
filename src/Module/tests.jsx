@@ -98,7 +98,7 @@ describe( 'Module', () =>
 
             test('should be passed to the IconWithTooltip as onMouseOut', () =>
             {
-                const onMouseOutError = sinon.spy();
+                const onMouseOutError = jest.fn();
                 wrapper.setProps( {
                     errorMessage : 'error!',
                     hasError     : true,
@@ -119,7 +119,7 @@ describe( 'Module', () =>
 
             test('should be passed to the IconWithTooltip as onMouseOver', () =>
             {
-                const onMouseOverError = sinon.spy();
+                const onMouseOverError = jest.fn();
                 wrapper.setProps( {
                     errorMessage : 'error!',
                     hasError     : true,
@@ -140,7 +140,7 @@ describe( 'Module', () =>
 
             test('should be passed to the <header> as onMouseOut', () =>
             {
-                const onMouseOutHeader = sinon.spy();
+                const onMouseOutHeader = jest.fn();
                 wrapper.setProps( { onMouseOutHeader, title: 'hello' } );
 
                 expect( wrapper.find( 'header' ).prop( 'onMouseOut' ) ).toBe(onMouseOutHeader);
@@ -156,7 +156,7 @@ describe( 'Module', () =>
 
             test('should be passed to the <header> as onMouseOver', () =>
             {
-                const onMouseOverHeader = sinon.spy();
+                const onMouseOverHeader = jest.fn();
                 wrapper.setProps( { onMouseOverHeader, title: 'hello' } );
 
                 expect( wrapper.find( 'header' ).prop( 'onMouseOver' ) ).toBe(onMouseOverHeader);
@@ -181,7 +181,7 @@ describe( 'ModuleDriver', () =>
     {
         test('should fire the onClickToggle prop', () =>
         {
-            const toggleSpy = sinon.spy();
+            const toggleSpy = jest.fn();
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
@@ -198,7 +198,7 @@ describe( 'ModuleDriver', () =>
     {
         test('should fire the onClickDelete prop', () =>
         {
-            const clickDeleteSpy = sinon.spy();
+            const clickDeleteSpy = jest.fn();
             wrapper.setProps( {
                 title         : 'Boom',
                 isDeletable   : true,

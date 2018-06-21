@@ -18,8 +18,7 @@ module.exports = merge( {}, baseConfig, {
     resolve : {
         alias : {
             componentDriver : path.join( __dirname, '../src/Testing/index' ),
-            'nessie-ui'     : path.join( __dirname, '../src/index' ),
-            react           : path.join( __dirname, '../node_modules/react' )
+            'nessie-ui'     : path.join( __dirname, '../src/index' )
         },
     },
 } );

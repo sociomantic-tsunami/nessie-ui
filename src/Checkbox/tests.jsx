@@ -106,7 +106,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onFocus once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focus();
@@ -120,7 +120,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onFocus once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blur();
@@ -134,7 +134,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should not call onChange when already checked', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().setChecked();
@@ -144,7 +144,7 @@ describe( 'CheckboxDriver', () =>
 
         test('should call onChange once when unchecked', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { isChecked: false, onChange } );
 
             wrapper.driver().setChecked();
@@ -171,7 +171,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should not call onChange when already unchecked', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { isChecked: false, onChange } );
 
             wrapper.driver().setUnchecked();
@@ -181,7 +181,7 @@ describe( 'CheckboxDriver', () =>
 
         test('should call onChange once when checked', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().setUnchecked();
@@ -208,7 +208,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onChange once', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
             wrapper.driver().toggleChecked();
@@ -235,7 +235,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onClick once', () =>
         {
-            const onClick = sinon.spy();
+            const onClick = jest.fn();
 
             wrapper.setProps( { onClick } );
             wrapper.driver().click();
@@ -249,7 +249,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onMouseOver once', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
@@ -263,7 +263,7 @@ describe( 'CheckboxDriver', () =>
     {
         test('should call onMouseOut once', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();

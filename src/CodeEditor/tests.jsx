@@ -73,7 +73,7 @@ the code editor’s value', () =>
             });
         test('should call the onChange callback exactly once ', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.pressKey( 50 );
             expect( onChange.calledOnce ).toBe(true);
@@ -92,7 +92,7 @@ the code editor’s value', () =>
         test(`should call the onChange callback once per
             printable character in value`, () =>
             {
-                const onChange = sinon.spy();
+                const onChange = jest.fn();
                 wrapper.setProps( { onChange } );
                 driver.inputValue( 'foo' );
                 expect( onChange.callCount ).toBe(3);
@@ -109,7 +109,7 @@ the code editor’s value', () =>
 
         test('should fire the onChange callback prop', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
             expect( onChange.calledOnce ).toBe(true);
@@ -117,7 +117,7 @@ the code editor’s value', () =>
 
         test('should call onChange with new value as argument', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
             expect( onChange.calledWith( 'foo' ) ).toBe(true);
@@ -149,7 +149,7 @@ the code editor’s value', () =>
         });
         test('should call the onChange callback exactly once', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.clearInputValue();
             expect( onChange.calledWith( '' ) ).toBe(true);

@@ -179,7 +179,7 @@ describe( 'SliderGroup', () =>
             'onChange event in individual Sliders should be passed from Sliders array',
             () =>
             {
-                const onChangeSlider = sinon.spy();
+                const onChangeSlider = jest.fn();
                 const props = {
                     sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
                 };
@@ -196,8 +196,8 @@ describe( 'SliderGroup', () =>
             'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange',
             () =>
             {
-                const onChangeSlider = sinon.spy();
-                const onChangeSliderGroup = sinon.spy();
+                const onChangeSlider = jest.fn();
+                const onChangeSliderGroup = jest.fn();
                 const props = {
                     onChange : onChangeSliderGroup,
                     sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],

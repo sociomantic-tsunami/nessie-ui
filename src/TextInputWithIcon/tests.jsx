@@ -39,7 +39,7 @@ describe( 'TextInputWithIcon', () =>
     {
         test('should call onFocus with e', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const e = new Event( { } );
 
             wrapper.setProps( { onFocus } );
@@ -50,7 +50,7 @@ describe( 'TextInputWithIcon', () =>
 
         test('should call onFocus exactly once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( {} ) );
@@ -60,7 +60,7 @@ describe( 'TextInputWithIcon', () =>
 
         test('should not call onFocus when e.relatedTarget is the <input>', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const input   = <input />;
 
             const e = new Event( {} );
@@ -76,7 +76,7 @@ describe( 'TextInputWithIcon', () =>
 
         test('should not call onFocus when e.relatedTarget is the <button>', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             const button  = <button />;
 
             const e = new Event( {} );
@@ -97,7 +97,7 @@ is the <input>', () =>
 
                 const e = new Event( {} );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.input = input;
 
@@ -113,7 +113,7 @@ is the <button>', () =>
 
                 const e = new Event( {} );
                 Object.defineProperty( e, 'relatedTarget', { value: button } );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.button = button;
 
@@ -126,7 +126,7 @@ is the <button>', () =>
 <input> or the <button>', () =>
             {
                 const e = new Event( {} );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.handleFocus( e );
 
@@ -138,7 +138,7 @@ is the <button>', () =>
     {
         test('should call onBlur with e', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const e = new Event( { } );
 
             wrapper.setProps( { onBlur } );
@@ -150,7 +150,7 @@ is the <button>', () =>
 
         test('should call onBlur exactly once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
 
             wrapper.setProps( { onBlur } );
 
@@ -161,7 +161,7 @@ is the <button>', () =>
 
         test('should not call onBlur when e.relatedTarget is the <input>', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const input   = <input />;
 
             const e = new Event( {} );
@@ -177,7 +177,7 @@ is the <button>', () =>
 
         test('should not call onBlur when e.relatedTarget is the <button>', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             const button  = <button />;
 
             const e = new Event( {} );
@@ -198,7 +198,7 @@ is the <input>', () =>
 
                 const e = new Event( {} );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.input = input;
 
@@ -214,7 +214,7 @@ is the <button>', () =>
 
                 const e = new Event( {} );
                 Object.defineProperty( e, 'relatedTarget', { value: button } );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.button = button;
 
@@ -227,7 +227,7 @@ is the <button>', () =>
 <input> or the <button>', () =>
             {
                 const e = new Event( {} );
-                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
 
                 instance.handleBlur( e );
 
@@ -239,7 +239,7 @@ is the <button>', () =>
     {
         test('should call setState with { iconIsHovered: false } }', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
             expect( setState.calledWith( sinon.match(
@@ -250,7 +250,7 @@ is the <button>', () =>
 
         test('should call setState exactly once', () =>
         {
-            const setState = sinon.spy( instance, 'setState' );
+            const setState = jest.fn( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
             expect( setState.calledOnce ).toBe(true);
@@ -260,7 +260,7 @@ is the <button>', () =>
 
         test('should call onMouseOutIcon with e', () =>
         {
-            const onMouseOutIcon = sinon.spy();
+            const onMouseOutIcon = jest.fn();
             const e = new Event( {} );
 
             wrapper.setProps( { onMouseOutIcon } );
@@ -272,7 +272,7 @@ is the <button>', () =>
 
         test('should call onMouseOutIcon exactly once', () =>
         {
-            const onMouseOutIcon = sinon.spy();
+            const onMouseOutIcon = jest.fn();
             wrapper.setProps( { onMouseOutIcon } );
 
             instance.handleMouseOutIcon( new Event( {} ) );
@@ -282,7 +282,7 @@ is the <button>', () =>
 
         test('should call onMouseOut with e', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             const e = new Event( {} );
 
             wrapper.setProps( { onMouseOut } );
@@ -294,7 +294,7 @@ is the <button>', () =>
 
         test('should call onMouseOut exactly once', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOutIcon( new Event( {} ) );

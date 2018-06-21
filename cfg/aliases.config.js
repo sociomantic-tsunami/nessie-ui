@@ -3,6 +3,8 @@ module.exports = {
     // Jest. These configurations should be kept in sync.
     jest :
     {
-        '^@testing(.*)$' : '<rootDir>/src/Testing$1'
+        '^@testing(.*)$' : '<rootDir>/src/Testing$1',
+        componentDriver  : '<rootDir>/src/Testing/index',
+        'nessie-ui'      : '<rootDir>/src/index',
     }
 };

@@ -42,7 +42,7 @@ describe( 'SwitchDriver', () =>
     {
         test('should call onChange once', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
             wrapper.driver().toggle();
@@ -68,7 +68,7 @@ describe( 'SwitchDriver', () =>
     {
         test('should trigger onMouseOut callback function', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
 
             wrapper.setProps( { onMouseOut } );
 
@@ -82,7 +82,7 @@ describe( 'SwitchDriver', () =>
     {
         test('should trigger onMouseOver callback function', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
 
             wrapper.setProps( { onMouseOver } );
 
@@ -96,7 +96,7 @@ describe( 'SwitchDriver', () =>
     {
         test('should trigger onBlur callback function', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
 
             wrapper.setProps( { onBlur } );
 
@@ -110,7 +110,7 @@ describe( 'SwitchDriver', () =>
     {
         test('should trigger onFocus callback function', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
 
             wrapper.setProps( { onFocus } );
 

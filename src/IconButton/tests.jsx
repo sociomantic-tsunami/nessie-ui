@@ -104,7 +104,7 @@ describe( 'IconButtonDriver', () =>
     {
         test('should fire the onClick callback prop', () =>
         {
-            const clickSpy = sinon.spy();
+            const clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
 
             driver.click();
@@ -116,7 +116,7 @@ describe( 'IconButtonDriver', () =>
     {
         test('should fire the onFocus callback prop', () =>
         {
-            const focusSpy = sinon.spy();
+            const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
@@ -128,7 +128,7 @@ describe( 'IconButtonDriver', () =>
     {
         test('should fire the onBlur callback prop', () =>
         {
-            const blurSpy = sinon.spy();
+            const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
             driver.blur();

@@ -41,7 +41,7 @@ describe( 'DatePickerDriver', () =>
     {
         test('should simulate and trigger onClickItem()', () =>
         {
-            const onClickItem = sinon.spy();
+            const onClickItem = jest.fn();
             wrapper.setProps( {
                 onClickItem,
                 label   : 'January 2000',
@@ -86,7 +86,7 @@ describe( 'DatePickerDriver', () =>
     {
         test('should simulate and trigger onClickNext()', () =>
         {
-            const onClickNext = sinon.spy();
+            const onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext
             } );
@@ -101,7 +101,7 @@ describe( 'DatePickerDriver', () =>
     {
         test('should simulate and trigger onClickPrev()', () =>
         {
-            const onClickPrev = sinon.spy();
+            const onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev
             } );

@@ -40,7 +40,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onBlur once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurMainInput();
@@ -53,7 +53,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onFocus once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusMainInput();
@@ -89,7 +89,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onBlur once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurHourInput();
@@ -102,7 +102,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onFocus once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusHourInput();
@@ -138,7 +138,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onBlur once', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurMinuteInput();
@@ -151,7 +151,7 @@ describe( 'DateTimeInputDriver', () =>
     {
         test('should call onFocus once', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusMinuteInput();
@@ -167,7 +167,7 @@ describe( 'DateTimeInputDriver', () =>
 
         beforeEach(() =>
         {
-            onClickCell = sinon.spy();
+            onClickCell = jest.fn();
             wrapper.setProps( {
                 weeks : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
                 onClickCell,
@@ -194,7 +194,7 @@ describe( 'DateTimeInputDriver', () =>
 
         beforeEach(() =>
         {
-            onClickCell = sinon.spy();
+            onClickCell = jest.fn();
             wrapper.setProps( {
                 weeks : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
                 onClickCell,
@@ -222,7 +222,7 @@ describe( 'DateTimeInputDriver', () =>
 
         test('should fire onClickPrev exactly once', () =>
         {
-            onClickPrev = sinon.spy();
+            onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev
             } );
@@ -240,7 +240,7 @@ describe( 'DateTimeInputDriver', () =>
 
         test('should fire onClickNext exactly once', () =>
         {
-            onClickNext = sinon.spy();
+            onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext
             } );

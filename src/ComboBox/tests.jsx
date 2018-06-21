@@ -53,7 +53,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onBlur() callback function', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
             wrapper.setProps( {
                 onBlur
             } );
@@ -68,7 +68,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onChangeInput() callback function', () =>
         {
-            const onChangeInput = sinon.spy();
+            const onChangeInput = jest.fn();
             wrapper.setProps( {
                 onChangeInput
             } );
@@ -83,7 +83,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onClickInput() callback function', () =>
         {
-            const onClickInput = sinon.spy();
+            const onClickInput = jest.fn();
             wrapper.setProps( {
                 onClickInput
             } );
@@ -98,7 +98,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onClickOption() callback function', () =>
         {
-            const onClickOption = sinon.spy();
+            const onClickOption = jest.fn();
             wrapper.setProps( {
                 onClickOption,
                 options : [
@@ -129,7 +129,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onFocus() callback function', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
             wrapper.setProps( {
                 onFocus
             } );
@@ -144,7 +144,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onKeyDown() callback function', () =>
         {
-            const onKeyDown = sinon.spy();
+            const onKeyDown = jest.fn();
             wrapper.setProps( {
                 onKeyDown
             } );
@@ -159,7 +159,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onKeyPress() callback function', () =>
         {
-            const onKeyPress = sinon.spy();
+            const onKeyPress = jest.fn();
             wrapper.setProps( {
                 onKeyPress
             } );
@@ -174,7 +174,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onKeyUp() callback function', () =>
         {
-            const onKeyUp = sinon.spy();
+            const onKeyUp = jest.fn();
             wrapper.setProps( {
                 onKeyUp
             } );
@@ -189,7 +189,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onMouseOut() callback function', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( {
                 onMouseOut
             } );
@@ -204,7 +204,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onMouseOutOption() callback function', () =>
         {
-            const onMouseOutOption = sinon.spy();
+            const onMouseOutOption = jest.fn();
             wrapper.setProps( {
                 onMouseOutOption,
                 options : [
@@ -235,7 +235,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onMouseOver() callback function', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( {
                 onMouseOver
             } );
@@ -250,7 +250,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onMouseOverOption() callback function', () =>
         {
-            const onMouseOverOption = sinon.spy();
+            const onMouseOverOption = jest.fn();
             wrapper.setProps( {
                 onMouseOverOption,
                 options : [
@@ -281,7 +281,7 @@ describe( 'ComboBoxDriver', () =>
     {
         test('should trigger onScroll() callback function', () =>
         {
-            const onScroll = sinon.spy();
+            const onScroll = jest.fn();
             wrapper.setProps( {
                 onScroll,
                 options : [

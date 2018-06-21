@@ -10,9 +10,9 @@ import NavItem   from './index';
 
 describe( 'NavItem', () =>
 {
-    const onClickSpy = sinon.spy();
-    const onMouseOverSpy = sinon.spy();
-    const onMouseOutSpy = sinon.spy();
+    const onClickSpy = jest.fn();
+    const onMouseOverSpy = jest.fn();
+    const onMouseOutSpy = jest.fn();
 
     let Wrapper;
 

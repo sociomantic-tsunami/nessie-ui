@@ -104,7 +104,7 @@ describe( 'UploaderDriver', () =>
     {
         test('should trigger onClick event', () =>
         {
-            const onClick = sinon.spy();
+            const onClick = jest.fn();
             Wrapper.setProps( {
                 onClick,
                 uploadState : 'default'
@@ -116,7 +116,7 @@ describe( 'UploaderDriver', () =>
 
         test('should trigger onClick event when clicked on secondary', () =>
         {
-            const onClickSecondary = sinon.spy();
+            const onClickSecondary = jest.fn();
             Wrapper.setProps( {
                 onClickSecondary,
                 uploadState : 'uploaded'
@@ -140,7 +140,7 @@ describe( 'UploaderDriver', () =>
     {
         test('should trigger onMouseOut() callback function', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             Wrapper.setProps( {
                 onMouseOut
             } );
@@ -154,7 +154,7 @@ describe( 'UploaderDriver', () =>
     {
         test('should trigger onMouseOver() callback function', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             Wrapper.setProps( {
                 onMouseOver
             } );

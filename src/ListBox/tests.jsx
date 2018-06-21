@@ -51,7 +51,7 @@ describe( 'ListBoxDriver', () =>
         test('should trigger onClickOption when clicked on \
 ListBoxOption at given index', () =>
             {
-                const onClickOption = sinon.spy();
+                const onClickOption = jest.fn();
 
                 wrapper.setProps( {
                     onClickOption,
@@ -98,7 +98,7 @@ ListBoxOption at given index', () =>
         test('should trigger onMouseOverOption when hovered on \
 ListBoxOption at given index', () =>
             {
-                const onMouseOverOption = sinon.spy();
+                const onMouseOverOption = jest.fn();
 
                 wrapper.setProps( {
                     onMouseOverOption,
@@ -145,7 +145,7 @@ ListBoxOption at given index', () =>
         test('should trigger onMouseOutOption when hovered on \
 ListBoxOption at given index', () =>
             {
-                const onMouseOutOption = sinon.spy();
+                const onMouseOutOption = jest.fn();
 
                 wrapper.setProps( {
                     onMouseOutOption,
@@ -191,7 +191,7 @@ ListBoxOption at given index', () =>
     {
         test('should trigger onKeyPress', () =>
         {
-            const onKeyPress = sinon.spy();
+            const onKeyPress = jest.fn();
 
             wrapper.setProps( {
                 onKeyPress,

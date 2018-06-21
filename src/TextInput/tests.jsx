@@ -66,7 +66,7 @@ describe( 'TextInputDriver', () =>
     {
         test('should fire the onBlur callback prop', () =>
         {
-            const blurSpy = sinon.spy();
+            const blurSpy = jest.fn();
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
@@ -82,7 +82,7 @@ describe( 'TextInputDriver', () =>
     {
         test('should fire the onFocus callback prop', () =>
         {
-            const focusSpy = sinon.spy();
+            const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
@@ -94,7 +94,7 @@ describe( 'TextInputDriver', () =>
     {
         test('should fire the onChange callback prop', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( { onChange: changeSpy } );
 
             driver.setInputValue( 'test' );
@@ -105,7 +105,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error when TextInput is disabled', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -122,7 +122,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error TextInput is read only', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -142,7 +142,7 @@ describe( 'TextInputDriver', () =>
     {
         test('should throw an error when TextInput is disabled', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -159,7 +159,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error when TextInput is read only', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -180,7 +180,7 @@ describe( 'TextInputDriver', () =>
         test('keyPress Text input should fire an event', () =>
         {
             const keyCodeEnter = 13;
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( { onKeyPress: keyPressSpy } );
 
             driver.pressKey( keyCodeEnter );
@@ -190,7 +190,7 @@ describe( 'TextInputDriver', () =>
         test('keyPress Text input should fire an onInput event', () =>
         {
             const keyCodeChar = String.fromCharCode( 74 );
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( { onChange: onChangeSpy } );
 
             driver.pressKey( keyCodeChar );
@@ -199,8 +199,8 @@ describe( 'TextInputDriver', () =>
 
         test('inputValue should fire event for each key', () =>
         {
-            const keyPressSpy = sinon.spy();
-            const onChangeSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
                 onChange   : onChangeSpy
@@ -218,7 +218,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error when TextInput is disabled', () =>
         {
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -235,7 +235,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error when TextInput is read only', () =>
         {
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -255,7 +255,7 @@ describe( 'TextInputDriver', () =>
     {
         test('should throw an error when TextInput is disabled', () =>
         {
-            const handleClickSpy = sinon.spy();
+            const handleClickSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -271,7 +271,7 @@ describe( 'TextInputDriver', () =>
 
         test('should throw an error when TextInput is read only', () =>
         {
-            const handleClickSpy = sinon.spy();
+            const handleClickSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,

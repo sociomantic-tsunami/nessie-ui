@@ -20,7 +20,7 @@ describe( 'PaginatorDriver', () =>
 
         test('should fire onClickPrev exactly once', () =>
         {
-            onClickPrev = sinon.spy();
+            onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev,
                 showPrev : true,
@@ -38,7 +38,7 @@ describe( 'PaginatorDriver', () =>
 
         test('should fire onClickNext exactly once', () =>
         {
-            onClickNext = sinon.spy();
+            onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext,
                 showNext : true,
@@ -56,7 +56,7 @@ describe( 'PaginatorDriver', () =>
 
         test('should fire onClickPage exactly once', () =>
         {
-            onClickPage = sinon.spy();
+            onClickPage = jest.fn();
             wrapper.setProps( {
                 onClickPage,
                 shownPages : [ 10, 11, 12 ],

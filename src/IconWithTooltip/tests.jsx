@@ -30,7 +30,7 @@ describe( 'IconWithTooltip', () =>
 
             test('should be be passed to the wrapper div as onMouseEnter', () =>
             {
-                const onMouseOver = sinon.spy();
+                const onMouseOver = jest.fn();
                 wrapper.setProps( { onMouseOver } );
 
                 expect( wrapper.find( 'div' ).first().prop( 'onMouseEnter' ) ).toBe(onMouseOver);
@@ -46,7 +46,7 @@ describe( 'IconWithTooltip', () =>
 
             test('should be be passed to the wrapper div as onMouseLeave', () =>
             {
-                const onMouseOut = sinon.spy();
+                const onMouseOut = jest.fn();
                 wrapper.setProps( { onMouseOut } );
 
                 expect( wrapper.find( 'div' ).first().prop( 'onMouseLeave' ) ).toBe(onMouseOut);
@@ -62,7 +62,7 @@ describe( 'IconWithTooltip', () =>
 
             test('should be be passed to the Tooltip as onMouseOver', () =>
             {
-                const onMouseOverIcon = sinon.spy();
+                const onMouseOverIcon = jest.fn();
                 wrapper.setProps( { onMouseOverIcon } );
 
                 expect( wrapper.find( Tooltip ).first().prop( 'onMouseOver' ) ).toBe(onMouseOverIcon);
@@ -78,7 +78,7 @@ describe( 'IconWithTooltip', () =>
 
             test('should be be passed to the Tooltip as onMouseOut', () =>
             {
-                const onMouseOutIcon = sinon.spy();
+                const onMouseOutIcon = jest.fn();
                 wrapper.setProps( { onMouseOutIcon } );
 
                 expect( wrapper.find( Tooltip ).first().prop( 'onMouseOut' ) ).toBe(onMouseOutIcon);
@@ -103,7 +103,7 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test('should call onMouseOver prop exactly once', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOver } );
 
             driver.mouseOver();
@@ -116,7 +116,7 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test('should call onMouseOut prop exactly once', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOut } );
 
             driver.mouseOut();
@@ -129,7 +129,7 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test('should call onMouseOverIcon prop exactly once', () =>
         {
-            const onMouseOverIcon = sinon.spy();
+            const onMouseOverIcon = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOverIcon } );
 
             driver.mouseOverIcon();
@@ -142,7 +142,7 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test('should call onMouseOutIcon prop exactly once', () =>
         {
-            const onMouseOutIcon = sinon.spy();
+            const onMouseOutIcon = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOutIcon } );
 
             driver.mouseOutIcon();
