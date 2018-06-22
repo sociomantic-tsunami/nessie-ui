@@ -113,5 +113,5 @@
 {
     display:            none;
     flex:               0 0 auto;
-    z-index:            99999;
+    z-index:            1;
 }
