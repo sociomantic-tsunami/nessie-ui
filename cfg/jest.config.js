@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/ComboBox/tests.js?(x)'
+        '<rootDir>/src/DateTimeInput/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
