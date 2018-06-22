@@ -7,8 +7,6 @@
 
     width:          auto;
 
-    white-space:    nowrap;
-
     &[for]
     {
         cursor: pointer;
