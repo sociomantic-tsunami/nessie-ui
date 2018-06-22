@@ -11,26 +11,27 @@ import Column       from './index';
 
 describe( 'Column', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <Column /> );
-    });
+        wrapper = mount( <Column /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.column__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 
     describe( 'Driver self-test', () =>
     {
-        test('getContent', () =>
+        test( 'getContent', () =>
         {
-            Wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
+            wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
 
-            const content = Wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() ).toBe('Lightning Strike');
-        });
+            const content = wrapper.driver().getContent();
+            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
+        } );
     } );
 } );

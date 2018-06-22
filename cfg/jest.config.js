@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Checkbox/tests.js?(x)'
+        '<rootDir>/src/Column/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
