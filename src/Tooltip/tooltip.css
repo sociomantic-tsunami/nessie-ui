@@ -37,7 +37,7 @@
     background-color:   var( --PC-GREY--D15 );
     box-shadow:         var( --boxShadow );
 
-    z-index:            100;
+    z-index:            10000;
 
     &::before
     {
