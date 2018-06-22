@@ -69,56 +69,65 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollUp();
 
-            expect( onClickScrollUp.calledOnce ).toBeTruthy;
+            expect( onClickScrollUp ).toBeCalled();
         } );
 
 
-        test( 'should trigger onClickScrollRight when clicked on scrollRight', () =>
-        {
-            const onClickScrollRight = jest.fn();
-            const props = {
-                scrollRightIsVisible : true,
-                onClickScrollRight
-            };
+        test(
+            'should trigger onClickScrollRight when clicked on scrollRight',
+            () =>
+            {
+                const onClickScrollRight = jest.fn();
+                const props = {
+                    scrollRightIsVisible : true,
+                    onClickScrollRight
+                };
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-            wrapper.driver().clickScrollRight();
+                wrapper.driver().clickScrollRight();
 
-            expect( onClickScrollRight.calledOnce ).toBeTruthy;
-        } );
-
-
-        test( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
-        {
-            const onClickScrollDown = jest.fn();
-            const props = {
-                scrollDownIsVisible : true,
-                onClickScrollDown
-            };
-
-            wrapper = mount( <ScrollBox { ...props } /> );
-
-            wrapper.driver().clickScrollDown();
-
-            expect( onClickScrollDown.calledOnce ).toBeTruthy;
-        } );
+                expect( onClickScrollRight ).toBeCalled();
+            }
+        );
 
 
-        test( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
-        {
-            const onClickScrollLeft = jest.fn();
-            const props = {
-                scrollLeftIsVisible : true,
-                onClickScrollLeft
-            };
+        test(
+            'should trigger onClickScrollDown when clicked on scrollDown',
+            () =>
+            {
+                const onClickScrollDown = jest.fn();
+                const props = {
+                    scrollDownIsVisible : true,
+                    onClickScrollDown
+                };
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-            wrapper.driver().clickScrollLeft();
+                wrapper.driver().clickScrollDown();
 
-            expect( onClickScrollLeft.calledOnce ).toBeTruthy;
-        } );
+                expect( onClickScrollDown ).toBeCalled();
+            }
+        );
+
+
+        test(
+            'should trigger onClickScrollLeft when clicked on scrollLeft',
+            () =>
+            {
+                const onClickScrollLeft = jest.fn();
+                const props = {
+                    scrollLeftIsVisible : true,
+                    onClickScrollLeft
+                };
+
+                wrapper = mount( <ScrollBox { ...props } /> );
+
+                wrapper.driver().clickScrollLeft();
+
+                expect( onClickScrollLeft ).toBeCalled();
+            }
+        );
     } );
 
 
@@ -138,7 +147,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollVertical( 250 );
 
-                expect( onScroll.calledOnce ).toBeTruthy;
+                expect( onScroll ).toBeCalled();
             } );
 
             test( 'should throw an error when scroll direction is wrong', () =>
@@ -149,7 +158,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollVertical( 10 ) ).toThrowError( "Cannot scroll because scroll direction is neither 'vertical' nor 'both'" ); // eslint-disable-line max-len
+                expect( () => wrapper.driver().scrollVertical( 10 ) ).toThrowError( 'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\'' ); // eslint-disable-line max-len
             } );
         } );
 
@@ -167,7 +176,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollHorizontal( 640 );
 
-                expect( onScroll.calledOnce ).toBeTruthy;
+                expect( onScroll ).toBeCalled();
             } );
 
             test( 'should throw an error when scroll direction is wrong', () =>
@@ -178,7 +187,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper = mount( <ScrollBox { ...props } /> );
 
-                expect( () => wrapper.driver().scrollHorizontal( 270 ) ).toThrowError( "Cannot scroll because scroll direction is neither 'horizontal' nor 'both'" ); // eslint-disable-line max-len
+                expect( () => wrapper.driver().scrollHorizontal( 270 ) ).toThrowError( 'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\'' ); // eslint-disable-line max-len
             } );
         } );
     } );
