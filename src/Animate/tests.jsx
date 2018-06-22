@@ -11,21 +11,21 @@ import Animate      from './index';
 
 describe( 'Animate', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
     {
-        Wrapper = mount( <Animate /> );
+        wrapper = mount( <Animate /> );
     } );
 
     test( 'should contain an Animate component', () =>
     {
-        expect( Wrapper.find( Animate ) ).toHaveLength( 1 );
+        expect( wrapper.find( Animate ) ).toHaveLength( 1 );
     } );
 
     test( 'should have animate__default as default className', () =>
     {
-        expect( Wrapper.find( `.${Wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -37,8 +37,8 @@ describe( 'Animate', () =>
             outAnimation   : 'fadeOut'
         };
 
-        Wrapper = mount( <Animate { ...props } /> );
+        wrapper = mount( <Animate { ...props } /> );
 
-        expect( Wrapper.find( '.animate__fadeIn__fadeOut' ) ).toHaveLength( 1 );
+        expect( wrapper.find( '.animate__fadeIn__fadeOut' ) ).toHaveLength( 1 );
     } );
 } );

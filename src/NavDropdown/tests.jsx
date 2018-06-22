@@ -4,22 +4,23 @@
 /* eslint-disable no-magic-numbers*/
 
 
-import React                      from 'react';
-import { mount }                  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import NavDropdown             from './index';
+import NavDropdown  from './index';
 
 describe( 'NavDropdown', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <NavDropdown /> );
-    });
+        wrapper = mount( <NavDropdown /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.navDropdown__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 } );
