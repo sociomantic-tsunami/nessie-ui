@@ -4,7 +4,6 @@
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
-import jest               from 'jest';
 
 import Css                from '../hoc/Css';
 import Icon               from '../Icon';
@@ -155,22 +154,24 @@ describe( 'ButtonDriver', () =>
         {
             wrapper.setProps( { onClick: clickSpy } );
             driver.click();
-            expect( clickSpy.calledOnce ).toBe( true );
+
+            expect( clickSpy ).toBeCalled();
         } );
 
         test( 'click on a disabled button should produce an error', () =>
         {
+            const expectedError =
+                'Button \'Pikaboo\' cannot be clicked since it is disabled';
+
             wrapper.setProps( {
                 label      : 'Pikaboo',
                 isDisabled : true,
                 onClick    : clickSpy
             } );
 
-            const expectedError =
-                'Button \'Pikaboo\' cannot be clicked since it is disabled';
-
-            expect( () => driver.click() ).toThrowError( expectedError );
-            expect( clickSpy.notCalled ).toBe( true );
+            expect( () => driver.click() )
+                .toThrow( expectedError );
+            expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
 
         test( 'click on a loading button should produce an error', () =>
@@ -184,8 +185,9 @@ describe( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => driver.click() ).toThrowError( expectedError );
-            expect( clickSpy.notCalled ).toBe( true );
+            expect( () => driver.click() )
+                .toThrow( expectedError );
+            expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
     } );
 } );
