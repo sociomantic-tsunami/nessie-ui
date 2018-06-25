@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Icon/tests.js?(x)'
+        '<rootDir>/src/IconButton/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
