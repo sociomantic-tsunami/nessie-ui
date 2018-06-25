@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Fieldset/tests.js?(x)'
+        '<rootDir>/src/Form/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

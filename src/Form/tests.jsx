@@ -13,34 +13,35 @@ describe( 'Form', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <Form /> );
-    });
+    } );
 
     describe( 'render()', () =>
     {
-        test('should implement the Css higher-order component', () =>
+        test( 'should implement the Css higher-order component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one <form>', () =>
+        test( 'should contain exactly one <form>', () =>
         {
-            expect( wrapper.find( 'form' ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( 'form' ) ).toHaveLength( 1 );
+        } );
     } );
 
     describe( 'props', () =>
     {
         describe( 'onSubmit', () =>
         {
-            test('should be passed to the <form>', () =>
+            test( 'should be passed to the <form>', () =>
             {
                 const onSubmit = () => undefined;
                 wrapper.setProps( { onSubmit } );
-                expect( wrapper.find( 'form' ).prop( 'onSubmit' ) ).toBe(onSubmit);
-            });
+                expect( wrapper.find( 'form' ).prop( 'onSubmit' ) )
+                    .toBe( onSubmit );
+            } );
         } );
     } );
 } );
@@ -50,37 +51,37 @@ describe( 'FormDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <Form /> );
-    });
+    } );
 
     describe( 'getContent()', () =>
     {
-        test('should return a ReactWrapper', () =>
+        test( 'should return a ReactWrapper', () =>
         {
             const content = wrapper.driver().getContent();
-            expect( content ).toBeInstanceOf(ReactWrapper);
-        });
+            expect( content ).toBeInstanceOf( ReactWrapper );
+        } );
 
-        test('should contain the content node', () =>
+        test( 'should contain the content node', () =>
         {
             wrapper.setProps( { children: <h2>Pikachu</h2> } );
             const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ) ).toHaveLength(1);
-        });
+            expect( content.find( 'h2' ) ).toHaveLength( 1 );
+        } );
     } );
 
     describe( 'submit()', () =>
     {
-        test('should fire the onSubmit callback prop', () =>
+        test( 'should fire the onSubmit callback prop', () =>
         {
             const onSubmit = jest.fn();
 
             wrapper.setProps( { onSubmit } );
             wrapper.driver().submit();
 
-            expect( onSubmit.calledOnce ).toBe(true);
-        });
+            expect( onSubmit ).toBeCalled();
+        } );
     } );
 } );
