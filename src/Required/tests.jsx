@@ -11,27 +11,27 @@ describe( 'Required', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <Required /> );
-    });
+    } );
 
     describe( 'render()', () =>
     {
-        test('should contain exactly one Required', () =>
+        test( 'should contain exactly one Required', () =>
         {
-            expect( wrapper ).toHaveLength(1);
-        });
+            expect( wrapper ).toHaveLength( 1 );
+        } );
     } );
 
     describe( 'props', () =>
     {
         describe( 'isRequired', () =>
         {
-            test('should be "true" by default', () =>
+            test( 'should be "true" by default', () =>
             {
-                expect( wrapper.prop( 'isRequired' ) ).toBe(true);
-            });
+                expect( wrapper.prop( 'isRequired' ) ).toBeTruthy();
+            } );
         } );
     } );
 } );
