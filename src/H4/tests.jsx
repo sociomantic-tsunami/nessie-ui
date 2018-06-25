@@ -11,15 +11,16 @@ import H4           from './index';
 
 describe( 'H4', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
-{
-        Wrapper = mount( <H4 /> );
-    });
+    beforeEach( () =>
+    {
+        wrapper = mount( <H4 /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.h4__default' ) ).toHaveLength(1);
-    });
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 } );

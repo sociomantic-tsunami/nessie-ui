@@ -7,20 +7,20 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-
 import H2           from './index';
 
 describe( 'H2', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <H2 /> );
-    });
+        wrapper = mount( <H2 /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.h2__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 } );
