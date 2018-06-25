@@ -12,7 +12,7 @@ import Tooltip   from './index';
 
 describe( 'Tooltip', () =>
 {
-    test('should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event', () =>
     {
         const onMouseOverHandler = jest.fn();
         const onMouseOutHandler = jest.fn();
@@ -28,11 +28,11 @@ describe( 'Tooltip', () =>
 
         Wrapper.driver().mouseOver();
 
-        expect( onMouseOverHandler.calledOnce ).toBe(true);
-        expect( onMouseOutHandler.notCalled ).toBe(true);
-    });
+        expect( onMouseOverHandler ).toBeCalled();
+        expect( onMouseOutHandler ).not.toBeCalled();
+    } );
 
-    test('should fire onMouseOut event', () =>
+    test( 'should fire onMouseOut event', () =>
     {
         const onMouseOverHandler = jest.fn();
         const onMouseOutHandler = jest.fn();
@@ -48,13 +48,13 @@ describe( 'Tooltip', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOverHandler.notCalled ).toBe(true);
-        expect( onMouseOutHandler.calledOnce ).toBe(true);
-    });
+        expect( onMouseOverHandler ).not.toBeCalled();
+        expect( onMouseOutHandler ).toBeCalled();
+    } );
 
     describe( 'Driver self-test', () =>
     {
-        test('getContent', () =>
+        test( 'getContent', () =>
         {
             const props = {
                 message : 'Pikachu!',
@@ -65,10 +65,10 @@ describe( 'Tooltip', () =>
             </Tooltip> );
 
             const content = wrapper.driver().getContent();
-            expect( content.find( 'h1' ) ).toHaveLength(1);
-        });
+            expect( content.find( 'h1' ) ).toHaveLength( 1 );
+        } );
 
-        test('getMessage', () =>
+        test( 'getMessage', () =>
         {
             const props = {
                 message : <h2>Pikachu!</h2>,
@@ -77,7 +77,7 @@ describe( 'Tooltip', () =>
             const wrapper = mount( <Tooltip { ...props } /> );
 
             const message = wrapper.driver().getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength(1);
-        });
+            expect( message.find( 'h2' ) ).toHaveLength( 1 );
+        } );
     } );
 } );
