@@ -1,10 +1,5 @@
 @import "../proto/base.css";
 
-:root
-{
-    --borderShadow: 0 1px 4px 0 var( --PC-GREY--LIGHT );
-}
-
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
@@ -39,7 +34,12 @@
 {
     .row
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .row
+        {
+            border-top: none;
+        }
     }
 }
 
@@ -47,7 +47,12 @@
 {
     .row .cell
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .cell
+        {
+            border-left: none;
+        }
     }
 }
 
