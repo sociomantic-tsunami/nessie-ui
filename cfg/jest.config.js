@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/DateTimeInput/tests.js?(x)'
+        '<rootDir>/src/Divider/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

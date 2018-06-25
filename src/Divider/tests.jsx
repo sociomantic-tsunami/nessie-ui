@@ -11,15 +11,16 @@ import Divider      from './index';
 
 describe( 'Divider', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <Divider /> );
-    });
+        wrapper = mount( <Divider /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.divider__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 } );
