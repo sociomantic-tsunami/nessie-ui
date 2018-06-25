@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Radio/tests.js?(x)'
+        '<rootDir>/src/RadioGroup/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

@@ -13,14 +13,14 @@ describe( 'RadioGroupDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <RadioGroup /> );
-    });
+    } );
 
     describe( 'getContent()', () =>
     {
-        test('should return all child nodes', () =>
+        test( 'should return all child nodes', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -28,10 +28,10 @@ describe( 'RadioGroupDriver', () =>
                     <Radio label = "two" />
                 ],
             } );
-            expect( wrapper.driver().getContent() ).toHaveLength(2);
-        });
+            expect( wrapper.driver().getContent() ).toHaveLength( 2 );
+        } );
 
-        test('should return an array of ReactWrappers', () =>
+        test( 'should return an array of ReactWrappers', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -41,14 +41,13 @@ describe( 'RadioGroupDriver', () =>
             } );
 
             wrapper.driver().getContent().forEach( item =>
-                expect( item ).toBeInstanceOf(ReactWrapper)
-            );
-        });
+                expect( item ).toBeInstanceOf( ReactWrapper ) );
+        } );
     } );
 
     describe( 'selectByIndex()', () =>
     {
-        test('should set Radio at index to checked when uncontrolled', () =>
+        test( 'should set Radio at index to checked when uncontrolled', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -59,12 +58,13 @@ describe( 'RadioGroupDriver', () =>
             wrapper.driver().selectByIndex( 1 );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(true);
-        });
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeTruthy();
+        } );
     } );
     describe( 'toggleByIndex( index )', () =>
     {
-        test('should toggle Radio with index', () =>
+        test( 'should toggle Radio with index', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -75,16 +75,18 @@ describe( 'RadioGroupDriver', () =>
             wrapper.driver().toggleByIndex( 1 );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(true);
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeTruthy();
 
             wrapper.driver().toggleByIndex( 1 );
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(false);
-        });
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeFalsy();
+        } );
     } );
 
     describe( 'selectByValue()', () =>
     {
-        test('should set check to Radio with value', () =>
+        test( 'should set check to Radio with value', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -96,13 +98,14 @@ describe( 'RadioGroupDriver', () =>
             wrapper.driver().selectByValue( 'second check' );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(true);
-        });
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeTruthy();
+        } );
     } );
 
     describe( 'toggleByValue( value )', () =>
     {
-        test('should toggle Radio with value', () =>
+        test( 'should toggle Radio with value', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -114,16 +117,18 @@ describe( 'RadioGroupDriver', () =>
             wrapper.driver().toggleByValue( 'second check' );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(true);
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeTruthy();
 
             wrapper.driver().toggleByValue( 'second check' );
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() ).toBe(false);
-        });
+            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
+                .toBeFalsy();
+        } );
     } );
 
     describe( 'getSelectedValues()', () =>
     {
-        test('should return an array of selected values', () =>
+        test( 'should return an array of selected values', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -132,34 +137,35 @@ describe( 'RadioGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSelectedValues() ).toEqual([ 'first check' ]);
-        });
+            expect( wrapper.driver().getSelectedValues() )
+                .toEqual( [ 'first check' ] );
+        } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test('should call onMouseOver once', () =>
+        test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).toBe(true);
-        });
+            expect( onMouseOver ).toBeCalled();
+        } );
     } );
 
 
     describe( 'mouseOut()', () =>
     {
-        test('should call onMouseOut once', () =>
+        test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).toBe(true);
-        });
+            expect( onMouseOut ).toBeCalled();
+        } );
     } );
 } );
