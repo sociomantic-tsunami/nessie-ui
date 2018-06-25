@@ -17,57 +17,61 @@ describe( 'PasswordInput', () =>
     let wrapper;
     let instance;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <PasswordInput /> );
         instance = wrapper.instance();
-    });
+    } );
 
     describe( 'constructor( props )', () =>
     {
-        test('should have name PasswordInput', () =>
+        test( 'should have name PasswordInput', () =>
         {
-            expect( instance.constructor.name ).toBe('PasswordInput');
-        });
+            expect( instance.constructor.name ).toBe( 'PasswordInput' );
+        } );
     } );
 
     describe( 'render()', () =>
     {
-        test('should implement the Css injector component', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one TextInputWithIcon', () =>
+        test( 'should contain exactly one TextInputWithIcon', () =>
         {
-            expect( wrapper.find( TextInputWithIcon ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
+        } );
     } );
 
 
-    test('it should pass inputType "password" by default', () =>
+    test( 'it should pass inputType "password" by default', () =>
     {
-        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) ).toBe('password');
-    });
+        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
+            .toBe( 'password' );
+    } );
 
-    test('it should pass inputType "text" when passwordIsVisible', () =>
-    {
-        wrapper.setProps( { passwordIsVisible: true } );
-
-        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) ).toBe('text');
-    });
-
-    test('it should pass iconType "show" by default', () =>
-    {
-        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) ).toBe('show');
-    });
-
-    test('it should pass iconType "hide" when passwordIsVisible', () =>
+    test( 'it should pass inputType "text" when passwordIsVisible', () =>
     {
         wrapper.setProps( { passwordIsVisible: true } );
 
-        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) ).toBe('hide');
-    });
+        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
+            .toBe( 'text' );
+    } );
+
+    test( 'it should pass iconType "show" by default', () =>
+    {
+        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
+            .toBe( 'show' );
+    } );
+
+    test( 'it should pass iconType "hide" when passwordIsVisible', () =>
+    {
+        wrapper.setProps( { passwordIsVisible: true } );
+
+        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
+            .toBe( 'hide' );
+    } );
 } );
 
 describe( 'PasswordInputDriver', () =>
@@ -75,38 +79,38 @@ describe( 'PasswordInputDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <PasswordInput /> );
         driver  = wrapper.driver();
-    });
+    } );
 
     describe( 'getErrorMessage()', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
             wrapper.setProps( {
                 hasError              : true,
                 errorMessage          : <h2>Pikachu!</h2>,
                 errorMessageIsVisible : true
             } );
-        });
+        } );
 
-        test('should return a ReactWrapper', () =>
+        test( 'should return a ReactWrapper', () =>
         {
-            expect( driver.getErrorMessage() ).toBeInstanceOf(ReactWrapper);
-        });
+            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+        } );
 
-        test('should contain the error message content', () =>
+        test( 'should contain the error message content', () =>
         {
             const message = driver.getErrorMessage();
-            expect( message.find( 'h2' ) ).toHaveLength(1);
-        });
+            expect( message.find( 'h2' ) ).toHaveLength( 1 );
+        } );
     } );
 
     describe( 'focus()', () =>
     {
-        test('should fire the onFocus callback prop', () =>
+        test( 'should fire the onFocus callback prop', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( {
@@ -116,13 +120,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.focus();
-            expect( focusSpy.calledOnce ).toBe(true);
-        });
+            expect( focusSpy ).toBeCalled();
+        } );
     } );
 
     describe( 'blur()', () =>
     {
-        test('should fire the onBlur callback prop', () =>
+        test( 'should fire the onBlur callback prop', () =>
         {
             const blurSpy = jest.fn();
             wrapper.setProps( {
@@ -132,13 +136,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.blur();
-            expect( blurSpy ).to.be.calledOnce;
-        });
+            expect( blurSpy ).toBeCalled();
+        } );
     } );
 
     describe( 'setInputValue( value )', () =>
     {
-        test('should fire the onChange callback prop', () =>
+        test( 'should fire the onChange callback prop', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {
@@ -148,13 +152,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.setInputValue( 'test' );
-            expect( changeSpy ).to.be.calledOnce;
-        });
+            expect( changeSpy ).toBeCalled();
+        } );
     } );
 
     describe( 'pressKey( keyCode )', () =>
     {
-        test('should fire the onKeyPress callback prop', () =>
+        test( 'should fire the onKeyPress callback prop', () =>
         {
             const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
@@ -163,10 +167,10 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.pressKey( keyCodeEnter );
-            expect( keyPressSpy ).to.be.calledOnce;
-        });
+            expect( keyPressSpy ).toBeCalled();
+        } );
 
-        test('should fire the onInput callback prop', () =>
+        test( 'should fire the onInput callback prop', () =>
         {
             const keyCodeChar = String.fromCharCode( 74 );
             const onChangeSpy = jest.fn();
@@ -175,10 +179,10 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.pressKey( keyCodeChar );
-            expect( onChangeSpy ).to.be.calledOnce;
-        });
+            expect( onChangeSpy ).toBeCalled();
+        } );
 
-        test('inputValue should fire event for each key', () =>
+        test( 'inputValue should fire event for each key', () =>
         {
             const keyPressSpy = jest.fn();
             const onChangeSpy = jest.fn();
@@ -189,20 +193,20 @@ describe( 'PasswordInputDriver', () =>
 
             driver.inputValue( 'Harry Potter' );
 
-            expect( keyPressSpy ).callCount( 12 );
-            expect( onChangeSpy ).callCount( 12 );
-        });
+            expect( keyPressSpy ).toBeCalledTimes( 12 );
+            expect( onChangeSpy ).toBeCalledTimes( 12 );
+        } );
 
-        test('inputValue should change the text', () =>
+        test( 'inputValue should change the text', () =>
         {
             driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).toBe('Harry Potter');
-        });
+            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
+        } );
     } );
 
     describe( 'click()', () =>
     {
-        test('should throw an error when PasswordInput is disabled', () =>
+        test( 'should throw an error when PasswordInput is disabled', () =>
         {
             const clickSpy = jest.fn();
             wrapper.setProps( {
@@ -214,8 +218,8 @@ describe( 'PasswordInputDriver', () =>
             const expectedError =
                 'Input \'test\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).toThrowError(expectedError);
-            expect( clickSpy.notCalled ).toBe(true);
-        });
+            expect( () => driver.click() ).toThrowError( expectedError );
+            expect( clickSpy ).not.toBeCalled();
+        } );
     } );
 } );
