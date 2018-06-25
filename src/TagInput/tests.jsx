@@ -16,30 +16,30 @@ describe( 'TagInput', () =>
     let instance;
     let cssMap;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        wrapper  = shallow( <TagInput /> );
-        instance = wrapper.instance();
-        cssMap   = instance.props.cssMap;
-    });
+        wrapper      = shallow( <TagInput /> );
+        instance     = wrapper.instance();
+        ( { cssMap } = instance.props );
+    } );
 
     describe( 'constructor( props )', () =>
     {
-        test('should have name TagInput', () =>
+        test( 'should have name TagInput', () =>
         {
-            expect( instance.constructor.name ).toBe('TagInput');
-        });
+            expect( instance.constructor.name ).toBe( 'TagInput' );
+        } );
     } );
 
     describe( 'render()', () =>
     {
-        test('should contain exactly one input', () =>
+        test( 'should contain exactly one input', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( `.${cssMap.input}` ) ).toHaveLength( 1 );
+        } );
     } );
 
-    test('should have Tag components when passed as children', () =>
+    test( 'should have Tag components when passed as children', () =>
     {
         wrapper.setProps( {
             children : [
@@ -48,69 +48,71 @@ describe( 'TagInput', () =>
             ]
         } );
 
-        expect( wrapper.find( Tag ) ).toHaveLength(2);
-    });
+        expect( wrapper.find( Tag ) ).toHaveLength( 2 );
+    } );
 
-    test('should have Tag components when passed as tags prop', () =>
+    test( 'should have Tag components when passed as tags prop', () =>
     {
         wrapper.setProps( {
             tags : [ 'TagLabelString 1', 'TagLabelString 2' ],
         } );
 
-        expect( wrapper.find( Tag ) ).toHaveLength(2);
-    });
+        expect( wrapper.find( Tag ) ).toHaveLength( 2 );
+    } );
 
-    test('should trigger onKeyDown callbacks when key pressed', () =>
+    test( 'should trigger onKeyDown callbacks when key pressed', () =>
     {
         const onKeyDown = jest.fn();
         wrapper.setProps( { onKeyDown } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
-        expect( onKeyDown.called ).toBe(true);
-    });
+        expect( onKeyDown ).toBeCalled();
+    } );
 
-    test('should trigger onKeyUp callbacks when key pressed', () =>
+    test( 'should trigger onKeyUp callbacks when key pressed', () =>
     {
         const onKeyUp = jest.fn();
         wrapper.setProps( { onKeyUp } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
-        expect( onKeyUp.called ).toBe(true);
-    });
+        expect( onKeyUp ).toBeCalled();
+    } );
 
-    test('should trigger onKeyPress callbacks when key pressed', () =>
+    test( 'should trigger onKeyPress callbacks when key pressed', () =>
     {
         const onKeyPress = jest.fn();
         wrapper.setProps( { onKeyPress } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyPress' );
-        expect( onKeyPress.called ).toBe(true);
-    });
+        expect( onKeyPress ).toBeCalled();
+    } );
 
     describe( 'readOnly state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-        });
+        } );
 
-        test('input should receive readonly', () =>
+        test( 'input should receive readonly', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) ).toBe(true);
-        });
+            expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) )
+                .toBeTruthy();
+        } );
     } );
 
     describe( 'disabled state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
             wrapper.setProps( { isDisabled: true } );
-        });
+        } );
 
-        test('input should receive isDisabled as "disabled"', () =>
+        test( 'input should receive isDisabled as "disabled"', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) ).toBe(true);
-        });
+            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
+                .toBeTruthy();
+        } );
     } );
 } );
 
@@ -119,14 +121,14 @@ describe( 'TagInputDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <TagInput /> );
-    });
+    } );
 
     describe( 'blur()', () =>
     {
-        test('should call blur once', () =>
+        test( 'should call blur once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( {
@@ -139,13 +141,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur.calledOnce ).toBe(true);
-        });
+            expect( onBlur ).toBeCalled();
+        } );
     } );
 
     describe( 'focus()', () =>
     {
-        test('should call focus once', () =>
+        test( 'should call focus once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( {
@@ -158,13 +160,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus.calledOnce ).toBe(true);
-        });
+            expect( onFocus ).toBeCalled();
+        } );
     } );
 
     describe( 'clickCloseTagByIndex()', () =>
     {
-        test('should call onClickClose once', () =>
+        test( 'should call onClickClose once', () =>
         {
             const onClickClose = jest.fn();
             wrapper.setProps( {
@@ -177,13 +179,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByIndex( 1 );
 
-            expect( onClickClose.calledOnce ).toBe(true);
-        });
+            expect( onClickClose ).toBeCalled();
+        } );
     } );
 
     describe( 'clickCloseTagByLabel()', () =>
     {
-        test('should call onClickClose once', () =>
+        test( 'should call onClickClose once', () =>
         {
             const onClickClose = jest.fn();
             wrapper.setProps( {
@@ -196,13 +198,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
 
-            expect( onClickClose.calledOnce ).toBe(true);
-        });
+            expect( onClickClose ).toBeCalled();
+        } );
     } );
 
     describe( 'mouseOut()', () =>
     {
-        test('should call onMouseOut once', () =>
+        test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
@@ -215,13 +217,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).toBe(true);
-        });
+            expect( onMouseOut ).toBeCalled();
+        } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test('should call onMouseOver once', () =>
+        test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
@@ -234,7 +236,7 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).toBe(true);
-        });
+            expect( onMouseOver ).toBeCalled();
+        } );
     } );
 } );
