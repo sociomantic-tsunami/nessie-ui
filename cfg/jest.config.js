@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/TagInput/tests.js?(x)'
+        '<rootDir>/src/Text/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
