@@ -11,15 +11,16 @@ import NotificationBar  from './index';
 
 describe( 'NotificationBar', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
-{
-        Wrapper = mount( <NotificationBar /> );
-    });
+    beforeEach( () =>
+    {
+        wrapper = mount( <NotificationBar /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.notificationBar__default' ) ).toHaveLength(1);
-    });
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
+    } );
 } );
