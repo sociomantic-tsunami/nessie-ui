@@ -14,21 +14,21 @@ describe( 'Icon', () =>
     let wrapper;
     let instance;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <Icon /> );
         instance = wrapper.instance();
-    });
+    } );
 
-    test('should have size S by default', () =>
+    test( 'should have size S by default', () =>
     {
-        expect( instance.props.size ).toBe('S');
-    });
+        expect( instance.props.size ).toBe( 'S' );
+    } );
 
-    test('should have light theme by default', () =>
+    test( 'should have light theme by default', () =>
     {
-        expect( instance.props.theme ).toBe('light');
-    });
+        expect( instance.props.theme ).toBe( 'light' );
+    } );
 } );
 
 
@@ -36,12 +36,12 @@ describe( 'IconDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <Icon /> );
-    });
+    } );
 
-    test('should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event', () =>
     {
         const onMouseOver = jest.fn();
         const onMouseOut = jest.fn();
@@ -49,11 +49,11 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOver.calledOnce ).toBe(true);
-        expect( onMouseOut.notCalled ).toBe(true);
-    });
+        expect( onMouseOver ).toBeCalled();
+        expect( onMouseOut ).not.toBeCalled();
+    } );
 
-    test('should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event', () =>
     {
         const onMouseOver = jest.fn();
         const onMouseOut = jest.fn();
@@ -61,7 +61,7 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOut.calledOnce ).toBe(true);
-        expect( onMouseOver.notCalled ).toBe(true);
-    });
+        expect( onMouseOut ).toBeCalled();
+        expect( onMouseOver ).not.toBeCalled();
+    } );
 } );
