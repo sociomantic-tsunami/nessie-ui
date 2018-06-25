@@ -166,15 +166,10 @@ only used in type__carousel for now
 
         margin:         0;
         border:         none;
-        border-radius:  50%;
-        padding:        0;
-
-        background:     var( --PC-WHITE );
 
         cursor:         pointer;
         z-index:        9999;
 
-        opacity:        0.9;
 
         &:first-child
         {
