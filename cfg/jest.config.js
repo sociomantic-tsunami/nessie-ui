@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/NavItem/tests.js?(x)'
+        '<rootDir>/src/SliderGroup/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

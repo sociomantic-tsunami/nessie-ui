@@ -13,107 +13,157 @@ import SliderGroup                from './index';
 
 describe( 'SliderGroup', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <SliderGroup /> );
-    });
+        wrapper = mount( <SliderGroup /> );
+    } );
 
-    test('should render <SliderGroup/>', () =>
+    test( 'should render <SliderGroup/>', () =>
     {
-        expect( Wrapper.find( SliderGroup ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( SliderGroup ) ).toHaveLength( 1 );
+    } );
 
-    test('should have sliderGroup__default as default className', () =>
+    test( 'should have sliderGroup__default as default className', () =>
     {
-        expect( Wrapper.find( '.sliderGroup__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 
 
-    test('should render all the individual sliders provided', () =>
-    {
-        const props = {
-            sliders : [ { 'value': 50 }, { 'value': 50 } ]
-        };
-
-        Wrapper = mount( <SliderGroup { ...props } /> );
-
-        expect( Wrapper.find( '.slider__default' ) ).toHaveLength(2);
-    });
-
-    test('should render all the stepLabel labels provided', () =>
+    test( 'should render all the individual sliders provided', () =>
     {
         const props = {
-            stepLabels : [ { 'stepLabel': 'No filter', 'step': 0 }, { 'stepLabel': 'Low', 'step': 25 } ]
+            sliders : [
+                { 'value': 50 },
+                { 'value': 80 }
+            ]
         };
 
-        Wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = Wrapper.prop( 'cssMap' );
+        wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( Wrapper.find( `.${cssMap.stepLabelsContainer}` ).find( Label ) ).toHaveLength(2);
-    });
+        expect( wrapper.find( 'Slider' )
+            .find( `.${wrapper.prop( 'cssMap' ).default}` ) ).toHaveLength( 2 );
+    } );
 
-    test('should render all the slider labels provided', () =>
+    test( 'should render all the stepLabel labels provided', () =>
     {
         const props = {
-            'sliderLabels' : [ 'category 1', 'category 2', 'category 3', 'category 4' ]
+            stepLabels : [
+                { 'stepLabel': 'No filter', 'step': 0 },
+                { 'stepLabel': 'Low', 'step': 25 }
+            ]
         };
 
-        Wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = Wrapper.prop( 'cssMap' );
+        wrapper = mount( <SliderGroup { ...props } /> );
+        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( Wrapper.find( `.${cssMap.sliderLabelContainer}` ).find( Label ) ).toHaveLength(4);
-    });
+        expect( wrapper.find( `.${cssMap.stepLabelsContainer}` )
+            .find( Label ) ).toHaveLength( 2 );
+    } );
+
+    test( 'should render all the slider labels provided', () =>
+    {
+        const props = {
+            'sliderLabels' : [
+                'category 1',
+                'category 2',
+                'category 3',
+                'category 4'
+            ]
+        };
+
+        wrapper = mount( <SliderGroup { ...props } /> );
+        const cssMap = wrapper.prop( 'cssMap' );
+
+        expect( wrapper.find( `.${cssMap.sliderLabelContainer}` )
+            .find( Label ) ).toHaveLength( 4 );
+    } );
 
     test(
         'Step labels should pass to the individual Sliders the correct amount of ticks',
         () =>
         {
             const props = {
-                sliders    : [ { 'value': 50 }, { 'value': 50 } ],
-                stepLabels : [ { 'stepLabel': 'No filter', 'step': 0 }, { 'stepLabel': 'Low', 'step': 25 } ]
+                sliders : [
+                    { 'value': 50 },
+                    { 'value': 50 }
+                ],
+                stepLabels : [
+                    {
+                        'stepLabel' : 'No filter',
+                        'step'      : 0
+                    },
+                    {
+                        'stepLabel' : 'Low',
+                        'step'      : 25
+                    }
+                ]
             };
 
-            Wrapper = mount( <SliderGroup { ...props } /> );
+            wrapper = mount( <SliderGroup { ...props } /> );
 
-            expect( Wrapper.find( Slider ).first().prop( 'ticks' ) ).toHaveLength(2);
+            expect( wrapper.find( Slider ).first().prop( 'ticks' ) )
+                .toHaveLength( 2 );
         }
     );
 
-    test('Individul sliders should ignore label and stepLabel props', () =>
+    test( 'Individul sliders should ignore label and stepLabel props', () =>
     {
         const props = {
-            sliders    : [ { 'value': 50, 'label': 'test', 'stepLabels': [ { 'stepLabel': 25, 'step': 25 }, { 'stepLabel': 50, 'step': 50 }, { 'stepLabel': 75, 'step': 75 } ] }, ],
-            stepLabels : [ { 'stepLabel': 'No filter', 'step': 0 }, { 'stepLabel': 'Low', step: 25 } ]
+            sliders : [
+                {
+                    'value'      : 50,
+                    'label'      : 'test',
+                    'stepLabels' : [
+                        { 'stepLabel': 25, 'step': 25 },
+                        { 'stepLabel': 50, 'step': 50 },
+                        { 'stepLabel': 75, 'step': 75 }
+                    ]
+                },
+            ],
+            stepLabels : [
+                {
+                    'stepLabel' : 'No filter',
+                    'step'      : 0
+                },
+                {
+                    'stepLabel' : 'Low',
+                    step        : 25
+                }
+            ]
         };
 
-        Wrapper = mount( <SliderGroup { ...props } /> );
+        wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( Wrapper.find( Slider ).first().prop( 'label' ) ).toBeFalsy();
-        expect( Wrapper.find( Slider ).first().prop( 'stepLabels' ) ).toBeFalsy();
-    });
+        expect( wrapper.find( Slider ).first().prop( 'label' ) ).toBeFalsy();
+        expect( wrapper.find( Slider ).first().prop( 'stepLabels' ) )
+            .toBeFalsy();
+    } );
 
-    test('should have sliderGroup__disabled if isDisabled = true', () =>
+    test( 'should have sliderGroup__disabled if isDisabled = true', () =>
     {
         const props = {
             isDisabled : true
         };
 
-        Wrapper = mount( <SliderGroup { ...props } /> );
-        expect( Wrapper.find( '.sliderGroup__disabled' ) ).toHaveLength(1);
-    });
+        wrapper = mount( <SliderGroup { ...props } /> );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
+            .toHaveLength( 1 );
+    } );
 
-    test('should have sliderGroup__error if hasError = true', () =>
+    test( 'should have sliderGroup__error if hasError = true', () =>
     {
         const props = {
             hasError : true
         };
 
-        Wrapper = mount( <SliderGroup { ...props } /> );
+        wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( Wrapper.find( '.sliderGroup__error' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
+            .toHaveLength( 1 );
+    } );
 
     test(
         'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop to the individual sliders if defined',
@@ -126,11 +176,14 @@ describe( 'SliderGroup', () =>
                 hasError   : true,
             };
 
-            Wrapper = mount( <SliderGroup { ...props } /> );
+            wrapper = mount( <SliderGroup { ...props } /> );
 
-            expect( Wrapper.find( Slider ).first().prop( 'isReadOnly' ) ).toBe(true);
-            expect( Wrapper.find( Slider ).first().prop( 'isDisabled' ) ).toBe(true);
-            expect( Wrapper.find( Slider ).first().prop( 'hasError' ) ).toBe(true);
+            expect( wrapper.find( Slider ).first().prop( 'isReadOnly' ) )
+                .toBeTruthy();
+            expect( wrapper.find( Slider ).first().prop( 'isDisabled' ) )
+                .toBeTruthy();
+            expect( wrapper.find( Slider ).first().prop( 'hasError' ) )
+                .toBeTruthy();
         }
     );
 
@@ -144,9 +197,9 @@ describe( 'SliderGroup', () =>
                 maxValue : 500,
             };
 
-            Wrapper = mount( <SliderGroup { ...props } /> );
-            expect( Wrapper.find( Slider ).prop( 'minValue' ) ).toBe(0);
-            expect( Wrapper.find( Slider ).prop( 'maxValue' ) ).toBe(500);
+            wrapper = mount( <SliderGroup { ...props } /> );
+            expect( wrapper.find( Slider ).prop( 'minValue' ) ).toBe( 0 );
+            expect( wrapper.find( Slider ).prop( 'maxValue' ) ).toBe( 500 );
         }
     );
 
@@ -158,22 +211,23 @@ describe( 'SliderGroup', () =>
                 sliders : [ { 'value': 50, 'orientation': 'horizontal' } ],
             };
 
-            Wrapper = mount( <SliderGroup { ...props } /> );
-            expect( Wrapper.find( Slider ).prop( 'orientation' ) ).toBe('vertical');
+            wrapper = mount( <SliderGroup { ...props } /> );
+            expect( wrapper.find( Slider ).prop( 'orientation' ) )
+                .toBe( 'vertical' );
         }
     );
 
     describe( 'onChange', () =>
     {
-        test('should be undefined by default', () =>
+        test( 'should be undefined by default', () =>
         {
             const props = {
                 sliders : [ { 'value': 50 } ],
             };
 
-            Wrapper = mount( <SliderGroup { ...props } /> );
-            expect( Wrapper.prop( 'onChange' ) ).toBeUndefined();
-        });
+            wrapper = mount( <SliderGroup { ...props } /> );
+            expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+        } );
 
         test(
             'onChange event in individual Sliders should be passed from Sliders array',
@@ -184,11 +238,11 @@ describe( 'SliderGroup', () =>
                     sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
                 };
 
-                Wrapper = shallow( <SliderGroup { ...props } /> );
+                wrapper = shallow( <SliderGroup { ...props } /> );
 
-                Wrapper.find( Slider ).simulate( 'change' );
+                wrapper.find( Slider ).simulate( 'change' );
 
-                expect( onChangeSlider.calledOnce ).toBe(true);
+                expect( onChangeSlider ).toBeCalled();
             }
         );
 
@@ -203,12 +257,12 @@ describe( 'SliderGroup', () =>
                     sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
                 };
 
-                Wrapper = shallow( <SliderGroup { ...props } /> );
+                wrapper = shallow( <SliderGroup { ...props } /> );
 
-                Wrapper.find( Slider ).simulate( 'change' );
+                wrapper.find( Slider ).simulate( 'change' );
 
-                expect( onChangeSlider.calledOnce ).toBe(true);
-                expect( onChangeSliderGroup.calledOnce ).toBe(true);
+                expect( onChangeSlider ).toBeCalled();
+                expect( onChangeSliderGroup ).toBeCalled();
             }
         );
     } );
@@ -218,14 +272,14 @@ describe( 'SliderGroupDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <SliderGroup /> );
-    });
+    } );
 
     describe( 'getSlider()', () =>
     {
-        test('should get Slider at given index', () =>
+        test( 'should get Slider at given index', () =>
         {
             wrapper.setProps( {
                 sliders : [
@@ -236,10 +290,10 @@ describe( 'SliderGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSlider( 1 ).props().value ).toBe(80);
-        });
+            expect( wrapper.driver().getSlider( 1 ).props().value ).toBe( 80 );
+        } );
 
-        test('should get Sliders when indexes are passed as an array', () =>
+        test( 'should get Sliders when indexes are passed as an array', () =>
         {
             wrapper.setProps( {
                 sliders : [
@@ -250,10 +304,10 @@ describe( 'SliderGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).toHaveLength(2);
-        });
+            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).toHaveLength( 2 );
+        } );
 
-        test('should return a Slider at certain index in array', () =>
+        test( 'should return a Slider at certain index in array', () =>
         {
             wrapper.setProps( {
                 sliders : [
@@ -264,7 +318,8 @@ describe( 'SliderGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value ).toBe(20);
-        });
+            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value )
+                .toBe( 20 );
+        } );
     } );
 } );
