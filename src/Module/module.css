@@ -20,9 +20,14 @@
 
     border:         var( --border ) solid color( var( --PC-GREY ) a(12%) );
 
-    .default .header:after
+    .default
     {
-        display:   none;
+        border-radius:  0;
+
+        .header:after
+        {
+            display:    none;
+        }
     }
 
     .default + .default
