@@ -12,33 +12,34 @@ describe( 'Sorter', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <Sorter /> );
-    });
+    } );
 
 
-    test('should render <Sorter/>', () =>
+    test( 'should render <Sorter/>', () =>
     {
-        expect( wrapper.find( Sorter ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( Sorter ) ).toHaveLength( 1 );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( '.sorter__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
+    } );
 } );
 
 describe( 'SorterDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <Sorter /> );
-    });
+    } );
 
-    test('should call onToggle callback function', () =>
+    test( 'should call onToggle callback function', () =>
     {
         const onToggle = jest.fn();
         wrapper.setProps( {
@@ -47,6 +48,6 @@ describe( 'SorterDriver', () =>
 
         wrapper.driver().toggle();
 
-        expect( onToggle.calledOnce ).toBe(true);
-    });
+        expect( onToggle ).toBeCalled();
+    } );
 } );
