@@ -14,59 +14,58 @@ describe( 'Switch', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = shallow( <Switch /> );
-    });
+    } );
 
-    test('should pass isDisabled to <input> as “disabled”', () =>
+    test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
 
         const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
 
-        expect( input.prop( 'disabled' ) ).toBe(true);
-    });
+        expect( input.prop( 'disabled' ) ).toBeTruthy();
+    } );
 } );
 
 describe( 'SwitchDriver', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = mount( <Switch /> );
-    });
+    } );
 
     describe( 'toggle()', () =>
     {
-        test('should call onChange once', () =>
+        test( 'should call onChange once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
             wrapper.driver().toggle();
 
-            expect( onChange.calledOnce ).toBe(true);
-        });
+            expect( onChange ).toBeCalled();
+        } );
 
-        test('should toggle target.checked', () =>
+        test( 'should toggle target.checked', () =>
         {
             let targetChecked;
-            const onChange = sinon.stub().callsFake( e =>
-                targetChecked = e.target.checked
-            );
+            const onChange = jest.fn().mockImplementation( e =>
+                targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().toggle();
 
-            expect( targetChecked ).toBe(false);
-        });
+            expect( targetChecked ).toBeFalsy();
+        } );
     } );
 
     describe( 'mouseOut', () =>
     {
-        test('should trigger onMouseOut callback function', () =>
+        test( 'should trigger onMouseOut callback function', () =>
         {
             const onMouseOut = jest.fn();
 
@@ -74,13 +73,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).toBe(true);
-        });
+            expect( onMouseOut ).toBeCalled();
+        } );
     } );
 
     describe( 'mouseOver', () =>
     {
-        test('should trigger onMouseOver callback function', () =>
+        test( 'should trigger onMouseOver callback function', () =>
         {
             const onMouseOver = jest.fn();
 
@@ -88,13 +87,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).toBe(true);
-        });
+            expect( onMouseOver ).toBeCalled();
+        } );
     } );
 
     describe( 'blur', () =>
     {
-        test('should trigger onBlur callback function', () =>
+        test( 'should trigger onBlur callback function', () =>
         {
             const onBlur = jest.fn();
 
@@ -102,13 +101,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur.calledOnce ).toBe(true);
-        });
+            expect( onBlur ).toBeCalled();
+        } );
     } );
 
     describe( 'focus', () =>
     {
-        test('should trigger onFocus callback function', () =>
+        test( 'should trigger onFocus callback function', () =>
         {
             const onFocus = jest.fn();
 
@@ -116,7 +115,7 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus.calledOnce ).toBe(true);
-        });
+            expect( onFocus ).toBeCalled();
+        } );
     } );
 } );
