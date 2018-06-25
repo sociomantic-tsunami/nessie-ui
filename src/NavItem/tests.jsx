@@ -10,60 +10,67 @@ import NavItem   from './index';
 
 describe( 'NavItem', () =>
 {
-    const onClickSpy = jest.fn();
-    const onMouseOverSpy = jest.fn();
-    const onMouseOutSpy = jest.fn();
+    let wrapper;
 
-    let Wrapper;
-
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        onClickSpy.resetHistory();
-        onMouseOverSpy.resetHistory();
-        onMouseOutSpy.resetHistory();
+        const props = {
+            label : 'testLabel',
+        };
 
-        Wrapper = mount( <NavItem
-            label       = "testLabel"
-            onClick     = { onClickSpy }
-            onMouseOver = { onMouseOverSpy }
-            onMouseOut  = { onMouseOutSpy }
-        /> );
-    });
+        wrapper = mount( <NavItem { ...props } /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( Wrapper.find( '.navItem__default' ) ).toHaveLength(1);
-    });
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 
-    test('should trigger callback on click', () =>
+    test( 'should trigger callback on click', () =>
     {
-        Wrapper.driver().click();
+        const onClickSpy = jest.fn();
+        wrapper.setProps( {
+            onClick : onClickSpy
+        } );
 
-        expect( onClickSpy.calledOnce ).toBe(true);
-    });
+        wrapper.driver().click();
 
-    test('should trigger callback on mouse over', () =>
+        expect( onClickSpy ).toBeCalled();
+    } );
+
+    test( 'should trigger callback on mouse over', () =>
     {
-        Wrapper.driver().mouseOver();
+        const onMouseOverSpy = jest.fn();
+        wrapper.setProps( {
+            onMouseOver : onMouseOverSpy
+        } );
 
-        expect( onMouseOverSpy.calledOnce ).toBe(true);
-    });
+        wrapper.driver().mouseOver();
 
-    test('should trigger callback on mouse out', () =>
+        expect( onMouseOverSpy ).toBeCalled();
+    } );
+
+    test( 'should trigger callback on mouse out', () =>
     {
-        Wrapper.driver().mouseOut();
+        const onMouseOutSpy = jest.fn();
+        wrapper.setProps( {
+            onMouseOut : onMouseOutSpy
+        } );
 
-        expect( onMouseOutSpy.calledOnce ).toBe(true);
-    });
+        wrapper.driver().mouseOut();
 
-    test('driver method `getLabel` should return the component label', () =>
+        expect( onMouseOutSpy ).toBeCalled();
+    } );
+
+    test( 'driver method `getLabel` should return the component label', () =>
     {
-        Wrapper = mount( <NavItem
+        wrapper = mount( <NavItem
             label = { <span>testLabel</span> }
         /> );
 
-        const label = Wrapper.driver().getLabel();
+        const label = wrapper.driver().getLabel();
 
-        expect( label.html() ).toBe('<span>testLabel</span>');
-    });
+        expect( label.html() ).toBe( '<span>testLabel</span>' );
+    } );
 } );
