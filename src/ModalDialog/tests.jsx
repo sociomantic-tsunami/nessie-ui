@@ -11,18 +11,18 @@ import ModalDialog from './index';
 
 describe( 'ModalDialog', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
     {
-        Wrapper = null;
+        wrapper = null;
     } );
 
     test( 'should render <ModalDialog/>', () =>
     {
-        Wrapper = mount( <ModalDialog /> );
+        wrapper = mount( <ModalDialog /> );
 
-        expect( Wrapper.find( ModalDialog ) ).toBeTruthy;
+        expect( wrapper.find( ModalDialog ) ).toBeTruthy();
     } );
 
     test( 'should not contain child elements when not visible', () =>
@@ -31,10 +31,10 @@ describe( 'ModalDialog', () =>
             isVisible : false,
             children  : <span className = "thisguy">boom</span>
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = Wrapper.driver().getContent();
-        expect( children ).toBeUndefined;
+        const children = wrapper.driver().getContent();
+        expect( children ).toHaveLength( 0 );
     } );
 
     test( 'should contain child elements when visible', () =>
@@ -43,10 +43,10 @@ describe( 'ModalDialog', () =>
             isVisible : true,
             children  : <span className = "thisguy">boom</span>
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = Wrapper.driver().getContent();
-        expect( children ).toBeTruthy;
+        const children = wrapper.driver().getContent();
+        expect( children ).toBeTruthy();
         expect( children.html() ).toBe( '<span class="thisguy">boom</span>' );
     } );
 
@@ -58,8 +58,8 @@ describe( 'ModalDialog', () =>
             isVisible      : true,
             onClickOverlay : callBack
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
-        Wrapper.driver().clickOverlay();
+        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper.driver().clickOverlay();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
 
@@ -72,8 +72,8 @@ describe( 'ModalDialog', () =>
             onClickOverlay : callBack,
             type           : 'carousel'
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
-        Wrapper.driver().clickClose();
+        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper.driver().clickClose();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
 
@@ -86,8 +86,8 @@ describe( 'ModalDialog', () =>
             onClickPrev : callBack,
             type        : 'carousel'
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
-        Wrapper.driver().clickPrev();
+        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper.driver().clickPrev();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
 
@@ -100,8 +100,8 @@ describe( 'ModalDialog', () =>
             onClickNext : callBack,
             type        : 'carousel'
         };
-        Wrapper = mount( <ModalDialog { ...props } /> );
-        Wrapper.driver().clickNext();
+        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper.driver().clickNext();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
 
@@ -117,9 +117,9 @@ that\'s not a carousel', () =>
                 onClickOverlay : callBack
             };
 
-            Wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickClose() ).toThrowError( "Cannot trigger click on the \"Close Button\" because the modal is not a Carousel" );
+            expect( () => wrapper.driver().clickClose() ).toThrowError( "Cannot trigger click on the \"Close Button\" because the modal is not a Carousel" );
             expect( callBack ).toHaveBeenCalledTimes( 0 );
         } );
 
@@ -133,14 +133,14 @@ that\'s not a carousel', () =>
                 onClickPrev : callBack
             };
 
-            Wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickPrev() ).toThrowError( "Cannot trigger click on the \"Prev Button\" because the modal is not a Carousel" );
+            expect( () => wrapper.driver().clickPrev() ).toThrowError( "Cannot trigger click on the \"Prev Button\" because the modal is not a Carousel" );
             expect( callBack ).toHaveBeenCalledTimes( 0 );
         } );
 
         test( 'should throw an error when clicking the next button on a modal \
-                that\'s not a carousel', () =>
+that\'s not a carousel', () =>
         {
             const callBack = jest.fn();
 
@@ -149,10 +149,10 @@ that\'s not a carousel', () =>
                 onClickNext : callBack
             };
 
-            Wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
-            expect( () => Wrapper.driver().clickNext() ).toThrowError( "Cannot trigger click on the \"Next Button\" because the modal is not a Carousel" );
-            expect( callBack.calledOnce ).toBeFalsy;
+            expect( () => wrapper.driver().clickNext() ).toThrowError( "Cannot trigger click on the \"Next Button\" because the modal is not a Carousel" );
+            expect( callBack.calledOnce ).toBeFalsy();
         } );
     } );
 } );
