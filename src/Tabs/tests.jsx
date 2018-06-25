@@ -15,24 +15,24 @@ describe( 'Tabs', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <Tabs /> );
-    });
+    } );
 
     describe( 'render()', () =>
     {
-        test('should accept a single Tab as children', () =>
+        test( 'should accept a single Tab as children', () =>
         {
             wrapper.setProps( { children: <Tab /> } );
-            expect( wrapper.find( TabButton ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( TabButton ) ).toHaveLength( 1 );
+        } );
 
-        test('should accept an array of Tabs as children', () =>
+        test( 'should accept an array of Tabs as children', () =>
         {
             wrapper.setProps( { children: [ <Tab />, <Tab /> ] } );
-            expect( wrapper.find( TabButton ) ).toHaveLength(2);
-        });
+            expect( wrapper.find( TabButton ) ).toHaveLength( 2 );
+        } );
     } );
 } );
 
@@ -41,17 +41,18 @@ describe( 'TabsDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <Tabs /> );
         driver   = wrapper.driver();
-    });
+    } );
 
     describe( 'getTabButtons()', () =>
     {
         test(
-            'should return TabButton instances in Tabs when passed array of Tabs as children',
-            () => // eslint-disable-line max-len
+            'should return TabButton instances in Tabs when passed array of \
+Tabs as children',
+            () =>
             {
                 wrapper.setProps( {
                     children : [
@@ -60,14 +61,14 @@ describe( 'TabsDriver', () =>
                     ]
                 } );
 
-                expect( driver.getTabButtons() ).toHaveLength(2);
+                expect( driver.getTabButtons() ).toHaveLength( 2 );
             }
         );
     } );
 
     describe( 'getTabButtonsByIndex()', () =>
     {
-        test('should return TabButton with given index', () =>
+        test( 'should return TabButton with given index', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -76,10 +77,11 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByIndex( 1 ).props().label ).toBe('Taby');
-        });
+            expect( driver.getTabButtonsByIndex( 1 ).props().label )
+                .toBe( 'Taby' );
+        } );
 
-        test('should return TabButtons when passed indexes as an array', () =>
+        test( 'should return TabButtons when passed indexes as an array', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -88,13 +90,13 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) ).toHaveLength(2);
-        });
+            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) ).toHaveLength( 2 );
+        } );
     } );
 
     describe( 'getTabButtonsByLabel()', () =>
     {
-        test('should return TabButton with given label', () =>
+        test( 'should return TabButton with given label', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -103,13 +105,14 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label ).toBe('Tabity');
-        });
+            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
+                .toBe( 'Tabity' );
+        } );
     } );
 
     describe( 'getTabContent()', () =>
     {
-        test('should return Tab content', () =>
+        test( 'should return Tab content', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -118,7 +121,7 @@ describe( 'TabsDriver', () =>
                 ]
             } );
 
-            expect( driver.getTabContent() ).toHaveLength(1);
-        });
+            expect( driver.getTabContent() ).toHaveLength( 1 );
+        } );
     } );
 } );
