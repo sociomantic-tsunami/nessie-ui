@@ -12,6 +12,8 @@
 
     background:     var( --PC-BLUE--L90 );
 
+    border-radius:  2px;
+
     .label
     {
         @extend %Nessie-SemiBold;
@@ -25,6 +27,11 @@
     {
         margin-left:    var( --spacing-1 );
         margin-right:   var( --spacing-1 );
+
+        svg
+        {
+            fill:       var( --PC-BLUE );
+        }
     }
 
     & > *
