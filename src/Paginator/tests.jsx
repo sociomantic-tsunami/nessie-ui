@@ -8,17 +8,17 @@ describe( 'PaginatorDriver', () =>
     let wrapper;
     let driver;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <Paginator /> );
         driver   = wrapper.driver();
-    });
+    } );
 
     describe( 'clickPrev()', () =>
     {
         let onClickPrev;
 
-        test('should fire onClickPrev exactly once', () =>
+        test( 'should fire onClickPrev exactly once', () =>
         {
             onClickPrev = jest.fn();
             wrapper.setProps( {
@@ -28,15 +28,15 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev.calledOnce ).toBe(true);
-        });
+            expect( onClickPrev ).toBeCalled();
+        } );
     } );
 
     describe( 'clickNext()', () =>
     {
         let onClickNext;
 
-        test('should fire onClickNext exactly once', () =>
+        test( 'should fire onClickNext exactly once', () =>
         {
             onClickNext = jest.fn();
             wrapper.setProps( {
@@ -46,15 +46,15 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext.calledOnce ).toBe(true);
-        });
+            expect( onClickNext ).toBeCalled();
+        } );
     } );
 
     describe( 'clickPage()', () =>
     {
         let onClickPage;
 
-        test('should fire onClickPage exactly once', () =>
+        test( 'should fire onClickPage exactly once', () =>
         {
             onClickPage = jest.fn();
             wrapper.setProps( {
@@ -64,7 +64,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPage( 1 );
 
-            expect( onClickPage.calledOnce ).toBe(true);
-        });
+            expect( onClickPage ).toBeCalled();
+        } );
     } );
 } );
