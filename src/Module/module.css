@@ -32,7 +32,8 @@
 
     .default + .default
     {
-        margin-top: calc( -1 * ( var( --spacing-2 ) + var( --border ) ) );
+        border-top: none;
+        margin-top: calc( -1 * var( --spacing-2 ) );
     }
 
     .header,
