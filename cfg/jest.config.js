@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/IconWithTooltip/tests.js?(x)'
+        '<rootDir>/src/InputField/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
