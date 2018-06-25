@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/SpriteMap/tests.js?(x)'
+        '<rootDir>/src/StatusIndicator/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
