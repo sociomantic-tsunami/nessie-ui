@@ -25,6 +25,13 @@
         display:            flex;
         align-items:        center;
 
+        .selectedDisplayed
+        {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
         &:focus
         {
             outline:    none;
