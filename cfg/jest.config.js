@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/DragNDrop/tests.js?(x)'
+        '<rootDir>/src/Dropdown/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
