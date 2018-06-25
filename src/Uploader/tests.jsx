@@ -11,157 +11,171 @@ import Uploader                   from './index';
 
 describe( 'Uploader', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     describe( 'default state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
-            Wrapper = mount( <Uploader /> );
-        });
+            wrapper = mount( <Uploader /> );
+        } );
 
-        test('should render component based on Button iconType=upload', () =>
+        test( 'should render component based on Button iconType=upload', () =>
         {
-            expect( Wrapper.find( 'Button', 'Uploader', 'Icon' ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( 'Button', 'Uploader', 'Icon' ) )
+                .toHaveLength( 1 );
+        } );
     } );
 
     describe( 'uploading state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
-            Wrapper = mount( <Uploader uploadState = "uploading" /> );
-        });
+            wrapper = mount( <Uploader uploadState = "uploading" /> );
+        } );
 
-        test('should render component based on Button which isLoading=true', () =>
-        {
-            expect( Wrapper.find( 'Button', 'Upload', 'Spinner' ) ).toHaveLength(1);
-        });
+        test(
+            'should render component based on Button which isLoading=true',
+            () =>
+            {
+                expect( wrapper.find( 'Button', 'Upload', 'Spinner' ) )
+                    .toHaveLength( 1 );
+            }
+        );
     } );
 
     describe( 'uploaded state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
-            Wrapper = mount( <Uploader uploadState = "uploaded" /> );
-        });
+            wrapper = mount( <Uploader uploadState = "uploaded" /> );
+        } );
 
-        test('should render a component based on Button without Icon', () =>
+        test( 'should render a component based on Button without Icon', () =>
         {
-            expect( Wrapper.find( 'Button', 'Upload', 'Icon' ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( 'Button', 'Upload', 'Icon' ) )
+                .toHaveLength( 1 );
+        } );
 
-        test('should render a component based on IconButton iconType=close', () =>
-        {
-            expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) ).toHaveLength(1);
-        });
+        test(
+            'should render a component based on IconButton iconType=close',
+            () =>
+            {
+                expect( wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
+                    .toHaveLength( 1 );
+            }
+        );
 
         describe( 'readOnly state', () =>
         {
-            beforeEach(() =>
+            beforeEach( () =>
             {
-                Wrapper = mount(
-                    <Uploader uploadState = "uploaded" isReadOnly />
-                );
-            });
+                wrapper = mount( <Uploader
+                    uploadState = "uploaded"
+                    isReadOnly /> );
+            } );
 
-            test('should render a component with on Button with a readonly \
+            test( 'should render a component with on Button with a readonly \
 state', () =>
-                {
-                    expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' ) ).toHaveLength(1);
-                    expect( Wrapper.find( 'IconButton', 'Upload', 'Icon' )
-                        .prop( 'isReadOnly' ) ).toBe(true);
-                });
+            {
+                expect( wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
+                    .toHaveLength( 1 );
+                expect( wrapper.find( 'IconButton', 'Upload', 'Icon' )
+                    .prop( 'isReadOnly' ) ).toBe( true );
+            } );
         } );
     } );
 
     describe( 'readOnly state', () =>
     {
-        beforeEach(() =>
+        beforeEach( () =>
         {
-            Wrapper = mount( <Uploader isReadOnly /> );
-        });
+            wrapper = mount( <Uploader isReadOnly /> );
+        } );
 
-        test('should render a component based on Button with a readonly state', () =>
-        {
-            expect( Wrapper.find( 'Button' ) ).toHaveLength(1);
-            expect( Wrapper.find( 'Button' ).prop( 'isReadOnly' )
-            ).toBe(true);
-        });
+        test(
+            'should render a component based on Button with a readonly state',
+            () =>
+            {
+                expect( wrapper.find( 'Button' ) ).toHaveLength( 1 );
+                expect( wrapper.find( 'Button' ).prop( 'isReadOnly' ) )
+                    .toBeTruthy();
+            }
+        );
     } );
 } );
 
 describe( 'UploaderDriver', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
-        Wrapper = mount( <Uploader /> );
-    });
+        wrapper = mount( <Uploader /> );
+    } );
 
     describe( 'onClick', () =>
     {
-        test('should trigger onClick event', () =>
+        test( 'should trigger onClick event', () =>
         {
             const onClick = jest.fn();
-            Wrapper.setProps( {
+            wrapper.setProps( {
                 onClick,
                 uploadState : 'default'
             } );
 
-            Wrapper.driver().click();
-            expect( onClick.calledOnce ).toBe(true);
-        });
+            wrapper.driver().click();
+            expect( onClick ).toBeCalled();
+        } );
 
-        test('should trigger onClick event when clicked on secondary', () =>
+        test( 'should trigger onClick event when clicked on secondary', () =>
         {
             const onClickSecondary = jest.fn();
-            Wrapper.setProps( {
+            wrapper.setProps( {
                 onClickSecondary,
                 uploadState : 'uploaded'
             } );
 
-            Wrapper.driver().clickSecondary();
-            expect( onClickSecondary.calledOnce ).toBe(true);
-        });
+            wrapper.driver().clickSecondary();
+            expect( onClickSecondary ).toBeCalled();
+        } );
     } );
 
     describe( 'onChange', () =>
     {
-        test('should be undefined by default', () =>
+        test( 'should be undefined by default', () =>
         {
-            Wrapper = mount( <Uploader /> );
-            expect( Wrapper.prop( 'onChange' ) ).toBeUndefined();
-        });
+            wrapper = mount( <Uploader /> );
+            expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+        } );
     } );
 
     describe( 'mouseOut', () =>
     {
-        test('should trigger onMouseOut() callback function', () =>
+        test( 'should trigger onMouseOut() callback function', () =>
         {
             const onMouseOut = jest.fn();
-            Wrapper.setProps( {
+            wrapper.setProps( {
                 onMouseOut
             } );
 
-            Wrapper.driver().mouseOut();
+            wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).toBe(true);
-        });
+            expect( onMouseOut ).toBeCalled();
+        } );
     } );
     describe( 'mouseOver', () =>
     {
-        test('should trigger onMouseOver() callback function', () =>
+        test( 'should trigger onMouseOver() callback function', () =>
         {
             const onMouseOver = jest.fn();
-            Wrapper.setProps( {
+            wrapper.setProps( {
                 onMouseOver
             } );
 
-            Wrapper.driver().mouseOver();
+            wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).toBe(true);
-        });
+            expect( onMouseOver ).toBeCalled();
+        } );
     } );
 } );
