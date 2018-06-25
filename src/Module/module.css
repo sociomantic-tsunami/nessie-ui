@@ -20,8 +20,6 @@
 
     border:         var( --border ) solid color( var( --PC-GREY ) a(12%) );
 
-    box-shadow:     var( --boxShadow );
-
     .default .header:after
     {
         display:   none;
