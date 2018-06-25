@@ -3,30 +3,27 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers  */
 
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-// Uncomment the following lines to use the react test utilities
-import React                      from 'react';
-// const TestUtils = React.addons.TestUtils;
-import { mount }                  from 'enzyme';
-
-
-import ProgressBar                from './index';
+import ProgressBar  from './index';
 
 describe( 'ProgressBar', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
-{
-        Wrapper = mount( <ProgressBar /> );
-    });
+    beforeEach( () =>
+    {
+        wrapper = mount( <ProgressBar /> );
+    } );
 
-    test('should have its component name as default className', () =>
-{
-        expect( Wrapper.find( '.progressBar__default' ) ).toHaveLength(1);
-    });
-    test('should contain a ProgressBar', () =>
-{
-        expect( Wrapper.find( ProgressBar ) ).toHaveLength(1);
-    });
+    test( 'should have its component name as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
+    test( 'should contain a ProgressBar', () =>
+    {
+        expect( wrapper.find( ProgressBar ) ).toHaveLength( 1 );
+    } );
 } );

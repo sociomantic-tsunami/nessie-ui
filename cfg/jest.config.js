@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/PasswordInput/tests.js?(x)'
+        '<rootDir>/src/ProgressBar/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
