@@ -188,6 +188,8 @@
 
             padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
             padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
+
+            line-height:    unset;
         }
     }
 
