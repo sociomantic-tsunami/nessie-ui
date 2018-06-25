@@ -29,7 +29,7 @@ describe( 'NavItem', () =>
 
     test( 'should trigger callback on click', () =>
     {
-        const onClickSpy = jest.fn();
+        const onClickSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onClick : onClickSpy
         } );
@@ -41,7 +41,7 @@ describe( 'NavItem', () =>
 
     test( 'should trigger callback on mouse over', () =>
     {
-        const onMouseOverSpy = jest.fn();
+        const onMouseOverSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onMouseOver : onMouseOverSpy
         } );
@@ -53,7 +53,7 @@ describe( 'NavItem', () =>
 
     test( 'should trigger callback on mouse out', () =>
     {
-        const onMouseOutSpy = jest.fn();
+        const onMouseOutSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onMouseOut : onMouseOutSpy
         } );
