@@ -12,16 +12,16 @@ describe( 'SpriteMap', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper = shallow( <SpriteMap /> );
-    });
+    } );
 
     describe( 'render()', () =>
     {
-        test('should dangerously set inner HTML', () =>
+        test( 'should dangerously set inner HTML', () =>
         {
             expect( wrapper.prop( 'dangerouslySetInnerHTML' ) ).toBeDefined();
-        });
+        } );
     } );
 } );
