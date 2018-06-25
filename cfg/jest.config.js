@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Uploader/tests.js?(x)'
+        '<rootDir>/src/ValuedTextInput/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

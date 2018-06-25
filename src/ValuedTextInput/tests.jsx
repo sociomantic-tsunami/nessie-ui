@@ -18,35 +18,35 @@ describe( 'ValuedTextInput', () =>
     let wrapper;
     let instance;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <ValuedTextInput /> );
         instance = wrapper.instance();
-    });
+    } );
 
     describe( 'constructor( props )', () =>
     {
-        test('should have name ValuedTextInput', () =>
+        test( 'should have name ValuedTextInput', () =>
         {
-            expect( instance.constructor.name ).toBe('ValuedTextInput');
-        });
+            expect( instance.constructor.name ).toBe( 'ValuedTextInput' );
+        } );
     } );
 
     describe( 'render()', () =>
     {
-        test('should implement the Css injector component', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one InputContainer', () =>
+        test( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one InputField', () =>
+        test( 'should contain exactly one InputField', () =>
         {
-            expect( wrapper.find( InputField ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+        } );
     } );
 } );
