@@ -32,3 +32,11 @@
     pointer-events: none;
     opacity:        0.36;
 }
+
+.background
+{
+    padding:            var( --spacing-1 );
+    background-color:   var( --PC-WHITE );
+    border-radius:      50%;
+    opacity:            0.9
+}

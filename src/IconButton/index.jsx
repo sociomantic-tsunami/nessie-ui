@@ -95,54 +95,59 @@ export default class IconButton extends Component
         /**
          *  Button is focusable
          */
-        isFocusable : PropTypes.bool,
+        isFocusable   : PropTypes.bool,
         /**
          *  Display as disabled
          */
-        isDisabled  : PropTypes.bool,
+        isDisabled    : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly  : PropTypes.bool,
+        isReadOnly    : PropTypes.bool,
         /**
          *  HTML value attribute
          */
-        value       : PropTypes.string,
+        value         : PropTypes.string,
         /**
          * HTML id attribute (overwrite default)
          */
-        id          : PropTypes.string,
+        id            : PropTypes.string,
         /**
          *  Button focus callback function
          */
-        onFocus     : PropTypes.func,
+        onFocus       : PropTypes.func,
         /**
          *  Button blur callback function
          */
-        onBlur      : PropTypes.func,
+        onBlur        : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClick     : PropTypes.func,
+        onClick       : PropTypes.func,
         /**
          * Display as hover when required from another component
          */
-        forceHover  : PropTypes.bool,
+        forceHover    : PropTypes.bool,
         /**
          * Callback that receives a ref to the <button>: ( ref ) => { ... }
          */
-        buttonRef   : PropTypes.func,
+        buttonRef     : PropTypes.func,
+        /**
+         * Adds a background to the icon
+         */
+        hasBackground : PropTypes.bool,
     };
 
     static defaultProps =
     {
-        iconSize    : 'S',
-        iconTheme   : 'control',
-        isFocusable : true,
-        isDisabled  : false,
-        isReadOnly  : false,
-        forceHover  : false,
-        cssMap      : require( './iconButton.css' )
+        iconSize      : 'S',
+        iconTheme     : 'control',
+        isFocusable   : true,
+        isDisabled    : false,
+        isReadOnly    : false,
+        forceHover    : false,
+        cssMap        : require( './iconButton.css' ),
+        hasBackground : false
     };
 
     render()
@@ -152,6 +157,7 @@ export default class IconButton extends Component
             children,
             className,
             cssMap,
+            hasBackground,
             iconSize,
             iconType,
             forceHover,
@@ -172,8 +178,9 @@ export default class IconButton extends Component
             <Css
                 cssMap   = { cssMap }
                 cssProps = { {
-                    disabled : isDisabled,
-                    size     : iconSize,
+                    disabled   : isDisabled,
+                    size       : iconSize,
+                    background : hasBackground
                 } }>
                 <button
                     ref       = { buttonRef }
