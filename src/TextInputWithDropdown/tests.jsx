@@ -18,40 +18,40 @@ describe( 'TextInputWithDropdown', () =>
     let wrapper;
     let instance;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <TextInputWithDropdown /> );
         instance = wrapper.instance();
-    });
+    } );
 
     describe( 'constructor( props )', () =>
     {
-        test('should have name TextInputWithDropdown', () =>
+        test( 'should have name TextInputWithDropdown', () =>
         {
-            expect( instance.constructor.name ).toBe('TextInputWithDropdown');
-        });
+            expect( instance.constructor.name ).toBe( 'TextInputWithDropdown' );
+        } );
     } );
 
     describe( 'render()', () =>
     {
-        test('should implement the Css injector component', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one InputContainer', () =>
+        test( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one InputField', () =>
+        test( 'should contain exactly one InputField', () =>
         {
-            expect( wrapper.find( InputField ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one FlounderDropdown', () =>
+        test.skip( 'should contain exactly one FlounderDropdown', () =>
         {
-            expect( wrapper.find( FlounderDropdown ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( FlounderDropdown ) ).toHaveLength( 1 );
+        } );
     } );
 } );
