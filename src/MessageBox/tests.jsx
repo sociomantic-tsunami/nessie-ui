@@ -3,23 +3,24 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
-import React                      from 'react';
-import { mount }                  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
 
-import MessageBox                 from './index';
+import MessageBox   from './index';
 
 describe( 'MessageBox', () =>
 {
-    let Wrapper;
+    let wrapper;
 
-    beforeEach(() =>
-{
-        Wrapper = mount( <MessageBox /> );
-    });
+    beforeEach( () =>
+    {
+        wrapper = mount( <MessageBox /> );
+    } );
 
-    test('should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.messageBox__default' ) ).toHaveLength(1);
-    });
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
+    } );
 } );
