@@ -7,17 +7,17 @@ describe( 'TabButton', () =>
 {
     let wrapper;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <TabButton /> );
-    });
+    } );
 
     describe( 'render()', () =>
     {
-        test('should render exactly one TabButton', () =>
+        test( 'should render exactly one TabButton', () =>
         {
-            expect( wrapper ).toHaveLength(1);
-        });
+            expect( wrapper ).toHaveLength( 1 );
+        } );
     } );
 } );
 
@@ -26,15 +26,15 @@ describe( 'TabButton Driver', () =>
     let wrapper;
     let driver;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = mount( <TabButton /> );
         driver   = wrapper.driver();
-    });
+    } );
 
     describe( 'click()', () =>
     {
-        test('should trigger onClick', () =>
+        test( 'should trigger onClick', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
@@ -43,10 +43,10 @@ describe( 'TabButton Driver', () =>
 
             driver.click();
 
-            expect( onClick.calledOnce ).toBe(true);
-        });
+            expect( onClick ).toBeCalled();
+        } );
 
-        test('should return error if disabled', () =>
+        test( 'should return error if disabled', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
@@ -54,7 +54,8 @@ describe( 'TabButton Driver', () =>
                 isDisabled : true
             } );
 
-            expect( () => driver.click() ).toThrowError('Button cannot be clicked because it is disabled');
-        });
+            expect( () => driver.click() ).toThrowError( 'Button cannot be \
+clicked because it is disabled' );
+        } );
     } );
 } );

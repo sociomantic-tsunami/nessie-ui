@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Switch/tests.js?(x)'
+        '<rootDir>/src/TabButton/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
