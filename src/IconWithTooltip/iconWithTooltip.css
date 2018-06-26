@@ -28,7 +28,7 @@
 .position__topRight,
 .position__topLeft
 {
-    & .content
+    & > .content
     {
         flex:   1 0 0%;
     }
