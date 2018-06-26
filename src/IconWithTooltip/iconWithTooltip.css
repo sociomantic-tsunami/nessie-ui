@@ -25,6 +25,17 @@
     }
 }
 
+.position__topRight,
+.position__topLeft
+{
+    & .content
+    {
+        flex:   1 0 0%;
+    }
+}
+
+
+
 .iconVisible
 {
     & > .iconWithTooltip
