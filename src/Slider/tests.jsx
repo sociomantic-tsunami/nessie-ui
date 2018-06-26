@@ -247,10 +247,8 @@ describe( 'Slider', () =>
 
             wrapper = mount( <Slider { ...props } /> );
 
-            const slider   = wrapper.instance();
-
-            sinon.stub( slider.track, 'getBoundingClientRect' )
-                .callsFake( () => ( fakeBoundingRect ) );
+            const slider = wrapper.instance();
+            slider.track.getBoundingClientRect = () => ( fakeBoundingRect );
 
             expect( wrapper.instance().getValue( 5, 3 ) )
                 .toBeGreaterThanOrEqual( 0 );
@@ -354,7 +352,7 @@ describe( 'SliderDriver', () =>
         wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
         cssMap  = wrapper.prop( 'cssMap' );
-        outer   = wrapper.find( `.${cssMap.default}` );
+        outer   = wrapper.find( `.${cssMap.default}` ).first();
         track   = wrapper.find( `.${cssMap.track}` );
         inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
     } );
