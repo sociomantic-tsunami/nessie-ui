@@ -23,9 +23,7 @@
 
 .tooltip
 {
-    display:            flex;
-    align-items:        flex-start;
-
+    display:            block;
     position:           absolute;
 
     width:              auto;
