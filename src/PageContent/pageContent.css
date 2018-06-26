@@ -1,9 +1,8 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 :root
 {
-    --spinnerSize:  4rem;
+    --spinnerSize:  40px;
 }
 
 .default
@@ -15,12 +14,12 @@
 
 .content
 {
-    width:         102.4rem;
+    width:         1024px;
 
     box-sizing:    border-box;
 
     margin:        0 auto;
-    padding:       8rem 0;
+    padding:       var( --spacing-9 ) 0;
 }
 
 .loadingOverlay
@@ -43,7 +42,7 @@
 
     background-color:   color( var( --PC-WHITE ) a( 70% ) );
 
-    z-index:    2;
+    z-index:    999;
 }
 
 .spinner

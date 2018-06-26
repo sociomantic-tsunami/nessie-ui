@@ -20,11 +20,6 @@ describe( 'Form', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css higher-order component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
         it( 'should contain exactly one <form>', () =>
         {
             expect( wrapper.find( 'form' ) ).to.have.length( 1 );

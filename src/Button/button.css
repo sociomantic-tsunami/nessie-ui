@@ -1,19 +1,28 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 .default
 {
-    position:           relative;
-    display:            table; /* flex doesn’t work here */
-    width:              auto;
-    border:             none;
-    padding:            0;
-    background:         transparent;
-    cursor:             pointer;
-    text-transform:     uppercase;
-    border-radius:      0;
-    box-shadow:         0 0.1rem 0.2rem 0 var( --GS-5 );
+    position:               relative;
+    display:                table; /* flex doesn’t work here */
+
+    width:                  auto;
+
+    padding:                0;
+
+    border:                 none;
+    border-radius:          2px;
+
+    background:             transparent;
+    cursor:                 pointer;
+
+    @extend %Nessie-Bold;
+
+    .iconContainer
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+    }
 }
 
 
@@ -23,37 +32,19 @@
      * on button so we need to set it here
      */
     display:            flex;
-    flex-direction:     row;
-    justify-content:    flex-start;
-    align-items:        stretch;
-
-    box-sizing:         border-box;
-    min-width:          8rem;
-    height:             3.2rem; /************ replace with min-, or remove? */
-
-    border:             0.1rem solid transparent;
+    justify-content:    center;
+    align-items:        center;
+    height:             40px;
+    padding:            0 var( --spacing-2 );
+    text-align:         center;
 }
 
 
 .label
 {
-    flex:               1 0 auto;
-
-    box-sizing:         border-box;
-    max-width:          100%;
-
-    /* adjust for font baseline */
-    padding-top:        0.7rem;
-    padding-bottom:     0.4rem;
-    /* +1px here with the border endlich */
-    padding-left:       1.4rem;
-    padding-right:      1.4rem;
-
-    @extend %Nessie-SemiBold;
-
-    font-size:          1.2rem;
-    line-height:        1.6rem;
-    letter-spacing:     0.04rem;
+    font-size:          var( --typo-3 );
+    line-height:        var( --line-height-s );
+    letter-spacing:     0.5px;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
@@ -61,118 +52,152 @@
 }
 
 
-.role__default
+.iconPosition__right
 {
-    background: var( --PC-BLUE );
-    color:      var( --PC-WHITE );
-
-    &.fakeHovered,
-    &:hover
-    {
-        background: color( var( --PC-BLUE ) shade( 13% ) );
-        color:      var( --PC-WHITE );
-    }
-
-    &:active
-    {
-        background: var( --PC-BLUE );
-    }
-}
-
-
-.role__promoted
-{
-    background: var( --AC-12 );
-    color:      var( --PC-WHITE );
-
-    &.fakeHovered,
-    &:hover
-    {
-        background: color( var( --AC-12 ) shade( 13% ) );
-        color:      var( --PC-WHITE );
-    }
-
-    &:active
-    {
-        background: var( --AC-12 );
-    }
-}
-
-
-.role__critical
-{
-    background: var( --AC-2 );
-    color:      var( --PC-WHITE );
-
-    &.fakeHovered,
-    &:hover
-    {
-        background: color( var( --AC-2 ) shade( 13% ) );
-        color:      var( --PC-WHITE );
-    }
-
-    &:active
-    {
-        background: var( --AC-2 );
-    }
-}
-
-
-.role__subtle
-{
-    color:      var( --PC-GREY );
-    background: var( --PC-WHITE );
-
     .content
     {
-        border-color:   var( --PC-GREY );
+        flex-direction: row-reverse;
     }
 
     .iconContainer
     {
-        fill:           var( --PC-GREY );
+        margin-left:    4px; /* space between icon and text */
+        margin-right:   -var( --spacing-1 ); /* half of content padding */
+    }
+}
 
-        &:after
-        {
-            background-color: var( --PC-GREY );
-        }
+
+.iconPosition__left
+{
+    .iconContainer
+    {
+        margin-right:   4px; /* space between icon and text */
+        margin-left:    -var( --spacing-1 ); /* half of content padding */
+    }
+}
+
+
+.role__default
+{
+    background:         var( --PC-BLUE );
+    color:              var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background:     var( --PC-BLUE--L10);
+        color:          var( --PC-WHITE );
+    }
+}
+
+
+.role__secondary
+{
+    background:         var( --PC-GREY--L90 );
+    color:              var( --PC-GREY--L25 );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background:     var( --PC-GREY--L75 );
+        color:          var( --PC-GREY--L25 );
     }
 
-    &:not(.fakeHovered):not(:hover):not(.disabled)
+    .icon
     {
-        .icon
-        {
-            fill:                       var( --PC-GREY );
-            color:                      var( --PC-GREY );
-        }
-    }
-
-    &:not(.loading):matches(.fakeHovered,:hover)
-    {
-        color:                      var( --PC-WHITE );
-        background:                 var( --PC-GREY );
-
-        .iconContainer:after
-        {
-            background-color:       var( --PC-WHITE );
-        }
-    }
-
-    &:active
-    {
-        background-color:       color( var( --PC-GREY ) tint( 13% ) );
+        fill:           var( --PC-GREY--L25 );
+        color:          var( --PC-GREY--L25 );
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--L25 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --PC-GREY );
+                border-top-color:   var( --PC-GREY--L25 );
             }
+        }
+    }
+}
+
+
+.role__promoted
+{
+    background:     var( --PC-GREEN );
+    color:          var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-GREEN--L10 );
+        color:      var( --PC-WHITE );
+    }
+}
+
+
+.role__critical
+{
+    background:     var( --PC-RED );
+    color:          var( --PC-WHITE );
+
+    &.fakeHovered,
+    &:hover
+    {
+        background: var( --PC-RED--L10 );
+        color:      var( --PC-WHITE );
+    }
+}
+
+
+.role__subtle
+{
+    background:     transparent;
+
+    .content
+    {
+        height:         32px;
+        border-radius:  20px;
+        border:         1px solid var( --PC-BLUE );
+
+        box-sizing:     border-box;
+
+        color:          var( --PC-BLUE );
+    }
+
+    .icon
+    {
+        fill:           var( --PC-BLUE );
+        color:          var( --PC-BLUE );
+    }
+
+    .loadingOverlay
+    {
+        .spinner
+        {
+            border-color:           color( var( --PC-BLUE  ) a( 25% ) );
+
+            &::after
+            {
+                border-top-color:   var( --PC-BLUE );
+            }
+        }
+    }
+
+    &.fakeHovered,
+    &:hover
+    {
+        .content
+        {
+            background-color: var( --PC-BLUE );
+            color:            var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-WHITE );
         }
     }
 }
@@ -180,110 +205,37 @@
 
 .role__control
 {
-    color:                      var( --GS-1 );
-    box-shadow:                 none;
+    color:          var( --PC-GREY--DARK );
 
-    .content
+    .icon
     {
-        min-width:              0;
-        height:                 auto;
-        border-width:           0;
-    }
-
-    .label
-    {
-        @extend %Nessie-Bold;
-        padding:                0;
-        text-transform:         none;
-    }
-
-    .iconContainer
-    {
-        border-width:           0;
-        padding:                0;
-        margin-top:             -0.2rem;
-
-        &:after
-        {
-            display:            none
-        }
-    }
-
-    &.iconPosition__right .iconContainer + .label
-    {
-        padding-right:          0.5rem;
-    }
-
-    &.iconPosition__left .iconContainer + .label
-    {
-        padding-left:           0.5rem;
+        fill:       var( --PC-GREY--DARK );
+        color:      var( --PC-GREY--DARK );
     }
 
     &.fakeHovered,
     &:hover
     {
-        color:                  var( --PC-BLUE );
+        color:      var( --PC-BLUE );
 
         .icon
         {
-            fill:               var( --PC-BLUE );
-            color:              var( --PC-BLUE );
+            fill:   var( --PC-BLUE );
+            color:  var( --PC-BLUE );
         }
-    }
-
-    &:focus
-    {
-        outline:                none;
     }
 
     .loadingOverlay
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--DARK ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --PC-GREY );
+                border-top-color:   var( --PC-GREY--DARK );
             }
         }
-    }
-}
-
-
-.size__S
-{
-
-    .iconContainer
-    {
-        padding:    0 0.8rem 0 0.6rem;
-    }
-
-    &.iconPosition__right .iconContainer
-    {
-        padding-right:      0.5rem;
-        padding-left:       0.7rem;
-    }
-
-
-    .content
-    {
-        min-width:          5rem;
-        min-height:         2.6rem;
-    }
-
-    .label
-    {
-        padding-top:        0.5rem;
-        padding-bottom:     0.5rem;
-
-        padding-left:       1.4rem;
-        padding-right:      1.4rem;
-
-
-        font-size:          1.2rem;
-        line-height:        1.6rem;
-        letter-spacing:     0.04rem;
     }
 }
 
@@ -308,107 +260,69 @@
 
 .disabled
 {
-    background:     var( --GS-7 );
-    color:          var( --PC-WHITE );
-
-    box-shadow:     none;
-
-    &.role__subtle
+    &.role__default
     {
-        .content
-        {
-            border-color:       transparent;
-        }
-
-        .iconContainer:after
-        {
-            background-color:   var( --PC-WHITE );
-        }
-    }
-
-    &.fakeHovered,
-    &:hover,
-    &.role__control
-    {
-        background:     transparent;
-        color:          var( --GS-7 );
+        background: var( --PC-BLUE--LIGHT );
+        color:      var( --PC-BLUE--L25 );
 
         .icon
         {
-            fill:          var( --GS-7 );
-            color:         var( --GS-7 );
+            fill:   color( var( --PC-BLUE ) tint( 25% ) );
+            color:  color( var( --PC-BLUE ) tint( 25% ) );
         }
     }
 
-    &:not(.role__control)
+    &.role__secondary
     {
-        &.fakeHovered,
-        &:hover
+        color:      var( --PC-GREY--L55 );
+        background: transparent;
+
+        .icon
         {
-            background:      var( --GS-7 ) !important;
+            fill:   var( --PC-GREY--L55 );
+            color:  var( --PC-GREY--L55 );
         }
     }
-}
 
-
-.iconPosition__left:not(.role__control)
-{
-    .iconContainer
+    &.role__promoted
     {
-        margin-right:       1px;
-    }
-}
+        background: var( --PC-GREEN--LIGHT );
+        color:      var( --PC-GREEN--L25 );
 
-
-
-.iconPosition__right
-{
-    .content
-    {
-        flex-direction: row-reverse;
-    }
-
-    &:not(.role__control) .iconContainer
-    {
-        margin-left:        1px;
-        padding-left:       1.2rem;
-        padding-right:      1rem;
-
-        &:after
+        .icon
         {
-            right:          auto;
-            left:           -1px;
+            fill:   color( var( --PC-GREEN ) tint( 25% ) );
+            color:  color( var( --PC-GREEN ) tint( 25% ) );
         }
     }
-}
 
-.iconContainer
-{
-    display:            flex;
-    justify-content:    center;
-    align-items:        center;
-
-    position:           relative;
-
-    flex:               0 0 auto;
-
-    border-width:       0.1rem;
-    border-style:       solid;
-    border-color:       transparent;
-
-    padding-right:      0.8rem;
-    padding-left:       0.6rem;
-
-    &:after
+    &.role__critical
     {
-        content:        '';
-        display:        block;
-        width:          1px;
-        height:         calc( 100% + 4px );
-        position:       absolute;
-        right:          -1px;
-        top:            -2px;
-        background-color: var( --PC-WHITE );
+        background: var( --PC-RED--LIGHT );
+        color:      var( --PC-RED--L25 );
+
+        .icon
+        {
+            fill:   color( var( --PC-RED ) tint( 25% ) );
+            color:  color( var( --PC-RED ) tint( 25% ) );
+        }
+    }
+
+    &.role__subtle
+    {
+        color:              var( --PC-BLUE--L40 );
+
+        .content
+        {
+            background:     var( --PC-WHITE );
+            border-color:   var( --PC-BLUE--L40 );
+        }
+
+        .icon
+        {
+            fill:           var( --PC-BLUE--L40 );
+            color:          var( --PC-BLUE--L40 );
+        }
     }
 }
 
@@ -420,27 +334,24 @@
     justify-content:    center;
     align-items:        center;
 
-    position:   absolute;
+    position:           absolute;
 
-    top:        0;
-    bottom:     0;
+    top:                0;
+    bottom:             0;
 
-    left:       0;
-    right:      0;
+    left:               0;
+    right:              0;
 
-    width:      100%;
-    height:     100%;
+    width:              100%;
+    height:             100%;
 
     .spinner
     {
-        border-color:   color( var( --PC-WHITE ) a( 50% ) );
+        border-color:           color( var( --PC-WHITE ) a( 50% ) );
 
         &::after
         {
-
             border-top-color:   var( --PC-WHITE );
         }
-}
-
-
+    }
 }

@@ -23,6 +23,7 @@ export default class Button extends Component
         */
         role  : PropTypes.oneOf( [
             'default',
+            'secondary',
             'subtle',
             'promoted',
             'critical',
@@ -32,34 +33,56 @@ export default class Button extends Component
         *  Icon type to display (overrides customIcon)
         */
         iconType : PropTypes.oneOf( [
+            'account',
             'add',
+            'add-circle',
             'alert',
             'approved',
+            'arrow',
+            'bell',
+            'board',
             'calendar',
             'close',
+            'close-circle',
+            'close-thick',
+            'dash',
+            'dashboard',
             'declined',
             'delete',
             'down',
             'download',
             'duplicate',
             'edit',
+            'edit-circle',
             'ended',
             'error',
+            'file',
+            'graph',
+            'hide',
             'info',
             'inspect',
             'left',
+            'lightbulb',
             'link',
+            'megaphone',
+            'options',
             'pending',
             'preview',
+            'puzzle-piece',
             'reset',
             'right',
             'search',
+            'show',
+            'star',
+            'star-stroke',
+            'swap',
+            'table',
             'up',
             'upload',
             'validation',
-            'none'
+            'none',
         ] ),
-        /*
+        /**
          *  Icon position relative to Button text
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
@@ -184,6 +207,7 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
+                        size       = "S"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
                         forceHover = { isHovered }

@@ -1,3 +1,5 @@
+@import "../proto/definitions/variables.css";
+
 .default
 {
     position:   relative;
@@ -29,7 +31,7 @@
     .dropdown
     {
         bottom:     0;
-        transform:  translateY( 100% ) translateY( -0.1rem );
+        transform:  translateY( 100% ) translateY( var( --spacing-1) );
     }
 }
 
@@ -38,6 +40,6 @@
     .dropdown
     {
         top:        0;
-        transform:  translateY( -100% ) translateY( 0.1rem );
+        transform:  translateY( -100% ) translateY( calc( -1 * var( --spacing-1) ) );
     }
 }

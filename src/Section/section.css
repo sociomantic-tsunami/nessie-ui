@@ -1,38 +1,36 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
-    margin-bottom:  3rem;
+    margin-bottom:  var( --spacing-5 );
 
     /*&::after
     {
-        bottom: -1rem;
+        bottom: -10px;
     }*/
 }
 
 .content
 {
-/*  */
 }
 
 .level__1
 {
-    margin-bottom:  7rem;
+    margin-bottom:  var( --spacing-8 );
 
     &::after
     {
-        bottom: -3.5rem;
+        bottom: -( var( --spacing-4 ) );
     }
 }
 
 .level__2
 {
-    margin-bottom:  5rem;
+    margin-bottom: var( --spacing-5 );
 
     &::after
     {
-        bottom: -2rem;
+        bottom: -( var( --spacing-2 ) );
     }
 }
 
@@ -52,8 +50,8 @@
 
         left:           0;
 
-        width:          calc( 100% + 3rem );
-        height:         0.1rem;
+        width:          calc( 100% + 30px );
+        height:         1px;
 
         background:     color( var( --GS-2 ) a( 20% ) );
     }

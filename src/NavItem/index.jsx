@@ -2,6 +2,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
 import NavDropdown          from '../NavDropdown';
 import styles               from './navItem.css';
 
@@ -41,7 +42,7 @@ removed in the next major release. Please use isCurrent instead.' );
                 dropdownAlign,
                 open        : isOpen,
                 fakeHovered : forceHover,
-                icon        : iconType
+                hasIcon     : iconType !== 'none'
             } }>
             <li
                 className     = { className }
@@ -51,10 +52,13 @@ removed in the next major release. Please use isCurrent instead.' );
                     className = { cssMap.link }
                     href      = { href }
                     onClick   = { onClick }>
-                    <span>{ label }</span>
                     { ( iconType && iconType !== 'none' ) &&
-                        <div className  = { cssMap.icon } />
+                        <Icon
+                            className = { cssMap.icon }
+                            type = { iconType }
+                            size = "S" />
                     }
+                    <span>{ label }</span>
                 </a>
                 { children &&
                     <NavDropdown className = { cssMap.dropdown }>
@@ -91,35 +95,84 @@ NavItem.propTypes =
     /**
      *  Icon to show
      */
-    iconType      : PropTypes.oneOf( [ 'account', 'none' ] ),
+    iconType      : PropTypes.oneOf( [
+        'account',
+        'add',
+        'add-circle',
+        'alert',
+        'approved',
+        'arrow',
+        'bell',
+        'board',
+        'calendar',
+        'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
+        'declined',
+        'delete',
+        'down',
+        'download',
+        'duplicate',
+        'edit',
+        'edit-circle',
+        'ended',
+        'error',
+        'file',
+        'graph',
+        'hide',
+        'info',
+        'inspect',
+        'left',
+        'lightbulb',
+        'link',
+        'megaphone',
+        'options',
+        'pending',
+        'preview',
+        'puzzle-piece',
+        'reset',
+        'right',
+        'search',
+        'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
+        'up',
+        'upload',
+        'validation',
+        'none',
+    ] ),
     /*
     *  Display as disabled/read-only
      */
-    isDisabled    : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
     /*
      * Display as current page/section
      */
-    isCurrent     : PropTypes.bool,
+    isCurrent   : PropTypes.bool,
     /*
     * Dropdown menu is open
      */
-    isOpen        : PropTypes.bool,
+    isOpen      : PropTypes.bool,
     /**
      *  onClick callback function
      */
-    onClick       : PropTypes.func,
+    onClick     : PropTypes.func,
     /**
      *  onMouseOut callback function
      */
-    onMouseOut    : PropTypes.func,
+    onMouseOut  : PropTypes.func,
     /**
      *  onMouseOver callback function
      */
-    onMouseOver   : PropTypes.func,
+    onMouseOver : PropTypes.func,
     /**
      *  Navigation role
      */
-    role          : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
+    role        : PropTypes.oneOf( [ 'default', 'primary', 'sub' ] ),
 };
 
 NavItem.defaultProps =

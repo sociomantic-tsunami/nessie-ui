@@ -49,7 +49,7 @@ Row.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : undefined,
-    gutters       : 'L',
+    gutters       : 'M',
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,

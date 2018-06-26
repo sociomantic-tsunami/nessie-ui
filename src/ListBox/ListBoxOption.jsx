@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import { Icon, Text }       from '../index';
+import { Icon, Text } from '../index';
 import {
     buildClassName,
     eventHandler,
     generateId,
     mapAria
 } from '../utils';
-import { buildOptionLabel } from './utils';
-import styles               from './listBoxOption.css';
+import styles         from './listBoxOption.css';
 
 
 const ListBoxOption = ( {
     aria,
+    children,
     className,
     cssMap,
     description,
@@ -29,39 +29,61 @@ const ListBoxOption = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    ...props
-} ) => (
-    <li
-        { ...mapAria( {
-            ...aria,
-            selected : isSelected,
-            role     : 'option',
-        } ) }
-        className = { buildClassName( className, cssMap, {
-            disabled : isDisabled,
-            active   : isActive,
-            selected : isSelected,
-        } ) }
-        id           = { id }
-        onClick      = { eventHandler( onClick, id ) }
-        onMouseLeave = { eventHandler( onMouseOut, id ) }
-        onMouseEnter = { eventHandler( onMouseOver, id ) }>
-        { ( iconType && iconType !== 'none' ) &&
-            <Icon
-                className = { cssMap.icon }
-                size      = { iconSize || description ? 'M' : 'S'  }
-                type      = { iconType }
-                variant   = "stroke" />
-        }
-        <div className = { cssMap.text }>
-            { buildOptionLabel( props ) }
-            { description &&
-                <Text noWrap overflowIsHidden role = "subtle">
-                    { description }
-                </Text> }
-        </div>
-    </li>
-);
+    text,
+    value,
+} ) =>
+{
+    let label;
+
+    if ( children )
+    {
+        label = children;
+    }
+    else
+    {
+        label = typeof text !== 'undefined' ? text : value;
+        label = String( label );
+    }
+
+    label = typeof label === 'string' ? (
+        <Text className = { cssMap.optionText } noWrap overflowIsHidden>
+            { label }
+        </Text> ) : label;
+
+    return (
+        <li
+            { ...mapAria( {
+                ...aria,
+                selected : isSelected,
+                role     : 'option',
+            } ) }
+            className = { buildClassName( className, cssMap, {
+                disabled        : isDisabled,
+                active          : isActive,
+                selected        : isSelected,
+                withDescription : !!description,
+            } ) }
+            id           = { id }
+            onClick      = { eventHandler( onClick, id ) }
+            onMouseEnter = { eventHandler( onMouseOver, id ) }
+            onMouseLeave = { eventHandler( onMouseOut, id ) }>
+            { ( iconType && iconType !== 'none' ) &&
+                <Icon
+                    className = { cssMap.icon }
+                    size      = { iconSize || 'S'  }
+                    type      = { iconType }
+                    variant   = "stroke" />
+            }
+            <div className = { cssMap.textContainer }>
+                { label }
+                { description &&
+                    <Text className = { cssMap.description } overflowIsHidden>
+                        { description }
+                    </Text> }
+            </div>
+        </li>
+    );
+};
 
 ListBoxOption.propTypes = {
     aria        : PropTypes.objectOf( PropTypes.string ),
@@ -73,32 +95,51 @@ ListBoxOption.propTypes = {
     iconType    : PropTypes.oneOf( [
         'account',
         'add',
+        'add-circle',
+        'alert',
+        'approved',
+        'arrow',
+        'bell',
+        'board',
         'calendar',
         'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
+        'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'edit-circle',
+        'ended',
+        'error',
+        'file',
+        'graph',
+        'hide',
         'info',
         'inspect',
         'left',
+        'lightbulb',
         'link',
+        'megaphone',
+        'options',
+        'pending',
         'preview',
+        'puzzle-piece',
         'reset',
         'right',
         'search',
+        'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
         'up',
         'upload',
         'validation',
-        'alert',
-        'approved',
-        'declined',
-        'ended',
-        'error',
-        'pending',
-        'show',
-        'hide',
         'none',
     ] ),
     isActive    : PropTypes.bool,

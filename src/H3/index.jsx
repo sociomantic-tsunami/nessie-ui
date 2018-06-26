@@ -1,22 +1,20 @@
-import React                 from 'react';
-import PropTypes             from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                   from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './h3.css';
 
 const H3 = ( {
     cssMap,
     className,
     children,
+    title,
     role,
-    title } ) =>
-
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { role } }>
-            <h3 className = { className }>
-                { children || title }
-            </h3>
-        </Css>;
+} ) => (
+    <h3 className = { buildClassName( className, cssMap, { role } ) }>
+        { children || title }
+    </h3>
+);
 
 H3.propTypes =
 {
@@ -31,15 +29,15 @@ H3.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
-    ] )
+        'critical',
+    ] ),
 };
 
 H3.defaultProps =
 {
+    title  : undefined,
     role   : 'default',
-    cssMap : require( './h3.css' )
+    cssMap : styles,
 };
-
 
 export default H3;
