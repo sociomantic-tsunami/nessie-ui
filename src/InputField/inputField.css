@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -8,19 +7,20 @@
     box-sizing:         border-box;
     width:              100%;
 
-    border:             0.1rem solid color( var( --GS-2 ) a( 50% ) );
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
 
-    padding-top:        0.8rem;
-    padding-bottom:     0.6rem;
-    padding-left:       1rem;
-    padding-right:      1rem;
+    padding-top:        11px;
+    padding-bottom:     11px;
+    padding-left:       var( --spacing-2 );
+    padding-right:      var( --spacing-2 );
 
     background-color:   var( --PC-WHITE );
-    color:              var( --GS-2 );
 
-    /* make sure we inherit all font styles */
-    font:               inherit;
-    line-height:        inherit;
+    font-size:          var( --typo-3 );
+    color:              var( --PC-GREY--D5 );
+
+    @extend %Nessie-Regular;
 
     /* removes clear and reveal password icons from IE */
     &::-ms-reveal
@@ -35,18 +35,16 @@
 
     &::placeholder
     {
-        color:  color( var( --GS-2 ) a( 50% ) );
+        @extend %Nessie-RegularIt;
+        color:         var( --PC-GREY--L70 );
     }
 
-    &:hover,
     &:focus
     {
         border-color:   var( --PC-BLUE );
-    }
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
 
-    &:focus
-    {
-        outline:    none;
+        outline:        none;
 
         &::placeholder
         {
@@ -64,23 +62,31 @@
 .fakeHovered
 {
     border-color:   var( --PC-BLUE );
+    box-shadow:     0 0 0 1px var( --PC-BLUE );
 }
 
 .error
 {
-    border-color:   var( --AC-2 ) !important; /* yes, always override other states */
+    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+    box-shadow:     0 0 0 1px var( --PC-RED ) !important; /* yes, always override other states */
+    color:          var( --PC-RED ) !important; /* yes, always override other states */
 }
 
 .disabled
 {
-    background:     var( --GS-10 );
-    color:          color( var( --GS-2 ) a( 50% ) );
-    border-color:   var( --GS-10 );
+    background:     var( --PC-GREY--L90 );
+    color:          var( --PC-GREY--L40 );
+    border-color:   var( --PC-GREY--L70 );
 
-    &:hover,
     &:focus
     {
-        border-color:   var( --GS-10 );
+        border-color:   var( --PC-GREY--L70 );
+    }
+
+    &::placeholder
+    {
+        @extend %Nessie-RegularIt;
+        color:         var( --PC-GREY--L40 );
     }
 }
 

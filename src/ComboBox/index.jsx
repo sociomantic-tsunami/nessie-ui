@@ -9,6 +9,7 @@ import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
 import { generateId }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
+import styles                         from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -66,23 +67,48 @@ export default class ComboBox extends Component
         iconType              : PropTypes.oneOf( [
             'account',
             'add',
+            'add-circle',
+            'alert',
+            'approved',
+            'arrow',
+            'bell',
+            'board',
             'calendar',
             'close',
+            'close-circle',
+            'close-thick',
+            'dash',
+            'dashboard',
+            'declined',
             'delete',
             'down',
             'download',
             'duplicate',
             'edit',
-            'info',
+            'edit-circle',
+            'ended',
+            'error',
+            'file',
+            'graph',
             'hide',
+            'info',
             'inspect',
             'left',
+            'lightbulb',
             'link',
+            'megaphone',
+            'options',
+            'pending',
             'preview',
+            'puzzle-piece',
             'reset',
             'right',
             'search',
             'show',
+            'star',
+            'star-stroke',
+            'swap',
+            'table',
             'up',
             'upload',
             'validation',
@@ -444,7 +470,11 @@ export default class ComboBox extends Component
         else
         {
             dropdownContent = (
-                <Text noWrap overflowIsHidden role = "subtle">
+                <Text
+                    className = { styles.dropdownPlaceholder }
+                    noWrap
+                    overflowIsHidden
+                    role = "subtle">
                     { dropdownPlaceholder }
                 </Text>
             );

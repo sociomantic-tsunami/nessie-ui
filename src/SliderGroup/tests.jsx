@@ -51,7 +51,7 @@ describe( 'SliderGroup', () =>
         Wrapper = mount( <SliderGroup { ...props } /> );
         const cssMap = Wrapper.prop( 'cssMap' );
 
-        expect( Wrapper.find( `.${cssMap.stepLabelsContainer}` ).find( Label ) )
+        expect( Wrapper.find( `.${cssMap.stepLabelsContainer}` ).children() )
             .to.have.length( 2 );
     } );
 

@@ -13,4 +13,4 @@ _Add_ icon:
 
 _Alert_ icon with stroke:
 
-	<Icon type="alert" variant="stroke"/>
+	<Icon type="alert"/>

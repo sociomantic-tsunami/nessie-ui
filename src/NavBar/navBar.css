@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -7,11 +6,8 @@
     align-items:        center;
     justify-content:    center;
 
-    height:             6rem;
-
     margin:             0;
 
-    border-bottom:      0.1rem solid color( var( --GS-2 ) tint( 80% ) );
-
+    box-shadow:         var( --boxShadow );
     background:         var( --PC-WHITE );
 }

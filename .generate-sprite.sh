@@ -3,7 +3,6 @@
 rm -rf ./src/Icon/temp/ \
 && mkdir -p ./src/Icon/temp/svg/clean/ \
 && mv ./src/Icon/svg/clean/*.svg ./src/Icon/temp/svg/clean/ \
-&& mv ./src/Icon/svg/clean/status/*.svg ./src/Icon/temp/svg/clean/ \
 && node node_modules/.bin/svg-sprite-generate \
     -d ./src/Icon/temp/svg/clean \
     -o ./src/Icon/sprite.html \

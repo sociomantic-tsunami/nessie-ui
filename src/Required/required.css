@@ -1,11 +1,11 @@
 .default
 {
-    
+
 }
 
 .required
 {
-	&::after
+    &::after
     {
         content:    '\00a0*';
     }

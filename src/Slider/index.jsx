@@ -712,12 +712,12 @@ export default class Slider extends Component
             stepLabelsTrack = (
                 <div className = { cssMap.stepLabelsContainer }>
                     { mergedStepLabelsArray.map( ( val, i ) =>
-                        <label
+                        <div
                             key       = { i } // eslint-disable-line react/no-array-index-key, max-len
                             className = { cssMap.stepLabel }
                             style     = { this.getHandleStyle( val.step ) } >
                             { val.stepLabel }
-                        </label>
+                        </div>
                     ) }
                 </div>
             );
@@ -729,19 +729,17 @@ export default class Slider extends Component
         }
 
         const sliderLabelMarkUp = label && (
-            <Label
-                htmlFor = { `${id}_0` }>
-                <IconWithTooltip
-                    iconType         = "error"
-                    iconPosition     = "right"
-                    message          = { errorMessage }
-                    tooltipIsVisible = { errorMessageIsVisible }
-                    tooltipPosition  = { errorMessagePosition }
-                    iconIsVisible    = { !!errorMessage && hasError
-                        && !isDisabled } >
-                    { label }
-                </IconWithTooltip>
-            </Label>
+            <IconWithTooltip
+                className        = { cssMap.labelContainer }
+                iconType         = "error"
+                iconPosition     = "right"
+                message          = { errorMessage }
+                tooltipIsVisible = { errorMessageIsVisible }
+                tooltipPosition  = { errorMessagePosition }
+                iconIsVisible    = { !!errorMessage && hasError
+                    && !isDisabled } >
+                <Label htmlFor = { `${id}_0` }>{ label }</Label>
+            </IconWithTooltip>
         );
 
         const trackFillMarkUp = hasFill && (

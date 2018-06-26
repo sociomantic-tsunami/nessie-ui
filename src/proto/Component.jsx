@@ -9,8 +9,7 @@ export default class NessieComponent extends Component
         this.state =
         {
             id : props.id ? props.id : `${this.constructor.name}-${
-                     Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`
+                Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`
         };
     }
-
 }

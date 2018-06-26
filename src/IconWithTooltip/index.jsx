@@ -64,10 +64,10 @@ const IconWithTooltip = ( {
                         onMouseOver = { onMouseOverIcon }
                         position    = { tooltipPosition }>
                         <Icon
+                            className = { cssMap.icon }
                             isDisabled = { isDisabled }
                             size       = { iconSize }
-                            type       = { iconType }
-                            variant    = "fill" />
+                            type       = { iconType } />
                     </Tooltip>
                 }
             </div>
