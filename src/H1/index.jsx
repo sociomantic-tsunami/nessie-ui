@@ -1,16 +1,20 @@
-import React                 from 'react';
-import PropTypes             from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                   from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './h1.css';
 
-const H1 = ( { cssMap, className, children, title, role } ) =>
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { role } }>
-        <h1 className = { className }>
-            { children || title }
-        </h1>
-    </Css>;
+const H1 = ( {
+    cssMap,
+    className,
+    children,
+    title,
+    role,
+} ) => (
+    <h1 className = { buildClassName( className, cssMap, { role } ) }>
+        { children || title }
+    </h1>
+);
 
 H1.propTypes =
 {
@@ -25,14 +29,15 @@ H1.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
-    ] )
+        'critical',
+    ] ),
 };
 
 H1.defaultProps =
 {
+    title  : undefined,
     role   : 'default',
-    cssMap : require( './h1.css' )
+    cssMap : styles,
 };
 
 export default H1;

@@ -30,3 +30,28 @@
     font-weight: normal;
     font-style: normal;
 }
+
+%Nessie-Light
+{
+    font-family: Nessie-Light, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+    --typo-1:           10px;
+    --typo-2:           12px;
+    --typo-3:           14px;
+    --typo-4:           16px;
+    --typo-5:           18px;
+    --typo-6:           20px;
+    --typo-7:           24px;
+
+    --line-height-s:    16px;
+    --line-height-m:    24px;
+    --line-height-l:    32px;
+    --line-height-xl:   40px;
+    --line-height-xxl:  48px;
+}

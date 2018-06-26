@@ -13,17 +13,18 @@ import Switch               from './index';
 describe( 'Switch', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Switch /> );
+        wrapper  = shallow( <Switch /> );
+        instance = wrapper.instance();
     } );
 
     it( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
-
-        const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
+        const input = wrapper.find( `.${instance.props.cssMap.input}` );
 
         expect( input.prop( 'disabled' ) ).to.be.true;
     } );

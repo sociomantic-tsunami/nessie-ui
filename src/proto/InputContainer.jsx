@@ -51,7 +51,6 @@ const InputContainer = ( {
     </div>
 );
 
-
 InputContainer.propTypes = {
     /**
      *  Extra CSS class name

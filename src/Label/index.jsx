@@ -26,6 +26,7 @@ const Label = ( {
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut } >
                 <Text
+                    className        = { cssMap.label }
                     noWrap           = { noWrap }
                     overflowIsHidden = { overflowIsHidden }>
                     { children || label }

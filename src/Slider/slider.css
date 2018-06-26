@@ -1,21 +1,19 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 :root
 {
-    --horizontalSliderHeight:   3.2rem;
-    --verticalSliderHeight:     30rem;
+    --horizontalSliderHeight:   40px;
+    --verticalSliderHeight:     300px;
 
-    --trackSize:                1rem;
-    --trackBorderWidth:         0.1rem;
+    --trackSize:                2px;
+    --trackBorderWidth:         1px;
 
-    --handleSize:               1.6rem;
+    --handleSize:               16px;
 
-    --tickSize:                 0.9rem;
+    --tickSize:                 4px;
 
-    --labelMargin:              1rem;
-    --stepLabelContainerHeight: 1.6rem; /*matches line height of labels*/
+    --labelMargin:              10px;
+    --stepLabelContainerHeight: 16px; /*matches line height of labels*/
 }
 
 
@@ -31,7 +29,7 @@
     /* Track + handles */
 
     .handle,
-    .track
+    .track,
     {
         box-sizing: border-box;
     }
@@ -41,7 +39,6 @@
     {
         position:   absolute;
         z-index:    1;
-        transition: ease 0.2s all;
     }
 
     .trackContainer
@@ -53,20 +50,29 @@
     {
         position:                       relative;
 
-        border:                         var( --trackBorderWidth ) solid color( var( --GS-2 ) a( 50% ) );
+        width:                          var( --trackSize );
         border-radius:                  var( --trackSize );
 
-        background:                     var( --PC-WHITE );
+        background:                     var( --PC-GREY--L90 );
 
         user-select:                    none;
         cursor:                         pointer;
+
         -webkit-tap-highlight-color:    transparent;
+
+        &:hover
+        {
+            .handle
+            {
+                border-color: var( --PC-BLUE );
+            }
+        }
     }
 
     .trackFill
     {
-        border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:     color( var( --PC-BLUE ) a( 30% ) );
+        border-radius:      calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
+        background:         var( --PC-BLUE );
     }
 
     .handle
@@ -75,13 +81,14 @@
         height:             var( --handleSize );
 
         border-radius:      50%;
-        background-color:   var( --PC-BLUE );
+        border:             var( --trackBorderWidth ) solid var( --PC-GREY--L70 );
+        background-color:   var( --PC-WHITE );
 
         cursor:             grab;
 
         &:active
         {
-            cursor: grabbing;
+            cursor:         grabbing;
         }
     }
 
@@ -92,7 +99,7 @@
 
     .handleLabel
     {
-        display:    none;
+        display:            none;
     }
 
 
@@ -100,18 +107,23 @@
 
     .ticksContainer
     {
-        width:      100%;
-        height:     100%;
-        position:   relative;
+        width:              100%;
+        height:             100%;
+        position:           relative;
     }
 
     .tick
     {
-        color:          color( var( --GS-2 ) a( 50% ) );
-        position:       absolute;
-        transform:      translateX( -50% );
-        line-height:    var( --trackSize );
-        font-size:      var( --tickSize );
+        position:           absolute;
+        transform:          translateX(-50%) translateY(-50%);
+        z-index:            2;
+
+        font-size:          0;
+
+        background-color:   var( --PC-WHITE );
+
+        width:              var( --tickSize );
+        height:             var( --tickSize );
     }
 
 
@@ -119,22 +131,17 @@
 
     .stepLabelsContainer
     {
-        position:   relative;
+        position:           relative;
     }
 
     .stepLabel
     {
-        position:   absolute;
-        @extend %Nessie-Bold;
-    }
-}
+        @extend %Nessie-RegularIt;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--L40 );
 
-.grabbing
-{
-    .handle,
-    .trackFill
-    {
-        transition: none;
+        position:           absolute;
     }
 }
 
@@ -167,13 +174,13 @@
 
     .handle
     {
-        top:        50%;
-        transform:  translateX( -50% ) translateY( -50% );
+        top:            50%;
+        transform:      translateX( -50% ) translateY( -50% );
     }
 
     .trackFill
     {
-        height: 100%;
+        height:         var( --trackSize );
     }
 
     .stepLabelsContainer
@@ -186,15 +193,7 @@
 
     .stepLabelsContainer
     {
-        /* We need to replace label with Label component to avoid these magic numbers */
-        margin-top:     -0.3rem;
-        margin-bottom:  0.6rem;
-
-        &:last-child
-        {
-            margin-top:     0.8rem;
-            margin-bottom:  -0.5rem;
-        }
+        margin-bottom:  var( --spacing-1 );
     }
 
     .stepLabel
@@ -229,31 +228,26 @@
     .track,
     .stepLabelsContainer
     {
-        height: calc( 100% - var( --handleSize ) );
+        height:         calc( 100% - var( --handleSize ) );
 
         margin-top:     calc( var( --handleSize ) / 2 );
         margin-bottom:  calc( var( --handleSize ) / 2 );
     }
 
-    .track
-    {
-        width:  var( --trackSize );
-    }
-
     .trackFill
     {
-        width:  100%
+        width:          var( --trackSize );
     }
 
     .handle
     {
-        left:       50%;
-        transform:  translateX( -50% ) translateY( 50% );
+        left:           50%;
+        transform:      translateX( -50% ) translateY( 50% );
     }
 
     .stepLabelsContainer
     {
-        margin-right:   var( --labelMargin );
+        margin-right:       var( --labelMargin );
 
         &:last-child
         {
@@ -269,10 +263,8 @@
 
     .tick
     {
-        /* We should change the ticks to use the Text component to avoid this
-           1px nudge */
-        left:       calc( 50% - 1px );
-        transform:  translateX( -50% ) translateY( 50% ) rotate( 90deg );
+        left:       50%;
+        transform:  translateX( -50% ) translateY( 50% );
     }
 }
 
@@ -291,6 +283,8 @@
 
         cursor:             default;
         user-select:        none;
+
+        line-height:        var( --line-height-s );
     }
 }
 
@@ -299,10 +293,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        top:    -1.6rem;
+        top:        calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateY( -100% );
     }
 }
 
@@ -310,10 +302,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        bottom: -1.6rem;
+        bottom:     calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateY( 100% );
     }
 }
 
@@ -321,10 +311,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        left:   1.6rem;
+        right:      calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateX( 100% );
     }
 }
 
@@ -332,10 +320,9 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        right:  1.6rem;
+        left:       calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateX( -100% );
+
     }
 }
 
@@ -346,42 +333,77 @@
 {
     .trackFill
     {
-        background: color( var( --AC-2 ) a( 30% ) );
+        background: color( var( --PC-RED ) a( 35% ) );
     }
 
     .handleLabel
     {
-        color:  var( --AC-2 );
+        color:      var( --PC-RED );
     }
 }
 
 
 .disabled
 {
-    .track
+    .track:hover .handle
     {
-        border-color:   var( --GS-10 );
-        background:     var( --GS-10 );
+        border-color:   var( --PC-GREY--L85 );
     }
 
     .trackFill
     {
-        background: color( var( --GS-4 ) a( 30% ) );
+        background:         var( --PC-GREY--L70 );
     }
 
     .handle
     {
-        background: var( --GS-5 );
-        cursor:     default;
+        background:         var( --PC-GREY--L95 );
+        border-color:       var( --PC-GREY--L85 );
+        cursor:             default;
+
+        &:active
+        {
+            cursor:         default;
+        }
     }
 
     .handleLabel
     {
-        color:  color( var( --GS-2 ) a( 50% ) );
+
     }
 
     .ticksContainer
     {
-        display:    none;
+        display:            none;
+    }
+
+    .stepLabel
+    {
+        color:              var( --PC-GREY--L70 );
+    }
+}
+
+
+.labelContainer
+{
+    margin-bottom:  8px;
+}
+
+
+.grabbing
+{
+    .handle,
+    .trackFill
+    {
+        transition: none;
+    }
+
+    .handle
+    {
+        width:              var( --handleSize );
+        height:             var( --handleSize );
+
+        background-color:   var( --PC-BLUE );
+        border-color:       var( --PC-BLUE );
     }
 }

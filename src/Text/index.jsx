@@ -47,11 +47,11 @@ Text.propTypes =
     /**
     *  Text string
     */
-    text : PropTypes.string,
+    text    : PropTypes.string,
     /**
     *  callback that receives ref to the text div: ref => ...
     */
-    textRef  : PropTypes.func,
+    textRef : PropTypes.func,
 };
 
 Text.defaultProps =

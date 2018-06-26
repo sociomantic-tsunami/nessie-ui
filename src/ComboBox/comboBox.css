@@ -1,0 +1,13 @@
+@import "../proto/definitions/variables.css";
+
+.default
+{
+
+}
+
+.dropdownPlaceholder
+{
+    @extend %Nessie-RegularIt;
+
+    color:  var( --PC-GREY--L70 );
+}

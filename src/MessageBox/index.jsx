@@ -9,10 +9,10 @@ const MessageBox = ( {
     className,
     children,
     message,
-    messageType
+    messageType,
 } ) =>
 {
-    const messageNode = <Text>{ message }</Text>;
+    const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
 
     return (
         <Css
@@ -35,12 +35,18 @@ MessageBox.propTypes =
     /**
     *  Message type
     */
-    messageType : PropTypes.oneOf( [ 'alert', 'info', 'error', 'success' ] )
+    messageType : PropTypes.oneOf( [
+        'default',
+        'alert',
+        'info',
+        'error',
+        'success',
+    ] )
 };
 
 MessageBox.defaultProps =
 {
-    messageType : 'info',
+    messageType : 'default',
     cssMap      : require( './messageBox.css' )
 };
 

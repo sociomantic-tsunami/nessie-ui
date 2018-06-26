@@ -1,6 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 
 .default
 {
@@ -23,62 +21,65 @@
 {
     &:not( :last-child )
     {
-        margin-right:   1rem;
+        margin-right:       var( --spacing-1 );
     }
 }
 
 .pageButton
 {
-    &:hover
+    background-color:       var( --PC-GREY--L90 );
+
+    padding-left:           var( --spacing-1 );
+    padding-right:          var( --spacing-1 );
+    padding-top:            0;
+    padding-bottom:         0;
+
+    border-radius:          2px;
+
+    &:hover:not([disabled])
     {
-        cursor: pointer;
+        cursor:             pointer;
     }
 
     &:hover,
     &:focus,
     &:disabled
     {
-        color:  var( --PC-DARK-GREY );
+        color:              var( --PC-WHITE );
+        background-color:   var( --PC-BLUE );
     }
 }
 
 .pageButton,
 .ellipsis
 {
-    padding:        0;
-    border:         none;
-    margin:         0;
+    border:             none;
+    margin:             0;
 
-    min-width:      2.6rem;
-    min-height:     1.6rem;
+    min-width:          var( --spacing-3 );
+    height:             var( --spacing-3 );
 
-    background:     transparent;
-    color:          color( var( --PC-DARK-GREY ) a( 50% ) );
+    color:              var( --PC-GREY--L55 );
 
     @extend %Nessie-Bold;
 
-    font-size:      1.2rem;
-    line-height:    1.6rem;
-    letter-spacing: 0.02rem;
+    font-size:          var( --typo-2 );
+    line-height:        var( --line-height-s );
+    letter-spacing:     0.2px;
 
-    text-align:     center;
-
-    &:active
-    {
-        color:  color( var( --PC-DARK-GREY ) a( 50% ) );
-    }
+    text-align:         center;
 
     &:focus
     {
-        outline:    none;
+        outline:        none;
     }
 }
 
 
 .pageButtons
 {
-    display:        inline-flex;
-    align-items:    flex-start;
+    display:            inline-flex;
+    align-items:        flex-start;
 
     & > *
     {
@@ -90,16 +91,18 @@
 
 .ellipsis
 {
-    width:                  2.4rem;
-    height:                 1.4rem;
-    background-size:        1.4rem;
-    background-position:    center;
-    background-repeat:      no-repeat;
+    padding:            0;
+    height:             14px;
+    background-color:   transparent;
 }
 
 
 .arrows
 {
-    height: 1.8rem;
-    width: 2.6rem;
+    border-radius:          2px;
+
+    &:hover
+    {
+        background-color:   var( --PC-GREY--L90 );
+    }
 }

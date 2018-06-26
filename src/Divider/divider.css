@@ -1,12 +1,11 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
-	position: 		        relative;
-    margin-top:             1rem;
-    margin-bottom:          3rem;
-    height:                 0.1rem;
+    position: 		        relative;
+    margin-top:             var( --spacing-2 );
+    margin-bottom:          var( --spacing-3 );
+    height:                 1px;
 
     border:                 none;
     background-color:       color( var( --GS-2 ) a( 20% ) );

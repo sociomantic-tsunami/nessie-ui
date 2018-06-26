@@ -1,249 +1,212 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
 
-import Component        from '../proto/Component';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
-import InputContainer   from '../proto/InputContainer';
+import { generateId }                    from '../utils';
+import { Column, InputField, Row, Text } from '../index';
+import InputContainer                    from '../proto/InputContainer';
 
-export default class DimensionsInput extends Component
-{
-    static propTypes =
-    {
-        /**
-         *  Label text string or JSX node
-         */
-        label                 : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-        /**
-        *  Width placeholder text
-        */
-        widthPlaceholder      : PropTypes.string,
-        /**
-        *  Height placeholder text
-        */
-        heightPlaceholder     : PropTypes.string,
-        /**
-        *  Display as disabled
-        */
-        isDisabled            : PropTypes.bool,
-        /**
-        *  Display as read-only
-        */
-        isReadOnly            : PropTypes.bool,
-        /**
-         *  Display as error/invalid
-         */
-        hasError              : PropTypes.bool,
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-         * Initial height input string value
-         */
-        widthDefaultValue     : PropTypes.string,
-        /**
-         * Height input string value
-         */
-        widthValue            : PropTypes.string,
-        /**
-         * Initial width input string value
-         */
-        heightDefaultValue    : PropTypes.string,
-        /**
-         * Width input string value
-         */
-        heightValue           : PropTypes.string,
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id                    : PropTypes.string,
-        /**
-        *  onChange callback function: ( e ) => { ... }
-        */
-        onChange              : PropTypes.func,
-        /**
-        *  onFocus callback function: ( e ) => { ... }
-        */
-        onFocus               : PropTypes.func,
-        /**
-        *  onBlur callback function: ( e ) => { ... }
-        */
-        onBlur                : PropTypes.func,
-        /**
-        *  onMouseOver callback function: ( e ) => { ... }
-        */
-        onMouseOver           : PropTypes.func,
-        /**
-        *  onMouseOut callback function: ( e ) => { ... }
-        */
-        onMouseOut            : PropTypes.func,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover            : PropTypes.bool,
-        /**
-         * Callback that receives the native width <input>:
-         * ( focusFunc ) => { ... }
-         */
-        widthInputRef         : PropTypes.func,
-        /**
-         * Callback that receives the native height <input>:
-         * ( focusFunc ) => { ... }
-         */
-        heightInputRef        : PropTypes.func,
-    };
+const DimensionsInput = ( {
+    className,
+    errorMessage,
+    errorMessageIsVisible,
+    errorMessagePosition,
+    forceHover,
+    hasError,
+    heightDefaultValue,
+    heightInputRef,
+    heightPlaceholder,
+    heightValue,
+    id,
+    isDisabled,
+    isReadOnly,
+    label,
+    labelPosition,
+    onChange,
+    onBlur,
+    onFocus,
+    onMouseOut,
+    onMouseOver,
+    widthDefaultValue,
+    widthInputRef,
+    widthPlaceholder,
+    widthValue,
+} ) => (
+    <InputContainer
+        className             = { className }
+        errorMessage          = { errorMessage }
+        errorMessageIsVisible = { errorMessageIsVisible }
+        errorMessagePosition  = { errorMessagePosition }
+        hasError              = { hasError }
+        id                    = { `${id}-width` }
+        isDisabled            = { isDisabled }
+        label                 = { label }
+        labelPosition         = { labelPosition }
+        onMouseOut            = { onMouseOut }
+        onMouseOver           = { onMouseOver }>
+        <Row
+            gutters       = "S"
+            onMouseOut    = { onMouseOut }
+            onMouseOver   = { onMouseOver }
+            verticalAlign = "middle">
+            <Column>
+                <InputField
+                    defaultValue = { widthDefaultValue }
+                    forceHover   = { forceHover }
+                    hasError     = { hasError }
+                    id           = { `${id}-width` }
+                    isDisabled   = { isDisabled }
+                    isReadOnly   = { isReadOnly }
+                    inputRef     = { widthInputRef }
+                    onChange     = { onChange }
+                    onBlur       = { onBlur }
+                    onFocus      = { onFocus }
+                    placeholder  = { widthPlaceholder }
+                    value        = { widthValue } />
+            </Column>
+            <Column size = "content">
+                <Text>✕</Text>
+            </Column>
+            <Column>
+                <InputField
+                    defaultValue = { heightDefaultValue }
+                    forceHover   = { forceHover }
+                    hasError     = { hasError }
+                    id           = { `${id}-height` }
+                    isDisabled   = { isDisabled }
+                    isReadOnly   = { isReadOnly }
+                    inputRef     = { heightInputRef }
+                    onChange     = { onChange }
+                    onBlur       = { onBlur }
+                    onFocus      = { onFocus }
+                    placeholder  = { heightPlaceholder }
+                    value        = { heightValue } />
+            </Column>
+        </Row>
+    </InputContainer>
+);
 
-    static defaultProps =
-    {
-        widthPlaceholder      : 'width',
-        heightPlaceholder     : 'height',
-        hasError              : false,
-        errorMessageIsVisible : false,
-        isDisabled            : false,
-        isReadOnly            : false,
-        forceHover            : false,
-        cssMap                : require( './dimensionsInput.css' ),
-    };
+DimensionsInput.propTypes = {
+    /**
+     *  Tooltip message text (string or JSX)
+     */
+    errorMessage          : PropTypes.node,
+    /**
+     *  Error Tooltip is displayed
+     */
+    errorMessageIsVisible : PropTypes.bool,
+    /**
+     *  Error Tooltip position relative to error icon
+     */
+    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    /**
+     * Display as hover when required from another component
+     */
+    forceHover            : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError              : PropTypes.bool,
+    /**
+     * Initial width input string value
+     */
+    heightDefaultValue    : PropTypes.string,
+    /**
+     * Callback that receives the native height <input>:
+     * ( focusFunc ) => { ... }
+     */
+    heightInputRef        : PropTypes.func,
+    /**
+    *  Height placeholder text
+    */
+    heightPlaceholder     : PropTypes.string,
+    /**
+     * Width input string value
+     */
+    heightValue           : PropTypes.string,
+    /**
+     * HTML id attribute (overwrite default)
+     */
+    id                    : PropTypes.string,
+    /**
+    *  Display as disabled
+    */
+    isDisabled            : PropTypes.bool,
+    /**
+    *  Display as read-only
+    */
+    isReadOnly            : PropTypes.bool,
+    /**
+     *  Label text string or JSX node
+     */
+    label                 : PropTypes.node,
+    /**
+     *  Label position
+     */
+    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    /**
+    *  onChange callback function: ( e ) => { ... }
+    */
+    onChange              : PropTypes.func,
+    /**
+    *  onBlur callback function: ( e ) => { ... }
+    */
+    onBlur                : PropTypes.func,
+    /**
+    *  onFocus callback function: ( e ) => { ... }
+    */
+    onFocus               : PropTypes.func,
+    /**
+    *  onMouseOut callback function: ( e ) => { ... }
+    */
+    onMouseOut            : PropTypes.func,
+    /**
+    *  onMouseOver callback function: ( e ) => { ... }
+    */
+    onMouseOver           : PropTypes.func,
+    /**
+     * Initial height input string value
+     */
+    widthDefaultValue     : PropTypes.string,
+    /**
+     * Callback that receives the native width <input>:
+     * ( focusFunc ) => { ... }
+     */
+    widthInputRef         : PropTypes.func,
+    /**
+    *  Width placeholder text
+    */
+    widthPlaceholder      : PropTypes.string,
+    /**
+     * Height input string value
+     */
+    widthValue            : PropTypes.string,
+};
 
-    constructor( props )
-    {
-        super( props );
+DimensionsInput.defaultProps = {
+    className             : undefined,
+    errorMessage          : undefined,
+    errorMessageIsVisible : false,
+    errorMessagePosition  : 'top',
+    forceHover            : false,
+    hasError              : false,
+    heightDefaultValue    : undefined,
+    heightInputRef        : undefined,
+    heightPlaceholder     : 'height',
+    heightValue           : undefined,
+    id                    : generateId( 'DimensionsInput' ),
+    isDisabled            : false,
+    isReadOnly            : false,
+    label                 : undefined,
+    labelPosition         : 'top',
+    onChange              : undefined,
+    onBlur                : undefined,
+    onFocus               : undefined,
+    onMouseOut            : undefined,
+    onMouseOver           : undefined,
+    widthDefaultValue     : undefined,
+    widthInputRef         : undefined,
+    widthPlaceholder      : 'width',
+    widthValue            : undefined,
+};
 
-        this.state = {
-            ...this.state,
-            isFocused : false,
-        };
-
-        this.handleFocus     = this.handleFocus.bind( this );
-        this.handleBlur      = this.handleBlur.bind( this );
-    }
-
-    handleFocus( e )
-    {
-        this.setState( { isFocused: true } );
-        this.lastFocused = e.target;
-
-        const { relatedTarget } = e;
-        const { widthInput, heightInput } = this;
-
-        if ( relatedTarget )
-        {
-            if ( relatedTarget === widthInput || relatedTarget === heightInput )
-            {
-                e.stopPropagation();
-                return;
-            }
-        }
-
-        const { onFocus } = this.props;
-        if ( onFocus )
-        {
-            onFocus( e );
-        }
-    }
-
-    handleBlur( e )
-    {
-        this.setState( { isFocused: false } );
-
-        const { relatedTarget } = e;
-        const { widthInput, heightInput } = this;
-
-        if ( relatedTarget )
-        {
-            if ( relatedTarget === widthInput || relatedTarget === heightInput )
-            {
-                e.stopPropagation();
-                return;
-            }
-        }
-
-        const { onBlur } = this.props;
-        if ( onBlur )
-        {
-            onBlur( e );
-        }
-    }
-
-
-    render()
-    {
-        const {
-            className,
-            cssMap,
-            forceHover,
-            label,
-            onMouseOut,
-            onMouseOver,
-            ...props
-        }  = this.props;
-
-        const {
-            hasError,
-            heightDefaultValue,
-            heightInputRef,
-            heightPlaceholder,
-            heightValue,
-            isDisabled,
-            widthDefaultValue,
-            widthInputRef,
-            widthPlaceholder,
-            widthValue
-        } = props;
-
-        const { id, isFocused } = this.state;
-
-        const inputFieldCssMap = { 'default': cssMap.inputDefault };
-
-        return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && ( isFocused || forceHover )
-                } }>
-                <InputContainer
-                    { ...props }
-                    className   = { className }
-                    id          = { id }
-                    label       = { label }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }>
-                    <div className = { cssMap.container }>
-                        <InputField
-                            { ...props }
-                            inputRef     = { widthInputRef }
-                            cssMap       = { inputFieldCssMap }
-                            id           = { `${id}-width` }
-                            placeholder  = { widthPlaceholder }
-                            defaultValue = { widthDefaultValue }
-                            value        = { widthValue }
-                            onFocus      = { this.handleFocus }
-                            onBlur       = { this.handleBlur } />
-                        <div className = { cssMap.icon }>✕</div>
-                        <InputField
-                            { ...props }
-                            inputRef     = { heightInputRef }
-                            cssMap       = { inputFieldCssMap }
-                            id           = { `${id}-height` }
-                            placeholder  = { heightPlaceholder }
-                            defaultValue = { heightDefaultValue }
-                            value        = { heightValue }
-                            onFocus      = { this.handleFocus }
-                            onBlur       = { this.handleBlur } />
-                    </div>
-                </InputContainer>
-            </Css>
-        );
-    }
-}
+export default DimensionsInput;

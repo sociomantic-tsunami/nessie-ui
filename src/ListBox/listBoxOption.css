@@ -1,42 +1,74 @@
-@import '../proto/definitions/_colors.css';
+@import '../proto/definitions/variables.css';
 
 .default
 {
-    display:    flex;
-    margin:     0;
-    padding:    1rem;
+    display:            flex;
+    align-items:        center;
 
-    margin:     0;
-    padding:    1rem;
+    margin:             0;
+    padding:            var( --spacing-1 ) var( --spacing-2 );
 
-    cursor:     pointer;
+    cursor:             pointer;
 
     .icon
     {
         flex:           0 0 auto;
-        margin-right:   1rem;
+        margin-right:   var( --spacing-2 );
     }
 
-    .text
+    .textContainer
     {
-        flex:       1 0 0%;
-        min-width:  0;
+        flex:           1 0 0%;
+        min-width:      0;
+    }
+
+    .optionText
+    {
+        margin:         0;
+        color:          var( --PC-GREY );
+    }
+
+    &:hover,
+    &.active
+    {
+        background:     var( --PC-BLUE );
+
+        .optionText,
+        .description
+        {
+            color:      var( --PC-WHITE );
+        }
+    }
+}
+
+.withDescription
+{
+    .optionText
+    {
+        font-size:      var( --typo-5 );
+        line-height:    var( --line-height-m );
+        color:          var( --PC-BLUE );
     }
 }
 
 .selected
 {
-    background: color( var( --PC-BLUE ) a( 10% ) );
-}
-
-.active,
-.default:hover
-{
-    background: color( var( --PC-BLUE ) a( 30% ) );
-    color:      var( --PC-DARK-GREY );
+    background:         color( var( --PC-BLUE ) a( 10% ) );
 }
 
 .disabled
 {
-    cursor: default;
+    pointer-events:     none;
+    cursor:             auto;
+
+    .optionText
+    {
+        color:          var( --PC-GREY--L70 );
+    }
+
+    &.withDescription .optionText,
+    .description
+    {
+        color:          var( --PC-GREY--L40 );
+    }
 }
