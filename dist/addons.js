@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 109);
+/******/ 	return __webpack_require__(__webpack_require__.s = 107);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -83,7 +83,7 @@ module.exports = require("prop-types");
 
 /***/ }),
 
-/***/ 109:
+/***/ 107:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,7 +104,7 @@ exports.withDropdown = _withDropdown3.default;
 
 /***/ }),
 
-/***/ 17:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,169 +135,7 @@ module.exports = function (module) {
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _withDropdown = __webpack_require__(45);
-
-var _withDropdown2 = _interopRequireDefault(_withDropdown);
-
-var _utils = __webpack_require__(3);
-
-var _index = __webpack_require__(24);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var withDropdown = function withDropdown(Component) {
-    var ComponentWithDropdown = function ComponentWithDropdown(_ref) {
-        var cssMap = _ref.cssMap,
-            dropdownIsOpen = _ref.dropdownIsOpen,
-            dropdownPosition = _ref.dropdownPosition,
-            dropdownProps = _ref.dropdownProps,
-            onMouseOut = _ref.onMouseOut,
-            onMouseOver = _ref.onMouseOver,
-            wrapperRef = _ref.wrapperRef,
-            componentProps = _objectWithoutProperties(_ref, ['cssMap', 'dropdownIsOpen', 'dropdownPosition', 'dropdownProps', 'onMouseOut', 'onMouseOver', 'wrapperRef']);
-
-        return _react2.default.createElement(
-            'div',
-            {
-                ref: wrapperRef,
-                className: (0, _utils.buildClassName)('', _withDropdown2.default, {
-                    open: dropdownIsOpen,
-                    position: dropdownPosition
-                }),
-                onMouseEnter: onMouseOver,
-                onMouseLeave: onMouseOut },
-            _react2.default.createElement(Component, componentProps),
-            _react2.default.createElement(_index2.default, _extends({}, dropdownProps, { className: _withDropdown2.default.dropdown }))
-        );
-    };
-
-    ComponentWithDropdown.propTypes = _extends({}, Component.propTypes, {
-        /**
-         *  Show/hide the dropdown
-         */
-        dropdownIsOpen: _propTypes2.default.bool,
-        /**
-         *  Position of dropdown relative to component
-         */
-        dropdownPosition: _propTypes2.default.oneOf(['bottom', 'top']),
-        /**
-         *  Props to pass directly to the Dropdown component
-         */
-        dropdownProps: _propTypes2.default.objectOf(_propTypes2.default.any),
-        /**
-         *  Callback function that receives a ref to the outer wrapper div
-         */
-        wrapperRef: _propTypes2.default.func
-    });
-
-    ComponentWithDropdown.defaultProps = _extends({}, Component.defaultProps, {
-        dropdownIsOpen: false,
-        dropdownPosition: 'bottom',
-        dropdownProps: undefined,
-        wrapperRef: undefined
-    });
-
-    ComponentWithDropdown.displayName = (0, _utils.buildDisplayName)(ComponentWithDropdown, Component);
-
-    return ComponentWithDropdown;
-};
-
-exports.default = withDropdown;
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(1);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _utils = __webpack_require__(3);
-
-var _dropdown = __webpack_require__(44);
-
-var _dropdown2 = _interopRequireDefault(_dropdown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Dropdown = function Dropdown(_ref) {
-    var children = _ref.children,
-        className = _ref.className,
-        cssMap = _ref.cssMap,
-        hasError = _ref.hasError,
-        padding = _ref.padding,
-        size = _ref.size;
-    return _react2.default.createElement(
-        'div',
-        {
-            className: (0, _utils.buildClassName)(className, cssMap, {
-                error: hasError,
-                padding: padding,
-                size: size
-            }) },
-        children
-    );
-};
-
-Dropdown.propTypes = {
-    children: _propTypes2.default.node,
-    className: _propTypes2.default.string,
-    cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
-    hasError: _propTypes2.default.bool,
-    padding: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
-    size: _propTypes2.default.oneOf(['content', 'default'])
-};
-
-Dropdown.defaultProps = {
-    children: undefined,
-    className: undefined,
-    cssMap: _dropdown2.default,
-    hasError: false,
-    padding: 'none',
-    size: 'default'
-};
-
-exports.default = Dropdown;
-
-/***/ }),
-
-/***/ 3:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -448,6 +286,168 @@ exports.default = {
     killFocus: killFocus,
     mapAria: mapAria
 };
+
+/***/ }),
+
+/***/ 23:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _withDropdown = __webpack_require__(45);
+
+var _withDropdown2 = _interopRequireDefault(_withDropdown);
+
+var _utils = __webpack_require__(2);
+
+var _index = __webpack_require__(24);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var withDropdown = function withDropdown(Component) {
+    var ComponentWithDropdown = function ComponentWithDropdown(_ref) {
+        var cssMap = _ref.cssMap,
+            dropdownIsOpen = _ref.dropdownIsOpen,
+            dropdownPosition = _ref.dropdownPosition,
+            dropdownProps = _ref.dropdownProps,
+            onMouseOut = _ref.onMouseOut,
+            onMouseOver = _ref.onMouseOver,
+            wrapperRef = _ref.wrapperRef,
+            componentProps = _objectWithoutProperties(_ref, ['cssMap', 'dropdownIsOpen', 'dropdownPosition', 'dropdownProps', 'onMouseOut', 'onMouseOver', 'wrapperRef']);
+
+        return _react2.default.createElement(
+            'div',
+            {
+                ref: wrapperRef,
+                className: (0, _utils.buildClassName)('', _withDropdown2.default, {
+                    open: dropdownIsOpen,
+                    position: dropdownPosition
+                }),
+                onMouseEnter: onMouseOver,
+                onMouseLeave: onMouseOut },
+            _react2.default.createElement(Component, componentProps),
+            _react2.default.createElement(_index2.default, _extends({}, dropdownProps, { className: _withDropdown2.default.dropdown }))
+        );
+    };
+
+    ComponentWithDropdown.propTypes = _extends({}, Component.propTypes, {
+        /**
+         *  Show/hide the dropdown
+         */
+        dropdownIsOpen: _propTypes2.default.bool,
+        /**
+         *  Position of dropdown relative to component
+         */
+        dropdownPosition: _propTypes2.default.oneOf(['bottom', 'top']),
+        /**
+         *  Props to pass directly to the Dropdown component
+         */
+        dropdownProps: _propTypes2.default.objectOf(_propTypes2.default.any),
+        /**
+         *  Callback function that receives a ref to the outer wrapper div
+         */
+        wrapperRef: _propTypes2.default.func
+    });
+
+    ComponentWithDropdown.defaultProps = _extends({}, Component.defaultProps, {
+        dropdownIsOpen: false,
+        dropdownPosition: 'bottom',
+        dropdownProps: undefined,
+        wrapperRef: undefined
+    });
+
+    ComponentWithDropdown.displayName = (0, _utils.buildDisplayName)(ComponentWithDropdown, Component);
+
+    return ComponentWithDropdown;
+};
+
+exports.default = withDropdown;
+
+/***/ }),
+
+/***/ 24:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _utils = __webpack_require__(2);
+
+var _dropdown = __webpack_require__(44);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Dropdown = function Dropdown(_ref) {
+    var children = _ref.children,
+        className = _ref.className,
+        cssMap = _ref.cssMap,
+        hasError = _ref.hasError,
+        padding = _ref.padding,
+        size = _ref.size;
+    return _react2.default.createElement(
+        'div',
+        {
+            className: (0, _utils.buildClassName)(className, cssMap, {
+                error: hasError,
+                padding: padding,
+                size: size
+            }) },
+        children
+    );
+};
+
+Dropdown.propTypes = {
+    children: _propTypes2.default.node,
+    className: _propTypes2.default.string,
+    cssMap: _propTypes2.default.objectOf(_propTypes2.default.string),
+    hasError: _propTypes2.default.bool,
+    padding: _propTypes2.default.oneOf(['none', 'S', 'M', 'L']),
+    size: _propTypes2.default.oneOf(['content', 'default'])
+};
+
+Dropdown.defaultProps = {
+    children: undefined,
+    className: undefined,
+    cssMap: _dropdown2.default,
+    hasError: false,
+    padding: 'none',
+    size: 'default'
+};
+
+exports.default = Dropdown;
 
 /***/ }),
 
@@ -2312,7 +2312,7 @@ function stubFalse() {
 }
 
 module.exports = isEqual;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31), __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31), __webpack_require__(16)(module)))
 
 /***/ })
 
