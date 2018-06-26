@@ -18,47 +18,47 @@ describe( 'DimensionsInput', () =>
     let wrapper;
     let instance;
 
-    beforeEach(() =>
+    beforeEach( () =>
     {
         wrapper  = shallow( <DimensionsInput /> );
         instance = wrapper.instance();
-    });
+    } );
 
     describe( 'constructor( props )', () =>
     {
-        test('should have name DimensionsInput', () =>
+        test( 'should have name DimensionsInput', () =>
         {
-            expect( instance.constructor.name ).toBe('DimensionsInput');
-        });
+            expect( instance.constructor.name ).toBe( 'DimensionsInput' );
+        } );
     } );
 
     describe( 'handleFocus( e )', () =>
     {
-        test('should call setState with { isFocused: true } }', () =>
+        test( 'should call setState with { isFocused: true } }', () =>
         {
             const setState = jest.fn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: true } ) ) ).toBe(true);
-        });
+            expect( setState.calledWith( sinon.match( { isFocused: true } ) ) ).toBe( true );
+        } );
 
-        test('should call setState exactly once', () =>
+        test( 'should call setState exactly once', () =>
         {
             const setState = jest.fn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState.calledOnce ).toBe(true);
-        });
+            expect( setState ).toBeCalled();
+        } );
 
-        test('should set lastFocused property on instance', () =>
+        test( 'should set lastFocused property on instance', () =>
         {
             const input = document.createElement( 'input' );
             instance.handleFocus( { target: input } );
 
-            expect( instance.lastFocused ).toBe(input);
-        });
+            expect( instance.lastFocused ).toBe( input );
+        } );
 
-        test('should call onFocus with e', () =>
+        test( 'should call onFocus with e', () =>
         {
             const onFocus = jest.fn();
             const e = new Event( 'focus' );
@@ -66,112 +66,124 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onFocus } );
             instance.handleFocus( e );
 
-            expect( onFocus.calledWith( e ) ).toBe(true);
-        });
+            expect( onFocus ).toBeCalledWith( e );
+        } );
 
-        test('should call onFocus exactly once', () =>
+        test( 'should call onFocus exactly once', () =>
         {
             const onFocus = jest.fn();
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( onFocus.calledOnce ).toBe(true);
-        });
+            expect( onFocus ).toBeCalled();
+        } );
 
-        test('shouldn’t call onFocus when relatedTarget is width <input>', () =>
+        test(
+            'shouldn’t call onFocus when relatedTarget is width <input>',
+            () =>
+            {
+                const onFocus = jest.fn();
+                const input   = document.createElement( 'input' );
+
+                const e = new Event( 'focus' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+
+                wrapper.setProps( { onFocus } );
+                instance.widthInput = input;
+
+                instance.handleFocus( e );
+
+                expect( onFocus ).not.toBeCalled();
+            }
+        );
+
+        test(
+            'shouldn’t call onFocus when relatedTarget is height <input>',
+            () =>
+            {
+                const onFocus = jest.fn();
+                const input   = document.createElement( 'input' );
+
+                const e = new Event( 'focus' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+
+                wrapper.setProps( { onFocus } );
+                instance.heightInput = input;
+
+                instance.handleFocus( e );
+
+                expect( onFocus ).not.toBeCalled();
+            }
+        );
+
+        test(
+            'should stopPropagation when relatedTarget is width <input>',
+            () =>
+            {
+                const input = document.createElement( 'input' );
+
+                const e = new Event( 'focus' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
+
+                instance.widthInput = input;
+
+                instance.handleFocus( e );
+
+                expect( stopPropagation ).toBeCalled();
+            }
+        );
+
+        test(
+            'should stopPropagation when relatedTarget is height <input>',
+            () =>
+            {
+                const input = document.createElement( 'input' );
+
+                const e = new Event( 'focus' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
+
+                instance.heightInput = input;
+
+                instance.handleFocus( e );
+
+                expect( stopPropagation ).toBeCalled();
+            }
+        );
+
+        test( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
-            const onFocus = jest.fn();
-            const input   = document.createElement( 'input' );
-
             const e = new Event( 'focus' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-            wrapper.setProps( { onFocus } );
-            instance.widthInput = input;
-
-            instance.handleFocus( e );
-
-            expect( onFocus.called ).toBe(false);
-        });
-
-        test('shouldn’t call onFocus when relatedTarget is height <input>', () =>
-        {
-            const onFocus = jest.fn();
-            const input   = document.createElement( 'input' );
-
-            const e = new Event( 'focus' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-            wrapper.setProps( { onFocus } );
-            instance.heightInput = input;
-
-            instance.handleFocus( e );
-
-            expect( onFocus.called ).toBe(false);
-        });
-
-        test('should stopPropagation when relatedTarget is width <input>', () =>
-        {
-            const input = document.createElement( 'input' );
-
-            const e = new Event( 'focus' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
             const stopPropagation = jest.fn( e, 'stopPropagation' );
 
-            instance.widthInput = input;
-
             instance.handleFocus( e );
 
-            expect( stopPropagation.calledOnce ).toBe(true);
-        });
-
-        test('should stopPropagation when relatedTarget is height <input>', () =>
-        {
-            const input = document.createElement( 'input' );
-
-            const e = new Event( 'focus' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
-
-            instance.heightInput = input;
-
-            instance.handleFocus( e );
-
-            expect( stopPropagation.calledOnce ).toBe(true);
-        });
-
-        test('shouldn’t stopPropagation if relatedTarget not an input', () =>
-        {
-            const e = new Event( 'focus' );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
-
-            instance.handleFocus( e );
-
-            expect( stopPropagation.called ).toBe(false);
-        });
+            expect( stopPropagation ).not.toBeCalled();
+        } );
     } );
 
     describe( 'handleBlur( e )', () =>
     {
-        test('should call setState with { isFocused: false } }', () =>
+        test( 'should call setState with { isFocused: false } }', () =>
         {
             const setState = jest.fn( instance, 'setState' );
 
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: false } ) ) ).toBe(true);
-        });
+            expect( setState.calledWith( sinon.match( { isFocused: false } ) ) ).toBe( true );
+        } );
 
-        test('should call setState exactly once', () =>
+        test( 'should call setState exactly once', () =>
         {
             const setState = jest.fn( instance, 'setState' );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState.calledOnce ).toBe(true);
-        });
+            expect( setState ).toBeCalled();
+        } );
 
-        test('should call onBlur with e', () =>
+        test( 'should call onBlur with e', () =>
         {
             const onBlur = jest.fn();
             const e = new Event( 'blur' );
@@ -179,20 +191,20 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onBlur } );
             instance.handleBlur( e );
 
-            expect( onBlur.calledWith( e ) ).toBe(true);
-        });
+            expect( onBlur ).toBeCalledWith( e );
+        } );
 
-        test('should call onBlur exactly once', () =>
+        test( 'should call onBlur exactly once', () =>
         {
             const onBlur = jest.fn();
 
             wrapper.setProps( { onBlur } );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( onBlur.calledOnce ).toBe(true);
-        });
+            expect( onBlur ).toBeCalled();
+        } );
 
-        test('shouldn’t call onBlur when relatedTarget is width <input>', () =>
+        test( 'shouldn’t call onBlur when relatedTarget is width <input>', () =>
         {
             const onBlur = jest.fn();
             const input   = document.createElement( 'input' );
@@ -205,81 +217,90 @@ describe( 'DimensionsInput', () =>
 
             instance.handleBlur( e );
 
-            expect( onBlur.called ).toBe(false);
-        });
+            expect( onBlur ).not.toBeCalled();
+        } );
 
-        test('shouldn’t call onBlur when relatedTarget is height <input>', () =>
+        test(
+            'shouldn’t call onBlur when relatedTarget is height <input>',
+            () =>
+            {
+                const onBlur = jest.fn();
+                const input   = document.createElement( 'input' );
+
+                const e = new Event( 'blur' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+
+                wrapper.setProps( { onBlur } );
+                instance.heightInput = input;
+
+                instance.handleBlur( e );
+
+                expect( onBlur ).not.toBeCalled();
+            }
+        );
+
+        test(
+            'should stopPropagation when relatedTarget is width <input>',
+            () =>
+            {
+                const input = document.createElement( 'input' );
+
+                const e = new Event( 'blur' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
+
+                instance.widthInput = input;
+
+                instance.handleBlur( e );
+
+                expect( stopPropagation ).toBeCalled();
+            }
+        );
+
+        test(
+            'should stopPropagation when relatedTarget is height <input>',
+            () =>
+            {
+                const input = document.createElement( 'input' );
+
+                const e = new Event( 'blur' );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = jest.fn( e, 'stopPropagation' );
+
+                instance.heightInput = input;
+
+                instance.handleBlur( e );
+
+                expect( stopPropagation ).toBeCalled();
+            }
+        );
+
+        test( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
-            const onBlur = jest.fn();
-            const input   = document.createElement( 'input' );
-
             const e = new Event( 'blur' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-            wrapper.setProps( { onBlur } );
-            instance.heightInput = input;
-
-            instance.handleBlur( e );
-
-            expect( onBlur.called ).toBe(false);
-        });
-
-        test('should stopPropagation when relatedTarget is width <input>', () =>
-        {
-            const input = document.createElement( 'input' );
-
-            const e = new Event( 'blur' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
             const stopPropagation = jest.fn( e, 'stopPropagation' );
 
-            instance.widthInput = input;
-
             instance.handleBlur( e );
 
-            expect( stopPropagation.calledOnce ).toBe(true);
-        });
-
-        test('should stopPropagation when relatedTarget is height <input>', () =>
-        {
-            const input = document.createElement( 'input' );
-
-            const e = new Event( 'blur' );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
-
-            instance.heightInput = input;
-
-            instance.handleBlur( e );
-
-            expect( stopPropagation.calledOnce ).toBe(true);
-        });
-
-        test('shouldn’t stopPropagation if relatedTarget not an input', () =>
-        {
-            const e = new Event( 'blur' );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
-
-            instance.handleBlur( e );
-
-            expect( stopPropagation.called ).toBe(false);
-        });
+            expect( stopPropagation ).not.toBeCalled();
+        } );
     } );
 
     describe( 'render()', () =>
     {
-        test('should implement the Css injector component', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly one InputContainer', () =>
+        test( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).toHaveLength(1);
-        });
+            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+        } );
 
-        test('should contain exactly two InputFields', () =>
+        test( 'should contain exactly two InputFields', () =>
         {
-            expect( wrapper.find( InputField ) ).toHaveLength(2);
-        });
+            expect( wrapper.find( InputField ) ).toHaveLength( 2 );
+        } );
     } );
 } );
