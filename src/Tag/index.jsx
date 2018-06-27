@@ -38,6 +38,7 @@ const Tag = ( {
             <IconButton
                 className  = { cssMap.delete }
                 forceHover = { forceHover }
+                iconSize   = "S"
                 iconType   = "close"
                 isDisabled = { isDisabled }
                 isReadOnly = { isReadOnly }

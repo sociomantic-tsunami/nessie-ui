@@ -1,17 +1,11 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
     flex:           0 0 auto;
     width:          100%;
     margin:         0;
-    padding-top:    2.4rem;
-    padding-bottom: 2.4rem;
-    padding-right:  4rem;
-    padding-left:   4rem;
-
-    background:     var( --PC-WHITE );
-
-    border-bottom:  0.1rem solid color( var( --GS-2 ) tint( 80% ) );
+    padding-top:    var( --spacing-3 ) var( --spacing-5 );
+    background:     var( --PC-BLUE );
+    color:          var( --PC-WHITE );
 }

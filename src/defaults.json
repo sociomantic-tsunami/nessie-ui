@@ -38,6 +38,8 @@
     },
     "DatePicker" :
     {
+        "month" : "February",
+        "year" : "2018",
         "label"   : "January 2000",
         "headers" : [{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],
         "items"   : [[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]
@@ -74,7 +76,7 @@
     "Fieldset" :
     {
         "label"    : "Fieldset legend",
-        "children" : "{<div>Fieldset content</div>}"
+        "children" : "{<Text>Fieldset content</Text>}"
     },
     "Form" :
     {
@@ -85,18 +87,18 @@
         "placeholder" : "Just a placeholder",
         "label"       : "Pick an option",
         "data"        : [
-                           "Option",
-                            {
-                                "text" : "Option with description",
-                                "value" : "value2",
-                                "description":"Option description"
-                            },
-                            {
-                                "text" : "Disabled option",
-                                "value" : "value3",
-                                "disabled" : true
-                            }
-                        ]
+           "Option",
+            {
+                "text"        : "Option with description",
+                "value"       : "value2",
+                "description" : "Option description"
+            },
+            {
+                "text"     : "Disabled option",
+                "value"    : "value5",
+                "disabled" : true
+            }
+        ]
     },
     "Grid" :
     {
@@ -177,15 +179,15 @@
     "Module" :
     {
         "title": "Our Wonderful Module",
-        "children": "{<div>Some other components go here....</div>}"
+        "children": "{<Text>Some other components go here....</Text>}"
     },
     "ModalDialog" :
     {
-        "children" : "{<Section><H3>Header</H3><p>Modal box content</p><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
+        "children" : "{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
     },
     "NavBar" :
     {
-        "children" : "{<NavItem label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isDisabled/></NavItem><NavItem label='Campaigns' href='#'/><NavItem label='Account' href='#' isDisabled/>}"
+        "children" : "{<NavItem iconType='lightbulb' label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isCurrent/></NavItem><NavItem iconType='megaphone' label='Campaigns' href='#'/><NavItem iconType='account' label='Account' href='#'/>}"
     },
     "NavDropdown" :
     {
@@ -234,6 +236,10 @@
         "values"        : [ "apples", "oranges", "kaki" ],
         "selectedValue" : "apples"
     },
+    "Required" :
+    {
+        "lochness" : { "isDeprecated" : true }
+    },
     "Row" :
     {
         "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
@@ -251,7 +257,7 @@
     {
         "title"   : "The Life and Times of David Hasselhoff",
         "level"   : 1,
-        "children" : "{<Section level={2} title='Early Life'><p>Subsection content...</p></Section><Section level={2} title='Early Career'><p>Subsection content...</p></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><p>Sub-subsection content...</p></Section></Section><p>More main section content...</p>}"
+        "children" : "{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"
     },
     "Slider":
     {
@@ -278,7 +284,7 @@
     "Tab" :
     {
         "label"    : "Tab title text",
-        "children" : "{<div>Tab content goes here</div>}"
+        "children" : "{<Text>Tab content goes here</Text>}"
     },
     "TabButton" :
     {
@@ -297,7 +303,7 @@
     },
     "TableRow" :
     {
-        "children": "{<TableCell size='1/3' columnTitle='left column title'><div>left<br/>column<br/>content</div></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
+        "children": "{<TableCell size='1/3' columnTitle='left column title'><Text>left</Text><Text>column</Text><Text>content</Text></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
     },
     "Tabs" :
     {

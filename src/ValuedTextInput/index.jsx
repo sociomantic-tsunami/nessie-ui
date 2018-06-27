@@ -147,14 +147,11 @@ export default class ValuedTextInput extends Component
 
         this.state = {
             ...this.state,
-            isFocused : false,
-            isHovered : false
+            isFocused : false
         };
 
         this.handleFocus     = this.handleFocus.bind( this );
         this.handleBlur      = this.handleBlur.bind( this );
-        this.handleMouseOver = this.handleMouseOver.bind( this );
-        this.handleMouseOut  = this.handleMouseOut.bind( this );
     }
 
     handleFocus( e )
@@ -177,27 +174,6 @@ export default class ValuedTextInput extends Component
         }
     }
 
-    handleMouseOver( e )
-    {
-        const { onMouseOver } = this.props;
-        this.setState( { isHovered: true } );
-        if ( onMouseOver )
-        {
-            onMouseOver( e );
-        }
-    }
-
-    handleMouseOut( e )
-    {
-        const { onMouseOut } = this.props;
-        this.setState( { isHovered: false } );
-        if ( onMouseOut )
-        {
-            onMouseOut( e );
-        }
-    }
-
-
     render()
     {
         const {
@@ -217,11 +193,7 @@ export default class ValuedTextInput extends Component
             valueLabelPosition,
         } = props;
 
-        const {
-            id,
-            isFocused,
-            isHovered,
-        } = this.state;
+        const { id, isFocused } = this.state;
 
         let alignText = textAlign;
 
@@ -237,7 +209,7 @@ export default class ValuedTextInput extends Component
                     disabled    : isDisabled,
                     error       : hasError,
                     position    : valueLabelPosition,
-                    fakeHovered : forceHover || isFocused || isHovered
+                    fakeHovered : forceHover || isFocused
                 } }>
                 <InputContainer
                     { ...props }

@@ -41,10 +41,12 @@ describe( 'TagInput', () =>
 
     it( 'should have Tag components when passed as children', () =>
     {
-        wrapper.setProps( { children : [
-            <Tag label = "TagLabel 1" />,
-            <Tag label = "TagLabel 2" />
-        ] } );
+        wrapper.setProps( {
+            children : [
+                <Tag label = "TagLabel 1" />,
+                <Tag label = "TagLabel 2" />
+            ]
+        } );
 
         expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
@@ -118,14 +120,10 @@ describe( 'TagInput', () =>
 describe( 'TagInputDriver', () =>
 {
     let wrapper;
-    let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper  = mount( <TagInput /> );
-        instance = wrapper.instance();
-        cssMap   = instance.props.cssMap;
     } );
 
     describe( 'blur()', () =>
@@ -166,7 +164,7 @@ describe( 'TagInputDriver', () =>
         } );
     } );
 
-    describe( 'clickClose()', () =>
+    describe( 'clickCloseTagByIndex()', () =>
     {
         it( 'should call onClickClose once', () =>
         {
@@ -179,7 +177,26 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().clickClose();
+            wrapper.driver().clickCloseTagByIndex( 1 );
+
+            expect( onClickClose.calledOnce ).to.be.true;
+        } );
+    } );
+
+    describe( 'clickCloseTagByLabel()', () =>
+    {
+        it( 'should call onClickClose once', () =>
+        {
+            const onClickClose = sinon.spy();
+            wrapper.setProps( {
+                onClickClose,
+                children : [
+                    <Tag label = "TagLabel 1" />,
+                    <Tag label = "TagLabel 2" />
+                ]
+            } );
+
+            wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
 
             expect( onClickClose.calledOnce ).to.be.true;
         } );

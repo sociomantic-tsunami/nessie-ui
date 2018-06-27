@@ -1,6 +1,3 @@
-import React                                    from 'react';
-import PropTypes                                from 'prop-types';
-
 import Component                                from '../proto/Component';
 import { buildClassName }                       from '../utils';
 import styles                                   from './scrollBox.css';

@@ -1,33 +1,35 @@
 @import '../proto/base.css';
-@import '../proto/definitions/_colors.css';
 
 .default
 {
     min-width:  0;
     max-width:  none;
 
-    border:     0.1rem solid var( --PC-BLUE );
-    box-shadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
+    border:     1px solid color( var( --PC-GREY ) a(12%) );
+
+    box-shadow: var( --boxShadow );
 
     background: var( --PC-WHITE );
+
+    border-radius: 2px;
 }
 
 .error
 {
-    border-color:   var( --AC-1 );
+    border-color:   var( --PC-RED );
 }
 
 .padding__S
 {
-    padding:    1rem;
+    padding:    10px;
 }
 .padding__M
 {
-    padding:    2rem;
+    padding:    20px;
 }
 .padding__L
 {
-    padding:    3rem;
+    padding:    30px;
 }
 
 .size__default

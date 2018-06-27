@@ -1,11 +1,9 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 :root
 {
-    --handleSize:               1.6rem;
-    --stepLabelsContainerWidth: 8rem;
+    --handleSize:               16px;
+    --stepLabelsContainerWidth: 80px;
     --slidersContainerWidth:    100%;
 }
 
@@ -17,7 +15,7 @@
 
         &:not( :last-child )
         {
-            margin-bottom:  1rem;
+            margin-bottom:  10px;
         }
     }
 
@@ -27,7 +25,7 @@
 
         width:          var( --stepLabelsContainerWidth );
         margin-top:     calc( var( --handleSize ) / 2 );
-        margin-bottom:  calc( var( --handleSize ) / 2 )
+        margin-bottom:  calc( var( --handleSize ) / 2 );
     }
 
     .labelWrapper
@@ -35,11 +33,18 @@
         position:        absolute;
         transform:       translateY( 50% );
         max-width:       100%;
+
+        overflow:       hidden;
+        overflow-wrap:  normal;
+        text-overflow:  ellipsis;
     }
 
     .stepLabel
     {
-        @extend %Nessie-Regular;
+        @extend %Nessie-RegularIt;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--L40 );
     }
 
     .slidersContainer

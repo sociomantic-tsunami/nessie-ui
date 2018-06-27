@@ -70,7 +70,7 @@ export default class ScrollBoxDriver
         return this;
     }
 
-    scrollVertical( scrollOffset )
+    scrollVertical( scrollOffset = 0 )
     {
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
@@ -88,7 +88,7 @@ export default class ScrollBoxDriver
         return this;
     }
 
-    scrollHorizontal( scrollOffset )
+    scrollHorizontal( scrollOffset = 0 )
     {
         if ( !( this.props.scroll === 'horizontal' ||
             this.props.scroll === 'both' ) )

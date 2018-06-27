@@ -33,7 +33,7 @@ const Checkable = ( {
 
     if ( typeof labelText === 'string' )
     {
-        labelText = <Text>{ labelText }</Text>;
+        labelText = <Text className = { cssMap.labelText }>{ labelText }</Text>;
     }
 
     return (

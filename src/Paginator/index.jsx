@@ -105,7 +105,7 @@ const Paginator = ( {
                     <IconButton
                         className   = { cssMap.arrows }
                         iconTheme   = "navigation"
-                        iconSize    = "S"
+                        iconSize    = "M"
                         iconType    = "right"
                         onClick     = { onClickNext }>
                         { nextLabel }

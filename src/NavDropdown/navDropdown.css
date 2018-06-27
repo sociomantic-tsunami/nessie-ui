@@ -1,18 +1,20 @@
-@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/variables.css";
 
 .default /* extends NavList css */
 {
-    width:              auto;
-    max-width:          none;
-    max-height:         50vh;
+    width:                  auto;
+    max-width:              none;
+    min-width:              150px;
+    max-height:             50vh;
 
-    border:             0.1rem solid var( --PC-BLUE );
+    border:                 1px solid color( var( --PC-GREY ) a(12%) );
+    background:             var( --PC-WHITE );
+    box-shadow:             var( --boxShadow );
 
-    padding:            1rem 0;
+    padding:                var( --spacing-2 );
 
-    background:         var( --PC-WHITE );
+    overflow-y:             auto;
+    overscroll-behavior-y:  contain;
 
-    overflow-y:         auto;
-
-    z-index:            9999;
+    z-index:                999;
 }

@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -31,42 +30,49 @@
     .icon__right,
     .icon__up
     {
+
         position:         absolute;
         z-index:          10;
-        background-color: var( --PC-WHITE );
-        border-radius:    2rem;
-        opacity:          0.8;
+        background-color: var( --PC-BLUE );
+        border-radius:    20px;
+        opacity:          0.4;
+        width:            32px;
+        height:           32px;
+
+        &:hover,
+        &:focus
+        {
+            opacity:    1;
+        }
 
         svg
         {
-            fill:         var( --PC-BLUE );
+            fill:       var( --PC-WHITE );
         }
     }
 
     .icon__down
     {
-        bottom: 1rem;
-        left:   calc( 50% - 1.6rem );
+        bottom: 10px;
+        left:   calc( 50% - 16px );
     }
-
     .icon__left
     {
-        top:    calc( 50% - 1.6rem );
-        left:   1rem;
+        top:    calc( 50% - 16px );
+        left:   10px;
     }
-
     .icon__right
     {
-        top:    calc( 50% - 1.6rem );
-        right:  1rem;
+        top:    calc( 50% - 16px );
+        right:  10px;
     }
-
     .icon__up
     {
-        top:    1rem;
-        left:   calc( 50% - 1.6rem );
+        top:    10px;
+        left:   calc( 50% - 16px );
     }
 }
+
 
 .scroll__horizontal
 {

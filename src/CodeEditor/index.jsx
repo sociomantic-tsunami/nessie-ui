@@ -7,11 +7,13 @@ import Css                  from '../hoc/Css';
 import InputContainer       from '../proto/InputContainer';
 import styles               from './codeEditor.css';
 
+
 import 'codemirror/mode/jsx/jsx';
 
 const defaultOptions = {
     lineNumbers  : true,
-    lineWrapping : true
+    lineWrapping : true,
+    theme        : 'monokai'
 };
 
 const SCROLL_CLASS = 'CodeMirror-scroll';
@@ -349,8 +351,7 @@ export default class CodeEditor extends Component
                 cssProps = { {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
-                    fakeHovered : !isDisabled && !hasError &&
-                                  ( forceHover || isFocused )
+                    fakeHovered : !isDisabled && ( forceHover || isFocused )
                 } }>
                 <InputContainer { ...props } className = { className }>
                     <div

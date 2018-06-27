@@ -1,29 +1,89 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 :root
 {
-    --backgroundTransition:  background-color 0.2s ease-in-out;
-    --circleTransition:      left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
-    --textTransition:        opacity 0.2s cubic-bezier( 0.23, 1, 0.32, 1 ); /* easeOutQuint */
+    --inputHeight:          40px;
+
+    --trackWidth:           40px;
+    --trackHeight:          16px;
+
+    --borderWidth:          2px;
+
+    --circleSize:           25px;
+    --circleOffset:         4px;
+
+    --backgroundTransition: background-color 0.2s ease-in-out;
+    --circleTransition:     background-color 0.2s ease-in-out, left 0.25s cubic-bezier( 0.215, 0.61, 0.355, 1 );
 }
 
 .default
 {
-    width:  auto;
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
 
-    &:hover,
-    &.fakeHovered
+
+    width:              calc( var( --trackWidth ) + ( var( --circleOffset ) * 2 ) );
+    height:             var( --inputHeight );
+
+    .input
     {
-        .label
-        {
-            background-color:       color( var( --GS-2 ) shade( 13% ) );
-        }
+        position:   absolute;
+        left:       -9999px;
+    }
 
-        .input:checked + .label
+    .label
+    {
+        display:        flex;
+
+        box-sizing:     border-box;
+
+        width:          var( --trackWidth );
+        height:         var( --trackHeight );
+
+        border-radius:  calc( var( --trackHeight ) / 2 );
+
+        background:     var( --PC-GREY--L10 );
+
+        cursor:         pointer;
+        transition:     var( --backgroundTransition );
+
+        &::before
         {
-            background-color:       color( var( --AC-12 ) shade( 13% ) );
+            content:        '';
+
+            display:        block;
+            position:       absolute;
+
+            box-sizing:     border-box;
+
+            top:            50%;
+            left:           0;
+            transform:      translateY( -50% );
+
+            width:          var( --circleSize );
+            height:         var( --circleSize );
+
+            border-radius:  100%;
+            border-style:   solid;
+            border-width:   var( --borderWidth );
+            border-color:   var( --PC-GREY );
+
+            background:     var( --PC-WHITE );
+
+            transition:     var( --circleTransition );
+        }
+    }
+
+    .input:checked + .label
+    {
+        background: var( --PC-BLUE--L10 );
+        transition: var( --backgroundTransition );
+
+        &::before
+        {
+            left:           calc( 100% - var( --circleSize ) );
+            border-color:   var( --PC-BLUE );
         }
     }
 
@@ -31,162 +91,57 @@
     {
         & + .label
         {
-            background-color:       color( var( --GS-2 ) shade( 13% ) );
-        }
-
-        &:checked + .label
-        {
-            background-color:       color( var( --AC-12 ) shade( 13% ) );
+            /* mimic native browser focus */
+            outline:    auto 2px highlight;
+            outline:    auto 5px -webkit-focus-ring-color;
         }
     }
 }
-
 
 .disabled
 {
-    .label,
-    .input:checked + .label
+    .label
     {
-        cursor:                 default;
-        background-color:       var( --GS-7 );
-    }
+        cursor:     default;
+        background: var( --PC-GREY--L40 );
 
-    &:hover
-    {
-        .label,
-        .input:checked + .label
+        &::before
         {
-            background-color:       var( --GS-7 );
+            border-color: var( --PC-GREY--L40 );
         }
     }
-}
 
-
-
-
-
-
-.label
-{
-    position:           relative;
-    display:            flex;
-
-    min-height:         3.2rem; /* necessary if there's no label */
-
-    border-radius:      2rem;
-
-    background-color:   var( --GS-2 );
-
-    cursor:             pointer;
-    transition:         var( --backgroundTransition );
-
-
-    &::before
+    .input:checked + .label
     {
-        content:            '';
+        background: var( --PC-BLUE--L55 );
 
-        display:            block;
-        position:           absolute;
-
-        top:                0.4rem;
-        left:               0.4rem;
-
-        width:              2.4rem;
-        height:             2.4rem;
-
-        border-radius:      100%;
-
-        background-color:   var( --PC-WHITE );
-
-        transition:         var( --circleTransition );
-    }
-}
-
-.off,
-.on
-{
-    display:                block;
-    box-sizing:             border-box;
-
-    width:                  100%;
-
-    padding-top:            0.8rem;
-    padding-bottom:         0.5rem;
-
-    color:                  var( --PC-WHITE );
-
-    @extend %Nessie-SemiBold;
-
-    font-size:              1.2rem;
-    line-height:            1.6rem;
-    letter-spacing:         0.04rem;
-    text-transform:         uppercase;
-    text-align:             center;
-
-    overflow:               hidden;
-    white-space:            nowrap;
-    text-overflow:          ellipsis;
-
-    transition:             var( --textTransition );
-}
-
-.off
-{
-    padding-left:           4rem;
-    padding-right:          2.3rem;
-}
-
-.on
-{
-    position:               absolute; /* necessary to overlay on over off */
-    top:                    0;
-    bottom:                 0;
-    left:                   0;
-    right:                  0;
-
-    padding-left:           2.3rem;
-    padding-right:          4rem;
-
-    opacity:                0;
-}
-
-/* INPUT */
-/* basics to hide native input */
-.input
-{
-    position:               absolute;
-    left:                   -9999px;
-
-    &:checked + .label::after
-    {
-        position:           absolute;
-    }
-}
-
-.input:checked + .label
-{
-    background-color:       var( --AC-12 );
-    transition:             var( --backgroundTransition );
-
-    &::before
-    {
-        left:               calc( 100% - 28px);
-        transition:         var( --circleTransition );
+        &::before
+        {
+            border-color: var( --PC-BLUE--L55 );
+        }
     }
 
-    .off,
-    .on
+    :hover,
+    .fakeHovered
     {
-        transition:         var( --textTransition );
-    }
+        .label
+        {
+            background: var( --PC-GREY--L55 );
 
-    .on
-    {
-        opacity:            1;
-    }
+            &::before
+            {
+                border-color: var( --PC-GREY--L40 );
+            }
+        }
 
-    .off
-    {
-        opacity:            0;
+        input:checked + .label
+        {
+            background: var( --PC-BLUE--L55 );
+
+            &::before
+            {
+                border-color: var( --PC-BLUE--L40 );
+            }
+        }
     }
 }

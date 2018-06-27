@@ -1,16 +1,11 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_fonts.css";
 
 .default
 {
     display:        block;
-    margin-bottom:  1rem;
+    margin-bottom:  var( --spacing-1 );
 
     width:          auto;
-
-    @extend %Nessie-Bold;
-
-    white-space:    nowrap;
 
     &[for]
     {
@@ -25,4 +20,14 @@
             clear: left;
         }
     }
+}
+
+.label
+{
+    @extend %Nessie-SemiBold;
+    font-size:      var( --typo-2 );
+    line-height:    var( --line-height-m );
+    letter-spacing: 0.5px;
+    color:          var( --PC-GREY--D15 );
+    text-transform: uppercase;
 }

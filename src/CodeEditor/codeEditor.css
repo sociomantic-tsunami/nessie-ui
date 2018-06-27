@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 @import "./codemirror.css";
 
 .default
@@ -7,12 +6,12 @@
     .editor
     {
         height: auto;
-        border: 0.1rem solid color( var( --GS-2 ) a( 50% ) );
 
-        &:hover,
         .fakeHovered&
         {
-            border: 0.1rem solid var( --PC-BLUE );
+            /* browser default focus style */
+            outline: auto 2px highlight;
+            outline: auto 5px -webkit-focus-ring-color;
         }
     }
 
@@ -20,62 +19,14 @@
     {
         box-sizing:     border-box;
         height:         100%;
-        padding:        0;
-        background:     transparent;
-        line-height:    initial;
 
         font-family:    monospace, sans-serif;
-        font-size:      1.1rem;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
 
-        &-sizer
+        &-scroll
         {
-            margin-left:    0 !important;
+            overscroll-behavior-y:  contain;
         }
-
-        &-gutters
-        {
-            border:             none;
-            background-color:   transparent;
-            left:               0 !important;
-        }
-
-        &-gutter-wrapper
-        {
-            left:   0 !important;
-        }
-
-        &-linenumber
-        {
-            white-space:    normal;
-        }
-
-        &-lines
-        {
-            padding:    0.8rem 1rem 0.9rem 1rem;
-        }
-
-        &-line
-        {
-            text-indent:    4rem;
-        }
-    }
-}
-
-.error
-{
-    .editor
-    {
-        border-color:   var( --AC-2 ) !important;
-    }
-}
-
-.disabled
-{
-    .editor
-    {
-        border-color:   var( --GS-10 ) !important;
-
-        background:     var( --GS-10 ) !important;
-        color:          color( var( --GS-2 ) a( 50% ) ) !important;
     }
 }
