@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/TextInputWithIcon/tests.js?(x)'
+        '<rootDir>/src/Slider/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies

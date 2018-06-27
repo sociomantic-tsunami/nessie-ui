@@ -3,12 +3,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
-import React                      from 'react';
-import { mount }                  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Label                      from '../Label/index';
+import Label        from '../Label/index';
 
-import Slider                     from './index';
+import Slider       from './index';
 
 const noop = () => null;
 
@@ -270,7 +270,7 @@ describe( 'Slider', () =>
 
             wrapper = mount( <Slider { ...props } /> );
             const slider = wrapper.instance();
-            const handleDown = sinon.stub( slider, 'handleDown' );
+            const handleDown = jest.spyOn( slider, 'handleDown' );
 
             slider.forceUpdate();
             wrapper.update();
@@ -291,15 +291,21 @@ describe( 'Slider', () =>
                 };
                 wrapper = mount( <Slider { ...props } /> );
 
-                const eventListenerSpy =
-                    jest.fn();
+                const eventListenerSpy = jest
+                    .spyOn( global, 'addEventListener' );
+
+                const slider = wrapper.instance();
+
+                const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
+                const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
 
                 wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
                     .simulate( 'mousedown' );
                 expect( eventListenerSpy ).toBeCalledTimes( 2 );
-                expect( eventListenerSpy.calledWith( 'mousemove' ) )
-                    .toBeTruthy();
-                expect( eventListenerSpy.calledWith( 'mouseup' ) ).toBeTruthy();
+                expect( eventListenerSpy )
+                    .toBeCalledWith( 'mousemove', mouseMoveSpy );
+                expect( eventListenerSpy )
+                    .toBeCalledWith( 'mouseup', mouseUpSpy );
             }
         );
     } );
@@ -312,20 +318,20 @@ describe( 'Slider', () =>
             const { handleUp } = wrapper.instance();
 
             const removeEventListenerSpy = jest
-                .fn( global, 'removeEventListener' );
+                .spyOn( global, 'removeEventListener' );
 
             const slider = wrapper.instance();
 
-            const mouseMoveSpy = jest.fn( slider, 'handleMove' );
-            const mouseUpSpy   = jest.fn( slider, 'handleUp' );
+            const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
+            const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
 
             handleUp();
 
             expect( removeEventListenerSpy ).toBeCalledTimes( 2 );
-            expect( removeEventListenerSpy
-                .calledWith( 'mousemove', mouseMoveSpy ) ).toBe( true );
-            expect( removeEventListenerSpy
-                .calledWith( 'mouseup', mouseUpSpy ) ).toBe( true );
+            expect( removeEventListenerSpy )
+                .toBeCalledWith( 'mousemove', mouseMoveSpy );
+            expect( removeEventListenerSpy )
+                .toBeCalledWith( 'mouseup', mouseUpSpy );
         } );
     } );
 } );
@@ -727,7 +733,7 @@ describe( 'SliderDriver', () =>
             }
         );
 
-        test( 'should call change with value and index for each value', () =>
+        test.only( 'should call change with value and index for each value', () =>
         {
             change = jest.fn();
             wrapper.setProps( { onChange: change } );
