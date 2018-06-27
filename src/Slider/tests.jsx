@@ -711,8 +711,7 @@ describe( 'SliderDriver', () =>
             'should call the change method exactly once if single value',
             () =>
             {
-                change = jest.fn();
-                wrapper.setProps( { onChange: change } );
+                change = jest.spyOn( driver, 'change' );
 
                 const value = 20;
                 driver.setInputValue( value );
@@ -724,8 +723,7 @@ describe( 'SliderDriver', () =>
             'should call change method once per value if array of values',
             () =>
             {
-                change = jest.fn();
-                wrapper.setProps( { onChange: change } );
+                change = jest.spyOn( driver, 'change' );
 
                 const value = [ 10, 20 ];
                 driver.setInputValue( value );
@@ -733,16 +731,15 @@ describe( 'SliderDriver', () =>
             }
         );
 
-        test.only( 'should call change with value and index for each value', () =>
+        test( 'should call change with value and index for each value', () =>
         {
-            change = jest.fn();
-            wrapper.setProps( { onChange: change } );
+            change = jest.spyOn( driver, 'change' );
 
             const value = [ 10, 20 ];
             driver.setInputValue( value );
 
             value.forEach( ( val, i ) =>
-                expect( change.getCalls()[ i ].args ).toEqual( [ val, i ] ) );
+                expect( change.mock.calls[ i ] ).toEqual( [ val, i ] ) );
         } );
     } );
 } );
