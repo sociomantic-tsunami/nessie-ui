@@ -103,7 +103,7 @@ is the <input>', () =>
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.input = input;
 
@@ -119,7 +119,7 @@ is the <button>', () =>
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.button = button;
 
@@ -132,7 +132,7 @@ is the <button>', () =>
 the <input> or the <button>', () =>
         {
             const e = new Event( {} );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.handleFocus( e );
 
@@ -210,7 +210,7 @@ is the <input>', () =>
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.input = input;
 
@@ -226,7 +226,7 @@ is the <button>', () =>
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.button = button;
 
@@ -239,7 +239,7 @@ is the <button>', () =>
 the <input> or the <button>', () =>
         {
             const e = new Event( {} );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.handleBlur( e );
 
@@ -251,22 +251,22 @@ the <input> or the <button>', () =>
     {
         test( 'should call setState with { iconIsHovered: false } }', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( setState.calledWith( sinon.match( { iconIsHovered: false } ) ) ).toBe( true );
+            expect( setState ).toBeCalledWith( { iconIsHovered: false } );
 
-            setState.restore();
+            setState.mockReset();
         } );
 
         test( 'should call setState exactly once', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
             expect( setState ).toBeCalled();
 
-            setState.restore();
+            setState.mockReset();
         } );
 
         test( 'should call onMouseOutIcon with e', () =>
