@@ -36,15 +36,15 @@ describe( 'DimensionsInput', () =>
     {
         test( 'should call setState with { isFocused: true } }', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: true } ) ) ).toBe( true );
+            expect( setState ).toBeCalledWith( { isFocused: true } );
         } );
 
         test( 'should call setState exactly once', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
             expect( setState ).toBeCalled();
@@ -125,7 +125,7 @@ describe( 'DimensionsInput', () =>
 
                 const e = new Event( 'focus' );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = jest.fn( e, 'stopPropagation' );
+                const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
                 instance.widthInput = input;
 
@@ -143,7 +143,7 @@ describe( 'DimensionsInput', () =>
 
                 const e = new Event( 'focus' );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = jest.fn( e, 'stopPropagation' );
+                const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
                 instance.heightInput = input;
 
@@ -156,7 +156,7 @@ describe( 'DimensionsInput', () =>
         test( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'focus' );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.handleFocus( e );
 
@@ -168,16 +168,16 @@ describe( 'DimensionsInput', () =>
     {
         test( 'should call setState with { isFocused: false } }', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
 
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState.calledWith( sinon.match( { isFocused: false } ) ) ).toBe( true );
+            expect( setState ).toBeCalledWith( { isFocused: false } );
         } );
 
         test( 'should call setState exactly once', () =>
         {
-            const setState = jest.fn( instance, 'setState' );
+            const setState = jest.spyOn( instance, 'setState' );
             instance.handleBlur( new Event( 'blur' ) );
 
             expect( setState ).toBeCalled();
@@ -247,7 +247,7 @@ describe( 'DimensionsInput', () =>
 
                 const e = new Event( 'blur' );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = jest.fn( e, 'stopPropagation' );
+                const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
                 instance.widthInput = input;
 
@@ -265,7 +265,7 @@ describe( 'DimensionsInput', () =>
 
                 const e = new Event( 'blur' );
                 Object.defineProperty( e, 'relatedTarget', { value: input } );
-                const stopPropagation = jest.fn( e, 'stopPropagation' );
+                const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
                 instance.heightInput = input;
 
@@ -278,7 +278,7 @@ describe( 'DimensionsInput', () =>
         test( 'shouldn’t stopPropagation if relatedTarget not an input', () =>
         {
             const e = new Event( 'blur' );
-            const stopPropagation = jest.fn( e, 'stopPropagation' );
+            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
             instance.handleBlur( e );
 
