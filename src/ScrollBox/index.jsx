@@ -246,7 +246,6 @@ export default class ScrollBox extends Component
                 <div
                     className = { cssMap.scrollBox }
                     onScroll  = { createScrollHandler( onScroll, scroll ) }
-                    onWheel   = { this.handleWheel }
                     style     = { { maxHeight: height ? `${height}` : null } }
                     ref       = { e => this.scrollBoxRef = e } >
                     <div
@@ -255,7 +254,7 @@ export default class ScrollBox extends Component
                         { children }
                     </div>
                 </div>
-                { ( scroll === 'horizontal' || scroll === 'both' )  &&
+                { ( scroll === 'horizontal' || scroll === 'both' )  && Boolean(thumbSize.horizontal) &&
                 <ScrollBar
                     className    = { cssMap.scrollBar }
                     scrollPos    = { scrollPosX }
@@ -265,7 +264,7 @@ export default class ScrollBox extends Component
                     scrollMax    = { scrollMax.horizontal }
                     width        = { scrollBarWidth.horizontal } />
                 }
-                { ( scroll === 'vertical' || scroll === 'both' ) &&
+                { ( scroll === 'vertical' || scroll === 'both' ) && Boolean(thumbSize.vertical) &&
                     <ScrollBar
                         className    = { cssMap.scrollBar }
                         scrollPos    = { scrollPosY }

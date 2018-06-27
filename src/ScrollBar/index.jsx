@@ -32,7 +32,7 @@ const ScrollBar = ( {
                 min          = { scrollMin }
                 onChange     = { e => onChange( parseInt( e.target.value ) ) }
                 step         = "1"
-                style        = { { width: `${width}px`, '--thumbSize': `${thumbSize}%`, display: !thumbSize ? 'none' : 'block' } }
+                style        = { { width: `${width}px`, '--thumbSize': `${thumbSize}%` } }
                 type         = "range" />
         </div>
     );

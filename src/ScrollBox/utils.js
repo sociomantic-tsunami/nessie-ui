@@ -51,32 +51,6 @@ function getScroll( el, dir )
     return scrollLength ? scrollPos / scrollLength : 0;
 }
 
-/**
-* ## handleScroll
-* Controls the movement of the scroller
-*
-* @param   {Object} ref target DOM element
-*
-* @param   {String} scroll event object
-*
-* @return  {Void}
-*
-*/
-function handleScroll( ref, scroll )
-{
-    return e =>
-    {
 
-        const target = e.target.value;
-        const delta = Math.floor( e.deltaY );
-
-        const type = e.type === 'change' || e.type === 'input';
-        const val = type ? parseInt( target ) : parseInt( target ) + delta;
-
-        ref[ scroll === 'horizontal' ? 'scrollLeft' : 'scrollTop' ] = val;
-        console.log(ref );
-    }
-}
-
-export { createScrollHandler, handleScroll };
+export { createScrollHandler };
 export default { createScrollHandler };
