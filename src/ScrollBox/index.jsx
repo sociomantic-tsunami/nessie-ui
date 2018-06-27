@@ -196,7 +196,6 @@ export default class ScrollBox extends Component
         const calcWidth = forWidth ? deductWidth : equalWidth;
         const calcHeight = forHeight ? deductHeight : equalHeight;
 
-        console.log(calcWidth, calcHeight)
         return { horizontal: calcWidth, vertical: calcHeight };
     }
 
