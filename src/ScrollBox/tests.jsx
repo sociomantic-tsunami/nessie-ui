@@ -18,19 +18,38 @@ describe( 'ScrollBox', () =>
     {
         wrapper = shallow( <ScrollBox /> );
         instance = wrapper.instance();
+        instance.scrollBoxRef = {};
     } );
 
     it( 'should have exactly one ScrollBar when scroll is "horizontal"', () => {
+        wrapper.setState( {
+            thumbSize: {
+                horizontal: 1,
+                vertical: 0
+            }
+        } )
         wrapper.setProps( { scroll: 'horizontal' } );
         expect( wrapper.find( ScrollBar ) ).to.have.length( 1 );
     } );
 
     it( 'should have exactly one ScrollBar when scroll is "vertical"', () => {
+        wrapper.setState( {
+            thumbSize: {
+                horizontal: 0,
+                vertical: 1
+            }
+        } )
         wrapper.setProps( { scroll: 'vertical' } );
         expect( wrapper.find( ScrollBar ) ).to.have.length( 1 )
     } );
 
     it( 'should have exactly two ScrollBars when scroll is "both"', () => {
+        wrapper.setState( {
+            thumbSize: {
+                horizontal: 1,
+                vertical: 1
+            }
+        } )
         wrapper.setProps( { scroll: 'both' } );
         expect( wrapper.find( ScrollBar ) ).to.have.length( 2 )
     } );
@@ -56,6 +75,12 @@ describe( 'ScrollBox', () =>
 
         it( 'should be passed to both ScrollBars as orientation prop', () =>
         {
+            wrapper.setState( {
+                thumbSize: {
+                    horizontal: 1,
+                    vertical: 1
+                }
+            } )
             wrapper.setProps({ scroll: 'horizontal' })
             expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) ).to.equal( 'horizontal' )
             wrapper.setProps({ scroll: 'vertical' })

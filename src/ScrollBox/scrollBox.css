@@ -5,12 +5,25 @@
 {
     .scrollBox
     {
-        overflow:   hidden;
+        --ScrollBarWidth:   0;
+        --ScrollBarHeight:  0;
+        --ScrollBarMarginX: 0;
+        --ScrollBarMarginY: 0;
+        overflow:           hidden;
     }
 
     .content
     {
 
+    }
+
+    .inner
+    {
+        overflow          : scroll;
+        width             : calc( 100% + var( --ScrollBarWidth ) );
+        max-height        : calc( 100% + var( --ScrollBarHeight ) );
+        margin-bottom     : var( --ScrollBarMarginX );
+        margin-right      : var( --ScrollBarMarginY );
     }
 
     .icon__down,

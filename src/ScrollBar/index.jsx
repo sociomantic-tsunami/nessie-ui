@@ -17,7 +17,7 @@ const ScrollBar = ( {
     scrollPos,
     scrollMax,
     scrollMin,
-    width
+    length
 } ) =>
     (
         <div
@@ -32,7 +32,7 @@ const ScrollBar = ( {
                 min          = { scrollMin }
                 onChange     = { e => onChange( parseInt( e.target.value ) ) }
                 step         = "1"
-                style        = { { width: `${width}px`, '--thumbSize': `${thumbSize}%` } }
+                style        = { { width: `${length}px`, '--thumbSize': `${thumbSize}%` } }
                 type         = "range" />
         </div>
     );
@@ -94,7 +94,7 @@ ScrollBar.propTypes =
     /**
      *  width of the scrollBar track
      */
-    width       : PropTypes.number,
+    length      : PropTypes.number,
 };
 
 ScrollBar.defaultProps =
@@ -111,7 +111,7 @@ ScrollBar.defaultProps =
     scrollMax   : undefined,
     scrollMin   : 0,
     value       : 0,
-    width       : undefined
+    length      : undefined
 };
 
 export default ScrollBar;
