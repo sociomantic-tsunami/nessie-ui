@@ -121,14 +121,15 @@ end of the code editor’s value', () =>
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
-            expect( onChange.calledWith( 'foo' ) ).toBe( true );
+            expect( onChange ).toBeCalledWith( 'foo' );
         } );
 
         test( 'should throw the expected error when component isReadOnly', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
             expect( () => driver.setInputValue( 'foo' ) )
-                .toThrowError( 'Cannot change the CodeEditor value since it’s read only' );
+                .toThrowError( 'Cannot change the CodeEditor value since \
+it’s read only' );
         } );
     } );
 
@@ -136,7 +137,7 @@ end of the code editor’s value', () =>
     {
         test( 'should set the input value to an empty string', () =>
         {
-            wrapper.setProps( { value: 'foo' } );
+            wrapper.setProps( { defaultValue: 'foo' } );
             driver.clearInputValue();
             expect( CodeMirror.getValue() ).toBe( '' );
         } );
@@ -148,14 +149,15 @@ end of the code editor’s value', () =>
                 isReadOnly : true
             } );
             expect( () => driver.clearInputValue() )
-                .toThrowError( 'Cannot change the CodeEditor value since it’s read only' );
+                .toThrowError( 'Cannot change the CodeEditor value since \
+it’s read only' );
         } );
         test( 'should call the onChange callback exactly once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.clearInputValue();
-            expect( onChange ).toBeCalledWith( '' );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 

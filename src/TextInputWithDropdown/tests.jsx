@@ -49,7 +49,7 @@ describe( 'TextInputWithDropdown', () =>
             expect( wrapper.find( InputField ) ).toHaveLength( 1 );
         } );
 
-        test.skip( 'should contain exactly one FlounderDropdown', () =>
+        test( 'should contain exactly one FlounderDropdown', () =>
         {
             expect( wrapper.find( FlounderDropdown ) ).toHaveLength( 1 );
         } );

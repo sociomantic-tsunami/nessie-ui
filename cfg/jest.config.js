@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/FlounderDropdown/tests.js?(x)'
+        '<rootDir>/src/**/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
