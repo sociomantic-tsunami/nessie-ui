@@ -1,10 +1,10 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import Component    from '../proto/Component';
-import Css          from '../hoc/Css';
-import Icon         from '../Icon';
-import Spinner      from '../Spinner';
+import Component                   from '../proto/Component';
+import { buildClassName }          from '../utils';
+import Icon                        from '../Icon';
+import Spinner                     from '../Spinner';
 
 export default class Button extends Component
 {
@@ -226,19 +226,17 @@ export default class Button extends Component
         );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
-                    role,
-                    iconPosition,
-                    loading     : isLoading && !isDisabled,
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover
-                } }>
+            <div>
                 <button
+                    className = { buildClassName( className, cssMap, {
+                        role,
+                        iconPosition,
+                        loading     : isLoading && !isDisabled,
+                        disabled    : isDisabled,
+                        fakeHovered : forceHover
+                    } ) }
                     ref            = { buttonRef }
                     type           = { type }
-                    className      = { className }
                     id             = { id }
                     defaultValue   = { defaultValue }
                     value          = { value }
@@ -253,7 +251,7 @@ export default class Button extends Component
                         </div>
                     }
                 </button>
-            </Css>
+            </div>
         );
     }
 }
