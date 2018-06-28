@@ -376,7 +376,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onClick callback prop exactly once', () =>
         {
             driver.click();
-            expect( clickSpy ).toBeCalled();
+            expect( clickSpy ).toBeCalledTimes( 1 );
         } );
 
         test( 'should not fire onClick when slider is disabled ', () =>
@@ -409,7 +409,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onBlur callback prop exactly once', () =>
         {
             driver.blur();
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -464,7 +464,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onFocus callback prop exactly once', () =>
         {
             driver.focus();
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -504,7 +504,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onKeyDown callback prop exactly once', () =>
         {
             driver.keyDown();
-            expect( onKeyDown ).toBeCalled();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
 
         test( 'should receive keyCode as event keyCode', () =>
@@ -548,7 +548,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onKeyUp callback prop exactly once', () =>
         {
             driver.keyUp();
-            expect( onKeyUp ).toBeCalled();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
 
         test( 'should receive keyCode as event keyCode', () =>
@@ -591,7 +591,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onMouseOut callback prop exactly once', () =>
         {
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire onMouseOut with outer wrapper as event target', () =>
@@ -622,7 +622,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onMouseOver callback prop exactly once', () =>
         {
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -656,7 +656,7 @@ describe( 'SliderDriver', () =>
         test( 'should fire the onMouseDown callback prop exactly once', () =>
         {
             driver.mouseDown();
-            expect( onMouseDown ).toBeCalled();
+            expect( onMouseDown ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire onMouseOver with track as event target', () =>
@@ -715,7 +715,7 @@ describe( 'SliderDriver', () =>
 
                 const value = 20;
                 driver.setInputValue( value );
-                expect( change ).toBeCalled();
+                expect( change ).toBeCalledTimes( 1 );
             }
         );
 

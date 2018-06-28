@@ -118,7 +118,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.focus();
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -132,7 +132,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.blur();
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -156,7 +156,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.setChecked();
 
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
         test( 'should set target.checked to true', () =>
@@ -192,7 +192,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.setUnchecked();
 
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
         test( 'should set target.checked to false', () =>
@@ -218,7 +218,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.toggleChecked();
 
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
         test( 'should toggle the value of target.checked', () =>
@@ -244,7 +244,7 @@ describe( 'CheckboxDriver', () =>
             wrapper.setProps( { onClick } );
             driver.click();
 
-            expect( onClick ).toBeCalled();
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -258,7 +258,7 @@ describe( 'CheckboxDriver', () =>
 
             driver.mouseOver();
 
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -272,7 +272,7 @@ describe( 'CheckboxDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

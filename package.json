@@ -35,8 +35,6 @@
         "serve": "loch -e dev -c ./ -j src/defaults.json",
         "start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
         "svgSprite": "./.prep-icon.sh && ./.generate-sprite.sh",
-        "tdd": "karma start --autoWatch=true --reporters=mocha,notification --singleRun=false",
-        "test:Chrome": "karma start --singleRun=false --browsers Chrome",
         "test:v:build": "yarn loch:build",
         "test:v:buildFresh": "concurrently \"yarn build\" \"yarn test:v:build\"",
         "test:v:clean": "yarn loch:clean",
@@ -47,7 +45,7 @@
         "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'",
         "jest-test": "jest-webpack",
         "test": "jest --config=cfg/jest.config.js",
-        "test:watch": "jest --watch --config=config/jest.config.js"
+        "test:watch": "jest --watch --config=cfg/jest.config.js"
     },
     "keywords": [
         "scotland",

@@ -102,13 +102,13 @@ describe( 'IconButtonDriver', () =>
 
     describe( 'click()', () =>
     {
-        test( 'should fire the onClick callback prop', () =>
+        test( 'should fire the onClick callback prop exactly once', () =>
         {
             const clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
 
             driver.click();
-            expect( clickSpy ).toBeCalled();
+            expect( clickSpy ).toBeCalledTimes( 1 );
         } );
     } );
 

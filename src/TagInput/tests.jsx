@@ -128,7 +128,7 @@ describe( 'TagInputDriver', () =>
 
     describe( 'blur()', () =>
     {
-        test( 'should call blur once', () =>
+        test( 'should call blur exactly once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( {
@@ -141,13 +141,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'focus()', () =>
     {
-        test( 'should call focus once', () =>
+        test( 'should call focus exactly once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( {
@@ -160,13 +160,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickCloseTagByIndex()', () =>
     {
-        test( 'should call onClickClose once', () =>
+        test( 'should call onClickClose exactly once', () =>
         {
             const onClickClose = jest.fn();
             wrapper.setProps( {
@@ -179,13 +179,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByIndex( 1 );
 
-            expect( onClickClose ).toBeCalled();
+            expect( onClickClose ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickCloseTagByLabel()', () =>
     {
-        test( 'should call onClickClose once', () =>
+        test( 'should call onClickClose exactly once', () =>
         {
             const onClickClose = jest.fn();
             wrapper.setProps( {
@@ -198,13 +198,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
 
-            expect( onClickClose ).toBeCalled();
+            expect( onClickClose ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut once', () =>
+        test( 'should call onMouseOut exactly once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
@@ -217,13 +217,13 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver once', () =>
+        test( 'should call onMouseOver exactly once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
@@ -236,7 +236,7 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 } );

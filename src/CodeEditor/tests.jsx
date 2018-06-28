@@ -32,7 +32,7 @@ describe( 'CodeEditor', () =>
 
         test( 'should contain exactly one textArea', () =>
         {
-            expect( wrapper.find( 'textarea' ).length ).toBe( 1 );
+            expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -77,7 +77,7 @@ end of the code editor’s value', () =>
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.pressKey( 50 );
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 

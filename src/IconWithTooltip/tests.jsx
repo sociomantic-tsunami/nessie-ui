@@ -118,7 +118,7 @@ describe( 'IconWithTooltipDriver', () =>
 
             driver.mouseOver();
 
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -131,7 +131,7 @@ describe( 'IconWithTooltipDriver', () =>
 
             driver.mouseOut();
 
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -144,7 +144,7 @@ describe( 'IconWithTooltipDriver', () =>
 
             driver.mouseOverIcon();
 
-            expect( onMouseOverIcon ).toBeCalled();
+            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -157,7 +157,7 @@ describe( 'IconWithTooltipDriver', () =>
 
             driver.mouseOutIcon();
 
-            expect( onMouseOutIcon ).toBeCalled();
+            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
     } );
 

@@ -55,7 +55,7 @@ describe( 'TextInputWithIcon', () =>
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( {} ) );
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -109,7 +109,7 @@ is the <input>', () =>
 
             instance.handleFocus( e );
 
-            expect( stopPropagation ).toBeCalled();
+            expect( stopPropagation ).toBeCalledTimes( 1 );
         } );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -125,7 +125,7 @@ is the <button>', () =>
 
             instance.handleFocus( e );
 
-            expect( stopPropagation ).toBeCalled();
+            expect( stopPropagation ).toBeCalledTimes( 1 );
         } );
 
         test( 'should not call e.stopPropagation when e.relatedTarget is not \
@@ -162,7 +162,7 @@ the <input> or the <button>', () =>
 
             instance.handleBlur( new Event( {} ) );
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -216,7 +216,7 @@ is the <input>', () =>
 
             instance.handleBlur( e );
 
-            expect( stopPropagation ).toBeCalled();
+            expect( stopPropagation ).toBeCalledTimes( 1 );
         } );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -232,7 +232,7 @@ is the <button>', () =>
 
             instance.handleBlur( e );
 
-            expect( stopPropagation ).toBeCalled();
+            expect( stopPropagation ).toBeCalledTimes( 1 );
         } );
 
         test( 'should not call e.stopPropagation when e.relatedTarget is not \
@@ -264,7 +264,7 @@ the <input> or the <button>', () =>
             const setState = jest.spyOn( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( setState ).toBeCalled();
+            expect( setState ).toBeCalledTimes( 1 );
 
             setState.mockReset();
         } );
@@ -288,7 +288,7 @@ the <input> or the <button>', () =>
 
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( onMouseOutIcon ).toBeCalled();
+            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
 
         test( 'should call onMouseOut with e', () =>
@@ -310,7 +310,7 @@ the <input> or the <button>', () =>
 
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -606,7 +606,8 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( InputField ).prop( 'hasError' ) ).toBe( true );
+                expect( wrapper.find( InputField ).prop( 'hasError' ) )
+                    .toBeTruthy();
             } );
 
             test( 'should be passed to the Tooltip', () =>
@@ -915,7 +916,7 @@ the <input> or the <button>', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.forceHover ).toBe( false );
+                expect( props.forceHover ).toBeFalsy();
             } );
 
             test( 'should be passed to the InputField', () =>

@@ -47,7 +47,7 @@ describe( 'SwitchDriver', () =>
 
             wrapper.driver().toggle();
 
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
         test( 'should toggle target.checked', () =>

@@ -45,7 +45,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().blurMainInput();
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -58,7 +58,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().focusMainInput();
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -94,7 +94,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().blurHourInput();
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -107,7 +107,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().focusHourInput();
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -143,7 +143,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().blurMinuteInput();
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -156,7 +156,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().focusMinuteInput();
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -178,7 +178,7 @@ describe( 'DateTimeInputDriver', () =>
         {
             wrapper.driver().clickCellByIndex( 1 );
 
-            expect( onClickCell ).toBeCalled();
+            expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
         test( 'should click on cell with given index', () =>
@@ -205,7 +205,7 @@ describe( 'DateTimeInputDriver', () =>
         {
             wrapper.driver().clickCellByValue( '1' );
 
-            expect( onClickCell ).toBeCalled();
+            expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
         test( 'should click on cell with given value', () =>
@@ -229,7 +229,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().clickPrev();
 
-            expect( onClickPrev ).toBeCalled();
+            expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -247,7 +247,7 @@ describe( 'DateTimeInputDriver', () =>
 
             wrapper.driver().clickNext();
 
-            expect( onClickNext ).toBeCalled();
+            expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
 } );

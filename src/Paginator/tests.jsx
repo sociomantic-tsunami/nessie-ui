@@ -28,7 +28,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev ).toBeCalled();
+            expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -46,7 +46,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext ).toBeCalled();
+            expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -64,7 +64,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPage( 1 );
 
-            expect( onClickPage ).toBeCalled();
+            expect( onClickPage ).toBeCalledTimes( 1 );
         } );
     } );
 } );

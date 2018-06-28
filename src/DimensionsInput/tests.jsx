@@ -47,7 +47,7 @@ describe( 'DimensionsInput', () =>
             const setState = jest.spyOn( instance, 'setState' );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( setState ).toBeCalled();
+            expect( setState ).toBeCalledTimes( 1 );
         } );
 
         test( 'should set lastFocused property on instance', () =>
@@ -76,7 +76,7 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( 'focus' ) );
 
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -180,7 +180,7 @@ describe( 'DimensionsInput', () =>
             const setState = jest.spyOn( instance, 'setState' );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( setState ).toBeCalled();
+            expect( setState ).toBeCalledTimes( 1 );
         } );
 
         test( 'should call onBlur with e', () =>
@@ -201,7 +201,7 @@ describe( 'DimensionsInput', () =>
             wrapper.setProps( { onBlur } );
             instance.handleBlur( new Event( 'blur' ) );
 
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
         test( 'shouldn’t call onBlur when relatedTarget is width <input>', () =>

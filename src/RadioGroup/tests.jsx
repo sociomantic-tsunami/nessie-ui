@@ -151,7 +151,7 @@ describe( 'RadioGroupDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -165,7 +165,7 @@ describe( 'RadioGroupDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );
