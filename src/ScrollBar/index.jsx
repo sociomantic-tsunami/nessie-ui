@@ -101,7 +101,7 @@ ScrollBar.defaultProps =
 {
     className   : undefined,
     cssMap      : styles,
-    id          : generateId( 'ScrollBox' ),
+    id          : generateId( 'ScrollBar' ),
     orientation : 'vertical',
     onChange    : undefined,
     onMouseOut  : undefined,

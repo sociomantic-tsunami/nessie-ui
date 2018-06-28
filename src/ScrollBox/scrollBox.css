@@ -2,14 +2,13 @@
 
 .default
 {
-    .scrollBox
-    {
-        --ScrollBarWidth:   0;
-        --ScrollBarHeight:  0;
-        --ScrollBarMarginX: 0;
-        --ScrollBarMarginY: 0;
-        overflow:           hidden;
-    }
+
+    --ScrollBarWidth:   0;
+    --ScrollBarHeight:  0;
+    --ScrollBarMarginX: 0;
+    --ScrollBarMarginY: 0;
+    overflow:           hidden;
+
 
     .content
     {

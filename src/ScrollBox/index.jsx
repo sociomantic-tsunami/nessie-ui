@@ -1,11 +1,11 @@
-import React                                    from 'react';
-import PropTypes                                from 'prop-types';
-import Component                                from '../proto/Component';
-import { buildClassName }                       from '../utils';
-import styles                                   from './scrollBox.css';
-import { createScrollHandler }                  from './utils';
-import IconButton                               from '../IconButton';
-import ScrollBar                                from '../ScrollBar';
+import React, { Component }                                 from 'react';
+import PropTypes                                            from 'prop-types';
+
+import { buildClassName, generateId }                       from '../utils';
+import styles                                               from './scrollBox.css';
+import { createScrollHandler }                              from './utils';
+import IconButton                                           from '../IconButton';
+import ScrollBar                                            from '../ScrollBar';
 
 export default class ScrollBox extends Component
 {
@@ -14,7 +14,7 @@ export default class ScrollBox extends Component
         /**
          *  ScrollBox content
          */
-        children           : PropTypes.node,
+        children           : PropTypes.node, /**
         /**
          *  ScrollBox content width, any CSS length string
          */
@@ -23,6 +23,10 @@ export default class ScrollBox extends Component
          *  ScrollBox height, any CSS length string
          */
         height             : PropTypes.string,
+        /**
+         *  ScrollBox ID
+         */
+        id                 : PropTypes.string,
         /**
          *  on click scroll down icon callback function
          */
@@ -76,8 +80,10 @@ export default class ScrollBox extends Component
     static defaultProps =
     {
         children             : undefined,
+        className            : styles.scrollBox,
         cssMap               : styles,
         height               : undefined,
+        id                   : generateId( 'ScrollBox' ),
         onClickScrollDown    : undefined,
         onClickScrollLeft    : undefined,
         onClickScrollRight   : undefined,
@@ -95,15 +101,15 @@ export default class ScrollBox extends Component
     {
         super( props );
         this.state = {
-            scrollPosX     : 0,
-            scrollPosY     : 0,
-            scrollMax      : {},
+            scrollPosX      : 0,
+            scrollPosY      : 0,
+            scrollMax       : {},
             scrollBarLength : {},
-            thumbSize      : {}
+            thumbSize       : {}
         };
         this.handleChangeX = this.handleChangeX.bind( this );
         this.handleChangeY = this.handleChangeY.bind( this );
-        this.handleScroll = this.handleScroll.bind(this);
+        this.handleScroll = this.handleScroll.bind( this );
         this.getScrollMax = this.getScrollMax.bind( this );
         this.updateScrollBarLength = this.updateScrollBarLength.bind( this );
         this.updateThumbSize = this.updateThumbSize.bind( this );
@@ -111,23 +117,23 @@ export default class ScrollBox extends Component
 
     calcNativeScrollBar()
     {
-        let target = this.scrollBoxRef;
-        let width = target.offsetWidth - target.clientWidth;
-        let height = target.offsetHeight - target.clientHeight;
+        const target = this.scrollBoxRef;
+        const width = target.offsetWidth - target.clientWidth;
+        const height = target.offsetHeight - target.clientHeight;
 
-        target.style.setProperty( '--ScrollBarWidth', `${ width }px` );
-        target.style.setProperty( '--ScrollBarHeight', `${ height }px` );
+        target.style.setProperty( '--ScrollBarWidth', `${width}px` );
+        target.style.setProperty( '--ScrollBarHeight', `${height}px` );
 
-        target.style.setProperty( '--ScrollBarMarginX', `-${ width }px` );
-        target.style.setProperty( '--ScrollBarMarginY', `-${ height }px` );
+        target.style.setProperty( '--ScrollBarMarginX', `-${width}px` );
+        target.style.setProperty( '--ScrollBarMarginY', `-${height}px` );
     }
 
     componentDidMount()
     {
         this.setState( {
-            scrollMax      : this.getScrollMax(),
+            scrollMax       : this.getScrollMax(),
             scrollBarLength : this.updateScrollBarLength(),
-            thumbSize      : this.updateThumbSize()
+            thumbSize       : this.updateThumbSize()
         } );
 
         this.calcNativeScrollBar();
@@ -140,12 +146,12 @@ export default class ScrollBox extends Component
         this.scrollBoxRef.scrollLeft = scrollPosX;
         this.scrollBoxRef.scrollTop  = scrollPosY;
 
-        if ( (prevProps.scroll !== this.props.scroll ) || (prevProps.contentWidth !== this.props.contentWidth ) || (prevProps.height !== this.props.height ) )
+        if ( ( prevProps.scroll !== this.props.scroll ) || ( prevProps.contentWidth !== this.props.contentWidth ) || ( prevProps.height !== this.props.height ) )
         {
             this.setState( {
-                scrollMax      : this.getScrollMax(),
+                scrollMax       : this.getScrollMax(),
                 scrollBarLength : this.updateScrollBarLength(),
-                thumbSize      : this.updateThumbSize()
+                thumbSize       : this.updateThumbSize()
             } );
         }
     }
@@ -174,9 +180,9 @@ export default class ScrollBox extends Component
     handleScroll()
     {
         this.setState( {
-            scrollPosX: this.scrollBoxRef.scrollLeft,
-            scrollPosY: this.scrollBoxRef.scrollTop
-        } )
+            scrollPosX : this.scrollBoxRef.scrollLeft,
+            scrollPosY : this.scrollBoxRef.scrollTop
+        } );
     }
     updateScrollBarLength()
     {
@@ -185,14 +191,13 @@ export default class ScrollBox extends Component
 
     updateThumbSize()
     {
-
         const forWidth = this.scrollBoxRef.scrollWidth > this.scrollBoxRef.clientWidth;
         const forHeight = this.scrollBoxRef.scrollHeight > this.scrollBoxRef.clientHeight;
 
-        const deductWidth = (this.scrollBoxRef.clientWidth / this.scrollBoxRef.scrollWidth) * 100 ;
+        const deductWidth = ( this.scrollBoxRef.clientWidth / this.scrollBoxRef.scrollWidth ) * 100;
         const equalWidth = 0;
 
-        const deductHeight = (this.scrollBoxRef.clientHeight / this.scrollBoxRef.scrollHeight) * 100;
+        const deductHeight = ( this.scrollBoxRef.clientHeight / this.scrollBoxRef.scrollHeight ) * 100;
         const equalHeight = 0;
 
         const calcWidth = forWidth ? deductWidth : equalWidth;
@@ -209,6 +214,7 @@ export default class ScrollBox extends Component
             className,
             contentWidth,
             height,
+            id,
             onClickScrollDown,
             onClickScrollLeft,
             onClickScrollRight,
@@ -227,10 +233,14 @@ export default class ScrollBox extends Component
             scrollPosY,
             scrollMax,
             scrollBarLength,
-            thumbSize } = this.state;
+            thumbSize
+        } = this.state;
 
         return (
-            <div className = { buildClassName( className, cssMap, { scroll } ) } >
+            <div
+                className = { buildClassName( className, cssMap, { scroll } ) }
+                id = { id }
+                onScroll  = { createScrollHandler( onScroll, scroll ) }>
                 { scrollDownIsVisible && <IconButton
                     className = { cssMap.icon__down }
                     iconType = "down"
@@ -252,25 +262,21 @@ export default class ScrollBox extends Component
                     iconSize = "L"
                     onClick = { onClickScrollUp } /> }
                 <div
-                    className = { cssMap.scrollBox }
-                    onScroll  = { createScrollHandler( onScroll, scroll ) }>
+                    className = { cssMap.inner }
+                    onScroll  = { this.handleScroll }
+                    ref       = { e => this.scrollBoxRef = e }
+                    style     = { { maxHeight: height ? `${height}` : null } }>
                     <div
-                        className = { cssMap.inner }
-                        onScroll  = { this.handleScroll }
-                        ref       = { e => this.scrollBoxRef = e }
-                        style     = { { maxHeight: height ? `${height}` : null } }>
-                        <div
-                            className = { cssMap.content }
-                            style     = { { width: contentWidth } }>
-                            { children }
-                        </div>
+                        className = { cssMap.content }
+                        style     = { { width: contentWidth } }>
+                        { children }
                     </div>
                 </div>
                 { ( scroll === 'horizontal' || scroll === 'both' )  && Boolean( thumbSize.horizontal ) &&
                 <ScrollBar
                     className    = { cssMap.scrollBar }
                     onChange     = { this.handleChangeX }
-                    orientation  = { 'horizontal' }
+                    orientation  = "horizontal"
                     scrollPos    = { scrollPosX }
                     thumbSize    = { thumbSize.horizontal }
                     scrollMax    = { scrollMax.horizontal }
@@ -280,7 +286,7 @@ export default class ScrollBox extends Component
                     <ScrollBar
                         className    = { cssMap.scrollBar }
                         onChange     = { this.handleChangeY }
-                        orientation  = { 'vertical' }
+                        orientation  = "vertical"
                         scrollPos    = { scrollPosY }
                         thumbSize    = { thumbSize.vertical }
                         scrollMax    = { scrollMax.vertical }
