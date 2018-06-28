@@ -7,7 +7,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/Slider/tests.js?(x)'
+        '<rootDir>/src/FlounderDropdown/tests.js?(x)'
     ],
 
     // We should specify that jest should load all dependencies
@@ -50,4 +50,9 @@ module.exports = {
 
     // 'bail'  : true,
     verbose : true,
+
+    transformIgnorePatterns :
+    [
+        'node_modules/(?!flounder)'
+    ],
 };

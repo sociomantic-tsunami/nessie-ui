@@ -37,3 +37,33 @@ describe( 'testing extended expect', () =>
         expect( Promise.resolve( [] ) ).resolves.toBeType( 'array' );
     } );
 } );
+
+
+const createContextualFragment = ( html ) =>
+{
+    const div = document.createElement( 'div' );
+    div.innerHTML = html;
+    return div.children[ 0 ];
+};
+
+global.Range = function Range()
+{};
+
+Range.prototype.createContextualFragment = ( html ) =>
+    createContextualFragment( html );
+
+global.window.document.body.createTextRange = function createRange()
+{
+    return {
+        setEnd : () =>
+        {},
+        setStart : () =>
+        {},
+        getBoundingClientRect : () =>
+            ( { right: 0 } ),
+        getClientRects : () => [],
+        createContextualFragment
+    };
+};
+
+global.window.focus = () => {};

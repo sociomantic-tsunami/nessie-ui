@@ -12,7 +12,7 @@ import {
     DragNDrop,
     Dropdown,
     Fieldset,
-    // FlounderDropdown,
+    FlounderDropdown,
     Form,
     Grid,
     H1,
@@ -78,7 +78,7 @@ import CodeEditorDriver       from './CodeEditor/driver';
 import ComboBoxDriver         from './ComboBox/driver';
 import DatePickerDriver       from './DatePicker/driver';
 import DateTimeInputDriver    from './DateTimeInput/driver';
-// import FlounderDropdownDriver from './FlounderDropdown/driver';
+import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
 import GridColumnDriver       from './Grid/driver';
 import IconDriver             from './Icon/driver';
@@ -163,10 +163,10 @@ const drivers =
         Component : Fieldset,
         Driver    : WrapperDriver
     },
-    // {
-    //     Component : FlounderDropdown,
-    //     Driver    : FlounderDropdownDriver,
-    // },
+    {
+        Component : FlounderDropdown,
+        Driver    : FlounderDropdownDriver,
+    },
     {
         Component : Form,
         Driver    : FormDriver,
