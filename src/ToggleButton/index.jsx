@@ -21,7 +21,8 @@ const ToggleButton = ( {
     onFocus,
     onMouseOut,
     onMouseOver,
-    role
+    role,
+    subTitle
 } ) => (
     <button
         aria-pressed = { isPressed ? 'true' : 'false' }
@@ -42,13 +43,18 @@ const ToggleButton = ( {
         onMouseEnter = { onMouseOver }
         role         = { role }
         type         = "button" >
-        { iconType && iconType !== 'none' &&
-            <Icon
-                className = { cssMap.icon }
-                type      = { iconType }
-                size      =  "M" />
+        <div className = { cssMap.inner }>
+            { iconType && iconType !== 'none' &&
+                <Icon
+                    className = { cssMap.icon }
+                    type      = { iconType }
+                    size      =  "S" />
+            }
+            <div>{ children || label }</div>
+        </div>
+        { subTitle &&
+            <div style = {{ color: '#98a8bc', marginTop: '5px', fontSize: '11px' }}>{ subTitle }</div>
         }
-        <div>{ children || label }</div>
     </button>
 );
 
@@ -144,7 +150,11 @@ ToggleButton.propTypes =
     /**
     *  Button role/style
     */
-    role        : PropTypes.oneOf( [ 'primary', 'secondary' ] )
+    role        : PropTypes.oneOf( [ 'primary', 'secondary' ] ),
+    /**
+    *  Button subTitle
+    */
+    subTitle    : PropTypes.string
 };
 
 ToggleButton.defaultProps =

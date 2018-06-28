@@ -3,32 +3,54 @@
 .default
 {
   width:              auto;
-  height:             40px;
-  padding:            0 var( --spacing-2 );
+  min-height:         40px;
+  padding:            calc( var(  --spacing-2 ) - 5px ) var( --spacing-2 );
   border:             none;
-  display:            flex;
-  align-items:        center;
+  display:            block;
   cursor:             pointer;
+  font-size:          14px;
+}
+
+.inner
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .role__primary
 {
-    background-color:   var(--PC-GREY--L90);
-    color:              var(--PC-GREY--D15);
+    background-color:   var( --PC-WHITE );
+    color:              var( --PC-GREY--D15 );
+    border: 1px solid var( --PC-GREY--L70 );
+    border-radius: 1px;
 
     .icon
     {
         fill: var(--PC-GREY--D15);
     }
 
+    &:hover
+    {
+        background-color: var( --PC-GREY--L90 );
+    }
+
+    &:focus,
+    &:active
+    {
+        outline: 0;
+    }
+
     &.pressed
     {
-        background-color: var(--PC-ORANGE);
-        color: var(--PC-WHITE);
+        background-color: var( --PC-BLUE--L90 );
+        color: var(--PC-BLUE);
+        border-color: var(--PC-BLUE);
+        outline: 0;
 
         .icon
         {
-            fill: var(--PC-WHITE);
+            fill: var(--PC-BLUE);
         }
     }
 

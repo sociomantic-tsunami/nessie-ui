@@ -65,7 +65,7 @@ describe( 'ToggleButton', () =>
             it( 'should always be "M"', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
-                expect( wrapper.find( Icon ).first().prop( 'size' ) ).to.equal( 'M' );
+                expect( wrapper.find( Icon ).first().prop( 'size' ) ).to.equal( 'S' );
             } );
         } );
     } );
