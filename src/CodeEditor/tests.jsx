@@ -6,8 +6,6 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
-
 import CodeEditor         from './index';
 
 
