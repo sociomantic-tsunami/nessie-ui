@@ -154,6 +154,8 @@ export default class ScrollBox extends Component
                 thumbSize       : this.updateThumbSize()
             } );
         }
+
+        this.calcNativeScrollBar();
     }
 
     getScrollMax()
@@ -177,12 +179,18 @@ export default class ScrollBox extends Component
         } );
     }
 
-    handleScroll()
+    handleScroll( e )
     {
+        const { onScroll } = this.props;
         this.setState( {
             scrollPosX : this.scrollBoxRef.scrollLeft,
             scrollPosY : this.scrollBoxRef.scrollTop
         } );
+
+        if( onScroll )
+        {
+            onScroll( e );
+        }
     }
     updateScrollBarLength()
     {
@@ -239,8 +247,7 @@ export default class ScrollBox extends Component
         return (
             <div
                 className = { buildClassName( className, cssMap, { scroll } ) }
-                id = { id }
-                onScroll  = { createScrollHandler( onScroll, scroll ) }>
+                id = { id }>
                 { scrollDownIsVisible && <IconButton
                     className = { cssMap.icon__down }
                     iconType = "down"

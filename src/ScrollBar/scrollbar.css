@@ -120,6 +120,7 @@
     max-width: none;
     transform: rotate( 90deg );
     transform-origin: left top;
+    height: 5px;
     .range
     {
         position: absolute;

@@ -18,7 +18,11 @@ describe( 'ScrollBox', () =>
     {
         wrapper = shallow( <ScrollBox /> );
         instance = wrapper.instance();
-        instance.scrollBoxRef = {};
+        instance.scrollBoxRef = {
+            style : {
+                setProperty: () => {}
+            }
+        };
     } );
 
     it( 'should have exactly one ScrollBar when scroll is "horizontal"', () => {
@@ -92,8 +96,6 @@ describe( 'ScrollBox', () =>
     {
         it( 'should be passed to the ScrollBar as thumbSize prop', () =>
         {
-            instance.scrollBoxRef = { scrollLeft: 0, scrollTop: 0  };
-
             wrapper.setState( { thumbSize : {
                 horizontal : 50,
                 vertical : 100,
