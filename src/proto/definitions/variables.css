@@ -1,0 +1,10 @@
+@import "./_colors.css";
+@import "./_fonts.css";
+@import "./_spacing.css";
+
+
+:root
+{
+    /* default box shadow */
+    --boxShadow:  0 8px 40px color( var( --PC-GREY ) a(12%) );
+}

@@ -14,6 +14,6 @@ export default class FormDriver
 
     getContent()
     {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
+        return this.wrapper.find( `.${this.cssMap.default}` ).children();
     }
 }

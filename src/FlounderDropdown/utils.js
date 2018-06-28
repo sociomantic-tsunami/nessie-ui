@@ -42,13 +42,41 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
             return datum;
         }
 
+        let extraClass  = datum.extraClass;
+        const iconClass = cssMap[ `optionIcon__${datum.icon}` ];
+
+        if ( iconClass )
+        {
+            extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${iconClass}` : iconClass;
+        }
+
         return {
             ...datum,
-            data : datum.data &&
-                mapIconClassesToFlounder( datum.data, cssMap ),
-            extraClass : cssMap[ `optionIcon__${datum.icon}` ]
+            data : mapIconClassesToFlounder( datum.data, cssMap ),
+            extraClass,
         };
     } );
+
+const addExtraClasses = ( data = [], className ) => (
+    data.map( datum =>
+    {
+        if ( typeof datum !== 'object' )
+        {
+            return datum;
+        }
+
+        if ( datum.description )
+        {
+            const extraClass = datum.extraClass ?
+                `${datum.extraClass}  ${className}` : className;
+
+            return { ...datum, extraClass };
+        }
+
+        return { ...datum, data: datum.data && addExtraClasses( datum.data ) };
+    } )
+);
 
 
 const stringifyArr = ( arr = [] ) => JSON.stringify( [ ...arr ].sort() );
@@ -59,6 +87,7 @@ const stringifyObj = ( obj = {} ) =>
 
 
 export {
+    addExtraClasses,
     mapCssToFlounder,
     mapIconClassesToFlounder,
     stringifyArr,

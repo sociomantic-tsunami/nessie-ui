@@ -1,7 +1,8 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName } from '../utils';
+import styles             from './form.css';
 
 const Form = ( {
     action,
@@ -19,46 +20,43 @@ removed in the next major release.' );
         Form.didWarn = true;
     }
     return (
-        <Css cssMap = { cssMap }>
-            <form
-                className = { className }
-                action    = { action }
-                method    = { method }
-                onSubmit  = { onSubmit }>
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
-            </form>
-        </Css>
+        <form
+            action    = { action }
+            className = { buildClassName( className, cssMap ) }
+            method    = { method }
+            onSubmit  = { onSubmit }>
+            { children }
+        </form>
     );
 };
 
 Form.propTypes =
 {
     /**
-    *  HTML action attribute
-    */
+     *  HTML action attribute
+     */
     action   : PropTypes.string,
     /**
-    *  HTML method attribute
-    */
-    method   : PropTypes.oneOf( [ 'post', 'get' ] ),
-    /**
-    *  Form content to wrap
-    */
+     *  Form content to wrap
+     */
     children : PropTypes.node,
     /**
-    *  Submit callback function: ( e ) => { ... }
-    */
+     *  HTML method attribute
+     */
+    method   : PropTypes.oneOf( [ 'post', 'get' ] ),
+    /**
+     *  Submit callback function: ( e ) => { ... }
+     */
     onSubmit : PropTypes.func,
 };
 
 Form.defaultProps =
 {
-    action     : '#',
-    method     : 'post',
-    isDisabled : false,
-    cssMap     : require( './form.css' )
+    action   : '#',
+    children : undefined,
+    cssMap   : styles,
+    method   : 'post',
+    onSubmit : undefined,
 };
 
 export default Form;

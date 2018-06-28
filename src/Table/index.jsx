@@ -190,7 +190,7 @@ Table.defaultProps =
     className       : undefined,
     columns         : undefined,
     cssMap          : styles,
-    gutters         : 'L',
+    gutters         : 'M',
     borders         : 'none',
     hasStickyHeader : false,
     isZebra         : false,

@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -20,7 +19,7 @@
     .uploaderButton:hover,
     .uploaderButton:focus
     {
-        background-image:   linear-gradient( to right, var( --AC-15 ) , var( --PC-BLUE ) );
+        background-image:   linear-gradient( to right, var( --GS-1 ) , var( --PC-BLUE ) );
     }
 }
 
@@ -32,6 +31,12 @@
 .loading,
 .uploaded
 {
+    .uploaderButton
+    {
+        border-top-right-radius:    0;
+        border-bottom-right-radius: 0;
+    }
+
     .iconWithTooltip
     {
         display:    block;
@@ -40,7 +45,7 @@
 
     .previewTooltip
     {
-        width:  calc( 100% - 3.2rem );
+        width:  calc( 100% - 32px );
     }
 }
 
@@ -83,7 +88,7 @@
 {
     width:                   100%;
     max-width:               100%;
-    background-image:        linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+    background-image:        linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
     text-align:              left;
     text-transform:          none;
     display:                 block;
@@ -96,7 +101,7 @@
 
     &:active
     {
-        background-image:    linear-gradient(to right, var( --AC-15 ) , var( --PC-BLUE ));
+        background-image:    linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
     }
 }
 
@@ -114,12 +119,14 @@
 
 .uploadedButton
 {
-    flex:                   0 0 auto;
-    width:                  3.2rem;
-    height:                 3.2rem;
-    padding:                0;
-    border:                 none;
-    background-color:       var( --PC-BLUE );
+    flex:                       0 0 auto;
+    width:                      40px;
+    height:                     40px;
+    padding:                    0;
+    border:                     none;
+    background-color:           var( --PC-BLUE );
+    border-top-right-radius:    2px;
+    border-bottom-right-radius: 2px;
 
     &:focus
     {
@@ -129,7 +136,7 @@
     &:hover,
     &:focus
     {
-        background-color:   color( var( --PC-BLUE ) shade( 13% ) );
+        background-color:   color( var( --PC-BLUE ) shade( 15% ) );
         color:              var( --PC-WHITE );
     }
 
@@ -142,14 +149,16 @@
 
 .loadingOverlay
 {
-    display:            inline-flex;
-    align-items:        center;
-    justify-content:    center;
-    position:           relative;
-    width:              3.2rem;
-    height:             3.2rem;
-    background-color:   var( --PC-BLUE );
-    vertical-align:     top;
+    display:                    inline-flex;
+    align-items:                center;
+    justify-content:            center;
+    position:                   relative;
+    min-width:                  40px;
+    height:                     40px;
+    background-color:           var( --PC-BLUE );
+    vertical-align:             top;
+    border-top-right-radius:    2px;
+    border-bottom-right-radius: 2px;
 
     &:focus
     {

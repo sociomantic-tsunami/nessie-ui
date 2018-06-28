@@ -1,19 +1,16 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 
 .default
 {
-	position: 		relative;
-	top: 			0.4rem;
+    position: 		relative;
+    min-height:     var( --line-height-l );
+    margin-bottom:  var( --spacing-2 );
 
-	margin-top: 	-0.6rem;
-
-    @extend %Nessie-Bold;
-
-    font-size:      1.4rem;
-    line-height:    1.6rem;
-	min-height:     1.6rem;
+    @extend %Nessie-SemiBold;
+    font-size:      var( --typo-4 );
+    line-height:    var( --line-height-l );
+    color:          var( --PC-GREY--D25 );
+    letter-spacing: 0.2px;
 }
 
 .role__default
@@ -28,10 +25,10 @@
 
 .role__promoted
 {
-	color:	var( --AC-12 );
+    color:	var( --PC-GREEN );
 }
 
 .role__critical
 {
-	color:	var( --AC-2 );
+    color:	var( --PC-RED );
 }
