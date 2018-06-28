@@ -51,6 +51,7 @@ export Radio                    from './Radio';
 export RadioGroup               from './RadioGroup';
 export Required                 from './Required';
 export Row                      from './Row';
+export ScrollBar                from './ScrollBar';
 export ScrollBox                from './ScrollBox';
 export Section                  from './Section';
 export Slider                   from './Slider';
