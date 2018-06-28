@@ -33,11 +33,6 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
         it( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).to.have.length( 1 );

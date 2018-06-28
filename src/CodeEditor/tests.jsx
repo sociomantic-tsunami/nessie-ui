@@ -26,11 +26,6 @@ describe( 'CodeEditor', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
         it( 'should contain exactly one textArea', () =>
         {
             expect( wrapper.find( 'textarea' ).length ).to.equal( 1 );

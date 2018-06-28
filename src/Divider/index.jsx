@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Css   from '../hoc/Css';
+import { buildClassName }   from '../utils';
 
 const Divider = ( { cssMap, className } ) =>
 {
@@ -13,9 +13,9 @@ major release' );
     }
 
     return (
-        <Css cssMap = { cssMap }>
-            <hr className = { className } />
-        </Css>
+
+        <hr className = { buildClassName( className, cssMap, {} ) } />
+
     );
 };
 

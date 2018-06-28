@@ -226,32 +226,30 @@ export default class Button extends Component
         );
 
         return (
-            <div>
-                <button
-                    className = { buildClassName( className, cssMap, {
-                        role,
-                        iconPosition,
-                        loading     : isLoading && !isDisabled,
-                        disabled    : isDisabled,
-                        fakeHovered : forceHover
-                    } ) }
-                    ref            = { buttonRef }
-                    type           = { type }
-                    id             = { id }
-                    defaultValue   = { defaultValue }
-                    value          = { value }
-                    disabled       = { isDisabled || isLoading || isReadOnly }
-                    onClick        = { onClick }
-                    onMouseEnter   = { this.handleMouseOver }
-                    onMouseLeave   = { this.handleMouseOut }>
-                    { content }
-                    { ( isLoading && !isDisabled ) &&
-                        <div className = { cssMap.loadingOverlay }>
-                            <Spinner className = { cssMap.spinner } />
-                        </div>
-                    }
-                </button>
-            </div>
+            <button
+                className = { buildClassName( className, cssMap, {
+                    role,
+                    iconPosition,
+                    loading     : isLoading && !isDisabled,
+                    disabled    : isDisabled,
+                    fakeHovered : forceHover
+                } ) }
+                ref            = { buttonRef }
+                type           = { type }
+                id             = { id }
+                defaultValue   = { defaultValue }
+                value          = { value }
+                disabled       = { isDisabled || isLoading || isReadOnly }
+                onClick        = { onClick }
+                onMouseEnter   = { this.handleMouseOver }
+                onMouseLeave   = { this.handleMouseOut }>
+                { content }
+                { ( isLoading && !isDisabled ) &&
+                    <div className = { cssMap.loadingOverlay }>
+                        <Spinner className = { cssMap.spinner } />
+                    </div>
+                }
+            </button>
         );
     }
 }
