@@ -1,9 +1,9 @@
-import React                    from 'react';
-import PropTypes                from 'prop-types';
+import React                                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import Component                from '../proto/Component';
-import Css                      from '../hoc/Css';
-import { TextInputWithIcon }    from '../index';
+import Component                               from '../proto/Component';
+import { buildClassName }                      from '../utils';
+import { TextInputWithIcon }                   from '../index';
 
 
 export default class PasswordInput extends Component
@@ -158,14 +158,12 @@ export default class PasswordInput extends Component
         const { id } = this.state;
 
         return (
-            <Css cssMap = { cssMap }>
-                <TextInputWithIcon
-                    { ...props }
-                    className = { className }
-                    id        = { id }
-                    inputType = { passwordIsVisible ? 'text' : 'password' }
-                    iconType  = { passwordIsVisible ? 'hide' : 'show' } />
-            </Css>
+            <TextInputWithIcon
+                { ...props }
+                className = { buildClassName(  className, cssMap ) }
+                id        = { id }
+                inputType = { passwordIsVisible ? 'text' : 'password' }
+                iconType  = { passwordIsVisible ? 'hide' : 'show' } />
         );
     }
 }
