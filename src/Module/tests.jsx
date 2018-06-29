@@ -6,7 +6,6 @@
 import React                       from 'react';
 import { mount, shallow }          from 'enzyme';
 
-import Css                         from '../hoc/Css';
 import { H2, H3, IconWithTooltip } from '../index';
 
 import Module                      from './index';
@@ -33,11 +32,6 @@ describe( 'Module', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
         it( 'should not contain a <header> by default', () =>
         {
             expect( wrapper.find( 'header' ) ).to.have.length( 0 );
