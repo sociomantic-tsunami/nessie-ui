@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }                  from '../utils';
 import Text                 from '../Text';
 
 const MessageBox = ( {
@@ -15,13 +15,9 @@ const MessageBox = ( {
     const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { type: messageType } }>
-            <div className = { className }>
-                { children || messageNode }
-            </div>
-        </Css>
+        <div className = { buildClassName( className, cssMap, { type: messageType } ) }>
+            { children || messageNode }
+        </div>
     );
 };
 
