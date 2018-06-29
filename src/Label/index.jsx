@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
 import Text                 from '../Text';
 
 const Label = ( {
@@ -14,25 +14,24 @@ const Label = ( {
     noWrap,
     onMouseOut,
     onMouseOver,
-    overflowIsHidden } ) =>
+    overflowIsHidden
+} ) =>
 {
     const LabelElement = element || 'label';
 
     return (
-        <Css cssMap = { cssMap }>
-            <LabelElement
-                className    = { className }
-                htmlFor      = { element === 'label' ? htmlFor : null }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut } >
-                <Text
-                    className        = { cssMap.label }
-                    noWrap           = { noWrap }
-                    overflowIsHidden = { overflowIsHidden }>
-                    { children || label }
-                </Text>
-            </LabelElement>
-        </Css>
+        <LabelElement
+            className    = { buildClassName( className, cssMap ) }
+            htmlFor      = { element === 'label' ? htmlFor : null }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut } >
+            <Text
+                className        = { cssMap.label }
+                noWrap           = { noWrap }
+                overflowIsHidden = { overflowIsHidden }>
+                { children || label }
+            </Text>
+        </LabelElement>
     );
 };
 Label.propTypes =

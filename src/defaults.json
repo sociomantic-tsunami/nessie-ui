@@ -132,7 +132,7 @@
     },
     "IconWithTooltip" :
     {
-        "iconType"          : "error",
+        "iconType"          : "info",
         "message"           : "Something’s wrong!",
         "tooltipIsVisible"  : true
     },

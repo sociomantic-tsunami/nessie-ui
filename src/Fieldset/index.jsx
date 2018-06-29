@@ -20,7 +20,7 @@ const Fieldset = ( {
 } ) => (
 
     <fieldset
-        className    = { buildClassName( className, cssMap, {} ) }
+        className    = { buildClassName( className, cssMap ) }
         onMouseEnter = { onMouseOver }
         onMouseLeave = { onMouseOut }>
         { label &&

@@ -14,7 +14,7 @@ major release' );
 
     return (
 
-        <hr className = { buildClassName( className, cssMap, {} ) } />
+        <hr className = { buildClassName( className, cssMap ) } />
 
     );
 };
