@@ -1,10 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
-
-:root
-{
-    --borderShadow: 0 0.1rem 0.4rem 0 var( --GS-8 );
-}
 
 .default
 {
@@ -21,7 +15,7 @@
 .borders__cells,
 .zebra
 {
-    margin-bottom:  2rem;
+    margin-bottom:  16px;
 
     .row,
     .headerRow
@@ -40,7 +34,12 @@
 {
     .row
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .row
+        {
+            border-top: none;
+        }
     }
 }
 
@@ -48,7 +47,12 @@
 {
     .row .cell
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .cell
+        {
+            border-left: none;
+        }
     }
 }
 
@@ -56,6 +60,6 @@
 {
     .row:nth-child( odd ) .cell
     {
-        background: var( --GS-10 );
+        background: var( --PC-GREY--L95 );
     }
 }

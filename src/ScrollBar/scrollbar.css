@@ -1,0 +1,129 @@
+@import "../proto/base.css";
+@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/_fonts.css";
+
+.default
+{
+
+    .range
+    {
+        -webkit-appearance:     none;
+        margin:                 10px 0;
+        display:                block;
+        background:             transparent;
+
+        &:focus
+        {
+            outline: none;
+        }
+        &::-webkit-slider-runnable-track
+        {
+            width: 100%;
+            height: 5px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: #edf2f7;
+        }
+        &::-webkit-slider-thumb
+        {
+            height: 100%;
+            width: var( --thumbSize );
+            min-width: 20px;
+            background: #9ebad2;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+        &:focus::-webkit-slider-runnable-track
+        {
+            background: #edf2f7;
+        }
+        &::-moz-range-track
+        {
+            width: 100%;
+            height: 5px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: #edf2f7;
+            border: none;
+            box-shadow: none;
+        }
+        &::-moz-range-thumb
+        {
+            height: 5px;
+            width: var( --thumbSize );
+            min-width: 20px;
+            background: #9ebad2;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+        &::-ms-track
+        {
+            width: 100%;
+            height: 5px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: #edf2f7;
+            color: transparent;
+            border: none;
+            box-shadow: none;
+        }
+        &::-ms-fill-lower
+        {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+
+        }
+        &::-ms-fill-upper
+        {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+
+        }
+        &::-ms-thumb
+        {
+            height: 5px;
+            width: 39px;
+            min-width: 20px;
+            background: #9ebad2;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+        }
+        &:focus::-ms-fill-lower
+        {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+        &:focus::-ms-fill-upper
+        {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+    }
+}
+
+
+.orientation__vertical
+{
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: auto;
+    left: 0;
+    width: auto;
+    max-width: none;
+    transform: rotate( 90deg );
+    transform-origin: left top;
+    height: 5px;
+    .range
+    {
+        position: absolute;
+        bottom: 0;
+    }
+}

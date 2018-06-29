@@ -6,7 +6,6 @@ import TextInputWithIcon  from '../TextInputWithIcon';
 import withDropdown       from '../Dropdown/withDropdown';
 import withInputContainer from '../proto/withInputContainer';
 import { eventHandler }   from '../utils';
-import TimeInput          from './TimeInput';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
@@ -55,29 +54,23 @@ const DateTimeInput = ( {
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             items          = { mode === 'month' ? months : weeks }
-            label          = { mode === 'month' ?
-                `${currentYear}` : `${currentMonth} ${currentYear}` }
+            month          = { currentMonth }
+            year           = { currentYear }
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
             nextIsDisabled = { nextIsDisabled }
             prevIsDisabled = { prevIsDisabled }
             onClickItem    = { onClickCell }
-            type           = { mode === 'month' ? 'month' : 'day' } />
-    );
-
-    const timePicker = mode === 'default' && (
-        <TimeInput
-            key               = "timeInput"
+            type           = { mode === 'month' ? 'month' : 'day' }
             hourIsDisabled    = { hourIsDisabled }
             hourInputRef      = { hourInputRef }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
-            isDisabled        = { isDisabled }
-            isReadOnly        = { isReadOnly }
             minuteIsDisabled  = { minuteIsDisabled }
             minuteInputRef    = { minuteInputRef }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
+            mode              = { mode }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onFocus           = { onFocus }
@@ -85,9 +78,9 @@ const DateTimeInput = ( {
     );
 
     const dropdownProps = {
-        children : [ datePicker, timePicker ],
+        children : datePicker,
         hasError,
-        padding  : 'M',
+        padding  : 'none',
         size     : 'content',
     };
 

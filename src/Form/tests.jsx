@@ -5,8 +5,6 @@
 import React                            from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
 
-import Css                              from '../hoc/Css';
-
 import Form                             from './index';
 
 describe( 'Form', () =>
@@ -20,11 +18,6 @@ describe( 'Form', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css higher-order component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
         test( 'should contain exactly one <form>', () =>
         {
             expect( wrapper.find( 'form' ) ).toHaveLength( 1 );

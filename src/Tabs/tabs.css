@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -8,14 +7,12 @@
 
 .header
 {
-    display:            flex;
-    flex-direction:     row;
+    display:        flex;
+    flex-direction: row;
 
-    border-bottom:      0.2rem solid var( --PC-BLUE );
+    border-bottom:  solid 1px var( --PC-GREY--L70 );
 
-    margin-bottom:		2rem;
-
-    /*overflow-y:         hidden;*/
+    margin-bottom:	var( --spacing-2 );
 }
 
 .content

@@ -1,3 +1,5 @@
+@import "../proto/definitions/variables.css";
+
 $shark: 768px;
 
 .default
@@ -65,15 +67,15 @@ $shark: 768px;
 /* Intended for actual columns of components that do not need rows. */
 .alignY__space-around
 {
-    justify-content:    space-around;
+    justify-content:        space-around;
 
     & > *
     {
-        margin-bottom:  2rem;
+        margin-bottom:      var( --spacing-2 );
 
         &:last-child
         {
-            margin-bottom:  0
+            margin-bottom:  0;
         }
     }
 }
@@ -114,26 +116,26 @@ $shark: 768px;
 
 .size__icon-S
 {
-    min-width:  1.6rem;
-    max-width:  1.6rem;
+    min-width:  16px;
+    max-width:  16px;
 }
 .size__icon-M
 {
-    min-width:  2.4rem;
-    max-width:  2.4rem;
+    min-width:  24px;
+    max-width:  24px;
 }
 .size__icon-L
 {
-    min-width:  3.2rem;
-    max-width:  3.2rem;
+    min-width:  32px;
+    max-width:  32px;
 }
 .size__icon-XL
 {
-    min-width:  4rem;
-    max-width:  4rem;
+    min-width:  40px;
+    max-width:  40px;
 }
 .size__icon-XXL
 {
-    min-width:  4.8rem;
-    max-width:  4.8rem;
+    min-width:  48px;
+    max-width:  48px;
 }

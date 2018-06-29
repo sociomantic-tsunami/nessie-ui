@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -7,24 +6,32 @@
     align-items:    center;
 
     width:          auto;
-    height:     2rem;
+    height:         var( --line-height-l );
 
-    border:         0.1rem solid transparent;
+    padding-left:   var( --spacing-2 );
 
-    padding:        0 1rem;
+    background:     var( --PC-BLUE--L90 );
 
-    background:     color( var( --GS-2 ) a( 10% ) );
+    border-radius:  2px;
 
     .label
     {
+        @extend %Nessie-SemiBold;
+
+        letter-spacing: 0.4px;
         white-space:    nowrap;
+        color:          var( --PC-BLUE );
     }
 
     .delete
     {
-       flex:        0 0 auto;
-       float:       right;
-       margin-left: 1rem;
+        margin-left:    var( --spacing-1 );
+        margin-right:   var( --spacing-1 );
+
+        svg
+        {
+            fill:       var( --PC-BLUE );
+        }
     }
 
     & > *
@@ -35,11 +42,10 @@
 
 .disabled
 {
-    border-color:   color( var( --GS-2 ) a( 50% ) );
-    background:     transparent;
+    background:         var( --PC-GREY--L90 );
 
     .label
     {
-        color:  color( var( --GS-2 ) a( 50% ) );
+        color:          var( --PC-GREY--L40 );
     }
 }

@@ -1,5 +1,4 @@
 @import '../proto/base.css';
-@import '../proto/definitions/_colors.css';
 
 .default
 {
@@ -10,7 +9,7 @@
     justify-content:    center;
 
     padding:            0;
-    border:             0.1rem solid transparent;
+    border:             1px solid transparent;
 
     background:         var( --PC-WHITE );
 
@@ -18,70 +17,61 @@
 
     .text
     {
-        color:                  var( --GS-2 );
+        color:                  var( --PC-GREY--D15 );
         font-variant-numeric:   lining-nums tabular-nums;
-    }
-
-    &:hover
-    {
-        border-color:   var( --PC-BLUE );
-        background:     var( --PC-WHITE );
-        color:          var( --GS-2 );
+        font-size:              var( --typo-3 );
+        font-weight:            300;
+        line-height:            var( --line-height-s );
     }
 
     &.fakeHovered,
-    &:focus,
     &:hover
     {
-        border-color:   var( --PC-BLUE );
-        background:     var( --PC-WHITE );
-
-        .text
-        {
-            color:  var( --GS-2 )
-        }
+        border-color:   var( --PC-BLUE--L90 );
+        background:     var( --PC-BLUE--L90 );
     }
 }
 
 .type__day
 {
-    height:             2.4rem;
-    width:              2.4rem;
-    min-width:          2.4rem; /* IE fix */
+    height:             calc( var( --spacing-4 ) - 2px );
+    width:              var( --spacing-4 );
+    min-width:          var( --spacing-4 ); /* IE fix */
     border-radius:      100%;
+    margin:             4px;
+
+    &:last-child
+    {
+        margin-bottom:  4px;
+    }
 }
 
 .type__month
 {
-    height:                 2.4rem;
-    width:                  5rem;
-    border-radius:          2rem;
+    height:                 42px;
+    width:                  68px;
+    border-radius:          3px;
+    margin:                 1px;
+
+    &:last-child
+    {
+        margin-bottom:      1px;
+    }
 }
 
 
-.selected
+.selected,
+.selected.fakeHovered,
+.selected:focus,
+.selected:hover
 {
     border-color:   var( --PC-BLUE );
     background:     var( --PC-BLUE );
 
     .text
     {
-        color:  var( --PC-WHITE );
+        color:      var( --PC-WHITE );
     }
-
-    &.fakeHovered,
-    &:focus,
-    &:hover
-    {
-        background:     color( var( --PC-BLUE ) tint( 13% ) );
-        border-color:   color( var( --PC-BLUE ) tint( 13% ) );
-
-        .text
-        {
-            color:  var( --PC-WHITE );
-        }
-    }
-
 }
 
 
@@ -90,12 +80,12 @@
 .disabled:focus,
 .disabled:hover
 {
-    border-color:   var( --GS-10 );
-    background:     var( --GS-10 );
+    border-color:   var( --PC-GREY--L90 );
+    background:     var( --PC-GREY--L90 );
     cursor:         default;
 
     .text
     {
-        color:          color( var( --GS-2 ) a( 50% ) );
+        color:      var( --PC-GREY--L70 );
     }
 }

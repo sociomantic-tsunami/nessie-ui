@@ -60,7 +60,7 @@ describe( 'SliderGroup', () =>
         const cssMap = wrapper.prop( 'cssMap' );
 
         expect( wrapper.find( `.${cssMap.stepLabelsContainer}` )
-            .find( Label ) ).toHaveLength( 2 );
+            .children() ).toHaveLength( 2 );
     } );
 
     test( 'should render all the slider labels provided', () =>

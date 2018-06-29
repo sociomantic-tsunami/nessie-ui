@@ -5,15 +5,6 @@ import { buildClassName } from '../utils';
 import styles             from './icon.css';
 
 
-const iconsWithVariants = [
-    'alert',
-    'approved',
-    'declined',
-    'ended',
-    'error',
-    'pending',
-];
-
 const Icon = ( {
     children,
     className,
@@ -25,16 +16,14 @@ const Icon = ( {
     onMouseOver,
     size,
     theme,
-    type,
-    variant,
+    type
 } ) =>
 {
     let xLink;
 
     if ( type !== 'none' )
     {
-        xLink = iconsWithVariants.includes( type ) ?
-            `#icon__${type}-${variant}` : `#icon__${type}`;
+        xLink = `#icon__${type}`;
     }
 
     return (
@@ -91,7 +80,7 @@ Icon.propTypes =
     /**
      *  Icon size
      */
-    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
      *  Icon theme
      */
@@ -108,38 +97,53 @@ Icon.propTypes =
     type : PropTypes.oneOf( [
         'account',
         'add',
+        'add-circle',
         'alert',
         'approved',
+        'arrow',
+        'bell',
+        'board',
         'calendar',
         'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
         'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'edit-circle',
         'ended',
         'error',
+        'file',
+        'graph',
         'hide',
         'info',
         'inspect',
         'left',
+        'lightbulb',
         'link',
+        'megaphone',
+        'options',
         'pending',
         'preview',
+        'puzzle-piece',
         'reset',
         'right',
         'search',
         'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
         'up',
         'upload',
         'validation',
         'none',
-    ] ),
-    /**
-    *  Icon variant to show
-    */
-    variant : PropTypes.oneOf( [ 'fill', 'stroke' ] ),
+    ] )
 };
 
 Icon.defaultProps =
@@ -154,9 +158,7 @@ Icon.defaultProps =
     onMouseOver : undefined,
     size        : 'S',
     theme       : 'light',
-    type        : 'none',
-    variant     : 'fill',
-
+    type        : 'none'
 };
 
 export default Icon;

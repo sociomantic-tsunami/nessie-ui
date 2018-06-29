@@ -1,4 +1,5 @@
 /* eslint max-len: ["error", { "ignoreTrailingComments": true }] */
+/* global Event */
 
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
@@ -10,7 +11,9 @@ import H1                   from '../H1';
 import H2                   from '../H2';
 import H3                   from '../H3';
 import H4                   from '../H4';
+import styles               from './flounderDropdown.css';
 import {
+    addExtraClasses,
     mapCssToFlounder,
     mapIconClassesToFlounder,
     stringifyArr,
@@ -208,6 +211,7 @@ export default class FlounderDropdown extends Component
         headerLevel           : 'none',
         hasError              : false,
         errorMessageIsVisible : false,
+        errorMessagePosition  : 'top',
         isDisabled            : false,
         isReadOnly            : false,
         multiple              : false,
@@ -221,7 +225,7 @@ export default class FlounderDropdown extends Component
         forceHover            : false,
         placeholder           : 'Please choose an option',
         icon                  : 'arrow',
-        cssMap                : require( './flounderDropdown.css' ),
+        cssMap                : styles
     };
 
     constructor( props )
@@ -329,10 +333,16 @@ export default class FlounderDropdown extends Component
                 }
             };
 
+            let data = addExtraClasses(
+                props.data,
+                props.cssMap.optionWithDescription
+            );
+
+            data = mapIconClassesToFlounder( data, props.cssMap );
+
             const flounderProps = {
-                classes : mapCssToFlounder( props.cssMap ),
-                data    : mapIconClassesToFlounder( props.data,
-                    props.cssMap ),
+                classes              : mapCssToFlounder( props.cssMap ),
+                data,
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
                 multipleMessage      : props.multipleMessage,

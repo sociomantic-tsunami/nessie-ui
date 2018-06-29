@@ -1,5 +1,3 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import "../proto/base.css";
 
 .default
@@ -8,8 +6,7 @@
     justify-content:    center;
     align-items:        center;
 
-    margin:             0;
-    padding:            1.2rem;
+    padding:            var( --spacing-2 );
 
     background:         var( --PC-BLUE );
 
@@ -22,19 +19,14 @@
 
     .info
     {
-        margin-right:   2rem;
-    }
-
-    .message
-    {
-        @extend %Nessie-Bold;
-        color:  var( --PC-WHITE );
+        margin-right:   20px;
+        fill:           var( --PC-GREY--D25 );
     }
 
     .close
     {
         position:   absolute;
-        right:      5rem;
+        right:      var( --spacing-2 );
     }
 }
 
@@ -42,20 +34,26 @@
 {
     position:   fixed;
     top:        0;
+    left:       0;
     z-index:    1000;
 }
 
 .type__error
 {
-    background: var( --AC-2 );
+    background: var( --PC-RED );
 }
 
 .type__alert
 {
-    background: var( --AC-5 );
+    background: var( --PC-YELLOW );
 }
 
 .type__success
 {
-    background: var(  --AC-12 );
+    background: var(  --PC-GREEN );
+}
+
+.message
+{
+    color: var( --PC-WHITE );
 }

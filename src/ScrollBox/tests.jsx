@@ -3,28 +3,63 @@
 /* eslint no-console: 0*/
 
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                 from 'react';
+import { mount, shallow }    from 'enzyme';
 
-import ScrollBox    from './index';
+import ScrollBar             from '../ScrollBar';
+
+import ScrollBox             from './index';
 
 describe( 'ScrollBox', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = null;
+        wrapper = shallow( <ScrollBox /> );
+        instance = wrapper.instance();
+        instance.scrollBoxRef = {
+            style : {
+                setProperty : jest.fn()
+            }
+        };
     } );
 
-    test( 'should contain a single ScrollBox', () =>
+    test( 'should have exactly one ScrollBar when scroll is "horizontal"', () =>
     {
-        const props = {
-            title : 'Boom'
-        };
-        wrapper = mount( <ScrollBox { ...props } /> );
+        wrapper.setState( {
+            thumbSize : {
+                horizontal : 1,
+                vertical   : 0
+            }
+        } );
+        wrapper.setProps( { scroll: 'horizontal' } );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
+    } );
 
-        expect( wrapper.find( ScrollBox ) ).toHaveLength( 1 );
+    test( 'should have exactly one ScrollBar when scroll is "vertical"', () =>
+    {
+        wrapper.setState( {
+            thumbSize : {
+                horizontal : 0,
+                vertical   : 1
+            }
+        } );
+        wrapper.setProps( { scroll: 'vertical' } );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
+    } );
+
+    test( 'should have exactly two ScrollBars when scroll is "both"', () =>
+    {
+        wrapper.setState( {
+            thumbSize : {
+                horizontal : 1,
+                vertical   : 1
+            }
+        } );
+        wrapper.setProps( { scroll: 'both' } );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 2 );
     } );
 
     test( 'should have its component name and hash as default className', () =>
@@ -47,6 +82,44 @@ describe( 'ScrollBox', () =>
         wrapper = mount( <ScrollBox { ...props } /> );
         expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).content}` ) )
             .toHaveLength( 1 );
+    } );
+
+    describe( 'scroll', () =>
+    {
+        test( 'should be "both" by default', () =>
+        {
+            expect( instance.props.scroll ).toBe( 'both' );
+        } );
+
+        test( 'should be passed to both ScrollBars as orientation prop', () =>
+        {
+            wrapper.setState( {
+                thumbSize : {
+                    horizontal : 1,
+                    vertical   : 1
+                }
+            } );
+            wrapper.setProps( { scroll: 'horizontal' } );
+            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) ).toBe( 'horizontal' );
+            wrapper.setProps( { scroll: 'vertical' } );
+            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) ).toBe( 'vertical' );
+        } );
+    } );
+
+    describe( 'thumbSize', () =>
+    {
+        test( 'should be passed to the ScrollBar as thumbSize prop', () =>
+        {
+            wrapper.setState( {
+                thumbSize : {
+                    horizontal : 50,
+                    vertical   : 100,
+                }
+            } );
+
+            expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) ).toBe( 50 );
+            expect( wrapper.find( ScrollBar ).last().prop( 'thumbSize' ) ).toBe( 100 );
+        } );
     } );
 } );
 
