@@ -1,11 +1,11 @@
 /* global addEventListener removeEventListener Event */
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
-import Component            from '../proto/Component';
-import Css                  from '../hoc/Css';
-import IconWithTooltip      from '../IconWithTooltip';
-import Label                from '../Label';
+import Component                           from '../proto/Component';
+import { buildClassName }                  from '../utils';
+import IconWithTooltip                     from '../IconWithTooltip';
+import Label                               from '../Label';
 
 export default class Slider extends Component
 {
@@ -156,21 +156,17 @@ export default class Slider extends Component
         /**
         * Step labels
         */
-        stepLabels    : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        ),
+        stepLabels    : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) ),
         /**
         * Slider ticks separators
         */
-        ticks : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        )
+        ticks : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) )
     };
 
     static defaultProps =
@@ -371,7 +367,9 @@ export default class Slider extends Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -717,8 +715,7 @@ export default class Slider extends Component
                             className = { cssMap.stepLabel }
                             style     = { this.getHandleStyle( val.step ) } >
                             { val.stepLabel }
-                        </div>
-                    ) }
+                        </div> ) }
                 </div>
             );
         }
@@ -777,78 +774,74 @@ export default class Slider extends Component
                             className = { cssMap.tick }
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
-                        </div>
-                ) }
+                        </div> ) }
             </div>
         );
 
         return (
-            <Css
-                cssMap = { cssMap }
-                cssProps = { {
+
+            <div
+                className    = { buildClassName( className, cssMap, {
                     error               : !isDisabled && hasError,
                     disabled            : isDisabled,
                     handleLabelPosition : hasHandleLabels &&
-                                          handleLabelPosition,
+                                              handleLabelPosition,
                     hasHandleLabels,
                     orientation,
                     grabbing : this.state.isGrabbing,
-                } } >
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <div
-                    className    = { className }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }>
-                    <div
-                        className = { cssMap.inputContainer }
-                        ref       = { this.setInputContainerRef }>
-                        { values.map( ( val, i ) => (
-                            <input
-                                data-index  = { i }
-                                disabled    = { isDisabled }
-                                id          = { `${id}_${i}` }
-                                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                max         = { maxValue }
-                                min         = { minValue }
-                                onBlur      = { this.handleBlur }
-                                onChange    = { onChange }
-                                onClick     = { onClick }
-                                onFocus     = { this.handleFocus }
-                                onKeyDown   = { onKeyDown }
-                                onKeyUp     = { onKeyUp }
-                                onMouseDown = { onMouseDown }
-                                onMouseUp   = { onMouseUp }
-                                readOnly    = { isReadOnly }
-                                step        = { step }
-                                type        = "range"
-                                value       = { val } />
-                        ) ) }
-                    </div>
-
-                    { sliderLabelMarkUp }
-
-                    <div className = { cssMap.trackContainer }>
-                        { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
-                        <div
-                            aria-hidden
-                            className    = { cssMap.track }
-                            ref          = { this.setTrackRef }
-                            onClick      = { this.handleClick }
-                            onMouseDown  = { this.handleDown }
-                            onTouchStart = { this.handleDown }>
-                            { trackFillMarkUp }
-
-                            { values.map( ( val, i ) =>
-                                buildHandle( val, i ) )
-                            }
-
-                            { ticksMarkUp }
-                        </div>
-                        { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
-                    </div>
+                    className = { cssMap.inputContainer }
+                    ref       = { this.setInputContainerRef }>
+                    { values.map( ( val, i ) => (
+                        <input
+                            data-index  = { i }
+                            disabled    = { isDisabled }
+                            id          = { `${id}_${i}` }
+                            key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                            max         = { maxValue }
+                            min         = { minValue }
+                            onBlur      = { this.handleBlur }
+                            onChange    = { onChange }
+                            onClick     = { onClick }
+                            onFocus     = { this.handleFocus }
+                            onKeyDown   = { onKeyDown }
+                            onKeyUp     = { onKeyUp }
+                            onMouseDown = { onMouseDown }
+                            onMouseUp   = { onMouseUp }
+                            readOnly    = { isReadOnly }
+                            step        = { step }
+                            type        = "range"
+                            value       = { val } />
+                    ) ) }
                 </div>
-            </Css>
+
+                { sliderLabelMarkUp }
+
+                <div className = { cssMap.trackContainer }>
+                    { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
+                                stepLabelsTrack }
+                    <div
+                        aria-hidden
+                        className    = { cssMap.track }
+                        ref          = { this.setTrackRef }
+                        onClick      = { this.handleClick }
+                        onMouseDown  = { this.handleDown }
+                        onTouchStart = { this.handleDown }>
+                        { trackFillMarkUp }
+
+                        { values.map( ( val, i ) =>
+                            buildHandle( val, i ) )
+                        }
+
+                        { ticksMarkUp }
+                    </div>
+                    { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
+                                stepLabelsTrack }
+                </div>
+            </div>
         );
     }
 }
