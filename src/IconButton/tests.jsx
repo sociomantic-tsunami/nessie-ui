@@ -114,25 +114,25 @@ describe( 'IconButtonDriver', () =>
 
     describe( 'focus()', () =>
     {
-        test( 'should fire the onFocus callback prop', () =>
+        test( 'should fire the onFocus callback prop once', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
-            expect( focusSpy ).toBeCalled();
+            expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'blur()', () =>
     {
-        test( 'should fire the onBlur callback prop', () =>
+        test( 'should fire the onBlur callback prop once', () =>
         {
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
             driver.blur();
-            expect( blurSpy ).toBeCalled();
+            expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );
 } );

@@ -27,7 +27,7 @@ describe( 'NavItem', () =>
             .toHaveLength( 1 );
     } );
 
-    test( 'should trigger callback on click', () =>
+    test( 'should trigger callback on click once', () =>
     {
         const onClickSpy = jest.fn().mockReset();
         wrapper.setProps( {
@@ -36,10 +36,10 @@ describe( 'NavItem', () =>
 
         wrapper.driver().click();
 
-        expect( onClickSpy ).toBeCalled();
+        expect( onClickSpy ).toBeCalledTimes( 1 );
     } );
 
-    test( 'should trigger callback on mouse over', () =>
+    test( 'should trigger callback on mouse over once', () =>
     {
         const onMouseOverSpy = jest.fn().mockReset();
         wrapper.setProps( {
@@ -48,10 +48,10 @@ describe( 'NavItem', () =>
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOverSpy ).toBeCalled();
+        expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
 
-    test( 'should trigger callback on mouse out', () =>
+    test( 'should trigger callback on mouse out once', () =>
     {
         const onMouseOutSpy = jest.fn().mockReset();
         wrapper.setProps( {
@@ -60,7 +60,7 @@ describe( 'NavItem', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOutSpy ).toBeCalled();
+        expect( onMouseOutSpy ).toBeCalledTimes( 1 );
     } );
 
     test( 'driver method `getLabel` should return the component label', () =>

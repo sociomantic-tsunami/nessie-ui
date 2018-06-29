@@ -41,7 +41,7 @@ describe( 'IconDriver', () =>
         wrapper = mount( <Icon /> );
     } );
 
-    test( 'should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event once', () =>
     {
         const onMouseOver = jest.fn();
         const onMouseOut = jest.fn();
@@ -49,11 +49,11 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOver ).toBeCalled();
+        expect( onMouseOver ).toBeCalledTimes( 1 );
         expect( onMouseOut ).not.toBeCalled();
     } );
 
-    test( 'should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event once', () =>
     {
         const onMouseOver = jest.fn();
         const onMouseOut = jest.fn();
@@ -61,7 +61,7 @@ describe( 'IconDriver', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOut ).toBeCalled();
+        expect( onMouseOut ).toBeCalledTimes( 1 );
         expect( onMouseOver ).not.toBeCalled();
     } );
 } );

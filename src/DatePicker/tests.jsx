@@ -42,7 +42,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'clickItem', () =>
     {
-        test( 'should simulate and trigger onClickItem()', () =>
+        test( 'should simulate and trigger onClickItem() once', () =>
         {
             const onClickItem = jest.fn();
             wrapper.setProps( {
@@ -109,13 +109,13 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickItem();
 
-            expect( onClickItem ).toBeCalled();
+            expect( onClickItem ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickNext', () =>
     {
-        test( 'should simulate and trigger onClickNext()', () =>
+        test( 'should simulate and trigger onClickNext() once', () =>
         {
             const onClickNext = jest.fn();
             wrapper.setProps( {
@@ -124,13 +124,13 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext ).toBeCalled();
+            expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickPrev', () =>
     {
-        test( 'should simulate and trigger onClickPrev()', () =>
+        test( 'should simulate and trigger onClickPrev() once', () =>
         {
             const onClickPrev = jest.fn();
             wrapper.setProps( {
@@ -139,7 +139,7 @@ describe( 'DatePickerDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev ).toBeCalled();
+            expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
 } );

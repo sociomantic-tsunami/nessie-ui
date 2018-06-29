@@ -108,12 +108,12 @@ end of the code editor’s value', () =>
             expect( CodeMirror.getValue() ).toBe( 'foo' );
         } );
 
-        test( 'should fire the onChange callback prop', () =>
+        test( 'should fire the onChange callback prop once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
-            expect( onChange ).toBeCalled();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
         test( 'should call onChange with new value as argument', () =>

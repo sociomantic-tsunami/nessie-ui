@@ -110,7 +110,7 @@ describe( 'PasswordInputDriver', () =>
 
     describe( 'focus()', () =>
     {
-        test( 'should fire the onFocus callback prop', () =>
+        test( 'should fire the onFocus callback prop once', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( {
@@ -120,13 +120,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.focus();
-            expect( focusSpy ).toBeCalled();
+            expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'blur()', () =>
     {
-        test( 'should fire the onBlur callback prop', () =>
+        test( 'should fire the onBlur callback prop once', () =>
         {
             const blurSpy = jest.fn();
             wrapper.setProps( {
@@ -136,13 +136,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.blur();
-            expect( blurSpy ).toBeCalled();
+            expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'setInputValue( value )', () =>
     {
-        test( 'should fire the onChange callback prop', () =>
+        test( 'should fire the onChange callback prop once', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {
@@ -152,13 +152,13 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.setInputValue( 'test' );
-            expect( changeSpy ).toBeCalled();
+            expect( changeSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'pressKey( keyCode )', () =>
     {
-        test( 'should fire the onKeyPress callback prop', () =>
+        test( 'should fire the onKeyPress callback prop once', () =>
         {
             const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
@@ -167,10 +167,10 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.pressKey( keyCodeEnter );
-            expect( keyPressSpy ).toBeCalled();
+            expect( keyPressSpy ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should fire the onInput callback prop', () =>
+        test( 'should fire the onInput callback prop once', () =>
         {
             const keyCodeChar = String.fromCharCode( 74 );
             const onChangeSpy = jest.fn();
@@ -179,7 +179,7 @@ describe( 'PasswordInputDriver', () =>
             } );
 
             driver.pressKey( keyCodeChar );
-            expect( onChangeSpy ).toBeCalled();
+            expect( onChangeSpy ).toBeCalledTimes( 1 );
         } );
 
         test( 'inputValue should fire event for each key', () =>

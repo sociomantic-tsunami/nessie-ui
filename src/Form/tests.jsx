@@ -67,14 +67,14 @@ describe( 'FormDriver', () =>
 
     describe( 'submit()', () =>
     {
-        test( 'should fire the onSubmit callback prop', () =>
+        test( 'should fire the onSubmit callback prop once', () =>
         {
             const onSubmit = jest.fn();
 
             wrapper.setProps( { onSubmit } );
             wrapper.driver().submit();
 
-            expect( onSubmit ).toBeCalled();
+            expect( onSubmit ).toBeCalledTimes( 1 );
         } );
     } );
 } );

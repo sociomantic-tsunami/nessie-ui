@@ -186,7 +186,7 @@ describe( 'ModuleDriver', () =>
 
     describe( 'toggle()', () =>
     {
-        test( 'should fire the onClickToggle prop', () =>
+        test( 'should fire the onClickToggle prop once', () =>
         {
             const toggleSpy = jest.fn();
             wrapper.setProps( {
@@ -197,13 +197,13 @@ describe( 'ModuleDriver', () =>
 
             driver.toggle();
 
-            expect( toggleSpy ).toBeCalled();
+            expect( toggleSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickDelete()', () =>
     {
-        test( 'should fire the onClickDelete prop', () =>
+        test( 'should fire the onClickDelete prop once', () =>
         {
             const clickDeleteSpy = jest.fn();
             wrapper.setProps( {
@@ -214,7 +214,7 @@ describe( 'ModuleDriver', () =>
 
             driver.clickDelete();
 
-            expect( clickDeleteSpy ).toBeCalled();
+            expect( clickDeleteSpy ).toBeCalledTimes( 1 );
         } );
     } );
 

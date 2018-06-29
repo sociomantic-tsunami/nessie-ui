@@ -1,5 +1,3 @@
-import 'mock-local-storage';
-
 // toBeType extension; to the date, Jest didn't implement this natively
 // https://github.com/facebook/jest/issues/3457#issuecomment-334846026
 expect.extend( {
@@ -18,24 +16,6 @@ expect.extend( {
             pass    : false
         };
     }
-} );
-
-describe( 'testing extended expect', () =>
-{
-    it( 'tests normal types correctly', () =>
-    {
-        expect( '' ).toBeType( 'string' );
-        expect( {} ).toBeType( 'object' );
-        expect( 1 ).toBeType( 'number' );
-    } );
-    it( 'tests array types correctly', () =>
-    {
-        expect( [] ).toBeType( 'array' );
-    } );
-    it( 'works with promises', () =>
-    {
-        expect( Promise.resolve( [] ) ).resolves.toBeType( 'array' );
-    } );
 } );
 
 
@@ -66,4 +46,6 @@ global.window.document.body.createTextRange = function createRange()
     };
 };
 
-global.window.focus = () => {};
+
+global.window.focus = () =>
+{};

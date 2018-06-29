@@ -130,24 +130,28 @@ describe( 'ScrollBoxDriver', () =>
 
     describe( 'clickScroll', () =>
     {
-        test( 'should trigger onClickScrollUp when clicked on scrollUp', () =>
-        {
-            const onClickScrollUp = jest.fn();
-            const props = {
-                scrollUpIsVisible : true,
-                onClickScrollUp
-            };
+        test(
+            'should trigger onClickScrollUp when clicked on scrollUp once',
+            () =>
+            {
+                const onClickScrollUp = jest.fn();
+                const props = {
+                    scrollUpIsVisible : true,
+                    onClickScrollUp
+                };
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+                wrapper = mount( <ScrollBox { ...props } /> );
 
-            wrapper.driver().clickScrollUp();
+                wrapper.driver().clickScrollUp();
 
-            expect( onClickScrollUp ).toBeCalled();
-        } );
+                expect( onClickScrollUp ).toBeCalledTimes( 1 );
+            }
+        );
 
 
         test(
-            'should trigger onClickScrollRight when clicked on scrollRight',
+            'should trigger onClickScrollRight when clicked \
+on scrollRight once',
             () =>
             {
                 const onClickScrollRight = jest.fn();
@@ -160,13 +164,13 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().clickScrollRight();
 
-                expect( onClickScrollRight ).toBeCalled();
+                expect( onClickScrollRight ).toBeCalledTimes( 1 );
             }
         );
 
 
         test(
-            'should trigger onClickScrollDown when clicked on scrollDown',
+            'should trigger onClickScrollDown when clicked on scrollDown once',
             () =>
             {
                 const onClickScrollDown = jest.fn();
@@ -179,13 +183,13 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().clickScrollDown();
 
-                expect( onClickScrollDown ).toBeCalled();
+                expect( onClickScrollDown ).toBeCalledTimes( 1 );
             }
         );
 
 
         test(
-            'should trigger onClickScrollLeft when clicked on scrollLeft',
+            'should trigger onClickScrollLeft when clicked on scrollLeft once',
             () =>
             {
                 const onClickScrollLeft = jest.fn();
@@ -198,7 +202,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().clickScrollLeft();
 
-                expect( onClickScrollLeft ).toBeCalled();
+                expect( onClickScrollLeft ).toBeCalledTimes( 1 );
             }
         );
     } );
@@ -208,7 +212,7 @@ describe( 'ScrollBoxDriver', () =>
     {
         describe( 'scrollVertical()', () =>
         {
-            test( 'should trigger onScroll() for vertical scroll', () =>
+            test( 'should trigger onScroll() for vertical scroll once', () =>
             {
                 const onScroll = jest.fn();
                 const props = {
@@ -220,7 +224,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollVertical( 250 );
 
-                expect( onScroll ).toBeCalled();
+                expect( onScroll ).toBeCalledTimes( 1 );
             } );
 
             test( 'should throw an error when scroll direction is wrong', () =>
@@ -237,7 +241,7 @@ describe( 'ScrollBoxDriver', () =>
 
         describe( 'scrollHorizontal()', () =>
         {
-            test( 'should trigger onScroll() for horizontal scroll', () =>
+            test( 'should trigger onScroll() for horizontal scroll once', () =>
             {
                 const onScroll = jest.fn();
                 const props = {
@@ -249,7 +253,7 @@ describe( 'ScrollBoxDriver', () =>
 
                 wrapper.driver().scrollHorizontal( 640 );
 
-                expect( onScroll ).toBeCalled();
+                expect( onScroll ).toBeCalledTimes( 1 );
             } );
 
             test( 'should throw an error when scroll direction is wrong', () =>

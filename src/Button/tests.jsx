@@ -150,12 +150,12 @@ describe( 'ButtonDriver', () =>
             clickSpy = jest.fn();
         } );
 
-        test( 'should have the button clicked', () =>
+        test( 'should have the button clicked once', () =>
         {
             wrapper.setProps( { onClick: clickSpy } );
             driver.click();
 
-            expect( clickSpy ).toBeCalled();
+            expect( clickSpy ).toBeCalledTimes( 1 );
         } );
 
         test( 'click on a disabled button should produce an error', () =>

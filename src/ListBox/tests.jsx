@@ -48,7 +48,7 @@ describe( 'ListBoxDriver', () =>
 
     describe( 'clickOption', () =>
     {
-        test( 'should trigger onClickOption when clicked on \
+        test( 'should trigger onClickOption once when clicked on \
 ListBoxOption at given index', () =>
         {
             const onClickOption = jest.fn();
@@ -88,14 +88,14 @@ ListBoxOption at given index', () =>
 
             driver.clickOption( 1 );
 
-            expect( onClickOption ).toBeCalled();
+            expect( onClickOption ).toBeCalledTimes( 1 );
         } );
     } );
 
 
     describe( 'mouseOverOption', () =>
     {
-        test( 'should trigger onMouseOverOption when hovered on \
+        test( 'should trigger onMouseOverOption once when hovered on \
 ListBoxOption at given index', () =>
         {
             const onMouseOverOption = jest.fn();
@@ -135,14 +135,14 @@ ListBoxOption at given index', () =>
 
             driver.mouseOverOption( 1 );
 
-            expect( onMouseOverOption ).toBeCalled();
+            expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
     } );
 
 
     describe( 'mouseOutOption', () =>
     {
-        test( 'should trigger onMouseOutOption when hovered on \
+        test( 'should trigger onMouseOutOption once when hovered on \
 ListBoxOption at given index', () =>
         {
             const onMouseOutOption = jest.fn();
@@ -182,14 +182,14 @@ ListBoxOption at given index', () =>
 
             driver.mouseOutOption( 0 );
 
-            expect( onMouseOutOption ).toBeCalled();
+            expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
     } );
 
 
     describe( 'keyPress', () =>
     {
-        test( 'should trigger onKeyPress', () =>
+        test( 'should trigger onKeyPress once', () =>
         {
             const onKeyPress = jest.fn();
 
@@ -212,7 +212,7 @@ ListBoxOption at given index', () =>
 
             driver.keyPress();
 
-            expect( onKeyPress ).toBeCalled();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
 } );

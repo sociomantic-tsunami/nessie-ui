@@ -1,5 +1,3 @@
-const aliases = require( './aliases.config' ).jest;
-
 module.exports = {
     // The jest <rootDir> is presumed to be wherever the config
     // file is, so here we put it back to the root folder.
@@ -39,7 +37,10 @@ module.exports = {
     moduleNameMapper : Object.assign(
         {},
         // Map module aliases to directories
-        aliases,
+        {
+            componentDriver : '<rootDir>/src/Testing/index',
+            'nessie-ui'     : '<rootDir>/src/index',
+        },
         // Mock assets
         {
             '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
@@ -48,7 +49,6 @@ module.exports = {
         }
     ),
 
-    // 'bail'  : true,
     verbose : true,
 
     transformIgnorePatterns :
