@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -81,7 +80,7 @@ state', () =>
                 expect( wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
                     .toHaveLength( 1 );
                 expect( wrapper.find( 'IconButton', 'Upload', 'Icon' )
-                    .prop( 'isReadOnly' ) ).toBe( true );
+                    .prop( 'isReadOnly' ) ).toBeTruthy();
             } );
         } );
     } );

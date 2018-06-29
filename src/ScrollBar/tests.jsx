@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 
 
@@ -20,7 +19,8 @@ describe( 'ScrollBar', () =>
     } );
 
 
-    test( 'should contain exactly one <div>', () => {
+    test( 'should contain exactly one <div>', () =>
+    {
         expect( wrapper.find( 'div' ) ).toHaveLength( 1 );
     } );
 
@@ -31,7 +31,8 @@ describe( 'ScrollBar', () =>
 
     test( '<input> has type="range"', () =>
     {
-        expect( wrapper.find( 'input' ).first().prop( 'type' ) ).toBe( 'range' );
+        expect( wrapper.find( 'input' ).first().prop( 'type' ) )
+            .toBe( 'range' );
     } );
 
     describe( 'scrollPos', () =>
@@ -46,8 +47,8 @@ describe( 'ScrollBar', () =>
             wrapper.setProps( { scrollPos: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'value' ) )
                 .toBe( 20 );
-        } )
-    } )
+        } );
+    } );
 
     describe( 'onChange', () =>
     {
@@ -65,12 +66,12 @@ describe( 'ScrollBar', () =>
                 wrapper.find( 'input' ).first().prop( 'onChange' );
 
             inputOnChange( {
-                target: {}
+                target : {}
             } );
 
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
-    } )
+    } );
 
     describe( 'scrollMin', () =>
     {
@@ -84,7 +85,7 @@ describe( 'ScrollBar', () =>
             wrapper.setProps( { scrollMin: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'min' ) )
                 .toBe( 20 );
-        } )
+        } );
     } );
 
     describe( 'scrollMax', () =>
@@ -99,12 +100,12 @@ describe( 'ScrollBar', () =>
             wrapper.setProps( { scrollMax: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'max' ) )
                 .toBe( 20 );
-        } )
+        } );
     } );
 } );
 
 
-describe( 'ScrollBarDriver', ()=>
+describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
 
@@ -113,10 +114,10 @@ describe( 'ScrollBarDriver', ()=>
         wrapper = mount( <ScrollBar /> );
     } );
 
-    describe( 'change()', ()=>
+    describe( 'change()', () =>
     {
-        test( 'should change the value of the <input />', ()=> {
-
+        test( 'should change the value of the <input />', () =>
+        {
             const onChange = jest.fn();
             wrapper.setProps( {
                 onChange
@@ -126,10 +127,10 @@ describe( 'ScrollBarDriver', ()=>
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
     } );
-    describe( 'mouseOver()', ()=>
+    describe( 'mouseOver()', () =>
     {
-        test( 'should change the value of the <input />', ()=> {
-
+        test( 'should change the value of the <input />', () =>
+        {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
                 onMouseOver
@@ -140,10 +141,10 @@ describe( 'ScrollBarDriver', ()=>
         } );
     } );
 
-    describe( 'mouseOut()', ()=>
+    describe( 'mouseOut()', () =>
     {
-        test( 'should change the value of the <input />', ()=> {
-
+        test( 'should change the value of the <input />', () =>
+        {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
                 onMouseOut

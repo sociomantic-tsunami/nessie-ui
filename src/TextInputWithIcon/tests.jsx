@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect Event */
+/* global test jest Event */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -343,7 +342,7 @@ the <input> or the <button>', () =>
 
         beforeEach( () =>
         {
-            props = instance.props;
+            ( { props } = instance );
         } );
 
         describe( 'placeholder', () =>
@@ -590,8 +589,8 @@ the <input> or the <button>', () =>
                     isReadOnly : true
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) ).
-                    toBeTruthy();
+                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
+                    .toBeTruthy();
             } );
         } );
 

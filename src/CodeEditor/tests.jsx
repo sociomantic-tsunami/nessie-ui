@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global jest test */
 /* eslint no-console: 0*/
 
 import React              from 'react';

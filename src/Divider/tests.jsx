@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 
 

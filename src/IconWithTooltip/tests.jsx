@@ -1,3 +1,4 @@
+/* global test jest */
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
 import React                            from 'react';

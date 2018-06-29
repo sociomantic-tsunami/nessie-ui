@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
@@ -37,7 +36,7 @@ describe( 'Radio', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -48,7 +47,7 @@ describe( 'Radio', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -59,7 +58,7 @@ describe( 'Radio', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -74,15 +73,18 @@ describe( 'Radio', () =>
                 expect( wrapper.prop( onChange ) ).toBeUndefined();
             } );
 
-            test( 'should be passed as `undefined` to Checkable if readOnly', () =>
-            {
-                const onChange = jest.fn().mockImplementation( e =>
-                    targetChecked = e.target.checked );
-                wrapper.setProps( { isReadOnly: true, onChange } );
+            test(
+                'should be passed as `undefined` to Checkable if readOnly',
+                () =>
+                {
+                    const onChange = jest.fn().mockImplementation( e =>
+                        targetChecked = e.target.checked );
+                    wrapper.setProps( { isReadOnly: true, onChange } );
 
-                expect( wrapper.find( Checkable ).prop( onChange ) )
-                    .toBeUndefined();
-            } );
+                    expect( wrapper.find( Checkable ).prop( onChange ) )
+                        .toBeUndefined();
+                }
+            );
 
             test( 'should be defined if not readOnly', () =>
             {

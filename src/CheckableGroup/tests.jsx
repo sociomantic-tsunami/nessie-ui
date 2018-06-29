@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global jest test */
 
 import React                   from 'react';
 import { ReactWrapper, mount } from 'enzyme';
@@ -59,7 +58,7 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( true );
+                .toBeTruthy();
         } );
 
         test(
@@ -95,7 +94,7 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( true );
+                .toBeTruthy();
 
             wrapper.driver().toggleByIndex( 1 );
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
@@ -138,7 +137,7 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( true );
+                .toBeTruthy();
         } );
 
         test( 'should set check to Checkboxes with values', () =>
@@ -174,7 +173,7 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( true );
+                .toBeTruthy();
 
             wrapper.driver().toggleByValue( 'second check' );
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )

@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 

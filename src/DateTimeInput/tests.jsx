@@ -1,3 +1,6 @@
+/* global jest test */
+/* eslint-disable no-magic-numbers */
+
 import React                    from 'react';
 import { mount }                from 'enzyme';
 

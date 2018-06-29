@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global test jest */
 
 import React                   from 'react';
 import { ReactWrapper, mount } from 'enzyme';

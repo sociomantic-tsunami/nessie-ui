@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global jest test */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
@@ -35,7 +34,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -63,7 +62,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -74,7 +73,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
