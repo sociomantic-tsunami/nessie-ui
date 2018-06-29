@@ -1,8 +1,8 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
 import { buildClassName }                  from '../utils';
-import Text                 from '../Text';
+import Text                                from '../Text';
 
 const MessageBox = ( {
     cssMap,
