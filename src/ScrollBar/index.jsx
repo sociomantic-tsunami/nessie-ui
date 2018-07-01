@@ -1,41 +1,45 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { buildClassName, generateId }   from '../utils';
-import styles                           from './scrollbar.css';
+import { buildClassName, generateId } from '../utils';
+import styles                         from './scrollBar.css';
 
 
 const ScrollBar = ( {
     className,
     cssMap,
-    id,
-    orientation,
+    id = generateId( 'ScrollBar' ),
+    length,
     onChange,
     onMouseOut,
     onMouseOver,
-    thumbSize,
-    scrollPos,
+    orientation,
     scrollMax,
     scrollMin,
-    length
-} ) =>
-    (
-        <div
-            className    = { buildClassName( className, cssMap, { orientation } ) }
+    scrollPos,
+    thumbSize,
+} ) => (
+    <div
+        className    = { buildClassName( className, cssMap, { orientation } ) }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }
+        style        = { {
+            '--thumbSize'   : thumbSize,
+            '--trackLength' : length,
+        } }>
+        <input
+            className    = { cssMap.range }
             id           = { id }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut } >
-            <input
-                className    = { cssMap.range }
-                value        = { scrollPos }
-                max          = { scrollMax }
-                min          = { scrollMin }
-                onChange     = { e => onChange( parseInt( e.target.value ) ) }
-                step         = "1"
-                style        = { { width: `${length}px`, '--thumbSize': `${thumbSize}%` } }
-                type         = "range" />
-        </div>
-    );
+            max          = { scrollMax }
+            min          = { scrollMin }
+            onChange     = { e =>
+                onChange && onChange( parseInt( e.target.value, 10 ) )
+            }
+            step  = "1"
+            type  = "range"
+            value = { scrollPos } />
+    </div>
+);
 
 ScrollBar.propTypes =
 {
@@ -48,21 +52,21 @@ ScrollBar.propTypes =
      */
     cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
-    *  Component id
-    */
+     *  Component id
+     */
     id          : PropTypes.string,
     /**
-     *  orientation of the scrollBox 'horizontal || vertical'
+     *  Length of the track (CSS unit)
+     */
+    length      : PropTypes.string,
+    /**
+     *  Orientation of the scroll bar
      */
     orientation : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
      *  onChange callback function : ( e ) => { ... }
      */
     onChange    : PropTypes.func,
-    /**
-     *  onInput callback function : ( e ) => { ... }
-     */
-    onInput     : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
@@ -72,46 +76,37 @@ ScrollBar.propTypes =
      */
     onMouseOver : PropTypes.func,
     /**
-     *  Callback ref DOM
-     */
-    ref         : PropTypes.func,
-    /**
-     *  Scroll thumb/indicator width/height
-     */
-    thumbSize   : PropTypes.number,
-    /**
-     *  Scroll Top/Left value
-     */
-    scrollPos   : PropTypes.number,
-    /**
-     *  Max value of the ScrollBar
+     *  Max scroll value
      */
     scrollMax   : PropTypes.number,
     /**
-     *  Min value of the ScrollBar
+     *  Min scroll value
      */
     scrollMin   : PropTypes.number,
     /**
-     *  width of the scrollBar track
+     *  Scroll position
      */
-    length      : PropTypes.number,
+    scrollPos   : PropTypes.number,
+    /**
+     *  Scroll thumb size (CSS unit)
+     */
+    thumbSize   : PropTypes.string,
 };
 
 ScrollBar.defaultProps =
 {
     className   : undefined,
     cssMap      : styles,
-    id          : generateId( 'ScrollBar' ),
-    orientation : 'vertical',
+    id          : undefined,
+    length      : '100%',
     onChange    : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
-    thumbSize   : 50,
-    scrollPos   : 0,
+    orientation : 'horizontal',
     scrollMax   : undefined,
     scrollMin   : 0,
-    value       : 0,
-    length      : undefined
+    scrollPos   : 0,
+    thumbSize   : undefined,
 };
 
 export default ScrollBar;
