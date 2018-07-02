@@ -1,12 +1,12 @@
-import React      from 'react';
-import PropTypes  from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Component  from '../proto/Component';
-import Css        from '../hoc/Css';
-import IconButton from '../IconButton';
-import Text       from '../Text';
+import { generateId }   from '../utils';
+import Css              from '../hoc/Css';
+import IconButton       from '../IconButton';
+import Text             from '../Text';
 
-export default class Tooltip extends Component
+export default class Tooltip extends React.PureComponent
 {
     static propTypes =
     {
@@ -14,6 +14,10 @@ export default class Tooltip extends Component
          *  Node that the Tooltip wraps
          */
         children         : PropTypes.node,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id               : PropTypes.string,
         /**
          *  Display the tooltip as user dismissible
          */
@@ -72,6 +76,7 @@ export default class Tooltip extends Component
     static defaultProps =
     {
         position       : 'top',
+        id             : generateId( 'Tooltip' ),
         isVisible      : true,
         noWrap         : false,
         overflowHidden : false,
@@ -87,6 +92,7 @@ export default class Tooltip extends Component
             cssMap,
             message,
             position,
+            id,
             isDismissible,
             isVisible,
             noWrap,
@@ -96,8 +102,6 @@ export default class Tooltip extends Component
             overflowIsHidden,
             role
         } = this.props;
-
-        const { id } = this.state;
 
         let messageText = message;
 
