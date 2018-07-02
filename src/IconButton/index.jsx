@@ -142,7 +142,7 @@ export default class IconButton extends React.Component
     {
         iconSize      : 'S',
         iconTheme     : 'control',
-        id            : generateId( 'Button' ),
+        id            : generateId( 'IconButton' ),
         isFocusable   : true,
         isDisabled    : false,
         isReadOnly    : false,
