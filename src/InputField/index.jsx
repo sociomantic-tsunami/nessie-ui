@@ -1,12 +1,11 @@
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React                                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import Component                   from '../proto/Component';
-import { buildClassName, mapAria } from '../utils';
-import styles                      from './inputField.css';
+import { buildClassName, mapAria, generateId } from '../utils';
+import styles                                  from './inputField.css';
 
 
-export default class InputField extends Component
+export default class InputField extends React.Component
 {
     static propTypes =
     {
@@ -105,6 +104,7 @@ export default class InputField extends Component
         element    : 'input',
         type       : 'text',
         textAlign  : 'left',
+        id         : generateId( 'InputField' ),
         isDisabled : false,
         isReadOnly : false,
         hasError   : false,
@@ -133,6 +133,7 @@ deprecated. Please use onChange instead.` );
             element,
             forceHover,
             hasError,
+            id,
             inputRef,
             isDisabled,
             isReadOnly,
@@ -154,8 +155,6 @@ deprecated. Please use onChange instead.` );
             type,
             value
         } = this.props;
-
-        const id = this.state.id;
 
         const InputElement = element || 'input';
 
