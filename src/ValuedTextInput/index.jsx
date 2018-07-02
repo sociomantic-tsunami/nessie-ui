@@ -1,10 +1,10 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
-import Component        from '../proto/Component';
-import InputContainer   from '../proto/InputContainer';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
+import Component                       from '../proto/Component';
+import InputContainer                  from '../proto/InputContainer';
+import { buildClassName }              from '../utils';
+import InputField                      from '../InputField';
 
 
 export default class ValuedTextInput extends Component
@@ -92,7 +92,7 @@ export default class ValuedTextInput extends Component
         /**
          *  Input click callback function
          */
-        onClick               : PropTypes.func,
+        onClick     : PropTypes.func,
         /**
          * onChange callback function: ( e ) => { ... }
          */
@@ -203,36 +203,32 @@ export default class ValuedTextInput extends Component
         }
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <InputContainer
+                { ...props }
+                className   = { buildClassName( className, cssMap, {
                     disabled    : isDisabled,
                     error       : hasError,
                     position    : valueLabelPosition,
                     fakeHovered : forceHover || isFocused
-                } }>
-                <InputContainer
-                    { ...props }
-                    className   = { className }
-                    id          = { id }
-                    onMouseOver = { onMouseOver }
-                    onMouseOut  = { onMouseOut }>
-                    <div className = { cssMap.container }>
-                        <InputField
-                            { ...props }
-                            id           = { id }
-                            className    = { cssMap.input }
-                            onFocus      = { this.handleFocus }
-                            onBlur       = { this.handleBlur }
-                            textAlign    = { alignText }  />
-                        <label
-                            className = { cssMap.valueLabel }
-                            htmlFor   = { id }>
-                            { valueLabel }
-                        </label>
-                    </div>
-                </InputContainer>
-            </Css>
+                } ) }
+                id          = { id }
+                onMouseOver = { onMouseOver }
+                onMouseOut  = { onMouseOut }>
+                <div className = { cssMap.container }>
+                    <InputField
+                        { ...props }
+                        id           = { id }
+                        className    = { cssMap.input }
+                        onFocus      = { this.handleFocus }
+                        onBlur       = { this.handleBlur }
+                        textAlign    = { alignText }  />
+                    <label
+                        className = { cssMap.valueLabel }
+                        htmlFor   = { id }>
+                        { valueLabel }
+                    </label>
+                </div>
+            </InputContainer>
         );
     }
 }
