@@ -21,7 +21,7 @@ export default class SpriteMap extends React.PureComponent
 
     static defaultProps =
     {
-        id : generateId( 'Button' )
+        id : generateId( 'SpriteMap' )
     };
 
     render()
