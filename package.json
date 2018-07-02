@@ -35,7 +35,7 @@
     "serve": "loch -e dev -c ./ -j src/defaults.json",
     "start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
     "svgSprite": "./.prep-icon.sh && ./.generate-sprite.sh",
-    "test": "jest --config=cfg/jest.config.js",
+    "test": "jest --runInBand --config=cfg/jest.config.js",
     "test:watch": "jest --watch --config=cfg/jest.config.js",
     "test:v:build": "yarn loch:build",
     "test:v:buildFresh": "concurrently \"yarn build\" \"yarn test:v:build\"",
