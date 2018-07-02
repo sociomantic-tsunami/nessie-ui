@@ -22,11 +22,7 @@ const PageContentHeader = ( {
         );
     }
 
-    return (
-
-        { header }
-
-    );
+    return header;
 };
 
 PageContentHeader.propTypes =
