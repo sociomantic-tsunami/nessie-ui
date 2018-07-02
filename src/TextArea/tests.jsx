@@ -7,7 +7,7 @@ import { shallow, mount }    from 'enzyme';
 
 import { InputField }        from '../index';
 import InputContainer        from '../proto/InputContainer';
-import Css                   from '../hoc/Css';
+
 
 import TextArea              from './index';
 
@@ -33,11 +33,7 @@ describe( 'TextArea', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
-        } );
-
+    
         it( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).to.have.length( 1 );

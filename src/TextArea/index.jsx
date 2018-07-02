@@ -2,7 +2,7 @@ import React          from 'react';
 import PropTypes      from 'prop-types';
 
 import Component      from '../proto/Component';
-import Css            from '../hoc/Css';
+import { buildClassName }            from '../utils';
 import InputField     from '../InputField';
 import InputContainer from '../proto/InputContainer';
 
@@ -138,16 +138,15 @@ export default class TextArea extends Component
         const { id } = this.state;
 
         return (
-            <Css cssMap = { cssMap }>
                 <InputContainer
                     { ...props }
-                    className   = { className }
+                    className   = { buildClassName( className, cssMap ) }
                     id          = { id }
                     onMouseOut  = { onMouseOut }
                     onMouseOver = { onMouseOver }>
                     <InputField { ...props } id = { id } element = "textarea" />
                 </InputContainer>
-            </Css>
+
         );
     }
 }

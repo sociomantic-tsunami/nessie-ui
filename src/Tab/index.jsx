@@ -1,8 +1,8 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import Component from '../proto/Component';
-import Css       from '../hoc/Css';
+import Component                from '../proto/Component';
+import { buildClassName }       from '../utils';
 
 export default class Tab extends Component
 {
@@ -38,15 +38,13 @@ export default class Tab extends Component
         } = this.props;
 
         return (
-            <Css cssMap   = { cssMap } >
-                <div
-                    className  = { className }
-                    onClick    = { onClick }
-                    aria-label = { label }
-                    role       = "tabpanel">
-                    { children }
-                </div>
-            </Css>
+            <div
+                className  = { buildClassName( className, cssMap ) }
+                onClick    = { onClick }
+                aria-label = { label }
+                role       = "tabpanel">
+                { children }
+            </div>
         );
     }
 }
