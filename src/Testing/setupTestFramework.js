@@ -1,3 +1,5 @@
+/* global document Range */
+
 // toBeType extension; to the date, Jest didn't implement this natively
 // https://github.com/facebook/jest/issues/3457#issuecomment-334846026
 expect.extend( {
