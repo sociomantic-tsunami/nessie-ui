@@ -262,7 +262,7 @@
 {
     &.role__default
     {
-        background: var( --PC-BLUE--LIGHT );
+        background: var( --PC-BLUE--L70 );
         color:      var( --PC-BLUE--L25 );
 
         .icon
@@ -286,7 +286,7 @@
 
     &.role__promoted
     {
-        background: var( --PC-GREEN--LIGHT );
+        background: var( --PC-GREEN--L70 );
         color:      var( --PC-GREEN--L25 );
 
         .icon
@@ -298,7 +298,7 @@
 
     &.role__critical
     {
-        background: var( --PC-RED--LIGHT );
+        background: var( --PC-RED--L70 );
         color:      var( --PC-RED--L25 );
 
         .icon
