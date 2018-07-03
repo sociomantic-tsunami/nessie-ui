@@ -666,9 +666,9 @@ the <input> or the <button>', () =>
 
         describe( 'id', () =>
         {
-            test( 'should be defined', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.id ).toBeDefined();
+                expect( props.id ).toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
