@@ -130,7 +130,7 @@ export default class ValuedTextInput extends React.Component
     static defaultProps =
     {
         labelPosition         : 'top',
-        id                    : generateId( 'ValuedTextInput' ),
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -188,7 +188,7 @@ export default class ValuedTextInput extends React.Component
         const {
             forceHover,
             hasError,
-            id,
+            id = generateId( 'ValuedTextInput' ),
             isDisabled,
             textAlign,
             valueLabel,

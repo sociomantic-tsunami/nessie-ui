@@ -76,7 +76,7 @@ export default class Tooltip extends React.PureComponent
     static defaultProps =
     {
         position       : 'top',
-        id             : generateId( 'Tooltip' ),
+        id             : undefined,
         isVisible      : true,
         noWrap         : false,
         overflowHidden : false,
@@ -92,7 +92,7 @@ export default class Tooltip extends React.PureComponent
             cssMap,
             message,
             position,
-            id,
+            id = generateId( 'Tooltip' ),
             isDismissible,
             isVisible,
             noWrap,

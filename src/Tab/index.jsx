@@ -29,7 +29,7 @@ export default class Tab extends React.PureComponent
     static defaultProps =
     {
         cssMap : require( './tab.css' ),
-        id     : generateId( 'Tab' )
+        id     : undefined
     };
 
     render()
@@ -38,7 +38,7 @@ export default class Tab extends React.PureComponent
             cssMap,
             children,
             className,
-            id,
+            id = generateId( 'Tab' ),
             onClick,
             label
         } = this.props;

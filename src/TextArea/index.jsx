@@ -113,7 +113,7 @@ export default class TextArea extends React.PureComponent
     {
         labelPosition         : 'top',
         rows                  : 3,
-        id                    : generateId( 'TextArea' ),
+        id                    : undefined,
         isResizable           : true,
         isDisabled            : false,
         isReadOnly            : false,
@@ -131,7 +131,7 @@ export default class TextArea extends React.PureComponent
         const {
             className,
             cssMap,
-            id,
+            id = generateId( 'TextArea' ),
             onMouseOut,
             onMouseOver,
             ...props

@@ -37,14 +37,18 @@ export default class Section extends React.PureComponent
     static defaultProps =
     {
         hasDivider : false,
-        id         : generateId( 'Section' ),
+        id         : undefined,
         cssMap     : require( './section.css' )
     };
 
     render()
     {
         const {
-            cssMap, className, children, id, level,
+            cssMap,
+            className,
+            children,
+            id = generateId( 'Section' ),
+            level,
             title
         } = this.props;
 

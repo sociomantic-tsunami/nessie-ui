@@ -21,14 +21,14 @@ export default class SpriteMap extends React.PureComponent
 
     static defaultProps =
     {
-        id : generateId( 'SpriteMap' )
+        id : undefined
     };
 
     render()
     {
         const {
             spriteTemplate = { __html: spriteHtml },
-            id
+            id = generateId( 'SpriteMap' )
         } = this.props;
 
         return (

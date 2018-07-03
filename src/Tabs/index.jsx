@@ -32,7 +32,7 @@ export default class Tabs extends React.Component
     {
         activeTabIndex : 0,
         cssMap         : require( './tabs.css' ),
-        id             : generateId( 'Tabs' ),
+        id             : undefined,
     };
 
     constructor( props )
@@ -91,7 +91,7 @@ export default class Tabs extends React.Component
             activeTabIndex,
             children,
             cssMap,
-            id
+            id = generateId( 'Tabs' )
         } = this.props;
 
         const header = this.renderHeader( children );

@@ -127,7 +127,7 @@ export default class TextInput extends React.PureComponent
     {
         aria                  : undefined,
         labelPosition         : 'top',
-        id                    : generateId( 'TextInput' ),
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -143,7 +143,7 @@ export default class TextInput extends React.PureComponent
         const {
             className,
             cssMap,
-            id,
+            id = generateId( 'TextInput' ),
             onMouseOut,
             onMouseOver,
             ...props

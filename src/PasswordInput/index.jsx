@@ -135,7 +135,7 @@ export default class PasswordInput extends React.PureComponent
     static defaultProps =
     {
         labelPosition         : 'top',
-        id                    : generateId( 'PasswordInput' ),
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -152,7 +152,7 @@ export default class PasswordInput extends React.PureComponent
         const {
             className,
             cssMap,
-            id,
+            id = generateId( 'PasswordInput' ),
             passwordIsVisible,
             ...props
         } = this.props;
