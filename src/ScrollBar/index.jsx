@@ -8,7 +8,7 @@ import styles                           from './scrollbar.css';
 const ScrollBar = ( {
     className,
     cssMap,
-    id,
+    id = generateId( 'ScrollBar' ),
     orientation,
     onChange,
     onMouseOut,
@@ -101,7 +101,7 @@ ScrollBar.defaultProps =
 {
     className   : undefined,
     cssMap      : styles,
-    id          : generateId( 'ScrollBar' ),
+    id          : undefined,
     orientation : 'vertical',
     onChange    : undefined,
     onMouseOut  : undefined,

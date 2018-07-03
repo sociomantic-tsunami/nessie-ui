@@ -1,13 +1,13 @@
 /* global addEventListener removeEventListener Event */
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Component            from '../proto/Component';
-import Css                  from '../hoc/Css';
-import IconWithTooltip      from '../IconWithTooltip';
-import Label                from '../Label';
+import { generateId }   from '../utils';
+import Css              from '../hoc/Css';
+import IconWithTooltip  from '../IconWithTooltip';
+import Label            from '../Label';
 
-export default class Slider extends Component
+export default class Slider extends React.Component
 {
     static propTypes =
     {
@@ -15,6 +15,10 @@ export default class Slider extends Component
         *  Label text
         */
         label                 : PropTypes.string,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id                    : PropTypes.string,
         /**
         * Display as disabled
         */
@@ -156,21 +160,17 @@ export default class Slider extends Component
         /**
         * Step labels
         */
-        stepLabels    : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        ),
+        stepLabels    : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) ),
         /**
         * Slider ticks separators
         */
-        ticks : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        )
+        ticks : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) )
     };
 
     static defaultProps =
@@ -181,6 +181,7 @@ export default class Slider extends Component
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         hasFill               : true,
+        id                    : undefined,
         fillFrom              : 'start',
         orientation           : 'horizontal',
         stepLabelsPosition    : 'top',
@@ -371,7 +372,9 @@ export default class Slider extends Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -674,6 +677,7 @@ export default class Slider extends Component
             hasError,
             hasFill,
             hasHandleLabels,
+            id = generateId( 'Slider' ),
             isDisabled,
             isReadOnly,
             label,
@@ -693,8 +697,6 @@ export default class Slider extends Component
             value,
             ticks = []
         } = this.props;
-
-        const { id } = this.state;
 
         let values = [];
 
@@ -717,8 +719,7 @@ export default class Slider extends Component
                             className = { cssMap.stepLabel }
                             style     = { this.getHandleStyle( val.step ) } >
                             { val.stepLabel }
-                        </div>
-                    ) }
+                        </div> ) }
                 </div>
             );
         }
@@ -777,8 +778,7 @@ export default class Slider extends Component
                             className = { cssMap.tick }
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
-                        </div>
-                ) }
+                        </div> ) }
             </div>
         );
 

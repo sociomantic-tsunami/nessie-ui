@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import Css              from '../hoc/Css';
-import Component        from '../proto/Component';
+import { generateId }   from '../utils';
 import Button           from '../Button';
 import IconWithTooltip  from '../IconWithTooltip';
 import Spinner          from '../Spinner';
@@ -10,7 +10,7 @@ import IconButton       from '../IconButton';
 import Tooltip          from '../Tooltip';
 import Label            from '../Label';
 
-export default class Uploader extends Component
+export default class Uploader extends React.PureComponent
 {
     static propTypes =
     {
@@ -32,6 +32,10 @@ export default class Uploader extends Component
         *  Display as disabled
         */
         isDisabled              : PropTypes.bool,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id                      : PropTypes.string,
         /**
         *  Display as read-only
         */
@@ -106,6 +110,7 @@ export default class Uploader extends Component
         hasWarning              : false,
         tooltipIsVisible        : false,
         errorMessagePosition    : 'top',
+        id                      : undefined,
         isDisabled              : false,
         isReadOnly              : false,
         previewTooltipIsVisible : false,
@@ -122,6 +127,7 @@ export default class Uploader extends Component
             errorMessage,
             hasError,
             hasWarning,
+            id = generateId( 'Uploader' ),
             isDisabled,
             isReadOnly,
             label,
@@ -138,8 +144,6 @@ export default class Uploader extends Component
             uploadState,
             warningMessage
         } = this.props;
-
-        const { id } = this.state;
 
         const buttonRole = 'default';
         let hasTooltip = false;
