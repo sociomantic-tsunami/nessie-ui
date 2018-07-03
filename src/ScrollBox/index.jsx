@@ -1,20 +1,29 @@
-import React, { Component }                                 from 'react';
-import PropTypes                                            from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
+import isEqual              from 'lodash.isequal';
 
-import { buildClassName, generateId }                       from '../utils';
-import styles                                               from './scrollBox.css';
-import { createScrollHandler }                              from './utils';
-import IconButton                                           from '../IconButton';
-import ScrollBar                                            from '../ScrollBar';
+import { buildClassName }   from '../utils';
+import styles               from './scrollBox.css';
+import IconButton           from '../IconButton';
+import ScrollBar            from '../ScrollBar';
+
 
 export default class ScrollBox extends Component
 {
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className          : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap             : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  ScrollBox content
          */
-        children           : PropTypes.node, /**
+        children           : PropTypes.node,
         /**
          *  ScrollBox content width, any CSS length string
          */
@@ -24,23 +33,27 @@ export default class ScrollBox extends Component
          */
         height             : PropTypes.string,
         /**
-         *  ScrollBox ID
+         *  horizontal scrollbar change callback function
          */
-        id                 : PropTypes.string,
+        onChangeScrollBarX : PropTypes.func,
         /**
-         *  on click scroll down icon callback function
+         *  vertical scrollbar change callback function
+         */
+        onChangeScrollBarY : PropTypes.func,
+        /**
+         *  scroll down button click callback function
          */
         onClickScrollDown  : PropTypes.func,
         /**
-         *  on click scroll left icon callback function
+         *  scroll left button click callback function
          */
         onClickScrollLeft  : PropTypes.func,
         /**
-         *  on click scroll right icon callback function
+         *  scroll right button click callback function
          */
         onClickScrollRight : PropTypes.func,
         /**
-         *  on click scroll up icon callback function
+         *  scroll up button click callback function
          */
         onClickScrollUp    : PropTypes.func,
         /**
@@ -53,8 +66,12 @@ export default class ScrollBox extends Component
         scroll             : PropTypes.oneOf( [
             'horizontal',
             'vertical',
-            'both'
+            'both',
         ] ),
+        /**
+         *  Display Scroll bars
+         */
+        scrollBarsAreVisible : PropTypes.bool,
         /**
          * DOM element "Scrollbox inner"
          */
@@ -63,6 +80,14 @@ export default class ScrollBox extends Component
          *  Display Scroll left icon
          */
         scrollLeftIsVisible  : PropTypes.bool,
+        /**
+         *  Horizontal scroll position
+         */
+        scrollPosX           : PropTypes.number,
+        /**
+         *  Vertical scroll position
+         */
+        scrollPosY           : PropTypes.number,
         /**
          *  Display Scroll right icon
          */
@@ -74,144 +99,216 @@ export default class ScrollBox extends Component
         /**
          *  Display Scroll down icon
          */
-        scrollDownIsVisible  : PropTypes.bool
+        scrollDownIsVisible  : PropTypes.bool,
     };
 
     static defaultProps =
     {
         children             : undefined,
-        className            : styles.scrollBox,
+        className            : undefined,
+        contentWidth         : undefined,
         cssMap               : styles,
         height               : undefined,
-        id                   : generateId( 'ScrollBox' ),
         onClickScrollDown    : undefined,
         onClickScrollLeft    : undefined,
         onClickScrollRight   : undefined,
         onClickScrollUp      : undefined,
         onScroll             : undefined,
         scroll               : 'both',
+        scrollBarsAreVisible : true,
         scrollBoxRef         : undefined,
         scrollDownIsVisible  : false,
         scrollLeftIsVisible  : false,
+        scrollPosX           : 0,
+        scrollPosY           : 0,
         scrollRightIsVisible : false,
-        scrollUpIsVisible    : false
+        scrollUpIsVisible    : false,
     };
 
-    constructor( props )
+    constructor()
     {
-        super( props );
+        super();
+
         this.state = {
-            scrollPosX      : 0,
-            scrollPosY      : 0,
-            scrollMax       : {},
-            scrollBarLength : {},
-            thumbSize       : {}
+            clientHeight : null,
+            clientWidth  : null,
+            offsetHeight : null,
+            offsetWidth  : null,
+            scrollHeight : null,
+            scrollWidth  : null,
         };
-        this.handleChangeX = this.handleChangeX.bind( this );
-        this.handleChangeY = this.handleChangeY.bind( this );
+
+        this.handleRef = this.handleRef.bind( this );
         this.handleScroll = this.handleScroll.bind( this );
-        this.getScrollMax = this.getScrollMax.bind( this );
-        this.updateScrollBarLength = this.updateScrollBarLength.bind( this );
-        this.updateThumbSize = this.updateThumbSize.bind( this );
-    }
-
-    calcNativeScrollBar()
-    {
-        const target = this.scrollBoxRef;
-        const width = target.offsetWidth - target.clientWidth;
-        const height = target.offsetHeight - target.clientHeight;
-
-        target.style.setProperty( '--ScrollBarWidth', `${width}px` );
-        target.style.setProperty( '--ScrollBarHeight', `${height}px` );
-
-        target.style.setProperty( '--ScrollBarMarginX', `-${width}px` );
-        target.style.setProperty( '--ScrollBarMarginY', `-${height}px` );
     }
 
     componentDidMount()
     {
-        this.setState( {
-            scrollMax       : this.getScrollMax(),
-            scrollBarLength : this.updateScrollBarLength(),
-            thumbSize       : this.updateThumbSize()
-        } );
-
-        this.calcNativeScrollBar();
+        this.setScrollPos();
+        this.setState( this.getNewState() );
     }
 
-    componentDidUpdate( prevProps )
+    componentDidUpdate()
     {
-        const { scrollPosX, scrollPosY } = this.state;
+        const newState = this.getNewState();
 
-        this.scrollBoxRef.scrollLeft = scrollPosX;
-        this.scrollBoxRef.scrollTop  = scrollPosY;
+        this.setScrollPos();
 
-        if ( ( prevProps.scroll !== this.props.scroll ) || ( prevProps.contentWidth !== this.props.contentWidth ) || ( prevProps.height !== this.props.height ) )
+        if ( !isEqual( newState, this.state ) )
         {
-            this.setState( {
-                scrollMax       : this.getScrollMax(),
-                scrollBarLength : this.updateScrollBarLength(),
-                thumbSize       : this.updateThumbSize()
-            } );
+            this.setState( newState );
+        }
+    }
+
+    getInnerStyle()
+    {
+        if ( !this.innerRef )
+        {
+            return;
         }
 
-        this.calcNativeScrollBar();
+        const { state } = this;
+
+        // space taken by native scrollbars
+        const diffX = state.offsetWidth - state.clientWidth;
+        const diffY = state.offsetHeight - state.clientHeight;
+
+        if ( diffX || diffY )
+        {
+            return {
+                width        : `calc( 100% + ${diffX}px )`,
+                height       : `calc( 100% + ${diffY}px )`,
+                marginRight  : `${diffY}px`,
+                marginBottom : `${diffX}px`,
+            };
+        }
     }
 
-    getScrollMax()
+    getNewState()
     {
-        const horizontal = this.scrollBoxRef.scrollWidth - this.scrollBoxRef.clientWidth;
-        const vertical   = this.scrollBoxRef.scrollHeight - this.scrollBoxRef.clientHeight;
-        return  { horizontal, vertical };
+        const newState = {};
+        Object.keys( this.state ).forEach( key =>
+            newState[ key ] = this.innerRef[ key ] );
+
+        return newState;
     }
 
-    handleChangeX( newVal )
+    handleRef( ref )
     {
-        this.setState( {
-            scrollPosX : newVal
-        } );
-    }
+        if ( ref )
+        {
+            if ( this.props.scrollBoxRef )
+            {
+                this.props.scrollBoxRef( ref );
+            }
 
-    handleChangeY( newVal )
-    {
-        this.setState( {
-            scrollPosY : newVal
-        } );
+            this.innerRef = ref;
+        }
     }
 
     handleScroll( e )
     {
-        const { onScroll } = this.props;
-        this.setState( {
-            scrollPosX : this.scrollBoxRef.scrollLeft,
-            scrollPosY : this.scrollBoxRef.scrollTop
+        setTimeout( () =>
+        {
+            if ( this.props.onScroll )
+            {
+                this.props.onScroll( e );
+            }
+
+            this.forceUpdate();
+        } );
+    }
+
+    setScrollPos()
+    {
+        if ( !this.innerRef )
+        {
+            return;
+        }
+
+        this.innerRef.scrollLeft = this.props.scrollPosX;
+        this.innerRef.scrollTop = this.props.scrollPosY;
+    }
+
+    renderScrollBars()
+    {
+        if ( !this.innerRef )
+        {
+            return;
+        }
+
+        const { props } = this;
+        const { cssMap, scroll } = props;
+
+        const scrollBars = [];
+
+        if ( scroll !== 'vertical' )
+        {
+            const { clientWidth, scrollWidth } = this.state;
+
+            if ( scrollWidth > clientWidth )
+            {
+                scrollBars.push(
+                    <ScrollBar
+                        className   = { cssMap.scrollBarHorizontal }
+                        key         = "horizontal"
+                        onChange    = { props.onChangeScrollBarX }
+                        orientation = "horizontal"
+                        scrollPos   = { props.scrollPosX }
+                        thumbSize   = {
+                            `${( clientWidth / scrollWidth ) * 100}%`
+                        }
+                        scrollMax = { scrollWidth - clientWidth } />
+                );
+            }
+        }
+
+        if ( scroll !== 'horizontal' )
+        {
+            const { clientHeight, scrollHeight } = this.state;
+
+            if ( scrollHeight > clientHeight )
+            {
+                scrollBars.push(
+                    <ScrollBar
+                        className   = { cssMap.scrollBarVertical }
+                        key         = "vertical"
+                        onChange    = { props.onChangeScrollBarY }
+                        orientation = "vertical"
+                        scrollPos   = { props.scrollPosY }
+                        thumbSize   = {
+                            `${( clientHeight / scrollHeight ) * 100}%`
+                        }
+                        scrollMax = { scrollHeight - clientHeight  }
+                        length    = { `${clientHeight}px` } />
+                );
+            }
+        }
+
+        return scrollBars;
+    }
+
+    renderScrollButtons()
+    {
+        const { props } = this;
+        const scrollButtons = [];
+
+        [ 'Down', 'Left', 'Right', 'Up' ].forEach( dir =>
+        {
+            if ( props[ `scroll${dir}IsVisible` ] )
+            {
+                scrollButtons.push(
+                    <IconButton
+                        className = { props.cssMap[ `icon${dir}` ] }
+                        iconSize  = "S"
+                        iconType  = { dir.toLowerCase() }
+                        key       = { dir }
+                        onClick   = { props[ `onClickScroll${dir}` ] } />
+                );
+            }
         } );
 
-        if( onScroll )
-        {
-            onScroll( e );
-        }
-    }
-    updateScrollBarLength()
-    {
-        return { horizontal: this.scrollBoxRef.parentNode.clientWidth, vertical: this.scrollBoxRef.parentNode.clientHeight };
-    }
-
-    updateThumbSize()
-    {
-        const forWidth = this.scrollBoxRef.scrollWidth > this.scrollBoxRef.clientWidth;
-        const forHeight = this.scrollBoxRef.scrollHeight > this.scrollBoxRef.clientHeight;
-
-        const deductWidth = ( this.scrollBoxRef.clientWidth / this.scrollBoxRef.scrollWidth ) * 100;
-        const equalWidth = 0;
-
-        const deductHeight = ( this.scrollBoxRef.clientHeight / this.scrollBoxRef.scrollHeight ) * 100;
-        const equalHeight = 0;
-
-        const calcWidth = forWidth ? deductWidth : equalWidth;
-        const calcHeight = forHeight ? deductHeight : equalHeight;
-
-        return { horizontal: calcWidth, vertical: calcHeight };
+        return scrollButtons;
     }
 
     render()
@@ -222,83 +319,27 @@ export default class ScrollBox extends Component
             className,
             contentWidth,
             height,
-            id,
-            onClickScrollDown,
-            onClickScrollLeft,
-            onClickScrollRight,
-            onClickScrollUp,
-            onScroll,
             scroll,
-            scrollBoxRef,
-            scrollDownIsVisible,
-            scrollLeftIsVisible,
-            scrollRightIsVisible,
-            scrollUpIsVisible
+            scrollBarsAreVisible,
         } = this.props;
-
-        const {
-            scrollPosX,
-            scrollPosY,
-            scrollMax,
-            scrollBarLength,
-            thumbSize
-        } = this.state;
 
         return (
             <div
                 className = { buildClassName( className, cssMap, { scroll } ) }
-                id = { id }>
-                { scrollDownIsVisible && <IconButton
-                    className = { cssMap.icon__down }
-                    iconType = "down"
-                    iconSize = "L"
-                    onClick = { onClickScrollDown } /> }
-                { scrollLeftIsVisible && <IconButton
-                    className = { cssMap.icon__left }
-                    iconType = "left"
-                    iconSize = "L"
-                    onClick = { onClickScrollLeft  } /> }
-                { scrollRightIsVisible && <IconButton
-                    className = { cssMap.icon__right }
-                    iconType = "right"
-                    iconSize = "L"
-                    onClick = { onClickScrollRight } /> }
-                { scrollUpIsVisible && <IconButton
-                    className = { cssMap.icon__up }
-                    iconType = "up"
-                    iconSize = "L"
-                    onClick = { onClickScrollUp } /> }
+                style     = { height && { height: `${height}` } }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }
-                    ref       = { e => this.scrollBoxRef = e }
-                    style     = { { maxHeight: height ? `${height}` : null } }>
+                    ref       = { this.handleRef }
+                    style     = { this.getInnerStyle() }>
                     <div
                         className = { cssMap.content }
-                        style     = { { width: contentWidth } }>
+                        style     = { contentWidth && { width: contentWidth } }>
                         { children }
                     </div>
                 </div>
-                { ( scroll === 'horizontal' || scroll === 'both' )  && Boolean( thumbSize.horizontal ) &&
-                <ScrollBar
-                    className    = { cssMap.scrollBar }
-                    onChange     = { this.handleChangeX }
-                    orientation  = "horizontal"
-                    scrollPos    = { scrollPosX }
-                    thumbSize    = { thumbSize.horizontal }
-                    scrollMax    = { scrollMax.horizontal }
-                    length       = { scrollBarLength.horizontal } />
-                }
-                { ( scroll === 'vertical' || scroll === 'both' ) && Boolean( thumbSize.vertical ) &&
-                    <ScrollBar
-                        className    = { cssMap.scrollBar }
-                        onChange     = { this.handleChangeY }
-                        orientation  = "vertical"
-                        scrollPos    = { scrollPosY }
-                        thumbSize    = { thumbSize.vertical }
-                        scrollMax    = { scrollMax.vertical }
-                        length       = { scrollBarLength.vertical } />
-                }
+                { this.renderScrollButtons() }
+                { scrollBarsAreVisible && this.renderScrollBars() }
             </div>
         );
     }
