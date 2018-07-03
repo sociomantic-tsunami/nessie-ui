@@ -1,3 +1,5 @@
+/* global test jest */
+
 import React                    from 'react';
 import { mount }                from 'enzyme';
 
@@ -18,9 +20,9 @@ describe( 'PaginatorDriver', () =>
     {
         let onClickPrev;
 
-        it( 'should fire onClickPrev exactly once', () =>
+        test( 'should fire onClickPrev exactly once', () =>
         {
-            onClickPrev = sinon.spy();
+            onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev,
                 showPrev : true,
@@ -28,7 +30,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPrev();
 
-            expect( onClickPrev.calledOnce ).to.be.true;
+            expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -36,9 +38,9 @@ describe( 'PaginatorDriver', () =>
     {
         let onClickNext;
 
-        it( 'should fire onClickNext exactly once', () =>
+        test( 'should fire onClickNext exactly once', () =>
         {
-            onClickNext = sinon.spy();
+            onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext,
                 showNext : true,
@@ -46,7 +48,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickNext();
 
-            expect( onClickNext.calledOnce ).to.be.true;
+            expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -54,9 +56,9 @@ describe( 'PaginatorDriver', () =>
     {
         let onClickPage;
 
-        it( 'should fire onClickPage exactly once', () =>
+        test( 'should fire onClickPage exactly once', () =>
         {
-            onClickPage = sinon.spy();
+            onClickPage = jest.fn();
             wrapper.setProps( {
                 onClickPage,
                 shownPages : [ 10, 11, 12 ],
@@ -64,7 +66,7 @@ describe( 'PaginatorDriver', () =>
 
             driver.clickPage( 1 );
 
-            expect( onClickPage.calledOnce ).to.be.true;
+            expect( onClickPage ).toBeCalledTimes( 1 );
         } );
     } );
 } );

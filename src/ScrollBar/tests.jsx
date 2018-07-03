@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 
 
@@ -20,91 +19,93 @@ describe( 'ScrollBar', () =>
     } );
 
 
-    it( 'should contain exactly one <div>', () => {
-        expect( wrapper.find( 'div' ).length ).to.equal( 1 )
+    test( 'should contain exactly one <div>', () =>
+    {
+        expect( wrapper.find( 'div' ) ).toHaveLength( 1 );
     } );
 
-    it( 'should contain exactly one <input>', () =>
+    test( 'should contain exactly one <input>', () =>
     {
-        expect( wrapper.find( 'input' ).length ).to.equal( 1 )
+        expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
     } );
 
-    it( '<input> has type="range"', () =>
+    test( '<input> has type="range"', () =>
     {
-        expect( wrapper.find( 'input' ).first().prop( 'type' ) ).to.equal( 'range' );
+        expect( wrapper.find( 'input' ).first().prop( 'type' ) )
+            .toBe( 'range' );
     } );
 
     describe( 'scrollPos', () =>
     {
-        it( 'should have a value of 0 as default', () =>
+        test( 'should have a value of 0 as default', () =>
         {
-            expect( instance.props.scrollPos ).to.equal( 0 );
+            expect( instance.props.scrollPos ).toBe( 0 );
         } );
 
-        it( 'should be passed to the <input> as value prop', () =>
+        test( 'should be passed to the <input> as value prop', () =>
         {
             wrapper.setProps( { scrollPos: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'value' ) )
-                .to.equal( 20 );
-        } )
-    } )
+                .toBe( 20 );
+        } );
+    } );
 
     describe( 'onChange', () =>
     {
-        it( 'should be undefined by default', () =>
+        test( 'should be undefined by default', () =>
         {
-            expect( instance.props.onChange ).to.be.undefined;
+            expect( instance.props.onChange ).toBeUndefined();
         } );
 
-        it( 'should be invoked when <input>’s onChange prop is invoked', () =>
+        test( 'should be invoked when <input>’s onChange prop is invoked', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
             const inputOnChange =
                 wrapper.find( 'input' ).first().prop( 'onChange' );
 
             inputOnChange( {
-                target: {}
+                target : {}
             } );
 
-            expect( onChange.calledOnce ).to.be.true;
+            expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
-    } )
+    } );
 
     describe( 'scrollMin', () =>
     {
-        it( 'should have a value of 0 as default', () =>
+        test( 'should have a value of 0 as default', () =>
         {
-            expect( instance.props.scrollMin ).to.equal( 0 );
+            expect( instance.props.scrollMin ).toBe( 0 );
         } );
 
-        it( 'should be passed to the <input> as min prop', () =>
+        test( 'should be passed to the <input> as min prop', () =>
         {
             wrapper.setProps( { scrollMin: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'min' ) )
-                .to.equal( 20 );
-        } )
+                .toBe( 20 );
+        } );
     } );
 
     describe( 'scrollMax', () =>
     {
-        it( 'should be undefined by default', () =>
+        test( 'should be undefined by default', () =>
         {
-            expect( instance.props.scrollMax ).to.be.undefined;
+            expect( instance.props.scrollMax ).toBeUndefined();
         } );
 
-        it( 'should be passed to the <input> as max prop', () =>
+        test( 'should be passed to the <input> as max prop', () =>
         {
             wrapper.setProps( { scrollMax: 20 } );
             expect( wrapper.find( 'input' ).first().prop( 'max' ) )
-                .to.equal( 20 );
-        } )
+                .toBe( 20 );
+        } );
     } );
 } );
 
 
-describe( 'ScrollBarDriver', ()=>
+describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
 
@@ -113,44 +114,44 @@ describe( 'ScrollBarDriver', ()=>
         wrapper = mount( <ScrollBar /> );
     } );
 
-    describe( 'change()', ()=>
+    describe( 'change()', () =>
     {
-        it( 'should change the value of the <input />', ()=> {
-
-            const onChange = sinon.spy();
+        test( 'should change the value of the <input />', () =>
+        {
+            const onChange = jest.fn();
             wrapper.setProps( {
                 onChange
             } );
             wrapper.driver().change( 100 );
 
-            expect( onChange.calledOnce ).to.be.true;
+            expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
     } );
-    describe( 'mouseOver()', ()=>
+    describe( 'mouseOver()', () =>
     {
-        it( 'should change the value of the <input />', ()=> {
-
-            const onMouseOver = sinon.spy();
+        test( 'should change the value of the <input />', () =>
+        {
+            const onMouseOver = jest.fn();
             wrapper.setProps( {
                 onMouseOver
             } );
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
+            expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', ()=>
+    describe( 'mouseOut()', () =>
     {
-        it( 'should change the value of the <input />', ()=> {
-
-            const onMouseOut = sinon.spy();
+        test( 'should change the value of the <input />', () =>
+        {
+            const onMouseOut = jest.fn();
             wrapper.setProps( {
                 onMouseOut
             } );
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
+            expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 } );

@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -26,27 +25,27 @@ describe( 'ValuedTextInput', () =>
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name ValuedTextInput', () =>
+        test( 'should have name ValuedTextInput', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'ValuedTextInput' );
+            expect( instance.constructor.name ).toBe( 'ValuedTextInput' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should implement the Css injector component', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
         } );
 
-        it( 'should contain exactly one InputContainer', () =>
+        test( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
+            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
         } );
 
-        it( 'should contain exactly one InputField', () =>
+        test( 'should contain exactly one InputField', () =>
         {
-            expect( wrapper.find( InputField ) ).to.have.length( 1 );
+            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
         } );
     } );
 } );
