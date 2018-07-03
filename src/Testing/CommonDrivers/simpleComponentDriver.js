@@ -30,4 +30,10 @@ export default class SimpleComponentDriver
         this.control.simulate( 'mouseenter' );
         return this;
     }
+
+    click()
+    {
+        this.control.simulate( 'click' );
+        return this;
+    }
 }

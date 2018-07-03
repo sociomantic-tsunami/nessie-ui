@@ -1,4 +1,4 @@
-import ClickableComponentDriver from './clickableComponentDriver';
+import SimpleComponentDriver from './simpleComponentDriver';
 
 const ERRORS = {
     INPUT_CANNOT_BE_CLICKED : ( label, state ) =>
@@ -10,7 +10,7 @@ const ERRORS = {
 };
 
 
-export default class InputComponentDriver extends ClickableComponentDriver
+export default class InputComponentDriver extends SimpleComponentDriver
 {
     constructor( wrapper, selector )
     {
@@ -27,8 +27,10 @@ export default class InputComponentDriver extends ClickableComponentDriver
      */
     setInputValue( value )
     {
-        checkIfSimulationIsValid( this.wrapper,
-            ERRORS.INPUT_CANNOT_CHANGE_VALUE );
+        checkIfSimulationIsValid(
+            this.wrapper,
+            ERRORS.INPUT_CANNOT_CHANGE_VALUE
+        );
 
         const input = this.control;
         const node  = input.getNode();
@@ -108,8 +110,10 @@ export default class InputComponentDriver extends ClickableComponentDriver
 
     click()
     {
-        checkIfSimulationIsValid( this.wrapper,
-                                  ERRORS.INPUT_CANNOT_BE_CLICKED );
+        checkIfSimulationIsValid(
+            this.wrapper,
+            ERRORS.INPUT_CANNOT_BE_CLICKED
+        );
 
         return super.click();
     }
@@ -124,8 +128,8 @@ export default class InputComponentDriver extends ClickableComponentDriver
  */
 function checkIfSimulationIsValid( wrapper, errorIfInvalid )
 {
-    const props = wrapper.props();
-    const label = props.label;
+    const props     = wrapper.props();
+    const { label } = props;
 
     if ( props.isDisabled )
     {

@@ -1,10 +1,10 @@
-import ClickableComponentDriver from '../Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
+import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
 
 const ERRORS = {
     BUTTON_CANNOT_BE_CLICKED : ( label, state ) => `Button '${label}' cannot be clicked since it is ${state}` // eslint-disable-line max-len
 };
 
-export default class ButtonDriver extends ClickableComponentDriver
+export default class ButtonDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {

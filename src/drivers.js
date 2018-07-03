@@ -70,11 +70,9 @@ import {
     ValuedTextInput,
 } from 'nessie-ui';
 
-import ButtonDriver         from './Button/driver';
-import CheckableGroupDriver from './CheckableGroup/driver';
-import CheckboxDriver       from './Checkbox/driver';
-import ClickableComponentDriver
-    from './Testing/CommonDrivers/clickableComponentDriver';
+import ButtonDriver           from './Button/driver';
+import CheckableGroupDriver   from './CheckableGroup/driver';
+import CheckboxDriver         from './Checkbox/driver';
 import CodeEditorDriver       from './CodeEditor/driver';
 import ComboBoxDriver         from './ComboBox/driver';
 import DatePickerDriver       from './DatePicker/driver';
@@ -392,7 +390,6 @@ const drivers =
 ];
 
 export {
-    ClickableComponentDriver,
     InputComponentDriver,
     SimpleComponentDriver,
     WrapperDriver
