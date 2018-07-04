@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
@@ -20,16 +19,16 @@ describe( 'ListBox', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should accept a single ListBox as children', () =>
+        test( 'should accept a single ListBox as children', () =>
         {
             wrapper.setProps( { children: <ListBox /> } );
-            expect( wrapper.find( ListBox ) ).to.have.length( 1 );
+            expect( wrapper.find( ListBox ) ).toHaveLength( 1 );
         } );
 
-        it( 'should accept an array of ListBoxes as children', () =>
+        test( 'should accept an array of ListBoxes as children', () =>
         {
             wrapper.setProps( { children: [ <ListBox />, <ListBox /> ] } );
-            expect( wrapper.find( ListBox ) ).to.have.length( 2 );
+            expect( wrapper.find( ListBox ) ).toHaveLength( 2 );
         } );
     } );
 } );
@@ -48,150 +47,150 @@ describe( 'ListBoxDriver', () =>
 
     describe( 'clickOption', () =>
     {
-        it( 'should trigger onClickOption when clicked on \
+        test( 'should trigger onClickOption once when clicked on \
 ListBoxOption at given index', () =>
-            {
-                const onClickOption = sinon.spy();
+        {
+            const onClickOption = jest.fn();
 
-                wrapper.setProps( {
-                    onClickOption,
-                    options : [ {
-                        'text' : 'Option'
-                    },
-                    {
-                        'text'        : 'Option with description',
-                        'value'       : 'value2',
-                        'description' : 'Option description'
-                    },
-                    {
-                        'text'       : 'Disabled option',
-                        'value'      : 'value3',
-                        'isDisabled' : true
-                    },
-                    {
-                        header  : 'Subsection 1',
-                        options : [
-                            {
-                                'text' : 'Subsection option 1'
-                            },
-                            {
-                                'text' : 'Subsection option 2'
-                            },
-                            {
-                                'text'        : 'Subsection description',
-                                'description' : 'Option description',
-                                'value'       : 'value12'
-                            }
-                        ]
-                    } ]
-                } );
-
-                driver.clickOption( 1 );
-
-                expect( onClickOption.calledOnce ).to.be.true;
+            wrapper.setProps( {
+                onClickOption,
+                options : [ {
+                    'text' : 'Option'
+                },
+                {
+                    'text'        : 'Option with description',
+                    'value'       : 'value2',
+                    'description' : 'Option description'
+                },
+                {
+                    'text'       : 'Disabled option',
+                    'value'      : 'value3',
+                    'isDisabled' : true
+                },
+                {
+                    header  : 'Subsection 1',
+                    options : [
+                        {
+                            'text' : 'Subsection option 1'
+                        },
+                        {
+                            'text' : 'Subsection option 2'
+                        },
+                        {
+                            'text'        : 'Subsection description',
+                            'description' : 'Option description',
+                            'value'       : 'value12'
+                        }
+                    ]
+                } ]
             } );
+
+            driver.clickOption( 1 );
+
+            expect( onClickOption ).toBeCalledTimes( 1 );
+        } );
     } );
 
 
     describe( 'mouseOverOption', () =>
     {
-        it( 'should trigger onMouseOverOption when hovered on \
+        test( 'should trigger onMouseOverOption once when hovered on \
 ListBoxOption at given index', () =>
-            {
-                const onMouseOverOption = sinon.spy();
+        {
+            const onMouseOverOption = jest.fn();
 
-                wrapper.setProps( {
-                    onMouseOverOption,
-                    options : [ {
-                        'text' : 'Option'
-                    },
-                    {
-                        'text'        : 'Option with description',
-                        'value'       : 'value2',
-                        'description' : 'Option description'
-                    },
-                    {
-                        'text'       : 'Disabled option',
-                        'value'      : 'value3',
-                        'isDisabled' : true
-                    },
-                    {
-                        header  : 'Subsection 1',
-                        options : [
-                            {
-                                'text' : 'Subsection option 1'
-                            },
-                            {
-                                'text' : 'Subsection option 2'
-                            },
-                            {
-                                'text'        : 'Subsection description',
-                                'description' : 'Option description',
-                                'value'       : 'value12'
-                            }
-                        ]
-                    } ]
-                } );
-
-                driver.mouseOverOption( 1 );
-
-                expect( onMouseOverOption.calledOnce ).to.be.true;
+            wrapper.setProps( {
+                onMouseOverOption,
+                options : [ {
+                    'text' : 'Option'
+                },
+                {
+                    'text'        : 'Option with description',
+                    'value'       : 'value2',
+                    'description' : 'Option description'
+                },
+                {
+                    'text'       : 'Disabled option',
+                    'value'      : 'value3',
+                    'isDisabled' : true
+                },
+                {
+                    header  : 'Subsection 1',
+                    options : [
+                        {
+                            'text' : 'Subsection option 1'
+                        },
+                        {
+                            'text' : 'Subsection option 2'
+                        },
+                        {
+                            'text'        : 'Subsection description',
+                            'description' : 'Option description',
+                            'value'       : 'value12'
+                        }
+                    ]
+                } ]
             } );
+
+            driver.mouseOverOption( 1 );
+
+            expect( onMouseOverOption ).toBeCalledTimes( 1 );
+        } );
     } );
 
 
     describe( 'mouseOutOption', () =>
     {
-        it( 'should trigger onMouseOutOption when hovered on \
+        test( 'should trigger onMouseOutOption once when hovered on \
 ListBoxOption at given index', () =>
-            {
-                const onMouseOutOption = sinon.spy();
+        {
+            const onMouseOutOption = jest.fn();
 
-                wrapper.setProps( {
-                    onMouseOutOption,
-                    options : [ {
-                        'text' : 'Option'
-                    },
-                    {
-                        'text'        : 'Option with description',
-                        'value'       : 'value2',
-                        'description' : 'Option description'
-                    },
-                    {
-                        'text'       : 'Disabled option',
-                        'value'      : 'value3',
-                        'isDisabled' : true
-                    },
-                    {
-                        header  : 'Subsection 1',
-                        options : [
-                            {
-                                'text' : 'Subsection option 1'
-                            },
-                            {
-                                'text' : 'Subsection option 2'
-                            },
-                            {
-                                'text'        : 'Subsection description',
-                                'description' : 'Option description',
-                                'value'       : 'value12'
-                            }
-                        ]
-                    } ]
-                } );
-
-                driver.mouseOutOption( 0 );
-
-                expect( onMouseOutOption.calledOnce ).to.be.true;
+            wrapper.setProps( {
+                onMouseOutOption,
+                options : [ {
+                    'text' : 'Option'
+                },
+                {
+                    'text'        : 'Option with description',
+                    'value'       : 'value2',
+                    'description' : 'Option description'
+                },
+                {
+                    'text'       : 'Disabled option',
+                    'value'      : 'value3',
+                    'isDisabled' : true
+                },
+                {
+                    header  : 'Subsection 1',
+                    options : [
+                        {
+                            'text' : 'Subsection option 1'
+                        },
+                        {
+                            'text' : 'Subsection option 2'
+                        },
+                        {
+                            'text'        : 'Subsection description',
+                            'description' : 'Option description',
+                            'value'       : 'value12'
+                        }
+                    ]
+                } ]
             } );
+
+            driver.mouseOutOption( 0 );
+
+            expect( onMouseOutOption ).toBeCalledTimes( 1 );
+        } );
     } );
 
 
     describe( 'keyPress', () =>
     {
-        it( 'should trigger onKeyPress', () =>
+        test( 'should trigger onKeyPress once', () =>
         {
-            const onKeyPress = sinon.spy();
+            const onKeyPress = jest.fn();
 
             wrapper.setProps( {
                 onKeyPress,
@@ -212,7 +211,7 @@ ListBoxOption at given index', () =>
 
             driver.keyPress();
 
-            expect( onKeyPress.calledOnce ).to.be.true;
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
 } );

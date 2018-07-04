@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* global test */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -21,9 +21,9 @@ describe( 'InputField', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one InputField', () =>
+        test( 'should contain exactly one InputField', () =>
         {
-            expect( wrapper ).to.have.length( 1 );
+            expect( wrapper ).toHaveLength( 1 );
         } );
     } );
 
@@ -33,286 +33,279 @@ describe( 'InputField', () =>
 
         beforeEach( () =>
         {
-            props = instance.props;
+            ( { props } = instance );
         } );
 
         describe( 'defaultValue', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.defaultValue ).to.be.undefined;
+                expect( props.defaultValue ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { defaultValue: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'defaultValue' ) ).to
-                    .equal( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'defaultValue' ) )
+                    .toBe( 'yes!' );
             } );
         } );
 
         describe( 'element', () =>
         {
-            it( 'should be "input" by default', () =>
+            test( 'should be "input" by default', () =>
             {
-                expect( props.element ).to.equal( 'input' );
+                expect( props.element ).toBe( 'input' );
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { element: 'textarea' } );
 
-                expect( wrapper.prop( 'element' ) ).to
-                    .equal( 'textarea' );
+                expect( wrapper.prop( 'element' ) ).toBe( 'textarea' );
             } );
         } );
 
         describe( 'forceHover', () =>
         {
-            it( 'should be false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( props.forceHover ).to.be.false;
+                expect( props.forceHover ).toBeFalsy();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) ).to.be
-                    .true;
+                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
+                    .toBeTruthy();
             } );
         } );
 
         describe( 'hasError', () =>
         {
-            it( 'should be false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( props.hasError ).to.be.false;
+                expect( props.hasError ).toBeFalsy();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( InputField ).prop( 'hasError' ) ).to.be
-                    .true;
+                expect( wrapper.find( InputField ).prop( 'hasError' ) )
+                    .toBeTruthy();
             } );
         } );
 
         describe( 'id', () =>
         {
-            it( 'should be defined', () =>
-            {
-                expect( props.id ).to.be.defined;
-            } );
-
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'id' ) ).to
-                    .equal( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'id' ) )
+                    .toBe( 'yes!' );
             } );
         } );
 
         describe( 'isDisabled', () =>
         {
-            it( 'should be false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( props.isDisabled ).to.be.false;
+                expect( props.isDisabled ).toBe( false );
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isDisabled' ) ).to.be
-                    .true;
+                expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
+                    .toBeTruthy();
             } );
         } );
 
         describe( 'isReadOnly', () =>
         {
-            it( 'should be false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( props.isReadOnly ).to.be.false;
+                expect( props.isReadOnly ).toBeFalsy();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.prop( 'isReadOnly' ) ).to.be
-                    .true;
+                expect( wrapper.prop( 'isReadOnly' ) ).toBeTruthy();
             } );
         } );
 
         describe( 'name', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.name ).to.be.undefined;
+                expect( props.name ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'name' ) ).to
-                    .equal( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'name' ) )
+                    .toBe( 'yes!' );
             } );
         } );
 
         describe( 'onBlur', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onBlur ).to.be.undefined;
+                expect( props.onBlur ).toBeUndefined();
             } );
         } );
 
         describe( 'onChange', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onChange ).to.be.undefined;
+                expect( props.onChange ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 const onChange = () => undefined;
 
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( InputField ).prop( 'onChange' ) ).to
-                    .equal( onChange );
+                expect( wrapper.find( InputField ).prop( 'onChange' ) )
+                    .toBe( onChange );
             } );
         } );
 
         describe( 'onFocus', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onFocus ).to.be.undefined;
+                expect( props.onFocus ).toBeUndefined();
             } );
         } );
 
         describe( 'onKeyPress', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onKeyPress ).to.be.undefined;
+                expect( props.onKeyPress ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 const onKeyPress = () => undefined;
 
                 wrapper.setProps( { onKeyPress } );
 
-                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) ).to
-                    .equal( onKeyPress );
+                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
+                    .toBe( onKeyPress );
             } );
         } );
 
         describe( 'onMouseOut', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).to.be.undefined;
+                expect( props.onMouseOut ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 const onMouseOut = () => undefined;
 
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) ).to
-                    .equal( onMouseOut );
+                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
+                    .toBe( onMouseOut );
             } );
         } );
 
         describe( 'onMouseOver', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).to.be.undefined;
+                expect( props.onMouseOver ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 const onMouseOver = () => undefined;
 
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) ).to
-                    .equal( onMouseOver );
+                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )
+                    .toBe( onMouseOver );
             } );
         } );
 
         describe( 'placeholder', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.placeholder ).to.be.undefined;
+                expect( props.placeholder ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'placeholder' ) ).to
-                    .equal( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'placeholder' ) )
+                    .toBe( 'yes!' );
             } );
         } );
 
         describe( 'textAlign', () =>
         {
-            it( 'should be "left" by default', () =>
+            test( 'should be "left" by default', () =>
             {
-                expect( props.textAlign ).to.equal( 'left' );
+                expect( props.textAlign ).toBe( 'left' );
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
-                    .equal( 'right' );
+                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
+                    .toBe( 'right' );
             } );
         } );
 
         describe( 'type', () =>
         {
-            it( 'should be "text" by default', () =>
+            test( 'should be "text" by default', () =>
             {
-                expect( props.type ).to.equal( 'text' );
+                expect( props.type ).toBe( 'text' );
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { type: 'number' } );
 
-                expect( wrapper.find( InputField ).prop( 'type' ) ).to
-                    .equal( 'number' );
+                expect( wrapper.find( InputField ).prop( 'type' ) )
+                    .toBe( 'number' );
             } );
         } );
 
         describe( 'value', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.value ).to.be.undefined;
+                expect( props.value ).toBeUndefined();
             } );
 
-            it( 'should be passed to the InputField', () =>
+            test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'value' ) ).to
-                    .equal( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'value' ) )
+                    .toBe( 'yes!' );
             } );
         } );
     } );

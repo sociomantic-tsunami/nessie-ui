@@ -1,13 +1,13 @@
-import React         from 'react';
-import PropTypes     from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Component     from '../proto/Component';
-import Css           from '../hoc/Css';
-import Icon          from '../Icon';
+import { generateId }   from '../utils';
+import Css              from '../hoc/Css';
+import Icon             from '../Icon';
 
 const killFocus = e => e.preventDefault();
 
-export default class IconButton extends Component
+export default class IconButton extends React.Component
 {
     static propTypes =
     {
@@ -142,6 +142,7 @@ export default class IconButton extends Component
     {
         iconSize      : 'S',
         iconTheme     : 'control',
+        id            : undefined,
         isFocusable   : true,
         isDisabled    : false,
         isReadOnly    : false,
@@ -162,6 +163,7 @@ export default class IconButton extends Component
             iconType,
             forceHover,
             iconTheme,
+            id = generateId( 'IconButton' ),
             isDisabled,
             isFocusable,
             isReadOnly,
@@ -171,8 +173,6 @@ export default class IconButton extends Component
             onClick,
             value
         } = this.props;
-
-        const { id } = this.state;
 
         return (
             <Css

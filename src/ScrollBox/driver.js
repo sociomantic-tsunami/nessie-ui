@@ -11,20 +11,20 @@ export default class ScrollBoxDriver
     {
         this.wrapper   = wrapper;
         this.props     = this.wrapper.props();
-        this.scrollBox = this.wrapper.find( '.scrollBox__inner' );
+        this.scrollBox = this.wrapper.find(
+            `.${wrapper.prop( 'cssMap' ).inner}` );
     }
 
     clickScrollUp()
     {
         if ( !this.props.scrollUpIsVisible )
         {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollUpIsVisible' )
-            );
+            throw new Error( ERRORS
+                .SCROLL_CANNOT_BE_CLICKED( 'scrollUpIsVisible' ) );
         }
 
-        this.wrapper.find( '.scrollBox__icon__up' ).first()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__up}` )
+            .first().simulate( 'click' );
         return this;
     }
 
@@ -32,13 +32,12 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollRightIsVisible )
         {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' )
-            );
+            throw new Error( ERRORS
+                .SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' ) );
         }
 
-        this.wrapper.find( '.scrollBox__icon__right' ).first()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__right}` )
+            .first().simulate( 'click' );
         return this;
     }
 
@@ -46,13 +45,12 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollDownIsVisible )
         {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollDownIsVisible' )
-            );
+            throw new Error( ERRORS
+                .SCROLL_CANNOT_BE_CLICKED( 'scrollDownIsVisible' ) );
         }
 
-        this.wrapper.find( '.scrollBox__icon__down' ).first()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__down}` )
+            .first().simulate( 'click' );
         return this;
     }
 
@@ -60,13 +58,12 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollLeftIsVisible )
         {
-            throw new Error(
-                ERRORS.SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' )
-            );
+            throw new Error( ERRORS
+                .SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' ) );
         }
 
-        this.wrapper.find( '.scrollBox__icon__left' ).first()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__left}` )
+            .first().simulate( 'click' );
         return this;
     }
 
@@ -75,9 +72,7 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error(
-                ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' )
-            );
+            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
@@ -93,9 +88,8 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'horizontal' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error(
-                ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'horizontal' )
-            );
+            throw new Error( ERRORS
+                .CANNOT_SCROLL_IN_DIRECTION( 'horizontal' ) );
         }
 
         const node      = this.scrollBox.getNode();
@@ -111,16 +105,14 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error(
-                ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' )
-            );
+            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
         const scrollBar = this.wrapper.find( ScrollBar ).last();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
-        scrollBar.driver().change( scrollOffset )
+        scrollBar.driver().change( scrollOffset );
         return this;
     }
 
@@ -129,16 +121,14 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error(
-                ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' )
-            );
+            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
         const scrollBar = this.wrapper.find( ScrollBar ).first();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
-        scrollBar.driver().change( scrollOffset )
+        scrollBar.driver().change( scrollOffset );
         return this;
     }
 }

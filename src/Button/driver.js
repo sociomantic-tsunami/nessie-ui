@@ -14,19 +14,17 @@ export default class ButtonDriver extends ClickableComponentDriver
     click()
     {
         const props = this.wrapper.props();
-        const label = props.label;
+        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error(
-                ERRORS.BUTTON_CANNOT_BE_CLICKED( label, 'disabled' )
-            );
+            throw new Error( ERRORS
+                .BUTTON_CANNOT_BE_CLICKED( label, 'disabled' ) );
         }
         if ( props.isLoading )
         {
-            throw new Error(
-                ERRORS.BUTTON_CANNOT_BE_CLICKED( label, 'loading' )
-            );
+            throw new Error( ERRORS
+                .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
         }
 
         return super.click();
