@@ -14,6 +14,12 @@
     "loch:build": "loch:build -e dev -c ./ -j src/defaults.json",
     "loch:clean": "rimraf .lochness",
     "start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
+    "gh": "yarn loch:build && yarn copy && yarn copy:loch",
+
+    "copy": "copyfiles --flat  ./dist/displayComponents.js ./dist/displayComponentStyles ./docs/ ",
+    "copy:loch": "copyfiles .lochness/dist/assets/app.js  ./docs/aseets ",
+
+
     "test": "karma start",
     "test:v:ref": "visualTest -e dev -c ./ -j src/defaults.json -t reference",
     "test:Chrome": "karma start --singleRun=false --browsers Chrome",
