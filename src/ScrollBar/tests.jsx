@@ -1,7 +1,6 @@
 /* global test jest */
 /* eslint no-console: 0*/
 
-
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
@@ -65,9 +64,7 @@ describe( 'ScrollBar', () =>
             const inputOnChange =
                 wrapper.find( 'input' ).first().prop( 'onChange' );
 
-            inputOnChange( {
-                target : {}
-            } );
+            inputOnChange( { target: {} } );
 
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
@@ -83,8 +80,7 @@ describe( 'ScrollBar', () =>
         test( 'should be passed to the <input> as min prop', () =>
         {
             wrapper.setProps( { scrollMin: 20 } );
-            expect( wrapper.find( 'input' ).first().prop( 'min' ) )
-                .toBe( 20 );
+            expect( wrapper.find( 'input' ).first().prop( 'min' ) ).toBe( 20 );
         } );
     } );
 
@@ -98,8 +94,7 @@ describe( 'ScrollBar', () =>
         test( 'should be passed to the <input> as max prop', () =>
         {
             wrapper.setProps( { scrollMax: 20 } );
-            expect( wrapper.find( 'input' ).first().prop( 'max' ) )
-                .toBe( 20 );
+            expect( wrapper.find( 'input' ).first().prop( 'max' ) ).toBe( 20 );
         } );
     } );
 } );
@@ -119,22 +114,21 @@ describe( 'ScrollBarDriver', () =>
         test( 'should change the value of the <input />', () =>
         {
             const onChange = jest.fn();
-            wrapper.setProps( {
-                onChange
-            } );
+            wrapper.setProps( { onChange } );
+
             wrapper.driver().change( 100 );
 
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
     } );
+
     describe( 'mouseOver()', () =>
     {
         test( 'should change the value of the <input />', () =>
         {
             const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                onMouseOver
-            } );
+            wrapper.setProps( { onMouseOver } );
+
             wrapper.driver().mouseOver();
 
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
@@ -146,9 +140,8 @@ describe( 'ScrollBarDriver', () =>
         test( 'should change the value of the <input />', () =>
         {
             const onMouseOut = jest.fn();
-            wrapper.setProps( {
-                onMouseOut
-            } );
+            wrapper.setProps( { onMouseOut } );
+
             wrapper.driver().mouseOut();
 
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
