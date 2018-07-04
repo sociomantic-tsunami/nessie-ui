@@ -5060,9 +5060,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-loch-ness@^2.2.2:
+"loch-ness@https://github.com/sociomantic-tsunami/lochness.git#gh-pages":
   version "2.2.2"
-  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.2.2.tgz#a32f9cd11301e6b87ad4aa48fce57639d23d7609"
+  resolved "https://github.com/sociomantic-tsunami/lochness.git#4e5a257a2a4fbea186c5f0b6cede90649e74a9e2"
   dependencies:
     autoprefixer "^6.3.3"
     babel-cli "^6.24.1"

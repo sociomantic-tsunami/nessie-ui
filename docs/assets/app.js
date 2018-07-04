@@ -15153,6 +15153,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var href = /git/g.test(window.location.host);
+
 var Navigation = function (_Component) {
     _inherits(Navigation, _Component);
 
@@ -15175,7 +15177,7 @@ var Navigation = function (_Component) {
             var componentsDropdown = Object.keys(components).map(function (componentName, index) {
                 return _react2.default.createElement(_NavItem2.default, {
                     label: componentName,
-                    href: '/#/component/' + componentName,
+                    href: href ? '/nessie/#/component/' + componentName : '/#/component/' + componentName,
                     key: index,
                     isCurrent: componentName === currentPage });
             });
@@ -15188,7 +15190,7 @@ var Navigation = function (_Component) {
                     {
                         role: 'primary',
                         label: 'Components',
-                        href: '/#/components/',
+                        href: href ? "/nessie/#/components/" : "/#/components/",
                         isCurrent: currentPage === 'components' },
                     componentsDropdown
                 ),
@@ -15196,7 +15198,7 @@ var Navigation = function (_Component) {
                     role: 'primary',
                     label: 'Editor',
                     isCurrent: currentPage === 'editor',
-                    href: '/#/editor/' })
+                    href: href ? "/nessie/#/editor/" : "/#/editor/" })
             );
         }
     }]);
@@ -31799,7 +31801,7 @@ module.exports = {
 		"karma-sinon-chai": "^1.2.3",
 		"karma-sourcemap-loader": "^0.3.5",
 		"karma-webpack": "^2.0.4",
-		"loch-ness": "^2.2.2",
+		"loch-ness": "https://github.com/sociomantic-tsunami/lochness.git#gh-pages",
 		"lodash.clonedeep": "^4.5.0",
 		"lodash.isequal": "^4.5.0",
 		"microbejs": "^0.5.0",
@@ -45582,10 +45584,7 @@ module.exports = {
 				"computed": true
 			}
 		}
-	},
-	"composes": [
-		"../Spinner"
-	]
+	}
 };
 
 /***/ }),
@@ -54859,13 +54858,6 @@ module.exports = {
 				"value": "'top'",
 				"computed": false
 			}
-		},
-		"inputRef": {
-			"type": {
-				"name": "func"
-			},
-			"required": false,
-			"description": "Ref callback that receives the native input(s)"
 		},
 		"minValue": {
 			"type": {
