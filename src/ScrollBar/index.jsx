@@ -103,10 +103,10 @@ ScrollBar.defaultProps =
     onMouseOut  : undefined,
     onMouseOver : undefined,
     orientation : 'horizontal',
-    scrollMax   : undefined,
+    scrollMax   : 0,
     scrollMin   : 0,
     scrollPos   : 0,
-    thumbSize   : undefined,
+    thumbSize   : '20px',
 };
 
 export default ScrollBar;
