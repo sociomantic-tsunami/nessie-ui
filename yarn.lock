@@ -5060,9 +5060,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-loch-ness@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.2.3.tgz#2dbf6a638ebc35954d44763348da6f9e7aa47659"
+loch-ness@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.2.4.tgz#9c67cc47862ae96a070fa54e9890c991fc52becc"
   dependencies:
     autoprefixer "^6.3.3"
     babel-cli "^6.24.1"
