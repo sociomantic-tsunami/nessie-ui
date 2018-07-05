@@ -14,7 +14,7 @@
     "loch:build": "loch:build -e dev -c ./ -j src/defaults.json",
     "loch:clean": "rimraf .lochness",
     "start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
-    "gh": "yarn loch:build && yarn copy && yarn copy:all",
+    "gh": "yarn loch:build && yarn copy:all",
     "copy:dist": "copyfiles --flat  ./dist/displayComponents.js ./dist/displayComponentStyles ./docs/ ",
     "copy:loch": "copyfiles --flat .lochness/dist/assets/app.js  ./docs/assets ",
     "copy:all": "yarn copy:dist && yarn copy:loch",
