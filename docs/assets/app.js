@@ -15153,8 +15153,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var href = /git/g.test(window.location.host);
-
 var Navigation = function (_Component) {
     _inherits(Navigation, _Component);
 
@@ -15177,7 +15175,7 @@ var Navigation = function (_Component) {
             var componentsDropdown = Object.keys(components).map(function (componentName, index) {
                 return _react2.default.createElement(_NavItem2.default, {
                     label: componentName,
-                    href: href ? '/nessie/#/component/' + componentName : '/#/component/' + componentName,
+                    href: '#/component/' + componentName,
                     key: index,
                     isCurrent: componentName === currentPage });
             });
@@ -15190,7 +15188,7 @@ var Navigation = function (_Component) {
                     {
                         role: 'primary',
                         label: 'Components',
-                        href: href ? "/nessie/#/components/" : "/#/components/",
+                        href: '#/components/',
                         isCurrent: currentPage === 'components' },
                     componentsDropdown
                 ),
@@ -15198,7 +15196,7 @@ var Navigation = function (_Component) {
                     role: 'primary',
                     label: 'Editor',
                     isCurrent: currentPage === 'editor',
-                    href: href ? "/nessie/#/editor/" : "/#/editor/" })
+                    href: '#/editor/' })
             );
         }
     }]);
@@ -31723,8 +31721,8 @@ module.exports = {
 		"loch:clean": "rimraf .lochness",
 		"start": "yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"",
 		"gh": "yarn loch:build && yarn copy:all",
-		"copy:dist": "copyfiles --flat  ./dist/displayComponents.js ./dist/displayComponentStyles ./docs/ ",
-		"copy:loch": "copyfiles --flat .lochness/dist/assets/app.js  ./docs/assets ",
+		"copy:dist": "copyfiles --flat ./.lochness/dist/index.html  ./dist/displayComponents.js ./dist/displayComponentStyles ./docs/ ",
+		"copy:loch": "copyfiles --flat .lochness/dist/assets/*  ./docs/assets ",
 		"copy:all": "yarn copy:dist && yarn copy:loch",
 		"test": "karma start",
 		"test:v:ref": "visualTest -e dev -c ./ -j src/defaults.json -t reference",
@@ -31805,7 +31803,7 @@ module.exports = {
 		"karma-sinon-chai": "^1.2.3",
 		"karma-sourcemap-loader": "^0.3.5",
 		"karma-webpack": "^2.0.4",
-		"loch-ness": "https://github.com/sociomantic-tsunami/lochness.git#gh-pages",
+		"loch-ness": "^2.2.3",
 		"lodash.clonedeep": "^4.5.0",
 		"lodash.isequal": "^4.5.0",
 		"microbejs": "^0.5.0",
