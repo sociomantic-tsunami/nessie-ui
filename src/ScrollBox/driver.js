@@ -23,7 +23,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollUpIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__up}` )
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconUp}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -36,7 +36,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__right}` )
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconRight}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -49,7 +49,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollDownIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__down}` )
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconDown}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -62,7 +62,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).icon__left}` )
+        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconLeft}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -78,7 +78,6 @@ export default class ScrollBoxDriver
         const node     = this.scrollBox.getNode();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
-        this.scrollBox.simulate( 'wheel' );
 
         return this;
     }
@@ -95,7 +94,6 @@ export default class ScrollBoxDriver
         const node      = this.scrollBox.getNode();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
-        this.scrollBox.simulate( 'wheel' );
 
         return this;
     }
