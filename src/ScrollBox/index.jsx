@@ -208,15 +208,12 @@ export default class ScrollBox extends Component
 
     handleScroll( e )
     {
-        setTimeout( () =>
+        if ( this.props.onScroll )
         {
-            if ( this.props.onScroll )
-            {
-                this.props.onScroll( e );
-            }
+            this.props.onScroll( e );
+        }
 
-            this.forceUpdate();
-        } );
+        setTimeout( () => this.forceUpdate() );
     }
 
     setScrollPos()
