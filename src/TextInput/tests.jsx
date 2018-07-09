@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -7,7 +7,7 @@ import { mount, shallow } from 'enzyme';
 
 import { InputField }     from '../index';
 import InputContainer     from '../proto/InputContainer';
-
+import Css                from '../hoc/Css';
 
 import TextInput          from './index';
 
@@ -25,23 +25,27 @@ describe( 'TextInput', () =>
 
     describe( 'constructor( props )', () =>
     {
-        it( 'should have name TextInput', () =>
+        test( 'should have name TextInput', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'TextInput' );
+            expect( instance.constructor.name ).toBe( 'TextInput' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-
-        it( 'should contain exactly one InputContainer', () =>
+        test( 'should implement the Css injector component', () =>
         {
-            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
+            expect( wrapper.find( Css ) ).toHaveLength( 1 );
         } );
 
-        it( 'should contain exactly one InputField', () =>
+        test( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( InputField ) ).to.have.length( 1 );
+            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+        } );
+
+        test( 'should contain exactly one InputField', () =>
+        {
+            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
         } );
     } );
 } );
@@ -60,9 +64,9 @@ describe( 'TextInputDriver', () =>
 
     describe( 'blur()', () =>
     {
-        it( 'should fire the onBlur callback prop', () =>
+        test( 'should fire the onBlur callback prop', () =>
         {
-            const blurSpy = sinon.spy();
+            const blurSpy = jest.fn();
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
@@ -70,38 +74,38 @@ describe( 'TextInputDriver', () =>
             } );
 
             driver.blur();
-            expect( blurSpy.calledOnce ).to.be.true;
+            expect( blurSpy ).toBeCalled();
         } );
     } );
 
     describe( 'focus()', () =>
     {
-        it( 'should fire the onFocus callback prop', () =>
+        test( 'should fire the onFocus callback prop', () =>
         {
-            const focusSpy = sinon.spy();
+            const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
-            expect( focusSpy.calledOnce ).to.be.true;
+            expect( focusSpy ).toBeCalled();
         } );
     } );
 
     describe( 'setInputValue( value )', () =>
     {
-        it( 'should fire the onChange callback prop', () =>
+        test( 'should fire the onChange callback prop', () =>
         {
-            const changeSpy = sinon.spy();
+            const changeSpy = jest.fn();
             wrapper.setProps( { onChange: changeSpy } );
 
             driver.setInputValue( 'test' );
 
-            expect( changeSpy ).to.be.calledOnce;
-            expect( driver.getInputValue() ).to.equal( 'test' );
+            expect( changeSpy ).toBeCalled();
+            expect( driver.getInputValue() ).toBe( 'test' );
         } );
 
-        it( 'should throw an error when TextInput is disabled', () =>
+        test( 'should throw an error when TextInput is disabled', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -112,14 +116,14 @@ describe( 'TextInputDriver', () =>
                 'Input \'test\' value cannot be changed since it is disabled';
 
             expect( () => wrapper.driver().setInputValue( 'pikachu' ) )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( onChangeSpy.notCalled ).to.be.true;
+            expect( onChangeSpy ).not.toBeCalled();
         } );
 
-        it( 'should throw an error TextInput is read only', () =>
+        test( 'should throw an error TextInput is read only', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -130,17 +134,17 @@ describe( 'TextInputDriver', () =>
                 'Input \'test\' value cannot be changed since it is read only';
 
             expect( () => wrapper.driver().setInputValue( 'pikachu' ) )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( onChangeSpy.notCalled ).to.be.true;
+            expect( onChangeSpy ).not.toBeCalled();
         } );
     } );
 
     describe( 'clearInputValue()', () =>
     {
-        it( 'should throw an error when TextInput is disabled', () =>
+        test( 'should throw an error when TextInput is disabled', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -151,14 +155,14 @@ describe( 'TextInputDriver', () =>
                 'Input \'test\' value cannot be changed since it is disabled';
 
             expect( () => wrapper.driver().clearInputValue() )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( onChangeSpy.notCalled ).to.be.true;
+            expect( onChangeSpy ).not.toBeCalled();
         } );
 
-        it( 'should throw an error when TextInput is read only', () =>
+        test( 'should throw an error when TextInput is read only', () =>
         {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -169,56 +173,56 @@ describe( 'TextInputDriver', () =>
                 'Input \'test\' value cannot be changed since it is read only';
 
             expect( () => wrapper.driver().clearInputValue() )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( onChangeSpy.notCalled ).to.be.true;
+            expect( onChangeSpy ).not.toBeCalled();
         } );
     } );
 
     describe( 'pressKey( keyCode )', () =>
     {
-        it( 'keyPress Text input should fire an event', () =>
+        test( 'keyPress Text input should fire an event', () =>
         {
             const keyCodeEnter = 13;
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( { onKeyPress: keyPressSpy } );
 
             driver.pressKey( keyCodeEnter );
-            expect( keyPressSpy ).to.be.calledOnce;
+            expect( keyPressSpy ).toBeCalled();
         } );
 
-        it( 'keyPress Text input should fire an onInput event', () =>
+        test( 'keyPress Text input should fire an onInput event', () =>
         {
             const keyCodeChar = String.fromCharCode( 74 );
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( { onChange: onChangeSpy } );
 
             driver.pressKey( keyCodeChar );
-            expect( onChangeSpy ).to.be.calledOnce;
+            expect( onChangeSpy ).toBeCalled();
         } );
 
-        it( 'inputValue should fire event for each key', () =>
+        test( 'inputValue should fire event for each key', () =>
         {
-            const keyPressSpy = sinon.spy();
-            const onChangeSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
+            const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
                 onChange   : onChangeSpy
             } );
 
             driver.inputValue( 'Harry Potter' );
-            expect( keyPressSpy ).callCount( 12 );
-            expect( onChangeSpy ).callCount( 12 );
+            expect( keyPressSpy ).toBeCalledTimes( 12 );
+            expect( onChangeSpy ).toBeCalledTimes( 12 );
         } );
-        it( 'inputValue should change the text', () =>
+        test( 'inputValue should change the text', () =>
         {
             driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).to.equal( 'Harry Potter' );
+            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
         } );
 
-        it( 'should throw an error when TextInput is disabled', () =>
+        test( 'should throw an error when TextInput is disabled', () =>
         {
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -229,14 +233,14 @@ describe( 'TextInputDriver', () =>
                 'Cannot press a key on Input \'test\' since it is disabled';
 
             expect( () => wrapper.driver().pressKey() )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( keyPressSpy.notCalled ).to.be.true;
+            expect( keyPressSpy ).not.toBeCalled();
         } );
 
-        it( 'should throw an error when TextInput is read only', () =>
+        test( 'should throw an error when TextInput is read only', () =>
         {
-            const keyPressSpy = sinon.spy();
+            const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -247,17 +251,17 @@ describe( 'TextInputDriver', () =>
                 'Cannot press a key on Input \'test\' since it is read only';
 
             expect( () => wrapper.driver().pressKey() )
-                .to.throw( expectedError );
+                .toThrowError( expectedError );
 
-            expect( keyPressSpy.notCalled ).to.be.true;
+            expect( keyPressSpy ).not.toBeCalled();
         } );
     } );
 
     describe( 'click()', () =>
     {
-        it( 'should throw an error when TextInput is disabled', () =>
+        test( 'should throw an error when TextInput is disabled', () =>
         {
-            const handleClickSpy = sinon.spy();
+            const handleClickSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
@@ -267,13 +271,14 @@ describe( 'TextInputDriver', () =>
             const expectedError =
                 'Input \'test\' cannot be clicked since it is disabled';
 
-            expect( () => wrapper.driver().click() ).to.throw( expectedError );
-            expect( handleClickSpy.notCalled ).to.be.true;
+            expect( () => wrapper.driver().click() )
+                .toThrowError( expectedError );
+            expect( handleClickSpy ).not.toBeCalled();
         } );
 
-        it( 'should throw an error when TextInput is read only', () =>
+        test( 'should throw an error when TextInput is read only', () =>
         {
-            const handleClickSpy = sinon.spy();
+            const handleClickSpy = jest.fn();
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
@@ -283,8 +288,9 @@ describe( 'TextInputDriver', () =>
             const expectedError =
                 'Input \'test\' cannot be clicked since it is read only';
 
-            expect( () => wrapper.driver().click() ).to.throw( expectedError );
-            expect( handleClickSpy.notCalled ).to.be.true;
+            expect( () => wrapper.driver().click() )
+                .toThrowError( expectedError );
+            expect( handleClickSpy ).not.toBeCalled();
         } );
     } );
 } );

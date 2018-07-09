@@ -1,9 +1,9 @@
-import React                         from 'react';
-import PropTypes                     from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }            from '../utils';
-import IconButton                    from '../IconButton';
-import Text                          from '../Text';
+import Css                  from '../hoc/Css';
+import IconButton           from '../IconButton';
+import Text                 from '../Text';
 
 const Paginator = ( {
     className,
@@ -21,8 +21,7 @@ const Paginator = ( {
     showNextEllipsis,
     showNext,
     shownPages = [],
-    showPrev
-} ) =>
+    showPrev } ) =>
 {
     const pageButtons = shownPages.map( ( pageNum ) =>
         (
@@ -47,73 +46,73 @@ const Paginator = ( {
     );
 
     return (
+        <Css cssMap = { cssMap }>
+            <div
+                className  = { className }
+                role       = "navigation"
+                aria-label = "Pagination">
+                { showPrev &&
+                    <IconButton
+                        className   = { cssMap.arrows }
+                        iconTheme   = "navigation"
+                        iconSize    = "S"
+                        iconType    = "left"
+                        onClick     = { onClickPrev }>
+                        { prevLabel }
+                    </IconButton>
+                }
 
-        <div
-            className  = { buildClassName( className, cssMap ) }
-            role       = "navigation"
-            aria-label = "Pagination">
-            { showPrev &&
-            <IconButton
-                className   = { cssMap.arrows }
-                iconTheme   = "navigation"
-                iconSize    = "S"
-                iconType    = "left"
-                onClick     = { onClickPrev }>
-                { prevLabel }
-            </IconButton>
-            }
+                { showStartPage &&
+                    <button
+                        className   = { cssMap.pageButton }
+                        disabled    = { currentPage === startPage }
+                        onClick     = { onClickPage }
+                        type        = "button"
+                        value       = { String( startPage ) }>
+                        <Text
+                            role = { null }>
+                            { startPage }
+                        </Text>
+                    </button>
 
-            { showStartPage &&
-            <button
-                className   = { cssMap.pageButton }
-                disabled    = { currentPage === startPage }
-                onClick     = { onClickPage }
-                type        = "button"
-                value       = { String( startPage ) }>
-                <Text
-                    role = { null }>
-                    { startPage }
-                </Text>
-            </button>
+                }
 
-            }
+                { showStartPage && showPrevEllipsis && ellipsis }
 
-            { showStartPage && showPrevEllipsis && ellipsis }
+                { pageButtons && pageButtons.length > 0 &&
+                    <div className = { cssMap.pageButtons }>
+                        <Text>{ pageButtons }</Text>
+                    </div>
+                }
 
-            { pageButtons && pageButtons.length > 0 &&
-            <div className = { cssMap.pageButtons }>
-                <Text>{ pageButtons }</Text>
+                { showEndPage && showNextEllipsis && ellipsis }
+
+                { showEndPage &&
+                    <button
+                        className   = { cssMap.pageButton }
+                        disabled    = { currentPage === endPage }
+                        onClick     = { onClickPage }
+                        type        = "button"
+                        value       = { String( endPage ) }>
+                        <Text
+                            role = { null }>
+                            { endPage }
+                        </Text>
+                    </button>
+                }
+
+                { showNext &&
+                    <IconButton
+                        className   = { cssMap.arrows }
+                        iconTheme   = "navigation"
+                        iconSize    = "M"
+                        iconType    = "right"
+                        onClick     = { onClickNext }>
+                        { nextLabel }
+                    </IconButton>
+                }
             </div>
-            }
-
-            { showEndPage && showNextEllipsis && ellipsis }
-
-            { showEndPage &&
-            <button
-                className   = { cssMap.pageButton }
-                disabled    = { currentPage === endPage }
-                onClick     = { onClickPage }
-                type        = "button"
-                value       = { String( endPage ) }>
-                <Text
-                    role = { null }>
-                    { endPage }
-                </Text>
-            </button>
-            }
-
-            { showNext &&
-            <IconButton
-                className   = { cssMap.arrows }
-                iconTheme   = "navigation"
-                iconSize    = "M"
-                iconType    = "right"
-                onClick     = { onClickNext }>
-                { nextLabel }
-            </IconButton>
-            }
-        </div>
-
+        </Css>
     );
 };
 

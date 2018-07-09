@@ -1,28 +1,33 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import H1                                  from '../H1';
+import Css                  from '../hoc/Css';
+import H1                   from '../H1';
 
 const PageContentHeader = ( {
     children,
     cssMap,
     className,
-    title
-} ) =>
+    title } ) =>
 {
-    let header = <H1 className = { buildClassName( className, cssMap ) }>{ title }</H1>;
+    let header = <H1 className = { className }>{ title }</H1>;
 
     if ( children )
     {
         header = (
-            <header className = { buildClassName( className, cssMap ) }>
+            <header className = { className }>
                 { children }
             </header>
         );
     }
 
-    return header;
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { header: !!children } }>
+            { header }
+        </Css>
+    );
 };
 
 PageContentHeader.propTypes =

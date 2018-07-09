@@ -1,19 +1,20 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const PageFooter = ( {
     children,
     cssMap,
-    className
-} ) =>
+    className } ) =>
 
-    <footer className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
-            { children }
-        </div>
-    </footer>;
+        <Css cssMap = { cssMap }>
+            <footer className = { className }>
+                <div className = { cssMap.content }>
+                    { children }
+                </div>
+            </footer>
+        </Css>;
 
 PageFooter.propTypes =
 {

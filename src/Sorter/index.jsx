@@ -1,8 +1,8 @@
-import React, { Component }                from 'react';
-import PropTypes                           from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import Icon                                from '../Icon';
+import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
 
 export default class Sorter extends Component
 {
@@ -64,42 +64,45 @@ export default class Sorter extends Component
         const toggleHover = () => this.setState( { isHovered: !isHovered  } );
 
         return (
-
-            <div
-                className = { buildClassName( className, cssMap, {
+            <Css
+                cssMap   = { cssMap }
+                cssProps = { {
                     sorterVisible : sorterIsVisible,
                     sort,
                     desc          : sort,
                     fakeHovered   : forceHover
-                } ) }
-                onClick   = { onToggle }>
+                } }>
                 <div
-                    className    = { cssMap.content }
-                    onMouseEnter = { toggleHover }
-                    onMouseLeave = { toggleHover }>
-                    { children }
+                    className = { className }
+                    onClick   = { onToggle }>
+                    <div
+                        className    = { cssMap.content }
+                        onMouseEnter = { toggleHover }
+                        onMouseLeave = { toggleHover }>
+                        { children }
+                    </div>
+                    { sorterIsVisible &&
+                        <div className = { cssMap.sorter }>
+                            <Icon
+                                className  = { cssMap.up }
+                                size       = "S"
+                                theme      = "light"
+                                type       = "up"
+                                forceHover = {
+                                    fakeHovered || sort === 'asc'
+                                } />
+                            <Icon
+                                className  = { cssMap.down }
+                                size       = "S"
+                                theme      = "light"
+                                type       = "down"
+                                forceHover = {
+                                    fakeHovered || sort === 'desc'
+                                } />
+                        </div>
+                    }
                 </div>
-                { sorterIsVisible &&
-                <div className = { cssMap.sorter }>
-                    <Icon
-                        className  = { cssMap.up }
-                        size       = "S"
-                        theme      = "light"
-                        type       = "up"
-                        forceHover = {
-                            fakeHovered || sort === 'asc'
-                        } />
-                    <Icon
-                        className  = { cssMap.down }
-                        size       = "S"
-                        theme      = "light"
-                        type       = "down"
-                        forceHover = {
-                            fakeHovered || sort === 'desc'
-                        } />
-                </div>
-                }
-            </div>
+            </Css>
         );
     }
 }

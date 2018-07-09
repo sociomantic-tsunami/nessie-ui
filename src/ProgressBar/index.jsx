@@ -1,16 +1,18 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const ProgressBar = ( { cssMap, className, progressPercentage } ) =>
-    <div className = { buildClassName( className, cssMap ) }>
-        { progressPercentage > 0 &&
-        <div
-            style = { { width: `${progressPercentage}%` } }
-            className = { cssMap.fill } />
-        }
-    </div>;
+    <Css cssMap = { cssMap }>
+        <div className = { className }>
+            { progressPercentage > 0 &&
+                <div
+                    style = { { width: `${progressPercentage}%` } }
+                    className = { cssMap.fill } />
+            }
+        </div>
+    </Css>;
 
 ProgressBar.propTypes =
 {

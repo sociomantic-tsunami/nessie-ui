@@ -1,26 +1,27 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const ProgressIndicator = ( {
     cssMap,
     className,
     currentPercentage,
-    showPercentage
-} ) =>
+    showPercentage } ) =>
 
-    <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.spinner }>
-            { showPercentage &&
-            <div className = { cssMap.percentageContainer }>
-                <span className = { cssMap.percentage } >
-                    { currentPercentage }%
-                </span>
+        <Css cssMap   = { cssMap }>
+            <div className = { className }>
+                <div className = { cssMap.spinner }>
+                    { showPercentage &&
+                        <div className = { cssMap.percentageContainer }>
+                            <span className = { cssMap.percentage } >
+                                { currentPercentage }%
+                            </span>
+                        </div>
+                    }
+                </div>
             </div>
-            }
-        </div>
-    </div>;
+        </Css>;
 
 ProgressIndicator.propTypes =
 {

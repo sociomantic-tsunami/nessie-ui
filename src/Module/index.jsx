@@ -1,11 +1,11 @@
-import React, { Component }                           from 'react';
-import PropTypes                                      from 'prop-types';
+import React, { Component }            from 'react';
+import PropTypes                       from 'prop-types';
 
-import { buildClassName }                             from '../utils';
-import H2                                             from '../H2';
-import H3                                             from '../H3';
-import H4                                             from '../H4';
-import { IconButton, IconWithTooltip }                from '../index';
+import Css                             from '../hoc/Css';
+import H2                              from '../H2';
+import H3                              from '../H3';
+import H4                              from '../H4';
+import { IconButton, IconWithTooltip } from '../index';
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
@@ -218,24 +218,27 @@ export default class Module extends Component
 
 
         return (
-            <section
-                className = { buildClassName( className, cssMap, {
+            <Css
+                cssMap   = { cssMap }
+                cssProps = { {
                     collapsible : isCollapsible,
                     collapsed   : isCollapsible && isCollapsed,
                     error       : hasError,
                     moduleError : hasModuleError,
                     level       : headerLevel
-                } ) }>
-                { header }
-                { ( !isCollapsible || !isCollapsed ) &&
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
-                }
-                { isLoading  &&
-                <div className = { cssMap.loadingOverlay } />
-                }
-            </section>
+                } }>
+                <section className = { className }>
+                    { header }
+                    { ( !isCollapsible || !isCollapsed ) &&
+                        <div className = { cssMap.content }>
+                            { children }
+                        </div>
+                    }
+                    { isLoading  &&
+                        <div className = { cssMap.loadingOverlay } />
+                    }
+                </section>
+            </Css>
         );
     }
 }

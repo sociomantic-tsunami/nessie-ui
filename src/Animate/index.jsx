@@ -1,8 +1,8 @@
-import React                                  from 'react';
-import ReactCSSTransitionGroup                from 'react-addons-css-transition-group';
-import PropTypes                              from 'prop-types';
+import React                   from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes               from 'prop-types';
 
-import { buildClassName }                     from '../utils';
+import Css                     from '../hoc/Css';
 
 
 const Animate = ( {
@@ -23,23 +23,23 @@ removed in the next major release.' );
     }
 
     return (
-
-        <div className = { buildClassName( className, cssMap ) }>
-            <ReactCSSTransitionGroup
-                transitionName = { {
-                    enter : `animate__${enterAnimation}`,
-                    leave : `animate__${outAnimation}`,
-                } }
-                component              = "div"
-                className              = {
-                    `animate__${enterAnimation}__${outAnimation}`
-                }
-                transitionEnterTimeout = { transitionEnterTimeout }
-                transitionLeaveTimeout = { transitionLeaveTimeout }>
-                { children }
-            </ReactCSSTransitionGroup>
-        </div>
-
+        <Css cssMap = { cssMap }>
+            <div className = { className }>
+                <ReactCSSTransitionGroup
+                    transitionName = { {
+                        enter : `animate__${enterAnimation}`,
+                        leave : `animate__${outAnimation}`,
+                    } }
+                    component              = "div"
+                    className              = {
+                        `animate__${enterAnimation}__${outAnimation}`
+                    }
+                    transitionEnterTimeout = { transitionEnterTimeout }
+                    transitionLeaveTimeout = { transitionLeaveTimeout }>
+                    { children }
+                </ReactCSSTransitionGroup>
+            </div>
+        </Css>
     );
 };
 

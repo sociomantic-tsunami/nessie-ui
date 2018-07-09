@@ -1,10 +1,10 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import Icon                                from '../Icon';
-import NavDropdown                         from '../NavDropdown';
-import styles                              from './navItem.css';
+import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
+import NavDropdown          from '../NavDropdown';
+import styles               from './navItem.css';
 
 
 const NavItem = ( {
@@ -33,8 +33,9 @@ removed in the next major release. Please use isCurrent instead.' );
     }
 
     return (
-        <li
-            className = { buildClassName( className, cssMap, {
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { {
                 role,
                 disabled    : isDisabled,
                 current     : isCurrent || isCurrentPage,
@@ -42,27 +43,30 @@ removed in the next major release. Please use isCurrent instead.' );
                 open        : isOpen,
                 fakeHovered : forceHover,
                 hasIcon     : iconType !== 'none'
-            } ) }
-            onMouseEnter  = { onMouseOver }
-            onMouseLeave  = { onMouseOut }>
-            <a
-                className = { cssMap.link }
-                href      = { href }
-                onClick   = { onClick }>
-                { ( iconType && iconType !== 'none' ) &&
-                <Icon
-                    className = { cssMap.icon }
-                    type = { iconType }
-                    size = "S" />
+            } }>
+            <li
+                className     = { className }
+                onMouseEnter  = { onMouseOver }
+                onMouseLeave  = { onMouseOut }>
+                <a
+                    className = { cssMap.link }
+                    href      = { href }
+                    onClick   = { onClick }>
+                    { ( iconType && iconType !== 'none' ) &&
+                        <Icon
+                            className = { cssMap.icon }
+                            type = { iconType }
+                            size = "S" />
+                    }
+                    <span>{ label }</span>
+                </a>
+                { children &&
+                    <NavDropdown className = { cssMap.dropdown }>
+                        { children }
+                    </NavDropdown>
                 }
-                <span>{ label }</span>
-            </a>
-            { children &&
-            <NavDropdown className = { cssMap.dropdown }>
-                { children }
-            </NavDropdown>
-            }
-        </li>
+            </li>
+        </Css>
     );
 };
 

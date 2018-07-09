@@ -1,10 +1,10 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import Icon                                from '../Icon';
-import Text                                from '../Text';
-import IconButton                          from '../IconButton';
+import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
+import Text                 from '../Text';
+import IconButton           from '../IconButton';
 
 const NotificationBar = ( {
     cssMap,
@@ -14,33 +14,36 @@ const NotificationBar = ( {
     messageType,
     onClickClose,
     isDismissible,
-    isFixed
-} ) =>
-    (
+    isFixed } ) =>
+{
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { type : messageType,
+                top  : isFixed } }>
 
-        <div
-            className  = { buildClassName( className, cssMap, {
-                type : messageType,
-                top  : isFixed
-            } ) }>
-            <Icon
-                className  = { cssMap.info }
-                type       = "info" />
+            <div className  = { className }>
 
-            { ( children || message ) &&
+                <Icon
+                    className  = { cssMap.info }
+                    type       = "info"/>
+
+                { ( children || message ) &&
                 <Text className = { cssMap.message }>
                     { children || message }
                 </Text>
 
-            }
+                }
 
-            { isDismissible && <IconButton
-                className  = { cssMap.close }
-                iconType   = "close"
-                iconTheme  = "button"
-                onClick    = { onClickClose } />}
-        </div>
+                { isDismissible && <IconButton
+                    className  = { cssMap.close }
+                    iconType   = "close"
+                    iconTheme  = "button"
+                    onClick    = { onClickClose } />}
+            </div>
+        </Css>
     );
+};
 
 NotificationBar.propTypes =
 {

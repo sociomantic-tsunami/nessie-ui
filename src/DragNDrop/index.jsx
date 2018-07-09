@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
+import Css                  from '../hoc/Css';
 import Spinner              from '../Spinner';
 
 export default class DragNDrop extends Component
@@ -79,14 +79,16 @@ export default class DragNDrop extends Component
         );
 
         return (
-
-            <div className = { buildClassName( className, cssMap, { dropzoneIsVisible } ) }>
-                <div className = { cssMap.content }>
-                    { children }
+            <Css
+                cssMap   = { cssMap }
+                cssProps = { { dropzoneIsVisible } }>
+                <div className = { className }>
+                    <div className = { cssMap.content }>
+                        { children }
+                    </div>
+                    { dropzoneIsVisible && dropzoneContentContainer }
                 </div>
-                { dropzoneIsVisible && dropzoneContentContainer }
-            </div>
-
+            </Css>
         );
     }
 }

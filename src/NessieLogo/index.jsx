@@ -1,13 +1,14 @@
-import React                               from 'react';
+import React                from 'react';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const NessieLogo = ( { cssMap, className } ) =>
-
-    <img
-        alt       = ""
-        className = { buildClassName( className, cssMap ) }
-        src       = "images/nessie.svg" />;
+    <Css cssMap = { cssMap }>
+        <img
+            alt       = ""
+            className = { className }
+            src       = "images/nessie.svg" />
+    </Css>;
 
 NessieLogo.propTypes = {};
 

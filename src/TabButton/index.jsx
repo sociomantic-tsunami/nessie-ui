@@ -1,7 +1,7 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const TabButton = ( {
     buttonRef,
@@ -12,13 +12,14 @@ const TabButton = ( {
     label,
     onClick,
     subtitle,
-    tabIndex
-} ) =>
+    tabIndex } ) =>
 
-    (
+    ( <Css
+        cssMap   = { cssMap }
+        cssProps = { { active: isActive } }>
         <button
             ref       = { buttonRef }
-            className = { buildClassName( className, cssMap, { active: isActive } ) }
+            className = { className }
             role      = "tab"
             value     = { String( tabIndex ) }
             disabled  = { isDisabled }
@@ -34,7 +35,7 @@ const TabButton = ( {
                 </div>
             </div>
         </button>
-    );
+    </Css> );
 
 TabButton.propTypes =
 {
