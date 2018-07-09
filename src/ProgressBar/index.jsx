@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 
 const ProgressBar = ( { cssMap, className, progressPercentage } ) =>
     <Css cssMap = { cssMap }>

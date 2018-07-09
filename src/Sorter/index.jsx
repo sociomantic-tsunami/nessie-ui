@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import Icon                 from '../Icon';
 
 export default class Sorter extends Component

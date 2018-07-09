@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import InputContainer       from '../proto/InputContainer';
 import styles               from './codeEditor.css';
 

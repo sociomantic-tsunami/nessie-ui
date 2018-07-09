@@ -5,7 +5,7 @@ import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import InputContainer                   from '../proto/InputContainer';
-import Css                              from '../hoc/Css';
+                              
 
 import FlounderDropdown                 from './index';
 

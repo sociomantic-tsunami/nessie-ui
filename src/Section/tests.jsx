@@ -4,7 +4,7 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Css                from '../hoc/Css';
+                
 import { H1, H4 }         from '../index';
 
 import Section            from './index';

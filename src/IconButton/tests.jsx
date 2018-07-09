@@ -4,7 +4,7 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
+                
 import { Icon }           from '../index';
 
 import IconButton         from './index';

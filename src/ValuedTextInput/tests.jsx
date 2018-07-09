@@ -7,7 +7,7 @@ import { shallow }     from 'enzyme';
 
 import { InputField }  from '../index';
 import InputContainer  from '../proto/InputContainer';
-import Css             from '../hoc/Css';
+             
 
 import ValuedTextInput from './index';
 

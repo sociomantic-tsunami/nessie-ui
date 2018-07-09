@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Css   from '../hoc/Css';
+   
 
 const Divider = ( { cssMap, className } ) =>
 {

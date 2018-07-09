@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import Flounder             from 'flounder/src/core/flounder';
 
-import Css                  from '../hoc/Css';
+                  
 import InputContainer       from '../proto/InputContainer';
 import H1                   from '../H1';
 import H2                   from '../H2';

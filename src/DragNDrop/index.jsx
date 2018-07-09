@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import Spinner              from '../Spinner';
 
 export default class DragNDrop extends Component

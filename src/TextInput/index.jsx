@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
+              
 import InputField       from '../InputField';
 import InputContainer   from '../proto/InputContainer';
 

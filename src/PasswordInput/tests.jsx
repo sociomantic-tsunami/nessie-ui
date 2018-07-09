@@ -6,7 +6,7 @@ import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import { TextInputWithIcon }            from '../index';
-import Css                              from '../hoc/Css';
+                              
 
 import PasswordInput                    from './index';
 

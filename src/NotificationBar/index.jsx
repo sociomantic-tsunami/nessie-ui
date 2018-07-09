@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import Icon                 from '../Icon';
 import Text                 from '../Text';
 import IconButton           from '../IconButton';

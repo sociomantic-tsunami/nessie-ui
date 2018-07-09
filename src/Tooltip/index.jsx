@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
+              
 import IconButton       from '../IconButton';
 import Text             from '../Text';
 

@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
+              
 import H1               from '../H1';
 import H2               from '../H2';
 import H3               from '../H3';

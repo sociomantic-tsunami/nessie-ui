@@ -1,7 +1,7 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import Css              from '../hoc/Css';
+              
 import { generateId }   from '../utils';
 import Button           from '../Button';
 import IconWithTooltip  from '../IconWithTooltip';

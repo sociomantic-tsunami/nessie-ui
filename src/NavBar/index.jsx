@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import NavList              from '..//NavList';
 
 const NavBar = ( { children, className, cssMap } ) =>

@@ -3,7 +3,7 @@ import PropTypes        from 'prop-types';
 
 import { generateId }   from '../utils';
 import InputContainer   from '../proto/InputContainer';
-import Css              from '../hoc/Css';
+              
 import InputField       from '../InputField';
 
 

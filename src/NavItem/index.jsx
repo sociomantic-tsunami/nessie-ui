@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+                  
 import Icon                 from '../Icon';
 import NavDropdown          from '../NavDropdown';
 import styles               from './navItem.css';

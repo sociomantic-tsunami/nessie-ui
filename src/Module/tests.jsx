@@ -5,7 +5,7 @@
 import React                       from 'react';
 import { mount, shallow }          from 'enzyme';
 
-import Css                         from '../hoc/Css';
+                         
 import { H2, H3, IconWithTooltip } from '../index';
 
 import Module                      from './index';

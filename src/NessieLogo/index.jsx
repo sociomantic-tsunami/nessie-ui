@@ -1,6 +1,6 @@
 import React                from 'react';
 
-import Css                  from '../hoc/Css';
+                  
 
 const NessieLogo = ( { cssMap, className } ) =>
     <Css cssMap = { cssMap }>

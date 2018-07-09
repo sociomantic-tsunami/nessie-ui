@@ -1,7 +1,7 @@
 import React, { Component }            from 'react';
 import PropTypes                       from 'prop-types';
 
-import Css                             from '../hoc/Css';
+                             
 import H2                              from '../H2';
 import H3                              from '../H3';
 import H4                              from '../H4';
