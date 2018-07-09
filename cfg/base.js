@@ -8,11 +8,11 @@ const localIdentName = process.env.REACT_WEBPACK_ENV === 'dev' ?
 
 module.exports = {
     output  : { path: path.join( __dirname, '../dist' ) },
-    resolve : { 
+    resolve : {
         extensions : [ '.js', '.json', '.jsx' ],
-        modules    : [ path.join( __dirname, '../node_modules' ) ],
+        modules    : [ path.join( __dirname, '../node_modules' ) ]
     },
-    module  : {
+    module : {
         rules : [
             {
                 test : /\.jsx?$/,

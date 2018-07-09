@@ -1,29 +1,24 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-// Uncomment the following lines to use the react test utilities
-import React                      from 'react';
-// const TestUtils = React.addons.TestUtils;
-import { mount }                  from 'enzyme';
-
-
-import StatusIndicator            from './index';
+import StatusIndicator  from './index';
 
 describe( 'StatusIndicator', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
-{
-        Wrapper = mount( <StatusIndicator /> );
+    {
+        wrapper = mount( <StatusIndicator /> );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.statusIndicator__default' ) )
-            .to.have.length( 1 );
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

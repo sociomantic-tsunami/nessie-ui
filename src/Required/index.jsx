@@ -1,15 +1,14 @@
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { buildClassName }          from '../utils';
+import Css          from '../hoc/Css';
 
 const Required = ( {
     children,
     className,
     cssMap,
     isRequired,
-    text
-} ) =>
+    text } ) =>
 {
     if ( !Required.didWarn )
     {
@@ -19,13 +18,15 @@ removed in the next major release.' );
     }
 
     return (
-
-        <span className = { buildClassName( className, cssMap, { required: isRequired } ) }>
-            { children || text }
-        </span>
-
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { required: isRequired } }>
+            <span className = { className }>
+                { children || text }
+            </span>
+        </Css>
     );
-};
+}
 Required.propTypes =
 {
     /**

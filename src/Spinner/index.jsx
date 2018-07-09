@@ -1,11 +1,14 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const Spinner = ( { cssMap, className, size } ) =>
-
-    <div className = { buildClassName( className, cssMap, { size } ) } />;
+    <Css
+        cssMap   = { cssMap }
+        cssProps = { { size } }>
+        <div className = { className } />
+    </Css>;
 
 Spinner.propTypes =
 {

@@ -1,10 +1,10 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import Icon                                from '../Icon';
-import Tooltip                             from '../Tooltip';
-import Text                                from '../Text';
+import Css                  from '../hoc/Css';
+import Icon                 from '../Icon';
+import Tooltip              from '../Tooltip';
+import Text                 from '../Text';
 
 const IconWithTooltip = ( {
     children,
@@ -40,34 +40,38 @@ const IconWithTooltip = ( {
     }
 
     return (
-        <div
-            className    = { buildClassName( className, cssMap, {
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { {
                 iconVisible : iconIsVisible,
                 position    : !!children && iconPosition
-            } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { children &&
-            <div className = { cssMap.content }>
-                { contentNode }
+            } }>
+            <div
+                className    = { className }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
+                { children &&
+                    <div className = { cssMap.content }>
+                        { contentNode }
+                    </div>
+                }
+                { iconIsVisible &&
+                    <Tooltip
+                        className   = { cssMap.iconWithTooltip }
+                        isVisible   = { tooltipIsVisible }
+                        message     = { message }
+                        onMouseOut  = { onMouseOutIcon }
+                        onMouseOver = { onMouseOverIcon }
+                        position    = { tooltipPosition }>
+                        <Icon
+                            className = { cssMap.icon }
+                            isDisabled = { isDisabled }
+                            size       = { iconSize }
+                            type       = { iconType } />
+                    </Tooltip>
+                }
             </div>
-            }
-            { iconIsVisible &&
-            <Tooltip
-                className   = { cssMap.iconWithTooltip }
-                isVisible   = { tooltipIsVisible }
-                message     = { message }
-                onMouseOut  = { onMouseOutIcon }
-                onMouseOver = { onMouseOverIcon }
-                position    = { tooltipPosition }>
-                <Icon
-                    className = { cssMap.icon }
-                    isDisabled = { isDisabled }
-                    size       = { iconSize }
-                    type       = { iconType } />
-            </Tooltip>
-            }
-        </div>
+        </Css>
     );
 };
 

@@ -1,18 +1,20 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
+import Css                  from '../hoc/Css';
 
 const Page = ( {
     children,
     cssMap,
     className,
-    overflow
-} ) =>
-
-    <div className = { buildClassName( className, cssMap, { overflow } ) }>
-        { children }
-    </div>;
+    overflow } ) =>
+        <Css
+            cssMap = { cssMap }
+            cssProps = { { overflow } } >
+            <div className = { className }>
+                { children }
+            </div>
+        </Css>;
 
 Page.propTypes =
 {

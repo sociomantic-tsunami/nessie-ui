@@ -1,5 +1,3 @@
-/* eslint-env node, mocha */
-/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -27,8 +25,7 @@ describe( 'GridColumnDriver', () =>
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 
             const content = wrapper.driver().getContent();
-            expect( content.find( Column ).driver().getContent() )
-                .to.equal( 'Lightning Strike' );
+            expect( content.text() ).toBe( 'Lightning Strike' );
         } );
     } );
 } );

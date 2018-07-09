@@ -1,6 +1,5 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global test */
 
 import React            from 'react';
 import { mount }        from 'enzyme';
@@ -20,22 +19,22 @@ describe( 'DragNDrop', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one DragNDrop', () =>
+        test( 'should contain exactly one DragNDrop', () =>
         {
-            expect( wrapper ).to.have.length( 1 );
+            expect( wrapper ).toHaveLength( 1 );
         } );
     } );
 
     describe( 'wrapperDriver', () =>
     {
-        it( 'should find content', () =>
+        test( 'should find content', () =>
         {
             const driver = wrapper.driver();
             wrapper.setProps( {
                 children : <Text>something</Text>
             } );
 
-            expect( driver.getContent() ).to.have.length( 1 );
+            expect( driver.getContent() ).toHaveLength( 1 );
         } );
     } );
 } );

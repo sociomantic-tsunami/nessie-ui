@@ -1,8 +1,8 @@
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                  from '../utils';
-import IconButton                          from '../IconButton';
+import Css                  from '../hoc/Css';
+import IconButton           from '../IconButton';
 
 const ModalDialog = ( {
     children,
@@ -16,8 +16,7 @@ const ModalDialog = ( {
     title,
     onClickPrev,
     onClickNext,
-    onClickClose
-} ) =>
+    onClickClose } ) =>
 {
     if ( !isVisible )
     {
@@ -62,19 +61,24 @@ const ModalDialog = ( {
 
     return (
         <div className = "modalContainer">
-            <div
-                className = { buildClassName( className, cssMap, {
+            <Css
+                cssMap = { cssMap }
+                cssProps = { {
                     type,
                     wide    : isWide,
                     showNav : hasNavigation
-                } ) }
-                onClick   = { onClickOverlay }
+                } }
             >
-                { modalUI }
-                <div className = { cssMap.content }>
-                    { children }
+                <div
+                    className = { className }
+                    onClick   = { onClickOverlay }
+                >
+                    { modalUI }
+                    <div className = { cssMap.content }>
+                        { children }
+                    </div>
                 </div>
-            </div>
+            </Css>
         </div>
     );
 };

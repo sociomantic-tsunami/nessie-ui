@@ -1,26 +1,25 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 
-import React                      from 'react';
-import { mount }                  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-
-import NavBar                     from './index';
+import NavBar       from './index';
 
 describe( 'NavBar', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
-{
-        Wrapper = mount( <NavBar /> );
+    {
+        wrapper = mount( <NavBar /> );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.navBar__default' ) ).to.have.length( 1 );
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
     } );
 } );

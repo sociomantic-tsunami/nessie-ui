@@ -1,11 +1,8 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global test jest */
 
 import React                            from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
-
-
 
 import Form                             from './index';
 
@@ -20,9 +17,9 @@ describe( 'Form', () =>
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one <form>', () =>
+        test( 'should contain exactly one <form>', () =>
         {
-            expect( wrapper.find( 'form' ) ).to.have.length( 1 );
+            expect( wrapper.find( 'form' ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -30,12 +27,12 @@ describe( 'Form', () =>
     {
         describe( 'onSubmit', () =>
         {
-            it( 'should be passed to the <form>', () =>
+            test( 'should be passed to the <form>', () =>
             {
                 const onSubmit = () => undefined;
                 wrapper.setProps( { onSubmit } );
                 expect( wrapper.find( 'form' ).prop( 'onSubmit' ) )
-                    .to.equal( onSubmit );
+                    .toBe( onSubmit );
             } );
         } );
     } );
@@ -53,30 +50,30 @@ describe( 'FormDriver', () =>
 
     describe( 'getContent()', () =>
     {
-        it( 'should return a ReactWrapper', () =>
+        test( 'should return a ReactWrapper', () =>
         {
             const content = wrapper.driver().getContent();
-            expect( content ).to.be.instanceOf( ReactWrapper );
+            expect( content ).toBeInstanceOf( ReactWrapper );
         } );
 
-        it( 'should contain the content node', () =>
+        test( 'should contain the content node', () =>
         {
             wrapper.setProps( { children: <h2>Pikachu</h2> } );
             const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ) ).to.have.length( 1 );
+            expect( content.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 
     describe( 'submit()', () =>
     {
-        it( 'should fire the onSubmit callback prop', () =>
+        test( 'should fire the onSubmit callback prop once', () =>
         {
-            const onSubmit = sinon.spy();
+            const onSubmit = jest.fn();
 
             wrapper.setProps( { onSubmit } );
             wrapper.driver().submit();
 
-            expect( onSubmit.calledOnce ).to.be.true;
+            expect( onSubmit ).toBeCalledTimes( 1 );
         } );
     } );
 } );

@@ -205,12 +205,12 @@
 
 .role__control
 {
-    color:          var( --PC-GREY--DARK );
+    color:          var( --PC-GREY--D15 );
 
     .icon
     {
-        fill:       var( --PC-GREY--DARK );
-        color:      var( --PC-GREY--DARK );
+        fill:       var( --PC-GREY--D15 );
+        color:      var( --PC-GREY--D15 );
     }
 
     &.fakeHovered,
@@ -229,11 +229,11 @@
     {
         .spinner
         {
-            border-color:           color( var( --PC-GREY--DARK ) a( 25% ) );
+            border-color:           color( var( --PC-GREY--D15 ) a( 25% ) );
 
             &::after
             {
-                border-top-color:   var( --PC-GREY--DARK );
+                border-top-color:   var( --PC-GREY--D15 );
             }
         }
     }
