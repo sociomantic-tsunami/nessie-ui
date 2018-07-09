@@ -1,7 +1,7 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import { generateId }   from '../utils';
+import { generateId, buildClassName }   from '../utils';
               
 import InputField       from '../InputField';
 import InputContainer   from '../proto/InputContainer';

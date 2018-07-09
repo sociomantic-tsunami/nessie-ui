@@ -7,7 +7,7 @@ import { ScrollBox, Text }  from '../index';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
-import { generateId }       from '../utils';
+import { generateId, buildClassName }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
 import styles               from './comboBox.css';
 import {

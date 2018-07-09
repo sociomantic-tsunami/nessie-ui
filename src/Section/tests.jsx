@@ -4,7 +4,7 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-                
+
 import { H1, H4 }         from '../index';
 
 import Section            from './index';
@@ -30,11 +30,7 @@ describe( 'Section', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
+      
         test(
             'should have a header component corresponding to level prop',
             () =>

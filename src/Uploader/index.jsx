@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
               
-import { generateId }   from '../utils';
+import { generateId, buildClassName }   from '../utils';
 import Button           from '../Button';
 import IconWithTooltip  from '../IconWithTooltip';
 import Spinner          from '../Spinner';

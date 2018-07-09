@@ -4,7 +4,7 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-                
+
 import Icon               from '../Icon';
 import Spinner            from '../Spinner';
 
@@ -32,11 +32,7 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
+        
         test( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).toHaveLength( 1 );

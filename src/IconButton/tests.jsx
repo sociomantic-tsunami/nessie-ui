@@ -33,7 +33,7 @@ describe( 'IconButton', () =>
     {
         test( 'should implement the Css higher-order component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+            
         } );
 
         test( 'should contain exactly one Icon', () =>

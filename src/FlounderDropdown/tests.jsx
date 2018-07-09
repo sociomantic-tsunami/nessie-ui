@@ -5,7 +5,7 @@ import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import InputContainer                   from '../proto/InputContainer';
-                              
+
 
 import FlounderDropdown                 from './index';
 
@@ -31,10 +31,6 @@ describe( 'FlounderDropdown', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
 
         test( 'should contain exactly one InputContainer', () =>
         {

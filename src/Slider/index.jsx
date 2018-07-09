@@ -2,7 +2,7 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import { generateId }   from '../utils';
+import { generateId, buildClassName }   from '../utils';
               
 import IconWithTooltip  from '../IconWithTooltip';
 import Label            from '../Label';
