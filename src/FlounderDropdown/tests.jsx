@@ -1,11 +1,11 @@
-/* global test jest */
-/* eslint no-console: 0 */
+/* eslint-env node, mocha */
+/* global expect */
+/* eslint no-console: 0*/
 
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import InputContainer                   from '../proto/InputContainer';
-import Css                              from '../hoc/Css';
 
 import FlounderDropdown                 from './index';
 
@@ -23,22 +23,17 @@ describe( 'FlounderDropdown', () =>
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name FlounderDropdown', () =>
+        it( 'should have name FlounderDropdown', () =>
         {
-            expect( instance.constructor.name ).toBe( 'FlounderDropdown' );
+            expect( instance.constructor.name ).to.equal( 'FlounderDropdown' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
+        it( 'should contain exactly one InputContainer', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+            expect( wrapper.find( InputContainer ) ).to.have.length( 1 );
         } );
     } );
 } );
@@ -77,35 +72,27 @@ describe( 'FlounderDropdownDriver', () =>
 
     describe( 'chooseItemByIndex( index )', () =>
     {
-        test(
-            'should choose an item by index when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label : 'Flounder Label',
-                    data  : [
-                        'Pikachu',
-                        'Jigglypuff',
-                        'Squirtle',
-                        'Balbasaur'
-                    ],
-                    onChange : changeSpy
-                } );
-
-                driver.chooseItemByIndex( 1 );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'Jigglypuff' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            }
-        );
-
-        test( 'should choose multiple items by index when uncontolled', () =>
+        it( 'should choose an item by index when Flounder is uncontolled', () =>
         {
-            const changeSpy = jest.fn();
+            const changeSpy = sinon.spy();
+            wrapper.setProps( {
+                label    : 'Flounder Label',
+                data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
+                onChange : changeSpy
+            } );
+
+            driver.chooseItemByIndex( 1 );
+
+            const selected = driver.getSelectedValues();
+
+            expect( selected ).to.have.length( 1 );
+            expect( selected ).to.contain( 'Jigglypuff' );
+            expect( changeSpy.calledOnce ).to.be.true;
+        } );
+
+        it( 'should choose multiple items by index when uncontolled', () =>
+        {
+            const changeSpy = sinon.spy();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
@@ -117,13 +104,13 @@ describe( 'FlounderDropdownDriver', () =>
 
             const selected = driver.getSelectedValues();
 
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'Jigglypuff' );
-            expect( selected ).toContain( 'Balbasaur' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
+            expect( selected ).to.have.length( 2 );
+            expect( selected ).to.contain( 'Jigglypuff' );
+            expect( selected ).to.contain( 'Balbasaur' );
+            expect( changeSpy.calledTwice ).to.be.true;
         } );
 
-        test( 'should throw error when isReadOnly', () =>
+        it( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
                 isReadOnly : true,
@@ -131,11 +118,11 @@ describe( 'FlounderDropdownDriver', () =>
             } );
 
             expect( () => driver.chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is read-only' );
         } );
 
-        test( 'should throw error when isDisabled', () =>
+        it( 'should throw error when isDisabled', () =>
         {
             wrapper.setProps( {
                 isDisabled : true,
@@ -143,16 +130,16 @@ since it is read-only' );
             } );
 
             expect( () => driver.chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is disabled' );
         } );
     } );
 
     describe( 'chooseItemByText( text )', () =>
     {
-        test( 'should choose item by text when Flounder is uncontolled', () =>
+        it( 'should choose item by text when Flounder is uncontolled', () =>
         {
-            const changeSpy = jest.fn();
+            const changeSpy = sinon.spy();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -163,14 +150,14 @@ since it is disabled' );
 
             const selected = driver.getSelectedValues();
 
-            expect( selected ).toHaveLength( 1 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( changeSpy ).toBeCalledTimes( 1 );
+            expect( selected ).to.have.length( 1 );
+            expect( selected ).to.contain( 'pokemon2' );
+            expect( changeSpy.calledOnce ).to.be.true;
         } );
 
-        test( 'should choose multiple items by text when uncontolled', () =>
+        it( 'should choose multiple items by text when uncontolled', () =>
         {
-            const changeSpy = jest.fn();
+            const changeSpy = sinon.spy();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -182,13 +169,13 @@ since it is disabled' );
 
             const selected = driver.getSelectedValues();
 
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( selected ).toContain( 'pokemon4' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
+            expect( selected ).to.have.length( 2 );
+            expect( selected ).to.contain( 'pokemon2' );
+            expect( selected ).to.contain( 'pokemon4' );
+            expect( changeSpy.calledTwice ).to.be.true;
         } );
 
-        test( 'should throw error when isReadOnly', () =>
+        it( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
                 isReadOnly : true,
@@ -196,11 +183,11 @@ since it is disabled' );
             } );
 
             expect( () => driver.chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is read-only' );
         } );
 
-        test( 'should throw error when isDisabled', () =>
+        it( 'should throw error when isDisabled', () =>
         {
             wrapper.setProps( {
                 isDisabled : true,
@@ -208,37 +195,34 @@ since it is read-only' );
             } );
 
             expect( () => driver.chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is disabled' );
         } );
     } );
 
     describe( 'chooseItemByValues( value )', () =>
     {
-        test(
-            'should choose an item by value when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label    : 'Flounder Label',
-                    data     : pokemonList,
-                    onChange : changeSpy
-                } );
-
-                driver.chooseItemByValue( 'pokemon2' );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'pokemon2' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            }
-        );
-
-        test( 'should choose multiple items by value when uncontolled', () =>
+        it( 'should choose an item by value when Flounder is uncontolled', () =>
         {
-            const changeSpy = jest.fn();
+            const changeSpy = sinon.spy();
+            wrapper.setProps( {
+                label    : 'Flounder Label',
+                data     : pokemonList,
+                onChange : changeSpy
+            } );
+
+            driver.chooseItemByValue( 'pokemon2' );
+
+            const selected = driver.getSelectedValues();
+
+            expect( selected ).to.have.length( 1 );
+            expect( selected ).to.contain( 'pokemon2' );
+            expect( changeSpy.calledOnce ).to.be.true;
+        } );
+
+        it( 'should choose multiple items by value when uncontolled', () =>
+        {
+            const changeSpy = sinon.spy();
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
@@ -250,13 +234,13 @@ since it is disabled' );
 
             const selected = driver.getSelectedValues();
 
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon1' );
-            expect( selected ).toContain( 'pokemon3' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
+            expect( selected ).to.have.length( 2 );
+            expect( selected ).to.contain( 'pokemon1' );
+            expect( selected ).to.contain( 'pokemon3' );
+            expect( changeSpy.calledTwice ).to.be.true;
         } );
 
-        test( 'should throw error when isReadOnly', () =>
+        it( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
                 isReadOnly : true,
@@ -264,11 +248,11 @@ since it is disabled' );
             } );
 
             expect( () => driver.chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is read-only' );
         } );
 
-        test( 'should throw error when isDisabled', () =>
+        it( 'should throw error when isDisabled', () =>
         {
             wrapper.setProps( {
                 isDisabled : true,
@@ -276,16 +260,16 @@ since it is read-only' );
             } );
 
             expect( () => driver.chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is disabled' );
         } );
     } );
 
     describe( 'removeAllTags()', () =>
     {
-        test( 'should remove all tags from an uncontrolled Flounder', () =>
+        it( 'should remove all tags from an uncontrolled Flounder', () =>
         {
-            const changeSpy = jest.fn();
+            const changeSpy = sinon.spy();
             const props = {
                 label        : 'Flounder Label',
                 data         : pokemonList,
@@ -301,11 +285,11 @@ since it is disabled' );
             driver.removeAllTags();
 
             const selected = driver.getSelectedValues();
-            expect( selected ).toHaveLength( 0 );
-            expect( changeSpy ).toBeCalledTimes( 2 );
+            expect( selected ).to.have.length( 0 );
+            expect( changeSpy.callCount ).to.equal( 2 );
         } );
 
-        test( 'should throw error when isReadOnly', () =>
+        it( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
                 isReadOnly : true,
@@ -313,11 +297,11 @@ since it is disabled' );
             } );
 
             expect( () => driver.removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is read-only' );
         } );
 
-        test( 'should throw error when isDisabled', () =>
+        it( 'should throw error when isDisabled', () =>
         {
             wrapper.setProps( {
                 isDisabled : true,
@@ -325,17 +309,17 @@ since it is read-only' );
             } );
 
             expect( () => driver.removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+                .to.throw( 'Cannot change the flounder dropdown value since it \
+is disabled' );
         } );
 
-        test( 'should throw error when not configured with multipleTags', () =>
+        it( 'should throw error when not configured with multipleTags', () =>
         {
             wrapper.setProps( { data: pokemonList } );
 
             expect( () => wrapper.driver().removeAllTags() )
-                .toThrowError( 'Cannot deselect tags when flounder dropdown \
-is not configured with multipleTags' );
+                .to.throw( 'Cannot deselect tags when flounder dropdown is not \
+configured with multipleTags' );
         } );
     } );
 
@@ -353,15 +337,15 @@ is not configured with multipleTags' );
             } );
         } );
 
-        test( 'should return a Reactwrapper', () =>
+        it( 'should return a Reactwrapper', () =>
         {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+            expect( driver.getErrorMessage() ).to.be.instanceOf( ReactWrapper );
         } );
 
-        test( 'should contain the error message content', () =>
+        it( 'should contain the error message content', () =>
         {
             const content = driver.getErrorMessage();
-            expect( content.find( '.attack' ) ).toHaveLength( 1 );
+            expect( content.find( '.attack' ) ).to.have.length( 1 );
         } );
     } );
 } );

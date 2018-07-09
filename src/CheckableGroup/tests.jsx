@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* global expect */
 
 import React                   from 'react';
 import { ReactWrapper, mount } from 'enzyme';
@@ -19,7 +20,7 @@ describe( 'CheckableGroupDriver', () =>
 
     describe( 'getContent()', () =>
     {
-        test( 'should return all child nodes', () =>
+        it( 'should return all child nodes', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -27,10 +28,10 @@ describe( 'CheckableGroupDriver', () =>
                     <Checkbox label = "two" />
                 ],
             } );
-            expect( wrapper.driver().getContent() ).toHaveLength( 2 );
+            expect( wrapper.driver().getContent() ).to.have.length( 2 );
         } );
 
-        test( 'should return an array of ReactWrappers', () =>
+        it( 'should return an array of ReactWrappers', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -40,13 +41,14 @@ describe( 'CheckableGroupDriver', () =>
             } );
 
             wrapper.driver().getContent().forEach( item =>
-                expect( item ).toBeInstanceOf( ReactWrapper ) );
+                expect( item ).to.be.instanceOf( ReactWrapper )
+            );
         } );
     } );
 
     describe( 'selectByIndex()', () =>
     {
-        test( 'should set Checkbox at index to checked when uncontrolled', () =>
+        it( 'should set Checkbox at index to checked when uncontrolled', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -58,31 +60,28 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+                .to.be.true;
         } );
 
-        test(
-            'should set Checkbox at indexes to checked when uncontrolled',
-            () =>
-            {
-                wrapper.setProps( {
-                    children : [
-                        <Checkbox label = "one" value = "first check" />,
-                        <Checkbox label = "two" value = "second check" />,
-                        <Checkbox label = "three" value = "third check" />,
-                        <Checkbox label = "four" value = "fourth check" />
-                    ],
-                } );
-                wrapper.driver().selectByIndex( [ 1, 3 ] );
+        it( 'should set Checkbox at indexes to checked when uncontrolled', () =>
+        {
+            wrapper.setProps( {
+                children : [
+                    <Checkbox label = "one" value = "first check" />,
+                    <Checkbox label = "two" value = "second check" />,
+                    <Checkbox label = "three" value = "third check" />,
+                    <Checkbox label = "four" value = "fourth check" />
+                ],
+            } );
+            wrapper.driver().selectByIndex( [ 1, 3 ] );
 
-                expect( wrapper.driver().getSelectedValues() )
-                    .toEqual( [ 'second check', 'fourth check' ] );
-            }
-        );
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [ 'second check', 'fourth check' ] );
+        } );
     } );
     describe( 'toggleByIndex( index )', () =>
     {
-        test( 'should toggle Checkbox with index', () =>
+        it( 'should toggle Checkbox with index', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -94,14 +93,14 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+                .to.be.true;
 
             wrapper.driver().toggleByIndex( 1 );
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( false );
+                .to.be.false;
         } );
 
-        test( 'should toggle Checkboxes with indexes', () =>
+        it( 'should toggle Checkboxes with indexes', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -114,17 +113,18 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.driver().toggleByIndex( [ 1, 3 ] );
 
             expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'fourth check' ] );
+                .to.eql( [ 'second check', 'fourth check' ] );
 
             wrapper.driver().toggleByIndex( [ 1, 3 ] );
 
-            expect( wrapper.driver().getSelectedValues() ).toEqual( [] );
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [] );
         } );
     } );
 
     describe( 'selectByValue()', () =>
     {
-        test( 'should set check to Checkbox with value', () =>
+        it( 'should set check to Checkbox with value', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -137,10 +137,10 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+                .to.be.true;
         } );
 
-        test( 'should set check to Checkboxes with values', () =>
+        it( 'should set check to Checkboxes with values', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -154,13 +154,13 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.driver().selectByValue( [ 'second check', 'third check' ] );
 
             expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'third check' ] );
+                .to.eql( [ 'second check', 'third check' ] );
         } );
     } );
 
     describe( 'toggleByValue( value )', () =>
     {
-        test( 'should toggle Checkbox with value', () =>
+        it( 'should toggle Checkbox with value', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -173,14 +173,14 @@ describe( 'CheckableGroupDriver', () =>
             const items = wrapper.find( 'li' );
 
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+                .to.be.true;
 
             wrapper.driver().toggleByValue( 'second check' );
             expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBe( false );
+                .to.be.false;
         } );
 
-        test( 'should toggle Checkboxes with values', () =>
+        it( 'should toggle Checkboxes with values', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -194,17 +194,18 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
 
             expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'third check' ] );
+                .to.eql( [ 'second check', 'third check' ] );
 
             wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
 
-            expect( wrapper.driver().getSelectedValues() ).toEqual( [] );
+            expect( wrapper.driver().getSelectedValues() )
+                .to.eql( [] );
         } );
     } );
 
     describe( 'getSelectedValues()', () =>
     {
-        test( 'should return an array of selected values', () =>
+        it( 'should return an array of selected values', () =>
         {
             wrapper.setProps( {
                 children : [
@@ -214,34 +215,34 @@ describe( 'CheckableGroupDriver', () =>
             } );
 
             expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'first check' ] );
+                .to.eql( [ 'first check' ] );
         } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver exactly once', () =>
+        it( 'should call onMouseOver once', () =>
         {
-            const onMouseOver = jest.fn();
+            const onMouseOver = sinon.spy();
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+            expect( onMouseOver.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut exactly once', () =>
+        it( 'should call onMouseOut once', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 } );

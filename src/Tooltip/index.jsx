@@ -1,12 +1,12 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                     from 'react';
+import PropTypes                 from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import IconButton       from '../IconButton';
-import Text             from '../Text';
+import Component                 from '../proto/Component';
+import { buildClassName }        from '../utils';
+import IconButton                from '../IconButton';
+import Text                      from '../Text';
 
-export default class Tooltip extends React.PureComponent
+export default class Tooltip extends Component
 {
     static propTypes =
     {
@@ -14,10 +14,6 @@ export default class Tooltip extends React.PureComponent
          *  Node that the Tooltip wraps
          */
         children         : PropTypes.node,
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id               : PropTypes.string,
         /**
          *  Display the tooltip as user dismissible
          */
@@ -76,7 +72,6 @@ export default class Tooltip extends React.PureComponent
     static defaultProps =
     {
         position       : 'top',
-        id             : undefined,
         isVisible      : true,
         noWrap         : false,
         overflowHidden : false,
@@ -92,7 +87,6 @@ export default class Tooltip extends React.PureComponent
             cssMap,
             message,
             position,
-            id = generateId( 'Tooltip' ),
             isDismissible,
             isVisible,
             noWrap,
@@ -102,6 +96,8 @@ export default class Tooltip extends React.PureComponent
             overflowIsHidden,
             role
         } = this.props;
+
+        const { id } = this.state;
 
         let messageText = message;
 
@@ -152,23 +148,21 @@ export default class Tooltip extends React.PureComponent
         }
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { role, noWrap, position } }>
+
+            <div
+                className    = { buildClassName( className, cssMap, { role, noWrap, position } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
+                { contentNode &&
                 <div
-                    className    = { className }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }>
-                    { contentNode &&
-                        <div
-                            className        = { cssMap.content }
-                            aria-describedby = { isVisible ? id : null }>
-                            { contentNode }
-                        </div>
-                    }
-                    { isVisible && tooltip }
+                    className        = { cssMap.content }
+                    aria-describedby = { isVisible ? id : null }>
+                    { contentNode }
                 </div>
-            </Css>
+                }
+                { isVisible && tooltip }
+            </div>
+
         );
     }
 }

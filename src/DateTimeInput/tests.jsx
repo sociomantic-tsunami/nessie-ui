@@ -1,6 +1,3 @@
-/* global jest test */
-/* eslint-disable no-magic-numbers */
-
 import React                    from 'react';
 import { mount }                from 'enzyme';
 
@@ -19,147 +16,147 @@ describe( 'DateTimeInputDriver', () =>
 
     describe( 'getMainInputValue()', () =>
     {
-        test( 'should get main input value', () =>
+        it( 'should get main input value', () =>
         {
             wrapper.setProps( {
                 inputValue : '2018-05-05 12:00'
             } );
 
-            expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
+            expect( driver.getMainInputValue() ).to.equal( '2018-05-05 12:00' );
         } );
     } );
 
     describe( 'setMainInputValue()', () =>
     {
-        test( 'should set main input value', () =>
+        it( 'should set main input value', () =>
         {
             wrapper.driver().setMainInputValue( '2018-05-05 12:00' );
 
-            expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
+            expect( driver.getMainInputValue() ).to.equal( '2018-05-05 12:00' );
         } );
     } );
 
     describe( 'blurMainInput()', () =>
     {
-        test( 'should call onBlur once', () =>
+        it( 'should call onBlur once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurMainInput();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focusMainInput()', () =>
     {
-        test( 'should call onFocus once', () =>
+        it( 'should call onFocus once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusMainInput();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'getHourInputValue()', () =>
     {
-        test( 'should get hour input value', () =>
+        it( 'should get hour input value', () =>
         {
             wrapper.setProps( {
                 hourValue : '13'
             } );
 
-            expect( driver.getHourInputValue() ).toBe( '13' );
+            expect( driver.getHourInputValue() ).to.equal( '13' );
         } );
     } );
 
     describe( 'setHourInputValue()', () =>
     {
-        test( 'should set hour input value', () =>
+        it( 'should set hour input value', () =>
         {
             wrapper.driver().setHourInputValue( '21' );
 
-            expect( driver.getHourInputValue() ).toBe( '21' );
+            expect( driver.getHourInputValue() ).to.equal( '21' );
         } );
     } );
 
     describe( 'blurHourInput()', () =>
     {
-        test( 'should call onBlur once', () =>
+        it( 'should call onBlur once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurHourInput();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focusHourInput()', () =>
     {
-        test( 'should call onFocus once', () =>
+        it( 'should call onFocus once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusHourInput();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'getMinuteInputValue()', () =>
     {
-        test( 'should get minute input value', () =>
+        it( 'should get minute input value', () =>
         {
             wrapper.setProps( {
                 minuteValue : '45'
             } );
 
-            expect( driver.getMinuteInputValue() ).toBe( '45' );
+            expect( driver.getMinuteInputValue() ).to.equal( '45' );
         } );
     } );
 
     describe( 'setMinuteInputValue()', () =>
     {
-        test( 'should set minute input value', () =>
+        it( 'should set minute input value', () =>
         {
             wrapper.driver().setMinuteInputValue( '37' );
 
-            expect( driver.getMinuteInputValue() ).toBe( '37' );
+            expect( driver.getMinuteInputValue() ).to.equal( '37' );
         } );
     } );
 
     describe( 'blurMinuteInput()', () =>
     {
-        test( 'should call onBlur once', () =>
+        it( 'should call onBlur once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blurMinuteInput();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focusMinuteInput()', () =>
     {
-        test( 'should call onFocus once', () =>
+        it( 'should call onFocus once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focusMinuteInput();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
@@ -170,24 +167,24 @@ describe( 'DateTimeInputDriver', () =>
 
         beforeEach( () =>
         {
-            onClickCell = jest.fn();
+            onClickCell = sinon.spy();
             wrapper.setProps( {
                 weeks : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
                 onClickCell,
             } );
         } );
 
-        test( 'should fire onClickCell exactly once', () =>
+        it( 'should fire onClickCell exactly once', () =>
         {
             wrapper.driver().clickCellByIndex( 1 );
 
-            expect( onClickCell ).toBeCalledTimes( 1 );
+            expect( onClickCell.calledOnce ).to.be.true;
         } );
 
-        test( 'should click on cell with given index', () =>
+        it( 'should click on cell with given index', () =>
         {
             wrapper.driver().clickCellByIndex( 1 );
-            expect( onClickCell.mock.calls[ 0 ][ 0 ] ).toBe( '2' );
+            expect( onClickCell.lastCall.args[ 0 ] ).to.equal( '2' );
         } );
     } );
 
@@ -197,24 +194,24 @@ describe( 'DateTimeInputDriver', () =>
 
         beforeEach( () =>
         {
-            onClickCell = jest.fn();
+            onClickCell = sinon.spy();
             wrapper.setProps( {
                 weeks : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
                 onClickCell,
             } );
         } );
 
-        test( 'should fire onClickCell exactly once', () =>
+        it( 'should fire onClickCell exactly once', () =>
         {
             wrapper.driver().clickCellByValue( '1' );
 
-            expect( onClickCell ).toBeCalledTimes( 1 );
+            expect( onClickCell.calledOnce ).to.be.true;
         } );
 
-        test( 'should click on cell with given value', () =>
+        it( 'should click on cell with given value', () =>
         {
             wrapper.driver().clickCellByValue( '3' );
-            expect( onClickCell.mock.calls[ 0 ][ 0 ] ).toBe( '3' );
+            expect( onClickCell.lastCall.args[ 0 ] ).to.equal( '3' );
         } );
     } );
 
@@ -223,16 +220,16 @@ describe( 'DateTimeInputDriver', () =>
     {
         let onClickPrev;
 
-        test( 'should fire onClickPrev exactly once', () =>
+        it( 'should fire onClickPrev exactly once', () =>
         {
-            onClickPrev = jest.fn();
+            onClickPrev = sinon.spy();
             wrapper.setProps( {
                 onClickPrev
             } );
 
             wrapper.driver().clickPrev();
 
-            expect( onClickPrev ).toBeCalledTimes( 1 );
+            expect( onClickPrev.calledOnce ).to.be.true;
         } );
     } );
 
@@ -241,16 +238,16 @@ describe( 'DateTimeInputDriver', () =>
     {
         let onClickNext;
 
-        test( 'should fire onClickNext exactly once', () =>
+        it( 'should fire onClickNext exactly once', () =>
         {
-            onClickNext = jest.fn();
+            onClickNext = sinon.spy();
             wrapper.setProps( {
                 onClickNext
             } );
 
             wrapper.driver().clickNext();
 
-            expect( onClickNext ).toBeCalledTimes( 1 );
+            expect( onClickNext.calledOnce ).to.be.true;
         } );
     } );
 } );

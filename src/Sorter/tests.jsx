@@ -1,4 +1,5 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 
 
@@ -17,15 +18,14 @@ describe( 'Sorter', () =>
     } );
 
 
-    test( 'should render <Sorter/>', () =>
+    it( 'should render <Sorter/>', () =>
     {
-        expect( wrapper.find( Sorter ) ).toHaveLength( 1 );
+        expect( wrapper.find( Sorter ) ).to.have.length( 1 );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( '.sorter__default' ) ).to.have.length( 1 );
     } );
 } );
 
@@ -38,15 +38,15 @@ describe( 'SorterDriver', () =>
         wrapper = mount( <Sorter /> );
     } );
 
-    test( 'should call onToggle callback function', () =>
+    it( 'should call onToggle callback function', () =>
     {
-        const onToggle = jest.fn();
+        const onToggle = sinon.spy();
         wrapper.setProps( {
             onToggle
         } );
 
         wrapper.driver().toggle();
 
-        expect( onToggle ).toBeCalled();
+        expect( onToggle.calledOnce ).to.be.true;
     } );
 } );

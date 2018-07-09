@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import Flounder             from 'flounder/src/core/flounder';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
 import InputContainer       from '../proto/InputContainer';
 import H1                   from '../H1';
 import H2                   from '../H2';
@@ -424,21 +424,17 @@ export default class FlounderDropdown extends Component
         const Wrapper  = isHeader ? headers[ headerLevel ] : 'div';
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
-                    headerMode  : isHeader,
-                    headerLevel,
-                    toggleIcon  : icon,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && !hasError && forceHover
-                } }>
-                <Wrapper className = { className }>
-                    <InputContainer { ...props } label = { !isHeader && label }>
-                        <div ref = { this.handleRef } />
-                    </InputContainer>
-                </Wrapper>
-            </Css>
+            <Wrapper className = { buildClassName( className, cssMap, {
+                headerMode  : isHeader,
+                headerLevel,
+                toggleIcon  : icon,
+                error       : !isDisabled && hasError,
+                fakeHovered : !isDisabled && !hasError && forceHover
+            } ) }>
+                <InputContainer { ...props } label = { !isHeader && label }>
+                    <div ref = { this.handleRef } />
+                </InputContainer>
+            </Wrapper>
         );
     }
 }

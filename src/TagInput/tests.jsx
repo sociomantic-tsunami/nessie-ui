@@ -1,4 +1,5 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
@@ -17,28 +18,28 @@ describe( 'TagInput', () =>
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <TagInput /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
+        wrapper  = shallow( <TagInput /> );
+        instance = wrapper.instance();
+        cssMap   = instance.props.cssMap;
     } );
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name TagInput', () =>
+        it( 'should have name TagInput', () =>
         {
-            expect( instance.constructor.name ).toBe( 'TagInput' );
+            expect( instance.constructor.name ).to.equal( 'TagInput' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one input', () =>
+        it( 'should contain exactly one input', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ) ).toHaveLength( 1 );
+            expect( wrapper.find( `.${cssMap.input}` ) ).to.have.length( 1 );
         } );
     } );
 
-    test( 'should have Tag components when passed as children', () =>
+    it( 'should have Tag components when passed as children', () =>
     {
         wrapper.setProps( {
             children : [
@@ -47,43 +48,43 @@ describe( 'TagInput', () =>
             ]
         } );
 
-        expect( wrapper.find( Tag ) ).toHaveLength( 2 );
+        expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
 
-    test( 'should have Tag components when passed as tags prop', () =>
+    it( 'should have Tag components when passed as tags prop', () =>
     {
         wrapper.setProps( {
             tags : [ 'TagLabelString 1', 'TagLabelString 2' ],
         } );
 
-        expect( wrapper.find( Tag ) ).toHaveLength( 2 );
+        expect( wrapper.find( Tag ) ).to.have.length( 2 );
     } );
 
-    test( 'should trigger onKeyDown callbacks when key pressed', () =>
+    it( 'should trigger onKeyDown callbacks when key pressed', () =>
     {
-        const onKeyDown = jest.fn();
+        const onKeyDown = sinon.spy();
         wrapper.setProps( { onKeyDown } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
-        expect( onKeyDown ).toBeCalled();
+        expect( onKeyDown.called ).to.be.true;
     } );
 
-    test( 'should trigger onKeyUp callbacks when key pressed', () =>
+    it( 'should trigger onKeyUp callbacks when key pressed', () =>
     {
-        const onKeyUp = jest.fn();
+        const onKeyUp = sinon.spy();
         wrapper.setProps( { onKeyUp } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
-        expect( onKeyUp ).toBeCalled();
+        expect( onKeyUp.called ).to.be.true;
     } );
 
-    test( 'should trigger onKeyPress callbacks when key pressed', () =>
+    it( 'should trigger onKeyPress callbacks when key pressed', () =>
     {
-        const onKeyPress = jest.fn();
+        const onKeyPress = sinon.spy();
         wrapper.setProps( { onKeyPress } );
 
         wrapper.find( `.${cssMap.input}` ).simulate( 'keyPress' );
-        expect( onKeyPress ).toBeCalled();
+        expect( onKeyPress.called ).to.be.true;
     } );
 
     describe( 'readOnly state', () =>
@@ -93,10 +94,10 @@ describe( 'TagInput', () =>
             wrapper.setProps( { isReadOnly: true } );
         } );
 
-        test( 'input should receive readonly', () =>
+        it( 'input should receive readonly', () =>
         {
             expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) )
-                .toBeTruthy();
+                .to.be.true;
         } );
     } );
 
@@ -107,10 +108,10 @@ describe( 'TagInput', () =>
             wrapper.setProps( { isDisabled: true } );
         } );
 
-        test( 'input should receive isDisabled as "disabled"', () =>
+        it( 'input should receive isDisabled as "disabled"', () =>
         {
             expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
-                .toBeTruthy();
+                .to.be.true;
         } );
     } );
 } );
@@ -127,9 +128,9 @@ describe( 'TagInputDriver', () =>
 
     describe( 'blur()', () =>
     {
-        test( 'should call blur exactly once', () =>
+        it( 'should call blur once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( {
                 onBlur,
                 children : [
@@ -140,15 +141,15 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().blur();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focus()', () =>
     {
-        test( 'should call focus exactly once', () =>
+        it( 'should call focus once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( {
                 onFocus,
                 children : [
@@ -159,15 +160,15 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().focus();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'clickCloseTagByIndex()', () =>
     {
-        test( 'should call onClickClose exactly once', () =>
+        it( 'should call onClickClose once', () =>
         {
-            const onClickClose = jest.fn();
+            const onClickClose = sinon.spy();
             wrapper.setProps( {
                 onClickClose,
                 children : [
@@ -178,15 +179,15 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByIndex( 1 );
 
-            expect( onClickClose ).toBeCalledTimes( 1 );
+            expect( onClickClose.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'clickCloseTagByLabel()', () =>
     {
-        test( 'should call onClickClose exactly once', () =>
+        it( 'should call onClickClose once', () =>
         {
-            const onClickClose = jest.fn();
+            const onClickClose = sinon.spy();
             wrapper.setProps( {
                 onClickClose,
                 children : [
@@ -197,15 +198,15 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
 
-            expect( onClickClose ).toBeCalledTimes( 1 );
+            expect( onClickClose.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut exactly once', () =>
+        it( 'should call onMouseOut once', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             wrapper.setProps( {
                 onMouseOut,
                 children : [
@@ -216,15 +217,15 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver exactly once', () =>
+        it( 'should call onMouseOver once', () =>
         {
-            const onMouseOver = jest.fn();
+            const onMouseOver = sinon.spy();
             wrapper.setProps( {
                 onMouseOver,
                 children : [
@@ -235,7 +236,7 @@ describe( 'TagInputDriver', () =>
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+            expect( onMouseOver.calledOnce ).to.be.true;
         } );
     } );
 } );

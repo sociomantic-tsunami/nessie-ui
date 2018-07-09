@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
+/* global expect */
 
 import React       from 'react';
 import { shallow } from 'enzyme';
@@ -18,9 +19,9 @@ describe( 'SpriteMap', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should dangerously set inner HTML', () =>
+        it( 'should dangerously set inner HTML', () =>
         {
-            expect( wrapper.prop( 'dangerouslySetInnerHTML' ) ).toBeDefined();
+            expect( wrapper.prop( 'dangerouslySetInnerHTML' ) ).to.exist;
         } );
     } );
 } );

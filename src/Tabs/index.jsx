@@ -1,11 +1,11 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { generateId }   from '../utils';
-import TabButton        from '../TabButton';
+import NessieComponent      from '../proto/Component';
+import TabButton            from '../TabButton';
 
 
-export default class Tabs extends React.Component
+export default class Tabs extends NessieComponent
 {
     static propTypes =
     {
@@ -14,25 +14,20 @@ export default class Tabs extends React.Component
          */
         activeTabIndex : PropTypes.number,
         /**
-         *  A set of <Tab> components
-         */
-        children       : PropTypes.node,
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id             : PropTypes.string,
-        /**
          *  onChange callback function: ( e, newProps ) => { ... }
          */
-        onChange       : PropTypes.func
+        onChange       : PropTypes.func,
+        /**
+         *  A set of <Tab> components
+         */
+        children       : PropTypes.node
     };
 
 
     static defaultProps =
     {
         activeTabIndex : 0,
-        cssMap         : require( './tabs.css' ),
-        id             : undefined,
+        cssMap         : require( './tabs.css' )
     };
 
     constructor( props )
@@ -42,18 +37,6 @@ export default class Tabs extends React.Component
         this.handleChange = this.handleChange.bind( this );
     }
 
-
-    handleChange( e )
-    {
-        const { onChange } = this.props;
-
-        if ( onChange )
-        {
-            const newProps = e.currentTarget ?
-                { activeTabIndex: parseInt( e.currentTarget.value, 10 ) } : {};
-            onChange( e, newProps );
-        }
-    }
 
     renderHeader( tabs = [] )
     {
@@ -85,13 +68,25 @@ export default class Tabs extends React.Component
     }
 
 
+    handleChange( e )
+    {
+        const { onChange } = this.props;
+
+        if ( onChange )
+        {
+            const newProps = e.currentTarget ?
+                { activeTabIndex: parseInt( e.currentTarget.value, 10 ) } : {};
+            onChange( e, newProps );
+        }
+    }
+
+
     render()
     {
         const {
             activeTabIndex,
             children,
-            cssMap,
-            id = generateId( 'Tabs' )
+            cssMap
         } = this.props;
 
         const header = this.renderHeader( children );
@@ -100,7 +95,7 @@ export default class Tabs extends React.Component
             children[ activeTabIndex ] : children;
 
         return (
-            <div className = { cssMap.default } id = { id } >
+            <div className = { cssMap.default } >
                 <div className = { cssMap.header }>
                     { header }
                 </div>

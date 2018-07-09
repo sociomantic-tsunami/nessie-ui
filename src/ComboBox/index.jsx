@@ -9,7 +9,7 @@ import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
 import { generateId }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
-import styles               from './comboBox.css';
+import styles                         from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -241,7 +241,7 @@ export default class ComboBox extends Component
         hasAutocomplete       : false,
         hasError              : false,
         iconType              : 'none',
-        id                    : undefined,
+        id                    : generateId( 'ComboBox' ),
         inputIsReadOnly       : false,
         inputPlaceholder      : undefined,
         inputRef              : undefined,
@@ -414,7 +414,7 @@ export default class ComboBox extends Component
             hasAutocomplete,
             hasError,
             iconType,
-            id = generateId( 'ComboBox' ),
+            id,
             inputIsReadOnly,
             inputPlaceholder,
             inputRef,

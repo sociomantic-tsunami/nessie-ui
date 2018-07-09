@@ -1,4 +1,5 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global document Event expect */
 /* eslint-disable no-magic-numbers */
 
 
@@ -13,22 +14,24 @@ import DimensionsInput      from './index';
 describe( 'DimensionsInput', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <DimensionsInput /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly two InputFields', () =>
+        it( 'should contain exactly two InputFields', () =>
         {
-            expect( wrapper.find( InputField ) ).toHaveLength( 2 );
+            expect( wrapper.find( InputField ) ).to.have.length( 2 );
         } );
 
         it( 'should contain exactly one Text', () =>
         {
-            expect( wrapper.find( Text ) ).toHaveLength( 1 );
+            expect( wrapper.find( Text ) ).to.have.length( 1 );
         } );
     } );
 } );

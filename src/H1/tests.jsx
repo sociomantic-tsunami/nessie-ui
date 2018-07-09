@@ -1,4 +1,5 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -10,16 +11,15 @@ import H1           from './index';
 
 describe( 'H1', () =>
 {
-    let wrapper;
+    let Wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <H1 /> );
+        Wrapper = mount( <H1 /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( Wrapper.find( '.h1__default' ) ).to.have.length( 1 );
     } );
 } );

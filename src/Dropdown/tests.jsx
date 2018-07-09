@@ -1,4 +1,5 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -17,20 +18,20 @@ describe( 'Dropdown', () =>
         wrapper = mount( <Dropdown /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( '.dropdown__default' ) ).to.have.length( 1 );
     } );
 
     describe( 'Wrapper driver getContent', () =>
     {
-        test( 'should return the dropdown content', () =>
+        it( 'should return the dropdown content', () =>
         {
             wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
 
             const content = wrapper.driver().getContent();
-            expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
+            expect( content.find( 'p' ).text() )
+                .to.equal( 'Lightning Strike' );
         } );
     } );
 } );

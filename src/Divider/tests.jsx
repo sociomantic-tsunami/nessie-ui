@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers */
-/* global test */
+/* global expect */
 /* eslint no-console: 0*/
 
 
@@ -10,16 +11,15 @@ import Divider      from './index';
 
 describe( 'Divider', () =>
 {
-    let wrapper;
+    let Wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Divider /> );
+        Wrapper = mount( <Divider /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( Wrapper.find( '.divider__default' ) ).to.have.length( 1 );
     } );
 } );

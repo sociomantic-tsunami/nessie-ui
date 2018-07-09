@@ -1,13 +1,13 @@
 /* global addEventListener removeEventListener Event */
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import IconWithTooltip  from '../IconWithTooltip';
-import Label            from '../Label';
+import Component                           from '../proto/Component';
+import { buildClassName }                  from '../utils';
+import IconWithTooltip                     from '../IconWithTooltip';
+import Label                               from '../Label';
 
-export default class Slider extends React.Component
+export default class Slider extends Component
 {
     static propTypes =
     {
@@ -15,10 +15,6 @@ export default class Slider extends React.Component
         *  Label text
         */
         label                 : PropTypes.string,
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id                    : PropTypes.string,
         /**
         * Display as disabled
         */
@@ -181,7 +177,6 @@ export default class Slider extends React.Component
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         hasFill               : true,
-        id                    : undefined,
         fillFrom              : 'start',
         orientation           : 'horizontal',
         stepLabelsPosition    : 'top',
@@ -677,7 +672,6 @@ export default class Slider extends React.Component
             hasError,
             hasFill,
             hasHandleLabels,
-            id = generateId( 'Slider' ),
             isDisabled,
             isReadOnly,
             label,
@@ -697,6 +691,8 @@ export default class Slider extends React.Component
             value,
             ticks = []
         } = this.props;
+
+        const { id } = this.state;
 
         let values = [];
 
@@ -783,72 +779,69 @@ export default class Slider extends React.Component
         );
 
         return (
-            <Css
-                cssMap = { cssMap }
-                cssProps = { {
+
+            <div
+                className    = { buildClassName( className, cssMap, {
                     error               : !isDisabled && hasError,
                     disabled            : isDisabled,
                     handleLabelPosition : hasHandleLabels &&
-                                          handleLabelPosition,
+                                              handleLabelPosition,
                     hasHandleLabels,
                     orientation,
                     grabbing : this.state.isGrabbing,
-                } } >
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <div
-                    className    = { className }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }>
-                    <div
-                        className = { cssMap.inputContainer }
-                        ref       = { this.setInputContainerRef }>
-                        { values.map( ( val, i ) => (
-                            <input
-                                data-index  = { i }
-                                disabled    = { isDisabled }
-                                id          = { `${id}_${i}` }
-                                key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                                max         = { maxValue }
-                                min         = { minValue }
-                                onBlur      = { this.handleBlur }
-                                onChange    = { onChange }
-                                onClick     = { onClick }
-                                onFocus     = { this.handleFocus }
-                                onKeyDown   = { onKeyDown }
-                                onKeyUp     = { onKeyUp }
-                                onMouseDown = { onMouseDown }
-                                onMouseUp   = { onMouseUp }
-                                readOnly    = { isReadOnly }
-                                step        = { step }
-                                type        = "range"
-                                value       = { val } />
-                        ) ) }
-                    </div>
-
-                    { sliderLabelMarkUp }
-
-                    <div className = { cssMap.trackContainer }>
-                        { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
-                        <div
-                            aria-hidden
-                            className    = { cssMap.track }
-                            ref          = { this.setTrackRef }
-                            onClick      = { this.handleClick }
-                            onMouseDown  = { this.handleDown }
-                            onTouchStart = { this.handleDown }>
-                            { trackFillMarkUp }
-
-                            { values.map( ( val, i ) =>
-                                buildHandle( val, i ) )
-                            }
-
-                            { ticksMarkUp }
-                        </div>
-                        { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
-                    </div>
+                    className = { cssMap.inputContainer }
+                    ref       = { this.setInputContainerRef }>
+                    { values.map( ( val, i ) => (
+                        <input
+                            data-index  = { i }
+                            disabled    = { isDisabled }
+                            id          = { `${id}_${i}` }
+                            key         = { i } // eslint-disable-line react/no-array-index-key, max-len
+                            max         = { maxValue }
+                            min         = { minValue }
+                            onBlur      = { this.handleBlur }
+                            onChange    = { onChange }
+                            onClick     = { onClick }
+                            onFocus     = { this.handleFocus }
+                            onKeyDown   = { onKeyDown }
+                            onKeyUp     = { onKeyUp }
+                            onMouseDown = { onMouseDown }
+                            onMouseUp   = { onMouseUp }
+                            readOnly    = { isReadOnly }
+                            step        = { step }
+                            type        = "range"
+                            value       = { val } />
+                    ) ) }
                 </div>
-            </Css>
+
+                { sliderLabelMarkUp }
+
+                <div className = { cssMap.trackContainer }>
+                    { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
+                                stepLabelsTrack }
+                    <div
+                        aria-hidden
+                        className    = { cssMap.track }
+                        ref          = { this.setTrackRef }
+                        onClick      = { this.handleClick }
+                        onMouseDown  = { this.handleDown }
+                        onTouchStart = { this.handleDown }>
+                        { trackFillMarkUp }
+
+                        { values.map( ( val, i ) =>
+                            buildHandle( val, i ) )
+                        }
+
+                        { ticksMarkUp }
+                    </div>
+                    { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
+                                stepLabelsTrack }
+                </div>
+            </div>
         );
     }
 }

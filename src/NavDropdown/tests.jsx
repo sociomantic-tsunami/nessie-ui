@@ -1,25 +1,25 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers*/
 
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                      from 'react';
+import { mount }                  from 'enzyme';
 
-import NavDropdown  from './index';
+import NavDropdown             from './index';
 
 describe( 'NavDropdown', () =>
 {
-    let wrapper;
+    let Wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavDropdown /> );
+        Wrapper = mount( <NavDropdown /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( Wrapper.find( '.navDropdown__default' ) ).to.have.length( 1 );
     } );
 } );

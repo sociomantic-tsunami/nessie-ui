@@ -1,13 +1,13 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
-import InputContainer   from '../proto/InputContainer';
+import Component      from '../proto/Component';
+import { buildClassName }            from '../utils';
+import InputField     from '../InputField';
+import InputContainer from '../proto/InputContainer';
 
 
-export default class TextArea extends React.PureComponent
+export default class TextArea extends Component
 {
     static propTypes =
     {
@@ -113,7 +113,6 @@ export default class TextArea extends React.PureComponent
     {
         labelPosition         : 'top',
         rows                  : 3,
-        id                    : undefined,
         isResizable           : true,
         isDisabled            : false,
         isReadOnly            : false,
@@ -131,23 +130,23 @@ export default class TextArea extends React.PureComponent
         const {
             className,
             cssMap,
-            id = generateId( 'TextArea' ),
             onMouseOut,
             onMouseOver,
             ...props
         } = this.props;
 
+        const { id } = this.state;
+
         return (
-            <Css cssMap = { cssMap }>
                 <InputContainer
                     { ...props }
-                    className   = { className }
+                    className   = { buildClassName( className, cssMap ) }
                     id          = { id }
                     onMouseOut  = { onMouseOut }
                     onMouseOver = { onMouseOver }>
                     <InputField { ...props } id = { id } element = "textarea" />
                 </InputContainer>
-            </Css>
+
         );
     }
 }

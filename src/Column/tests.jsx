@@ -1,4 +1,5 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -10,27 +11,27 @@ import Column       from './index';
 
 describe( 'Column', () =>
 {
-    let wrapper;
+    let Wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Column /> );
+        Wrapper = mount( <Column /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    it( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( Wrapper.find( '.column__default' ) ).to.have.length( 1 );
     } );
 
     describe( 'Driver self-test', () =>
     {
-        test( 'getContent', () =>
+        it( 'getContent', () =>
         {
-            wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
+            Wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
 
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
+            const content = Wrapper.driver().getContent();
+            expect( content.find( 'h2' ).text() )
+                .to.equal( 'Lightning Strike' );
         } );
     } );
 } );

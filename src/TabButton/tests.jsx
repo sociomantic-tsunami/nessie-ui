@@ -1,5 +1,3 @@
-/* global test jest */
-
 import React            from 'react';
 import { mount }        from 'enzyme';
 
@@ -16,9 +14,9 @@ describe( 'TabButton', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should render exactly one TabButton', () =>
+        it( 'should render exactly one TabButton', () =>
         {
-            expect( wrapper ).toHaveLength( 1 );
+            expect( wrapper ).to.have.length( 1 );
         } );
     } );
 } );
@@ -36,28 +34,28 @@ describe( 'TabButton Driver', () =>
 
     describe( 'click()', () =>
     {
-        test( 'should trigger onClick', () =>
+        it( 'should trigger onClick', () =>
         {
-            const onClick = jest.fn();
+            const onClick = sinon.spy();
             wrapper.setProps( {
                 onClick
             } );
 
             driver.click();
 
-            expect( onClick ).toBeCalled();
+            expect( onClick.calledOnce ).to.be.true;
         } );
 
-        test( 'should return error if disabled', () =>
+        it( 'should return error if disabled', () =>
         {
-            const onClick = jest.fn();
+            const onClick = sinon.spy();
             wrapper.setProps( {
                 onClick,
                 isDisabled : true
             } );
 
-            expect( () => driver.click() ).toThrowError( 'Button cannot be \
-clicked because it is disabled' );
+            expect( () => driver.click() )
+                .to.throw( 'Button cannot be clicked because it is disabled' );
         } );
     } );
 } );

@@ -1,4 +1,5 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -10,16 +11,16 @@ import NotificationBar  from './index';
 
 describe( 'NotificationBar', () =>
 {
-    let wrapper;
+    let Wrapper;
 
     beforeEach( () =>
-    {
-        wrapper = mount( <NotificationBar /> );
+{
+        Wrapper = mount( <NotificationBar /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
-    {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+    it( 'should have its component name and hash as default className', () =>
+{
+        expect( Wrapper.find( '.notificationBar__default' ) )
+            .to.have.length( 1 );
     } );
 } );

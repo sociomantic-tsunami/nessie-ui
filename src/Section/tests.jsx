@@ -1,10 +1,10 @@
-/* global test */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Css                from '../hoc/Css';
 import { H1, H4 }         from '../index';
 
 import Section            from './index';
@@ -22,50 +22,43 @@ describe( 'Section', () =>
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name Button', () =>
+        it( 'should have name Button', () =>
         {
-            expect( instance.constructor.name ).toBe( 'Section' );
+            expect( instance.constructor.name ).to.equal( 'Section' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
+        it( 'should have a header component corresponding to level prop', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+            wrapper.setProps( {
+                title : 'Boom',
+                level : 4
+            } );
+
+            expect( wrapper.find( H4 ) ).to.have.length( 1 );
         } );
-
-        test(
-            'should have a header component corresponding to level prop',
-            () =>
-            {
-                wrapper.setProps( {
-                    title : 'Boom',
-                    level : 4
-                } );
-
-                expect( wrapper.find( H4 ) ).toHaveLength( 1 );
-            }
-        );
     } );
 
     describe( 'props', () =>
     {
         describe( 'title', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( instance.props.title ).to.be.undefined;
             } );
 
-            test( 'should be passed to the header component as children', () =>
+            it( 'should be passed to the header component as children', () =>
             {
                 wrapper.setProps( {
                     title : 'Boom',
                     level : 1
                 } );
 
-                expect( wrapper.find( H1 ).prop( 'children' ) ).toBe( 'Boom' );
+                expect( wrapper.find( H1 ).prop( 'children' ) )
+                    .to.equal( 'Boom' );
             } );
         } );
     } );
@@ -85,7 +78,7 @@ describe( 'SectionDriver', () =>
 
     describe( 'getContent()', () =>
     {
-        test( 'should return the content', () =>
+        it( 'should return the content', () =>
         {
             const children = (
                 <Section title = "Pikachu">
@@ -95,7 +88,8 @@ describe( 'SectionDriver', () =>
 
             wrapper.setProps( {  children } );
             const content = driver.getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
+            expect( content.find( 'h2' ).text() )
+                .to.equal( 'Lightning Strike' );
         } );
     } );
 } );

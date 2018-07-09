@@ -1,12 +1,12 @@
-import React                    from 'react';
-import PropTypes                from 'prop-types';
+import React                                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import { generateId }           from '../utils';
-import Css                      from '../hoc/Css';
-import { TextInputWithIcon }    from '../index';
+import Component                               from '../proto/Component';
+import { buildClassName }                      from '../utils';
+import { TextInputWithIcon }                   from '../index';
 
 
-export default class PasswordInput extends React.PureComponent
+export default class PasswordInput extends Component
 {
     static propTypes =
     {
@@ -135,7 +135,6 @@ export default class PasswordInput extends React.PureComponent
     static defaultProps =
     {
         labelPosition         : 'top',
-        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -152,20 +151,19 @@ export default class PasswordInput extends React.PureComponent
         const {
             className,
             cssMap,
-            id = generateId( 'PasswordInput' ),
             passwordIsVisible,
             ...props
         } = this.props;
 
+        const { id } = this.state;
+
         return (
-            <Css cssMap = { cssMap }>
-                <TextInputWithIcon
-                    { ...props }
-                    className = { className }
-                    id        = { id }
-                    inputType = { passwordIsVisible ? 'text' : 'password' }
-                    iconType  = { passwordIsVisible ? 'hide' : 'show' } />
-            </Css>
+            <TextInputWithIcon
+                { ...props }
+                className = { buildClassName(  className, cssMap ) }
+                id        = { id }
+                inputType = { passwordIsVisible ? 'text' : 'password' }
+                iconType  = { passwordIsVisible ? 'hide' : 'show' } />
         );
     }
 }

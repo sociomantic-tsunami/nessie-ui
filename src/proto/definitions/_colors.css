@@ -16,6 +16,7 @@
     --PC-NAVY:             #0074a5;
 
 
+
     /* greyscale colors */
     --PC-GREY--D85:        #181e28;
     --PC-GREY--D75:        #202835;
@@ -38,6 +39,9 @@
     --PC-GREY--L90:        #eef1f4;
     --PC-GREY--L95:        #f6f7f9;
 
+    --PC-GREY--DARK:        var( --PC-GREY--D15 );
+    --PC-GREY--LIGHT:       var( --PC-GREY--L70 );
+
 
     /* bluescale colors */
     --PC-BLUE--D85:        #0e2533;
@@ -58,6 +62,8 @@
     --PC-BLUE--L90:        #e8f5fc;
     --PC-BLUE--L95:        #f3fafd;
 
+    --PC-BLUE--DARK:        var( --PC-BLUE--D15 );
+    --PC-BLUE--LIGHT:       var( --PC-BLUE--L70 );
 
     /* redscale colors */
     --PC-RED--D85:         #311920;
@@ -68,7 +74,7 @@
     --PC-RED--D35:         #a6363e;
     --PC-RED--D25:         #bf3e47;
     --PC-RED--D15:         #d94751;
-    --PC-RED--D5:          #f24f5b;
+    --PC-RED--D5:          #1799d6;
 
     --PC-RED--L10:         #ff6d77;
     --PC-RED--L25:         #ff8790;
@@ -78,6 +84,8 @@
     --PC-RED--L90:         #ffeeef;
     --PC-RED--L95:         #fff7f7;
 
+    --PC-RED--DARK:        var( --PC-RED--D15 );
+    --PC-RED--LIGHT:       var( --PC-RED--L70 );
 
     /* orangescale colors */
     --PC-ORANGE--D85:      #31231f;
@@ -98,6 +106,8 @@
     --PC-ORANGE--L90:      #fff4ee;
     --PC-ORANGE--L95:      #fff9f6;
 
+    --PC-ORANGE--DARK:        var( --PC-ORANGE--D15 );
+    --PC-ORANGE--LIGHT:       var( --PC-ORANGE--L70 );
 
     /* yellowscale colors */
     --PC-YELLOW--D85:      #261f0f;
@@ -118,6 +128,8 @@
     --PC-YELLOW--L90:      #fffaf0;
     --PC-YELLOW--L95:      #fffcf7;
 
+    --PC-YELLOW--DARK:        var( --PC-YELLOW--D15 );
+    --PC-YELLOW--LIGHT:       var( --PC-YELLOW--L70 );
 
     /* limescale colors */
     --PC-LIME--D85:        #252d21;
@@ -138,6 +150,8 @@
     --PC-LIME--L90:        #f7fbf0;
     --PC-LIME--L95:        #fbfdf7;
 
+    --PC-LIME--DARK:        var( --PC-LIME--D15 );
+    --PC-LIME--LIGHT:       var( --PC-LIME--L70 );
 
     /* greenscale colors */
     --PC-GREEN--D85:       #0f282c;
@@ -158,6 +172,8 @@
     --PC-GREEN--L90:       #e8f8f7;
     --PC-GREEN--L95:       #f3fbfa;
 
+    --PC-GREEN--DARK:        var( --PC-GREEN--D15 );
+    --PC-GREEN--LIGHT:       var( --PC-GREEN--L70 );
 
     /* navyscale colors */
     --PC-NAVY--D85:        #001118;
@@ -177,4 +193,7 @@
     --PC-NAVY--L70:        #b3d5e4;
     --PC-NAVY--L90:        #e6f1f6;
     --PC-NAVY--L95:        #f2f7fa;
+
+    --PC-NAVY--DARK:        var( --PC-NAVY--D15 );
+    --PC-NAVY--LIGHT:       var( --PC-NAVY--L70 );
 }

@@ -1,11 +1,11 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React                       from 'react';
 import { mount, shallow }          from 'enzyme';
 
-import Css                         from '../hoc/Css';
 import { H2, H3, IconWithTooltip } from '../index';
 
 import Module                      from './index';
@@ -24,50 +24,45 @@ describe( 'Module', () =>
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name Button', () =>
+        it( 'should have name Button', () =>
         {
-            expect( instance.constructor.name ).toBe( 'Module' );
+            expect( instance.constructor.name ).to.equal( 'Module' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
+        it( 'should not contain a <header> by default', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+            expect( wrapper.find( 'header' ) ).to.have.length( 0 );
         } );
 
-        test( 'should not contain a <header> by default', () =>
-        {
-            expect( wrapper.find( 'header' ) ).toHaveLength( 0 );
-        } );
-
-        test( 'should contain a <header> if title prop is set', () =>
+        it( 'should contain a <header> if title prop is set', () =>
         {
             wrapper.setProps( { title: 'Boom' } );
-            expect( wrapper.find( 'header' ) ).toHaveLength( 1 );
+            expect( wrapper.find( 'header' ) ).to.have.length( 1 );
         } );
 
-        test( 'should contain a <header> if customHeader prop is set', () =>
+        it( 'should contain a <header> if customHeader prop is set', () =>
         {
             wrapper.setProps( { customHeader: 'Boom' } );
-            expect( wrapper.find( 'header' ) ).toHaveLength( 1 );
+            expect( wrapper.find( 'header' ) ).to.have.length( 1 );
         } );
 
-        test( 'should contain a H2 component by default when has title', () =>
+        it( 'should contain a H2 component by default when has title', () =>
         {
             wrapper.setProps( { title: 'Boom' } );
-            expect( wrapper.find( H2 ) ).toHaveLength( 1 );
+            expect( wrapper.find( H2 ) ).to.have.length( 1 );
         } );
 
-        test( 'should have a header corresponding to headerLevel prop', () =>
+        it( 'should have a header corresponding to headerLevel prop', () =>
         {
             wrapper.setProps( {
                 title       : 'Boom',
                 headerLevel : 3
             } );
 
-            expect( wrapper.find( H3 ) ).toHaveLength( 1 );
+            expect( wrapper.find( H3 ) ).to.have.length( 1 );
         } );
     } );
 
@@ -75,29 +70,30 @@ describe( 'Module', () =>
     {
         describe( 'title', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( instance.props.title ).to.be.undefined;
             } );
 
-            test( 'should be passed to the header component as children', () =>
+            it( 'should be passed to the header component as children', () =>
             {
                 wrapper.setProps( { title: 'Boom' } );
 
-                expect( wrapper.find( H2 ).prop( 'children' ) ).toBe( 'Boom' );
+                expect( wrapper.find( H2 ).prop( 'children' ) )
+                    .to.equal( 'Boom' );
             } );
         } );
 
         describe( 'onMouseOutError', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutError ).toBeUndefined();
+                expect( instance.props.onMouseOutError ).to.be.undefined;
             } );
 
-            test( 'should be passed to the IconWithTooltip as onMouseOut', () =>
+            it( 'should be passed to the IconWithTooltip as onMouseOut', () =>
             {
-                const onMouseOutError = jest.fn();
+                const onMouseOutError = sinon.spy();
                 wrapper.setProps( {
                     errorMessage : 'error!',
                     hasError     : true,
@@ -106,66 +102,63 @@ describe( 'Module', () =>
                 } );
 
                 expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOutError );
+                    .to.equal( onMouseOutError );
             } );
         } );
 
         describe( 'onMouseOverError', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverError ).toBeUndefined();
+                expect( instance.props.onMouseOverError ).to.be.undefined;
             } );
 
-            test(
-                'should be passed to the IconWithTooltip as onMouseOver',
-                () =>
-                {
-                    const onMouseOverError = jest.fn();
-                    wrapper.setProps( {
-                        errorMessage : 'error!',
-                        hasError     : true,
-                        onMouseOverError,
-                        title        : 'hello',
-                    } );
+            it( 'should be passed to the IconWithTooltip as onMouseOver', () =>
+            {
+                const onMouseOverError = sinon.spy();
+                wrapper.setProps( {
+                    errorMessage : 'error!',
+                    hasError     : true,
+                    onMouseOverError,
+                    title        : 'hello',
+                } );
 
-                    expect( wrapper.find( IconWithTooltip )
-                        .prop( 'onMouseOver' ) ).toBe( onMouseOverError );
-                }
-            );
+                expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOver' ) )
+                    .to.equal( onMouseOverError );
+            } );
         } );
 
         describe( 'onMouseOutHeader', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutHeader ).toBeUndefined();
+                expect( instance.props.onMouseOutHeader ).to.be.undefined;
             } );
 
-            test( 'should be passed to the <header> as onMouseOut', () =>
+            it( 'should be passed to the <header> as onMouseOut', () =>
             {
-                const onMouseOutHeader = jest.fn();
+                const onMouseOutHeader = sinon.spy();
                 wrapper.setProps( { onMouseOutHeader, title: 'hello' } );
 
                 expect( wrapper.find( 'header' ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOutHeader );
+                    .to.equal( onMouseOutHeader );
             } );
         } );
 
         describe( 'onMouseOverHeader', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverHeader ).toBeUndefined();
+                expect( instance.props.onMouseOverHeader ).to.be.undefined;
             } );
 
-            test( 'should be passed to the <header> as onMouseOver', () =>
+            it( 'should be passed to the <header> as onMouseOver', () =>
             {
-                const onMouseOverHeader = jest.fn();
+                const onMouseOverHeader = sinon.spy();
                 wrapper.setProps( { onMouseOverHeader, title: 'hello' } );
 
                 expect( wrapper.find( 'header' ).prop( 'onMouseOver' ) )
-                    .toBe( onMouseOverHeader );
+                    .to.equal( onMouseOverHeader );
             } );
         } );
     } );
@@ -185,9 +178,9 @@ describe( 'ModuleDriver', () =>
 
     describe( 'toggle()', () =>
     {
-        test( 'should fire the onClickToggle prop once', () =>
+        it( 'should fire the onClickToggle prop', () =>
         {
-            const toggleSpy = jest.fn();
+            const toggleSpy = sinon.spy();
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
@@ -196,15 +189,15 @@ describe( 'ModuleDriver', () =>
 
             driver.toggle();
 
-            expect( toggleSpy ).toBeCalledTimes( 1 );
+            expect( toggleSpy.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'clickDelete()', () =>
     {
-        test( 'should fire the onClickDelete prop once', () =>
+        it( 'should fire the onClickDelete prop', () =>
         {
-            const clickDeleteSpy = jest.fn();
+            const clickDeleteSpy = sinon.spy();
             wrapper.setProps( {
                 title         : 'Boom',
                 isDeletable   : true,
@@ -213,13 +206,13 @@ describe( 'ModuleDriver', () =>
 
             driver.clickDelete();
 
-            expect( clickDeleteSpy ).toBeCalledTimes( 1 );
+            expect( clickDeleteSpy.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'getCustomHeader()', () =>
     {
-        test( 'should return the customHeader content', () =>
+        it( 'should return the customHeader content', () =>
         {
             wrapper.setProps( {
                 title        : 'Boom',
@@ -227,7 +220,7 @@ describe( 'ModuleDriver', () =>
             } );
 
             const header = driver.getCustomHeader();
-            expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
+            expect( header.find( '.pokemon' ) ).to.have.length( 1 );
         } );
     } );
 } );

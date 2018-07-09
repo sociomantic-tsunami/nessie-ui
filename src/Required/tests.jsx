@@ -1,4 +1,4 @@
-/* global test */
+/* eslint-env node, mocha */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -18,9 +18,9 @@ describe( 'Required', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one Required', () =>
+        it( 'should contain exactly one Required', () =>
         {
-            expect( wrapper ).toHaveLength( 1 );
+            expect( wrapper ).to.have.length( 1 );
         } );
     } );
 
@@ -28,9 +28,9 @@ describe( 'Required', () =>
     {
         describe( 'isRequired', () =>
         {
-            test( 'should be "true" by default', () =>
+            it( 'should be "true" by default', () =>
             {
-                expect( wrapper.prop( 'isRequired' ) ).toBeTruthy();
+                expect( wrapper.prop( 'isRequired' ) ).to.be.true;
             } );
         } );
     } );

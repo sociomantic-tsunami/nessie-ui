@@ -1,12 +1,12 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                       from 'react';
+import PropTypes                   from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import Icon             from '../Icon';
-import Spinner          from '../Spinner';
+import Component                   from '../proto/Component';
+import { buildClassName }          from '../utils';
+import Icon                        from '../Icon';
+import Spinner                     from '../Spinner';
 
-export default class Button extends React.Component
+export default class Button extends Component
 {
     static propTypes =
     {
@@ -138,7 +138,6 @@ export default class Button extends React.Component
         role         : 'default',
         iconType     : 'none',
         iconPosition : 'left',
-        id           : undefined,
         isLoading    : false,
         isDisabled   : false,
         isReadOnly   : false,
@@ -188,7 +187,6 @@ export default class Button extends React.Component
             forceHover,
             iconPosition,
             iconType,
-            id = generateId( 'Button' ),
             isDisabled,
             isReadOnly,
             isLoading,
@@ -198,6 +196,8 @@ export default class Button extends React.Component
             type,
             value
         } = this.props;
+
+        const { id, isHovered } = this.state;
 
         let iconMarkup;
         if ( iconType && iconType !== 'none' )
@@ -210,7 +210,7 @@ export default class Button extends React.Component
                         size       = "S"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
-                        forceHover = { this.isHovered }
+                        forceHover = { isHovered }
                         isDisabled = { isDisabled } />
                 </div>
             );
@@ -226,34 +226,30 @@ export default class Button extends React.Component
         );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <button
+                className = { buildClassName( className, cssMap, {
                     role,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
                     fakeHovered : forceHover
-                } }>
-                <button
-                    ref            = { buttonRef }
-                    type           = { type }
-                    className      = { className }
-                    id             = { id }
-                    defaultValue   = { defaultValue }
-                    value          = { value }
-                    disabled       = { isDisabled || isLoading || isReadOnly }
-                    onClick        = { onClick }
-                    onMouseEnter   = { this.handleMouseOver }
-                    onMouseLeave   = { this.handleMouseOut }>
-                    { content }
-                    { ( isLoading && !isDisabled ) &&
-                        <div className = { cssMap.loadingOverlay }>
-                            <Spinner className = { cssMap.spinner } />
-                        </div>
-                    }
-                </button>
-            </Css>
+                } ) }
+                ref            = { buttonRef }
+                type           = { type }
+                id             = { id }
+                defaultValue   = { defaultValue }
+                value          = { value }
+                disabled       = { isDisabled || isLoading || isReadOnly }
+                onClick        = { onClick }
+                onMouseEnter   = { this.handleMouseOver }
+                onMouseLeave   = { this.handleMouseOut }>
+                { content }
+                { ( isLoading && !isDisabled ) &&
+                    <div className = { cssMap.loadingOverlay }>
+                        <Spinner className = { cssMap.spinner } />
+                    </div>
+                }
+            </button>
         );
     }
 }

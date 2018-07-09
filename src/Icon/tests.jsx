@@ -1,4 +1,5 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -19,14 +20,14 @@ describe( 'Icon', () =>
         instance = wrapper.instance();
     } );
 
-    test( 'should have size S by default', () =>
+    it( 'should have size S by default', () =>
     {
-        expect( instance.props.size ).toBe( 'S' );
+        expect( instance.props.size ).to.equal( 'S' );
     } );
 
-    test( 'should have light theme by default', () =>
+    it( 'should have light theme by default', () =>
     {
-        expect( instance.props.theme ).toBe( 'light' );
+        expect( instance.props.theme ).to.equal( 'light' );
     } );
 } );
 
@@ -40,27 +41,27 @@ describe( 'IconDriver', () =>
         wrapper = mount( <Icon /> );
     } );
 
-    test( 'should fire onMouseOver event once', () =>
+    it( 'should fire onMouseOver event', () =>
     {
-        const onMouseOver = jest.fn();
-        const onMouseOut = jest.fn();
+        const onMouseOver = sinon.spy();
+        const onMouseOut = sinon.spy();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOver ).toBeCalledTimes( 1 );
-        expect( onMouseOut ).not.toBeCalled();
+        expect( onMouseOver.calledOnce ).to.be.true;
+        expect( onMouseOut.notCalled ).to.be.true;
     } );
 
-    test( 'should fire onMouseOver event once', () =>
+    it( 'should fire onMouseOver event', () =>
     {
-        const onMouseOver = jest.fn();
-        const onMouseOut = jest.fn();
+        const onMouseOver = sinon.spy();
+        const onMouseOut = sinon.spy();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOut ).toBeCalledTimes( 1 );
-        expect( onMouseOver ).not.toBeCalled();
+        expect( onMouseOut.calledOnce ).to.be.true;
+        expect( onMouseOver.notCalled ).to.be.true;
     } );
 } );

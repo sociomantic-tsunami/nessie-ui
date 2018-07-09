@@ -1,5 +1,6 @@
+/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* global expect */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
@@ -19,9 +20,9 @@ describe( 'Checkbox', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one Checkable', () =>
+        it( 'should contain exactly one Checkable', () =>
         {
-            expect( wrapper.find( Checkable ) ).toHaveLength( 1 );
+            expect( wrapper.find( Checkable ) ).to.have.length( 1 );
         } );
     } );
 
@@ -29,68 +30,68 @@ describe( 'Checkbox', () =>
     {
         describe( 'isDisabled', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'isReadOnly', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
+                expect( wrapper.prop( 'isReadOnly' ) ).to.be.false;
             } );
 
-            test( 'should be passed to Checkable', () =>
+            it( 'should be passed to Checkable', () =>
             {
-                const onChange = jest.fn();
+                const onChange = sinon.stub();
                 wrapper.setProps( { isReadOnly: true, onChange } );
 
                 expect( wrapper.find( Checkable ).prop( 'onChange' ) )
-                    .toBe( onChange );
+                    .to.equal( onChange );
             } );
         } );
 
         describe( 'hasError', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'forceHover', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'onChange', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+                expect( wrapper.prop( 'onChange' ) ).to.be.undefined;
             } );
 
-            test( 'should be passed to Checkable', () =>
+            it( 'should be passed to Checkable', () =>
             {
-                const onChange = jest.fn();
+                const onChange = sinon.stub();
                 wrapper.setProps( { isReadOnly: true, onChange } );
 
                 expect( wrapper.find( Checkable ).prop( 'onChange' ) )
-                    .toBe( onChange );
+                    .to.equal( onChange );
             } );
         } );
     } );
@@ -100,178 +101,179 @@ describe( 'Checkbox', () =>
 describe( 'CheckboxDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Checkbox /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'focus()', () =>
     {
-        test( 'should call onFocus once', () =>
+        it( 'should call onFocus once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( { onFocus } );
 
-            driver.focus();
+            wrapper.driver().focus();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'blur()', () =>
     {
-        test( 'should call onFocus once', () =>
+        it( 'should call onFocus once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( { onBlur } );
 
-            driver.blur();
+            wrapper.driver().blur();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'setChecked()', () =>
     {
-        test( 'should not call onChange when already checked', () =>
+        it( 'should not call onChange when already checked', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
-            expect( onChange ).toBeCalledTimes( 0 );
+            expect( onChange.calledOnce ).to.be.false;
         } );
 
-        test( 'should call onChange once when unchecked', () =>
+        it( 'should call onChange once when unchecked', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { isChecked: false, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledOnce ).to.be.true;
         } );
 
-        test( 'should set target.checked to true', () =>
+        it( 'should set target.checked to true', () =>
         {
             let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
             wrapper.setProps( { isChecked: false, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
-            expect( targetChecked ).toBeTruthy();
+            expect( targetChecked ).to.be.true;
         } );
     } );
 
 
     describe( 'setUnchecked()', () =>
     {
-        test( 'should not call onChange when already unchecked', () =>
+        it( 'should not call onChange when already unchecked', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { isChecked: false, onChange } );
 
             wrapper.driver().setUnchecked();
 
-            expect( onChange ).toBeCalledTimes( 0 );
+            expect( onChange.calledOnce ).to.be.false;
         } );
 
-        test( 'should call onChange once when checked', () =>
+        it( 'should call onChange once when checked', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setUnchecked();
+            wrapper.driver().setUnchecked();
 
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledOnce ).to.be.true;
         } );
 
-        test( 'should set target.checked to false', () =>
+        it( 'should set target.checked to false', () =>
         {
             let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setUnchecked();
+            wrapper.driver().setUnchecked();
 
-            expect( targetChecked ).toBeFalsy();
+            expect( targetChecked ).to.be.false;
         } );
     } );
 
 
     describe( 'toggleChecked()', () =>
     {
-        test( 'should call onChange once', () =>
+        it( 'should call onChange once', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
 
-            driver.toggleChecked();
+            wrapper.driver().toggleChecked();
 
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledOnce ).to.be.true;
         } );
 
-        test( 'should toggle the value of target.checked', () =>
+        it( 'should toggle the value of target.checked', () =>
         {
             let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
+            const onChange = sinon.stub().callsFake( e =>
+                targetChecked = e.target.checked
+            );
             wrapper.setProps( { onChange, isChecked: true } );
 
-            driver.toggleChecked();
+            wrapper.driver().toggleChecked();
 
-            expect( targetChecked ).toBeFalsy();
+            expect( targetChecked ).to.be.false;
         } );
     } );
 
 
     describe( 'click()', () =>
     {
-        test( 'should call onClick once', () =>
+        it( 'should call onClick once', () =>
         {
-            const onClick = jest.fn();
+            const onClick = sinon.spy();
 
             wrapper.setProps( { onClick } );
-            driver.click();
+            wrapper.driver().click();
 
-            expect( onClick ).toBeCalledTimes( 1 );
+            expect( onClick.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver once', () =>
+        it( 'should call onMouseOver once', () =>
         {
-            const onMouseOver = jest.fn();
+            const onMouseOver = sinon.spy();
             wrapper.setProps( { onMouseOver } );
 
-            driver.mouseOver();
+            wrapper.driver().mouseOver();
 
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+            expect( onMouseOver.calledOnce ).to.be.true;
         } );
     } );
 
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut once', () =>
+        it( 'should call onMouseOut once', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 } );

@@ -1,10 +1,10 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
 import { Icon }           from '../index';
 
 import IconButton         from './index';
@@ -23,22 +23,19 @@ describe( 'IconButton', () =>
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name IconButton', () =>
+        it( 'should have name IconButton', () =>
         {
-            expect( instance.constructor.name ).toBe( 'IconButton' );
+            expect( instance.constructor.name ).to.equal( 'IconButton' );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css higher-order component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
+      
 
-        test( 'should contain exactly one Icon', () =>
+        it( 'should contain exactly one Icon', () =>
         {
-            expect( wrapper.find( Icon ) ).toHaveLength( 1 );
+            expect( wrapper.find( Icon ) ).to.have.length( 1 );
         } );
     } );
 
@@ -46,43 +43,46 @@ describe( 'IconButton', () =>
     {
         describe( 'iconTheme', () =>
         {
-            test( 'should be "control" by default', () =>
+            it( 'should be "control" by default', () =>
             {
-                expect( instance.props.iconTheme ).toBe( 'control' );
+                expect( instance.props.iconTheme ).to.equal( 'control' );
             } );
 
-            test( 'should be passed to the Icon as theme', () =>
+            it( 'should be passed to the Icon as theme', () =>
             {
                 wrapper.setProps( { iconTheme: 'light' } );
-                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe( 'light' );
+                expect( wrapper.find( Icon ).prop( 'theme' ) )
+                    .to.equal( 'light' );
             } );
         } );
 
         describe( 'iconSize', () =>
         {
-            test( 'should be "S" by default', () =>
+            it( 'should be "S" by default', () =>
             {
-                expect( instance.props.iconSize ).toBe( 'S' );
+                expect( instance.props.iconSize ).to.equal( 'S' );
             } );
 
-            test( 'should be passed to the Icon as size', () =>
+            it( 'should be passed to the Icon as size', () =>
             {
                 wrapper.setProps( { iconSize: 'L' } );
-                expect( wrapper.find( Icon ).prop( 'size' ) ).toBe( 'L' );
+                expect( wrapper.find( Icon ).prop( 'size' ) )
+                    .to.equal( 'L' );
             } );
         } );
 
         describe( 'iconType', () =>
         {
-            test( 'should be undefiend by default', () =>
+            it( 'should be undefiend by default', () =>
             {
-                expect( instance.props.iconType ).toBeUndefined();
+                expect( instance.props.iconType ).to.be.undefined;
             } );
 
-            test( 'should be passed to the Icon as type', () =>
+            it( 'should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
-                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'add' );
+                expect( wrapper.find( Icon ).prop( 'type' ) )
+                    .to.equal( 'add' );
             } );
         } );
     } );
@@ -101,37 +101,37 @@ describe( 'IconButtonDriver', () =>
 
     describe( 'click()', () =>
     {
-        test( 'should fire the onClick callback prop exactly once', () =>
+        it( 'should fire the onClick callback prop', () =>
         {
-            const clickSpy = jest.fn();
+            const clickSpy = sinon.spy();
             wrapper.setProps( { onClick: clickSpy } );
 
             driver.click();
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            expect( clickSpy.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focus()', () =>
     {
-        test( 'should fire the onFocus callback prop once', () =>
+        it( 'should fire the onFocus callback prop', () =>
         {
-            const focusSpy = jest.fn();
+            const focusSpy = sinon.spy();
             wrapper.setProps( { onFocus: focusSpy } );
 
             driver.focus();
-            expect( focusSpy ).toBeCalledTimes( 1 );
+            expect( focusSpy.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'blur()', () =>
     {
-        test( 'should fire the onBlur callback prop once', () =>
+        it( 'should fire the onBlur callback prop', () =>
         {
-            const blurSpy = jest.fn();
+            const blurSpy = sinon.spy();
             wrapper.setProps( { onBlur: blurSpy } );
 
             driver.blur();
-            expect( blurSpy ).toBeCalledTimes( 1 );
+            expect( blurSpy.calledOnce ).to.be.true;
         } );
     } );
 } );

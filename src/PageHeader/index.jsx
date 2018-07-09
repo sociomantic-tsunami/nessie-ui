@@ -1,15 +1,13 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                               from 'react';
+import PropTypes                           from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }                  from '../utils';
 
 const PageHeader = ( { children, cssMap, className } ) =>
 
-    <Css cssMap = { cssMap }>
-        <header className = { className }>
-            { children }
-        </header>
-    </Css>;
+    <header className = { buildClassName( className, cssMap ) }>
+        { children }
+    </header>;
 
 PageHeader.propTypes =
 {

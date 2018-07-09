@@ -1,5 +1,3 @@
-/* global test jest */
-
 import React        from 'react';
 import { mount }    from 'enzyme';
 
@@ -16,25 +14,25 @@ describe( 'ComboBox', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should render ComboBox', () =>
+        it( 'should render ComboBox', () =>
         {
-            expect( wrapper ).toHaveLength( 1 );
+            expect( wrapper ).to.have.length( 1 );
         } );
-        test( 'should render ComboBox without label by default', () =>
+        it( 'should render ComboBox without label by default', () =>
         {
             const label = '';
             wrapper.setProps( {
                 label
             } );
-            expect( wrapper.find( 'label' ).length ).toBe( 0 );
+            expect( wrapper.find( 'label' ).length ).to.equal( 0 );
         } );
-        test( 'should render ComboBox with label if defined', () =>
+        it( 'should render ComboBox with label if defined', () =>
         {
             const label = 'label';
             wrapper.setProps( {
                 label
             } );
-            expect( wrapper.find( 'label' ).length ).toBe( 1 );
+            expect( wrapper.find( 'label' ).length ).to.equal( 1 );
         } );
     } );
 } );
@@ -53,54 +51,54 @@ describe( 'ComboBoxDriver', () =>
 
     describe( 'blur', () =>
     {
-        test( 'should trigger onBlur() callback function once', () =>
+        it( 'should trigger onBlur() callback function', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             wrapper.setProps( {
                 onBlur
             } );
 
             driver.blur();
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'changeInput', () =>
     {
-        test( 'should trigger onChangeInput() callback function once', () =>
+        it( 'should trigger onChangeInput() callback function', () =>
         {
-            const onChangeInput = jest.fn();
+            const onChangeInput = sinon.spy();
             wrapper.setProps( {
                 onChangeInput
             } );
 
             driver.changeInput();
 
-            expect( onChangeInput ).toBeCalledTimes( 1 );
+            expect( onChangeInput.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'clickInput', () =>
     {
-        test( 'should trigger onClickInput() callback function once', () =>
+        it( 'should trigger onClickInput() callback function', () =>
         {
-            const onClickInput = jest.fn();
+            const onClickInput = sinon.spy();
             wrapper.setProps( {
                 onClickInput
             } );
 
             driver.clickInput();
 
-            expect( onClickInput ).toBeCalledTimes( 1 );
+            expect( onClickInput.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'clickOption', () =>
     {
-        test( 'should trigger onClickOption() callback function once', () =>
+        it( 'should trigger onClickOption() callback function', () =>
         {
-            const onClickOption = jest.fn();
+            const onClickOption = sinon.spy();
             wrapper.setProps( {
                 onClickOption,
                 options : [
@@ -123,90 +121,90 @@ describe( 'ComboBoxDriver', () =>
 
             driver.clickOption();
 
-            expect( onClickOption ).toBeCalledTimes( 1 );
+            expect( onClickOption.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'focus', () =>
     {
-        test( 'should trigger onFocus() callback function once', () =>
+        it( 'should trigger onFocus() callback function', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             wrapper.setProps( {
                 onFocus
             } );
 
             driver.focus();
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'keyDown', () =>
     {
-        test( 'should trigger onKeyDown() callback function once', () =>
+        it( 'should trigger onKeyDown() callback function', () =>
         {
-            const onKeyDown = jest.fn();
+            const onKeyDown = sinon.spy();
             wrapper.setProps( {
                 onKeyDown
             } );
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyDown ).toBeCalledTimes( 1 );
+            expect( onKeyDown.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'keyPress', () =>
     {
-        test( 'should trigger onKeyPress() callback function once', () =>
+        it( 'should trigger onKeyPress() callback function', () =>
         {
-            const onKeyPress = jest.fn();
+            const onKeyPress = sinon.spy();
             wrapper.setProps( {
                 onKeyPress
             } );
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyPress ).toBeCalledTimes( 1 );
+            expect( onKeyPress.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'keyUp', () =>
     {
-        test( 'should trigger onKeyUp() callback function once', () =>
+        it( 'should trigger onKeyUp() callback function', () =>
         {
-            const onKeyUp = jest.fn();
+            const onKeyUp = sinon.spy();
             wrapper.setProps( {
                 onKeyUp
             } );
 
             driver.keyPress( 'abc' );
 
-            expect( onKeyUp ).toBeCalledTimes( 1 );
+            expect( onKeyUp.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOut', () =>
     {
-        test( 'should trigger onMouseOut() callback function once', () =>
+        it( 'should trigger onMouseOut() callback function', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             wrapper.setProps( {
                 onMouseOut
             } );
 
             driver.mouseOut();
 
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOutOption', () =>
     {
-        test( 'should trigger onMouseOutOption() callback function once', () =>
+        it( 'should trigger onMouseOutOption() callback function', () =>
         {
-            const onMouseOutOption = jest.fn();
+            const onMouseOutOption = sinon.spy();
             wrapper.setProps( {
                 onMouseOutOption,
                 options : [
@@ -229,30 +227,30 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOutOption();
 
-            expect( onMouseOutOption ).toBeCalledTimes( 1 );
+            expect( onMouseOutOption.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOver', () =>
     {
-        test( 'should trigger onMouseOver() callback function once', () =>
+        it( 'should trigger onMouseOver() callback function', () =>
         {
-            const onMouseOver = jest.fn();
+            const onMouseOver = sinon.spy();
             wrapper.setProps( {
                 onMouseOver
             } );
 
             driver.mouseOver();
 
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+            expect( onMouseOver.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'mouseOverOption', () =>
     {
-        test( 'should trigger onMouseOverOption() callback function once', () =>
+        it( 'should trigger onMouseOverOption() callback function', () =>
         {
-            const onMouseOverOption = jest.fn();
+            const onMouseOverOption = sinon.spy();
             wrapper.setProps( {
                 onMouseOverOption,
                 options : [
@@ -275,15 +273,15 @@ describe( 'ComboBoxDriver', () =>
 
             driver.mouseOverOption();
 
-            expect( onMouseOverOption ).toBeCalledTimes( 1 );
+            expect( onMouseOverOption.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'scroll', () =>
     {
-        test( 'should trigger onScroll() callback function once', () =>
+        it( 'should trigger onScroll() callback function', () =>
         {
-            const onScroll = jest.fn();
+            const onScroll = sinon.spy();
             wrapper.setProps( {
                 onScroll,
                 options : [
@@ -306,7 +304,7 @@ describe( 'ComboBoxDriver', () =>
 
             driver.scroll( 0.3 );
 
-            expect( onScroll ).toBeCalledTimes( 1 );
+            expect( onScroll.calledOnce ).to.be.true;
         } );
     } );
 } );

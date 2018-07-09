@@ -1,4 +1,5 @@
-/* global test jest Event */
+/* eslint-env node, mocha */
+/* global expect Event */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -28,59 +29,55 @@ describe( 'TextInputWithIcon', () =>
 
     describe( 'constructor( props )', () =>
     {
-        test( 'should have name TextInputWithIcon', () =>
+        it( 'should have name TextInputWithIcon', () =>
         {
-            expect( instance.constructor.name ).toBe( 'TextInputWithIcon' );
+            expect( instance.constructor.name ).to.equal( 'TextInputWithIcon' );
         } );
     } );
 
     describe( 'handleFocus( e )', () =>
     {
-        test( 'should call onFocus with e', () =>
+        it( 'should call onFocus with e', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
             const e = new Event( { } );
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( e );
 
-            expect( onFocus ).toBeCalledWith( e );
+            expect( onFocus.calledWith( e ) ).to.be.true;
         } );
 
-        test( 'should call onFocus exactly once', () =>
+        it( 'should call onFocus exactly once', () =>
         {
-            const onFocus = jest.fn();
+            const onFocus = sinon.spy();
 
             wrapper.setProps( { onFocus } );
             instance.handleFocus( new Event( {} ) );
 
-            expect( onFocus ).toBeCalledTimes( 1 );
+            expect( onFocus.calledOnce ).to.be.true;
         } );
 
-        test(
-            'should not call onFocus when e.relatedTarget is the <input>',
+        it( 'should not call onFocus when e.relatedTarget is the <input>', () =>
+        {
+            const onFocus = sinon.spy();
+            const input   = <input />;
+
+            const e = new Event( {} );
+            Object.defineProperty( e, 'relatedTarget', { value: input } );
+
+            wrapper.setProps( { onFocus } );
+            instance.input = input;
+
+            instance.handleFocus( e );
+
+            expect( onFocus.called ).to.be.false;
+        } );
+
+        it( 'should not call onFocus when e.relatedTarget is the <button>',
             () =>
             {
-                const onFocus = jest.fn();
-                const input   = <input />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-                wrapper.setProps( { onFocus } );
-                instance.input = input;
-
-                instance.handleFocus( e );
-
-                expect( onFocus ).not.toBeCalled();
-            }
-        );
-
-        test(
-            'should not call onFocus when e.relatedTarget is the <button>',
-            () =>
-            {
-                const onFocus = jest.fn();
+                const onFocus = sinon.spy();
                 const button  = <button />;
 
                 const e = new Event( {} );
@@ -91,225 +88,219 @@ describe( 'TextInputWithIcon', () =>
 
                 instance.handleFocus( e );
 
-                expect( onFocus ).not.toBeCalled();
-            }
-        );
+                expect( onFocus.called ).to.be.false;
+            } );
 
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
+        it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <input>', () =>
-        {
-            const input = <input />;
+            {
+                const input = <input />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.input = input;
+                instance.input = input;
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
+        it( 'should call e.stopPropagation exactly once when e.relatedTarget \
 is the <button>', () =>
-        {
-            const button = <button />;
+            {
+                const button = <button />;
 
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: button } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.button = button;
+                instance.button = button;
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
 
-        test( 'should not call e.stopPropagation when e.relatedTarget is not \
-the <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
+        it( 'should not call e.stopPropagation when e.relatedTarget is not the \
+<input> or the <button>', () =>
+            {
+                const e = new Event( {} );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            instance.handleFocus( e );
+                instance.handleFocus( e );
 
-            expect( stopPropagation ).not.toBeCalled();
-        } );
+                expect( stopPropagation.called ).to.be.false;
+            } );
     } );
 
     describe( 'handleBlur( e )', () =>
     {
-        test( 'should call onBlur with e', () =>
+        it( 'should call onBlur with e', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
             const e = new Event( { } );
 
             wrapper.setProps( { onBlur } );
 
             instance.handleBlur( e );
 
-            expect( onBlur ).toBeCalledWith( e );
+            expect( onBlur.calledWith( e ) ).to.be.true;
         } );
 
-        test( 'should call onBlur exactly once', () =>
+        it( 'should call onBlur exactly once', () =>
         {
-            const onBlur = jest.fn();
+            const onBlur = sinon.spy();
 
             wrapper.setProps( { onBlur } );
 
             instance.handleBlur( new Event( {} ) );
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            expect( onBlur.calledOnce ).to.be.true;
         } );
 
-        test(
-            'should not call onBlur when e.relatedTarget is the <input>',
-            () =>
-            {
-                const onBlur = jest.fn();
-                const input   = <input />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-                wrapper.setProps( { onBlur } );
-                instance.input = input;
-
-                instance.handleBlur( e );
-
-                expect( onBlur ).not.toBeCalled();
-            }
-        );
-
-        test(
-            'should not call onBlur when e.relatedTarget is the <button>',
-            () =>
-            {
-                const onBlur = jest.fn();
-                const button  = <button />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: button } );
-
-                wrapper.setProps( { onBlur } );
-                instance.button = button;
-
-                instance.handleBlur( e );
-
-                expect( onBlur ).not.toBeCalled();
-            }
-        );
-
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <input>', () =>
+        it( 'should not call onBlur when e.relatedTarget is the <input>', () =>
         {
-            const input = <input />;
+            const onBlur = sinon.spy();
+            const input   = <input />;
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
+            wrapper.setProps( { onBlur } );
             instance.input = input;
 
             instance.handleBlur( e );
 
-            expect( stopPropagation ).toBeCalledTimes( 1 );
+            expect( onBlur.called ).to.be.false;
         } );
 
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <button>', () =>
+        it( 'should not call onBlur when e.relatedTarget is the <button>', () =>
         {
-            const button = <button />;
+            const onBlur = sinon.spy();
+            const button  = <button />;
 
             const e = new Event( {} );
             Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
 
+            wrapper.setProps( { onBlur } );
             instance.button = button;
 
             instance.handleBlur( e );
 
-            expect( stopPropagation ).toBeCalledTimes( 1 );
+            expect( onBlur.called ).to.be.false;
         } );
 
-        test( 'should not call e.stopPropagation when e.relatedTarget is not \
-the <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
+        it( 'should call e.stopPropagation exactly once when e.relatedTarget \
+is the <input>', () =>
+            {
+                const input = <input />;
 
-            instance.handleBlur( e );
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: input } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
 
-            expect( stopPropagation ).not.toBeCalled();
-        } );
+                instance.input = input;
+
+                instance.handleBlur( e );
+
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
+
+        it( 'should call e.stopPropagation exactly once when e.relatedTarget \
+is the <button>', () =>
+            {
+                const button = <button />;
+
+                const e = new Event( {} );
+                Object.defineProperty( e, 'relatedTarget', { value: button } );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+
+                instance.button = button;
+
+                instance.handleBlur( e );
+
+                expect( stopPropagation.calledOnce ).to.be.true;
+            } );
+
+        it( 'should not call e.stopPropagation when e.relatedTarget is not the \
+<input> or the <button>', () =>
+            {
+                const e = new Event( {} );
+                const stopPropagation = sinon.spy( e, 'stopPropagation' );
+
+                instance.handleBlur( e );
+
+                expect( stopPropagation.called ).to.be.false;
+            } );
     } );
 
     describe( 'handleMouseOutIcon( e )', () =>
     {
-        test( 'should call setState with { iconIsHovered: false } }', () =>
+        it( 'should call setState with { iconIsHovered: false } }', () =>
         {
-            const setState = jest.spyOn( instance, 'setState' );
+            const setState = sinon.spy( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( setState ).toBeCalledWith( { iconIsHovered: false } );
+            expect( setState.calledWith( sinon.match(
+                { iconIsHovered: false } ) ) ).to.be.true;
 
-            setState.mockReset();
+            setState.restore();
         } );
 
-        test( 'should call setState exactly once', () =>
+        it( 'should call setState exactly once', () =>
         {
-            const setState = jest.spyOn( instance, 'setState' );
+            const setState = sinon.spy( instance, 'setState' );
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( setState ).toBeCalledTimes( 1 );
+            expect( setState.calledOnce ).to.be.true;
 
-            setState.mockReset();
+            setState.restore();
         } );
 
-        test( 'should call onMouseOutIcon with e', () =>
+        it( 'should call onMouseOutIcon with e', () =>
         {
-            const onMouseOutIcon = jest.fn();
+            const onMouseOutIcon = sinon.spy();
             const e = new Event( {} );
 
             wrapper.setProps( { onMouseOutIcon } );
 
             instance.handleMouseOutIcon( e );
 
-            expect( onMouseOutIcon ).toBeCalledWith( e );
+            expect( onMouseOutIcon.calledWith( e ) ).to.be.true;
         } );
 
-        test( 'should call onMouseOutIcon exactly once', () =>
+        it( 'should call onMouseOutIcon exactly once', () =>
         {
-            const onMouseOutIcon = jest.fn();
+            const onMouseOutIcon = sinon.spy();
             wrapper.setProps( { onMouseOutIcon } );
 
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
+            expect( onMouseOutIcon.calledOnce ).to.be.true;
         } );
 
-        test( 'should call onMouseOut with e', () =>
+        it( 'should call onMouseOut with e', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             const e = new Event( {} );
 
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOutIcon( e );
 
-            expect( onMouseOut ).toBeCalledWith( e );
+            expect( onMouseOut.calledWith( e ) ).to.be.true;
         } );
 
-        test( 'should call onMouseOut exactly once', () =>
+        it( 'should call onMouseOut exactly once', () =>
         {
-            const onMouseOut = jest.fn();
+            const onMouseOut = sinon.spy();
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOutIcon( new Event( {} ) );
 
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+            expect( onMouseOut.calledOnce ).to.be.true;
         } );
     } );
 
@@ -320,19 +311,19 @@ the <input> or the <button>', () =>
             wrapper.setProps( { iconType: 'add' } );
         } );
 
-        test( 'should contain exactly one InputField', () =>
+        it( 'should contain exactly one InputField', () =>
         {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+            expect( wrapper.find( InputField ) ).to.have.length( 1 );
         } );
 
-        test( 'should contain exactly one IconButton', () =>
+        it( 'should contain exactly one IconButton', () =>
         {
-            expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
+            expect( wrapper.find( IconButton ) ).to.have.length( 1 );
         } );
 
-        test( 'should contain exactly one Tooltip', () =>
+        it( 'should contain exactly one Tooltip', () =>
         {
-            expect( wrapper.find( Tooltip ) ).toHaveLength( 1 );
+            expect( wrapper.find( Tooltip ) ).to.have.length( 1 );
         } );
     } );
 
@@ -342,48 +333,48 @@ the <input> or the <button>', () =>
 
         beforeEach( () =>
         {
-            ( { props } = instance );
+            props = instance.props;
         } );
 
         describe( 'placeholder', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.placeholder ).toBeUndefined();
+                expect( props.placeholder ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { placeholder: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'placeholder' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'placeholder' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'iconType', () =>
         {
-            test( 'should be "none" by default', () =>
+            it( 'should be "none" by default', () =>
             {
-                expect( props.iconType ).toBe( 'none' );
+                expect( props.iconType ).to.equal( 'none' );
             } );
 
-            test( 'should remove the IconButton when value is "none"', () =>
+            it( 'should remove the IconButton when value is "none"', () =>
             {
-                expect( wrapper.find( IconButton ) ).toHaveLength( 0 );
+                expect( wrapper.find( IconButton ) ).to.have.length( 0 );
             } );
 
-            test( 'should remove the Tooltip when value is "none"', () =>
+            it( 'should remove the Tooltip when value is "none"', () =>
             {
-                expect( wrapper.find( Tooltip ) ).toHaveLength( 0 );
+                expect( wrapper.find( Tooltip ) ).to.have.length( 0 );
             } );
 
-            test( 'should be passed to the IconButton', () =>
+            it( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
 
-                expect( wrapper.find( IconButton ).prop( 'iconType' ) )
-                    .toBe( 'add' );
+                expect( wrapper.find( IconButton ).prop( 'iconType' ) ).to
+                    .equal( 'add' );
             } );
         } );
 
@@ -394,43 +385,43 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be "right" by default', () =>
+            it( 'should be "right" by default', () =>
             {
-                expect( props.iconPosition ).toBe( 'right' );
+                expect( props.iconPosition ).to.equal( 'right' );
             } );
 
-            test( 'should pass textAlign "left" to Inputfield when value is \
+            it( 'should pass textAlign "left" to Inputfield when value is \
 "right"', () =>
-            {
-                wrapper.setProps( { iconPosition: 'right' } );
+                {
+                    wrapper.setProps( { iconPosition: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
-                    .toBe( 'left' );
-            } );
+                    expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
+                        .equal( 'left' );
+                } );
 
-            test( 'should pass textAlign "right" to Inputfield when value is \
+            it( 'should pass textAlign "right" to Inputfield when value is \
 "left"', () =>
-            {
-                wrapper.setProps( { iconPosition: 'left' } );
+                {
+                    wrapper.setProps( { iconPosition: 'left' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
-                    .toBe( 'right' );
-            } );
+                    expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
+                        .equal( 'right' );
+                } );
         } );
 
         describe( 'textAlign', () =>
         {
-            test( 'should be "auto" by default', () =>
+            it( 'should be "auto" by default', () =>
             {
-                expect( props.textAlign ).toBe( 'auto' );
+                expect( props.textAlign ).to.equal( 'auto' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { textAlign: 'right' } );
 
-                expect( wrapper.find( InputField ).prop( 'textAlign' ) )
-                    .toBe( 'right' );
+                expect( wrapper.find( InputField ).prop( 'textAlign' ) ).to
+                    .equal( 'right' );
             } );
         } );
 
@@ -441,17 +432,17 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be "top" by default', () =>
+            it( 'should be "top" by default', () =>
             {
-                expect( props.iconTooltipPosition ).toBe( 'top' );
+                expect( props.iconTooltipPosition ).to.equal( 'top' );
             } );
 
-            test( 'should be passed to the Tooltip as position', () =>
+            it( 'should be passed to the Tooltip as position', () =>
             {
                 wrapper.setProps( { iconTooltipPosition: 'bottom' } );
 
-                expect( wrapper.find( Tooltip ).prop( 'position' ) )
-                    .toBe( 'bottom' );
+                expect( wrapper.find( Tooltip ).prop( 'position' ) ).to
+                    .equal( 'bottom' );
             } );
         } );
 
@@ -462,17 +453,17 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.iconTooltipIsVisible ).toBe( false );
+                expect( props.iconTooltipIsVisible ).to.be.false;
             } );
 
-            test( 'should be passed to the Tooltip as isVisible', () =>
+            it( 'should be passed to the Tooltip as isVisible', () =>
             {
                 wrapper.setProps( { iconTooltipIsVisible: true } );
 
-                expect( wrapper.find( Tooltip ).prop( 'isVisible' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( Tooltip ).prop( 'isVisible' ) ).to.be
+                    .true;
             } );
         } );
 
@@ -483,55 +474,55 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.iconTooltipMessage ).toBeUndefined();
+                expect( props.iconTooltipMessage ).to.be.undefined;
             } );
 
-            test( 'should be passed to the Tooltip', () =>
+            it( 'should be passed to the Tooltip', () =>
             {
                 wrapper.setProps( { iconTooltipMessage: 'yes!' } );
 
-                expect( wrapper.find( Tooltip ).prop( 'message' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( Tooltip ).prop( 'message' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'isDisabled', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.isDisabled ).toBe( false );
+                expect( props.isDisabled ).to.be.false;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( InputField ).prop( 'isDisabled' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the Tooltip', () =>
+            it( 'should be passed to the Tooltip', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
                     isDisabled : true
                 } );
 
-                expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the IconButton', () =>
+            it( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
                     isDisabled : true
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( IconButton ).prop( 'isDisabled' ) ).to.be
+                    .true;
             } );
         } );
 
@@ -542,175 +533,175 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.iconButtonIsDisabled ).toBe( false );
+                expect( props.iconButtonIsDisabled ).to.be.false;
             } );
 
-            test( 'should be passed to the IconButton as isDisabled', () =>
+            it( 'should be passed to the IconButton as isDisabled', () =>
             {
                 wrapper.setProps( { iconButtonIsDisabled: true } );
 
-                expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( IconButton ).prop( 'isDisabled' ) ).to.be
+                    .true;
             } );
         } );
 
         describe( 'isReadOnly', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.isReadOnly ).toBe( false );
+                expect( props.isReadOnly ).to.be.false;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the Tooltip', () =>
+            it( 'should be passed to the Tooltip', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
                     isReadOnly : true
                 } );
 
-                expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the IconButton', () =>
+            it( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
                     isReadOnly : true
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) ).to.be
+                    .true;
             } );
         } );
 
         describe( 'hasError', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBe( false );
+                expect( props.hasError ).to.be.false;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( InputField ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( InputField ).prop( 'hasError' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the Tooltip', () =>
+            it( 'should be passed to the Tooltip', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
                     hasError : true
                 } );
 
-                expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( Tooltip ).prop( 'hasError' ) ).to.be
+                    .true;
             } );
 
-            test( 'should be passed to the IconButton', () =>
+            it( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
                     hasError : true
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( IconButton ).prop( 'hasError' ) ).to.be
+                    .true;
             } );
         } );
 
         describe( 'defaultValue', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.defaultValue ).toBeUndefined();
+                expect( props.defaultValue ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { defaultValue: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'defaultValue' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'value', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.value ).toBeUndefined();
+                expect( props.value ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'value' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'value' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'id', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be defined', () =>
             {
-                expect( props.id ).toBeUndefined();
+                expect( props.id ).to.be.defined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { id: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'id' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'id' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'name', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.name ).toBeUndefined();
+                expect( props.name ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { name: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'name' ) )
-                    .toBe( 'yes!' );
+                expect( wrapper.find( InputField ).prop( 'name' ) ).to
+                    .equal( 'yes!' );
             } );
         } );
 
         describe( 'onChange', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onChange ).toBeUndefined();
+                expect( props.onChange ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onChange = () => undefined;
 
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( InputField ).prop( 'onChange' ) )
-                    .toBe( onChange );
+                expect( wrapper.find( InputField ).prop( 'onChange' ) ).to
+                    .equal( onChange );
             } );
         } );
 
@@ -721,110 +712,110 @@ the <input> or the <button>', () =>
                 wrapper.setProps( { iconType: 'add' } );
             } );
 
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onClickIcon ).toBeUndefined();
+                expect( props.onClickIcon ).to.be.undefined;
             } );
 
-            test( 'should be passed to the IconButton as onClick', () =>
+            it( 'should be passed to the IconButton as onClick', () =>
             {
                 const onClickIcon = () => undefined;
 
                 wrapper.setProps( { onClickIcon } );
 
-                expect( wrapper.find( IconButton ).prop( 'onClick' ) )
-                    .toBe( onClickIcon );
+                expect( wrapper.find( IconButton ).prop( 'onClick' ) ).to
+                    .equal( onClickIcon );
             } );
         } );
 
         describe( 'onFocus', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onFocus ).toBeUndefined();
+                expect( props.onFocus ).to.be.undefined;
             } );
         } );
 
         describe( 'onBlur', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onBlur ).toBeUndefined();
+                expect( props.onBlur ).to.be.undefined;
             } );
         } );
 
         describe( 'onKeyDown', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onKeyDown ).toBeUndefined();
+                expect( props.onKeyDown ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onKeyDown = () => undefined;
 
                 wrapper.setProps( { onKeyDown } );
 
-                expect( wrapper.find( InputField ).prop( 'onKeyDown' ) )
-                    .toBe( onKeyDown );
+                expect( wrapper.find( InputField ).prop( 'onKeyDown' ) ).to
+                    .equal( onKeyDown );
             } );
         } );
 
         describe( 'onKeyUp', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onKeyUp ).toBeUndefined();
+                expect( props.onKeyUp ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onKeyUp = () => undefined;
 
                 wrapper.setProps( { onKeyUp } );
 
-                expect( wrapper.find( InputField ).prop( 'onKeyUp' ) )
-                    .toBe( onKeyUp );
+                expect( wrapper.find( InputField ).prop( 'onKeyUp' ) ).to
+                    .equal( onKeyUp );
             } );
         } );
 
         describe( 'onKeyPress', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onKeyPress ).toBeUndefined();
+                expect( props.onKeyPress ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onKeyPress = () => undefined;
 
                 wrapper.setProps( { onKeyPress } );
 
-                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
-                    .toBe( onKeyPress );
+                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) ).to
+                    .equal( onKeyPress );
             } );
         } );
 
         describe( 'onMouseOver', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).toBeUndefined();
+                expect( props.onMouseOver ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onMouseOver = () => undefined;
 
                 wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )
-                    .toBe( onMouseOver );
+                expect( wrapper.find( InputField ).prop( 'onMouseOver' ) ).to
+                    .equal( onMouseOver );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
+            it( 'should not be passed to the Tooltip', () =>
             {
                 const onMouseOver = () => undefined;
 
@@ -833,11 +824,11 @@ the <input> or the <button>', () =>
                     onMouseOver
                 } );
 
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) )
-                    .not.toBe( onMouseOver );
+                expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) ).not.to
+                    .equal( onMouseOver );
             } );
 
-            test( 'should not be passed to the IconButton', () =>
+            it( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOver = () => undefined;
 
@@ -846,29 +837,29 @@ the <input> or the <button>', () =>
                     onMouseOver
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) )
-                    .not.toBe( onMouseOver );
+                expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) ).not
+                    .to.equal( onMouseOver );
             } );
         } );
 
         describe( 'onMouseOut', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).toBeUndefined();
+                expect( props.onMouseOut ).to.be.undefined;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 const onMouseOut = () => undefined;
 
                 wrapper.setProps( { onMouseOut } );
 
-                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOut );
+                expect( wrapper.find( InputField ).prop( 'onMouseOut' ) ).to
+                    .equal( onMouseOut );
             } );
 
-            test( 'should not be passed to the Tooltip', () =>
+            it( 'should not be passed to the Tooltip', () =>
             {
                 const onMouseOut = () => undefined;
 
@@ -877,11 +868,11 @@ the <input> or the <button>', () =>
                     onMouseOut
                 } );
 
-                expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) )
-                    .not.toBe( onMouseOut );
+                expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) ).not.to
+                    .equal( onMouseOut );
             } );
 
-            test( 'should not be passed to the IconButton', () =>
+            it( 'should not be passed to the IconButton', () =>
             {
                 const onMouseOut = () => undefined;
 
@@ -890,40 +881,40 @@ the <input> or the <button>', () =>
                     onMouseOut
                 } );
 
-                expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) )
-                    .not.toBe( onMouseOut );
+                expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) ).not.to
+                    .equal( onMouseOut );
             } );
         } );
 
         describe( 'onMouseOverIcon', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOverIcon ).toBeUndefined();
+                expect( props.onMouseOverIcon ).to.be.undefined;
             } );
         } );
 
         describe( 'onMouseOutIcon', () =>
         {
-            test( 'should be undefined by default', () =>
+            it( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOutIcon ).toBeUndefined();
+                expect( props.onMouseOutIcon ).to.be.undefined;
             } );
         } );
 
         describe( 'forceHover', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( props.forceHover ).toBeFalsy();
+                expect( props.forceHover ).to.be.false;
             } );
 
-            test( 'should be passed to the InputField', () =>
+            it( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( InputField ).prop( 'forceHover' ) ).to.be
+                    .true;
             } );
         } );
     } );
@@ -940,36 +931,36 @@ the <input> or the <button>', () =>
 
         describe( 'iconIsHovered', () =>
         {
-            test( 'should be false by default', () =>
+            it( 'should be false by default', () =>
             {
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
+                expect( wrapper.state( 'iconIsHovered' ) ).to.be.false;
             } );
 
-            test( 'should not be true after mouse enters InputField', () =>
+            it( 'should not be true after mouse enters InputField', () =>
             {
                 wrapper.find( InputField ).simulate( 'mouseOver', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
+                expect( wrapper.state( 'iconIsHovered' ) ).not.to.be.true;
             } );
 
-            test( 'should be true after mouse enters Tooltip', () =>
+            it( 'should be true after mouse enters Tooltip', () =>
             {
                 wrapper.find( Tooltip ).simulate( 'mouseOver', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeTruthy();
+                expect( wrapper.state( 'iconIsHovered' ) ).to.be.true;
             } );
 
-            test( 'should be false after mouse leaves Tooltip', () =>
+            it( 'should be false after mouse leaves Tooltip', () =>
             {
                 wrapper.find( Tooltip ).simulate( 'mouseOver', e );
                 wrapper.find( Tooltip ).simulate( 'mouseOut', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
+                expect( wrapper.state( 'iconIsHovered' ) ).to.be.false;
             } );
 
-            test( 'should be passed to InputField as forceHover', () =>
+            it( 'should be passed to InputField as forceHover', () =>
             {
                 wrapper.setState( { iconIsHovered: true } );
 
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                expect( wrapper.find( InputField ).prop( 'forceHover' ) ).to.be
+                    .true;
             } );
         } );
     } );
@@ -998,15 +989,15 @@ describe( 'TextInputWithIconDriver', () =>
             } );
         } );
 
-        test( 'should return a ReactWrapper', () =>
+        it( 'should return a ReactWrapper', () =>
         {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+            expect( driver.getErrorMessage() ).to.be.instanceOf( ReactWrapper );
         } );
 
-        test( 'should contain the message content', () =>
+        it( 'should contain the message content', () =>
         {
             const message = driver.getErrorMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
+            expect( message.find( 'h2' ) ).to.have.length( 1 );
         } );
     } );
 } );

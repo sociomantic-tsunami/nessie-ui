@@ -1,13 +1,13 @@
+/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* global expect */
 /* eslint no-console: 0*/
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
-
 import CodeEditor         from './index';
+
 
 describe( 'CodeEditor', () =>
 {
@@ -17,32 +17,27 @@ describe( 'CodeEditor', () =>
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <CodeEditor /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
+        wrapper  = shallow( <CodeEditor /> );
+        instance = wrapper.instance();
+        cssMap   = instance.props.cssMap;
     } );
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
+        it( 'should contain exactly one textArea', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
-        test( 'should contain exactly one textArea', () =>
-        {
-            expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
+            expect( wrapper.find( 'textarea' ).length ).to.equal( 1 );
         } );
     } );
 
     describe( 'props', () =>
     {
-        test( 'should pass value to the textarea as defaultValue', () =>
+        it( 'should pass value to the textarea as defaultValue', () =>
         {
             wrapper.setProps( { value: 'code!' } );
 
             expect( wrapper.find( 'textarea' ).prop( 'defaultValue' ) )
-                .toBe( 'code!' );
+                .to.equal( 'code!' );
         } );
     } );
 } );
@@ -62,130 +57,127 @@ describe( 'CodeEditorDriver', () =>
 
     describe( 'pressKey( keyCode )', () =>
     {
-        test( 'should add the character corresponding to keyCode to the \
-end of the code editor’s value', () =>
-        {
-            wrapper.setProps( { value: 'hello' } );
+        it( 'should add the character corresponding to keyCode to the end of\
+the code editor’s value', () =>
+            {
+                wrapper.setProps( { value: 'hello' } );
 
-            driver.pressKey( 49 ); // 1 key
-            expect( driver.getInputValue() ).toBe( 'hello1' );
-        } );
-
-        test( 'should call the onChange callback exactly once ', () =>
+                driver.pressKey( 49 ); // 1 key
+                expect( driver.getInputValue() ).to.equal( 'hello1' );
+            } );
+        it( 'should call the onChange callback exactly once ', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
             driver.pressKey( 50 );
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledOnce ).to.be.true;
         } );
     } );
 
     describe( 'inputValue( value )', () =>
     {
-        test( 'should add the value string to end of codeEditor’s value', () =>
+        it( 'should add the value string to end of codeEditor’s value', () =>
         {
             wrapper.setProps( { value: 'hello' } );
 
             driver.inputValue( 'world' );
-            expect( driver.getInputValue() ).toBe( 'helloworld' );
+            expect( driver.getInputValue() ).to.equal( 'helloworld' );
         } );
-        test( `should call the onChange callback once per
+        it( `should call the onChange callback once per
             printable character in value`, () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
-            driver.inputValue( 'foo' );
-            expect( onChange ).toBeCalledTimes( 3 );
-        } );
+            {
+                const onChange = sinon.spy();
+                wrapper.setProps( { onChange } );
+                driver.inputValue( 'foo' );
+                expect( onChange.callCount ).to.equal( 3 );
+            } );
     } );
 
     describe( 'setInputValue( value )', () =>
     {
-        test( 'should set the input value to "foo"', () =>
+        it( 'should set the input value to "foo"', () =>
         {
             driver.setInputValue( 'foo' );
-            expect( CodeMirror.getValue() ).toBe( 'foo' );
+            expect( CodeMirror.getValue() ).to.equal( 'foo'  );
         } );
 
-        test( 'should fire the onChange callback prop once', () =>
+        it( 'should fire the onChange callback prop', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledOnce ).to.be.true;
         } );
 
-        test( 'should call onChange with new value as argument', () =>
+        it( 'should call onChange with new value as argument', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
             driver.setInputValue( 'foo' );
-            expect( onChange ).toBeCalledWith( 'foo' );
+            expect( onChange.calledWith( 'foo' ) ).to.be.true;
         } );
 
-        test( 'should throw the expected error when component isReadOnly', () =>
+        it( 'should throw the expected error when component isReadOnly', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-            expect( () => driver.setInputValue( 'foo' ) )
-                .toThrowError( 'Cannot change the CodeEditor value since \
-it’s read only' );
+            expect( () => driver.setInputValue( 'foo' ) ).to.throw(
+                'Cannot change the CodeEditor value since it’s read only' );
         } );
     } );
 
     describe( 'clearInputValue()', () =>
     {
-        test( 'should set the input value to an empty string', () =>
+        it( 'should set the input value to an empty string', () =>
         {
-            wrapper.setProps( { defaultValue: 'foo' } );
+            wrapper.setProps( { value: 'foo' } );
             driver.clearInputValue();
-            expect( CodeMirror.getValue() ).toBe( '' );
+            expect( CodeMirror.getValue() ).to.equal( '' );
         } );
 
-        test( 'should throw the expected error when component isReadOnly', () =>
+        it( 'should throw the expected error when component isReadOnly', () =>
         {
             wrapper.setProps( {
                 value      : 'foo',
                 isReadOnly : true
             } );
-            expect( () => driver.clearInputValue() )
-                .toThrowError( 'Cannot change the CodeEditor value since \
-it’s read only' );
+            expect( () => driver.clearInputValue() ).to.throw(
+                'Cannot change the CodeEditor value since it’s read only' );
         } );
-        test( 'should call the onChange callback exactly once', () =>
+        it( 'should call the onChange callback exactly once', () =>
         {
-            const onChange = jest.fn();
+            const onChange = sinon.spy();
             wrapper.setProps( { onChange } );
             driver.clearInputValue();
-            expect( onChange ).toBeCalledTimes( 1 );
+            expect( onChange.calledWith( '' ) ).to.be.true;
         } );
     } );
 
     describe( 'getInputValue()', () =>
     {
-        test( 'should return the value of the Code Editor input', () =>
+        it( 'should return the value of the Code Editor input', () =>
         {
             wrapper.setProps( { value: 'foo' } );
-            expect( driver.getInputValue() ).toBe( 'foo' );
+            expect( driver.getInputValue() ).to.equal( 'foo' );
         } );
     } );
 
     describe( 'isReadOnly()', () =>
     {
-        test( 'should return true if the editor cannot be edited', () =>
+        it( 'should return true if the editor cannot be edited', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-            expect( driver.isReadOnly() ).toBeTruthy();
-            expect( driver.isDisabled() ).toBeFalsy();
+            expect( driver.isReadOnly() ).to.equal( true );
+            expect( driver.isDisabled() ).to.equal( false );
         } );
     } );
 
     describe( 'isDisabled()', () =>
     {
-        test( 'should return true if the editor is disabled', () =>
+        it( 'should return true if the editor is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            expect( driver.isDisabled() ).toBeTruthy();
-            expect( driver.isReadOnly() ).toBeFalsy();
+            expect( driver.isDisabled() ).to.equal( true );
+            expect( driver.isReadOnly() ).to.equal( false );
         } );
     } );
 } );

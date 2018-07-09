@@ -1,4 +1,5 @@
-/* global test jest */
+/* eslint-env node, mocha */
+/* global expect */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
@@ -21,9 +22,9 @@ describe( 'Radio', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one Checkable', () =>
+        it( 'should contain exactly one Checkable', () =>
         {
-            expect( wrapper.find( Checkable ) ).toHaveLength( 1 );
+            expect( wrapper.find( Checkable ) ).to.have.length( 1 );
         } );
     } );
 
@@ -31,69 +32,71 @@ describe( 'Radio', () =>
     {
         describe( 'isDisabled', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'hasError', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'forceHover', () =>
         {
-            test( 'should be passed to the Checkable', () =>
+            it( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                    .to.be.true;
             } );
         } );
 
         describe( 'onChange', () =>
         {
-            test( 'should be `undefined` if readOnly', () =>
+            it( 'should be `undefined` if readOnly', () =>
             {
-                const onChange = jest.fn().mockImplementation( e =>
-                    targetChecked = e.target.checked );
+                const onChange = sinon.stub().callsFake( e =>
+                    targetChecked = e.target.checked
+                );
                 wrapper.setProps( { isReadOnly: true, onChange } );
 
-                expect( wrapper.prop( onChange ) ).toBeUndefined();
+                expect( wrapper.prop( onChange ) )
+                    .to.equal( undefined );
             } );
 
-            test(
-                'should be passed as `undefined` to Checkable if readOnly',
+            it( 'should be passed as `undefined` to Checkable if readOnly',
                 () =>
                 {
-                    const onChange = jest.fn().mockImplementation( e =>
-                        targetChecked = e.target.checked );
+                    const onChange = sinon.stub().callsFake( e =>
+                        targetChecked = e.target.checked
+                    );
                     wrapper.setProps( { isReadOnly: true, onChange } );
 
                     expect( wrapper.find( Checkable ).prop( onChange ) )
-                        .toBeUndefined();
-                }
-            );
+                        .to.equal( undefined );
+                } );
 
-            test( 'should be defined if not readOnly', () =>
+            it( 'should be defined if not readOnly', () =>
             {
-                const onChange = jest.fn().mockImplementation( e =>
-                    targetChecked = e.target.checked );
+                const onChange = sinon.stub().callsFake( e =>
+                    targetChecked = e.target.checked
+                );
                 wrapper.setProps( { onChange } );
 
                 expect( wrapper.prop( onChange ) )
-                    .toBe( wrapper.instance().onChange );
+                    .to.equal( wrapper.instance().onChange );
             } );
         } );
     } );
