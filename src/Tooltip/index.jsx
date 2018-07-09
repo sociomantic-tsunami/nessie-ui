@@ -1,10 +1,9 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-              
-import IconButton       from '../IconButton';
-import Text             from '../Text';
+import IconButton                       from '../IconButton';
+import Text                             from '../Text';
 
 export default class Tooltip extends React.PureComponent
 {
@@ -152,23 +151,21 @@ export default class Tooltip extends React.PureComponent
         }
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { { role, noWrap, position } }>
+
+            <div
+                className    = { buildClassName( className, cssMap, { role, noWrap, position } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
+                { contentNode &&
                 <div
-                    className    = { className }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut }>
-                    { contentNode &&
-                        <div
-                            className        = { cssMap.content }
-                            aria-describedby = { isVisible ? id : null }>
-                            { contentNode }
-                        </div>
-                    }
-                    { isVisible && tooltip }
+                    className        = { cssMap.content }
+                    aria-describedby = { isVisible ? id : null }>
+                    { contentNode }
                 </div>
-            </Css>
+                }
+                { isVisible && tooltip }
+            </div>
+
         );
     }
 }

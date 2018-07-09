@@ -1,9 +1,8 @@
-import React                    from 'react';
-import PropTypes                from 'prop-types';
+import React                                    from 'react';
+import PropTypes                                from 'prop-types';
 
 import { generateId, buildClassName }           from '../utils';
-                      
-import { TextInputWithIcon }    from '../index';
+import { TextInputWithIcon }                    from '../index';
 
 
 export default class PasswordInput extends React.PureComponent
@@ -158,14 +157,12 @@ export default class PasswordInput extends React.PureComponent
         } = this.props;
 
         return (
-            <Css cssMap = { cssMap }>
-                <TextInputWithIcon
-                    { ...props }
-                    className = { className }
-                    id        = { id }
-                    inputType = { passwordIsVisible ? 'text' : 'password' }
-                    iconType  = { passwordIsVisible ? 'hide' : 'show' } />
-            </Css>
+            <TextInputWithIcon
+                { ...props }
+                className = { buildClassName( className, cssMap ) }
+                id        = { id }
+                inputType = { passwordIsVisible ? 'text' : 'password' }
+                iconType  = { passwordIsVisible ? 'hide' : 'show' } />
         );
     }
 }

@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import Flounder             from 'flounder/src/core/flounder';
 
-                  
+import { buildClassName }   from '../utils';
+
 import InputContainer       from '../proto/InputContainer';
 import H1                   from '../H1';
 import H2                   from '../H2';
@@ -21,7 +22,9 @@ import {
 } from './utils';
 
 
-const headers = { 1: H1, 2: H2, 3: H3, 4: H4 };
+const headers = {
+    1 : H1, 2 : H2, 3 : H3, 4 : H4
+};
 
 const rebuildOnProps = [
     'classes',
@@ -66,19 +69,17 @@ export default class FlounderDropdown extends Component
         /**
         *  Array of strings or objects (to build the options)
         */
-        data          : PropTypes.arrayOf(
-            PropTypes.oneOfType( [
-                PropTypes.string,
-                PropTypes.shape( {
-                    text        : PropTypes.string,
-                    value       : PropTypes.string,
-                    description : PropTypes.string,
-                    disabled    : PropTypes.bool,
-                    icon        : PropTypes.string,
-                    extraClass  : PropTypes.string
-                } )
-            ] )
-        ),
+        data          : PropTypes.arrayOf( PropTypes.oneOfType( [
+            PropTypes.string,
+            PropTypes.shape( {
+                text        : PropTypes.string,
+                value       : PropTypes.string,
+                description : PropTypes.string,
+                disabled    : PropTypes.bool,
+                icon        : PropTypes.string,
+                extraClass  : PropTypes.string
+            } )
+        ] ) ),
         /**
          *  Display the dropdown as a header (H1-4)
          */
@@ -410,7 +411,9 @@ export default class FlounderDropdown extends Component
 
     render()
     {
-        const { className, cssMap, label, ...props } = this.props;
+        const {
+            className, cssMap, label, ...props
+        } = this.props;
 
         const {
             forceHover,
@@ -424,21 +427,20 @@ export default class FlounderDropdown extends Component
         const Wrapper  = isHeader ? headers[ headerLevel ] : 'div';
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+
+            <Wrapper
+                className = { buildClassName( className, cssMap, {
                     headerMode  : isHeader,
                     headerLevel,
                     toggleIcon  : icon,
                     error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && !hasError && forceHover
-                } }>
-                <Wrapper className = { className }>
-                    <InputContainer { ...props } label = { !isHeader && label }>
-                        <div ref = { this.handleRef } />
-                    </InputContainer>
-                </Wrapper>
-            </Css>
+                } ) }>
+                <InputContainer { ...props } label = { !isHeader && label }>
+                    <div ref = { this.handleRef } />
+                </InputContainer>
+            </Wrapper>
+
         );
     }
 }

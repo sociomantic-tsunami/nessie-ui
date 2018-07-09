@@ -1,16 +1,16 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
-                  
+import { buildClassName }              from '../utils';
 
-const StatusIndicator = ( { children, className, cssMap, label, status } ) =>
-    <Css
-        cssMap = { cssMap }
-        cssProps = { { status } }>
-        <div className = { className }>
-            { children || label }
-        </div>
-    </Css>;
+
+const StatusIndicator = ( {
+    children, className, cssMap, label, status
+} ) =>
+
+    <div className = { buildClassName( className, cssMap, { status } ) }>
+        { children || label }
+    </div>;
 
 StatusIndicator.propTypes =
 {

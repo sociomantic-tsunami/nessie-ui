@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-                  
+import { buildClassName }   from '../utils';
+
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
 
@@ -18,28 +19,27 @@ const Fieldset = ( {
     onMouseOver,
     onMouseOut
 } ) => (
-    <Css cssMap = { cssMap }>
-        <fieldset
-            className    = { className }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { label &&
-                <IconWithTooltip
-                    className        = { cssMap.labelContainer }
-                    iconType         = "error"
-                    iconPosition     = "right"
-                    message          = { errorMessage }
-                    tooltipIsVisible = { errorMessageIsVisible }
-                    tooltipPosition  = { errorMessagePosition }
-                    iconIsVisible    = { !isDisabled &&
+
+    <fieldset
+        className    = { buildClassName( className, cssMap ) }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }>
+        { label &&
+        <IconWithTooltip
+            className        = { cssMap.labelContainer }
+            iconType         = "error"
+            iconPosition     = "right"
+            message          = { errorMessage }
+            tooltipIsVisible = { errorMessageIsVisible }
+            tooltipPosition  = { errorMessagePosition }
+            iconIsVisible    = { !isDisabled &&
                                              !!errorMessage &&
                                              hasError }>
-                    <Label element = "legend">{ label }</Label>
-                </IconWithTooltip>
-            }
-            { children }
-        </fieldset>
-    </Css>
+            <Label element = "legend">{ label }</Label>
+        </IconWithTooltip>
+        }
+        { children }
+    </fieldset>
 );
 
 Fieldset.propTypes =

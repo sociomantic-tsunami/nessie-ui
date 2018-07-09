@@ -1,8 +1,8 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-              
+
 
 export default class Tab extends React.PureComponent
 {
@@ -44,16 +44,14 @@ export default class Tab extends React.PureComponent
         } = this.props;
 
         return (
-            <Css cssMap = { cssMap } >
-                <div
-                    className  = { className }
-                    onClick    = { onClick }
-                    aria-label = { label }
-                    id         = { id }
-                    role       = "tabpanel">
-                    { children }
-                </div>
-            </Css>
+            <div
+                className  = { buildClassName( className, cssMap ) }
+                onClick    = { onClick }
+                aria-label = { label }
+                id         = { id }
+                role       = "tabpanel">
+                { children }
+            </div>
         );
     }
 }

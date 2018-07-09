@@ -1,10 +1,9 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-              
-import InputField       from '../InputField';
-import InputContainer   from '../proto/InputContainer';
+import InputField                       from '../InputField';
+import InputContainer                   from '../proto/InputContainer';
 
 
 export default class TextArea extends React.PureComponent
@@ -138,16 +137,16 @@ export default class TextArea extends React.PureComponent
         } = this.props;
 
         return (
-            <Css cssMap = { cssMap }>
-                <InputContainer
-                    { ...props }
-                    className   = { className }
-                    id          = { id }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }>
-                    <InputField { ...props } id = { id } element = "textarea" />
-                </InputContainer>
-            </Css>
+
+            <InputContainer
+                { ...props }
+                className   = { buildClassName( className, cssMap ) }
+                id          = { id }
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }>
+                <InputField { ...props } id = { id } element = "textarea" />
+            </InputContainer>
+
         );
     }
 }

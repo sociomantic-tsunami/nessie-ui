@@ -1,7 +1,7 @@
 import React, { Component }            from 'react';
 import PropTypes                       from 'prop-types';
 
-                             
+import { buildClassName }              from '../utils';
 import H2                              from '../H2';
 import H3                              from '../H3';
 import H4                              from '../H4';
@@ -218,27 +218,25 @@ export default class Module extends Component
 
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+
+            <section
+                className = { buildClassName( className, cssMap, {
                     collapsible : isCollapsible,
                     collapsed   : isCollapsible && isCollapsed,
                     error       : hasError,
                     moduleError : hasModuleError,
                     level       : headerLevel
-                } }>
-                <section className = { className }>
-                    { header }
-                    { ( !isCollapsible || !isCollapsed ) &&
-                        <div className = { cssMap.content }>
-                            { children }
-                        </div>
-                    }
-                    { isLoading  &&
-                        <div className = { cssMap.loadingOverlay } />
-                    }
-                </section>
-            </Css>
+                } ) }>
+                { header }
+                { ( !isCollapsible || !isCollapsed ) &&
+                <div className = { cssMap.content }>
+                    { children }
+                </div>
+                }
+                { isLoading  &&
+                <div className = { cssMap.loadingOverlay } />
+                }
+            </section>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-                  
+import { buildClassName }   from '../utils';
 import Spinner              from '../Spinner';
 
 
@@ -9,21 +9,21 @@ const PageContent = ( {
     children,
     cssMap,
     className,
-    isLoading  } ) =>
-        <Css cssMap = { cssMap }>
-            <div className = { className }>
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
-                { isLoading &&
-                    <div className = { cssMap.loadingOverlay }>
-                        <Spinner
-                            className = { cssMap.spinner }
-                            size = "big" />
-                    </div>
-                }
-            </div>
-        </Css>;
+    isLoading
+} ) =>
+
+    <div className = { buildClassName( className, cssMap ) }>
+        <div className = { cssMap.content }>
+            { children }
+        </div>
+        { isLoading &&
+        <div className = { cssMap.loadingOverlay }>
+            <Spinner
+                className = { cssMap.spinner }
+                size = "big" />
+        </div>
+        }
+    </div>;
 
 PageContent.propTypes =
 {

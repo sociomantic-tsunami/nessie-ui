@@ -1,20 +1,18 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-                  
+import { buildClassName }   from '../utils';
 
 const Page = ( {
     children,
     cssMap,
     className,
-    overflow } ) =>
-        <Css
-            cssMap = { cssMap }
-            cssProps = { { overflow } } >
-            <div className = { className }>
-                { children }
-            </div>
-        </Css>;
+    overflow
+} ) =>
+
+    <div className = { buildClassName( className, cssMap, { overflow } ) }>
+        { children }
+    </div>;
 
 Page.propTypes =
 {

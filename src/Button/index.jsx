@@ -1,10 +1,9 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-
-import Icon             from '../Icon';
-import Spinner          from '../Spinner';
+import Icon                             from '../Icon';
+import Spinner                          from '../Spinner';
 
 export default class Button extends React.Component
 {
@@ -226,34 +225,30 @@ export default class Button extends React.Component
         );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <button
+                ref            = { buttonRef }
+                type           = { type }
+                className      = { buildClassName( className, cssMap, {
                     role,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
                     fakeHovered : forceHover
-                } }>
-                <button
-                    ref            = { buttonRef }
-                    type           = { type }
-                    className      = { className }
-                    id             = { id }
-                    defaultValue   = { defaultValue }
-                    value          = { value }
-                    disabled       = { isDisabled || isLoading || isReadOnly }
-                    onClick        = { onClick }
-                    onMouseEnter   = { this.handleMouseOver }
-                    onMouseLeave   = { this.handleMouseOut }>
-                    { content }
-                    { ( isLoading && !isDisabled ) &&
-                        <div className = { cssMap.loadingOverlay }>
-                            <Spinner className = { cssMap.spinner } />
-                        </div>
-                    }
-                </button>
-            </Css>
+                } ) }
+                id             = { id }
+                defaultValue   = { defaultValue }
+                value          = { value }
+                disabled       = { isDisabled || isLoading || isReadOnly }
+                onClick        = { onClick }
+                onMouseEnter   = { this.handleMouseOver }
+                onMouseLeave   = { this.handleMouseOut }>
+                { content }
+                { ( isLoading && !isDisabled ) &&
+                <div className = { cssMap.loadingOverlay }>
+                    <Spinner className = { cssMap.spinner } />
+                </div>
+                }
+            </button>
         );
     }
 }
