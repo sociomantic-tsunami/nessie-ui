@@ -338,3 +338,10 @@
       100% {}
     }
 }
+
+:global @keyframes blink
+{
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}

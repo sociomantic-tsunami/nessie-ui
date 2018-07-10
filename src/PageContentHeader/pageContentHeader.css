@@ -2,7 +2,7 @@
 
 .default
 {
-    padding:    0 30px;
+
 }
 
 .header /* rules from base.css */
@@ -13,40 +13,8 @@
     box-sizing:     border-box;
     width:          100%;
 
+    margin-bottom:  var( --spacing-6 );
+
     font-size:      14px;
     line-height:    18px;
-}
-
-.header
-{
-    margin-bottom:      30px;
-
-    &:last-child
-    {
-        margin-bottom:  20px;
-    }
-}
-
-.controls
-{
-    min-height:     52px;
-}
-
-.title
-{
-    margin-bottom:  8px;
-
-    z-index:        2;
-}
-
-.subtitle
-{
-    @extend %Nessie-Semibold;
-
-    font-size:      var( --typo-4 );
-    line-height:    var( --line-height-m );
-    letter-spacing: 0;
-    color:          var( --PC-GREY--D5 );
-
-    min-height:     var( --line-height-m );
 }

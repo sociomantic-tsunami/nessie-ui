@@ -42,7 +42,7 @@
     .alignX__center,
     .alignX__right
     {
-        & > *
+        & > * /* Columns */
         {
             flex:   0 0 auto;
         }
@@ -90,7 +90,7 @@
     margin-left:    calc( -1 * ( var( --S ) / 2 ) );
     margin-right:   calc( -1 * ( var( --S ) / 2 ) );
 
-    & > *
+    & > * /* Columns */
     {
         padding-left:   calc( var( --S ) / 2 );
         padding-right:  calc( var( --S ) / 2 );
@@ -101,7 +101,7 @@
     margin-left:    calc( -1 * ( var( --M ) / 2 ) );
     margin-right:   calc( -1 * ( var( --M ) / 2 ) );
 
-    & > *
+    & > * /* Columns */
     {
         padding-left:   calc( var( --M ) / 2 );
         padding-right:  calc( var( --M ) / 2 );
@@ -112,7 +112,7 @@
     margin-left:    calc( -1 * ( var( --L ) / 2 ) );
     margin-right:   calc( -1 * ( var( --L ) / 2 ) );
 
-    & > *
+    & > * /* Columns */
     {
         padding-left:   calc( var( --L ) / 2 );
         padding-right:  calc( var( --L ) / 2 );
@@ -122,56 +122,56 @@
 
 .spacing__S
 {
-    & > *
+    & > * /* Columns */
     {
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    calc( var( --S ) / 2 );
         padding-bottom: calc( var( --S ) / 2 );
-    }
 
-    &:first-child
-    {
-        margin-top: calc( -1 * ( var( --S ) / 2 ) );
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     calc( -1 * ( var( --S ) / 2 ) );
+        margin-bottom:  calc( var( --S ) / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * ( var( --S ) / 2 ) );
+        margin-bottom:  calc( -1 * var( --S ) );
     }
 }
 .spacing__M
 {
-    & > *
+    & > * /* Columns */
     {
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    calc( var( --M ) / 2 );
         padding-bottom: calc( var( --M ) / 2 );
-    }
 
-    &:first-child
-    {
-        margin-top: calc( -1 * ( var( --M ) / 2 ) );
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     calc( -1 * ( var( --M ) / 2 ) );
+        margin-bottom:  calc( var( --M ) / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * ( var( --M ) / 2 ) );
+        margin-bottom:  calc( -1 * var( --M ) );
     }
 }
 .spacing__L
 {
-    & > *
+    & > * /* Columns */
     {
-        padding-top:     calc( var( --L ) / 2 );
-        padding-bottom:  calc( var( --L ) / 2 );
-    }
+        /* these paddings will be used by TableCells (yeah, this is ugly) */
+        padding-top:    calc( var( --L ) / 2 );
+        padding-bottom: calc( var( --L ) / 2 );
 
-    &:first-child
-    {
-        margin-top: calc( -1 * ( var( --L ) / 2 ) );
+        /* override those paddings when *not* a TableCell... */
+        margin-top:     calc( -1 * ( var( --L ) / 2 ) );
+        margin-bottom:  calc( var( --L ) / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * ( var( --L ) / 2 ) );
+        margin-bottom:  calc( -1 * var( --L ) );
     }
 }
 
@@ -182,72 +182,64 @@
 {
     & > *
     {
-        padding-top:     calc( 16px / 2 );
-        padding-bottom:  calc( 16px / 2 );
-    }
+        padding-top:    calc( 16px / 2 );
+        padding-bottom: calc( 16px / 2 );
 
-    &:first-child
-    {
-        margin-top: calc( -1 * calc( 16px / 2 ) );
+        margin-top:     calc( -1 * ( 16px / 2 ) );
+        margin-bottom:  calc( 16px / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 16px / 2 ) );
+        margin-bottom:  calc( -16px );
     }
 }
 .spacing__label
 {
     & > *
     {
-        padding-top:     calc( 16px / 2 );
-        padding-bottom:  calc( 16px / 2 );
-    }
+        padding-top:    calc( 8px / 2 );
+        padding-bottom: calc( 8px / 2 );
 
-    &:first-child
-    {
-        margin-top: calc( -1 * calc( 16px / 2 ) );
+        margin-top:     calc( -1 * ( 8px / 2 ) );
+        margin-bottom:  calc( 8px / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 16px / 2 ) );
+        margin-bottom:  calc( -8px );
     }
 }
 .spacing__h1
 {
     & > *
     {
-        padding-top:     calc( 56px / 2 );
-        padding-bottom:  calc( 56px / 2 );
-    }
+        padding-top:    calc( 56px / 2 );
+        padding-bottom: calc( 56px / 2 );
 
-    &:first-child
-    {
-        margin-top: calc( -1 * calc( 56px / 2 ) );
+        margin-top:     calc( -1 * ( 56px / 2 ) );
+        margin-bottom:  calc( 56px / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 56px / 2 ) );
+        margin-bottom:  calc( -56px );
     }
 }
 .spacing__h2
 {
     & > *
     {
-        padding-top:     calc( 40px / 2 );
-        padding-bottom:  calc( 40px / 2 );
-    }
+        padding-top:    calc( 40px / 2 );
+        padding-bottom: calc( 40px / 2 );
 
-    &:first-child
-    {
-        margin-top: calc( -1 * calc( 40px / 2 ) );
+        margin-top:     calc( -1 * ( 40px / 2 ) );
+        margin-bottom:  calc( 40px / 2 );
     }
 
     &:last-child
     {
-        margin-bottom:  calc( -1 * calc( 40px / 2 ) );
+        margin-bottom:  calc( -40px );
     }
 }
 
@@ -255,4 +247,9 @@
 .wrap
 {
     flex-wrap:  wrap;
+}
+
+.hasMinHeight
+{
+    min-height: 87px; /* label + input */
 }

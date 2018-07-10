@@ -22,7 +22,7 @@
         height:                 var( --spacing-2 );
 
         top:                    4px;
-        left:                   2px;
+        left:                   4px;
     }
 }
 
@@ -33,13 +33,17 @@
 .disabled,
 .disabled:hover
 {
+    .input + .label::before
+    {
+        border-color:           var( --PC-GREY--L70 );
+    }
+
     .input:checked + .label::before
     {
-        border-color:           var( --PC-BLUE--L40 );
-        background-color:       var( --PC-BLUE--L40 );
+        border-color:           var( --PC-GREY--L70 );
+        background-color:       var( --PC-GREY--L70 );
     }
 }
-
 
 .error,
 .error:hover

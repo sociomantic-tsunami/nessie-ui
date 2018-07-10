@@ -19,11 +19,11 @@
     background-color:   var( --PC-BLUE );
     border-radius:      50%;
 
-    width:              12px;
-    height:             12px;
+    width:              14px;
+    height:             14px;
 
-    top:                6px;
-    left:               4px;
+    top:                5px;
+    left:               5px;
 }
 
 .fakeHovered
@@ -33,9 +33,14 @@
 .disabled,
 .disabled:hover
 {
+    .input + .label::before
+    {
+        border-color: var( --PC-GREY--L70 );
+    }
+
     .input:checked + .label::after
     {
-        background-color: var( --PC-BLUE--L40 );
+        background-color: var( --PC-GREY--L70 );
     }
 }
 

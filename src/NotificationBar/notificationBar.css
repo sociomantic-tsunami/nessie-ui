@@ -19,12 +19,8 @@
 
     .info
     {
-        margin-right:   var( --spacing-2 );
-    }
-
-    .info
-    {
         margin-right:   20px;
+        fill:           var( --PC-GREY--D25 );
     }
 
     .close
@@ -55,4 +51,9 @@
 .type__success
 {
     background: var(  --PC-GREEN );
+}
+
+.message
+{
+    color: var( --PC-WHITE );
 }

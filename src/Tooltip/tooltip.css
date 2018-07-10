@@ -2,8 +2,8 @@
 
 :root
 {
-    --tooltipOffsetX:       11px; /* 5px */
-    --tooltipOffsetY:       12px; /* 5px */
+    --tooltipOffsetX:       8px; /* 5px */
+    --tooltipOffsetY:       8px; /* 5px */
     --tooltipOffsetXY:      26px;
     --tooltipOffsetXYAfter: 20px;
 
@@ -23,9 +23,7 @@
 
 .tooltip
 {
-    display:            flex;
-    align-items:        flex-start;
-
+    display:            block;
     position:           absolute;
 
     width:              auto;
@@ -34,10 +32,10 @@
 
     border-radius:      2px;
 
-    background-color:   var( --PC-BLUE );
+    background-color:   var( --PC-GREY--D15 );
     box-shadow:         var( --boxShadow );
 
-    z-index:            100;
+    z-index:            10000;
 
     &::before
     {
@@ -54,12 +52,18 @@
     padding-right:      var( --spacing-2 );
     padding-bottom:     var( --spacing-1 );
     padding-left:       var( --spacing-2 );
+    color:              var( --PC-WHITE );
 }
 
 
 .messageText
 {
-    color:              var( --PC-WHITE );
+    & a,
+    & a:hover
+    {
+        color:              var( --PC-WHITE );
+        text-decoration:    underline;
+    }
 }
 
 
@@ -113,7 +117,7 @@
     {
         &::before
         {
-            bottom: -var( --tooltipOffsetY );
+            bottom: calc( -1 * var( --tooltipOffsetY ) );
         }
     }
 }
@@ -124,7 +128,7 @@
     .tooltip
     {
         top:        0;
-        transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
+        transform:  translateX(-50%) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) ) ;
     }
 }
 
@@ -137,7 +141,7 @@
     {
         &::before
         {
-            top:    -var( --tooltipOffsetY );
+            top:    calc( -1 * var( --tooltipOffsetY ) );
         }
     }
 }
@@ -177,11 +181,11 @@
         top:        50%;
         left:       0;
 
-        transform:  translateX(-100%) translateX( -var( --tooltipOffsetX )  ) translateY( -50% );
+        transform:  translateX(-100%) translateX( calc( -1 * var( --tooltipOffsetX ) ) ) translateY( -50% );
 
         &::before
         {
-            right:  -var( --tooltipOffsetX );
+            right:  calc( -1 * var( --tooltipOffsetX ) );
         }
     }
 }
@@ -198,7 +202,7 @@
 
         &::before
         {
-            left:   -var( --tooltipOffsetX );
+            left:   calc( -1 * var( --tooltipOffsetX ) );
         }
     }
 }
@@ -230,7 +234,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+        transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) );
     }
 }
 
@@ -239,7 +243,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+        transform:  translateX( calc( -1 * var( --tooltipOffsetXY ) ) ) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) );
     }
 }
 
@@ -257,7 +261,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
+        transform:  translateX( calc( -1 * var( --tooltipOffsetXY ) ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
     }
 }
 

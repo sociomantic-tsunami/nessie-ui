@@ -38,9 +38,12 @@ export default class SliderDriver
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'change', {
-            target : { value }
-        } );
+        const input = this.inputContainer.childAt( index );
+        const node  = input.getNode();
+
+        node.value = value;
+        input.simulate( 'change' );
+
         return this;
     }
 
@@ -90,25 +93,25 @@ export default class SliderDriver
 
     mouseDown()
     {
-        this.track.simulate( 'mouseDown' );
+        this.track.first().simulate( 'mouseDown' );
         return this;
     }
 
     mouseOut()
     {
-        this.default.simulate( 'mouseLeave' );
+        this.default.first().simulate( 'mouseLeave' );
         return this;
     }
 
     mouseOver()
     {
-        this.default.simulate( 'mouseEnter' );
+        this.default.first().simulate( 'mouseEnter' );
         return this;
     }
 
     mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.node.handleMouseUp();
+        this.wrapper.node.handleUp();
         return this;
     }
 

@@ -1,19 +1,19 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import Component        from '../proto/Component';
+import { generateId }   from '../utils';
 import Css              from '../hoc/Css';
 import InputField       from '../InputField';
 import InputContainer   from '../proto/InputContainer';
 
-export default class TextInput extends Component
+export default class TextInput extends React.PureComponent
 {
     static propTypes =
     {
         /**
          *  aria properties
          */
-        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+        aria : PropTypes.objectOf( PropTypes.oneOfType( [
             PropTypes.bool,
             PropTypes.number,
             PropTypes.string,
@@ -82,6 +82,10 @@ export default class TextInput extends Component
          */
         name                  : PropTypes.string,
         /**
+         *  Input click callback function
+         */
+        onClick               : PropTypes.func,
+        /**
          *  Input change callback function
          */
         onChange              : PropTypes.func,
@@ -123,6 +127,7 @@ export default class TextInput extends Component
     {
         aria                  : undefined,
         labelPosition         : 'top',
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -138,11 +143,11 @@ export default class TextInput extends Component
         const {
             className,
             cssMap,
+            id = generateId( 'TextInput' ),
             onMouseOut,
             onMouseOver,
             ...props
         } = this.props;
-        const { id } = this.state;
 
         return (
             <Css cssMap = { cssMap }>

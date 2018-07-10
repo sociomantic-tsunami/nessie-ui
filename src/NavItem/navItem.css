@@ -21,7 +21,7 @@
 
     & > .link
     {
-        color:  color( var( --GS-2 ) a( 50% ) ) !important;
+        color:  var( --PC-GREY--L70 ) !important;
         cursor: default !important;
 
         & > .icon
@@ -59,6 +59,7 @@
 
 .role__sub
 {
+    background:            var( --PC-WHITE );
     border-radius:         6px;
 
     & > .link
@@ -68,16 +69,14 @@
         padding-bottom:    0;
         padding-left:      var( --spacing-2 );
 
-        background-color:  var( --PC-BLUE );
-
         border-radius:     2px;
 
         line-height:       var( --line-height-xxl );
-        color:             var( --PC-WHITE );
+        color:             var( --PC-GREY--D15 );
 
         &:visited
         {
-            color:         var( --PC-WHITE );
+            color:         var( --PC-GREY--D15 );
         }
     }
 
@@ -88,12 +87,25 @@
     &.open > .link,
     &.current > .link
     {
-        background-color:   var( --PC-BLUE--L25 );
+        background-color:   var( --PC-BLUE );
+        color:              var( --PC-WHITE );
     }
 }
 
 .open
 {
+    &:not( .role__sub ):after
+    {
+        content:            '';
+        position:           absolute;
+        display:            inline-block;
+
+        height:             var( --spacing-1 );
+        width:              100%;
+
+        background-color:   transparent;
+    }
+
     .dropdown
     {
         left:   auto;
@@ -138,7 +150,7 @@
 {
     position:   absolute;
     left:       -99999px;
-    margin-top: -2px;
+    margin-top: var( --spacing-1 );
 }
 
 .hasIcon
@@ -170,6 +182,6 @@
     & > .link > .icon,
     &.disabled > .link > .icon
     {
-        fill: var( --PC-GREY--L25 );
+        fill: var( --PC-GREY--L70 );
     }
 }

@@ -14,33 +14,8 @@
             outline: auto 5px -webkit-focus-ring-color;
         }
     }
-}
 
-.error
-{
-    .editor
-    {
-        /* style me! */
-    }
-}
-
-.disabled
-{
-    .editor
-    {
-        /* style me! */
-    }
-}
-
-
-
-
-
-
-
-:global
-{
-    .CodeMirror
+    :global .CodeMirror
     {
         box-sizing:     border-box;
         height:         100%;
@@ -48,10 +23,10 @@
         font-family:    monospace, sans-serif;
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-    }
 
-    .CodeMirror-scroll
-    {
-        overscroll-behavior-y:  contain;
+        &-scroll
+        {
+            overscroll-behavior-y:  contain;
+        }
     }
 }

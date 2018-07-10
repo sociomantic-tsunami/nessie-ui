@@ -2,7 +2,7 @@
 
 :root
 {
-    --horizontalSliderHeight:   32px;
+    --horizontalSliderHeight:   40px;
     --verticalSliderHeight:     300px;
 
     --trackSize:                2px;
@@ -48,15 +48,17 @@
 
     .track
     {
-        position:           relative;
+        position:                       relative;
 
-        width:              var( --trackSize );
-        border-radius:      var( --trackSize );
+        width:                          var( --trackSize );
+        border-radius:                  var( --trackSize );
 
-        background:         var( --PC-GREY--L90 );
+        background:                     var( --PC-GREY--L90 );
 
-        user-select:        none;
-        cursor:             pointer;
+        user-select:                    none;
+        cursor:                         pointer;
+
+        -webkit-tap-highlight-color:    transparent;
 
         &:hover
         {
@@ -191,13 +193,7 @@
 
     .stepLabelsContainer
     {
-        margin-bottom:      6px;
-
-        &:last-child
-        {
-            margin-top:     8px;
-            margin-bottom:  -5px;
-        }
+        margin-bottom:  var( --spacing-1 );
     }
 
     .stepLabel
@@ -287,6 +283,8 @@
 
         cursor:             default;
         user-select:        none;
+
+        line-height:        var( --line-height-s );
     }
 }
 
@@ -295,10 +293,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        top:    -16px;
+        top:        calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateY( -100% );
     }
 }
 
@@ -306,10 +302,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        bottom: -16px;
+        bottom:     calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateY( 100% );
     }
 }
 
@@ -317,10 +311,8 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        left:   16px;
+        right:      calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateX( 100% );
     }
 }
 
@@ -328,10 +320,9 @@
 {
     .handleLabel
     {
-        /* This is a magic number, it’s just a coincidence that it happens to be
-           the same number as the handle size. We should use the Text component
-           to avoid this */
-        right:  16px;
+        left:       calc( -1 * ( var( --spacing-1 ) / 2 ) );
+        transform:  translateX( -100% );
+
     }
 }
 

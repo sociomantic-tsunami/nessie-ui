@@ -63,14 +63,14 @@ const ListBoxOption = ( {
                 selected        : isSelected,
                 withDescription : !!description,
             } ) }
-            id          = { id }
-            onClick     = { eventHandler( onClick, id ) }
-            onMouseOut  = { eventHandler( onMouseOut, id ) }
-            onMouseOver = { eventHandler( onMouseOver, id ) }>
+            id           = { id }
+            onClick      = { eventHandler( onClick, id ) }
+            onMouseEnter = { eventHandler( onMouseOver, id ) }
+            onMouseLeave = { eventHandler( onMouseOut, id ) }>
             { ( iconType && iconType !== 'none' ) &&
                 <Icon
                     className = { cssMap.icon }
-                    size      = { iconSize || ( description ? 'M' : 'S' )  }
+                    size      = { iconSize || 'S'  }
                     type      = { iconType }
                     variant   = "stroke" />
             }
@@ -95,32 +95,51 @@ ListBoxOption.propTypes = {
     iconType    : PropTypes.oneOf( [
         'account',
         'add',
+        'add-circle',
+        'alert',
+        'approved',
+        'arrow',
+        'bell',
+        'board',
         'calendar',
         'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
+        'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'edit-circle',
+        'ended',
+        'error',
+        'file',
+        'graph',
+        'hide',
         'info',
         'inspect',
         'left',
+        'lightbulb',
         'link',
+        'megaphone',
+        'options',
+        'pending',
         'preview',
+        'puzzle-piece',
         'reset',
         'right',
         'search',
+        'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
         'up',
         'upload',
         'validation',
-        'alert',
-        'approved',
-        'declined',
-        'ended',
-        'error',
-        'pending',
-        'show',
-        'hide',
         'none',
     ] ),
     isActive    : PropTypes.bool,

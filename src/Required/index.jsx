@@ -1,7 +1,7 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import Css          from '../hoc/Css';
 
 const Required = ( {
     children,
@@ -9,15 +9,24 @@ const Required = ( {
     cssMap,
     isRequired,
     text } ) =>
+{
+    if ( !Required.didWarn )
+    {
+        console.warn( 'Required: This component is deprecated and will be \
+removed in the next major release.' );
+        Required.didWarn = true;
+    }
 
-    ( <Css
-        cssMap   = { cssMap }
-        cssProps = { { required: isRequired } }>
-        <span className = { className }>
-            { children || text }
-        </span>
-    </Css> );
-
+    return (
+        <Css
+            cssMap   = { cssMap }
+            cssProps = { { required: isRequired } }>
+            <span className = { className }>
+                { children || text }
+            </span>
+        </Css>
+    );
+}
 Required.propTypes =
 {
     /**

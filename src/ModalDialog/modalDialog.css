@@ -37,6 +37,7 @@ $wideWidth : 900px;
 
     .header
     {
+        border:         1px solid color( var( --PC-GREY ) a(12%) );
         box-shadow:     var( --boxShadow );
     }
 }
@@ -68,8 +69,9 @@ $wideWidth : 900px;
 .content
 {
     width:              500px;
-    padding:            40px;
+    padding:            var( --spacing-3 );
     box-sizing:         border-box;
+    border:             1px solid color( var( --PC-GREY ) a(12%) );
     box-shadow:         var( --boxShadow );
     background:         var( --PC-WHITE );
     text-align:         left;
@@ -157,23 +159,22 @@ only used in type__carousel for now
 
     button
     {
-        position:   absolute;
-        top:        calc( 50% - 20px );
+        position:       absolute;
+        top:            calc( 50% - 20px );
 
-        width:      auto;
+        width:          auto;
 
-        margin:     0;
-        border:     none;
-        padding:    0;
+        margin:         0;
+        border:         none;
 
-        background: transparent;
+        cursor:         pointer;
+        z-index:        9999;
 
-        cursor:     pointer;
-        z-index:    9999;
 
         &:first-child
         {
-            left:   150px;
+            left:       150px;
+            transform:  rotate(180deg);
         }
 
         &:last-child

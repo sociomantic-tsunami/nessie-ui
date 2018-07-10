@@ -1,10 +1,11 @@
-import React                                from 'react';
-import PropTypes                            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { DatePicker }                       from '../index';
-import TextInputWithIcon                    from '../TextInputWithIcon';
-import withDropdown                         from '../Dropdown/withDropdown';
-import { eventHandler }                     from '../utils';
+import { DatePicker }     from '../index';
+import TextInputWithIcon  from '../TextInputWithIcon';
+import withDropdown       from '../Dropdown/withDropdown';
+import withInputContainer from '../proto/withInputContainer';
+import { eventHandler }   from '../utils';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
@@ -162,39 +163,35 @@ DateTimeInput.propTypes =
     /**
      *  Picker mode
      */
-    mode                  : PropTypes.oneOf( [
-        'default',
-        'date',
-        'month'
-    ] ),
+    mode                  : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
     /**
      *  “Previous” button is disabled
      */
-    prevIsDisabled   : PropTypes.bool,
+    prevIsDisabled        : PropTypes.bool,
     /**
      *  “Next” button is disabled
      */
-    nextIsDisabled   : PropTypes.bool,
+    nextIsDisabled        : PropTypes.bool,
     /**
      *  Hour input is disabled
      */
-    hourIsDisabled   : PropTypes.bool,
+    hourIsDisabled        : PropTypes.bool,
     /**
      *  Minute input is disabled
      */
-    minuteIsDisabled : PropTypes.bool,
+    minuteIsDisabled      : PropTypes.bool,
     /**
      *  Picker is open
      */
-    isOpen           : PropTypes.bool,
+    isOpen                : PropTypes.bool,
     /**
      *  Days of week to display
      */
-    days             : PropTypes.arrayOf( PropTypes.object ),
+    days                  : PropTypes.arrayOf( PropTypes.object ),
     /**
      *  Weeks to display in default/day mode
      */
-    weeks            : PropTypes.arrayOf(
+    weeks                 : PropTypes.arrayOf(
         PropTypes.arrayOf( PropTypes.object )
     ),
     /**
@@ -276,17 +273,18 @@ DateTimeInput.defaultProps =
     days              : undefined,
     forceHover        : false,
     hasError          : false,
-    hourIsDisabled    : false,
     hourInputRef      : undefined,
+    hourIsDisabled    : false,
     hourPlaceholder   : undefined,
     hourValue         : undefined,
     inputPlaceholder  : undefined,
+    inputRef          : undefined,
+    inputValue        : undefined,
     isDisabled        : false,
     isOpen            : false,
     isReadOnly        : false,
-    inputRef          : undefined,
-    minuteIsDisabled  : false,
     minuteInputRef    : undefined,
+    minuteIsDisabled  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
     mode              : 'default',
@@ -303,9 +301,8 @@ DateTimeInput.defaultProps =
     onMouseOut        : undefined,
     onMouseOver       : undefined,
     prevIsDisabled    : false,
-    inputValue        : undefined,
     weeks             : undefined,
 };
 
-
-export default DateTimeInput;
+export { DateTimeInput };
+export default withInputContainer( DateTimeInput );

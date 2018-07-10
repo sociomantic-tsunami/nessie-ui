@@ -10,7 +10,7 @@ export default class TabsDriver
         return this.wrapper.find( 'TabButton' );
     }
 
-    getTabButtonsByIndex( index )
+    getTabButtonsByIndex( index = 0 )
     {
         if ( Array.isArray( index ) )
         {

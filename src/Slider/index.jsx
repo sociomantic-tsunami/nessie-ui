@@ -1,13 +1,13 @@
 /* global addEventListener removeEventListener Event */
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Component            from '../proto/Component';
-import Css                  from '../hoc/Css';
-import IconWithTooltip      from '../IconWithTooltip';
-import Label                from '../Label';
+import { generateId }   from '../utils';
+import Css              from '../hoc/Css';
+import IconWithTooltip  from '../IconWithTooltip';
+import Label            from '../Label';
 
-export default class Slider extends Component
+export default class Slider extends React.Component
 {
     static propTypes =
     {
@@ -15,6 +15,10 @@ export default class Slider extends Component
         *  Label text
         */
         label                 : PropTypes.string,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id                    : PropTypes.string,
         /**
         * Display as disabled
         */
@@ -27,6 +31,11 @@ export default class Slider extends Component
         * Display as error
         */
         hasError              : PropTypes.bool,
+        /**
+        *  Callback that receives ref to native input; or array of refs to
+        *  native inputs
+        */
+        inputRef              : PropTypes.func,
         /**
         *  Tooltip message text (string or JSX)
         */
@@ -151,21 +160,17 @@ export default class Slider extends Component
         /**
         * Step labels
         */
-        stepLabels    : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        ),
+        stepLabels    : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) ),
         /**
         * Slider ticks separators
         */
-        ticks : PropTypes.arrayOf(
-            PropTypes.shape( {
-                stepLabel : PropTypes.string,
-                step      : PropTypes.number,
-            } )
-        )
+        ticks : PropTypes.arrayOf( PropTypes.shape( {
+            stepLabel : PropTypes.string,
+            step      : PropTypes.number,
+        } ) )
     };
 
     static defaultProps =
@@ -176,6 +181,7 @@ export default class Slider extends Component
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         hasFill               : true,
+        id                    : undefined,
         fillFrom              : 'start',
         orientation           : 'horizontal',
         stepLabelsPosition    : 'top',
@@ -202,11 +208,73 @@ export default class Slider extends Component
         this.handleBlur      = this.handleBlur.bind( this );
         this.handleClick     = this.handleClick.bind( this );
         this.handleFocus     = this.handleFocus.bind( this );
-        this.handleMouseDown = this.handleMouseDown.bind( this );
-        this.handleMouseMove = this.handleMouseMove.bind( this );
-        this.handleMouseUp   = this.handleMouseUp.bind( this );
+        this.handleDown = this.handleDown.bind( this );
+        this.handleMove = this.handleMove.bind( this );
+        this.handleUp   = this.handleUp.bind( this );
     }
 
+    componentDidMount()
+    {
+        this.attachInputRefs();
+    }
+
+    componentWillUpdate( nextProps )
+    {
+        if ( nextProps.inputRef !== this.props.inputRef )
+        {
+            this.detachInputRefs();
+        }
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        const { props } = this;
+
+        if ( prevProps.inputRef !== props.inputRef ||
+            prevProps.value.length !== props.value.length )
+        {
+            this.attachInputRefs();
+        }
+    }
+
+    componentWillUnmount()
+    {
+        this.detachInputRefs();
+    }
+
+    /* eslint-disable react/sort-comp */
+    attachInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            const inputs = Array.from( this.inputContainer.childNodes );
+
+            if ( inputs.length === 1 )
+            {
+                inputRef( inputs[ 0 ] );
+            }
+            else if ( inputs.length > 1 )
+            {
+                inputRef( inputs );
+            }
+            else
+            {
+                inputRef( null );
+            }
+        }
+    }
+
+    detachInputRefs()
+    {
+        const { inputRef } = this.props;
+
+        if ( inputRef )
+        {
+            inputRef( null );
+        }
+    }
 
     /**
     * Generate track fill style object depending on input values
@@ -304,7 +372,9 @@ export default class Slider extends Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -432,7 +502,7 @@ export default class Slider extends Component
     * Updates target input with new value from the mouse down on track position
     * @param {Event}  event   event being passed
     */
-    handleMouseDown( event )
+    handleDown( event )
     {
         const { onMouseDown } = this.props;
 
@@ -447,19 +517,22 @@ export default class Slider extends Component
             return;
         }
 
-        event.preventDefault();
-
         const { index } = event.target.dataset;
 
         if ( event.target.dataset.index ) // target is handle
         {
-            event.stopPropagation();
             this.setTargetInput( index );
+
+            addEventListener( event.type === 'touchstart' ?
+                'touchmove' : 'mousemove', this.handleMove );
+            addEventListener( event.type === 'touchstart' ?
+                'touchend' : 'mouseup', this.handleUp );
         }
         else // target is track
         {
-            const { clientX, clientY } = event;
+            if ( event.type === 'touchstart' ) return;
 
+            const { clientX, clientY } = event;
             const newValue = this.getStep( this.getValue( clientX, clientY ) );
 
             this.setTargetInput();
@@ -467,9 +540,6 @@ export default class Slider extends Component
         }
 
         this.focusTargetInput();
-
-        addEventListener( 'mousemove', this.handleMouseMove );
-        addEventListener( 'mouseup', this.handleMouseUp );
     }
 
 
@@ -477,9 +547,14 @@ export default class Slider extends Component
     * Updates target input with new value from handle position
     * @param {Event}  event   event being passed
     */
-    handleMouseMove( event )
+    handleMove( event )
     {
-        const { clientX, clientY } = event;
+        let { clientX, clientY } = event;
+        if ( event.touches )
+        {
+            clientX  = event.touches[ 0 ].clientX;
+            clientY  = event.touches[ 0 ].clientY;
+        }
 
         const newValue = this.getStep( this.getValue( clientX, clientY ) );
         this.setTargetInputValue( newValue );
@@ -490,7 +565,7 @@ export default class Slider extends Component
     *  Removes mouseMove and mouseUp listeners
     *  @param {Event}   event   event being passed
     */
-    handleMouseUp( event = new Event( 'mouseup' ) )
+    handleUp( event = new Event( 'mouseup' ) )
     {
         const { onMouseUp } = this.props;
 
@@ -499,8 +574,10 @@ export default class Slider extends Component
             onMouseUp( event );
         }
 
-        removeEventListener( 'mousemove', this.handleMouseMove );
-        removeEventListener( 'mouseup', this.handleMouseUp );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchmove' : 'mousemove', this.handleMove );
+        removeEventListener( event.type === 'touchmove' ?
+            'touchend' : 'mouseup', this.handleUp );
     }
 
 
@@ -600,6 +677,7 @@ export default class Slider extends Component
             hasError,
             hasFill,
             hasHandleLabels,
+            id = generateId( 'Slider' ),
             isDisabled,
             isReadOnly,
             label,
@@ -619,8 +697,6 @@ export default class Slider extends Component
             value,
             ticks = []
         } = this.props;
-
-        const { id } = this.state;
 
         let values = [];
 
@@ -643,8 +719,7 @@ export default class Slider extends Component
                             className = { cssMap.stepLabel }
                             style     = { this.getHandleStyle( val.step ) } >
                             { val.stepLabel }
-                        </div>
-                    ) }
+                        </div> ) }
                 </div>
             );
         }
@@ -703,8 +778,7 @@ export default class Slider extends Component
                             className = { cssMap.tick }
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
-                        </div>
-                ) }
+                        </div> ) }
             </div>
         );
 
@@ -757,10 +831,11 @@ export default class Slider extends Component
                                 stepLabelsTrack }
                         <div
                             aria-hidden
-                            className   = { cssMap.track }
-                            ref         = { this.setTrackRef }
-                            onClick     = { this.handleClick }
-                            onMouseDown = { this.handleMouseDown }>
+                            className    = { cssMap.track }
+                            ref          = { this.setTrackRef }
+                            onClick      = { this.handleClick }
+                            onMouseDown  = { this.handleDown }
+                            onTouchStart = { this.handleDown }>
                             { trackFillMarkUp }
 
                             { values.map( ( val, i ) =>

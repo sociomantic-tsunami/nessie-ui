@@ -56,7 +56,7 @@ removed in the next major release. Please use isCurrent instead.' );
                         <Icon
                             className = { cssMap.icon }
                             type = { iconType }
-                            size = "M" />
+                            size = "S" />
                     }
                     <span>{ label }</span>
                 </a>
@@ -98,29 +98,48 @@ NavItem.propTypes =
     iconType      : PropTypes.oneOf( [
         'account',
         'add',
+        'add-circle',
         'alert',
         'approved',
+        'arrow',
+        'bell',
+        'board',
         'calendar',
         'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
         'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'edit-circle',
         'ended',
         'error',
+        'file',
+        'graph',
         'hide',
         'info',
         'inspect',
         'left',
+        'lightbulb',
         'link',
+        'megaphone',
+        'options',
         'pending',
         'preview',
+        'puzzle-piece',
         'reset',
         'right',
         'search',
         'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
         'up',
         'upload',
         'validation',

@@ -1,5 +1,7 @@
+/* global document */
+
 const ERRORS = {
-    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it is read-only' // eslint-disable-line max-len
+    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it’s read only'
 };
 
 export default class CodeEditorDriver
@@ -20,15 +22,55 @@ export default class CodeEditorDriver
 
     blur()
     {
-        /* eslint-disable no-undef */
         if ( this.control.hasFocus() && Boolean( document ) &&
             Boolean( document.activeElement ) )
         {
             document.activeElement.blur();
         }
-        /* eslint-enable no-undef */
         return this;
     }
+
+    /**
+     * Simulates the pressing of a given key. In case of a printable character
+     * the input will be updated accordingly as well.
+     * @param {Integer} keyCode the integer code of a key
+     * @return {InputComponentDriver} this driver (for chaining commands)
+     */
+    pressKey( keyCode )
+    {
+        if ( isCharPrintable( keyCode ) )
+        {
+            const oldVal = this.control.getValue();
+            this.control.setValue( oldVal + String.fromCharCode( keyCode ) );
+            const onChange = this.wrapper.prop( 'onChange' );
+            if ( onChange )
+            {
+                onChange( this.getInputValue() );
+            }
+        }
+
+        return this;
+    }
+
+    /**
+    * Pressing each character of the value one by one.
+    * @param {String} value a value press
+    * @return {InputComponentDriver} this driver (for chaining commands)
+    */
+    inputValue( value )
+    {
+        const FIRST_CHARACTER = 0;
+        const keys = value.toString().split( '' );
+
+        keys.forEach( key =>
+        {
+            const keyCode = key.charCodeAt( FIRST_CHARACTER );
+            this.pressKey( keyCode );
+        } );
+
+        return this;
+    }
+
 
     setInputValue( value )
     {
@@ -37,8 +79,14 @@ export default class CodeEditorDriver
             throw new Error( ERRORS.EDITOR_READ_ONLY );
         }
 
+        const onChange = this.wrapper.prop( 'onChange' );
+
         this.focus();
         this.control.setValue( value );
+        if ( onChange )
+        {
+            onChange( this.getInputValue() );
+        }
         this.blur();
         return this;
     }
@@ -62,4 +110,13 @@ export default class CodeEditorDriver
     {
         return this.control.options.readOnly === 'nocursor';
     }
+}
+
+function isCharPrintable( keyCode )
+{
+    const blackList = [
+        13, // Enter
+    ];
+
+    return !blackList.includes( keyCode );
 }

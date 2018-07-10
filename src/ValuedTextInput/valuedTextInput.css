@@ -1,5 +1,11 @@
 @import "../proto/base.css";
 
+
+:root
+{
+    --inputHeight: 40px;
+    --borderWidth: 1px;
+}
 .default
 {
     .container
@@ -29,13 +35,16 @@
         flex:           0 0 auto;
         width:          auto;
 
-        border:         1px solid var( --PC-GREY--L70 );
-        padding:        11px 13px 11px 13px;
+        border:         var( --borderWidth ) solid var( --PC-GREY--L70 );
+        padding:        0 var( --spacing-2 );
 
         background:     var( --PC-WHITE );
+        color:          var( --PC-GREY--D5 );
 
         font-size:      var( --typo-1 );
-        color:          var( --PC-GREY--D5 );
+
+        line-height:    calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
+        vertical-align: middle;
         white-space:    nowrap;
 
         cursor:         pointer;
@@ -77,7 +86,7 @@
 
     .input
     {
-        padding-left:   13px;
+        padding-left:   var( --spacing-2 );
     }
 
     .valueLabel
@@ -97,7 +106,7 @@
 {
     .input
     {
-        padding-right:   13px;
+        padding-right:   var( --spacing-2 );
     }
 
     .valueLabel

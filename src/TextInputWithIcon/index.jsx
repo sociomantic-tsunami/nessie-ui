@@ -1,14 +1,12 @@
-import React, { Component }             from 'react';
-import PropTypes                        from 'prop-types';
+import React, { Component }                from 'react';
+import PropTypes                           from 'prop-types';
 
-import { buildClassName, generateId }   from '../utils';
-import styles                           from './textInputWithIcon.css';
-import InputField                       from '../InputField';
-import IconButton                       from '../IconButton';
-import Tooltip                          from '../Tooltip';
+import { buildClassName, generateId }      from '../utils';
+import styles                              from './textInputWithIcon.css';
+import { IconButton, InputField, Tooltip } from '../index';
+import withInputContainer                  from '../proto/withInputContainer';
 
-
-export default class TextInputWithIcon extends Component
+class TextInputWithIcon extends Component
 {
     static propTypes =
     {
@@ -49,27 +47,52 @@ export default class TextInputWithIcon extends Component
         iconType    : PropTypes.oneOf( [
             'account',
             'add',
+            'add-circle',
+            'alert',
+            'approved',
+            'arrow',
+            'bell',
+            'board',
             'calendar',
             'close',
+            'close-circle',
+            'close-thick',
+            'dash',
+            'dashboard',
+            'declined',
             'delete',
             'down',
             'download',
             'duplicate',
             'edit',
-            'info',
+            'edit-circle',
+            'ended',
+            'error',
+            'file',
+            'graph',
             'hide',
+            'info',
             'inspect',
             'left',
+            'lightbulb',
             'link',
+            'megaphone',
+            'options',
+            'pending',
             'preview',
+            'puzzle-piece',
             'reset',
             'right',
             'search',
             'show',
+            'star',
+            'star-stroke',
+            'swap',
+            'table',
             'up',
             'upload',
             'validation',
-            'none'
+            'none',
         ] ),
         /**
          *  Alignment of the icon
@@ -157,6 +180,10 @@ export default class TextInputWithIcon extends Component
          */
         onChange        : PropTypes.func,
         /**
+         *  Input click callback function
+         */
+        onClick         : PropTypes.func,
+        /**
          * key down callback function
          */
         onKeyDown        : PropTypes.func,
@@ -221,7 +248,7 @@ export default class TextInputWithIcon extends Component
         label                 : undefined,
         labelPosition         : 'top',
         placeholder           : undefined,
-        id                    : generateId( 'TextInputWithIcon' ),
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         iconButtonIsDisabled  : false,
@@ -358,7 +385,7 @@ export default class TextInputWithIcon extends Component
             defaultValue,
             forceHover,
             hasError,
-            id,
+            id = generateId( 'TextInputWithIcon' ),
             iconButtonIsDisabled,
             iconPosition,
             iconTooltipIsVisible,
@@ -370,6 +397,7 @@ export default class TextInputWithIcon extends Component
             isReadOnly,
             name,
             onChange,
+            onClick,
             onClickIcon,
             onKeyDown,
             onKeyPress,
@@ -412,6 +440,7 @@ export default class TextInputWithIcon extends Component
                     name         = { name }
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
+                    onClick      = { onClick }
                     onFocus      = { this.handleFocus }
                     onKeyDown    = { onKeyDown }
                     onKeyPress   = { onKeyPress }
@@ -447,3 +476,6 @@ export default class TextInputWithIcon extends Component
         );
     }
 }
+
+export { TextInputWithIcon };
+export default withInputContainer( TextInputWithIcon );

@@ -1,13 +1,13 @@
 import React            from 'react';
 import PropTypes        from 'prop-types';
 
-import Component        from '../proto/Component';
+import { generateId }   from '../utils';
 import InputContainer   from '../proto/InputContainer';
 import Css              from '../hoc/Css';
 import InputField       from '../InputField';
 
 
-export default class ValuedTextInput extends Component
+export default class ValuedTextInput extends React.Component
 {
     static propTypes =
     {
@@ -90,6 +90,10 @@ export default class ValuedTextInput extends Component
          */
         name        : PropTypes.string,
         /**
+         *  Input click callback function
+         */
+        onClick     : PropTypes.func,
+        /**
          * onChange callback function: ( e ) => { ... }
          */
         onChange    : PropTypes.func,
@@ -126,6 +130,7 @@ export default class ValuedTextInput extends Component
     static defaultProps =
     {
         labelPosition         : 'top',
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -183,13 +188,14 @@ export default class ValuedTextInput extends Component
         const {
             forceHover,
             hasError,
+            id = generateId( 'ValuedTextInput' ),
             isDisabled,
             textAlign,
             valueLabel,
             valueLabelPosition,
         } = props;
 
-        const { id, isFocused } = this.state;
+        const { isFocused } = this.state;
 
         let alignText = textAlign;
 

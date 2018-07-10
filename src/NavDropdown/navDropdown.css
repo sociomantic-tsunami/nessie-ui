@@ -4,15 +4,14 @@
 {
     width:                  auto;
     max-width:              none;
+    min-width:              150px;
     max-height:             50vh;
 
-    background:             var( --PC-BLUE );
-    box-shadow:             0 2px 10px 0 var( --PC-GREY--L75 );
+    border:                 1px solid color( var( --PC-GREY ) a(12%) );
+    background:             var( --PC-WHITE );
+    box-shadow:             var( --boxShadow );
 
-    padding-top:            var( --spacing-1 );
-    padding-right:          var( --spacing-2 );
-    padding-bottom:         var( --spacing-1 );
-    padding-left:           var( --spacing-2 );
+    padding:                var( --spacing-2 );
 
     overflow-y:             auto;
     overscroll-behavior-y:  contain;

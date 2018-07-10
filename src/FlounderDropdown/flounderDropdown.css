@@ -21,6 +21,16 @@
 
         letter-spacing:     0;
 
+        min-height:         calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
+        display:            flex;
+        align-items:        center;
+
+        .selectedDisplayed
+        {
+            height: 40px;
+            line-height: 40px;
+        }
+
         &:focus
         {
             outline:    none;
@@ -102,7 +112,7 @@
     {
         position:       absolute;
 
-        top:            calc( 100% + 10px );
+        top:            calc( 100% + var( --spacing-1 ) );
         left:           calc( -1 * var( --borderWidth ) );
 
         width:          calc( 100% + ( var( --borderWidth ) * 2 ) );
@@ -111,6 +121,7 @@
         padding-top:    var( --spacing-1 );
         padding-bottom: var( --spacing-1 );
 
+        border:         1px solid color( var( --PC-GREY ) a(12%) );
         box-shadow:     var( --boxShadow );
 
         background:     var( --PC-WHITE );
@@ -119,6 +130,10 @@
 
         overflow:       auto;
         z-index:        50;
+        @media( min-height: 768px )
+        {
+            max-height: 450px;
+        }
     }
 
     .list
@@ -128,11 +143,10 @@
 
     .selectedDisplayed
     {
-        display:        flex;
-        align-items:    center;
+        display:        block;
 
+        flex-grow:      1;
         box-sizing:     border-box;
-        height:         calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
 
         padding-left:   var( --spacing-2 );
         padding-right:  calc( var( --spacing-1 ) + var( --iconSize )  + var( --spacing-1 ) );
@@ -170,10 +184,12 @@
             left:           0;
             right:          0;
 
-            min-height:     var( --spacing-5 );
+            min-height:     calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
 
-            padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-m ) ) / 2 );
-            padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-m ) ) / 2 );
+            padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
+            padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
+
+            line-height:    unset;
         }
     }
 
@@ -216,14 +232,15 @@
         color:          var( --PC-GREY );
     }
 
-    .option
+    .option,
+    .option.selected
     {
         cursor: pointer;
 
         &:hover,
         &:hover .description
         {
-            background: var( --PC-BLUE );
+            background-color: var( --PC-BLUE );
             color:      var( --PC-WHITE );
         }
 
@@ -234,7 +251,7 @@
         }
     }
 
-    .selected
+    .selected:not( .section )
     {
         background: color( var( --PC-BLUE ) a( 10% ) );
     }
@@ -272,6 +289,11 @@
         cursor:         auto;
     }
 
+    .option.noResults
+    {
+        @extend         %Nessie-RegularIt;
+    }
+
     .option.disabled,
     .error .option.disabled
     {
@@ -292,7 +314,7 @@
     .arrow
     {
         position:       absolute;
-        top:            50%;
+        top:            20px;
         right:          calc( var( --spacing-1 ) + var( --borderWidth ) );
 
         transform:      translateY( -50% );
@@ -319,8 +341,12 @@
         border:         none;
         margin:         0;
 
+        height:         calc( var( --line-height-m ) - ( var( --borderWidth ) * 2 ) );
+
         background:     transparent;
 
+        @extend %Nessie-Regular;
+        color:          var( --PC-GREY--D5 );
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
         letter-spacing: 0.4px;
@@ -363,11 +389,11 @@
 
         padding-top:        3px;
         padding-right:      calc( var( --spacing-1 ) + var( --iconSize ) + var( --spacing-1 ) );
-        padding-left:       var( --spacing-1 );
+        padding-left:       3px;
 
         & > *
         {
-            margin-right:   var( --spacing-1 );
+            margin-right:   3px;
             margin-bottom:  3px;
 
             &:last-child
@@ -387,7 +413,7 @@
 
         box-sizing:     border-box;
         max-width:      100%;
-        height:         var( --tagHeight );
+        height:         var( --line-height-l );
 
         padding-left:   var( --spacing-2 );
         padding-right:  var( --spacing-2 );
@@ -478,27 +504,27 @@
 
     .option.optionIcon__approved
     {
-        background-image:   url("./images/stroke-colours/approved.svg");
+        background-image:   url("./images/approved.svg");
     }
     .option.optionIcon__declined
     {
-        background-image:   url("./images/stroke-colours/declined.svg");
+        background-image:   url("./images/declined.svg");
     }
     .option.optionIcon__ended
     {
-        background-image:   url("./images/stroke-colours/ended.svg");
+        background-image:   url("./images/ended.svg");
     }
     .option.optionIcon__pending
     {
-        background-image:   url("./images/stroke-colours/pending.svg");
+        background-image:   url("./images/pending.svg");
     }
     .option.optionIcon__alert
     {
-        background-image:   url("./images/fill/alert.svg");
+        background-image:   url("./images/alert.svg");
     }
     .option.optionIcon__error
     {
-        background-image:   url("./images/fill/error.svg");
+        background-image:   url("./images/error.svg");
     }
     .optionIcon__include
     {
@@ -560,18 +586,11 @@
 
     .mainWrapper
     {
-        position:       absolute;
+        position:   absolute;
 
-        top:            0;
-        left:           0;
-        right:          0;
-
-        /* compensate for padding set on .selectedDisplayed
-         * and border set on .main (except on right side)
-         */
-        margin-top:     calc( -1 * ( var( --borderWidth ) + var( --spacing-2 ) ) );
-        margin-bottom:  calc( -1 * ( var( --borderWidth ) + var( --spacing-2 ) ) );
-        margin-left:    calc( -1 * ( var( --borderWidth ) + var( --spacing-2 ) ) );
+        top:        0;
+        left:       0;
+        right:      0;
     }
 
     .main,
@@ -580,9 +599,9 @@
     &.error .main,
     .main.disabled
     {
-        border-color:   transparent;
-        background:     transparent;
-        box-shadow:     none;
+        border:     none !important; /* yes, always */
+        background: transparent !important; /* yes, always */
+        box-shadow: none !important; /* yes, always */
     }
 
     .main
@@ -590,6 +609,8 @@
         display:            flex;
         justify-content:    flex-start;
         align-items:        center;
+
+        min-height:         0;
     }
 
     &:not( .error ) .main .selectedDisplayed
@@ -600,8 +621,11 @@
     .selectedDisplayed
     {
         height:         auto;
-        padding-top:    var( --spacing-2 );
-        padding-bottom: var( --spacing-2 );
+        padding-top:    0 !important; /* yes, always */
+        padding-bottom: 0 !important; /* yes, always */
+        padding-left:   0 !important; /* yes, always */
+
+        flex-grow:      unset;
     }
 
     .arrow
@@ -623,8 +647,7 @@
 {
     .selectedDisplayed
     {
-        padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 30px + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-4 ) + var( --spacing-2 ) );
 
         font-size:      var( --typo-7 );
         line-height:    var( --line-height-l );
@@ -633,13 +656,13 @@
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 30px ) );
+        left:   calc( -1 * var( --spacing-4 ) );
     }
 
     .arrowInner
     {
-        width:  30px;
-        height: 30px;
+        width:  calc( var( --spacing-4 ) );
+        height: calc( var( --spacing-4 ) );
     }
 }
 
@@ -647,8 +670,7 @@
 {
     .selectedDisplayed
     {
-        padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 22px + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-3 ) + var( --spacing-2 ) );
 
         font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
@@ -657,13 +679,13 @@
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 22px ) );
+        left:   calc( -1 * var( --spacing-3 ) );
     }
 
     .arrowInner
     {
-        height: 22px;
-        width:  22px;
+        width:  calc( var( --spacing-3 ) );
+        height: calc( var( --spacing-3 ) );
     }
 }
 
@@ -671,8 +693,7 @@
 {
     .selectedDisplayed
     {
-        padding-left:   var( --spacing-2 );
-        padding-right:  calc( var( --spacing-2 ) + 22px + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
 
         font-size:      var( --typo-4 );
         line-height:    var( --line-height-l );
@@ -681,13 +702,13 @@
 
     .arrow
     {
-        left:   calc( -1 * ( var( --spacing-2 ) + 20px ) );
+        left:   calc( -1 * var( --spacing-2 ) );
     }
 
     .arrowInner
     {
-        height: 20px;
-        width:  20px;
+        width:  calc( var( --spacing-2 ) );
+        height: calc( var( --spacing-2 ) );
     }
 }
 
@@ -695,22 +716,26 @@
 {
     .selectedDisplayed
     {
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
+
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-l );
         letter-spacing: 0;
     }
 
-    /* .arrow
+    .arrow
     {
-        top:    3px;
-    } */
+        left:   calc( -1 * var( --spacing-2 ) );
+    }
 
     .arrowInner
     {
-        height: 18px;
-        width:  18px;
+        width:  calc( var( --spacing-2 ) );
+        height: calc( var( --spacing-2 ) );
     }
 }
+
+
 
 
 .error
@@ -755,7 +780,7 @@
     {
         .arrowInner
         {
-            background-image:   url( './images/light/search__hover.svg' );
+            background-image:   url( './images/search__hover.svg' );
         }
     }
 
@@ -764,10 +789,11 @@
     {
         .arrowInner
         {
-            background-image:   url( './images/light/search.svg' );
+            background-image:   url( './images/search.svg' );
         }
     }
 }
+
 
 .toggleIcon__none
 {

@@ -51,7 +51,7 @@ $shark: 768px;
     letter-spacing:     0.5px;
     text-transform:     uppercase;
     text-decoration:    none;
-    color:              var( --PC-GREY--D15 );
+    color:              var( --PC-GREY--D25 );
     cursor:             text;
 }
 
@@ -59,6 +59,20 @@ $shark: 768px;
 {
     @extend %Nessie-Bold;
     z-index:            1;
+}
+
+.rowHeader,
+.header
+{
+    .text
+    {
+        @extend %Nessie-SemiBold;
+        font-size:      var( --typo-2 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.5px;
+        color:          var( --PC-GREY--D15 );
+        text-transform: uppercase;
+    }
 }
 
 .sticky

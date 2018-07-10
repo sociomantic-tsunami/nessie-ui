@@ -6,19 +6,19 @@
     {
         display:            flex;
         flex-wrap:          wrap;
-        align-items:        center;
+        align-items:        flex-start;
+        align-content:      flex-start;
 
         box-sizing:         border-box;
         width:              100%;
-        min-height:         32px;
 
         border:             1px solid var( --PC-GREY--L70 );
         border-radius:      2px;
 
         padding-top:        3px;
-        padding-right:      var( --spacing-1 );
+        padding-right:      3px;
         padding-bottom:     0;
-        padding-left:       var( --spacing-1 );
+        padding-left:       3px;
 
         background-color:   var( --PC-WHITE );
         outline:            none;
@@ -27,7 +27,7 @@
 
         & > *
         {
-            margin-right:   var( --spacing-1 );
+            margin-right:   4px;
             margin-bottom:  3px;
         }
     }
@@ -38,7 +38,7 @@
 
         box-sizing:     border-box;
         min-width:      5ch;
-        height:         20px;
+        min-height:     32px;
 
         padding:        0;
         padding-top:    1px;
@@ -81,7 +81,7 @@
     .container
     {
         border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 0.1rem var( --PC-BLUE );
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
     }
 }
 
@@ -114,6 +114,6 @@
 {
     .container
     {
-        resize: vertical;
+        resize:        vertical;
     }
 }

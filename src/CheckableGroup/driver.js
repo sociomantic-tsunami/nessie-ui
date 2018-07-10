@@ -11,7 +11,7 @@ export default class CheckableGroupDriver
         return items.map( item => item.childAt( 0 ) );
     }
 
-    selectByIndex( index )
+    selectByIndex( index = 0 )
     {
         const items = this.getContent();
 
@@ -48,6 +48,48 @@ export default class CheckableGroupDriver
                 this.wrapper.findWhere( n =>
                     n.prop( 'value' ) === value ).first();
             item.driver().setChecked();
+        }
+
+        return this;
+    }
+
+    toggleByIndex( index = 0 )
+    {
+        const items = this.getContent();
+
+        if ( Array.isArray( index ) )
+        {
+            index.forEach( i =>
+            {
+                items[ i ].driver().toggleChecked();
+            } );
+        }
+        else
+        {
+            items[ index ].driver().toggleChecked();
+        }
+
+        return this;
+    }
+
+    toggleByValue( value )
+    {
+        if ( Array.isArray( value ) )
+        {
+            value.forEach( i =>
+            {
+                const item =
+                    this.wrapper.findWhere( n =>
+                        n.prop( 'value' ) === i ).first();
+                item.driver().toggleChecked();
+            } );
+        }
+        else
+        {
+            const item =
+                this.wrapper.findWhere( n =>
+                    n.prop( 'value' ) === value ).first();
+            item.driver().toggleChecked();
         }
 
         return this;

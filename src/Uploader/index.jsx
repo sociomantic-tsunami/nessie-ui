@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import Css              from '../hoc/Css';
-import Component        from '../proto/Component';
+import { generateId }   from '../utils';
 import Button           from '../Button';
 import IconWithTooltip  from '../IconWithTooltip';
 import Spinner          from '../Spinner';
@@ -10,7 +10,7 @@ import IconButton       from '../IconButton';
 import Tooltip          from '../Tooltip';
 import Label            from '../Label';
 
-export default class Uploader extends Component
+export default class Uploader extends React.PureComponent
 {
     static propTypes =
     {
@@ -32,6 +32,10 @@ export default class Uploader extends Component
         *  Display as disabled
         */
         isDisabled              : PropTypes.bool,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id                      : PropTypes.string,
         /**
         *  Display as read-only
         */
@@ -67,7 +71,7 @@ export default class Uploader extends Component
         /**
          * Preview button is disabled
          */
-        previewisDisabled       : PropTypes.bool,
+        previewIsDisabled       : PropTypes.bool,
         /**
          * onClick callback function: ( e ) => { ... }
          */
@@ -80,6 +84,14 @@ export default class Uploader extends Component
          * onChange callback function: ( e ) => { ... }
          */
         onChange                : PropTypes.func,
+        /**
+         * onMouseOut callback function: ( e ) => { ... }
+         */
+        onMouseOut              : PropTypes.func,
+        /**
+         * onMouseOver callback function: ( e ) => { ... }
+         */
+        onMouseOver             : PropTypes.func,
         /**
         *  Error message position relative to the icon
         */
@@ -98,6 +110,7 @@ export default class Uploader extends Component
         hasWarning              : false,
         tooltipIsVisible        : false,
         errorMessagePosition    : 'top',
+        id                      : undefined,
         isDisabled              : false,
         isReadOnly              : false,
         previewTooltipIsVisible : false,
@@ -114,13 +127,16 @@ export default class Uploader extends Component
             errorMessage,
             hasError,
             hasWarning,
+            id = generateId( 'Uploader' ),
             isDisabled,
             isReadOnly,
             label,
             onChange,
             onClick,
             onClickSecondary,
-            previewisDisabled,
+            onMouseOut,
+            onMouseOver,
+            previewIsDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
             tooltipIsVisible,
@@ -128,8 +144,6 @@ export default class Uploader extends Component
             uploadState,
             warningMessage
         } = this.props;
-
-        const { id } = this.state;
 
         const buttonRole = 'default';
         let hasTooltip = false;
@@ -179,14 +193,17 @@ export default class Uploader extends Component
                     loading         : isLoading,
                     uploaded,
                     disabled        : isDisabled,
-                    previewDisabled : previewisDisabled
+                    previewDisabled : previewIsDisabled
                 } }>
-                <div className = { className }>
+                <div
+                    className    = { className }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut } >
                     <input
-                        type      = "file"
-                        name      = { `${id}-file` }
-                        className = { cssMap.input }
-                        onChange  = { onChange } />
+                        type         = "file"
+                        name         = { `${id}-file` }
+                        className    = { cssMap.input }
+                        onChange     = { onChange } />
                     { label &&
                         <Label
                             overflowIsHidden

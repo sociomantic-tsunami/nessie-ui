@@ -1,12 +1,12 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Component    from '../proto/Component';
-import Css          from '../hoc/Css';
-import Icon         from '../Icon';
-import Spinner      from '../Spinner';
+import { generateId }   from '../utils';
+import Css              from '../hoc/Css';
+import Icon             from '../Icon';
+import Spinner          from '../Spinner';
 
-export default class Button extends Component
+export default class Button extends React.Component
 {
     static propTypes =
     {
@@ -33,32 +33,54 @@ export default class Button extends Component
         *  Icon type to display (overrides customIcon)
         */
         iconType : PropTypes.oneOf( [
+            'account',
             'add',
+            'add-circle',
             'alert',
             'approved',
+            'arrow',
+            'bell',
+            'board',
             'calendar',
             'close',
+            'close-circle',
+            'close-thick',
+            'dash',
+            'dashboard',
             'declined',
             'delete',
             'down',
             'download',
             'duplicate',
             'edit',
+            'edit-circle',
             'ended',
             'error',
+            'file',
+            'graph',
+            'hide',
             'info',
             'inspect',
             'left',
+            'lightbulb',
             'link',
+            'megaphone',
+            'options',
             'pending',
             'preview',
+            'puzzle-piece',
             'reset',
             'right',
             'search',
+            'show',
+            'star',
+            'star-stroke',
+            'swap',
+            'table',
             'up',
             'upload',
             'validation',
-            'none'
+            'none',
         ] ),
         /**
          *  Icon position relative to Button text
@@ -116,6 +138,7 @@ export default class Button extends Component
         role         : 'default',
         iconType     : 'none',
         iconPosition : 'left',
+        id           : undefined,
         isLoading    : false,
         isDisabled   : false,
         isReadOnly   : false,
@@ -165,6 +188,7 @@ export default class Button extends Component
             forceHover,
             iconPosition,
             iconType,
+            id = generateId( 'Button' ),
             isDisabled,
             isReadOnly,
             isLoading,
@@ -175,8 +199,6 @@ export default class Button extends Component
             value
         } = this.props;
 
-        const { id, isHovered } = this.state;
-
         let iconMarkup;
         if ( iconType && iconType !== 'none' )
         {
@@ -185,10 +207,10 @@ export default class Button extends Component
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
-                        size       = "M"
+                        size       = "S"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
-                        forceHover = { isHovered }
+                        forceHover = { this.isHovered }
                         isDisabled = { isDisabled } />
                 </div>
             );

@@ -5,6 +5,8 @@
     min-width:  0;
     max-width:  none;
 
+    border:     1px solid color( var( --PC-GREY ) a(12%) );
+
     box-shadow: var( --boxShadow );
 
     background: var( --PC-WHITE );

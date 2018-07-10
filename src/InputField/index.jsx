@@ -1,12 +1,11 @@
-import React                       from 'react';
-import PropTypes                   from 'prop-types';
+import React                                   from 'react';
+import PropTypes                               from 'prop-types';
 
-import Component                   from '../proto/Component';
-import { buildClassName, mapAria } from '../utils';
-import styles                      from './inputField.css';
+import { buildClassName, mapAria, generateId } from '../utils';
+import styles                                  from './inputField.css';
 
 
-export default class InputField extends Component
+export default class InputField extends React.Component
 {
     static propTypes =
     {
@@ -67,6 +66,10 @@ export default class InputField extends Component
          */
         onChange     : PropTypes.func,
         /**
+         *  Input click callback function
+         */
+        onClick      : PropTypes.func,
+        /**
          *  Input focus callback function
          */
         onFocus      : PropTypes.func,
@@ -101,6 +104,7 @@ export default class InputField extends Component
         element    : 'input',
         type       : 'text',
         textAlign  : 'left',
+        id         : undefined,
         isDisabled : false,
         isReadOnly : false,
         hasError   : false,
@@ -129,6 +133,7 @@ deprecated. Please use onChange instead.` );
             element,
             forceHover,
             hasError,
+            id = generateId( 'InputField' ),
             inputRef,
             isDisabled,
             isReadOnly,
@@ -137,6 +142,7 @@ deprecated. Please use onChange instead.` );
             onBlur,
             onInput,
             onChange,
+            onClick,
             onFocus,
             onKeyDown,
             onKeyPress,
@@ -149,8 +155,6 @@ deprecated. Please use onChange instead.` );
             type,
             value
         } = this.props;
-
-        const id = this.state.id;
 
         const InputElement = element || 'input';
 
@@ -171,6 +175,7 @@ deprecated. Please use onChange instead.` );
                 name         = { name }
                 onBlur       = { onBlur }
                 onChange     = { onChange || onInput }
+                onClick      = { onClick }
                 onFocus      = { onFocus }
                 onKeyDown    = { onKeyDown }
                 onKeyPress   = { onKeyPress }

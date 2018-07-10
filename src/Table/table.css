@@ -1,30 +1,31 @@
 @import "../proto/base.css";
 
-:root
-{
-    --borderShadow: 0 1px 4px 0 var( --PC-GREY--LIGHT );
-}
-
 .default
 {
     font-variant-numeric:	lining-nums tabular-nums;
     overflow-wrap:          break-word;
+
+    .row
+    {
+        margin-bottom: 0;
+    }
 }
 
 .borders__rows,
 .borders__cells,
 .zebra
 {
+    margin-bottom:  16px;
+
     .row,
     .headerRow
     {
-        margin-left:    0;
-        margin-right:   0;
-        margin-bottom:  0;
+        margin: 0;
     }
 
     .cell
     {
+        margin:     0;
         background: var( --PC-WHITE );
     }
 }
@@ -33,7 +34,12 @@
 {
     .row
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .row
+        {
+            border-top: none;
+        }
     }
 }
 
@@ -41,7 +47,12 @@
 {
     .row .cell
     {
-        box-shadow: var( --borderShadow );
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .cell
+        {
+            border-left: none;
+        }
     }
 }
 
