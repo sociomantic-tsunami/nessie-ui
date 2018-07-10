@@ -6,7 +6,7 @@ import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import { TextInputWithIcon }            from '../index';
-import Css                              from '../hoc/Css';
+
 
 import PasswordInput                    from './index';
 
@@ -32,10 +32,6 @@ describe( 'PasswordInput', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
 
         test( 'should contain exactly one TextInputWithIcon', () =>
         {

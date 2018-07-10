@@ -4,7 +4,7 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
+                
 import { Icon }           from '../index';
 
 import IconButton         from './index';
@@ -33,7 +33,7 @@ describe( 'IconButton', () =>
     {
         test( 'should implement the Css higher-order component', () =>
         {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
+            
         } );
 
         test( 'should contain exactly one Icon', () =>
