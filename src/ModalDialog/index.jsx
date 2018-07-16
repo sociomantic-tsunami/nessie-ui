@@ -33,10 +33,10 @@ const ModalDialog = ( {
                 <div className = { cssMap.header }>
                     <span className = { cssMap.title }>{ title }</span>
                     <IconButton
-                        iconType     = "close"
-                        onClickClose = { onClickClose }
-                        iconTheme    = "navigation"
-                        iconSize     = "L"
+                        iconType  = "close"
+                        onClick   = { onClickClose }
+                        iconTheme = "navigation"
+                        iconSize  = "L"
                     />
                 </div>
                 <div className = { cssMap.navigation }>
