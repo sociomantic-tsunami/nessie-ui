@@ -120,27 +120,28 @@ Table.propTypes =
     /**
      *  Text alignment inside cells
      */
-    align           : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    align     : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */
-    children        : PropTypes.node,
+    children  : PropTypes.node,
     /**
      *  Extra CSS class name
      */
-    className       : PropTypes.string,
+    className : PropTypes.string,
     /**
      *  Array of objects defining the table columns
      */
-    columns         : PropTypes.arrayOf( PropTypes.object ),
+    columns   : PropTypes.arrayOf( PropTypes.object ),
     /**
      *  Gutter size
      */
-    gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
+    gutters   : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      *  Display table with borders
      */
-    borders         : PropTypes.oneOf( [ 'cells', 'rows', 'none' ] ),
+    borders   : PropTypes.oneOf( [
+        'cells', 'rows', 'none', 'rowDivider', 'columnDivider' ] ),
     /**
      *  Makes header row sticky
      */

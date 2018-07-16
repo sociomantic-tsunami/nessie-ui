@@ -13,6 +13,8 @@
 
 .borders__rows,
 .borders__cells,
+.borders__rowDivider,
+.borders__columnDivider,
 .zebra
 {
     margin-bottom:  16px;
@@ -30,6 +32,37 @@
     }
 }
 
+.borders__cells
+{
+    .row .cell
+    {
+        border: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .cell
+        {
+            border-left: none;
+        }
+    }
+}
+
+.borders__columnDivider
+{
+    .row .cell
+    {
+        border-right: 1px solid color( var( --PC-GREY ) a(12%) );
+
+        + .cell
+        {
+            border-left: none;
+        }
+
+        &:last-child
+        {
+            border-right: none;
+        }
+    }
+}
+
 .borders__rows
 {
     .row
@@ -43,15 +76,15 @@
     }
 }
 
-.borders__cells
+.borders__rowDivider
 {
-    .row .cell
+    .row
     {
-        border: 1px solid color( var( --PC-GREY ) a(12%) );
+        border-bottom: 1px solid color( var( --PC-GREY ) a(12%) );
 
-        + .cell
+        + .row
         {
-            border-left: none;
+            border-top: none;
         }
     }
 }
