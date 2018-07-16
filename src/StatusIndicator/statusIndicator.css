@@ -8,13 +8,11 @@
 
     border-radius:      16px;
 
-    @extend %Nessie-SemiBold;
+    @extend %Nessie-Bold;
 
-    font-size:          var( --typo-2 );
+    font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
     letter-spacing:     0.4px;
-
-    text-transform:     uppercase;
     text-align:         center;
 
     overflow:           hidden;
