@@ -4,12 +4,9 @@
 {
     width:              auto;
 
-    padding:            6px 20px;
+    padding:            8px 20px;
 
-    border:             2px solid var( --PC-GREY--L10 );
     border-radius:      16px;
-
-    color:              var( --PC-GREY--L10 );
 
     @extend %Nessie-SemiBold;
 
@@ -24,14 +21,27 @@
     text-overflow:      ellipsis;
 }
 
-.status__active
+.status__active,
+.status__promoted
 {
     color:              var( --PC-GREEN );
-    border-color:       var( --PC-GREEN );
+    background-color:   var( --PC-GREEN--L70 );
 }
 
 .status__alert
 {
-    color:              var( --PC-YELLOW );
-    border-color:       var( --PC-YELLOW );
+    color:              var( --PC-ORANGE );
+    background-color:   var( --PC-ORANGE--L70 );
+}
+
+.status__critical
+{
+    color:              var( --PC-RED );
+    background-color:   var( --PC-RED--L70 );
+}
+
+.status__deactivated
+{
+    color:              var( --PC-GREY );
+    background-color:   var( --PC-GREY--L70 );
 }
