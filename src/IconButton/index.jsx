@@ -193,7 +193,7 @@ export default class IconButton extends Component
                     onBlur    = { onBlur }
                     onFocus   = { onFocus }
                     tabIndex  = { isFocusable ? '0' : '-1' }
-                    onMouseDown = { !isFocusable && killFocus }>
+                    onMouseDown = { !isFocusable ? killFocus : undefined }>
                     <Icon
                         className  = { cssMap.icon }
                         size       = { iconSize }
