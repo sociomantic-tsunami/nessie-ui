@@ -7,6 +7,8 @@
     margin:         0;
     margin-bottom:  var( --spacing-1 );
 
+    line-height:    var( --line-height-m );
+
     text-transform: none;
 
     .default
@@ -96,27 +98,43 @@
 }
 
 /* STYLE */
-.style__Light
+.variant__Light
 {
     @extend %Nessie-Light;
 }
 
-.style__Regular
+.variant__Regular
 {
     @extend %Nessie-Regular;
 }
 
-.style__RegularIt
+.variant__RegularIt
 {
     @extend %Nessie-RegularIt;
 }
 
-.style__SemiBold
+.variant__SemiBold
 {
     @extend %Nessie-SemiBold;
 }
 
-.style__Bold
+.variant__Bold
 {
     @extend %Nessie-Bold;
+}
+
+/* TEXT ALIGN */
+.textAlign__left
+{
+    text-align: left;
+}
+
+.textAlign__center
+{
+    text-align: center;
+}
+
+.textAlign__right
+{
+    text-align: right;
 }

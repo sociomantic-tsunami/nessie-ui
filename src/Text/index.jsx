@@ -13,11 +13,12 @@ const Text = ( {
     overflowIsHidden,
     role,
     size,
-    spacing,
-    style,
+    letterSpacing,
     text,
+    textAlign,
     textColor,
-    textRef
+    textRef,
+    variant
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
@@ -26,9 +27,10 @@ const Text = ( {
             noWrap,
             role,
             size,
-            style
+            textAlign,
+            variant
         } ) }
-        style = { { letterSpacing: spacing, color: `#${textColor}` } }
+        style = { { letterSpacing, color: `#${textColor}` } }
         ref = { textRef }>
         { children || text }
     </div>
@@ -40,6 +42,10 @@ Text.propTypes =
      *  Capitalize text
      */
     allCaps          : PropTypes.bool,
+    /**
+     *  CSS class map
+     */
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
     *  Don’t wrap text to the next line
     */
@@ -71,24 +77,21 @@ Text.propTypes =
         'XXS'
     ] ),
     /**
-    *  Style to apply to text
-    */
-    style : PropTypes.oneOf( [
-        'Light',
-        'Regular',
-        'RegularIt',
-        'SemiBold',
-        'Bold',
-        'ExtraBold'
-    ] ),
-    /**
     * Letter Spacing for the text
     */
-    spacing   : PropTypes.string,
+    letterSpacing : PropTypes.string,
     /**
     *  Text string
     */
-    text      : PropTypes.string,
+    text          : PropTypes.string,
+    /**
+    * Text Align
+    */
+    textAlign     : PropTypes.oneOf( [
+        'left',
+        'center',
+        'right'
+    ] ),
     /**
     *  Text Color
     */
@@ -96,7 +99,18 @@ Text.propTypes =
     /**
     *  callback that receives ref to the text div: ref => ...
     */
-    textRef   : PropTypes.func
+    textRef   : PropTypes.func,
+    /**
+    *  Style to apply to text
+    */
+    variant   : PropTypes.oneOf( [
+        'Light',
+        'Regular',
+        'RegularIt',
+        'SemiBold',
+        'Bold',
+        'ExtraBold'
+    ] ),
 };
 
 Text.defaultProps =
@@ -107,8 +121,9 @@ Text.defaultProps =
     overflowIsHidden : false,
     role             : 'default',
     size             : 'M',
-    spacing          : '0',
-    style            : 'Regular'
+    letterSpacing    : '0',
+    textAlign        : 'left',
+    variant          : 'Regular'
 };
 
 export default Text;
