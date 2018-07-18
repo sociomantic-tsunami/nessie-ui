@@ -129,7 +129,7 @@ describe( 'ScrollBarDriver', () =>
             const onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
 
-            wrapper.driver().clickTrack( 100 );
+            wrapper.driver().clickTrack();
 
             expect( onClickTrack ).toHaveBeenCalledTimes( 1 );
         } );
@@ -142,7 +142,7 @@ describe( 'ScrollBarDriver', () =>
             const onMouseDownThumb = jest.fn();
             wrapper.setProps( { onMouseDownThumb } );
 
-            wrapper.driver().mouseDownThumb( 100 );
+            wrapper.driver().mouseDownThumb();
 
             expect( onMouseDownThumb ).toHaveBeenCalledTimes( 1 );
         } );
