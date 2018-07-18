@@ -43,7 +43,7 @@ const ScrollBar = ( {
             className = { buildClassName( className, cssMap, {
                 orientation,
             } ) }
-            onClickTrack = { onClickTrack }
+            onClick      = { onClickTrack }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>
             <div
@@ -63,47 +63,47 @@ ScrollBar.propTypes =
     /**
      *  Extra CSS class name
      */
-    className   : PropTypes.string,
+    className        : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Orientation of the scroll bar
      */
-    orientation : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    orientation      : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
      *  scroll track click callback function : ( e ) => { ... }
      */
-    onClickTrack  : PropTypes.func,
+    onClickTrack     : PropTypes.func,
     /**
      *  scroll thumb mouse down callback function : ( e ) => { ... }
      */
-    onMouseDownThumb  : PropTypes.func,
+    onMouseDownThumb : PropTypes.func,
     /**
      *  mouse out callback function : ( e ) => { ... }
      */
-    onMouseOut  : PropTypes.func,
+    onMouseOut       : PropTypes.func,
     /**
      *  mouse over callback function : ( e ) => { ... }
      */
-    onMouseOver : PropTypes.func,
+    onMouseOver      : PropTypes.func,
     /**
      *  Max scroll value
      */
-    scrollMax   : PropTypes.number,
+    scrollMax        : PropTypes.number,
     /**
      *  Min scroll value
      */
-    scrollMin   : PropTypes.number,
+    scrollMin        : PropTypes.number,
     /**
      *  Scroll position
      */
-    scrollPos   : PropTypes.number,
+    scrollPos        : PropTypes.number,
     /**
      *  Scroll thumb size (CSS unit)
      */
-    thumbSize   : PropTypes.string,
+    thumbSize        : PropTypes.string,
 };
 
 ScrollBar.defaultProps =
@@ -113,7 +113,7 @@ ScrollBar.defaultProps =
     onMouseOut  : undefined,
     onMouseOver : undefined,
     orientation : 'horizontal',
-    scrollMax   : 100,
+    scrollMax   : 0,
     scrollMin   : 0,
     scrollPos   : 0,
     thumbSize   : undefined,

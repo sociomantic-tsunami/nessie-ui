@@ -1,4 +1,4 @@
-/* global test jest */
+/* global test jest Event */
 /* eslint no-console: 0*/
 
 import React               from 'react';
@@ -10,91 +10,104 @@ describe( 'ScrollBar', () =>
 {
     let wrapper;
     let instance;
+    let cssMap;
 
     beforeEach( () =>
     {
         wrapper = shallow( <ScrollBar /> );
         instance = wrapper.instance();
+        cssMap   = instance.props.cssMap;
     } );
 
 
-    test( 'should contain exactly one <div>', () =>
+    test( 'should contain exactly two <div>’s', () =>
     {
-        expect( wrapper.find( 'div' ) ).toHaveLength( 1 );
+        expect( wrapper.find( 'div' ) ).toHaveLength( 2 );
     } );
 
-    test( 'should contain exactly one <input>', () =>
+    describe( 'props', () =>
     {
-        expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
-    } );
-
-    test( '<input> has type="range"', () =>
-    {
-        expect( wrapper.find( 'input' ).first().prop( 'type' ) )
-            .toBe( 'range' );
-    } );
-
-    describe( 'scrollPos', () =>
-    {
-        test( 'should have a value of 0 as default', () =>
+        describe( 'onClickTrack', () =>
         {
-            expect( instance.props.scrollPos ).toBe( 0 );
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onClickTrack ).toBeUndefined();
+            } );
+
+            test( 'should be passed to the track <div> as onClick', () =>
+            {
+                const onClickTrack = jest.fn();
+                wrapper.setProps( { onClickTrack } );
+
+                expect( wrapper.find( `.${cssMap.default}` ).prop( 'onClick' ) )
+                    .toEqual( onClickTrack );
+            } );
         } );
 
-        test( 'should be passed to the <input> as value prop', () =>
+        describe( 'onMouseDownThumb', () =>
         {
-            wrapper.setProps( { scrollPos: 20 } );
-            expect( wrapper.find( 'input' ).first().prop( 'value' ) )
-                .toBe( 20 );
-        } );
-    } );
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseDownThumb ).toBeUndefined();
+            } );
 
-    describe( 'onChange', () =>
-    {
-        test( 'should be undefined by default', () =>
-        {
-            expect( instance.props.onChange ).toBeUndefined();
-        } );
+            test( 'should be invoked by mouse down on thumb <div>', () =>
+            {
+                const onMouseDownThumb = jest.fn();
+                wrapper.setProps( { onMouseDownThumb } );
 
-        test( 'should be invoked when <input>’s onChange prop is invoked', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+                const thumbMouseDown =
+                    wrapper.find( `.${cssMap.thumb}` ).prop( 'onMouseDown' );
 
-            const inputOnChange =
-                wrapper.find( 'input' ).first().prop( 'onChange' );
+                thumbMouseDown( new Event( { type: 'mousedown' } ) );
 
-            inputOnChange( { target: {} } );
-
-            expect( onChange ).toHaveBeenCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'scrollMin', () =>
-    {
-        test( 'should have a value of 0 as default', () =>
-        {
-            expect( instance.props.scrollMin ).toBe( 0 );
+                expect( onMouseDownThumb ).toHaveBeenCalledTimes( 1 );
+            } );
         } );
 
-        test( 'should be passed to the <input> as min prop', () =>
+        describe( 'scrollMax', () =>
         {
-            wrapper.setProps( { scrollMin: 20 } );
-            expect( wrapper.find( 'input' ).first().prop( 'min' ) ).toBe( 20 );
-        } );
-    } );
+            test( 'should be 0 by default', () =>
+            {
+                expect( instance.props.scrollMax ).toEqual( 0 );
+            } );
 
-    describe( 'scrollMax', () =>
-    {
-        test( 'should be 0 by default', () =>
-        {
-            expect( instance.props.scrollMax ).toEqual( 0 );
+            test( 'should be passed to the track <div> as aria-valuemax', () =>
+            {
+                wrapper.setProps( { scrollMax: 20 } );
+                expect( wrapper.find( `.${cssMap.default}` )
+                    .prop( 'aria-valuemax' ) ).toBe( 20 );
+            } );
         } );
 
-        test( 'should be passed to the <input> as max prop', () =>
+        describe( 'scrollMin', () =>
         {
-            wrapper.setProps( { scrollMax: 20 } );
-            expect( wrapper.find( 'input' ).first().prop( 'max' ) ).toBe( 20 );
+            test( 'should be 0 by default', () =>
+            {
+                expect( instance.props.scrollMin ).toBe( 0 );
+            } );
+
+            test( 'should be passed to the track <div> as aria-valuemin', () =>
+            {
+                wrapper.setProps( { scrollMin: 20 } );
+                expect( wrapper.find( `.${cssMap.default}` )
+                    .prop( 'aria-valuemin' ) ).toBe( 20 );
+            } );
+        } );
+
+        describe( 'scrollPos', () =>
+        {
+            test( 'should be 0 by default', () =>
+            {
+                expect( instance.props.scrollPos ).toBe( 0 );
+            } );
+
+            test( 'should be passed to the track <div> as aria-valuenow', () =>
+            {
+                wrapper.setProps( { scrollPos: 20 } );
+                expect( wrapper.find( `.${cssMap.default}` )
+                    .prop( 'aria-valuenow' ) ).toBe( 20 );
+            } );
         } );
     } );
 } );
@@ -109,22 +122,35 @@ describe( 'ScrollBarDriver', () =>
         wrapper = mount( <ScrollBar /> );
     } );
 
-    describe( 'change()', () =>
+    describe( 'clickTrack()', () =>
     {
-        test( 'should change the value of the <input />', () =>
+        test( 'should simulate click on track', () =>
         {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+            const onClickTrack = jest.fn();
+            wrapper.setProps( { onClickTrack } );
 
-            wrapper.driver().change( 100 );
+            wrapper.driver().clickTrack( 100 );
 
-            expect( onChange ).toHaveBeenCalledTimes( 1 );
+            expect( onClickTrack ).toHaveBeenCalledTimes( 1 );
+        } );
+    } );
+
+    describe( 'mouseDownThumb()', () =>
+    {
+        test( 'should simulate mouse down on thumb', () =>
+        {
+            const onMouseDownThumb = jest.fn();
+            wrapper.setProps( { onMouseDownThumb } );
+
+            wrapper.driver().mouseDownThumb( 100 );
+
+            expect( onMouseDownThumb ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should change the value of the <input />', () =>
+        test( 'should simulate mouse over', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
@@ -137,7 +163,7 @@ describe( 'ScrollBarDriver', () =>
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should change the value of the <input />', () =>
+        test( 'should simulate mouse out', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
