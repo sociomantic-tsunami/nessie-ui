@@ -33,14 +33,6 @@ export default class ScrollBox extends Component
          */
         height             : PropTypes.string,
         /**
-         *  horizontal scrollbar change callback function
-         */
-        onChangeScrollBarX : PropTypes.func,
-        /**
-         *  vertical scrollbar change callback function
-         */
-        onChangeScrollBarY : PropTypes.func,
-        /**
          *  scroll down button click callback function
          */
         onClickScrollDown  : PropTypes.func,
@@ -81,14 +73,6 @@ export default class ScrollBox extends Component
          */
         scrollLeftIsVisible  : PropTypes.bool,
         /**
-         *  Horizontal scroll position
-         */
-        scrollPosX           : PropTypes.number,
-        /**
-         *  Vertical scroll position
-         */
-        scrollPosY           : PropTypes.number,
-        /**
          *  Display Scroll right icon
          */
         scrollRightIsVisible : PropTypes.bool,
@@ -119,8 +103,6 @@ export default class ScrollBox extends Component
         scrollBoxRef         : undefined,
         scrollDownIsVisible  : false,
         scrollLeftIsVisible  : false,
-        scrollPosX           : 0,
-        scrollPosY           : 0,
         scrollRightIsVisible : false,
         scrollUpIsVisible    : false,
     };
@@ -135,6 +117,8 @@ export default class ScrollBox extends Component
             offsetHeight : null,
             offsetWidth  : null,
             scrollHeight : null,
+            scrollLeft   : null,
+            scrollTop    : null,
             scrollWidth  : null,
         };
 
@@ -144,15 +128,12 @@ export default class ScrollBox extends Component
 
     componentDidMount()
     {
-        this.setScrollPos();
         this.setState( this.getNewState() );
     }
 
     componentDidUpdate()
     {
         const newState = this.getNewState();
-
-        this.setScrollPos();
 
         if ( !isEqual( newState, this.state ) )
         {
@@ -178,6 +159,7 @@ export default class ScrollBox extends Component
             return {
                 width        : `calc( 100% + ${diffX}px )`,
                 height       : `calc( 100% + ${diffY}px )`,
+                maxHeight    : this.props.height,
                 marginRight  : `${diffY}px`,
                 marginBottom : `${diffX}px`,
             };
@@ -208,23 +190,13 @@ export default class ScrollBox extends Component
 
     handleScroll( e )
     {
-        if ( this.props.onScroll )
+        this.forceUpdate();
+
+        const { onScroll } = this.props;
+        if ( onScroll )
         {
-            this.props.onScroll( e );
+            onScroll( e );
         }
-
-        setTimeout( () => this.forceUpdate() );
-    }
-
-    setScrollPos()
-    {
-        if ( !this.innerRef )
-        {
-            return;
-        }
-
-        this.innerRef.scrollLeft = this.props.scrollPosX;
-        this.innerRef.scrollTop = this.props.scrollPosY;
     }
 
     renderScrollBars()
@@ -241,7 +213,7 @@ export default class ScrollBox extends Component
 
         if ( scroll !== 'vertical' )
         {
-            const { clientWidth, scrollWidth } = this.state;
+            const { clientWidth, scrollLeft, scrollWidth } = this.state;
 
             if ( scrollWidth > clientWidth )
             {
@@ -251,7 +223,7 @@ export default class ScrollBox extends Component
                         key         = "horizontal"
                         onChange    = { props.onChangeScrollBarX }
                         orientation = "horizontal"
-                        scrollPos   = { props.scrollPosX }
+                        scrollPos   = { scrollLeft }
                         thumbSize   = {
                             `${( clientWidth / scrollWidth ) * 100}%`
                         }
@@ -262,7 +234,7 @@ export default class ScrollBox extends Component
 
         if ( scroll !== 'horizontal' )
         {
-            const { clientHeight, scrollHeight } = this.state;
+            const { clientHeight, scrollHeight, scrollTop } = this.state;
 
             if ( scrollHeight > clientHeight )
             {
@@ -272,7 +244,7 @@ export default class ScrollBox extends Component
                         key         = "vertical"
                         onChange    = { props.onChangeScrollBarY }
                         orientation = "vertical"
-                        scrollPos   = { props.scrollPosY }
+                        scrollPos   = { scrollTop }
                         thumbSize   = {
                             `${( clientHeight / scrollHeight ) * 100}%`
                         }
@@ -311,19 +283,17 @@ export default class ScrollBox extends Component
     render()
     {
         const {
-            cssMap,
             children,
             className,
             contentWidth,
-            height,
+            cssMap,
             scroll,
             scrollBarsAreVisible,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, { scroll } ) }
-                style     = { height && { height: `${height}` } }>
+                className = { buildClassName( className, cssMap, { scroll } ) }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }
