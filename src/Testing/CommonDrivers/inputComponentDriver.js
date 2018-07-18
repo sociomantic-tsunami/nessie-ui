@@ -144,6 +144,7 @@ function checkIfSimulationIsValid( wrapper, errorIfInvalid )
 /**
  * Checks if a character is printable. (partial black listing of keys)
  * @param {Integer} keyCode the key code to check
+ * @return {Integer} the key code if it's not 'Enter'
  */
 function isCharPrintable( keyCode )
 {
