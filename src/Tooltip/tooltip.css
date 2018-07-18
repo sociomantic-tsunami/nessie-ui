@@ -117,7 +117,7 @@
     {
         &::before
         {
-            bottom: -var( --tooltipOffsetY );
+            bottom: calc( -1 * var( --tooltipOffsetY ) );
         }
     }
 }
@@ -128,7 +128,7 @@
     .tooltip
     {
         top:        0;
-        transform:  translateX(-50%) translateY( -100% ) translateY( -var( --tooltipOffsetY ) ) ;
+        transform:  translateX(-50%) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) ) ;
     }
 }
 
@@ -141,7 +141,7 @@
     {
         &::before
         {
-            top:    -var( --tooltipOffsetY );
+            top:    calc( -1 * var( --tooltipOffsetY ) );
         }
     }
 }
@@ -181,11 +181,11 @@
         top:        50%;
         left:       0;
 
-        transform:  translateX(-100%) translateX( -var( --tooltipOffsetX )  ) translateY( -50% );
+        transform:  translateX(-100%) translateX( calc( -1 * var( --tooltipOffsetX ) ) ) translateY( -50% );
 
         &::before
         {
-            right:  -var( --tooltipOffsetX );
+            right:  calc( -1 * var( --tooltipOffsetX ) );
         }
     }
 }
@@ -202,7 +202,7 @@
 
         &::before
         {
-            left:   -var( --tooltipOffsetX );
+            left:   calc( -1 * var( --tooltipOffsetX ) );
         }
     }
 }
@@ -234,7 +234,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+        transform:  translateX( -100% ) translateX( var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) );
     }
 }
 
@@ -243,7 +243,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( -100% ) translateY( -var( --tooltipOffsetY ) );
+        transform:  translateX( calc( -1 * var( --tooltipOffsetXY ) ) ) translateY( -100% ) translateY( calc( -1 * var( --tooltipOffsetY ) ) );
     }
 }
 
@@ -261,7 +261,7 @@
 {
     .tooltip
     {
-        transform:  translateX( -var( --tooltipOffsetXY ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
+        transform:  translateX( calc( -1 * var( --tooltipOffsetXY ) ) ) translateY( 100% ) translateY( var( --tooltipOffsetY ) ) ;
     }
 }
 

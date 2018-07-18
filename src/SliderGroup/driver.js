@@ -5,7 +5,7 @@ export default class SliderGroupDriver
         this.wrapper = wrapper;
     }
 
-    getSlider( index )
+    getSlider( index = 0 )
     {
         if ( Array.isArray( index ) )
         {

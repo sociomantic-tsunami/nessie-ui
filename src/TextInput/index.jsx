@@ -1,19 +1,18 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import Component        from '../proto/Component';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
-import InputContainer   from '../proto/InputContainer';
+import { generateId, buildClassName }   from '../utils';
+import InputField                       from '../InputField';
+import InputContainer                   from '../proto/InputContainer';
 
-export default class TextInput extends Component
+export default class TextInput extends React.PureComponent
 {
     static propTypes =
     {
         /**
          *  aria properties
          */
-        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+        aria : PropTypes.objectOf( PropTypes.oneOfType( [
             PropTypes.bool,
             PropTypes.number,
             PropTypes.string,
@@ -127,6 +126,7 @@ export default class TextInput extends Component
     {
         aria                  : undefined,
         labelPosition         : 'top',
+        id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
         hasError              : false,
@@ -142,23 +142,22 @@ export default class TextInput extends Component
         const {
             className,
             cssMap,
+            id = generateId( 'TextInput' ),
             onMouseOut,
             onMouseOver,
             ...props
         } = this.props;
-        const { id } = this.state;
 
         return (
-            <Css cssMap = { cssMap }>
-                <InputContainer
-                    { ...props }
-                    id          = { id }
-                    className   = { className }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }>
-                    <InputField { ...props } id = { id } />
-                </InputContainer>
-            </Css>
+
+            <InputContainer
+                { ...props }
+                id          = { id }
+                className   = { buildClassName( className, cssMap ) }
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }>
+                <InputField { ...props } id = { id } />
+            </InputContainer>
         );
     }
 }

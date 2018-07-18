@@ -80,6 +80,7 @@
     },
     "Form" :
     {
+        "lochness" : { "isDeprecated" : true },
         "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
     },
     "FlounderDropdown" :
@@ -236,9 +237,16 @@
         "values"        : [ "apples", "oranges", "kaki" ],
         "selectedValue" : "apples"
     },
+    "Required" :
+    {
+        "lochness" : { "isDeprecated" : true }
+    },
     "Row" :
     {
         "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
+    },
+    "ScrollBar" : {
+        "orientation": "vertical"
     },
     "ScrollBox" :
     {
@@ -329,6 +337,9 @@
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
+    },
+    "ToggleButton" : {
+      "label": "Toggle me"
     },
     "Tooltip" :
     {

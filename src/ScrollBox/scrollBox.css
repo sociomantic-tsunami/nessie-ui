@@ -2,14 +2,26 @@
 
 .default
 {
-    .scrollBox
-    {
-        overflow:   auto;
-    }
+
+    --ScrollBarWidth:   0;
+    --ScrollBarHeight:  0;
+    --ScrollBarMarginX: 0;
+    --ScrollBarMarginY: 0;
+    overflow:           hidden;
+
 
     .content
     {
 
+    }
+
+    .inner
+    {
+        overflow          : scroll;
+        width             : calc( 100% + var( --ScrollBarWidth ) );
+        max-height        : calc( 100% + var( --ScrollBarHeight ) );
+        margin-bottom     : var( --ScrollBarMarginY );
+        margin-right      : var( --ScrollBarMarginX );
     }
 
     .icon__down,
@@ -63,18 +75,31 @@
 
 .scroll__horizontal
 {
-    .scrollBox
+    .inner
     {
         overflow-y:             hidden;
+        overflow-x:             scroll;
         overscroll-behavior-x:  contain;
     }
 
 }
 .scroll__vertical
 {
-    .scrollBox
+    .inner
     {
         overflow-x:             hidden;
+        overflow-y:             scroll;
         overscroll-behavior-y:  contain;
+    }
+}
+
+.scrollBar
+{
+    margin-bottom: 0;
+    right: 0;
+    left: auto;
+    input[type=range]
+    {
+        margin: 0;
     }
 }

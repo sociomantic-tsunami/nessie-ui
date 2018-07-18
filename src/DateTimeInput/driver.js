@@ -93,7 +93,7 @@ export default class DateTimeInputDriver
         return this;
     }
 
-    clickCellByIndex( index )
+    clickCellByIndex( index = 0 )
     {
         const day = this.calendar.at( index );
         day.simulate( 'click' );

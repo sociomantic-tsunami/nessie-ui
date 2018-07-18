@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+
 import InputContainer       from '../proto/InputContainer';
 import styles               from './codeEditor.css';
 
@@ -163,8 +164,7 @@ export default class CodeEditor extends Component
 
         const codeMirrorInstance = require( 'codemirror' );
 
-        const codeMirror = codeMirrorInstance.fromTextArea(
-            this.textarea, combinedOptions );
+        const codeMirror = codeMirrorInstance.fromTextArea( this.textarea, combinedOptions );
 
         codeMirror.setValue( defaultValue || value );
 
@@ -232,6 +232,11 @@ export default class CodeEditor extends Component
         if ( typeof value !== 'undefined' && codeMirror.getValue() !== value )
         {
             codeMirror.setValue( value || '' );
+            const that = this;
+            setTimeout( () =>
+            {
+                that.codeMirror.refresh();
+            }, 1 );
         }
 
         if ( cursor )
@@ -346,28 +351,26 @@ export default class CodeEditor extends Component
         const { isFocused } = this.state;
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <InputContainer
+                { ...props }
+                className = { buildClassName( className, cssMap, {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
                     fakeHovered : !isDisabled && ( forceHover || isFocused )
-                } }>
-                <InputContainer { ...props } className = { className }>
-                    <div
-                        className = { cssMap.editor }
-                        ref       = { this.handleWrapperRef }
-                        style     = { {
-                            height    : String( height ),
-                            maxHeight : String( maxHeight ),
-                        } }>
-                        <textarea
-                            ref          = { this.handleTextareaRef }
-                            defaultValue = { value }
-                            autoComplete = "off" />
-                    </div>
-                </InputContainer>
-            </Css>
+                } ) }>
+                <div
+                    className = { cssMap.editor }
+                    ref       = { this.handleWrapperRef }
+                    style     = { {
+                        height    : String( height ),
+                        maxHeight : String( maxHeight ),
+                    } }>
+                    <textarea
+                        ref          = { this.handleTextareaRef }
+                        defaultValue = { value }
+                        autoComplete = "off" />
+                </div>
+            </InputContainer>
         );
     }
 }
