@@ -89,6 +89,10 @@ ScrollBar.propTypes =
      */
     onMouseOver      : PropTypes.func,
     /**
+     *  id of the ScrollBox controlled by this ScrollBar
+     */
+    scrollBoxId      : PropTypes.string,
+    /**
      *  Max scroll value
      */
     scrollMax        : PropTypes.number,
@@ -113,6 +117,7 @@ ScrollBar.defaultProps =
     onMouseOut  : undefined,
     onMouseOver : undefined,
     orientation : 'horizontal',
+    scrollBoxId : undefined,
     scrollMax   : 0,
     scrollMin   : 0,
     scrollPos   : 0,
