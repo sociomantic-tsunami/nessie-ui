@@ -1,10 +1,12 @@
-export default class SimpleComponentDriver
+import WrapperDriver from './wrapperDriver';
+
+export default class SimpleComponentDriver extends WrapperDriver
 {
     constructor( wrapper, selector )
     {
+        super( wrapper, selector );
         this.wrapper = wrapper;
         this.control = wrapper.find( selector ).first();
-        this.cssMap = this.wrapper.props().cssMap;
     }
 
     blur()
