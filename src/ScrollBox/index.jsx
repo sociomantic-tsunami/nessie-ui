@@ -122,6 +122,8 @@ export default class ScrollBox extends Component
             scrollWidth  : null,
         };
 
+        this.handleChangeScrollBarX = this.handleChangeScrollBarX.bind( this );
+        this.handleChangeScrollBarY = this.handleChangeScrollBarY.bind( this );
         this.handleRef = this.handleRef.bind( this );
         this.handleScroll = this.handleScroll.bind( this );
     }
@@ -154,16 +156,13 @@ export default class ScrollBox extends Component
         const diffX = state.offsetWidth - state.clientWidth;
         const diffY = state.offsetHeight - state.clientHeight;
 
-        if ( diffX || diffY )
-        {
-            return {
-                width        : `calc( 100% + ${diffX}px )`,
-                height       : `calc( 100% + ${diffY}px )`,
-                maxHeight    : this.props.height,
-                marginRight  : `${diffY}px`,
-                marginBottom : `${diffX}px`,
-            };
-        }
+        return {
+            width        : diffX ? `calc( 100% + ${diffX}px )` : null,
+            height       : diffY ? `calc( 100% + ${diffY}px )` : null,
+            maxHeight    : this.props.height,
+            marginRight  : diffX ? `-${diffX}px` : null,
+            marginBottom : diffY ? `-${diffY}px` : null,
+        };
     }
 
     getNewState()
@@ -173,6 +172,18 @@ export default class ScrollBox extends Component
             newState[ key ] = this.innerRef[ key ] );
 
         return newState;
+    }
+
+    handleChangeScrollBarX( pos )
+    {
+        const { innerRef } = this;
+        innerRef.scrollTo( pos, innerRef.scrollTop );
+    }
+
+    handleChangeScrollBarY( pos )
+    {
+        const { innerRef } = this;
+        innerRef.scrollTo( innerRef.scrollLeft, pos );
     }
 
     handleRef( ref )
@@ -190,6 +201,7 @@ export default class ScrollBox extends Component
 
     handleScroll( e )
     {
+
         this.forceUpdate();
 
         const { onScroll } = this.props;
@@ -221,7 +233,7 @@ export default class ScrollBox extends Component
                     <ScrollBar
                         className   = { cssMap.scrollBarHorizontal }
                         key         = "horizontal"
-                        onChange    = { props.onChangeScrollBarX }
+                        onChange    = { this.handleChangeScrollBarX }
                         orientation = "horizontal"
                         scrollPos   = { scrollLeft }
                         thumbSize   = {
@@ -242,7 +254,7 @@ export default class ScrollBox extends Component
                     <ScrollBar
                         className   = { cssMap.scrollBarVertical }
                         key         = "vertical"
-                        onChange    = { props.onChangeScrollBarY }
+                        onChange    = { this.handleChangeScrollBarY }
                         orientation = "vertical"
                         scrollPos   = { scrollTop }
                         thumbSize   = {

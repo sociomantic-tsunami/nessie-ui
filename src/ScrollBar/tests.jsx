@@ -86,9 +86,9 @@ describe( 'ScrollBar', () =>
 
     describe( 'scrollMax', () =>
     {
-        test( 'should be undefined by default', () =>
+        test( 'should be 0 by default', () =>
         {
-            expect( instance.props.scrollMax ).toBeUndefined();
+            expect( instance.props.scrollMax ).toEqual( 0 );
         } );
 
         test( 'should be passed to the <input> as max prop', () =>
