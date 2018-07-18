@@ -10,118 +10,38 @@
 
 .default
 {
+    width:          100%;
+    height:         100%;
     margin-bottom:  0;
-    background:     transparent;
+    background:     var( --trackColor );
 
-    .range
+    .thumb
     {
-        appearance: none;
-        display:    block;
+        position:   absolute;
+        background: var( --thumbColor );
+    }
+}
 
-        width:      var( --trackLength );
-        height:     var( --trackThickness );
+.orientation__horizontal
+{
+    height: var( --trackThickness );
 
-        cursor:     pointer;
-
-        &:focus
-        {
-            outline:    none;
-        }
-
-        &::-webkit-slider-runnable-track
-        {
-            width:      100%;
-            height:     100%;
-            background: var( --trackColor );
-        }
-        &::-webkit-slider-thumb
-        {
-            -webkit-appearance: none;
-            width:              var( --thumbSize );
-            height:             100%;
-            max-width:          var( --trackLength );
-            min-width:          var( --thumbMinSize );
-            background:         var( --thumbColor );
-        }
-        &:focus::-webkit-slider-runnable-track
-        {
-            background: var( --trackColor );
-        }
-
-        &::-moz-range-track
-        {
-            width:      100%;
-            height:     100%;
-            border:     none;
-            box-shadow: none;
-            background: var( --trackColor );
-        }
-        &::-moz-range-thumb
-        {
-            width:          var( --thumbSize );
-            height:         100%;
-            max-width:      var( --trackLength );
-            min-width:      var( --thumbMinSize );
-            border:         none;
-            border-radius:  0;
-            box-shadow:     none;
-            background:     var( --thumbColor );
-        }
-
-        &::-ms-track
-        {
-            width:      100%;
-            height:     var( --thumbSize );
-            border:     none;
-            box-shadow: none;
-            background: var( --trackColor );
-            color:      transparent;
-        }
-        &::-ms-fill-lower
-        {
-            border:     none;
-            box-shadow: none;
-            background: transparent;
-        }
-        &::-ms-fill-upper
-        {
-            border:     none;
-            box-shadow: none;
-            background: transparent;
-        }
-        &::-ms-thumb
-        {
-            height:     100%;
-            width:      100%;
-            max-width:  var( --trackLength );
-            min-width:  var( --thumbMinSize );
-            border:     none;
-            box-shadow: none;
-            background: var( --thumbColor );
-        }
-        &:focus::-ms-fill-lower
-        {
-            border:     none;
-            box-shadow: none;
-            background: transparent;
-        }
-        &:focus::-ms-fill-upper
-        {
-            border:     none;
-            box-shadow: none;
-            background: transparent;
-        }
+    .thumb
+    {
+        top:        0;
+        bottom:     0;
+        min-width:  var( --thumbMinSize );
     }
 }
 
 .orientation__vertical
 {
     width:  var( --trackThickness );
-    height: var( --trackLength );
 
-    .range
+    .thumb
     {
-        transform:          rotate( 90deg ) translateY( calc( -1 * var( --trackThickness ) ) );
-        transform-origin:   top left;
+        left:       0;
+        right:      0;
+        min-height: var( --thumbMinSize );
     }
 }

@@ -1,45 +1,62 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import { buildClassName, generateId } from '../utils';
-import styles                         from './scrollBar.css';
+import React              from 'react';
+import PropTypes          from 'prop-types';
+
+import { buildClassName } from '../utils';
+import styles             from './scrollBar.css';
 
 
 const ScrollBar = ( {
     className,
     cssMap,
-    id = generateId( 'ScrollBar' ),
-    length,
-    onChange,
+    onClickTrack,
+    onMouseDownThumb,
     onMouseOut,
     onMouseOver,
     orientation,
     scrollMax,
     scrollMin,
     scrollPos,
+    scrollBoxId,
     thumbSize,
-} ) => (
-    <div
-        className    = { buildClassName( className, cssMap, { orientation } ) }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }
-        style        = { {
-            '--thumbSize'   : thumbSize,
-            '--trackLength' : length,
-        } }>
-        <input
-            className    = { cssMap.range }
-            id           = { id }
-            max          = { scrollMax }
-            min          = { scrollMin }
-            onChange     = { e =>
-                onChange && onChange( parseInt( e.target.value, 10 ) )
-            }
-            step  = "1"
-            type  = "range"
-            value = { scrollPos } />
-    </div>
-);
+} ) =>
+{
+    const multiplier = scrollPos / Math.abs( scrollMax - scrollMin );
+    const thumbOffset = `calc( ${multiplier} * ( 100% - ${thumbSize} ) )`;
+
+    const isVertical = orientation === 'vertical';
+
+    const thumbStyle = {
+        [ isVertical ? 'height' : 'width' ] : thumbSize,
+        [ isVertical ? 'top' : 'left' ]     : thumbOffset,
+    };
+
+    return (
+        <div
+            role             = "scrollbar"
+            aria-controls    = { scrollBoxId }
+            aria-orientation = { orientation }
+            aria-valuenow    = { scrollPos }
+            aria-valuemin    = { scrollMin }
+            aria-valuemax    = { scrollMax }
+            className = { buildClassName( className, cssMap, {
+                orientation,
+            } ) }
+            onClickTrack = { onClickTrack }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
+            <div
+                className   = { cssMap.thumb }
+                onMouseDown = { e =>
+                {
+                    e.preventDefault();
+                    onMouseDownThumb && onMouseDownThumb( e );
+                } }
+                style = { thumbStyle } />
+        </div>
+    );
+};
 
 ScrollBar.propTypes =
 {
@@ -52,27 +69,23 @@ ScrollBar.propTypes =
      */
     cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Component id
-     */
-    id          : PropTypes.string,
-    /**
-     *  Length of the track (CSS unit)
-     */
-    length      : PropTypes.string,
-    /**
      *  Orientation of the scroll bar
      */
     orientation : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
-     *  onChange callback function : ( e ) => { ... }
+     *  scroll track click callback function : ( e ) => { ... }
      */
-    onChange    : PropTypes.func,
+    onClickTrack  : PropTypes.func,
     /**
-     *  onMouseOut callback function : ( e ) => { ... }
+     *  scroll thumb mouse down callback function : ( e ) => { ... }
+     */
+    onMouseDownThumb  : PropTypes.func,
+    /**
+     *  mouse out callback function : ( e ) => { ... }
      */
     onMouseOut  : PropTypes.func,
     /**
-     *  onMouseOver callback function : ( e ) => { ... }
+     *  mouse over callback function : ( e ) => { ... }
      */
     onMouseOver : PropTypes.func,
     /**
@@ -97,16 +110,13 @@ ScrollBar.defaultProps =
 {
     className   : undefined,
     cssMap      : styles,
-    id          : undefined,
-    length      : '100%',
-    onChange    : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
     orientation : 'horizontal',
-    scrollMax   : 0,
+    scrollMax   : 100,
     scrollMin   : 0,
     scrollPos   : 0,
-    thumbSize   : '20px',
+    thumbSize   : undefined,
 };
 
 export default ScrollBar;

@@ -122,8 +122,6 @@ export default class ScrollBox extends Component
             scrollWidth  : null,
         };
 
-        this.handleChangeScrollBarX = this.handleChangeScrollBarX.bind( this );
-        this.handleChangeScrollBarY = this.handleChangeScrollBarY.bind( this );
         this.handleRef = this.handleRef.bind( this );
         this.handleScroll = this.handleScroll.bind( this );
     }
@@ -174,18 +172,6 @@ export default class ScrollBox extends Component
         return newState;
     }
 
-    handleChangeScrollBarX( pos )
-    {
-        const { innerRef } = this;
-        innerRef.scrollTo( pos, innerRef.scrollTop );
-    }
-
-    handleChangeScrollBarY( pos )
-    {
-        const { innerRef } = this;
-        innerRef.scrollTo( innerRef.scrollLeft, pos );
-    }
-
     handleRef( ref )
     {
         if ( ref )
@@ -233,7 +219,6 @@ export default class ScrollBox extends Component
                     <ScrollBar
                         className   = { cssMap.scrollBarHorizontal }
                         key         = "horizontal"
-                        onChange    = { this.handleChangeScrollBarX }
                         orientation = "horizontal"
                         scrollPos   = { scrollLeft }
                         thumbSize   = {
@@ -254,7 +239,6 @@ export default class ScrollBox extends Component
                     <ScrollBar
                         className   = { cssMap.scrollBarVertical }
                         key         = "vertical"
-                        onChange    = { this.handleChangeScrollBarY }
                         orientation = "vertical"
                         scrollPos   = { scrollTop }
                         thumbSize   = {
