@@ -16,7 +16,7 @@ const Text = ( {
     letterSpacing,
     text,
     textAlign,
-    textColor,
+    color,
     textRef,
     variant
 } ) => (
@@ -30,7 +30,7 @@ const Text = ( {
             textAlign,
             variant
         } ) }
-        style = { { letterSpacing, color: `#${textColor}` } }
+        style = { { letterSpacing, color } }
         ref = { textRef }>
         { children || text }
     </div>
@@ -95,15 +95,15 @@ Text.propTypes =
     /**
     *  Text Color
     */
-    textColor : PropTypes.string,
+    color   : PropTypes.string,
     /**
     *  callback that receives ref to the text div: ref => ...
     */
-    textRef   : PropTypes.func,
+    textRef : PropTypes.func,
     /**
     *  Style to apply to text
     */
-    variant   : PropTypes.oneOf( [
+    variant : PropTypes.oneOf( [
         'Light',
         'Regular',
         'RegularIt',
