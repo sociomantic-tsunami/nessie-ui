@@ -45,7 +45,7 @@ describe( 'NavItem', () =>
             onMouseOver : onMouseOverSpy
         } );
 
-        wrapper.driver().mouseOver();
+        wrapper.simulate( 'mouseenter' );
 
         expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
@@ -57,7 +57,7 @@ describe( 'NavItem', () =>
             onMouseOut : onMouseOutSpy
         } );
 
-        wrapper.driver().mouseOut();
+        wrapper.simulate( 'mouseleave' );
 
         expect( onMouseOutSpy ).toBeCalledTimes( 1 );
     } );

@@ -1,13 +1,11 @@
 import { NavItem, NavDropdown } from 'nessie-ui';
 
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
-
-export default class NavItemDriver extends SimpleComponentDriver
+export default class NavItemDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = this.wrapper.props().cssMap;
     }
 
     click()

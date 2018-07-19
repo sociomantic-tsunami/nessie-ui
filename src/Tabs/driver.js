@@ -35,6 +35,6 @@ export default class TabsDriver
 
     getTabContent()
     {
-        return this.wrapper.find( 'Tab' ).driver().getContent();
+        return this.wrapper.find( 'Tab' ).children();
     }
 }
