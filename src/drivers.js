@@ -5,14 +5,11 @@ import {
     Checkbox,
     CheckboxGroup,
     CodeEditor,
-    Column,
     ComboBox,
     DatePicker,
     DateTimeInput,
     FlounderDropdown,
     Form,
-    Grid,
-    Icon,
     IconButton,
     IconWithTooltip,
     InputField,
@@ -25,7 +22,6 @@ import {
     PasswordInput,
     Radio,
     RadioGroup,
-    Row,
     ScrollBar,
     ScrollBox,
     Section,
@@ -56,8 +52,6 @@ import DatePickerDriver       from './DatePicker/driver';
 import DateTimeInputDriver    from './DateTimeInput/driver';
 import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
-import GridColumnDriver       from './Grid/driver';
-import IconDriver             from './Icon/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
 import InputComponentDriver
     from './Testing/CommonDrivers/inputComponentDriver';
@@ -112,10 +106,6 @@ const drivers =
         Driver    : CodeEditorDriver,
     },
     {
-        Component : Column,
-        Driver    : GridColumnDriver,
-    },
-    {
         Component : ComboBox,
         Driver    : ComboBoxDriver,
     },
@@ -134,14 +124,6 @@ const drivers =
     {
         Component : Form,
         Driver    : FormDriver,
-    },
-    {
-        Component : Grid,
-        Driver    : GridColumnDriver,
-    },
-    {
-        Component : Icon,
-        Driver    : IconDriver,
     },
     {
         Component : IconButton,
@@ -190,10 +172,6 @@ const drivers =
     {
         Component : RadioGroup,
         Driver    : RadioGroupDriver,
-    },
-    {
-        Component : Row,
-        Driver    : GridColumnDriver,
     },
     {
         Component : ScrollBar,
