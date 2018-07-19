@@ -13,11 +13,11 @@ export default class TooltipDriver extends SimpleComponentDriver
 
     getContent()
     {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
+        return this.wrapper.find( `.${this.cssMap.content}` ).first().children();
     }
 
     getMessage()
     {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
+        return this.wrapper.find( `.${this.cssMap.message}` ).first().children();
     }
 }
