@@ -1,6 +1,5 @@
 /* global test jest */
 
-
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
@@ -118,7 +117,7 @@ describe( 'IconButtonDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.simulate( 'focus' );
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -130,7 +129,7 @@ describe( 'IconButtonDriver', () =>
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            driver.blur();
+            wrapper.simulate( 'blur' );
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

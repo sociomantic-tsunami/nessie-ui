@@ -9,6 +9,7 @@ export default class ButtonDriver
     {
         this.wrapper = wrapper;
         this.button  = wrapper.find( 'button' ).first();
+        this.cssMap  = this.wrapper.props().cssMap;
     }
 
     click()
