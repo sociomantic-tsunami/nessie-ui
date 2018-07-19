@@ -7,7 +7,7 @@ export default class ComboBoxDriver
 
     blur()
     {
-        this.wrapper.find( 'InputField' ).driver().blur();
+        this.wrapper.find( 'InputField' ).simulate( 'blur' );
         return this;
     }
 
@@ -31,7 +31,7 @@ export default class ComboBoxDriver
 
     focus()
     {
-        this.wrapper.find( 'InputField' ).driver().focus();
+        this.wrapper.find( 'InputField' ).simulate( 'focus' );
         return this;
     }
 
@@ -41,21 +41,9 @@ export default class ComboBoxDriver
         return this;
     }
 
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
-
     mouseOutOption( index = 0 )
     {
         this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
