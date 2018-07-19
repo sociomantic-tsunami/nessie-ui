@@ -1,5 +1,6 @@
 import React      from 'react';
 import PropTypes  from 'prop-types';
+import isEqual    from 'lodash.isequal';
 
 import Component  from '../proto/Component';
 import Css        from '../hoc/Css';
@@ -79,48 +80,74 @@ export default class Tooltip extends Component
         role           : 'default'
     };
 
-    render()
+    constructor( props )
+    {
+        super( props );
+
+        this.state = {
+            ...this.state,
+            width : 0
+        };
+
+        this.updateGhostRef = this.updateGhostRef.bind( this );
+    }
+
+    componentDidMount()
+    {
+        this.mounted = true;
+        this.setFilledTextareaHeight();
+    }
+
+    componentDidUpdate( prevProps )
+    {
+        if ( !isEqual( this.props, prevProps ) )
+        {
+            this.setFilledTextareaHeight();
+        }
+    }
+
+    componentWillUnmount()
+    {
+        this.mounted = false;
+    }
+
+    setFilledTextareaHeight()
+    {
+        if ( this.mounted )
+        {
+            const element = this.ghost.children[ 0 ];
+
+            this.setState( {
+                width : element.clientWidth + 1
+            } );
+        }
+    }
+
+    updateGhostRef( ref )
+    {
+        this.ghost = ref;
+    }
+
+    renderTooltip( tooltipOpts, useStateWidth = false )
     {
         const {
-            children,
-            className,
             cssMap,
             message,
-            position,
             isDismissible,
-            isVisible,
-            noWrap,
-            onClickClose,
-            onMouseOver,
-            onMouseOut,
-            overflowIsHidden,
-            role
-        } = this.props;
+            onClickClose
+        } = tooltipOpts;
+        const { id, width } = this.state;
 
-        const { id } = this.state;
+        const style = useStateWidth ? { width } : {};
 
-        let messageText = message;
-
-        if ( typeof messageText === 'string' )
-        {
-            const regexp = /([^\s].{1,49}(?=\s+|$))|([^\s]{1,50})/g;
-
-            const matches = message.match( regexp ) || [];
-
-            messageText = (
-                <Text className = { cssMap.messageText } noWrap>
-                    { matches.map( line => [ line, <br /> ] ) }
-                </Text> );
-        }
-
-
-        const tooltip = (
+        return (
             <div
+                style     = { style }
                 className = { cssMap.tooltip }
                 role      = "tooltip"
                 id        = { id }>
                 <div className = { cssMap.message }>
-                    { messageText }
+                    { message }
                 </div>
                 { isDismissible &&
                     <div className = { cssMap.iconContainer } >
@@ -133,6 +160,42 @@ export default class Tooltip extends Component
                 }
             </div>
         );
+    }
+
+    renderGhost( tooltipOpts )
+    {
+        const { cssMap } = tooltipOpts;
+
+        return (
+            <div
+                className   = { cssMap.ghost }
+                ref         = { this.updateGhostRef }
+                aria-hidden = "true"
+            >
+                { this.renderTooltip( tooltipOpts ) }
+            </div>
+        );
+    }
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap,
+            position,
+            isDismissible,
+            isVisible,
+            message,
+            noWrap,
+            onClickClose,
+            onMouseOver,
+            onMouseOut,
+            overflowIsHidden,
+            role
+        } = this.props;
+
+        const { id } = this.state;
 
         let contentNode = children;
 
@@ -146,6 +209,23 @@ export default class Tooltip extends Component
                 </Text>
             );
         }
+
+        let messageText = message;
+
+        if ( typeof messageText === 'string' )
+        {
+            messageText = (
+                <Text className = { cssMap.messageText }>
+                    { messageText }
+                </Text> );
+        }
+
+        const tooltipOpts = {
+            message : messageText,
+            cssMap,
+            isDismissible,
+            onClickClose
+        };
 
         return (
             <Css
@@ -162,7 +242,8 @@ export default class Tooltip extends Component
                             { contentNode }
                         </div>
                     }
-                    { isVisible && tooltip }
+                    { isVisible && this.renderTooltip( tooltipOpts, true ) }
+                    { this.renderGhost( tooltipOpts ) }
                 </div>
             </Css>
         );
