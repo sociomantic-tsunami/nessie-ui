@@ -1,14 +1,13 @@
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
-
 const ERRORS = {
     BUTTON_CANNOT_BE_CLICKED : ( label, state ) => `Button '${label}' cannot be clicked since it is ${state}` // eslint-disable-line max-len
 };
 
-export default class ButtonDriver extends SimpleComponentDriver
+export default class ButtonDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = this.wrapper.props().cssMap;
     }
 
     click()
@@ -27,6 +26,6 @@ export default class ButtonDriver extends SimpleComponentDriver
                 .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
         }
 
-        return super.click();
+        return this.wrapper.simulate( 'click' );
     }
 }
