@@ -25,16 +25,12 @@ describe( 'DragNDrop', () =>
         } );
     } );
 
-    describe( 'wrapperDriver', () =>
+    test( 'should find content', () =>
     {
-        test( 'should find content', () =>
-        {
-            const driver = wrapper.driver();
-            wrapper.setProps( {
-                children : <Text>something</Text>
-            } );
-
-            expect( driver.getContent() ).toHaveLength( 1 );
+        wrapper.setProps( {
+            children : <Text>something</Text>
         } );
+
+        expect( wrapper.children() ).toHaveLength( 1 );
     } );
 } );
