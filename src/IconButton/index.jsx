@@ -120,6 +120,14 @@ export default class IconButton extends React.Component
          */
         onBlur        : PropTypes.func,
         /**
+         *  onMouseOut callback function : ( e ) => { ... }
+         */
+        onMouseOut    : PropTypes.func,
+        /**
+         *  onMouseOver callback function : ( e ) => { ... }
+         */
+        onMouseOver   : PropTypes.func,
+        /**
          *  Button click callback function: ( e ) => { ... }
          */
         onClick       : PropTypes.func,
@@ -169,6 +177,8 @@ export default class IconButton extends React.Component
             label,
             onBlur,
             onFocus,
+            onMouseOut,
+            onMouseOver,
             onClick,
             value
         } = this.props;
@@ -182,14 +192,16 @@ export default class IconButton extends React.Component
                     size       : iconSize,
                     background : hasBackground
                 }  ) }
-                value     = { value }
-                id        = { id }
-                disabled  = { isDisabled }
-                onClick   = { !isReadOnly && onClick }
-                onBlur    = { onBlur }
-                onFocus   = { onFocus }
-                tabIndex  = { isFocusable ? '0' : '-1' }
-                onMouseDown = { !isFocusable && killFocus }>
+                value        = { value }
+                id           = { id }
+                disabled     = { isDisabled }
+                onClick      = { !isReadOnly && onClick }
+                onBlur       = { onBlur }
+                onFocus      = { onFocus }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                tabIndex     = { isFocusable ? '0' : '-1' }
+                onMouseDown  = { !isFocusable && killFocus }>
                 <Icon
                     className  = { cssMap.icon }
                     size       = { iconSize }
