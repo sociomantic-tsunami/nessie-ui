@@ -12,8 +12,8 @@ const Card = ( {
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
-            paddingX : typeof padding === 'string' ? padding : padding[ 0 ],
-            paddingY : typeof padding === 'string' ? padding : padding[ 1 ]
+            paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
+            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding
         } ) }>
         { children }
     </div>
