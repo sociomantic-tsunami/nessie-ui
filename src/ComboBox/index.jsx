@@ -3,13 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import { Label, ScrollBox, Text }  from '../index';
+import { ScrollBox, Text }  from '../index';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
-import { generateId }       from '../utils';
+import { generateId, buildClassName }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
-import styles                         from './comboBox.css';
+import styles               from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -241,7 +241,7 @@ export default class ComboBox extends Component
         hasAutocomplete       : false,
         hasError              : false,
         iconType              : 'none',
-        id                    : generateId( 'ComboBox' ),
+        id                    : undefined,
         inputIsReadOnly       : false,
         inputPlaceholder      : undefined,
         inputRef              : undefined,
@@ -414,7 +414,7 @@ export default class ComboBox extends Component
             hasAutocomplete,
             hasError,
             iconType,
-            id,
+            id = generateId( 'ComboBox' ),
             inputIsReadOnly,
             inputPlaceholder,
             inputRef,

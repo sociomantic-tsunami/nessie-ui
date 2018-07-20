@@ -93,19 +93,19 @@ export default class SliderDriver
 
     mouseDown()
     {
-        this.track.simulate( 'mouseDown' );
+        this.track.first().simulate( 'mouseDown' );
         return this;
     }
 
     mouseOut()
     {
-        this.default.simulate( 'mouseLeave' );
+        this.default.first().simulate( 'mouseLeave' );
         return this;
     }
 
     mouseOver()
     {
-        this.default.simulate( 'mouseEnter' );
+        this.default.first().simulate( 'mouseEnter' );
         return this;
     }
 

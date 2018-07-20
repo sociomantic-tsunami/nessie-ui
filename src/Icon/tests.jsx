@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -20,14 +19,14 @@ describe( 'Icon', () =>
         instance = wrapper.instance();
     } );
 
-    it( 'should have size S by default', () =>
+    test( 'should have size S by default', () =>
     {
-        expect( instance.props.size ).to.equal( 'S' );
+        expect( instance.props.size ).toBe( 'S' );
     } );
 
-    it( 'should have light theme by default', () =>
+    test( 'should have light theme by default', () =>
     {
-        expect( instance.props.theme ).to.equal( 'light' );
+        expect( instance.props.theme ).toBe( 'light' );
     } );
 } );
 
@@ -41,27 +40,27 @@ describe( 'IconDriver', () =>
         wrapper = mount( <Icon /> );
     } );
 
-    it( 'should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event once', () =>
     {
-        const onMouseOver = sinon.spy();
-        const onMouseOut = sinon.spy();
+        const onMouseOver = jest.fn();
+        const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOver();
 
-        expect( onMouseOver.calledOnce ).to.be.true;
-        expect( onMouseOut.notCalled ).to.be.true;
+        expect( onMouseOver ).toBeCalledTimes( 1 );
+        expect( onMouseOut ).not.toBeCalled();
     } );
 
-    it( 'should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event once', () =>
     {
-        const onMouseOver = sinon.spy();
-        const onMouseOut = sinon.spy();
+        const onMouseOver = jest.fn();
+        const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOut.calledOnce ).to.be.true;
-        expect( onMouseOver.notCalled ).to.be.true;
+        expect( onMouseOut ).toBeCalledTimes( 1 );
+        expect( onMouseOver ).not.toBeCalled();
     } );
 } );

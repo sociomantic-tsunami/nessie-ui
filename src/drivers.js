@@ -44,6 +44,7 @@ import {
     RadioGroup,
     Required,
     Row,
+    ScrollBar,
     ScrollBox,
     Section,
     Slider,
@@ -65,6 +66,7 @@ import {
     TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
+    ToggleButton,
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
@@ -93,6 +95,7 @@ import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
 import PasswordInputDriver   from './PasswordInput/driver';
 import RadioGroupDriver      from './RadioGroup/driver';
+import ScrollBarDriver       from './ScrollBar/driver';
 import ScrollBoxDriver       from './ScrollBox/driver';
 import SectionDriver         from './Section/driver';
 import SimpleComponentDriver
@@ -292,6 +295,10 @@ const drivers =
         Driver    : GridColumnDriver,
     },
     {
+        Component : ScrollBar,
+        Driver    : ScrollBarDriver
+    },
+    {
         Component : ScrollBox,
         Driver    : ScrollBoxDriver
     },
@@ -317,7 +324,7 @@ const drivers =
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver,
+        Driver    : SwitchDriver
     },
     {
         Component : Tab,
@@ -374,6 +381,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : ToggleButton,
+        Driver    : ClickableComponentDriver
     },
     {
         Component : Uploader,

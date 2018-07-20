@@ -1,7 +1,6 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* eslint no-console: 0*/
-/* global expect */
+/* global test */
 
 
 import React        from 'react';
@@ -11,35 +10,34 @@ import Animate      from './index';
 
 describe( 'Animate', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
     {
-        Wrapper = mount( <Animate /> );
+        wrapper = mount( <Animate /> );
     } );
 
-    it( 'should contain a Animate component', () =>
+    test( 'should contain an Animate component', () =>
     {
-        expect( Wrapper.find( Animate ) ).to.have.length( 1 );
+        expect( wrapper.find( Animate ) ).toHaveLength( 1 );
     } );
 
-    it( 'should have animate__default as default className', () =>
+    test( 'should have animate__default as default className', () =>
     {
-        expect( Wrapper.find( '.animate__default' ) ).to.have.length( 1 );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 
-    it( 'should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
-        props are selected',
-        () =>
-        {
-            const props = {
-                enterAnimation : 'fadeIn',
-                outAnimation   : 'fadeOut'
-            };
+    test( 'should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
+        props are selected', () =>
+    {
+        const props = {
+            enterAnimation : 'fadeIn',
+            outAnimation   : 'fadeOut'
+        };
 
-            Wrapper = mount( <Animate { ...props } /> );
+        wrapper = mount( <Animate { ...props } /> );
 
-            expect( Wrapper.find( '.animate__fadeIn__fadeOut' ) )
-                .to.have.length( 1 );
-        } );
+        expect( wrapper.find( '.animate__fadeIn__fadeOut' ) ).toHaveLength( 1 );
+    } );
 } );

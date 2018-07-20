@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -12,10 +11,10 @@ import Tooltip   from './index';
 
 describe( 'Tooltip', () =>
 {
-    it( 'should fire onMouseOver event', () =>
+    test( 'should fire onMouseOver event', () =>
     {
-        const onMouseOverHandler = sinon.spy();
-        const onMouseOutHandler = sinon.spy();
+        const onMouseOverHandler = jest.fn();
+        const onMouseOutHandler = jest.fn();
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
@@ -28,14 +27,14 @@ describe( 'Tooltip', () =>
 
         Wrapper.driver().mouseOver();
 
-        expect( onMouseOverHandler.calledOnce ).to.be.true;
-        expect( onMouseOutHandler.notCalled ).to.be.true;
+        expect( onMouseOverHandler ).toBeCalled();
+        expect( onMouseOutHandler ).not.toBeCalled();
     } );
 
-    it( 'should fire onMouseOut event', () =>
+    test( 'should fire onMouseOut event', () =>
     {
-        const onMouseOverHandler = sinon.spy();
-        const onMouseOutHandler = sinon.spy();
+        const onMouseOverHandler = jest.fn();
+        const onMouseOutHandler = jest.fn();
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
@@ -48,13 +47,13 @@ describe( 'Tooltip', () =>
 
         wrapper.driver().mouseOut();
 
-        expect( onMouseOverHandler.notCalled ).to.be.true;
-        expect( onMouseOutHandler.calledOnce ).to.be.true;
+        expect( onMouseOverHandler ).not.toBeCalled();
+        expect( onMouseOutHandler ).toBeCalled();
     } );
 
     describe( 'Driver self-test', () =>
     {
-        it( 'getContent', () =>
+        test( 'getContent', () =>
         {
             const props = {
                 message : 'Pikachu!',
@@ -65,10 +64,10 @@ describe( 'Tooltip', () =>
             </Tooltip> );
 
             const content = wrapper.driver().getContent();
-            expect( content.find( 'h1' ) ).to.have.length( 1 );
+            expect( content.find( 'h1' ) ).toHaveLength( 1 );
         } );
 
-        it( 'getMessage', () =>
+        test( 'getMessage', () =>
         {
             const props = {
                 message : <h2>Pikachu!</h2>,
@@ -77,7 +76,7 @@ describe( 'Tooltip', () =>
             const wrapper = mount( <Tooltip { ...props } /> );
 
             const message = wrapper.driver().getMessage();
-            expect( message.find( 'h2' ) ).to.have.length( 1 );
+            expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 } );
