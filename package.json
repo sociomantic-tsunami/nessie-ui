@@ -28,7 +28,7 @@
     "dev": "webpack --env=dev --watch",
     "dist-watch": "webpack --env=dist --watch",
     "dist": "webpack --env=dist",
-    "gh": "yarn build && yarn loch:build && yarn copy:all",
+    "gh": "webpack --env=dev && yarn loch:build && yarn copy:all",
     "lint-fix": "npm run lint -- --fix",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "loch:build": "loch:build -e dev -c ./ -j src/defaults.json",
