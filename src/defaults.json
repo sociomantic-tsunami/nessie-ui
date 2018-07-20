@@ -339,7 +339,8 @@
         "errorMessage"     : "That’s too long!"
     },
     "ToggleButton" : {
-      "label": "Toggle me"
+      "label": "Toggle me tender",
+      "subLabel": "Toggle me sweet"
     },
     "Tooltip" :
     {
