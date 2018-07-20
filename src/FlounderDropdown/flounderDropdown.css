@@ -24,6 +24,7 @@
         min-height:         calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
         display:            flex;
         align-items:        center;
+        @extend %Nessie-Regular;
 
         .selectedDisplayed
         {
