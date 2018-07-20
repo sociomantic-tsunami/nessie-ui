@@ -16,15 +16,4 @@ export default class UploaderDriver
         this.wrapper.find( 'IconButton' ).simulate( 'click' );
         return this;
     }
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
-        return this;
-    }
 }

@@ -71,7 +71,7 @@ describe( 'SwitchDriver', () =>
 
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalled();
         } );
@@ -85,7 +85,7 @@ describe( 'SwitchDriver', () =>
 
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalled();
         } );

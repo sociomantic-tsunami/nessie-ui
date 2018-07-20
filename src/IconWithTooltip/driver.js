@@ -9,13 +9,13 @@ export default class IconWithTooltipDriver
 
     mouseOverIcon()
     {
-        this.tooltip.driver().mouseOver();
+        this.tooltip.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.driver().mouseOut();
+        this.tooltip.simulate( 'mouseleave' );
         return this;
     }
 

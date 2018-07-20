@@ -1,14 +1,13 @@
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver'; // eslint-disable-line max-len
-
 /**
  * This driver simulate actions on the content rather than on the tooltip
  * itself, as this is how a user would act.
  */
-export default class TooltipDriver extends SimpleComponentDriver
+export default class TooltipDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = this.wrapper.props().cssMap;
     }
 
     getContent()

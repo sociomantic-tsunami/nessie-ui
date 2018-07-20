@@ -158,7 +158,7 @@ describe( 'UploaderDriver', () =>
                 onMouseOut
             } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalled();
         } );
@@ -172,7 +172,7 @@ describe( 'UploaderDriver', () =>
                 onMouseOver
             } );
 
-            wrapper.driver().mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalled();
         } );

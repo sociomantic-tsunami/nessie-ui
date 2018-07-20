@@ -24,24 +24,18 @@ import {
     RadioGroup,
     ScrollBar,
     ScrollBox,
-    Section,
     Slider,
     SliderGroup,
-    Sorter,
     Switch,
     TabButton,
     Tabs,
-    Tag,
     TagInput,
     Text,
-    TextArea,
     TextInput,
-    TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
     ToggleButton,
     Uploader,
-    ValuedTextInput,
 } from 'nessie-ui';
 
 import ButtonDriver         from './Button/driver';
@@ -58,28 +52,22 @@ import FormDriver             from './Form/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
 import InputComponentDriver
     from './Testing/CommonDrivers/inputComponentDriver';
-import ListBoxDriver         from './ListBox/driver';
-import ModalDialogDriver     from './ModalDialog/driver';
-import ModuleDriver          from './Module/driver';
-import NavItemDriver         from './NavItem/driver';
-import NotificationBarDriver from './NotificationBar/driver';
-import PaginatorDriver       from './Paginator/driver';
-import PasswordInputDriver   from './PasswordInput/driver';
-import RadioGroupDriver      from './RadioGroup/driver';
-import ScrollBarDriver       from './ScrollBar/driver';
-import ScrollBoxDriver       from './ScrollBox/driver';
-import SectionDriver         from './Section/driver';
-import SimpleComponentDriver
-    from './Testing/CommonDrivers/simpleComponentDriver';
+import ListBoxDriver           from './ListBox/driver';
+import ModalDialogDriver       from './ModalDialog/driver';
+import ModuleDriver            from './Module/driver';
+import NavItemDriver           from './NavItem/driver';
+import NotificationBarDriver   from './NotificationBar/driver';
+import PaginatorDriver         from './Paginator/driver';
+import PasswordInputDriver     from './PasswordInput/driver';
+import RadioGroupDriver        from './RadioGroup/driver';
+import ScrollBarDriver         from './ScrollBar/driver';
+import ScrollBoxDriver         from './ScrollBox/driver';
 import SliderDriver            from './Slider/driver';
 import SliderGroupDriver       from './SliderGroup/driver';
-import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
-import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
-import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
 import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -185,20 +173,12 @@ const drivers =
         Driver    : ScrollBoxDriver
     },
     {
-        Component : Section,
-        Driver    : SectionDriver
-    },
-    {
         Component : Slider,
         Driver    : SliderDriver,
     },
     {
         Component : SliderGroup,
         Driver    : SliderGroupDriver,
-    },
-    {
-        Component : Sorter,
-        Driver    : SorterDriver,
     },
     {
         Component : Switch,
@@ -213,10 +193,6 @@ const drivers =
         Driver    : TabsDriver,
     },
     {
-        Component : Tag,
-        Driver    : TagDriver,
-    },
-    {
         Component : TagInput,
         Driver    : TagInputDriver
     },
@@ -225,16 +201,8 @@ const drivers =
         Driver    : TextDriver,
     },
     {
-        Component : TextArea,
-        Driver    : TextAreaDriver,
-    },
-    {
         Component : TextInput,
         Driver    : InputComponentDriver,
-    },
-    {
-        Component : TextInputWithDropdown,
-        Driver    : InputComponentDriver
     },
     {
         Component : TextInputWithIcon,
@@ -251,17 +219,9 @@ const drivers =
     {
         Component : Uploader,
         Driver    : UploaderDriver,
-    },
-    {
-        Component : ValuedTextInput,
-        Driver    : InputComponentDriver,
     }
 ];
 
-export {
-    ClickableComponentDriver,
-    InputComponentDriver,
-    SimpleComponentDriver
-};
+export { InputComponentDriver };
 
 export default ComponentDriver.createDriverSuite( drivers );
