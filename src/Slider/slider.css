@@ -345,10 +345,10 @@
 
 .disabled
 {
-    cursor: not-allowed;
+    cursor: default;
     &  *
     {
-      cursor: not-allowed;
+      cursor: default;
     }
     .track:hover .handle
     {
