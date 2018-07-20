@@ -178,34 +178,28 @@ export default class ScrollBox extends Component
 
     handleClickTrackX( pos )
     {
-        const { innerRef } = this;
-        const { clientWidth, scrollLeft, scrollTop } = this.state;
-
+        const { clientWidth, scrollLeft } = this.state;
         const increment = pos >= scrollLeft ? clientWidth : -clientWidth;
 
-        innerRef.scrollTo( scrollLeft + increment, scrollTop );
+        this.innerRef.scrollLeft = scrollLeft + increment;
     }
 
     handleClickTrackY( pos )
     {
-        const { innerRef } = this;
-        const { clientWidth, scrollLeft, scrollTop } = this.state;
-
+        const { clientWidth, scrollTop } = this.state;
         const increment = pos >= scrollTop ? clientWidth : -clientWidth;
 
-        innerRef.scrollTo( scrollLeft, scrollTop + increment );
+        this.innerRef.scrollTop = scrollTop + increment;
     }
 
     handleChangeX( pos )
     {
-        const { innerRef } = this;
-        innerRef.scrollTo( pos, innerRef.scrollTop );
+        this.innerRef.scrollLeft = pos;
     }
 
     handleChangeY( pos )
     {
-        const { innerRef } = this;
-        innerRef.scrollTo( innerRef.scrollLeft, pos );
+        this.innerRef.scrollTop = pos;
     }
 
     handleRef( ref )
