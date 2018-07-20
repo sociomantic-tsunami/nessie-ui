@@ -127,7 +127,7 @@ describe( 'ScrollBarDriver', () =>
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
     } );
-    describe( 'mouseOver()', () =>
+    describe( 'mouseOver', () =>
     {
         test( 'should change the value of the <input />', () =>
         {
@@ -135,13 +135,13 @@ describe( 'ScrollBarDriver', () =>
             wrapper.setProps( {
                 onMouseOver
             } );
-            wrapper.driver().mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should change the value of the <input />', () =>
         {
@@ -149,7 +149,7 @@ describe( 'ScrollBarDriver', () =>
             wrapper.setProps( {
                 onMouseOut
             } );
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );

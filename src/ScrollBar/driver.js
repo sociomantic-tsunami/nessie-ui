@@ -3,8 +3,8 @@ export default class ScrollBarDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper.find( `.${wrapper.props().cssMap.range}` ).first();
-        this.outer = wrapper.find( `.${wrapper.props().cssMap.default}` );
+        this.control = wrapper.find( `.${wrapper.props().cssMap.range}` )
+            .first();
     }
 
     change( value )
@@ -13,18 +13,6 @@ export default class ScrollBarDriver
         node.value = value;
         this.control.simulate( 'change' );
 
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.outer.simulate( 'mouseenter' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.outer.simulate( 'mouseleave' );
         return this;
     }
 }

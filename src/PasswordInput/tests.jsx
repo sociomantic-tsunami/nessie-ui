@@ -118,7 +118,7 @@ describe( 'PasswordInputDriver', () =>
                 onFocus  : focusSpy
             } );
 
-            driver.focus();
+            wrapper.find( 'input' ).simulate( 'focus' );
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -134,7 +134,7 @@ describe( 'PasswordInputDriver', () =>
                 onBlur   : blurSpy
             } );
 
-            driver.blur();
+            wrapper.find( 'input' ).simulate( 'blur' );
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

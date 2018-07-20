@@ -75,7 +75,8 @@ child', () =>
             onClick : callBack
         };
         wrapper = mount( <Tag { ...props } /> );
-        wrapper.driver().clickClose();
+        wrapper.find( `.${wrapper.prop( 'cssMap' ).delete}` )
+            .simulate( 'click' );
         expect( callBack ).toBeCalled();
     } );
 } );

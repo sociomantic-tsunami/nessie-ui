@@ -120,7 +120,7 @@ Tabs as children',
                 ]
             } );
 
-            expect( driver.getTabContent() ).toHaveLength( 1 );
+            expect( wrapper.find( 'Tab' ).children() ).toHaveLength( 1 );
         } );
     } );
 } );

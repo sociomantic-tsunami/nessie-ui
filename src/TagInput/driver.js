@@ -11,8 +11,9 @@ export default class TagInputDriver extends InputComponentDriver
 
     clickCloseTagByIndex( index = 0 )
     {
-
-        this.wrapper.find( 'Tag' ).at( index ).driver().clickClose();
+        this.wrapper.find( 'Tag' ).at( index )
+            .find( `.${this.wrapper.prop( 'cssMap' ).delete}` )
+            .simulate( 'click' );
         return this;
     }
 
@@ -20,12 +21,15 @@ export default class TagInputDriver extends InputComponentDriver
     {
         if ( Array.isArray( label ) )
         {
+            let value;
+
             value.forEach( i =>
             {
                 const item =
                     this.wrapper.findWhere( n =>
                         n.prop( 'label' ) === i ).first();
-                item.driver().clickClose();
+                item.find( `.${this.wrapper.prop( 'cssMap' ).delete}` )
+                    .simulate( 'click' );
             } );
         }
         else
@@ -33,21 +37,10 @@ export default class TagInputDriver extends InputComponentDriver
             const item =
                 this.wrapper.findWhere( n =>
                     n.prop( 'label' ) === label ).first();
-            item.driver().clickClose();
+            item.find( `.${this.wrapper.prop( 'cssMap' ).delete}` )
+                .simulate( 'click' );
         }
 
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 }

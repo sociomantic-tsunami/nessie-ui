@@ -45,7 +45,7 @@ describe( 'SorterDriver', () =>
             onToggle
         } );
 
-        wrapper.driver().toggle();
+        wrapper.simulate( 'click' );
 
         expect( onToggle ).toBeCalled();
     } );

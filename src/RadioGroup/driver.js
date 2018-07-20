@@ -48,16 +48,4 @@ export default class RadioGroupDriver
 
         return items.map( item => item.prop( 'value' ) );
     }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
 }

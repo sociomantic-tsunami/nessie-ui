@@ -1,5 +1,3 @@
-import SimpleComponentDriver from './simpleComponentDriver';
-
 const ERRORS = {
     INPUT_CANNOT_BE_CLICKED : ( label, state ) =>
         `Input '${label}' cannot be clicked since it is ${state}`,
@@ -10,11 +8,14 @@ const ERRORS = {
 };
 
 
-export default class InputComponentDriver extends SimpleComponentDriver
+export default class InputComponentDriver
 {
     constructor( wrapper, selector )
     {
-        super( wrapper, selector || 'input' );
+        const target = selector || 'input';
+        this.wrapper = wrapper;
+        this.cssMap  = this.wrapper.props().cssMap;
+        this.control = this.wrapper.find( target ).first();
     }
 
     /**
@@ -35,10 +36,10 @@ export default class InputComponentDriver extends SimpleComponentDriver
         const input = this.control;
         const node  = input.getNode();
 
-        this.focus();
+        input.simulate( 'focus' );
         node.value = value;
         input.simulate( 'change' );
-        this.blur();
+        input.simulate( 'blur' );
 
         return this;
     }
@@ -115,7 +116,7 @@ export default class InputComponentDriver extends SimpleComponentDriver
             ERRORS.INPUT_CANNOT_BE_CLICKED
         );
 
-        return super.click();
+        return this.wrapper.simulate( 'click' );
     }
 }
 

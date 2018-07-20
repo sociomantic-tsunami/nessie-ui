@@ -99,9 +99,11 @@ describe( 'ScrollBox', () =>
                 }
             } );
             wrapper.setProps( { scroll: 'horizontal' } );
-            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) ).toBe( 'horizontal' );
+            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) )
+                .toBe( 'horizontal' );
             wrapper.setProps( { scroll: 'vertical' } );
-            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) ).toBe( 'vertical' );
+            expect( wrapper.find( ScrollBar ).first().prop( 'orientation' ) )
+                .toBe( 'vertical' );
         } );
     } );
 
@@ -116,8 +118,10 @@ describe( 'ScrollBox', () =>
                 }
             } );
 
-            expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) ).toBe( 50 );
-            expect( wrapper.find( ScrollBar ).last().prop( 'thumbSize' ) ).toBe( 100 );
+            expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) )
+                .toBe( 50 );
+            expect( wrapper.find( ScrollBar ).last().prop( 'thumbSize' ) )
+                .toBe( 100 );
         } );
     } );
 } );
