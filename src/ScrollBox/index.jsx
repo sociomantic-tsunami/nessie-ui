@@ -122,6 +122,10 @@ export default class ScrollBox extends Component
             scrollWidth  : null,
         };
 
+        this.handleClickTrackX = this.handleClickTrackX.bind( this );
+        this.handleClickTrackY = this.handleClickTrackY.bind( this );
+        this.handleChangeX = this.handleChangeX.bind( this );
+        this.handleChangeY = this.handleChangeY.bind( this );
         this.handleRef = this.handleRef.bind( this );
         this.handleScroll = this.handleScroll.bind( this );
     }
@@ -172,6 +176,38 @@ export default class ScrollBox extends Component
         return newState;
     }
 
+    handleClickTrackX( pos )
+    {
+        const { innerRef } = this;
+        const { clientWidth, scrollLeft, scrollTop } = this.state;
+
+        const increment = pos >= scrollLeft ? clientWidth : -clientWidth;
+
+        innerRef.scrollTo( scrollLeft + increment, scrollTop );
+    }
+
+    handleClickTrackY( pos )
+    {
+        const { innerRef } = this;
+        const { clientWidth, scrollLeft, scrollTop } = this.state;
+
+        const increment = pos >= scrollTop ? clientWidth : -clientWidth;
+
+        innerRef.scrollTo( scrollLeft, scrollTop + increment );
+    }
+
+    handleChangeX( pos )
+    {
+        const { innerRef } = this;
+        innerRef.scrollTo( pos, innerRef.scrollTop );
+    }
+
+    handleChangeY( pos )
+    {
+        const { innerRef } = this;
+        innerRef.scrollTo( innerRef.scrollLeft, pos );
+    }
+
     handleRef( ref )
     {
         if ( ref )
@@ -187,7 +223,6 @@ export default class ScrollBox extends Component
 
     handleScroll( e )
     {
-
         this.forceUpdate();
 
         const { onScroll } = this.props;
@@ -217,11 +252,13 @@ export default class ScrollBox extends Component
             {
                 scrollBars.push(
                     <ScrollBar
-                        className   = { cssMap.scrollBarHorizontal }
-                        key         = "horizontal"
-                        orientation = "horizontal"
-                        scrollPos   = { scrollLeft }
-                        thumbSize   = {
+                        className        = { cssMap.scrollBarHorizontal }
+                        key              = "horizontal"
+                        onClickTrack     = { this.handleClickTrackX }
+                        onChange         = { this.handleChangeX }
+                        orientation      = "horizontal"
+                        scrollPos        = { scrollLeft }
+                        thumbSize        = {
                             `${( clientWidth / scrollWidth ) * 100}%`
                         }
                         scrollMax = { scrollWidth - clientWidth } />
@@ -237,11 +274,13 @@ export default class ScrollBox extends Component
             {
                 scrollBars.push(
                     <ScrollBar
-                        className   = { cssMap.scrollBarVertical }
-                        key         = "vertical"
-                        orientation = "vertical"
-                        scrollPos   = { scrollTop }
-                        thumbSize   = {
+                        className        = { cssMap.scrollBarVertical }
+                        key              = "vertical"
+                        onClickTrack     = { this.handleClickTrackY }
+                        onChange         = { this.handleChangeY }
+                        orientation      = "vertical"
+                        scrollPos        = { scrollTop }
+                        thumbSize        = {
                             `${( clientHeight / scrollHeight ) * 100}%`
                         }
                         scrollMax = { scrollHeight - clientHeight  }
