@@ -345,6 +345,11 @@
 
 .disabled
 {
+    cursor: not-allowed;
+    &  *
+    {
+      cursor: not-allowed;
+    }
     .track:hover .handle
     {
         border-color:   var( --PC-GREY--L85 );
