@@ -1,15 +1,14 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global jest, test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
-import React               from 'react';
-import { shallow, mount }  from 'enzyme';
+import React        from 'react';
+import { shallow }  from 'enzyme';
 
-import Icon                from '../Icon';
+import { Icon }     from '../index';
 
-import ToggleButton        from './index';
+import ToggleButton from './index';
 
 
 describe( 'ToggleButton', () =>
@@ -22,37 +21,54 @@ describe( 'ToggleButton', () =>
         wrapper = shallow( <ToggleButton /> );
         instance = wrapper.instance();
     } );
-    describe( 'label', () =>
+
+    test( '<button> should always have type "button"', () =>
     {
-        test( 'should be undefined by default', () =>
-        {
-            expect( instance.props.label ).toBeUndefined();
-        } );
+        expect( wrapper.find( 'button' ).prop( 'type' ) ).toEqual( 'button' );
     } );
-    describe( 'role', () =>
+
+    test( 'should contain an Icon when iconType is not "none"', () =>
     {
-        test( 'should be "primary" by default', () =>
-        {
-            expect( instance.props.role ).toEqual( 'primary' );
-        } );
+        wrapper.setProps( { iconType: 'add' } );
+        expect( wrapper.find( Icon ) ).toHaveLength( 1 );
     } );
-    describe( 'id', () =>
-    {
-        test( 'should be defined', () =>
-        {
-            expect( instance.props.id ).toBeUndefined();
-        } );
-    } );
+
     describe( 'Icon', () =>
     {
-        describe( 'iconType', () =>
+        test( 'should always have size "M"', () =>
         {
-            test( 'should contain an Icon when iconType is not "none"', () =>
+            wrapper.setProps( { iconType: 'add' } );
+            expect( wrapper.find( Icon ).first().prop( 'size' ) )
+                .toEqual( 'S' );
+        } );
+    } );
+
+    describe( 'props', () =>
+    {
+        describe( 'label', () =>
+        {
+            test( 'should be undefined by default', () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
-                expect( wrapper.find( Icon ) ).toHaveLength( 1 );
+                expect( instance.props.label ).toBeUndefined();
             } );
         } );
+
+        describe( 'role', () =>
+        {
+            test( 'should be "primary" by default', () =>
+            {
+                expect( instance.props.role ).toEqual( 'primary' );
+            } );
+        } );
+
+        describe( 'id', () =>
+        {
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.id ).toBeUndefined();
+            } );
+        } );
+
         describe( 'iconPosition', () =>
         {
             test( 'should be "left" by default', () =>
@@ -60,107 +76,93 @@ describe( 'ToggleButton', () =>
                 expect( instance.props.iconPosition ).toEqual( 'left' );
             } );
         } );
-        describe( 'iconSize', () =>
+
+        describe( 'isDisabled', () =>
         {
-            test( 'should always be "M"', () =>
+            test( 'should be false by default', () =>
             {
-                wrapper.setProps( { iconType: 'add' } );
-                expect( wrapper.find( Icon ).first().prop( 'size' ) ).toEqual( 'S' );
+                expect( instance.props.isDisabled ).toEqual( false );
+            } );
+
+            test( 'should be passed to <button> as "disabled" when true', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+                expect( wrapper.prop( 'disabled' ) ).toEqual( true );
             } );
         } );
-    } );
-    describe( 'isDisabled', () =>
-    {
-        test( 'should be false by default', () =>
-        {
-            expect( instance.props.isDisabled ).toBeFalsy();
-        } );
-        test( 'should be passed to the button as "disabled" when true', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( wrapper.prop( 'disabled' ) ).toBeTruthy();
-        } );
-    } );
 
-    describe( 'isReadOnly', () =>
-    {
-        test( 'should be false by default', () =>
+        describe( 'isReadOnly', () =>
         {
-            expect( instance.props.isReadOnly ).toBeFalsy();
-        } );
-        test( 'should be passed to the button as "readOnly" when true', () =>
-        {
-            wrapper.setProps( { isReadOnly: true } );
-            expect( wrapper.prop( 'readOnly' ) ).toBeTruthy();
-        } );
-    } );
+            test( 'should be false by default', () =>
+            {
+                expect( instance.props.isReadOnly ).toEqual( false );
+            } );
 
-    describe( 'type', () =>
-    {
-        test( 'should be "button" by default', () =>
-        {
-            expect( wrapper.find( 'button' ).prop( 'type' ) ).toEqual( 'button' );
-        } );
-    } );
-
-    describe( 'onClick', () =>
-    {
-        test( 'should be undefined by default', () =>
-        {
-            expect( instance.props.onClick ).toBeUndefined();
+            test( 'should be passed to <button> as "readOnly" when true', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+                expect( wrapper.prop( 'readOnly' ) ).toEqual( true );
+            } );
         } );
 
-        test( 'should be passed to the button element', () =>
+        describe( 'onClick', () =>
         {
-            const onClick = () =>
-            {};
-            wrapper.setProps( { onClick } );
-            expect( wrapper.prop( 'onClick' ) ).toEqual( onClick );
-        } );
-    } );
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onClick ).toBeUndefined();
+            } );
 
-    describe( 'onFocus', () =>
-    {
-        test( 'should be undefined by default', () =>
-        {
-            expect( instance.props.onFocus ).toBeUndefined();
+            test( 'should be passed to the <button> element', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick } );
+                expect( wrapper.prop( 'onClick' ) ).toEqual( onClick );
+            } );
         } );
-        test( 'should be passed to the button element', () =>
-        {
-            const onFocus = () =>
-            {};
-            wrapper.setProps( { onFocus } );
-            expect( wrapper.prop( 'onFocus' ) ).toEqual( onFocus );
-        } );
-    } );
 
-    describe( 'onMouseOver', () =>
-    {
-        test( 'should be undefined by default', () =>
+        describe( 'onFocus', () =>
         {
-            expect( instance.props.onMouseOver ).toBeUndefined();
-        } );
-        test( 'should be passed to the button element as onMouseEnter', () =>
-        {
-            const onMouseOver = () =>
-            {};
-            wrapper.setProps( { onMouseOver } );
-            expect( wrapper.prop( 'onMouseEnter' ) ).toEqual( onMouseOver );
-        } );
-    } );
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onFocus ).toBeUndefined();
+            } );
 
-    describe( 'onMouseOut', () =>
-    {
-        test( 'should be undefined by default', () =>
-        {
-            expect( instance.props.onMouseOut ).toBeUndefined();
+            test( 'should be passed to the <button>', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus } );
+                expect( wrapper.prop( 'onFocus' ) ).toEqual( onFocus );
+            } );
         } );
-        test( 'should be passed to the button element as onMouseLeave', () =>
+
+        describe( 'onMouseOver', () =>
         {
-            const onMouseOut = () =>
-            {};
-            wrapper.setProps( { onMouseOut } );
-            expect( wrapper.prop( 'onMouseLeave' ) ).toEqual( onMouseOut );
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOver ).toBeUndefined();
+            } );
+
+            test( 'should be passed to the <button> as onMouseEnter', () =>
+            {
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver } );
+                expect( wrapper.prop( 'onMouseEnter' ) ).toEqual( onMouseOver );
+            } );
+        } );
+
+        describe( 'onMouseOut', () =>
+        {
+            test( 'should be undefined by default', () =>
+            {
+                expect( instance.props.onMouseOut ).toBeUndefined();
+            } );
+
+            test( 'should be passed to the <button> as onMouseLeave', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut } );
+                expect( wrapper.prop( 'onMouseLeave' ) ).toEqual( onMouseOut );
+            } );
         } );
     } );
 } );

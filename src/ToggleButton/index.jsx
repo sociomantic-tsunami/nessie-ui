@@ -3,7 +3,8 @@ import PropTypes                       from 'prop-types';
 
 import { buildClassName, generateId }  from '../utils';
 import styles                          from './toggleButton.css';
-import Icon                            from '../Icon/';
+import { Icon }                        from '../index';
+
 
 const ToggleButton = ( {
     children,
@@ -22,7 +23,7 @@ const ToggleButton = ( {
     onMouseOut,
     onMouseOver,
     role,
-    subTitle
+    subLabel,
 } ) => (
     <button
         aria-pressed = { isPressed ? 'true' : 'false' }
@@ -30,12 +31,11 @@ const ToggleButton = ( {
             disabled : isDisabled,
             pressed  : isPressed,
             iconPosition,
-            role
+            role,
         } ) }
         disabled     = { isDisabled }
         readOnly     = { isReadOnly }
         id           = { id }
-        isPressed    = { isPressed }
         onBlur       = { onBlur }
         onClick      = { onClick }
         onFocus      = { onFocus }
@@ -43,18 +43,23 @@ const ToggleButton = ( {
         onMouseEnter = { onMouseOver }
         role         = { role }
         type         = "button" >
-        <div className = { cssMap.inner }>
-            { iconType && iconType !== 'none' &&
+        <div className = { cssMap.flexContainer }>
+            { iconType !== 'none' &&
                 <Icon
                     className = { cssMap.icon }
                     type      = { iconType }
                     size      =  "S" />
             }
-            <div>{ children || label }</div>
+            <div className = { cssMap.labelContainer }>
+                <div className = { cssMap.title }>
+                    { children || label }
+                </div>
+                <div className = { cssMap.subLabel }>
+                    { subLabel }
+                </div>
+            </div>
         </div>
-        { subTitle &&
-            <div style = {{ color: '#98a8bc', marginTop: '5px', fontSize: '11px' }}>{ subTitle }</div>
-        }
+
     </button>
 );
 
@@ -69,92 +74,114 @@ ToggleButton.propTypes =
      */
     cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  ToggleButton content, replaces label in case of value/node
+     *  label content (JSX node; overrides label prop)
      */
     children     : PropTypes.node,
     /**
-     *  Icon position relative to Button text
+     *  icon position relative to text
      */
     iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
-     *  Icon type to display
+     *  icon type to display
      */
     iconType     : PropTypes.oneOf( [
+        'account',
         'add',
+        'add-circle',
         'alert',
         'approved',
+        'arrow',
+        'bell',
+        'board',
         'calendar',
         'close',
+        'close-circle',
+        'close-thick',
+        'dash',
+        'dashboard',
         'declined',
         'delete',
         'down',
         'download',
         'duplicate',
         'edit',
+        'edit-circle',
         'ended',
         'error',
+        'file',
+        'graph',
+        'hide',
         'info',
         'inspect',
         'left',
+        'lightbulb',
         'link',
+        'megaphone',
+        'options',
         'pending',
         'preview',
+        'puzzle-piece',
         'reset',
         'right',
         'search',
+        'show',
+        'star',
+        'star-stroke',
+        'swap',
+        'table',
         'up',
         'upload',
         'validation',
-        'none'
+        'none',
     ] ),
     /**
-     * HTML id attribute (overwrite default)
+     * HTML id attribute
      */
     id          : PropTypes.string,
     /**
-    *  Display as disabled
+    *  display as disabled
     */
     isDisabled  : PropTypes.bool,
     /**
-    *  Display as read-only
-    */
+     *  display as read-only
+     */
     isReadOnly  : PropTypes.bool,
     /**
-    *  Display as pressed state
-    */
+     *  display with pressed state
+     */
     isPressed   : PropTypes.bool,
     /**
-    *  Label text
-    */
+     *  label text
+     */
     label       : PropTypes.string,
     /**
-     *  Button blur callback function: ( e ) => { ... }
+     *  blur callback function: ( e ) => { ... }
      */
     onBlur      : PropTypes.func,
     /**
-     *  Button click callback function: ( e ) => { ... }
+     *  click callback function: ( e ) => { ... }
      */
     onClick     : PropTypes.func,
     /**
-     *  Button focus callback function: ( e ) => { ... }
+     *  focus callback function: ( e ) => { ... }
      */
     onFocus     : PropTypes.func,
     /**
-     *  Mouse out callback function: ( e ) => { ... }
+     *  mouse out callback function: ( e ) => { ... }
      */
     onMouseOut  : PropTypes.func,
     /**
-     *  Mouse over callback function: ( e ) => { ... }
+     *  mouse over callback function: ( e ) => { ... }
      */
     onMouseOver : PropTypes.func,
     /**
-    *  Button role/style
+    *  ToggleButton role (style)
     */
     role        : PropTypes.oneOf( [ 'primary', 'secondary' ] ),
     /**
-    *  Button subTitle
-    */
-    subTitle    : PropTypes.string
+     *  sub-label text
+     */
+    subLabel    : PropTypes.string,
 };
 
 ToggleButton.defaultProps =
@@ -174,7 +201,7 @@ ToggleButton.defaultProps =
     onFocus      : undefined,
     onMouseOut   : undefined,
     onMouseOver  : undefined,
-    role         : 'primary'
+    role         : 'primary',
 };
 
 export default ToggleButton;

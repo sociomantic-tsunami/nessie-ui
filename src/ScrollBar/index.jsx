@@ -1,117 +1,186 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+/* global addEventListener removeEventListener */
 
-import { buildClassName, generateId }   from '../utils';
-import styles                           from './scrollbar.css';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+
+import React                     from 'react';
+import PropTypes                 from 'prop-types';
+
+import { clamp, buildClassName } from '../utils';
+import styles                    from './scrollBar.css';
 
 
 const ScrollBar = ( {
     className,
     cssMap,
-    id = generateId( 'ScrollBar' ),
-    orientation,
     onChange,
+    onClickTrack,
     onMouseOut,
     onMouseOver,
-    thumbSize,
-    scrollPos,
+    orientation,
+    scrollBoxId,
     scrollMax,
     scrollMin,
-    length
+    scrollPos,
+    thumbSize,
 } ) =>
-    (
+{
+    const isVertical = orientation === 'vertical';
+    const scrollLength = Math.abs( scrollMax - scrollMin );
+    const thumbOffset =
+        `calc( ${scrollPos / scrollLength} * ( 100% - ${thumbSize} ) )`;
+
+    let trackRef = null;
+    let thumbRef = null;
+
+    return (
         <div
-            className    = { buildClassName( className, cssMap, { orientation } ) }
-            id           = { id }
+            aria-controls    = { scrollBoxId }
+            aria-orientation = { orientation }
+            aria-valuenow    = { scrollPos }
+            aria-valuemin    = { scrollMin }
+            aria-valuemax    = { scrollMax }
+            className = { buildClassName( className, cssMap, {
+                orientation,
+            } ) }
+            onClick = { e =>
+            {
+                if ( e.target !== e.currentTarget || !onClickTrack )
+                {
+                    return;
+                }
+
+                const trackLength = isVertical ?
+                    trackRef.clientHeight : trackRef.clientWidth;
+                const clickOffset = isVertical ?
+                    e.nativeEvent.offsetY : e.nativeEvent.offsetX;
+
+                const scale = scrollLength / trackLength;
+                const newPos = clickOffset * scale;
+
+                onClickTrack( newPos );
+            } }
             onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut } >
-            <input
-                className    = { cssMap.range }
-                value        = { scrollPos }
-                max          = { scrollMax }
-                min          = { scrollMin }
-                onChange     = { e => onChange( parseInt( e.target.value ) ) }
-                step         = "1"
-                style        = { { width: `${length}px`, '--thumbSize': `${thumbSize}%` } }
-                type         = "range" />
+            onMouseLeave = { onMouseOut }
+            ref          = { ref => trackRef = ref }
+            role         = "scrollbar">
+            <div
+                className   = { cssMap.thumb }
+                onMouseDown = { md =>
+                {
+                    if ( !onChange )
+                    {
+                        return;
+                    }
+
+                    md.preventDefault();
+
+                    const initialMouse = isVertical ? md.clientY : md.clientX;
+                    const trackLength = isVertical ?
+                        trackRef.clientHeight : trackRef.clientWidth;
+
+                    const thumbLength = isVertical ?
+                        thumbRef.clientHeight : thumbRef.clientWidth;
+
+                    const scale = scrollLength / ( trackLength - thumbLength );
+
+                    const handleMouseMove = mv =>
+                    {
+                        const mouse = isVertical ? mv.clientY : mv.clientX;
+                        const mouseDiff = mouse - initialMouse;
+                        const scrollDiff = mouseDiff * scale;
+
+                        const newPos = clamp(
+                            scrollPos + scrollDiff,
+                            scrollMin, scrollMax
+                        );
+
+                        onChange( newPos );
+                    };
+
+                    addEventListener( 'mousemove', handleMouseMove );
+                    addEventListener( 'mouseup', function handleMouseUp()
+                    {
+                        removeEventListener( 'mousemove', handleMouseMove );
+                        removeEventListener( 'mouseup', handleMouseUp );
+                    } );
+                } }
+                ref   = { ref => thumbRef = ref }
+                style = { {
+                    [ isVertical ? 'height' : 'width' ] : thumbSize,
+                    [ isVertical ? 'top'    : 'left'  ] : thumbOffset,
+                } } />
         </div>
     );
+};
 
 ScrollBar.propTypes =
 {
     /**
      *  Extra CSS class name
      */
-    className   : PropTypes.string,
+    className    : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
-    *  Component id
-    */
-    id          : PropTypes.string,
-    /**
-     *  orientation of the scrollBox 'horizontal || vertical'
+     *  orientation of the ScrollBar
      */
-    orientation : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    orientation  : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
-     *  onChange callback function : ( e ) => { ... }
+     *  scroll position change callback function: ( scrollPos, e ) => { ... }
      */
-    onChange    : PropTypes.func,
+    onChange     : PropTypes.func,
     /**
-     *  onInput callback function : ( e ) => { ... }
+     *  scroll track click callback function: ( scrollPos, e ) => { ... }
      */
-    onInput     : PropTypes.func,
+    onClickTrack : PropTypes.func,
     /**
-     *  onMouseOut callback function : ( e ) => { ... }
+     *  mouse out callback function: e => { ... }
      */
-    onMouseOut  : PropTypes.func,
+    onMouseOut   : PropTypes.func,
     /**
-     *  onMouseOver callback function : ( e ) => { ... }
+     *  mouse over callback function: e => { ... }
      */
-    onMouseOver : PropTypes.func,
+    onMouseOver  : PropTypes.func,
     /**
-     *  Callback ref DOM
+     *  id of the ScrollBox controlled by this ScrollBar
      */
-    ref         : PropTypes.func,
+    scrollBoxId  : PropTypes.string,
     /**
-     *  Scroll thumb/indicator width/height
+     *  Max scroll value
      */
-    thumbSize   : PropTypes.number,
+    scrollMax    : PropTypes.number,
     /**
-     *  Scroll Top/Left value
+     *  Min scroll value
      */
-    scrollPos   : PropTypes.number,
+    scrollMin    : PropTypes.number,
     /**
-     *  Max value of the ScrollBar
+     *  Current scroll position
      */
-    scrollMax   : PropTypes.number,
+    scrollPos    : PropTypes.number,
     /**
-     *  Min value of the ScrollBar
+     *  Scroll thumb size (CSS unit)
      */
-    scrollMin   : PropTypes.number,
-    /**
-     *  width of the scrollBar track
-     */
-    length      : PropTypes.number,
+    thumbSize    : PropTypes.string,
 };
 
 ScrollBar.defaultProps =
 {
     className   : undefined,
     cssMap      : styles,
-    id          : undefined,
-    orientation : 'vertical',
     onChange    : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
-    thumbSize   : 50,
-    scrollPos   : 0,
-    scrollMax   : undefined,
+    orientation : 'horizontal',
+    scrollBoxId : undefined,
+    scrollMax   : 0,
     scrollMin   : 0,
-    value       : 0,
-    length      : undefined
+    scrollPos   : 0,
+    thumbSize   : '20px',
 };
 
 export default ScrollBar;

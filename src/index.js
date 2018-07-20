@@ -1,5 +1,4 @@
 import 'normalize.css';
-// import './foundations.css';
 
 export Animate                  from './Animate';
 export Button                   from './Button';
