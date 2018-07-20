@@ -7,6 +7,11 @@
     {
         "label" : "Click me!"
     },
+    "Card" :
+    {
+        "children" : "{<TextInput label='Your name'/>}",
+        "padding"  : "S"
+    },
     "CheckableGroup" :
     {
         "label" : "What’s your favorite fruit?",
