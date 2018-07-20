@@ -1,12 +1,11 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import Component    from '../proto/Component';
-import Css          from '../hoc/Css';
-import Icon         from '../Icon';
-import Spinner      from '../Spinner';
+import { generateId, buildClassName }   from '../utils';
+import Icon                             from '../Icon';
+import Spinner                          from '../Spinner';
 
-export default class Button extends Component
+export default class Button extends React.Component
 {
     static propTypes =
     {
@@ -138,6 +137,7 @@ export default class Button extends Component
         role         : 'default',
         iconType     : 'none',
         iconPosition : 'left',
+        id           : undefined,
         isLoading    : false,
         isDisabled   : false,
         isReadOnly   : false,
@@ -187,6 +187,7 @@ export default class Button extends Component
             forceHover,
             iconPosition,
             iconType,
+            id = generateId( 'Button' ),
             isDisabled,
             isReadOnly,
             isLoading,
@@ -196,8 +197,6 @@ export default class Button extends Component
             type,
             value
         } = this.props;
-
-        const { id, isHovered } = this.state;
 
         let iconMarkup;
         if ( iconType && iconType !== 'none' )
@@ -210,7 +209,7 @@ export default class Button extends Component
                         size       = "S"
                         theme      = { role === 'control' ? role : 'button' }
                         variant    = "stroke"
-                        forceHover = { isHovered }
+                        forceHover = { this.isHovered }
                         isDisabled = { isDisabled } />
                 </div>
             );
@@ -226,34 +225,30 @@ export default class Button extends Component
         );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <button
+                ref            = { buttonRef }
+                type           = { type }
+                className      = { buildClassName( className, cssMap, {
                     role,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
                     fakeHovered : forceHover
-                } }>
-                <button
-                    ref            = { buttonRef }
-                    type           = { type }
-                    className      = { className }
-                    id             = { id }
-                    defaultValue   = { defaultValue }
-                    value          = { value }
-                    disabled       = { isDisabled || isLoading || isReadOnly }
-                    onClick        = { onClick }
-                    onMouseEnter   = { this.handleMouseOver }
-                    onMouseLeave   = { this.handleMouseOut }>
-                    { content }
-                    { ( isLoading && !isDisabled ) &&
-                        <div className = { cssMap.loadingOverlay }>
-                            <Spinner className = { cssMap.spinner } />
-                        </div>
-                    }
-                </button>
-            </Css>
+                } ) }
+                id             = { id }
+                defaultValue   = { defaultValue }
+                value          = { value }
+                disabled       = { isDisabled || isLoading || isReadOnly }
+                onClick        = { onClick }
+                onMouseEnter   = { this.handleMouseOver }
+                onMouseLeave   = { this.handleMouseOut }>
+                { content }
+                { ( isLoading && !isDisabled ) &&
+                <div className = { cssMap.loadingOverlay }>
+                    <Spinner className = { cssMap.spinner } />
+                </div>
+                }
+            </button>
         );
     }
 }

@@ -19,6 +19,8 @@
     .content
     {
         min-width: 0;
+        margin:    0;
+        padding:   0;
     }
 
     &:hover .content
@@ -29,7 +31,7 @@
 
 .label
 {
-    @extend %Nessie-SemiBold;
+    @extend %Nessie-Bold;
 
     font-size:      var( --typo-3 );
     line-height:    var( --line-height-s );

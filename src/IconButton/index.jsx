@@ -1,13 +1,12 @@
-import React         from 'react';
-import PropTypes     from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import Component     from '../proto/Component';
-import Css           from '../hoc/Css';
-import Icon          from '../Icon';
+import { generateId, buildClassName }   from '../utils';
+import Icon                             from '../Icon';
 
 const killFocus = e => e.preventDefault();
 
-export default class IconButton extends Component
+export default class IconButton extends React.Component
 {
     static propTypes =
     {
@@ -142,6 +141,7 @@ export default class IconButton extends Component
     {
         iconSize      : 'S',
         iconTheme     : 'control',
+        id            : undefined,
         isFocusable   : true,
         isDisabled    : false,
         isReadOnly    : false,
@@ -162,6 +162,7 @@ export default class IconButton extends Component
             iconType,
             forceHover,
             iconTheme,
+            id = generateId( 'IconButton' ),
             isDisabled,
             isFocusable,
             isReadOnly,
@@ -172,39 +173,33 @@ export default class IconButton extends Component
             value
         } = this.props;
 
-        const { id } = this.state;
-
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <button
+                ref       = { buttonRef }
+                type      = "button"
+                className = { buildClassName( className, cssMap, {
                     disabled   : isDisabled,
                     size       : iconSize,
                     background : hasBackground
-                } }>
-                <button
-                    ref       = { buttonRef }
-                    type      = "button"
-                    className = { className }
-                    value     = { value }
-                    id        = { id }
-                    disabled  = { isDisabled }
-                    onClick   = { !isReadOnly && onClick }
-                    onBlur    = { onBlur }
-                    onFocus   = { onFocus }
-                    tabIndex  = { isFocusable ? '0' : '-1' }
-                    onMouseDown = { !isFocusable && killFocus }>
-                    <Icon
-                        className  = { cssMap.icon }
-                        size       = { iconSize }
-                        type       = { iconType }
-                        theme      = { iconTheme }
-                        isDisabled = { isDisabled }
-                        forceHover = { forceHover }>
-                        { children || label }
-                    </Icon>
-                </button>
-            </Css>
+                }  ) }
+                value     = { value }
+                id        = { id }
+                disabled  = { isDisabled }
+                onClick   = { !isReadOnly && onClick }
+                onBlur    = { onBlur }
+                onFocus   = { onFocus }
+                tabIndex  = { isFocusable ? '0' : '-1' }
+                onMouseDown = { !isFocusable ? killFocus : undefined }>
+                <Icon
+                    className  = { cssMap.icon }
+                    size       = { iconSize }
+                    type       = { iconType }
+                    theme      = { iconTheme }
+                    isDisabled = { isDisabled }
+                    forceHover = { forceHover }>
+                    { children || label }
+                </Icon>
+            </button>
         );
     }
 }

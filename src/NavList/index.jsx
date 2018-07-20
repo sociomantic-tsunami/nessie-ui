@@ -1,17 +1,16 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
 
 
-const NavList = ( { children, className, cssMap, layout } ) => (
-    <Css
-        cssMap   = { cssMap }
-        cssProps = { { layout } }>
-        <ul className = { className }>
-            { children }
-        </ul>
-    </Css>
+const NavList = ( {
+    children, className, cssMap, layout
+} ) => (
+
+    <ul className = { buildClassName( className, cssMap, { layout } ) }>
+        { children }
+    </ul>
 );
 
 NavList.propTypes =
