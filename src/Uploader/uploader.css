@@ -75,7 +75,8 @@
 
 .input
 {
-    display:    none;
+    position:   absolute;
+    left:       -999999px;
 }
 
 .previewTooltip

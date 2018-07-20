@@ -29,6 +29,10 @@ export default class Uploader extends React.PureComponent
             'uploading',
             'uploaded' ] ),
         /**
+         * Callback that receives the native <input>: ( ref ) => { ... }
+         */
+        inputRef                : PropTypes.func,
+        /**
         *  Display as disabled
         */
         isDisabled              : PropTypes.bool,
@@ -111,6 +115,7 @@ export default class Uploader extends React.PureComponent
         tooltipIsVisible        : false,
         errorMessagePosition    : 'top',
         id                      : undefined,
+        inputRef                : undefined,
         isDisabled              : false,
         isReadOnly              : false,
         previewTooltipIsVisible : false,
@@ -128,6 +133,7 @@ export default class Uploader extends React.PureComponent
             hasError,
             hasWarning,
             id = generateId( 'Uploader' ),
+            inputRef,
             isDisabled,
             isReadOnly,
             label,
@@ -200,6 +206,7 @@ export default class Uploader extends React.PureComponent
                 <input
                     type         = "file"
                     name         = { `${id}-file` }
+                    inputRef     = { inputRef }
                     className    = { cssMap.input }
                     onChange     = { onChange } />
                 { label &&
