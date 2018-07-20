@@ -1,4 +1,4 @@
-/* global test jest Event */
+/* global test jest */
 /* eslint no-console: 0*/
 
 import React               from 'react';
@@ -14,7 +14,7 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <ScrollBar /> );
+        wrapper  = shallow( <ScrollBar /> );
         instance = wrapper.instance();
         cssMap   = instance.props.cssMap;
     } );
@@ -27,44 +27,6 @@ describe( 'ScrollBar', () =>
 
     describe( 'props', () =>
     {
-        describe( 'onClickTrack', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( instance.props.onClickTrack ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the track <div> as onClick', () =>
-            {
-                const onClickTrack = jest.fn();
-                wrapper.setProps( { onClickTrack } );
-
-                expect( wrapper.find( `.${cssMap.default}` ).prop( 'onClick' ) )
-                    .toEqual( onClickTrack );
-            } );
-        } );
-
-        describe( 'onMouseDownThumb', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( instance.props.onMouseDownThumb ).toBeUndefined();
-            } );
-
-            test( 'should be invoked by mouse down on thumb <div>', () =>
-            {
-                const onMouseDownThumb = jest.fn();
-                wrapper.setProps( { onMouseDownThumb } );
-
-                const thumbMouseDown =
-                    wrapper.find( `.${cssMap.thumb}` ).prop( 'onMouseDown' );
-
-                thumbMouseDown( new Event( { type: 'mousedown' } ) );
-
-                expect( onMouseDownThumb ).toHaveBeenCalledTimes( 1 );
-            } );
-        } );
-
         describe( 'scrollMax', () =>
         {
             test( 'should be 0 by default', () =>
@@ -122,29 +84,45 @@ describe( 'ScrollBarDriver', () =>
         wrapper = mount( <ScrollBar /> );
     } );
 
-    describe( 'clickTrack()', () =>
+    describe( 'clickTrack( val )', () =>
     {
-        test( 'should simulate click on track', () =>
-        {
-            const onClickTrack = jest.fn();
+        let onClickTrack;
+
+        beforeEach( () => {
+            onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
+            wrapper.driver().clickTrack( 100 );
+        } );
 
-            wrapper.driver().clickTrack();
-
+        test( 'should call the onClickTrack prop once', () =>
+        {
             expect( onClickTrack ).toHaveBeenCalledTimes( 1 );
+        } );
+
+        test( 'should call the onClickTrack prop with val', () =>
+        {
+            expect( onClickTrack ).toBeCalledWith( 100 );
         } );
     } );
 
-    describe( 'mouseDownThumb()', () =>
+    describe( 'onChange( val )', () =>
     {
-        test( 'should simulate mouse down on thumb', () =>
+        let onChange;
+
+        beforeEach( () => {
+            onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+            wrapper.driver().change( 100 );
+        } );
+
+        test( 'should call the onChange prop once', () =>
         {
-            const onMouseDownThumb = jest.fn();
-            wrapper.setProps( { onMouseDownThumb } );
+            expect( onChange ).toHaveBeenCalledTimes( 1 );
+        } );
 
-            wrapper.driver().mouseDownThumb();
-
-            expect( onMouseDownThumb ).toHaveBeenCalledTimes( 1 );
+        test( 'should call the onChange prop with val', () =>
+        {
+            expect( onChange ).toBeCalledWith( 100 );
         } );
     } );
 
