@@ -1,18 +1,26 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import IconButton                       from '../IconButton';
-import Text                             from '../Text';
+import { generateId, buildClassName } from '../utils';
+import styles                         from './tooltip.css';
+import { IconButton, Text }           from '../index';
 
 export default class Tooltip extends React.PureComponent
 {
     static propTypes =
     {
         /**
-         *  Node that the Tooltip wraps
+         *  node that the Tooltip wraps
          */
         children         : PropTypes.node,
+        /**
+         *  extra CSS class name
+         */
+        className        : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
          * HTML id attribute (overwrite default)
          */
@@ -38,13 +46,13 @@ export default class Tooltip extends React.PureComponent
          */
         onClickClose     : PropTypes.func,
         /**
-         *  onMouseOver callback function: ( e ) => { ... }
-         */
-        onMouseOver      : PropTypes.func,
-        /**
          *  onMouseOut callback function: ( e ) => { ... }
          */
         onMouseOut       : PropTypes.func,
+        /**
+         *  onMouseOver callback function: ( e ) => { ... }
+         */
+        onMouseOver      : PropTypes.func,
         /**
          *  Hides overflow of wrapped content
          */
@@ -60,7 +68,8 @@ export default class Tooltip extends React.PureComponent
             'topLeft',
             'topRight',
             'bottomLeft',
-            'bottomRight' ] ),
+            'bottomRight',
+        ] ),
         /**
          *  Tooltip role/style
          */
@@ -68,19 +77,26 @@ export default class Tooltip extends React.PureComponent
             'default',
             'critical',
             'promoted',
-            'warning'
-        ] )
+            'warning',
+        ] ),
     };
 
     static defaultProps =
     {
-        position       : 'top',
-        id             : undefined,
-        isVisible      : true,
-        noWrap         : false,
-        overflowHidden : false,
-        cssMap         : require( './tooltip.css' ),
-        role           : 'default'
+        children         : undefined,
+        className        : undefined,
+        cssMap           : styles,
+        id               : undefined,
+        isDismissible    : false,
+        isVisible        : true,
+        message          : undefined,
+        noWrap           : false,
+        onClickClose     : undefined,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
+        overflowIsHidden : false,
+        position         : 'top',
+        role             : 'default',
     };
 
     render()
@@ -89,53 +105,18 @@ export default class Tooltip extends React.PureComponent
             children,
             className,
             cssMap,
-            message,
-            position,
             id = generateId( 'Tooltip' ),
             isDismissible,
             isVisible,
+            message,
             noWrap,
             onClickClose,
-            onMouseOver,
             onMouseOut,
+            onMouseOver,
             overflowIsHidden,
-            role
+            position,
+            role,
         } = this.props;
-
-        let messageText = message;
-
-        if ( typeof messageText === 'string' )
-        {
-            const regexp = /([^\s].{1,49}(?=\s+|$))|([^\s]{1,50})/g;
-
-            const matches = message.match( regexp ) || [];
-
-            messageText = (
-                <Text className = { cssMap.messageText } noWrap>
-                    { matches.map( line => [ line, <br /> ] ) }
-                </Text> );
-        }
-
-
-        const tooltip = (
-            <div
-                className = { cssMap.tooltip }
-                role      = "tooltip"
-                id        = { id }>
-                <div className = { cssMap.message }>
-                    { messageText }
-                </div>
-                { isDismissible &&
-                    <div className = { cssMap.iconContainer } >
-                        <IconButton
-                            iconType  = "close"
-                            onClick   = { onClickClose }
-                            iconTheme = "button"
-                            iconSize  = "M" />
-                    </div>
-                }
-            </div>
-        );
 
         let contentNode = children;
 
@@ -151,21 +132,44 @@ export default class Tooltip extends React.PureComponent
         }
 
         return (
-
             <div
-                className    = { buildClassName( className, cssMap, { role, noWrap, position } ) }
+                className = { buildClassName( className, cssMap, {
+                    position,
+                    role,
+                } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { contentNode &&
-                <div
-                    className        = { cssMap.content }
-                    aria-describedby = { isVisible ? id : null }>
-                    { contentNode }
-                </div>
+                    <div
+                        aria-describedby = { isVisible ? id : null }
+                        className        = { cssMap.content }>
+                        { contentNode }
+                    </div>
                 }
-                { isVisible && tooltip }
+                { isVisible &&
+                    <div className = { cssMap.tooltipContainer }>
+                        <div
+                            className = { cssMap.tooltip }
+                            id        = { id }
+                            role      = "tooltip">
+                            <div className = { cssMap.message }>
+                                { typeof message === 'string' ?
+                                    <Text>{ message }</Text> : message
+                                }
+                            </div>
+                            { isDismissible &&
+                                <IconButton
+                                    className    = { cssMap.close }
+                                    iconSize     = "S"
+                                    iconTheme    = "button"
+                                    iconType     = "close"
+                                    label        = "Close"
+                                    onClickClose = { onClickClose } />
+                            }
+                        </div>
+                    </div>
+                }
             </div>
-
         );
     }
 }
