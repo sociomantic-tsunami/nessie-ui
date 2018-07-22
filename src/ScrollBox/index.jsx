@@ -147,24 +147,25 @@ export default class ScrollBox extends Component
 
     getInnerStyle()
     {
-        if ( !this.innerRef )
+        const style = { maxHeight: this.props.height };
+
+        if ( this.innerRef )
         {
-            return;
+            const { state } = this;
+
+            // space taken by native scrollbars
+            const diffX = state.offsetWidth - state.clientWidth;
+            const diffY = state.offsetHeight - state.clientHeight;
+
+            Object.assign( style, {
+                width        : diffX ? `calc( 100% + ${diffX}px )` : null,
+                height       : diffY ? `calc( 100% + ${diffY}px )` : null,
+                marginRight  : diffX ? `-${diffX}px` : null,
+                marginBottom : diffY ? `-${diffY}px` : null,
+            } );
         }
 
-        const { state } = this;
-
-        // space taken by native scrollbars
-        const diffX = state.offsetWidth - state.clientWidth;
-        const diffY = state.offsetHeight - state.clientHeight;
-
-        return {
-            width        : diffX ? `calc( 100% + ${diffX}px )` : null,
-            height       : diffY ? `calc( 100% + ${diffY}px )` : null,
-            maxHeight    : this.props.height,
-            marginRight  : diffX ? `-${diffX}px` : null,
-            marginBottom : diffY ? `-${diffY}px` : null,
-        };
+        return style;
     }
 
     getNewState()
