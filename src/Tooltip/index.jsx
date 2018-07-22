@@ -10,11 +10,11 @@ export default class Tooltip extends React.PureComponent
     static propTypes =
     {
         /**
-         *  node that the Tooltip wraps
+         *  Node that the Tooltip wraps
          */
         children         : PropTypes.node,
         /**
-         *  extra CSS class name
+         *  Extra CSS class name
          */
         className        : PropTypes.string,
         /**
@@ -22,11 +22,11 @@ export default class Tooltip extends React.PureComponent
          */
         cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
-         * HTML id attribute (overwrite default)
+         *  HTML id attribute
          */
         id               : PropTypes.string,
         /**
-         *  Display the tooltip as user dismissible
+         *  Display a “close” button
          */
         isDismissible    : PropTypes.bool,
         /**
@@ -38,19 +38,19 @@ export default class Tooltip extends React.PureComponent
          */
         message          : PropTypes.node,
         /**
-         *  Text won’t wrap to the next line
+         *  Wrapped content’s text won’t wrap to the next line
          */
         noWrap           : PropTypes.bool,
         /**
-         *  Function to call on “Close” button click: ( e ) => { ... }
+         *  “Close” button click callback function: ( e ) => { ... }
          */
         onClickClose     : PropTypes.func,
         /**
-         *  onMouseOut callback function: ( e ) => { ... }
+         *  Mouse out callback function: ( e ) => { ... }
          */
         onMouseOut       : PropTypes.func,
         /**
-         *  onMouseOver callback function: ( e ) => { ... }
+         *  Mouse over callback function: ( e ) => { ... }
          */
         onMouseOver      : PropTypes.func,
         /**
@@ -58,20 +58,20 @@ export default class Tooltip extends React.PureComponent
          */
         overflowIsHidden : PropTypes.bool,
         /**
-         *  Tooltip position relative to wrapped component
+         *  Tooltip position relative to wrapped content
          */
         position         : PropTypes.oneOf( [
-            'left',
-            'right',
             'top',
             'bottom',
+            'left',
+            'right',
             'topLeft',
             'topRight',
             'bottomLeft',
             'bottomRight',
         ] ),
         /**
-         *  Tooltip role/style
+         *  Tooltip role (style)
          */
         role : PropTypes.oneOf( [
             'default',
