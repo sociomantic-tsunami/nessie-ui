@@ -61,8 +61,8 @@
 
     .iconContainer
     {
-        margin-left:    4px; /* space between icon and text */
-        margin-right:   -var( --spacing-1 ); /* half of content padding */
+        margin-left:    calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
+        margin-right:   calc( -1 * var( --spacing-1 ) ); /* half of content padding */
     }
 }
 
@@ -71,8 +71,8 @@
 {
     .iconContainer
     {
-        margin-right:   4px; /* space between icon and text */
-        margin-left:    -var( --spacing-1 ); /* half of content padding */
+        margin-left:    calc( var( --spacing-1 ) / 2 ); /* space between icon and text */
+        margin-left:    calc( -1 * var( --spacing-1 ) ); /* half of content padding */
     }
 }
 

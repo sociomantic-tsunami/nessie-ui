@@ -68,6 +68,11 @@
         margin-top: calc( var( --spacing-1 ) / 4 );
     }
 
+    .icon
+    {
+        margin-left:    calc( -1 * var( --spacing-1 ) );
+    }
+
     &:not( .disabled ):hover
     {
         .flexContainer
