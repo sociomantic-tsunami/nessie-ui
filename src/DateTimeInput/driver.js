@@ -3,7 +3,6 @@ export default class DateTimeInputDriver
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.cssMap      = wrapper.props().cssMap;
         this.mainInput   = wrapper.find( 'input' ).at( 0 );
         this.hourInput   = wrapper.find( 'input' ).at( 1 );
         this.minuteInput = wrapper.find( 'input' ).at( 2 );

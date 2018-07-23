@@ -74,7 +74,7 @@ describe( 'FlounderDropdownDriver', () =>
     describe( 'chooseItemByIndex( index )', () =>
     {
         test(
-            'should choose an item by index when Flounder is uncontolled',
+            'should choose an item by index when Flounder is uncontrolled',
             () =>
             {
                 const changeSpy = jest.fn();
@@ -99,7 +99,7 @@ describe( 'FlounderDropdownDriver', () =>
             }
         );
 
-        test( 'should choose multiple items by index when uncontolled', () =>
+        test( 'should choose multiple items by index when uncontrolled', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {
@@ -146,7 +146,7 @@ since it is disabled' );
 
     describe( 'chooseItemByText( text )', () =>
     {
-        test( 'should choose item by text when Flounder is uncontolled', () =>
+        test( 'should choose item by text when Flounder is uncontrolled', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {
@@ -164,7 +164,7 @@ since it is disabled' );
             expect( changeSpy ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should choose multiple items by text when uncontolled', () =>
+        test( 'should choose multiple items by text when uncontrolled', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {
@@ -212,7 +212,7 @@ since it is disabled' );
     describe( 'chooseItemByValues( value )', () =>
     {
         test(
-            'should choose an item by value when Flounder is uncontolled',
+            'should choose an item by value when Flounder is uncontrolled',
             () =>
             {
                 const changeSpy = jest.fn();
@@ -232,7 +232,7 @@ since it is disabled' );
             }
         );
 
-        test( 'should choose multiple items by value when uncontolled', () =>
+        test( 'should choose multiple items by value when uncontrolled', () =>
         {
             const changeSpy = jest.fn();
             wrapper.setProps( {

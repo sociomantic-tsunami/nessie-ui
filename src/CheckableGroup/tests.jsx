@@ -218,28 +218,28 @@ describe( 'CheckableGroupDriver', () =>
         } );
     } );
 
-    describe( 'mouseOver()', () =>
+
+    describe( 'mouseOver', () =>
     {
         test( 'should call onMouseOver exactly once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
-
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should call onMouseOut exactly once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

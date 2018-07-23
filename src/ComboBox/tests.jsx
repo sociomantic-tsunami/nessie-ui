@@ -105,7 +105,7 @@ describe( 'ComboBoxDriver', () =>
                 onChangeInput
             } );
 
-            driver.changeInput();
+            driver.changeInput( 'c' );
 
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );

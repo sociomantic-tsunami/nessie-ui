@@ -6,7 +6,6 @@ export default class CheckboxDriver extends InputComponentDriver
     constructor( wrapper )
     {
         super( wrapper, `.${wrapper.props().cssMap.input}` );
-        this.outer = wrapper.find( `.${wrapper.props().cssMap.default}` );
     }
 
     setChecked()
@@ -46,17 +45,5 @@ export default class CheckboxDriver extends InputComponentDriver
     getChecked()
     {
         return this.control.getNode().checked;
-    }
-
-    mouseOver()
-    {
-        this.outer.simulate( 'mouseenter' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.outer.simulate( 'mouseleave' );
-        return this;
     }
 }

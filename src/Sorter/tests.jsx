@@ -38,7 +38,7 @@ describe( 'SorterDriver', () =>
         wrapper = mount( <Sorter /> );
     } );
 
-    test( 'should call onToggle callback function', () =>
+    test( 'should call onToggle callback function once', () =>
     {
         const onToggle = jest.fn();
         wrapper.setProps( {
@@ -47,6 +47,6 @@ describe( 'SorterDriver', () =>
 
         wrapper.simulate( 'click' );
 
-        expect( onToggle ).toBeCalled();
+        expect( onToggle ).toBeCalledTimes( 1 );
     } );
 } );
