@@ -85,6 +85,12 @@
             color:          var(--PC-BLUE);
         }
 
+        .title,
+        .subLabel
+        {
+            color:  var(--PC-BLUE);
+        }
+
         .icon
         {
             fill:   var(--PC-BLUE);
