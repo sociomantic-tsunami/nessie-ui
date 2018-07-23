@@ -125,7 +125,7 @@ describe( 'TagInputDriver', () =>
         wrapper  = mount( <TagInput /> );
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should call blur exactly once', () =>
         {
@@ -138,13 +138,13 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().blur();
+            wrapper.find( 'input' ).simulate( 'blur' );
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should call focus exactly once', () =>
         {
@@ -157,7 +157,7 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().focus();
+            wrapper.find( 'input' ).simulate( 'focus' );
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -201,7 +201,7 @@ describe( 'TagInputDriver', () =>
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should call onMouseOut exactly once', () =>
         {
@@ -214,7 +214,7 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
@@ -233,7 +233,7 @@ describe( 'TagInputDriver', () =>
                 ]
             } );
 
-            wrapper.driver().mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );

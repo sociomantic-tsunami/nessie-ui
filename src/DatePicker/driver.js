@@ -16,9 +16,7 @@ export default class DatePickerDriver
 
         if ( dateItem.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
         this.wrapper.find( 'DatePickerItem' ).at( index )
@@ -32,9 +30,7 @@ export default class DatePickerDriver
 
         if ( header.prevIsDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
         this.wrapper.find( 'IconButton' ).first()
@@ -48,9 +44,7 @@ export default class DatePickerDriver
 
         if ( header.nextIsDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
         this.wrapper.find( 'IconButton' ).last()

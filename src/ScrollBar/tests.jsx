@@ -139,7 +139,7 @@ describe( 'ScrollBarDriver', () =>
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should simulate mouse out', () =>
         {

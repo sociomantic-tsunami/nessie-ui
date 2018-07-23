@@ -29,7 +29,7 @@ describe( 'Column', () =>
         {
             wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
 
-            const content = wrapper.driver().getContent();
+            const content = wrapper.children();
             expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
         } );
     } );

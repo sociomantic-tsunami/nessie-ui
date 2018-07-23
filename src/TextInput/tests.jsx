@@ -58,7 +58,7 @@ describe( 'TextInputDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should fire the onBlur callback prop', () =>
         {
@@ -69,19 +69,19 @@ describe( 'TextInputDriver', () =>
                 onBlur   : blurSpy
             } );
 
-            driver.blur();
+            wrapper.find( 'input' ).simulate( 'blur' );
             expect( blurSpy ).toBeCalled();
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should fire the onFocus callback prop', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.find( 'input' ).simulate( 'focus' );
             expect( focusSpy ).toBeCalled();
         } );
     } );

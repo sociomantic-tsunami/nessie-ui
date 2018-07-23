@@ -11,8 +11,8 @@ export default class ScrollBoxDriver
     {
         this.wrapper   = wrapper;
         this.props     = this.wrapper.props();
-        this.scrollBox = this.wrapper.find(
-            `.${wrapper.prop( 'cssMap' ).inner}` );
+        this.scrollBox = this.wrapper
+            .find( `.${wrapper.prop( 'cssMap' ).inner}` );
     }
 
     clickScrollUp()

@@ -71,12 +71,10 @@ describe( 'Section', () =>
 describe( 'SectionDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Section /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'getContent()', () =>
@@ -90,7 +88,8 @@ describe( 'SectionDriver', () =>
             );
 
             wrapper.setProps( {  children } );
-            const content = driver.getContent();
+            const content = wrapper.find( `.${wrapper.props().cssMap.content}` )
+                .children();
             expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
         } );
     } );

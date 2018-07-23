@@ -4,7 +4,7 @@ const ERRORS = {
 disabled`,
 };
 
-const toArray = value => Array.isArray( value ) ? value : [ value ];
+const toArray = value => ( Array.isArray( value ) ? value : [ value ] );
 
 export default class SliderDriver
 {
@@ -94,18 +94,6 @@ export default class SliderDriver
     mouseDown()
     {
         this.track.first().simulate( 'mouseDown' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.default.first().simulate( 'mouseLeave' );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.default.first().simulate( 'mouseEnter' );
         return this;
     }
 

@@ -577,7 +577,7 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         let onMouseOut;
 
@@ -589,13 +589,13 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onMouseOut callback prop exactly once', () =>
         {
-            driver.mouseOut();
+            wrapper.simulate( 'mouseleave' );
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire onMouseOut with outer wrapper as event target', () =>
         {
-            driver.mouseOut();
+            wrapper.simulate( 'mouseleave' );
             const event = onMouseOut.mock.calls[ 0 ][ 0 ];
             expect( event.target ).toBe( outer.getNode() );
         } );
@@ -603,12 +603,12 @@ describe( 'SliderDriver', () =>
         test( 'should still fire onMouseOut when slider is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            driver.mouseOut();
+            wrapper.simulate( 'mouseleave' );
             expect( onMouseOut ).toBeCalled();
         } );
     } );
 
-    describe( 'mouseOver()', () =>
+    describe( 'mouseOver', () =>
     {
         let onMouseOver;
 
@@ -620,7 +620,7 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onMouseOver callback prop exactly once', () =>
         {
-            driver.mouseOver();
+            wrapper.simulate( 'mouseenter' );
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
@@ -628,7 +628,7 @@ describe( 'SliderDriver', () =>
             'should fire onMouseOver with outer wrapper as event target',
             () =>
             {
-                driver.mouseOver();
+                wrapper.simulate( 'mouseenter' );
                 const event = onMouseOver.mock.calls[ 0 ][ 0 ];
                 expect( event.target ).toBe( outer.getNode() );
             }
@@ -637,7 +637,7 @@ describe( 'SliderDriver', () =>
         test( 'should still fire onMouseOver when slider is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            driver.mouseOver();
+            wrapper.simulate( 'mouseenter' );
             expect( onMouseOver ).toBeCalled();
         } );
     } );

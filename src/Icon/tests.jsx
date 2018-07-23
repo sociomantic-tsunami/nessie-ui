@@ -31,7 +31,7 @@ describe( 'Icon', () =>
 } );
 
 
-describe( 'IconDriver', () =>
+describe( 'onMouse', () =>
 {
     let wrapper;
 
@@ -46,7 +46,7 @@ describe( 'IconDriver', () =>
         const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
-        wrapper.driver().mouseOver();
+        wrapper.simulate( 'mouseenter' );
 
         expect( onMouseOver ).toBeCalledTimes( 1 );
         expect( onMouseOut ).not.toBeCalled();
@@ -58,7 +58,7 @@ describe( 'IconDriver', () =>
         const onMouseOut = jest.fn();
         wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
 
-        wrapper.driver().mouseOut();
+        wrapper.simulate( 'mouseleave' );
 
         expect( onMouseOut ).toBeCalledTimes( 1 );
         expect( onMouseOver ).not.toBeCalled();

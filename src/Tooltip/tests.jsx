@@ -21,11 +21,11 @@ describe( 'Tooltip', () =>
             onMouseOut  : onMouseOutHandler
         };
 
-        const Wrapper = mount( <Tooltip { ...props }>
+        const wrapper = mount( <Tooltip { ...props }>
             <h2> Who am I?</h2>
         </Tooltip> );
 
-        Wrapper.driver().mouseOver();
+        wrapper.simulate( 'mouseenter' );
 
         expect( onMouseOverHandler ).toBeCalled();
         expect( onMouseOutHandler ).not.toBeCalled();
@@ -45,7 +45,7 @@ describe( 'Tooltip', () =>
             <h2> Who am I?</h2>
         </Tooltip> );
 
-        wrapper.driver().mouseOut();
+        wrapper.simulate( 'mouseleave' );
 
         expect( onMouseOverHandler ).not.toBeCalled();
         expect( onMouseOutHandler ).toBeCalled();

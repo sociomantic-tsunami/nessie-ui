@@ -40,8 +40,9 @@ export default class FlounderDropdownDriver
      */
     chooseItemByValue( value )
     {
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByValue( ...params ),
+        return chooseItem(
+            ( ...params ) =>
+                this.innerFlounderComponent.clickByValue( ...params ),
             value,
             'value',
             this.wrapper
@@ -56,15 +57,16 @@ export default class FlounderDropdownDriver
      */
     chooseItemByText( text )
     {
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByText( ...params ),
+        return chooseItem(
+            ( ...params ) =>
+                this.innerFlounderComponent.clickByText( ...params ),
             text,
             'text',
             this.wrapper
         );
     }
 
-     /**
+    /**
      * Click dropdown option(s) by index
      * @param {int|int[]} index - index or array of indexes of the selected
      * items
@@ -78,8 +80,9 @@ export default class FlounderDropdownDriver
         const internalIndex = Array.isArray( index ) ?
             index.map( i => i + 1 ) : index + 1;
 
-        return chooseItem( ( ...params ) =>
-            this.innerFlounderComponent.clickByIndex( ...params ),
+        return chooseItem(
+            ( ...params ) =>
+                this.innerFlounderComponent.clickByIndex( ...params ),
             internalIndex,
             'index',
             this.wrapper
@@ -167,8 +170,10 @@ function chooseItem( method, searchTerm, errorByWhat, wrapper )
     if ( selected == null ||
          ( selected instanceof Array && selected.indexOf( null ) >= 0 ) )
     {
-        throw new Error(
-            ERRORS.CANNOT_SELECT_ITEMS( errorByWhat, searchTerm ) );
+        throw new Error( ERRORS.CANNOT_SELECT_ITEMS(
+            errorByWhat,
+            searchTerm
+        ) );
     }
     return this;
 }

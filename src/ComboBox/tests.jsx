@@ -37,6 +37,36 @@ describe( 'ComboBox', () =>
             expect( wrapper.find( 'label' ).length ).toBe( 1 );
         } );
     } );
+
+    describe( 'mouseOver', () =>
+    {
+        test( 'should trigger onMouseOver() callback function once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( {
+                onMouseOver
+            } );
+
+            wrapper.simulate( 'mouseenter' );
+
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+    describe( 'mouseOut', () =>
+    {
+        test( 'should trigger onMouseOut() callback function once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( {
+                onMouseOut
+            } );
+
+            wrapper.simulate( 'mouseleave' );
+
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
 } );
 
 
@@ -75,7 +105,7 @@ describe( 'ComboBoxDriver', () =>
                 onChangeInput
             } );
 
-            driver.changeInput();
+            driver.changeInput( 'c' );
 
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );
@@ -187,21 +217,6 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'mouseOut', () =>
-    {
-        test( 'should trigger onMouseOut() callback function once', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( {
-                onMouseOut
-            } );
-
-            driver.mouseOut();
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-    } );
-
     describe( 'mouseOutOption', () =>
     {
         test( 'should trigger onMouseOutOption() callback function once', () =>
@@ -230,21 +245,6 @@ describe( 'ComboBoxDriver', () =>
             driver.mouseOutOption();
 
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'mouseOver', () =>
-    {
-        test( 'should trigger onMouseOver() callback function once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                onMouseOver
-            } );
-
-            driver.mouseOver();
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 

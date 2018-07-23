@@ -32,9 +32,4 @@ export default class TabsDriver
         return this.wrapper.findWhere( n =>
             n.prop( 'label' ) === label ).first();
     }
-
-    getTabContent()
-    {
-        return this.wrapper.find( 'Tab' ).driver().getContent();
-    }
 }

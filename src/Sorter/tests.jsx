@@ -38,15 +38,15 @@ describe( 'SorterDriver', () =>
         wrapper = mount( <Sorter /> );
     } );
 
-    test( 'should call onToggle callback function', () =>
+    test( 'should call onToggle callback function once', () =>
     {
         const onToggle = jest.fn();
         wrapper.setProps( {
             onToggle
         } );
 
-        wrapper.driver().toggle();
+        wrapper.simulate( 'click' );
 
-        expect( onToggle ).toBeCalled();
+        expect( onToggle ).toBeCalledTimes( 1 );
     } );
 } );

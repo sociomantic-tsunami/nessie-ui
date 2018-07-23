@@ -108,28 +108,28 @@ describe( 'CheckboxDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should call onFocus once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            driver.focus();
+            wrapper.find( 'input' ).simulate( 'focus' );
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should call onFocus once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            driver.blur();
+            wrapper.find( 'input' ).simulate( 'blur' );
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -234,42 +234,42 @@ describe( 'CheckboxDriver', () =>
     } );
 
 
-    describe( 'click()', () =>
+    describe( 'click', () =>
     {
         test( 'should call onClick once', () =>
         {
             const onClick = jest.fn();
 
             wrapper.setProps( { onClick } );
-            driver.click();
+            wrapper.find( 'input' ).simulate( 'click' );
 
             expect( onClick ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'mouseOver()', () =>
+    describe( 'mouseOver', () =>
     {
         test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            driver.mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

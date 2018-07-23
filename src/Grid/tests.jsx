@@ -24,7 +24,7 @@ describe( 'GridColumnDriver', () =>
         {
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 
-            const content = wrapper.driver().getContent();
+            const content = wrapper.children().first();
             expect( content.text() ).toBe( 'Lightning Strike' );
         } );
     } );

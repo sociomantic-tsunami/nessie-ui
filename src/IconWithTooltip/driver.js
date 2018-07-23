@@ -1,23 +1,21 @@
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
-
-export default class IconWithTooltipDriver extends SimpleComponentDriver
+export default class IconWithTooltipDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = this.wrapper.props().cssMap;
         this.tooltip = wrapper.find( 'IconWithTooltip > Tooltip' ).first();
     }
 
     mouseOverIcon()
     {
-        this.tooltip.driver().mouseOver();
+        this.tooltip.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.driver().mouseOut();
+        this.tooltip.simulate( 'mouseleave' );
         return this;
     }
 

@@ -23,14 +23,11 @@ describe( 'Dropdown', () =>
             .toHaveLength( 1 );
     } );
 
-    describe( 'Wrapper driver getContent', () =>
+    test( 'should return the dropdown content', () =>
     {
-        test( 'should return the dropdown content', () =>
-        {
-            wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
+        wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
 
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
-        } );
+        const content = wrapper.children();
+        expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
     } );
 } );

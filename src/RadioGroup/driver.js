@@ -2,12 +2,14 @@ export default class RadioGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper = wrapper;
+        this.wrapper  = wrapper;
+        this.listItem = wrapper.find( 'CheckableGroup' ).props()
+            .cssMap.listItem;
     }
 
     getContent()
     {
-        const items = this.wrapper.find( 'li' );
+        const items = this.wrapper.find( `.${this.listItem}` );
         return items.map( item => item.childAt( 0 ) );
     }
 
@@ -47,17 +49,5 @@ export default class RadioGroupDriver
             this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
     }
 }

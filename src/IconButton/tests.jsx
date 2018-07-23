@@ -1,6 +1,5 @@
 /* global test jest */
 
-
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
@@ -111,26 +110,26 @@ describe( 'IconButtonDriver', () =>
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.simulate( 'focus' );
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should fire the onBlur callback prop once', () =>
         {
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            driver.blur();
+            wrapper.simulate( 'blur' );
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

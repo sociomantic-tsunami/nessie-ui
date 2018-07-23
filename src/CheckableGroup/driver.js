@@ -3,11 +3,12 @@ export default class CheckableGroupDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     getContent()
     {
-        const items = this.wrapper.find( 'li' );
+        const items = this.wrapper.find( `.${this.cssMap.listItem}` );
         return items.map( item => item.childAt( 0 ) );
     }
 
@@ -101,17 +102,5 @@ export default class CheckableGroupDriver
             this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
-        return this;
-    }
-
-    mouseOut()
-    {
-        this.wrapper.simulate( 'mouseleave' );
-        return this;
     }
 }
