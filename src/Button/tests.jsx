@@ -125,7 +125,7 @@ describe( 'Button', () =>
 } );
 
 
-describe.only( 'ButtonDriver', () =>
+describe( 'ButtonDriver', () =>
 {
     let wrapper;
     let driver;
