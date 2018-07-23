@@ -20,7 +20,7 @@ export default class PaginatorDriver
         return this;
     }
 
-    clickPage( i )
+    clickPage( i = 0 )
     {
         this.wrapper.find( `.${this.cssMap.pageButton}` )
             .at( i ).simulate( 'click' );

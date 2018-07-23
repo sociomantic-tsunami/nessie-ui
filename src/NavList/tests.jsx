@@ -1,25 +1,24 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers*/
 
-import React                      from 'react';
-import { mount }                  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-
-import NavList                    from './index';
+import NavList      from './index';
 
 describe( 'NavList', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
-{
-        Wrapper = mount( <NavList /> );
+    {
+        wrapper = mount( <NavList /> );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
-{
-        expect( Wrapper.find( '.navList__default' ) ).to.have.length( 1 );
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

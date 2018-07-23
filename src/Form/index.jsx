@@ -11,15 +11,24 @@ const Form = ( {
     cssMap,
     method,
     onSubmit,
-} ) => (
-    <form
-        action    = { action }
-        className = { buildClassName( className, cssMap ) }
-        method    = { method }
-        onSubmit  = { onSubmit }>
-        { children }
-    </form>
-);
+} ) =>
+{
+    if ( !Form.didWarn )
+    {
+        console.warn( 'Form: This component is deprecated and will be \
+removed in the next major release.' );
+        Form.didWarn = true;
+    }
+    return (
+        <form
+            action    = { action }
+            className = { buildClassName( className, cssMap ) }
+            method    = { method }
+            onSubmit  = { onSubmit }>
+            { children }
+        </form>
+    );
+};
 
 Form.propTypes =
 {

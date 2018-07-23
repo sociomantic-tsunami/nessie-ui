@@ -1,5 +1,4 @@
 import 'normalize.css';
-// import './foundations.css';
 
 export Button                   from './Button';
 export CheckableGroup           from './CheckableGroup';
@@ -50,6 +49,7 @@ export Radio                    from './Radio';
 export RadioGroup               from './RadioGroup';
 export Required                 from './Required';
 export Row                      from './Row';
+export ScrollBar                from './ScrollBar';
 export ScrollBox                from './ScrollBox';
 export Section                  from './Section';
 export Slider                   from './Slider';
@@ -72,6 +72,7 @@ export TextArea                 from './TextArea';
 export TextInput                from './TextInput';
 export TextInputWithDropdown    from './TextInputWithDropdown';
 export TextInputWithIcon        from './TextInputWithIcon';
+export ToggleButton             from './ToggleButton';
 export Tooltip                  from './Tooltip';
 export Uploader                 from './Uploader';
 export ValuedTextInput          from './ValuedTextInput';

@@ -1,26 +1,28 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global jest test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions, max-len */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
 
-import DatePicker   from './index';
+import DatePicker           from './index';
 
 describe( 'DatePicker', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = mount( <DatePicker /> );
+        wrapper  = shallow( <DatePicker /> );
+        instance = wrapper.instance();
     } );
 
-    it( 'should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( '.datePicker__default' ) ).to.have.length( 1 );
+        expect( wrapper.find( `.${instance.props.cssMap.default}` ) )
+            .toHaveLength( 1 );
     } );
 } );
 
@@ -39,9 +41,9 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'clickItem', () =>
     {
-        it( 'should simulate and trigger onClickItem()', () =>
+        test( 'should simulate and trigger onClickItem() once', () =>
         {
-            const onClickItem = sinon.spy();
+            const onClickItem = jest.fn();
             wrapper.setProps( {
                 onClickItem,
                 label   : 'January 2000',
@@ -56,59 +58,87 @@ describe( 'DatePickerDriver', () =>
                 ],
                 items : [
                     [
-                        { label: '01', value: '1', isCurrent: false, isSelected: false },
-                        { label: '02', value: '2', isCurrent: false, isSelected: false },
-                        { label: '03', value: '3', isCurrent: false, isSelected: false },
-                        { label: '04', value: '4', isCurrent: false, isSelected: false },
-                        { label: '05', value: '5', isCurrent: true, isSelected: true },
-                        { label: '06', value: '6', isCurrent: false, isSelected: false },
-                        { label: '07', value: '7', isCurrent: false, isSelected: false }
+                        {
+                            label      : '01', value      : '1', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '02', value      : '2', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '03', value      : '3', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '04', value      : '4', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '05', value      : '5', isCurrent  : true, isSelected : true
+                        },
+                        {
+                            label      : '06', value      : '6', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '07', value      : '7', isCurrent  : false, isSelected : false
+                        }
                     ],
                     [
-                        { label: '08', value: '8', isCurrent: false, isSelected: false },
-                        { label: '09', value: '9', isCurrent: false, isSelected: false },
-                        { label: '10', value: '10', isCurrent: false, isSelected: false },
-                        { label: '11', value: '11', isCurrent: false, isSelected: false },
-                        { label: '12', value: '12', isCurrent: false, isSelected: false },
-                        { label: '13', value: '13', isCurrent: false, isSelected: false },
-                        { label: '14', value: '14', isCurrent: false, isSelected: false }
+                        {
+                            label      : '08', value      : '8', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '09', value      : '9', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '10', value      : '10', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '11', value      : '11', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '12', value      : '12', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '13', value      : '13', isCurrent  : false, isSelected : false
+                        },
+                        {
+                            label      : '14', value      : '14', isCurrent  : false, isSelected : false
+                        }
                     ]
                 ]
             } );
 
             driver.clickItem();
 
-            expect( onClickItem.calledOnce ).to.be.true;
+            expect( onClickItem ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickNext', () =>
     {
-        it( 'should simulate and trigger onClickNext()', () =>
+        test( 'should simulate and trigger onClickNext() once', () =>
         {
-            const onClickNext = sinon.spy();
+            const onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext
             } );
 
             driver.clickNext();
 
-            expect( onClickNext.calledOnce ).to.be.true;
+            expect( onClickNext ).toBeCalledTimes( 1 );
         } );
     } );
 
     describe( 'clickPrev', () =>
     {
-        it( 'should simulate and trigger onClickPrev()', () =>
+        test( 'should simulate and trigger onClickPrev() once', () =>
         {
-            const onClickPrev = sinon.spy();
+            const onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev
             } );
 
             driver.clickPrev();
 
-            expect( onClickPrev.calledOnce ).to.be.true;
+            expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
 } );

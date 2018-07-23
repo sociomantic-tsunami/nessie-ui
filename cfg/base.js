@@ -1,47 +1,61 @@
-const path    = require( 'path' );
+const path = require( 'path' );
 
-const webpack = require( 'webpack' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
-const defaultSettings = require( './defaults' );
 
-const additionalPaths = [];
+const localIdentName = process.env.REACT_WEBPACK_ENV === 'dev' ?
+    '[name]__[local]__[hash:base64:5]' : '[name]__[local]';
 
 module.exports = {
-    devtool : 'eval',
-
-    devServer : {
-        contentBase        : './src/',
-        historyApiFallback : true,
-        hot                : false,
-        inline             : false,
-        port               : defaultSettings.port,
-        publicPath         : defaultSettings.publicPath,
-        noInfo             : false
-    },
-
+    output  : { path: path.join( __dirname, '../dist' ) },
     resolve : {
-
-        extensions : [
-            '.js',
-            '.jsx'
-        ],
-
-        alias : {
-            fonts  : `${defaultSettings.srcPath}/proto/webfonts/`,
-            config :
-            `${defaultSettings.srcPath}/config/${process.env.REACT_WEBPACK_ENV}`
-        },
-
-        modules : [ path.join( `${__dirname}/../node_modules` ) ]
-
+        extensions : [ '.js', '.json', '.jsx' ],
+        modules    : [ path.join( __dirname, '../node_modules' ) ]
     },
-
-    plugins : [
-        new webpack.LoaderOptionsPlugin( {
-            debug   : false,
-            port    : defaultSettings.port,
-            additionalPaths,
-            context : defaultSettings.srcPath
-        } )
-    ],
+    module : {
+        rules : [
+            {
+                test : /\.jsx?$/,
+                use  : 'babel-loader',
+            },
+            {
+                test : /\.css$/,
+                use  : [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader  : 'css-loader',
+                        options :
+                        {
+                            importLoaders : 1,
+                            modules       : true,
+                            localIdentName,
+                        }
+                    },
+                    'postcss-loader',
+                ],
+            },
+            {
+                test : /\.(png|jpg|gif)$/,
+                use  : {
+                    loader  : 'url-loader',
+                    options : { limit: 8192 },
+                }
+            },
+            {
+                test : /\.svg$/,
+                use  : {
+                    loader  : 'url-loader',
+                    options :
+                    {
+                        limit    : 8192,
+                        mimetype : 'image/svg+xml'
+                    }
+                },
+            },
+            {
+                test : /\.html$/,
+                use  : 'raw-loader'
+            },
+        ]
+    }
 };

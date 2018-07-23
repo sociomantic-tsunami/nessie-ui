@@ -1,7 +1,7 @@
 import React                             from 'react';
 import PropTypes                         from 'prop-types';
 
-import { generateId }                    from '../utils';
+import { generateId, buildClassName }                    from '../utils';
 import { Column, InputField, Row, Text } from '../index';
 import InputContainer                    from '../proto/InputContainer';
 
@@ -16,7 +16,7 @@ const DimensionsInput = ( {
     heightInputRef,
     heightPlaceholder,
     heightValue,
-    id,
+    id = generateId( 'DimensionsInput' ),
     isDisabled,
     isReadOnly,
     label,
@@ -193,7 +193,7 @@ DimensionsInput.defaultProps = {
     heightInputRef        : undefined,
     heightPlaceholder     : 'height',
     heightValue           : undefined,
-    id                    : generateId( 'DimensionsInput' ),
+    id                    : undefined,
     isDisabled            : false,
     isReadOnly            : false,
     label                 : undefined,
