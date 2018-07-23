@@ -1,5 +1,6 @@
 const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) => `Button '${label}' cannot be clicked since it is ${state}` // eslint-disable-line max-len
+    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
+        `Button '${label}' cannot be clicked since it is ${state}`
 };
 
 export default class ButtonDriver
