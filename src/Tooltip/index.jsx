@@ -134,6 +134,7 @@ export default class Tooltip extends React.PureComponent
         return (
             <div
                 className = { buildClassName( className, cssMap, {
+                    dismissible : isDismissible,
                     position,
                     role,
                 } ) }

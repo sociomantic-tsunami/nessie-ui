@@ -34,10 +34,6 @@
     .tooltip
     {
         visibility:     visible;
-
-        display:        flex;
-        align-items:    center;
-
         position:       absolute;
 
         box-sizing:     border-box;
@@ -72,12 +68,20 @@
 
     .close
     {
-        flex:           0 0 auto;
-        align-self:     flex-start;
-        margin-left:    var( --spacing-1 );
+        position:   absolute;
+        top:        var( --spacing-1 );
+        right:      var( --spacing-2 );
     }
 }
 
+
+.dismissible
+{
+    .tooltip
+    {
+        padding-right:  var( --spacing-6 );
+    }
+}
 
 .position__top,
 .position__bottom,
