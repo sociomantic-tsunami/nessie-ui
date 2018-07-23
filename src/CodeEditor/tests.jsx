@@ -12,14 +12,10 @@ import CodeEditor         from './index';
 describe( 'CodeEditor', () =>
 {
     let wrapper;
-    let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper      = shallow( <CodeEditor /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
     } );
 
     describe( 'render()', () =>
@@ -67,7 +63,7 @@ end of the code editor’s value', () =>
         {
             wrapper.setProps( { value: 'hello' } );
 
-            driver.pressKey( 49 ); // 1 key
+            driver.pressKey( 49 ); // key '1'
             expect( driver.getInputValue() ).toBe( 'hello1' );
         } );
 

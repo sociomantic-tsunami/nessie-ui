@@ -110,7 +110,7 @@ describe( 'IconButtonDriver', () =>
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>
         {
@@ -122,7 +122,7 @@ describe( 'IconButtonDriver', () =>
         } );
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should fire the onBlur callback prop once', () =>
         {

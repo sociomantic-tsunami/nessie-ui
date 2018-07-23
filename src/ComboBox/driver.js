@@ -11,9 +11,9 @@ export default class ComboBoxDriver
         return this;
     }
 
-    changeInput()
+    changeInput( string )
     {
-        this.wrapper.find( 'InputField' ).driver().pressKey( 'c' );
+        this.wrapper.find( 'InputField' ).driver().pressKey( string );
         return this;
     }
 

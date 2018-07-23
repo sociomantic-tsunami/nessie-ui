@@ -107,7 +107,7 @@ describe( 'PasswordInputDriver', () =>
         } );
     } );
 
-    describe( 'focus()', () =>
+    describe( 'focus', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>
         {
@@ -123,7 +123,7 @@ describe( 'PasswordInputDriver', () =>
         } );
     } );
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should fire the onBlur callback prop once', () =>
         {

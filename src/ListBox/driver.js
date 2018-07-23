@@ -15,9 +15,7 @@ export default class ListBoxDriver
 
         if ( option.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
         option.simulate( 'click' );
@@ -35,12 +33,6 @@ export default class ListBoxDriver
     {
         this.wrapper.find( 'ListBoxOption' ).at( index )
             .simulate( 'mouseleave' );
-        return this;
-    }
-
-    keyPress()
-    {
-        this.wrapper.simulate( 'keyPress' );
         return this;
     }
 }

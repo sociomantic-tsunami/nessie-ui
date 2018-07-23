@@ -122,7 +122,7 @@ describe( 'CheckboxDriver', () =>
     } );
 
 
-    describe( 'blur()', () =>
+    describe( 'blur', () =>
     {
         test( 'should call onFocus once', () =>
         {
@@ -248,28 +248,28 @@ describe( 'CheckboxDriver', () =>
     } );
 
 
-    describe( 'mouseOver()', () =>
+    describe( 'mouseOver', () =>
     {
         test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            driver.mouseOver();
+            wrapper.simulate( 'mouseenter' );
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
         test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            wrapper.simulate( 'mouseleave' );
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

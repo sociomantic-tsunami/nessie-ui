@@ -91,7 +91,7 @@ describe( 'SwitchDriver', () =>
         } );
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should trigger onBlur callback function', () =>
         {
@@ -105,7 +105,7 @@ describe( 'SwitchDriver', () =>
         } );
     } );
 
-    describe( 'focus', () =>
+    describe( 'focus()', () =>
     {
         test( 'should trigger onFocus callback function', () =>
         {

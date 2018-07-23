@@ -2,12 +2,14 @@ export default class RadioGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper = wrapper;
+        this.wrapper  = wrapper;
+        this.listItem = wrapper.find( 'CheckableGroup' ).props()
+            .cssMap.listItem;
     }
 
     getContent()
     {
-        const items = this.wrapper.find( 'li' );
+        const items = this.wrapper.find( `.${this.listItem}` );
         return items.map( item => item.childAt( 0 ) );
     }
 
