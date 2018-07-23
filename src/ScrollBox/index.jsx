@@ -169,8 +169,8 @@ export default class ScrollBox extends Component
             const { state } = this;
 
             // space taken by native scrollbars
-            const diffX = state.offsetWidth - state.clientWidth;
-            const diffY = state.offsetHeight - state.clientHeight;
+            const diffX = state.offsetWidth - state.clientWidth || 16;
+            const diffY = state.offsetHeight - state.clientHeight || 16;
 
             Object.assign( style, {
                 width        : diffX ? `calc( 100% + ${diffX}px )` : null,
