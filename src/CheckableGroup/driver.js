@@ -6,7 +6,7 @@ export default class CheckableGroupDriver
         this.cssMap  = wrapper.props().cssMap;
     }
 
-    getContent()
+    getChekable()
     {
         const items = this.wrapper.find( `.${this.cssMap.listItem}` );
         return items.map( item => item.childAt( 0 ) );
@@ -14,7 +14,7 @@ export default class CheckableGroupDriver
 
     selectByIndex( index = 0 )
     {
-        const items = this.getContent();
+        const items = this.getChekable();
 
         if ( Array.isArray( index ) )
         {
@@ -56,7 +56,7 @@ export default class CheckableGroupDriver
 
     toggleByIndex( index = 0 )
     {
-        const items = this.getContent();
+        const items = this.getChekable();
 
         if ( Array.isArray( index ) )
         {
@@ -102,5 +102,17 @@ export default class CheckableGroupDriver
             this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

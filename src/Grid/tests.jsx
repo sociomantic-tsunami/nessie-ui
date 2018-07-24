@@ -9,7 +9,7 @@ import { Column } from '../index';
 import Grid       from './index';
 
 
-describe( 'GridColumnDriver', () =>
+describe( 'Grid', () =>
 {
     let wrapper;
 
@@ -18,7 +18,7 @@ describe( 'GridColumnDriver', () =>
         wrapper = mount( <Grid /> );
     } );
 
-    describe( 'getContent', () =>
+    describe( 'render', () =>
     {
         it( 'should return the content of the Grid or Column', () =>
         {
@@ -27,5 +27,11 @@ describe( 'GridColumnDriver', () =>
             const content = wrapper.children().first();
             expect( content.text() ).toBe( 'Lightning Strike' );
         } );
+    } );
+
+    it( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

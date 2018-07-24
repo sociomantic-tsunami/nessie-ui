@@ -22,7 +22,7 @@ describe( 'DateTimeInputDriver', () =>
         test( 'should get main input value', () =>
         {
             wrapper.setProps( {
-                inputValue : '2018-05-05 12:00'
+                inputValue : '2018-05-05 12:00',
             } );
 
             expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
@@ -71,7 +71,7 @@ describe( 'DateTimeInputDriver', () =>
         test( 'should get hour input value', () =>
         {
             wrapper.setProps( {
-                hourValue : '13'
+                hourValue : '13',
             } );
 
             expect( driver.getHourInputValue() ).toBe( '13' );
@@ -120,7 +120,7 @@ describe( 'DateTimeInputDriver', () =>
         test( 'should get minute input value', () =>
         {
             wrapper.setProps( {
-                minuteValue : '45'
+                minuteValue : '45',
             } );
 
             expect( driver.getMinuteInputValue() ).toBe( '45' );
@@ -227,7 +227,7 @@ describe( 'DateTimeInputDriver', () =>
         {
             onClickPrev = jest.fn();
             wrapper.setProps( {
-                onClickPrev
+                onClickPrev,
             } );
 
             wrapper.driver().clickPrev();
@@ -245,7 +245,7 @@ describe( 'DateTimeInputDriver', () =>
         {
             onClickNext = jest.fn();
             wrapper.setProps( {
-                onClickNext
+                onClickNext,
             } );
 
             wrapper.driver().clickNext();

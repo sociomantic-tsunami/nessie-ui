@@ -32,7 +32,6 @@ import {
     TagInput,
     Text,
     TextInput,
-    TextInputWithIcon,
     Tooltip,
     ToggleButton,
     Uploader,
@@ -67,7 +66,6 @@ import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextDriver              from './Text/driver';
-import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 
@@ -100,11 +98,11 @@ const drivers =
     },
     {
         Component : DatePicker,
-        Driver    : DatePickerDriver
+        Driver    : DatePickerDriver,
     },
     {
         Component : DateTimeInput,
-        Driver    : DateTimeInputDriver
+        Driver    : DateTimeInputDriver,
     },
     {
         Component : FlounderDropdown,
@@ -164,11 +162,11 @@ const drivers =
     },
     {
         Component : ScrollBar,
-        Driver    : ScrollBarDriver
+        Driver    : ScrollBarDriver,
     },
     {
         Component : ScrollBox,
-        Driver    : ScrollBoxDriver
+        Driver    : ScrollBoxDriver,
     },
     {
         Component : Slider,
@@ -180,7 +178,7 @@ const drivers =
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : TabButton,
@@ -192,7 +190,7 @@ const drivers =
     },
     {
         Component : TagInput,
-        Driver    : TagInputDriver
+        Driver    : TagInputDriver,
     },
     {
         Component : Text,
@@ -203,21 +201,17 @@ const drivers =
         Driver    : InputComponentDriver,
     },
     {
-        Component : TextInputWithIcon,
-        Driver    : TextInputWithIconDriver,
-    },
-    {
         Component : Tooltip,
         Driver    : TooltipDriver,
     },
     {
         Component : ToggleButton,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : Uploader,
         Driver    : UploaderDriver,
-    }
+    },
 ];
 
 export { InputComponentDriver };

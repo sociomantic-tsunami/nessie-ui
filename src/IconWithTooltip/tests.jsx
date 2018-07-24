@@ -38,7 +38,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseEnter' ) ).toBe( onMouseOver );
-                }
+                },
             );
         } );
 
@@ -58,7 +58,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseLeave' ) ).toBe( onMouseOut );
-                }
+                },
             );
         } );
 
@@ -159,44 +159,6 @@ describe( 'IconWithTooltipDriver', () =>
             driver.mouseOutIcon();
 
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'getContent()', () =>
-    {
-        test( 'should return a ReactWrapper', () =>
-        {
-            expect( driver.getContent() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the wrapped content', () =>
-        {
-            wrapper.setProps( {
-                message  : 'Pikachu!',
-                children : <h1>Who am i?</h1>
-            } );
-
-            const content = driver.getContent();
-            expect( content.find( 'h1' ) ).toHaveLength( 1 );
-        } );
-    } );
-
-    describe( 'getMessage()', () =>
-    {
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the Tooltip message', () =>
-        {
-            wrapper.setProps( {
-                message          : <h2>Pikachu!</h2>,
-                tooltipIsVisible : true,
-            } );
-
-            const message = driver.getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 } );

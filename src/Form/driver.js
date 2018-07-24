@@ -11,9 +11,4 @@ export default class FormDriver
         this.wrapper.simulate( 'submit' );
         return this.wrapper;
     }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.default}` ).children();
-    }
 }

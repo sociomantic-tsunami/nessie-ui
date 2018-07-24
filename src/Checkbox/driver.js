@@ -41,9 +41,4 @@ export default class CheckboxDriver extends InputComponentDriver
         this.control.simulate( 'change' );
         return this;
     }
-
-    getChecked()
-    {
-        return this.control.getNode().checked;
-    }
 }

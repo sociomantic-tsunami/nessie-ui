@@ -4,14 +4,13 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-
 import Icon               from '../Icon';
 import Spinner            from '../Spinner';
 
 import Button             from './index';
 
 
-describe.only( 'Button', () =>
+describe( 'Button', () =>
 {
     let wrapper;
     let instance;
@@ -204,7 +203,7 @@ describe.only( 'Button', () =>
 } );
 
 
-describe.only( 'ButtonDriver', () =>
+describe( 'ButtonDriver', () =>
 {
     let wrapper;
     let driver;
@@ -291,10 +290,10 @@ describe.only( 'ButtonDriver', () =>
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'mouseEnter\'', () =>
+        it( 'calls simulate( event ) with event \'mouseenter\'', () =>
         {
             driver.mouseOver();
-            expect( simulate ).toBeCalledWith( 'mouseEnter' );
+            expect( simulate ).toBeCalledWith( 'mouseenter' );
         } );
 
         it( 'returns the driver instance', () =>
@@ -311,10 +310,10 @@ describe.only( 'ButtonDriver', () =>
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'mouseLeave\'', () =>
+        it( 'calls simulate( event ) with event \'mouseleave\'', () =>
         {
             driver.mouseOut();
-            expect( simulate ).toBeCalledWith( 'mouseLeave' );
+            expect( simulate ).toBeCalledWith( 'mouseleave' );
         } );
 
         it( 'returns the driver instance', () =>

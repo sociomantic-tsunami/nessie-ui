@@ -3,7 +3,6 @@ export default class IconWithTooltipDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
         this.tooltip = wrapper.find( 'IconWithTooltip > Tooltip' ).first();
     }
 
@@ -17,15 +16,5 @@ export default class IconWithTooltipDriver
     {
         this.tooltip.simulate( 'mouseleave' );
         return this;
-    }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
-    }
-
-    getMessage()
-    {
-        return this.tooltip.driver().getMessage();
     }
 }

@@ -1,7 +1,8 @@
 /* global document */
 
 const ERRORS = {
-    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it’s read only'
+    EDITOR_READ_ONLY :
+        'Cannot change the CodeEditor value since it’s read only',
 };
 
 export default class CodeEditorDriver

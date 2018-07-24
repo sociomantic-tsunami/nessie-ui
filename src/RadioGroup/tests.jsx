@@ -24,7 +24,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             expect( wrapper.driver().getContent() ).toHaveLength( 2 );
@@ -35,7 +35,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
 
@@ -51,14 +51,14 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             wrapper.driver().selectByIndex( 1 );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeTruthy();
         } );
     } );
     describe( 'toggleByIndex( index )', () =>
@@ -68,18 +68,18 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             wrapper.driver().toggleByIndex( 1 );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeTruthy();
 
             wrapper.driver().toggleByIndex( 1 );
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeFalsy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeFalsy();
         } );
     } );
 
@@ -90,15 +90,15 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 
             wrapper.driver().selectByValue( 'second check' );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeTruthy();
         } );
     } );
 
@@ -109,19 +109,19 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 
             wrapper.driver().toggleByValue( 'second check' );
             const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeTruthy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeTruthy();
 
             wrapper.driver().toggleByValue( 'second check' );
-            expect( items.at( 1 ).childAt( 0 ).driver().getChecked() )
-                .toBeFalsy();
+            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
+                .getNode().checked ).toBeFalsy();
         } );
     } );
 
@@ -132,7 +132,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" isChecked />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 

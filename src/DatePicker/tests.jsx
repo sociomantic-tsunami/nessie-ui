@@ -54,56 +54,56 @@ describe( 'DatePickerDriver', () =>
                     { label: 'Thu', title: 'Thursday' },
                     { label: 'Fri', title: 'Friday' },
                     { label: 'Sat', title: 'Saturday' },
-                    { label: 'Sun', title: 'Sunday' }
+                    { label: 'Sun', title: 'Sunday' },
                 ],
                 items : [
                     [
                         {
-                            label      : '01', value      : '1', isCurrent  : false, isSelected : false
+                            label      : '01', value      : '1', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '02', value      : '2', isCurrent  : false, isSelected : false
+                            label      : '02', value      : '2', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '03', value      : '3', isCurrent  : false, isSelected : false
+                            label      : '03', value      : '3', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '04', value      : '4', isCurrent  : false, isSelected : false
+                            label      : '04', value      : '4', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '05', value      : '5', isCurrent  : true, isSelected : true
+                            label      : '05', value      : '5', isCurrent  : true, isSelected : true,
                         },
                         {
-                            label      : '06', value      : '6', isCurrent  : false, isSelected : false
+                            label      : '06', value      : '6', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '07', value      : '7', isCurrent  : false, isSelected : false
-                        }
+                            label      : '07', value      : '7', isCurrent  : false, isSelected : false,
+                        },
                     ],
                     [
                         {
-                            label      : '08', value      : '8', isCurrent  : false, isSelected : false
+                            label      : '08', value      : '8', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '09', value      : '9', isCurrent  : false, isSelected : false
+                            label      : '09', value      : '9', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '10', value      : '10', isCurrent  : false, isSelected : false
+                            label      : '10', value      : '10', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '11', value      : '11', isCurrent  : false, isSelected : false
+                            label      : '11', value      : '11', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '12', value      : '12', isCurrent  : false, isSelected : false
+                            label      : '12', value      : '12', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '13', value      : '13', isCurrent  : false, isSelected : false
+                            label      : '13', value      : '13', isCurrent  : false, isSelected : false,
                         },
                         {
-                            label      : '14', value      : '14', isCurrent  : false, isSelected : false
-                        }
-                    ]
-                ]
+                            label      : '14', value      : '14', isCurrent  : false, isSelected : false,
+                        },
+                    ],
+                ],
             } );
 
             driver.clickItem();
@@ -118,7 +118,7 @@ describe( 'DatePickerDriver', () =>
         {
             const onClickNext = jest.fn();
             wrapper.setProps( {
-                onClickNext
+                onClickNext,
             } );
 
             driver.clickNext();
@@ -133,7 +133,7 @@ describe( 'DatePickerDriver', () =>
         {
             const onClickPrev = jest.fn();
             wrapper.setProps( {
-                onClickPrev
+                onClickPrev,
             } );
 
             driver.clickPrev();

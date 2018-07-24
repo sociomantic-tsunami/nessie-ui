@@ -121,7 +121,6 @@ describe( 'CheckboxDriver', () =>
         } );
     } );
 
-
     describe( 'blur', () =>
     {
         test( 'should call onFocus once', () =>
@@ -134,7 +133,6 @@ describe( 'CheckboxDriver', () =>
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
-
 
     describe( 'setChecked()', () =>
     {
@@ -171,7 +169,6 @@ describe( 'CheckboxDriver', () =>
         } );
     } );
 
-
     describe( 'setUnchecked()', () =>
     {
         test( 'should not call onChange when already unchecked', () =>
@@ -207,7 +204,6 @@ describe( 'CheckboxDriver', () =>
         } );
     } );
 
-
     describe( 'toggleChecked()', () =>
     {
         test( 'should call onChange once', () =>
@@ -233,7 +229,6 @@ describe( 'CheckboxDriver', () =>
         } );
     } );
 
-
     describe( 'click', () =>
     {
         test( 'should call onClick once', () =>
@@ -247,7 +242,6 @@ describe( 'CheckboxDriver', () =>
         } );
     } );
 
-
     describe( 'mouseOver', () =>
     {
         test( 'should call onMouseOver once', () =>
@@ -260,7 +254,6 @@ describe( 'CheckboxDriver', () =>
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
-
 
     describe( 'mouseOut', () =>
     {

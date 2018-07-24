@@ -1,6 +1,6 @@
 const ERRORS = {
     BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Button '${label}' cannot be clicked since it is ${state}`
+        `Button '${label}' cannot be clicked since it is ${state}`,
 };
 
 export default class ButtonDriver
@@ -33,13 +33,13 @@ export default class ButtonDriver
 
     mouseOver()
     {
-        this.button.simulate( 'mouseEnter' );
+        this.button.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.button.simulate( 'mouseLeave' );
+        this.button.simulate( 'mouseleave' );
         return this;
     }
 

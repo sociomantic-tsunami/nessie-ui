@@ -7,7 +7,7 @@ not configured with multipleTags',
         DROPDOWN_DISABLED : 'Cannot change the flounder dropdown value since \
 it is disabled',
         DROPDOWN_READ_ONLY : 'Cannot change the flounder dropdown value since \
-it is read-only'
+it is read-only',
     };
 
 /**
@@ -45,7 +45,7 @@ export default class FlounderDropdownDriver
                 this.innerFlounderComponent.clickByValue( ...params ),
             value,
             'value',
-            this.wrapper
+            this.wrapper,
         );
     }
 
@@ -62,7 +62,7 @@ export default class FlounderDropdownDriver
                 this.innerFlounderComponent.clickByText( ...params ),
             text,
             'text',
-            this.wrapper
+            this.wrapper,
         );
     }
 
@@ -85,7 +85,7 @@ export default class FlounderDropdownDriver
                 this.innerFlounderComponent.clickByIndex( ...params ),
             internalIndex,
             'index',
-            this.wrapper
+            this.wrapper,
         );
     }
 
@@ -172,7 +172,7 @@ function chooseItem( method, searchTerm, errorByWhat, wrapper )
     {
         throw new Error( ERRORS.CANNOT_SELECT_ITEMS(
             errorByWhat,
-            searchTerm
+            searchTerm,
         ) );
     }
     return this;

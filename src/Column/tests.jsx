@@ -5,7 +5,6 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-
 import Column       from './index';
 
 describe( 'Column', () =>

@@ -7,7 +7,6 @@ import { shallow }    from 'enzyme';
 
 import { Fieldset }   from '../index';
 
-
 describe( 'Fieldset', () =>
 {
     let wrapper;
