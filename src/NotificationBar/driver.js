@@ -19,9 +19,4 @@ export default class NotificationBarDriver
 
         this.wrapper.find( `.${this.cssMap.close}` ).simulate( 'click' );
     }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
-    }
 }

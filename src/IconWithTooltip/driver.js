@@ -17,4 +17,16 @@ export default class IconWithTooltipDriver
         this.tooltip.simulate( 'mouseleave' );
         return this;
     }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
 }

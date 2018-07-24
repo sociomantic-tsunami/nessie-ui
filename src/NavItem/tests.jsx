@@ -14,7 +14,7 @@ describe( 'NavItem', () =>
     beforeEach( () =>
     {
         const props = {
-            label : 'testLabel',
+            label : 'testLabel'
         };
 
         wrapper = mount( <NavItem { ...props } /> );
@@ -45,7 +45,7 @@ describe( 'NavItem', () =>
             onMouseOver : onMouseOverSpy
         } );
 
-        wrapper.simulate( 'mouseenter' );
+        wrapper.driver().mouseOver();
 
         expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
@@ -57,7 +57,7 @@ describe( 'NavItem', () =>
             onMouseOut : onMouseOutSpy
         } );
 
-        wrapper.simulate( 'mouseleave' );
+        wrapper.driver().mouseOut();
 
         expect( onMouseOutSpy ).toBeCalledTimes( 1 );
     } );

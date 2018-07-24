@@ -30,4 +30,16 @@ export default class NavItemDriver
 
         return dropdown.children( NavItem );
     }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
 }

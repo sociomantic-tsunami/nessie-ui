@@ -3,7 +3,6 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-                
 import { Icon }           from '../index';
 
 import IconButton         from './index';
@@ -30,11 +29,6 @@ describe( 'IconButton', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css higher-order component', () =>
-        {
-            
-        } );
-
         test( 'should contain exactly one Icon', () =>
         {
             expect( wrapper.find( Icon ) ).toHaveLength( 1 );
@@ -117,7 +111,7 @@ describe( 'IconButtonDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            wrapper.simulate( 'focus' );
+            driver.focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -129,7 +123,7 @@ describe( 'IconButtonDriver', () =>
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            wrapper.simulate( 'blur' );
+            driver.blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

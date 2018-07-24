@@ -5,7 +5,6 @@
 import React                       from 'react';
 import { mount, shallow }          from 'enzyme';
 
-
 import { H2, H3, IconWithTooltip } from '../index';
 
 import Module                      from './index';
@@ -32,7 +31,6 @@ describe( 'Module', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should not contain a <header> by default', () =>
         {
             expect( wrapper.find( 'header' ) ).toHaveLength( 0 );
@@ -98,7 +96,7 @@ describe( 'Module', () =>
                     errorMessage : 'error!',
                     hasError     : true,
                     onMouseOutError,
-                    title        : 'hello',
+                    title        : 'hello'
                 } );
 
                 expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOut' ) )
@@ -122,7 +120,7 @@ describe( 'Module', () =>
                         errorMessage : 'error!',
                         hasError     : true,
                         onMouseOverError,
-                        title        : 'hello',
+                        title        : 'hello'
                     } );
 
                     expect( wrapper.find( IconWithTooltip )

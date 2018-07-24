@@ -117,7 +117,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOver } );
 
-            wrapper.simulate( 'mouseenter' );
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
@@ -130,7 +130,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOut = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOut } );
 
-            wrapper.simulate( 'mouseleave' );
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

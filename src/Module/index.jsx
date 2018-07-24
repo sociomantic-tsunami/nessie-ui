@@ -93,7 +93,7 @@ export default class Module extends Component
         /**
           *  Header mouse out callback function
           */
-        onMouseOverHeader     : PropTypes.func,
+        onMouseOverHeader     : PropTypes.func
     };
 
     static defaultProps =
@@ -157,7 +157,7 @@ export default class Module extends Component
             onMouseOverError,
             onMouseOutHeader,
             onMouseOverHeader,
-            title,
+            title
 
         } = this.props;
 

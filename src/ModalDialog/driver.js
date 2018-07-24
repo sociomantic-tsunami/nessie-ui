@@ -25,11 +25,6 @@ export default class ModalDialogDriver
             .find( 'IconButton' ).last();
     }
 
-    getContent()
-    {
-        return this.content.children();
-    }
-
     clickOverlay()
     {
         this.overlay.simulate( 'click' );

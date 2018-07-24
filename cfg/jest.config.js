@@ -5,7 +5,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/**/tests.js?(x)'
+        '<rootDir>/src/**/tests.js?(x)',
     ],
 
     // We should specify that jest should load all dependencies
@@ -15,7 +15,7 @@ module.exports = {
     moduleDirectories :
     [
         '<rootDir>/src',
-        '<rootDir>/node_modules'
+        '<rootDir>/node_modules',
     ],
 
     // Tell jest explicitly where to search for source files
@@ -23,12 +23,12 @@ module.exports = {
     // including local npm caches etc.
     roots :
     [
-        '<rootDir>/src'
+        '<rootDir>/src',
     ],
 
     setupFiles :
     [
-        '<rootDir>/src/Testing/setupTestEnvironment.js'
+        '<rootDir>/src/Testing/setupTestEnvironment.js',
     ],
 
     setupTestFrameworkScriptFile :
@@ -39,20 +39,20 @@ module.exports = {
         // Map module aliases to directories
         {
             componentDriver : '<rootDir>/src/Testing/index',
-            'nessie-ui'     : '<rootDir>/src/index'
+            'nessie-ui'     : '<rootDir>/src/index',
         },
         // Mock assets
         {
             '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
                 '<rootDir>/src/Testing/mocks/fileMock.js',
-            '\\.(css|less|scss)$' : 'identity-obj-proxy'
-        }
+            '\\.(css|less|scss)$' : 'identity-obj-proxy',
+        } /* eslint-disable-line comma-dangle */
     ),
 
     verbose : true,
 
     transformIgnorePatterns :
     [
-        'node_modules/(?!flounder)'
-    ]
+        'node_modules/(?!flounder)',
+    ],
 };
