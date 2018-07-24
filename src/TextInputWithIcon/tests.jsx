@@ -9,7 +9,7 @@ import {
     IconButton,
     InputField,
     TextInputWithIcon as WrappedTextInputWithIcon,
-    Tooltip
+    Tooltip,
 } from '../index';
 
 import { TextInputWithIcon } from './index';
@@ -73,7 +73,7 @@ describe( 'TextInputWithIcon', () =>
                 instance.handleFocus( e );
 
                 expect( onFocus ).not.toBeCalled();
-            }
+            },
         );
 
         test(
@@ -92,7 +92,7 @@ describe( 'TextInputWithIcon', () =>
                 instance.handleFocus( e );
 
                 expect( onFocus ).not.toBeCalled();
-            }
+            },
         );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -180,7 +180,7 @@ the <input> or the <button>', () =>
                 instance.handleBlur( e );
 
                 expect( onBlur ).not.toBeCalled();
-            }
+            },
         );
 
         test(
@@ -199,7 +199,7 @@ the <input> or the <button>', () =>
                 instance.handleBlur( e );
 
                 expect( onBlur ).not.toBeCalled();
-            }
+            },
         );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -516,7 +516,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isDisabled : true
+                    isDisabled : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
@@ -527,7 +527,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isDisabled : true
+                    isDisabled : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
@@ -565,7 +565,7 @@ the <input> or the <button>', () =>
 
             test( 'should be passed to the InputField', () =>
             {
-                wrapper.setProps( { isReadOnlyInput: true } );
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
                     .toBeTruthy();
@@ -575,7 +575,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnly : true
+                    isReadOnly : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
@@ -586,7 +586,42 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnlyButton : true
+                    isReadOnly : true,
+                } );
+
+                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
+                    .toBeTruthy();
+            } );
+        } );
+
+        describe( 'isReadOnlyInput', () =>
+        {
+            test( 'should be false by default', () =>
+            {
+                expect( props.isReadOnlyInput ).toBe( false );
+            } );
+
+            test( 'should be passed to the InputField', () =>
+            {
+                wrapper.setProps( { isReadOnlyInput: true } );
+
+                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
+                    .toBeTruthy();
+            } );
+        } );
+
+        describe( 'isReadOnlyButton', () =>
+        {
+            test( 'should be false by default', () =>
+            {
+                expect( props.isReadOnlyButton ).toBe( false );
+            } );
+
+            test( 'should be passed to the IconButton', () =>
+            {
+                wrapper.setProps( {
+                    iconType         : 'add',
+                    isReadOnlyButton : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
@@ -613,7 +648,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    hasError : true
+                    hasError : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
@@ -624,7 +659,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    hasError : true
+                    hasError : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'hasError' ) )
@@ -830,7 +865,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOver
+                    onMouseOver,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) )
@@ -843,7 +878,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOver
+                    onMouseOver,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) )
@@ -874,7 +909,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOut
+                    onMouseOut,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) )
@@ -887,7 +922,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOut
+                    onMouseOut,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) )
@@ -994,7 +1029,7 @@ describe( 'TextInputWithIconDriver', () =>
             wrapper.setProps( {
                 hasError              : true,
                 errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true
+                errorMessageIsVisible : true,
             } );
         } );
 

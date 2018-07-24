@@ -147,7 +147,7 @@ class TextInputWithIcon extends Component
         /**
          *  Display as read-only for IconButton
          */
-        isReadOnlyButton         : PropTypes.bool,
+        isReadOnlyButton      : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
@@ -260,7 +260,7 @@ class TextInputWithIcon extends Component
         isDisabled            : false,
         isReadOnly            : false,
         isReadOnlyInput       : false,
-        isReadOnlyButton         : false,
+        isReadOnlyButton      : false,
         iconButtonIsDisabled  : false,
         iconType              : 'none',
         iconTooltipPosition   : 'top',
@@ -448,7 +448,7 @@ class TextInputWithIcon extends Component
                     id           = { id }
                     inputRef     = { this.handleInputRef }
                     isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnlyInput }
+                    isReadOnly   = { isReadOnlyInput || isReadOnly }
                     name         = { name }
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
@@ -479,7 +479,7 @@ class TextInputWithIcon extends Component
                             iconType    = { iconType }
                             isDisabled  = { isDisabled || iconButtonIsDisabled }
                             isFocusable = { false }
-                            isReadOnly  = { isReadOnlyButton }
+                            isReadOnly  = { isReadOnlyButton || isReadOnly }
                             hasError    = { hasError }
                             onClick     = { onClickIcon } />
                     </Tooltip>
