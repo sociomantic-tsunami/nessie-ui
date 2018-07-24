@@ -1,10 +1,9 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import Icon             from '../Icon';
-import Spinner          from '../Spinner';
+import { generateId, buildClassName }   from '../utils';
+import Icon                             from '../Icon';
+import Spinner                          from '../Spinner';
 
 export default class Button extends React.Component
 {
@@ -27,7 +26,7 @@ export default class Button extends React.Component
             'subtle',
             'promoted',
             'critical',
-            'control'
+            'control',
         ] ),
         /**
         *  Icon type to display (overrides customIcon)
@@ -111,9 +110,17 @@ export default class Button extends React.Component
          */
         id           : PropTypes.string,
         /**
+         *  Button blur callback function: ( e ) => { ... }
+         */
+        onBlur       : PropTypes.func,
+        /**
          *  Button click callback function: ( e ) => { ... }
          */
         onClick      : PropTypes.func,
+        /**
+         *  Button focus callback function: ( e ) => { ... }
+         */
+        onFocus      : PropTypes.func,
         /**
          *  Mouse over callback function: ( e ) => { ... }
          */
@@ -143,7 +150,7 @@ export default class Button extends React.Component
         isDisabled   : false,
         isReadOnly   : false,
         forceHover   : false,
-        cssMap       : require( './button.css' )
+        cssMap       : require( './button.css' ),
     };
 
     constructor( props )
@@ -190,13 +197,15 @@ export default class Button extends React.Component
             iconType,
             id = generateId( 'Button' ),
             isDisabled,
-            isReadOnly,
             isLoading,
+            isReadOnly,
             label,
+            onBlur,
             onClick,
+            onFocus,
             role,
             type,
-            value
+            value,
         } = this.props;
 
         let iconMarkup;
@@ -226,34 +235,32 @@ export default class Button extends React.Component
         );
 
         return (
-            <Css
-                cssMap   = { cssMap }
-                cssProps = { {
+            <button
+                ref            = { buttonRef }
+                type           = { type }
+                className      = { buildClassName( className, cssMap, {
                     role,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
-                    fakeHovered : forceHover
-                } }>
-                <button
-                    ref            = { buttonRef }
-                    type           = { type }
-                    className      = { className }
-                    id             = { id }
-                    defaultValue   = { defaultValue }
-                    value          = { value }
-                    disabled       = { isDisabled || isLoading || isReadOnly }
-                    onClick        = { onClick }
-                    onMouseEnter   = { this.handleMouseOver }
-                    onMouseLeave   = { this.handleMouseOut }>
-                    { content }
-                    { ( isLoading && !isDisabled ) &&
-                        <div className = { cssMap.loadingOverlay }>
-                            <Spinner className = { cssMap.spinner } />
-                        </div>
-                    }
-                </button>
-            </Css>
+                    fakeHovered : forceHover,
+                } ) }
+                id             = { id }
+                defaultValue   = { defaultValue }
+                value          = { value }
+                disabled       = { isDisabled || isLoading || isReadOnly }
+                onBlur         = { onBlur }
+                onClick        = { onClick }
+                onFocus        = { onFocus }
+                onMouseEnter   = { this.handleMouseOver }
+                onMouseLeave   = { this.handleMouseOut }>
+                { content }
+                { ( isLoading && !isDisabled ) &&
+                <div className = { cssMap.loadingOverlay }>
+                    <Spinner className = { cssMap.spinner } />
+                </div>
+                }
+            </button>
         );
     }
 }

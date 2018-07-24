@@ -1,10 +1,9 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import { generateId }   from '../utils';
-import Css              from '../hoc/Css';
-import InputField       from '../InputField';
-import InputContainer   from '../proto/InputContainer';
+import { generateId, buildClassName }   from '../utils';
+import InputField                       from '../InputField';
+import InputContainer                   from '../proto/InputContainer';
 
 export default class TextInput extends React.PureComponent
 {
@@ -150,16 +149,15 @@ export default class TextInput extends React.PureComponent
         } = this.props;
 
         return (
-            <Css cssMap = { cssMap }>
-                <InputContainer
-                    { ...props }
-                    id          = { id }
-                    className   = { className }
-                    onMouseOut  = { onMouseOut }
-                    onMouseOver = { onMouseOver }>
-                    <InputField { ...props } id = { id } />
-                </InputContainer>
-            </Css>
+
+            <InputContainer
+                { ...props }
+                id          = { id }
+                className   = { buildClassName( className, cssMap ) }
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }>
+                <InputField { ...props } id = { id } />
+            </InputContainer>
         );
     }
 }

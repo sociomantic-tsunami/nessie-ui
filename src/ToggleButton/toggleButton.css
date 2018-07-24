@@ -1,0 +1,148 @@
+@import "../proto/base.css";
+
+.default
+{
+    display:    table; /* flex is not well supported on <button>... */
+    width:      auto;
+    border:     none;
+    padding:    0;
+    background: transparent;
+
+    .flexContainer /* ...so we set it here instead */
+    {
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+        box-sizing:         border-box;
+        height:             40px;
+        padding:            0 var( --spacing-2 );
+
+        @extend %Nessie-Regular;
+
+        color:              var( --PC-GREY--D15 );
+        font-size:          var( --typo-3 );
+        text-align:         center;
+
+        cursor:             pointer;
+    }
+
+    .icon
+    {
+        fill:   var(--PC-GREY--D15);
+    }
+
+    .labelContainer
+    {
+        display:        flex;
+        flex-direction: column;
+    }
+
+    .title
+    {
+        @extend %Nessie-SemiBold;
+        font-size:     14px;
+        line-height:   16px;
+    }
+
+    .subLabel
+    {
+        @extend %Nessie-RegularIt;
+        color:         var ( --PC-GREY--L40 );
+        font-size:     11px;
+        line-height:   14px;
+    }
+
+    .title + .subLabel
+    {
+        margin-top: calc( var( --spacing-1 ) / 4 );
+    }
+}
+
+
+.role__primary
+{
+    .flexContainer
+    {
+        border:         1px solid var( --PC-GREY--L70 );
+        border-radius:  2px;
+
+        background:     var( --PC-WHITE );
+        color:          var( --PC-GREY--D15 );
+    }
+
+    &:not( .disabled ):hover
+    {
+        .flexContainer
+        {
+            background: var( --PC-GREY--L90 );
+        }
+    }
+
+    &.pressed:not( :hover )
+    {
+        .flexContainer
+        {
+            border-color:   var(--PC-BLUE);
+            background:     var( --PC-BLUE--L90 );
+            color:          var(--PC-BLUE);
+        }
+
+        .icon
+        {
+            fill:   var(--PC-BLUE);
+        }
+    }
+}
+
+.role__secondary
+{
+    .flexContainer
+    {
+        opacity:    0.5;
+    }
+
+    &.pressed
+    {
+        .flexContainer
+        {
+            opacity:    1;
+        }
+    }
+}
+
+.disabled
+{
+    opacity:        0.5;
+    cursor:         default;
+    pointer-events: none;
+
+    .flexContainer
+    {
+        cursor:    default;
+    }
+
+    .icon
+    {
+        fill: var(--PC-GREY--D15);
+    }
+}
+
+.iconPosition__left
+{
+    .icon
+    {
+        margin-right:   calc( var( --spacing-1 ) / 2 );
+    }
+}
+.iconPosition__right
+{
+    .flexContainer
+    {
+        flex-direction: row-reverse;
+    }
+
+    .icon
+    {
+        margin-left:    calc( var( --spacing-1 ) / 2 );
+    }
+}

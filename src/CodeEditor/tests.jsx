@@ -5,7 +5,7 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Css                from '../hoc/Css';
+
 
 import CodeEditor         from './index';
 
@@ -20,10 +20,7 @@ describe( 'CodeEditor', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
+      
 
         test( 'should contain exactly one textArea', () =>
         {

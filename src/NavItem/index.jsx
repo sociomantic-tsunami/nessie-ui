@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
 import Icon                 from '../Icon';
 import NavDropdown          from '../NavDropdown';
 import styles               from './navItem.css';
@@ -33,9 +33,9 @@ removed in the next major release. Please use isCurrent instead.' );
     }
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { {
+
+        <li
+            className     = { buildClassName( className, cssMap, {
                 role,
                 disabled    : isDisabled,
                 current     : isCurrent || isCurrentPage,
@@ -43,30 +43,28 @@ removed in the next major release. Please use isCurrent instead.' );
                 open        : isOpen,
                 fakeHovered : forceHover,
                 hasIcon     : iconType !== 'none'
-            } }>
-            <li
-                className     = { className }
-                onMouseEnter  = { onMouseOver }
-                onMouseLeave  = { onMouseOut }>
-                <a
-                    className = { cssMap.link }
-                    href      = { href }
-                    onClick   = { onClick }>
-                    { ( iconType && iconType !== 'none' ) &&
-                        <Icon
-                            className = { cssMap.icon }
-                            type = { iconType }
-                            size = "S" />
-                    }
-                    <span>{ label }</span>
-                </a>
-                { children &&
-                    <NavDropdown className = { cssMap.dropdown }>
-                        { children }
-                    </NavDropdown>
+            } ) }
+            onMouseEnter  = { onMouseOver }
+            onMouseLeave  = { onMouseOut }>
+            <a
+                className = { cssMap.link }
+                href      = { href }
+                onClick   = { onClick }>
+                { ( iconType && iconType !== 'none' ) &&
+                <Icon
+                    className = { cssMap.icon }
+                    type = { iconType }
+                    size = "S" />
                 }
-            </li>
-        </Css>
+                <span>{ label }</span>
+            </a>
+            { children &&
+            <NavDropdown className = { cssMap.dropdown }>
+                { children }
+            </NavDropdown>
+            }
+        </li>
+
     );
 };
 

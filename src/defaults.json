@@ -245,14 +245,15 @@
     {
         "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
     },
-    "ScrollBar" : {
-        "orientation": "vertical"
+    "ScrollBar" :
+    {
+        "scrollMax" : 100
     },
     "ScrollBox" :
     {
         "children"     : "{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/3', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
-        "scroll"       : "horizontal",
-        "contentWidth" : "150%"
+        "contentWidth" : "150%",
+        "height"       : "100px"
     },
     "Section" :
     {
@@ -337,6 +338,10 @@
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
+    },
+    "ToggleButton" : {
+      "label": "Toggle me tender",
+      "subLabel": "Toggle me sweet"
     },
     "Tooltip" :
     {

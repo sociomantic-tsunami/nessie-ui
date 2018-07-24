@@ -2,7 +2,7 @@ import React            from 'react';
 import PropTypes        from 'prop-types';
 
 import spriteHtml       from '../Icon/sprite.html';
-import { generateId }   from '../utils';
+import { generateId, buildClassName }   from '../utils';
 
 
 export default class SpriteMap extends React.PureComponent

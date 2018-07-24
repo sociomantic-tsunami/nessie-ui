@@ -8,7 +8,7 @@ export default class ButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.button  = wrapper.find( 'button' ).first();
     }
 
     click()
@@ -27,6 +27,31 @@ export default class ButtonDriver
                 .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
         }
 
-        return this.wrapper.simulate( 'click' );
+        this.button.simulate( 'click' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.button.simulate( 'mouseEnter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.button.simulate( 'mouseLeave' );
+        return this;
+    }
+
+    focus()
+    {
+        this.button.simulate( 'focus' );
+        return this;
+    }
+
+    blur()
+    {
+        this.button.simulate( 'blur' );
+        return this;
     }
 }

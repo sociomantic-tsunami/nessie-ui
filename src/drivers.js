@@ -34,6 +34,7 @@ import {
     TextInput,
     TextInputWithIcon,
     Tooltip,
+    ToggleButton,
     Uploader,
 } from 'nessie-ui';
 
@@ -179,7 +180,7 @@ const drivers =
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver,
+        Driver    : SwitchDriver
     },
     {
         Component : TabButton,
@@ -208,6 +209,10 @@ const drivers =
     {
         Component : Tooltip,
         Driver    : TooltipDriver,
+    },
+    {
+        Component : ToggleButton,
+        Driver    : ButtonDriver
     },
     {
         Component : Uploader,

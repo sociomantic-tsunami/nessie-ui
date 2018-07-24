@@ -7,7 +7,7 @@ import { shallow }     from 'enzyme';
 
 import { InputField }  from '../index';
 import InputContainer  from '../proto/InputContainer';
-import Css             from '../hoc/Css';
+
 
 import ValuedTextInput from './index';
 
@@ -33,11 +33,7 @@ describe( 'ValuedTextInput', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css injector component', () =>
-        {
-            expect( wrapper.find( Css ) ).toHaveLength( 1 );
-        } );
-
+      
         test( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
