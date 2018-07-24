@@ -61,6 +61,20 @@ export default class ScrollBox extends Component
             'both',
         ] ),
         /**
+        *   ScrollBox padding
+        */
+        padding : PropTypes.oneOfType( [
+            PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+            PropTypes.arrayOf( PropTypes.oneOf( [
+                'none',
+                'S',
+                'M',
+                'L',
+                'XL',
+                'XXL',
+            ] ) ),
+        ] ),
+        /**
          *  Display Scroll bars
          */
         scrollBarsAreVisible : PropTypes.bool,
@@ -98,6 +112,7 @@ export default class ScrollBox extends Component
         onClickScrollRight   : undefined,
         onClickScrollUp      : undefined,
         onScroll             : undefined,
+        padding              : 'none',
         scroll               : 'both',
         scrollBarsAreVisible : true,
         scrollBoxRef         : undefined,
@@ -154,8 +169,8 @@ export default class ScrollBox extends Component
             const { state } = this;
 
             // space taken by native scrollbars
-            const diffX = state.offsetWidth - state.clientWidth;
-            const diffY = state.offsetHeight - state.clientHeight;
+            const diffX = state.offsetWidth - state.clientWidth || 16;
+            const diffY = state.offsetHeight - state.clientHeight || 16;
 
             Object.assign( style, {
                 width        : diffX ? `calc( 100% + ${diffX}px )` : null,
@@ -245,19 +260,17 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars.push(
-                    <ScrollBar
-                        className        = { cssMap.scrollBarHorizontal }
-                        key              = "horizontal"
-                        onClickTrack     = { this.handleClickTrackX }
-                        onChange         = { this.handleChangeX }
-                        orientation      = "horizontal"
-                        scrollPos        = { scrollLeft }
-                        thumbSize        = {
-                            `${( clientWidth / scrollWidth ) * 100}%`
-                        }
-                        scrollMax = { scrollWidth - clientWidth } />
-                );
+                scrollBars.push( <ScrollBar
+                    className        = { cssMap.scrollBarHorizontal }
+                    key              = "horizontal"
+                    onClickTrack     = { this.handleClickTrackX }
+                    onChange         = { this.handleChangeX }
+                    orientation      = "horizontal"
+                    scrollPos        = { scrollLeft }
+                    thumbSize        = {
+                        `${( clientWidth / scrollWidth ) * 100}%`
+                    }
+                    scrollMax = { scrollWidth - clientWidth } /> );
             }
         }
 
@@ -267,20 +280,18 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars.push(
-                    <ScrollBar
-                        className        = { cssMap.scrollBarVertical }
-                        key              = "vertical"
-                        onClickTrack     = { this.handleClickTrackY }
-                        onChange         = { this.handleChangeY }
-                        orientation      = "vertical"
-                        scrollPos        = { scrollTop }
-                        thumbSize        = {
-                            `${( clientHeight / scrollHeight ) * 100}%`
-                        }
-                        scrollMax = { scrollHeight - clientHeight  }
-                        length    = { `${clientHeight}px` } />
-                );
+                scrollBars.push( <ScrollBar
+                    className        = { cssMap.scrollBarVertical }
+                    key              = "vertical"
+                    onClickTrack     = { this.handleClickTrackY }
+                    onChange         = { this.handleChangeY }
+                    orientation      = "vertical"
+                    scrollPos        = { scrollTop }
+                    thumbSize        = {
+                        `${( clientHeight / scrollHeight ) * 100}%`
+                    }
+                    scrollMax = { scrollHeight - clientHeight  }
+                    length    = { `${clientHeight}px` } /> );
             }
         }
 
@@ -296,14 +307,12 @@ export default class ScrollBox extends Component
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push(
-                    <IconButton
-                        className = { props.cssMap[ `icon${dir}` ] }
-                        iconSize  = "S"
-                        iconType  = { dir.toLowerCase() }
-                        key       = { dir }
-                        onClick   = { props[ `onClickScroll${dir}` ] } />
-                );
+                scrollButtons.push( <IconButton
+                    className = { props.cssMap[ `icon${dir}` ] }
+                    iconSize  = "S"
+                    iconType  = { dir.toLowerCase() }
+                    key       = { dir }
+                    onClick   = { props[ `onClickScroll${dir}` ] } /> );
             }
         } );
 
@@ -317,13 +326,18 @@ export default class ScrollBox extends Component
             className,
             contentWidth,
             cssMap,
+            padding,
             scroll,
             scrollBarsAreVisible,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, { scroll } ) }>
+                className = { buildClassName( className, cssMap, {
+                  scroll,
+                  paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
+                  paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding
+                } ) }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }
