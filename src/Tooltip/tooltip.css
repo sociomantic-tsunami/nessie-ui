@@ -6,8 +6,8 @@
 {
     --tooltipBorderRadius:  2px;
 
-    --tooltipMaxWidth:      240px;
-    --tooltipMaxHeight:     240px;
+    --tooltipMaxWidth:      360px;
+    --tooltipMaxHeight:     100vh;
 
     --tooltipOffset:        var( --spacing-1 );
 }
