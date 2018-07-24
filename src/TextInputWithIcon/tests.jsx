@@ -586,7 +586,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnlyBtn : true
+                    isReadOnlyButton : true
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
