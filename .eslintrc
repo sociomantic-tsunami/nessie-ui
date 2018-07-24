@@ -13,6 +13,7 @@
         "block-scoped-var"          : "error",
         "brace-style"               : [ "error", "allman" ],
         "camelcase"                 : [ "error", { "properties": "never" } ],
+        "comma-dangle"              : ["error", "never"],
         "compat/compat"             : "error",
         "computed-property-spacing" : [ "error", "always" ],
         "consistent-return"         : "off",
