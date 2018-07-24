@@ -70,11 +70,6 @@
         "label"    : "Fieldset legend",
         "children" : "{<Text>Fieldset content</Text>}"
     },
-    "Form" :
-    {
-        "lochness" : { "isDeprecated" : true },
-        "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
-    },
     "FlounderDropdown" :
     {
         "placeholder" : "Just a placeholder",
