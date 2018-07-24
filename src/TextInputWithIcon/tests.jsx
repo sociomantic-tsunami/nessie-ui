@@ -565,7 +565,7 @@ the <input> or the <button>', () =>
 
             test( 'should be passed to the InputField', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
+                wrapper.setProps( { isReadOnlyInput: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
                     .toBeTruthy();
@@ -586,7 +586,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnly : true
+                    isReadOnlyBtn : true
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
