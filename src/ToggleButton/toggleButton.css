@@ -7,6 +7,7 @@
     border:     none;
     padding:    0;
     background: transparent;
+    cursor:     pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -16,7 +17,6 @@
         box-sizing:         border-box;
         height:             40px;
         text-align:         center;
-        cursor:             pointer;
     }
 
     .labelContainer
@@ -137,11 +137,6 @@
     opacity:        0.5;
     cursor:         default;
     pointer-events: none;
-
-    .flexContainer
-    {
-        cursor:    default;
-    }
 
     .icon
     {
