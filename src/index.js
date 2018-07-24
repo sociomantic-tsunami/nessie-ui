@@ -10,7 +10,6 @@ export ComboBox                 from './ComboBox';
 export DatePicker               from './DatePicker';
 export DateTimeInput            from './DateTimeInput';
 export DimensionsInput          from './DimensionsInput';
-export Divider                  from './Divider';
 export DragNDrop                from './DragNDrop';
 export Dropdown                 from './Dropdown';
 export Fieldset                 from './Fieldset';

@@ -56,10 +56,6 @@
         "label"         : "Banner size",
         "errorMessage"  : "Wrong size!"
     },
-    "Divider" :
-    {
-        "lochness" : { "isDeprecated" : true }
-    },
     "DragNDrop" :
     {
         "message"  : "Drop image file to upload",
