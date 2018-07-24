@@ -13,7 +13,7 @@ class TextInputWithIcon extends Component
         /**
          *  aria properties
          */
-        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+        aria : PropTypes.objectOf( PropTypes.oneOfType( [
             PropTypes.bool,
             PropTypes.number,
             PropTypes.string,
@@ -27,7 +27,7 @@ class TextInputWithIcon extends Component
          */
         inputType : PropTypes.oneOf( [
             'text',
-            'password'
+            'password',
         ] ),
         /**
          *  Label position
@@ -35,7 +35,7 @@ class TextInputWithIcon extends Component
         labelPosition : PropTypes.oneOf( [
             'top',
             'left',
-            'right'
+            'right',
         ] ),
         /**
          *  Placeholder text
@@ -99,7 +99,7 @@ class TextInputWithIcon extends Component
          */
         iconPosition : PropTypes.oneOf( [
             'left',
-            'right'
+            'right',
         ] ),
         /**
          * Input text alignment
@@ -107,7 +107,7 @@ class TextInputWithIcon extends Component
         textAlign : PropTypes.oneOf( [
             'auto',
             'left',
-            'right'
+            'right',
         ] ),
         /**
         *  icon Tooltip position relative to icon
@@ -118,7 +118,7 @@ class TextInputWithIcon extends Component
             'top',
             'bottom',
             'topLeft',
-            'topRight'
+            'topRight',
         ] ),
         /**
          *  Display the icon tooltip
@@ -141,6 +141,14 @@ class TextInputWithIcon extends Component
          */
         isReadOnly            : PropTypes.bool,
         /**
+         *  Display as read-only for TextInput
+         */
+        isReadOnlyInput       : PropTypes.bool,
+        /**
+         *  Display as read-only for IconButton
+         */
+        isReadOnlyButton      : PropTypes.bool,
+        /**
          *  Display as error/invalid
          */
         hasError              : PropTypes.bool,
@@ -157,7 +165,7 @@ class TextInputWithIcon extends Component
         */
         errorMessagePosition  : PropTypes.oneOf( [
             'top',
-            'topLeft'
+            'topLeft',
         ] ),
         /**
          *  Initial input string value
@@ -186,15 +194,15 @@ class TextInputWithIcon extends Component
         /**
          * key down callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown       : PropTypes.func,
         /**
          * key press callback function
          */
-        onKeyPress        : PropTypes.func,
+        onKeyPress      : PropTypes.func,
         /**
          * key up callback function
          */
-        onKeyUp        : PropTypes.func,
+        onKeyUp         : PropTypes.func,
         /**
          *  focus callback function
          */
@@ -251,6 +259,8 @@ class TextInputWithIcon extends Component
         id                    : undefined,
         isDisabled            : false,
         isReadOnly            : false,
+        isReadOnlyInput       : false,
+        isReadOnlyButton      : false,
         iconButtonIsDisabled  : false,
         iconType              : 'none',
         iconTooltipPosition   : 'top',
@@ -286,7 +296,7 @@ class TextInputWithIcon extends Component
 
         this.state = {
             ...this.state,
-            iconIsHovered : false
+            iconIsHovered : false,
         };
 
         this.handleFocus         = this.handleFocus.bind( this );
@@ -395,6 +405,8 @@ class TextInputWithIcon extends Component
             inputType,
             isDisabled,
             isReadOnly,
+            isReadOnlyInput,
+            isReadOnlyButton,
             name,
             onChange,
             onClick,
@@ -425,7 +437,7 @@ class TextInputWithIcon extends Component
                 className = { buildClassName( className, cssMap, {
                     disabled : isDisabled,
                     error    : hasError,
-                    position : iconPosition
+                    position : iconPosition,
                 } ) }>
                 <InputField
                     aria         = { aria }
@@ -436,7 +448,7 @@ class TextInputWithIcon extends Component
                     id           = { id }
                     inputRef     = { this.handleInputRef }
                     isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnly }
+                    isReadOnly   = { isReadOnlyInput || isReadOnly }
                     name         = { name }
                     onBlur       = { this.handleBlur }
                     onChange     = { onChange }
@@ -467,7 +479,7 @@ class TextInputWithIcon extends Component
                             iconType    = { iconType }
                             isDisabled  = { isDisabled || iconButtonIsDisabled }
                             isFocusable = { false }
-                            isReadOnly  = { isReadOnly }
+                            isReadOnly  = { isReadOnlyButton || isReadOnly }
                             hasError    = { hasError }
                             onClick     = { onClickIcon } />
                     </Tooltip>
