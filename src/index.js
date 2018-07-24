@@ -47,7 +47,6 @@ export ProgressBar              from './ProgressBar';
 export ProgressIndicator        from './ProgressIndicator';
 export Radio                    from './Radio';
 export RadioGroup               from './RadioGroup';
-export Required                 from './Required';
 export Row                      from './Row';
 export ScrollBar                from './ScrollBar';
 export ScrollBox                from './ScrollBox';

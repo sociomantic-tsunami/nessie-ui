@@ -3,7 +3,6 @@ import PropTypes               from 'prop-types';
 
 import TableCell               from '../TableCell';
 import TableRow                from '../TableRow';
-import Required                from '../Required';
 import { buildClassName }      from '../utils';
 import styles                  from './table.css';
 import { buildRowsFromValues } from './utils';
@@ -88,8 +87,7 @@ const Table = ( {
                     { columns.map( ( column, i ) =>
                     {
                         const title = column.title;
-                        const text  = column.isRequired ?
-                            <Required>{ title }</Required> : title;
+                        const text  = title;
                         const stickyCell = column.isSticky;
 
                         return (
