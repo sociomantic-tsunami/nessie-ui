@@ -50,33 +50,4 @@ describe( 'Tooltip', () =>
         expect( onMouseOverHandler ).not.toBeCalled();
         expect( onMouseOutHandler ).toBeCalled();
     } );
-
-    describe( 'Driver self-test', () =>
-    {
-        test( 'getContent', () =>
-        {
-            const props = {
-                message : 'Pikachu!',
-            };
-
-            const wrapper = mount( <Tooltip { ...props } >
-                <h1>Who am i?</h1>
-            </Tooltip> );
-
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h1' ) ).toHaveLength( 1 );
-        } );
-
-        test( 'getMessage', () =>
-        {
-            const props = {
-                message : <h2>Pikachu!</h2>,
-            };
-
-            const wrapper = mount( <Tooltip { ...props } /> );
-
-            const message = wrapper.driver().getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
-        } );
-    } );
 } );

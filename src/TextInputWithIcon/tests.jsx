@@ -2,8 +2,8 @@
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React                            from 'react';
-import { ReactWrapper, mount, shallow } from 'enzyme';
+import React        from 'react';
+import { shallow }  from 'enzyme';
 
 import {
     IconButton,

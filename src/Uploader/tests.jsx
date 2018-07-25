@@ -107,10 +107,12 @@ state', () =>
 describe( 'UploaderDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Uploader /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'onClick', () =>
@@ -123,7 +125,7 @@ describe( 'UploaderDriver', () =>
                 uploadState : 'default',
             } );
 
-            wrapper.driver().click();
+            driver.click();
             expect( onClick ).toBeCalled();
         } );
 
@@ -135,7 +137,7 @@ describe( 'UploaderDriver', () =>
                 uploadState : 'uploaded',
             } );
 
-            wrapper.driver().clickSecondary();
+            driver.clickSecondary();
             expect( onClickSecondary ).toBeCalled();
         } );
     } );
@@ -158,7 +160,7 @@ describe( 'UploaderDriver', () =>
                 onMouseOut,
             } );
 
-            wrapper.simulate( 'mouseleave' );
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalled();
         } );
@@ -172,7 +174,7 @@ describe( 'UploaderDriver', () =>
                 onMouseOver,
             } );
 
-            wrapper.simulate( 'mouseenter' );
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalled();
         } );

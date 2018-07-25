@@ -111,7 +111,7 @@ TableRow.defaultProps =
     isSticky      : undefined,
     onClick       : undefined,
     onMouseOut    : undefined,
-    onMouseOVer   : undefined,
+    onMouseOver   : undefined,
     spacing       : undefined,
     verticalAlign : undefined,
 };

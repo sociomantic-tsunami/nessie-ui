@@ -8,7 +8,6 @@ import { shallow }      from 'enzyme';
 import { InputField }   from '../index';
 import InputContainer   from '../proto/InputContainer';
 
-
 import TextArea         from './index';
 
 

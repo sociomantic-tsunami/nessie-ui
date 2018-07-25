@@ -31,7 +31,6 @@ import {
     TabButton,
     Tabs,
     TagInput,
-    Text,
     TextInput,
     Tooltip,
     ToggleButton,
@@ -67,7 +66,6 @@ import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagInputDriver          from './TagInput/driver';
-import TextDriver              from './Text/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 
@@ -197,10 +195,6 @@ const drivers =
     {
         Component : TagInput,
         Driver    : TagInputDriver,
-    },
-    {
-        Component : Text,
-        Driver    : TextDriver,
     },
     {
         Component : TextInput,

@@ -58,9 +58,4 @@ export default class ModuleDriver
         }
         return this.wrapper.find( `.${this.cssMap.header}` ).children();
     }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
-    }
 }

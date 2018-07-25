@@ -21,15 +21,4 @@ describe( 'Column', () =>
         expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
             .toHaveLength( 1 );
     } );
-
-    describe( 'Driver self-test', () =>
-    {
-        test( 'getContent', () =>
-        {
-            wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
-
-            const content = wrapper.children();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
-        } );
-    } );
 } );

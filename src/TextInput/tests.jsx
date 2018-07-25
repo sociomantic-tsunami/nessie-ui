@@ -8,7 +8,6 @@ import { mount, shallow } from 'enzyme';
 import { InputField }     from '../index';
 import InputContainer     from '../proto/InputContainer';
 
-
 import TextInput          from './index';
 
 
@@ -57,7 +56,7 @@ describe( 'TextInputDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should fire the onBlur callback prop', () =>
         {
@@ -68,19 +67,19 @@ describe( 'TextInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            wrapper.find( 'input' ).simulate( 'blur' );
+            driver.blur();
             expect( blurSpy ).toBeCalled();
         } );
     } );
 
-    describe( 'focus', () =>
+    describe( 'focus()', () =>
     {
         test( 'should fire the onFocus callback prop', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            wrapper.find( 'input' ).simulate( 'focus' );
+            driver.focus();
             expect( focusSpy ).toBeCalled();
         } );
     } );
