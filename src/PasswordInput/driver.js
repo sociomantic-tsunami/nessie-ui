@@ -48,22 +48,4 @@ export default class PasswordInput
         this.wrapper.find( 'InputField' ).driver().keyPress();
         return this;
     }
-
-    mouseOutOption( index = 0 )
-    {
-        this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
-        return this;
-    }
-
-    mouseOverOption( index = 0 )
-    {
-        this.wrapper.find( 'ListBox' ).driver().mouseOverOption( index );
-        return this;
-    }
-
-    scroll( offset = 0 )
-    {
-        this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( offset );
-        return this;
-    }
 }
