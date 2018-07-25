@@ -110,86 +110,43 @@ describe( 'PasswordInputDriver', () =>
         } );
     } );
 
-    describe( 'setInputValue( value )', () =>
-    {
-        test( 'should fire the onChange callback prop once', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                title    : 'Test',
-                hasError : false,
-                onChange : changeSpy,
-            } );
-
-            driver.setInputValue( 'test' );
-            expect( changeSpy ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'pressKey( keyCode )', () =>
+    describe( 'keyPress()', () =>
     {
         test( 'should fire the onKeyPress callback prop once', () =>
         {
-            const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
             } );
 
-            driver.pressKey( keyCodeEnter );
+            driver.keyPress();
             expect( keyPressSpy ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire the onInput callback prop once', () =>
         {
-            const keyCodeChar = String.fromCharCode( 74 );
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onChange : onChangeSpy,
             } );
 
-            driver.pressKey( keyCodeChar );
+            driver.keyPress();
             expect( onChangeSpy ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'inputValue should fire event for each key', () =>
-        {
-            const keyPressSpy = jest.fn();
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy,
-            } );
-
-            driver.inputValue( 'Harry Potter' );
-
-            expect( keyPressSpy ).toBeCalledTimes( 12 );
-            expect( onChangeSpy ).toBeCalledTimes( 12 );
-        } );
-
-        test( 'inputValue should change the text', () =>
-        {
-            driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
         } );
     } );
 
-    describe( 'click()', () =>
+    describe( 'clickInput()', () =>
     {
-        test( 'should throw an error when PasswordInput is disabled', () =>
+        test( 'should trigger onClick callback once', () =>
         {
             const clickSpy = jest.fn();
             wrapper.setProps( {
-                label      : 'test',
-                isDisabled : true,
-                onClick    : clickSpy,
+                onClick : clickSpy,
             } );
 
-            const expectedError =
-                'Input \'test\' cannot be clicked since it is disabled';
+            driver.clickInput();
 
-            expect( () => driver.click() ).toThrowError( expectedError );
-            expect( clickSpy ).not.toBeCalled();
+            expect( clickSpy ).toBeCalledTimes( 1 );
         } );
     } );
 } );

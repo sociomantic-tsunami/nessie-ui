@@ -1,11 +1,9 @@
-import InputComponentDriver
-    from '../Testing/CommonDrivers/inputComponentDriver';
-
-export default class CheckboxDriver extends InputComponentDriver
+export default class CheckboxDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.input}` );
+        this.wrapper = wrapper;
+        this.control = this.wrapper.find( 'input' ).first();
     }
 
     setChecked()

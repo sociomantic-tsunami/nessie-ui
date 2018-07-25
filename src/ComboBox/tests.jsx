@@ -105,7 +105,7 @@ describe( 'ComboBoxDriver', () =>
                 onChangeInput,
             } );
 
-            driver.changeInput( 'c' );
+            driver.changeInput();
 
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );
@@ -181,7 +181,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyDown,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyDown();
 
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
@@ -196,7 +196,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyPress,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyPress();
 
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
@@ -211,7 +211,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyUp,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyUp();
 
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );

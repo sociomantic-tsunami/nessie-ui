@@ -37,18 +37,17 @@ import {
     Uploader,
 } from 'nessie-ui';
 
-import ButtonDriver           from './Button/driver';
-import CheckableGroupDriver   from './CheckableGroup/driver';
-import CheckboxDriver         from './Checkbox/driver';
-import CodeEditorDriver       from './CodeEditor/driver';
-import ComboBoxDriver         from './ComboBox/driver';
-import DatePickerDriver       from './DatePicker/driver';
-import DateTimeInputDriver    from './DateTimeInput/driver';
-import FlounderDropdownDriver from './FlounderDropdown/driver';
-import FormDriver             from './Form/driver';
-import IconWithTooltipDriver  from './IconWithTooltip/driver';
-import InputComponentDriver
-    from './Testing/CommonDrivers/inputComponentDriver';
+import ButtonDriver            from './Button/driver';
+import CheckableGroupDriver    from './CheckableGroup/driver';
+import CheckboxDriver          from './Checkbox/driver';
+import CodeEditorDriver        from './CodeEditor/driver';
+import ComboBoxDriver          from './ComboBox/driver';
+import DatePickerDriver        from './DatePicker/driver';
+import DateTimeInputDriver     from './DateTimeInput/driver';
+import FlounderDropdownDriver  from './FlounderDropdown/driver';
+import FormDriver              from './Form/driver';
+import IconWithTooltipDriver   from './IconWithTooltip/driver';
+import InputFieldDriver        from './InputField/driver';
 import ListBoxDriver           from './ListBox/driver';
 import ModalDialogDriver       from './ModalDialog/driver';
 import ModuleDriver            from './Module/driver';
@@ -66,6 +65,7 @@ import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
 import TagInputDriver          from './TagInput/driver';
+import TextInputDriver         from './TextInput/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 
@@ -122,7 +122,7 @@ const drivers =
     },
     {
         Component : InputField,
-        Driver    : InputComponentDriver,
+        Driver    : InputFieldDriver,
     },
     {
         Component : ListBox,
@@ -198,7 +198,7 @@ const drivers =
     },
     {
         Component : TextInput,
-        Driver    : InputComponentDriver,
+        Driver    : TextInputDriver,
     },
     {
         Component : Tooltip,
@@ -213,7 +213,5 @@ const drivers =
         Driver    : UploaderDriver,
     },
 ];
-
-export { InputComponentDriver };
 
 export default ComponentDriver.createDriverSuite( drivers );

@@ -1,11 +1,7 @@
-import InputComponentDriver
-    from '../Testing/CommonDrivers/inputComponentDriver';
-
-export default class TagInputDriver extends InputComponentDriver
+export default class TagInputDriver
 {
     constructor( wrapper )
     {
-        super( wrapper );
         this.wrapper = wrapper;
     }
 
