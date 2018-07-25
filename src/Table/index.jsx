@@ -11,13 +11,15 @@ import { buildRowsFromValues } from './utils';
 
 const Table = ( {
     align,
+    bodyTextProps = {},
+    borders,
     children,
     className,
     columns = [],
     cssMap,
     gutters,
-    borders,
     hasStickyHeader,
+    headerTextProps = {},
     isZebra,
     onMouseOut,
     onMouseOver,
@@ -43,7 +45,8 @@ const Table = ( {
             {
                 const column      = columns[ j ];
                 const columnProps = column && {
-                    align       : cell.props.align || column.align,
+                    align     : cell.props.align || column.align,
+                    textProps : { ...bodyTextProps, ...column.textProps, ...( rows[ i ] && rows[ i ].textProps ), ...cell.props.textProps },
                     columnTitle : cell.props.columnTitle || column.title,
                     size        : cell.props.size || column.size,
                     isRowHeader : cell.props.isRowHeader ||
@@ -87,7 +90,7 @@ const Table = ( {
                     verticalAlign = { verticalAlign } >
                     { columns.map( ( column, i ) =>
                     {
-                        const title = column.title;
+                        const { title } = column;
                         const text  = column.isRequired ?
                             <Required>{ title }</Required> : title;
                         const stickyCell = column.isSticky;
@@ -103,6 +106,7 @@ const Table = ( {
                                 onToggle      = { onToggle }
                                 size          = { column.size }
                                 sort          = { column.sort }
+                                textProps     = { headerTextProps }
                                 verticalAlign = { column.verticalAlign }>
                                 { text }
                             </TableCell>
@@ -120,32 +124,40 @@ Table.propTypes =
     /**
      *  Text alignment inside cells
      */
-    align     : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
+    align         : PropTypes.oneOf( [ 'left', 'right', 'center', 'auto' ] ),
     /**
-     *  Table content (TableRows containing TableCells; overrides values)
+     *  Body Text style configuration
      */
-    children  : PropTypes.node,
-    /**
-     *  Extra CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  Array of objects defining the table columns
-     */
-    columns   : PropTypes.arrayOf( PropTypes.object ),
-    /**
-     *  Gutter size
-     */
-    gutters   : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
+    bodyTextProps : PropTypes.object,
     /**
      *  Display table with borders
      */
-    borders   : PropTypes.oneOf( [
+    borders       : PropTypes.oneOf( [
         'cells', 'rows', 'none', 'rowDivider', 'columnDivider' ] ),
+    /**
+     *  Table content (TableRows containing TableCells; overrides values)
+     */
+    children        : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className       : PropTypes.string,
+    /**
+     *  Array of objects defining the table columns
+     */
+    columns         : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Gutter size
+     */
+    gutters         : PropTypes.oneOf( [ 'S', 'M', 'L', 'none' ] ),
     /**
      *  Makes header row sticky
      */
     hasStickyHeader : PropTypes.bool,
+    /**
+     *  Header Text style configuration
+     */
+    headerTextProps : PropTypes.object,
     /**
      *  Display as zebra-striped
      */
@@ -175,25 +187,25 @@ Table.propTypes =
     /**
      * 2D Array of table values (for convenience)
      */
-    values          : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.string )
-    ),
+    values          : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
     /**
      *  Vertical alignment inside cells
      */
-    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
+    verticalAlign   : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =
 {
     align           : 'auto',
+    bodyTextProps   : undefined,
+    borders         : 'none',
     children        : undefined,
     className       : undefined,
     columns         : undefined,
     cssMap          : styles,
     gutters         : 'M',
-    borders         : 'none',
     hasStickyHeader : false,
+    headerTextProps : undefined,
     isZebra         : false,
     onMouseOut      : undefined,
     onMouseOver     : undefined,

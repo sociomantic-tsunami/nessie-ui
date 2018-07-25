@@ -2,7 +2,7 @@ import React     from 'react';
 
 import TableCell from '../TableCell';
 import TableRow  from '../TableRow';
-import Text      from '../Text';
+
 
 /**
  * ## buildTableRowsFromValues
@@ -19,7 +19,7 @@ function buildRowsFromValues( values = [] )
         <TableRow key = { i }>
             { row.map( ( col, j ) => (
                 <TableCell key = { j }>
-                    <Text>{ col }</Text>
+                    { col }
                 </TableCell>
             ) ) }
         </TableRow>
