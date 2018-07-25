@@ -8,7 +8,7 @@ import H3                               from '../H3';
 import H4                               from '../H4';
 
 const headers = {
-    1 : H1, 2 : H2, 3 : H3, 4 : H4
+    1 : H1, 2 : H2, 3 : H3, 4 : H4,
 };
 
 export default class Section extends React.PureComponent
@@ -30,14 +30,14 @@ export default class Section extends React.PureComponent
         /**
          *  Section level in the document outline
          */
-        level    : PropTypes.number
+        level    : PropTypes.number,
     };
 
     static defaultProps =
     {
         hasDivider : false,
         id         : undefined,
-        cssMap     : require( './section.css' )
+        cssMap     : require( './section.css' ),
     };
 
     render()
@@ -48,14 +48,16 @@ export default class Section extends React.PureComponent
             children,
             id = generateId( 'Section' ),
             level,
-            title
+            title,
         } = this.props;
 
         const SectionHeader = headers[ level ];
 
         return (
 
-            <section className = { buildClassName( className, cssMap, { level } ) } id = { id }>
+            <section
+                className = { buildClassName( className, cssMap, { level } ) }
+                id = { id }>
                 { title && SectionHeader &&
                 <SectionHeader>{ title }</SectionHeader>
                 }

@@ -42,7 +42,7 @@ Text.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
+        'critical',
     ] ),
     /**
     *  Text string

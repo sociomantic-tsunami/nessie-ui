@@ -1,6 +1,6 @@
 const ERRORS = {
     SWITCH_CANNOT_BE_TOGGLED : ( state ) =>
-        `Switch cannot be toggled since it is ${state}`
+        `Switch cannot be toggled since it is ${state}`,
 };
 
 export default class SwitchDriver
@@ -56,6 +56,18 @@ export default class SwitchDriver
         }
 
         this.input.simulate( 'focus' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

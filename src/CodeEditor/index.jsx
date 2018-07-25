@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import InputContainer       from '../proto/InputContainer';
 import styles               from './codeEditor.css';
 
@@ -14,7 +13,7 @@ import 'codemirror/mode/jsx/jsx';
 const defaultOptions = {
     lineNumbers  : true,
     lineWrapping : true,
-    theme        : 'monokai'
+    theme        : 'monokai',
 };
 
 const SCROLL_CLASS = 'CodeMirror-scroll';
@@ -108,7 +107,7 @@ export default class CodeEditor extends Component
          */
         cursor                : PropTypes.shape( {
             line : PropTypes.number,
-            ch   : PropTypes.number
+            ch   : PropTypes.number,
         } ),
         /**
          * onCursorActivity callback function: ( cursor ) => { ... }
@@ -153,13 +152,13 @@ export default class CodeEditor extends Component
             isDisabled,
             isReadOnly,
             options,
-            value = ''
+            value = '',
         } = this.props;
 
         const combinedOptions = {
             ...defaultOptions,
             ...options,
-            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
         const codeMirrorInstance = require( 'codemirror' );
@@ -215,7 +214,7 @@ export default class CodeEditor extends Component
             isDisabled,
             isReadOnly,
             options = {},
-            value
+            value,
         } = this.props;
 
         const { codeMirror } = this;
@@ -223,7 +222,7 @@ export default class CodeEditor extends Component
         const combinedOptions = {
             ...defaultOptions,
             ...options,
-            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
         Object.keys( combinedOptions ).forEach( option =>
@@ -356,7 +355,7 @@ export default class CodeEditor extends Component
                 className = { buildClassName( className, cssMap, {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
-                    fakeHovered : !isDisabled && ( forceHover || isFocused )
+                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
                 } ) }>
                 <div
                     className = { cssMap.editor }

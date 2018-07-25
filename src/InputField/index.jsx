@@ -153,7 +153,7 @@ deprecated. Please use onChange instead.` );
             rows,
             textAlign,
             type,
-            value
+            value,
         } = this.props;
 
         const InputElement = element || 'input';
@@ -167,7 +167,7 @@ deprecated. Please use onChange instead.` );
                     disabled    : isDisabled,
                     fakeHovered : !isDisabled && forceHover,
                     align       : textAlign,
-                    resizable   : element === 'textarea' && isResizable
+                    resizable   : element === 'textarea' && isResizable,
                 } ) }
                 defaultValue = { defaultValue }
                 disabled     = { isDisabled }

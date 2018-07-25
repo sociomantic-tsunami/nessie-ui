@@ -1,7 +1,6 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-
 import React        from 'react';
 import { mount }    from 'enzyme';
 
@@ -26,7 +25,7 @@ describe( 'Slider', () =>
             bottom : 200,
             right  : 200,
             width  : 200,
-            height : 200
+            height : 200,
         };
     } );
 
@@ -52,7 +51,7 @@ describe( 'Slider', () =>
     test( 'should have slider__disabled if isDisabled = true', () =>
     {
         const props = {
-            isDisabled : true
+            isDisabled : true,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -64,7 +63,7 @@ describe( 'Slider', () =>
     test( 'should have slider__error if hasError = true', () =>
     {
         const props = {
-            hasError : true
+            hasError : true,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -78,20 +77,20 @@ describe( 'Slider', () =>
         () =>
         {
             const props = {
-                hasHandleLabels : true
+                hasHandleLabels : true,
             };
 
             wrapper = mount( <Slider { ...props } /> );
 
             expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
                 .hasHandleLabels}` ) ).toHaveLength( 1 );
-        }
+        },
     );
 
     test( 'should contain a label if filled', () =>
     {
         const props = {
-            label : 'label'
+            label : 'label',
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -107,8 +106,8 @@ describe( 'Slider', () =>
             stepLabelEnd   : 'Future',
             stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
                 { 'stepLabel': '50', 'step': 50 },
-                { 'stepLabel': '75', 'step': 75 }
-            ]
+                { 'stepLabel': '75', 'step': 75 },
+            ],
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -122,7 +121,7 @@ describe( 'Slider', () =>
     {
         let props = {
             value    : [ 1 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -132,7 +131,7 @@ describe( 'Slider', () =>
 
         props = {
             value    : [ 1, 2, 3 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -144,7 +143,7 @@ describe( 'Slider', () =>
     {
         let props = {
             value    : [ 1 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -155,7 +154,7 @@ describe( 'Slider', () =>
 
         props = {
             value    : [ 1, 2, 3 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -170,7 +169,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'top',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -184,7 +183,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'right',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -198,7 +197,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'bottom',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -212,7 +211,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'left',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -241,7 +240,7 @@ describe( 'Slider', () =>
                 value         : [ 50, 150 ],
                 minValue      : 0,
                 maxValue      : 200,
-                onChange      : noop
+                onChange      : noop,
             };
 
             wrapper = mount( <Slider { ...props } /> );
@@ -264,7 +263,7 @@ describe( 'Slider', () =>
         {
             const props = {
                 value    : 150,
-                onChange : noop
+                onChange : noop,
             };
 
             wrapper = mount( <Slider { ...props } /> );
@@ -286,7 +285,7 @@ describe( 'Slider', () =>
             {
                 const props = {
                     value    : [ 50 ],
-                    onChange : noop
+                    onChange : noop,
                 };
                 wrapper = mount( <Slider { ...props } /> );
 
@@ -305,7 +304,7 @@ describe( 'Slider', () =>
                     .toBeCalledWith( 'mousemove', mouseMoveSpy );
                 expect( eventListenerSpy )
                     .toBeCalledWith( 'mouseup', mouseUpSpy );
-            }
+            },
         );
     } );
 
@@ -420,7 +419,7 @@ describe( 'SliderDriver', () =>
                 const firstInput = inputContainer.childAt( 0 ).node;
 
                 expect( event.target ).toBe( firstInput );
-            }
+            },
         );
 
         test( 'event target should be the slider input at index', () =>
@@ -475,7 +474,7 @@ describe( 'SliderDriver', () =>
                 const firstInput = inputContainer.childAt( 0 ).node;
 
                 expect( event.target ).toBe( firstInput );
-            }
+            },
         );
 
         test( 'event target should be the slider input at index', () =>
@@ -631,7 +630,7 @@ describe( 'SliderDriver', () =>
                 wrapper.simulate( 'mouseenter' );
                 const event = onMouseOver.mock.calls[ 0 ][ 0 ];
                 expect( event.target ).toBe( outer.getNode() );
-            }
+            },
         );
 
         test( 'should still fire onMouseOver when slider is disabled', () =>
@@ -715,7 +714,7 @@ describe( 'SliderDriver', () =>
                 const value = 20;
                 driver.setInputValue( value );
                 expect( change ).toBeCalledTimes( 1 );
-            }
+            },
         );
 
         test(
@@ -727,7 +726,7 @@ describe( 'SliderDriver', () =>
                 const value = [ 10, 20 ];
                 driver.setInputValue( value );
                 expect( change ).toBeCalledTimes( 2 );
-            }
+            },
         );
 
         test( 'should call change with value and index for each value', () =>

@@ -121,7 +121,7 @@ export default class TextArea extends React.PureComponent
         errorMessagePosition  : 'top',
         textAlign             : 'left',
         forceHover            : false,
-        cssMap                : require( './textArea.css' )
+        cssMap                : require( './textArea.css' ),
     };
 
 

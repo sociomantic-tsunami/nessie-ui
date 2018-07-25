@@ -9,7 +9,7 @@ const PageContent = ( {
     children,
     cssMap,
     className,
-    isLoading
+    isLoading,
 } ) =>
 
     <div className = { buildClassName( className, cssMap ) }>
@@ -40,7 +40,7 @@ PageContent.propTypes =
 PageContent.defaultProps =
 {
     cssMap    : require( './pageContent.css' ),
-    isLoading : false
+    isLoading : false,
 };
 
 export default PageContent;

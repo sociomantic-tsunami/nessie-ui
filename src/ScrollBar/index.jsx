@@ -94,7 +94,7 @@ const ScrollBar = ( {
 
                         const newPos = clamp(
                             scrollPos + scrollDiff,
-                            scrollMin, scrollMax
+                            scrollMin, scrollMax,
                         );
 
                         onChange( newPos );

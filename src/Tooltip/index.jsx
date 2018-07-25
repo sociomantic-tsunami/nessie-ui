@@ -68,8 +68,8 @@ export default class Tooltip extends React.PureComponent
             'default',
             'critical',
             'promoted',
-            'warning'
-        ] )
+            'warning',
+        ] ),
     };
 
     static defaultProps =
@@ -80,7 +80,7 @@ export default class Tooltip extends React.PureComponent
         noWrap         : false,
         overflowHidden : false,
         cssMap         : require( './tooltip.css' ),
-        role           : 'default'
+        role           : 'default',
     };
 
     render()
@@ -99,7 +99,7 @@ export default class Tooltip extends React.PureComponent
             onMouseOver,
             onMouseOut,
             overflowIsHidden,
-            role
+            role,
         } = this.props;
 
         let messageText = message;

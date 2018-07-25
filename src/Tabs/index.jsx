@@ -1,8 +1,8 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import TabButton        from '../TabButton';
+import TabButton                        from '../TabButton';
 
 
 export default class Tabs extends React.Component
@@ -24,7 +24,7 @@ export default class Tabs extends React.Component
         /**
          *  onChange callback function: ( e, newProps ) => { ... }
          */
-        onChange       : PropTypes.func
+        onChange       : PropTypes.func,
     };
 
 
@@ -91,7 +91,7 @@ export default class Tabs extends React.Component
             activeTabIndex,
             children,
             cssMap,
-            id = generateId( 'Tabs' )
+            id = generateId( 'Tabs' ),
         } = this.props;
 
         const header = this.renderHeader( children );

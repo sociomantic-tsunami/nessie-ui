@@ -26,7 +26,7 @@ export default class IconButton extends React.Component
             'M',
             'L',
             'XL',
-            'XXL'
+            'XXL',
         ] ),
         /**
          *  Icon type to display (overrides customIcon)
@@ -89,7 +89,7 @@ export default class IconButton extends React.Component
             'dark',
             'button',
             'control',
-            'navigation'
+            'navigation',
         ] ),
         /**
          *  Button is focusable
@@ -147,7 +147,7 @@ export default class IconButton extends React.Component
         isReadOnly    : false,
         forceHover    : false,
         cssMap        : require( './iconButton.css' ),
-        hasBackground : false
+        hasBackground : false,
     };
 
     render()
@@ -170,7 +170,7 @@ export default class IconButton extends React.Component
             onBlur,
             onFocus,
             onClick,
-            value
+            value,
         } = this.props;
 
         return (
@@ -180,7 +180,7 @@ export default class IconButton extends React.Component
                 className = { buildClassName( className, cssMap, {
                     disabled   : isDisabled,
                     size       : iconSize,
-                    background : hasBackground
+                    background : hasBackground,
                 }  ) }
                 value     = { value }
                 id        = { id }

@@ -11,10 +11,12 @@ import RadioGroup              from './index';
 describe( 'RadioGroupDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <RadioGroup /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'getContent()', () =>
@@ -148,12 +150,11 @@ describe( 'RadioGroupDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.simulate( 'mouseenter' );
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
-
 
     describe( 'mouseOut', () =>
     {
@@ -162,7 +163,7 @@ describe( 'RadioGroupDriver', () =>
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.simulate( 'mouseleave' );
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

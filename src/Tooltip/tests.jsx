@@ -18,7 +18,7 @@ describe( 'Tooltip', () =>
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
+            onMouseOut  : onMouseOutHandler,
         };
 
         const wrapper = mount( <Tooltip { ...props }>
@@ -38,7 +38,7 @@ describe( 'Tooltip', () =>
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
+            onMouseOut  : onMouseOutHandler,
         };
 
         const wrapper = mount( <Tooltip { ...props }>

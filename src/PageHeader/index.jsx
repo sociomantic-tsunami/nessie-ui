@@ -14,12 +14,12 @@ PageHeader.propTypes =
     /**
      *  PageHeader content
      */
-    children : PropTypes.node
+    children : PropTypes.node,
 };
 
 PageHeader.defaultProps =
 {
-    cssMap : require( './pageHeader.css' )
+    cssMap : require( './pageHeader.css' ),
 };
 
 export default PageHeader;

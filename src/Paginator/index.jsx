@@ -21,7 +21,7 @@ const Paginator = ( {
     showNextEllipsis,
     showNext,
     shownPages = [],
-    showPrev
+    showPrev,
 } ) =>
 {
     const pageButtons = shownPages.map( ( pageNum ) =>
@@ -174,7 +174,7 @@ Paginator.propTypes =
     /**
      *  Function to call on “Next” button click: ( e ) => { ... }
      */
-    onClickNext      : PropTypes.func
+    onClickNext      : PropTypes.func,
 };
 
 Paginator.defaultProps =
@@ -186,7 +186,7 @@ Paginator.defaultProps =
     showPrevEllipsis : true,
     showNextEllipsis : true,
     ellipsisText     : '…',
-    cssMap           : require( './paginator.css' )
+    cssMap           : require( './paginator.css' ),
 };
 
 export default Paginator;

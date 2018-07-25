@@ -40,7 +40,7 @@ const TextInputWithDropdown = ( {
     onFocus,
     onMouseOver,
     onMouseOut,
-    textAlign
+    textAlign,
 } ) =>
 {
     let alignText = textAlign;
@@ -53,7 +53,7 @@ const TextInputWithDropdown = ( {
     return (
         <InputContainer
             className = { buildClassName( className, cssMap, {
-                position : dropdownPosition
+                position : dropdownPosition,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }

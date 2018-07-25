@@ -1,5 +1,5 @@
 const ERRORS = {
-    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled'
+    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled',
 };
 
 export default class TabButtonDriver

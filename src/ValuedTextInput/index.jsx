@@ -20,7 +20,7 @@ export default class ValuedTextInput extends React.Component
         labelPosition : PropTypes.oneOf( [
             'top',
             'left',
-            'right'
+            'right',
         ] ),
         /**
          *  Placeholder text
@@ -51,7 +51,7 @@ export default class ValuedTextInput extends React.Component
          */
         errorMessagePosition  : PropTypes.oneOf( [
             'top',
-            'topLeft'
+            'topLeft',
         ] ),
         /**
          * Initial input string value
@@ -70,7 +70,7 @@ export default class ValuedTextInput extends React.Component
          */
         valueLabelPosition : PropTypes.oneOf( [
             'left',
-            'right'
+            'right',
         ] ),
         /**
          * Input text alignment
@@ -78,7 +78,7 @@ export default class ValuedTextInput extends React.Component
         textAlign : PropTypes.oneOf( [
             'auto',
             'left',
-            'right'
+            'right',
         ] ),
         /**
          * HTML id attribute of TextInput (overwrite default)
@@ -138,7 +138,7 @@ export default class ValuedTextInput extends React.Component
         valueLabelPosition    : 'left',
         textAlign             : 'auto',
         forceHover            : false,
-        cssMap                : require( './valuedTextInput.css' )
+        cssMap                : require( './valuedTextInput.css' ),
     };
 
     constructor( props )
@@ -147,7 +147,7 @@ export default class ValuedTextInput extends React.Component
 
         this.state = {
             ...this.state,
-            isFocused : false
+            isFocused : false,
         };
 
         this.handleFocus     = this.handleFocus.bind( this );
@@ -211,7 +211,7 @@ export default class ValuedTextInput extends React.Component
                     disabled    : isDisabled,
                     error       : hasError,
                     position    : valueLabelPosition,
-                    fakeHovered : forceHover || isFocused
+                    fakeHovered : forceHover || isFocused,
                 }  ) }
                 id          = { id }
                 onMouseOver = { onMouseOver }

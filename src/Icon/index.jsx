@@ -16,7 +16,7 @@ const Icon = ( {
     onMouseOver,
     size,
     theme,
-    type
+    type,
 } ) =>
 {
     let xLink;
@@ -143,7 +143,7 @@ Icon.propTypes =
         'upload',
         'validation',
         'none',
-    ] )
+    ] ),
 };
 
 Icon.defaultProps =
@@ -158,7 +158,7 @@ Icon.defaultProps =
     onMouseOver : undefined,
     size        : 'S',
     theme       : 'light',
-    type        : 'none'
+    type        : 'none',
 };
 
 export default Icon;

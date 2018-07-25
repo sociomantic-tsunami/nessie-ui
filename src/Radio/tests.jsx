@@ -83,7 +83,7 @@ describe( 'Radio', () =>
 
                     expect( wrapper.find( Checkable ).prop( onChange ) )
                         .toBeUndefined();
-                }
+                },
             );
 
             test( 'should be defined if not readOnly', () =>

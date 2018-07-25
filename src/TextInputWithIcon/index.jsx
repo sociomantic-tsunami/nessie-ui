@@ -13,7 +13,7 @@ class TextInputWithIcon extends Component
         /**
          *  aria properties
          */
-        aria          : PropTypes.objectOf( PropTypes.oneOfType( [
+        aria : PropTypes.objectOf( PropTypes.oneOfType( [
             PropTypes.bool,
             PropTypes.number,
             PropTypes.string,
@@ -27,7 +27,7 @@ class TextInputWithIcon extends Component
          */
         inputType : PropTypes.oneOf( [
             'text',
-            'password'
+            'password',
         ] ),
         /**
          *  Label position
@@ -35,7 +35,7 @@ class TextInputWithIcon extends Component
         labelPosition : PropTypes.oneOf( [
             'top',
             'left',
-            'right'
+            'right',
         ] ),
         /**
          *  Placeholder text
@@ -99,7 +99,7 @@ class TextInputWithIcon extends Component
          */
         iconPosition : PropTypes.oneOf( [
             'left',
-            'right'
+            'right',
         ] ),
         /**
          * Input text alignment
@@ -107,7 +107,7 @@ class TextInputWithIcon extends Component
         textAlign : PropTypes.oneOf( [
             'auto',
             'left',
-            'right'
+            'right',
         ] ),
         /**
         *  icon Tooltip position relative to icon
@@ -118,7 +118,7 @@ class TextInputWithIcon extends Component
             'top',
             'bottom',
             'topLeft',
-            'topRight'
+            'topRight',
         ] ),
         /**
          *  Display the icon tooltip
@@ -157,7 +157,7 @@ class TextInputWithIcon extends Component
         */
         errorMessagePosition  : PropTypes.oneOf( [
             'top',
-            'topLeft'
+            'topLeft',
         ] ),
         /**
          *  Initial input string value
@@ -186,15 +186,15 @@ class TextInputWithIcon extends Component
         /**
          * key down callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown       : PropTypes.func,
         /**
          * key press callback function
          */
-        onKeyPress        : PropTypes.func,
+        onKeyPress      : PropTypes.func,
         /**
          * key up callback function
          */
-        onKeyUp        : PropTypes.func,
+        onKeyUp         : PropTypes.func,
         /**
          *  focus callback function
          */
@@ -286,7 +286,7 @@ class TextInputWithIcon extends Component
 
         this.state = {
             ...this.state,
-            iconIsHovered : false
+            iconIsHovered : false,
         };
 
         this.handleFocus         = this.handleFocus.bind( this );
@@ -425,7 +425,7 @@ class TextInputWithIcon extends Component
                 className = { buildClassName( className, cssMap, {
                     disabled : isDisabled,
                     error    : hasError,
-                    position : iconPosition
+                    position : iconPosition,
                 } ) }>
                 <InputField
                     aria         = { aria }

@@ -58,7 +58,7 @@ describe( 'Module', () =>
         {
             wrapper.setProps( {
                 title       : 'Boom',
-                headerLevel : 3
+                headerLevel : 3,
             } );
 
             expect( wrapper.find( H3 ) ).toHaveLength( 1 );
@@ -96,7 +96,7 @@ describe( 'Module', () =>
                     errorMessage : 'error!',
                     hasError     : true,
                     onMouseOutError,
-                    title        : 'hello'
+                    title        : 'hello',
                 } );
 
                 expect( wrapper.find( IconWithTooltip ).prop( 'onMouseOut' ) )
@@ -120,12 +120,12 @@ describe( 'Module', () =>
                         errorMessage : 'error!',
                         hasError     : true,
                         onMouseOverError,
-                        title        : 'hello'
+                        title        : 'hello',
                     } );
 
                     expect( wrapper.find( IconWithTooltip )
                         .prop( 'onMouseOver' ) ).toBe( onMouseOverError );
-                }
+                },
             );
         } );
 
@@ -185,7 +185,7 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
-                onClickToggle : toggleSpy
+                onClickToggle : toggleSpy,
             } );
 
             driver.toggle();
@@ -202,7 +202,7 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isDeletable   : true,
-                onClickDelete : clickDeleteSpy
+                onClickDelete : clickDeleteSpy,
             } );
 
             driver.clickDelete();
@@ -217,7 +217,7 @@ describe( 'ModuleDriver', () =>
         {
             wrapper.setProps( {
                 title        : 'Boom',
-                customHeader : <h1 className = "pokemon">Pikachu</h1>
+                customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
             const header = driver.getCustomHeader();

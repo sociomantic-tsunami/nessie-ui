@@ -1,9 +1,9 @@
-import React          from 'react';
-import PropTypes      from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import Checkable      from '../proto/Checkable';
+import Checkable                      from '../proto/Checkable';
 import { generateId, buildClassName } from '../utils';
-import styles         from './checkbox.css';
+import styles                         from './checkbox.css';
 
 const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
     <Checkable { ...props } id = { id } type = "checkbox" />

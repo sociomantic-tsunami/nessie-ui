@@ -5,6 +5,7 @@ export default class RadioGroupDriver
         this.wrapper  = wrapper;
         this.listItem = wrapper.find( 'CheckableGroup' ).props()
             .cssMap.listItem;
+        this.control = this.wrapper.find( 'input' ).first();
     }
 
     getContent()
@@ -49,5 +50,17 @@ export default class RadioGroupDriver
             this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

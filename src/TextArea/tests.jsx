@@ -33,7 +33,6 @@ describe( 'TextArea', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );

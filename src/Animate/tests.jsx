@@ -33,7 +33,7 @@ describe( 'Animate', () =>
     {
         const props = {
             enterAnimation : 'fadeIn',
-            outAnimation   : 'fadeOut'
+            outAnimation   : 'fadeOut',
         };
 
         wrapper = mount( <Animate { ...props } /> );

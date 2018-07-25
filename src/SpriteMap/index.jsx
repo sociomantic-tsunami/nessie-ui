@@ -1,7 +1,7 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import spriteHtml       from '../Icon/sprite.html';
+import spriteHtml                       from '../Icon/sprite.html';
 import { generateId, buildClassName }   from '../utils';
 
 
@@ -16,19 +16,19 @@ export default class SpriteMap extends React.PureComponent
         /**
          * builds sprites
          */
-        spriteTemplate : PropTypes.func
+        spriteTemplate : PropTypes.func,
     };
 
     static defaultProps =
     {
-        id : undefined
+        id : undefined,
     };
 
     render()
     {
         const {
             spriteTemplate = { __html: spriteHtml },
-            id = generateId( 'SpriteMap' )
+            id = generateId( 'SpriteMap' ),
         } = this.props;
 
         return (

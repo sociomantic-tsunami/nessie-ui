@@ -27,7 +27,7 @@ export default class TextInput extends React.PureComponent
         labelPosition : PropTypes.oneOf( [
             'top',
             'left',
-            'right'
+            'right',
         ] ),
         /**
          *  Placeholder text
@@ -38,7 +38,7 @@ export default class TextInput extends React.PureComponent
          */
         textAlign   : PropTypes.oneOf( [
             'left',
-            'right'
+            'right',
         ] ),
         /**
          *  Display as disabled
@@ -133,7 +133,7 @@ export default class TextInput extends React.PureComponent
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         forceHover            : false,
-        cssMap                : require( './textInput.css' )
+        cssMap                : require( './textInput.css' ),
     };
 
 

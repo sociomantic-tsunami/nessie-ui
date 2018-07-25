@@ -66,7 +66,7 @@ alive.';
                 wrapper.setProps( { text: textProp, children } );
                 expect( driver.getContent().find( 'div' ).text() )
                     .toBe( textChild );
-            }
+            },
         );
     } );
 } );

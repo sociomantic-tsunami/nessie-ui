@@ -1,9 +1,9 @@
-import React          from 'react';
-import PropTypes      from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import Checkable      from '../proto/Checkable';
+import Checkable                      from '../proto/Checkable';
 import { generateId, buildClassName } from '../utils';
-import styles         from './radio.css';
+import styles                         from './radio.css';
 
 const Radio = ( { id = generateId( 'Radio' ), ...props } ) => (
     <Checkable { ...props } id = { id } type = "radio" />

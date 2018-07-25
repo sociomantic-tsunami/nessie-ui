@@ -14,7 +14,7 @@ const TableRow = ( {
     isClickable,
     isSticky,
     verticalAlign,
-    ...props,
+    ...props
 } ) =>
 {
     const cells = React.Children.toArray( children ).map( cell =>
@@ -23,8 +23,7 @@ const TableRow = ( {
             className : cell.props.className ?
                 `${cell.props.className}  ${cssMap.cell}` : cssMap.cell,
             verticalAlign : cell.props.verticalAlign || verticalAlign,
-        } )
-    );
+        } ) );
 
     return (
         <Row

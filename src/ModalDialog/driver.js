@@ -1,6 +1,6 @@
 const ERR = {
     NOT_A_CAROUSEL : item => `Cannot trigger click on the "${item}" because \
-the modal is not a Carousel`
+the modal is not a Carousel`,
 };
 
 export default class ModalDialogDriver

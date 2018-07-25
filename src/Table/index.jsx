@@ -174,13 +174,11 @@ Table.propTypes =
     /**
      * 2D Array of table values (for convenience)
      */
-    values          : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.string )
-    ),
+    values          : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
     /**
      *  Vertical alignment inside cells
      */
-    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
+    verticalAlign   : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =

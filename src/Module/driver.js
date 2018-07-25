@@ -5,7 +5,7 @@ import { IconButton } from 'nessie-ui';
 const ERRORS = {
     MODULE_NOT_COLLAPSIBLE      : 'Module is not collapsible. Cannot simulate toggle.',
     MODULE_HAS_NO_DELETE        : 'Module has no delete button. Cannot simulate delete.',
-    MODULE_HAS_NO_CUSTOM_HEADER : 'Module has no customHeader. Cannot get contents.'
+    MODULE_HAS_NO_CUSTOM_HEADER : 'Module has no customHeader. Cannot get contents.',
 };
 /* eslint-disable max-len */
 

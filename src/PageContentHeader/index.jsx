@@ -8,7 +8,7 @@ const PageContentHeader = ( {
     children,
     cssMap,
     className,
-    title
+    title,
 } ) =>
 {
     let header = <H1 className = { buildClassName( className, cssMap, { header: !!children } ) }>{ title }</H1>;
@@ -34,12 +34,12 @@ PageContentHeader.propTypes =
     /**
      *  Page content header custom content; overrides title
      */
-    children : PropTypes.node
+    children : PropTypes.node,
 };
 
 PageContentHeader.defaultProps =
 {
-    cssMap : require( './pageContentHeader.css' )
+    cssMap : require( './pageContentHeader.css' ),
 };
 
 export default PageContentHeader;

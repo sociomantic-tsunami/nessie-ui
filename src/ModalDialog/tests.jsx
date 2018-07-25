@@ -28,7 +28,7 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : false,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
@@ -41,7 +41,7 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : true,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
@@ -59,12 +59,12 @@ describe( 'ModalDialog', () =>
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack
+                onClickOverlay : callBack,
             };
             wrapper = mount( <ModalDialog { ...props } /> );
             wrapper.driver().clickOverlay();
             expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+        },
     );
 
     test(
@@ -76,12 +76,12 @@ describe( 'ModalDialog', () =>
             const props = {
                 isVisible      : true,
                 onClickOverlay : callBack,
-                type           : 'carousel'
+                type           : 'carousel',
             };
             wrapper = mount( <ModalDialog { ...props } /> );
             wrapper.driver().clickClose();
             expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+        },
     );
 
     test( 'should trigger `onClickPrev` once when prev button is clicked', () =>
@@ -91,7 +91,7 @@ describe( 'ModalDialog', () =>
         const props = {
             isVisible   : true,
             onClickPrev : callBack,
-            type        : 'carousel'
+            type        : 'carousel',
         };
         wrapper = mount( <ModalDialog { ...props } /> );
         wrapper.driver().clickPrev();
@@ -105,7 +105,7 @@ describe( 'ModalDialog', () =>
         const props = {
             isVisible   : true,
             onClickNext : callBack,
-            type        : 'carousel'
+            type        : 'carousel',
         };
         wrapper = mount( <ModalDialog { ...props } /> );
         wrapper.driver().clickNext();
@@ -121,7 +121,7 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack
+                onClickOverlay : callBack,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );
@@ -139,7 +139,7 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible   : true,
-                onClickPrev : callBack
+                onClickPrev : callBack,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );
@@ -157,7 +157,7 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible   : true,
-                onClickNext : callBack
+                onClickNext : callBack,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );

@@ -2,13 +2,12 @@
 /* eslint no-console: 0*/
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
 
-import React                            from 'react';
-import { ReactWrapper, mount, shallow } from 'enzyme';
+import React                    from 'react';
+import { mount, shallow }       from 'enzyme';
 
-import { TextInputWithIcon }            from '../index';
+import { TextInputWithIcon }    from '../index';
 
-
-import PasswordInput                    from './index';
+import PasswordInput            from './index';
 
 
 describe( 'PasswordInput', () =>
@@ -79,7 +78,7 @@ describe( 'PasswordInputDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'focus', () =>
+    describe( 'focus()', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>
         {
@@ -90,7 +89,7 @@ describe( 'PasswordInputDriver', () =>
                 onFocus  : focusSpy,
             } );
 
-            wrapper.find( 'input' ).simulate( 'focus' );
+            driver.focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -106,7 +105,7 @@ describe( 'PasswordInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            wrapper.find( 'input' ).simulate( 'blur' );
+            driver.blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

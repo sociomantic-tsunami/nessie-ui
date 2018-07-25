@@ -28,7 +28,7 @@ describe( 'DragNDrop', () =>
     test( 'should find content', () =>
     {
         wrapper.setProps( {
-            children : <Text>something</Text>
+            children : <Text>something</Text>,
         } );
 
         expect( wrapper.children() ).toHaveLength( 1 );

@@ -77,7 +77,6 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).toHaveLength( 1 );
@@ -132,7 +131,7 @@ describe( 'Button', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    role     : 'control',
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
@@ -151,7 +150,7 @@ describe( 'Button', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    role     : 'control',
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )

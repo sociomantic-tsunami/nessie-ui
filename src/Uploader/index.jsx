@@ -100,7 +100,7 @@ export default class Uploader extends React.PureComponent
             'top',
             'bottom',
             'topLeft',
-            'topRight' ] )
+            'topRight' ] ),
     };
 
     static defaultProps =
@@ -115,7 +115,7 @@ export default class Uploader extends React.PureComponent
         isReadOnly              : false,
         previewTooltipIsVisible : false,
         buttonLabel             : 'Upload',
-        cssMap                  : require( './uploader.css' )
+        cssMap                  : require( './uploader.css' ),
     };
 
     render()
@@ -142,7 +142,7 @@ export default class Uploader extends React.PureComponent
             tooltipIsVisible,
             errorMessagePosition,
             uploadState,
-            warningMessage
+            warningMessage,
         } = this.props;
 
         const buttonRole = 'default';
@@ -193,7 +193,7 @@ export default class Uploader extends React.PureComponent
                     loading         : isLoading,
                     uploaded,
                     disabled        : isDisabled,
-                    previewDisabled : previewIsDisabled
+                    previewDisabled : previewIsDisabled,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut } >

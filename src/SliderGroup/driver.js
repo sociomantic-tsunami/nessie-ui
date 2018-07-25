@@ -10,7 +10,7 @@ export default class SliderGroupDriver
         if ( Array.isArray( index ) )
         {
             const sliders = [];
-            this.wrapper.find( 'Slider' ).map( ( item, i ) =>
+            this.wrapper.find( 'Slider' ).forEach( ( item, i ) =>
             {
                 if ( index.includes( i ) )
                 {

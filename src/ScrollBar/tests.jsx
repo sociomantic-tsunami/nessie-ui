@@ -14,9 +14,9 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ScrollBar /> );
-        instance = wrapper.instance();
-        cssMap   = instance.props.cssMap;
+        wrapper      = shallow( <ScrollBar /> );
+        instance     = wrapper.instance();
+        ( { cssMap } = instance.props );
     } );
 
 
@@ -88,7 +88,8 @@ describe( 'ScrollBarDriver', () =>
     {
         let onClickTrack;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
             wrapper.driver().clickTrack( 100 );
@@ -109,7 +110,8 @@ describe( 'ScrollBarDriver', () =>
     {
         let onChange;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onChange = jest.fn();
             wrapper.setProps( { onChange } );
             wrapper.driver().change( 100 );

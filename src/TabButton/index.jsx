@@ -1,5 +1,5 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                           from 'react';
+import PropTypes                       from 'prop-types';
 
 import { buildClassName }              from '../utils';
 
@@ -12,7 +12,7 @@ const TabButton = ( {
     label,
     onClick,
     subtitle,
-    tabIndex
+    tabIndex,
 } ) =>
 
     ( <button
@@ -70,7 +70,7 @@ TabButton.defaultProps =
 {
     tabIndex : 0,
     isActive : false,
-    cssMap   : require( './tabButton.css' )
+    cssMap   : require( './tabButton.css' ),
 };
 
 export default TabButton;

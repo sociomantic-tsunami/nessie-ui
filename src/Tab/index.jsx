@@ -23,13 +23,13 @@ export default class Tab extends React.PureComponent
         /**
         *  onClick callback function: ( e ) => { ... }
         */
-        onClick  : PropTypes.func
+        onClick  : PropTypes.func,
     };
 
     static defaultProps =
     {
         cssMap : require( './tab.css' ),
-        id     : undefined
+        id     : undefined,
     };
 
     render()
@@ -40,7 +40,7 @@ export default class Tab extends React.PureComponent
             className,
             id = generateId( 'Tab' ),
             onClick,
-            label
+            label,
         } = this.props;
 
         return (

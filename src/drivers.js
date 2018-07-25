@@ -26,6 +26,7 @@ import {
     ScrollBox,
     Slider,
     SliderGroup,
+    Sorter,
     Switch,
     TabButton,
     Tabs,
@@ -34,7 +35,7 @@ import {
     TextInput,
     Tooltip,
     ToggleButton,
-    Uploader
+    Uploader,
 } from 'nessie-ui';
 
 import ButtonDriver           from './Button/driver';
@@ -61,6 +62,7 @@ import ScrollBarDriver         from './ScrollBar/driver';
 import ScrollBoxDriver         from './ScrollBox/driver';
 import SliderDriver            from './Slider/driver';
 import SliderGroupDriver       from './SliderGroup/driver';
+import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabsDriver              from './Tabs/driver';
@@ -74,144 +76,148 @@ const drivers =
 [
     {
         Component : Button,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : CheckableGroup,
-        Driver    : CheckableGroupDriver
+        Driver    : CheckableGroupDriver,
     },
     {
         Component : Checkbox,
-        Driver    : CheckboxDriver
+        Driver    : CheckboxDriver,
     },
     {
         Component : CheckboxGroup,
-        Driver    : CheckableGroupDriver
+        Driver    : CheckableGroupDriver,
     },
     {
         Component : CodeEditor,
-        Driver    : CodeEditorDriver
+        Driver    : CodeEditorDriver,
     },
     {
         Component : ComboBox,
-        Driver    : ComboBoxDriver
+        Driver    : ComboBoxDriver,
     },
     {
         Component : DatePicker,
-        Driver    : DatePickerDriver
+        Driver    : DatePickerDriver,
     },
     {
         Component : DateTimeInput,
-        Driver    : DateTimeInputDriver
+        Driver    : DateTimeInputDriver,
     },
     {
         Component : FlounderDropdown,
-        Driver    : FlounderDropdownDriver
+        Driver    : FlounderDropdownDriver,
     },
     {
         Component : Form,
-        Driver    : FormDriver
+        Driver    : FormDriver,
     },
     {
         Component : IconButton,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : IconWithTooltip,
-        Driver    : IconWithTooltipDriver
+        Driver    : IconWithTooltipDriver,
     },
     {
         Component : InputField,
-        Driver    : InputComponentDriver
+        Driver    : InputComponentDriver,
     },
     {
         Component : ListBox,
-        Driver    : ListBoxDriver
+        Driver    : ListBoxDriver,
     },
     {
         Component : ModalDialog,
-        Driver    : ModalDialogDriver
+        Driver    : ModalDialogDriver,
     },
     {
         Component : Module,
-        Driver    : ModuleDriver
+        Driver    : ModuleDriver,
     },
     {
         Component : NavItem,
-        Driver    : NavItemDriver
+        Driver    : NavItemDriver,
     },
     {
         Component : NotificationBar,
-        Driver    : NotificationBarDriver
+        Driver    : NotificationBarDriver,
     },
     {
         Component : Paginator,
-        Driver    : PaginatorDriver
+        Driver    : PaginatorDriver,
     },
     {
         Component : PasswordInput,
-        Driver    : PasswordInputDriver
+        Driver    : PasswordInputDriver,
     },
     {
         Component : Radio,
-        Driver    : CheckboxDriver
+        Driver    : CheckboxDriver,
     },
     {
         Component : RadioGroup,
-        Driver    : RadioGroupDriver
+        Driver    : RadioGroupDriver,
     },
     {
         Component : ScrollBar,
-        Driver    : ScrollBarDriver
+        Driver    : ScrollBarDriver,
     },
     {
         Component : ScrollBox,
-        Driver    : ScrollBoxDriver
+        Driver    : ScrollBoxDriver,
     },
     {
         Component : Slider,
-        Driver    : SliderDriver
+        Driver    : SliderDriver,
     },
     {
         Component : SliderGroup,
-        Driver    : SliderGroupDriver
+        Driver    : SliderGroupDriver,
+    },
+    {
+        Component : Sorter,
+        Driver    : SorterDriver,
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : TabButton,
-        Driver    : TabButtonDriver
+        Driver    : TabButtonDriver,
     },
     {
         Component : Tabs,
-        Driver    : TabsDriver
+        Driver    : TabsDriver,
     },
     {
         Component : TagInput,
-        Driver    : TagInputDriver
+        Driver    : TagInputDriver,
     },
     {
         Component : Text,
-        Driver    : TextDriver
+        Driver    : TextDriver,
     },
     {
         Component : TextInput,
-        Driver    : InputComponentDriver
+        Driver    : InputComponentDriver,
     },
     {
         Component : Tooltip,
-        Driver    : TooltipDriver
+        Driver    : TooltipDriver,
     },
     {
         Component : ToggleButton,
-        Driver    : ButtonDriver
+        Driver    : ButtonDriver,
     },
     {
         Component : Uploader,
-        Driver    : UploaderDriver
-    }
+        Driver    : UploaderDriver,
+    },
 ];
 
 export { InputComponentDriver };

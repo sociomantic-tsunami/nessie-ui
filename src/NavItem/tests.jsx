@@ -14,7 +14,7 @@ describe( 'NavItem', () =>
     beforeEach( () =>
     {
         const props = {
-            label : 'testLabel'
+            label : 'testLabel',
         };
 
         wrapper = mount( <NavItem { ...props } /> );
@@ -30,7 +30,7 @@ describe( 'NavItem', () =>
     {
         const onClickSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onClick : onClickSpy
+            onClick : onClickSpy,
         } );
 
         wrapper.driver().click();
@@ -42,7 +42,7 @@ describe( 'NavItem', () =>
     {
         const onMouseOverSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onMouseOver : onMouseOverSpy
+            onMouseOver : onMouseOverSpy,
         } );
 
         wrapper.driver().mouseOver();
@@ -54,7 +54,7 @@ describe( 'NavItem', () =>
     {
         const onMouseOutSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onMouseOut : onMouseOutSpy
+            onMouseOut : onMouseOutSpy,
         } );
 
         wrapper.driver().mouseOut();

@@ -1,9 +1,9 @@
-import React, { Children }           from 'react';
-import PropTypes                     from 'prop-types';
+import React, { Children }                           from 'react';
+import PropTypes                                     from 'prop-types';
 
-import { CheckableGroup }            from '../index';
+import { CheckableGroup }                            from '../index';
 import { generateId, buildClassName }                from '../utils';
-import { buildCheckboxesFromValues } from './utils';
+import { buildCheckboxesFromValues }                 from './utils';
 
 
 const CheckboxGroup = ( {
@@ -11,7 +11,7 @@ const CheckboxGroup = ( {
     id = generateId( 'CheckboxGroup' ),
     selectedValues = [],
     values,
-    ...props,
+    ...props
 } ) =>
 {
     let items = children ?

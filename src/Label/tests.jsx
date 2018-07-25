@@ -11,7 +11,7 @@ describe( 'Label', () =>
 {
     let wrapper;
     const props = {
-        label : 'Boom'
+        label : 'Boom',
     };
     beforeEach( () =>
     {

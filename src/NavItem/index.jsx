@@ -23,7 +23,7 @@ const NavItem = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    role
+    role,
 } ) =>
 {
     if ( typeof isCurrentPage !== 'undefined' )
@@ -42,7 +42,7 @@ removed in the next major release. Please use isCurrent instead.' );
                 dropdownAlign,
                 open        : isOpen,
                 fakeHovered : forceHover,
-                hasIcon     : iconType !== 'none'
+                hasIcon     : iconType !== 'none',
             } ) }
             onMouseEnter  = { onMouseOver }
             onMouseLeave  = { onMouseOut }>

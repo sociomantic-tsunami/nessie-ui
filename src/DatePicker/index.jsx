@@ -68,8 +68,7 @@ const DatePicker = ( {
                                     <span title = { header.title }>
                                         { header.label }
                                     </span>
-                                </th>
-                            ) }
+                                </th> ) }
                         </tr>
                     </thead>
                 }
@@ -84,10 +83,8 @@ const DatePicker = ( {
                                             onClick = { onClickItem }
                                             type    = { type } />
                                     }
-                                </td>
-                            ) }
-                        </tr>
-                    ) }
+                                </td> ) }
+                        </tr> ) }
                 </tbody>
             </table>
         }
@@ -95,17 +92,15 @@ const DatePicker = ( {
 );
 
 DatePicker.propTypes = {
-    className : PropTypes.string,
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    headers   : PropTypes.arrayOf(
-        PropTypes.objectOf( PropTypes.string ) ),
-    hourIsDisabled  : PropTypes.bool,
-    hourPlaceholder : PropTypes.string,
-    hourValue       : PropTypes.string,
-    isDisabled      : PropTypes.bool,
-    isReadOnly      : PropTypes.bool,
-    items           : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object )
-    ),
+    className         : PropTypes.string,
+    cssMap            : PropTypes.objectOf( PropTypes.string ),
+    headers           : PropTypes.arrayOf( PropTypes.objectOf( PropTypes.string ) ),
+    hourIsDisabled    : PropTypes.bool,
+    hourPlaceholder   : PropTypes.string,
+    hourValue         : PropTypes.string,
+    isDisabled        : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
+    items             : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,

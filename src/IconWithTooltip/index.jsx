@@ -2,7 +2,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Icon                 from '../Icon';
 import Tooltip              from '../Tooltip';
 import Text                 from '../Text';
@@ -45,7 +44,7 @@ const IconWithTooltip = ( {
         <div
             className    = { buildClassName( className, cssMap, {
                 iconVisible : iconIsVisible,
-                position    : !!children && iconPosition
+                position    : !!children && iconPosition,
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>

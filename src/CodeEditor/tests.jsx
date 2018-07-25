@@ -6,7 +6,6 @@ import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
 
-
 import CodeEditor         from './index';
 
 describe( 'CodeEditor', () =>
@@ -20,8 +19,6 @@ describe( 'CodeEditor', () =>
 
     describe( 'render()', () =>
     {
-      
-
         test( 'should contain exactly one textArea', () =>
         {
             expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
@@ -138,7 +135,7 @@ it’s read only' );
         {
             wrapper.setProps( {
                 value      : 'foo',
-                isReadOnly : true
+                isReadOnly : true,
             } );
             expect( () => driver.clearInputValue() )
                 .toThrowError( 'Cannot change the CodeEditor value since \

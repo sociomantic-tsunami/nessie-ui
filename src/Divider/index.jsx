@@ -21,7 +21,7 @@ major release' );
 
 Divider.defaultProps =
 {
-    cssMap : require( './divider.css' )
+    cssMap : require( './divider.css' ),
 };
 
 export default Divider;

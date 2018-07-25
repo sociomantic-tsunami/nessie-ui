@@ -62,7 +62,7 @@ child', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -72,7 +72,7 @@ child', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.find( `.${wrapper.prop( 'cssMap' ).delete}` )
