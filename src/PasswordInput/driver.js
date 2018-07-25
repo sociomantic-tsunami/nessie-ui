@@ -19,6 +19,30 @@ export default class PasswordInput
         return this;
     }
 
+    focus()
+    {
+        this.wrapper.find( 'InputField' ).simulate( 'focus' );
+        return this;
+    }
+
+    blurIcon()
+    {
+        this.wrapper.find( 'Icon' ).simulate( 'blur' );
+        return this;
+    }
+
+    focusIcon()
+    {
+        this.wrapper.find( 'Icon' ).simulate( 'focus' );
+        return this;
+    }
+
+    change()
+    {
+        this.wrapper.simulate( 'change' );
+        return this;
+    }
+
     changeInput()
     {
         this.wrapper.find( 'InputField' ).driver().keyPress();
@@ -31,21 +55,21 @@ export default class PasswordInput
         return this;
     }
 
-    clickOption( index = 0 )
-    {
-        this.wrapper.find( 'ListBox' ).driver().clickOption( index );
-        return this;
-    }
-
-    focus()
-    {
-        this.wrapper.find( 'InputField' ).simulate( 'focus' );
-        return this;
-    }
-
     keyPress()
     {
         this.wrapper.find( 'InputField' ).driver().keyPress();
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

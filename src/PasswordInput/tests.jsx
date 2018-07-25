@@ -94,7 +94,7 @@ describe( 'PasswordInputDriver', () =>
         } );
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should fire the onBlur callback prop once', () =>
         {
