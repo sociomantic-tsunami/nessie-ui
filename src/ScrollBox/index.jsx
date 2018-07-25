@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
-import isEqual              from 'lodash.isequal';
+import React, { Component }    from 'react';
+import PropTypes               from 'prop-types';
+import isEqual                 from 'lodash.isequal';
 
-import { buildClassName }   from '../utils';
-import styles               from './scrollBox.css';
-import IconButton           from '../IconButton';
-import ScrollBar            from '../ScrollBar';
+import { createScrollHandler } from './utils';
+import { buildClassName }      from '../utils';
+import styles                  from './scrollBox.css';
+import IconButton              from '../IconButton';
+import ScrollBar               from '../ScrollBar';
 
 
 export default class ScrollBox extends Component
@@ -219,10 +220,11 @@ export default class ScrollBox extends Component
     {
         this.forceUpdate();
 
-        const { onScroll } = this.props;
-        if ( onScroll )
+        const { props } = this;
+
+        if ( props.onScroll )
         {
-            onScroll( e );
+            createScrollHandler( props.onScroll, props.scroll )( e );
         }
     }
 
