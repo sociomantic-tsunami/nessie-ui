@@ -289,22 +289,22 @@ focus since it is read only';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
-clicked since it is disabled';
+changed since it is disabled';
 
-                expect( () => driver.click() ).toThrow( expectedError );
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
             it( 'does not call simulate( event ) when isDisabled', () =>
             {
-                const onClick = jest.fn();
+                const onChange = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
                     label      : 'Tekeli-li',
-                    onClick,
+                    onChange,
                 } );
 
-                expect( () => driver.click() );
-                expect( onClick ).not.toBeCalled();
+                expect( () => driver.change() );
+                expect( onChange ).not.toBeCalled();
             } );
         } );
 
@@ -316,23 +316,23 @@ clicked since it is disabled';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
-clicked since it is read only';
+changed since it is read only';
 
-                expect( () => driver.click() ).toThrow( expectedError );
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
             it( 'does not call simulate( event ) when isReadOnly', () =>
             {
-                const onClick = jest.fn();
+                const onChange = jest.fn();
 
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
-                    onClick,
+                    onChange,
                 } );
 
-                expect( () => driver.click() );
-                expect( onClick ).not.toBeCalled();
+                expect( () => driver.change() );
+                expect( onChange ).not.toBeCalled();
             } );
         } );
     } );

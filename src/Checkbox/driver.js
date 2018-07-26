@@ -2,7 +2,7 @@ const ERRORS = {
     CHECKBOX_CANNOT_BE_CLICKED : ( label, state ) =>
         `Checkbox '${label}' cannot be clicked since it is ${state}`,
     CHECKBOX_CANNOT_BE_CHANGED : ( label, state ) =>
-        `Checkbox '${label}' cannot be clicked since it is ${state}`,
+        `Checkbox '${label}' cannot be changed since it is ${state}`,
     CHECKBOX_CANNOT_BE_BLURED : ( label, state ) =>
         `Checkbox '${label}' cannot have blur since it is ${state}`,
     CHECKBOX_CANNOT_BE_FOCUSED : ( label, state ) =>
@@ -24,7 +24,7 @@ export default class CheckboxDriver
 
     blur()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -45,7 +45,7 @@ export default class CheckboxDriver
 
     focus()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -68,7 +68,7 @@ export default class CheckboxDriver
     {
         const props     = this.wrapper.props();
         const { label } = props;
-        const node   = this.control.getNode();
+        const node      = this.control.getNode();
 
         if ( props.isDisabled )
         {
@@ -113,7 +113,7 @@ export default class CheckboxDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -128,7 +128,7 @@ export default class CheckboxDriver
 
     mouseOut()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
