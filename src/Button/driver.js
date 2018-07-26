@@ -16,7 +16,8 @@ export default class ButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.button  = wrapper.find( 'button' ).first();
+        this.button  = wrapper
+            .find( `.${this.wrapper.props().cssMap.default}` ).first();
     }
 
     click()
