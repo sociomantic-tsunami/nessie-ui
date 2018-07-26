@@ -245,60 +245,69 @@ describe( 'ButtonDriver', () =>
         } );
 
 
-        it( 'throws the expected error when isDisabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
-            const expectedError =
-                'Button \'Pikaboo\' cannot be clicked since it is disabled';
+                const expectedError =
+                    'Button \'Pikaboo\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).toThrow( expectedError );
-        } );
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
-            expect( () => driver.click() );
-            expect( simulate ).not.toBeCalled();
-        } );
-
-
-        it( 'throws the expected error when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            const expectedError =
-                'Button \'Tekeli-li\' cannot be clicked since it is read only';
-
-            expect( () => driver.click() ).toThrow( expectedError );
-        } );
-
-        it( 'does not call simulate( event ) when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            expect( () => driver.click() );
-            expect( simulate ).not.toBeCalled();
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
 
-        it( 'throws the expected error when isLoading', () =>
+        describe( 'isReadOnly', () =>
         {
-            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-            const expectedError =
-                'Button \'Pikaboo\' cannot be clicked since it is loading';
+                const expectedError = 'Button \'Tekeli-li\' cannot be clicked \
+since it is read only';
 
-            expect( () => driver.click() ).toThrow( expectedError );
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        it( 'does not call simulate( event ) when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
-            expect( () => driver.click() );
-            expect( simulate ).not.toBeCalled();
+        describe( 'isLoading', () =>
+        {
+            it( 'throws the expected error when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
+
+                const expectedError = 'Button \'Pikaboo\' cannot be clicked \
+since it is loading';
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
@@ -323,41 +332,47 @@ describe( 'ButtonDriver', () =>
         } );
 
 
-        it( 'throws the expected error when isDisabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'Button \'Tekeli-li\' cannot have onMouseOver\
- since it is disabled';
+                const expectedError = 'Button \'Tekeli-li\' cannot have \
+onMouseOver since it is disabled';
 
-            expect( () => driver.mouseOver() ).toThrow( expectedError );
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.mouseOver() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
+
+        describe( 'isLoading', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
-            expect( () => driver.mouseOver() );
-            expect( simulate ).not.toBeCalled();
-        } );
+                const expectedError = 'Button \'Tekeli-li\' cannot have \
+onMouseOver since it is loading';
 
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
 
-        it( 'throws the expected error when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
+            it( 'does not call simulate( event ) when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'Button \'Tekeli-li\' cannot have onMouseOver\
- since it is loading';
-
-            expect( () => driver.mouseOver() ).toThrow( expectedError );
-        } );
-
-        it( 'does not call simulate( event ) when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
-
-            expect( () => driver.mouseOver() );
-            expect( simulate ).not.toBeCalled();
+                expect( () => driver.mouseOver() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
@@ -382,41 +397,47 @@ describe( 'ButtonDriver', () =>
         } );
 
 
-        it( 'throws the expected error when isDisabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'Button \'Tekeli-li\' cannot have onMouseOut\
- since it is disabled';
+                const expectedError = 'Button \'Tekeli-li\' cannot have \
+onMouseOut since it is disabled';
 
-            expect( () => driver.mouseOut() ).toThrow( expectedError );
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.mouseOut() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
+
+        describe( 'isLoading', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
-            expect( () => driver.mouseOut() );
-            expect( simulate ).not.toBeCalled();
-        } );
+                const expectedError = 'Button \'Tekeli-li\' cannot have \
+onMouseOut since it is loading';
 
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
 
-        it( 'throws the expected error when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
+            it( 'does not call simulate( event ) when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'Button \'Tekeli-li\' cannot have onMouseOut\
- since it is loading';
-
-            expect( () => driver.mouseOut() ).toThrow( expectedError );
-        } );
-
-        it( 'does not call simulate( event ) when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
-
-            expect( () => driver.mouseOut() );
-            expect( simulate ).not.toBeCalled();
+                expect( () => driver.mouseOut() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
@@ -441,60 +462,69 @@ describe( 'ButtonDriver', () =>
         } );
 
 
-        it( 'throws the expected error when isDisabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have blur since it is disabled';
+                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
+since it is disabled';
 
-            expect( () => driver.blur() ).toThrow( expectedError );
-        } );
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            expect( () => driver.blur() );
-            expect( simulate ).not.toBeCalled();
-        } );
-
-
-        it( 'throws the expected error when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have blur since it is read only';
-
-            expect( () => driver.blur() ).toThrow( expectedError );
-        } );
-
-        it( 'does not call simulate( event ) when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            expect( () => driver.blur() );
-            expect( simulate ).not.toBeCalled();
+                expect( () => driver.blur() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
 
-        it( 'throws the expected error when isLoading', () =>
+        describe( 'isReadOnly', () =>
         {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have blur since it is loading';
+                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
+since it is read only';
 
-            expect( () => driver.blur() ).toThrow( expectedError );
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.blur() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        it( 'does not call simulate( event ) when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
 
-            expect( () => driver.blur() );
-            expect( simulate ).not.toBeCalled();
+        describe( 'isLoading', () =>
+        {
+            it( 'throws the expected error when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+
+                const expectedError =
+                    'Button \'Tekeli-li\' cannot have blur since it is loading';
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+
+                expect( () => driver.blur() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
@@ -519,60 +549,69 @@ describe( 'ButtonDriver', () =>
         } );
 
 
-        it( 'throws the expected error when isDisabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have focus since it is disabled';
+                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+since it is disabled';
 
-            expect( () => driver.focus() ).toThrow( expectedError );
-        } );
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            expect( () => driver.focus() );
-            expect( simulate ).not.toBeCalled();
-        } );
-
-
-        it( 'throws the expected error when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have focus since it is read only';
-
-            expect( () => driver.focus() ).toThrow( expectedError );
-        } );
-
-        it( 'does not call simulate( event ) when isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-            expect( () => driver.focus() );
-            expect( simulate ).not.toBeCalled();
+                expect( () => driver.focus() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
 
-        it( 'throws the expected error when isLoading', () =>
+        describe( 'isReadOnly', () =>
         {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-            const expectedError =
-                'Button \'Tekeli-li\' cannot have focus since it is loading';
+                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+since it is read only';
 
-            expect( () => driver.focus() ).toThrow( expectedError );
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.focus() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        it( 'does not call simulate( event ) when isLoading', () =>
-        {
-            wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
 
-            expect( () => driver.focus() );
-            expect( simulate ).not.toBeCalled();
+        describe( 'isLoading', () =>
+        {
+            it( 'throws the expected error when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+
+                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+since it is loading';
+
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isLoading', () =>
+            {
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li'  } );
+
+                expect( () => driver.focus() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 } );

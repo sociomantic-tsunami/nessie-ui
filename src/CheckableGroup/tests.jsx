@@ -17,42 +17,7 @@ describe( 'CheckableGroupDriver', () =>
         wrapper = mount( <CheckableGroup /> );
     } );
 
-    describe( 'selectByIndex()', () =>
-    {
-        test( 'should set Checkbox at index to checked when uncontrolled', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" />,
-                    <Checkbox label = "two" />,
-                ],
-            } );
-            wrapper.driver().selectByIndex( 1 );
-            const items = wrapper.find( 'li' );
 
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBeTruthy();
-        } );
-
-        test(
-            'should set Checkbox at indexes to checked when uncontrolled',
-            () =>
-            {
-                wrapper.setProps( {
-                    children : [
-                        <Checkbox label = "one" value = "first check" />,
-                        <Checkbox label = "two" value = "second check" />,
-                        <Checkbox label = "three" value = "third check" />,
-                        <Checkbox label = "four" value = "fourth check" />,
-                    ],
-                } );
-                wrapper.driver().selectByIndex( [ 1, 3 ] );
-
-                expect( wrapper.driver().getSelectedValues() )
-                    .toEqual( [ 'second check', 'fourth check' ] );
-            },
-        );
-    } );
     describe( 'toggleByIndex( index )', () =>
     {
         test( 'should toggle Checkbox with index', () =>
@@ -95,41 +60,6 @@ describe( 'CheckableGroupDriver', () =>
         } );
     } );
 
-    describe( 'selectByValue()', () =>
-    {
-        test( 'should set check to Checkbox with value', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />,
-                ],
-            } );
-
-            wrapper.driver().selectByValue( 'second check' );
-            const items = wrapper.find( 'li' );
-
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBeTruthy();
-        } );
-
-        test( 'should set check to Checkboxes with values', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />,
-                    <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />,
-                ],
-            } );
-
-            wrapper.driver().selectByValue( [ 'second check', 'third check' ] );
-
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'third check' ] );
-        } );
-    } );
 
     describe( 'toggleByValue( value )', () =>
     {

@@ -6,68 +6,22 @@ export default class CheckableGroupDriver
         this.cssMap  = wrapper.props().cssMap;
     }
 
-    getChekable()
-    {
-        const items = this.wrapper.find( `.${this.cssMap.listItem}` );
-        return items.map( item => item.childAt( 0 ) );
-    }
-
-    selectByIndex( index = 0 )
-    {
-        const items = this.getChekable();
-
-        if ( Array.isArray( index ) )
-        {
-            index.forEach( i =>
-            {
-                items[ i ].driver().setChecked();
-            } );
-        }
-        else
-        {
-            items[ index ].driver().setChecked();
-        }
-
-        return this;
-    }
-
-    selectByValue( value )
-    {
-        if ( Array.isArray( value ) )
-        {
-            value.forEach( i =>
-            {
-                const item =
-                    this.wrapper.findWhere( n =>
-                        n.prop( 'value' ) === i ).first();
-                item.driver().setChecked();
-            } );
-        }
-        else
-        {
-            const item =
-                this.wrapper.findWhere( n =>
-                    n.prop( 'value' ) === value ).first();
-            item.driver().setChecked();
-        }
-
-        return this;
-    }
 
     toggleByIndex( index = 0 )
     {
-        const items = this.getChekable();
+        const items = this.wrapper.find( `.${this.cssMap.listItem}` )
+            .map( item => item.childAt( 0 ) );
 
         if ( Array.isArray( index ) )
         {
             index.forEach( i =>
             {
-                items[ i ].driver().toggleChecked();
+                items[ i ].driver().change();
             } );
         }
         else
         {
-            items[ index ].driver().toggleChecked();
+            items[ index ].driver().change();
         }
 
         return this;
@@ -82,7 +36,7 @@ export default class CheckableGroupDriver
                 const item =
                     this.wrapper.findWhere( n =>
                         n.prop( 'value' ) === i ).first();
-                item.driver().toggleChecked();
+                item.driver().change();
             } );
         }
         else
@@ -90,7 +44,7 @@ export default class CheckableGroupDriver
             const item =
                 this.wrapper.findWhere( n =>
                     n.prop( 'value' ) === value ).first();
-            item.driver().toggleChecked();
+            item.driver().change();
         }
 
         return this;

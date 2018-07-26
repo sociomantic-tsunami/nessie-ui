@@ -17,7 +17,7 @@ export default class RadioGroupDriver
     selectByIndex( index = 0 )
     {
         const items = this.getContent();
-        items[ index ].driver().setChecked();
+        items[ index ].driver().change();
         return this;
     }
 
@@ -25,22 +25,7 @@ export default class RadioGroupDriver
     {
         const item = this.wrapper.findWhere( n =>
             n.prop( 'value' ) === value ).first();
-        item.driver().setChecked();
-        return this;
-    }
-
-    toggleByIndex( index = 0 )
-    {
-        const items = this.getContent();
-        items[ index ].driver().toggleChecked();
-        return this;
-    }
-
-    toggleByValue( value )
-    {
-        const item = this.wrapper.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
-        item.driver().toggleChecked();
+        item.driver().change();
         return this;
     }
 

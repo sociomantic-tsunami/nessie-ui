@@ -63,27 +63,6 @@ describe( 'RadioGroupDriver', () =>
                 .getNode().checked ).toBeTruthy();
         } );
     } );
-    describe( 'toggleByIndex( index )', () =>
-    {
-        test( 'should toggle Radio with index', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Radio label = "one" />,
-                    <Radio label = "two" />,
-                ],
-            } );
-            wrapper.driver().toggleByIndex( 1 );
-            const items = wrapper.find( 'li' );
-
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
-                .getNode().checked ).toBeTruthy();
-
-            wrapper.driver().toggleByIndex( 1 );
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
-                .getNode().checked ).toBeFalsy();
-        } );
-    } );
 
     describe( 'selectByValue()', () =>
     {
@@ -104,28 +83,6 @@ describe( 'RadioGroupDriver', () =>
         } );
     } );
 
-    describe( 'toggleByValue( value )', () =>
-    {
-        test( 'should toggle Radio with value', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Radio label = "one" value = "first check" />,
-                    <Radio label = "two" value = "second check" />,
-                ],
-            } );
-
-            wrapper.driver().toggleByValue( 'second check' );
-            const items = wrapper.find( 'li' );
-
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
-                .getNode().checked ).toBeTruthy();
-
-            wrapper.driver().toggleByValue( 'second check' );
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' )
-                .getNode().checked ).toBeFalsy();
-        } );
-    } );
 
     describe( 'getSelectedValues()', () =>
     {

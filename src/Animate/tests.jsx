@@ -29,7 +29,7 @@ describe( 'Animate', () =>
     } );
 
     test( 'should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
-        props are selected', () =>
+props are selected', () =>
     {
         const props = {
             enterAnimation : 'fadeIn',
