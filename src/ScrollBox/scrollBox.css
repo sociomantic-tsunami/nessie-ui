@@ -1,5 +1,10 @@
 @import "../proto/base.css";
 
+:root
+{
+    --trackThickness:   5px;
+}
+
 .default
 {
     overflow:   hidden;
@@ -102,6 +107,29 @@
         overflow-x:             hidden;
         overflow-y:             scroll;
         overscroll-behavior-y:  contain;
+    }
+}
+
+.scroll__both
+{
+    .scrollBarHorizontal,
+    {
+        width:          calc( 100% - var( --trackThickness ) );
+
+        &:after
+        {
+            content:          "";
+            display:          block;
+            position:         absolute;
+            right:            -5px;
+            width:            5px;
+            height:           5px;
+            background-color: var( --PC-WHITE );
+        }
+    }
+    .scrollBarVertical
+    {
+        height:         calc( 100% - var( --trackThickness ) );
     }
 }
 
