@@ -1,71 +1,82 @@
+const ERRORS = {
+    CHECKABLEGROUP_CANNOT_BE_CHANGED : ( label, state ) =>
+        `CheckableGroup '${label}' cannot be changed since it is ${state}`,
+    CHECKABLEGROUP_CANNOT_MOUSEOVER : ( label, state ) =>
+        `CheckableGroup '${label}' cannot have onMouseOver since it is \
+${state}`,
+    CHECKABLEGROUP_CANNOT_MOUSEOUT : ( label, state ) =>
+        `CheckableGroup '${label}' cannot have onMouseOut since it is ${state}`,
+};
+
 export default class CheckableGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.wrapper   = wrapper;
+        this.cssMap    = wrapper.props().cssMap;
+        this.control   = wrapper.find( 'input' ).first();
     }
 
 
-    toggleByIndex( index = 0 )
+    change()
     {
-        const items = this.wrapper.find( `.${this.cssMap.listItem}` )
-            .map( item => item.childAt( 0 ) );
+        const props     = this.wrapper.props();
+        const { label } = props;
 
-        if ( Array.isArray( index ) )
+        if ( props.isDisabled )
         {
-            index.forEach( i =>
-            {
-                items[ i ].driver().change();
-            } );
-        }
-        else
-        {
-            items[ index ].driver().change();
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_BE_CHANGED( label, 'disabled' ) );
         }
 
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_BE_CHANGED( label, 'read only' ) );
+        }
+
+        this.control.simulate( 'change' );
         return this;
-    }
-
-    toggleByValue( value )
-    {
-        if ( Array.isArray( value ) )
-        {
-            value.forEach( i =>
-            {
-                const item =
-                    this.wrapper.findWhere( n =>
-                        n.prop( 'value' ) === i ).first();
-                item.driver().change();
-            } );
-        }
-        else
-        {
-            const item =
-                this.wrapper.findWhere( n =>
-                    n.prop( 'value' ) === value ).first();
-            item.driver().change();
-        }
-
-        return this;
-    }
-
-    getSelectedValues()
-    {
-        const items =
-            this.wrapper.findWhere( n => n.node.checked === true );
-
-        return items.map( item => item.prop( 'value' ) );
     }
 
     mouseOver()
     {
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_MOUSEOVER( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_MOUSEOVER( label, 'read only' ) );
+        }
+
         this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_MOUSEOUT( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKABLEGROUP_CANNOT_MOUSEOUT( label, 'read only' ) );
+        }
+
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }

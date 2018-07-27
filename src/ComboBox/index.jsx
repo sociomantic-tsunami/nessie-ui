@@ -482,10 +482,10 @@ export default class ComboBox extends Component
 
         return (
             <InputContainer
-                onMouseOut          = { onMouseOut }
-                onMouseOver         = { onMouseOver }
-                label               = { label }
-                labelPosition       = { labelPosition } >
+                onMouseOut      = { onMouseOut }
+                onMouseOver     = { onMouseOver }
+                label           = { label }
+                labelPosition   = { labelPosition } >
                 <InputWithDropdown
                     aria = { {
                         autocomplete     : hasAutocomplete ? 'both' : 'list',

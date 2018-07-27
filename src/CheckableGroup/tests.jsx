@@ -11,36 +11,20 @@ import CheckableGroup   from './index';
 describe( 'CheckableGroupDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <CheckableGroup /> );
+        driver  = wrapper.driver();
     } );
 
 
-    describe( 'toggleByIndex( index )', () =>
+    describe( 'change()', () =>
     {
-        test( 'should toggle Checkbox with index', () =>
+        test.skip( 'should call onChange exactly once', () =>
         {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" />,
-                    <Checkbox label = "two" />,
-                ],
-            } );
-            wrapper.driver().toggleByIndex( 1 );
-            const items = wrapper.find( 'li' );
-
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBeTruthy();
-
-            wrapper.driver().toggleByIndex( 1 );
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBe( false );
-        } );
-
-        test( 'should toggle Checkboxes with indexes', () =>
-        {
+            const onChange = jest.fn();
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" value = "first check" />,
@@ -48,103 +32,202 @@ describe( 'CheckableGroupDriver', () =>
                     <Checkbox label = "three" value = "third check" />,
                     <Checkbox label = "four" value = "fourth check" />,
                 ],
-            } );
-            wrapper.driver().toggleByIndex( [ 1, 3 ] );
-
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'fourth check' ] );
-
-            wrapper.driver().toggleByIndex( [ 1, 3 ] );
-
-            expect( wrapper.driver().getSelectedValues() ).toEqual( [] );
-        } );
-    } );
-
-
-    describe( 'toggleByValue( value )', () =>
-    {
-        test( 'should toggle Checkbox with value', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />,
-                ],
+                onChange,
             } );
 
-            wrapper.driver().toggleByValue( 'second check' );
-            const items = wrapper.find( 'li' );
+            driver.change();
 
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBeTruthy();
-
-            wrapper.driver().toggleByValue( 'second check' );
-            expect( items.at( 1 ).childAt( 0 ).find( 'input' ).getNode().checked )
-                .toBe( false );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should toggle Checkboxes with values', () =>
+
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />,
-                    <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />,
-                ],
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+be changed since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
 
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'second check', 'third check' ] );
-
-            wrapper.driver().toggleByValue( [ 'second check', 'third check' ] );
-
-            expect( wrapper.driver().getSelectedValues() ).toEqual( [] );
+                expect( () => driver.change() );
+                expect( onChange ).not.toBeCalled();
+            } );
         } );
-    } );
 
-    describe( 'getSelectedValues()', () =>
-    {
-        test( 'should return an array of selected values', () =>
+
+        describe( 'isReadOnly', () =>
         {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" isChecked />,
-                    <Checkbox label = "two" value = "second check" />,
-                ],
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+be changed since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'first check' ] );
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
+
+                expect( () => driver.change() );
+                expect( onChange ).not.toBeCalled();
+            } );
         } );
     } );
 
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver exactly once', () =>
+        test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+have onMouseOver since it is disabled';
+
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const onMouseOver = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onMouseOver,
+                } );
+
+                expect( () => driver.mouseOver() );
+                expect( onMouseOver ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+have onMouseOver since it is read only';
+
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const mouseOver = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    mouseOver,
+                } );
+
+                expect( () => driver.mouseOver() );
+                expect( mouseOver ).not.toBeCalled();
+            } );
+        } );
     } );
+
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut exactly once', () =>
+        test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+have onMouseOut since it is disabled';
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onMouseOut,
+                } );
+
+                expect( () => driver.mouseOut() );
+                expect( onMouseOut ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+have onMouseOut since it is read only';
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onMouseOut,
+                } );
+
+                expect( () => driver.mouseOut() );
+                expect( onMouseOut ).not.toBeCalled();
+            } );
         } );
     } );
 } );
