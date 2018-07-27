@@ -125,8 +125,8 @@
             display:          block;
             position:         absolute;
             right:            -5px;
-            width:            5px;
-            height:           5px;
+            width:            var( --trackThickness );
+            height:           var( --trackThickness );
             background-color: var( --PC-WHITE );
         }
     }
@@ -134,15 +134,22 @@
     {
         height:         calc( 100% - var( --trackThickness ) );
     }
+
+    .inner
+    {
+        padding-right:   var( --trackThickness );
+        padding-bottom:  var( --trackThickness );
+        box-sizing:      border-box;
+    }
 }
 
-.noScrollBarOverlap
+.overlayScrollBars
 {
     .inner
     {
-        padding-right:   5px;
-        padding-bottom:  5px;
-        box-sizing:      border-box;
+        padding-right:   0;
+        padding-bottom:  0;
+        box-sizing:      content-box;
     }
 }
 
