@@ -1,5 +1,10 @@
 @import "../proto/base.css";
 
+:root
+{
+    --trackThickness:   5px;
+}
+
 .default
 {
     overflow:   hidden;
@@ -50,18 +55,21 @@
         left:       calc( 50% );
         transform:  translateX( -50% );
     }
+
     .iconLeft
     {
         top:        calc( 50% );
         left:       var( --spacing-1 );
         transform:  translateY( -50% );
     }
+
     .iconRight
     {
         top:        calc( 50% );
         right:      var( --spacing-1 );
         transform:  translateY( -50% );
     }
+
     .iconUp
     {
         top:        var( --spacing-1 );
@@ -84,7 +92,6 @@
     }
 }
 
-
 .scroll__horizontal
 {
     .inner
@@ -95,6 +102,7 @@
     }
 
 }
+
 .scroll__vertical
 {
     .inner
@@ -102,6 +110,46 @@
         overflow-x:             hidden;
         overflow-y:             scroll;
         overscroll-behavior-y:  contain;
+    }
+}
+
+.scroll__both
+{
+    .scrollBarHorizontal,
+    {
+        width:          calc( 100% - var( --trackThickness ) );
+
+        &:after
+        {
+            content:          "";
+            display:          block;
+            position:         absolute;
+            right:            -5px;
+            width:            var( --trackThickness );
+            height:           var( --trackThickness );
+            background-color: var( --PC-WHITE );
+        }
+    }
+    .scrollBarVertical
+    {
+        height:         calc( 100% - var( --trackThickness ) );
+    }
+
+    .inner
+    {
+        padding-right:   var( --trackThickness );
+        padding-bottom:  var( --trackThickness );
+        box-sizing:      border-box;
+    }
+}
+
+.overlayScrollBars
+{
+    .inner
+    {
+        padding-right:   0;
+        padding-bottom:  0;
+        box-sizing:      content-box;
     }
 }
 

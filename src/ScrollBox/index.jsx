@@ -61,6 +61,10 @@ export default class ScrollBox extends Component
          */
         onScroll           : PropTypes.func,
         /**
+         *  Scroll bars overlaps content
+         */
+        overlayScrollBars  : PropTypes.bool,
+        /**
          *  Scroll direction
          */
         scroll             : PropTypes.oneOf( [
@@ -122,6 +126,7 @@ export default class ScrollBox extends Component
         onMouseOver          : undefined,
         onMouseOut           : undefined,
         onScroll             : undefined,
+        overlayScrollBars    : true,
         padding              : 'none',
         scroll               : 'both',
         scrollBarsAreVisible : true,
@@ -179,8 +184,8 @@ export default class ScrollBox extends Component
             const { state } = this;
 
             // space taken by native scrollbars
-            const diffX = state.offsetWidth - state.clientWidth || 16;
-            const diffY = state.offsetHeight - state.clientHeight || 16;
+            const diffX = state.offsetWidth - state.clientWidth;
+            const diffY = state.offsetHeight - state.clientHeight;
 
             Object.assign( style, {
                 width        : diffX ? `calc( 100% + ${diffX}px )` : null,
@@ -338,6 +343,7 @@ export default class ScrollBox extends Component
             cssMap,
             onMouseOver,
             onMouseOut,
+            overlayScrollBars,
             padding,
             scroll,
             scrollBarsAreVisible,
@@ -347,6 +353,8 @@ export default class ScrollBox extends Component
             <div
                 className = { buildClassName( className, cssMap, {
                     scroll,
+                    overlayScrollBars : scrollBarsAreVisible &&
+                        overlayScrollBars,
                     paddingX : Array.isArray( padding ) ? padding[ 0 ]
                         : padding,
                     paddingY : Array.isArray( padding ) ? padding[ 1 ]
