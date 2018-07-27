@@ -4,9 +4,9 @@ import PropTypes                           from 'prop-types';
 import { buildClassName, generateId }      from '../utils';
 import styles                              from './textInputWithIcon.css';
 import { IconButton, InputField, Tooltip } from '../index';
-import withInputContainer                  from '../proto/withInputContainer';
+import InputContainer                      from '../proto/InputContainer';
 
-class TextInputWithIcon extends Component
+export default class TextInputWithIcon extends Component
 {
     static propTypes =
     {
@@ -294,15 +294,8 @@ class TextInputWithIcon extends Component
     {
         super( props );
 
-        this.state = {
-            ...this.state,
-            iconIsHovered : false,
-        };
-
         this.handleFocus         = this.handleFocus.bind( this );
         this.handleBlur          = this.handleBlur.bind( this );
-        this.handleMouseOverIcon = this.handleMouseOverIcon.bind( this );
-        this.handleMouseOutIcon  = this.handleMouseOutIcon.bind( this );
         this.handleInputRef      = this.handleInputRef.bind( this );
         this.handleButtonRef     = this.handleButtonRef.bind( this );
     }
@@ -351,26 +344,6 @@ class TextInputWithIcon extends Component
         }
     }
 
-    handleMouseOverIcon( e )
-    {
-        const { onMouseOver, onMouseOverIcon } = this.props;
-        if ( onMouseOverIcon ) onMouseOverIcon( e );
-
-        this.setState( { iconIsHovered: true  } );
-
-        if ( onMouseOver ) onMouseOver( e );
-    }
-
-    handleMouseOutIcon( e )
-    {
-        const { onMouseOut, onMouseOutIcon } = this.props;
-        if ( onMouseOutIcon ) onMouseOutIcon( e );
-
-        this.setState( { iconIsHovered: false  } );
-
-        if ( onMouseOut ) onMouseOut( e );
-    }
-
     handleInputRef( ref )
     {
         this.input = ref;
@@ -393,6 +366,9 @@ class TextInputWithIcon extends Component
             className,
             cssMap,
             defaultValue,
+            errorMessage,
+            errorMessageIsVisible,
+            errorMessagePosition,
             forceHover,
             hasError,
             id = generateId( 'TextInputWithIcon' ),
@@ -407,6 +383,8 @@ class TextInputWithIcon extends Component
             isReadOnly,
             isReadOnlyInput,
             isReadOnlyButton,
+            label,
+            labelPosition,
             name,
             onChange,
             onClick,
@@ -415,15 +393,13 @@ class TextInputWithIcon extends Component
             onKeyPress,
             onKeyUp,
             onMouseOut,
+            onMouseOutIcon,
             onMouseOver,
+            onMouseOverIcon,
             placeholder,
             textAlign,
             value,
         } = this.props;
-
-        const { iconIsHovered } = this.state;
-
-        const forceHoverInput = forceHover || iconIsHovered;
 
         let alignText = textAlign;
 
@@ -433,61 +409,70 @@ class TextInputWithIcon extends Component
         }
 
         return (
-            <div
+            <InputContainer
+                errorMessage          = { errorMessage }
+                errorMessageIsVisible = { errorMessageIsVisible }
+                errorMessagePosition  = { errorMessagePosition }
+                hasError              = { hasError }
+                id                    = { id }
+                isDisabled            = { isDisabled }
+                label                 = { label }
+                labelPosition         = { labelPosition }
+                onMouseOut            = { onMouseOut }
+                onMouseOver           = { onMouseOver }
                 className = { buildClassName( className, cssMap, {
                     disabled : isDisabled,
                     error    : hasError,
                     position : iconPosition,
                 } ) }>
-                <InputField
-                    aria         = { aria }
-                    className    = { cssMap.input }
-                    defaultValue = { defaultValue }
-                    forceHover   = { forceHoverInput }
-                    hasError     = { hasError }
-                    id           = { id }
-                    inputRef     = { this.handleInputRef }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnlyInput || isReadOnly }
-                    name         = { name }
-                    onBlur       = { this.handleBlur }
-                    onChange     = { onChange }
-                    onClick      = { onClick }
-                    onFocus      = { this.handleFocus }
-                    onKeyDown    = { onKeyDown }
-                    onKeyPress   = { onKeyPress }
-                    onKeyUp      = { onKeyUp }
-                    onMouseOut   = { onMouseOut }
-                    onMouseOver  = { onMouseOver }
-                    placeholder  = { placeholder }
-                    textAlign    = { alignText }
-                    type         = { inputType }
-                    value        = { value } />
-                { ( iconType && iconType !== 'none' ) &&
-                    <Tooltip
-                        className   = { cssMap.icon }
-                        isDisabled  = { isDisabled }
-                        isReadOnly  = { isReadOnly }
-                        isVisible   = { iconTooltipIsVisible }
-                        hasError    = { hasError }
-                        message     = { iconTooltipMessage }
-                        onMouseOut  = { this.handleMouseOutIcon }
-                        onMouseOver = { this.handleMouseOverIcon }
-                        position    = { iconTooltipPosition } >
-                        <IconButton
-                            buttonRef   = { this.handleButtonRef }
-                            iconType    = { iconType }
-                            isDisabled  = { isDisabled || iconButtonIsDisabled }
-                            isFocusable = { false }
-                            isReadOnly  = { isReadOnlyButton || isReadOnly }
+                <div className = { cssMap.container }>
+                    <InputField
+                        aria         = { aria }
+                        className    = { cssMap.input }
+                        defaultValue = { defaultValue }
+                        forceHover   = { forceHover }
+                        hasError     = { hasError }
+                        id           = { id }
+                        inputRef     = { this.handleInputRef }
+                        isDisabled   = { isDisabled }
+                        isReadOnly   = { isReadOnlyInput || isReadOnly }
+                        name         = { name }
+                        onBlur       = { this.handleBlur }
+                        onChange     = { onChange }
+                        onClick      = { onClick }
+                        onFocus      = { this.handleFocus }
+                        onKeyDown    = { onKeyDown }
+                        onKeyPress   = { onKeyPress }
+                        onKeyUp      = { onKeyUp }
+                        onMouseOut   = { onMouseOut }
+                        onMouseOver  = { onMouseOver }
+                        placeholder  = { placeholder }
+                        textAlign    = { alignText }
+                        type         = { inputType }
+                        value        = { value } />
+                    { ( iconType && iconType !== 'none' ) &&
+                        <Tooltip
+                            className   = { cssMap.icon }
+                            isDisabled  = { isDisabled }
+                            isReadOnly  = { isReadOnly }
+                            isVisible   = { iconTooltipIsVisible }
                             hasError    = { hasError }
-                            onClick     = { onClickIcon } />
-                    </Tooltip>
-                }
-            </div>
+                            message     = { iconTooltipMessage }
+                            onMouseOut  = { onMouseOutIcon }
+                            onMouseOver = { onMouseOverIcon }
+                            position    = { iconTooltipPosition } >
+                            <IconButton
+                                buttonRef   = { this.handleButtonRef }
+                                iconType    = { iconType }
+                                isDisabled  = { isDisabled || iconButtonIsDisabled }
+                                isFocusable = { false }
+                                isReadOnly  = { isReadOnlyButton || isReadOnly }
+                                hasError    = { hasError }
+                                onClick     = { onClickIcon } />
+                        </Tooltip>
+                    }
+                </div>
+            </InputContainer>
         );
     }
 }
-
-export { TextInputWithIcon };
-export default withInputContainer( TextInputWithIcon );
