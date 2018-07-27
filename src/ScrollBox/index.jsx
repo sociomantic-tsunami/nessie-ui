@@ -126,7 +126,7 @@ export default class ScrollBox extends Component
         onMouseOver          : undefined,
         onMouseOut           : undefined,
         onScroll             : undefined,
-        overlayScrollBars    : true,
+        overlayScrollBars    : false,
         padding              : 'none',
         scroll               : 'both',
         scrollBarsAreVisible : true,

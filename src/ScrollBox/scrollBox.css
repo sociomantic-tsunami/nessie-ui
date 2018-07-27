@@ -94,17 +94,20 @@
 
 .scroll__horizontal
 {
+    padding-bottom: var( --trackThickness );
+
     .inner
     {
         overflow-x:             scroll;
         overflow-y:             hidden;
         overscroll-behavior-x:  contain;
     }
-
 }
 
 .scroll__vertical
 {
+    padding-right:  var( --trackThickness );
+
     .inner
     {
         overflow-x:             hidden;
@@ -115,41 +118,39 @@
 
 .scroll__both
 {
-    .scrollBarHorizontal,
-    {
-        width:          calc( 100% - var( --trackThickness ) );
+    padding-right:   var( --trackThickness );
+    padding-bottom:  var( --trackThickness );
 
-        &:after
-        {
-            content:          "";
-            display:          block;
-            position:         absolute;
-            right:            -5px;
-            width:            var( --trackThickness );
-            height:           var( --trackThickness );
-            background-color: var( --PC-WHITE );
-        }
+    &::after
+    {
+        content:    "";
+        display:    block;
+        position:   absolute;
+        bottom:     0;
+        right:      0;
+        width:      var( --trackThickness );
+        height:     var( --trackThickness );
+        background: var( --PC-WHITE );
     }
+
+    .scrollBarHorizontal
+    {
+        width:  calc( 100% - var( --trackThickness ) );
+    }
+
     .scrollBarVertical
     {
-        height:         calc( 100% - var( --trackThickness ) );
-    }
-
-    .inner
-    {
-        padding-right:   var( --trackThickness );
-        padding-bottom:  var( --trackThickness );
-        box-sizing:      border-box;
+        height: calc( 100% - var( --trackThickness ) );
     }
 }
 
 .overlayScrollBars
 {
-    .inner
+    padding:    0;
+
+    &::after
     {
-        padding-right:   0;
-        padding-bottom:  0;
-        box-sizing:      content-box;
+        display:    none;
     }
 }
 
