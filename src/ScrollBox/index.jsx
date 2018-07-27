@@ -15,47 +15,51 @@ export default class ScrollBox extends Component
         /**
          *  Extra CSS class name
          */
-        className          : PropTypes.string,
+        className           : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap             : PropTypes.objectOf( PropTypes.string ),
+        cssMap              : PropTypes.objectOf( PropTypes.string ),
         /**
          *  ScrollBox content
          */
-        children           : PropTypes.node,
+        children            : PropTypes.node,
         /**
          *  ScrollBox content width, any CSS length string
          */
-        contentWidth       : PropTypes.string,
+        contentWidth        : PropTypes.string,
         /**
          *  ScrollBox height, any CSS length string
          */
-        height             : PropTypes.string,
+        height              : PropTypes.string,
+        /**
+         *  Scroll bars overlaps content
+         */
+        noScrollBarsOverlap : PropTypes.bool,
         /**
          *  scroll down button click callback function
          */
-        onClickScrollDown  : PropTypes.func,
+        onClickScrollDown   : PropTypes.func,
         /**
          *  scroll left button click callback function
          */
-        onClickScrollLeft  : PropTypes.func,
+        onClickScrollLeft   : PropTypes.func,
         /**
          *  scroll right button click callback function
          */
-        onClickScrollRight : PropTypes.func,
+        onClickScrollRight  : PropTypes.func,
         /**
          *  scroll up button click callback function
          */
-        onClickScrollUp    : PropTypes.func,
+        onClickScrollUp     : PropTypes.func,
         /**
          *  on scroll callback function
          */
-        onScroll           : PropTypes.func,
+        onScroll            : PropTypes.func,
         /**
          *  Scroll direction
          */
-        scroll             : PropTypes.oneOf( [
+        scroll              : PropTypes.oneOf( [
             'horizontal',
             'vertical',
             'both',
@@ -115,6 +119,7 @@ export default class ScrollBox extends Component
         padding              : 'none',
         scroll               : 'both',
         scrollBarsAreVisible : true,
+        noScrollBarsOverlap  : false,
         scrollBoxRef         : undefined,
         scrollDownIsVisible  : false,
         scrollLeftIsVisible  : false,
@@ -329,14 +334,19 @@ export default class ScrollBox extends Component
             padding,
             scroll,
             scrollBarsAreVisible,
+            noScrollBarsOverlap,
         } = this.props;
 
         return (
             <div
                 className = { buildClassName( className, cssMap, {
-                  scroll,
-                  paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
-                  paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding
+                    scroll,
+                    noScrollBarOverlap : scrollBarsAreVisible &&
+                        noScrollBarsOverlap,
+                    paddingX : Array.isArray( padding ) ? padding[ 0 ]
+                        : padding,
+                    paddingY : Array.isArray( padding ) ? padding[ 1 ]
+                        : padding,
                 } ) }>
                 <div
                     className = { cssMap.inner }
