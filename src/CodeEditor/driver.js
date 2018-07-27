@@ -61,8 +61,12 @@ export default class CodeEditorDriver
                 .CODEEDITOR_CANNOT_BE_BLURED( label, 'read only' ) );
         }
 
+        if ( this.control.hasFocus() && Boolean( document ) &&
+            Boolean( document.activeElement ) )
+        {
+            document.activeElement.blur();
+        }
 
-        this.wrapper.find( 'InputContainer' ).simulate( 'blur' );
         return this;
     }
 

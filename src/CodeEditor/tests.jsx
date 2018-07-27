@@ -71,11 +71,12 @@ describe( 'CodeEditorDriver', () =>
 
     describe( 'blur()', () =>
     {
-        test.skip( 'should call onBlur once', () =>
+        test( 'should call onBlur once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
+            driver.focus();
             driver.blur();
 
             expect( onBlur ).toBeCalledTimes( 1 );
