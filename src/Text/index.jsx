@@ -18,7 +18,7 @@ const Text = ( {
     textAlign,
     color,
     textRef,
-    variant
+    variant,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
@@ -28,7 +28,7 @@ const Text = ( {
             role,
             size,
             textAlign,
-            variant
+            variant,
         } ) }
         style = { { letterSpacing, color } }
         ref = { textRef }>
@@ -61,7 +61,7 @@ Text.propTypes =
         'default',
         'subtle',
         'promoted',
-        'critical'
+        'critical',
     ] ),
     /**
     *  Size to apply to text
@@ -74,7 +74,7 @@ Text.propTypes =
         'M',
         'S',
         'XS',
-        'XXS'
+        'XXS',
     ] ),
     /**
     * Letter Spacing for the text
@@ -90,7 +90,7 @@ Text.propTypes =
     textAlign     : PropTypes.oneOf( [
         'left',
         'center',
-        'right'
+        'right',
     ] ),
     /**
     *  Text Color
@@ -109,7 +109,7 @@ Text.propTypes =
         'RegularIt',
         'SemiBold',
         'Bold',
-        'ExtraBold'
+        'ExtraBold',
     ] ),
 };
 
@@ -123,7 +123,7 @@ Text.defaultProps =
     size             : 'M',
     letterSpacing    : '0',
     textAlign        : 'left',
-    variant          : 'Regular'
+    variant          : 'Regular',
 };
 
 export default Text;

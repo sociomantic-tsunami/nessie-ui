@@ -53,6 +53,14 @@ export default class ScrollBox extends Component
          */
         onClickScrollUp     : PropTypes.func,
         /**
+         *  mouseOver callback function
+         */
+        onMouseOver        : PropTypes.func,
+        /**
+         *  mouseOut callback function
+         */
+        onMouseOut         : PropTypes.func,
+        /**
          *  on scroll callback function
          */
         onScroll            : PropTypes.func,
@@ -115,6 +123,8 @@ export default class ScrollBox extends Component
         onClickScrollLeft    : undefined,
         onClickScrollRight   : undefined,
         onClickScrollUp      : undefined,
+        onMouseOver          : undefined,
+        onMouseOut           : undefined,
         onScroll             : undefined,
         padding              : 'none',
         scroll               : 'both',
@@ -331,6 +341,8 @@ export default class ScrollBox extends Component
             className,
             contentWidth,
             cssMap,
+            onMouseOver,
+            onMouseOut,
             padding,
             scroll,
             scrollBarsAreVisible,
@@ -347,7 +359,9 @@ export default class ScrollBox extends Component
                         : padding,
                     paddingY : Array.isArray( padding ) ? padding[ 1 ]
                         : padding,
-                } ) }>
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }
