@@ -3,7 +3,6 @@ import {
     Button,
     CheckableGroup,
     Checkbox,
-    CheckboxGroup,
     CodeEditor,
     ComboBox,
     DatePicker,
@@ -21,7 +20,6 @@ import {
     Paginator,
     PasswordInput,
     Radio,
-    RadioGroup,
     ScrollBar,
     ScrollBox,
     Slider,
@@ -55,7 +53,6 @@ import NavItemDriver           from './NavItem/driver';
 import NotificationBarDriver   from './NotificationBar/driver';
 import PaginatorDriver         from './Paginator/driver';
 import PasswordInputDriver     from './PasswordInput/driver';
-import RadioGroupDriver        from './RadioGroup/driver';
 import ScrollBarDriver         from './ScrollBar/driver';
 import ScrollBoxDriver         from './ScrollBox/driver';
 import SliderDriver            from './Slider/driver';
@@ -83,10 +80,6 @@ const drivers =
     {
         Component : Checkbox,
         Driver    : CheckboxDriver,
-    },
-    {
-        Component : CheckboxGroup,
-        Driver    : CheckableGroupDriver,
     },
     {
         Component : CodeEditor,
@@ -155,10 +148,6 @@ const drivers =
     {
         Component : Radio,
         Driver    : CheckboxDriver,
-    },
-    {
-        Component : RadioGroup,
-        Driver    : RadioGroupDriver,
     },
     {
         Component : ScrollBar,
