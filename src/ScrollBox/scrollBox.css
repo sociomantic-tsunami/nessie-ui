@@ -20,10 +20,10 @@
         height:     100%;
         overflow:   scroll;
 
-        &::-webkit-scrollbar
+        /* &::-webkit-scrollbar
         {
             display:    none;
-        }
+        } */
     }
 
     .iconDown,
@@ -94,7 +94,10 @@
 
 .scroll__horizontal
 {
-    padding-bottom: var( --trackThickness );
+    &.scrollBarsAreVisible
+    {
+        padding-bottom: var( --trackThickness );
+    }
 
     .inner
     {
@@ -106,7 +109,10 @@
 
 .scroll__vertical
 {
-    padding-right:  var( --trackThickness );
+    &.scrollBarsAreVisible
+    {
+        padding-right:  var( --trackThickness );
+    }
 
     .inner
     {
@@ -118,8 +124,11 @@
 
 .scroll__both
 {
-    padding-right:   var( --trackThickness );
-    padding-bottom:  var( --trackThickness );
+    &.scrollBarsAreVisible
+    {
+        padding-right:   var( --trackThickness );
+        padding-bottom:  var( --trackThickness );
+    }
 
     &::after
     {

@@ -341,8 +341,9 @@ export default class ScrollBox extends Component
             className,
             contentWidth,
             cssMap,
-            onMouseOver,
+            height,
             onMouseOut,
+            onMouseOver,
             overlayScrollBars,
             padding,
             scroll,
@@ -359,9 +360,11 @@ export default class ScrollBox extends Component
                         : padding,
                     paddingY : Array.isArray( padding ) ? padding[ 1 ]
                         : padding,
+                    scrollBarsAreVisible,
                 } ) }
                 onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }>
+                onMouseLeave = { onMouseOut }
+                style        = { { maxHeight: height } }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }
