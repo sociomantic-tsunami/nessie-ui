@@ -20,22 +20,21 @@ describe( 'CheckableGroupDriver', () =>
     } );
 
 
-    describe( 'change()', () =>
+    describe( 'change( index )', () =>
     {
-        test.skip( 'should call onChange exactly once', () =>
+        test( 'should call onChange exactly once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( {
+                label    : 'Tekeli-li',
                 children : [
                     <Checkbox label = "one" value = "first check" />,
                     <Checkbox label = "two" value = "second check" />,
-                    <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />,
                 ],
                 onChange,
             } );
 
-            driver.change();
+            wrapper.driver().change();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );

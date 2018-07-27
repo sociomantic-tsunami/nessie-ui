@@ -12,13 +12,15 @@ export default class CheckableGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper   = wrapper;
-        this.cssMap    = wrapper.props().cssMap;
-        this.control   = wrapper.find( 'input' ).first();
+        this.wrapper    = wrapper;
+        this.cssMap     = this.wrapper.props().cssMap;
+        this.checkables = this.wrapper.find( 'Checkbox' ).length ?
+            this.wrapper.find( 'Checkbox' ) :
+            this.wrapper.find( 'Radio' );
     }
 
 
-    change()
+    change( index = 0 )
     {
         const props     = this.wrapper.props();
         const { label } = props;
@@ -35,7 +37,8 @@ export default class CheckableGroupDriver
                 .CHECKABLEGROUP_CANNOT_BE_CHANGED( label, 'read only' ) );
         }
 
-        this.control.simulate( 'change' );
+
+        this.checkables.at( index ).driver().change();
         return this;
     }
 
