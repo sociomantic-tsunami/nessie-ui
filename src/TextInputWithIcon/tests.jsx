@@ -26,248 +26,31 @@ describe( 'TextInputWithIcon', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should have an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextInputWithIcon', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextInputWithIcon' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'handleFocus( e )', () =>
+
+    test( 'should contain exactly one InputField', () =>
     {
-        test( 'should call onFocus with e', () =>
-        {
-            const onFocus = jest.fn();
-            const e = new Event( { } );
-
-            wrapper.setProps( { onFocus } );
-            instance.handleFocus( e );
-
-            expect( onFocus ).toBeCalledWith( e );
-        } );
-
-        test( 'should call onFocus exactly once', () =>
-        {
-            const onFocus = jest.fn();
-
-            wrapper.setProps( { onFocus } );
-            instance.handleFocus( new Event( {} ) );
-
-            expect( onFocus ).toBeCalledTimes( 1 );
-        } );
-
-        test(
-            'should not call onFocus when e.relatedTarget is the <input>',
-            () =>
-            {
-                const onFocus = jest.fn();
-                const input   = <input />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-                wrapper.setProps( { onFocus } );
-                instance.input = input;
-
-                instance.handleFocus( e );
-
-                expect( onFocus ).not.toBeCalled();
-            },
-        );
-
-        test(
-            'should not call onFocus when e.relatedTarget is the <button>',
-            () =>
-            {
-                const onFocus = jest.fn();
-                const button  = <button />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: button } );
-
-                wrapper.setProps( { onFocus } );
-                instance.button = button;
-
-                instance.handleFocus( e );
-
-                expect( onFocus ).not.toBeCalled();
-            },
-        );
-
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <input>', () =>
-        {
-            const input = <input />;
-
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.input = input;
-
-            instance.handleFocus( e );
-
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <button>', () =>
-        {
-            const button = <button />;
-
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.button = button;
-
-            instance.handleFocus( e );
-
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should not call e.stopPropagation when e.relatedTarget is not \
-the <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.handleFocus( e );
-
-            expect( stopPropagation ).not.toBeCalled();
-        } );
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
     } );
 
-    describe( 'handleBlur( e )', () =>
+    test( 'should contain exactly one IconButton when iconType is not \
+\'none\'', () =>
     {
-        test( 'should call onBlur with e', () =>
-        {
-            const onBlur = jest.fn();
-            const e = new Event( { } );
-
-            wrapper.setProps( { onBlur } );
-
-            instance.handleBlur( e );
-
-            expect( onBlur ).toBeCalledWith( e );
-        } );
-
-        test( 'should call onBlur exactly once', () =>
-        {
-            const onBlur = jest.fn();
-
-            wrapper.setProps( { onBlur } );
-
-            instance.handleBlur( new Event( {} ) );
-
-            expect( onBlur ).toBeCalledTimes( 1 );
-        } );
-
-        test(
-            'should not call onBlur when e.relatedTarget is the <input>',
-            () =>
-            {
-                const onBlur = jest.fn();
-                const input   = <input />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: input } );
-
-                wrapper.setProps( { onBlur } );
-                instance.input = input;
-
-                instance.handleBlur( e );
-
-                expect( onBlur ).not.toBeCalled();
-            },
-        );
-
-        test(
-            'should not call onBlur when e.relatedTarget is the <button>',
-            () =>
-            {
-                const onBlur = jest.fn();
-                const button  = <button />;
-
-                const e = new Event( {} );
-                Object.defineProperty( e, 'relatedTarget', { value: button } );
-
-                wrapper.setProps( { onBlur } );
-                instance.button = button;
-
-                instance.handleBlur( e );
-
-                expect( onBlur ).not.toBeCalled();
-            },
-        );
-
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <input>', () =>
-        {
-            const input = <input />;
-
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: input } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.input = input;
-
-            instance.handleBlur( e );
-
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should call e.stopPropagation exactly once when e.relatedTarget \
-is the <button>', () =>
-        {
-            const button = <button />;
-
-            const e = new Event( {} );
-            Object.defineProperty( e, 'relatedTarget', { value: button } );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.button = button;
-
-            instance.handleBlur( e );
-
-            expect( stopPropagation ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should not call e.stopPropagation when e.relatedTarget is not \
-the <input> or the <button>', () =>
-        {
-            const e = new Event( {} );
-            const stopPropagation = jest.spyOn( e, 'stopPropagation' );
-
-            instance.handleBlur( e );
-
-            expect( stopPropagation ).not.toBeCalled();
-        } );
+        wrapper.setProps( { iconType: 'add' } );
+        expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one Tooltipwhen iconType is not \
+\'none\'', () =>
     {
-        beforeEach( () =>
-        {
-            wrapper.setProps( { iconType: 'add' } );
-        } );
-
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
-
-        test( 'should contain exactly one IconButton', () =>
-        {
-            expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
-        } );
-
-        test( 'should contain exactly one Tooltip', () =>
-        {
-            expect( wrapper.find( Tooltip ) ).toHaveLength( 1 );
-        } );
+        wrapper.setProps( { iconType: 'add' } );
+        expect( wrapper.find( Tooltip ) ).toHaveLength( 1 );
     } );
+
 
     describe( 'props', () =>
     {
@@ -782,14 +565,14 @@ the <input> or the <button>', () =>
                 expect( props.onMouseOver ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should not be passed to the InputField', () =>
             {
                 const onMouseOver = () => undefined;
 
                 wrapper.setProps( { onMouseOver } );
 
                 expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )
-                    .toBe( onMouseOver );
+                    .toBe( undefined );
             } );
 
             test( 'should not be passed to the Tooltip', () =>
@@ -826,14 +609,14 @@ the <input> or the <button>', () =>
                 expect( props.onMouseOut ).toBeUndefined();
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should not be passed to the InputField', () =>
             {
                 const onMouseOut = () => undefined;
 
                 wrapper.setProps( { onMouseOut } );
 
                 expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
-                    .toBe( onMouseOut );
+                    .not.toBe( onMouseOut );
             } );
 
             test( 'should not be passed to the Tooltip', () =>
