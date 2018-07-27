@@ -163,7 +163,10 @@ export default class CodeEditor extends Component
 
         const codeMirrorInstance = require( 'codemirror' );
 
-        const codeMirror = codeMirrorInstance.fromTextArea( this.textarea, combinedOptions );
+        const codeMirror = codeMirrorInstance.fromTextArea(
+            this.textarea,
+            combinedOptions,
+        );
 
         codeMirror.setValue( defaultValue || value );
 
