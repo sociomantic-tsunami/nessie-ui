@@ -22,7 +22,7 @@ export default class IconButton extends React.Component
         /**
          *  CSS class map
          */
-        cssMap        : PropTypes.string,
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Label text (overrides label prop)
          */
