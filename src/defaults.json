@@ -344,6 +344,13 @@
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
     },
+    "TextInputWithIcon" :
+    {
+        "label"            : "Name",
+        "inputPlaceholder" : "name",
+        "inputType"        : "text",
+        "iconType"         : "show"
+    },
     "ToggleButton" : {
       "label": "Toggle me tender",
       "subLabel": "Toggle me sweet"

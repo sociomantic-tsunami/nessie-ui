@@ -12,7 +12,7 @@ import {
     Tooltip,
 } from '../index';
 
-import { TextInputWithIcon } from './index';
+import TextInputWithIcon from './index';
 
 
 describe( 'TextInputWithIcon', () =>
@@ -243,73 +243,6 @@ the <input> or the <button>', () =>
             instance.handleBlur( e );
 
             expect( stopPropagation ).not.toBeCalled();
-        } );
-    } );
-
-    describe( 'handleMouseOutIcon( e )', () =>
-    {
-        test( 'should call setState with { iconIsHovered: false } }', () =>
-        {
-            const setState = jest.spyOn( instance, 'setState' );
-            instance.handleMouseOutIcon( new Event( {} ) );
-
-            expect( setState ).toBeCalledWith( { iconIsHovered: false } );
-
-            setState.mockReset();
-        } );
-
-        test( 'should call setState exactly once', () =>
-        {
-            const setState = jest.spyOn( instance, 'setState' );
-            instance.handleMouseOutIcon( new Event( {} ) );
-
-            expect( setState ).toBeCalledTimes( 1 );
-
-            setState.mockReset();
-        } );
-
-        test( 'should call onMouseOutIcon with e', () =>
-        {
-            const onMouseOutIcon = jest.fn();
-            const e = new Event( {} );
-
-            wrapper.setProps( { onMouseOutIcon } );
-
-            instance.handleMouseOutIcon( e );
-
-            expect( onMouseOutIcon ).toBeCalledWith( e );
-        } );
-
-        test( 'should call onMouseOutIcon exactly once', () =>
-        {
-            const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { onMouseOutIcon } );
-
-            instance.handleMouseOutIcon( new Event( {} ) );
-
-            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should call onMouseOut with e', () =>
-        {
-            const onMouseOut = jest.fn();
-            const e = new Event( {} );
-
-            wrapper.setProps( { onMouseOut } );
-
-            instance.handleMouseOutIcon( e );
-
-            expect( onMouseOut ).toBeCalledWith( e );
-        } );
-
-        test( 'should call onMouseOut exactly once', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( { onMouseOut } );
-
-            instance.handleMouseOutIcon( new Event( {} ) );
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -956,52 +889,6 @@ the <input> or the <button>', () =>
             test( 'should be passed to the InputField', () =>
             {
                 wrapper.setProps( { forceHover: true } );
-
-                expect( wrapper.find( InputField ).prop( 'forceHover' ) )
-                    .toBeTruthy();
-            } );
-        } );
-    } );
-
-    describe( 'state', () =>
-    {
-        let e;
-
-        beforeEach( () =>
-        {
-            wrapper.setProps( { iconType: 'add' } );
-            e = new Event( {} );
-        } );
-
-        describe( 'iconIsHovered', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
-            } );
-
-            test( 'should not be true after mouse enters InputField', () =>
-            {
-                wrapper.find( InputField ).simulate( 'mouseOver', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
-            } );
-
-            test( 'should be true after mouse enters Tooltip', () =>
-            {
-                wrapper.find( Tooltip ).simulate( 'mouseOver', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeTruthy();
-            } );
-
-            test( 'should be false after mouse leaves Tooltip', () =>
-            {
-                wrapper.find( Tooltip ).simulate( 'mouseOver', e );
-                wrapper.find( Tooltip ).simulate( 'mouseOut', e );
-                expect( wrapper.state( 'iconIsHovered' ) ).toBeFalsy();
-            } );
-
-            test( 'should be passed to InputField as forceHover', () =>
-            {
-                wrapper.setState( { iconIsHovered: true } );
 
                 expect( wrapper.find( InputField ).prop( 'forceHover' ) )
                     .toBeTruthy();
