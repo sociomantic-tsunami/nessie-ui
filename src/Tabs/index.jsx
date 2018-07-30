@@ -26,7 +26,7 @@ export default class Tabs extends React.Component
          */
         onChange          : PropTypes.func,
         /**
-         *  Secondaty Control
+         *  Secondary Control in Tabs Header
          */
         secondaryControls : PropTypes.node,
     };
