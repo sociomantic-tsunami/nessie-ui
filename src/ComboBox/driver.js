@@ -7,13 +7,19 @@ export default class ComboBoxDriver
 
     blur()
     {
-        this.wrapper.find( 'InputField' ).simulate( 'blur' );
+        this.wrapper.find( 'InputField' ).driver().blur();
         return this;
     }
 
     changeInput()
     {
         this.wrapper.find( 'InputField' ).driver().keyPress();
+        return this;
+    }
+
+    clickIcon()
+    {
+        this.wrapper.find( 'IconButton' ).driver().click();
         return this;
     }
 
@@ -31,7 +37,7 @@ export default class ComboBoxDriver
 
     focus()
     {
-        this.wrapper.find( 'InputField' ).simulate( 'focus' );
+        this.wrapper.find( 'InputField' ).driver().focus();
         return this;
     }
 
