@@ -17,7 +17,14 @@
 
 .tabs
 {
-    
+    display:        flex;
+    flex-direction: row;
+    flex-grow:      1;
+}
+
+.secondaryControls
+{
+    margin-bottom: var( --spacing-2 );
 }
 
 .content

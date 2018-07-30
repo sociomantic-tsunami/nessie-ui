@@ -1,8 +1,8 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import TabButton                        from '../TabButton';
+import { generateId, buildClassName } from '../utils';
+import TabButton                      from '../TabButton';
 
 
 export default class Tabs extends React.Component
@@ -94,6 +94,7 @@ export default class Tabs extends React.Component
     {
         const {
             activeTabIndex,
+            className,
             children,
             cssMap,
             id = generateId( 'Tabs' ),
@@ -105,17 +106,25 @@ export default class Tabs extends React.Component
         const content = Array.isArray( children ) ?
             children[ activeTabIndex ] : children;
 
-        return (
-            <div className = { cssMap.default } id = { id } >
-                <div className = { cssMap.header }>
-                    <div className = { cssMap.tabs }>
-                        { header }
-                    </div>
-                    <div className = { cssMap.secondaryControls }>
-                        { secondaryControls }
-                    </div>
-                </div>
+        let tabsHeader = <div className = { cssMap.header }>{ header }</div>;
 
+        if ( secondaryControls )
+        {
+            tabsHeader = ( <div className = { cssMap.header }>
+                <div className = { cssMap.tabs }>
+                    { header }
+                </div>
+                <div className = { cssMap.secondaryControls }>
+                    { secondaryControls }
+                </div>
+            </div> );
+        }
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap ) }
+                id = { id } >
+                { tabsHeader }
                 <div className = { cssMap.content }>
                     { content }
                 </div>
