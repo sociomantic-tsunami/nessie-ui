@@ -5,7 +5,6 @@
 import React                from 'react';
 import { mount, shallow }   from 'enzyme';
 
-
 import DatePicker           from './index';
 
 describe( 'DatePicker', () =>
@@ -39,7 +38,7 @@ describe( 'DatePickerDriver', () =>
     } );
 
 
-    describe( 'clickItem', () =>
+    describe( 'clickItem()', () =>
     {
         test( 'should simulate and trigger onClickItem() once', () =>
         {
@@ -112,7 +111,8 @@ describe( 'DatePickerDriver', () =>
         } );
     } );
 
-    describe( 'clickNext', () =>
+
+    describe( 'clickNext()', () =>
     {
         test( 'should simulate and trigger onClickNext() once', () =>
         {
@@ -127,7 +127,8 @@ describe( 'DatePickerDriver', () =>
         } );
     } );
 
-    describe( 'clickPrev', () =>
+
+    describe( 'clickPrev()', () =>
     {
         test( 'should simulate and trigger onClickPrev() once', () =>
         {
@@ -139,6 +140,22 @@ describe( 'DatePickerDriver', () =>
             driver.clickPrev();
 
             expect( onClickPrev ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'blur', () =>
+    {
+        test( 'should trigger onBlur callback once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( {
+                onBlur,
+            } );
+            console.log( wrapper.debug() );
+            driver.blur();
+
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 } );

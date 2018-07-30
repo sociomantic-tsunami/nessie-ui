@@ -1,10 +1,10 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }             from '../utils';
-import styles                         from './datePicker.css';
-import DatePickerItem                 from './DatePickerItem';
-import DatePickerHeader               from './DatePickerHeader';
+import { buildClassName }   from '../utils';
+import styles               from './datePicker.css';
+import DatePickerItem       from './DatePickerItem';
+import DatePickerHeader     from './DatePickerHeader';
 
 
 const DatePicker = ( {
@@ -37,15 +37,15 @@ const DatePicker = ( {
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
         <DatePickerHeader
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            label          = { label }
-            month          = { month }
-            year           = { year }
-            nextIsDisabled = { nextIsDisabled }
-            onClickNext    = { onClickNext }
-            onClickPrev    = { onClickPrev }
-            prevIsDisabled = { prevIsDisabled }
+            isDisabled        = { isDisabled }
+            isReadOnly        = { isReadOnly }
+            label             = { label }
+            month             = { month }
+            year              = { year }
+            nextIsDisabled    = { nextIsDisabled }
+            onClickNext       = { onClickNext }
+            onClickPrev       = { onClickPrev }
+            prevIsDisabled    = { prevIsDisabled }
             hourIsDisabled    = { hourIsDisabled }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
@@ -92,15 +92,17 @@ const DatePicker = ( {
 );
 
 DatePicker.propTypes = {
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    headers           : PropTypes.arrayOf( PropTypes.objectOf( PropTypes.string ) ),
-    hourIsDisabled    : PropTypes.bool,
-    hourPlaceholder   : PropTypes.string,
-    hourValue         : PropTypes.string,
-    isDisabled        : PropTypes.bool,
-    isReadOnly        : PropTypes.bool,
-    items             : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    headers   : PropTypes
+        .arrayOf( PropTypes.objectOf( PropTypes.string ) ),
+    hourIsDisabled  : PropTypes.bool,
+    hourPlaceholder : PropTypes.string,
+    hourValue       : PropTypes.string,
+    isDisabled      : PropTypes.bool,
+    isReadOnly      : PropTypes.bool,
+    items           : PropTypes
+        .arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,

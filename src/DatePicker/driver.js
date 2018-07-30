@@ -51,4 +51,28 @@ export default class DatePickerDriver
             .simulate( 'click' );
         return this;
     }
+
+    keyPress()
+    {
+        this.wrapper.simulate( 'keyPress' );
+        return this;
+    }
+
+    blur()
+    {
+        this.wrapper.find( '.hour' ).simulate( 'blur' );
+        return this;
+    }
+
+    focus()
+    {
+        this.input.props().cssMap.min.simulate( 'focus' );
+        return this;
+    }
+
+    change()
+    {
+        this.wrapper.find( 'TimeInput' ).first().simulate( 'change' );
+        return this;
+    }
 }
