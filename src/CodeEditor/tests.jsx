@@ -48,27 +48,6 @@ describe( 'CodeEditorDriver', () =>
     } );
 
 
-    describe( 'isReadOnly()', () =>
-    {
-        test( 'should return true if the editor cannot be edited', () =>
-        {
-            wrapper.setProps( { isReadOnly: true } );
-            expect( driver.isReadOnly() ).toBeTruthy();
-            expect( driver.isDisabled() ).toBeFalsy();
-        } );
-    } );
-
-    describe( 'isDisabled()', () =>
-    {
-        test( 'should return true if the editor is disabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( driver.isDisabled() ).toBeTruthy();
-            expect( driver.isReadOnly() ).toBeFalsy();
-        } );
-    } );
-
-
     describe( 'blur()', () =>
     {
         test( 'should call onBlur once', () =>
@@ -206,40 +185,16 @@ focus since it is read only';
     } );
 
 
-    describe.skip( 'change()', () =>
+    describe( 'change()', () =>
     {
         test( 'should call onChange once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            driver.change();
+            driver.change( 'Tekeli-li' );
 
             expect( onChange ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should change the value of target.checked to false', () =>
-        {
-            let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
-            wrapper.setProps( { onChange, isChecked: true } );
-
-            driver.change();
-
-            expect( targetChecked ).toBeFalsy();
-        } );
-
-        test( 'should change the value of target.checked to true', () =>
-        {
-            let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
-            wrapper.setProps( { onChange, isChecked: false } );
-
-            driver.change();
-
-            expect( targetChecked ).toBeTruthy();
         } );
 
 
@@ -252,7 +207,8 @@ focus since it is read only';
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot be \
 changed since it is disabled';
 
-                expect( () => driver.change() ).toThrow( expectedError );
+                expect( () => driver.change( 'Cthulhu' ) )
+                    .toThrow( expectedError );
             } );
 
             it( 'does not call simulate( event ) when isDisabled', () =>
@@ -264,7 +220,7 @@ changed since it is disabled';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
+                expect( () => driver.change( 'Cthulhu' ) );
                 expect( onChange ).not.toBeCalled();
             } );
         } );
@@ -279,7 +235,8 @@ changed since it is disabled';
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot be \
 changed since it is read only';
 
-                expect( () => driver.change() ).toThrow( expectedError );
+                expect( () => driver.change( 'Azathoth' ) )
+                    .toThrow( expectedError );
             } );
 
             it( 'does not call simulate( event ) when isReadOnly', () =>
@@ -292,7 +249,7 @@ changed since it is read only';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
+                expect( () => driver.change( 'Azathoth' ) );
                 expect( onChange ).not.toBeCalled();
             } );
         } );

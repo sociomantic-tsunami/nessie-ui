@@ -20,6 +20,8 @@ export default class CodeEditorDriver
         this.wrapper = wrapper;
         // the 3rd party control
         this.control = wrapper.node.codeMirror;
+
+        this.content = this.wrapper.find( 'InputContainer' ).first();
     }
 
 
@@ -70,11 +72,10 @@ export default class CodeEditorDriver
         return this;
     }
 
-    change()
+    change( val )
     {
         const props     = this.wrapper.props();
         const { label } = props;
-        const node      = this.control.getNode();
 
         if ( props.isDisabled )
         {
@@ -88,8 +89,8 @@ export default class CodeEditorDriver
                 .CODEEDITOR_CANNOT_BE_CHANGED( label, 'read only' ) );
         }
 
-        node.checked = !node.checked;
-        this.control.simulate( 'change' );
+        this.control.setValue( val );
+        this.wrapper.prop( 'onChange' )( this.control.getValue() );
         return this;
     }
 
@@ -133,15 +134,5 @@ export default class CodeEditorDriver
 
         this.wrapper.simulate( 'mouseleave' );
         return this;
-    }
-
-    isReadOnly()
-    {
-        return Boolean( this.control.options.readOnly ) && !this.isDisabled();
-    }
-
-    isDisabled()
-    {
-        return this.control.options.readOnly === 'nocursor';
     }
 }
