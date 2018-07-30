@@ -38,7 +38,7 @@
 /* ROLES */
 .role__default
 {
-    color:  var( --PC-GREY--L10 );
+    color:  inherit;
 }
 
 .role__subtle

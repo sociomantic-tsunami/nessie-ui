@@ -1,22 +1,22 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import styles               from './text.css';
+import { buildClassName } from '../utils';
+import styles             from './text.css';
 
 const Text = ( {
     allCaps,
-    cssMap,
-    className,
     children,
+    className,
+    color,
+    cssMap,
+    letterSpacing,
     noWrap,
     overflowIsHidden,
     role,
     size,
-    letterSpacing,
     text,
     textAlign,
-    color,
     textRef,
     variant,
 } ) => (
@@ -30,7 +30,7 @@ const Text = ( {
             textAlign,
             variant,
         } ) }
-        style = { { letterSpacing, color } }
+        style = { { color, letterSpacing } }
         ref = { textRef }>
         { children || text }
     </div>
@@ -43,9 +43,25 @@ Text.propTypes =
      */
     allCaps          : PropTypes.bool,
     /**
+     *  Text content (JSX node; overrides text prop)
+     */
+    children         : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className        : PropTypes.string,
+    /**
+    *  Text Color
+    */
+    color            : PropTypes.string,
+    /**
      *  CSS class map
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
+    /**
+    * Letter Spacing for the text
+    */
+    letterSpacing    : PropTypes.string,
     /**
     *  Don’t wrap text to the next line
     */
@@ -77,27 +93,16 @@ Text.propTypes =
         'XXS',
     ] ),
     /**
-    * Letter Spacing for the text
-    */
-    letterSpacing : PropTypes.string,
-    /**
     *  Text string
     */
-    text          : PropTypes.string,
+    text      : PropTypes.string,
     /**
-    * Text Align
+    * Text alignment
     */
-    textAlign     : PropTypes.oneOf( [
-        'left',
-        'center',
-        'right',
-    ] ),
+    textAlign : PropTypes.oneOf( [ 'left', 'center', 'right' ] ),
+
     /**
-    *  Text Color
-    */
-    color   : PropTypes.string,
-    /**
-    *  callback that receives ref to the text div: ref => ...
+    *  Callback that receives ref to the text div: ref => ...
     */
     textRef : PropTypes.func,
     /**
@@ -116,13 +121,16 @@ Text.propTypes =
 Text.defaultProps =
 {
     allCaps          : false,
+    color            : undefined,
     cssMap           : styles,
+    letterSpacing    : '0',
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',
     size             : 'M',
-    letterSpacing    : '0',
+    text             : undefined,
     textAlign        : 'left',
+    textRef          : undefined,
     variant          : 'Regular',
 };
 
