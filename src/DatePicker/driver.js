@@ -1,16 +1,12 @@
 const ERRORS = {
-    ELEMENT_CANNOT_BE_CLICKED : ( el, label, state ) =>
-        `'${el}' '${label}' cannot be clicked since it is ${state}`,
+    ELEMENT_CANNOT_BE_CLICKED : ( label, state ) =>
+        `Item '${label}' cannot be clicked since it is ${state}`,
     NAV_CANNOT_BE_CLICKED : ( el, state ) =>
         `${el} cannot be clicked since it is ${state}`,
-    BUTTON_CANNOT_BE_BLURED : ( label, state ) =>
-        `Button '${label}' cannot have blur since it is ${state}`,
-    BUTTON_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `Button '${label}' cannot have focus since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOVER : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOver since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOUT : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOut since it is ${state}`,
+    INPUT_CANNOT_BE_BLURED : ( state ) =>
+        `Input cannot have blur since it is ${state}`,
+    INPUT_CANNOT_BE_FOCUSED : ( state ) =>
+        `Input cannot have focus since it is ${state}`,
 };
 
 export default class DatePickerDriver
@@ -31,7 +27,6 @@ export default class DatePickerDriver
         if ( dateItem.isDisabled )
         {
             throw new Error( ERRORS.ELEMENT_CANNOT_BE_CLICKED(
-                'Item',
                 label,
                 'disabled',
             ) );
@@ -40,7 +35,6 @@ export default class DatePickerDriver
         if ( dateItem.isReadOnly )
         {
             throw new Error( ERRORS.ELEMENT_CANNOT_BE_CLICKED(
-                'Item',
                 label,
                 'read only',
             ) );
@@ -85,19 +79,39 @@ export default class DatePickerDriver
         return this;
     }
 
-    blur()
+    blurInput()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.INPUT_CANNOT_BE_BLURED( 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERRORS.INPUT_CANNOT_BE_BLURED( 'read only' ) );
+        }
+
         this.wrapper.find( `.${this.header.hour}` ).simulate( 'blur' );
         return this;
     }
 
-    focus()
+    focusInput()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.INPUT_CANNOT_BE_FOCUSED( 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERRORS.INPUT_CANNOT_BE_FOCUSED( 'read only' ) );
+        }
+
         this.wrapper.find( `.${this.header.min}` ).simulate( 'focus' );
         return this;
     }
 
-    change()
+    changeInput()
     {
         this.wrapper.find( `.${this.header.hour}` ).simulate( 'change' );
         return this;
