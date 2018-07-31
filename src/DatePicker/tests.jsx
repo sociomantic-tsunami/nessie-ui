@@ -125,6 +125,32 @@ describe( 'DatePickerDriver', () =>
 
             expect( onClickNext ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'nextIsDisabled', () =>
+        {
+            test( 'should throw the expected error when nextIsDisabled', () =>
+            {
+                const expectedError =
+                    'Next cannot be clicked since it is disabled';
+
+                wrapper.setProps( {
+                    nextIsDisabled : true,
+                } );
+
+                expect( () => driver.clickNext() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const onClickNext = jest.fn();
+
+                wrapper.setProps( { nextIsDisabled: true, onClickNext } );
+
+                expect( () => driver.clickNext() );
+                expect( onClickNext ).not.toBeCalled();
+            } );
+        } );
     } );
 
 
@@ -140,6 +166,32 @@ describe( 'DatePickerDriver', () =>
             driver.clickPrev();
 
             expect( onClickPrev ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'prevIsDisabled', () =>
+        {
+            test( 'should throw the expected error when prevIsDisabled', () =>
+            {
+                const expectedError =
+                    'Previous cannot be clicked since it is disabled';
+
+                wrapper.setProps( {
+                    prevIsDisabled : true,
+                } );
+
+                expect( () => driver.clickPrev() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const onClickPrev = jest.fn();
+
+                wrapper.setProps( { prevIsDisabled: true, onClickPrev } );
+
+                expect( () => driver.clickPrev() );
+                expect( onClickPrev ).not.toBeCalled();
+            } );
         } );
     } );
 

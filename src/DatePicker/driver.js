@@ -1,5 +1,16 @@
 const ERRORS = {
-    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled',
+    ELEMENT_CANNOT_BE_CLICKED : ( el, label, state ) =>
+        `'${el}' '${label}' cannot be clicked since it is ${state}`,
+    NAV_CANNOT_BE_CLICKED : ( el, state ) =>
+        `${el} cannot be clicked since it is ${state}`,
+    BUTTON_CANNOT_BE_BLURED : ( label, state ) =>
+        `Button '${label}' cannot have blur since it is ${state}`,
+    BUTTON_CANNOT_BE_FOCUSED : ( label, state ) =>
+        `Button '${label}' cannot have focus since it is ${state}`,
+    BUTTON_CANNOT_MOUSEOVER : ( label, state ) =>
+        `Button '${label}' cannot have onMouseOver since it is ${state}`,
+    BUTTON_CANNOT_MOUSEOUT : ( label, state ) =>
+        `Button '${label}' cannot have onMouseOut since it is ${state}`,
 };
 
 export default class DatePickerDriver
@@ -8,15 +19,31 @@ export default class DatePickerDriver
     {
         this.wrapper = wrapper;
         this.cssMap  = this.wrapper.props().cssMap;
+        this.header  = this.wrapper.find( 'DatePickerHeader' ).props().cssMap;
     }
 
     clickItem( index = 0 )
     {
-        const dateItem = this.wrapper.find( 'DatePickerItem' ).at( index );
+        const dateItem = this.wrapper.find( 'DatePickerItem' )
+            .at( index ).props();
+        const { label } = dateItem;
 
-        if ( dateItem.props().isDisabled )
+        if ( dateItem.isDisabled )
         {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
+            throw new Error( ERRORS.ELEMENT_CANNOT_BE_CLICKED(
+                'Item',
+                label,
+                'disabled',
+            ) );
+        }
+
+        if ( dateItem.isReadOnly )
+        {
+            throw new Error( ERRORS.ELEMENT_CANNOT_BE_CLICKED(
+                'Item',
+                label,
+                'read only',
+            ) );
         }
 
         this.wrapper.find( 'DatePickerItem' ).at( index )
@@ -26,29 +53,29 @@ export default class DatePickerDriver
 
     clickPrev()
     {
-        const header = this.wrapper.find( 'DatePickerHeader' ).props();
-
-        if ( header.prevIsDisabled )
+        if ( this.wrapper.props().prevIsDisabled )
         {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
+            throw new Error( ERRORS.NAV_CANNOT_BE_CLICKED(
+                'Previous',
+                'disabled',
+            ) );
         }
 
-        this.wrapper.find( 'IconButton' ).first()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.header.prev}` ).simulate( 'click' );
         return this;
     }
 
     clickNext()
     {
-        const header = this.wrapper.find( 'DatePickerHeader' ).props();
-
-        if ( header.nextIsDisabled )
+        if ( this.wrapper.props().nextIsDisabled )
         {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
+            throw new Error( ERRORS.NAV_CANNOT_BE_CLICKED(
+                'Next',
+                'disabled',
+            ) );
         }
 
-        this.wrapper.find( 'IconButton' ).last()
-            .simulate( 'click' );
+        this.wrapper.find( `.${this.header.next}` ).simulate( 'click' );
         return this;
     }
 
@@ -60,19 +87,19 @@ export default class DatePickerDriver
 
     blur()
     {
-        this.wrapper.find( '.hour' ).simulate( 'blur' );
+        this.wrapper.find( `.${this.header.hour}` ).simulate( 'blur' );
         return this;
     }
 
     focus()
     {
-        this.wrapper.find( '.min' ).simulate( 'focus' );
+        this.wrapper.find( `.${this.header.min}` ).simulate( 'focus' );
         return this;
     }
 
     change()
     {
-        this.wrapper.find( '.hour' ).simulate( 'change' );
+        this.wrapper.find( `.${this.header.hour}` ).simulate( 'change' );
         return this;
     }
 }
