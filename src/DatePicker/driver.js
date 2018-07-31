@@ -66,13 +66,13 @@ export default class DatePickerDriver
 
     focus()
     {
-        this.input.props().cssMap.min.simulate( 'focus' );
+        this.wrapper.find( '.min' ).simulate( 'focus' );
         return this;
     }
 
     change()
     {
-        this.wrapper.find( 'TimeInput' ).first().simulate( 'change' );
+        this.wrapper.find( '.hour' ).simulate( 'change' );
         return this;
     }
 }

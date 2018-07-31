@@ -144,18 +144,44 @@ describe( 'DatePickerDriver', () =>
     } );
 
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should trigger onBlur callback once', () =>
         {
             const onBlur = jest.fn();
-            wrapper.setProps( {
-                onBlur,
-            } );
-            console.log( wrapper.debug() );
+            wrapper.setProps( { onBlur } );
+
             driver.blur();
 
             expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'change()', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change();
+
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 } );
