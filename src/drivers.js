@@ -7,6 +7,7 @@ import {
     ComboBox,
     DatePicker,
     DateTimeInput,
+    Fieldset,
     FlounderDropdown,
     Form,
     IconButton,
@@ -42,6 +43,7 @@ import CodeEditorDriver        from './CodeEditor/driver';
 import ComboBoxDriver          from './ComboBox/driver';
 import DatePickerDriver        from './DatePicker/driver';
 import DateTimeInputDriver     from './DateTimeInput/driver';
+import FieldsetDriver          from './Fieldset/driver';
 import FlounderDropdownDriver  from './FlounderDropdown/driver';
 import FormDriver              from './Form/driver';
 import IconWithTooltipDriver   from './IconWithTooltip/driver';
@@ -96,6 +98,10 @@ const drivers =
     {
         Component : DateTimeInput,
         Driver    : DateTimeInputDriver,
+    },
+    {
+        Component : Fieldset,
+        Driver    : FieldsetDriver,
     },
     {
         Component : FlounderDropdown,
