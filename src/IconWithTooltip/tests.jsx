@@ -1,12 +1,12 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
-import React                            from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import { Tooltip }                      from '../index';
+import { Tooltip }          from '../index';
 
-import IconWithTooltip                  from './index';
+import IconWithTooltip      from './index';
 
 
 describe( 'IconWithTooltip', () =>
@@ -203,8 +203,8 @@ describe( 'IconWithTooltipDriver', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                const expectedError = 'Cannot mouseOverIcon because it is \
-disabled';
+                const expectedError =
+                    'Cannot mouseOverIcon because it is disabled';
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
             } );
@@ -241,7 +241,8 @@ disabled';
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                const expectedError = 'Cannot mouseOutIcon because it is disabled';
+                const expectedError =
+                    'Cannot mouseOutIcon because it is disabled';
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
             } );
@@ -252,7 +253,7 @@ disabled';
 
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( () => driver.mouseOutIconv() );
+                expect( () => driver.mouseOutIcon() );
                 expect( simulate ).not.toBeCalled();
             } );
         } );
