@@ -10,6 +10,7 @@ import {
     Fieldset,
     FlounderDropdown,
     Form,
+    Icon,
     IconButton,
     IconWithTooltip,
     InputField,
@@ -46,6 +47,7 @@ import DateTimeInputDriver     from './DateTimeInput/driver';
 import FieldsetDriver          from './Fieldset/driver';
 import FlounderDropdownDriver  from './FlounderDropdown/driver';
 import FormDriver              from './Form/driver';
+import IconDriver              from './Icon/driver';
 import IconWithTooltipDriver   from './IconWithTooltip/driver';
 import InputFieldDriver        from './InputField/driver';
 import ListBoxDriver           from './ListBox/driver';
@@ -110,6 +112,10 @@ const drivers =
     {
         Component : Form,
         Driver    : FormDriver,
+    },
+    {
+        Component : Icon,
+        Driver    : IconDriver,
     },
     {
         Component : IconButton,
