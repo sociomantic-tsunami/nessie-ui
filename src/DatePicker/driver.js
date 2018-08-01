@@ -3,6 +3,8 @@ const ERRORS = {
         `Item '${label}' cannot be clicked since it is ${state}`,
     NAV_CANNOT_BE_CLICKED : ( el, state ) =>
         `${el} cannot be clicked since it is ${state}`,
+    NO_INPUT : () =>
+        'There\'s no input because <mode> is not <default>',
     HOUR_INPUT_CANNOT_BE_BLURED : ( state ) =>
         `Hour input cannot have blur since it is ${state}`,
     HOUR_INPUT_CANNOT_BE_FOCUSED : ( state ) =>
@@ -82,18 +84,35 @@ export default class DatePickerDriver
 
     keyPressHour()
     {
-        this.wrapper.find( `.${this.hour}` ).simulate( 'keyPress' );
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.hour}` )
+            .simulate( 'keyPress', { key: '3' } );
         return this;
     }
 
     keyPressMinute()
     {
-        this.wrapper.find( `.${this.min}` ).simulate( 'keyPress' );
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.min}` )
+            .simulate( 'keyPress', { key: '8' } );
         return this;
     }
 
     blurHour()
     {
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERRORS
@@ -112,6 +131,11 @@ export default class DatePickerDriver
 
     blurMinute()
     {
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERRORS
@@ -130,6 +154,11 @@ export default class DatePickerDriver
 
     focusHour()
     {
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERRORS
@@ -148,6 +177,11 @@ export default class DatePickerDriver
 
     focusMinute()
     {
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERRORS
@@ -166,13 +200,25 @@ export default class DatePickerDriver
 
     changeHour()
     {
-        this.wrapper.find( `.${this.hour}` ).simulate( 'change' );
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.hour}` )
+            .simulate( 'change', { target: { value: '02' } } );
         return this;
     }
 
     changeMinute()
     {
-        this.wrapper.find( `.${this.min}` ).simulate( 'change' );
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERRORS.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.min}` )
+            .simulate( 'change', { target: { value: '23' } } );
         return this;
     }
 }
