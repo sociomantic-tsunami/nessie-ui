@@ -84,9 +84,8 @@ describe( 'PasswordInputDriver', () =>
         {
             const focusSpy = jest.fn();
             wrapper.setProps( {
-                title    : 'Test',
-                hasError : false,
-                onFocus  : focusSpy,
+                title   : 'Test',
+                onFocus : focusSpy,
             } );
 
             driver.focus();
@@ -100,9 +99,8 @@ describe( 'PasswordInputDriver', () =>
         {
             const blurSpy = jest.fn();
             wrapper.setProps( {
-                title    : 'Test',
-                hasError : false,
-                onBlur   : blurSpy,
+                title  : 'Test',
+                onBlur : blurSpy,
             } );
 
             driver.blur();
@@ -124,18 +122,47 @@ describe( 'PasswordInputDriver', () =>
         } );
     } );
 
-    describe( 'clickInput()', () =>
+
+    // describe( 'focusIcon()', () =>
+    // {
+    //     test( 'should trigger onFocusIcon callback once', () =>
+    //     {
+    //         const onFocusIcon = jest.fn();
+    //         wrapper.setProps( {
+    //             onFocusIcon,
+    //         } );
+    //
+    //         driver.focusIcon();
+    //         expect( onFocusIcon ).toBeCalledTimes( 1 );
+    //     } );
+    // } );
+    //
+    // describe( 'blurIcon()', () =>
+    // {
+    //     test( 'should trigger onBlurIcon callback once', () =>
+    //     {
+    //         const onBlurIcon = jest.fn();
+    //         wrapper.setProps( {
+    //             onBlurIcon,
+    //         } );
+    //
+    //         driver.blurIcon();
+    //         expect( onBlurIcon ).toBeCalledTimes( 1 );
+    //     } );
+    // } );
+
+    describe( 'clickIcon()', () =>
     {
         test( 'should trigger onClick callback once', () =>
         {
-            const clickSpy = jest.fn();
+            const onClickIcon = jest.fn();
             wrapper.setProps( {
-                onClick : clickSpy,
+                onClickIcon,
             } );
 
-            driver.clickInput();
+            driver.clickIcon();
 
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            expect( onClickIcon ).toBeCalledTimes( 1 );
         } );
     } );
 } );
