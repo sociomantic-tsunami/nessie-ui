@@ -14,23 +14,6 @@ export default class NavItemDriver
             .first().simulate( 'click' );
     }
 
-    getLabel()
-    {
-        return this.wrapper.find( `.${this.cssMap.link} span` )
-            .first().children();
-    }
-
-    getChildNavItems()
-    {
-        const dropdown = this.wrapper.find( NavDropdown );
-        if ( dropdown.length !== 1 )
-        {
-            return [];
-        }
-
-        return dropdown.children( NavItem );
-    }
-
     mouseOver()
     {
         this.wrapper.simulate( 'mouseenter' );

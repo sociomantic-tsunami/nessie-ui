@@ -25,51 +25,58 @@ describe( 'NavItem', () =>
         expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
             .toHaveLength( 1 );
     } );
+} );
 
-    test( 'should trigger callback on click once', () =>
+
+describe( 'NavItemDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        const props = {
+            label : 'Cthulhu',
+        };
+
+        wrapper = mount(  <NavItem { ...props } /> );
+        driver = wrapper.driver();
+    } );
+
+
+    test( 'should trigger onClick callback once', () =>
     {
         const onClickSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onClick : onClickSpy,
         } );
 
-        wrapper.driver().click();
+        driver.click();
 
         expect( onClickSpy ).toBeCalledTimes( 1 );
     } );
 
-    test( 'should trigger callback on mouse over once', () =>
+    test( 'should trigger onMouseOver callback once', () =>
     {
         const onMouseOverSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onMouseOver : onMouseOverSpy,
         } );
 
-        wrapper.driver().mouseOver();
+        driver.mouseOver();
 
         expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
 
-    test( 'should trigger callback on mouse out once', () =>
+    test( 'should trigger onMouseOut callback once', () =>
     {
         const onMouseOutSpy = jest.fn().mockReset();
         wrapper.setProps( {
             onMouseOut : onMouseOutSpy,
         } );
 
-        wrapper.driver().mouseOut();
+        driver.mouseOut();
 
         expect( onMouseOutSpy ).toBeCalledTimes( 1 );
-    } );
-
-    test( 'driver method `getLabel` should return the component label', () =>
-    {
-        wrapper = mount( <NavItem
-            label = { <span>testLabel</span> }
-        /> );
-
-        const label = wrapper.driver().getLabel();
-
-        expect( label.html() ).toBe( '<span>testLabel</span>' );
     } );
 } );
