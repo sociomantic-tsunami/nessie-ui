@@ -3,6 +3,7 @@
 :root
 {
     --trackThickness:   5px;
+    --negativeSpacing:  -72px;
 }
 
 .default
@@ -24,57 +25,6 @@
         {
             display:    none;
         } */
-    }
-
-    .iconDown,
-    .iconLeft,
-    .iconRight,
-    .iconUp
-    {
-        position:       absolute;
-        border-radius:  50%;
-        padding:        var( --spacing-1 );
-        background:     var( --PC-BLUE );
-        opacity:        0.4;
-
-        &:hover,
-        &:focus
-        {
-            opacity:    1;
-        }
-
-        svg
-        {
-            fill:   var( --PC-WHITE );
-        }
-    }
-
-    .iconDown
-    {
-        bottom:     var( --spacing-1 );
-        left:       calc( 50% );
-        transform:  translateX( -50% );
-    }
-
-    .iconLeft
-    {
-        top:        calc( 50% );
-        left:       var( --spacing-1 );
-        transform:  translateY( -50% );
-    }
-
-    .iconRight
-    {
-        top:        calc( 50% );
-        right:      var( --spacing-1 );
-        transform:  translateY( -50% );
-    }
-
-    .iconUp
-    {
-        top:        var( --spacing-1 );
-        left:       calc( 50% );
-        transform:  translateX( -50% );
     }
 
     .scrollBarHorizontal
@@ -150,6 +100,157 @@
     .scrollBarVertical
     {
         height: calc( 100% - var( --trackThickness ) );
+    }
+}
+
+.scrollIndicatorVariant__circle_bg
+{
+    .iconDown,
+    .iconLeft,
+    .iconRight,
+    .iconUp
+    {
+        position:       absolute;
+        border-radius:  50%;
+        padding:        var( --spacing-1 );
+        background:     var( --PC-BLUE );
+        opacity:        0.4;
+
+        &:hover,
+        &:focus
+        {
+            opacity:    1;
+        }
+
+        svg
+        {
+            fill:   var( --PC-WHITE );
+        }
+    }
+
+    .iconDown
+    {
+        bottom:     var( --spacing-1 );
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+    }
+
+    .iconLeft
+    {
+        top:        calc( 50% );
+        left:       var( --spacing-1 );
+        transform:  translateY( -50% );
+    }
+
+    .iconRight
+    {
+        top:        calc( 50% );
+        right:      var( --spacing-1 );
+        transform:  translateY( -50% );
+    }
+
+    .iconUp
+    {
+        top:        var( --spacing-1 );
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+    }
+}
+
+.scrollIndicatorVariant__transparent_bg
+{
+    .iconDown,
+    .iconLeft,
+    .iconRight,
+    .iconUp
+    {
+        position:         absolute;
+        background-color: transparent;
+        pointer-events:   none;
+
+        svg
+        {
+            fill:           var( --PC-GREY--D5 );
+            pointer-events: auto;
+            z-index:        1;
+        }
+
+        &::before
+        {
+            content:        "";
+            display:        block;
+            position:       absolute;
+        }
+    }
+
+    .iconDown
+    {
+        bottom:     0;
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+        width:      100%;
+
+        &::before
+        {
+            bottom:     0;
+            width:      100%;
+            height:     var( --spacing-9 );
+
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+    }
+
+    .iconLeft
+    {
+        top:        calc( 50% );
+        left:       0;
+        transform:  translateY( -50% );
+        height:     100%;
+
+        &::before
+        {
+            top:       0;
+            left:      0;
+            height:    100%;
+            width:     var( --spacing-9 );
+
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+    }
+
+    .iconRight
+    {
+        top:        calc( 50% );
+        right:      0;
+        transform:  translateY( -50% );
+        height:     100%;
+
+        &::before
+        {
+            top:        0;
+            right:      0;
+            height:     100%;
+            width:      var( --spacing-9 );
+
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+    }
+
+    .iconUp
+    {
+        top:        0;
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+        width:      100%;
+
+        &::before
+        {
+            top:        0;
+            width:      100%;
+            height:     var( --spacing-9 );
+
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
     }
 }
 

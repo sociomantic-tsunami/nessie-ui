@@ -89,52 +89,60 @@ export default class ScrollBox extends Component
         /**
          *  Display Scroll bars
          */
-        scrollBarsAreVisible : PropTypes.bool,
+        scrollBarsAreVisible   : PropTypes.bool,
         /**
          * DOM element "Scrollbox inner"
          */
-        scrollBoxRef         : PropTypes.string,
+        scrollBoxRef           : PropTypes.string,
         /**
          *  Display Scroll left icon
          */
-        scrollLeftIsVisible  : PropTypes.bool,
+        scrollLeftIsVisible    : PropTypes.bool,
         /**
          *  Display Scroll right icon
          */
-        scrollRightIsVisible : PropTypes.bool,
+        scrollRightIsVisible   : PropTypes.bool,
         /**
          *  Display Scroll up icon
          */
-        scrollUpIsVisible    : PropTypes.bool,
+        scrollUpIsVisible      : PropTypes.bool,
         /**
          *  Display Scroll down icon
          */
-        scrollDownIsVisible  : PropTypes.bool,
+        scrollDownIsVisible    : PropTypes.bool,
+        /**
+         *  Display Scroll down icon
+         */
+        scrollIndicatorVariant : PropTypes.oneOf( [
+            'circle_bg',
+            'transparent_bg',
+        ] ),
     };
 
     static defaultProps =
     {
-        children             : undefined,
-        className            : undefined,
-        contentWidth         : undefined,
-        cssMap               : styles,
-        height               : undefined,
-        onClickScrollDown    : undefined,
-        onClickScrollLeft    : undefined,
-        onClickScrollRight   : undefined,
-        onClickScrollUp      : undefined,
-        onMouseOver          : undefined,
-        onMouseOut           : undefined,
-        onScroll             : undefined,
-        overlayScrollBars    : false,
-        padding              : 'none',
-        scroll               : 'both',
-        scrollBarsAreVisible : true,
-        scrollBoxRef         : undefined,
-        scrollDownIsVisible  : false,
-        scrollLeftIsVisible  : false,
-        scrollRightIsVisible : false,
-        scrollUpIsVisible    : false,
+        children               : undefined,
+        className              : undefined,
+        contentWidth           : undefined,
+        cssMap                 : styles,
+        height                 : undefined,
+        onClickScrollDown      : undefined,
+        onClickScrollLeft      : undefined,
+        onClickScrollRight     : undefined,
+        onClickScrollUp        : undefined,
+        onMouseOver            : undefined,
+        onMouseOut             : undefined,
+        onScroll               : undefined,
+        overlayScrollBars      : false,
+        padding                : 'none',
+        scroll                 : 'both',
+        scrollBarsAreVisible   : true,
+        scrollBoxRef           : undefined,
+        scrollDownIsVisible    : false,
+        scrollLeftIsVisible    : false,
+        scrollRightIsVisible   : false,
+        scrollUpIsVisible      : false,
+        scrollIndicatorVariant : 'circle_bg',
     };
 
     constructor()
@@ -348,6 +356,7 @@ export default class ScrollBox extends Component
             padding,
             scroll,
             scrollBarsAreVisible,
+            scrollIndicatorVariant,
         } = this.props;
 
         return (
@@ -361,6 +370,7 @@ export default class ScrollBox extends Component
                     paddingY : Array.isArray( padding ) ? padding[ 1 ]
                         : padding,
                     scrollBarsAreVisible,
+                    scrollIndicatorVariant,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
