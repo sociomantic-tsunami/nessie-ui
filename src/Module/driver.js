@@ -20,7 +20,7 @@ export default class ModuleDriver
     /**
      * Simulate human toggle by clicking on the arrow.
      */
-    toggle()
+    clickToggle()
     {
         const toggle = this.wrapper.find( IconButton ).last();
 
@@ -48,6 +48,30 @@ export default class ModuleDriver
         deleteButton.driver().click();
 
         return this.wrapper;
+    }
+
+    mouseOverHeader()
+    {
+        this.wrapper.find( `.${this.cssMap.header}` ).first().simulate( 'mouseOver' );
+        return this;
+    }
+
+    mouseOutHeader()
+    {
+        this.wrapper.find( `.${this.cssMap.header}` ).simulate( 'mouseOut' );
+        return this;
+    }
+
+    mouseOverError()
+    {
+        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOutError()
+    {
+        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseleave' );
+        return this;
     }
 
     getCustomHeader()

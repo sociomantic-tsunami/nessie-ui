@@ -177,7 +177,7 @@ describe( 'ModuleDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'toggle()', () =>
+    describe( 'clickToggle()', () =>
     {
         test( 'should fire the onClickToggle prop once', () =>
         {
@@ -188,11 +188,12 @@ describe( 'ModuleDriver', () =>
                 onClickToggle : toggleSpy,
             } );
 
-            driver.toggle();
+            driver.clickToggle();
 
             expect( toggleSpy ).toBeCalledTimes( 1 );
         } );
     } );
+
 
     describe( 'clickDelete()', () =>
     {
@@ -211,6 +212,7 @@ describe( 'ModuleDriver', () =>
         } );
     } );
 
+
     describe( 'getCustomHeader()', () =>
     {
         test( 'should return the customHeader content', () =>
@@ -222,6 +224,76 @@ describe( 'ModuleDriver', () =>
 
             const header = driver.getCustomHeader();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverHeader()', () =>
+    {
+        test( 'should trigger onMouseOverHeader callback once', () =>
+        {
+            const onMouseOverHeader = jest.fn();
+
+            wrapper.setProps( { onMouseOverHeader, title: 'Cthulhu' } );
+
+            driver.mouseOverHeader();
+
+            expect( onMouseOverHeader ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutHeader()', () =>
+    {
+        test( 'should trigger onMouseOutHeader callback once', () =>
+        {
+            const onMouseOutHeader = jest.fn();
+
+            wrapper.setProps( { onMouseOutHeader, title: 'Cthulhu' } );
+
+            driver.mouseOutHeader();
+
+            expect( onMouseOutHeader ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverError()', () =>
+    {
+        test( 'should trigger onMouseOverError callback once', () =>
+        {
+            const onMouseOverError = jest.fn();
+
+            wrapper.setProps( {
+                onMouseOverError,
+                hasError     : true,
+                errorMessage : 'hoomans',
+                title        : 'Azathoth',
+            } );
+
+            driver.mouseOverError();
+
+            expect( onMouseOverError ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutError()', () =>
+    {
+        test( 'should trigger onMouseOutError callback once', () =>
+        {
+            const onMouseOutError = jest.fn();
+
+            wrapper.setProps( {
+                onMouseOutError,
+                hasError     : true,
+                errorMessage : 'hoomans',
+                title        : 'Azathoth',
+            } );
+
+            driver.mouseOutError();
+
+            expect( onMouseOutError ).toBeCalledTimes( 1 );
         } );
     } );
 } );
