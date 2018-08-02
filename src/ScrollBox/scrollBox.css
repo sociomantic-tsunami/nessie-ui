@@ -165,18 +165,21 @@
     .iconUp
     {
         position:         absolute;
-        background-color: var( --PC-WHITE );
+        background-color: transparent;
+        pointer-events:   none;
 
         svg
         {
-            fill:       var( --PC-GREY--D5 );
+            fill:           var( --PC-GREY--D5 );
+            pointer-events: auto;
+            z-index:        1;
         }
 
         &::before
         {
-            content:    "";
-            display:    block;
-            position:   absolute;
+            content:        "";
+            display:        block;
+            position:       absolute;
         }
     }
 
@@ -189,7 +192,7 @@
 
         &::before
         {
-            top:        var( --negativeSpacing );
+            bottom:     0;
             width:      100%;
             height:     var( --spacing-9 );
 
@@ -207,7 +210,7 @@
         &::before
         {
             top:       0;
-            right:     var( --negativeSpacing );
+            left:      0;
             height:    100%;
             width:     var( --spacing-9 );
 
@@ -225,7 +228,7 @@
         &::before
         {
             top:        0;
-            left:       var( --negativeSpacing );
+            right:      0;
             height:     100%;
             width:      var( --spacing-9 );
 
@@ -242,7 +245,7 @@
 
         &::before
         {
-            bottom:     var( --negativeSpacing );
+            top:        0;
             width:      100%;
             height:     var( --spacing-9 );
 
