@@ -122,17 +122,6 @@ describe( 'PasswordInputDriver', () =>
             driver.keyPress();
             expect( keyPressSpy ).toBeCalledTimes( 1 );
         } );
-
-        test( 'should fire the onInput callback prop once', () =>
-        {
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                onChange : onChangeSpy,
-            } );
-
-            driver.keyPress();
-            expect( onChangeSpy ).toBeCalledTimes( 1 );
-        } );
     } );
 
     describe( 'clickInput()', () =>

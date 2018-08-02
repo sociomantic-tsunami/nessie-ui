@@ -46,6 +46,24 @@ export default class InputFieldDriver
         return this;
     }
 
+    change( value = 'a' )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'change', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'change', { target: { value } } );
+        return this;
+    }
+
     click()
     {
         if ( this.wrapper.props().isDisabled )
@@ -78,7 +96,7 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyPress', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyPress', { key: 'd' } );
+        this.wrapper.simulate( 'keyPress', { keyCode: 49 } );
         return this;
     }
 
@@ -96,7 +114,7 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyDown', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyDown', { key: 's' } );
+        this.wrapper.simulate( 'keyDown', { keyCode: 49 } );
         return this;
     }
 
@@ -114,7 +132,7 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyUp', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyUp', { key: 'w' } );
+        this.wrapper.simulate( 'keyUp', { keyCode: 49 } );
         return this;
     }
 
