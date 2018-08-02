@@ -5,7 +5,7 @@ const ERRORS = {
         'Cannot mouseOut because it is disabled',
 };
 
-export default class DatePickerDriver
+export default class IconDriver
 {
     constructor( wrapper )
     {
