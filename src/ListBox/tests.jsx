@@ -209,7 +209,7 @@ ListBoxOption at given index', () =>
                 } ],
             } );
 
-            wrapper.simulate( 'keyPress' );
+            driver.keyPress();
 
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
