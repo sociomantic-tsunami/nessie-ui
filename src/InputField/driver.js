@@ -1,58 +1,155 @@
+const ERR = {
+    INPUTFIELD_ERROR : ( doWhat, state ) =>
+        `InputField can't ${doWhat} since it is ${state}`,
+};
+
 export default class InputFieldDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = this.wrapper.find( 'input' ).first();
     }
 
     blur()
     {
-        this.control.simulate( 'blur' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'blur', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'blur' );
         return this;
     }
 
     focus()
     {
-        this.control.simulate( 'focus' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'focus', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'focus' );
         return this;
     }
 
     click()
     {
-        this.control.simulate( 'click' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'click', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'click', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'click' );
         return this;
     }
 
     keyPress()
     {
-        this.control.simulate( 'keyPress' );
-        this.control.simulate( 'change' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyPress', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'keyPress', { key: 'd' } );
         return this;
     }
 
     keyDown()
     {
-        this.control.simulate( 'keyDown', { keyCode: 49 } );
-        this.control.simulate( 'change' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyDown', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyDown', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'keyDown', { key: 's' } );
         return this;
     }
 
     keyUp()
     {
-        this.control.simulate( 'keyUp', { keyCode: 49 } );
-        this.control.simulate( 'change' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyUp', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'keyUp', 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'keyUp', { key: 'w' } );
         return this;
     }
 
     mouseOver()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'mouseOver', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'mouseOver', 'read only' ) );
+        }
+
         this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'mouseOut', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .INPUTFIELD_ERROR( 'mouseOut', 'read only' ) );
+        }
+
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }
