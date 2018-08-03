@@ -9,21 +9,17 @@
 {
     overflow:   hidden;
 
-    .content
-    {
-
-    }
-
     .inner
     {
         width:      100%;
         height:     100%;
         overflow:   scroll;
 
-        /* &::-webkit-scrollbar
+
+        &::-webkit-scrollbar
         {
             display:    none;
-        } */
+        }
     }
 
     .scrollBarHorizontal
@@ -43,11 +39,6 @@
 
 .scroll__horizontal
 {
-    &.scrollBarsAreVisible
-    {
-        padding-bottom: var( --scrollBarThickness );
-    }
-
     .inner
     {
         overflow-x:             scroll;
@@ -58,11 +49,6 @@
 
 .scroll__vertical
 {
-    &.scrollBarsAreVisible
-    {
-        padding-right:  var( --scrollBarThickness );
-    }
-
     .inner
     {
         overflow-x:             hidden;
@@ -73,24 +59,6 @@
 
 .scroll__both
 {
-    &.scrollBarsAreVisible
-    {
-        padding-right:   var( --scrollBarThickness );
-        padding-bottom:  var( --scrollBarThickness );
-    }
-
-    &::after
-    {
-        content:    "";
-        display:    block;
-        position:   absolute;
-        bottom:     0;
-        right:      0;
-        width:      var( --scrollBarThickness );
-        height:     var( --scrollBarThickness );
-        background: var( --PC-WHITE );
-    }
-
     .scrollBarHorizontal
     {
         width:  calc( 100% - var( --scrollBarThickness ) );
@@ -253,15 +221,6 @@
     }
 }
 
-.overlayScrollBars
-{
-    padding:    0;
-
-    &::after
-    {
-        display:    none;
-    }
-}
 
 /* padding X */
 .paddingX__S .content

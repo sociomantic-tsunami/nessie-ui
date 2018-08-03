@@ -62,10 +62,6 @@ export default class ScrollBox extends Component
          */
         onScroll           : PropTypes.func,
         /**
-         *  Scroll bars overlaps content
-         */
-        overlayScrollBars  : PropTypes.bool,
-        /**
          *  Scroll direction
          */
         scroll             : PropTypes.oneOf( [
@@ -96,6 +92,14 @@ export default class ScrollBox extends Component
          */
         scrollBoxRef           : PropTypes.string,
         /**
+         *  Display Scroll down icon
+         */
+        scrollDownIsVisible    : PropTypes.bool,
+        /**
+         *  Display Scroll down icon
+         */
+        scrollIndicatorVariant : PropTypes.oneOf( [ 'circle', 'gradient' ] ),
+        /**
          *  Display Scroll left icon
          */
         scrollLeftIsVisible    : PropTypes.bool,
@@ -107,14 +111,6 @@ export default class ScrollBox extends Component
          *  Display Scroll up icon
          */
         scrollUpIsVisible      : PropTypes.bool,
-        /**
-         *  Display Scroll down icon
-         */
-        scrollDownIsVisible    : PropTypes.bool,
-        /**
-         *  Display Scroll down icon
-         */
-        scrollIndicatorVariant : PropTypes.oneOf( [ 'circle', 'gradient' ] ),
     };
 
     static defaultProps =
@@ -128,19 +124,18 @@ export default class ScrollBox extends Component
         onClickScrollLeft      : undefined,
         onClickScrollRight     : undefined,
         onClickScrollUp        : undefined,
-        onMouseOver            : undefined,
         onMouseOut             : undefined,
+        onMouseOver            : undefined,
         onScroll               : undefined,
-        overlayScrollBars      : false,
         padding                : 'none',
         scroll                 : 'both',
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
+        scrollIndicatorVariant : 'circle',
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
-        scrollIndicatorVariant : 'circle',
     };
 
     constructor()
@@ -351,7 +346,6 @@ export default class ScrollBox extends Component
             height,
             onMouseOut,
             onMouseOver,
-            overlayScrollBars,
             padding,
             scroll,
             scrollBarsAreVisible,
@@ -361,13 +355,11 @@ export default class ScrollBox extends Component
         return (
             <div
                 className = { buildClassName( className, cssMap, {
+                    paddingX : Array.isArray( padding ) ?
+                        padding[ 0 ] : padding,
+                    paddingY : Array.isArray( padding ) ?
+                        padding[ 1 ] : padding,
                     scroll,
-                    overlayScrollBars : scrollBarsAreVisible &&
-                        overlayScrollBars,
-                    paddingX : Array.isArray( padding ) ? padding[ 0 ]
-                        : padding,
-                    paddingY : Array.isArray( padding ) ? padding[ 1 ]
-                        : padding,
                     scrollBarsAreVisible,
                     scrollIndicatorVariant,
                 } ) }
