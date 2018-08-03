@@ -9,15 +9,20 @@
     width:      auto;
 
     margin:     0;
-    border:     none;
     padding:    0;
+
+    border:     1px solid transparent;
 
     background: transparent;
     cursor:     pointer;
 
+
     &:focus
     {
         outline:    none;
+
+        border-color: var( --PC-BLUE );
+        box-shadow:   0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 
     .icon
@@ -38,5 +43,5 @@
     padding:            var( --spacing-1 );
     background-color:   var( --PC-WHITE );
     border-radius:      50%;
-    opacity:            0.9
+    opacity:            0.9;
 }
