@@ -37,49 +37,43 @@ const Uploader = ( {
     warningMessage,
 } ) =>
 {
-    const buttonRole = 'default';
     let hasTooltip = false;
-    let uploaded   = false;
-    let isLoading  = false;
     let iconType   = 'upload';
-    const iconTheme  = 'button';
+    let isLoading  = false;
+    let uploaded   = false;
 
     let uploaderButtonClass = cssMap.uploadButton;
     let messageType;
     let message;
 
-
     if ( uploadState === 'uploading' )
     {
-        isLoading  = true;
-        iconType   = 'none';
+        iconType  = 'none';
+        isLoading = true;
         uploaderButtonClass = cssMap.uploaderButton;
     }
     else if ( uploadState === 'uploaded' )
     {
-        uploaded   = true;
-        iconType   = 'none';
-        isLoading  = false;
+        iconType  = 'none';
+        isLoading = false;
+        uploaded  = true;
         uploaderButtonClass = cssMap.uploaderButton;
     }
-
 
     if ( hasWarning )
     {
         hasTooltip  = true;
-        messageType = 'alert';
         message     = warningMessage;
+        messageType = 'alert';
     }
     if ( hasError )
     {
         hasTooltip  = true;
-        messageType = 'error';
         message     = errorMessage;
+        messageType = 'error';
     }
 
-
     return (
-
         <div
             className = { buildClassName( className, cssMap, {
                 disabled        : isDisabled,
@@ -94,7 +88,7 @@ const Uploader = ( {
                 name      = { `${id}-file` }
                 onChange  = { onChange }
                 ref       = { inputRef }
-                type      = "file" />
+                type      = "text" />
             { label &&
             <Label
                 htmlFor    = { `${id}-file` }
@@ -123,7 +117,7 @@ const Uploader = ( {
                             isDisabled = { isDisabled }
                             isReadOnly = { isReadOnly }
                             onClick    = { onClick }
-                            role       = { buttonRole }>
+                            role       = "default">
                             { buttonLabel }
                         </Button>
                     </Tooltip>
@@ -135,7 +129,7 @@ const Uploader = ( {
                     { uploaded &&
                     <IconButton
                         className  = { cssMap.uploadedButton }
-                        iconTheme  = { iconTheme }
+                        iconTheme  = "button"
                         iconType   = "delete"
                         isDisabled = { isDisabled }
                         isReadOnly = { isReadOnly }
@@ -144,7 +138,6 @@ const Uploader = ( {
                 </div>
             </IconWithTooltip>
         </div>
-
     );
 };
 
@@ -188,7 +181,7 @@ Uploader.propTypes =
     /**
      * callback that receives ref to native input: ( ref ) => { ... }
      */
-    inputRef                : PropTypes.string,
+    inputRef                : PropTypes.func,
     /**
     *  Display as disabled
     */
