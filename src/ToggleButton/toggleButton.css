@@ -7,6 +7,7 @@
     border:     none;
     padding:    0;
     background: transparent;
+    cursor:     pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -15,20 +16,7 @@
         align-items:        center;
         box-sizing:         border-box;
         height:             40px;
-        padding:            0 var( --spacing-2 );
-
-        @extend %Nessie-Regular;
-
-        color:              var( --PC-GREY--D15 );
-        font-size:          var( --typo-3 );
         text-align:         center;
-
-        cursor:             pointer;
-    }
-
-    .icon
-    {
-        fill:   var(--PC-GREY--D15);
     }
 
     .labelContainer
@@ -37,11 +25,34 @@
         flex-direction: column;
     }
 
+    .title,
+    .subLabel,
+    {
+        color:  var(--PC-GREY--D15);
+    }
+
+    .icon
+    {
+        fill:   var(--PC-GREY--D15);
+    }
+}
+
+
+.role__primary
+{
+    .flexContainer
+    {
+        border:         1px solid var( --PC-GREY--L70 );
+        border-radius:  2px;
+        padding:        0 var( --spacing-2 );
+        background:     var( --PC-WHITE );
+    }
+
     .title
     {
         @extend %Nessie-SemiBold;
-        font-size:     14px;
-        line-height:   16px;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
     }
 
     .subLabel
@@ -56,18 +67,10 @@
     {
         margin-top: calc( var( --spacing-1 ) / 4 );
     }
-}
 
-
-.role__primary
-{
-    .flexContainer
+    .icon
     {
-        border:         1px solid var( --PC-GREY--L70 );
-        border-radius:  2px;
-
-        background:     var( --PC-WHITE );
-        color:          var( --PC-GREY--D15 );
+        margin-left:    calc( -1 * var( --spacing-1 ) );
     }
 
     &:not( .disabled ):hover
@@ -87,6 +90,12 @@
             color:          var(--PC-BLUE);
         }
 
+        .title,
+        .subLabel
+        {
+            color:  var(--PC-BLUE);
+        }
+
         .icon
         {
             fill:   var(--PC-BLUE);
@@ -96,16 +105,29 @@
 
 .role__secondary
 {
-    .flexContainer
+    .title
     {
-        opacity:    0.5;
+        @extend %Nessie-Bold;
+        font-size:      var( --typo-2 );
+        line-height:    14px;
+        text-transform: uppercase;
     }
 
-    &.pressed
+    .subLabel
     {
-        .flexContainer
+        display:    none;
+    }
+
+    &:not( .pressed )
+    {
+        .title
         {
-            opacity:    1;
+            color:  var( --PC-GREY--L40 );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-GREY--L40 );
         }
     }
 }
@@ -115,11 +137,6 @@
     opacity:        0.5;
     cursor:         default;
     pointer-events: none;
-
-    .flexContainer
-    {
-        cursor:    default;
-    }
 
     .icon
     {

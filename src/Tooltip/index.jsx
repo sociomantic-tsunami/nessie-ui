@@ -2,9 +2,8 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
-import IconButton                     from '../IconButton';
-import Text                           from '../Text';
 import styles                         from './tooltip.css';
+import { IconButton, Text }           from '../index';
 
 const Tooltip = ( {
     children,
@@ -23,74 +22,59 @@ const Tooltip = ( {
     role,
 } ) =>
 {
-    let messageText = message;
-
-    if ( typeof messageText === 'string' )
-    {
-        const regexp = /([^\s].{1,49}(?=\s+|$))|([^\s]{1,50})/g;
-
-        const matches = message.match( regexp ) || [];
-
-        messageText = (
-            <Text className = { cssMap.messageText } noWrap>
-                { matches.map( line => [ line, <br /> ] ) }
-            </Text> );
-    }
-
-
-    const tooltip = (
-        <div
-            className = { cssMap.tooltip }
-            role      = "tooltip"
-            id        = { id }>
-            <div className = { cssMap.message }>
-                { messageText }
-            </div>
-            { isDismissible &&
-                <div className = { cssMap.iconContainer } >
-                    <IconButton
-                        iconType  = "close"
-                        onClick   = { onClickClose }
-                        iconTheme = "button"
-                        iconSize  = "M" />
-                </div>
-            }
-        </div>
-    );
-
     let contentNode = children;
 
     if ( typeof children === 'string' )
     {
         contentNode = (
             <Text
-                overflowIsHidden = { overflowIsHidden }
-                noWrap           = { noWrap }>
+                noWrap           = { noWrap }
+                overflowIsHidden = { overflowIsHidden }>
                 { children }
             </Text>
         );
     }
 
     return (
-
         <div
             className = { buildClassName( className, cssMap, {
-                role,
-                noWrap,
+                dismissible : isDismissible,
                 position,
+                role,
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>
             { contentNode &&
                 <div
-                    className        = { cssMap.content }
-                    aria-describedby = { isVisible ? id : null }>
+                    aria-describedby = { isVisible ? id : null }
+                    className        = { cssMap.content }>
                     { contentNode }
                 </div>
             }
-            { isVisible && tooltip }
+            { isVisible &&
+                <div className = { cssMap.tooltipContainer }>
+                    <div
+                        className = { cssMap.tooltip }
+                        id        = { id }
+                        role      = "tooltip">
+                        <div className = { cssMap.message }>
+                            { typeof message === 'string' ?
+                                <Text>{ message }</Text> : message
+                            }
+                        </div>
+                        { isDismissible &&
+                            <IconButton
+                                className    = { cssMap.close }
+                                iconSize     = "S"
+                                iconTheme    = "button"
+                                iconType     = "close"
+                                label        = "Close"
+                                onClickClose = { onClickClose } />
+                        }
+                    </div>
+                </div>
+            }
         </div>
-
     );
 };
 
@@ -155,16 +139,12 @@ Tooltip.propTypes =
         'topLeft',
         'topRight',
         'bottomLeft',
-        'bottomRight' ] ),
+        'bottomRight',
+    ] ),
     /**
      *  Tooltip role/style
      */
-    role : PropTypes.oneOf( [
-        'default',
-        'critical',
-        'promoted',
-        'warning',
-    ] ),
+    role : PropTypes.oneOf( [ 'default', 'critical', 'promoted', 'warning' ] ),
 };
 
 Tooltip.defaultProps =

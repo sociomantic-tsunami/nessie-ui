@@ -20,6 +20,7 @@ const Uploader = ( {
     hasError,
     hasWarning,
     id = generateId( 'Uploader' ),
+    inputRef,
     isDisabled,
     isReadOnly,
     label,
@@ -80,64 +81,65 @@ const Uploader = ( {
     return (
 
         <div
-            className    = { buildClassName( className, cssMap, {
-                loading         : isLoading,
-                uploaded,
+            className = { buildClassName( className, cssMap, {
                 disabled        : isDisabled,
+                loading         : isLoading,
                 previewDisabled : previewIsDisabled,
+                uploaded,
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut } >
             <input
-                type         = "file"
-                name         = { `${id}-file` }
-                className    = { cssMap.input }
-                onChange     = { onChange } />
+                className = { cssMap.input }
+                name      = { `${id}-file` }
+                onChange  = { onChange }
+                ref       = { inputRef }
+                type      = "file" />
             { label &&
             <Label
-                overflowIsHidden
                 htmlFor    = { `${id}-file` }
-                isDisabled = { isDisabled }>
+                isDisabled = { isDisabled }
+                overflowIsHidden>
                 { label }
             </Label>
             }
             <IconWithTooltip
                 className        = { cssMap.iconWithTooltip }
-                iconType         = { messageType }
-                iconPosition     = "topRight"
-                message          = { message }
                 iconIsVisible    = { hasTooltip }
-                tooltipPosition  = { errorMessagePosition }
-                tooltipIsVisible = { tooltipIsVisible }>
+                iconPosition     = "topRight"
+                iconType         = { messageType }
+                message          = { message }
+                tooltipIsVisible = { tooltipIsVisible }
+                tooltipPosition  = { errorMessagePosition }>
                 <div className = { cssMap.buttonsContainer }>
                     <Tooltip
+                        className = { cssMap.previewTooltip }
                         isVisible = { uploadState ===
                             'uploaded' && previewTooltipIsVisible }
-                        message   = { previewTooltipMessage }
-                        className = { cssMap.previewTooltip }>
+                        message   = { previewTooltipMessage }>
                         <Button
-                            role       = { buttonRole }
                             className  = { uploaderButtonClass }
-                            onClick    = { onClick }
+                            iconType   = { iconType }
                             isDisabled = { isDisabled }
                             isReadOnly = { isReadOnly }
-                            iconType   = { iconType }>
+                            onClick    = { onClick }
+                            role       = { buttonRole }>
                             { buttonLabel }
                         </Button>
                     </Tooltip>
                     { isLoading &&
-                    <div className = { cssMap.loadingOverlay }>
-                        <Spinner className = { cssMap.spinner } />
-                    </div>
+                        <div className = { cssMap.loadingOverlay }>
+                            <Spinner className = { cssMap.spinner } />
+                        </div>
                     }
-                    { uploaded  &&
+                    { uploaded &&
                     <IconButton
                         className  = { cssMap.uploadedButton }
-                        onClick    = { onClickSecondary }
+                        iconTheme  = { iconTheme }
+                        iconType   = "delete"
                         isDisabled = { isDisabled }
                         isReadOnly = { isReadOnly }
-                        iconType   = "delete"
-                        iconTheme  = { iconTheme } />
+                        onClick    = { onClickSecondary } />
                     }
                 </div>
             </IconWithTooltip>
@@ -149,69 +151,60 @@ const Uploader = ( {
 Uploader.propTypes =
 {
     /**
+     *  “Upload” Button text
+     */
+    buttonLabel          : PropTypes.string,
+    /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    cssMap               : PropTypes.objectOf( PropTypes.string ),
     /**
-    *  Label text
+    *  Tooltip error message text (string or JSX)
     */
-    label       : PropTypes.string,
+    errorMessage         : PropTypes.node,
     /**
-    *  “Upload” Button text
+    *  Error message position relative to the icon
     */
-    buttonLabel : PropTypes.string,
-    /**
-    *  Uploader state
-    */
-    uploadState : PropTypes.oneOf( [
-        'default',
-        'uploading',
-        'uploaded',
+    errorMessagePosition : PropTypes.oneOf( [
+        'left',
+        'right',
+        'top',
+        'bottom',
+        'topLeft',
+        'topRight',
     ] ),
-    /**
-    *  Display as disabled
-    */
-    isDisabled              : PropTypes.bool,
-    /**
-     * HTML id attribute (overwrite default)
-     */
-    id                      : PropTypes.string,
-    /**
-    *  Display as read-only
-    */
-    isReadOnly              : PropTypes.bool,
     /**
     *  Display as error/invalid
     */
     hasError                : PropTypes.bool,
     /**
-    *  Tooltip error message text (string or JSX)
-    */
-    errorMessage            : PropTypes.node,
-    /**
     *  Display as warning ( adds warning icon )
     */
     hasWarning              : PropTypes.bool,
     /**
-    *  Tooltip warning message text (string or JSX)
+     * HTML id attribute (overwrite default)
+     */
+    id                      : PropTypes.string,
+    /**
+     * callback that receives ref to native input: ( ref ) => { ... }
+     */
+    inputRef                : PropTypes.string,
+    /**
+    *  Display as disabled
     */
-    warningMessage          : PropTypes.node,
+    isDisabled              : PropTypes.bool,
     /**
-     * Error or warning tooltip is visible
-     */
-    tooltipIsVisible        : PropTypes.bool,
+    *  Display as read-only
+    */
+    isReadOnly              : PropTypes.bool,
     /**
-     * Preview tootltip messsage text (string or JSX)
+     *  Label text
      */
-    previewTooltipMessage   : PropTypes.node,
+    label                   : PropTypes.string,
     /**
-     * Preview tootltip is visible
+     * onChange callback function: ( e ) => { ... }
      */
-    previewTooltipIsVisible : PropTypes.bool,
-    /**
-     * Preview button is disabled
-     */
-    previewIsDisabled       : PropTypes.bool,
+    onChange                : PropTypes.func,
     /**
      * onClick callback function: ( e ) => { ... }
      */
@@ -221,10 +214,6 @@ Uploader.propTypes =
      */
     onClickSecondary        : PropTypes.func,
     /**
-     * onChange callback function: ( e ) => { ... }
-     */
-    onChange                : PropTypes.func,
-    /**
      * onMouseOut callback function: ( e ) => { ... }
      */
     onMouseOut              : PropTypes.func,
@@ -233,16 +222,35 @@ Uploader.propTypes =
      */
     onMouseOver             : PropTypes.func,
     /**
-    *  Error message position relative to the icon
+     * Preview button is disabled
+     */
+    previewIsDisabled       : PropTypes.bool,
+    /**
+     * Preview tootltip is visible
+     */
+    previewTooltipIsVisible : PropTypes.bool,
+    /**
+     * Preview tootltip messsage text (string or JSX)
+     */
+    previewTooltipMessage   : PropTypes.node,
+    /**
+     * Error or warning tooltip is visible
+     */
+    tooltipIsVisible        : PropTypes.bool,
+    /**
+    *  Uploader state
     */
-    errorMessagePosition    : PropTypes.oneOf( [
-        'left',
-        'right',
-        'top',
-        'bottom',
-        'topLeft',
-        'topRight',
+    uploadState             : PropTypes.oneOf( [
+        'default',
+        'uploading',
+        'uploaded',
     ] ),
+    /**
+    *  Tooltip warning message text (string or JSX)
+    */
+    warningMessage : PropTypes.node,
+
+
 };
 
 Uploader.defaultProps =
@@ -254,6 +262,7 @@ Uploader.defaultProps =
     hasError                : false,
     hasWarning              : false,
     id                      : undefined,
+    inputRef                : undefined,
     isDisabled              : false,
     isReadOnly              : false,
     label                   : undefined,

@@ -1,5 +1,11 @@
 @import "../proto/base.css";
 
+:root
+{
+    --trackThickness:   5px;
+    --negativeSpacing:  -72px;
+}
+
 .default
 {
     overflow:   hidden;
@@ -15,12 +21,90 @@
         height:     100%;
         overflow:   scroll;
 
-        &::-webkit-scrollbar
+        /* &::-webkit-scrollbar
         {
             display:    none;
-        }
+        } */
     }
 
+    .scrollBarHorizontal
+    {
+        position:   absolute;
+        bottom:     0;
+        left:       0;
+    }
+
+    .scrollBarVertical
+    {
+        position:   absolute;
+        top:        0;
+        right:      0;
+    }
+}
+
+.scroll__horizontal
+{
+    &.scrollBarsAreVisible
+    {
+        padding-bottom: var( --trackThickness );
+    }
+
+    .inner
+    {
+        overflow-x:             scroll;
+        overflow-y:             hidden;
+        overscroll-behavior-x:  contain;
+    }
+}
+
+.scroll__vertical
+{
+    &.scrollBarsAreVisible
+    {
+        padding-right:  var( --trackThickness );
+    }
+
+    .inner
+    {
+        overflow-x:             hidden;
+        overflow-y:             scroll;
+        overscroll-behavior-y:  contain;
+    }
+}
+
+.scroll__both
+{
+    &.scrollBarsAreVisible
+    {
+        padding-right:   var( --trackThickness );
+        padding-bottom:  var( --trackThickness );
+    }
+
+    &::after
+    {
+        content:    "";
+        display:    block;
+        position:   absolute;
+        bottom:     0;
+        right:      0;
+        width:      var( --trackThickness );
+        height:     var( --trackThickness );
+        background: var( --PC-WHITE );
+    }
+
+    .scrollBarHorizontal
+    {
+        width:  calc( 100% - var( --trackThickness ) );
+    }
+
+    .scrollBarVertical
+    {
+        height: calc( 100% - var( --trackThickness ) );
+    }
+}
+
+.scrollIndicatorVariant__circle_bg
+{
     .iconDown,
     .iconLeft,
     .iconRight,
@@ -50,57 +134,195 @@
         left:       calc( 50% );
         transform:  translateX( -50% );
     }
+
     .iconLeft
     {
         top:        calc( 50% );
         left:       var( --spacing-1 );
         transform:  translateY( -50% );
     }
+
     .iconRight
     {
         top:        calc( 50% );
         right:      var( --spacing-1 );
         transform:  translateY( -50% );
     }
+
     .iconUp
     {
         top:        var( --spacing-1 );
         left:       calc( 50% );
         transform:  translateX( -50% );
     }
+}
 
-    .scrollBarHorizontal
+.scrollIndicatorVariant__transparent_bg
+{
+    .iconDown,
+    .iconLeft,
+    .iconRight,
+    .iconUp
     {
-        position:   absolute;
+        position:         absolute;
+        background-color: transparent;
+        pointer-events:   none;
+
+        svg
+        {
+            fill:           var( --PC-GREY--D5 );
+            pointer-events: auto;
+            z-index:        1;
+        }
+
+        &::before
+        {
+            content:        "";
+            display:        block;
+            position:       absolute;
+        }
+    }
+
+    .iconDown
+    {
         bottom:     0;
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+        width:      100%;
+
+        &::before
+        {
+            bottom:     0;
+            width:      100%;
+            height:     var( --spacing-9 );
+
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+    }
+
+    .iconLeft
+    {
+        top:        calc( 50% );
         left:       0;
+        transform:  translateY( -50% );
+        height:     100%;
+
+        &::before
+        {
+            top:       0;
+            left:      0;
+            height:    100%;
+            width:     var( --spacing-9 );
+
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
     }
 
-    .scrollBarVertical
+    .iconRight
     {
-        position:   absolute;
-        top:        0;
+        top:        calc( 50% );
         right:      0;
+        transform:  translateY( -50% );
+        height:     100%;
+
+        &::before
+        {
+            top:        0;
+            right:      0;
+            height:     100%;
+            width:      var( --spacing-9 );
+
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+    }
+
+    .iconUp
+    {
+        top:        0;
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+        width:      100%;
+
+        &::before
+        {
+            top:        0;
+            width:      100%;
+            height:     var( --spacing-9 );
+
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
     }
 }
 
-
-.scroll__horizontal
+.overlayScrollBars
 {
-    .inner
-    {
-        overflow-x:             scroll;
-        overflow-y:             hidden;
-        overscroll-behavior-x:  contain;
-    }
+    padding:    0;
 
+    &::after
+    {
+        display:    none;
+    }
 }
-.scroll__vertical
+
+/* padding X */
+.paddingX__S .content
 {
-    .inner
-    {
-        overflow-x:             hidden;
-        overflow-y:             scroll;
-        overscroll-behavior-y:  contain;
-    }
+    padding-left:   var( --spacing-1 );
+    padding-right:  var( --spacing-1 );
+}
+
+.paddingX__M .content
+{
+    padding-left:   var( --spacing-2 );
+    padding-right:  var( --spacing-2 );
+}
+
+.paddingX__L .content
+{
+    padding-left:   var( --spacing-3 );
+    padding-right:  var( --spacing-3 );
+}
+
+.paddingX__XL .content
+{
+    padding-left:   var( --spacing-4 );
+    padding-right:  var( --spacing-4 );
+}
+
+.paddingX__XXL .content
+{
+    padding-left:   var( --spacing-5 );
+    padding-right:  var( --spacing-5 );
+}
+
+
+/* padding Y */
+.paddingY__S .content
+{
+    padding-top:     var( --spacing-1 );
+    padding-bottom:  var( --spacing-1 );
+}
+
+.paddingY__M .content
+{
+    padding-top:     var( --spacing-2 );
+    padding-bottom:  var( --spacing-2 );
+}
+
+.paddingY__L .content
+{
+    padding-top:     var( --spacing-3 );
+    padding-bottom:  var( --spacing-3 );
+}
+
+.paddingY__XL .content
+{
+    padding-top:     var( --spacing-4 );
+    padding-bottom:  var( --spacing-4 );
+}
+
+.paddingY__XXL .content
+{
+    padding-top:     var( --spacing-5 );
+    padding-bottom:  var( --spacing-5 );
 }
