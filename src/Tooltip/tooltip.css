@@ -95,7 +95,8 @@
 .position__bottomLeft,
 .position__bottomRight,
 
-
+.position__left,
+.position__right,
 .position__leftTop,
 .position__leftBottom,
 .position__rightTop,
@@ -132,6 +133,24 @@
       border-width: 7px 5px;
       border-left-color: transparent;
       border-right-color: transparent;
+    }
+  }
+}
+
+.position__left,
+.position__leftTop,
+.position__leftBottom,
+.position__right,
+.position__rightTop,
+.position__rightBottom
+{
+  .tooltip
+  {
+    &::after
+    {
+      border-width: 5px 7px;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
     }
   }
 }
