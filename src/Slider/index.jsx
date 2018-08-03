@@ -492,7 +492,6 @@ export default class Slider extends React.Component
         {
             this.setTargetInput();
         }
-        console.log( this.targetInput )
         this.targetInput.focus();
     }
 
