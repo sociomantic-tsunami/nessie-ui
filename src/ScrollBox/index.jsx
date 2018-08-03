@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
-import isEqual              from 'lodash.isequal';
+import React, { Component }    from 'react';
+import PropTypes               from 'prop-types';
+import isEqual                 from 'lodash.isequal';
 
-import { buildClassName }   from '../utils';
-import styles               from './scrollBox.css';
-import IconButton           from '../IconButton';
-import ScrollBar            from '../ScrollBar';
+import { createScrollHandler } from './utils';
+import { buildClassName }      from '../utils';
+import styles                  from './scrollBox.css';
+import IconButton              from '../IconButton';
+import ScrollBar               from '../ScrollBar';
 
 
 export default class ScrollBox extends Component
@@ -61,10 +62,6 @@ export default class ScrollBox extends Component
          */
         onScroll           : PropTypes.func,
         /**
-         *  Scroll bars overlaps content
-         */
-        overlayScrollBars  : PropTypes.bool,
-        /**
          *  Scroll direction
          */
         scroll             : PropTypes.oneOf( [
@@ -95,6 +92,14 @@ export default class ScrollBox extends Component
          */
         scrollBoxRef           : PropTypes.string,
         /**
+         *  Display Scroll down icon
+         */
+        scrollDownIsVisible    : PropTypes.bool,
+        /**
+         *  Display Scroll down icon
+         */
+        scrollIndicatorVariant : PropTypes.oneOf( [ 'circle', 'gradient' ] ),
+        /**
          *  Display Scroll left icon
          */
         scrollLeftIsVisible    : PropTypes.bool,
@@ -106,17 +111,6 @@ export default class ScrollBox extends Component
          *  Display Scroll up icon
          */
         scrollUpIsVisible      : PropTypes.bool,
-        /**
-         *  Display Scroll down icon
-         */
-        scrollDownIsVisible    : PropTypes.bool,
-        /**
-         *  Display Scroll down icon
-         */
-        scrollIndicatorVariant : PropTypes.oneOf( [
-            'circle_bg',
-            'transparent_bg',
-        ] ),
     };
 
     static defaultProps =
@@ -130,19 +124,18 @@ export default class ScrollBox extends Component
         onClickScrollLeft      : undefined,
         onClickScrollRight     : undefined,
         onClickScrollUp        : undefined,
-        onMouseOver            : undefined,
         onMouseOut             : undefined,
+        onMouseOver            : undefined,
         onScroll               : undefined,
-        overlayScrollBars      : false,
         padding                : 'none',
         scroll                 : 'both',
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
+        scrollIndicatorVariant : 'circle',
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
-        scrollIndicatorVariant : 'circle_bg',
     };
 
     constructor()
@@ -195,12 +188,25 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            Object.assign( style, {
-                width        : diffX ? `calc( 100% + ${diffX}px )` : null,
-                height       : diffY ? `calc( 100% + ${diffY}px )` : null,
-                marginRight  : diffX ? `-${diffX}px` : null,
-                marginBottom : diffY ? `-${diffY}px` : null,
-            } );
+            if ( diffX || diffX )
+            {
+                Object.assign( style, {
+                    width        : diffX ? `calc( 100% + ${diffX}px )` : null,
+                    height       : diffY ? `calc( 100% + ${diffY}px )` : null,
+                    marginRight  : diffX ? `-${diffX}px` : null,
+                    marginBottom : diffY ? `-${diffY}px` : null,
+                } );
+            }
+            else
+            {
+                // compensate for macOS overlaid scrollbars
+                const compo = 20;
+
+                Object.assign( style, {
+                    padding : `${compo}px`,
+                    margin  : `-${compo}px`,
+                } );
+            }
         }
 
         return style;
@@ -258,10 +264,11 @@ export default class ScrollBox extends Component
     {
         this.forceUpdate();
 
-        const { onScroll } = this.props;
-        if ( onScroll )
+        const { props } = this;
+
+        if ( props.onScroll )
         {
-            onScroll( e );
+            createScrollHandler( props.onScroll, props.scroll )( e );
         }
     }
 
@@ -352,7 +359,6 @@ export default class ScrollBox extends Component
             height,
             onMouseOut,
             onMouseOver,
-            overlayScrollBars,
             padding,
             scroll,
             scrollBarsAreVisible,
@@ -362,13 +368,11 @@ export default class ScrollBox extends Component
         return (
             <div
                 className = { buildClassName( className, cssMap, {
+                    paddingX : Array.isArray( padding ) ?
+                        padding[ 0 ] : padding,
+                    paddingY : Array.isArray( padding ) ?
+                        padding[ 1 ] : padding,
                     scroll,
-                    overlayScrollBars : scrollBarsAreVisible &&
-                        overlayScrollBars,
-                    paddingX : Array.isArray( padding ) ? padding[ 0 ]
-                        : padding,
-                    paddingY : Array.isArray( padding ) ? padding[ 1 ]
-                        : padding,
                     scrollBarsAreVisible,
                     scrollIndicatorVariant,
                 } ) }

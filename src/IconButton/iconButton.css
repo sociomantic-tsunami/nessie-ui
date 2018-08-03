@@ -2,19 +2,20 @@
 
 .default
 {
-    display:         flex;
-    justify-content: center;
-    appearance: none !important;
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
 
-    width:      auto;
+    appearance:         none !important;
 
-    margin:     0;
-    padding:    0;
+    width:              auto;
 
-    border:     1px solid transparent;
+    margin:             0;
+    padding:            0;
+    border:             1px solid transparent;
 
-    background: transparent;
-    cursor:     pointer;
+    background:         transparent;
+    cursor:             pointer;
 
 
     &:focus
