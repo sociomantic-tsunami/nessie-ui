@@ -412,11 +412,32 @@
 {
     .tooltip
     {
-        background: var( --PC-RED );
+      background: var( --PC-RED );
+    }
+    &.position__top,
+    &.position__topLeft,
+    &.position__topRight
+    {
+      .tooltip
+      {
         &::after
         {
-          border-color: var( --PC-RED );
+          border-top-color: var( --PC-RED );
         }
+      }
+    }
+
+    &.position__bottom,
+    &.position__bottomLeft,
+    &.position__bottomRight
+    {
+      .tooltip
+      {
+        &::after
+        {
+          border-bottom-color: var( --PC-RED );
+        }
+      }
     }
 }
 
@@ -424,7 +445,32 @@
 {
     .tooltip
     {
-        background: var( --PC-GREEN );
+      background: var( --PC-GREEN );
+    }
+    &.position__top,
+    &.position__topLeft,
+    &.position__topRight
+    {
+      .tooltip
+      {
+        &::after
+        {
+          border-top-color: var( --PC-GREEN );
+        }
+      }
+    }
+
+    &.position__bottom,
+    &.position__bottomLeft,
+    &.position__bottomRight
+    {
+      .tooltip
+      {
+        &::after
+        {
+          border-bottom-color: var( --PC-GREEN );
+        }
+      }
     }
 }
 
@@ -432,6 +478,31 @@
 {
     .tooltip
     {
-        background: var( --PC-ORANGE );
+      background: var( --PC-ORANGE );
+    }
+    &.position__top,
+    &.position__topLeft,
+    &.position__topRight
+    {
+      .tooltip
+      {
+        &::after
+        {
+          border-top-color: var( --PC-ORANGE );
+        }
+      }
+    }
+
+    &.position__bottom,
+    &.position__bottomLeft,
+    &.position__bottomRight
+    {
+      .tooltip
+      {
+        &::after
+        {
+          border-bottom-color: var( --PC-ORANGE );
+        }
+      }
     }
 }
