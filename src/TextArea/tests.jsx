@@ -8,7 +8,6 @@ import { shallow }      from 'enzyme';
 import { InputField }   from '../index';
 import InputContainer   from '../proto/InputContainer';
 
-
 import TextArea         from './index';
 
 
@@ -23,31 +22,24 @@ describe( 'TextArea', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextArea', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextArea' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one InputContainer', () =>
     {
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
+    test( 'should contain exactly one InputField', () =>
+    {
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
-
-        test( 'InputField should have element="textarea"', () =>
-        {
-            expect( wrapper.find( InputField ).prop( 'element' ) )
-                .toBe( 'textarea' );
-        } );
+    test( 'InputField should have element="textarea"', () =>
+    {
+        expect( wrapper.find( InputField ).prop( 'element' ) )
+            .toBe( 'textarea' );
     } );
 } );

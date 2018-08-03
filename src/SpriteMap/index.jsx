@@ -1,38 +1,32 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import spriteHtml       from '../Icon/sprite.html';
-import { generateId, buildClassName }   from '../utils';
+import spriteHtml     from '../Icon/sprite.html';
+import { generateId } from '../utils';
 
 
-export default class SpriteMap extends React.PureComponent
+const SpriteMap = ( {
+    id = generateId( 'SpriteMap' ),
+    spriteTemplate = { __html: spriteHtml },
+} ) => (
+    <div id = { id } dangerouslySetInnerHTML = { spriteTemplate } />
+);
+
+SpriteMap.propTypes =
 {
-    static propTypes =
-    {
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id             : PropTypes.string,
-        /**
-         * builds sprites
-         */
-        spriteTemplate : PropTypes.func
-    };
+    /**
+     * HTML id attribute (overwrite default)
+     */
+    id             : PropTypes.string,
+    /**
+     * Custom SVG sprite
+     */
+    spriteTemplate : PropTypes.shape( { __html: PropTypes.string } ),
+};
 
-    static defaultProps =
-    {
-        id : undefined
-    };
+SpriteMap.defaultProps =
+{
+    id : undefined,
+};
 
-    render()
-    {
-        const {
-            spriteTemplate = { __html: spriteHtml },
-            id = generateId( 'SpriteMap' )
-        } = this.props;
-
-        return (
-            <div id = { id } dangerouslySetInnerHTML = { spriteTemplate } />
-        );
-    }
-}
+export default SpriteMap;
