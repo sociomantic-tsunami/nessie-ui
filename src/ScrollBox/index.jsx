@@ -114,10 +114,7 @@ export default class ScrollBox extends Component
         /**
          *  Display Scroll down icon
          */
-        scrollIndicatorVariant : PropTypes.oneOf( [
-            'circle_bg',
-            'transparent_bg',
-        ] ),
+        scrollIndicatorVariant : PropTypes.oneOf( [ 'circle', 'gradient' ] ),
     };
 
     static defaultProps =
@@ -143,7 +140,7 @@ export default class ScrollBox extends Component
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
-        scrollIndicatorVariant : 'circle_bg',
+        scrollIndicatorVariant : 'circle',
     };
 
     constructor()

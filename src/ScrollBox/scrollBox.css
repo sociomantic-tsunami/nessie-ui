@@ -103,7 +103,7 @@
     }
 }
 
-.scrollIndicatorVariant__circle_bg
+.scrollIndicatorVariant__circle
 {
     .iconDown,
     .iconLeft,
@@ -157,7 +157,7 @@
     }
 }
 
-.scrollIndicatorVariant__transparent_bg
+.scrollIndicatorVariant__gradient
 {
     .iconDown,
     .iconLeft,
