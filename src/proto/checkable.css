@@ -23,7 +23,8 @@
     .label::before,
     .input:focus + .label::before
     {
-        border:         2px solid var( --PC-BLUE );
+        border:         1px solid var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
@@ -83,6 +84,7 @@
     .input:focus + .label::before
     {
         border:       1px solid var( --PC-RED );
+        box-shadow:   0 0 0 2px color( var( --PC-RED ) a( 30% ) ) !important; /* yes, always override other states */
     }
 }
 
@@ -121,6 +123,7 @@
 
     &:focus + .label::before
     {
-        border:             2px solid var( --PC-BLUE );
+        border:         1px solid var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
