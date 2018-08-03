@@ -1,3 +1,5 @@
+import { Button, IconButton } from 'nessie-ui';
+
 export default class UploaderDriver
 {
     constructor( wrapper )
@@ -7,13 +9,13 @@ export default class UploaderDriver
 
     click()
     {
-        this.wrapper.find( 'Button' ).simulate( 'click' );
+        this.wrapper.find( Button ).simulate( 'click' );
         return this;
     }
 
     clickSecondary()
     {
-        this.wrapper.find( 'IconButton' ).simulate( 'click' );
+        this.wrapper.find( IconButton ).simulate( 'click' );
         return this;
     }
     mouseOut()
