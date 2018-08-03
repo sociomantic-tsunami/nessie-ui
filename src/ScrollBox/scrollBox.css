@@ -147,8 +147,7 @@
     .iconDown
     {
         bottom:     0;
-        left:       calc( 50% );
-        transform:  translateX( -50% );
+        left:       0;
         width:      100%;
 
         &::before
@@ -163,9 +162,8 @@
 
     .iconLeft
     {
-        top:        calc( 50% );
+        top:        0;
         left:       0;
-        transform:  translateY( -50% );
         height:     100%;
 
         &::before
@@ -181,9 +179,8 @@
 
     .iconRight
     {
-        top:        calc( 50% );
+        top:        0;
         right:      0;
-        transform:  translateY( -50% );
         height:     100%;
 
         &::before
@@ -200,8 +197,7 @@
     .iconUp
     {
         top:        0;
-        left:       calc( 50% );
-        transform:  translateX( -50% );
+        left:       0;
         width:      100%;
 
         &::before
