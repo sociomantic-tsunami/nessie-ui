@@ -2,8 +2,7 @@
 
 :root
 {
-    --trackThickness:   5px;
-    --negativeSpacing:  -72px;
+    --scrollBarThickness:   5px;
 }
 
 .default
@@ -46,7 +45,7 @@
 {
     &.scrollBarsAreVisible
     {
-        padding-bottom: var( --trackThickness );
+        padding-bottom: var( --scrollBarThickness );
     }
 
     .inner
@@ -61,7 +60,7 @@
 {
     &.scrollBarsAreVisible
     {
-        padding-right:  var( --trackThickness );
+        padding-right:  var( --scrollBarThickness );
     }
 
     .inner
@@ -76,8 +75,8 @@
 {
     &.scrollBarsAreVisible
     {
-        padding-right:   var( --trackThickness );
-        padding-bottom:  var( --trackThickness );
+        padding-right:   var( --scrollBarThickness );
+        padding-bottom:  var( --scrollBarThickness );
     }
 
     &::after
@@ -87,19 +86,19 @@
         position:   absolute;
         bottom:     0;
         right:      0;
-        width:      var( --trackThickness );
-        height:     var( --trackThickness );
+        width:      var( --scrollBarThickness );
+        height:     var( --scrollBarThickness );
         background: var( --PC-WHITE );
     }
 
     .scrollBarHorizontal
     {
-        width:  calc( 100% - var( --trackThickness ) );
+        width:  calc( 100% - var( --scrollBarThickness ) );
     }
 
     .scrollBarVertical
     {
-        height: calc( 100% - var( --trackThickness ) );
+        height: calc( 100% - var( --scrollBarThickness ) );
     }
 }
 
