@@ -188,12 +188,25 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            Object.assign( style, {
-                width        : diffX ? `calc( 100% + ${diffX}px )` : null,
-                height       : diffY ? `calc( 100% + ${diffY}px )` : null,
-                marginRight  : diffX ? `-${diffX}px` : null,
-                marginBottom : diffY ? `-${diffY}px` : null,
-            } );
+            if ( diffX || diffX )
+            {
+                Object.assign( style, {
+                    width        : diffX ? `calc( 100% + ${diffX}px )` : null,
+                    height       : diffY ? `calc( 100% + ${diffY}px )` : null,
+                    marginRight  : diffX ? `-${diffX}px` : null,
+                    marginBottom : diffY ? `-${diffY}px` : null,
+                } );
+            }
+            else
+            {
+                // compensate for macOS overlaid scrollbars
+                const compo = 20;
+
+                Object.assign( style, {
+                    padding : `${compo}px`,
+                    margin  : `-${compo}px`,
+                } );
+            }
         }
 
         return style;
