@@ -2,11 +2,12 @@
 
 .default
 {
-    margin:             0;
-    color:              var( --PC-GREY--L70 ) ;
+    margin:              0;
+    color:               var( --PC-GREY--L70 );
 
-    border-radius:      0;
-    border-bottom:      1px solid transparent;
+    border-radius:       0;
+    border:              1px solid transparent;
+    border-bottom-color: 1px solid var( --PC-GREY--L70 );
 
     text-transform:     none;
 
@@ -26,6 +27,13 @@
     &:hover .content
     {
 
+    }
+
+    &:focus
+    {
+        outline:     none;
+        border:      1px solid var( --PC-BLUE );
+        box-shadow:  0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
