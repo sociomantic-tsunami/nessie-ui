@@ -46,10 +46,15 @@
 
         background:     var( --PC-GREY--D15 );
 
-        &::before
+        &::before,
+        &::after
         {
             content:    "";
             position:   absolute;
+        }
+        &:after
+        {
+          border-color: var( --PC-GREY--D15 );
         }
     }
 
@@ -88,13 +93,28 @@
 .position__topLeft,
 .position__topRight,
 .position__bottomLeft,
-.position__bottomRight
+.position__bottomRight,
+
+
+.position__leftTop,
+.position__leftBottom,
+.position__rightTop,
+.position__rightBottom
 {
-    .tooltip::before
+    .tooltip
     {
+      &::before
+      {
         left:   0;
         right:  0;
         height: var( --tooltipOffset );
+      }
+      &::after
+      {
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
     }
 }
 
@@ -114,6 +134,14 @@
         &::before
         {
             top:    100%;
+        }
+        &::after
+        {
+          bottom: 0;
+          border-bottom-color: transparent;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          border-width: 7px 5px;
         }
     }
 }
@@ -151,6 +179,10 @@
     .tooltip
     {
         left:   50%;
+        &::after
+        {
+          left: inherit;
+        }
     }
 }
 
@@ -164,6 +196,10 @@
     .tooltip
     {
         transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+        &::after
+        {
+          transform: translate3d( -50%, calc( 1.76 * var( --tooltipOffset ) ), 0);
+        }
     }
 }
 
@@ -178,6 +214,30 @@
     {
         transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
     }
+}
+
+.position__topLeft
+{
+  .tooltip
+  {
+    &::after
+    {
+      left: auto;
+      right: 7px;
+    }
+  }
+}
+
+.position__topRight
+{
+  .tooltip
+  {
+    &::after
+    {
+      right: auto;
+      left: 7px;
+    }
+  }
 }
 
 .position__topLeft,
@@ -231,6 +291,10 @@
     .tooltip
     {
         transform:  translateY( calc( -1 * var( --tooltipOffset ) ) );
+        &::after
+        {
+          transform: translate3d( 0, calc( 1.76 * var( --tooltipOffset ) ), 0);
+        }
     }
 }
 
@@ -317,6 +381,10 @@
     .tooltip
     {
         background: var( --PC-RED );
+        &::after
+        {
+          border-color: var( --PC-RED );
+        }
     }
 }
 
