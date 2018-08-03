@@ -2,12 +2,13 @@
 
 .default
 {
-    display:    table; /* flex is not well supported on <button>... */
-    width:      auto;
-    border:     none;
-    padding:    0;
-    background: transparent;
-    cursor:     pointer;
+    display:        table; /* flex is not well supported on <button>... */
+    width:          auto;
+    border:         none;
+    padding:        0;
+    border-radius:  2px;
+    background:     transparent;
+    cursor:         pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -34,6 +35,18 @@
     .icon
     {
         fill:   var(--PC-GREY--D15);
+    }
+
+    &:focus
+    {
+        outline:          none;
+
+        box-shadow:       0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+        }
     }
 }
 
