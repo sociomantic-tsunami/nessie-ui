@@ -30,6 +30,13 @@
         border-color:   var( --PC-BLUE--L90 );
         background:     var( --PC-BLUE--L90 );
     }
+
+    &:focus
+    {
+        outline:        none;
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
 
 .type__day
