@@ -595,14 +595,13 @@
     }
 
     .main,
-    .main:hover,
     &.fakeHovered .main,
     &.error .main,
     .main.disabled
     {
-        border:     none !important; /* yes, always */
-        background: transparent !important; /* yes, always */
-        box-shadow: none !important; /* yes, always */
+        border:     none !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     .main
@@ -742,23 +741,28 @@
 .error
 {
     .main,
-    .main:hover,
     .main:focus,
-    .mainWrapper.open .main,
-    .mainWrapper.open .main:hover,
-    .mainWrapper.open .main:focus
+    &.fakeHovered .main,
+    .mainWrapper.open .main
     {
-        border-color:    var( --PC-RED );
-        box-shadow:      0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+        border-color:   var( --PC-RED );
 
         .selectedDisplayed
         {
-            color:           var( --PC-RED );
+            color:  var( --PC-RED );
         }
     }
 
+    .main:focus,
+    &.fakeHovered .main,
+    .mainWrapper.open .main
+    {
+        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
+
     .main .arrowInner,
-    .main:focus .arrowInner
+    .main:focus .arrowInner,
+    &.fakeHovered .main .arrowInner
     {
         background-image:  url( './images/down--red.svg' );
     }
@@ -773,7 +777,6 @@
 
 .toggleIcon__magnifier
 {
-    .main:hover,
     .main:focus,
     .mainWrapper.open .main,
     &.fakeHovered .main,
