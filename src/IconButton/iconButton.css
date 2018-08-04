@@ -2,11 +2,11 @@
 
 .default
 {
+    appearance:         none !important;
+
     display:            flex;
     align-items:        center;
     justify-content:    center;
-
-    appearance:         none !important;
 
     width:              auto;
 

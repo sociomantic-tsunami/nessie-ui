@@ -2,6 +2,7 @@
 
 .default
 {
+    appearance:     none !important;
     display:        table; /* flex is not well supported on <button>... */
     width:          auto;
     border:         none;

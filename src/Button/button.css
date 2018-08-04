@@ -2,6 +2,8 @@
 
 .default
 {
+    appearance:     none !important;
+
     position:       relative;
     display:        table; /* flex doesn’t work here */
 
