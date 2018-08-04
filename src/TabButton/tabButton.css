@@ -24,16 +24,12 @@
         padding:   0;
     }
 
-    &:hover .content
-    {
-
-    }
-
     &:focus
     {
-        outline:     none;
-        border:      1px solid var( --PC-BLUE );
-        box-shadow:  0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        outline:        none;
+        border:         1px solid var( --PC-BLUE );
+        border-radius:  2px;
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
