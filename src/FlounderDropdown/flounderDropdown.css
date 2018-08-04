@@ -28,8 +28,8 @@
 
         .selectedDisplayed
         {
-            height: 40px;
-            line-height: 40px;
+            height:         38px;
+            line-height:    38px;
         }
 
         &:focus
@@ -190,7 +190,7 @@
             padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
             padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
 
-            line-height:    unset;
+            line-height:    24px;
         }
     }
 
@@ -417,9 +417,11 @@
         height:         var( --line-height-l );
 
         padding-left:   var( --spacing-2 );
-        padding-right:  var( --spacing-2 );
+        padding-right:  var( --spacing-1 );
 
-        background :    var( --PC-BLUE--L90 );
+        border-radius:  2px;
+
+        background:     var( --PC-BLUE--L90 );
         color:          var( --PC-BLUE );
 
         @extend %Nessie-SemiBold;
@@ -430,25 +432,35 @@
         white-space:    nowrap;
         overflow:       hidden;
         text-overflow:  ellipsis;
+
+        &:focus
+        {
+            outline:    none;
+
+            .multipleTagClose
+            {
+                border-color:   var( --PC-BLUE );
+                box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+            }
+        }
     }
 
     .multipleTagClose
     {
         display:        block;
 
+        box-sizing:     border-box;
         width:          var( --iconSize );
         height:         var( --iconSize );
 
         margin-left:    var( --spacing-1 );
 
-        background:     url( './images/close.svg' ) no-repeat 100%;
+        border:         1px solid transparent;
+        border-radius:  2px;
+
+        background:     url( './images/close--blue.svg' ) no-repeat 100%;
 
         cursor:         pointer;
-
-        &:hover
-        {
-            background-image:   url( './images/close--blue.svg' );
-        }
     }
 
     .loading,
