@@ -57,5 +57,10 @@
     {
         width:          var( --spacing-3 );
         height:         var( --spacing-3 );
+
+        &:focus
+        {
+            box-shadow:   0 0 0 2px color( var( --PC-WHITE ) a( 30% ) );
+        }
     }
 }
