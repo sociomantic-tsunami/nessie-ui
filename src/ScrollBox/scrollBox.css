@@ -129,6 +129,7 @@
         background-color: transparent;
         pointer-events:   none;
         visibility:       hidden;
+        border:           none;
 
         svg
         {
