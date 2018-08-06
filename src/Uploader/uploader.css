@@ -114,6 +114,11 @@
     {
         outline:    none;
         box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        &::after
+        {
+            display: none;
+        }
     }
 
     &:hover
