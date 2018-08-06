@@ -59,7 +59,7 @@ describe( 'SwitchDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.toggle();
+            driver.change();
 
             expect( targetChecked ).toBeFalsy();
         } );

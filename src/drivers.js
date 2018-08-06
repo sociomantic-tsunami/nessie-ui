@@ -30,6 +30,7 @@ import {
     Sorter,
     Switch,
     TabButton,
+    Tab,
     Tabs,
     TagInput,
     TextInput,
@@ -66,6 +67,7 @@ import SliderGroupDriver       from './SliderGroup/driver';
 import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
+import TabDriver               from './Tab/driver';
 import TabsDriver              from './Tabs/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextInputDriver         from './TextInput/driver';
@@ -194,6 +196,10 @@ const drivers =
     {
         Component : TabButton,
         Driver    : TabButtonDriver,
+    },
+    {
+        Component : Tab,
+        Driver    : TabDriver,
     },
     {
         Component : Tabs,
