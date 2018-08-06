@@ -12,7 +12,7 @@ export default class SwitchDriver
         this.input = wrapper.find( `.${wrapper.props().cssMap.input}` );
     }
 
-    toggle()
+    change()
     {
         const props = this.wrapper.props();
 

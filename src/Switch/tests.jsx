@@ -40,14 +40,14 @@ describe( 'SwitchDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'toggle()', () =>
+    describe( 'change()', () =>
     {
         test( 'should call onChange once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            driver.toggle();
+            driver.change();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
