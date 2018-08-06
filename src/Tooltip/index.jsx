@@ -69,6 +69,10 @@ export default class Tooltip extends React.PureComponent
             'topRight',
             'bottomLeft',
             'bottomRight',
+            'leftTop',
+            'leftBottom',
+            'rightTop',
+            'rightBottom',
         ] ),
         /**
          *  Tooltip role (style)

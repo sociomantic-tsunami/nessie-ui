@@ -29,16 +29,22 @@
     {
         visibility: hidden;
         position:   absolute;
+        & .tooltip,
+        & .message
+        {
+          white-space: nowrap;
+        }
     }
 
     .tooltip
     {
         visibility:     visible;
-        position:       absolute;
+        position:       relative;
 
         box-sizing:     border-box;
-        max-width:      var( --tooltipMaxWidth );
-        max-height:     var( --tooltipMaxHeight );
+        /* max-width:      var( --tooltipMaxWidth ); */
+        /* max-height:     var( --tooltipMaxHeight ); */
+        display: inline-block;
 
         border-radius:  var( --tooltipBorderRadius );
         box-shadow:     var( --boxShadow );
@@ -161,12 +167,11 @@
 {
     .tooltipContainer
     {
-        top:    0;
+        top:    -50px;
     }
 
     .tooltip
     {
-        bottom: 0;
 
         &::before
         {
@@ -186,7 +191,7 @@
 {
     .tooltipContainer
     {
-        bottom: 0;
+        bottom: -50px;
     }
 
     .tooltip
@@ -213,16 +218,14 @@
     .tooltipContainer
     {
         left:   50%;
-        width:  calc( var( --tooltipMaxWidth ) * 2 );
-        height: var( --tooltipMaxHeight );
+        transform: translate3d( -50%, 0, 0 );
     }
 
     .tooltip
     {
-        left:   50%;
         &::after
         {
-          left: inherit;
+          left: 50%;
         }
     }
 }
@@ -231,32 +234,26 @@
 {
     .tooltipContainer
     {
-        transform:  translate3d( -50%, -100%, 0 );
+
     }
 
     .tooltip
     {
-        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
         &::after
         {
-          transform: translate3d( -50%, calc( 1.76 * var( --tooltipOffset ) ), 0);
+          transform: translate3d( -50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
         }
     }
 }
 
 .position__bottom
 {
-    .tooltipContainer
-    {
-        transform:  translate3d( -50%, 100%, 0 );
-    }
-
     .tooltip
     {
-        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
+
         &::after
         {
-          transform: translate3d( -50%, calc( -1.76 * var( --tooltipOffset ) ), 0);
+          transform: translate3d( -50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
         }
     }
 }
@@ -264,12 +261,16 @@
 .position__topLeft,
 .position__bottomLeft
 {
+  .tooltipContainer
+  {
+    left: 50%;
+    transform: translate3d( -83%, 0, 0 );
+  }
   .tooltip
   {
     &::after
     {
-      left: auto;
-      right: 7px;
+      right: 15px;
     }
   }
 }
@@ -277,53 +278,31 @@
 .position__topRight,
 .position__bottomRight
 {
+  .tooltipContainer
+  {
+    right: 50%;
+    transform: translate3d( 83%, 0, 0 );
+  }
   .tooltip
   {
     &::after
     {
-      right: auto;
-      left: 7px;
+      left: 15px;
     }
   }
 }
 
-.position__topLeft,
-.position__topRight,
-.position__bottomLeft,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-        width:      var( --tooltipMaxWidth );
-        height:     var( --tooltipMaxHeight );
-    }
-}
-
-.position__topLeft,
-.position__bottomLeft
-{
-    .tooltipContainer
-    {
-        right:  0;
-    }
-
-    .tooltip
-    {
-        right:  0;
-    }
-}
-
 .position__topRight,
 .position__bottomRight
 {
     .tooltipContainer
     {
-        left:   0;
+
     }
 
     .tooltip
     {
-        left:   0;
+
     }
 }
 
@@ -332,15 +311,14 @@
 {
     .tooltipContainer
     {
-        transform:  translateY( -100% );
+
     }
 
     .tooltip
     {
-        transform:  translateY( calc( -1 * var( --tooltipOffset ) ) );
         &::after
         {
-          transform: translate3d( 0, calc( 1.76 * var( --tooltipOffset ) ), 0);
+          transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
         }
     }
 }
@@ -348,17 +326,12 @@
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltipContainer
-    {
-        transform:  translateY( 100% );
-    }
-
     .tooltip
     {
-        transform:  translateY( var( --tooltipOffset ) );
+
         &::after
         {
-          transform: translate3d( 0, calc( -1.76 * var( --tooltipOffset ) ), 0);
+          transform: translate3d( 0, calc( -1.75 * var( --tooltipOffset ) ), 0);
         }
     }
 }
@@ -375,7 +348,7 @@
 
     .tooltip
     {
-        top:    50%;
+
 
         &::before
         {
