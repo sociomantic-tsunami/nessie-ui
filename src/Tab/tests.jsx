@@ -5,7 +5,7 @@ import { mount }   from 'enzyme';
 
 import Tab         from './index';
 
-describe( 'SwitchDriver', () =>
+describe( 'TabDriver', () =>
 {
     let wrapper;
     let driver;
