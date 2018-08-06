@@ -19,4 +19,16 @@ export default class TooltipDriver
     {
         return this.wrapper.find( `.${this.cssMap.message}` ).children();
     }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
 }

@@ -153,7 +153,11 @@ export default class Tooltip extends React.PureComponent
         return (
 
             <div
-                className    = { buildClassName( className, cssMap, { role, noWrap, position } ) }
+                className    = { buildClassName(
+                    className,
+                    cssMap,
+                    { role, noWrap, position },
+                ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { contentNode &&

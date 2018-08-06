@@ -396,9 +396,11 @@ class TextInputWithIcon extends Component
             isDisabled,
             isReadOnly,
             name,
+            onBlurIcon,
             onChange,
             onClick,
             onClickIcon,
+            onFocusIcon,
             onKeyDown,
             onKeyPress,
             onKeyUp,
@@ -469,7 +471,9 @@ class TextInputWithIcon extends Component
                             isFocusable = { false }
                             isReadOnly  = { isReadOnly }
                             hasError    = { hasError }
-                            onClick     = { onClickIcon } />
+                            onClick     = { onClickIcon }
+                            onBlur      = { onBlurIcon }
+                            onFocus     = { onFocusIcon } />
                     </Tooltip>
                 }
             </div>
