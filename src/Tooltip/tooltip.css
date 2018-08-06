@@ -167,7 +167,7 @@
 {
     .tooltipContainer
     {
-        top:    -50px;
+        bottom:    130%;
     }
 
     .tooltip
@@ -191,7 +191,7 @@
 {
     .tooltipContainer
     {
-        bottom: -50px;
+        top: 130%;
     }
 
     .tooltip
@@ -270,7 +270,7 @@
   {
     &::after
     {
-      right: 15px;
+      left: 83%;
     }
   }
 }
@@ -287,33 +287,15 @@
   {
     &::after
     {
-      left: 15px;
+      right: 83%;
     }
   }
 }
 
-.position__topRight,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-
-    }
-
-    .tooltip
-    {
-
-    }
-}
 
 .position__topLeft,
 .position__topRight
 {
-    .tooltipContainer
-    {
-
-    }
-
     .tooltip
     {
         &::after
@@ -342,19 +324,21 @@
     .tooltipContainer
     {
         top:    50%;
-        width:  var( --tooltipMaxWidth );
-        height: calc( 2 * var( --tooltipMaxHeight ) );
+        transform: translate3d( 0, -50%, 0);
     }
 
     .tooltip
     {
-
-
         &::before
         {
             top:    0;
             bottom: 0;
             width:  var( --tooltipOffset );
+        }
+        &::after
+        {
+          top:    50%;
+          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
     }
 }
@@ -363,18 +347,20 @@
 {
     .tooltipContainer
     {
-        left:       0;
-        transform:  translate3d( -100%, -50%, 0 );
+        right:       130%;
     }
 
     .tooltip
     {
-        right:      0;
-        transform:  translate3d( calc( -1 * var( --tooltipOffset ) ), -50%, 0 );
-
         &::before
         {
             left:   100%;
+        }
+        &::after
+        {
+          border-right-color: transparent;
+          right: 0;
+          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
     }
 }
@@ -383,18 +369,20 @@
 {
     .tooltipContainer
     {
-        right:      0;
-        transform:  translate3d( 100%, -50%, 0 );
+        left:      130%;
     }
 
     .tooltip
     {
-        left:       0;
-        transform:  translate3d( var( --tooltipOffset ), -50%, 0 );
-
         &::before
         {
             right:  100%;
+        }
+        &::after
+        {
+          border-left-color: transparent;
+          left: 0;
+          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
     }
 }
