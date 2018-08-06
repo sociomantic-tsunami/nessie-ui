@@ -27,7 +27,7 @@ is deprecated. Please use an alternative layout.' );
             className = { buildClassName( className, cssMap, {
                 size,
                 alignX : align,
-                alignY : verticalAlign
+                alignY : verticalAlign,
             } ) }
             role              = { role }
             data-column-title = { columnTitle }>
@@ -104,7 +104,7 @@ Column.propTypes =
     /**
     *  Column role
     */
-    role     : PropTypes.string
+    role     : PropTypes.string,
 };
 
 Column.defaultProps =
