@@ -44,7 +44,7 @@
     {
         border-color:   var( --PC-BLUE );
         background:     var( --PC-WHITE );
-        box-shadow:     0 0 0 1px var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 
     .main:focus .arrowInner,
@@ -749,7 +749,7 @@
     .mainWrapper.open .main:focus
     {
         border-color:    var( --PC-RED );
-        box-shadow:      0 0 0 1px var( --PC-RED );
+        box-shadow:      0 0 0 2px color( var( --PC-RED ) a( 30% ) );
 
         .selectedDisplayed
         {

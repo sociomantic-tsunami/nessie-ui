@@ -6,6 +6,7 @@
     display:                table; /* flex doesn’t work here */
 
     width:                  auto;
+    height:                 40px;
 
     padding:                0;
 
@@ -34,7 +35,7 @@
     display:            flex;
     justify-content:    center;
     align-items:        center;
-    height:             40px;
+    height:             100%;
     padding:            0 var( --spacing-2 );
     text-align:         center;
 }
@@ -85,8 +86,14 @@
     &.fakeHovered,
     &:hover
     {
-        background:     var( --PC-BLUE--L10);
+        background:     var( --PC-BLUE--L10 );
         color:          var( --PC-WHITE );
+    }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
@@ -101,6 +108,12 @@
     {
         background:     var( --PC-GREY--L75 );
         color:          var( --PC-GREY--L25 );
+    }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-GREY ) a( 30% ) );
     }
 
     .icon
@@ -135,6 +148,12 @@
         background: var( --PC-GREEN--L10 );
         color:      var( --PC-WHITE );
     }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-GREEN ) a( 30% ) );
+    }
 }
 
 
@@ -149,12 +168,19 @@
         background: var( --PC-RED--L10 );
         color:      var( --PC-WHITE );
     }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
 }
 
 
 .role__subtle
 {
     background:     transparent;
+    border-radius:  20px;
 
     .content
     {
@@ -200,6 +226,12 @@
             fill:   var( --PC-WHITE );
         }
     }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
 
 
@@ -236,6 +268,12 @@
                 border-top-color:   var( --PC-GREY--D15 );
             }
         }
+    }
+
+    &:focus
+    {
+        outline:        none;
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 

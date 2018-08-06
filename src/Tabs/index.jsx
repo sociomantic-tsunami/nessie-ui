@@ -101,30 +101,25 @@ export default class Tabs extends React.Component
             secondaryControls,
         } = this.props;
 
-        const header = this.renderHeader( children );
+        const tabButtons = this.renderHeader( children );
 
         const content = Array.isArray( children ) ?
             children[ activeTabIndex ] : children;
-
-        let tabsHeader = <div className = { cssMap.header }>{ header }</div>;
-
-        if ( secondaryControls )
-        {
-            tabsHeader = ( <div className = { cssMap.header }>
-                <div className = { cssMap.tabs }>
-                    { header }
-                </div>
-                <div className = { cssMap.secondaryControls }>
-                    { secondaryControls }
-                </div>
-            </div> );
-        }
 
         return (
             <div
                 className = { buildClassName( className, cssMap ) }
                 id = { id } >
-                { tabsHeader }
+                <div className = { cssMap.header }>
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
+                    { secondaryControls &&
+                        <div className = { cssMap.secondaryControls }>
+                            { secondaryControls }
+                        </div>
+                    }
+                </div>
                 <div className = { cssMap.content }>
                     { content }
                 </div>
