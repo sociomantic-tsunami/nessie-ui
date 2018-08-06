@@ -167,7 +167,7 @@
 {
     .tooltipContainer
     {
-        bottom:    130%;
+        bottom:    100%;
     }
 
     .tooltip
@@ -191,7 +191,7 @@
 {
     .tooltipContainer
     {
-        top: 130%;
+        top: 100%;
     }
 
     .tooltip
@@ -342,7 +342,7 @@
 {
     .tooltipContainer
     {
-        right:       130%;
+        right:       100%;
     }
 
     .tooltip
@@ -363,7 +363,7 @@
       .tooltipContainer
       {
           top:    50%;
-          right:  130%;
+          right:  100%;
           transform: translate3d( 0, -73%, 0);
       }
       .tooltip
@@ -382,7 +382,7 @@
       .tooltipContainer
       {
           bottom:    50%;
-          right:  130%;
+          right:  100%;
           transform: translate3d( 0, 73%, 0);
       }
       .tooltip
@@ -402,7 +402,7 @@
 {
     .tooltipContainer
     {
-        left:      130%;
+        left:      100%;
     }
 
     .tooltip
@@ -633,4 +633,94 @@
         }
       }
     }
+}
+
+
+
+.position__top
+{
+  .tooltipContainer
+  {
+    transform: translate3d( -50%, -30%, 0 );
+  }
+  &Left
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -83%, -30%, 0 );
+    }
+  }
+  &Right
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( 83%, -30%, 0 );
+    }
+  }
+}
+
+.position__left
+{
+  .tooltipContainer
+  {
+    transform: translate3d( -10%, -50%, 0 );
+  }
+  &Top
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -10%, -73%, 0 );
+    }
+  }
+  &Bottom
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -10%, 73%, 0 );
+    }
+  }
+}
+
+.position__right
+{
+  .tooltipContainer
+  {
+    transform: translate3d( -10%, -50%, 0 );
+  }
+  &Top
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -10%, -73%, 0 );
+    }
+  }
+  &Bottom
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -10%, 73%, 0 );
+    }
+  }
+}
+
+.position__bottom
+{
+  .tooltipContainer
+  {
+    transform: translate3d( -50%, 30%, 0 );
+  }
+  &Left
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( -83%, 30%, 0 );
+    }
+  }
+  &Right
+  {
+    .tooltipContainer
+    {
+      transform: translate3d( 83%, 30%, 0 );
+    }
+  }
 }
