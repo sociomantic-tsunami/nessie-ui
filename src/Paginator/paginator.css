@@ -25,31 +25,6 @@
     }
 }
 
-.pageButton
-{
-    background-color:       var( --PC-GREY--L90 );
-
-    padding-left:           var( --spacing-1 );
-    padding-right:          var( --spacing-1 );
-    padding-top:            0;
-    padding-bottom:         0;
-
-    border-radius:          2px;
-
-    &:hover:not([disabled])
-    {
-        cursor:             pointer;
-    }
-
-    &:hover,
-    &:focus,
-    &:disabled
-    {
-        color:              var( --PC-WHITE );
-        background-color:   var( --PC-BLUE );
-    }
-}
-
 .pageButton,
 .ellipsis
 {
@@ -75,6 +50,38 @@
     }
 }
 
+.pageButton
+{
+    height:                 var( --spacing-3 );
+    background-color:       var( --PC-GREY--L90 );
+
+    padding-left:           var( --spacing-1 );
+    padding-right:          var( --spacing-1 );
+    padding-top:            0;
+    padding-bottom:         0;
+
+    border:                 1px solid var( --PC-GREY--L90 );
+    border-radius:          2px;
+
+    &:hover:not([disabled])
+    {
+        cursor:             pointer;
+    }
+
+    &:hover,
+    &:disabled
+    {
+        border-color:       var( --PC-BLUE );
+        color:              var( --PC-WHITE );
+        background-color:   var( --PC-BLUE );
+    }
+
+    &:focus
+    {
+        border-color:       var( --PC-BLUE );
+        box-shadow:         0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
 
 .pageButtons
 {
@@ -104,5 +111,14 @@
     &:hover
     {
         background-color:   var( --PC-GREY--L90 );
+    }
+
+    &:focus::after
+    {
+        top:    0;
+        bottom: 0;
+        left:   0;
+        right:  0;
+        border-radius:  2px;
     }
 }

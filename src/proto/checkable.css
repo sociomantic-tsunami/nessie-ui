@@ -23,7 +23,8 @@
     .label::before,
     .input:focus + .label::before
     {
-        border:         2px solid var( --PC-BLUE );
+        border:         1px solid var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
@@ -78,11 +79,15 @@
 
 .error
 {
-    .label::before,
-    &:hover .label::before,
-    .input:focus + .label::before
+    .label::before
     {
-        border:       1px solid var( --PC-RED );
+        border: 1px solid var( --PC-RED ) !important;
+    }
+
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
+    {
+        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
     }
 }
 
@@ -121,6 +126,7 @@
 
     &:focus + .label::before
     {
-        border:             2px solid var( --PC-BLUE );
+        border:         1px solid var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }

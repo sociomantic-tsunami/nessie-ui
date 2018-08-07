@@ -9,6 +9,8 @@
     --optionHeight:         48px;
     --borderWidth:          1px;
     --iconSize:             24px;
+
+    --sqrt2: 1.4142135623730951; /* Math.sqrt( 2 ) */
 }
 
 
@@ -24,11 +26,12 @@
         min-height:         calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
         display:            flex;
         align-items:        center;
+        @extend %Nessie-Regular;
 
         .selectedDisplayed
         {
-            height: 40px;
-            line-height: 40px;
+            height:         38px;
+            line-height:    38px;
         }
 
         &:focus
@@ -43,7 +46,7 @@
     {
         border-color:   var( --PC-BLUE );
         background:     var( --PC-WHITE );
-        box-shadow:     0 0 0 1px var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 
     .main:focus .arrowInner,
@@ -189,7 +192,7 @@
             padding-top:    calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
             padding-bottom: calc( ( var( --inputHeightMultiTag ) - var( --line-height-l ) ) / 2 );
 
-            line-height:    unset;
+            line-height:    24px;
         }
     }
 
@@ -416,9 +419,11 @@
         height:         var( --line-height-l );
 
         padding-left:   var( --spacing-2 );
-        padding-right:  var( --spacing-2 );
+        padding-right:  var( --spacing-1 );
 
-        background :    var( --PC-BLUE--L90 );
+        border-radius:  2px;
+
+        background:     var( --PC-BLUE--L90 );
         color:          var( --PC-BLUE );
 
         @extend %Nessie-SemiBold;
@@ -426,28 +431,46 @@
         line-height:    var( --line-height-m );
         letter-spacing: 0.4px;
 
-        white-space:    nowrap;
-        overflow:       hidden;
-        text-overflow:  ellipsis;
+        &:focus
+        {
+            outline:    none;
+
+            .multipleTagClose::after
+            {
+                content:        '';
+
+                position:       absolute;
+                top:            calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+                bottom:         calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+                left:           calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+                right:          calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+
+                border:         1px solid transparent;
+                border-radius:  50%;
+
+                border-color:   var( --PC-BLUE );
+                box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+            }
+        }
     }
 
     .multipleTagClose
     {
         display:        block;
+        position:       relative;
 
+        box-sizing:     border-box;
         width:          var( --iconSize );
         height:         var( --iconSize );
 
         margin-left:    var( --spacing-1 );
 
-        background:     url( './images/close.svg' ) no-repeat 100%;
+        border:         1px solid transparent;
+        border-radius:  2px;
+
+        background:     url( './images/close--blue.svg' ) no-repeat 100%;
 
         cursor:         pointer;
-
-        &:hover
-        {
-            background-image:   url( './images/close--blue.svg' );
-        }
     }
 
     .loading,
@@ -594,14 +617,13 @@
     }
 
     .main,
-    .main:hover,
     &.fakeHovered .main,
     &.error .main,
     .main.disabled
     {
-        border:     none !important; /* yes, always */
-        background: transparent !important; /* yes, always */
-        box-shadow: none !important; /* yes, always */
+        border:     none !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     .main
@@ -741,23 +763,28 @@
 .error
 {
     .main,
-    .main:hover,
     .main:focus,
-    .mainWrapper.open .main,
-    .mainWrapper.open .main:hover,
-    .mainWrapper.open .main:focus
+    &.fakeHovered .main,
+    .mainWrapper.open .main
     {
-        border-color:    var( --PC-RED );
-        box-shadow:      0 0 0 1px var( --PC-RED );
+        border-color:   var( --PC-RED );
 
         .selectedDisplayed
         {
-            color:           var( --PC-RED );
+            color:  var( --PC-RED );
         }
     }
 
+    .main:focus,
+    &.fakeHovered .main,
+    .mainWrapper.open .main
+    {
+        box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
+
     .main .arrowInner,
-    .main:focus .arrowInner
+    .main:focus .arrowInner,
+    &.fakeHovered .main .arrowInner
     {
         background-image:  url( './images/down--red.svg' );
     }
@@ -772,7 +799,6 @@
 
 .toggleIcon__magnifier
 {
-    .main:hover,
     .main:focus,
     .mainWrapper.open .main,
     &.fakeHovered .main,

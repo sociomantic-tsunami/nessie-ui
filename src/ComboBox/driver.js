@@ -1,3 +1,5 @@
+import { InputField, ListBox, ScrollBox } from 'nessie-ui';
+
 export default class ComboBoxDriver
 {
     constructor( wrapper )
@@ -7,37 +9,37 @@ export default class ComboBoxDriver
 
     blur()
     {
-        this.wrapper.find( 'InputField' ).driver().blur();
+        this.wrapper.find( InputField ).driver().blur();
         return this;
     }
 
     changeInput()
     {
-        this.wrapper.find( 'InputField' ).driver().pressKey( 'c' );
+        this.wrapper.find( InputField ).driver().pressKey( 'c' );
         return this;
     }
 
     clickInput()
     {
-        this.wrapper.find( 'InputField' ).driver().click();
+        this.wrapper.find( InputField ).driver().click();
         return this;
     }
 
     clickOption( index = 0 )
     {
-        this.wrapper.find( 'ListBox' ).driver().clickOption( index );
+        this.wrapper.find( ListBox ).driver().clickOption( index );
         return this;
     }
 
     focus()
     {
-        this.wrapper.find( 'InputField' ).driver().focus();
+        this.wrapper.find( InputField ).driver().focus();
         return this;
     }
 
     keyPress( string )
     {
-        this.wrapper.find( 'InputField' ).driver().pressKey( string );
+        this.wrapper.find( InputField ).driver().pressKey( string );
         return this;
     }
 
@@ -49,7 +51,7 @@ export default class ComboBoxDriver
 
     mouseOutOption( index = 0 )
     {
-        this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
+        this.wrapper.find( ListBox ).driver().mouseOutOption( index );
         return this;
     }
 
@@ -61,13 +63,13 @@ export default class ComboBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        this.wrapper.find( 'ListBox' ).driver().mouseOverOption( index );
+        this.wrapper.find( ListBox ).driver().mouseOverOption( index );
         return this;
     }
 
     scroll( offset = 0 )
     {
-        this.wrapper.find( 'ScrollBox' ).driver().scrollVertical( offset );
+        this.wrapper.find( ScrollBox ).driver().scrollVertical( offset );
         return this;
     }
 }

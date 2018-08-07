@@ -204,12 +204,12 @@ export default class Slider extends React.Component
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
 
-        this.handleBlur      = this.handleBlur.bind( this );
-        this.handleClick     = this.handleClick.bind( this );
-        this.handleFocus     = this.handleFocus.bind( this );
-        this.handleDown = this.handleDown.bind( this );
-        this.handleMove = this.handleMove.bind( this );
-        this.handleUp   = this.handleUp.bind( this );
+        this.handleBlur  = this.handleBlur.bind( this );
+        this.handleClick = this.handleClick.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
+        this.handleDown  = this.handleDown.bind( this );
+        this.handleMove  = this.handleMove.bind( this );
+        this.handleUp    = this.handleUp.bind( this );
     }
 
     componentDidMount()
@@ -492,7 +492,6 @@ export default class Slider extends React.Component
         {
             this.setTargetInput();
         }
-
         this.targetInput.focus();
     }
 
@@ -538,6 +537,7 @@ export default class Slider extends React.Component
             this.setTargetInputValue( newValue );
         }
 
+        event.preventDefault();
         this.focusTargetInput();
     }
 
@@ -801,7 +801,7 @@ export default class Slider extends React.Component
                     { values.map( ( val, i ) => (
                         <input
                             data-index  = { i }
-                            disabled    = { isDisabled }
+                            disabled    = { isDisabled || isReadOnly }
                             id          = { `${id}_${i}` }
                             key         = { i } // eslint-disable-line react/no-array-index-key, max-len
                             max         = { maxValue }
@@ -814,7 +814,6 @@ export default class Slider extends React.Component
                             onKeyUp     = { onKeyUp }
                             onMouseDown = { onMouseDown }
                             onMouseUp   = { onMouseUp }
-                            readOnly    = { isReadOnly }
                             step        = { step }
                             type        = "range"
                             value       = { val } />
