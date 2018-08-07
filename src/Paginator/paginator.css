@@ -112,4 +112,13 @@
     {
         background-color:   var( --PC-GREY--L90 );
     }
+
+    &:focus::after
+    {
+        top:    0;
+        bottom: 0;
+        left:   0;
+        right:  0;
+        border-radius:  2px;
+    }
 }
