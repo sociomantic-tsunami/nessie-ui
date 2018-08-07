@@ -2,11 +2,14 @@
 
 .default
 {
-    display:    table; /* flex is not well supported on <button>... */
-    width:      auto;
-    border:     none;
-    padding:    0;
-    background: transparent;
+    appearance:     none !important;
+    display:        table; /* flex is not well supported on <button>... */
+    width:          auto;
+    border:         none;
+    padding:        0;
+    border-radius:  2px;
+    background:     transparent;
+    cursor:         pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -15,20 +18,7 @@
         align-items:        center;
         box-sizing:         border-box;
         height:             40px;
-        padding:            0 var( --spacing-2 );
-
-        @extend %Nessie-Regular;
-
-        color:              var( --PC-GREY--D15 );
-        font-size:          var( --typo-3 );
         text-align:         center;
-
-        cursor:             pointer;
-    }
-
-    .icon
-    {
-        fill:   var(--PC-GREY--D15);
     }
 
     .labelContainer
@@ -37,11 +27,46 @@
         flex-direction: column;
     }
 
+    .title,
+    .subLabel,
+    {
+        color:  var(--PC-GREY--D15);
+    }
+
+    .icon
+    {
+        fill:   var(--PC-GREY--D15);
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        box-shadow:       0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+        }
+    }
+}
+
+
+.role__primary
+{
+    .flexContainer
+    {
+        border:         1px solid var( --PC-GREY--L70 );
+        border-radius:  2px;
+        padding:        0 var( --spacing-2 );
+        background:     var( --PC-WHITE );
+    }
+
     .title
     {
         @extend %Nessie-SemiBold;
-        font-size:     14px;
-        line-height:   16px;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
     }
 
     .subLabel
@@ -55,19 +80,6 @@
     .title + .subLabel
     {
         margin-top: calc( var( --spacing-1 ) / 4 );
-    }
-}
-
-
-.role__primary
-{
-    .flexContainer
-    {
-        border:         1px solid var( --PC-GREY--L70 );
-        border-radius:  2px;
-
-        background:     var( --PC-WHITE );
-        color:          var( --PC-GREY--D15 );
     }
 
     &:not( .disabled ):hover
@@ -87,9 +99,28 @@
             color:          var(--PC-BLUE);
         }
 
+        .title,
+        .subLabel
+        {
+            color:  var(--PC-BLUE);
+        }
+
         .icon
         {
             fill:   var(--PC-BLUE);
+        }
+    }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) );
         }
     }
 }
@@ -98,14 +129,47 @@
 {
     .flexContainer
     {
-        opacity:    0.5;
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding:        0 var( --spacing-1 );
     }
 
-    &.pressed
+    .title
     {
-        .flexContainer
+        @extend %Nessie-Bold;
+        font-size:      var( --typo-2 );
+        line-height:    14px;
+        text-transform: uppercase;
+    }
+
+    .subLabel
+    {
+        display:    none;
+    }
+
+    &:not( .pressed )
+    {
+        .title
         {
-            opacity:    1;
+            color:  var( --PC-GREY--L40 );
+        }
+
+        .icon
+        {
+            fill:   var( --PC-GREY--L40 );
+        }
+    }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) / 2 );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) / 2 );
         }
     }
 }
@@ -115,11 +179,6 @@
     opacity:        0.5;
     cursor:         default;
     pointer-events: none;
-
-    .flexContainer
-    {
-        cursor:    default;
-    }
 
     .icon
     {
@@ -133,6 +192,7 @@
     {
         margin-right:   calc( var( --spacing-1 ) / 2 );
     }
+
 }
 .iconPosition__right
 {

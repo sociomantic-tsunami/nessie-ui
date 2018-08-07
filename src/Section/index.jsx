@@ -6,63 +6,72 @@ import H1                               from '../H1';
 import H2                               from '../H2';
 import H3                               from '../H3';
 import H4                               from '../H4';
+import styles                           from './section.css';
 
-const headers = {
-    1 : H1, 2 : H2, 3 : H3, 4 : H4
+const headers = { 1: H1, 2: H2, 3: H3, 4 : H4 };
+
+
+const Section = ( {
+    children,
+    className,
+    cssMap,
+    id = generateId( 'Section' ),
+    level,
+    title,
+} ) =>
+{
+    const SectionHeader = headers[ level ];
+
+    return (
+        <section
+            className = { buildClassName( className, cssMap, {  level } ) }
+            id        = { id }>
+            { title && SectionHeader &&
+                <SectionHeader>{ title }</SectionHeader>
+            }
+            <div className = { cssMap.content }>
+                { children }
+            </div>
+        </section>
+    );
 };
 
-export default class Section extends React.PureComponent
+Section.propTypes =
 {
-    static propTypes =
-    {
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id       : PropTypes.string,
-        /**
-         *  Section title
-         */
-        title    : PropTypes.string,
-        /**
-         *  Section content
-         */
-        children : PropTypes.node,
-        /**
-         *  Section level in the document outline
-         */
-        level    : PropTypes.number
-    };
+    /**
+     * Section content
+     */
+    children  : PropTypes.node,
+    /**
+     * Extra CSS class name
+     */
+    className : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    /**
+     * HTML id attribute (overwrite default)
+     */
+    id        : PropTypes.string,
+    /**
+     *  Section title
+     */
+    title     : PropTypes.string,
+    /**
+     *  Section level in the document outline
+     */
+    level     : PropTypes.number,
+};
 
-    static defaultProps =
-    {
-        hasDivider : false,
-        id         : undefined,
-        cssMap     : require( './section.css' )
-    };
+Section.defaultProps =
+{
+    children  : undefined,
+    className : undefined,
+    cssMap    : styles,
+    id        : undefined,
+    level     : undefined,
+    title     : undefined,
+};
 
-    render()
-    {
-        const {
-            cssMap,
-            className,
-            children,
-            id = generateId( 'Section' ),
-            level,
-            title
-        } = this.props;
-
-        const SectionHeader = headers[ level ];
-
-        return (
-
-            <section className = { buildClassName( className, cssMap, { level } ) } id = { id }>
-                { title && SectionHeader &&
-                <SectionHeader>{ title }</SectionHeader>
-                }
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
-            </section>
-        );
-    }
-}
+export default Section;

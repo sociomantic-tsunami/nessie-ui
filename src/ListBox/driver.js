@@ -9,9 +9,14 @@ export default class ListBoxDriver
         this.wrapper = wrapper;
     }
 
+    get options()
+    {
+        return this.wrapper.findWhere( node => node.props().role === 'option' );
+    }
+
     clickOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+        const option = this.options.at( index );
 
         if ( option.props().isDisabled )
         {
@@ -26,15 +31,13 @@ export default class ListBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseenter' );
+        this.options.at( index ).simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutOption( index = 0 )
     {
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseleave' );
+        this.options.at( index ).simulate( 'mouseleave' );
         return this;
     }
 
