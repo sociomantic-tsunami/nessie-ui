@@ -14,13 +14,6 @@
     {
         pointer-events: none;
     }
-
-    &.disabled .uploaderButton,
-    .uploaderButton:hover,
-    .uploaderButton:focus
-    {
-        background-image:   linear-gradient( to right, var( --GS-1 ) , var( --PC-BLUE ) );
-    }
 }
 
 .uploaded
@@ -89,21 +82,9 @@
 {
     width:                   100%;
     max-width:               100%;
-    background-image:        linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
     text-align:              left;
     text-transform:          none;
     display:                 block;
-
-    &:hover,
-    &:focus
-    {
-        background-image:    linear-gradient(to right, #0D5375 , #2387AE);
-    }
-
-    &:active
-    {
-        background-image:    linear-gradient(to right, var( --GS-1 ) , var( --PC-BLUE ));
-    }
 }
 
 
@@ -131,19 +112,19 @@
 
     &:focus
     {
-        outline:            none;
+        outline:    none;
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        &::after
+        {
+            display: none;
+        }
     }
 
-    &:hover,
-    &:focus
+    &:hover
     {
-        background-color:   color( var( --PC-BLUE ) shade( 15% ) );
-        color:              var( --PC-WHITE );
-    }
-
-    &:active
-    {
-        background-color:   var( --PC-BLUE );
+        background:     var( --PC-BLUE--L10 );
+        color:          var( --PC-WHITE );
     }
 }
 
@@ -163,7 +144,7 @@
 
     &:focus
     {
-        outline:        none;
+        outline:    none;
     }
 }
 

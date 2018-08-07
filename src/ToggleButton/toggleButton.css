@@ -2,12 +2,14 @@
 
 .default
 {
-    display:    table; /* flex is not well supported on <button>... */
-    width:      auto;
-    border:     none;
-    padding:    0;
-    background: transparent;
-    cursor:     pointer;
+    appearance:     none !important;
+    display:        table; /* flex is not well supported on <button>... */
+    width:          auto;
+    border:         none;
+    padding:        0;
+    border-radius:  2px;
+    background:     transparent;
+    cursor:         pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -34,6 +36,18 @@
     .icon
     {
         fill:   var(--PC-GREY--D15);
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        box-shadow:       0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+        }
     }
 }
 
@@ -68,11 +82,6 @@
         margin-top: calc( var( --spacing-1 ) / 4 );
     }
 
-    .icon
-    {
-        margin-left:    calc( -1 * var( --spacing-1 ) );
-    }
-
     &:not( .disabled ):hover
     {
         .flexContainer
@@ -101,10 +110,30 @@
             fill:   var(--PC-BLUE);
         }
     }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) );
+        }
+    }
 }
 
 .role__secondary
 {
+    .flexContainer
+    {
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding:        0 var( --spacing-1 );
+    }
+
     .title
     {
         @extend %Nessie-Bold;
@@ -130,6 +159,19 @@
             fill:   var( --PC-GREY--L40 );
         }
     }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) / 2 );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) / 2 );
+        }
+    }
 }
 
 .disabled
@@ -150,6 +192,7 @@
     {
         margin-right:   calc( var( --spacing-1 ) / 2 );
     }
+
 }
 .iconPosition__right
 {

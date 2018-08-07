@@ -5,7 +5,7 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/**/tests.js?(x)'
+        '<rootDir>/src/**/tests.{js,jsx}'
     ],
 
     // We should specify that jest should load all dependencies

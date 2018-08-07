@@ -12,26 +12,26 @@
 
 .size__S
 {
-    width:                  24px;
-    height:                 24px;
+    width:                  var( --spacing-3 );
+    height:                 var( --spacing-3 );
 }
 
 .size__M
 {
-    width:                  32px;
-    height:                 32px;
+    width:                  var( --spacing-4 );
+    height:                 var( --spacing-4 );
 }
 
 .size__L
 {
-    width:                  40px;
-    height:                 40px;
+    width:                  var( --spacing-5 );
+    height:                 var( --spacing-5 );
 }
 
 .size__XL
 {
-    width:                  48px;
-    height:                 48px;
+    width:                  var( --spacing-6 );
+    height:                 var( --spacing-6 );
 }
 
 

@@ -38,23 +38,23 @@ export default class IconButton extends React.Component
         /**
          *  Icon size to display
          */
-        iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
+        iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
          *  Icon type to display (overrides customIcon)
          */
         iconType      : PropTypes.oneOf( [
             'account',
-            'add',
             'add-circle',
+            'add',
             'alert',
             'approved',
             'arrow',
             'bell',
             'board',
             'calendar',
-            'close',
             'close-circle',
             'close-thick',
+            'close',
             'dash',
             'dashboard',
             'declined',
@@ -62,8 +62,8 @@ export default class IconButton extends React.Component
             'down',
             'download',
             'duplicate',
-            'edit',
             'edit-circle',
+            'edit',
             'ended',
             'error',
             'file',
@@ -83,8 +83,8 @@ export default class IconButton extends React.Component
             'right',
             'search',
             'show',
-            'star',
             'star-stroke',
+            'star',
             'swap',
             'table',
             'up',
@@ -96,10 +96,10 @@ export default class IconButton extends React.Component
          *  Icon theme
          */
         iconTheme : PropTypes.oneOf( [
-            'light',
-            'dark',
             'button',
             'control',
+            'dark',
+            'light',
             'navigation',
         ] ),
         /**

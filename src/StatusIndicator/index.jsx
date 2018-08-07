@@ -6,9 +6,8 @@ import styles                          from './statusIndicator.css';
 
 const deprecatedStatusOptions = [ 'active', 'deactivated' ];
 
-const StatusIndicator = ( {
-    children, className, cssMap, label, status
-} ) =>
+
+const StatusIndicator = ( { children, className, cssMap, label, status } ) =>
 {
     if ( deprecatedStatusOptions.includes( status ) &&
         !StatusIndicator.didWarn[ status ] )
@@ -28,24 +27,30 @@ const StatusIndicator = ( {
 StatusIndicator.propTypes =
 {
     /**
+     *  Status text (JSX node; overrides label prop)
+     */
+    children : PropTypes.node,
+    /**
      *  CSS class map
      */
-    cssMap : PropTypes.objectOf( PropTypes.string ),
+    cssMap   : PropTypes.objectOf( PropTypes.string ),
     /**
     *  Status text
     */
-    label  : PropTypes.string,
+    label    : PropTypes.string,
     /**
      *  Display as active/deactivated
      */
-    status : PropTypes.oneOf( [
-        'alert', 'critical', 'promoted' ] )
+    status   : PropTypes.oneOf( [
+        'alert', 'critical', 'promoted' ] ),
 };
 
 StatusIndicator.defaultProps =
 {
-    cssMap : styles,
-    status : 'deactivated'
+    children : undefined,
+    cssMap   : styles,
+    label    : undefined,
+    status   : 'promoted',
 };
 
 StatusIndicator.didWarn = {};

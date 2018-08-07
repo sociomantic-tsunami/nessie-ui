@@ -197,12 +197,12 @@
 {
     .tooltipContainer
     {
-        right:  0;
+        left:  0;
     }
 
     .tooltip
     {
-        right:  0;
+        left:  0;
     }
 }
 
@@ -211,12 +211,12 @@
 {
     .tooltipContainer
     {
-        left:   0;
+        right:   0;
     }
 
     .tooltip
     {
-        left:   0;
+        right:   0;
     }
 }
 
@@ -227,10 +227,21 @@
     {
         transform:  translateY( -100% );
     }
+}
 
+.position__topLeft
+{
     .tooltip
     {
-        transform:  translateY( calc( -1 * var( --tooltipOffset ) ) );
+        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+    }
+}
+
+.position__topRight
+{
+    .tooltip
+    {
+        transform:  translate3d( 50%, calc( -1 * var( --tooltipOffset ) ), 0 );
     }
 }
 
@@ -241,10 +252,21 @@
     {
         transform:  translateY( 100% );
     }
+}
 
+.position__bottomLeft
+{
     .tooltip
     {
-        transform:  translateY( var( --tooltipOffset ) );
+        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
+    }
+}
+
+.position__bottomRight
+{
+    .tooltip
+    {
+        transform:  translate3d( 50%, var( --tooltipOffset ), 0 );
     }
 }
 

@@ -7,7 +7,6 @@ import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import { TextInputWithIcon }            from '../index';
 
-
 import PasswordInput                    from './index';
 
 
@@ -22,23 +21,15 @@ describe( 'PasswordInput', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name PasswordInput', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'PasswordInput' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one TextInputWithIcon', () =>
     {
-
-        test( 'should contain exactly one TextInputWithIcon', () =>
-        {
-            expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
     } );
-
 
     test( 'it should pass inputType "password" by default', () =>
     {
@@ -87,7 +78,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 hasError              : true,
                 errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true
+                errorMessageIsVisible : true,
             } );
         } );
 
@@ -111,7 +102,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onFocus  : focusSpy
+                onFocus  : focusSpy,
             } );
 
             driver.focus();
@@ -127,7 +118,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onBlur   : blurSpy
+                onBlur   : blurSpy,
             } );
 
             driver.blur();
@@ -143,7 +134,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onChange : changeSpy
+                onChange : changeSpy,
             } );
 
             driver.setInputValue( 'test' );
@@ -158,7 +149,7 @@ describe( 'PasswordInputDriver', () =>
             const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
             wrapper.setProps( {
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             driver.pressKey( keyCodeEnter );
@@ -170,7 +161,7 @@ describe( 'PasswordInputDriver', () =>
             const keyCodeChar = String.fromCharCode( 74 );
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
-                onChange : onChangeSpy
+                onChange : onChangeSpy,
             } );
 
             driver.pressKey( keyCodeChar );
@@ -183,7 +174,7 @@ describe( 'PasswordInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             driver.inputValue( 'Harry Potter' );
@@ -207,7 +198,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onClick    : clickSpy
+                onClick    : clickSpy,
             } );
 
             const expectedError =
