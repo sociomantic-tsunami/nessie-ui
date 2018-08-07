@@ -8,12 +8,12 @@ const Card = ( {
     cssMap,
     className,
     children,
-    padding
+    padding,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
             paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
-            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding
+            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
         } ) }>
         { children }
     </div>
@@ -40,15 +40,15 @@ Card.propTypes =
             'M',
             'L',
             'XL',
-            'XXL'
-        ] ) )
+            'XXL',
+        ] ) ),
     ] ),
 };
 
 Card.defaultProps =
 {
     cssMap  : styles,
-    padding : 'none'
+    padding : 'none',
 };
 
 export default Card;
