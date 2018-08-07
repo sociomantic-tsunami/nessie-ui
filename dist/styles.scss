@@ -1318,19 +1318,59 @@ template {
 
 .button__default
 {
-    position:               relative;
-    display:                table; /* flex doesn’t work here */
+    -webkit-appearance:     none !important;
+       -moz-appearance:     none !important;
+            appearance:     none !important;
 
-    width:                  auto;
+    position:       relative;
+    display:        table; /* flex doesn’t work here */
 
-    padding:                0;
+    width:          auto;
+    height:         auto;
 
-    border:                 none;
-    border-radius:          2px;
+    padding:        0;
 
-    background:             transparent;
-    cursor:                 pointer;
+    border:         none;
+    border-radius:  2px;
+
+    background:     transparent;
+    cursor:         pointer;
 }
+
+.button__default .button__content
+    {
+        /* Firefox doesn’t properly support flex directly
+         * on button so we need to set it here
+         */
+        display:            -webkit-box;
+        display:            -webkit-flex;
+        display:            -ms-flexbox;
+        display:            flex;
+        -webkit-box-pack:    center;
+        -webkit-justify-content:    center;
+            -ms-flex-pack:    center;
+                justify-content:    center;
+        -webkit-box-align:        center;
+        -webkit-align-items:        center;
+            -ms-flex-align:        center;
+                align-items:        center;
+        -webkit-box-sizing:         border-box;
+                box-sizing:         border-box;
+        height:             40px;
+        padding:            0 16px;
+        text-align:         center;
+    }
+
+.button__default .button__label
+    {
+        font-size:      14px;
+        line-height:    16px;
+        letter-spacing: 0.5px;
+
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+        white-space:    nowrap;
+    }
 
 .button__default .button__iconContainer
     {
@@ -1348,38 +1388,47 @@ template {
                 align-items:        center;
     }
 
-.button__content
-{
-    /* Firefox doesn’t properly support flex directly
-     * on button so we need to set it here
-     */
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-    height:             40px;
-    padding:            0 16px;
-    text-align:         center;
-}
+.button__default .button__loadingOverlay
+    {
+        display:            -webkit-box;
+        display:            -webkit-flex;
+        display:            -ms-flexbox;
+        display:            flex;
+        -webkit-box-orient:     horizontal;
+        -webkit-box-direction:     normal;
+        -webkit-flex-direction:     row;
+            -ms-flex-direction:     row;
+                flex-direction:     row;
+        -webkit-box-pack:    center;
+        -webkit-justify-content:    center;
+            -ms-flex-pack:    center;
+                justify-content:    center;
+        -webkit-box-align:        center;
+        -webkit-align-items:        center;
+            -ms-flex-align:        center;
+                align-items:        center;
 
-.button__label
-{
-    font-size:          14px;
-    line-height:        16px;
-    letter-spacing:     0.5px;
+        position:           absolute;
 
-    overflow:           hidden;
-    text-overflow:      ellipsis;
-    white-space:        nowrap;
-}
+        top:                0;
+        bottom:             0;
+
+        left:               0;
+        right:              0;
+
+        width:              100%;
+        height:             100%;
+    }
+
+.button__default .button__loadingOverlay .button__spinner
+        {
+            border-color:   rgba(255, 255, 255, 0.5);
+        }
+
+.button__default .button__loadingOverlay .button__spinner::after
+            {
+                border-top-color:   #ffffff;
+            }
 
 .button__iconPosition__right .button__content
     {
@@ -1393,48 +1442,62 @@ template {
 .button__iconPosition__right .button__iconContainer
     {
         margin-left:    4px; /* space between icon and text */
-        margin-right:   -var( --spacing-1 ); /* half of content padding */
+        margin-right:   -8px; /* half of content padding */
     }
 
 .button__iconPosition__left .button__iconContainer
     {
         margin-right:   4px; /* space between icon and text */
-        margin-left:    -var( --spacing-1 ); /* half of content padding */
+        margin-left:    -8px; /* half of content padding */
     }
 
 .button__role__default
 {
-    background:         #19a2e2;
-    color:              #ffffff;
+    background: #19a2e2;
+    color:      #ffffff;
 }
 
 .button__role__default.button__fakeHovered, .button__role__default:hover
     {
-        background:     #30abe4;
-        color:          #ffffff;
+        background: #30abe4;
+        color:      #ffffff;
+    }
+
+.button__role__default:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .button__role__secondary
 {
-    background:         #eef1f4;
-    color:              #8296ae;
+    background: #eef1f4;
+    color:      #8296ae;
 }
 
 .button__role__secondary.button__fakeHovered, .button__role__secondary:hover
     {
-        background:     #cfd7e0;
-        color:          #8296ae;
+        background: #cfd7e0;
+        color:      #8296ae;
+    }
+
+.button__role__secondary:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(89, 116, 148, 0.3);
+                box-shadow: 0 0 0 2px rgba(89, 116, 148, 0.3);
     }
 
 .button__role__secondary .button__icon
     {
-        fill:           #8296ae;
-        color:          #8296ae;
+        fill:   #8296ae;
+        color:  #8296ae;
     }
 
 .button__role__secondary .button__loadingOverlay .button__spinner
         {
-            border-color:           rgba(130, 150, 174, 0.25);
+            border-color:   rgba(130, 150, 174, 0.25);
         }
 
 .button__role__secondary .button__loadingOverlay .button__spinner::after
@@ -1444,8 +1507,8 @@ template {
 
 .button__role__promoted
 {
-    background:     #1bbab0;
-    color:          #ffffff;
+    background: #1bbab0;
+    color:      #ffffff;
 }
 
 .button__role__promoted.button__fakeHovered, .button__role__promoted:hover
@@ -1454,10 +1517,17 @@ template {
         color:      #ffffff;
     }
 
+.button__role__promoted:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(27, 186, 176, 0.3);
+                box-shadow: 0 0 0 2px rgba(27, 186, 176, 0.3);
+    }
+
 .button__role__critical
 {
-    background:     #ff5460;
-    color:          #ffffff;
+    background: #ff5460;
+    color:      #ffffff;
 }
 
 .button__role__critical.button__fakeHovered, .button__role__critical:hover
@@ -1466,9 +1536,18 @@ template {
         color:      #ffffff;
     }
 
+.button__role__critical:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+    }
+
 .button__role__subtle
 {
+    height:         auto;
     background:     transparent;
+    border-radius:  20px;
 }
 
 .button__role__subtle .button__content
@@ -1486,13 +1565,13 @@ template {
 
 .button__role__subtle .button__icon
     {
-        fill:           #19a2e2;
-        color:          #19a2e2;
+        fill:   #19a2e2;
+        color:  #19a2e2;
     }
 
 .button__role__subtle .button__loadingOverlay .button__spinner
         {
-            border-color:           rgba(25, 162, 226, 0.25);
+            border-color:   rgba(25, 162, 226, 0.25);
         }
 
 .button__role__subtle .button__loadingOverlay .button__spinner::after
@@ -1502,8 +1581,8 @@ template {
 
 .button__role__subtle.button__fakeHovered .button__content, .button__role__subtle:hover .button__content
         {
-            background-color: #19a2e2;
-            color:            #ffffff;
+            background-color:   #19a2e2;
+            color:              #ffffff;
         }
 
 .button__role__subtle.button__fakeHovered .button__icon, .button__role__subtle:hover .button__icon
@@ -1511,20 +1590,46 @@ template {
             fill:   #ffffff;
         }
 
+.button__role__subtle:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
 .button__role__control
 {
-    color:          #4b627d;
+    height: auto;
+    color:  #4b627d;
 }
+
+.button__role__control .button__content
+    {
+        height:         32px;
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding: 0 8px;
+    }
+
+.button__iconPosition__left.button__role__control .button__iconContainer
+        {
+            margin-left:    -4px;
+        }
+
+.button__iconPosition__right.button__role__control .button__iconContainer
+        {
+            margin-right:   -4px;
+        }
 
 .button__role__control .button__icon
     {
-        fill:       #4b627d;
-        color:      #4b627d;
+        fill:   #4b627d;
+        color:  #4b627d;
     }
 
 .button__role__control.button__fakeHovered, .button__role__control:hover
     {
-        color:      #19a2e2;
+        color:  #19a2e2;
     }
 
 .button__role__control.button__fakeHovered .button__icon, .button__role__control:hover .button__icon
@@ -1535,13 +1640,25 @@ template {
 
 .button__role__control .button__loadingOverlay .button__spinner
         {
-            border-color:           rgba(75, 98, 125, 0.25);
+            border-color:   rgba(75, 98, 125, 0.25);
         }
 
 .button__role__control .button__loadingOverlay .button__spinner::after
             {
                 border-top-color:   #4b627d;
             }
+
+.button__role__control:focus
+    {
+        outline:    none;
+    }
+
+.button__role__control:focus .button__content
+        {
+            border-color:   #19a2e2;
+            -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                    box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+        }
 
 .button__loading, .button__disabled
 {
@@ -1602,63 +1719,28 @@ template {
             color:  rgb(255, 127, 136);
         }
 
-.button__disabled.button__role__subtle
-    {
-        color:              #75c7ed;
-    }
-
 .button__disabled.button__role__subtle .button__content
         {
+            color:          #75c7ed;
             background:     #ffffff;
             border-color:   #75c7ed;
         }
 
 .button__disabled.button__role__subtle .button__icon
         {
-            fill:           #75c7ed;
-            color:          #75c7ed;
+            fill:   #75c7ed;
+            color:  #75c7ed;
         }
 
-.button__loadingOverlay
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-orient:     horizontal;
-    -webkit-box-direction:     normal;
-    -webkit-flex-direction:     row;
-        -ms-flex-direction:     row;
-            flex-direction:     row;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-
-    position:           absolute;
-
-    top:                0;
-    bottom:             0;
-
-    left:               0;
-    right:              0;
-
-    width:              100%;
-    height:             100%;
-}
-
-.button__loadingOverlay .button__spinner
-    {
-        border-color:           rgba(255, 255, 255, 0.5);
-    }
-
-.button__loadingOverlay .button__spinner::after
+.button__disabled.button__role__control .button__content
         {
-            border-top-color:   #ffffff;
+            color:  #98a8bc;
+        }
+
+.button__disabled.button__role__control .button__icon
+        {
+            fill:   #98a8bc;
+            color:  #98a8bc;
         }
 
 /*----------------------------------------------------------------------------//
@@ -1698,9 +1780,193 @@ template {
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.text__default
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+:root
+{
+    /* default box shadow */
+}
+
+.card__default
+{
+    position:       relative;
+    margin:         0;
+    margin-bottom:  16px;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0;
+}
+
+/* in case this is a flexbox child */
+
+.card__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+.card__default
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+
+    background:     #ffffff;
+
+    border-radius:  3px;
+
+    border:         1px solid rgba(89, 116, 148, 0.12);
+}
+
+/* padding X */
+
+.card__paddingX__S
+{
+    padding-left:   8px;
+    padding-right:  8px;
+}
+
+.card__paddingX__M
+{
+    padding-left:   16px;
+    padding-right:  16px;
+}
+
+.card__paddingX__L
+{
+    padding-left:   24px;
+    padding-right:  24px;
+}
+
+.card__paddingX__XL
+{
+    padding-left:   32px;
+    padding-right:  32px;
+}
+
+.card__paddingX__XXL
+{
+    padding-left:   40px;
+    padding-right:  40px;
+}
+
+/* padding Y */
+
+.card__paddingY__S
+{
+    padding-top:     8px;
+    padding-bottom:  8px;
+}
+
+.card__paddingY__M
+{
+    padding-top:     16px;
+    padding-bottom:  16px;
+}
+
+.card__paddingY__L
+{
+    padding-top:     24px;
+    padding-bottom:  24px;
+}
+
+.card__paddingY__XL
+{
+    padding-top:     32px;
+    padding-bottom:  32px;
+}
+
+.card__paddingY__XXL
+{
+    padding-top:     40px;
+    padding-bottom:  40px;
+}
+
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+    /* greyscale colors */
+
+
+    /* bluescale colors */
+
+
+    /* redscale colors */
+
+
+    /* orangescale colors */
+
+
+    /* yellowscale colors */
+
+
+    /* limescale colors */
+
+
+    /* greenscale colors */
+
+
+    /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
+.text__variant__Regular
 {
     font-family: Nessie-Regular, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text__variant__RegularIt
+{
+    font-family: Nessie-RegularIt, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text__variant__SemiBold
+{
+    font-family: Nessie-SemiBold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text__variant__Bold
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text__variant__Light
+{
+    font-family: Nessie-Light, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -1748,9 +2014,7 @@ template {
     margin:         0;
     margin-bottom:  8px;
 
-    font-size:      14px;
     line-height:    24px;
-    letter-spacing: 0;
 
     text-transform: none;
 }
@@ -1761,14 +2025,28 @@ template {
         position:   static;
     }
 
+.text__overflowHidden
+{
+    overflow:       hidden;
+    word-wrap:  normal;
+    text-overflow:  ellipsis;
+}
+
 .text__noWrap
 {
     white-space: nowrap;
 }
 
+.text__allCaps
+{
+    text-transform: uppercase;
+}
+
+/* ROLES */
+
 .text__role__default
 {
-    /* color:  var( --PC-GREY--L10 ); */
+    color:  inherit;
 }
 
 .text__role__subtle
@@ -1786,11 +2064,65 @@ template {
     color:  #ff5460;
 }
 
-.text__overflowHidden
+/* SIZES */
+
+.text__size__XXS
 {
-    overflow:       hidden;
-    word-wrap:  normal;
-    text-overflow:  ellipsis;
+    font-size:  10px;
+}
+
+.text__size__XS
+{
+    font-size:  11px;
+}
+
+.text__size__S
+{
+    font-size:  12px;
+}
+
+.text__size__M
+{
+    font-size:  14px;
+}
+
+.text__size__L
+{
+    font-size:  16px;
+}
+
+.text__size__XL
+{
+    font-size:  18px;
+}
+
+.text__size__XXL
+{
+    font-size:  20px;
+}
+
+.text__size__XXXL
+{
+    font-size:  22px;
+}
+
+/* STYLE */
+
+/* TEXT ALIGN */
+
+.text__textAlign__left
+{
+    text-align: left;
+}
+
+.text__textAlign__center
+{
+    text-align: center;
+}
+
+.text__textAlign__right
+{
+    text-align: right;
 }
 
 /*----------------------------------------------------------------------------//
@@ -1942,130 +2274,12 @@ legend.label__default + *
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-:root
+.tooltip__default .tooltip__message
 {
-    /*  TYPOGRAPHY SIZES */
+    font-family: Nessie-SemiBold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
 }
-
-:root
-{
-    /*  SPACING */
-}
-
-:root
-{
-    /* default box shadow */
-}
-
-.iconButton__default
-{
-    position:       relative;
-    margin:         0;
-    margin-bottom:  16px;
-
-    -webkit-box-sizing:     border-box;
-
-            box-sizing:     border-box;
-    width:          100%;
-    max-width:      100%;
-    min-width:      0;
-}
-
-/* in case this is a flexbox child */
-
-.iconButton__default:last-child
-    {
-        margin-bottom:  0;
-    }
-
-.iconButton__default
-{
-    display:         -webkit-box;
-    display:         -webkit-flex;
-    display:         -ms-flexbox;
-    display:         flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-appearance: none !important;
-       -moz-appearance: none !important;
-            appearance: none !important;
-
-    width:      auto;
-
-    margin:     0;
-    border:     none;
-    padding:    0;
-
-    background: transparent;
-    cursor:     pointer;
-}
-
-.iconButton__default:focus
-    {
-        outline:    none;
-    }
-
-.iconButton__default .iconButton__icon
-    {
-        -webkit-box-flex:   0;
-        -webkit-flex:   none;
-            -ms-flex:   none;
-                flex:   none;
-    }
-
-.iconButton__disabled
-{
-    cursor:         default;
-    pointer-events: none;
-    opacity:        0.36;
-}
-
-.iconButton__background
-{
-    padding:            8px;
-    background-color:   #ffffff;
-    border-radius:      50%;
-    opacity:            0.9
-}
-
-/*----------------------------------------------------------------------------//
-//    $color definitions
-//----------------------------------------------------------------------------*/
-
-:root
-{
-    /* primary colors */
-
-
-    /* greyscale colors */
-
-
-    /* bluescale colors */
-
-
-    /* redscale colors */
-
-
-    /* orangescale colors */
-
-
-    /* yellowscale colors */
-
-
-    /* limescale colors */
-
-
-    /* greenscale colors */
-
-
-    /* navyscale colors */
-}
-
-/*------------------------------------//
-//    $FONT DEFINITIONS
-//------------------------------------*/
 
 :root
 {
@@ -2080,113 +2294,241 @@ legend.label__default + *
 :root
 {
     /* default box shadow */
-}
-
-:root
-{ /* 5px */ /* 5px */
 }
 
 .tooltip__default
 {
-    position:       relative;
-    display:        inline-block;
-
-    max-width:      100%;
+    position:   relative;
+    display:    inline-block;
+    max-width:  100%;
 }
 
-.tooltip__tooltip
-{
-    display:            block;
-    position:           absolute;
-
-    width:              auto;
-
-    margin-bottom:      0;
-
-    border-radius:      2px;
-
-    background-color:   #4b627d;
-    -webkit-box-shadow:         0 8px 40px rgba(89, 116, 148, 0.12);
-            box-shadow:         0 8px 40px rgba(89, 116, 148, 0.12);
-
-    z-index:            10000;
-}
-
-.tooltip__tooltip::before
+.tooltip__default .tooltip__content
     {
-        content:            "";
-        position:           absolute;
-        -webkit-box-sizing:         border-box;
-                box-sizing:         border-box;
+        display:        -webkit-box;
+        display:        -webkit-flex;
+        display:        -ms-flexbox;
+        display:        flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }
 
-.tooltip__message
-{
-    padding-top:        8px;
-    padding-right:      16px;
-    padding-bottom:     8px;
-    padding-left:       16px;
-    color:              #ffffff;
-}
-
-.tooltip__messageText a, .tooltip__messageText a:hover
+.tooltip__default .tooltip__tooltipContainer
     {
-        color:              #ffffff;
-        text-decoration:    underline;
+        visibility: hidden;
+        position:   absolute;
     }
 
-.tooltip__content
-{
-    display:        -webkit-box;
-    display:        -webkit-flex;
-    display:        -ms-flexbox;
-    display:        flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-}
+.tooltip__default .tooltip__tooltip
+    {
+        visibility:     visible;
+        position:       absolute;
 
-.tooltip__iconContainer
-{
-    padding:        8px;
-}
+        -webkit-box-sizing:     border-box;
+
+                box-sizing:     border-box;
+        max-width:      360px;
+        max-height:     100vh;
+
+        border-radius:  2px;
+        -webkit-box-shadow:     0 8px 40px rgba(89, 116, 148, 0.12);
+                box-shadow:     0 8px 40px rgba(89, 116, 148, 0.12);
+        padding:        8px 16px;
+
+        background:     #4b627d;
+    }
+
+.tooltip__default .tooltip__tooltip::before
+        {
+            content:    "";
+            position:   absolute;
+        }
+
+.tooltip__default .tooltip__message
+    {
+        color:          #ffffff;
+        word-wrap:  break-word;
+    }
+
+.tooltip__default .tooltip__message a:link,.tooltip__default .tooltip__message a:visited
+        {
+            color:              inherit !important;
+            text-decoration:    underline;
+        }
+
+.tooltip__default .tooltip__message a:-webkit-any-link
+        {
+            color:              inherit !important;
+            text-decoration:    underline;
+        }
+
+.tooltip__default .tooltip__message a:-moz-any-link
+        {
+            color:              inherit !important;
+            text-decoration:    underline;
+        }
+
+.tooltip__default .tooltip__message a:any-link
+        {
+            color:              inherit !important;
+            text-decoration:    underline;
+        }
+
+.tooltip__default .tooltip__close
+    {
+        position:   absolute;
+        top:        8px;
+        right:      16px;
+    }
+
+.tooltip__dismissible .tooltip__tooltip
+    {
+        padding-right:  48px;
+    }
 
 .tooltip__position__top .tooltip__tooltip::before, .tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+    {
+        left:   0;
+        right:  0;
+        height: 8px;
+    }
+
+.tooltip__position__top .tooltip__tooltipContainer, .tooltip__position__topLeft .tooltip__tooltipContainer, .tooltip__position__topRight .tooltip__tooltipContainer
+    {
+        top:    0;
+    }
+
+.tooltip__position__top .tooltip__tooltip, .tooltip__position__topLeft .tooltip__tooltip, .tooltip__position__topRight .tooltip__tooltip
+    {
+        bottom: 0;
+    }
+
+.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before
         {
-            left:           0;
-            width:          100%;
-            height:         8px;
+            top:    100%;
         }
+
+.tooltip__position__bottom .tooltip__tooltipContainer, .tooltip__position__bottomLeft .tooltip__tooltipContainer, .tooltip__position__bottomRight .tooltip__tooltipContainer
+    {
+        bottom: 0;
+    }
+
+.tooltip__position__bottom .tooltip__tooltip, .tooltip__position__bottomLeft .tooltip__tooltip, .tooltip__position__bottomRight .tooltip__tooltip
+    {
+        top:    0;
+    }
+
+.tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
+        {
+            bottom: 100%;
+        }
+
+.tooltip__position__top .tooltip__tooltipContainer, .tooltip__position__bottom .tooltip__tooltipContainer
+    {
+        left:   50%;
+        width:  720px;
+        height: 100vh;
+    }
 
 .tooltip__position__top .tooltip__tooltip, .tooltip__position__bottom .tooltip__tooltip
     {
         left:   50%;
     }
 
-.tooltip__position__top .tooltip__tooltip::before, .tooltip__position__topLeft .tooltip__tooltip::before, .tooltip__position__topRight .tooltip__tooltip::before
-        {
-            bottom: -8px;
-        }
+.tooltip__position__top .tooltip__tooltipContainer
+    {
+        -webkit-transform:  translate3d( -50%, -100%, 0 );
+                transform:  translate3d( -50%, -100%, 0 );
+    }
 
 .tooltip__position__top .tooltip__tooltip
     {
-        top:        0;
-        -webkit-transform:  translateX(-50%) translateY( -100% ) translateY( -8px ) ;
-                transform:  translateX(-50%) translateY( -100% ) translateY( -8px ) ;
+        -webkit-transform:  translate3d( -50%, -8px, 0 );
+                transform:  translate3d( -50%, -8px, 0 );
     }
 
-.tooltip__position__bottom .tooltip__tooltip::before, .tooltip__position__bottomLeft .tooltip__tooltip::before, .tooltip__position__bottomRight .tooltip__tooltip::before
-        {
-            top:    -8px;
-        }
+.tooltip__position__bottom .tooltip__tooltipContainer
+    {
+        -webkit-transform:  translate3d( -50%, 100%, 0 );
+                transform:  translate3d( -50%, 100%, 0 );
+    }
 
 .tooltip__position__bottom .tooltip__tooltip
     {
-        bottom:     0;
-        -webkit-transform:  translateX(-50%) translateY( 100% ) translateY( 8px ) ;
-                transform:  translateX(-50%) translateY( 100% ) translateY( 8px ) ;
+        -webkit-transform:  translate3d( -50%, 8px, 0 );
+                transform:  translate3d( -50%, 8px, 0 );
+    }
+
+.tooltip__position__topLeft .tooltip__tooltipContainer, .tooltip__position__topRight .tooltip__tooltipContainer, .tooltip__position__bottomLeft .tooltip__tooltipContainer, .tooltip__position__bottomRight .tooltip__tooltipContainer
+    {
+        width:      360px;
+        height:     100vh;
+    }
+
+.tooltip__position__topLeft .tooltip__tooltipContainer, .tooltip__position__bottomLeft .tooltip__tooltipContainer
+    {
+        left:  0;
+    }
+
+.tooltip__position__topLeft .tooltip__tooltip, .tooltip__position__bottomLeft .tooltip__tooltip
+    {
+        left:  0;
+    }
+
+.tooltip__position__topRight .tooltip__tooltipContainer, .tooltip__position__bottomRight .tooltip__tooltipContainer
+    {
+        right:   0;
+    }
+
+.tooltip__position__topRight .tooltip__tooltip, .tooltip__position__bottomRight .tooltip__tooltip
+    {
+        right:   0;
+    }
+
+.tooltip__position__topLeft .tooltip__tooltipContainer, .tooltip__position__topRight .tooltip__tooltipContainer
+    {
+        -webkit-transform:  translateY( -100% );
+                transform:  translateY( -100% );
+    }
+
+.tooltip__position__topLeft .tooltip__tooltip
+    {
+        -webkit-transform:  translate3d( -50%, -8px, 0 );
+                transform:  translate3d( -50%, -8px, 0 );
+    }
+
+.tooltip__position__topRight .tooltip__tooltip
+    {
+        -webkit-transform:  translate3d( 50%, -8px, 0 );
+                transform:  translate3d( 50%, -8px, 0 );
+    }
+
+.tooltip__position__bottomLeft .tooltip__tooltipContainer, .tooltip__position__bottomRight .tooltip__tooltipContainer
+    {
+        -webkit-transform:  translateY( 100% );
+                transform:  translateY( 100% );
+    }
+
+.tooltip__position__bottomLeft .tooltip__tooltip
+    {
+        -webkit-transform:  translate3d( -50%, 8px, 0 );
+                transform:  translate3d( -50%, 8px, 0 );
+    }
+
+.tooltip__position__bottomRight .tooltip__tooltip
+    {
+        -webkit-transform:  translate3d( 50%, 8px, 0 );
+                transform:  translate3d( 50%, 8px, 0 );
+    }
+
+.tooltip__position__left .tooltip__tooltipContainer, .tooltip__position__right .tooltip__tooltipContainer
+    {
+        top:    50%;
+        width:  360px;
+        height: 200vh;
     }
 
 .tooltip__position__left .tooltip__tooltip, .tooltip__position__right .tooltip__tooltip
@@ -2197,89 +2539,61 @@ legend.label__default + *
 .tooltip__position__left .tooltip__tooltip::before, .tooltip__position__right .tooltip__tooltip::before
         {
             top:    0;
+            bottom: 0;
             width:  8px;
-            height: 100%;
         }
+
+.tooltip__position__left .tooltip__tooltipContainer
+    {
+        left:       0;
+        -webkit-transform:  translate3d( -100%, -50%, 0 );
+                transform:  translate3d( -100%, -50%, 0 );
+    }
 
 .tooltip__position__left .tooltip__tooltip
     {
-        top:        50%;
-        left:       0;
-
-        -webkit-transform:  translateX(-100%) translateX( -8px ) translateY( -50% );
-
-                transform:  translateX(-100%) translateX( -8px ) translateY( -50% );
+        right:      0;
+        -webkit-transform:  translate3d( -8px, -50%, 0 );
+                transform:  translate3d( -8px, -50%, 0 );
     }
 
 .tooltip__position__left .tooltip__tooltip::before
         {
-            right:  -8px;
+            left:   100%;
         }
+
+.tooltip__position__right .tooltip__tooltipContainer
+    {
+        right:      0;
+        -webkit-transform:  translate3d( 100%, -50%, 0 );
+                transform:  translate3d( 100%, -50%, 0 );
+    }
 
 .tooltip__position__right .tooltip__tooltip
     {
-        top:        50%;
-        right:      0;
-
-        -webkit-transform:  translateX(100%) translateX( 8px  ) translateY( -50% );
-
-                transform:  translateX(100%) translateX( 8px  ) translateY( -50% );
+        left:       0;
+        -webkit-transform:  translate3d( 8px, -50%, 0 );
+                transform:  translate3d( 8px, -50%, 0 );
     }
 
 .tooltip__position__right .tooltip__tooltip::before
         {
-            left:   -8px;
+            right:  100%;
         }
-
-.tooltip__position__topLeft .tooltip__tooltip, .tooltip__position__topRight .tooltip__tooltip
-    {
-        top:    0;
-        left:   50%;
-    }
-
-.tooltip__position__bottomLeft .tooltip__tooltip, .tooltip__position__bottomRight .tooltip__tooltip
-    {
-        bottom:     0;
-        left:       50%;
-    }
-
-.tooltip__position__topLeft .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -100% ) translateX( 26px ) translateY( -100% ) translateY( -8px );
-                transform:  translateX( -100% ) translateX( 26px ) translateY( -100% ) translateY( -8px );
-    }
-
-.tooltip__position__topRight .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -26px ) translateY( -100% ) translateY( -8px );
-                transform:  translateX( -26px ) translateY( -100% ) translateY( -8px );
-    }
-
-.tooltip__position__bottomLeft .tooltip__tooltip
-    {
-        -webkit-transform: translateX( -100% ) translateX( 26px ) translateY( 100% ) translateY( 8px );
-                transform: translateX( -100% ) translateX( 26px ) translateY( 100% ) translateY( 8px );
-    }
-
-.tooltip__position__bottomRight .tooltip__tooltip
-    {
-        -webkit-transform:  translateX( -26px ) translateY( 100% ) translateY( 8px ) ;
-                transform:  translateX( -26px ) translateY( 100% ) translateY( 8px ) ;
-    }
 
 .tooltip__role__critical .tooltip__tooltip
     {
-        background-color:         #ff5460;
+        background: #ff5460;
     }
 
 .tooltip__role__promoted .tooltip__tooltip
     {
-        background-color:         #1bbab0;
+        background: #1bbab0;
     }
 
 .tooltip__role__warning .tooltip__tooltip
     {
-        background-color:         #ff965a;
+        background: #ff965a;
     }
 
 /*----------------------------------------------------------------------------//
@@ -2704,7 +3018,9 @@ legend.label__default + *
 
 .checkbox__fakeHovered .checkbox__label::before, .checkbox__fakeHovered .checkbox__input:focus + .checkbox__label::before
     {
-        border:         2px solid #19a2e2;
+        border:         1px solid #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .checkbox__label
@@ -2763,9 +3079,15 @@ legend.label__default + *
     color:              #4b627d;
 }
 
-.checkbox__error .checkbox__label::before, .checkbox__error:hover .checkbox__label::before, .checkbox__error .checkbox__input:focus + .checkbox__label::before
+.checkbox__error .checkbox__label::before
     {
-        border:       1px solid #ff5460;
+        border: 1px solid #ff5460 !important;
+    }
+
+.checkbox__error .checkbox__input:focus + .checkbox__label::before, .checkbox__error.checkbox__fakeHovered .checkbox__label::before
+    {
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
     }
 
 .checkbox__disabled
@@ -2801,7 +3123,9 @@ legend.label__default + *
 
 .checkbox__input:focus + .checkbox__label::before
     {
-        border:             2px solid #19a2e2;
+        border:         1px solid #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .checkbox__default
@@ -3489,18 +3813,13 @@ span.CodeMirror-selectedtext { background: none; }
         height: auto;
     }
 
-.codeEditor__fakeHovered.codeEditor__default .codeEditor__editor
-        {
-            /* browser default focus style */
-            outline: auto 2px highlight;
-            outline: auto 5px -webkit-focus-ring-color;
-        }
-
 .codeEditor__default .CodeMirror
     {
         -webkit-box-sizing:     border-box;
                 box-sizing:     border-box;
         height:         100%;
+        border:         1px solid #c7d0db;
+        border-radius:  2px;
 
         font-family:    monospace, sans-serif;
         font-size:      14px;
@@ -3510,6 +3829,24 @@ span.CodeMirror-selectedtext { background: none; }
 .codeEditor__default .CodeMirror-scroll
         {
             overscroll-behavior-y:  contain;
+        }
+
+.codeEditor__fakeHovered .CodeMirror
+    {
+        border-color:   #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
+.codeEditor__error .CodeMirror
+    {
+        border-color:   #ff5460;
+    }
+
+.codeEditor__fakeHovered.codeEditor__error .CodeMirror
+        {
+            -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                    box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
         }
 
 /*----------------------------------------------------------------------------//
@@ -7859,6 +8196,11 @@ span.CodeMirror-selectedtext { background: none; }
 
 .textInputWithIcon__default
 {
+
+}
+
+.textInputWithIcon__container
+{
     display:        -webkit-box;
     display:        -webkit-flex;
     display:        -ms-flexbox;
@@ -7874,7 +8216,7 @@ span.CodeMirror-selectedtext { background: none; }
             align-items:    center;
 }
 
-.textInputWithIcon__default .textInputWithIcon__input
+.textInputWithIcon__container .textInputWithIcon__input
     {
         -webkit-box-flex:           1;
         -webkit-flex:           1 1 auto;
@@ -8669,6 +9011,14 @@ span.CodeMirror-selectedtext { background: none; }
         background:     #e8f5fc;
     }
 
+.datePickerItem__default:focus
+    {
+        outline:        none;
+        border-color:   #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
 .datePickerItem__type__day
 {
     height:             30px;
@@ -8852,6 +9202,12 @@ span.CodeMirror-selectedtext { background: none; }
         height:         24px;
     }
 
+.datePickerHeader__default .datePickerHeader__prev:focus::after, .datePickerHeader__default .datePickerHeader__next:focus::after
+        {
+            -webkit-box-shadow:   0 0 0 2px rgba(255, 255, 255, 0.3);
+                    box-shadow:   0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8929,10 +9285,14 @@ span.CodeMirror-selectedtext { background: none; }
 
 .timeInput__default .timeInput__hour, .timeInput__default .timeInput__min
     {
-        border:             0;
+        -webkit-box-sizing:         border-box;
+                box-sizing:         border-box;
         width:              36px;
         height:             24px;
         padding:            0;
+
+        border:             none;
+        border-radius:      2px;
 
         text-align:         center;
         font:               inherit;
@@ -8942,6 +9302,13 @@ span.CodeMirror-selectedtext { background: none; }
 
         background-color:   #1799d6;
     }
+
+.timeInput__default .timeInput__hour:focus, .timeInput__default .timeInput__min:focus
+        {
+            -webkit-box-shadow:     0 0 0 2px rgba(255, 255, 255, 0.3);
+                    box-shadow:     0 0 0 2px rgba(255, 255, 255, 0.3);
+            outline:        none;
+        }
 
 .timeInput__default .timeInput__hour::-webkit-input-placeholder, .timeInput__default .timeInput__min::-webkit-input-placeholder
         {
@@ -9708,7 +10075,7 @@ span.CodeMirror-selectedtext { background: none; }
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.flounderDropdown__default .flounderDropdown__optionsWrapper, .flounderDropdown__default .flounderDropdown__description, .flounderDropdown__default .flounderDropdown__search
+.flounderDropdown__default .flounderDropdown__main, .flounderDropdown__default .flounderDropdown__optionsWrapper, .flounderDropdown__default .flounderDropdown__description, .flounderDropdown__default .flounderDropdown__search
 {
     font-family: Nessie-Regular, sans-serif;
     font-weight: normal;
@@ -9765,6 +10132,10 @@ span.CodeMirror-selectedtext { background: none; }
         margin-bottom:  0;
     }
 
+:root
+{ /* Math.sqrt( 2 ) */
+}
+
 .flounderDropdown__default .flounderDropdown__main
     {
         border:             1px solid #c7d0db;
@@ -9785,8 +10156,8 @@ span.CodeMirror-selectedtext { background: none; }
 
 .flounderDropdown__default .flounderDropdown__main .flounderDropdown__selectedDisplayed
         {
-            height: 40px;
-            line-height: 40px;
+            height:         38px;
+            line-height:    38px;
         }
 
 .flounderDropdown__default .flounderDropdown__main:focus
@@ -9798,8 +10169,8 @@ span.CodeMirror-selectedtext { background: none; }
     {
         border-color:   #19a2e2;
         background:     #ffffff;
-        -webkit-box-shadow:     0 0 0 1px #19a2e2;
-                box-shadow:     0 0 0 1px #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .flounderDropdown__default .flounderDropdown__main:focus .flounderDropdown__arrowInner, .flounderDropdown__default.flounderDropdown__fakeHovered .flounderDropdown__main .flounderDropdown__arrowInner
@@ -9951,7 +10322,7 @@ span.CodeMirror-selectedtext { background: none; }
             padding-top:    8px;
             padding-bottom: 8px;
 
-            line-height:    unset;
+            line-height:    24px;
         }
 
 .flounderDropdown__default .flounderDropdown__hidden
@@ -10199,37 +10570,60 @@ span.CodeMirror-selectedtext { background: none; }
         height:         32px;
 
         padding-left:   16px;
-        padding-right:  16px;
+        padding-right:  8px;
 
-        background :    #e8f5fc;
+        border-radius:  2px;
+
+        background:     #e8f5fc;
         color:          #19a2e2;
         font-size:      14px;
         line-height:    24px;
         letter-spacing: 0.4px;
-
-        white-space:    nowrap;
-        overflow:       hidden;
-        text-overflow:  ellipsis;
     }
+
+.flounderDropdown__default .flounderDropdown__multipleSelectTag:focus
+        {
+            outline:    none;
+        }
+
+.flounderDropdown__default .flounderDropdown__multipleSelectTag:focus .flounderDropdown__multipleTagClose::after
+            {
+                content:        '';
+
+                position:       absolute;
+                top:            -20.71068%;
+                bottom:         -20.71068%;
+                left:           -20.71068%;
+                right:          -20.71068%;
+
+                border:         1px solid transparent;
+                border-radius:  50%;
+
+                border-color:   #19a2e2;
+                -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                        box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+            }
 
 .flounderDropdown__default .flounderDropdown__multipleTagClose
     {
         display:        block;
+        position:       relative;
 
+        -webkit-box-sizing:     border-box;
+
+                box-sizing:     border-box;
         width:          24px;
         height:         24px;
 
         margin-left:    8px;
 
-        background:     url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cG9seWdvbiBwb2ludHM9IjEyLjAxIDExLjMwMyA2LjcwNyA2IDYgNi43MDcgMTEuMzAzIDEyLjAxIDYgMTcuMzE0IDYuNzA3IDE4LjAyMSAxMi4wMSAxMi43MTggMTcuMzE0IDE4LjAyMSAxOC4wMjEgMTcuMzE0IDEyLjcxOCAxMi4wMSAxOC4wMjEgNi43MDcgMTcuMzE0IDYiLz4KPC9zdmc+Cg==) no-repeat 100%;
+        border:         1px solid transparent;
+        border-radius:  2px;
+
+        background:     url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cG9seWdvbiBmaWxsPSIjMTlhMmUyIiBwb2ludHM9IjEyLjAxIDExLjMwMyA2LjcwNyA2IDYgNi43MDcgMTEuMzAzIDEyLjAxIDYgMTcuMzE0IDYuNzA3IDE4LjAyMSAxMi4wMSAxMi43MTggMTcuMzE0IDE4LjAyMSAxOC4wMjEgMTcuMzE0IDEyLjcxOCAxMi4wMSAxOC4wMjEgNi43MDcgMTcuMzE0IDYiLz4KPC9zdmc+Cg==) no-repeat 100%;
 
         cursor:         pointer;
     }
-
-.flounderDropdown__default .flounderDropdown__multipleTagClose:hover
-        {
-            background-image:   url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cG9seWdvbiBmaWxsPSIjMTlhMmUyIiBwb2ludHM9IjEyLjAxIDExLjMwMyA2LjcwNyA2IDYgNi43MDcgMTEuMzAzIDEyLjAxIDYgMTcuMzE0IDYuNzA3IDE4LjAyMSAxMi4wMSAxMi43MTggMTcuMzE0IDE4LjAyMSAxOC4wMjEgMTcuMzE0IDEyLjcxOCAxMi4wMSAxOC4wMjEgNi43MDcgMTcuMzE0IDYiLz4KPC9zdmc+Cg==);
-        }
 
 .flounderDropdown__default .flounderDropdown__loading, .flounderDropdown__default .flounderDropdown__loadingFailed
     {
@@ -10377,12 +10771,12 @@ span.CodeMirror-selectedtext { background: none; }
         right:      0;
     }
 
-.flounderDropdown__headerMode .flounderDropdown__main, .flounderDropdown__headerMode .flounderDropdown__main:hover, .flounderDropdown__headerMode.flounderDropdown__fakeHovered .flounderDropdown__main, .flounderDropdown__headerMode.flounderDropdown__error .flounderDropdown__main, .flounderDropdown__headerMode .flounderDropdown__main.flounderDropdown__disabled
+.flounderDropdown__headerMode .flounderDropdown__main, .flounderDropdown__headerMode.flounderDropdown__fakeHovered .flounderDropdown__main, .flounderDropdown__headerMode.flounderDropdown__error .flounderDropdown__main, .flounderDropdown__headerMode .flounderDropdown__main.flounderDropdown__disabled
     {
-        border:     none !important; /* yes, always */
-        background: transparent !important; /* yes, always */
+        border:     none !important;
+        background: transparent !important;
         -webkit-box-shadow: none !important;
-                box-shadow: none !important; /* yes, always */
+                box-shadow: none !important;
     }
 
 .flounderDropdown__headerMode .flounderDropdown__main
@@ -10518,19 +10912,23 @@ span.CodeMirror-selectedtext { background: none; }
         height: 16px;
     }
 
-.flounderDropdown__error .flounderDropdown__main, .flounderDropdown__error .flounderDropdown__main:hover, .flounderDropdown__error .flounderDropdown__main:focus, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main:hover, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main:focus
+.flounderDropdown__error .flounderDropdown__main, .flounderDropdown__error .flounderDropdown__main:focus, .flounderDropdown__error.flounderDropdown__fakeHovered .flounderDropdown__main, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main
     {
-        border-color:    #ff5460;
-        -webkit-box-shadow:      0 0 0 1px #ff5460;
-                box-shadow:      0 0 0 1px #ff5460;
+        border-color:   #ff5460;
     }
 
-.flounderDropdown__error .flounderDropdown__main .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__main:hover .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__main:focus .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main:hover .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main:focus .flounderDropdown__selectedDisplayed
+.flounderDropdown__error .flounderDropdown__main .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__main:focus .flounderDropdown__selectedDisplayed, .flounderDropdown__error.flounderDropdown__fakeHovered .flounderDropdown__main .flounderDropdown__selectedDisplayed, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__selectedDisplayed
         {
-            color:           #ff5460;
+            color:  #ff5460;
         }
 
-.flounderDropdown__error .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__error .flounderDropdown__main:focus .flounderDropdown__arrowInner
+.flounderDropdown__error .flounderDropdown__main:focus, .flounderDropdown__error.flounderDropdown__fakeHovered .flounderDropdown__main, .flounderDropdown__error .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main
+    {
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+    }
+
+.flounderDropdown__error .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__error .flounderDropdown__main:focus .flounderDropdown__arrowInner, .flounderDropdown__error.flounderDropdown__fakeHovered .flounderDropdown__main .flounderDropdown__arrowInner
     {
         background-image:  url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cGF0aCBmaWxsPSIjZmY1NDYwIiBkPSJNOC43MTI3Njg4NCwxMC4yOTg2MDEgQzguMzI1Mzk2ODYsOS45MDQ5NDk2MiA3LjY5MjI1MjM0LDkuODk5ODU5MTggNy4yOTg2MDA5OCwxMC4yODcyMzEyIEM2LjkwNDk0OTYyLDEwLjY3NDYwMzEgNi44OTk4NTkxOCwxMS4zMDc3NDc3IDcuMjg3MjMxMTYsMTEuNzAxMzk5IEwxMS4xNDQ2Nzc0LDE1LjYyMTM3NTIgQzExLjYwOTUyMzgsMTYuMDkzNzU2OSAxMi4zNjkyOTcyLDE2LjA5OTg2NTQgMTIuODQxNjc4OCwxNS42MzUwMTkgQzEyLjg0NjI1MTEsMTUuNjMwNDk1NSAxNC4xMzY2MTQ1LDE0LjMxOTI4ODggMTYuNzEyNzY4OCwxMS43MDEzOTkgQzE3LjEwMDE0MDgsMTEuMzA3NzQ3NyAxNy4wOTUwNTA0LDEwLjY3NDYwMzEgMTYuNzAxMzk5LDEwLjI4NzIzMTIgQzE2LjMwNzc0NzcsOS44OTk4NTkxOCAxNS42NzQ2MDMxLDkuOTA0OTQ5NjIgMTUuMjg3MjMxMiwxMC4yOTg2MDEgTDEyLDEzLjYzOTExODggTDguNzEyNzY4ODQsMTAuMjk4NjAxIFoiLz4KPC9zdmc+Cg==);
     }
@@ -10540,7 +10938,7 @@ span.CodeMirror-selectedtext { background: none; }
         background-image:  url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjQgMjQiPgogICAgPHBhdGggZmlsbD0iI2ZmNTQ2MCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgMCAyMi4wMikiIGQ9Ik04LjcxMjc2ODg0LDguMzE4OTA0NTQgQzguMzI1Mzk2ODYsNy45MjUyNTMxOCA3LjY5MjI1MjM0LDcuOTIwMTYyNzQgNy4yOTg2MDA5OCw4LjMwNzUzNDcyIEM2LjkwNDk0OTYyLDguNjk0OTA2NzEgNi44OTk4NTkxOCw5LjMyODA1MTIyIDcuMjg3MjMxMTYsOS43MjE3MDI1OCBMMTEuMTQ0Njc3NCwxMy42NDE2Nzg4IEMxMS42MDk1MjM4LDE0LjExNDA2MDQgMTIuMzY5Mjk3MiwxNC4xMjAxNjg5IDEyLjg0MTY3ODgsMTMuNjU1MzIyNiBDMTIuODQ2MjUxMSwxMy42NTA3OTkgMTQuMTM2NjE0NSwxMi4zMzk1OTI0IDE2LjcxMjc2ODgsOS43MjE3MDI1OCBDMTcuMTAwMTQwOCw5LjMyODA1MTIyIDE3LjA5NTA1MDQsOC42OTQ5MDY3MSAxNi43MDEzOTksOC4zMDc1MzQ3MiBDMTYuMzA3NzQ3Nyw3LjkyMDE2Mjc0IDE1LjY3NDYwMzEsNy45MjUyNTMxOCAxNS4yODcyMzEyLDguMzE4OTA0NTQgTDEyLDExLjY1OTQyMjQgTDguNzEyNzY4ODQsOC4zMTg5MDQ1NCBaIi8+Cjwvc3ZnPgo=);
     }
 
-.flounderDropdown__toggleIcon__magnifier .flounderDropdown__main:hover .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier .flounderDropdown__main:focus .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier.flounderDropdown__fakeHovered .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier.flounderDropdown__fakeHovered .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__arrowInner
+.flounderDropdown__toggleIcon__magnifier .flounderDropdown__main:focus .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier.flounderDropdown__fakeHovered .flounderDropdown__main .flounderDropdown__arrowInner, .flounderDropdown__toggleIcon__magnifier.flounderDropdown__fakeHovered .flounderDropdown__mainWrapper.flounderDropdown__open .flounderDropdown__main .flounderDropdown__arrowInner
         {
             background-image:   url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cGF0aCBmaWxsPSIjMjg5QkM4IiBkPSJNMTcuMDg0NSwxNS40MjkyIEwyMC42NTc1LDE5LjAwMjIgQzIxLjExNDUsMTkuNDU5MiAyMS4xMTQ1LDIwLjIwMDIgMjAuNjU3NSwyMC42NTcyIEMyMC4yMDA1LDIxLjExNDIgMTkuNDU5NSwyMS4xMTQyIDE5LjAwMTUsMjAuNjU3MiBMMTUuNDI5NSwxNy4wODQyIEMxNC4xMzQ1LDE4LjAzOTIgMTIuNTM0NSwxOC42MDQyIDEwLjgwMTUsMTguNjA0MiBDNi40OTM1LDE4LjYwNDIgMy4wMDA1LDE1LjExMTIgMy4wMDA1LDEwLjgwMjIgQzMuMDAwNSw2LjQ5MzIgNi40OTM1LDMuMDAwMiAxMC44MDE1LDMuMDAwMiBDMTUuMTEwNSwzLjAwMDIgMTguNjA0NSw2LjQ5MzIgMTguNjA0NSwxMC44MDIyIEMxOC42MDQ1LDEyLjUzNDIgMTguMDM5NSwxNC4xMzUyIDE3LjA4NDUsMTUuNDI5MiBNMTAuODAxNSwxNi4yNjMyIEMxMy44MTg1LDE2LjI2MzIgMTYuMjYzNSwxMy44MTgyIDE2LjI2MzUsMTAuODAyMiBDMTYuMjYzNSw3Ljc4NTIgMTMuODE4NSw1LjM0MTIgMTAuODAxNSw1LjM0MTIgQzcuNzg1NSw1LjM0MTIgNS4zNDA1LDcuNzg1MiA1LjM0MDUsMTAuODAyMiBDNS4zNDA1LDEzLjgxODIgNy43ODU1LDE2LjI2MzIgMTAuODAxNSwxNi4yNjMyIi8+Cjwvc3ZnPgo=);
         }
@@ -11047,6 +11445,175 @@ span.CodeMirror-selectedtext { background: none; }
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
+:root
+{
+    /*  TYPOGRAPHY SIZES */
+}
+
+:root
+{
+    /*  SPACING */
+}
+
+:root
+{
+    /* default box shadow */
+}
+
+.iconButton__default
+{
+    position:       relative;
+    margin:         0;
+    margin-bottom:  16px;
+
+    -webkit-box-sizing:     border-box;
+
+            box-sizing:     border-box;
+    width:          100%;
+    max-width:      100%;
+    min-width:      0;
+}
+
+/* in case this is a flexbox child */
+
+.iconButton__default:last-child
+    {
+        margin-bottom:  0;
+    }
+
+:root
+{ /* Math.sqrt( 2 ) */
+}
+
+.iconButton__default
+{
+    -webkit-appearance:         none !important;
+       -moz-appearance:         none !important;
+            appearance:         none !important;
+
+    display:            -webkit-box;
+
+    display:            -webkit-flex;
+
+    display:            -ms-flexbox;
+
+    display:            flex;
+    -webkit-box-align:        center;
+    -webkit-align-items:        center;
+        -ms-flex-align:        center;
+            align-items:        center;
+    -webkit-box-pack:    center;
+    -webkit-justify-content:    center;
+        -ms-flex-pack:    center;
+            justify-content:    center;
+
+    width:              auto;
+
+    margin:             0;
+    padding:            0;
+    border:             none;
+
+    background:         transparent;
+    cursor:             pointer;
+}
+
+.iconButton__default .iconButton__icon
+    {
+        -webkit-box-flex:   0;
+        -webkit-flex:   none;
+            -ms-flex:   none;
+                flex:   none;
+    }
+
+.iconButton__default:focus
+    {
+        outline:    none;
+    }
+
+.iconButton__default:focus::after
+        {
+            content:        '';
+
+            position:       absolute;
+            top:            -20.71068%;
+            bottom:         -20.71068%;
+            left:           -20.71068%;
+            right:          -20.71068%;
+
+            border:         1px solid transparent;
+            border-radius:  50%;
+
+            border-color:   #19a2e2;
+            -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                    box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+        }
+
+.iconButton__disabled
+{
+    cursor:         default;
+    pointer-events: none;
+    opacity:        0.36;
+}
+
+.iconButton__background
+{
+    border:         1px solid transparent;
+    border-radius:  50%;
+    padding:        7px;
+
+    background:     #ffffff;
+    opacity:        0.9;
+}
+
+.iconButton__background:focus
+    {
+        border-color:   #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
+.iconButton__background:focus::after
+        {
+            display:    none;
+        }
+
+/*----------------------------------------------------------------------------//
+//    $color definitions
+//----------------------------------------------------------------------------*/
+
+:root
+{
+    /* primary colors */
+
+
+    /* greyscale colors */
+
+
+    /* bluescale colors */
+
+
+    /* redscale colors */
+
+
+    /* orangescale colors */
+
+
+    /* yellowscale colors */
+
+
+    /* limescale colors */
+
+
+    /* greenscale colors */
+
+
+    /* navyscale colors */
+}
+
+/*------------------------------------//
+//    $FONT DEFINITIONS
+//------------------------------------*/
+
 .inputField__default
 {
     font-family: Nessie-Regular, sans-serif;
@@ -11173,31 +11740,31 @@ span.CodeMirror-selectedtext { background: none; }
         color:         #c7d0db;
     }
 
-.inputField__default:focus
+.inputField__default:focus, .inputField__default.inputField__fakeHovered
     {
         border-color:   #19a2e2;
-        -webkit-box-shadow:     0 0 0 1px #19a2e2;
-                box-shadow:     0 0 0 1px #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
 
         outline:        none;
     }
 
-.inputField__default:focus::-webkit-input-placeholder
+.inputField__default:focus::-webkit-input-placeholder, .inputField__default.inputField__fakeHovered::-webkit-input-placeholder
         {
             color: transparent !important;
         }
 
-.inputField__default:focus:-ms-input-placeholder
+.inputField__default:focus:-ms-input-placeholder, .inputField__default.inputField__fakeHovered:-ms-input-placeholder
         {
             color: transparent !important;
         }
 
-.inputField__default:focus::-ms-input-placeholder
+.inputField__default:focus::-ms-input-placeholder, .inputField__default.inputField__fakeHovered::-ms-input-placeholder
         {
             color: transparent !important;
         }
 
-.inputField__default:focus::placeholder
+.inputField__default:focus::placeholder, .inputField__default.inputField__fakeHovered::placeholder
         {
             color: transparent !important;
         }
@@ -11207,20 +11774,18 @@ textarea.inputField__default
         resize: none;
     }
 
-.inputField__fakeHovered
-{
-    border-color:   #19a2e2;
-    -webkit-box-shadow:     0 0 0 1px #19a2e2;
-            box-shadow:     0 0 0 1px #19a2e2;
-}
-
 .inputField__error
 {
-    border-color:   #ff5460 !important; /* yes, always override other states */
-    -webkit-box-shadow:     0 0 0 1px #ff5460 !important;
-            box-shadow:     0 0 0 1px #ff5460 !important; /* yes, always override other states */
-    color:          #ff5460 !important; /* yes, always override other states */
+    border-color:   #ff5460 !important;
+    color:          #ff5460 !important;
+
 }
+
+.inputField__error:focus, .inputField__error.inputField__fakeHovered
+    {
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+    }
 
 .inputField__disabled
 {
@@ -12361,7 +12926,7 @@ only used in type__carousel for now
 
 .navItem__role__default > .navItem__link, .navItem__role__primary > .navItem__link
     {
-        padding:    8px;
+        padding:    7px;
     }
 
 .navItem__role__default > .navItem__link[href]:hover, .navItem__role__default > .navItem__link[href]:focus, .navItem__role__default > .navItem__link[href]:active, .navItem__role__default.navItem__fakeHovered > .navItem__link, .navItem__role__default.navItem__open > .navItem__link, .navItem__role__default.navItem__current > .navItem__link, .navItem__role__primary > .navItem__link[href]:hover, .navItem__role__primary > .navItem__link[href]:focus, .navItem__role__primary > .navItem__link[href]:active, .navItem__role__primary.navItem__fakeHovered > .navItem__link, .navItem__role__primary.navItem__open > .navItem__link, .navItem__role__primary.navItem__current > .navItem__link
@@ -12374,6 +12939,20 @@ only used in type__carousel for now
         background-color:  #e8f5fc;
     }
 
+.navItem__role__default > .navItem__link, .navItem__role__primary > .navItem__link
+    {
+        border:             1px solid transparent;
+        border-radius:      2px;
+    }
+
+.navItem__role__default > .navItem__link:focus, .navItem__role__primary > .navItem__link:focus
+        {
+            outline:        none;
+            border-color:   #19a2e2;
+            -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                    box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+        }
+
 .navItem__role__sub
 {
     background:            #ffffff;
@@ -12383,15 +12962,20 @@ only used in type__carousel for now
 .navItem__role__sub > .navItem__link
     {
         padding-top:       0;
-        padding-right:     16px;
+        padding-right:     15px;
         padding-bottom:    0;
-        padding-left:      16px;
+        padding-left:      15px;
 
         border-radius:     2px;
 
-        line-height:       48px;
+        line-height:       47px;
         color:             #4b627d;
     }
+
+.navItem__role__sub > .navItem__link:focus
+        {
+            outline: none;
+        }
 
 .navItem__role__sub > .navItem__link:visited
         {
@@ -12440,17 +13024,12 @@ only used in type__carousel for now
 
 .navItem__link[href]
     {
-        cursor:     pointer;
-    }
-
-.navItem__link:focus
-    {
-        outline:    none;
+        cursor: pointer;
     }
 
 .navItem__link:visited
     {
-        color:      #8296ae;
+        color:  #8296ae;
     }
 
 .navItem__dropdown
@@ -12462,10 +13041,10 @@ only used in type__carousel for now
 
 .navItem__hasIcon > .navItem__link
     {
-        padding-top:    13px;
-        padding-right:  24px;
-        padding-bottom: 15px;
-        padding-left:   24px;
+        padding-top:    12px;
+        padding-right:  23px;
+        padding-bottom: 14px;
+        padding-left:   23px;
     }
 
 .navItem__hasIcon > .navItem__link > .navItem__icon
@@ -13373,29 +13952,6 @@ only used in type__carousel for now
         margin-right:       8px;
     }
 
-.paginator__pageButton
-{
-    background-color:       #eef1f4;
-
-    padding-left:           8px;
-    padding-right:          8px;
-    padding-top:            0;
-    padding-bottom:         0;
-
-    border-radius:          2px;
-}
-
-.paginator__pageButton:hover:not([disabled])
-    {
-        cursor:             pointer;
-    }
-
-.paginator__pageButton:hover, .paginator__pageButton:focus, .paginator__pageButton:disabled
-    {
-        color:              #ffffff;
-        background-color:   #19a2e2;
-    }
-
 .paginator__pageButton, .paginator__ellipsis
 {
     border:             none;
@@ -13416,6 +13972,39 @@ only used in type__carousel for now
 .paginator__pageButton:focus, .paginator__ellipsis:focus
     {
         outline:        none;
+    }
+
+.paginator__pageButton
+{
+    height:                 24px;
+    background-color:       #eef1f4;
+
+    padding-left:           8px;
+    padding-right:          8px;
+    padding-top:            0;
+    padding-bottom:         0;
+
+    border:                 1px solid #eef1f4;
+    border-radius:          2px;
+}
+
+.paginator__pageButton:hover:not([disabled])
+    {
+        cursor:             pointer;
+    }
+
+.paginator__pageButton:hover, .paginator__pageButton:disabled
+    {
+        border-color:       #19a2e2;
+        color:              #ffffff;
+        background-color:   #19a2e2;
+    }
+
+.paginator__pageButton:focus
+    {
+        border-color:       #19a2e2;
+        -webkit-box-shadow:         0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:         0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .paginator__pageButtons
@@ -13451,6 +14040,15 @@ only used in type__carousel for now
 .paginator__arrows:hover
     {
         background-color:   #eef1f4;
+    }
+
+.paginator__arrows:focus::after
+    {
+        top:    0;
+        bottom: 0;
+        left:   0;
+        right:  0;
+        border-radius:  2px;
     }
 
 /*----------------------------------------------------------------------------//
@@ -13900,7 +14498,9 @@ only used in type__carousel for now
 
 .radio__fakeHovered .radio__label::before, .radio__fakeHovered .radio__input:focus + .radio__label::before
     {
-        border:         2px solid #19a2e2;
+        border:         1px solid #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .radio__label
@@ -13959,9 +14559,15 @@ only used in type__carousel for now
     color:              #4b627d;
 }
 
-.radio__error .radio__label::before, .radio__error:hover .radio__label::before, .radio__error .radio__input:focus + .radio__label::before
+.radio__error .radio__label::before
     {
-        border:       1px solid #ff5460;
+        border: 1px solid #ff5460 !important;
+    }
+
+.radio__error .radio__input:focus + .radio__label::before, .radio__error.radio__fakeHovered .radio__label::before
+    {
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
     }
 
 .radio__disabled
@@ -13997,7 +14603,9 @@ only used in type__carousel for now
 
 .radio__input:focus + .radio__label::before
     {
-        border:             2px solid #19a2e2;
+        border:         1px solid #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .radio__default
@@ -14245,11 +14853,6 @@ only used in type__carousel for now
     overflow:   hidden;
 }
 
-.scrollBox__default .scrollBox__content
-    {
-
-    }
-
 .scrollBox__default .scrollBox__inner
     {
         width:      100%;
@@ -14257,61 +14860,12 @@ only used in type__carousel for now
         overflow:   scroll;
     }
 
+/* force webkit scrollbars to be always visible on macOS */
+
 .scrollBox__default .scrollBox__inner::-webkit-scrollbar
         {
-            display:    none;
+            visibility: visible;
         }
-
-.scrollBox__default .scrollBox__iconDown, .scrollBox__default .scrollBox__iconLeft, .scrollBox__default .scrollBox__iconRight, .scrollBox__default .scrollBox__iconUp
-    {
-        position:       absolute;
-        border-radius:  50%;
-        padding:        8px;
-        background:     #19a2e2;
-        opacity:        0.4;
-    }
-
-.scrollBox__default .scrollBox__iconDown:hover, .scrollBox__default .scrollBox__iconDown:focus, .scrollBox__default .scrollBox__iconLeft:hover, .scrollBox__default .scrollBox__iconLeft:focus, .scrollBox__default .scrollBox__iconRight:hover, .scrollBox__default .scrollBox__iconRight:focus, .scrollBox__default .scrollBox__iconUp:hover, .scrollBox__default .scrollBox__iconUp:focus
-        {
-            opacity:    1;
-        }
-
-.scrollBox__default .scrollBox__iconDown svg, .scrollBox__default .scrollBox__iconLeft svg, .scrollBox__default .scrollBox__iconRight svg, .scrollBox__default .scrollBox__iconUp svg
-        {
-            fill:   #ffffff;
-        }
-
-.scrollBox__default .scrollBox__iconDown
-    {
-        bottom:     8px;
-        left:       50%;
-        -webkit-transform:  translateX( -50% );
-                transform:  translateX( -50% );
-    }
-
-.scrollBox__default .scrollBox__iconLeft
-    {
-        top:        50%;
-        left:       8px;
-        -webkit-transform:  translateY( -50% );
-                transform:  translateY( -50% );
-    }
-
-.scrollBox__default .scrollBox__iconRight
-    {
-        top:        50%;
-        right:      8px;
-        -webkit-transform:  translateY( -50% );
-                transform:  translateY( -50% );
-    }
-
-.scrollBox__default .scrollBox__iconUp
-    {
-        top:        8px;
-        left:       50%;
-        -webkit-transform:  translateX( -50% );
-                transform:  translateX( -50% );
-    }
 
 .scrollBox__default .scrollBox__scrollBarHorizontal
     {
@@ -14340,6 +14894,229 @@ only used in type__carousel for now
         overflow-y:             scroll;
         overscroll-behavior-y:  contain;
     }
+
+.scrollBox__scroll__both .scrollBox__scrollBarHorizontal
+    {
+        width:  calc(100% - 5px);
+    }
+
+.scrollBox__scroll__both .scrollBox__scrollBarVertical
+    {
+        height: calc(100% - 5px);
+    }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconDown, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconLeft, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconRight, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconUp
+    {
+        position:       absolute;
+        border-radius:  50%;
+        padding:        8px;
+        background:     #19a2e2;
+        opacity:        0.4;
+    }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconDown:hover, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconDown:focus, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconLeft:hover, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconLeft:focus, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconRight:hover, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconRight:focus, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconUp:hover, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconUp:focus
+        {
+            opacity:    1;
+        }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconDown svg, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconLeft svg, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconRight svg, .scrollBox__scrollIndicatorVariant__circle .scrollBox__iconUp svg
+        {
+            fill:   #ffffff;
+        }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconDown
+    {
+        bottom:     8px;
+        left:       50%;
+        -webkit-transform:  translateX( -50% );
+                transform:  translateX( -50% );
+    }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconLeft
+    {
+        top:        50%;
+        left:       8px;
+        -webkit-transform:  translateY( -50% );
+                transform:  translateY( -50% );
+    }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconRight
+    {
+        top:        50%;
+        right:      8px;
+        -webkit-transform:  translateY( -50% );
+                transform:  translateY( -50% );
+    }
+
+.scrollBox__scrollIndicatorVariant__circle .scrollBox__iconUp
+    {
+        top:        8px;
+        left:       50%;
+        -webkit-transform:  translateX( -50% );
+                transform:  translateX( -50% );
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconDown, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconLeft, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconRight, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconUp
+    {
+        position:         absolute;
+        background-color: transparent;
+        pointer-events:   none;
+        visibility:       hidden;
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconDown svg, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconLeft svg, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconRight svg, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconUp svg
+        {
+            fill:           #546e8c;
+            pointer-events: auto;
+            visibility:     visible;
+            z-index:        1;
+        }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconDown::before, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconLeft::before, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconRight::before, .scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconUp::before
+        {
+            content:    "";
+            display:    block;
+            position:   absolute;
+            visibility: visible;
+        }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconDown
+    {
+        bottom:     0;
+        left:       0;
+        width:      100%;
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconDown::before
+        {
+            bottom:     0;
+            width:      100%;
+            height:     72px;
+
+            background: -webkit-gradient(linear, left bottom, left top, from(rgba(255,255,255,1)),to(rgba(255,255,255,0)));
+
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconLeft
+    {
+        top:        0;
+        left:       0;
+        height:     100%;
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconLeft::before
+        {
+            top:       0;
+            left:      0;
+            height:    100%;
+            width:     72px;
+
+            background: -webkit-gradient(linear, left top, right top, from(rgba(255,255,255,1)),to(rgba(255,255,255,0)));
+
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconRight
+    {
+        top:        0;
+        right:      0;
+        height:     100%;
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconRight::before
+        {
+            top:        0;
+            right:      0;
+            height:     100%;
+            width:      72px;
+
+            background: -webkit-gradient(linear, right top, left top, from(rgba(255,255,255,1)),to(rgba(255,255,255,0)));
+
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconUp
+    {
+        top:        0;
+        left:       0;
+        width:      100%;
+    }
+
+.scrollBox__scrollIndicatorVariant__gradient .scrollBox__iconUp::before
+        {
+            top:        0;
+            width:      100%;
+            height:     72px;
+
+            background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,1)),to(rgba(255,255,255,0)));
+
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+        }
+
+/* padding X */
+
+.scrollBox__paddingX__S .scrollBox__content
+{
+    padding-left:   8px;
+    padding-right:  8px;
+}
+
+.scrollBox__paddingX__M .scrollBox__content
+{
+    padding-left:   16px;
+    padding-right:  16px;
+}
+
+.scrollBox__paddingX__L .scrollBox__content
+{
+    padding-left:   24px;
+    padding-right:  24px;
+}
+
+.scrollBox__paddingX__XL .scrollBox__content
+{
+    padding-left:   32px;
+    padding-right:  32px;
+}
+
+.scrollBox__paddingX__XXL .scrollBox__content
+{
+    padding-left:   40px;
+    padding-right:  40px;
+}
+
+/* padding Y */
+
+.scrollBox__paddingY__S .scrollBox__content
+{
+    padding-top:     8px;
+    padding-bottom:  8px;
+}
+
+.scrollBox__paddingY__M .scrollBox__content
+{
+    padding-top:     16px;
+    padding-bottom:  16px;
+}
+
+.scrollBox__paddingY__L .scrollBox__content
+{
+    padding-top:     24px;
+    padding-bottom:  24px;
+}
+
+.scrollBox__paddingY__XL .scrollBox__content
+{
+    padding-top:     32px;
+    padding-bottom:  32px;
+}
+
+.scrollBox__paddingY__XXL .scrollBox__content
+{
+    padding-top:     40px;
+    padding-bottom:  40px;
+}
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -14619,12 +15396,14 @@ only used in type__carousel for now
         height:             16px;
 
         border-radius:      50%;
-        border:             1px solid #c7d0db;
-        background-color:   #ffffff;
+        background-color:   #19a2e2;
 
         cursor:             -webkit-grab;
 
         cursor:             grab;
+
+        z-index:            9999;
+
     }
 
 .slider__default .slider__handle:active
@@ -14633,11 +15412,27 @@ only used in type__carousel for now
             cursor:         grabbing;
         }
 
-.slider__default .slider__handleFocus
-    {
-        -webkit-box-shadow:         0 0 2pt 1pt #19a2e2;
-                box-shadow:         0 0 2pt 1pt #19a2e2;
-    }
+.slider__default .slider__handle::after
+        {
+          -webkit-transition: opacity 450ms;
+          transition: opacity 450ms;
+          content: '';
+          position: absolute;
+          background-color:  #1589c0;
+          opacity: 0;
+          width: 24px;
+          height: 24px;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+        }
+
+.slider__default .slider__handleFocus::after
+      {
+        opacity: .2;
+      }
 
 .slider__default .slider__handleLabel
     {
@@ -14869,20 +15664,25 @@ only used in type__carousel for now
         color:      #ff5460;
     }
 
-.slider__disabled .slider__track:hover .slider__handle
+.slider__disabled .slider__track:hover
     {
-        border-color:   #dfe4ea;
+      cursor: default;
     }
+
+.slider__disabled .slider__track:hover .slider__handle
+      {
+          border-color:   #dfe4ea;
+      }
 
 .slider__disabled .slider__trackFill
     {
-        background:         #c7d0db;
+        background:         #bae3f6;
+        cursor: default;
     }
 
 .slider__disabled .slider__handle
     {
-        background:         #f6f7f9;
-        border-color:       #dfe4ea;
+        background:         #bae3f6;
         cursor:             default;
     }
 
@@ -14890,6 +15690,11 @@ only used in type__carousel for now
         {
             cursor:         default;
         }
+
+.slider__disabled .slider__handle:active::after
+            {
+              content: none;
+            }
 
 .slider__disabled .slider__handleLabel
     {
@@ -15315,7 +16120,7 @@ only used in type__carousel for now
 
 .statusIndicator__default
 {
-    font-family: Nessie-SemiBold, sans-serif;
+    font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -15360,34 +16165,41 @@ only used in type__carousel for now
 {
     width:              auto;
 
-    padding:            6px 20px;
+    padding:            8px 20px;
 
-    border:             2px solid #69829e;
     border-radius:      16px;
 
-    color:              #69829e;
-
-    font-size:          12px;
+    font-size:          14px;
     line-height:        16px;
     letter-spacing:     0.4px;
-
-    text-transform:     uppercase;
     text-align:         center;
 
     overflow:           hidden;
     text-overflow:      ellipsis;
 }
 
-.statusIndicator__status__active
+.statusIndicator__status__active, .statusIndicator__status__promoted
 {
     color:              #1bbab0;
-    border-color:       #1bbab0;
+    background-color:   #bbeae7;
 }
 
 .statusIndicator__status__alert
 {
-    color:              #ffd46b;
-    border-color:       #ffd46b;
+    color:              #ff965a;
+    background-color:   #ffdfcd;
+}
+
+.statusIndicator__status__critical
+{
+    color:              #ff5460;
+    background-color:   #ffcccf;
+}
+
+.statusIndicator__status__deactivated
+{
+    color:              #597494;
+    background-color:   #c7d0db;
 }
 
 /*----------------------------------------------------------------------------//
@@ -15489,16 +16301,28 @@ only used in type__carousel for now
         left:       -9999px;
     }
 
+.switch__default .switch__input:focus + .switch__label
+            {
+                outline:        none;
+
+                border:         1px solid #19a2e2;
+                -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                        box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+            }
+
+.switch__default .switch__input:focus + .switch__label::before
+                {
+                    border-color:   #19a2e2;
+                    -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                            box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                }
+
 .switch__default .switch__label
     {
         display:        -webkit-box;
         display:        -webkit-flex;
         display:        -ms-flexbox;
         display:        flex;
-
-        -webkit-box-sizing:     border-box;
-
-                box-sizing:     border-box;
 
         width:          40px;
         height:         16px;
@@ -15554,13 +16378,6 @@ only used in type__carousel for now
         {
             left:           calc(100% - 25px);
             border-color:   #19a2e2;
-        }
-
-.switch__default .switch__input:focus + .switch__label
-        {
-            /* mimic native browser focus */
-            outline:    auto 2px highlight;
-            outline:    auto 5px -webkit-focus-ring-color;
         }
 
 .switch__disabled .switch__label
@@ -15690,19 +16507,59 @@ only used in type__carousel for now
 
 .tabButton__default
 {
-    position:               relative;
-    display:                table; /* flex doesn’t work here */
+    -webkit-appearance:     none !important;
+       -moz-appearance:     none !important;
+            appearance:     none !important;
 
-    width:                  auto;
+    position:       relative;
+    display:        table; /* flex doesn’t work here */
 
-    padding:                0;
+    width:          auto;
+    height:         auto;
 
-    border:                 none;
-    border-radius:          2px;
+    padding:        0;
 
-    background:             transparent;
-    cursor:                 pointer;
+    border:         none;
+    border-radius:  2px;
+
+    background:     transparent;
+    cursor:         pointer;
 }
+
+.tabButton__default .tabButton__content
+    {
+        /* Firefox doesn’t properly support flex directly
+         * on button so we need to set it here
+         */
+        display:            -webkit-box;
+        display:            -webkit-flex;
+        display:            -ms-flexbox;
+        display:            flex;
+        -webkit-box-pack:    center;
+        -webkit-justify-content:    center;
+            -ms-flex-pack:    center;
+                justify-content:    center;
+        -webkit-box-align:        center;
+        -webkit-align-items:        center;
+            -ms-flex-align:        center;
+                align-items:        center;
+        -webkit-box-sizing:         border-box;
+                box-sizing:         border-box;
+        height:             40px;
+        padding:            0 16px;
+        text-align:         center;
+    }
+
+.tabButton__default .tabButton__label
+    {
+        font-size:      14px;
+        line-height:    16px;
+        letter-spacing: 0.5px;
+
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+        white-space:    nowrap;
+    }
 
 .tabButton__default .tabButton__iconContainer
     {
@@ -15720,38 +16577,47 @@ only used in type__carousel for now
                 align-items:        center;
     }
 
-.tabButton__content
-{
-    /* Firefox doesn’t properly support flex directly
-     * on button so we need to set it here
-     */
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-    height:             40px;
-    padding:            0 16px;
-    text-align:         center;
-}
+.tabButton__default .tabButton__loadingOverlay
+    {
+        display:            -webkit-box;
+        display:            -webkit-flex;
+        display:            -ms-flexbox;
+        display:            flex;
+        -webkit-box-orient:     horizontal;
+        -webkit-box-direction:     normal;
+        -webkit-flex-direction:     row;
+            -ms-flex-direction:     row;
+                flex-direction:     row;
+        -webkit-box-pack:    center;
+        -webkit-justify-content:    center;
+            -ms-flex-pack:    center;
+                justify-content:    center;
+        -webkit-box-align:        center;
+        -webkit-align-items:        center;
+            -ms-flex-align:        center;
+                align-items:        center;
 
-.tabButton__label
-{
-    font-size:          14px;
-    line-height:        16px;
-    letter-spacing:     0.5px;
+        position:           absolute;
 
-    overflow:           hidden;
-    text-overflow:      ellipsis;
-    white-space:        nowrap;
-}
+        top:                0;
+        bottom:             0;
+
+        left:               0;
+        right:              0;
+
+        width:              100%;
+        height:             100%;
+    }
+
+.tabButton__default .tabButton__loadingOverlay .tabButton__spinner
+        {
+            border-color:   rgba(255, 255, 255, 0.5);
+        }
+
+.tabButton__default .tabButton__loadingOverlay .tabButton__spinner::after
+            {
+                border-top-color:   #ffffff;
+            }
 
 .tabButton__iconPosition__right .tabButton__content
     {
@@ -15765,48 +16631,62 @@ only used in type__carousel for now
 .tabButton__iconPosition__right .tabButton__iconContainer
     {
         margin-left:    4px; /* space between icon and text */
-        margin-right:   -var( --spacing-1 ); /* half of content padding */
+        margin-right:   -8px; /* half of content padding */
     }
 
 .tabButton__iconPosition__left .tabButton__iconContainer
     {
         margin-right:   4px; /* space between icon and text */
-        margin-left:    -var( --spacing-1 ); /* half of content padding */
+        margin-left:    -8px; /* half of content padding */
     }
 
 .tabButton__role__default
 {
-    background:         #19a2e2;
-    color:              #ffffff;
+    background: #19a2e2;
+    color:      #ffffff;
 }
 
 .tabButton__role__default.tabButton__fakeHovered, .tabButton__role__default:hover
     {
-        background:     #30abe4;
-        color:          #ffffff;
+        background: #30abe4;
+        color:      #ffffff;
+    }
+
+.tabButton__role__default:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .tabButton__role__secondary
 {
-    background:         #eef1f4;
-    color:              #8296ae;
+    background: #eef1f4;
+    color:      #8296ae;
 }
 
 .tabButton__role__secondary.tabButton__fakeHovered, .tabButton__role__secondary:hover
     {
-        background:     #cfd7e0;
-        color:          #8296ae;
+        background: #cfd7e0;
+        color:      #8296ae;
+    }
+
+.tabButton__role__secondary:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(89, 116, 148, 0.3);
+                box-shadow: 0 0 0 2px rgba(89, 116, 148, 0.3);
     }
 
 .tabButton__role__secondary .tabButton__icon
     {
-        fill:           #8296ae;
-        color:          #8296ae;
+        fill:   #8296ae;
+        color:  #8296ae;
     }
 
 .tabButton__role__secondary .tabButton__loadingOverlay .tabButton__spinner
         {
-            border-color:           rgba(130, 150, 174, 0.25);
+            border-color:   rgba(130, 150, 174, 0.25);
         }
 
 .tabButton__role__secondary .tabButton__loadingOverlay .tabButton__spinner::after
@@ -15816,8 +16696,8 @@ only used in type__carousel for now
 
 .tabButton__role__promoted
 {
-    background:     #1bbab0;
-    color:          #ffffff;
+    background: #1bbab0;
+    color:      #ffffff;
 }
 
 .tabButton__role__promoted.tabButton__fakeHovered, .tabButton__role__promoted:hover
@@ -15826,10 +16706,17 @@ only used in type__carousel for now
         color:      #ffffff;
     }
 
+.tabButton__role__promoted:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(27, 186, 176, 0.3);
+                box-shadow: 0 0 0 2px rgba(27, 186, 176, 0.3);
+    }
+
 .tabButton__role__critical
 {
-    background:     #ff5460;
-    color:          #ffffff;
+    background: #ff5460;
+    color:      #ffffff;
 }
 
 .tabButton__role__critical.tabButton__fakeHovered, .tabButton__role__critical:hover
@@ -15838,9 +16725,18 @@ only used in type__carousel for now
         color:      #ffffff;
     }
 
+.tabButton__role__critical:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
+    }
+
 .tabButton__role__subtle
 {
+    height:         auto;
     background:     transparent;
+    border-radius:  20px;
 }
 
 .tabButton__role__subtle .tabButton__content
@@ -15858,13 +16754,13 @@ only used in type__carousel for now
 
 .tabButton__role__subtle .tabButton__icon
     {
-        fill:           #19a2e2;
-        color:          #19a2e2;
+        fill:   #19a2e2;
+        color:  #19a2e2;
     }
 
 .tabButton__role__subtle .tabButton__loadingOverlay .tabButton__spinner
         {
-            border-color:           rgba(25, 162, 226, 0.25);
+            border-color:   rgba(25, 162, 226, 0.25);
         }
 
 .tabButton__role__subtle .tabButton__loadingOverlay .tabButton__spinner::after
@@ -15874,8 +16770,8 @@ only used in type__carousel for now
 
 .tabButton__role__subtle.tabButton__fakeHovered .tabButton__content, .tabButton__role__subtle:hover .tabButton__content
         {
-            background-color: #19a2e2;
-            color:            #ffffff;
+            background-color:   #19a2e2;
+            color:              #ffffff;
         }
 
 .tabButton__role__subtle.tabButton__fakeHovered .tabButton__icon, .tabButton__role__subtle:hover .tabButton__icon
@@ -15883,20 +16779,46 @@ only used in type__carousel for now
             fill:   #ffffff;
         }
 
+.tabButton__role__subtle:focus
+    {
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
 .tabButton__role__control
 {
-    color:          #4b627d;
+    height: auto;
+    color:  #4b627d;
 }
+
+.tabButton__role__control .tabButton__content
+    {
+        height:         32px;
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding: 0 8px;
+    }
+
+.tabButton__iconPosition__left.tabButton__role__control .tabButton__iconContainer
+        {
+            margin-left:    -4px;
+        }
+
+.tabButton__iconPosition__right.tabButton__role__control .tabButton__iconContainer
+        {
+            margin-right:   -4px;
+        }
 
 .tabButton__role__control .tabButton__icon
     {
-        fill:       #4b627d;
-        color:      #4b627d;
+        fill:   #4b627d;
+        color:  #4b627d;
     }
 
 .tabButton__role__control.tabButton__fakeHovered, .tabButton__role__control:hover
     {
-        color:      #19a2e2;
+        color:  #19a2e2;
     }
 
 .tabButton__role__control.tabButton__fakeHovered .tabButton__icon, .tabButton__role__control:hover .tabButton__icon
@@ -15907,13 +16829,25 @@ only used in type__carousel for now
 
 .tabButton__role__control .tabButton__loadingOverlay .tabButton__spinner
         {
-            border-color:           rgba(75, 98, 125, 0.25);
+            border-color:   rgba(75, 98, 125, 0.25);
         }
 
 .tabButton__role__control .tabButton__loadingOverlay .tabButton__spinner::after
             {
                 border-top-color:   #4b627d;
             }
+
+.tabButton__role__control:focus
+    {
+        outline:    none;
+    }
+
+.tabButton__role__control:focus .tabButton__content
+        {
+            border-color:   #19a2e2;
+            -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                    box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+        }
 
 .tabButton__loading, .tabButton__disabled
 {
@@ -15974,76 +16908,38 @@ only used in type__carousel for now
             color:  rgb(255, 127, 136);
         }
 
-.tabButton__disabled.tabButton__role__subtle
-    {
-        color:              #75c7ed;
-    }
-
 .tabButton__disabled.tabButton__role__subtle .tabButton__content
         {
+            color:          #75c7ed;
             background:     #ffffff;
             border-color:   #75c7ed;
         }
 
 .tabButton__disabled.tabButton__role__subtle .tabButton__icon
         {
-            fill:           #75c7ed;
-            color:          #75c7ed;
+            fill:   #75c7ed;
+            color:  #75c7ed;
         }
 
-.tabButton__loadingOverlay
-{
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-    -webkit-box-orient:     horizontal;
-    -webkit-box-direction:     normal;
-    -webkit-flex-direction:     row;
-        -ms-flex-direction:     row;
-            flex-direction:     row;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-
-    position:           absolute;
-
-    top:                0;
-    bottom:             0;
-
-    left:               0;
-    right:              0;
-
-    width:              100%;
-    height:             100%;
-}
-
-.tabButton__loadingOverlay .tabButton__spinner
-    {
-        border-color:           rgba(255, 255, 255, 0.5);
-    }
-
-.tabButton__loadingOverlay .tabButton__spinner::after
+.tabButton__disabled.tabButton__role__control .tabButton__content
         {
-            border-top-color:   #ffffff;
+            color:  #98a8bc;
+        }
+
+.tabButton__disabled.tabButton__role__control .tabButton__icon
+        {
+            fill:   #98a8bc;
+            color:  #98a8bc;
         }
 
 /* imports base.css */
 
 .tabButton__default
 {
-    margin:             0;
-    color:              #c7d0db ;
+    margin:                 0;
+    color:                  #c7d0db;
 
-    border-radius:      0;
-    border-bottom:      1px solid transparent;
-
-    text-transform:     none;
+    text-transform:         none;
 }
 
 .tabButton__default:not(:last-child)
@@ -16056,12 +16952,23 @@ only used in type__carousel for now
         min-width: 0;
         margin:    0;
         padding:   0;
+
+        border-radius:          2px;
+        border:                 1px solid transparent;
+        border-bottom-color:    #c7d0db;
     }
 
-.tabButton__default:hover .tabButton__content
+.tabButton__default:focus
     {
-
+        outline:    none;
     }
+
+.tabButton__default:focus .tabButton__content
+        {
+            border:     1px solid #19a2e2;
+            -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                    box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+        }
 
 .tabButton__label
 {
@@ -16124,16 +17031,9 @@ only used in type__carousel for now
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.tableCell__header, .tableCell__rowHeader .tableCell__text, .tableCell__header .tableCell__text
+.tableCell__header
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-}
-
-.tableCell__rowHeader
-{
-    font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -16156,51 +17056,7 @@ only used in type__carousel for now
 .tableCell__default
 {
 
-    /*@media( min-width: $shark )
-    {*/
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    /*}*/
-
-    /*@media( min-width: $shark )
-    {*/
-    /* &:first-child
-        {
-            padding-left: 0;
-        } */
-    /*}*/
 }
-
-.tableCell__default::before
-    {
-        content:        attr( data-column-title );
-
-        position:       relative;
-
-        -webkit-box-flex:           0;
-
-        -webkit-flex:           0 0 33.33333%;
-
-            -ms-flex:           0 0 33.33333%;
-
-                flex:           0 0 33.33333%;
-
-        font-family:    Nessie-Bold;
-
-        font-size:      12px;
-        line-height:    16px;
-
-        overflow:       hidden;
-        text-overflow:  ellipsis;
-    }
-
-.tableCell__default::before
-    {
-        display:    none;
-    }
 
 .tableCell__header /* required until we have a TableHeader text component */
 {
@@ -16221,15 +17077,6 @@ only used in type__carousel for now
 {
     z-index:            1;
 }
-
-.tableCell__rowHeader .tableCell__text, .tableCell__header .tableCell__text
-    {
-        font-size:      12px;
-        line-height:    24px;
-        letter-spacing: 0.5px;
-        color:          #4b627d;
-        text-transform: uppercase;
-    }
 
 .tableCell__sticky
 {
@@ -16407,21 +17254,46 @@ only used in type__carousel for now
         margin-bottom: 0;
     }
 
-.table__borders__rows, .table__borders__cells, .table__zebra
+.table__borders__rows, .table__borders__cells, .table__borders__rowDivider, .table__borders__columnDivider, .table__zebra
 {
     margin-bottom:  16px;
 }
 
-.table__borders__rows .table__row, .table__borders__rows .table__headerRow, .table__borders__cells .table__row, .table__borders__cells .table__headerRow, .table__zebra .table__row, .table__zebra .table__headerRow
+.table__borders__rows .table__row, .table__borders__rows .table__headerRow, .table__borders__cells .table__row, .table__borders__cells .table__headerRow, .table__borders__rowDivider .table__row, .table__borders__rowDivider .table__headerRow, .table__borders__columnDivider .table__row, .table__borders__columnDivider .table__headerRow, .table__zebra .table__row, .table__zebra .table__headerRow
     {
         margin: 0;
     }
 
-.table__borders__rows .table__cell, .table__borders__cells .table__cell, .table__zebra .table__cell
+.table__borders__rows .table__cell, .table__borders__cells .table__cell, .table__borders__rowDivider .table__cell, .table__borders__columnDivider .table__cell, .table__zebra .table__cell
     {
         margin:     0;
         background: #ffffff;
     }
+
+.table__borders__cells .table__row .table__cell
+    {
+        border: 1px solid rgba(89, 116, 148, 0.12);
+    }
+
+.table__borders__cells .table__row .table__cell + .table__cell
+        {
+            border-left: none;
+        }
+
+.table__borders__columnDivider .table__row .table__cell
+    {
+        border-right: 1px solid rgba(89, 116, 148, 0.12);
+    }
+
+.table__borders__columnDivider .table__row .table__cell + .table__cell
+        {
+            border-left: none;
+        }
+
+.table__borders__columnDivider .table__row .table__cell:last-child
+        {
+            border-right: none;
+        }
 
 .table__borders__rows .table__row
     {
@@ -16433,14 +17305,14 @@ only used in type__carousel for now
             border-top: none;
         }
 
-.table__borders__cells .table__row .table__cell
+.table__borders__rowDivider .table__row
     {
-        border: 1px solid rgba(89, 116, 148, 0.12);
+        border-bottom: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__cells .table__row .table__cell + .table__cell
+.table__borders__rowDivider .table__row + .table__row
         {
-            border-left: none;
+            border-top: none;
         }
 
 .table__zebra .table__row:nth-child( odd ) .table__cell
@@ -16537,10 +17409,38 @@ only used in type__carousel for now
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
+    -webkit-box-align:    end;
+    -webkit-align-items:    flex-end;
+        -ms-flex-align:    end;
+            align-items:    flex-end;
 
     border-bottom:  solid 1px #c7d0db;
 
     margin-bottom:	16px;
+}
+
+.tabs__tabs
+{
+    display:        -webkit-box;
+    display:        -webkit-flex;
+    display:        -ms-flexbox;
+    display:        flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex:      1;
+    -webkit-flex-grow:      1;
+        -ms-flex-positive:      1;
+            flex-grow:      1;
+
+    margin-bottom:  -1px;
+}
+
+.tabs__secondaryControls
+{
+    margin-bottom: 16px;
 }
 
 .tabs__content
@@ -16912,8 +17812,8 @@ only used in type__carousel for now
 .tagInput__fakeHovered .tagInput__container
     {
         border-color:   #19a2e2;
-        -webkit-box-shadow:     0 0 0 1px #19a2e2;
-                box-shadow:     0 0 0 1px #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .tagInput__disabled .tagInput__container
@@ -16929,8 +17829,8 @@ only used in type__carousel for now
 .tagInput__error .tagInput__container
     {
         border-color:   #ff5460 !important; /* yes, always override other states */
-        -webkit-box-shadow:     0 0 0 1px #ff5460;
-                box-shadow:     0 0 0 1px #ff5460;
+        -webkit-box-shadow:     0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow:     0 0 0 2px rgba(255, 84, 96, 0.3);
     }
 
 .tagInput__resizable .tagInput__container
@@ -17223,23 +18123,23 @@ only used in type__carousel for now
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.toggleButton__default .toggleButton__flexContainer
-{
-    font-family: Nessie-Regular, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-}
-
-.toggleButton__default .toggleButton__subLabel
+.toggleButton__role__primary .toggleButton__subLabel
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
 
-.toggleButton__default .toggleButton__title
+.toggleButton__role__primary .toggleButton__title
 {
     font-family: Nessie-SemiBold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.toggleButton__role__secondary .toggleButton__title
+{
+    font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -17282,11 +18182,16 @@ only used in type__carousel for now
 
 .toggleButton__default
 {
-    display:    table; /* flex is not well supported on <button>... */
-    width:      auto;
-    border:     none;
-    padding:    0;
-    background: transparent;
+    -webkit-appearance:     none !important;
+       -moz-appearance:     none !important;
+            appearance:     none !important;
+    display:        table; /* flex is not well supported on <button>... */
+    width:          auto;
+    border:         none;
+    padding:        0;
+    border-radius:  2px;
+    background:     transparent;
+    cursor:         pointer;
 }
 
 .toggleButton__default .toggleButton__flexContainer /* ...so we set it here instead */
@@ -17306,18 +18211,7 @@ only used in type__carousel for now
         -webkit-box-sizing:         border-box;
                 box-sizing:         border-box;
         height:             40px;
-        padding:            0 16px;
-
-        color:              #4b627d;
-        font-size:          14px;
         text-align:         center;
-
-        cursor:             pointer;
-    }
-
-.toggleButton__default .toggleButton__icon
-    {
-        fill:   #4b627d;
     }
 
 .toggleButton__default .toggleButton__labelContainer
@@ -17333,31 +18227,54 @@ only used in type__carousel for now
                 flex-direction: column;
     }
 
-.toggleButton__default .toggleButton__title
+.toggleButton__default .toggleButton__title, .toggleButton__default .toggleButton__subLabel, .toggleButton__default
     {
-        font-size:     14px;
-        line-height:   16px;
+        color:  #4b627d;
     }
 
-.toggleButton__default .toggleButton__subLabel
+.toggleButton__default .toggleButton__icon
+    {
+        fill:   #4b627d;
+    }
+
+.toggleButton__default:focus
+    {
+        outline:    none;
+
+        -webkit-box-shadow:       0 0 0 2px rgba(25, 162, 226, 0.3);
+
+                box-shadow:       0 0 0 2px rgba(25, 162, 226, 0.3);
+    }
+
+.toggleButton__default:focus .toggleButton__flexContainer
+        {
+            border-color: #19a2e2;
+        }
+
+.toggleButton__role__primary .toggleButton__flexContainer
+    {
+        border:         1px solid #c7d0db;
+        border-radius:  2px;
+        padding:        0 16px;
+        background:     #ffffff;
+    }
+
+.toggleButton__role__primary .toggleButton__title
+    {
+        font-size:      14px;
+        line-height:    16px;
+    }
+
+.toggleButton__role__primary .toggleButton__subLabel
     {
         color:         var ( --PC-GREY--L40 );
         font-size:     11px;
         line-height:   14px;
     }
 
-.toggleButton__default .toggleButton__title + .toggleButton__subLabel
+.toggleButton__role__primary .toggleButton__title + .toggleButton__subLabel
     {
         margin-top: 2px;
-    }
-
-.toggleButton__role__primary .toggleButton__flexContainer
-    {
-        border:         1px solid #c7d0db;
-        border-radius:  2px;
-
-        background:     #ffffff;
-        color:          #4b627d;
     }
 
 .toggleButton__role__primary:not(.toggleButton__disabled):hover .toggleButton__flexContainer
@@ -17372,19 +18289,63 @@ only used in type__carousel for now
             color:          #19a2e2;
         }
 
+.toggleButton__role__primary.toggleButton__pressed:not(:hover) .toggleButton__title, .toggleButton__role__primary.toggleButton__pressed:not(:hover) .toggleButton__subLabel
+        {
+            color:  #19a2e2;
+        }
+
 .toggleButton__role__primary.toggleButton__pressed:not(:hover) .toggleButton__icon
         {
             fill:   #19a2e2;
         }
 
+.toggleButton__iconPosition__left.toggleButton__role__primary .toggleButton__icon
+        {
+            margin-left:   -8px;
+        }
+
+.toggleButton__iconPosition__right.toggleButton__role__primary .toggleButton__icon
+        {
+            margin-right:  -8px;
+        }
+
 .toggleButton__role__secondary .toggleButton__flexContainer
     {
-        opacity:    0.5;
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding:        0 8px;
     }
 
-.toggleButton__role__secondary.toggleButton__pressed .toggleButton__flexContainer
+.toggleButton__role__secondary .toggleButton__title
+    {
+        font-size:      12px;
+        line-height:    14px;
+        text-transform: uppercase;
+    }
+
+.toggleButton__role__secondary .toggleButton__subLabel
+    {
+        display:    none;
+    }
+
+.toggleButton__role__secondary:not(.toggleButton__pressed) .toggleButton__title
         {
-            opacity:    1;
+            color:  #98a8bc;
+        }
+
+.toggleButton__role__secondary:not(.toggleButton__pressed) .toggleButton__icon
+        {
+            fill:   #98a8bc;
+        }
+
+.toggleButton__iconPosition__left.toggleButton__role__secondary .toggleButton__icon
+        {
+            margin-left:   -4px;
+        }
+
+.toggleButton__iconPosition__right.toggleButton__role__secondary .toggleButton__icon
+        {
+            margin-right:  -4px;
         }
 
 .toggleButton__disabled
@@ -17393,11 +18354,6 @@ only used in type__carousel for now
     cursor:         default;
     pointer-events: none;
 }
-
-.toggleButton__disabled .toggleButton__flexContainer
-    {
-        cursor:    default;
-    }
 
 .toggleButton__disabled .toggleButton__icon
     {
@@ -17511,12 +18467,6 @@ only used in type__carousel for now
         pointer-events: none;
     }
 
-.uploader__loading.uploader__disabled .uploader__uploaderButton, .uploader__loading .uploader__uploaderButton:hover, .uploader__loading .uploader__uploaderButton:focus
-    {
-        background-image:   -webkit-gradient( linear, left top, right top, from(var(--GS-1)) , to(#19a2e2) );
-        background-image:   linear-gradient( to right, var(--GS-1) , #19a2e2 );
-    }
-
 .uploader__uploaded
 {
     width:  100%;
@@ -17553,7 +18503,8 @@ only used in type__carousel for now
 
 .uploader__input
 {
-    display:    none;
+    position:   absolute;
+    left:       -999999px;
 }
 
 .uploader__previewTooltip
@@ -17569,24 +18520,10 @@ only used in type__carousel for now
 {
     width:                   100%;
     max-width:               100%;
-    background-image:        -webkit-gradient(linear, left top, right top, from(var(--GS-1)) , to(#19a2e2));
-    background-image:        linear-gradient(to right, var(--GS-1) , #19a2e2);
     text-align:              left;
     text-transform:          none;
     display:                 block;
 }
-
-.uploader__uploaderButton:hover, .uploader__uploaderButton:focus
-    {
-        background-image:    -webkit-gradient(linear, left top, right top, from(#0D5375) , to(#2387AE));
-        background-image:    linear-gradient(to right, #0D5375 , #2387AE);
-    }
-
-.uploader__uploaderButton:active
-    {
-        background-image:    -webkit-gradient(linear, left top, right top, from(var(--GS-1)) , to(#19a2e2));
-        background-image:    linear-gradient(to right, var(--GS-1) , #19a2e2);
-    }
 
 .uploader__buttonsContainer
 {
@@ -17618,18 +18555,20 @@ only used in type__carousel for now
 
 .uploader__uploadedButton:focus
     {
-        outline:            none;
+        outline:    none;
+        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
-.uploader__uploadedButton:hover, .uploader__uploadedButton:focus
-    {
-        background-color:   rgb(21, 138, 192);
-        color:              #ffffff;
-    }
+.uploader__uploadedButton:focus::after
+        {
+            display: none;
+        }
 
-.uploader__uploadedButton:active
+.uploader__uploadedButton:hover
     {
-        background-color:   #19a2e2;
+        background:     #30abe4;
+        color:          #ffffff;
     }
 
 .uploader__loadingOverlay
@@ -17657,7 +18596,7 @@ only used in type__carousel for now
 
 .uploader__loadingOverlay:focus
     {
-        outline:        none;
+        outline:    none;
     }
 
 .uploader__spinner
@@ -17761,7 +18700,9 @@ only used in type__carousel for now
             -ms-flex-direction: row;
                 flex-direction: row;
 
-        margin:     0;
+        margin:         0;
+
+        border-radius:  2px;
     }
 
 .valuedTextInput__default .valuedTextInput__container > *
@@ -17776,35 +18717,41 @@ only used in type__carousel for now
             -ms-flex:           1 1 auto;
                 flex:           1 1 auto;
         min-width:      0;
+
+        -webkit-box-shadow:     none;
+
+                box-shadow:     none;
     }
 
 .valuedTextInput__default .valuedTextInput__valueLabel
     {
-        display:        block;
-        position:       relative;
+        display:                    block;
+        position:                   relative;
 
-        -webkit-box-flex:           0;
+        -webkit-box-flex:                       0;
 
-        -webkit-flex:           0 0 auto;
+        -webkit-flex:                       0 0 auto;
 
-            -ms-flex:           0 0 auto;
+            -ms-flex:                       0 0 auto;
 
-                flex:           0 0 auto;
-        width:          auto;
+                flex:                       0 0 auto;
+        width:                      auto;
 
-        border:         1px solid #c7d0db;
-        padding:        0 16px;
+        border:                     1px solid #c7d0db;
+        border-bottom-left-radius:  2px;
+        border-top-left-radius:     2px;
+        padding:                    0 16px;
 
-        background:     #ffffff;
-        color:          #546e8c;
+        background:                 #ffffff;
+        color:                      #546e8c;
 
-        font-size:      10px;
+        font-size:                  10px;
 
-        line-height:    38px;
-        vertical-align: middle;
-        white-space:    nowrap;
+        line-height:                38px;
+        vertical-align:             middle;
+        white-space:                nowrap;
 
-        cursor:         pointer;
+        cursor:                     pointer;
     }
 
 .valuedTextInput__default .valuedTextInput__valueLabel::before, .valuedTextInput__default .valuedTextInput__valueLabel::after
@@ -17874,19 +18821,13 @@ only used in type__carousel for now
 
 .valuedTextInput__fakeHovered .valuedTextInput__container
     {
-        -webkit-box-shadow:     0 0 0 1px #19a2e2;
-                box-shadow:     0 0 0 1px #19a2e2;
+        -webkit-box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow:     0 0 0 2px rgba(25, 162, 226, 0.3);
     }
 
 .valuedTextInput__fakeHovered .valuedTextInput__valueLabel
     {
         border-color:   #19a2e2;
-    }
-
-.valuedTextInput__error .valuedTextInput__container
-    {
-        -webkit-box-shadow:     0 0 0 1px #ff5460;
-                box-shadow:     0 0 0 1px #ff5460;
     }
 
 .valuedTextInput__error .valuedTextInput__valueLabel
@@ -17899,6 +18840,18 @@ only used in type__carousel for now
         {
             background: #ff5460;
         }
+
+.valuedTextInput__error .valuedTextInput__input
+    {
+        -webkit-box-shadow:     none !important;
+                box-shadow:     none !important;
+    }
+
+.valuedTextInput__error.valuedTextInput__fakeHovered .valuedTextInput__container
+    {
+        -webkit-box-shadow:     0 0 0 2px rgba(255, 84, 96, 0.3);
+                box-shadow:     0 0 0 2px rgba(255, 84, 96, 0.3);
+    }
 
 .valuedTextInput__disabled .valuedTextInput__valueLabel, .valuedTextInput__disabled .valuedTextInput__input, .valuedTextInput__disabled:hover .valuedTextInput__valueLabel, .valuedTextInput__disabled:hover .valuedTextInput__input
     {
