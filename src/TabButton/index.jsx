@@ -1,7 +1,7 @@
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
+import { buildClassName }   from '../utils';
 
 const TabButton = ( {
     buttonRef,

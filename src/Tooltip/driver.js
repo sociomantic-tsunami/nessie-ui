@@ -1,7 +1,8 @@
-/**
- * This driver simulate actions on the content rather than on the tooltip
- * itself, as this is how a user would act.
- */
+const ERR = {
+    CANT_CLOSE : () =>
+        'Input can\'t be clicked since it\'s not dismissable',
+};
+
 export default class TooltipDriver
 {
     constructor( wrapper )
@@ -18,6 +19,17 @@ export default class TooltipDriver
     getMessage()
     {
         return this.wrapper.find( `.${this.cssMap.message}` ).children();
+    }
+
+    clickClose()
+    {
+        if ( !this.wrapper.props().isDismissible )
+        {
+            throw new Error( ERR.CANT_CLOSE() );
+        }
+
+        this.wrapper.find( 'IconButton' ).driver().click();
+        return this;
     }
 
     mouseOver()

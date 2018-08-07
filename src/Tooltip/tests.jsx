@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -9,45 +8,81 @@ import { mount } from 'enzyme';
 import Tooltip   from './index';
 
 
-describe( 'Tooltip', () =>
+describe( 'TooltipDriver', () =>
 {
-    test( 'should fire onMouseOver event', () =>
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
     {
-        const onMouseOverHandler = jest.fn();
-        const onMouseOutHandler = jest.fn();
-        const props = {
-            message     : 'Pikachu!',
-            onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler,
-        };
-
-        const wrapper = mount( <Tooltip { ...props }>
-            <h2> Who am I?</h2>
-        </Tooltip> );
-
-        wrapper.simulate( 'mouseenter' );
-
-        expect( onMouseOverHandler ).toBeCalled();
-        expect( onMouseOutHandler ).not.toBeCalled();
+        wrapper = mount( <Tooltip><h2> Who am I?</h2></Tooltip> );
+        driver  = wrapper.driver();
     } );
 
-    test( 'should fire onMouseOut event', () =>
+    describe( 'mouseOver()', () =>
     {
-        const onMouseOverHandler = jest.fn();
-        const onMouseOutHandler = jest.fn();
-        const props = {
-            message     : 'Pikachu!',
-            onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler,
-        };
+        test( 'should fire onMouseOver event', () =>
+        {
+            const onMouseOverHandler = jest.fn();
+            const onMouseOutHandler = jest.fn();
+            wrapper.setProps( {
+                message     : 'Tekeli-li!',
+                onMouseOver : onMouseOverHandler,
+                onMouseOut  : onMouseOutHandler,
+            } );
 
-        const wrapper = mount( <Tooltip { ...props }>
-            <h2> Who am I?</h2>
-        </Tooltip> );
+            driver.mouseOver();
 
-        wrapper.simulate( 'mouseleave' );
+            expect( onMouseOverHandler ).toBeCalledTimes( 1 );
+            expect( onMouseOutHandler ).not.toBeCalled();
+        } );
+    } );
 
-        expect( onMouseOverHandler ).not.toBeCalled();
-        expect( onMouseOutHandler ).toBeCalled();
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should fire onMouseOut event', () =>
+        {
+            const onMouseOverHandler = jest.fn();
+            const onMouseOutHandler = jest.fn();
+            wrapper.setProps( {
+                message     : 'Tekeli-li!',
+                onMouseOver : onMouseOverHandler,
+                onMouseOut  : onMouseOutHandler,
+            } );
+
+            driver.mouseOut();
+
+            expect( onMouseOverHandler ).not.toBeCalled();
+            expect( onMouseOutHandler ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+    describe( 'clickClose()', () =>
+    {
+        test( 'should trigger onClickClose callback prop once', () =>
+        {
+            const onClickClose = jest.fn();
+            wrapper.setProps( {
+                onClickClose,
+                message       : 'Sithis',
+                isDismissible : true,
+            } );
+
+            driver.clickClose();
+            expect( onClickClose ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'should throw an expected error when is not dismissable', () =>
+        {
+            wrapper.setProps( {
+                message : 'Sithis',
+            } );
+
+            const expectedError =
+                'Input can\'t be clicked since it\'s not dismissable';
+
+            expect( () => driver.clickClose() ).toThrow( expectedError );
+        } );
     } );
 } );
