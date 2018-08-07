@@ -34,6 +34,7 @@ import {
     Table,
     TableCell,
     Tabs,
+    Tag,
     TagInput,
     TextInput,
     Tooltip,
@@ -73,6 +74,7 @@ import TabDriver               from './Tab/driver';
 import TableDriver             from './Table/driver';
 import TableCellDriver         from './TableCell/driver';
 import TabsDriver              from './Tabs/driver';
+import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextInputDriver         from './TextInput/driver';
 import TooltipDriver           from './Tooltip/driver';
@@ -216,6 +218,10 @@ const drivers =
     {
         Component : Tabs,
         Driver    : TabsDriver,
+    },
+    {
+        Component : Tag,
+        Driver    : TagDriver,
     },
     {
         Component : TagInput,

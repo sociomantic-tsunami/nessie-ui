@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React        from 'react';
@@ -75,8 +74,7 @@ child', () =>
             onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
-        wrapper.find( `.${wrapper.prop( 'cssMap' ).delete}` )
-            .simulate( 'click' );
+        wrapper.driver().clickClose();
         expect( callBack ).toBeCalled();
     } );
 } );
