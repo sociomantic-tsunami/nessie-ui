@@ -1,6 +1,7 @@
 import 'normalize.css';
 
 export Button                   from './Button';
+export Card                     from './Card';
 export CheckableGroup           from './CheckableGroup';
 export Checkbox                 from './Checkbox';
 export CheckboxGroup            from './CheckboxGroup';

@@ -25,7 +25,7 @@ const Switch = ( {
     <div
         className = { buildClassName( className, cssMap, {
             disabled    : isDisabled,
-            fakeHovered : !isDisabled && forceHover
+            fakeHovered : !isDisabled && forceHover,
         } ) }
         onMouseEnter = { onMouseOver }
         onMouseLeave = { onMouseOut }>
@@ -53,7 +53,7 @@ Switch.propTypes =
     /**
      * extra CSS classname
      */
-    className        : PropTypes.bool,
+    className        : PropTypes.string,
     /**
      * CSS classname map
      */
@@ -113,7 +113,7 @@ Switch.propTypes =
     /**
      * HTML value attribute
      */
-    value            : PropTypes.string
+    value            : PropTypes.string,
 };
 
 Switch.defaultProps =

@@ -1,7 +1,5 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-
 
 import React     from 'react';
 import { mount } from 'enzyme';
@@ -11,72 +9,102 @@ import Tooltip   from './index';
 
 describe( 'Tooltip', () =>
 {
-    test( 'should fire onMouseOver event', () =>
+    /* someone please implement me... */
+} );
+
+
+describe( 'TooltipDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
     {
-        const onMouseOverHandler = jest.fn();
-        const onMouseOutHandler = jest.fn();
-        const props = {
-            message     : 'Pikachu!',
-            onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
-        };
-
-        const Wrapper = mount( <Tooltip { ...props }>
-            <h2> Who am I?</h2>
-        </Tooltip> );
-
-        Wrapper.driver().mouseOver();
-
-        expect( onMouseOverHandler ).toBeCalled();
-        expect( onMouseOutHandler ).not.toBeCalled();
+        wrapper = mount( <Tooltip /> );
     } );
 
-    test( 'should fire onMouseOut event', () =>
+    describe( 'mouseOver()', () =>
     {
-        const onMouseOverHandler = jest.fn();
-        const onMouseOutHandler = jest.fn();
-        const props = {
-            message     : 'Pikachu!',
-            onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
-        };
+        let onMouseOverHandler;
+        let onMouseOutHandler;
 
-        const wrapper = mount( <Tooltip { ...props }>
-            <h2> Who am I?</h2>
-        </Tooltip> );
-
-        wrapper.driver().mouseOut();
-
-        expect( onMouseOverHandler ).not.toBeCalled();
-        expect( onMouseOutHandler ).toBeCalled();
-    } );
-
-    describe( 'Driver self-test', () =>
-    {
-        test( 'getContent', () =>
+        beforeEach( () =>
         {
-            const props = {
-                message : 'Pikachu!',
-            };
+            onMouseOverHandler = jest.fn();
+            onMouseOutHandler = jest.fn();
 
-            const wrapper = mount( <Tooltip { ...props } >
-                <h1>Who am i?</h1>
-            </Tooltip> );
+            wrapper.setProps( {
+                onMouseOver : onMouseOverHandler,
+                onMouseOut  : onMouseOutHandler,
+            } );
 
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h1' ) ).toHaveLength( 1 );
+            wrapper.driver().mouseOver();
         } );
 
-        test( 'getMessage', () =>
+        test( 'should invoke onMouseOver callback', () =>
         {
-            const props = {
-                message : <h2>Pikachu!</h2>,
-            };
+            expect( onMouseOverHandler ).toBeCalled();
+        } );
 
-            const wrapper = mount( <Tooltip { ...props } /> );
+        test( 'should not invoke onMouseOut callback', () =>
+        {
+            expect( onMouseOutHandler ).not.toBeCalled();
+        } );
+    } );
 
-            const message = wrapper.driver().getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
+    describe( 'mouseOut()', () =>
+    {
+        let onMouseOverHandler;
+        let onMouseOutHandler;
+
+        beforeEach( () =>
+        {
+            onMouseOverHandler = jest.fn();
+            onMouseOutHandler = jest.fn();
+
+            wrapper.setProps( {
+                onMouseOver : onMouseOverHandler,
+                onMouseOut  : onMouseOutHandler,
+            } );
+
+            wrapper.driver().mouseOut();
+        } );
+
+        test( 'should invoke onMouseOut callback', () =>
+        {
+            expect( onMouseOutHandler ).toBeCalled();
+        } );
+
+        test( 'should not invoke onMouseOver callback', () =>
+        {
+            expect( onMouseOverHandler ).not.toBeCalled();
+        } );
+    } );
+
+    describe( 'getContent()', () =>
+    {
+        test( 'should return the wrapped content', () =>
+        {
+            wrapper.setProps( {
+                children : 'Who am I?',
+                message  : 'Pikachu!',
+            } );
+
+            const content = wrapper.driver().getContent();
+            expect( content.text() ).toEqual( 'Who am I?' );
+        } );
+    } );
+
+    describe( 'getMessage()', () =>
+    {
+        test( 'should return the tooltip message', () =>
+        {
+            wrapper.setProps( {
+                children : 'Who am I?',
+                message  : 'Pikachu!',
+            } );
+
+            const content = wrapper.driver().getMessage();
+            expect( content.text() ).toEqual( 'Pikachu!' );
         } );
     } );
 } );

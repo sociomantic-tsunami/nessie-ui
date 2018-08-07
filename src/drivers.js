@@ -1,6 +1,7 @@
 import { ComponentDriver } from 'componentDriver';
 import {
     Button,
+    Card,
     CheckableGroup,
     Checkbox,
     CheckboxGroup,
@@ -119,6 +120,10 @@ const drivers =
     {
         Component : Button,
         Driver    : ButtonDriver,
+    },
+    {
+        Component : Card,
+        Driver    : WrapperDriver,
     },
     {
         Component : CheckableGroup,
