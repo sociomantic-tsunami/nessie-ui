@@ -32,5 +32,22 @@ describe( 'TableCellDriver', () =>
 
             expect( onToggle ).toBeCalledTimes( 1 );
         } );
+
+        test(
+            'should throw an expected error if TableCell is not sortable',
+            () =>
+            {
+                const onToggle = jest.fn();
+                const expectedError = 'TableCell cannot be toggled since it\'s \
+not sortable';
+
+                wrapper.setProps( {
+                    onToggle,
+                    isHeader : true,
+                } );
+
+                expect( () => driver.toggle() ).toThrow( expectedError );
+            },
+        );
     } );
 } );

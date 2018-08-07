@@ -31,6 +31,7 @@ import {
     Switch,
     TabButton,
     Tab,
+    Table,
     TableCell,
     Tabs,
     TagInput,
@@ -69,6 +70,7 @@ import SorterDriver            from './Sorter/driver';
 import SwitchDriver            from './Switch/driver';
 import TabButtonDriver         from './TabButton/driver';
 import TabDriver               from './Tab/driver';
+import TableDriver             from './Table/driver';
 import TableCellDriver         from './TableCell/driver';
 import TabsDriver              from './Tabs/driver';
 import TagInputDriver          from './TagInput/driver';
@@ -202,6 +204,10 @@ const drivers =
     {
         Component : Tab,
         Driver    : TabDriver,
+    },
+    {
+        Component : Table,
+        Driver    : TableDriver,
     },
     {
         Component : TableCell,
