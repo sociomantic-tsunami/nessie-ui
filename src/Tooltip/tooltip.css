@@ -265,7 +265,7 @@
   {
     &::after
     {
-      left: 83%;
+      left: 81%;
     }
   }
 }
@@ -282,7 +282,7 @@
   {
     &::after
     {
-      right: 83%;
+      right: 81%;
     }
   }
 }
@@ -372,7 +372,7 @@
         {
           border-right-color: transparent;
           right: 0;
-          top: 60%;
+          bottom: 15%;
           transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 0, 0);
         }
       }
@@ -391,7 +391,7 @@
         {
           border-right-color: transparent;
           right: 0;
-          bottom: 60%;
+          top: 15%;
           transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 0, 0);
         }
       }
@@ -423,7 +423,7 @@
       .tooltipContainer
       {
           top:    50%;
-          left:  130%;
+          left:  100%;
           transform: translate3d( 0, -73%, 0);
       }
       .tooltip
@@ -432,7 +432,7 @@
         {
           border-left-color: transparent;
           left: 0;
-          top: 60%;
+          bottom: 15%;
           transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 0, 0);
         }
       }
@@ -442,7 +442,7 @@
       .tooltipContainer
       {
           bottom:    50%;
-          left:  130%;
+          left:  100%;
           transform: translate3d( 0, 73%, 0);
       }
       .tooltip
@@ -451,7 +451,7 @@
         {
           border-left-color: transparent;
           left: 0;
-          bottom: 60%;
+          top: 15%;
           transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 0, 0);
         }
       }
@@ -641,20 +641,20 @@
 {
   .tooltipContainer
   {
-    transform: translate3d( -50%, -30%, 0 );
+    transform: translate3d( -50%, -10px, 0 );
   }
   &Left
   {
     .tooltipContainer
     {
-      transform: translate3d( -83%, -30%, 0 );
+      transform: translate3d( -83%, -10px, 0 );
     }
   }
   &Right
   {
     .tooltipContainer
     {
-      transform: translate3d( 83%, -30%, 0 );
+      transform: translate3d( 83%, -10px, 0 );
     }
   }
 }
@@ -663,20 +663,20 @@
 {
   .tooltipContainer
   {
-    transform: translate3d( -10%, -50%, 0 );
+    transform: translate3d( -14px, -50%, 0 );
   }
   &Top
   {
     .tooltipContainer
     {
-      transform: translate3d( -10%, -73%, 0 );
+      transform: translate3d( -14px, -73%, 0 );
     }
   }
   &Bottom
   {
     .tooltipContainer
     {
-      transform: translate3d( -10%, 73%, 0 );
+      transform: translate3d( -14px, 73%, 0 );
     }
   }
 }
@@ -685,20 +685,20 @@
 {
   .tooltipContainer
   {
-    transform: translate3d( -10%, -50%, 0 );
+    transform: translate3d( 14px, -50%, 0 );
   }
   &Top
   {
     .tooltipContainer
     {
-      transform: translate3d( -10%, -73%, 0 );
+      transform: translate3d( 14px, -73%, 0 );
     }
   }
   &Bottom
   {
     .tooltipContainer
     {
-      transform: translate3d( -10%, 73%, 0 );
+      transform: translate3d( 14px, 73%, 0 );
     }
   }
 }
@@ -707,20 +707,20 @@
 {
   .tooltipContainer
   {
-    transform: translate3d( -50%, 30%, 0 );
+    transform: translate3d( -50%, 10px, 0 );
   }
   &Left
   {
     .tooltipContainer
     {
-      transform: translate3d( -83%, 30%, 0 );
+      transform: translate3d( -83%, 10px, 0 );
     }
   }
   &Right
   {
     .tooltipContainer
     {
-      transform: translate3d( 83%, 30%, 0 );
+      transform: translate3d( 83%, 10px, 0 );
     }
   }
 }
