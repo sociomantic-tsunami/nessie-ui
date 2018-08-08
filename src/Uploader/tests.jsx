@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -115,9 +114,9 @@ describe( 'UploaderDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'onClick', () =>
+    describe( 'onClick()', () =>
     {
-        test( 'should trigger onClick event', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
@@ -128,8 +127,12 @@ describe( 'UploaderDriver', () =>
             driver.click();
             expect( onClick ).toBeCalled();
         } );
+    } );
 
-        test( 'should trigger onClick event when clicked on secondary', () =>
+
+    describe( 'onClickSecondary()', () =>
+    {
+        test( 'should trigger onClickSecondary callback prop once', () =>
         {
             const onClickSecondary = jest.fn();
             wrapper.setProps( {
@@ -142,18 +145,28 @@ describe( 'UploaderDriver', () =>
         } );
     } );
 
-    describe( 'onChange', () =>
+
+    describe( 'onChange( val )', () =>
     {
         test( 'should be undefined by default', () =>
         {
-            wrapper = mount( <Uploader /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+        } );
+
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change( 'jkl' );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 
+
     describe( 'mouseOut', () =>
     {
-        test( 'should trigger onMouseOut() callback function', () =>
+        test( 'should trigger onMouseOut() callback function once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
@@ -165,9 +178,11 @@ describe( 'UploaderDriver', () =>
             expect( onMouseOut ).toBeCalled();
         } );
     } );
+
+
     describe( 'mouseOver', () =>
     {
-        test( 'should trigger onMouseOver() callback function', () =>
+        test( 'should trigger onMouseOver() callback function once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
