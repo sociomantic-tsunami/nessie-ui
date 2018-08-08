@@ -29,7 +29,6 @@
     {
         visibility: hidden;
         position:   absolute;
-        & .tooltip,
         & .message
         {
           white-space: nowrap;
@@ -265,7 +264,8 @@
   {
     &::after
     {
-      left: 81%;
+      transform: translate3d( -50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
+      left: 83%;
     }
   }
 }
@@ -282,34 +282,30 @@
   {
     &::after
     {
-      right: 81%;
+      transform: translate3d( 50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
+      right: 83%;
     }
   }
 }
 
-
-.position__topLeft,
-.position__topRight
+.position__bottomLeft
 {
     .tooltip
     {
-        &::after
-        {
-          transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
-        }
+      &::after
+      {
+        transform: translate3d( -50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
+      }
     }
 }
-
-.position__bottomLeft,
 .position__bottomRight
 {
     .tooltip
     {
-
-        &::after
-        {
-          transform: translate3d( 0, calc( -1.75 * var( --tooltipOffset ) ), 0);
-        }
+      &::after
+      {
+        transform: translate3d( 50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
+      }
     }
 }
 
@@ -372,8 +368,8 @@
         {
           border-right-color: transparent;
           right: 0;
-          bottom: 15%;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 0, 0);
+          top: 72%;
+          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
       }
     }
@@ -391,8 +387,8 @@
         {
           border-right-color: transparent;
           right: 0;
-          top: 15%;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 0, 0);
+          bottom: 76%;
+          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 50%, 0);
         }
       }
     }
