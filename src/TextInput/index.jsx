@@ -149,7 +149,6 @@ export default class TextInput extends React.PureComponent
         } = this.props;
 
         return (
-
             <InputContainer
                 { ...props }
                 id          = { id }

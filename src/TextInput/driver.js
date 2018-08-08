@@ -1,45 +1,100 @@
-export default class TextInputDriver
+const ERR = {
+    INPUT_DISABLED : ( doWhat ) => `Input can't ${doWhat} since it is disabled`,
+    INPUT_READONLY : ( doWhat ) =>
+        `Input can't ${doWhat} since it is read only`,
+};
+
+export default class TextAreaDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = this.wrapper.find( 'input' ).first();
     }
 
     blur()
     {
-        this.control.simulate( 'blur' );
-        return this;
-    }
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_DISABLED( 'blur' ) );
+        }
 
-    focus()
-    {
-        this.control.simulate( 'focus' );
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.INPUT_READONLY( 'blur' ) );
+        }
+
+        this.wrapper.find( 'InputField' ).driver().blur();
         return this;
     }
 
     click()
     {
-        this.control.simulate( 'click' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_DISABLED( 'click' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.INPUT_READONLY( 'click' ) );
+        }
+
+        this.wrapper.find( 'InputField' ).driver().click();
+        return this;
+    }
+
+    change( val = 'abc' )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_DISABLED( 'change' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.INPUT_READONLY( 'change' ) );
+        }
+
+        this.wrapper.find( 'InputField' ).driver().change( val );
+        return this;
+    }
+
+    focus()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_DISABLED( 'focus' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.INPUT_READONLY( 'focus' ) );
+        }
+
+        this.wrapper.find( 'InputField' ).driver().focus();
         return this;
     }
 
     keyPress()
     {
-        this.control.simulate( 'keyPress' );
-        this.control.simulate( 'change' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_DISABLED( 'keyPress' ) );
+        }
+
+        this.wrapper.find( 'InputField' ).driver().keyPress();
         return this;
     }
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.find( 'InputContainer' ).simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.find( 'InputContainer' ).simulate( 'mouseleave' );
         return this;
     }
 }

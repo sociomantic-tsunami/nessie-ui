@@ -77,7 +77,6 @@ import TableCellDriver         from './TableCell/driver';
 import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
-import TextAreaDriver          from './TextArea/driver';
 import TextInputDriver         from './TextInput/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
@@ -231,7 +230,7 @@ const drivers =
     },
     {
         Component : TextArea,
-        Driver    : TextAreaDriver,
+        Driver    : TextInputDriver,
     },
     {
         Component : TextInput,
