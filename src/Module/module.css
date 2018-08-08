@@ -9,17 +9,6 @@
 
 .default
 {
-    /* this needs to be a flex column for vertical alignment
-    * of header w/min-height (flexbugs #3) */
-    display:        flex;
-    flex-direction: column;
-
-    background:     var( --PC-WHITE );
-
-    border-radius:  3px;
-
-    border:         var( --border ) solid color( var( --PC-GREY ) a(12%) );
-
     .default
     {
         border-radius:  0;
