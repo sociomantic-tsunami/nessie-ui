@@ -323,31 +323,6 @@ describe( 'TextAreaDriver', () =>
             driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            it( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-
-                const expectedError =
-                    'Input can\'t mouseOver since it is disabled';
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            it( 'does not call simulate( event ) when isDisabled', () =>
-            {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() );
-                expect( simulate ).not.toBeCalled();
-            } );
-        } );
     } );
 
 
@@ -360,31 +335,6 @@ describe( 'TextAreaDriver', () =>
 
             driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            it( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-
-                const expectedError =
-                    'Input can\'t mouseOut since it is disabled';
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            it( 'does not call simulate( event ) when isDisabled', () =>
-            {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() );
-                expect( simulate ).not.toBeCalled();
-            } );
         } );
     } );
 } );

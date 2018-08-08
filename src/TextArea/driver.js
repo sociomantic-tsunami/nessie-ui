@@ -77,22 +77,12 @@ export default class TextAreaDriver
 
     mouseOver()
     {
-        if ( this.wrapper.props().isDisabled )
-        {
-            throw new Error( ERR.INPUT_DISABLED( 'mouseOver' ) );
-        }
-
         this.wrapper.find( 'InputContainer' ).simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        if ( this.wrapper.props().isDisabled )
-        {
-            throw new Error( ERR.INPUT_DISABLED( 'mouseOut' ) );
-        }
-
         this.wrapper.find( 'InputContainer' ).simulate( 'mouseleave' );
         return this;
     }
