@@ -1,26 +1,34 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import styles                         from './tab.css';
+import { buildClassName } from '../utils';
+import styles             from './tab.css';
+
 
 const Tab = ( {
     children,
     className,
     cssMap,
-    id = generateId( 'Tab' ),
     label,
     onClick,
-} ) => (
-    <div
-        className  = { buildClassName( className, cssMap ) }
-        onClick    = { onClick }
-        aria-label = { label }
-        id         = { id }
-        role       = "tabpanel">
-        { children }
-    </div>
-);
+} ) =>
+{
+    if ( !Tab.didWarn && onClick )
+    {
+        console.warn( 'Tab: ‘onClick’ prop is deprecated and will be removed \
+in the next major release.' );
+        Tab.didWarn = true;
+    }
+    return (
+        <div
+            className  = { buildClassName( className, cssMap ) }
+            aria-label = { label }
+            onClick    = { onClick }
+            role       = "tabpanel">
+            { children }
+        </div>
+    );
+};
 
 Tab.propTypes =
 {
@@ -37,17 +45,9 @@ Tab.propTypes =
      */
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     /**
-     * HTML id attribute (overwrite default)
-     */
-    id        : PropTypes.string,
-    /**
     *  Label to show in TabButton of this tab
     */
     label     : PropTypes.string,
-    /**
-    *  onClick callback function: ( e ) => { ... }
-    */
-    onClick   : PropTypes.func,
 };
 
 Tab.defaultProps =
@@ -55,9 +55,7 @@ Tab.defaultProps =
     children  : undefined,
     className : undefined,
     cssMap    : styles,
-    id        : undefined,
     label     : undefined,
-    onClick   : undefined,
 };
 
 export default Tab;
