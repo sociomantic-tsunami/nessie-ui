@@ -88,7 +88,7 @@ const Uploader = ( {
                 name      = { `${id}-file` }
                 onChange  = { onChange }
                 ref       = { inputRef }
-                type      = "text" />
+                type      = "file" />
             { label &&
             <Label
                 htmlFor    = { `${id}-file` }
