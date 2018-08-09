@@ -241,7 +241,7 @@ describe( 'SliderGroupDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'change()', () =>
+    describe( 'change( val, index )', () =>
     {
         test( 'should trigger onChange in individual Slider', () =>
         {

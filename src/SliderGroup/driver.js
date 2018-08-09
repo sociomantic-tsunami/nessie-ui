@@ -8,8 +8,7 @@ export default class SliderGroupDriver
 
     change(  val = '0', index = 0  )
     {
-        this.wrapper.find( 'Slider' )
-            .driver().change( val, index );
+        this.wrapper.find( 'Slider' ).driver().change( val, index );
         return this;
     }
 }
