@@ -13,21 +13,6 @@ export default class DateTimeInputDriver
         this.next        = wrapper.find( `.${this.cssMap.next}` );
     }
 
-    getMainInputValue()
-    {
-        return this.mainInput.getNode().value;
-    }
-
-    setMainInputValue( value )
-    {
-        const node = this.mainInput.getNode();
-
-        node.value = value;
-        this.mainInput.simulate( 'change' );
-
-        return this;
-    }
-
     blurMainInput()
     {
         this.mainInput.simulate( 'blur' );
@@ -40,21 +25,6 @@ export default class DateTimeInputDriver
         return this;
     }
 
-    getHourInputValue()
-    {
-        return this.hourInput.getNode().value;
-    }
-
-    setHourInputValue( value )
-    {
-        const node = this.hourInput.getNode();
-
-        node.value = value;
-        this.hourInput.simulate( 'change' );
-
-        return this;
-    }
-
     blurHourInput()
     {
         this.hourInput.simulate( 'blur' );
@@ -64,21 +34,6 @@ export default class DateTimeInputDriver
     focusHourInput()
     {
         this.hourInput.simulate( 'focus' );
-        return this;
-    }
-
-    getMinuteInputValue()
-    {
-        return this.minuteInput.getNode().value;
-    }
-
-    setMinuteInputValue( value )
-    {
-        const node = this.minuteInput.getNode();
-
-        node.value = value;
-        this.minuteInput.simulate( 'change' );
-
         return this;
     }
 
