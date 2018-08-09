@@ -3,12 +3,14 @@ export default class DateTimeInputDriver
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.mainInput   = wrapper.find( 'input' ).at( 0 );
-        this.hourInput   = wrapper.find( 'input' ).at( 1 );
-        this.minuteInput = wrapper.find( 'input' ).at( 2 );
-        this.calendar    = wrapper.find( 'table button' );
-        this.prev        = wrapper.find( 'button' ).at( 1 );
-        this.next        = wrapper.find( 'button' ).at( 2 );
+        this.cssMap      = this.wrapper.children().props().cssMap;
+
+        this.mainInput   = wrapper.find( `.${this.cssMap.input}` );
+        this.hourInput   = wrapper.find( `.${this.cssMap.hour}` );
+        this.minuteInput = wrapper.find( `.${this.cssMap.min}` );
+        this.calendar    = wrapper.find( 'DatePickerItem' );
+        this.prev        = wrapper.find( `.${this.cssMap.prev}` );
+        this.next        = wrapper.find( `.${this.cssMap.next}` );
     }
 
     getMainInputValue()
