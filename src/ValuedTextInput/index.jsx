@@ -150,8 +150,8 @@ export default class ValuedTextInput extends React.Component
             isFocused : false,
         };
 
-        this.handleFocus     = this.handleFocus.bind( this );
-        this.handleBlur      = this.handleBlur.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
+        this.handleBlur  = this.handleBlur.bind( this );
     }
 
     handleFocus( e )
