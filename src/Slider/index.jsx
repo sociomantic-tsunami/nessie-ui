@@ -1,4 +1,4 @@
-/* global addEventListener removeEventListener Event */
+/* global addEventListener document removeEventListener Event */
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
@@ -472,7 +472,8 @@ export default class Slider extends React.Component
         }
 
         const { onChange } = this.props;
-        const event = new Event( 'change' );
+        const event = document.createEvent( 'Event' );
+        event.initEvent( 'change', true, true );
 
         this.targetInput.value = String( value );
         this.targetInput.dispatchEvent( event );
@@ -515,9 +516,9 @@ export default class Slider extends React.Component
             return;
         }
 
-        const { index } = event.target.dataset;
+        const index = event.target.getAttribute( 'data-index' );
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( event.target.getAttribute( 'data-index' ) ) // target is handle
         {
             this.setTargetInput( index );
 
@@ -589,7 +590,7 @@ export default class Slider extends React.Component
             onClick( event );
         }
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( event.target.getAttribute( 'data-index' ) ) // target is handle
         {
             event.stopPropagation();
         }
@@ -610,7 +611,7 @@ export default class Slider extends React.Component
         }
 
         this.setState( {
-            inputIndex : parseInt( event.target.dataset.index, 10 ),
+            inputIndex : parseInt( event.target.getAttribute( 'data-index' ), 10 ),
             isGrabbing : true,
         } );
     }
