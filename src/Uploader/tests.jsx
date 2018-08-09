@@ -127,6 +127,34 @@ describe( 'UploaderDriver', () =>
             driver.click();
             expect( onClick ).toBeCalled();
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
 
 
@@ -142,6 +170,34 @@ describe( 'UploaderDriver', () =>
 
             driver.clickSecondary();
             expect( onClickSecondary ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
@@ -160,6 +216,56 @@ describe( 'UploaderDriver', () =>
 
             driver.change( 'jkl' );
             expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            it( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Uploader can\'t change since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            it( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Uploader can\'t change since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 

@@ -1,3 +1,10 @@
+const ERR = {
+    UPLOADER_DISABLED : ( doWhat ) =>
+        `Uploader can't ${doWhat} since it is disabled`,
+    UPLOADER_READONLY : ( doWhat ) =>
+        `Uploader can't ${doWhat} since it is read only`,
+};
+
 export default class UploaderDriver
 {
     constructor( wrapper )
@@ -20,6 +27,16 @@ export default class UploaderDriver
 
     change( val )
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.UPLOADER_DISABLED( 'change' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.UPLOADER_READONLY( 'change' ) );
+        }
+
         this.wrapper.find( `.${this.cssMap.input}` )
             .simulate( 'change', { target: { value: val } } );
         return this;
