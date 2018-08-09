@@ -193,6 +193,11 @@
         color:          var( --PC-BLUE );
     }
 
+    .subLabel
+    {
+        display:        none;
+    }
+
     &:not( .disabled ):hover
     {
         .flexContainer
