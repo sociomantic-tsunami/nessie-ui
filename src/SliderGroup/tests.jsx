@@ -227,23 +227,33 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
         } );
+    } );
+} );
 
-        test(
-            'onChange event in individual Sliders should be passed from Sliders array',
-            () =>
-            {
-                const onChangeSlider = jest.fn();
-                const props = {
-                    sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
+describe( 'SliderGroupDriver', () =>
+{
+    let wrapper;
+    let driver;
 
-                wrapper = shallow( <SliderGroup { ...props } /> );
+    beforeEach( () =>
+    {
+        wrapper = mount( <SliderGroup /> );
+        driver  = wrapper.driver();
+    } );
 
-                wrapper.find( Slider ).simulate( 'change' );
+    describe( 'change()', () =>
+    {
+        test( 'should trigger onChange in individual Slider', () =>
+        {
+            const onChangeSlider = jest.fn();
+            wrapper.setProps( {
+                sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
+            } );
 
-                expect( onChangeSlider ).toBeCalled();
-            },
-        );
+            driver.change();
+
+            expect( onChangeSlider ).toBeCalledTimes( 1 );
+        } );
 
         test(
             'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange',
@@ -251,74 +261,58 @@ describe( 'SliderGroup', () =>
             {
                 const onChangeSlider = jest.fn();
                 const onChangeSliderGroup = jest.fn();
-                const props = {
+                wrapper.setProps( {
                     onChange : onChangeSliderGroup,
                     sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
+                } );
 
-                wrapper = shallow( <SliderGroup { ...props } /> );
+                driver.change();
 
-                wrapper.find( Slider ).simulate( 'change' );
-
-                expect( onChangeSlider ).toBeCalled();
-                expect( onChangeSliderGroup ).toBeCalled();
+                expect( onChangeSlider ).toBeCalledTimes( 1 );
+                expect( onChangeSliderGroup ).toBeCalledTimes( 1 );
             },
         );
-    } );
-} );
 
-describe( 'SliderGroupDriver', () =>
-{
-    let wrapper;
 
-    beforeEach( () =>
-    {
-        wrapper = mount( <SliderGroup /> );
-    } );
-
-    describe( 'getSlider()', () =>
-    {
-        test( 'should get Slider at given index', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 },
-                ],
-            } );
+            it( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
 
-            expect( wrapper.driver().getSlider( 1 ).props().value ).toBe( 80 );
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        test( 'should get Sliders when indexes are passed as an array', () =>
+
+        describe( 'isReadOnly', () =>
         {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 },
-                ],
+            it( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
             } );
-
-            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).toHaveLength( 2 );
-        } );
-
-        test( 'should return a Slider at certain index in array', () =>
-        {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 40 },
-                    { value: 20 },
-                    { value: 10 },
-                    { value: 30 },
-                ],
-            } );
-
-            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value )
-                .toBe( 20 );
         } );
     } );
 } );
