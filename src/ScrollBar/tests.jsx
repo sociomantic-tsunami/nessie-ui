@@ -78,10 +78,12 @@ describe( 'ScrollBar', () =>
 describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBar /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTrack( val )', () =>
@@ -92,7 +94,7 @@ describe( 'ScrollBarDriver', () =>
         {
             onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
-            wrapper.driver().clickTrack( 100 );
+            driver.clickTrack( 100 );
         } );
 
         test( 'should call the onClickTrack prop once', () =>
@@ -114,7 +116,7 @@ describe( 'ScrollBarDriver', () =>
         {
             onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().change( 100 );
+            driver.change( 100 );
         } );
 
         test( 'should call the onChange prop once', () =>
@@ -135,7 +137,7 @@ describe( 'ScrollBarDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
@@ -148,7 +150,7 @@ describe( 'ScrollBarDriver', () =>
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
