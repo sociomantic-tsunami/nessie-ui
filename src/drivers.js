@@ -38,6 +38,7 @@ import {
     TagInput,
     TextArea,
     TextInput,
+    TextInputWithIcon,
     Tooltip,
     ToggleButton,
     Uploader,
@@ -79,6 +80,7 @@ import TabsDriver              from './Tabs/driver';
 import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextInputDriver         from './TextInput/driver';
+import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 
@@ -236,6 +238,10 @@ const drivers =
     {
         Component : TextInput,
         Driver    : TextInputDriver,
+    },
+    {
+        Component : TextInputWithIcon,
+        Driver    : TextInputWithIconDriver,
     },
     {
         Component : Tooltip,
