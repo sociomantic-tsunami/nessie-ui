@@ -6,20 +6,76 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const baseConfig           = require( './base' );
 
 
-module.exports = merge( {}, baseConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
+const devConfig = merge( {}, baseConfig, {
+    entry : path.join( __dirname, '../src/index.js' ),
+
+
+    devtool   : 'eval-source-map',
+    externals : {
+        'prop-types' : 'PropTypes',
+        'react-dom'  : 'ReactDOM',
+        react        : 'React',
+    },
+    mode : 'development',
+} );
+
+const addons = merge( {}, devConfig, {
+    entry  : path.join( __dirname, '../src/addons.dev.js' ),
+    output : { filename: 'addons.js' },
+
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            fallback  : 'css-loader',
+            filename  : 'addons.dev.css',
+        } ),
+    ],
+} );
+
+const components = merge( {}, devConfig, {
+    output : {
+        filename      : 'index.dev.js',
+        libraryTarget : 'commonjs2',
+    },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.dev.css',
+        } ),
+    ],
+} );
+
+const componentDriver = merge( {}, devConfig, {
+    entry  : path.join( __dirname, '../src/Testing/index.js' ),
+    output : { filename: 'componentDriver.dev.js' },
+} );
+
+const umdComponents = merge( {}, devConfig, {
+    output : {
+        filename      : 'index.umd.dev.js',
+        library       : 'Nessie',
+        libraryTarget : 'umd',
+    },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.dev.css',
+        } ),
+    ],
+} );
+
+const driverSuite = merge( {}, devConfig, {
+    entry  : path.join( __dirname, '../src/drivers.js' ),
+    output : { filename: 'driverSuite.dev.js' },
+} );
+
+
+const deprecatedDisplayComponents = merge( {}, devConfig, {
     output : {
         filename      : 'displayComponents.js',
         library       : 'DisplayComponents',
-        libraryTarget : 'window'
+        libraryTarget : 'window',
     },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-    },
-    mode    : 'development',
     plugins : [
         new MiniCssExtractPlugin( {
             allChunks : true,
@@ -27,3 +83,13 @@ module.exports = merge( {}, baseConfig, {
         } ),
     ],
 } );
+
+
+module.exports = [
+    addons,
+    componentDriver,
+    components,
+    driverSuite,
+    umdComponents,
+    deprecatedDisplayComponents,
+];

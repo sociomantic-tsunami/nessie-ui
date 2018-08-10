@@ -1,23 +1,39 @@
-const path                 = require( 'path' );
+const path                    = require( 'path' );
 
-const merge                = require( 'lodash.merge' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const merge                   = require( 'lodash.merge' );
+const MiniCssExtractPlugin    = require( 'mini-css-extract-plugin' );
+const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const UglifyJsPlugin          = require( 'uglifyjs-webpack-plugin' );
 
-const baseConfig           = require( './base' );
+const baseConfig              = require( './base' );
 
+
+/* webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production */
 
 const distConfig = merge( {}, baseConfig, {
     output : { libraryTarget: 'commonjs2' },
 
     devtool   : 'source-map',
     externals : {
-        componentDriver : 'nessie-ui/dist/componentDriver',
         'nessie-ui'     : 'nessie-ui',
         'prop-types'    : 'prop-types',
-        react           : 'react',
         'react-dom'     : 'react-dom',
+        componentDriver : 'nessie-ui/dist/componentDriver',
+        react           : 'react',
     },
-    mode : 'production',
+    mode         : 'production',
+    optimization : {
+        minimizer : [
+            new OptimizeCSSAssetsPlugin( {
+                cssProcessorOptions : { map: { inline: false } },
+            } ),
+            new UglifyJsPlugin( {
+                cache     : true,
+                parallel  : true,
+                sourceMap : true,
+            } ),
+        ],
+    },
 } );
 
 
@@ -34,27 +50,6 @@ const addons = merge( {}, distConfig, {
     ],
 } );
 
-const displayComponents = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : {
-        filename      : 'displayComponents.js',
-        library       : 'DisplayComponents',
-        libraryTarget : 'window'
-    },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
-} );
-
 const components = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
     output : { filename: 'index.js' },
@@ -63,6 +58,35 @@ const components = merge( {}, distConfig, {
         new MiniCssExtractPlugin( {
             allChunks : true,
             filename  : 'styles.css',
+        } ),
+    ],
+} );
+
+const umdComponents = merge( {}, distConfig, {
+    output : {
+        filename      : 'index.umd.js',
+        library       : 'Nessie',
+        libraryTarget : 'umd',
+    },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.css',
+        } ),
+    ],
+} );
+
+const deprecatedDisplayComponents = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/index.js' ),
+    output : {
+        filename      : 'displayComponents.js',
+        library       : 'DisplayComponents',
+        libraryTarget : 'window',
+    },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'displayComponentStyles.css',
         } ),
     ],
 } );
@@ -80,8 +104,9 @@ const driverSuite = merge( {}, distConfig, {
 
 module.exports = [
     addons,
-    components,
     componentDriver,
-    displayComponents,
+    components,
+    deprecatedDisplayComponents,
     driverSuite,
+    umdComponents,
 ];
