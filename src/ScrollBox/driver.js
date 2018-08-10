@@ -10,9 +10,8 @@ export default class ScrollBoxDriver
     constructor( wrapper )
     {
         this.wrapper   = wrapper;
-        this.props     = this.wrapper.props();
-        this.scrollBox = this.wrapper
-            .find( `.${wrapper.prop( 'cssMap' ).inner}` );
+        this.props     = wrapper.props();
+        this.scrollBox = wrapper.find( `.${wrapper.prop( 'cssMap' ).inner}` );
     }
 
     clickScrollUp()

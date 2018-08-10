@@ -7,7 +7,7 @@ export default class NotificationBarDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickClose()

@@ -25,7 +25,7 @@ describe( 'DateTimeInputDriver', () =>
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            wrapper.driver().blurMainInput();
+            driver.blurMainInput();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -38,7 +38,7 @@ describe( 'DateTimeInputDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            wrapper.driver().focusMainInput();
+            driver.focusMainInput();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -52,7 +52,7 @@ describe( 'DateTimeInputDriver', () =>
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            wrapper.driver().blurHourInput();
+            driver.blurHourInput();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -65,7 +65,7 @@ describe( 'DateTimeInputDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            wrapper.driver().focusHourInput();
+            driver.focusHourInput();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -79,7 +79,7 @@ describe( 'DateTimeInputDriver', () =>
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            wrapper.driver().blurMinuteInput();
+            driver.blurMinuteInput();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -92,7 +92,7 @@ describe( 'DateTimeInputDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            wrapper.driver().focusMinuteInput();
+            driver.focusMinuteInput();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -114,14 +114,14 @@ describe( 'DateTimeInputDriver', () =>
 
         test( 'should fire onClickCell exactly once', () =>
         {
-            wrapper.driver().clickCellByIndex( 1 );
+            driver.clickCellByIndex( 1 );
 
             expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
         test( 'should click on cell with given index', () =>
         {
-            wrapper.driver().clickCellByIndex( 1 );
+            driver.clickCellByIndex( 1 );
             expect( onClickCell.mock.calls[ 0 ][ 0 ] ).toBe( '2' );
         } );
     } );
@@ -141,14 +141,14 @@ describe( 'DateTimeInputDriver', () =>
 
         test( 'should fire onClickCell exactly once', () =>
         {
-            wrapper.driver().clickCellByValue( '1' );
+            driver.clickCellByValue( '1' );
 
             expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
         test( 'should click on cell with given value', () =>
         {
-            wrapper.driver().clickCellByValue( '3' );
+            driver.clickCellByValue( '3' );
             expect( onClickCell.mock.calls[ 0 ][ 0 ] ).toBe( '3' );
         } );
     } );
@@ -165,7 +165,7 @@ describe( 'DateTimeInputDriver', () =>
                 onClickPrev,
             } );
 
-            wrapper.driver().clickPrev();
+            driver.clickPrev();
 
             expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
@@ -183,7 +183,7 @@ describe( 'DateTimeInputDriver', () =>
                 onClickNext,
             } );
 
-            wrapper.driver().clickNext();
+            driver.clickNext();
 
             expect( onClickNext ).toBeCalledTimes( 1 );
         } );

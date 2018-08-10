@@ -13,10 +13,10 @@ export default class CheckableGroupDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.cssMap     = this.wrapper.props().cssMap;
-        this.checkables = this.wrapper.find( 'Checkbox' ).length ?
-            this.wrapper.find( 'Checkbox' ) :
-            this.wrapper.find( 'Radio' );
+        this.cssMap     = wrapper.props().cssMap;
+        this.checkables = wrapper.find( 'Checkbox' ).length ?
+            wrapper.find( 'Checkbox' ) :
+            wrapper.find( 'Radio' );
     }
 
 

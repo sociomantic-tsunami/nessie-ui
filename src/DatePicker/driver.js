@@ -20,8 +20,8 @@ export default class DatePickerDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
-        this.header  = this.wrapper.find( 'DatePickerHeader' )
+        this.cssMap  = wrapper.props().cssMap;
+        this.header  = wrapper.find( 'DatePickerHeader' )
             .props().cssMap;
         this.hour    = this.header.hour;
         this.min     = this.header.min;

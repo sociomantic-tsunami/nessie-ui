@@ -3,7 +3,7 @@ export default class SliderGroupDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     change(  val = '0', index = 0  )

@@ -18,7 +18,7 @@ export default class CheckboxDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = this.wrapper
+        this.control = wrapper
             .find( `.${this.wrapper.props().cssMap.input}` ).first();
     }
 

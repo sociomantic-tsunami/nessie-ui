@@ -9,7 +9,7 @@ export default class TagInputDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = this.wrapper.find( 'InputContainer' );
+        this.control = wrapper.find( 'InputContainer' );
     }
 
     clickCloseTagByIndex( index = 0 )

@@ -1,11 +1,9 @@
-import { NavItem, NavDropdown } from 'nessie-ui';
-
 export default class NavItemDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     click()

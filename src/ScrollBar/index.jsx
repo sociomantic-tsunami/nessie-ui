@@ -42,7 +42,7 @@ const ScrollBar = ( {
             aria-valuenow    = { scrollPos }
             aria-valuemin    = { scrollMin }
             aria-valuemax    = { scrollMax }
-            className = { buildClassName( className, cssMap, {
+            className        = { buildClassName( className, cssMap, {
                 orientation,
             } ) }
             onClick = { e =>

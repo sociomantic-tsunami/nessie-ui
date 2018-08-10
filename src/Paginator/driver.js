@@ -3,7 +3,7 @@ export default class PaginatorDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickPrev()

@@ -21,7 +21,7 @@ export default class CodeEditorDriver
         // the 3rd party control
         this.control = wrapper.node.codeMirror;
 
-        this.content = this.wrapper.find( 'InputContainer' ).first();
+        this.content = wrapper.find( 'InputContainer' ).first();
     }
 
 

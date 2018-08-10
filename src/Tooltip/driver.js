@@ -8,7 +8,7 @@ export default class TooltipDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     getContent()

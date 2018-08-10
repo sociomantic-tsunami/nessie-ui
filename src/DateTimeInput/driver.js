@@ -3,12 +3,12 @@ export default class DateTimeInputDriver
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.cssMap      = this.wrapper.children().props().cssMap;
+        this.cssMap      = wrapper.children().props().cssMap;
 
         this.mainInput   = wrapper.find( `.${this.cssMap.input}` );
         this.hourInput   = wrapper.find( `.${this.cssMap.hour}` );
         this.minuteInput = wrapper.find( `.${this.cssMap.min}` );
-        this.calendar    = wrapper.find( 'DatePickerItem' );
+        this.calendar    = wrapper.find( 'DatePicker' );
         this.prev        = wrapper.find( `.${this.cssMap.prev}` );
         this.next        = wrapper.find( `.${this.cssMap.next}` );
     }
@@ -51,8 +51,7 @@ export default class DateTimeInputDriver
 
     clickCellByIndex( index = 0 )
     {
-        const day = this.calendar.at( index );
-        day.simulate( 'click' );
+        this.calendar.driver().clickItem( index );
         return this;
     }
 
