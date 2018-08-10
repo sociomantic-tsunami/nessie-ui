@@ -2,55 +2,38 @@
 
 .default
 {
-}
-
-.input:checked
-{
-    & + .label::before
+    .input:checked + .label
     {
-        border-color:           var( --PC-BLUE );
-        background-color:       var( --PC-BLUE );
-    }
+        &::before
+        {
+            background: var( --PC-BLUE );
+        }
 
-    & + .label::after
-    {
-        display:                block;
+        &::after
+        {
+            display:                block;
 
-        background:             url( './images/validation--white.svg' );
-
-        width:                  var( --spacing-2 );
-        height:                 var( --spacing-2 );
-
-        top:                    4px;
-        left:                   4px;
+            background:             url( './images/validation--white.svg' );
+            background-position:    center;
+            background-size:        16px;
+            background-repeat:      no-repeat;
+        }
     }
 }
 
-.fakeHovered
-{
-}
 
-.disabled,
-.disabled:hover
-{
-    .input + .label::before
-    {
-        border-color:           var( --PC-GREY--L70 );
-    }
-
-    .input:checked + .label::before
-    {
-        border-color:           var( --PC-GREY--L70 );
-        background-color:       var( --PC-GREY--L70 );
-    }
-}
-
-.error,
-.error:hover
+.error
 {
     .input:checked + .label::before
     {
-        border-color:           var( --PC-RED );
-        background-color:       var( --PC-RED );
+        background: var( --PC-RED );
+    }
+}
+
+.disabled
+{
+    .input:checked + .label::before
+    {
+        background:   var( --PC-GREY--L70 );
     }
 }
