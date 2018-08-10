@@ -1,5 +1,4 @@
 /* global jest test */
-/* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React                from 'react';

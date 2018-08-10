@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0 */
 
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
