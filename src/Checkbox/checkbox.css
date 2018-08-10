@@ -13,9 +13,9 @@
         {
             display:                block;
 
-            background:             url( './images/validation--white.svg' );
+            background:             url( './images/check.svg' );
             background-position:    center;
-            background-size:        16px;
+            background-size:        24px;
             background-repeat:      no-repeat;
         }
     }
