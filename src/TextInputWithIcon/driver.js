@@ -2,10 +2,9 @@ export default class TextInputWithIconDriver
 {
     constructor( wrapper )
     {
-        this.wrapper    = wrapper;
-        this.inputfield = wrapper.find( 'InputField' );
-        this.tooltip    = wrapper.find( 'Tooltip' );
-        this.iconbutton = wrapper.find( 'IconButton' );
+        this.wrapper        = wrapper;
+        this.inputcontainer = wrapper.find( 'InputContainer' );
+        this.inputfield     = wrapper.find( 'InputField' );
     }
 
     change( val )
@@ -52,43 +51,43 @@ export default class TextInputWithIconDriver
 
     mouseOver()
     {
-        this.inputfield.driver().mouseOver();
+        this.inputcontainer.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.inputfield.driver().mouseOut();
+        this.inputcontainer.simulate( 'mouseleave' );
         return this;
     }
 
     clickIcon()
     {
-        this.iconbutton.driver().click();
+        this.wrapper.find( 'IconButton' ).driver().click();
         return this;
     }
 
     focusIcon()
     {
-        this.iconbutton.driver().focus();
+        this.wrapper.find( 'IconButton' ).driver().focus();
         return this;
     }
 
     blurIcon()
     {
-        this.iconbutton.driver().blur();
+        this.wrapper.find( 'IconButton' ).driver().blur();
         return this;
     }
 
     mouseOverIcon()
     {
-        this.tooltip.driver().mouseOver();
+        this.wrapper.find( 'Tooltip' ).driver().mouseOver();
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.driver().mouseOut();
+        this.wrapper.find( 'Tooltip' ).driver().mouseOut();
         return this;
     }
 }

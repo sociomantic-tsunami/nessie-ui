@@ -1076,4 +1076,95 @@ describe( 'TextInputWithIconDriver', () =>
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should trigger onClickIcon callback prop once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( { onClickIcon, iconType: 'add' } );
+
+            driver.clickIcon();
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'focusIcon()', () =>
+    {
+        test( 'should trigger onFocusIcon callback prop once', () =>
+        {
+            const onFocusIcon = jest.fn();
+            wrapper.setProps( { onFocusIcon, iconType: 'add' } );
+
+            driver.focusIcon();
+            expect( onFocusIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'blurIcon()', () =>
+    {
+        test( 'should trigger onBlurIcon callback prop once', () =>
+        {
+            const onBlurIcon = jest.fn();
+            wrapper.setProps( { onBlurIcon, iconType: 'add' } );
+
+            driver.blurIcon();
+            expect( onBlurIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverIcon()', () =>
+    {
+        test( 'should trigger onMouseOverIcon callback prop once', () =>
+        {
+            const onMouseOverIcon = jest.fn();
+            wrapper.setProps( { onMouseOverIcon, iconType: 'add' } );
+
+            driver.mouseOverIcon();
+            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutIcon()', () =>
+    {
+        test( 'should trigger onMouseOutIcon callback prop once', () =>
+        {
+            const onMouseOutIcon = jest.fn();
+            wrapper.setProps( { onMouseOutIcon, iconType: 'add' } );
+
+            driver.mouseOutIcon();
+            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
 } );
