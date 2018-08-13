@@ -1,5 +1,3 @@
-import 'normalize.css';
-
 export Button                   from './Button';
 export Card                     from './Card';
 export CheckableGroup           from './CheckableGroup';
