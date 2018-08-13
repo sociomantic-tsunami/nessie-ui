@@ -39,12 +39,6 @@ export default class FlounderDropdownDriver
         return this;
     }
 
-    openOnHover()
-    {
-        this.innerFlounderComponent.openOnHover();
-        return this;
-    }
-
     firstTouch()
     {
         this.innerFlounderComponent.onFirstTouch();
@@ -53,13 +47,13 @@ export default class FlounderDropdownDriver
 
     focus()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'focus' );
+        this.control.simulate( 'focus' );
         return this;
     }
 
     blur()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'blur' );
+        this.control.simulate( 'blur' );
         return this;
     }
 

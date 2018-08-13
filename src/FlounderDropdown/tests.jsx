@@ -108,19 +108,6 @@ describe( 'FlounderDropdownDriver', () =>
     } );
 
 
-    describe( 'openOnHover()', () =>
-    {
-        test( 'should trigger openOnHover callback prop once', () =>
-        {
-            const openOnHover = jest.fn();
-            wrapper.setProps( { openOnHover } );
-
-            driver.openOnHover();
-            expect( openOnHover ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
     describe( 'firstTouch()', () =>
     {
         test( 'should trigger onFirstTouch callback prop once', () =>
@@ -134,30 +121,30 @@ describe( 'FlounderDropdownDriver', () =>
     } );
 
 
-    // describe( 'focus()', () =>
-    // {
-    //     test( 'should trigger onFocus callback prop once', () =>
-    //     {
-    //         const onFocus = jest.fn();
-    //         wrapper.setProps( { onFocus, children: pokemonList } );
-    //
-    //         driver.focus();
-    //         expect( onFocus ).toBeCalledTimes( 1 );
-    //     } );
-    // } );
-    //
-    //
-    // describe( 'blur()', () =>
-    // {
-    //     test( 'should trigger onBlur callback prop once', () =>
-    //     {
-    //         const onBlur = jest.fn();
-    //         wrapper.setProps( { onBlur, children: pokemonList } );
-    //
-    //         driver.blur();
-    //         expect( onBlur ).toBeCalledTimes( 1 );
-    //     } );
-    // } );
+    describe.skip( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus, children: pokemonList } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe.skip( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur, children: pokemonList } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+    } );
 
 
     describe( 'mouseOver()', () =>
