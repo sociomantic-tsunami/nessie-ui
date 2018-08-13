@@ -95,6 +95,32 @@ describe( 'FlounderDropdownDriver', () =>
     } );
 
 
+    describe( 'open()', () =>
+    {
+        test( 'should trigger onOpen callback prop once', () =>
+        {
+            const onOpen = jest.fn();
+            wrapper.setProps( { onOpen } );
+
+            driver.open();
+            expect( onOpen ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'openOnHover()', () =>
+    {
+        test( 'should trigger openOnHover callback prop once', () =>
+        {
+            const openOnHover = jest.fn();
+            wrapper.setProps( { openOnHover } );
+
+            driver.openOnHover();
+            expect( openOnHover ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
     describe( 'firstTouch()', () =>
     {
         test( 'should trigger onFirstTouch callback prop once', () =>
@@ -105,60 +131,33 @@ describe( 'FlounderDropdownDriver', () =>
             driver.firstTouch();
             expect( onFirstTouch ).toBeCalledTimes( 1 );
         } );
-
-        test( 'should be called with \'touch\' as argument', () =>
-        {
-            const onFirstTouch = jest.fn();
-            wrapper.setProps( { children: pokemonList, onFirstTouch } );
-
-            driver.firstTouch();
-            expect( onFirstTouch ).toBeCalledWith( 'touch' );
-        } );
     } );
 
 
-    describe( 'focus()', () =>
-    {
-        test( 'should trigger onFocus callback prop once', () =>
-        {
-            const onFocus = jest.fn();
-            wrapper.setProps( { onFocus } );
-
-            driver.focus();
-            expect( onFocus ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should be called with \'focus\' as argument', () =>
-        {
-            const onFocus = jest.fn();
-            wrapper.setProps( { children: pokemonList, onFocus } );
-
-            driver.focus();
-            expect( onFocus ).toBeCalledWith( 'focus' );
-        } );
-    } );
-
-
-    describe( 'blur()', () =>
-    {
-        test( 'should trigger onBlur callback prop once', () =>
-        {
-            const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
-
-            driver.blur();
-            expect( onBlur ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should be called with \'blur\' as argument', () =>
-        {
-            const onBlur = jest.fn();
-            wrapper.setProps( { children: pokemonList, onBlur } );
-
-            driver.blur();
-            expect( onBlur ).toBeCalledWith( 'blur' );
-        } );
-    } );
+    // describe( 'focus()', () =>
+    // {
+    //     test( 'should trigger onFocus callback prop once', () =>
+    //     {
+    //         const onFocus = jest.fn();
+    //         wrapper.setProps( { onFocus, children: pokemonList } );
+    //
+    //         driver.focus();
+    //         expect( onFocus ).toBeCalledTimes( 1 );
+    //     } );
+    // } );
+    //
+    //
+    // describe( 'blur()', () =>
+    // {
+    //     test( 'should trigger onBlur callback prop once', () =>
+    //     {
+    //         const onBlur = jest.fn();
+    //         wrapper.setProps( { onBlur, children: pokemonList } );
+    //
+    //         driver.blur();
+    //         expect( onBlur ).toBeCalledTimes( 1 );
+    //     } );
+    // } );
 
 
     describe( 'mouseOver()', () =>
@@ -170,15 +169,6 @@ describe( 'FlounderDropdownDriver', () =>
 
             driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should be called with \'mouseenter\' as argument', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( { children: pokemonList, onMouseOver } );
-
-            driver.mouseOver();
-            expect( onMouseOver ).toBeCalledWith( 'mouseenter' );
         } );
     } );
 
@@ -192,15 +182,6 @@ describe( 'FlounderDropdownDriver', () =>
 
             driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should be called with \'mouseleave\' as argument', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( { children: pokemonList, onMouseOut } );
-
-            driver.mouseOut();
-            expect( onMouseOut ).toBeCalledWith( 'mouseleave' );
         } );
     } );
 } );

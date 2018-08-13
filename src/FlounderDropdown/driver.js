@@ -23,58 +23,55 @@ export default class FlounderDropdownDriver
 
     change( value = 'jkl' )
     {
-        this.control.prop( 'onChange' )( {
-            simulate :
-            { change: { target: { value } } },
-        } );
+        this.innerFlounderComponent.onChange( value );
         return this;
     }
 
     close()
     {
-        this.control.prop( 'onClose' )( 'close' );
-        return this;
-    }
-
-    firstTouch()
-    {
-        this.control.prop( 'onFirstTouch' )( 'touch' );
+        this.innerFlounderComponent.onClose();
         return this;
     }
 
     open()
     {
-        this.control.prop( 'onOpen' )( 'open' );
+        this.innerFlounderComponent.onOpen();
         return this;
     }
 
     openOnHover()
     {
-        this.control.prop( 'onOpenOnHover' )( 'openOnHover' );
+        this.innerFlounderComponent.openOnHover();
+        return this;
+    }
+
+    firstTouch()
+    {
+        this.innerFlounderComponent.onFirstTouch();
         return this;
     }
 
     focus()
     {
-        this.control.prop( 'onFocus' )( 'focus' );
+        this.wrapper.find( 'InputContainer' ).simulate( 'focus' );
         return this;
     }
 
     blur()
     {
-        this.control.prop( 'onBlur' )( 'blur' );
+        this.wrapper.find( 'InputContainer' ).simulate( 'blur' );
         return this;
     }
 
     mouseOver()
     {
-        this.control.prop( 'onMouseOver' )( 'mouseenter' );
+        this.control.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.control.prop( 'onMouseOut' )( 'mouseleave' );
+        this.control.simulate( 'mouseleave' );
         return this;
     }
 }
