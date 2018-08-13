@@ -1,4 +1,3 @@
-/* eslint max-len: ["error", { "ignoreTrailingComments": true }] */
 /* global Event */
 
 import React, { Component } from 'react';
