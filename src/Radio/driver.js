@@ -19,7 +19,7 @@ export default class RadioDriver
     {
         this.wrapper = wrapper;
         this.control = wrapper
-            .find( `.${this.wrapper.props().cssMap.input}` ).first();
+            .find( `.${this.wrapper.props().cssMap.input}` );
     }
 
     blur()
