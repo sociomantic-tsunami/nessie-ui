@@ -38,6 +38,7 @@ import {
     TagInput,
     TextArea,
     TextInput,
+    TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
     ToggleButton,
@@ -45,44 +46,45 @@ import {
     ValuedTextInput,
 } from 'nessie-ui';
 
-import ButtonDriver            from './Button/driver';
-import CheckableGroupDriver    from './CheckableGroup/driver';
-import CheckboxDriver          from './Checkbox/driver';
-import CodeEditorDriver        from './CodeEditor/driver';
-import ComboBoxDriver          from './ComboBox/driver';
-import DatePickerDriver        from './DatePicker/driver';
-import DateTimeInputDriver     from './DateTimeInput/driver';
-import FieldsetDriver          from './Fieldset/driver';
-import FlounderDropdownDriver  from './FlounderDropdown/driver';
-import FormDriver              from './Form/driver';
-import IconDriver              from './Icon/driver';
-import IconWithTooltipDriver   from './IconWithTooltip/driver';
-import InputFieldDriver        from './InputField/driver';
-import LabelDriver             from './Label/driver';
-import ListBoxDriver           from './ListBox/driver';
-import ModalDialogDriver       from './ModalDialog/driver';
-import ModuleDriver            from './Module/driver';
-import NavItemDriver           from './NavItem/driver';
-import NotificationBarDriver   from './NotificationBar/driver';
-import PaginatorDriver         from './Paginator/driver';
-import PasswordInputDriver     from './PasswordInput/driver';
-import ScrollBarDriver         from './ScrollBar/driver';
-import ScrollBoxDriver         from './ScrollBox/driver';
-import SliderDriver            from './Slider/driver';
-import SliderGroupDriver       from './SliderGroup/driver';
-import SorterDriver            from './Sorter/driver';
-import SwitchDriver            from './Switch/driver';
-import TabButtonDriver         from './TabButton/driver';
-import TabDriver               from './Tab/driver';
-import TableDriver             from './Table/driver';
-import TableCellDriver         from './TableCell/driver';
-import TabsDriver              from './Tabs/driver';
-import TagDriver               from './Tag/driver';
-import TagInputDriver          from './TagInput/driver';
-import TextInputDriver         from './TextInput/driver';
-import TextInputWithIconDriver from './TextInputWithIcon/driver';
-import TooltipDriver           from './Tooltip/driver';
-import UploaderDriver          from './Uploader/driver';
+import ButtonDriver                from './Button/driver';
+import CheckableGroupDriver        from './CheckableGroup/driver';
+import CheckboxDriver              from './Checkbox/driver';
+import CodeEditorDriver            from './CodeEditor/driver';
+import ComboBoxDriver              from './ComboBox/driver';
+import DatePickerDriver            from './DatePicker/driver';
+import DateTimeInputDriver         from './DateTimeInput/driver';
+import FieldsetDriver              from './Fieldset/driver';
+import FlounderDropdownDriver      from './FlounderDropdown/driver';
+import FormDriver                  from './Form/driver';
+import IconDriver                  from './Icon/driver';
+import IconWithTooltipDriver       from './IconWithTooltip/driver';
+import InputFieldDriver            from './InputField/driver';
+import LabelDriver                 from './Label/driver';
+import ListBoxDriver               from './ListBox/driver';
+import ModalDialogDriver           from './ModalDialog/driver';
+import ModuleDriver                from './Module/driver';
+import NavItemDriver               from './NavItem/driver';
+import NotificationBarDriver       from './NotificationBar/driver';
+import PaginatorDriver             from './Paginator/driver';
+import PasswordInputDriver         from './PasswordInput/driver';
+import ScrollBarDriver             from './ScrollBar/driver';
+import ScrollBoxDriver             from './ScrollBox/driver';
+import SliderDriver                from './Slider/driver';
+import SliderGroupDriver           from './SliderGroup/driver';
+import SorterDriver                from './Sorter/driver';
+import SwitchDriver                from './Switch/driver';
+import TabButtonDriver             from './TabButton/driver';
+import TabDriver                   from './Tab/driver';
+import TableDriver                 from './Table/driver';
+import TableCellDriver             from './TableCell/driver';
+import TabsDriver                  from './Tabs/driver';
+import TagDriver                   from './Tag/driver';
+import TagInputDriver              from './TagInput/driver';
+import TextInputDriver             from './TextInput/driver';
+import TextInputWithDropdownDriver from './TextInputWithDropdown/driver';
+import TextInputWithIconDriver     from './TextInputWithIcon/driver';
+import TooltipDriver               from './Tooltip/driver';
+import UploaderDriver              from './Uploader/driver';
 
 
 const drivers =
@@ -238,6 +240,10 @@ const drivers =
     {
         Component : TextInput,
         Driver    : TextInputDriver,
+    },
+    {
+        Component : TextInputWithDropdown,
+        Driver    : TextInputWithDropdownDriver,
     },
     {
         Component : TextInputWithIcon,

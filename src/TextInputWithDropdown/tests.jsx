@@ -1,9 +1,8 @@
-/* global test */
-/* eslint no-console: 0*/
+/* global jest test */
 /* eslint-disable no-magic-numbers */
 
 import React                             from 'react';
-import { shallow }                       from 'enzyme';
+import { shallow, mount }                from 'enzyme';
 
 import { InputField, FlounderDropdown }  from '../index';
 import InputContainer                    from '../proto/InputContainer';
@@ -35,6 +34,123 @@ describe( 'TextInputWithDropdown', () =>
         test( 'should contain exactly one FlounderDropdown', () =>
         {
             expect( wrapper.find( FlounderDropdown ) ).toHaveLength( 1 );
+        } );
+    } );
+} );
+
+
+describe( 'TextInputWithDropdownDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <TextInputWithDropdown /> );
+        driver  = wrapper.driver();
+    } );
+
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'changeInput( val )', () =>
+    {
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeInput();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'changeFlounder( val )', () =>
+    {
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeFlounder();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverRow()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOverRow();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutRow()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOutRow();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );
