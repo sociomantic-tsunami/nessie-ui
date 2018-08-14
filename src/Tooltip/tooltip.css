@@ -36,7 +36,7 @@
     {
         visibility:     visible;
         position:       relative;
-
+        text-align:     left;
         box-sizing:     border-box;
         /* max-width:      var( --tooltipMaxWidth ); */
         /* max-height:     var( --tooltipMaxHeight ); */
@@ -251,7 +251,7 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( 94%, -10px, 0 );
+        transform: translate3d( 95%, -10px, 0 );
       }
     }
 }
@@ -274,14 +274,14 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( -93%, 10px, 0 );
+        transform: translate3d( -95%, 10px, 0 );
       }
     }
     &Right
     {
       .tooltipContainer
       {
-        transform: translate3d( 93%, 10px, 0 );
+        transform: translate3d( 95%, 10px, 0 );
       }
     }
 }
@@ -321,26 +321,18 @@
   }
 }
 
-.position__bottomLeft
-{
-    .tooltip
-    {
-      &::after
-      {
-        transform: translate3d( -50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
-      }
-    }
-}
+.position__bottomLeft,
 .position__bottomRight
 {
     .tooltip
     {
       &::after
       {
-        transform: translate3d( 50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
+        transform: translate3d( 0, calc( -1.75 * var( --tooltipOffset ) ), 0);
       }
     }
 }
+
 
 .position__left,
 .position__right
@@ -411,7 +403,7 @@
         {
           border-right-color: transparent;
           right: 0;
-          top: 72%;
+          top: 73%;
           transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
       }
@@ -430,7 +422,7 @@
         {
           border-right-color: transparent;
           right: 0;
-          bottom: 76%;
+          bottom: 73%;
           transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 50%, 0);
         }
       }
@@ -473,8 +465,8 @@
         {
           border-left-color: transparent;
           left: 0;
-          bottom: 15%;
-          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 0, 0);
+          top: 73%;
+          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
       }
     }
@@ -492,8 +484,8 @@
         {
           border-left-color: transparent;
           left: 0;
-          top: 15%;
-          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 0, 0);
+          bottom: 73%;
+          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 50%, 0);
         }
       }
     }
