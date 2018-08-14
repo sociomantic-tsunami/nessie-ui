@@ -244,14 +244,14 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( -83%, -10px, 0 );
+        transform: translate3d( -94%, -10px, 0 );
       }
     }
     &Right
     {
       .tooltipContainer
       {
-        transform: translate3d( 83%, -10px, 0 );
+        transform: translate3d( 94%, -10px, 0 );
       }
     }
 }
@@ -274,14 +274,14 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( -83%, 10px, 0 );
+        transform: translate3d( -94%, 10px, 0 );
       }
     }
     &Right
     {
       .tooltipContainer
       {
-        transform: translate3d( 83%, 10px, 0 );
+        transform: translate3d( 95%, 10px, 0 );
       }
     }
 }
@@ -292,6 +292,7 @@
   .tooltipContainer
   {
     left: 50%;
+    text-align: right;
   }
   .tooltip
   {
@@ -364,6 +365,15 @@
           transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
     }
+}
+.position__left,
+.position__leftTop,
+.position__leftBottom
+{
+  .tooltipContainer
+  {
+    text-align: right;
+  }
 }
 
 .position__left
