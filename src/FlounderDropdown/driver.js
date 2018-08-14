@@ -45,18 +45,6 @@ export default class FlounderDropdownDriver
         return this;
     }
 
-    focus()
-    {
-        this.control.simulate( 'focus' );
-        return this;
-    }
-
-    blur()
-    {
-        this.control.simulate( 'blur' );
-        return this;
-    }
-
     mouseOver()
     {
         this.control.simulate( 'mouseenter' );

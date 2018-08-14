@@ -121,32 +121,6 @@ describe( 'FlounderDropdownDriver', () =>
     } );
 
 
-    describe.skip( 'focus()', () =>
-    {
-        test( 'should trigger onFocus callback prop once', () =>
-        {
-            const onFocus = jest.fn();
-            wrapper.setProps( { onFocus, children: pokemonList } );
-
-            driver.focus();
-            expect( onFocus ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe.skip( 'blur()', () =>
-    {
-        test( 'should trigger onBlur callback prop once', () =>
-        {
-            const onBlur = jest.fn();
-            wrapper.setProps( { onBlur, children: pokemonList } );
-
-            driver.blur();
-            expect( onBlur ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
     describe( 'mouseOver()', () =>
     {
         test( 'should trigger onMouseOver callback prop once', () =>
