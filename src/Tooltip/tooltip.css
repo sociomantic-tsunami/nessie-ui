@@ -244,7 +244,7 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( -94%, -10px, 0 );
+        transform: translate3d( -95%, -10px, 0 );
       }
     }
     &Right
@@ -274,14 +274,14 @@
     {
       .tooltipContainer
       {
-        transform: translate3d( -94%, 10px, 0 );
+        transform: translate3d( -93%, 10px, 0 );
       }
     }
     &Right
     {
       .tooltipContainer
       {
-        transform: translate3d( 95%, 10px, 0 );
+        transform: translate3d( 93%, 10px, 0 );
       }
     }
 }
