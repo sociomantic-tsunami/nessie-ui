@@ -420,7 +420,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'keyPressHour()', () =>
     {
-        test( 'should trigger onChange callback once', () =>
+        test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
@@ -684,7 +684,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'keyPressMinute()', () =>
     {
-        test( 'should trigger onChange callback once', () =>
+        test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );

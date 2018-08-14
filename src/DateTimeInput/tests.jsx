@@ -26,7 +26,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onBlur } );
 
             driver.blurMainInput();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
@@ -39,7 +38,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onFocus } );
 
             driver.focusMainInput();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
@@ -53,7 +51,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onBlur } );
 
             driver.blurHourInput();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
@@ -66,7 +63,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onFocus } );
 
             driver.focusHourInput();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
@@ -80,7 +76,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onBlur } );
 
             driver.blurMinuteInput();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
@@ -93,7 +88,6 @@ describe( 'DateTimeInputDriver', () =>
             wrapper.setProps( { onFocus } );
 
             driver.focusMinuteInput();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
@@ -115,7 +109,6 @@ describe( 'DateTimeInputDriver', () =>
         test( 'should fire onClickCell exactly once', () =>
         {
             driver.clickCellByIndex( 1 );
-
             expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
@@ -142,7 +135,6 @@ describe( 'DateTimeInputDriver', () =>
         test( 'should fire onClickCell exactly once', () =>
         {
             driver.clickCellByValue( '1' );
-
             expect( onClickCell ).toBeCalledTimes( 1 );
         } );
 
@@ -156,17 +148,14 @@ describe( 'DateTimeInputDriver', () =>
 
     describe( 'clickPrev()', () =>
     {
-        let onClickPrev;
-
         test( 'should fire onClickPrev exactly once', () =>
         {
-            onClickPrev = jest.fn();
+            const onClickPrev = jest.fn();
             wrapper.setProps( {
                 onClickPrev,
             } );
 
             driver.clickPrev();
-
             expect( onClickPrev ).toBeCalledTimes( 1 );
         } );
     } );
@@ -174,18 +163,82 @@ describe( 'DateTimeInputDriver', () =>
 
     describe( 'clickNext()', () =>
     {
-        let onClickNext;
-
         test( 'should fire onClickNext exactly once', () =>
         {
-            onClickNext = jest.fn();
+            const onClickNext = jest.fn();
             wrapper.setProps( {
                 onClickNext,
             } );
 
             driver.clickNext();
-
             expect( onClickNext ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should fire onClickIcon exactly once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( {
+                onClickIcon,
+            } );
+
+            driver.clickIcon();
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyPressHour()', () =>
+    {
+        test( 'should trigger onKeyPress callback once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPressHour();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyPressMinute()', () =>
+    {
+        test( 'should trigger onKeyPress callback once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPressMinute();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

@@ -74,4 +74,40 @@ export default class DateTimeInputDriver
         this.next.simulate( 'click' );
         return this;
     }
+
+    clickIcon()
+    {
+        this.wrapper.find( 'IconButton' ).first().driver().click();
+        return this;
+    }
+
+    keyPressInput()
+    {
+        this.wrapper.driver().keyPressInput();
+        return this;
+    }
+
+    keyPressHour()
+    {
+        this.calendar.driver().keyPressHour();
+        return this;
+    }
+
+    keyPressMinute()
+    {
+        this.calendar.driver().keyPressMinute();
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
 }
