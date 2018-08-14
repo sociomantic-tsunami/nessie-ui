@@ -1,11 +1,11 @@
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React, { Component }                  from 'react';
+import PropTypes                             from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import H2                              from '../H2';
-import H3                              from '../H3';
-import H4                              from '../H4';
-import { IconButton, IconWithTooltip } from '../index';
+import { buildClassName }                    from '../utils';
+import H2                                    from '../H2';
+import H3                                    from '../H3';
+import H4                                    from '../H4';
+import { Card, IconButton, IconWithTooltip } from '../index';
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
@@ -104,7 +104,7 @@ export default class Module extends Component
         isLoading     : false,
         isReadOnly    : false,
         headerLevel   : 2,
-        cssMap        : require( './module.css' )
+        cssMap        : require( './module.css' ),
     };
 
     constructor( props )
@@ -219,13 +219,13 @@ export default class Module extends Component
 
         return (
 
-            <section
+            <Card
                 className = { buildClassName( className, cssMap, {
                     collapsible : isCollapsible,
                     collapsed   : isCollapsible && isCollapsed,
                     error       : hasError,
                     moduleError : hasModuleError,
-                    level       : headerLevel
+                    level       : headerLevel,
                 } ) }>
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
@@ -236,7 +236,7 @@ export default class Module extends Component
                 { isLoading  &&
                 <div className = { cssMap.loadingOverlay } />
                 }
-            </section>
+            </Card>
         );
     }
 }

@@ -2,14 +2,62 @@
 
 .default
 {
-    display:        flex;
-    flex-direction: row;
+    display:          flex;
+    flex-direction:   column;
+    justify-content:  flex-start;
+    align-items:      stretch;
 
-    background:     var( --PC-WHITE );
+    background:       var( --PC-WHITE );
 
-    border-radius:  3px;
+    border-radius:    3px;
 
-    border:         1px solid color( var( --PC-GREY ) a(12%) );
+    border:           1px solid color( var( --PC-GREY ) a(12%) );
+}
+
+.alignX__left
+{
+    align-items:    flex-start;
+    text-align:     left;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    flex-start;
+    }
+}
+
+.alignX__center
+{
+    align-items:    center;
+    text-align:     center;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    center;
+    }
+}
+
+.alignX__right
+{
+    align-items:    flex-end;
+    text-align:     right;
+
+    .default /* hack for IE */
+    {
+        flex:           0 0 auto;
+        align-items:    flex-end;
+    }
+}
+
+.alignY__middle
+{
+    justify-content:    center;
+}
+
+.alignY__bottom
+{
+    justify-content:    flex-end;
 }
 
 

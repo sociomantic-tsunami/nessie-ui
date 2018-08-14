@@ -1,3 +1,5 @@
+import { IconButton } from 'nessie-ui';
+
 export default class TagDriver
 {
     constructor( wrapper )
@@ -7,7 +9,7 @@ export default class TagDriver
 
     clickClose()
     {
-        this.wrapper.find( 'IconButton' ).first().driver().click();
+        this.wrapper.find( IconButton ).first().driver().click();
         return this;
     }
 }

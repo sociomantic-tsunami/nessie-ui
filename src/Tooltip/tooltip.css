@@ -30,6 +30,7 @@
         visibility: hidden;
         position:   absolute;
         width: 350px;
+        z-index: 99999;
     }
 
     .tooltip

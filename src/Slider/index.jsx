@@ -1,4 +1,5 @@
-/* global addEventListener removeEventListener Event */
+/* global addEventListener document removeEventListener */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
@@ -49,7 +50,7 @@ export default class Slider extends React.Component
         errorMessagePosition  : PropTypes.oneOf( [
             'top',
             'topLeft',
-            'topRight'
+            'topRight',
         ] ),
         /**
         * Display track fill
@@ -78,7 +79,7 @@ export default class Slider extends React.Component
             'top',
             'right',
             'bottom',
-            'left'
+            'left',
         ] ),
         /**
         * hasHandleLabels
@@ -91,7 +92,7 @@ export default class Slider extends React.Component
             'top',
             'right',
             'bottom',
-            'left'
+            'left',
         ] ),
         /**
         * Slider minimum value
@@ -110,7 +111,7 @@ export default class Slider extends React.Component
         */
         value    : PropTypes.oneOfType( [
             PropTypes.number,
-            PropTypes.arrayOf( PropTypes.number )
+            PropTypes.arrayOf( PropTypes.number ),
         ] ),
         /**
         *  Set the track to use a logarithmic calculated value
@@ -169,7 +170,7 @@ export default class Slider extends React.Component
         ticks : PropTypes.arrayOf( PropTypes.shape( {
             stepLabel : PropTypes.string,
             step      : PropTypes.number,
-        } ) )
+        } ) ),
     };
 
     static defaultProps =
@@ -372,7 +373,7 @@ export default class Slider extends React.Component
     getValue( x, y )
     {
         const {
-            isLogarithmic, orientation, maxValue, minValue
+            isLogarithmic, orientation, maxValue, minValue,
         } = this.props;
         const { track } = this;
 
@@ -452,7 +453,7 @@ export default class Slider extends React.Component
     {
         const { inputContainer } = this;
 
-        if ( index )
+        if ( index >= 0 )
         {
             this.targetInput = inputContainer.childNodes[ index ];
         }
@@ -472,7 +473,8 @@ export default class Slider extends React.Component
         }
 
         const { onChange } = this.props;
-        const event = new Event( 'change' );
+        const event = document.createEvent( 'Event' );
+        event.initEvent( 'change', true, true );
 
         this.targetInput.value = String( value );
         this.targetInput.dispatchEvent( event );
@@ -492,7 +494,6 @@ export default class Slider extends React.Component
         {
             this.setTargetInput();
         }
-
         this.targetInput.focus();
     }
 
@@ -516,10 +517,11 @@ export default class Slider extends React.Component
             return;
         }
 
-        const { index } = event.target.dataset;
+        const index = parseInt( event.target.getAttribute( 'data-index' ) );
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( index >= 0 ) // target is handle
         {
+            console.log( index );
             this.setTargetInput( index );
 
             addEventListener( event.type === 'touchstart' ?
@@ -538,6 +540,7 @@ export default class Slider extends React.Component
             this.setTargetInputValue( newValue );
         }
 
+        event.preventDefault();
         this.focusTargetInput();
     }
 
@@ -589,7 +592,7 @@ export default class Slider extends React.Component
             onClick( event );
         }
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( event.target.getAttribute( 'data-index' ) ) // target is handle
         {
             event.stopPropagation();
         }
@@ -610,7 +613,7 @@ export default class Slider extends React.Component
         }
 
         this.setState( {
-            inputIndex : parseInt( event.target.dataset.index, 10 ),
+            inputIndex : parseInt( event.target.getAttribute( 'data-index' ) ),
             isGrabbing : true,
         } );
     }
@@ -694,7 +697,7 @@ export default class Slider extends React.Component
             step,
             stepLabelsPosition,
             value,
-            ticks = []
+            ticks = [],
         } = this.props;
 
         let values = [];
@@ -791,7 +794,7 @@ export default class Slider extends React.Component
                                             handleLabelPosition,
                     hasHandleLabels,
                     orientation,
-                    grabbing : this.state.isGrabbing
+                    grabbing : this.state.isGrabbing,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>

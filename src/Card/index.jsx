@@ -5,15 +5,19 @@ import { buildClassName }   from '../utils';
 import styles               from './card.css';
 
 const Card = ( {
+    align,
     cssMap,
     className,
     children,
-    padding
+    padding,
+    verticalAlign,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
+            alignX   : align,
+            alignY   : verticalAlign,
             paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
-            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding
+            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
         } ) }>
         { children }
     </div>
@@ -21,6 +25,15 @@ const Card = ( {
 
 Card.propTypes =
 {
+    /**
+     *  Horizontal alignment of content (“auto” makes all items 100% width)
+     */
+    align : PropTypes.oneOf( [
+        'auto',
+        'left',
+        'center',
+        'right',
+    ] ),
     /**
      *  Module content
      */
@@ -40,15 +53,25 @@ Card.propTypes =
             'M',
             'L',
             'XL',
-            'XXL'
-        ] ) )
+            'XXL',
+        ] ) ),
+    ] ),
+    /**
+     *  Vertical alignment of content
+     */
+    verticalAlign : PropTypes.oneOf( [
+        'top',
+        'middle',
+        'bottom',
     ] ),
 };
 
 Card.defaultProps =
 {
-    cssMap  : styles,
-    padding : 'none'
+    align         : 'auto',
+    cssMap        : styles,
+    padding       : 'none',
+    verticalAlign : 'top',
 };
 
 export default Card;

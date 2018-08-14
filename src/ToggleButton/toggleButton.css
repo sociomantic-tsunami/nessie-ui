@@ -2,12 +2,14 @@
 
 .default
 {
-    display:    table; /* flex is not well supported on <button>... */
-    width:      auto;
-    border:     none;
-    padding:    0;
-    background: transparent;
-    cursor:     pointer;
+    appearance:     none !important;
+    display:        table; /* flex is not well supported on <button>... */
+    width:          auto;
+    border:         none;
+    padding:        0;
+    border-radius:  2px;
+    background:     transparent;
+    cursor:         pointer;
 
     .flexContainer /* ...so we set it here instead */
     {
@@ -34,6 +36,18 @@
     .icon
     {
         fill:   var(--PC-GREY--D15);
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        box-shadow:       0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+        }
     }
 }
 
@@ -68,11 +82,6 @@
         margin-top: calc( var( --spacing-1 ) / 4 );
     }
 
-    .icon
-    {
-        margin-left:    calc( -1 * var( --spacing-1 ) );
-    }
-
     &:not( .disabled ):hover
     {
         .flexContainer
@@ -101,10 +110,30 @@
             fill:   var(--PC-BLUE);
         }
     }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) );
+        }
+    }
 }
 
 .role__secondary
 {
+    .flexContainer
+    {
+        border:         1px solid transparent;
+        border-radius:  2px;
+        padding:        0 var( --spacing-1 );
+    }
+
     .title
     {
         @extend %Nessie-Bold;
@@ -130,6 +159,91 @@
             fill:   var( --PC-GREY--L40 );
         }
     }
+
+    .icon
+    {
+        .iconPosition__left&
+        {
+            margin-left:   calc( -1 * var( --spacing-1 ) / 2 );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right:  calc( -1 * var( --spacing-1 ) / 2 );
+        }
+    }
+}
+
+.role__subtle
+{
+    .flexContainer
+    {
+        height:         var( --spacing-3 );
+        border:         1px solid var( --PC-BLUE );
+        border-radius:  2px;
+        padding:        0 12px;
+        background:     var( --PC-WHITE );
+    }
+
+    .title
+    {
+        @extend %Nessie-SemiBold;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-BLUE );
+    }
+
+    .subLabel
+    {
+        display:        none;
+    }
+
+    &:not( .disabled ):hover
+    {
+        .flexContainer
+        {
+            background: var( --PC-BLUE--L90 );
+        }
+    }
+
+    &.pressed
+    {
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+            background:   var( --PC-BLUE );
+
+            &:hover
+            {
+                background: var( --PC-BLUE--L10 );
+            }
+        }
+
+        .title
+        {
+            color: var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill: var( --PC-WHITE );
+        }
+    }
+
+    .icon
+    {
+        fill:     var( --PC-BLUE );
+
+        .iconPosition__left&
+        {
+            margin-left: calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right: calc( -1 * var( --spacing-1 ) );
+        }
+    }
 }
 
 .disabled
@@ -140,7 +254,19 @@
 
     .icon
     {
-        fill: var(--PC-GREY--D15);
+        fill: var( --PC-GREY--D15 );
+    }
+
+    &.role__subtle .icon
+    {
+        .icon
+        {
+            fill: var( --PC-BLUE--L10 );
+        }
+        &.pressed .icon
+        {
+            fill: var( --PC-WHITE );
+        }
     }
 }
 
@@ -150,6 +276,7 @@
     {
         margin-right:   calc( var( --spacing-1 ) / 2 );
     }
+
 }
 .iconPosition__right
 {
