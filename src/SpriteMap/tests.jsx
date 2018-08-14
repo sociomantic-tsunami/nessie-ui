@@ -1,5 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
 
 import React       from 'react';
 import { shallow } from 'enzyme';

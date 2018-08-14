@@ -1,5 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
 
 import React            from 'react';
 import { mount }        from 'enzyme';
@@ -31,7 +30,7 @@ describe( 'DragNDrop', () =>
         {
             const driver = wrapper.driver();
             wrapper.setProps( {
-                children : <Text>something</Text>
+                children : <Text>something</Text>,
             } );
 
             expect( driver.getContent() ).toHaveLength( 1 );

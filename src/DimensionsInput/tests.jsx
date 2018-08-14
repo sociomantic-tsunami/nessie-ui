@@ -1,4 +1,3 @@
-/* global test */
 /* eslint-disable no-magic-numbers */
 
 

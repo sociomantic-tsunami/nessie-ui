@@ -1,7 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
-
-
 import React        from 'react';
 import { mount }    from 'enzyme';
 
@@ -42,7 +38,7 @@ describe( 'SorterDriver', () =>
     {
         const onToggle = jest.fn();
         wrapper.setProps( {
-            onToggle
+            onToggle,
         } );
 
         wrapper.driver().toggle();

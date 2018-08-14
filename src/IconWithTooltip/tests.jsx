@@ -1,4 +1,3 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
 import React                            from 'react';
@@ -38,7 +37,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseEnter' ) ).toBe( onMouseOver );
-                }
+                },
             );
         } );
 
@@ -58,7 +57,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseLeave' ) ).toBe( onMouseOut );
-                }
+                },
             );
         } );
 
@@ -173,7 +172,7 @@ describe( 'IconWithTooltipDriver', () =>
         {
             wrapper.setProps( {
                 message  : 'Pikachu!',
-                children : <h1>Who am i?</h1>
+                children : <h1>Who am i?</h1>,
             } );
 
             const content = driver.getContent();

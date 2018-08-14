@@ -1,5 +1,3 @@
-/* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React           from 'react';
@@ -33,7 +31,6 @@ describe( 'ValuedTextInput', () =>
 
     describe( 'render()', () =>
     {
-      
         test( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );

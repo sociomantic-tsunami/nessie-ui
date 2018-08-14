@@ -1,4 +1,3 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
@@ -43,8 +42,8 @@ describe( 'TagInput', () =>
         wrapper.setProps( {
             children : [
                 <Tag label = "TagLabel 1" />,
-                <Tag label = "TagLabel 2" />
-            ]
+                <Tag label = "TagLabel 2" />,
+            ],
         } );
 
         expect( wrapper.find( Tag ) ).toHaveLength( 2 );
@@ -134,8 +133,8 @@ describe( 'TagInputDriver', () =>
                 onBlur,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().blur();
@@ -153,8 +152,8 @@ describe( 'TagInputDriver', () =>
                 onFocus,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().focus();
@@ -172,8 +171,8 @@ describe( 'TagInputDriver', () =>
                 onClickClose,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().clickCloseTagByIndex( 1 );
@@ -191,8 +190,8 @@ describe( 'TagInputDriver', () =>
                 onClickClose,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
@@ -210,8 +209,8 @@ describe( 'TagInputDriver', () =>
                 onMouseOut,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().mouseOut();
@@ -229,8 +228,8 @@ describe( 'TagInputDriver', () =>
                 onMouseOver,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().mouseOver();

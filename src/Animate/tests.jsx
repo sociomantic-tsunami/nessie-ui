@@ -1,6 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* eslint no-console: 0*/
-/* global test */
 
 
 import React        from 'react';
@@ -33,7 +31,7 @@ describe( 'Animate', () =>
     {
         const props = {
             enterAnimation : 'fadeIn',
-            outAnimation   : 'fadeOut'
+            outAnimation   : 'fadeOut',
         };
 
         wrapper = mount( <Animate { ...props } /> );

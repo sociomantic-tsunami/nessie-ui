@@ -1,6 +1,3 @@
-/* global test */
-/* eslint no-console: 0*/
-
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
@@ -30,18 +27,17 @@ describe( 'Section', () =>
 
     describe( 'render()', () =>
     {
-      
         test(
             'should have a header component corresponding to level prop',
             () =>
             {
                 wrapper.setProps( {
                     title : 'Boom',
-                    level : 4
+                    level : 4,
                 } );
 
                 expect( wrapper.find( H4 ) ).toHaveLength( 1 );
-            }
+            },
         );
     } );
 
@@ -58,7 +54,7 @@ describe( 'Section', () =>
             {
                 wrapper.setProps( {
                     title : 'Boom',
-                    level : 1
+                    level : 1,
                 } );
 
                 expect( wrapper.find( H1 ).prop( 'children' ) ).toBe( 'Boom' );

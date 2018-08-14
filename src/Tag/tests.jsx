@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React        from 'react';
@@ -62,7 +60,7 @@ child', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -72,7 +70,7 @@ child', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.driver().clickClose();

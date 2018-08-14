@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
@@ -33,7 +31,6 @@ describe( 'TextInput', () =>
 
     describe( 'render()', () =>
     {
-  
         test( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
@@ -66,7 +63,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onBlur   : blurSpy
+                onBlur   : blurSpy,
             } );
 
             driver.blur();
@@ -105,7 +102,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -123,7 +120,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -144,7 +141,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -162,7 +159,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -203,7 +200,7 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             driver.inputValue( 'Harry Potter' );
@@ -222,7 +219,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             const expectedError =
@@ -240,7 +237,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             const expectedError =
@@ -261,7 +258,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onClick    : handleClickSpy
+                onClick    : handleClickSpy,
             } );
 
             const expectedError =
@@ -278,7 +275,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onClick    : handleClickSpy
+                onClick    : handleClickSpy,
             } );
 
             const expectedError =

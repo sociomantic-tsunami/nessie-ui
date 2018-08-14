@@ -1,5 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
 
 import React                   from 'react';
 import { ReactWrapper, mount } from 'enzyme';
@@ -24,7 +23,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
             expect( wrapper.driver().getContent() ).toHaveLength( 2 );
@@ -35,7 +34,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
 
@@ -51,7 +50,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
             wrapper.driver().selectByIndex( 1 );
@@ -70,14 +69,14 @@ describe( 'CheckableGroupDriver', () =>
                         <Checkbox label = "one" value = "first check" />,
                         <Checkbox label = "two" value = "second check" />,
                         <Checkbox label = "three" value = "third check" />,
-                        <Checkbox label = "four" value = "fourth check" />
+                        <Checkbox label = "four" value = "fourth check" />,
                     ],
                 } );
                 wrapper.driver().selectByIndex( [ 1, 3 ] );
 
                 expect( wrapper.driver().getSelectedValues() )
                     .toEqual( [ 'second check', 'fourth check' ] );
-            }
+            },
         );
     } );
     describe( 'toggleByIndex( index )', () =>
@@ -87,7 +86,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
             wrapper.driver().toggleByIndex( 1 );
@@ -108,7 +107,7 @@ describe( 'CheckableGroupDriver', () =>
                     <Checkbox label = "one" value = "first check" />,
                     <Checkbox label = "two" value = "second check" />,
                     <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />
+                    <Checkbox label = "four" value = "fourth check" />,
                 ],
             } );
             wrapper.driver().toggleByIndex( [ 1, 3 ] );
@@ -129,7 +128,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />
+                    <Checkbox label = "two" value = "second check" />,
                 ],
             } );
 
@@ -147,7 +146,7 @@ describe( 'CheckableGroupDriver', () =>
                     <Checkbox label = "one" value = "first check" />,
                     <Checkbox label = "two" value = "second check" />,
                     <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />
+                    <Checkbox label = "four" value = "fourth check" />,
                 ],
             } );
 
@@ -165,7 +164,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" value = "first check" />,
-                    <Checkbox label = "two" value = "second check" />
+                    <Checkbox label = "two" value = "second check" />,
                 ],
             } );
 
@@ -187,7 +186,7 @@ describe( 'CheckableGroupDriver', () =>
                     <Checkbox label = "one" value = "first check" />,
                     <Checkbox label = "two" value = "second check" />,
                     <Checkbox label = "three" value = "third check" />,
-                    <Checkbox label = "four" value = "fourth check" />
+                    <Checkbox label = "four" value = "fourth check" />,
                 ],
             } );
 
@@ -209,7 +208,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" value = "first check" isChecked />,
-                    <Checkbox label = "two" value = "second check" />
+                    <Checkbox label = "two" value = "second check" />,
                 ],
             } );
 

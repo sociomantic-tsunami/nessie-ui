@@ -1,5 +1,3 @@
-/* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
 import React        from 'react';
@@ -66,7 +64,7 @@ alive.';
                 wrapper.setProps( { text: textProp, children } );
                 expect( driver.getContent().find( 'div' ).text() )
                     .toBe( textChild );
-            }
+            },
         );
     } );
 } );
