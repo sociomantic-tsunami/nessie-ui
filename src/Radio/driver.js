@@ -1,19 +1,19 @@
 const ERRORS = {
-    CHECKBOX_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Checkbox '${label}' cannot be clicked since it is ${state}`,
-    CHECKBOX_CANNOT_BE_CHANGED : ( label, state ) =>
-        `Checkbox '${label}' cannot be changed since it is ${state}`,
-    CHECKBOX_CANNOT_BE_BLURED : ( label, state ) =>
-        `Checkbox '${label}' cannot have blur since it is ${state}`,
-    CHECKBOX_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `Checkbox '${label}' cannot have focus since it is ${state}`,
-    CHECKBOX_CANNOT_MOUSEOVER : ( label, state ) =>
-        `Checkbox '${label}' cannot have onMouseOver since it is ${state}`,
-    CHECKBOX_CANNOT_MOUSEOUT : ( label, state ) =>
-        `Checkbox '${label}' cannot have onMouseOut since it is ${state}`,
+    RADIO_CANNOT_BE_CLICKED : ( label, state ) =>
+        `Radio '${label}' cannot be clicked since it is ${state}`,
+    RADIO_CANNOT_BE_CHANGED : ( label, state ) =>
+        `Radio '${label}' cannot be changed since it is ${state}`,
+    RADIO_CANNOT_BE_BLURED : ( label, state ) =>
+        `Radio '${label}' cannot have blur since it is ${state}`,
+    RADIO_CANNOT_BE_FOCUSED : ( label, state ) =>
+        `Radio '${label}' cannot have focus since it is ${state}`,
+    RADIO_CANNOT_MOUSEOVER : ( label, state ) =>
+        `Radio '${label}' cannot have onMouseOver since it is ${state}`,
+    RADIO_CANNOT_MOUSEOUT : ( label, state ) =>
+        `Radio '${label}' cannot have onMouseOut since it is ${state}`,
 };
 
-export default class CheckboxDriver
+export default class RadioDriver
 {
     constructor( wrapper )
     {
@@ -30,13 +30,13 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_BLURED( label, 'disabled' ) );
+                .RADIO_CANNOT_BE_BLURED( label, 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_BLURED( label, 'read only' ) );
+                .RADIO_CANNOT_BE_BLURED( label, 'read only' ) );
         }
 
         this.control.simulate( 'blur' );
@@ -51,13 +51,13 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+                .RADIO_CANNOT_BE_FOCUSED( label, 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'read only' ) );
+                .RADIO_CANNOT_BE_FOCUSED( label, 'read only' ) );
         }
 
         this.control.simulate( 'focus' );
@@ -73,17 +73,22 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CHANGED( label, 'disabled' ) );
+                .RADIO_CANNOT_BE_CHANGED( label, 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CHANGED( label, 'read only' ) );
+                .RADIO_CANNOT_BE_CHANGED( label, 'read only' ) );
         }
 
-        node.checked = !node.checked;
-        this.control.simulate( 'change' );
+        if ( node.checked !== true )
+        {
+            node.checked = true;
+            this.control.simulate( 'change' );
+            return this;
+        }
+
         return this;
     }
 
@@ -95,13 +100,13 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CLICKED( label, 'disabled' ) );
+                .RADIO_CANNOT_BE_CLICKED( label, 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CLICKED( label, 'read only' ) );
+                .RADIO_CANNOT_BE_CLICKED( label, 'read only' ) );
         }
 
         this.control.simulate( 'click' );
@@ -116,7 +121,7 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_MOUSEOVER( label, 'disabled' ) );
+                .RADIO_CANNOT_MOUSEOVER( label, 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -131,7 +136,7 @@ export default class CheckboxDriver
         if ( props.isDisabled )
         {
             throw new Error( ERRORS
-                .CHECKBOX_CANNOT_MOUSEOUT( label, 'disabled' ) );
+                .RADIO_CANNOT_MOUSEOUT( label, 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

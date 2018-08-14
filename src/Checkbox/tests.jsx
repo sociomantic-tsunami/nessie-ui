@@ -117,7 +117,6 @@ describe( 'CheckboxDriver', () =>
             wrapper.setProps( { onBlur } );
 
             driver.blur();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -127,7 +126,6 @@ describe( 'CheckboxDriver', () =>
             it( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot have blur \
 since it is disabled';
 
@@ -154,7 +152,6 @@ since it is disabled';
             it( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot have blur \
 since it is read only';
 
@@ -185,7 +182,6 @@ since it is read only';
             wrapper.setProps( { onFocus } );
 
             driver.focus();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -195,7 +191,6 @@ since it is read only';
             it( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot have \
 focus since it is disabled';
 
@@ -222,7 +217,6 @@ focus since it is disabled';
             it( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot have \
 focus since it is read only';
 
@@ -253,7 +247,6 @@ focus since it is read only';
             wrapper.setProps( { onChange } );
 
             driver.change();
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -265,7 +258,6 @@ focus since it is read only';
             wrapper.setProps( { onChange, isChecked: true } );
 
             driver.change();
-
             expect( targetChecked ).toBeFalsy();
         } );
 
@@ -277,7 +269,6 @@ focus since it is read only';
             wrapper.setProps( { onChange, isChecked: false } );
 
             driver.change();
-
             expect( targetChecked ).toBeTruthy();
         } );
 
@@ -287,7 +278,6 @@ focus since it is read only';
             it( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
 changed since it is disabled';
 
@@ -314,7 +304,6 @@ changed since it is disabled';
             it( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
 changed since it is read only';
 
@@ -324,7 +313,6 @@ changed since it is read only';
             it( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const onChange = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
@@ -343,10 +331,9 @@ changed since it is read only';
         test( 'should call onClick once', () =>
         {
             const onClick = jest.fn();
-
             wrapper.setProps( { onClick } );
-            driver.click();
 
+            driver.click();
             expect( onClick ).toBeCalledTimes( 1 );
         } );
 
@@ -356,7 +343,6 @@ changed since it is read only';
             it( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
 clicked since it is disabled';
 
@@ -383,7 +369,6 @@ clicked since it is disabled';
             it( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot be \
 clicked since it is read only';
 
@@ -393,7 +378,6 @@ clicked since it is read only';
             it( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const onClick = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
@@ -415,14 +399,12 @@ clicked since it is read only';
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
         it( 'throws the expected error when isDisabled', () =>
         {
             wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
             const expectedError = 'Checkbox \'Tekeli-li\' cannot have \
 onMouseOut since it is disabled';
 
@@ -452,7 +434,6 @@ onMouseOut since it is disabled';
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
@@ -462,7 +443,6 @@ onMouseOut since it is disabled';
             it( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Checkbox \'Tekeli-li\' cannot have \
 onMouseOut since it is disabled';
 

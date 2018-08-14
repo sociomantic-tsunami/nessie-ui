@@ -67,6 +67,7 @@ import NavItemDriver               from './NavItem/driver';
 import NotificationBarDriver       from './NotificationBar/driver';
 import PaginatorDriver             from './Paginator/driver';
 import PasswordInputDriver         from './PasswordInput/driver';
+import RadioDriver                 from './Radio/driver';
 import ScrollBarDriver             from './ScrollBar/driver';
 import ScrollBoxDriver             from './ScrollBox/driver';
 import SliderDriver                from './Slider/driver';
@@ -179,7 +180,7 @@ const drivers =
     },
     {
         Component : Radio,
-        Driver    : CheckboxDriver,
+        Driver    : RadioDriver,
     },
     {
         Component : ScrollBar,
