@@ -298,8 +298,8 @@
   {
     &::after
     {
-      transform: translate3d( -50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
-      left: 83%;
+      transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
+      right: 14px;
     }
   }
 }
@@ -315,8 +315,8 @@
   {
     &::after
     {
-      transform: translate3d( 50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
-      right: 83%;
+      transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
+      left: 14px;
     }
   }
 }
