@@ -29,10 +29,7 @@
     {
         visibility: hidden;
         position:   absolute;
-        & .message
-        {
-          white-space: nowrap;
-        }
+        width: 350px;
     }
 
     .tooltip
@@ -218,6 +215,7 @@
     {
         left:   50%;
         transform: translate3d( -50%, 0, 0 );
+        text-align: center;
     }
 
     .tooltip
@@ -666,26 +664,4 @@
         }
       }
     }
-}
-
-
-
-.position__top
-{
-
-}
-
-.position__left
-{
-
-}
-
-.position__right
-{
-
-}
-
-.position__bottom
-{
-
 }
