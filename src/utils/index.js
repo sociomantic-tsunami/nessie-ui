@@ -52,6 +52,8 @@ const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
     return `${wrapperComponentName}(${wrappedComponentName})`;
 };
 
+const clamp = ( val, min, max ) => Math.min( Math.max( val, min ), max );
+
 const deepPure = Comp => class DeepPure extends Component
 {
     shouldComponentUpdate( nextProps )
@@ -96,6 +98,7 @@ const mapAria = ( ariaObj = {} ) =>
 export {
     buildClassName,
     buildDisplayName,
+    clamp,
     deepPure,
     eventHandler,
     generateId,
@@ -106,6 +109,7 @@ export {
 export default {
     buildClassName,
     buildDisplayName,
+    clamp,
     deepPure,
     eventHandler,
     generateId,

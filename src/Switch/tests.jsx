@@ -1,5 +1,4 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-unused-expressions */
@@ -13,19 +12,20 @@ import Switch               from './index';
 describe( 'Switch', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Switch /> );
+        wrapper  = shallow( <Switch /> );
+        instance = wrapper.instance();
     } );
 
-    it( 'should pass isDisabled to <input> as “disabled”', () =>
+    test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
+        const input = wrapper.find( `.${instance.props.cssMap.input}` );
 
-        const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
-
-        expect( input.prop( 'disabled' ) ).to.be.true;
+        expect( input.prop( 'disabled' ) ).toBeTruthy();
     } );
 } );
 
@@ -40,83 +40,82 @@ describe( 'SwitchDriver', () =>
 
     describe( 'toggle()', () =>
     {
-        it( 'should call onChange once', () =>
+        test( 'should call onChange once', () =>
         {
-            const onChange = sinon.spy();
+            const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
             wrapper.driver().toggle();
 
-            expect( onChange.calledOnce ).to.be.true;
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
-        it( 'should toggle target.checked', () =>
+        test( 'should toggle target.checked', () =>
         {
             let targetChecked;
-            const onChange = sinon.stub().callsFake( e =>
-                targetChecked = e.target.checked
-            );
+            const onChange = jest.fn().mockImplementation( e =>
+                targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
             wrapper.driver().toggle();
 
-            expect( targetChecked ).to.be.false;
+            expect( targetChecked ).toBeFalsy();
         } );
     } );
 
     describe( 'mouseOut', () =>
     {
-        it( 'should trigger onMouseOut callback function', () =>
+        test( 'should trigger onMouseOut callback function', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
 
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
+            expect( onMouseOut ).toBeCalled();
         } );
     } );
 
     describe( 'mouseOver', () =>
     {
-        it( 'should trigger onMouseOver callback function', () =>
+        test( 'should trigger onMouseOver callback function', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
 
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
+            expect( onMouseOver ).toBeCalled();
         } );
     } );
 
     describe( 'blur', () =>
     {
-        it( 'should trigger onBlur callback function', () =>
+        test( 'should trigger onBlur callback function', () =>
         {
-            const onBlur = sinon.spy();
+            const onBlur = jest.fn();
 
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blur();
 
-            expect( onBlur.calledOnce ).to.be.true;
+            expect( onBlur ).toBeCalled();
         } );
     } );
 
     describe( 'focus', () =>
     {
-        it( 'should trigger onFocus callback function', () =>
+        test( 'should trigger onFocus callback function', () =>
         {
-            const onFocus = sinon.spy();
+            const onFocus = jest.fn();
 
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focus();
 
-            expect( onFocus.calledOnce ).to.be.true;
+            expect( onFocus ).toBeCalled();
         } );
     } );
 } );

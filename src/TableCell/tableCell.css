@@ -1,5 +1,4 @@
-@import "../proto/definitions/_fonts.css";
-@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/variables.css";
 
 $shark: 768px;
 
@@ -14,11 +13,9 @@ $shark: 768px;
         flex:           0 0 calc( 1 / 3 * 100% );
 
         font-family:    Nessie-Bold;
-        top:            0.5rem;
-        margin-top:     -0.8rem;
 
-        font-size:      1.2rem;
-        line-height:    1.6rem;
+        font-size:      var( --typo-2 );
+        line-height:    var( --line-height-s );
 
         overflow:       hidden;
         text-overflow:  ellipsis;
@@ -26,17 +23,17 @@ $shark: 768px;
 
     /*@media( min-width: $shark )
     {*/
-        flex-direction: column;
+    flex-direction: column;
 
-        &::before
-        {
-            display:    none;
-        }
+    &::before
+    {
+        display:    none;
+    }
     /*}*/
 
     /*@media( min-width: $shark )
     {*/
-        /* &:first-child
+    /* &:first-child
         {
             padding-left: 0;
         } */
@@ -46,20 +43,36 @@ $shark: 768px;
 
 .header /* required until we have a TableHeader text component */
 {
-    display:        none;
+    display:    flex;
 
-    @extend %Nessie-Bold;
-
-    /*@media( min-width: $shark )
-    {*/
-        display:    flex;
-    /*}*/
+    @extend %Nessie-SemiBold;
+    font-size:          var( --typo-2 );
+    line-height:        var( --line-height-m );
+    letter-spacing:     0.5px;
+    text-transform:     uppercase;
+    text-decoration:    none;
+    color:              var( --PC-GREY--D25 );
+    cursor:             text;
 }
 
 .rowHeader
 {
     @extend %Nessie-Bold;
     z-index:            1;
+}
+
+.rowHeader,
+.header
+{
+    .text
+    {
+        @extend %Nessie-SemiBold;
+        font-size:      var( --typo-2 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.5px;
+        color:          var( --PC-GREY--D15 );
+        text-transform: uppercase;
+    }
 }
 
 .sticky

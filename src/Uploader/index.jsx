@@ -1,16 +1,16 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import Css              from '../hoc/Css';
-import Component        from '../proto/Component';
-import Button           from '../Button';
-import IconWithTooltip  from '../IconWithTooltip';
-import Spinner          from '../Spinner';
-import IconButton       from '../IconButton';
-import Tooltip          from '../Tooltip';
-import Label            from '../Label';
 
-export default class Uploader extends Component
+import { generateId, buildClassName }   from '../utils';
+import Button                           from '../Button';
+import IconWithTooltip                  from '../IconWithTooltip';
+import Spinner                          from '../Spinner';
+import IconButton                       from '../IconButton';
+import Tooltip                          from '../Tooltip';
+import Label                            from '../Label';
+
+export default class Uploader extends React.PureComponent
 {
     static propTypes =
     {
@@ -32,6 +32,10 @@ export default class Uploader extends Component
         *  Display as disabled
         */
         isDisabled              : PropTypes.bool,
+        /**
+         * HTML id attribute (overwrite default)
+         */
+        id                      : PropTypes.string,
         /**
         *  Display as read-only
         */
@@ -67,7 +71,7 @@ export default class Uploader extends Component
         /**
          * Preview button is disabled
          */
-        previewisDisabled       : PropTypes.bool,
+        previewIsDisabled       : PropTypes.bool,
         /**
          * onClick callback function: ( e ) => { ... }
          */
@@ -106,6 +110,7 @@ export default class Uploader extends Component
         hasWarning              : false,
         tooltipIsVisible        : false,
         errorMessagePosition    : 'top',
+        id                      : undefined,
         isDisabled              : false,
         isReadOnly              : false,
         previewTooltipIsVisible : false,
@@ -122,6 +127,7 @@ export default class Uploader extends Component
             errorMessage,
             hasError,
             hasWarning,
+            id = generateId( 'Uploader' ),
             isDisabled,
             isReadOnly,
             label,
@@ -130,7 +136,7 @@ export default class Uploader extends Component
             onClickSecondary,
             onMouseOut,
             onMouseOver,
-            previewisDisabled,
+            previewIsDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
             tooltipIsVisible,
@@ -138,8 +144,6 @@ export default class Uploader extends Component
             uploadState,
             warningMessage
         } = this.props;
-
-        const { id } = this.state;
 
         const buttonRole = 'default';
         let hasTooltip = false;
@@ -183,73 +187,71 @@ export default class Uploader extends Component
 
 
         return (
-            <Css
-                cssMap = { cssMap }
-                cssProps = { {
+
+            <div
+                className    = { buildClassName( className, cssMap, {
                     loading         : isLoading,
                     uploaded,
                     disabled        : isDisabled,
-                    previewDisabled : previewisDisabled
-                } }>
-                <div
-                    className    = { className }
-                    onMouseEnter = { onMouseOver }
-                    onMouseLeave = { onMouseOut } >
-                    <input
-                        type         = "file"
-                        name         = { `${id}-file` }
-                        className    = { cssMap.input }
-                        onChange     = { onChange } />
-                    { label &&
-                        <Label
-                            overflowIsHidden
-                            htmlFor    = { `${id}-file` }
-                            isDisabled = { isDisabled }>
-                            { label }
-                        </Label>
-                    }
-                    <IconWithTooltip
-                        className        = { cssMap.iconWithTooltip }
-                        iconType         = { messageType }
-                        iconPosition     = "topRight"
-                        message          = { message }
-                        iconIsVisible    = { hasTooltip }
-                        tooltipPosition  = { errorMessagePosition }
-                        tooltipIsVisible = { tooltipIsVisible }>
-                        <div className = { cssMap.buttonsContainer }>
-                            <Tooltip
-                                isVisible = { uploadState ===
+                    previewDisabled : previewIsDisabled
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut } >
+                <input
+                    type         = "file"
+                    name         = { `${id}-file` }
+                    className    = { cssMap.input }
+                    onChange     = { onChange } />
+                { label &&
+                <Label
+                    overflowIsHidden
+                    htmlFor    = { `${id}-file` }
+                    isDisabled = { isDisabled }>
+                    { label }
+                </Label>
+                }
+                <IconWithTooltip
+                    className        = { cssMap.iconWithTooltip }
+                    iconType         = { messageType }
+                    iconPosition     = "topRight"
+                    message          = { message }
+                    iconIsVisible    = { hasTooltip }
+                    tooltipPosition  = { errorMessagePosition }
+                    tooltipIsVisible = { tooltipIsVisible }>
+                    <div className = { cssMap.buttonsContainer }>
+                        <Tooltip
+                            isVisible = { uploadState ===
                                 'uploaded' && previewTooltipIsVisible }
-                                message   = { previewTooltipMessage }
-                                className = { cssMap.previewTooltip }>
-                                <Button
-                                    role       = { buttonRole }
-                                    className  = { uploaderButtonClass }
-                                    onClick    = { onClick }
-                                    isDisabled = { isDisabled }
-                                    isReadOnly = { isReadOnly }
-                                    iconType   = { iconType }>
-                                    { buttonLabel }
-                                </Button>
-                            </Tooltip>
-                            { isLoading &&
-                                <div className = { cssMap.loadingOverlay }>
-                                    <Spinner className = { cssMap.spinner } />
-                                </div>
-                            }
-                            { uploaded  &&
-                                <IconButton
-                                    className  = { cssMap.uploadedButton }
-                                    onClick    = { onClickSecondary }
-                                    isDisabled = { isDisabled }
-                                    isReadOnly = { isReadOnly }
-                                    iconType   = "delete"
-                                    iconTheme  = { iconTheme } />
-                            }
+                            message   = { previewTooltipMessage }
+                            className = { cssMap.previewTooltip }>
+                            <Button
+                                role       = { buttonRole }
+                                className  = { uploaderButtonClass }
+                                onClick    = { onClick }
+                                isDisabled = { isDisabled }
+                                isReadOnly = { isReadOnly }
+                                iconType   = { iconType }>
+                                { buttonLabel }
+                            </Button>
+                        </Tooltip>
+                        { isLoading &&
+                        <div className = { cssMap.loadingOverlay }>
+                            <Spinner className = { cssMap.spinner } />
                         </div>
-                    </IconWithTooltip>
-                </div>
-            </Css>
+                        }
+                        { uploaded  &&
+                        <IconButton
+                            className  = { cssMap.uploadedButton }
+                            onClick    = { onClickSecondary }
+                            isDisabled = { isDisabled }
+                            isReadOnly = { isReadOnly }
+                            iconType   = "delete"
+                            iconTheme  = { iconTheme } />
+                        }
+                    </div>
+                </IconWithTooltip>
+            </div>
+
         );
     }
 }

@@ -1,19 +1,21 @@
-@import "../proto/definitions/_colors.css";
-@import "../proto/definitions/_fonts.css";
 @import '../proto/base.css';
 
 .default
 {
-    width:  auto;
+    width:          320px;
 
     .calendarHeader
     {
         @extend %Nessie-Bold;
-        color:  var( --PC-BLUE );
+        color:              var( --PC-BLUE );
+        font-size:          11px;
+        line-height:        var( --line-height-s );
+        text-transform:     uppercase;
+        text-align:         center;
 
         th
         {
-            padding:    0 0.6rem 2rem 0;
+            padding-bottom:    8px;
 
             &:last-child
             {
@@ -24,9 +26,24 @@
             {
                 display:        block;
                 position:       relative;
-                top:            0.5rem;
-                margin-top:     -0.8rem;
+                top:            5px;
+                margin-top:     -8px;
             }
         }
+    }
+
+    table
+    {
+        width:              100%;
+
+        padding-top:        var( --spacing-3 );
+        padding-right:      var( --spacing-1 );
+        padding-bottom:     var( --spacing-2 );
+        padding-left:       var( --spacing-1 );
+    }
+
+    td
+    {
+        padding: 0;
     }
 }

@@ -1,51 +1,61 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test jest */
 /* eslint no-console: 0*/
 
+import React                 from 'react';
+import { mount, shallow }    from 'enzyme';
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import ScrollBar             from '../ScrollBar';
 
-import ScrollBox    from './index';
+import ScrollBox             from './index';
 
 describe( 'ScrollBox', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = null;
+        wrapper = shallow( <ScrollBox /> );
+        instance = wrapper.instance();
+        instance.innerRef = {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        };
+        wrapper.setState();
     } );
 
-    it( 'should contain a single ScrollBox', () =>
+    test( 'should have exactly one ScrollBar when scroll is "horizontal"', () =>
     {
-        const props = {
-            title : 'Boom'
-        };
-        wrapper = mount( <ScrollBox { ...props } /> );
+        wrapper.setProps( { scroll: 'horizontal' } );
 
-        expect( wrapper.find( ScrollBox ) ).to.have.length( 1 );
-        expect( wrapper.find( ScrollBox ) ).to.not.have.length( 2 );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
+    test( 'should have exactly one ScrollBar when scroll is "vertical"', () =>
     {
-        const props = {
-            title : 'Boom'
-        };
+        wrapper.setProps( { scroll: 'vertical' } );
 
-        wrapper = mount( <ScrollBox { ...props } /> );
-        expect( wrapper.find( '.scrollBox__default' ) ).to.have.length( 1 );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
 
-    it( 'should have content when children props is defined', () =>
+    test( 'should have exactly two ScrollBars when scroll is "both"', () =>
     {
-        const props = {
-            children : 'testing'
-        };
+        wrapper.setProps( { scroll: 'both' } );
 
-        wrapper = mount( <ScrollBox { ...props } /> );
-        expect( wrapper.find( '.scrollBox__content' ) ).to.have.length( 1 );
+        expect( wrapper.find( ScrollBar ) ).toHaveLength( 2 );
+    } );
+
+    test( 'thumbSize should be set on the scrollBars', () =>
+    {
+        wrapper.setProps( { scroll: 'both' } );
+
+        expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) )
+            .toBe( '50%' );
+
+        expect( wrapper.find( ScrollBar ).last().prop( 'thumbSize' ) )
+            .toBe( '50%' );
     } );
 } );
 
@@ -54,135 +64,109 @@ describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
 
-    describe( 'clickScroll', () =>
+    beforeEach( () =>
     {
-        it( 'should trigger onClickScrollUp when clicked on scrollUp',
-            () =>
-            {
-                const onClickScrollUp = sinon.spy();
-                const props = {
-                    scrollUpIsVisible : true,
-                    onClickScrollUp
-                };
+        wrapper = mount( <ScrollBox /> );
+    } );
 
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                wrapper.driver().clickScrollUp();
-
-                expect( onClickScrollUp.calledOnce ).to.be.true;
-            } );
-
-
-        it( 'should trigger onClickScrollRight when clicked on scrollRight',
-            () =>
-            {
-                const onClickScrollRight = sinon.spy();
-                const props = {
-                    scrollRightIsVisible : true,
-                    onClickScrollRight
-                };
-
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                wrapper.driver().clickScrollRight();
-
-                expect( onClickScrollRight.calledOnce ).to.be.true;
-            } );
-
-
-        it( 'should trigger onClickScrollDown when clicked on scrollDown', () =>
+    describe( 'clickScrollX', () =>
+    {
+        test( 'invokes onClickScrollUp callback prop', () =>
         {
-            const onClickScrollDown = sinon.spy();
-            const props = {
-                scrollDownIsVisible : true,
-                onClickScrollDown
-            };
+            const onClickScrollUp = jest.fn();
+            wrapper.setProps( { onClickScrollUp, scrollUpIsVisible: true } );
 
-            wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper.driver().clickScrollUp();
+
+            expect( onClickScrollUp ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'invokes onClickScrollRight callback prop', () =>
+        {
+            const onClickScrollRight = jest.fn();
+            wrapper.setProps( {
+                onClickScrollRight,
+                scrollRightIsVisible : true,
+            } );
+
+            wrapper.driver().clickScrollRight();
+
+            expect( onClickScrollRight ).toBeCalledTimes( 1 );
+        } );
+
+
+        test( 'invokes onClickScrollDown callback prop', () =>
+        {
+            const onClickScrollDown = jest.fn();
+            wrapper.setProps( {
+                onClickScrollDown,
+                scrollDownIsVisible : true,
+            } );
 
             wrapper.driver().clickScrollDown();
 
-            expect( onClickScrollDown.calledOnce ).to.be.true;
+            expect( onClickScrollDown ).toBeCalledTimes( 1 );
         } );
 
 
-        it( 'should trigger onClickScrollLeft when clicked on scrollLeft', () =>
+        test( 'invokes onClickScrollLeft callback prop', () =>
         {
-            const onClickScrollLeft = sinon.spy();
-            const props = {
+            const onClickScrollLeft = jest.fn();
+            wrapper.setProps( {
+                onClickScrollLeft,
                 scrollLeftIsVisible : true,
-                onClickScrollLeft
-            };
-
-            wrapper = mount( <ScrollBox { ...props } /> );
+            } );
 
             wrapper.driver().clickScrollLeft();
 
-            expect( onClickScrollLeft.calledOnce ).to.be.true;
+            expect( onClickScrollLeft ).toBeCalledTimes( 1 );
         } );
     } );
 
-
-    describe( 'scroll', () =>
+    describe( 'scrollVertical()', () =>
     {
-        describe( 'scrollVertical()', () =>
+        test( 'should trigger onScroll()', () =>
         {
-            it( 'should trigger onScroll() for vertical scroll', () =>
-            {
-                const onScroll = sinon.spy();
-                const props = {
-                    scroll : 'vertical',
-                    onScroll
-                };
+            const onScroll = jest.fn();
+            wrapper.setProps( { onScroll, scroll: 'vertical' } );
 
-                wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper.driver().scrollVertical( 250 );
 
-                wrapper.driver().scrollVertical( 250 );
-
-                expect( onScroll.calledOnce ).to.be.true;
-            } );
-
-            it( 'should throw an error when scroll direction is wrong', () =>
-            {
-                const props = {
-                    scroll : 'horizontal'
-                };
-
-                wrapper = mount( <ScrollBox { ...props } /> );
-
-                expect( () => wrapper.driver().scrollVertical( 10 ) )
-                    .to.throw( 'Cannot scroll because scroll direction is neither \'vertical\' nor \'both\'' ); // eslint-disable-line max-len
-            } );
+            expect( onScroll ).toBeCalledTimes( 1 );
         } );
 
-        describe( 'scrollHorizontal()', () =>
+        test( 'should throw an error when scroll direction is wrong', () =>
         {
-            it( 'should trigger onScroll() for horizontal scroll', () =>
-            {
-                const onScroll = sinon.spy();
-                const props = {
-                    scroll : 'horizontal',
-                    onScroll
-                };
+            const props = { scroll: 'horizontal' };
 
-                wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper = mount( <ScrollBox { ...props } /> );
 
-                wrapper.driver().scrollHorizontal( 640 );
+            expect( () => wrapper.driver().scrollVertical( 10 ) )
+                .toThrowError( 'Cannot scroll because scroll direction is \
+neither \'vertical\' nor \'both\'' );
+        } );
+    } );
 
-                expect( onScroll.calledOnce ).to.be.true;
-            } );
+    describe( 'scrollHorizontal()', () =>
+    {
+        test( 'should trigger onScroll()', () =>
+        {
+            const onScroll = jest.fn();
+            wrapper.setProps( { onScroll, scroll: 'horizontal' } );
 
-            it( 'should throw an error when scroll direction is wrong', () =>
-            {
-                const props = {
-                    scroll : 'vertical'
-                };
+            wrapper.driver().scrollHorizontal( 250 );
 
-                wrapper = mount( <ScrollBox { ...props } /> );
+            expect( onScroll ).toBeCalledTimes( 1 );
+        } );
 
-                expect( () => wrapper.driver().scrollHorizontal( 270 ) )
-                    .to.throw( 'Cannot scroll because scroll direction is neither \'horizontal\' nor \'both\'' ); // eslint-disable-line max-len
-            } );
+
+        test( 'should throw an error when scroll direction is wrong', () =>
+        {
+            wrapper.setProps( { scroll: 'vertical' } );
+
+            expect( () => wrapper.driver().scrollHorizontal( 270 ) )
+                .toThrowError( 'Cannot scroll because scroll direction is \
+neither \'horizontal\' nor \'both\'' );
         } );
     } );
 } );

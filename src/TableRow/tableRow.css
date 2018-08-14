@@ -1,4 +1,4 @@
-@import "../proto/definitions/_colors.css";
+@import "../proto/definitions/variables.css";
 
 .default
 {
@@ -17,7 +17,7 @@
 {
     .cell
     {
-        background: var( --GS-11 );
+        background: var( --PC-GREY--L95 );
     }
 }
 
@@ -30,7 +30,7 @@
     {
         .cell
         {
-            background: var( --GS-11 );
+            background: var( --PC-GREY--L95 );
         }
     }
 }

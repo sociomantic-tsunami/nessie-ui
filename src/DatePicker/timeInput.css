@@ -1,0 +1,58 @@
+@import '../proto/definitions/variables.css';
+
+.default
+{
+    display:            inline-block;
+    position:           relative;
+
+    font-size:          var( --typo-1 );
+    line-height:        var( --line-height-s );
+    text-align:         right;
+
+    vertical-align:     bottom;
+
+    width:              50%;
+
+    box-sizing:         border-box;
+
+    &:hover,
+    &.fakeHovered
+    {
+        border-color:   var( --PC-BLUE );
+    }
+
+    .hour,
+    .min
+    {
+        border:             0;
+        width:              36px;
+        height:             24px;
+        padding:            0;
+
+        text-align:         center;
+        font:               inherit;
+        line-height:        var( --line-height-s );
+        font-size:          13px;
+        color:              var( --PC-WHITE );
+
+        background-color:   var( --PC-BLUE--D5 );
+
+        &::placeholder
+        {
+            line-height:    var( --line-height-s );
+            font-size:      13px;
+            font-weight:    300;
+            color:          var( --PC-WHITE );
+        }
+    }
+
+    span
+    {
+        user-select:        none;
+        line-height:        var( --line-height-s );
+        font-size:          13px;
+        color:              var( --PC-WHITE );
+        margin:             0 3px;
+        display:            inline-block;
+    }
+}

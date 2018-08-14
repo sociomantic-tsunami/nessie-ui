@@ -1,0 +1,47 @@
+@import "../proto/base.css";
+
+:root
+{
+    --trackThickness:   5px;
+    --thumbColor:       var( --PC-GREY--L25 );
+    --trackColor:       var( --PC-GREY--L90 );
+    --thumbMinSize:     20px;
+}
+
+.default
+{
+    width:          100%;
+    height:         100%;
+    margin-bottom:  0;
+    background:     var( --trackColor );
+
+    .thumb
+    {
+        position:   absolute;
+        background: var( --thumbColor );
+    }
+}
+
+.orientation__horizontal
+{
+    height: var( --trackThickness );
+
+    .thumb
+    {
+        top:        0;
+        bottom:     0;
+        min-width:  var( --thumbMinSize );
+    }
+}
+
+.orientation__vertical
+{
+    width:  var( --trackThickness );
+
+    .thumb
+    {
+        left:       0;
+        right:      0;
+        min-height: var( --thumbMinSize );
+    }
+}

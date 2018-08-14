@@ -1,5 +1,4 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
@@ -7,35 +6,29 @@
     {
         display:            flex;
         flex-wrap:          wrap;
-        align-content:      flex-start;
         align-items:        flex-start;
+        align-content:      flex-start;
 
         box-sizing:         border-box;
         width:              100%;
-        min-height:         3.2rem;
 
-        border:             0.1rem solid color( var( --GS-2 ) a( 50% ) );
+        border:             1px solid var( --PC-GREY--L70 );
+        border-radius:      2px;
 
-        padding-top:        0.5rem;
-        padding-right:      0.5rem;
+        padding-top:        3px;
+        padding-right:      3px;
         padding-bottom:     0;
-        padding-left:       0.5rem;
+        padding-left:       3px;
 
         background-color:   var( --PC-WHITE );
         outline:            none;
-        color:              var( --GS-2 );
 
         overflow-x:         hidden;
 
-        &:hover
-        {
-            border-color:   var( --PC-BLUE );
-        }
-
         & > *
         {
-            margin-bottom:  0.5rem;
-            margin-right:   0.5rem;
+            margin-right:   4px;
+            margin-bottom:  3px;
         }
     }
 
@@ -45,20 +38,22 @@
 
         box-sizing:     border-box;
         min-width:      5ch;
-        height:         2rem;
+        min-height:     32px;
 
         padding:        0;
-        padding-top:    0.1rem;
+        padding-top:    1px;
 
         border:         none;
-        margin:         0;
-        margin-bottom:  0.5rem;
+        margin-right:   0;
 
         background:     transparent;
 
-        font:           inherit;
-        line-height:    inherit;
-        text-indent:    0.5rem;
+        @extend         %Nessie-Regular;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-m );
+        letter-spacing: 0.4px;
+        text-indent:    5px;
+        color:          var( --PC-GREY--D5 );
 
         resize:         none; /* required for Safari */
 
@@ -74,7 +69,8 @@
 
         &::placeholder
         {
-            color:  color( var( --GS-2 ) a( 50% ) );
+            @extend %Nessie-RegularIt;
+            color:         var( --PC-GREY--L80 );
         }
     }
 }
@@ -85,6 +81,7 @@
     .container
     {
         border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 1px var( --PC-BLUE );
     }
 }
 
@@ -94,13 +91,10 @@
     .container
     {
         pointer-events: none;
-        background:     var( --GS-10 );
-        color:          color( var( --GS-2 ) a( 50% ) );
-        border-color:   var( --GS-10 );
 
         &:hover
         {
-            border-color:   var( --GS-10 );
+            border-color:   ( --PC-GREY--L70 );
         }
     }
 }
@@ -110,7 +104,8 @@
 {
     .container
     {
-        border-color:   var( --AC-2 ) !important; /* yes, always override other states */
+        border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+        box-shadow:     0 0 0 1px var( --PC-RED );
     }
 }
 
@@ -119,6 +114,6 @@
 {
     .container
     {
-        resize: vertical;
+        resize:        vertical;
     }
 }

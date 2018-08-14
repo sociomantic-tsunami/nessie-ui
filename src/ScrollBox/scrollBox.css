@@ -1,64 +1,95 @@
 @import "../proto/base.css";
-@import "../proto/definitions/_colors.css";
 
 .default
 {
-    .scrollBox
-    {
-        overflow:   auto;
-    }
+    overflow:   hidden;
 
     .content
     {
 
     }
 
-    .icon__down,
-    .icon__left,
-    .icon__right,
-    .icon__up
+    .inner
     {
-        position:         absolute;
-        z-index:          10;
-        background-color: var( --PC-WHITE );
-        border-radius:    2rem;
-        opacity:          0.8;
+        width:      100%;
+        height:     100%;
+        overflow:   scroll;
 
-        svg
+        &::-webkit-scrollbar
         {
-            fill:         var( --PC-BLUE );
+            display:    none;
         }
     }
 
-    .icon__down
+    .iconDown,
+    .iconLeft,
+    .iconRight,
+    .iconUp
     {
-        bottom: 1rem;
-        left:   calc( 50% - 1.6rem );
+        position:       absolute;
+        border-radius:  50%;
+        padding:        var( --spacing-1 );
+        background:     var( --PC-BLUE );
+        opacity:        0.4;
+
+        &:hover,
+        &:focus
+        {
+            opacity:    1;
+        }
+
+        svg
+        {
+            fill:   var( --PC-WHITE );
+        }
     }
 
-    .icon__left
+    .iconDown
     {
-        top:    calc( 50% - 1.6rem );
-        left:   1rem;
+        bottom:     var( --spacing-1 );
+        left:       calc( 50% );
+        transform:  translateX( -50% );
+    }
+    .iconLeft
+    {
+        top:        calc( 50% );
+        left:       var( --spacing-1 );
+        transform:  translateY( -50% );
+    }
+    .iconRight
+    {
+        top:        calc( 50% );
+        right:      var( --spacing-1 );
+        transform:  translateY( -50% );
+    }
+    .iconUp
+    {
+        top:        var( --spacing-1 );
+        left:       calc( 50% );
+        transform:  translateX( -50% );
     }
 
-    .icon__right
+    .scrollBarHorizontal
     {
-        top:    calc( 50% - 1.6rem );
-        right:  1rem;
+        position:   absolute;
+        bottom:     0;
+        left:       0;
     }
 
-    .icon__up
+    .scrollBarVertical
     {
-        top:    1rem;
-        left:   calc( 50% - 1.6rem );
+        position:   absolute;
+        top:        0;
+        right:      0;
     }
 }
 
+
 .scroll__horizontal
 {
-    .scrollBox
+    .inner
     {
+        overflow-x:             scroll;
         overflow-y:             hidden;
         overscroll-behavior-x:  contain;
     }
@@ -66,9 +97,10 @@
 }
 .scroll__vertical
 {
-    .scrollBox
+    .inner
     {
         overflow-x:             hidden;
+        overflow-y:             scroll;
         overscroll-behavior-y:  contain;
     }
 }

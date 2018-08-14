@@ -1,42 +1,54 @@
-@import "../proto/definitions/_fonts.css";
-@import "../Button/button.css";
+@import "../Button/button.css"; /* imports base.css */
 
 .default
 {
-    margin-bottom:	0;
-    color:          var( --PC-BLUE ) ;
+    margin:             0;
+    color:              var( --PC-GREY--L70 ) ;
 
-    box-shadow:     none;
+    border-radius:      0;
+    border-bottom:      1px solid transparent;
+
+    text-transform:     none;
+
+
+    &:not(:last-child)
+    {
+        margin-right: var( --spacing-2 );
+    }
 
     .content
     {
-        border-bottom:  0;
+        min-width: 0;
+        margin:    0;
+        padding:   0;
     }
 
     &:hover .content
     {
-        border-color:       var( --PC-BLUE ) ;
+
     }
 }
 
 .label
 {
-	@extend %Nessie-SemiBold;
-	padding-top:	0.8rem;
-	padding-bottom:	0.4rem;
+    @extend %Nessie-Bold;
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-s );
+    padding-left:   var( --spacing-1 );
+    padding-right:  var( --spacing-1 );
 }
 
 .active
 {
-    background:     var( --PC-BLUE )  !important;
-    color:          var( --PC-WHITE ) !important;
+    color:          var( --PC-BLUE );
+    border-bottom:  1px solid var( --PC-BLUE );
     pointer-events: none;
     cursor:         default;
-
 }
 
 .subtitle
 {
-	font-weight: 		normal;
-    text-transform:     initial;
+    font-weight: 	normal;
+    text-transform: initial;
 }

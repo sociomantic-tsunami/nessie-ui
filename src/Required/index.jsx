@@ -1,23 +1,31 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
 
 const Required = ( {
     children,
     className,
     cssMap,
     isRequired,
-    text } ) =>
+    text
+} ) =>
+{
+    if ( !Required.didWarn )
+    {
+        console.warn( 'Required: This component is deprecated and will be \
+removed in the next major release.' );
+        Required.didWarn = true;
+    }
 
-    ( <Css
-        cssMap   = { cssMap }
-        cssProps = { { required: isRequired } }>
-        <span className = { className }>
+    return (
+
+        <span className = { buildClassName( className, cssMap, { required: isRequired } ) }>
             { children || text }
         </span>
-    </Css> );
 
+    );
+};
 Required.propTypes =
 {
     /**

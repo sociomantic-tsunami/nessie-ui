@@ -1,9 +1,9 @@
-/* eslint-env node, mocha */
+/* global test */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React          from 'react';
-import { mount }      from 'enzyme';
+import { shallow }    from 'enzyme';
 
 import { Fieldset }   from '../index';
 
@@ -15,15 +15,15 @@ describe( 'Fieldset', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Fieldset /> );
+        wrapper  = shallow( <Fieldset /> );
         instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
     {
-        it( 'should contain exactly one Fieldset', () =>
+        test( 'should contain exactly one Fieldset', () =>
         {
-            expect( wrapper ).to.have.length( 1 );
+            expect( wrapper ).toHaveLength( 1 );
         } );
     } );
 
@@ -33,38 +33,38 @@ describe( 'Fieldset', () =>
 
         beforeEach( () =>
         {
-            props = instance.props;
+            ( { props } = instance );
         } );
 
         describe( 'hasError', () =>
         {
-            it( 'should be false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( props.hasError ).to.be.false;
+                expect( props.hasError ).toBeFalsy();
             } );
         } );
 
         describe( 'isDisabled', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.isDisabled ).to.be.undefined;
+                expect( props.isDisabled ).toBeUndefined();
             } );
         } );
 
         describe( 'onMouseOut', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).to.be.undefined;
+                expect( props.onMouseOut ).toBeUndefined();
             } );
         } );
 
         describe( 'onMouseOver', () =>
         {
-            it( 'should be undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).to.be.undefined;
+                expect( props.onMouseOver ).toBeUndefined();
             } );
         } );
     } );

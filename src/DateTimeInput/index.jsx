@@ -1,12 +1,11 @@
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { DatePicker }     from '../index';
-import TextInputWithIcon  from '../TextInputWithIcon';
-import withDropdown       from '../Dropdown/withDropdown';
-import withInputContainer from '../proto/withInputContainer';
-import { eventHandler }   from '../utils';
-import TimeInput          from './TimeInput';
+import { DatePicker }                 from '../index';
+import TextInputWithIcon              from '../TextInputWithIcon';
+import withDropdown                   from '../Dropdown/withDropdown';
+import withInputContainer             from '../proto/withInputContainer';
+import { eventHandler, generateId }   from '../utils';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
@@ -21,6 +20,7 @@ const DateTimeInput = ( {
     hourInputRef,
     hourPlaceholder,
     hourValue,
+    id = generateId( 'DateTimeInput' ),
     inputPlaceholder,
     inputRef,
     isDisabled,
@@ -55,29 +55,23 @@ const DateTimeInput = ( {
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
             items          = { mode === 'month' ? months : weeks }
-            label          = { mode === 'month' ?
-                `${currentYear}` : `${currentMonth} ${currentYear}` }
+            month          = { currentMonth }
+            year           = { currentYear }
             onClickNext    = { onClickNext }
             onClickPrev    = { onClickPrev }
             nextIsDisabled = { nextIsDisabled }
             prevIsDisabled = { prevIsDisabled }
             onClickItem    = { onClickCell }
-            type           = { mode === 'month' ? 'month' : 'day' } />
-    );
-
-    const timePicker = mode === 'default' && (
-        <TimeInput
-            key               = "timeInput"
+            type           = { mode === 'month' ? 'month' : 'day' }
             hourIsDisabled    = { hourIsDisabled }
             hourInputRef      = { hourInputRef }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
-            isDisabled        = { isDisabled }
-            isReadOnly        = { isReadOnly }
             minuteIsDisabled  = { minuteIsDisabled }
             minuteInputRef    = { minuteInputRef }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
+            mode              = { mode }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onFocus           = { onFocus }
@@ -85,9 +79,9 @@ const DateTimeInput = ( {
     );
 
     const dropdownProps = {
-        children : [ datePicker, timePicker ],
+        children : datePicker,
         hasError,
-        padding  : 'M',
+        padding  : 'none',
         size     : 'content',
     };
 
@@ -97,6 +91,7 @@ const DateTimeInput = ( {
             dropdownIsOpen = { isOpen }
             forceHover     = { forceHover || isOpen }
             hasError       = { hasError }
+            id             = { id }
             iconType       = "calendar"
             isDisabled     = { isDisabled }
             isReadOnly     = { isReadOnly }
@@ -123,6 +118,10 @@ DateTimeInput.propTypes =
      *  Label position
      */
     labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    /**
+     * HTML id attribute (overwrite default)
+     */
+    id                    : PropTypes.string,
     /**
     *  Display as disabled
     */
@@ -198,79 +197,77 @@ DateTimeInput.propTypes =
     /**
      *  Weeks to display in default/day mode
      */
-    weeks                 : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    weeks                 : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
      *  Months to display in month mode
      */
-    months         : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
+    months                : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
      *  Current month to disaplay in default/day mode
      */
-    currentMonth   : PropTypes.string,
+    currentMonth          : PropTypes.string,
     /**
      *  Current year to display
      */
-    currentYear    : PropTypes.string,
+    currentYear           : PropTypes.string,
     /**
      *  Display as hovered
      */
-    forceHover     : PropTypes.bool,
+    forceHover            : PropTypes.bool,
     /**
      *  onChange callback function
      */
-    onChange       : PropTypes.func,
+    onChange              : PropTypes.func,
     /**
      *  onKeyPress callback function
      */
-    onKeyPress     : PropTypes.func,
+    onKeyPress            : PropTypes.func,
     /**
      *  onFocus callback function
      */
-    onFocus        : PropTypes.func,
+    onFocus               : PropTypes.func,
     /**
      *  onBlur callback function
      */
-    onBlur         : PropTypes.func,
+    onBlur                : PropTypes.func,
     /**
      *  onMouseOver callback function
      */
-    onMouseOver    : PropTypes.func,
+    onMouseOver           : PropTypes.func,
     /**
      *  onMouseOut callback function
      */
-    onMouseOut     : PropTypes.func,
+    onMouseOut            : PropTypes.func,
     /**
      *  onClick callback function for “Next” button
      */
-    onClickPrev    : PropTypes.func,
+    onClickPrev           : PropTypes.func,
     /**
      *  onClick callback function for “Previous” button
      */
-    onClickNext    : PropTypes.func,
+    onClickNext           : PropTypes.func,
     /**
      *  onClick callback function for calendar icon
      */
-    onClickIcon    : PropTypes.func,
+    onClickIcon           : PropTypes.func,
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell    : PropTypes.func,
+    onClickCell           : PropTypes.func,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef       : PropTypes.func,
+    inputRef              : PropTypes.func,
     /**
      *  Hour input ref callback function:
      *  ( ref ) = { ... }
      */
-    hourInputRef   : PropTypes.func,
+    hourInputRef          : PropTypes.func,
     /**
      *  Minute input ref callback function:
      *  ( ref ) = { ... }
      */
-    minuteInputRef : PropTypes.func,
+    minuteInputRef        : PropTypes.func,
 };
 
 DateTimeInput.defaultProps =
@@ -284,6 +281,7 @@ DateTimeInput.defaultProps =
     hourIsDisabled    : false,
     hourPlaceholder   : undefined,
     hourValue         : undefined,
+    id                : undefined,
     inputPlaceholder  : undefined,
     inputRef          : undefined,
     inputValue        : undefined,

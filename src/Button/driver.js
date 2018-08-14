@@ -18,18 +18,22 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error(
-                ERRORS.BUTTON_CANNOT_BE_CLICKED( label, 'disabled' )
-            );
+            throw new Error( ERRORS
+                .BUTTON_CANNOT_BE_CLICKED( label, 'disabled' ) );
         }
         if ( props.isLoading )
         {
-            throw new Error(
-                ERRORS.BUTTON_CANNOT_BE_CLICKED( label, 'loading' )
-            );
+            throw new Error( ERRORS
+                .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
         }
 
         this.button.simulate( 'click' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.button.simulate( 'mouseEnter' );
         return this;
     }
 
@@ -39,9 +43,15 @@ export default class ButtonDriver
         return this;
     }
 
-    mouseOver()
+    focus()
     {
-        this.button.simulate( 'mouseEnter' );
+        this.button.simulate( 'focus' );
+        return this;
+    }
+
+    blur()
+    {
+        this.button.simulate( 'blur' );
         return this;
     }
 }

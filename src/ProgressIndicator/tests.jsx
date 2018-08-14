@@ -1,33 +1,28 @@
-/* eslint-env node, mocha */
-/* global expect */
+/* global test */
 /* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers  */
 
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-// Uncomment the following lines to use the react test utilities
-import React                      from 'react';
-// const TestUtils = React.addons.TestUtils;
-import { mount }                  from 'enzyme';
-
-
-import ProgressIndicator          from './index';
+import ProgressIndicator    from './index';
 
 describe( 'ProgressIndicator', () =>
 {
-    let Wrapper;
+    let wrapper;
 
     beforeEach( () =>
-{
-        Wrapper = mount( <ProgressIndicator /> );
+    {
+        wrapper = mount( <ProgressIndicator /> );
     } );
 
-    it( 'should have its component name as default className', () =>
-{
-        expect( Wrapper.find( '.progressIndicator__default' ) )
-            .to.have.length( 1 );
+    test( 'should have its component name as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
-    it( 'should contain a ProgressIndicator', () =>
-{
-        expect( Wrapper.find( ProgressIndicator ) ).to.have.length( 1 );
+    test( 'should contain a ProgressIndicator', () =>
+    {
+        expect( wrapper.find( ProgressIndicator ) ).toHaveLength( 1 );
     } );
 } );

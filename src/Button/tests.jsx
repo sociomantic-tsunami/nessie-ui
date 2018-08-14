@@ -1,11 +1,10 @@
-/* eslint-env node, mocha */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global expect */
+/* global jest test */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Css                from '../hoc/Css';
+
 import Icon               from '../Icon';
 import Spinner            from '../Spinner';
 
@@ -25,9 +24,9 @@ describe.only( 'Button', () =>
 
     describe( 'constructor( props )', () =>
     {
-        it( 'has name Button', () =>
+        test( 'should have name Button', () =>
         {
-            expect( instance.constructor.name ).to.equal( 'Button' );
+            expect( instance.constructor.name ).toBe( 'Button' );
         } );
     } );
 
@@ -35,22 +34,22 @@ describe.only( 'Button', () =>
     {
         it( 'calls the onMouseOver callback prop', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             instance.handleMouseOver();
 
-            expect( onMouseOver.calledOnce ).to.be.true;
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
         it( 'sets isHovered state to true', () =>
         {
-            const onMouseOver = sinon.spy();
+            const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             instance.handleMouseOver();
 
-            expect( instance.state.isHovered ).to.be.true;
+            expect( instance.state.isHovered ).toEqual( true );
         } );
     } );
 
@@ -58,47 +57,43 @@ describe.only( 'Button', () =>
     {
         it( 'calls the onMouseOver callback prop', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOut();
 
-            expect( onMouseOut.calledOnce ).to.be.true;
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
         it( 'sets isHovered state to false', () =>
         {
-            const onMouseOut = sinon.spy();
+            const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOut();
 
-            expect( instance.state.isHovered ).to.be.false;
+            expect( instance.state.isHovered ).toEqual( false );
         } );
     } );
 
     describe( 'render()', () =>
     {
-        it( 'implements the Css injector component', () =>
+
+        test( 'should contain exactly one <button>', () =>
         {
-            expect( wrapper.find( Css ) ).to.have.length( 1 );
+            expect( wrapper.find( 'button' ) ).toHaveLength( 1 );
         } );
 
-        it( 'renders exactly one <button>', () =>
-        {
-            expect( wrapper.find( 'button' ) ).to.have.length( 1 );
-        } );
-
-        it( 'renders exactly one Icon when configured', () =>
+        test( 'should have a exactly one Icon when configured', () =>
         {
             wrapper.setProps( { iconType: 'add' } );
-            expect( wrapper.find( Icon ) ).to.have.length( 1 );
+            expect( wrapper.find( Icon ) ).toHaveLength( 1 );
         } );
 
-        it( 'renders exactly one Spinner when isLoading', () =>
+        test( 'should have a exactly one Spinner when loading', () =>
         {
             wrapper.setProps( { isLoading: true } );
-            expect( wrapper.find( Spinner ) ).to.have.length( 1 );
+            expect( wrapper.find( Spinner ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -106,36 +101,35 @@ describe.only( 'Button', () =>
     {
         describe( 'iconType', () =>
         {
-            it( 'is "none" by default', () =>
+            test( 'should be "none" by default', () =>
             {
-                expect( instance.props.iconType ).to.equal( 'none' );
+                expect( instance.props.iconType ).toBe( 'none' );
             } );
 
-            it( 'is passed to the Icon as type', () =>
+            test( 'should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
 
-                expect( wrapper.find( Icon ).prop( 'type' ) )
-                    .to.equal( 'add' );
+                expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'add' );
             } );
         } );
 
         describe( 'iconPosition', () =>
         {
-            it( 'is "left" by default', () =>
+            test( 'should be "left" by default', () =>
             {
-                expect( instance.props.iconPosition ).to.equal( 'left' );
+                expect( instance.props.iconPosition ).toBe( 'left' );
             } );
         } );
 
         describe( 'role', () =>
         {
-            it( 'is "default" by default', () =>
+            test( 'should be "default" by default', () =>
             {
-                expect( instance.props.role ).to.equal( 'default' );
+                expect( instance.props.role ).toBe( 'default' );
             } );
 
-            it( 'is passed to Icon as theme when "control"', () =>
+            test( 'should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
@@ -143,18 +137,18 @@ describe.only( 'Button', () =>
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .to.equal( 'control' );
+                    .toBe( 'control' );
             } );
         } );
 
         describe( 'isLoading', () =>
         {
-            it( 'is false by default', () =>
+            test( 'should be false by default', () =>
             {
-                expect( instance.props.isLoading ).to.be.false;
+                expect( instance.props.isLoading ).toBe( false );
             } );
 
-            it( 'is passed to Icon as theme when "control"', () =>
+            test( 'should be passed to Icon as theme when "control"', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
@@ -162,7 +156,40 @@ describe.only( 'Button', () =>
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .to.equal( 'control' );
+                    .toBe( 'control' );
+            } );
+        } );
+
+        describe( 'onClick', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onClick ).toBeUndefined();
+            } );
+
+            it( 'is passed to <button>', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick } );
+
+                expect( wrapper.find( 'button' ).prop( 'onClick' ) )
+                    .toEqual( onClick );
+            } );
+        } );
+
+        describe( 'onMouseOver', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onMouseOver ).toBeUndefined();
+            } );
+        } );
+
+        describe( 'onMouseOut', () =>
+        {
+            it( 'is undefined by default', () =>
+            {
+                expect( instance.props.onMouseOut ).toBeUndefined();
             } );
         } );
 
@@ -201,9 +228,9 @@ describe.only( 'Button', () =>
 
         describe( 'buttonRef', () =>
         {
-            it( 'is undefined by default', () =>
+            test( 'should be undefined by default', () =>
             {
-                expect( instance.props.buttonRef ).to.be.undefined;
+                expect( instance.props.buttonRef ).toBeUndefined();
             } );
         } );
     } );
@@ -222,14 +249,14 @@ describe.only( 'ButtonDriver', () =>
         wrapper  = mount( <Button /> );
         driver   = wrapper.driver();
         button   = wrapper.find( 'button' ).first();
-        simulate = sinon.spy( driver.button, 'simulate' );
+        simulate = jest.spyOn( driver.button, 'simulate' );
     } );
 
     describe( 'constructor', () =>
     {
         it( 'assigns the <button> to this.button', () =>
         {
-            expect( driver.button.getNode() ).to.equal( button.getNode() );
+            expect( driver.button.getNode() ).toEqual( button.getNode() );
         } );
     } );
 
@@ -238,18 +265,18 @@ describe.only( 'ButtonDriver', () =>
         it( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.click();
-            expect( simulate.calledOnce ).to.be.true;
+            expect( simulate ).toBeCalledTimes( 1 );
         } );
 
         it( 'calls simulate( event ) with event \'click\'', () =>
         {
             driver.click();
-            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'click' );
+            expect( simulate ).toBeCalledWith( 'click' );
         } );
 
         it( 'returns the driver instance', () =>
         {
-            expect( driver.click() ).to.equal( driver );
+            expect( driver.click() ).toEqual( driver );
         } );
 
         it( 'throws the expected error when isDisabled', () =>
@@ -259,7 +286,7 @@ describe.only( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).to.throw( expectedError );
+            expect( () => driver.click() ).toThrow( expectedError );
         } );
 
         it( 'does not call simulate( event ) when isDisabled', () =>
@@ -267,7 +294,7 @@ describe.only( 'ButtonDriver', () =>
             wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
             expect( () => driver.click() );
-            expect( simulate.notCalled ).to.be.true;
+            expect( simulate ).not.toBeCalled();
         } );
 
         it( 'throws the expected error when isLoading', () =>
@@ -277,7 +304,7 @@ describe.only( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => driver.click() ).to.throw( expectedError );
+            expect( () => driver.click() ).toThrow( expectedError );
         } );
 
         it( 'does not call simulate( event ) when isLoading', () =>
@@ -285,7 +312,7 @@ describe.only( 'ButtonDriver', () =>
             wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
             expect( () => driver.click() );
-            expect( simulate.notCalled ).to.be.true;
+            expect( simulate ).not.toBeCalled();
         } );
     } );
 
@@ -294,18 +321,18 @@ describe.only( 'ButtonDriver', () =>
         it( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.mouseOver();
-            expect( simulate.calledOnce ).to.be.true;
+            expect( simulate ).toBeCalledTimes( 1 );
         } );
 
         it( 'calls simulate( event ) with event \'mouseEnter\'', () =>
         {
             driver.mouseOver();
-            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'mouseEnter' );
+            expect( simulate ).toBeCalledWith( 'mouseEnter' );
         } );
 
         it( 'returns the driver instance', () =>
         {
-            expect( driver.click() ).to.equal( driver );
+            expect( driver.click() ).toEqual( driver );
         } );
     } );
 
@@ -314,18 +341,59 @@ describe.only( 'ButtonDriver', () =>
         it( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.mouseOut();
-            expect( simulate.calledOnce ).to.be.true;
+            expect( simulate ).toBeCalledTimes( 1 );
         } );
 
         it( 'calls simulate( event ) with event \'mouseLeave\'', () =>
         {
             driver.mouseOut();
-            expect( simulate.lastCall.args[ 0 ] ).to.equal( 'mouseLeave' );
+            expect( simulate ).toBeCalledWith( 'mouseLeave' );
         } );
 
         it( 'returns the driver instance', () =>
         {
-            expect( driver.click() ).to.equal( driver );
+            expect( driver.click() ).toEqual( driver );
+        } );
+    } );
+
+
+    describe( 'blur', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.blur();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        it( 'calls simulate( event ) with event \'blur\'', () =>
+        {
+            driver.blur();
+            expect( simulate ).toBeCalledWith( 'blur' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
+        } );
+    } );
+
+    describe( 'focus', () =>
+    {
+        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        {
+            driver.focus();
+            expect( simulate ).toBeCalledTimes( 1 );
+        } );
+
+        it( 'calls simulate( event ) with event \'focus\'', () =>
+        {
+            driver.focus();
+            expect( simulate ).toBeCalledWith( 'focus' );
+        } );
+
+        it( 'returns the driver instance', () =>
+        {
+            expect( driver.click() ).toEqual( driver );
         } );
     } );
 } );

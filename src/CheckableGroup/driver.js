@@ -11,7 +11,7 @@ export default class CheckableGroupDriver
         return items.map( item => item.childAt( 0 ) );
     }
 
-    selectByIndex( index )
+    selectByIndex( index = 0 )
     {
         const items = this.getContent();
 
@@ -53,7 +53,7 @@ export default class CheckableGroupDriver
         return this;
     }
 
-    toggleByIndex( index )
+    toggleByIndex( index = 0 )
     {
         const items = this.getContent();
 

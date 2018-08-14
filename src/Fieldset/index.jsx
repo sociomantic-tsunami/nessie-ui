@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
 
@@ -16,31 +17,30 @@ const Fieldset = ( {
     isDisabled,
     label,
     onMouseOver,
-    onMouseOut } ) =>
+    onMouseOut
+} ) => (
 
-    ( <Css cssMap = { cssMap }>
-        <fieldset
-            className    = { className }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { label &&
-                <Label element = "legend">
-                    <IconWithTooltip
-                        iconType         = "error"
-                        iconPosition     = "right"
-                        message          = { errorMessage }
-                        tooltipIsVisible = { errorMessageIsVisible }
-                        tooltipPosition  = { errorMessagePosition }
-                        iconIsVisible    = { !isDisabled &&
+    <fieldset
+        className    = { buildClassName( className, cssMap ) }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }>
+        { label &&
+        <IconWithTooltip
+            className        = { cssMap.labelContainer }
+            iconType         = "error"
+            iconPosition     = "right"
+            message          = { errorMessage }
+            tooltipIsVisible = { errorMessageIsVisible }
+            tooltipPosition  = { errorMessagePosition }
+            iconIsVisible    = { !isDisabled &&
                                              !!errorMessage &&
                                              hasError }>
-                        { label }
-                    </IconWithTooltip>
-                </Label>
-            }
-            { children }
-        </fieldset>
-    </Css> );
+            <Label element = "legend">{ label }</Label>
+        </IconWithTooltip>
+        }
+        { children }
+    </fieldset>
+);
 
 Fieldset.propTypes =
 {

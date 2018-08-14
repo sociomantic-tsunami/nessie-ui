@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+
 import Icon                 from '../Icon';
 import Text                 from '../Text';
 import IconButton           from '../IconButton';
@@ -17,17 +18,14 @@ const NotificationBar = ( {
     isFixed } ) =>
 {
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { type : messageType,
-                top  : isFixed } }>
-
-            <div className  = { className }>
+            <div className  = { buildClassName( className, cssMap, {
+                type : messageType,
+                top  : isFixed
+              } ) }>
 
                 <Icon
                     className  = { cssMap.info }
-                    type       = "info"
-                    theme      = "button" />
+                    type       = "info"/>
 
                 { ( children || message ) &&
                 <Text className = { cssMap.message }>
@@ -42,7 +40,6 @@ const NotificationBar = ( {
                     iconTheme  = "button"
                     onClick    = { onClickClose } />}
             </div>
-        </Css>
     );
 };
 

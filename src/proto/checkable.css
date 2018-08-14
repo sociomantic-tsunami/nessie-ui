@@ -1,26 +1,20 @@
 @import "./base.css";
-@import "./definitions/_colors.css";
 
 .default
 {
-    padding-top:        0.5rem;
-    padding-bottom:     0.5rem;
+    padding-top:        var( --spacing-1 );
+    padding-bottom:     var( --spacing-1 );
 
     width:              auto;
 
     &:last-child
     {
-        margin-bottom:      0;
+        margin-bottom:  0;
     }
 
     &:hover .label
     {
-        cursor:             pointer;
-
-        &::before
-        {
-            border-color:   var( --PC-BLUE );
-        }
+        cursor:         pointer;
     }
 }
 
@@ -29,16 +23,17 @@
     .label::before,
     .input:focus + .label::before
     {
-        border-color:   var( --PC-BLUE );
+        border:         2px solid var( --PC-BLUE );
     }
 }
 
 .label
 {
-    display:            inline-block;
-    vertical-align:     middle;
+    display:            flex;
+    align-items:        center;
 
-    white-space:        nowrap;
+    position:           relative;
+    height:             var( --spacing-3 );
 
     &::before
     {
@@ -50,10 +45,11 @@
         position:           relative;
 
         box-sizing:         border-box;
-        width:              2.2rem;
-        height:             2.2rem;
+        width:              var( --spacing-3 );
+        height:             var( --spacing-3 );
 
-        border:             0.1rem solid color(var( --GS-2 ) a( 50%) );
+        border:             1px solid var( --PC-BLUE--L55 );
+        border-radius:      2px;
 
         background:         var( --PC-WHITE );
     }
@@ -70,8 +66,14 @@
     {
         display:        inline-block;
         vertical-align: middle;
-        margin-left:    1rem;
+        margin-left:    var( --spacing-1 );
     }
+}
+
+.labelText
+{
+    @extend             %Nessie-SemiBold;
+    color:              var( --PC-GREY--D15 );
 }
 
 .error
@@ -80,7 +82,7 @@
     &:hover .label::before,
     .input:focus + .label::before
     {
-        border-color:       var( --AC-2 );
+        border:       1px solid var( --PC-RED );
     }
 }
 
@@ -99,23 +101,26 @@
     .input:focus + .label::before
     {
         cursor:             default;
-        border-color:       var( --GS-10 );
-        background-color:   var( --GS-10 );
+    }
+
+    .labelText
+    {
+        color:  var( --PC-GREY--L70 );
     }
 }
 
 .input
 {
-    position:   absolute;
-    left:       -9999px;
+    position:               absolute;
+    left:                   -9999px;
 
     &:checked + .label::after
     {
-        position:   absolute;
+        position:           absolute;
     }
 
     &:focus + .label::before
     {
-        border-color:   var( --PC-BLUE );
+        border:             2px solid var( --PC-BLUE );
     }
 }

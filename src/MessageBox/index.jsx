@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+
 import Text                 from '../Text';
 
 const MessageBox = ( {
@@ -9,19 +10,15 @@ const MessageBox = ( {
     className,
     children,
     message,
-    messageType
+    messageType,
 } ) =>
 {
-    const messageNode = <Text>{ message }</Text>;
+    const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
 
     return (
-        <Css
-            cssMap   = { cssMap }
-            cssProps = { { type: messageType } }>
-            <div className = { className }>
-                { children || messageNode }
-            </div>
-        </Css>
+        <div className = { buildClassName( className, cssMap, { type: messageType } ) }>
+            { children || messageNode }
+        </div>
     );
 };
 
@@ -35,12 +32,18 @@ MessageBox.propTypes =
     /**
     *  Message type
     */
-    messageType : PropTypes.oneOf( [ 'alert', 'info', 'error', 'success' ] )
+    messageType : PropTypes.oneOf( [
+        'default',
+        'alert',
+        'info',
+        'error',
+        'success',
+    ] )
 };
 
 MessageBox.defaultProps =
 {
-    messageType : 'info',
+    messageType : 'default',
     cssMap      : require( './messageBox.css' )
 };
 

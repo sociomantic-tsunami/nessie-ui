@@ -1,30 +1,35 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React                            from 'react';
+import PropTypes                        from 'prop-types';
 
-import Component from '../proto/Component';
-import Css       from '../hoc/Css';
+import { generateId, buildClassName }   from '../utils';
 
-export default class Tab extends Component
+
+export default class Tab extends React.PureComponent
 {
     static propTypes =
     {
-        /**
-        *  Label to show in TabButton of this tab
-        */
-        label    : PropTypes.string,
         /**
         *  Contents of the Tab
         */
         children : PropTypes.node,
         /**
+         * HTML id attribute (overwrite default)
+         */
+        id       : PropTypes.string,
+        /**
+        *  Label to show in TabButton of this tab
+        */
+        label    : PropTypes.string,
+        /**
         *  onClick callback function: ( e ) => { ... }
         */
-        onClick  : PropTypes.func,
+        onClick  : PropTypes.func
     };
 
     static defaultProps =
     {
-        cssMap : require( './tab.css' )
+        cssMap : require( './tab.css' ),
+        id     : undefined
     };
 
     render()
@@ -33,20 +38,20 @@ export default class Tab extends Component
             cssMap,
             children,
             className,
+            id = generateId( 'Tab' ),
             onClick,
             label
         } = this.props;
 
         return (
-            <Css cssMap   = { cssMap } >
-                <div
-                    className  = { className }
-                    onClick    = { onClick }
-                    aria-label = { label }
-                    role       = "tabpanel">
-                    { children }
-                </div>
-            </Css>
+            <div
+                className  = { buildClassName( className, cssMap ) }
+                onClick    = { onClick }
+                aria-label = { label }
+                id         = { id }
+                role       = "tabpanel">
+                { children }
+            </div>
         );
     }
 }

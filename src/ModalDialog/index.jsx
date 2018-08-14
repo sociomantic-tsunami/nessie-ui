@@ -1,7 +1,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import Css                  from '../hoc/Css';
+import { buildClassName }   from '../utils';
+
 import IconButton           from '../IconButton';
 
 const ModalDialog = ( {
@@ -16,7 +17,8 @@ const ModalDialog = ( {
     title,
     onClickPrev,
     onClickNext,
-    onClickClose } ) =>
+    onClickClose
+} ) =>
 {
     if ( !isVisible )
     {
@@ -33,25 +35,26 @@ const ModalDialog = ( {
                 <div className = { cssMap.header }>
                     <span className = { cssMap.title }>{ title }</span>
                     <IconButton
-                        iconType     = "close"
-                        onClickClose = { onClickClose }
-                        iconTheme    = "navigation"
-                        iconSize     = "L"
+                        iconType  = "close"
+                        onClick   = { onClickClose }
+                        iconTheme = "navigation"
+                        iconSize  = "L"
                     />
                 </div>
                 <div className = { cssMap.navigation }>
                     <IconButton
-                        iconType  = "left"
+                        hasBackground
+                        iconType  = "arrow"
                         onClick   = { onClickPrev }
                         iconTheme = "navigation"
-                        iconSize  = "XXL"
+                        iconSize  = "M"
                     />
-
                     <IconButton
-                        iconType  = "right"
+                        hasBackground
+                        iconType  = "arrow"
                         onClick   = { onClickNext }
                         iconTheme = "navigation"
-                        iconSize  = "XXL"
+                        iconSize  = "M"
                     />
                 </div>
             </div>
@@ -60,24 +63,18 @@ const ModalDialog = ( {
 
     return (
         <div className = "modalContainer">
-            <Css
-                cssMap = { cssMap }
-                cssProps = { {
+            <div
+                className = { buildClassName( className, cssMap, {
                     type,
                     wide    : isWide,
                     showNav : hasNavigation
-                } }
-            >
-                <div
-                    className = { className }
-                    onClick   = { onClickOverlay }
-                >
-                    { modalUI }
-                    <div className = { cssMap.content }>
-                        { children }
-                    </div>
+                } ) }
+                onClick   = { onClickOverlay } >
+                { modalUI }
+                <div className = { cssMap.content }>
+                    { children }
                 </div>
-            </Css>
+            </div>
         </div>
     );
 };
