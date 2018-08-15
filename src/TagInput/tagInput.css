@@ -81,7 +81,7 @@
     .container
     {
         border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 1px var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }
 
@@ -105,7 +105,7 @@
     .container
     {
         border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-        box-shadow:     0 0 0 1px var( --PC-RED );
+        box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
     }
 }
 

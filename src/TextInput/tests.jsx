@@ -8,7 +8,6 @@ import { mount, shallow } from 'enzyme';
 import { InputField }     from '../index';
 import InputContainer     from '../proto/InputContainer';
 
-
 import TextInput          from './index';
 
 
@@ -23,26 +22,19 @@ describe( 'TextInput', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextInput', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextInput' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one InputContainer', () =>
     {
-  
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
+    test( 'should contain exactly one InputField', () =>
+    {
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
     } );
 } );
 
@@ -66,7 +58,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onBlur   : blurSpy
+                onBlur   : blurSpy,
             } );
 
             driver.blur();
@@ -105,7 +97,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -123,7 +115,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -144,7 +136,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -162,7 +154,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             const expectedError =
@@ -203,7 +195,7 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             driver.inputValue( 'Harry Potter' );
@@ -222,7 +214,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             const expectedError =
@@ -240,7 +232,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             const expectedError =
@@ -261,7 +253,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onClick    : handleClickSpy
+                onClick    : handleClickSpy,
             } );
 
             const expectedError =
@@ -278,7 +270,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isReadOnly : true,
-                onClick    : handleClickSpy
+                onClick    : handleClickSpy,
             } );
 
             const expectedError =

@@ -17,11 +17,30 @@ const TableCell = ( {
     isSticky,
     onToggle,
     sort,
+    textProps = {},
     ...props
 } ) =>
 {
-    let contentNode = typeof children === 'string' ?
-        <Text className = { cssMap.text }>{ children }</Text> : children;
+    let headerStyle = {};
+
+    if ( isHeader || isRowHeader )
+    {
+        headerStyle.allCaps = true;
+        headerStyle.color = '#4b627d';
+        headerStyle.letterSpacing = '0.5';
+        headerStyle.size = 'S';
+        headerStyle.variant = 'SemiBold';
+    }
+
+    headerStyle = { ...headerStyle, ...textProps };
+
+    const tableCellText = ( <Text
+        className = { cssMap.text }
+        { ...headerStyle } >
+        { children }
+    </Text> );
+
+    let contentNode = typeof children === 'string' ? tableCellText : children;
 
     if ( isHeader && isSortable )
     {
@@ -40,7 +59,7 @@ const TableCell = ( {
                 rowHeader : isRowHeader,
                 sticky    : isSticky,
             } ) }
-            role          = { isHeader ? 'columnheader' : 'gridcell' }>
+            role      = { isHeader ? 'columnheader' : 'gridcell' }>
             { contentNode }
         </Column>
     );
@@ -114,13 +133,20 @@ TableCell.propTypes =
         '1/22', '2/22', '3/22', '4/22', '5/22', '6/22', '7/22', '8/22', '9/22', '10/22', '11/22', '12/22', '13/22', '14/22', '15/22', '16/22', '17/22', '18/22', '19/22', '20/22', '21/22', '22/22',
         '1/23', '2/23', '3/23', '4/23', '5/23', '6/23', '7/23', '8/23', '9/23', '10/23', '11/23', '12/23', '13/23', '14/23', '15/23', '16/23', '17/23', '18/23', '19/23', '20/23', '21/23', '22/23', '23/23',
         '1/24', '2/24', '3/24', '4/24', '5/24', '6/24', '7/24', '8/24', '9/24', '10/24', '11/24', '12/24', '13/24', '14/24', '15/24', '16/24', '17/24', '18/24', '19/24', '20/24', '21/24', '22/24', '23/24', '24/24',
-        'content'
+        'content',
         /* eslint-enable max-len */
     ] ),
     /**
      *  Sort direction
      */
-    sort          : PropTypes.oneOf( [ 'asc', 'desc', 'none' ] ),
+    sort      : PropTypes.oneOf( [ 'asc', 'desc', 'none' ] ),
+    /**
+     *  Text style configuration
+     */
+    textProps : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.string,
+    ] ) ),
     /**
      *  Vertical alignment of content (“auto” is equivalent to “top”)
      */
@@ -139,6 +165,7 @@ TableCell.defaultProps =
     isSticky      : false,
     size          : undefined,
     sort          : 'none',
+    textProps     : undefined,
     verticalAlign : undefined,
 };
 

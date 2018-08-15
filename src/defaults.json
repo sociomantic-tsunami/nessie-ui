@@ -3,6 +3,11 @@
     {
         "label" : "Click me!"
     },
+    "Card" :
+    {
+        "children" : "{<TextInput label='Your name'/>}",
+        "padding"  : "S"
+    },
     "CheckableGroup" :
     {
         "label" : "What’s your favorite fruit?",
@@ -56,10 +61,6 @@
         "label"         : "Banner size",
         "errorMessage"  : "Wrong size!"
     },
-    "Divider" :
-    {
-        "lochness" : { "isDeprecated" : true }
-    },
     "DragNDrop" :
     {
         "message"  : "Drop image file to upload",
@@ -73,11 +74,6 @@
     {
         "label"    : "Fieldset legend",
         "children" : "{<Text>Fieldset content</Text>}"
-    },
-    "Form" :
-    {
-        "lochness" : { "isDeprecated" : true },
-        "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
     },
     "FlounderDropdown" :
     {
@@ -330,6 +326,13 @@
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
+    },
+    "TextInputWithIcon" :
+    {
+        "label"            : "Name",
+        "inputPlaceholder" : "name",
+        "inputType"        : "text",
+        "iconType"         : "show"
     },
     "ToggleButton" : {
       "label": "Toggle me tender",
