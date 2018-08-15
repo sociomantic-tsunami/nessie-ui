@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React     from 'react';
@@ -30,7 +28,7 @@ describe( 'NavItem', () =>
     {
         const onClickSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onClick : onClickSpy
+            onClick : onClickSpy,
         } );
 
         wrapper.driver().click();
@@ -42,7 +40,7 @@ describe( 'NavItem', () =>
     {
         const onMouseOverSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onMouseOver : onMouseOverSpy
+            onMouseOver : onMouseOverSpy,
         } );
 
         wrapper.driver().mouseOver();
@@ -54,7 +52,7 @@ describe( 'NavItem', () =>
     {
         const onMouseOutSpy = jest.fn().mockReset();
         wrapper.setProps( {
-            onMouseOut : onMouseOutSpy
+            onMouseOut : onMouseOutSpy,
         } );
 
         wrapper.driver().mouseOut();

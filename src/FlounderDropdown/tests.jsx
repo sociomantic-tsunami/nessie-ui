@@ -1,6 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0 */
-
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
 
@@ -31,7 +28,6 @@ describe( 'FlounderDropdown', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should contain exactly one InputContainer', () =>
         {
             expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
@@ -49,20 +45,20 @@ describe( 'FlounderDropdownDriver', () =>
         'Option',
         {
             text  : 'Pikachu',
-            value : 'pokemon1'
+            value : 'pokemon1',
         },
         {
             text  : 'Jigglypuff',
-            value : 'pokemon2'
+            value : 'pokemon2',
         },
         {
             text  : 'Squirtle',
-            value : 'pokemon3'
+            value : 'pokemon3',
         },
         {
             text  : 'Balbasaur',
-            value : 'pokemon4'
-        }
+            value : 'pokemon4',
+        },
     ];
 
     beforeEach( () =>
@@ -84,9 +80,9 @@ describe( 'FlounderDropdownDriver', () =>
                         'Pikachu',
                         'Jigglypuff',
                         'Squirtle',
-                        'Balbasaur'
+                        'Balbasaur',
                     ],
-                    onChange : changeSpy
+                    onChange : changeSpy,
                 } );
 
                 driver.chooseItemByIndex( 1 );
@@ -96,7 +92,7 @@ describe( 'FlounderDropdownDriver', () =>
                 expect( selected ).toHaveLength( 1 );
                 expect( selected ).toContain( 'Jigglypuff' );
                 expect( changeSpy ).toBeCalledTimes( 1 );
-            }
+            },
         );
 
         test( 'should choose multiple items by index when uncontolled', () =>
@@ -106,7 +102,7 @@ describe( 'FlounderDropdownDriver', () =>
                 label    : 'Flounder Label',
                 data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
                 onChange : changeSpy,
-                multiple : true
+                multiple : true,
             } );
 
             driver.chooseItemByIndex( [ 1, 3 ] );
@@ -152,7 +148,7 @@ since it is disabled' );
             wrapper.setProps( {
                 label    : 'Flounder Label',
                 data     : pokemonList,
-                onChange : changeSpy
+                onChange : changeSpy,
             } );
 
             driver.chooseItemByText( 'Jigglypuff' );
@@ -171,7 +167,7 @@ since it is disabled' );
                 label    : 'Flounder Label',
                 data     : pokemonList,
                 onChange : changeSpy,
-                multiple : true
+                multiple : true,
             } );
 
             driver.chooseItemByText( [ 'Jigglypuff', 'Balbasaur' ] );
@@ -219,7 +215,7 @@ since it is disabled' );
                 wrapper.setProps( {
                     label    : 'Flounder Label',
                     data     : pokemonList,
-                    onChange : changeSpy
+                    onChange : changeSpy,
                 } );
 
                 driver.chooseItemByValue( 'pokemon2' );
@@ -229,7 +225,7 @@ since it is disabled' );
                 expect( selected ).toHaveLength( 1 );
                 expect( selected ).toContain( 'pokemon2' );
                 expect( changeSpy ).toBeCalledTimes( 1 );
-            }
+            },
         );
 
         test( 'should choose multiple items by value when uncontolled', () =>
@@ -239,7 +235,7 @@ since it is disabled' );
                 label    : 'Flounder Label',
                 data     : pokemonList,
                 onChange : changeSpy,
-                multiple : true
+                multiple : true,
             } );
 
             driver.chooseItemByValue( [ 'pokemon1', 'pokemon3' ] );
@@ -288,7 +284,7 @@ since it is disabled' );
                 onChange     : changeSpy,
                 defaultValue : [ 'pokemon1', 'pokemon3' ],
                 multiple     : true,
-                multipleTags : true
+                multipleTags : true,
             };
 
             wrapper = mount( <FlounderDropdown { ...props } /> );
@@ -345,7 +341,7 @@ is not configured with multipleTags' );
                 value                 : [ 'pokemon1', 'pokemon3' ],
                 hasError              : true,
                 errorMessageIsVisible : true,
-                errorMessage          : <p className = "attack">Lightning</p>
+                errorMessage          : <p className = "attack">Lightning</p>,
             } );
         } );
 

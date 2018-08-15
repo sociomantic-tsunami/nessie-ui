@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
 
 import React                            from 'react';
@@ -32,7 +30,6 @@ describe( 'PasswordInput', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should contain exactly one TextInputWithIcon', () =>
         {
             expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
@@ -87,7 +84,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 hasError              : true,
                 errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true
+                errorMessageIsVisible : true,
             } );
         } );
 
@@ -111,7 +108,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onFocus  : focusSpy
+                onFocus  : focusSpy,
             } );
 
             driver.focus();
@@ -127,7 +124,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onBlur   : blurSpy
+                onBlur   : blurSpy,
             } );
 
             driver.blur();
@@ -143,7 +140,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 title    : 'Test',
                 hasError : false,
-                onChange : changeSpy
+                onChange : changeSpy,
             } );
 
             driver.setInputValue( 'test' );
@@ -158,7 +155,7 @@ describe( 'PasswordInputDriver', () =>
             const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
             wrapper.setProps( {
-                onKeyPress : keyPressSpy
+                onKeyPress : keyPressSpy,
             } );
 
             driver.pressKey( keyCodeEnter );
@@ -170,7 +167,7 @@ describe( 'PasswordInputDriver', () =>
             const keyCodeChar = String.fromCharCode( 74 );
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
-                onChange : onChangeSpy
+                onChange : onChangeSpy,
             } );
 
             driver.pressKey( keyCodeChar );
@@ -183,7 +180,7 @@ describe( 'PasswordInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( {
                 onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy
+                onChange   : onChangeSpy,
             } );
 
             driver.inputValue( 'Harry Potter' );
@@ -207,7 +204,7 @@ describe( 'PasswordInputDriver', () =>
             wrapper.setProps( {
                 label      : 'test',
                 isDisabled : true,
-                onClick    : clickSpy
+                onClick    : clickSpy,
             } );
 
             const expectedError =

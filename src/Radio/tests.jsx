@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
 import React       from 'react';
@@ -83,7 +81,7 @@ describe( 'Radio', () =>
 
                     expect( wrapper.find( Checkable ).prop( onChange ) )
                         .toBeUndefined();
-                }
+                },
             );
 
             test( 'should be defined if not readOnly', () =>

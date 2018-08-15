@@ -1,5 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test jest */
 
 import React                   from 'react';
 import { ReactWrapper, mount } from 'enzyme';
@@ -24,7 +23,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             expect( wrapper.driver().getContent() ).toHaveLength( 2 );
@@ -35,7 +34,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
 
@@ -51,7 +50,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             wrapper.driver().selectByIndex( 1 );
@@ -68,7 +67,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" />,
-                    <Radio label = "two" />
+                    <Radio label = "two" />,
                 ],
             } );
             wrapper.driver().toggleByIndex( 1 );
@@ -90,7 +89,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 
@@ -109,7 +108,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 
@@ -132,7 +131,7 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Radio label = "one" value = "first check" isChecked />,
-                    <Radio label = "two" value = "second check" />
+                    <Radio label = "two" value = "second check" />,
                 ],
             } );
 

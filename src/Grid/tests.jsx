@@ -20,7 +20,7 @@ describe( 'GridColumnDriver', () =>
 
     describe( 'getContent', () =>
     {
-        it( 'should return the content of the Grid or Column', () =>
+        test( 'should return the content of the Grid or Column', () =>
         {
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 

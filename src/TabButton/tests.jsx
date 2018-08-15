@@ -1,5 +1,3 @@
-/* global test jest */
-
 import React            from 'react';
 import { mount }        from 'enzyme';
 
@@ -40,7 +38,7 @@ describe( 'TabButton Driver', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
-                onClick
+                onClick,
             } );
 
             driver.click();
@@ -53,7 +51,7 @@ describe( 'TabButton Driver', () =>
             const onClick = jest.fn();
             wrapper.setProps( {
                 onClick,
-                isDisabled : true
+                isDisabled : true,
             } );
 
             expect( () => driver.click() ).toThrowError( 'Button cannot be \

@@ -1,10 +1,6 @@
-/* global test jest */
-
-
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-                
 import { Icon }           from '../index';
 
 import IconButton         from './index';
@@ -33,7 +29,7 @@ describe( 'IconButton', () =>
     {
         test( 'should implement the Css higher-order component', () =>
         {
-            
+
         } );
 
         test( 'should contain exactly one Icon', () =>

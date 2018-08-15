@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React                       from 'react';
@@ -32,7 +30,6 @@ describe( 'Module', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should not contain a <header> by default', () =>
         {
             expect( wrapper.find( 'header' ) ).toHaveLength( 0 );
@@ -60,7 +57,7 @@ describe( 'Module', () =>
         {
             wrapper.setProps( {
                 title       : 'Boom',
-                headerLevel : 3
+                headerLevel : 3,
             } );
 
             expect( wrapper.find( H3 ) ).toHaveLength( 1 );
@@ -127,7 +124,7 @@ describe( 'Module', () =>
 
                     expect( wrapper.find( IconWithTooltip )
                         .prop( 'onMouseOver' ) ).toBe( onMouseOverError );
-                }
+                },
             );
         } );
 
@@ -187,7 +184,7 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
-                onClickToggle : toggleSpy
+                onClickToggle : toggleSpy,
             } );
 
             driver.toggle();
@@ -204,7 +201,7 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isDeletable   : true,
-                onClickDelete : clickDeleteSpy
+                onClickDelete : clickDeleteSpy,
             } );
 
             driver.clickDelete();
@@ -219,7 +216,7 @@ describe( 'ModuleDriver', () =>
         {
             wrapper.setProps( {
                 title        : 'Boom',
-                customHeader : <h1 className = "pokemon">Pikachu</h1>
+                customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
             const header = driver.getCustomHeader();

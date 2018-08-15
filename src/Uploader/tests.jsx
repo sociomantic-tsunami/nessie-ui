@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -39,7 +37,7 @@ describe( 'Uploader', () =>
             {
                 expect( wrapper.find( 'Button', 'Upload', 'Spinner' ) )
                     .toHaveLength( 1 );
-            }
+            },
         );
     } );
 
@@ -62,7 +60,7 @@ describe( 'Uploader', () =>
             {
                 expect( wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
                     .toHaveLength( 1 );
-            }
+            },
         );
 
         describe( 'readOnly state', () =>
@@ -99,7 +97,7 @@ state', () =>
                 expect( wrapper.find( 'Button' ) ).toHaveLength( 1 );
                 expect( wrapper.find( 'Button' ).prop( 'isReadOnly' ) )
                     .toBeTruthy();
-            }
+            },
         );
     } );
 } );
@@ -120,7 +118,7 @@ describe( 'UploaderDriver', () =>
             const onClick = jest.fn();
             wrapper.setProps( {
                 onClick,
-                uploadState : 'default'
+                uploadState : 'default',
             } );
 
             wrapper.driver().click();
@@ -132,7 +130,7 @@ describe( 'UploaderDriver', () =>
             const onClickSecondary = jest.fn();
             wrapper.setProps( {
                 onClickSecondary,
-                uploadState : 'uploaded'
+                uploadState : 'uploaded',
             } );
 
             wrapper.driver().clickSecondary();
@@ -155,7 +153,7 @@ describe( 'UploaderDriver', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
-                onMouseOut
+                onMouseOut,
             } );
 
             wrapper.driver().mouseOut();
@@ -169,7 +167,7 @@ describe( 'UploaderDriver', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
-                onMouseOver
+                onMouseOver,
             } );
 
             wrapper.driver().mouseOver();

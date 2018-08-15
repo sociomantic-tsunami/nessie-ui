@@ -1,5 +1,3 @@
-/* global test jest */
-
 import React        from 'react';
 import { mount }    from 'enzyme';
 
@@ -24,7 +22,7 @@ describe( 'ComboBox', () =>
         {
             const label = '';
             wrapper.setProps( {
-                label
+                label,
             } );
             expect( wrapper.find( 'label' ).length ).toBe( 0 );
         } );
@@ -32,7 +30,7 @@ describe( 'ComboBox', () =>
         {
             const label = 'label';
             wrapper.setProps( {
-                label
+                label,
             } );
             expect( wrapper.find( 'label' ).length ).toBe( 1 );
         } );
@@ -57,7 +55,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( {
-                onBlur
+                onBlur,
             } );
 
             driver.blur();
@@ -72,7 +70,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onChangeInput = jest.fn();
             wrapper.setProps( {
-                onChangeInput
+                onChangeInput,
             } );
 
             driver.changeInput();
@@ -87,7 +85,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onClickInput = jest.fn();
             wrapper.setProps( {
-                onClickInput
+                onClickInput,
             } );
 
             driver.clickInput();
@@ -108,17 +106,17 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
             driver.clickOption();
@@ -133,7 +131,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( {
-                onFocus
+                onFocus,
             } );
 
             driver.focus();
@@ -148,7 +146,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onKeyDown = jest.fn();
             wrapper.setProps( {
-                onKeyDown
+                onKeyDown,
             } );
 
             driver.keyPress( 'abc' );
@@ -163,7 +161,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( {
-                onKeyPress
+                onKeyPress,
             } );
 
             driver.keyPress( 'abc' );
@@ -178,7 +176,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onKeyUp = jest.fn();
             wrapper.setProps( {
-                onKeyUp
+                onKeyUp,
             } );
 
             driver.keyPress( 'abc' );
@@ -193,7 +191,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
-                onMouseOut
+                onMouseOut,
             } );
 
             driver.mouseOut();
@@ -214,17 +212,17 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
             driver.mouseOutOption();
@@ -239,7 +237,7 @@ describe( 'ComboBoxDriver', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
-                onMouseOver
+                onMouseOver,
             } );
 
             driver.mouseOver();
@@ -260,17 +258,17 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
             driver.mouseOverOption();
@@ -291,17 +289,17 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
             driver.scroll( 0.3 );

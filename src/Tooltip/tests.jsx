@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
@@ -18,7 +16,7 @@ describe( 'Tooltip', () =>
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
+            onMouseOut  : onMouseOutHandler,
         };
 
         const Wrapper = mount( <Tooltip { ...props }>
@@ -38,7 +36,7 @@ describe( 'Tooltip', () =>
         const props = {
             message     : 'Pikachu!',
             onMouseOver : onMouseOverHandler,
-            onMouseOut  : onMouseOutHandler
+            onMouseOut  : onMouseOutHandler,
         };
 
         const wrapper = mount( <Tooltip { ...props }>

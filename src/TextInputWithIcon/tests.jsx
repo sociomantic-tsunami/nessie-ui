@@ -1,5 +1,4 @@
-/* global test jest Event */
-/* eslint no-console: 0 */
+/* global Event */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React                            from 'react';
@@ -9,7 +8,7 @@ import {
     IconButton,
     InputField,
     TextInputWithIcon as WrappedTextInputWithIcon,
-    Tooltip
+    Tooltip,
 } from '../index';
 
 import { TextInputWithIcon } from './index';
@@ -73,7 +72,7 @@ describe( 'TextInputWithIcon', () =>
                 instance.handleFocus( e );
 
                 expect( onFocus ).not.toBeCalled();
-            }
+            },
         );
 
         test(
@@ -92,7 +91,7 @@ describe( 'TextInputWithIcon', () =>
                 instance.handleFocus( e );
 
                 expect( onFocus ).not.toBeCalled();
-            }
+            },
         );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -180,7 +179,7 @@ the <input> or the <button>', () =>
                 instance.handleBlur( e );
 
                 expect( onBlur ).not.toBeCalled();
-            }
+            },
         );
 
         test(
@@ -199,7 +198,7 @@ the <input> or the <button>', () =>
                 instance.handleBlur( e );
 
                 expect( onBlur ).not.toBeCalled();
-            }
+            },
         );
 
         test( 'should call e.stopPropagation exactly once when e.relatedTarget \
@@ -516,7 +515,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isDisabled : true
+                    isDisabled : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
@@ -527,7 +526,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isDisabled : true
+                    isDisabled : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
@@ -575,7 +574,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnly : true
+                    isReadOnly : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
@@ -586,7 +585,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType   : 'add',
-                    isReadOnly : true
+                    isReadOnly : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
@@ -613,7 +612,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    hasError : true
+                    hasError : true,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
@@ -624,7 +623,7 @@ the <input> or the <button>', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    hasError : true
+                    hasError : true,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'hasError' ) )
@@ -830,7 +829,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOver
+                    onMouseOver,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'onMouseOver' ) )
@@ -843,7 +842,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOver
+                    onMouseOver,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOver' ) )
@@ -874,7 +873,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOut
+                    onMouseOut,
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'onMouseOut' ) )
@@ -887,7 +886,7 @@ the <input> or the <button>', () =>
 
                 wrapper.setProps( {
                     iconType : 'add',
-                    onMouseOut
+                    onMouseOut,
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'onMouseOut' ) )
@@ -994,7 +993,7 @@ describe( 'TextInputWithIconDriver', () =>
             wrapper.setProps( {
                 hasError              : true,
                 errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true
+                errorMessageIsVisible : true,
             } );
         } );
 

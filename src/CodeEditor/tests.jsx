@@ -1,31 +1,21 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
-/* eslint no-console: 0*/
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
-
-
 
 import CodeEditor         from './index';
 
 describe( 'CodeEditor', () =>
 {
     let wrapper;
-    let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper      = shallow( <CodeEditor /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
     } );
 
     describe( 'render()', () =>
     {
-      
-
         test( 'should contain exactly one textArea', () =>
         {
             expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
@@ -142,7 +132,7 @@ it’s read only' );
         {
             wrapper.setProps( {
                 value      : 'foo',
-                isReadOnly : true
+                isReadOnly : true,
             } );
             expect( () => driver.clearInputValue() )
                 .toThrowError( 'Cannot change the CodeEditor value since \

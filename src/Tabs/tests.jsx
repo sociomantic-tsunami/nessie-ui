@@ -1,5 +1,3 @@
-/* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React              from 'react';
@@ -56,12 +54,12 @@ Tabs as children',
                 wrapper.setProps( {
                     children : [
                         <Tab label = "Tabity" />,
-                        <Tab label = "Taby" />
-                    ]
+                        <Tab label = "Taby" />,
+                    ],
                 } );
 
                 expect( driver.getTabButtons() ).toHaveLength( 2 );
-            }
+            },
         );
     } );
 
@@ -72,8 +70,8 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />
-                ]
+                    <Tab label = "Taby" />,
+                ],
             } );
 
             expect( driver.getTabButtonsByIndex( 1 ).props().label )
@@ -85,8 +83,8 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity">Ytibat</Tab>,
-                    <Tab label = "Taby">Ybat</Tab>
-                ]
+                    <Tab label = "Taby">Ybat</Tab>,
+                ],
             } );
 
             expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) ).toHaveLength( 2 );
@@ -100,8 +98,8 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />
-                ]
+                    <Tab label = "Taby" />,
+                ],
             } );
 
             expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
@@ -116,8 +114,8 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity"><div>Ytibat</div></Tab>,
-                    <Tab label = "Taby">Ybat</Tab>
-                ]
+                    <Tab label = "Taby">Ybat</Tab>,
+                ],
             } );
 
             expect( driver.getTabContent() ).toHaveLength( 1 );

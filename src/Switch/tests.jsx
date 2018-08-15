@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-return-assign */
