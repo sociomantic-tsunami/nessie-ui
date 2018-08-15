@@ -1,54 +1,46 @@
 @import "../proto/checkable.css";
 
+:root
+{
+    --dotSize:   calc( var( --spacing-3 ) / 2 );
+    --dotOffset: calc( var( --dotSize ) / 2 );
+}
+
 .default
 {
-}
-
-.label
-{
-}
-.label::before
-{
-    border-radius:      50%;
-}
-
-.input:checked + .label::after
-{
-    display:            block;
-
-    background-color:   var( --PC-BLUE );
-    border-radius:      50%;
-
-    width:              14px;
-    height:             14px;
-
-    top:                5px;
-    left:               5px;
-}
-
-.fakeHovered
-{
-}
-
-.disabled,
-.disabled:hover
-{
-    .input + .label::before
+    .label::before,
+    .label::after
     {
-        border-color: var( --PC-GREY--L70 );
+        border-radius:  50%;
     }
+
 
     .input:checked + .label::after
     {
-        background-color: var( --PC-GREY--L70 );
+        display:    block;
+
+        top:        var(--dotOffset );
+        left:       var(--dotOffset );
+
+        width:      var( --dotSize );
+        height:     var( --dotSize );
+
+        background: var( --PC-BLUE );
     }
 }
 
-.error,
-.error:hover
+.error
 {
     .input:checked + .label::after
     {
-        background-color: var( --PC-RED );
+        background: var( --PC-RED );
+    }
+}
+
+.disabled
+{
+    .input:checked + .label::after
+    {
+        background: var( --PC-GREY--L70 );
     }
 }
