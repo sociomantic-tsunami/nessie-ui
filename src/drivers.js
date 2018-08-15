@@ -42,7 +42,6 @@ import {
     PasswordInput,
     Radio,
     RadioGroup,
-    Required,
     Row,
     ScrollBar,
     ScrollBox,
@@ -284,10 +283,6 @@ const drivers =
     {
         Component : RadioGroup,
         Driver    : RadioGroupDriver,
-    },
-    {
-        Component : Required,
-        Driver    : WrapperDriver,
     },
     {
         Component : Row,
