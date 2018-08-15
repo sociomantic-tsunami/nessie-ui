@@ -15,7 +15,7 @@
 
             background:             url( './images/check.svg' );
             background-position:    center;
-            background-size:        24px;
+            background-size:        var( --spacing-3 );
             background-repeat:      no-repeat;
         }
     }
