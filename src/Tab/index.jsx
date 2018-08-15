@@ -10,11 +10,9 @@ const Tab = ( {
     cssMap,
     id = generateId( 'Tab' ),
     label,
-    onClick,
 } ) => (
     <div
         className  = { buildClassName( className, cssMap ) }
-        onClick    = { onClick }
         aria-label = { label }
         id         = { id }
         role       = "tabpanel">
@@ -44,10 +42,6 @@ Tab.propTypes =
     *  Label to show in TabButton of this tab
     */
     label     : PropTypes.string,
-    /**
-    *  onClick callback function: ( e ) => { ... }
-    */
-    onClick   : PropTypes.func,
 };
 
 Tab.defaultProps =
@@ -57,7 +51,6 @@ Tab.defaultProps =
     cssMap    : styles,
     id        : undefined,
     label     : undefined,
-    onClick   : undefined,
 };
 
 export default Tab;
