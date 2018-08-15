@@ -67,15 +67,15 @@
         color:  var( --PC-GREY--D15 );
     }
 
-    .input:checked + label::before,
-    .input:focus + label::before,
-    &.fakeHovered label::before
+    .input:checked + .label::before,
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
     {
         border-color:   var( --PC-BLUE );
     }
 
-    .input:focus + label::before,
-    &.fakeHovered label::before
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
     {
         box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
@@ -88,8 +88,8 @@
         border: 1px solid var( --PC-RED ) !important;
     }
 
-    .input:focus + label::before,
-    &.fakeHovered label::before
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
     {
         box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
     }
