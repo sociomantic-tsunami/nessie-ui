@@ -150,7 +150,6 @@
         "describe"   : true,
         "expect"     : true,
         "fetch"      : true,
-        "it"         : true,
         "test"       : true,
         "jest"       : true
     },
