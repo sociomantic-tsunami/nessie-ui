@@ -16,7 +16,6 @@ const TextInputWithDropdown = ( {
     className,
     cssMap,
     dropdownData,
-    dropdownDefaultValue,
     dropdownPlaceholder,
     dropdownPosition,
     dropdownValue,
@@ -26,7 +25,6 @@ const TextInputWithDropdown = ( {
     forceHover,
     hasError,
     id = generateId( 'TextInputWithDropdown' ),
-    inputDefaultValue,
     inputPlaceholder,
     inputRef,
     inputValue,
@@ -40,7 +38,7 @@ const TextInputWithDropdown = ( {
     onFocus,
     onMouseOver,
     onMouseOut,
-    textAlign
+    textAlign,
 } ) =>
 {
     let alignText = textAlign;
@@ -53,7 +51,7 @@ const TextInputWithDropdown = ( {
     return (
         <InputContainer
             className = { buildClassName( className, cssMap, {
-                position : dropdownPosition
+                position : dropdownPosition,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }
@@ -79,7 +77,6 @@ const TextInputWithDropdown = ( {
                         isDisabled   = { isDisabled }
                         isReadOnly   = { isReadOnly }
                         placeholder  = { inputPlaceholder }
-                        defaultValue = { inputDefaultValue }
                         forceHover   = { forceHover }
                         onBlur       = { onBlur }
                         onChange     = { onChange }
@@ -95,7 +92,6 @@ const TextInputWithDropdown = ( {
                         isDisabled   = { isDisabled }
                         isReadOnly   = { isReadOnly }
                         placeholder  = { dropdownPlaceholder }
-                        defaultValue = { dropdownDefaultValue }
                         value        = { dropdownValue }
                         forceHover   = { forceHover }
                         onBlur       = { onBlur }
@@ -117,10 +113,6 @@ TextInputWithDropdown.propTypes =
         PropTypes.arrayOf( PropTypes.object ),
         PropTypes.arrayOf( PropTypes.string ),
     ] ),
-    /**
-     * Initial dropdown selected value
-     */
-    dropdownDefaultValue  : PropTypes.string,
     /**
      *  Dropdown placeholder text
      */
@@ -157,10 +149,6 @@ TextInputWithDropdown.propTypes =
      * HTML id attribute (overwrite default)
      */
     id                    : PropTypes.string,
-    /**
-     * Initial input string value
-     */
-    inputDefaultValue     : PropTypes.string,
     /**
      *  Input placeholder text
      */
@@ -223,20 +211,18 @@ TextInputWithDropdown.defaultProps =
 {
     cssMap                : styles,
     dropdownData          : undefined,
-    dropdownDefaultValue  : undefined,
     dropdownPlaceholder   : undefined,
     dropdownPosition      : 'right',
-    dropdownValue         : undefined,
+    dropdownValue         : '',
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
     forceHover            : false,
     hasError              : false,
     id                    : undefined,
-    inputDefaultValue     : undefined,
     inputPlaceholder      : undefined,
     inputRef              : undefined,
-    inputValue            : undefined,
+    inputValue            : '',
     isDisabled            : false,
     isReadOnly            : false,
     label                 : undefined,

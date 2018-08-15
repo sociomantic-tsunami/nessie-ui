@@ -13,7 +13,6 @@ const Checkable = ( {
     hasError,
     id = generateId( 'Checkable' ),
     inputRef,
-    isDefaultChecked,
     isDisabled,
     isChecked,
     isReadOnly,
@@ -48,7 +47,6 @@ const Checkable = ( {
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
-                defaultChecked = { isDefaultChecked }
                 disabled       = { isDisabled || isReadOnly }
                 id             = { id }
                 name           = { name }
@@ -72,109 +70,104 @@ Checkable.propTypes =
     /**
      *  Label content (JSX node; overrides label prop)
      */
-    children         : PropTypes.node,
+    children    : PropTypes.node,
     /**
      *  Extra CSS class name
      */
-    className        : PropTypes.string,
+    className   : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */
-    forceHover       : PropTypes.bool,
+    forceHover  : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError         : PropTypes.bool,
+    hasError    : PropTypes.bool,
     /**
      *  HTML id attribute (override default)
      */
-    id               : PropTypes.string,
+    id          : PropTypes.string,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef         : PropTypes.func,
+    inputRef    : PropTypes.func,
     /**
      *  Display as checked (controlled input)
      */
-    isChecked        : PropTypes.bool,
-    /**
-     *  Display as checked by default (uncontrolled input)
-     */
-    isDefaultChecked : PropTypes.bool,
+    isChecked   : PropTypes.bool,
     /**
      *  Display as disabled
      */
-    isDisabled       : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly       : PropTypes.bool,
+    isReadOnly  : PropTypes.bool,
     /**
      *  Label content (string)
      */
-    label            : PropTypes.string,
+    label       : PropTypes.string,
     /**
      *  Checkbox group name
      */
-    name             : PropTypes.string,
+    name        : PropTypes.string,
     /**
      *  OnBlur callback function: ( e ) => { ... }
      */
-    onBlur           : PropTypes.func,
+    onBlur      : PropTypes.func,
     /**
      *  OnClick callback function: ( e ) => { ... }
      */
-    onClick          : PropTypes.func,
+    onClick     : PropTypes.func,
     /**
      *  OnChange callback function: ( e ) => { ... }
      */
-    onChange         : PropTypes.func,
+    onChange    : PropTypes.func,
     /**
      *  onFocus callback function: ( e ) => { ... }
      */
-    onFocus          : PropTypes.func,
+    onFocus     : PropTypes.func,
     /**
      *  onMouseOut callback function : ( e ) => { ... }
      */
-    onMouseOut       : PropTypes.func,
+    onMouseOut  : PropTypes.func,
     /**
      *  onMouseOver callback function : ( e ) => { ... }
      */
-    onMouseOver      : PropTypes.func,
+    onMouseOver : PropTypes.func,
     /**
      *  Input type
      */
-    type             : PropTypes.oneOf( [ 'checkbox', 'radio' ] ),
+    type        : PropTypes.oneOf( [ 'checkbox', 'radio' ] ),
     /**
      *  HTML value attribute
      */
-    value            : PropTypes.string,
+    value       : PropTypes.string,
 };
 
 Checkable.defaultProps =
 {
-    children         : undefined,
-    className        : undefined,
-    cssMap           : undefined,
-    forceHover       : false,
-    hasError         : false,
-    id               : undefined,
-    inputRef         : undefined,
-    isDefaultChecked : undefined,
-    isDisabled       : false,
-    isChecked        : undefined,
-    isReadOnly       : false,
-    label            : undefined,
-    name             : undefined,
-    onChange         : undefined,
-    onMouseOut       : undefined,
-    onMouseOver      : undefined,
-    type             : 'checkbox',
-    value            : undefined,
+    children    : undefined,
+    className   : undefined,
+    cssMap      : undefined,
+    forceHover  : false,
+    hasError    : false,
+    id          : undefined,
+    inputRef    : undefined,
+    isDisabled  : false,
+    isChecked   : false,
+    isReadOnly  : false,
+    label       : undefined,
+    name        : undefined,
+    onChange    : undefined,
+    onMouseOut  : undefined,
+    onMouseOver : undefined,
+    type        : 'checkbox',
+    value       : undefined,
 };
 
 export default Checkable;

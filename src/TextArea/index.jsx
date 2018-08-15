@@ -84,10 +84,6 @@ TextArea.propTypes =
     */
     errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
-     * Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      * Input string value
      */
     value                 : PropTypes.string,
@@ -137,7 +133,6 @@ TextArea.defaultProps =
 {
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -160,7 +155,7 @@ TextArea.defaultProps =
     placeholder           : undefined,
     rows                  : 3,
     textAlign             : 'left',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextArea;

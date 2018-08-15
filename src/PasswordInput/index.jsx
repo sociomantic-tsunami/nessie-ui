@@ -73,10 +73,6 @@ PasswordInput.propTypes =
      */
     errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
-     * Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      * Input string value
      */
     value                 : PropTypes.string,
@@ -158,7 +154,6 @@ PasswordInput.defaultProps =
 {
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -186,7 +181,7 @@ PasswordInput.defaultProps =
     passwordIsVisible     : undefined,
     placeholder           : undefined,
     textAlign             : 'auto',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default PasswordInput;

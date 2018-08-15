@@ -80,10 +80,6 @@ TextInput.propTypes =
     */
     errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
-     *  Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      *  Input string value
      */
     value                 : PropTypes.string,
@@ -141,7 +137,6 @@ TextInput.defaultProps =
 {
     aria                  : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -163,7 +158,7 @@ TextInput.defaultProps =
     onMouseOut            : undefined,
     onMouseOver           : undefined,
     textAlign             : undefined,
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextInput;

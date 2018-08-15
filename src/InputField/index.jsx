@@ -12,91 +12,87 @@ export default class InputField extends React.Component
         /**
          *  HTML element
          */
-        element      : PropTypes.oneOf( [ 'input', 'textarea' ] ),
+        element     : PropTypes.oneOf( [ 'input', 'textarea' ] ),
         /**
          *  HTML type attribute (input element only)
          */
-        type         : PropTypes.oneOf( [ 'text', 'password', 'number' ] ),
+        type        : PropTypes.oneOf( [ 'text', 'password', 'number' ] ),
         /**
          *  Placeholder text
          */
-        placeholder  : PropTypes.string,
+        placeholder : PropTypes.string,
         /**
          *  Alignment of the input text
          */
-        textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
+        textAlign   : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Number of rows (textarea element only)
          */
-        rows         : PropTypes.number,
+        rows        : PropTypes.number,
         /**
          * Sets the text area to be vertically resizable
          */
-        isResizable  : PropTypes.bool,
+        isResizable : PropTypes.bool,
         /**
          *  Display as disabled
          */
-        isDisabled   : PropTypes.bool,
+        isDisabled  : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly   : PropTypes.bool,
+        isReadOnly  : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError     : PropTypes.bool,
-        /**
-         *  Message to display in info icon
-         */
-        defaultValue : PropTypes.string,
+        hasError    : PropTypes.bool,
         /**
          *  Input string value
          */
-        value        : PropTypes.string,
+        value       : PropTypes.string,
         /**
          *  HTML id attribute (overwrite default)
          */
-        id           : PropTypes.string,
+        id          : PropTypes.string,
         /**
          *  HTML name attribute
          */
-        name         : PropTypes.string,
+        name        : PropTypes.string,
         /**
          *  Input change callback function
          */
-        onChange     : PropTypes.func,
+        onChange    : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick      : PropTypes.func,
+        onClick     : PropTypes.func,
         /**
          *  Input focus callback function
          */
-        onFocus      : PropTypes.func,
+        onFocus     : PropTypes.func,
         /**
          *  Input blur callback function
          */
-        onBlur       : PropTypes.func,
+        onBlur      : PropTypes.func,
         /**
          * onKeyPress callback function
          */
-        onKeyPress   : PropTypes.func,
+        onKeyPress  : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver  : PropTypes.func,
+        onMouseOver : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut   : PropTypes.func,
+        onMouseOut  : PropTypes.func,
         /**
          * Display as hover when required from another component
          */
-        forceHover   : PropTypes.bool,
+        forceHover  : PropTypes.bool,
         /**
          * Callback that receives a ref to the <input>: ( ref ) => { ... }
          */
-        inputRef     : PropTypes.func,
+        inputRef    : PropTypes.func,
     };
 
     static defaultProps =
@@ -110,6 +106,7 @@ export default class InputField extends React.Component
         hasError   : false,
         forceHover : false,
         cssMap     : styles,
+        value      : '',
     };
 
     constructor( props )
@@ -129,7 +126,6 @@ deprecated. Please use onChange instead.` );
             aria,
             className,
             cssMap,
-            defaultValue,
             element,
             forceHover,
             hasError,
@@ -153,7 +149,7 @@ deprecated. Please use onChange instead.` );
             rows,
             textAlign,
             type,
-            value
+            value,
         } = this.props;
 
         const InputElement = element || 'input';
@@ -167,9 +163,8 @@ deprecated. Please use onChange instead.` );
                     disabled    : isDisabled,
                     fakeHovered : !isDisabled && forceHover,
                     align       : textAlign,
-                    resizable   : element === 'textarea' && isResizable
+                    resizable   : element === 'textarea' && isResizable,
                 } ) }
-                defaultValue = { defaultValue }
                 disabled     = { isDisabled }
                 id           = { id }
                 name         = { name }

@@ -11,7 +11,6 @@ const TextInputWithIcon = ( {
     aria,
     className,
     cssMap,
-    defaultValue,
     errorMessage,
     errorMessageIsVisible,
     errorMessagePosition,
@@ -78,7 +77,6 @@ const TextInputWithIcon = ( {
                 <InputField
                     aria         = { aria }
                     className    = { cssMap.input }
-                    defaultValue = { defaultValue }
                     forceHover   = { forceHover }
                     hasError     = { hasError }
                     id           = { id }
@@ -290,10 +288,6 @@ TextInputWithIcon.propTypes =
         'topLeft',
     ] ),
     /**
-     *  Initial input string value
-     */
-    defaultValue    : PropTypes.string,
-    /**
      *  Input string value
      */
     value           : PropTypes.string,
@@ -368,7 +362,6 @@ TextInputWithIcon.defaultProps =
     aria                  : undefined,
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
     forceHover            : false,
@@ -401,7 +394,7 @@ TextInputWithIcon.defaultProps =
     onMouseOverIcon       : undefined,
     placeholder           : undefined,
     textAlign             : 'auto',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextInputWithIcon;
