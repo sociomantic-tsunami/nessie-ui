@@ -26,10 +26,12 @@ describe( 'PasswordInput', () =>
         expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
+
     test( 'should contain exactly one TextInputWithIcon', () =>
     {
         expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
     } );
+
 
     test( 'it should pass inputType "password" by default', () =>
     {
@@ -37,13 +39,6 @@ describe( 'PasswordInput', () =>
             .toBe( 'password' );
     } );
 
-    test( 'it should pass inputType "text" when passwordIsVisible', () =>
-    {
-        wrapper.setProps( { passwordIsVisible: true } );
-
-        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
-            .toBe( 'text' );
-    } );
 
     test( 'it should pass iconType "show" by default', () =>
     {
@@ -51,12 +46,47 @@ describe( 'PasswordInput', () =>
             .toBe( 'show' );
     } );
 
-    test( 'it should pass iconType "hide" when passwordIsVisible', () =>
-    {
-        wrapper.setProps( { passwordIsVisible: true } );
 
-        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
-            .toBe( 'hide' );
+    describe( 'passwordIsVisible', () =>
+    {
+        beforeEach( () =>
+        {
+            wrapper.setProps( { passwordIsVisible: true } );
+        } );
+
+
+        test( 'it should pass inputType "text" when passwordIsVisible', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
+                .toBe( 'text' );
+        } );
+
+        test( 'it should pass iconType "hide" when passwordIsVisible', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
+                .toBe( 'hide' );
+        } );
+
+        test( 'it should pass autoCorrect "off" when passwordIsVisible', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'autoCorrect' ) )
+                .toBe( 'off' );
+        } );
+
+        test(
+            'it should pass autoCapitalize "off" when passwordIsVisible',
+            () =>
+            {
+                expect( wrapper.find( TextInputWithIcon )
+                    .prop( 'autoCapitalize' ) ).toBe( 'off' );
+            },
+        );
+
+        test( 'it should pass spellCheck "false" when passwordIsVisible', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'spellCheck' ) )
+                .toBe( false );
+        } );
     } );
 } );
 

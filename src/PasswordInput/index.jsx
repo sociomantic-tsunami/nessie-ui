@@ -21,7 +21,7 @@ const PasswordInput = ( {
         iconType       = { passwordIsVisible ? 'hide' : 'show' }
         autoCorrect    = { passwordIsVisible ? 'off' : null }
         autoCapitalize = { passwordIsVisible ? 'off' : null }
-        spellCheck     = { passwordIsVisible ? 'false' : null } />
+        spellCheck     = { passwordIsVisible ? false : null } />
 );
 
 
