@@ -85,7 +85,7 @@ describe( 'PasswordInput', () =>
         test( 'it should pass spellCheck "false" when passwordIsVisible', () =>
         {
             expect( wrapper.find( TextInputWithIcon ).prop( 'spellCheck' ) )
-                .toBe( false );
+                .toBeFalsy();
         } );
     } );
 } );
