@@ -30,13 +30,28 @@
     {
         position:   absolute;
         left:       -9999px;
+
+        &:focus
+        {
+            & + .label
+            {
+                outline:        none;
+
+                border:         1px solid var( --PC-BLUE );
+                box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+                &::before
+                {
+                    border-color:   var( --PC-BLUE );
+                    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+                }
+            }
+        }
     }
 
     .label
     {
         display:        flex;
-
-        box-sizing:     border-box;
 
         width:          var( --trackWidth );
         height:         var( --trackHeight );
@@ -84,16 +99,6 @@
         {
             left:           calc( 100% - var( --circleSize ) );
             border-color:   var( --PC-BLUE );
-        }
-    }
-
-    .input:focus
-    {
-        & + .label
-        {
-            /* mimic native browser focus */
-            outline:    auto 2px highlight;
-            outline:    auto 5px -webkit-focus-ring-color;
         }
     }
 }

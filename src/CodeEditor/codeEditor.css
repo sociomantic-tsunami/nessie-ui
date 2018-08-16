@@ -6,19 +6,14 @@
     .editor
     {
         height: auto;
-
-        .fakeHovered&
-        {
-            /* browser default focus style */
-            outline: auto 2px highlight;
-            outline: auto 5px -webkit-focus-ring-color;
-        }
     }
 
     :global .CodeMirror
     {
         box-sizing:     border-box;
         height:         100%;
+        border:         1px solid var( --PC-GREY--L70 );
+        border-radius:  2px;
 
         font-family:    monospace, sans-serif;
         font-size:      var( --typo-3 );
@@ -27,6 +22,27 @@
         &-scroll
         {
             overscroll-behavior-y:  contain;
+        }
+    }
+}
+
+.fakeHovered
+{
+    :global .CodeMirror
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+}
+
+.error
+{
+    :global .CodeMirror
+    {
+        border-color:   var( --PC-RED );
+        .fakeHovered&
+        {
+            box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
         }
     }
 }

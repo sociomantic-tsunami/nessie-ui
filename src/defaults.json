@@ -7,6 +7,11 @@
     {
         "label" : "Click me!"
     },
+    "Card" :
+    {
+        "children" : "{<TextInput label='Your name'/>}",
+        "padding"  : "S"
+    },
     "CheckableGroup" :
     {
         "label" : "What’s your favorite fruit?",
@@ -281,7 +286,7 @@
     },
     "StatusIndicator" :
     {
-        "label" :  "Deactivated"
+        "label" :  "Active"
     },
     "Tab" :
     {
@@ -338,6 +343,13 @@
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
+    },
+    "TextInputWithIcon" :
+    {
+        "label"            : "Name",
+        "inputPlaceholder" : "name",
+        "inputType"        : "text",
+        "iconType"         : "show"
     },
     "ToggleButton" : {
       "label": "Toggle me tender",

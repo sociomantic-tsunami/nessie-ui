@@ -4,22 +4,29 @@
 {
     width:          auto;
 
-    margin:         0;
     margin-bottom:  var( --spacing-1 );
 
-    @extend %Nessie-Regular;
-
-    font-size:      var( --typo-3 );
     line-height:    var( --line-height-m );
-    letter-spacing: 0;
-
     text-transform: none;
 
     .default
     {
-        display:    inline;
-        position:   static;
+        display:        inline;
+        position:       static;
+
+        color:          inherit;
+        font:           inherit;
+        text-align:     inherit;
+        text-transform: inherit;
+        white-space:    inherit;
     }
+}
+
+.overflowHidden
+{
+    overflow:       hidden;
+    overflow-wrap:  normal;
+    text-overflow:  ellipsis;
 }
 
 .noWrap
@@ -27,9 +34,15 @@
     white-space: nowrap;
 }
 
+.allCaps
+{
+    text-transform: uppercase;
+}
+
+/* ROLES */
 .role__default
 {
-    /* color:  var( --PC-GREY--L10 ); */
+    color:  inherit;
 }
 
 .role__subtle
@@ -47,9 +60,85 @@
     color:  var( --PC-RED );
 }
 
-.overflowHidden
+/* SIZES */
+.size__XXS
 {
-    overflow:       hidden;
-    overflow-wrap:  normal;
-    text-overflow:  ellipsis;
+    font-size:  var( --typo-1 );
+}
+
+.size__XS
+{
+    font-size:  11px;
+}
+
+.size__S
+{
+    font-size:  var( --typo-2 );
+}
+
+.size__M
+{
+    font-size:  var( --typo-3 );
+}
+
+.size__L
+{
+    font-size:  var( --typo-4 );
+}
+
+.size__XL
+{
+    font-size:  var( --typo-5 );
+}
+
+.size__XXL
+{
+    font-size:  var( --typo-6 );
+}
+
+.size__XXXL
+{
+    font-size:  22px;
+}
+
+/* STYLE */
+.variant__Light
+{
+    @extend %Nessie-Light;
+}
+
+.variant__Regular
+{
+    @extend %Nessie-Regular;
+}
+
+.variant__RegularIt
+{
+    @extend %Nessie-RegularIt;
+}
+
+.variant__SemiBold
+{
+    @extend %Nessie-SemiBold;
+}
+
+.variant__Bold
+{
+    @extend %Nessie-Bold;
+}
+
+/* TEXT ALIGN */
+.textAlign__left
+{
+    text-align: left;
+}
+
+.textAlign__center
+{
+    text-align: center;
+}
+
+.textAlign__right
+{
+    text-align: right;
 }

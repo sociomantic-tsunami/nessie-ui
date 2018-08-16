@@ -5,7 +5,6 @@ import { ReactWrapper, mount, shallow } from 'enzyme';
 
 import { TextInputWithIcon }            from '../index';
 
-
 import PasswordInput                    from './index';
 
 
@@ -20,22 +19,15 @@ describe( 'PasswordInput', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name PasswordInput', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'PasswordInput' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one TextInputWithIcon', () =>
     {
-        test( 'should contain exactly one TextInputWithIcon', () =>
-        {
-            expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );
     } );
-
 
     test( 'it should pass inputType "password" by default', () =>
     {

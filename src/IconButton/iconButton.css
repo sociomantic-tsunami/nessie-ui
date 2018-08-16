@@ -1,28 +1,52 @@
 @import "../proto/base.css";
 
+:root
+{
+    --sqrt2: 1.4142135623730951; /* Math.sqrt( 2 ) */
+}
+
 .default
 {
-    display:         flex;
-    justify-content: center;
-    appearance: none !important;
+    appearance:         none !important;
 
-    width:      auto;
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
 
-    margin:     0;
-    border:     none;
-    padding:    0;
+    width:              auto;
 
-    background: transparent;
-    cursor:     pointer;
+    margin:             0;
+    padding:            0;
+    border:             none;
 
-    &:focus
-    {
-        outline:    none;
-    }
+    background:         transparent;
+    cursor:             pointer;
 
     .icon
     {
         flex:   none;
+    }
+
+    &:focus
+    {
+        outline:    none;
+
+        &::after
+        {
+            content:        '';
+
+            position:       absolute;
+            top:            calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+            bottom:         calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+            left:           calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+            right:          calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+
+            border:         1px solid transparent;
+            border-radius:  50%;
+
+            border-color:   var( --PC-BLUE );
+            box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        }
     }
 }
 
@@ -35,8 +59,21 @@
 
 .background
 {
-    padding:            var( --spacing-1 );
-    background-color:   var( --PC-WHITE );
-    border-radius:      50%;
-    opacity:            0.9
+    border:         1px solid transparent;
+    border-radius:  50%;
+    padding:        calc( var( --spacing-1 ) - 1px );
+
+    background:     var( --PC-WHITE );
+    opacity:        0.9;
+
+    &:focus
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        &::after
+        {
+            display:    none;
+        }
+    }
 }

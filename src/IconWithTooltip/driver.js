@@ -1,12 +1,13 @@
 import SimpleComponentDriver
     from '../Testing/CommonDrivers/simpleComponentDriver';
+import { Tooltip } from 'nessie-ui';
 
 export default class IconWithTooltipDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
         super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
-        this.tooltip = wrapper.find( 'IconWithTooltip > Tooltip' ).first();
+        this.tooltip = wrapper.children( Tooltip ).first();
     }
 
     mouseOverIcon()

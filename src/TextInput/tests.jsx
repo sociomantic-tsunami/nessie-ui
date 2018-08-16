@@ -6,7 +6,6 @@ import { mount, shallow } from 'enzyme';
 import { InputField }     from '../index';
 import InputContainer     from '../proto/InputContainer';
 
-
 import TextInput          from './index';
 
 
@@ -21,25 +20,19 @@ describe( 'TextInput', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextInput', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextInput' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one InputContainer', () =>
     {
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
+    test( 'should contain exactly one InputField', () =>
+    {
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
     } );
 } );
 

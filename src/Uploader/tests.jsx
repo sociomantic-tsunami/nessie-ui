@@ -17,6 +17,11 @@ describe( 'Uploader', () =>
             wrapper = mount( <Uploader /> );
         } );
 
+        test( 'it should render an <input type="file">', () =>
+        {
+            expect( wrapper.find( 'input' ).prop( 'type' ) ).toBe( 'file' );
+        } );
+
         test( 'should render component based on Button iconType=upload', () =>
         {
             expect( wrapper.find( 'Button', 'Uploader', 'Icon' ) )

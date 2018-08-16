@@ -3,24 +3,6 @@ Component Description
 
 A Nessie Table component wraps a group of Nessie TableRow's containing Nessie TableCell's. It also provides a convenience method for building a table from a 2D array of strings.
 
-On small screens the tables are re-arranged. For example, the following table:
-
-    | Action | Date       | Comments     |
-    |--------|------------|--------------|
-    | Create | 2016/06/10 | Made a thing |
-    | ...    | ...        | ...          |
-
-becomes:
-
-    | Action   | Create       |
-    | Date     | 2016/06/10   |
-    | Comments | Made a thing |
-    |----------|--------------|
-    | Action   | ...          |
-    | Date     | ...          |
-    | Comments | ...          |
-
-
 Example Usage
 -------------
 
@@ -57,23 +39,22 @@ Table built by wrapping Nessie TableRows:
 
 or with columns defined in props:
 
-    <Table columns = {
-        [
+    <Table columns = { [
+          {
             title       : 'Action',
             size        : '1/4',
-            isSortable  : true
-        ],
-        [
+            isSortable  : true,
+          },
+          {
             title       : 'Date',
             size        : '1/4',
             isSortable  : true
-        ],
-        [
+          },
+          {
             title       : 'Comments',
             size        : '1/2',
             isSortable  : false
-        ]
-    }>
+          } ] }>
         <TableRow>
             <TableCell>Create</TableCell>
             <TableCell>2016/06/10</TableCell>
@@ -99,21 +80,22 @@ or with columns defined in props:
 
 or built from a 2D array of strings:
 
-    <Table columns  = { [
-                            title       : 'Action',
-                            size        : '1/4',
-                            isSortable  : true
-                        ],
-                        [
-                            title       : 'Date',
-                            size        : '1/4',
-                            isSortable  : true
-                        ],
-                        [
-                            title       : 'Comments',
-                            size        : '1/2',
-                            isSortable  : false
-                        ] }
+    <Table columns = { [
+              {
+                title       : 'Action',
+                size        : '1/4',
+                isSortable  : true,
+              },
+              {
+                title       : 'Date',
+                size        : '1/4',
+                isSortable  : true
+              },
+              {
+                title       : 'Comments',
+                size        : '1/2',
+                isSortable  : false
+              }  ] }
            values   = { [
                             ["Create", "2016/06/10", "Made a thing"],
                             ["Delete", "2016/06/10", "Erased a thing"],
