@@ -81,20 +81,39 @@
         height:             var( --handleSize );
 
         border-radius:      50%;
-        border:             var( --trackBorderWidth ) solid var( --PC-GREY--L70 );
-        background-color:   var( --PC-WHITE );
+        background-color:   var( --PC-BLUE );
 
         cursor:             grab;
+
+        z-index:            9999;
 
         &:active
         {
             cursor:         grabbing;
         }
+        &::after
+        {
+          transition: opacity 450ms;
+          content: '';
+          position: absolute;
+          background-color:  var( --PC-BLUE--D15 );
+          opacity: 0;
+          width: 24px;
+          height: 24px;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+        }
+
     }
 
     .handleFocus
     {
-        box-shadow:         0 0 2pt 1pt var( --PC-BLUE );
+      &::after
+      {
+        opacity: .2;
+      }
     }
 
     .handleLabel
@@ -345,25 +364,34 @@
 
 .disabled
 {
-    .track:hover .handle
+
+    .track:hover
     {
-        border-color:   var( --PC-GREY--L85 );
+      cursor: default;
+      .handle
+      {
+          border-color:   var( --PC-GREY--L85 );
+      }
     }
 
     .trackFill
     {
-        background:         var( --PC-GREY--L70 );
+        background:         var( --PC-BLUE--L70 );
+        cursor: default;
     }
 
     .handle
     {
-        background:         var( --PC-GREY--L95 );
-        border-color:       var( --PC-GREY--L85 );
+        background:         var( --PC-BLUE--L70 );
         cursor:             default;
 
         &:active
         {
             cursor:         default;
+            &::after
+            {
+              content: none;
+            }
         }
     }
 

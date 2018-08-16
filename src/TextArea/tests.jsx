@@ -1,13 +1,12 @@
-/* global jest test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React                from 'react';
-import { shallow, mount }   from 'enzyme';
+import React              from 'react';
+import { shallow, mount } from 'enzyme';
 
-import { InputField }       from '../index';
-import InputContainer       from '../proto/InputContainer';
+import { InputField }     from '../index';
+import InputContainer     from '../proto/InputContainer';
 
-import TextArea             from './index';
+import TextArea           from './index';
 
 
 describe( 'TextArea', () =>
@@ -21,31 +20,25 @@ describe( 'TextArea', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextArea', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextArea' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one InputContainer', () =>
     {
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
+    test( 'should contain exactly one InputField', () =>
+    {
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
+    } );
 
-        test( 'InputField should have element="textarea"', () =>
-        {
-            expect( wrapper.find( InputField ).prop( 'element' ) )
-                .toBe( 'textarea' );
-        } );
+    test( 'InputField should have element="textarea"', () =>
+    {
+        expect( wrapper.find( InputField ).prop( 'element' ) )
+            .toBe( 'textarea' );
     } );
 } );
 
@@ -75,7 +68,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -85,7 +78,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -100,7 +93,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -110,7 +103,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -138,7 +131,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -148,7 +141,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -163,7 +156,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -173,7 +166,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -201,7 +194,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -211,7 +204,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -226,7 +219,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -236,7 +229,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -264,7 +257,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -274,7 +267,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -289,7 +282,7 @@ describe( 'TextAreaDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -299,7 +292,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

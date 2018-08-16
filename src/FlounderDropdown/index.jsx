@@ -432,7 +432,7 @@ export default class FlounderDropdown extends Component
                     headerLevel,
                     toggleIcon  : icon,
                     error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && !hasError && forceHover,
+                    fakeHovered : !isDisabled && forceHover,
                 } ) }>
                 <InputContainer { ...props } label = { !isHeader && label }>
                     <div ref = { this.handleRef } />

@@ -28,16 +28,16 @@ const Icon = ( {
 
     return (
         <svg
+            aria-label   = { children || label }
             className = { buildClassName( className, cssMap, {
-                fakeHovered : !isDisabled && forceHover,
                 disabled    : isDisabled,
+                fakeHovered : !isDisabled && forceHover,
+                size,
                 theme,
                 type,
-                size,
             } ) }
-            aria-label   = { children || label }
-            onMouseLeave = { onMouseOut }
-            onMouseEnter = { onMouseOver }>
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
             { xLink && <use xlinkHref = { xLink } /> }
         </svg>
     );
@@ -96,17 +96,17 @@ Icon.propTypes =
      */
     type : PropTypes.oneOf( [
         'account',
-        'add',
         'add-circle',
+        'add',
         'alert',
         'approved',
         'arrow',
         'bell',
         'board',
         'calendar',
-        'close',
         'close-circle',
         'close-thick',
+        'close',
         'dash',
         'dashboard',
         'declined',
@@ -114,8 +114,8 @@ Icon.propTypes =
         'down',
         'download',
         'duplicate',
-        'edit',
         'edit-circle',
+        'edit',
         'ended',
         'error',
         'file',
@@ -135,8 +135,8 @@ Icon.propTypes =
         'right',
         'search',
         'show',
-        'star',
         'star-stroke',
+        'star',
         'swap',
         'table',
         'up',

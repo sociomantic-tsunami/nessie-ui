@@ -1,6 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
-
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 

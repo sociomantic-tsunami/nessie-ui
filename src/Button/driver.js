@@ -42,7 +42,7 @@ export default class ButtonDriver
             throw new Error( ERRORS
                 .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
         }
-
+        console.log( this.button.debug() );
         this.button.simulate( 'click' );
         return this;
     }

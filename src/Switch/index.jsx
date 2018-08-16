@@ -53,7 +53,7 @@ Switch.propTypes =
     /**
      * extra CSS classname
      */
-    className        : PropTypes.bool,
+    className        : PropTypes.string,
     /**
      * CSS classname map
      */

@@ -1,4 +1,3 @@
-/* global jest test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React                from 'react';
@@ -74,7 +73,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -84,7 +83,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -99,7 +98,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -109,7 +108,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -137,7 +136,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -147,7 +146,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -162,7 +161,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -172,7 +171,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -200,7 +199,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -210,7 +209,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -238,7 +237,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -248,7 +247,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -263,7 +262,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -273,7 +272,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -304,7 +303,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -314,7 +313,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -329,7 +328,7 @@ describe( 'ValuedTextInput', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -339,7 +338,7 @@ describe( 'ValuedTextInput', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

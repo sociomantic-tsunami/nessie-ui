@@ -25,7 +25,7 @@ const Grid = ( {
     if ( deprecatedSpacingOptions.includes( spacing ) &&
         !Grid.didWarn[ spacing ] )
     {
-        console.warn( `Grid spacing option '${spacing}' is depreacted. Please \
+        console.warn( `Grid spacing option '${spacing}' is deprecated. Please \
 use one of 'S', 'M', 'L' or 'none' instead.` );
         Grid.didWarn[ spacing ] = true;
     }

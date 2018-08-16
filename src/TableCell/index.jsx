@@ -17,11 +17,30 @@ const TableCell = ( {
     isSticky,
     onToggle,
     sort,
+    textProps = {},
     ...props
 } ) =>
 {
-    let contentNode = typeof children === 'string' ?
-        <Text className = { cssMap.text }>{ children }</Text> : children;
+    let headerStyle = {};
+
+    if ( isHeader || isRowHeader )
+    {
+        headerStyle.allCaps = true;
+        headerStyle.color = '#4b627d';
+        headerStyle.letterSpacing = '0.5';
+        headerStyle.size = 'S';
+        headerStyle.variant = 'SemiBold';
+    }
+
+    headerStyle = { ...headerStyle, ...textProps };
+
+    const tableCellText = ( <Text
+        className = { cssMap.text }
+        { ...headerStyle } >
+        { children }
+    </Text> );
+
+    let contentNode = typeof children === 'string' ? tableCellText : children;
 
     if ( isHeader && isSortable )
     {
@@ -40,7 +59,7 @@ const TableCell = ( {
                 rowHeader : isRowHeader,
                 sticky    : isSticky,
             } ) }
-            role          = { isHeader ? 'columnheader' : 'gridcell' }>
+            role      = { isHeader ? 'columnheader' : 'gridcell' }>
             { contentNode }
         </Column>
     );
@@ -120,7 +139,14 @@ TableCell.propTypes =
     /**
      *  Sort direction
      */
-    sort          : PropTypes.oneOf( [ 'asc', 'desc', 'none' ] ),
+    sort      : PropTypes.oneOf( [ 'asc', 'desc', 'none' ] ),
+    /**
+     *  Text style configuration
+     */
+    textProps : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.string,
+    ] ) ),
     /**
      *  Vertical alignment of content (“auto” is equivalent to “top”)
      */
@@ -139,6 +165,7 @@ TableCell.defaultProps =
     isSticky      : false,
     size          : undefined,
     sort          : 'none',
+    textProps     : undefined,
     verticalAlign : undefined,
 };
 

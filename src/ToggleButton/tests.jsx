@@ -1,6 +1,4 @@
-/* global jest, test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-
 
 import React               from 'react';
 import { shallow, mount }  from 'enzyme';
@@ -184,7 +182,7 @@ describe( 'ButtonDriver', () =>
 
     describe( 'constructor', () =>
     {
-        it( 'assigns the <button> to this.button', () =>
+        test( 'assigns the <button> to this.button', () =>
         {
             expect( driver.button.getNode() ).toEqual( button.getNode() );
         } );
@@ -192,19 +190,19 @@ describe( 'ButtonDriver', () =>
 
     describe( 'click', () =>
     {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.click();
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'click\'', () =>
+        test( 'calls simulate( event ) with event \'click\'', () =>
         {
             driver.click();
             expect( simulate ).toBeCalledWith( 'click' );
         } );
 
-        it( 'returns the driver instance', () =>
+        test( 'returns the driver instance', () =>
         {
             expect( driver.click() ).toEqual( driver );
         } );
@@ -212,7 +210,7 @@ describe( 'ButtonDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
@@ -222,7 +220,7 @@ describe( 'ButtonDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
@@ -234,7 +232,7 @@ describe( 'ButtonDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -244,7 +242,7 @@ since it is read only';
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -257,19 +255,19 @@ since it is read only';
 
     describe( 'mouseOver()', () =>
     {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.mouseOver();
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'mouseenter\'', () =>
+        test( 'calls simulate( event ) with event \'mouseenter\'', () =>
         {
             driver.mouseOver();
             expect( simulate ).toBeCalledWith( 'mouseenter' );
         } );
 
-        it( 'returns the driver instance', () =>
+        test( 'returns the driver instance', () =>
         {
             expect( driver.click() ).toEqual( driver );
         } );
@@ -277,7 +275,7 @@ since it is read only';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -287,7 +285,7 @@ onMouseOver since it is disabled';
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -300,19 +298,19 @@ onMouseOver since it is disabled';
 
     describe( 'mouseOut()', () =>
     {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.mouseOut();
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'mouseleave\'', () =>
+        test( 'calls simulate( event ) with event \'mouseleave\'', () =>
         {
             driver.mouseOut();
             expect( simulate ).toBeCalledWith( 'mouseleave' );
         } );
 
-        it( 'returns the driver instance', () =>
+        test( 'returns the driver instance', () =>
         {
             expect( driver.click() ).toEqual( driver );
         } );
@@ -320,7 +318,7 @@ onMouseOver since it is disabled';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -330,7 +328,7 @@ onMouseOut since it is disabled';
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -343,19 +341,19 @@ onMouseOut since it is disabled';
 
     describe( 'blur()', () =>
     {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.blur();
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'blur\'', () =>
+        test( 'calls simulate( event ) with event \'blur\'', () =>
         {
             driver.blur();
             expect( simulate ).toBeCalledWith( 'blur' );
         } );
 
-        it( 'returns the driver instance', () =>
+        test( 'returns the driver instance', () =>
         {
             expect( driver.click() ).toEqual( driver );
         } );
@@ -363,7 +361,7 @@ onMouseOut since it is disabled';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -373,7 +371,7 @@ since it is disabled';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -385,7 +383,7 @@ since it is disabled';
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -395,7 +393,7 @@ since it is read only';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -408,19 +406,19 @@ since it is read only';
 
     describe( 'focus()', () =>
     {
-        it( 'calls simulate( event ) exactly once on the <button>', () =>
+        test( 'calls simulate( event ) exactly once on the <button>', () =>
         {
             driver.focus();
             expect( simulate ).toBeCalledTimes( 1 );
         } );
 
-        it( 'calls simulate( event ) with event \'focus\'', () =>
+        test( 'calls simulate( event ) with event \'focus\'', () =>
         {
             driver.focus();
             expect( simulate ).toBeCalledWith( 'focus' );
         } );
 
-        it( 'returns the driver instance', () =>
+        test( 'returns the driver instance', () =>
         {
             expect( driver.click() ).toEqual( driver );
         } );
@@ -428,7 +426,7 @@ since it is read only';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -438,7 +436,7 @@ since it is disabled';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -450,7 +448,7 @@ since it is disabled';
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -460,7 +458,7 @@ since it is read only';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 

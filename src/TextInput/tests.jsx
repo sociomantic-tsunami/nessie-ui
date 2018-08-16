@@ -1,4 +1,3 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
@@ -21,25 +20,19 @@ describe( 'TextInput', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name TextInput', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'TextInput' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should contain exactly one InputContainer', () =>
     {
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
+    } );
 
-        test( 'should contain exactly one InputField', () =>
-        {
-            expect( wrapper.find( InputField ) ).toHaveLength( 1 );
-        } );
+    test( 'should contain exactly one InputField', () =>
+    {
+        expect( wrapper.find( InputField ) ).toHaveLength( 1 );
     } );
 } );
 
@@ -73,7 +66,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -83,7 +76,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -98,7 +91,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -108,7 +101,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -136,7 +129,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -146,7 +139,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -161,7 +154,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -171,7 +164,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -199,7 +192,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -209,7 +202,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -237,7 +230,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -247,7 +240,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -262,7 +255,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -272,7 +265,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -303,7 +296,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -313,7 +306,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -328,7 +321,7 @@ describe( 'TextInputDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -338,7 +331,7 @@ describe( 'TextInputDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

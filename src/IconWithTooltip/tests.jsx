@@ -1,4 +1,3 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
 import React                from 'react';
@@ -125,7 +124,7 @@ describe( 'IconWithTooltipDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -134,7 +133,7 @@ describe( 'IconWithTooltipDriver', () =>
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper, 'simulate' );
 
@@ -162,7 +161,7 @@ describe( 'IconWithTooltipDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -171,7 +170,7 @@ describe( 'IconWithTooltipDriver', () =>
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper, 'simulate' );
 
@@ -199,7 +198,7 @@ describe( 'IconWithTooltipDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -209,7 +208,7 @@ describe( 'IconWithTooltipDriver', () =>
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper, 'simulate' );
 
@@ -237,7 +236,7 @@ describe( 'IconWithTooltipDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -247,7 +246,7 @@ describe( 'IconWithTooltipDriver', () =>
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper, 'simulate' );
 

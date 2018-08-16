@@ -1,6 +1,4 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
-/* eslint no-console: 0*/
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
@@ -64,7 +62,7 @@ describe( 'CodeEditorDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -74,7 +72,7 @@ blur since it is disabled';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -91,7 +89,7 @@ blur since it is disabled';
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -101,7 +99,7 @@ blur since it is read only';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -132,7 +130,7 @@ blur since it is read only';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -142,7 +140,7 @@ focus since it is disabled';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -159,7 +157,7 @@ focus since it is disabled';
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -169,7 +167,7 @@ focus since it is read only';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -200,7 +198,7 @@ focus since it is read only';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -211,7 +209,7 @@ changed since it is disabled';
                     .toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -228,7 +226,7 @@ changed since it is disabled';
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -239,7 +237,7 @@ changed since it is read only';
                     .toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const onChange = jest.fn();
 
@@ -268,7 +266,7 @@ changed since it is read only';
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
-        it( 'throws the expected error when isDisabled', () =>
+        test( 'throws the expected error when isDisabled', () =>
         {
             wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -278,7 +276,7 @@ onMouseOut since it is disabled';
             expect( () => driver.mouseOut() ).toThrow( expectedError );
         } );
 
-        it( 'does not call simulate( event ) when isDisabled', () =>
+        test( 'does not call simulate( event ) when isDisabled', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
@@ -308,7 +306,7 @@ onMouseOut since it is disabled';
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -318,7 +316,7 @@ onMouseOut since it is disabled';
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {

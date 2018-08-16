@@ -1,4 +1,3 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React        from 'react';
@@ -415,7 +414,7 @@ describe( 'SliderDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
             } );
 
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError = 'Slider \'Cthulhu\' cannot be \
 changed since it is disabled';
@@ -423,7 +422,7 @@ changed since it is disabled';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -441,7 +440,7 @@ changed since it is disabled';
                 wrapper.setProps( { isReadOnly: true } );
             } );
 
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError = 'Slider \'Cthulhu\' cannot be \
 changed since it is read only';
@@ -449,7 +448,7 @@ changed since it is read only';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

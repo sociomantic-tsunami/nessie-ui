@@ -14,10 +14,6 @@ const ERRORS = {
 
     PASS_CANNOT_CLICKICON : ( label, state ) =>
         `PasswordInput '${label}' cannot have onClickIcon since it is ${state}`,
-    PASS_CANNOT_BE_BLUREDICON : ( label, state ) =>
-        `PasswordInput '${label}' cannot have onBlurIcon since it is ${state}`,
-    PASS_CANNOT_BE_FOCUSEDICON : ( label, state ) =>
-        `PasswordInput '${label}' cannot have onFocusIcon since it is ${state}`,
     PASS_CANNOT_MOUSEOVERICON : ( label, state ) =>
         `PasswordInput '${label}' cannot have onMouseOverIcon since it is \
 ${state}`,
@@ -156,48 +152,6 @@ export default class PasswordInput
         }
 
         this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
-
-    blurIcon()
-    {
-        const props = this.wrapper.props();
-        const { label } = props;
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERRORS
-                .PASS_CANNOT_BE_BLUREDICON( label, 'disabled' ) );
-        }
-
-        if ( props.isReadOnly )
-        {
-            throw new Error( ERRORS
-                .PASS_CANNOT_BE_BLUREDICON( label, 'read only' ) );
-        }
-
-        this.wrapper.find( 'IconButton' ).driver().blur();
-        return this;
-    }
-
-    focusIcon()
-    {
-        const props = this.wrapper.props();
-        const { label } = props;
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERRORS
-                .PASS_CANNOT_BE_FOCUSEDICON( label, 'disabled' ) );
-        }
-
-        if ( props.isReadOnly )
-        {
-            throw new Error( ERRORS
-                .PASS_CANNOT_BE_FOCUSEDICON( label, 'read only' ) );
-        }
-
-        this.wrapper.find( 'IconButton' ).driver().focus();
         return this;
     }
 

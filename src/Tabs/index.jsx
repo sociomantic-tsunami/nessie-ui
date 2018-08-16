@@ -1,8 +1,8 @@
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import TabButton                        from '../TabButton';
+import { generateId, buildClassName } from '../utils';
+import TabButton                      from '../TabButton';
 
 
 export default class Tabs extends React.Component
@@ -12,27 +12,32 @@ export default class Tabs extends React.Component
         /**
          *  The active tab index
          */
-        activeTabIndex : PropTypes.number,
+        activeTabIndex    : PropTypes.number,
         /**
          *  A set of <Tab> components
          */
-        children       : PropTypes.node,
+        children          : PropTypes.node,
         /**
          * HTML id attribute (overwrite default)
          */
-        id             : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  onChange callback function: ( e, newProps ) => { ... }
          */
-        onChange       : PropTypes.func,
+        onChange          : PropTypes.func,
+        /**
+         *  Secondary Control in Tabs Header
+         */
+        secondaryControls : PropTypes.node,
     };
 
 
     static defaultProps =
     {
-        activeTabIndex : 0,
-        cssMap         : require( './tabs.css' ),
-        id             : undefined,
+        activeTabIndex    : 0,
+        cssMap            : require( './tabs.css' ),
+        id                : undefined,
+        secondaryControls : undefined,
     };
 
     constructor( props )
@@ -89,22 +94,32 @@ export default class Tabs extends React.Component
     {
         const {
             activeTabIndex,
+            className,
             children,
             cssMap,
             id = generateId( 'Tabs' ),
+            secondaryControls,
         } = this.props;
 
-        const header = this.renderHeader( children );
+        const tabButtons = this.renderHeader( children );
 
         const content = Array.isArray( children ) ?
             children[ activeTabIndex ] : children;
 
         return (
-            <div className = { cssMap.default } id = { id } >
+            <div
+                className = { buildClassName( className, cssMap ) }
+                id = { id } >
                 <div className = { cssMap.header }>
-                    { header }
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
+                    { secondaryControls &&
+                        <div className = { cssMap.secondaryControls }>
+                            { secondaryControls }
+                        </div>
+                    }
                 </div>
-
                 <div className = { cssMap.content }>
                     { content }
                 </div>

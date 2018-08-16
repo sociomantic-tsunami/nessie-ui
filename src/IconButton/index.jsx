@@ -3,6 +3,7 @@ import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
 import Icon                             from '../Icon';
+import styles                           from './iconButton.css';
 
 const killFocus = e => e.preventDefault();
 
@@ -11,39 +12,49 @@ export default class IconButton extends React.Component
     static propTypes =
     {
         /**
-         *  Label text
+         * Callback that receives a ref to the <button>: ( ref ) => { ... }
          */
-        label    : PropTypes.string,
+        buttonRef     : PropTypes.func,
+        /**
+         *  extra CSS class name
+         */
+        className     : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Label text (overrides label prop)
          */
-        children : PropTypes.string,
+        children      : PropTypes.string,
+        /**
+         * Display as hover when required from another component
+         */
+        forceHover    : PropTypes.bool,
+        /**
+         * Adds a background to the icon
+         */
+        hasBackground : PropTypes.bool,
         /**
          *  Icon size to display
          */
-        iconSize : PropTypes.oneOf( [
-            'S',
-            'M',
-            'L',
-            'XL',
-            'XXL',
-        ] ),
+        iconSize      : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
         /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType : PropTypes.oneOf( [
+        iconType      : PropTypes.oneOf( [
             'account',
-            'add',
             'add-circle',
+            'add',
             'alert',
             'approved',
             'arrow',
             'bell',
             'board',
             'calendar',
-            'close',
             'close-circle',
             'close-thick',
+            'close',
             'dash',
             'dashboard',
             'declined',
@@ -51,8 +62,8 @@ export default class IconButton extends React.Component
             'down',
             'download',
             'duplicate',
-            'edit',
             'edit-circle',
+            'edit',
             'ended',
             'error',
             'file',
@@ -72,8 +83,8 @@ export default class IconButton extends React.Component
             'right',
             'search',
             'show',
-            'star',
             'star-stroke',
+            'star',
             'swap',
             'table',
             'up',
@@ -85,69 +96,79 @@ export default class IconButton extends React.Component
          *  Icon theme
          */
         iconTheme : PropTypes.oneOf( [
-            'light',
-            'dark',
             'button',
             'control',
+            'dark',
+            'light',
             'navigation',
         ] ),
         /**
-         *  Button is focusable
+         * HTML id attribute
          */
-        isFocusable   : PropTypes.bool,
+        id          : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled    : PropTypes.bool,
+        isDisabled  : PropTypes.bool,
+        /**
+         *  Button is focusable
+         */
+        isFocusable : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly    : PropTypes.bool,
+        isReadOnly  : PropTypes.bool,
         /**
-         *  HTML value attribute
+         *  Label text
          */
-        value         : PropTypes.string,
-        /**
-         * HTML id attribute (overwrite default)
-         */
-        id            : PropTypes.string,
-        /**
-         *  Button focus callback function
-         */
-        onFocus       : PropTypes.func,
+        label       : PropTypes.string,
         /**
          *  Button blur callback function
          */
-        onBlur        : PropTypes.func,
+        onBlur      : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClick       : PropTypes.func,
+        onClick     : PropTypes.func,
         /**
-         * Display as hover when required from another component
+         *  Button focus callback function
          */
-        forceHover    : PropTypes.bool,
+        onFocus     : PropTypes.func,
         /**
-         * Callback that receives a ref to the <button>: ( ref ) => { ... }
+         *  onMouseOut callback function : ( e ) => { ... }
          */
-        buttonRef     : PropTypes.func,
+        onMouseOut  : PropTypes.func,
         /**
-         * Adds a background to the icon
+         *  onMouseOver callback function : ( e ) => { ... }
          */
-        hasBackground : PropTypes.bool,
+        onMouseOver : PropTypes.func,
+        /**
+         *  HTML value attribute
+         */
+        value       : PropTypes.string,
     };
 
     static defaultProps =
     {
+        buttonRef     : undefined,
+        children      : undefined,
+        className     : undefined,
+        cssMap        : styles,
+        forceHover    : false,
+        hasBackground : false,
         iconSize      : 'S',
         iconTheme     : 'control',
         id            : undefined,
-        isFocusable   : true,
         isDisabled    : false,
+        isFocusable   : true,
         isReadOnly    : false,
-        forceHover    : false,
-        cssMap        : require( './iconButton.css' ),
-        hasBackground : false,
+        label         : undefined,
+        onBlur        : undefined,
+        onClick       : undefined,
+        onFocus       : undefined,
+        onMouseOut    : undefined,
+        onMouseOver   : undefined,
+        value         : undefined,
     };
 
     render()
@@ -157,46 +178,50 @@ export default class IconButton extends React.Component
             children,
             className,
             cssMap,
+            forceHover,
             hasBackground,
             iconSize,
-            iconType,
-            forceHover,
             iconTheme,
+            iconType,
             id = generateId( 'IconButton' ),
             isDisabled,
             isFocusable,
             isReadOnly,
             label,
             onBlur,
-            onFocus,
             onClick,
+            onFocus,
+            onMouseOut,
+            onMouseOver,
             value,
         } = this.props;
 
         return (
             <button
-                ref       = { buttonRef }
-                type      = "button"
                 className = { buildClassName( className, cssMap, {
+                    background : hasBackground,
                     disabled   : isDisabled,
                     size       : iconSize,
-                    background : hasBackground,
                 }  ) }
-                value     = { value }
-                id        = { id }
-                disabled  = { isDisabled }
-                onClick   = { !isReadOnly && onClick }
-                onBlur    = { onBlur }
-                onFocus   = { onFocus }
-                tabIndex  = { isFocusable ? '0' : '-1' }
-                onMouseDown = { !isFocusable ? killFocus : undefined }>
+                disabled     = { isDisabled }
+                id           = { id }
+                onBlur       = { onBlur }
+                onClick      = { !isReadOnly && onClick }
+                onFocus      = { onFocus }
+                onMouseDown  = { !isFocusable ? killFocus : undefined }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                ref          = { buttonRef }
+                tabIndex     = { isFocusable ? '0' : '-1' }
+                type         = "button"
+                value        = { value }>
                 <Icon
                     className  = { cssMap.icon }
-                    size       = { iconSize }
-                    type       = { iconType }
-                    theme      = { iconTheme }
+                    forceHover = { forceHover }
                     isDisabled = { isDisabled }
-                    forceHover = { forceHover }>
+                    size       = { iconSize }
+                    theme      = { iconTheme }
+                    type       = { iconType }>
                     { children || label }
                 </Icon>
             </button>

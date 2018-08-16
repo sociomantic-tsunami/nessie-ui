@@ -1,6 +1,4 @@
-/* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-
 
 import React                      from 'react';
 import { mount }                  from 'enzyme';
@@ -16,6 +14,11 @@ describe( 'Uploader', () =>
         beforeEach( () =>
         {
             wrapper = mount( <Uploader /> );
+        } );
+
+        test( 'it should render an <input type="file">', () =>
+        {
+            expect( wrapper.find( 'input' ).prop( 'type' ) ).toBe( 'file' );
         } );
 
         test( 'should render component based on Button iconType=upload', () =>
@@ -221,7 +224,7 @@ describe( 'UploaderDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'throws the expected error when isDisabled', () =>
+            test( 'throws the expected error when isDisabled', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
@@ -231,7 +234,7 @@ describe( 'UploaderDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -246,7 +249,7 @@ describe( 'UploaderDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'throws the expected error when isReadOnly', () =>
+            test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true } );
 
@@ -256,7 +259,7 @@ describe( 'UploaderDriver', () =>
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

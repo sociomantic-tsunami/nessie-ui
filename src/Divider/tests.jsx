@@ -1,5 +1,3 @@
-/* eslint-disable no-magic-numbers */
-/* global test */
 /* eslint no-console: 0*/
 
 

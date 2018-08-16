@@ -1,11 +1,9 @@
-/* global test jest */
+import React                            from 'react';
+import { ReactWrapper, mount, shallow } from 'enzyme';
 
-import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+import InputContainer                   from '../proto/InputContainer';
 
-import InputContainer       from '../proto/InputContainer';
-
-import FlounderDropdown     from './index';
+import FlounderDropdown                 from './index';
 
 
 describe( 'FlounderDropdown', () =>

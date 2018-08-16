@@ -1,12 +1,11 @@
-/* global test jest */
-/* eslint no-console: 0*/
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import React                 from 'react';
-import { mount, shallow }    from 'enzyme';
+import ScrollBar          from '../ScrollBar';
+import * as utils         from './utils';
 
-import ScrollBar             from '../ScrollBar';
+import ScrollBox          from './index';
 
-import ScrollBox             from './index';
 
 describe( 'ScrollBox', () =>
 {
@@ -56,6 +55,35 @@ describe( 'ScrollBox', () =>
 
         expect( wrapper.find( ScrollBar ).last().prop( 'thumbSize' ) )
             .toBe( '50%' );
+    } );
+
+    describe( 'handleScroll', () =>
+    {
+        let scrollHandler;
+
+        test( 'forces component to update', () =>
+        {
+            jest.spyOn( instance, 'forceUpdate' );
+            instance.handleScroll();
+            expect( instance.forceUpdate ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'calls createScrollHandler if onScroll prop is defined', () =>
+        {
+            scrollHandler = jest.fn();
+            jest.spyOn( utils, 'createScrollHandler' )
+                .mockImplementation( () => scrollHandler );
+
+            wrapper.setProps( { onScroll: jest.fn() } );
+            instance.handleScroll();
+            expect( utils.createScrollHandler ).toBeCalledTimes( 1 );
+        } );
+
+        test( '...then calls the resulting function', () =>
+        {
+            expect( scrollHandler ).toBeCalledTimes( 1 );
+            utils.createScrollHandler.mockRestore();
+        } );
     } );
 } );
 

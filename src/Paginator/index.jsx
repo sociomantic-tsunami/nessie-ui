@@ -2,8 +2,9 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import IconButton           from '../IconButton';
-import Text                 from '../Text';
+import styles               from './paginator.css';
+import { IconButton, Text } from '../index';
+
 
 const Paginator = ( {
     className,
@@ -16,26 +17,25 @@ const Paginator = ( {
     onClickPage,
     onClickPrev,
     prevLabel,
-    startPage,
-    showPrevEllipsis,
-    showNextEllipsis,
     showNext,
+    showNextEllipsis,
     shownPages = [],
     showPrev,
+    showPrevEllipsis,
+    startPage,
 } ) =>
 {
-    const pageButtons = shownPages.map( ( pageNum ) =>
-        (
-            <button
-                className = { cssMap.pageButton }
-                disabled  = { pageNum === currentPage }
-                key       = { pageNum }
-                onClick   = { onClickPage }
-                type      = "button"
-                value     = { String( pageNum ) }>
-                { String( pageNum ) }
-            </button>
-        ) );
+    const pageButtons = shownPages.map( pageNum => (
+        <button
+            className = { cssMap.pageButton }
+            disabled  = { pageNum === currentPage }
+            key       = { pageNum }
+            onClick   = { onClickPage }
+            type      = "button"
+            value     = { String( pageNum ) }>
+            { pageNum }
+        </button>
+    ) );
 
     const showStartPage = typeof startPage === 'number';
     const showEndPage   = typeof endPage   === 'number';
@@ -47,122 +47,93 @@ const Paginator = ( {
     );
 
     return (
-
         <div
+            aria-label = "Pagination"
             className  = { buildClassName( className, cssMap ) }
-            role       = "navigation"
-            aria-label = "Pagination">
+            role       = "navigation">
             { showPrev &&
-            <IconButton
-                className   = { cssMap.arrows }
-                iconTheme   = "navigation"
-                iconSize    = "S"
-                iconType    = "left"
-                onClick     = { onClickPrev }>
-                { prevLabel }
-            </IconButton>
+                <IconButton
+                    className = { cssMap.arrows }
+                    iconSize  = "S"
+                    iconTheme = "navigation"
+                    iconType  = "left"
+                    onClick   = { onClickPrev }>
+                    { prevLabel }
+                </IconButton>
             }
 
             { showStartPage &&
-            <button
-                className   = { cssMap.pageButton }
-                disabled    = { currentPage === startPage }
-                onClick     = { onClickPage }
-                type        = "button"
-                value       = { String( startPage ) }>
-                <Text
-                    role = { null }>
-                    { startPage }
-                </Text>
-            </button>
-
+                <button
+                    className = { cssMap.pageButton }
+                    disabled  = { currentPage === startPage }
+                    onClick   = { onClickPage }
+                    type      = "button"
+                    value     = { String( startPage ) }>
+                    <Text role = { null }>{ startPage }</Text>
+                </button>
             }
 
             { showStartPage && showPrevEllipsis && ellipsis }
 
-            { pageButtons && pageButtons.length > 0 &&
-            <div className = { cssMap.pageButtons }>
-                <Text>{ pageButtons }</Text>
-            </div>
+            { ( pageButtons && pageButtons.length ) &&
+                <div className = { cssMap.pageButtons }>
+                    <Text>{ pageButtons }</Text>
+                </div>
             }
 
             { showEndPage && showNextEllipsis && ellipsis }
 
             { showEndPage &&
-            <button
-                className   = { cssMap.pageButton }
-                disabled    = { currentPage === endPage }
-                onClick     = { onClickPage }
-                type        = "button"
-                value       = { String( endPage ) }>
-                <Text
-                    role = { null }>
-                    { endPage }
-                </Text>
-            </button>
+                <button
+                    className = { cssMap.pageButton }
+                    disabled  = { currentPage === endPage }
+                    onClick   = { onClickPage }
+                    type      = "button"
+                    value     = { String( endPage ) }>
+                    <Text role = { null }> { endPage }</Text>
+                </button>
             }
 
             { showNext &&
-            <IconButton
-                className   = { cssMap.arrows }
-                iconTheme   = "navigation"
-                iconSize    = "M"
-                iconType    = "right"
-                onClick     = { onClickNext }>
-                { nextLabel }
-            </IconButton>
+                <IconButton
+                    className = { cssMap.arrows }
+                    iconTheme = "navigation"
+                    iconSize  = "S"
+                    iconType  = "right"
+                    onClick   = { onClickNext }>
+                    { nextLabel }
+                </IconButton>
             }
         </div>
-
     );
 };
 
 Paginator.propTypes =
 {
     /**
-     *  Page range to show
+     *  CSS class map
      */
-    shownPages       : PropTypes.arrayOf( PropTypes.number ),
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Currently active page
      */
     currentPage      : PropTypes.number,
     /**
-     *  Startpage
+     *  Ellipsis text to display
      */
-    startPage        : PropTypes.number,
+    ellipsisText     : PropTypes.string,
     /**
      *  Show “Previous” button
      */
     endPage          : PropTypes.number,
     /**
-     *  Show “Next” button
-     */
-    showNext         : PropTypes.bool,
-    /**
-     *  Show “Previous” button
-     */
-    showPrev         : PropTypes.bool,
-    /**
      *  “Next” button text
      */
     nextLabel        : PropTypes.string,
     /**
-     *  “Previous” button text
+     *  Function to call on “Next” button click: ( e ) => { ... }
      */
-    prevLabel        : PropTypes.string,
-    /**
-     *  Display ellipsis after first page
-     */
-    showPrevEllipsis : PropTypes.bool,
-    /**
-     *  Display ellipsis before last page
-     */
-    showNextEllipsis : PropTypes.bool,
-    /**
-     *  Ellipsis text to display
-     */
-    ellipsisText     : PropTypes.string,
+    onClickNext      : PropTypes.func,
     /**
      *  Function to call on page button click: ( e ) => { ... }
      */
@@ -172,21 +143,52 @@ Paginator.propTypes =
      */
     onClickPrev      : PropTypes.func,
     /**
-     *  Function to call on “Next” button click: ( e ) => { ... }
+     *  “Previous” button text
      */
-    onClickNext      : PropTypes.func,
+    prevLabel        : PropTypes.string,
+    /**
+     *  Show “Next” button
+     */
+    showNext         : PropTypes.bool,
+    /**
+     *  Display ellipsis before last page
+     */
+    showNextEllipsis : PropTypes.bool,
+    /**
+     *  Page range to show
+     */
+    shownPages       : PropTypes.arrayOf( PropTypes.number ),
+    /**
+     *  Show “Previous” button
+     */
+    showPrev         : PropTypes.bool,
+    /**
+     *  Display ellipsis after first page
+     */
+    showPrevEllipsis : PropTypes.bool,
+    /**
+     *  Startpage
+     */
+    startPage        : PropTypes.number,
 };
 
 Paginator.defaultProps =
 {
-    showNext         : false,
-    showPrev         : false,
-    nextLabel        : 'Next',
-    prevLabel        : 'Previous',
-    showPrevEllipsis : true,
-    showNextEllipsis : true,
+    cssMap           : styles,
+    currentPage      : undefined,
     ellipsisText     : '…',
-    cssMap           : require( './paginator.css' ),
+    endPage          : undefined,
+    nextLabel        : 'Next',
+    onClickNext      : undefined,
+    onClickPage      : undefined,
+    onClickPrev      : undefined,
+    prevLabel        : 'Previous',
+    showNext         : false,
+    showNextEllipsis : true,
+    shownPages       : undefined,
+    showPrev         : false,
+    showPrevEllipsis : true,
+    startPage        : undefined,
 };
 
 export default Paginator;

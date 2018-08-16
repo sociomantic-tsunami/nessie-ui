@@ -1,5 +1,3 @@
-/* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable max-len */
 
 import React                from 'react';
@@ -276,7 +274,7 @@ describe( 'SliderGroupDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            it( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'does not call simulate( event ) when isDisabled', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );
@@ -297,7 +295,7 @@ describe( 'SliderGroupDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            it( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'does not call simulate( event ) when isReadOnly', () =>
             {
                 const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
                     .cssMap.default}` ), 'simulate' );

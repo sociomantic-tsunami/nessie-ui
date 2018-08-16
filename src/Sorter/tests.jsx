@@ -1,10 +1,7 @@
-/* global test jest */
-/* eslint no-console: 0*/
+import React     from 'react';
+import { mount } from 'enzyme';
 
-import React        from 'react';
-import { mount }    from 'enzyme';
-
-import Sorter       from './index';
+import Sorter    from './index';
 
 describe( 'Sorter', () =>
 {

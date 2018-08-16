@@ -496,7 +496,7 @@ export default class ComboBox extends Component
                         owns     : addPrefix( 'listbox', id ),
                         role     : 'combobox',
                     } }
-                    forceHover       = { forceHover || isOpen }
+                    forceHover       = { forceHover }
                     hasError         = { hasError }
                     iconType         = { iconType }
                     id               = { id }

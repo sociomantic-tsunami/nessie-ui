@@ -67,18 +67,6 @@ export default class TextInputWithIconDriver
         return this;
     }
 
-    focusIcon()
-    {
-        this.wrapper.find( 'IconButton' ).driver().focus();
-        return this;
-    }
-
-    blurIcon()
-    {
-        this.wrapper.find( 'IconButton' ).driver().blur();
-        return this;
-    }
-
     mouseOverIcon()
     {
         this.wrapper.find( 'Tooltip' ).driver().mouseOver();

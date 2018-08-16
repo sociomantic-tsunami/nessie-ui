@@ -20,7 +20,7 @@ describe( 'Grid', () =>
 
     describe( 'render', () =>
     {
-        it( 'should return the content of the Grid or Column', () =>
+        test( 'should return the content of the Grid or Column', () =>
         {
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 
@@ -29,7 +29,7 @@ describe( 'Grid', () =>
         } );
     } );
 
-    it( 'should have its component name and hash as default className', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
         expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
             .toHaveLength( 1 );

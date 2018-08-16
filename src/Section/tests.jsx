@@ -1,12 +1,10 @@
-/* global test */
-/* eslint no-console: 0*/
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import React        from 'react';
-import { shallow }  from 'enzyme';
+import { H1, H4 }         from '../index';
 
-import { H1, H4 }   from '../index';
+import Section            from './index';
 
-import Section      from './index';
 
 describe( 'Section', () =>
 {
@@ -19,28 +17,19 @@ describe( 'Section', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name Button', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'Section' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
-    describe( 'render()', () =>
+    test( 'should have a header component corresponding to level prop', () =>
     {
-        test(
-            'should have a header component corresponding to level prop',
-            () =>
-            {
-                wrapper.setProps( {
-                    title : 'Boom',
-                    level : 4,
-                } );
+        wrapper.setProps( {
+            title : 'Boom',
+            level : 4,
+        } );
 
-                expect( wrapper.find( H4 ) ).toHaveLength( 1 );
-            },
-        );
+        expect( wrapper.find( H4 ) ).toHaveLength( 1 );
     } );
 
     describe( 'props', () =>
