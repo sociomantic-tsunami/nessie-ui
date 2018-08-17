@@ -4,17 +4,27 @@
 
 :root
 {
-    --tooltipBorderRadius:  4px;
+    --tooltipBorderRadius:      4px;
 
-    --tooltipMaxWidth:      350px;
+    --tooltipMaxWidth:          350px;
 
-    --tooltipOffset:        var( --spacing-1 );
+    --tooltipOffset:            var( --spacing-1 );
 
-    --boxShadow:            0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
+    --boxShadow:                0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
 
-    --caretSize:            14px;
+    --caretSize:                14px;
 
-    --caretPos:             calc( ( var( --caretSize ) / -2 ) - 1px );
+    --caretPosX:                22px;
+
+    --caretPosXHalf:            calc( 22px / 2 );
+
+    --caretPosY:                calc( ( var( --caretSize ) / -2 ) - 1px );
+
+    --tooltipContainerPosY:     calc( 100% + var( --caretSize ) );
+
+    --tooltipContainerPosLeft:  calc( ( var( --tooltipMaxWidth ) - var( --caretPosX ) - var( --caretPosXHalf ) ) * -1 );
+
+    --tooltipContainerPosRight: calc( var( --tooltipMaxWidth ) - var( --caretPosX ) - var( --caretPosXHalf ) );
 }
 
 
@@ -134,7 +144,8 @@
 {
     .tooltipContainer
     {
-        bottom:    100%;
+        bottom:    var( --tooltipContainerPosY );
+        left: 50%;
     }
 
     .tooltip
@@ -146,7 +157,7 @@
         }
         &::after
         {
-            bottom: var( --caretPos );
+            bottom: var( --caretPosY );
         }
     }
 }
@@ -157,7 +168,9 @@
 {
     .tooltipContainer
     {
-        top: 100%;
+        top: var( --tooltipContainerPosY );
+        left: 50%;
+
     }
 
     .tooltip
@@ -170,7 +183,7 @@
         }
         &::after
         {
-          top: var( --caretPos );
+          top: var( --caretPosY );
         }
     }
 }
@@ -181,7 +194,6 @@
 {
     .tooltipContainer
     {
-        left:   50%;
         transform: translateX( -50% );
         text-align: center;
     }
@@ -189,6 +201,33 @@
     .tooltip::after
     {
       left: 50%;
+    }
+    &Left
+    {
+        .tooltipContainer
+        {
+            transform: translateX( var( --tooltipContainerPosLeft ) );
+            text-align: right;
+        }
+        .tooltip::after
+        {
+            right: var( --caretPosX );
+        }
+    }
+
+    &Right
+    {
+        .tooltipContainer
+        {
+            transform: translateX( var( --tooltipContainerPosRight ) );
+            text-align: left;
+            right: 50%;
+            left: auto;
+        }
+        .tooltip::after
+        {
+            left: var( --caretPosX );
+        }
     }
 }
 
@@ -198,10 +237,6 @@
     {
         transform: translateX( -50% ) rotate( 225deg );
     }
-    .tooltipContainer
-    {
-      transform: translate3d( -50%, -10px, 0 );
-    }
     &Left,
     &Right
     {
@@ -209,20 +244,6 @@
         {
             transform: translateX( 0 ) rotate( 225deg );
         }
-    }
-    &Left
-    {
-      .tooltipContainer
-      {
-        transform: translate3d( -95%, -10px, 0 );
-      }
-    }
-    &Right
-    {
-      .tooltipContainer
-      {
-        transform: translate3d( 95%, -10px, 0 );
-      }
     }
 }
 
@@ -232,10 +253,6 @@
     {
       transform: translateX( -50% ) rotate( 45deg );
     }
-    .tooltipContainer
-    {
-      transform: translate3d( -50%, 10px, 0 );
-    }
     &Left,
     &Right
     {
@@ -243,78 +260,6 @@
         {
             transform: translateX( 0 ) rotate( 45deg );
         }
-    }
-    &Left
-    {
-      .tooltipContainer
-      {
-        transform: translate3d( -95%, 10px, 0 );
-      }
-    }
-    &Right
-    {
-      .tooltipContainer
-      {
-        transform: translate3d( 95%, 10px, 0 );
-      }
-    }
-}
-
-.position__top,
-.position__bottom
-{
-    &Left
-    {
-        .tooltip::after
-        {
-            right: 15px;
-        }
-    }
-
-    &Right
-    {
-        .tooltip::after
-        {
-            left: 15px;
-        }
-    }
-}
-.position__topLeft,
-.position__bottomLeft
-{
-  .tooltipContainer
-  {
-    left: 50%;
-    text-align: right;
-  }
-  .tooltip
-  {
-
-  }
-}
-
-.position__topRight,
-.position__bottomRight
-{
-  .tooltipContainer
-  {
-    right: 50%;
-  }
-  .tooltip
-  {
-
-  }
-}
-
-.position__bottomLeft,
-.position__bottomRight
-{
-    .tooltip
-    {
-      &::after
-      {
-
-      }
     }
 }
 
