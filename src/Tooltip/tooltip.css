@@ -333,12 +333,9 @@
         transform: translateY( -50% );
     }
 
-    .tooltip
+    .tooltip::after
     {
-        &::after
-        {
-          top:    50%;
-        }
+      top:    50%;
     }
     &Top
     {
@@ -368,12 +365,9 @@
 
 .position__left
 {
-    .tooltip
+    .tooltip::after
     {
-        &::after
-        {
-            transform: translateY( -50% ) rotate( -225deg );
-        }
+        transform: translateY( -50% ) rotate( -225deg );
     }
     &Top,
     &Bottom
