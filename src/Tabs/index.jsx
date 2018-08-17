@@ -18,7 +18,7 @@ export default class Tabs extends React.Component
          */
         children          : PropTypes.node,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         id                : PropTypes.string,
         /**

@@ -90,7 +90,7 @@ Checkable.propTypes =
      */
     hasError         : PropTypes.bool,
     /**
-     *  HTML id attribute (override default)
+     *  HTML id attribute
      */
     id               : PropTypes.string,
     /**

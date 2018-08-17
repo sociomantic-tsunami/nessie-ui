@@ -76,7 +76,7 @@ export default class CodeEditor extends Component
          */
         value                 : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         onChange              : PropTypes.func,
         /**
