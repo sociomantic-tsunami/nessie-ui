@@ -14,17 +14,17 @@
 
     --caretSize:                14px;
 
-    --caretPosX:                22px;
+    --caretPosOffset:                22px;
 
-    --caretPosXHalf:            calc( 22px / 2 );
+    --caretPosOffsetHalf:            calc( 22px / 2 );
 
-    --caretPosTopBottom:                calc( ( var( --caretSize ) / -2 ) - 1px );
+    --caretPosOuter:            calc( ( var( --caretSize ) / -2 ) - 1px );
 
     --tooltipContainerPosY:     calc( 100% + var( --caretSize ) );
 
-    --tooltipContainerPosLeft:  calc( ( var( --tooltipMaxWidth ) - var( --caretPosX ) - var( --caretPosXHalf ) ) * -1 );
+    --tooltipContainerPosLeft:  calc( ( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) ) * -1 );
 
-    --tooltipContainerPosRight: calc( var( --tooltipMaxWidth ) - var( --caretPosX ) - var( --caretPosXHalf ) );
+    --tooltipContainerPosRight: calc( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) );
 }
 
 
@@ -55,7 +55,8 @@
         text-align:     left;
         box-sizing:     border-box;
         display:        inline-block;
-        min-width:      calc( var( --caretPosX ) * 2 );
+        min-width:      calc( var( --caretPosOffset ) * 2 );
+        min-height:     calc( var( --caretPosOffset ) * 2 );
         border-radius:  var( --tooltipBorderRadius );
         border:         1px solid var( --PC-GREY--D75 );
         box-shadow:     var( --boxShadow );
@@ -69,7 +70,7 @@
             content:    "";
             position:   absolute;
         }
-        &:after
+        &::after
         {
           position: absolute;
           width: var( --caretSize );
@@ -157,7 +158,7 @@
         }
         &::after
         {
-            bottom: var( --caretPosTopBottom );
+            bottom: var( --caretPosOuter );
         }
     }
 }
@@ -181,7 +182,7 @@
         }
         &::after
         {
-          top: var( --caretPosTopBottom );
+          top: var( --caretPosOuter );
         }
     }
 }
@@ -209,7 +210,7 @@
         }
         .tooltip::after
         {
-            right: var( --caretPosX );
+            right: var( --caretPosOffset );
         }
     }
 
@@ -224,7 +225,7 @@
         }
         .tooltip::after
         {
-            left: var( --caretPosX );
+            left: var( --caretPosOffset );
         }
     }
 }
@@ -261,7 +262,36 @@
     }
 }
 
+.position__left,
+.position__leftTop,
+.position__leftBottom
+{
+    .tooltipContainer
+    {
+        text-align: right;
+    }
 
+    .tooltip::after
+    {
+        right:  var( --caretPosOuter );
+    }
+}
+
+
+.position__right,
+.position__rightTop,
+.position__rightBottom
+{
+    .tooltipContainer
+    {
+        text-align: left;
+    }
+
+    .tooltip::after
+    {
+        left:  var( --caretPosOuter );
+    }
+}
 .position__left,
 .position__right
 {
@@ -282,18 +312,22 @@
         &::after
         {
           top:    50%;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
         }
     }
-}
-.position__left,
-.position__leftTop,
-.position__leftBottom
-{
-  .tooltipContainer
-  {
-    text-align: right;
-  }
+    &Top
+    {
+        .tooltip::after
+        {
+            top: var( --caretPosOffset );
+        }
+    }
+    &Bottom
+    {
+        .tooltip::after
+        {
+            bottom: var( --caretPosOffset );
+        }
+    }
 }
 
 .position__left
@@ -306,15 +340,17 @@
 
     .tooltip
     {
-        &::before
-        {
-            left:   100%;
-        }
         &::after
         {
-          border-right-color: transparent;
-          right: 0;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
+            transform: translateY( -50% ) rotate( -225deg );
+        }
+    }
+    &Top,
+    &Bottom
+    {
+        .tooltip::after
+        {
+            transform: translateY( 0 ) rotate( -225deg );
         }
     }
     &Top
@@ -324,16 +360,6 @@
           top:    50%;
           right:  100%;
           transform: translate3d( -14px, -73%, 0 );
-      }
-      .tooltip
-      {
-        &::after
-        {
-          border-right-color: transparent;
-          right: 0;
-          top: 73%;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), -50%, 0);
-        }
       }
     }
     &Bottom
@@ -348,10 +374,7 @@
       {
         &::after
         {
-          border-right-color: transparent;
-          right: 0;
-          bottom: 73%;
-          transform: translate3d( calc( 1.75 * var( --tooltipOffset ) ), 50%, 0);
+
         }
       }
     }
@@ -365,17 +388,16 @@
         transform: translate3d( 14px, -50%, 0 );
     }
 
-    .tooltip
+    .tooltip::after
     {
-        &::before
+      transform: translateY( -50% ) rotate( -45deg );
+    }
+    &Top,
+    &Bottom
+    {
+        .tooltip::after
         {
-            left:  100%;
-        }
-        &::after
-        {
-          border-left-color: transparent;
-          left: 0;
-          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), -50%, 0);
+            transform: translateY( 0 ) rotate( -45deg );
         }
     }
 
@@ -389,13 +411,7 @@
       }
       .tooltip
       {
-        &::after
-        {
-          border-left-color: transparent;
-          left: 0;
-          top: 73%;
-          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), -50%, 0);
-        }
+
       }
     }
     &Bottom
@@ -408,13 +424,7 @@
       }
       .tooltip
       {
-        &::after
-        {
-          border-left-color: transparent;
-          left: 0;
-          bottom: 73%;
-          transform: translate3d( calc( -1.75 * var( --tooltipOffset ) ), 50%, 0);
-        }
+
       }
     }
 }
@@ -425,57 +435,7 @@
     .tooltip
     {
       background: var( --PC-RED );
-    }
-    &.position__top,
-    &.position__topLeft,
-    &.position__topRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-top-color: var( --PC-RED );
-        }
-      }
-    }
-
-    &.position__left,
-    &.position__leftTop,
-    &.position__leftBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-left-color: var( --PC-RED );
-        }
-      }
-    }
-
-    &.position__right,
-    &.position__rightTop,
-    &.position__rightBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-right-color: var( --PC-RED );
-        }
-      }
-    }
-
-    &.position__bottom,
-    &.position__bottomLeft,
-    &.position__bottomRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-bottom-color: var( --PC-RED );
-        }
-      }
+      border-color: var( --PC-RED );
     }
 }
 
@@ -484,57 +444,7 @@
     .tooltip
     {
       background: var( --PC-GREEN );
-    }
-    &.position__top,
-    &.position__topLeft,
-    &.position__topRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-top-color: var( --PC-GREEN );
-        }
-      }
-    }
-
-    &.position__left,
-    &.position__leftTop,
-    &.position__leftBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-left-color: var( --PC-GREEN );
-        }
-      }
-    }
-
-    &.position__right,
-    &.position__rightTop,
-    &.position__rightBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-right-color: var( --PC-GREEN );
-        }
-      }
-    }
-
-    &.position__bottom,
-    &.position__bottomLeft,
-    &.position__bottomRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-bottom-color: var( --PC-GREEN );
-        }
-      }
+      border-color: var( --PC-GREEN );
     }
 }
 
@@ -543,55 +453,7 @@
     .tooltip
     {
       background: var( --PC-ORANGE );
-    }
-    &.position__top,
-    &.position__topLeft,
-    &.position__topRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-top-color: var( --PC-ORANGE );
-        }
-      }
-    }
-    &.position__left,
-    &.position__leftTop,
-    &.position__leftBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-left-color: var( --PC-ORANGE );
-        }
-      }
+      border-color: var( --PC-ORANGE );
     }
 
-    &.position__right,
-    &.position__rightTop,
-    &.position__rightBottom
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-right-color: var( --PC-ORANGE );
-        }
-      }
-    }
-
-    &.position__bottom,
-    &.position__bottomLeft,
-    &.position__bottomRight
-    {
-      .tooltip
-      {
-        &::after
-        {
-          border-bottom-color: var( --PC-ORANGE );
-        }
-      }
-    }
 }
