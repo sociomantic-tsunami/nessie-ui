@@ -10,7 +10,11 @@
 
     --tooltipOffset:        var( --spacing-1 );
 
-    --boxShadow:            0 2px 8px var( --PC-GREY );
+    --boxShadow:            0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
+
+    --caretSize:            14px;
+
+    --caretPos:             calc( ( var( --caretSize ) / -2 ) - 1px );
 }
 
 
@@ -43,10 +47,11 @@
         display: inline-block;
 
         border-radius:  var( --tooltipBorderRadius );
+        border:         1px solid var( --PC-GREY--D75 );
         box-shadow:     var( --boxShadow );
         padding:        var( --spacing-1 ) var( --spacing-2 );
 
-        background:     var( --PC-GREY--D15 );
+        background:     var( --PC-GREY--D45 );
 
         &::before,
         &::after
@@ -56,7 +61,14 @@
         }
         &:after
         {
-          border-color: var( --PC-GREY--D15 );
+          position: absolute;
+          width: var( --caretSize );
+          height: var( --caretSize );
+          background: inherit;
+          border: inherit;
+          border-bottom-color: transparent;
+          border-right-color: transparent;
+
         }
     }
 
@@ -112,50 +124,9 @@
         right:  0;
         height: var( --tooltipOffset );
       }
-      &::after
-      {
-        width: 0;
-        height: 0;
-        border-style: solid;
-      }
     }
 }
 
-.position__top,
-.position__topLeft,
-.position__topRight,
-.position__bottom,
-.position__bottomLeft,
-.position__bottomRight
-{
-  .tooltip
-  {
-    &::after
-    {
-      border-width: 7px 5px;
-      border-left-color: transparent;
-      border-right-color: transparent;
-    }
-  }
-}
-
-.position__left,
-.position__leftTop,
-.position__leftBottom,
-.position__right,
-.position__rightTop,
-.position__rightBottom
-{
-  .tooltip
-  {
-    &::after
-    {
-      border-width: 5px 7px;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-    }
-  }
-}
 
 .position__top,
 .position__topLeft,
@@ -175,8 +146,8 @@
         }
         &::after
         {
-          bottom: 0;
-          border-bottom-color: transparent;
+            bottom: var( --caretPos );
+            transform:  rotate( 225deg );
         }
     }
 }
@@ -214,16 +185,14 @@
     .tooltipContainer
     {
         left:   50%;
-        transform: translate3d( -50%, 0, 0 );
+        transform: translateX( -50% );
         text-align: center;
     }
 
-    .tooltip
+    .tooltip::after
     {
-        &::after
-        {
-          left: 50%;
-        }
+      left: 50%;
+      transform: translateX( -50% ) rotate( 225deg );
     }
 }
 
@@ -233,7 +202,7 @@
     {
         &::after
         {
-          transform: translate3d( -50%, calc( 1.75 * var( --tooltipOffset ) ), 0);
+
         }
     }
     .tooltipContainer
