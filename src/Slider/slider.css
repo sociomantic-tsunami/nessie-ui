@@ -2,18 +2,18 @@
 
 :root
 {
-    --horizontalSliderHeight:   40px;
+    --horizontalSliderHeight:   var( --spacing-5 );
     --verticalSliderHeight:     300px;
 
     --trackSize:                2px;
     --trackBorderWidth:         1px;
 
-    --handleSize:               16px;
+    --handleSize:               var( --spacing-2 );
 
-    --tickSize:                 4px;
+    --tickSize:                 calc( var( --spacing-1 / 2 ) );
 
     --labelMargin:              10px;
-    --stepLabelContainerHeight: 16px; /*matches line height of labels*/
+    --stepLabelContainerHeight: var( --spacing-2 );
 }
 
 
@@ -25,6 +25,10 @@
         left:       -9999999px;
     }
 
+    .labelContainer
+    {
+        margin-bottom:  var( --spacing-1 );
+    }
 
     /* Track + handles */
 
@@ -59,66 +63,63 @@
         cursor:                         pointer;
 
         -webkit-tap-highlight-color:    transparent;
-
-        &:hover
-        {
-            .handle
-            {
-                border-color: var( --PC-BLUE );
-            }
-        }
     }
 
     .trackFill
     {
-        border-radius:      calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:         var( --PC-BLUE );
+        border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
+        background:     var( --PC-BLUE );
     }
 
     .handle
     {
-        width:              var( --handleSize );
-        height:             var( --handleSize );
+        width:          var( --handleSize );
+        height:         var( --handleSize );
 
-        border-radius:      50%;
-        background-color:   var( --PC-BLUE );
+        border-radius:  50%;
+        background:     var( --PC-BLUE );
 
-        cursor:             grab;
+        cursor:         grab;
 
-        z-index:            9999;
+        z-index:        9999;
+
+        &::after
+        {
+            content: '';
+
+            position:       absolute;
+            top:            50%;
+            left:           50%;
+            transform:      translate( -50%, -50% );
+
+            width:          var( --spacing-3 );
+            height:         var( --spacing-3 );
+
+            background:     var( --PC-BLUE--D15 );
+
+            border-radius:  50%;
+
+            opacity:        0;
+            transition:     opacity 450ms;
+        }
 
         &:active
         {
-            cursor:         grabbing;
+            cursor: grabbing;
         }
-        &::after
-        {
-            transition: opacity 450ms;
-            content: '';
-            position: absolute;
-            background-color:  var( --PC-BLUE--D15 );
-            opacity: 0;
-            width: 24px;
-            height: 24px;
-            top: 50%;
-            left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
     }
 
     .handleFocus
     {
         &::after
         {
-            opacity: .2;
+            opacity:    0.2;
         }
     }
 
     .handleLabel
     {
-        display:            none;
+        display:    none;
     }
 
 
@@ -126,23 +127,24 @@
 
     .ticksContainer
     {
-        width:              100%;
-        height:             100%;
-        position:           relative;
+        position:   relative;
+        width:      100%;
+        height:     100%;
     }
 
     .tick
     {
-        position:           absolute;
-        transform:          translateX(-50%) translateY(-50%);
-        z-index:            2;
+        position:   absolute;
+        transform:  translateX(-50%) translateY(-50%);
 
-        font-size:          0;
+        width:      var( --tickSize );
+        height:     var( --tickSize );
 
-        background-color:   var( --PC-WHITE );
+        font-size:  0;
 
-        width:              var( --tickSize );
-        height:             var( --tickSize );
+        background: var( --PC-WHITE );
+
+        z-index:    2;
     }
 
 
@@ -150,17 +152,17 @@
 
     .stepLabelsContainer
     {
-        position:           relative;
+        position:   relative;
     }
 
     .stepLabel
     {
-        @extend %Nessie-RegularIt;
+        position:       absolute;
+
+        @extend         %Nessie-RegularIt;
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-s );
         color:          var( --PC-GREY--L40 );
-
-        position:           absolute;
     }
 }
 
@@ -193,13 +195,13 @@
 
     .handle
     {
-        top:            50%;
-        transform:      translateX( -50% ) translateY( -50% );
+        top:        50%;
+        transform:  translateX( -50% ) translateY( -50% );
     }
 
     .trackFill
     {
-        height:         var( --trackSize );
+        height: var( --trackSize );
     }
 
     .stepLabelsContainer
@@ -226,7 +228,7 @@
 
         &:last-child /* end label */
         {
-            transform: translateX( calc( -100% + ( var( --handleSize) / 2 ) ) );
+            transform:  translateX( calc( -100% + ( var( --handleSize) / 2 ) ) );
         }
     }
 }
@@ -236,8 +238,8 @@
 
 .orientation__vertical
 {
-    width:      auto;
-    height:     var( --verticalSliderHeight );
+    width:  auto;
+    height: var( --verticalSliderHeight );
 
     .trackContainer
     {
@@ -255,23 +257,23 @@
 
     .trackFill
     {
-        width:          var( --trackSize );
+        width:  var( --trackSize );
     }
 
     .handle
     {
-        left:           50%;
-        transform:      translateX( -50% ) translateY( 50% );
+        left:       50%;
+        transform:  translateX( -50% ) translateY( 50% );
     }
 
     .stepLabelsContainer
     {
-        margin-right:       var( --labelMargin );
+        margin-right:   var( --labelMargin );
 
         &:last-child
         {
-            margin-right:   0;
             margin-left:    var( --labelMargin );
+            margin-right:   0;
         }
     }
 
@@ -299,11 +301,10 @@
         justify-content:    center;
 
         color:              var( --PC-BLUE );
+        line-height:        var( --line-height-s );
 
         cursor:             default;
         user-select:        none;
-
-        line-height:        var( --line-height-s );
     }
 }
 
@@ -346,8 +347,6 @@
 }
 
 
-
-
 .error
 {
     .trackFill
@@ -357,69 +356,18 @@
 
     .handle
     {
-        background-color: var( --PC-RED );
-    }
+        background: var( --PC-RED ) !important;
 
-    .handleLabel
-    {
-        color:      var( --PC-RED );
-    }
-}
-
-
-.disabled
-{
-
-    .track:hover
-    {
-        cursor: default;
-        .handle
+        &::after
         {
-            border-color:   var( --PC-GREY--L85 );
-        }
-    }
-
-    .trackFill
-    {
-        background:         var( --PC-BLUE--L70 );
-        cursor: default;
-    }
-
-    .handle
-    {
-        background:         var( --PC-BLUE--L70 );
-        cursor:             default;
-
-        &:active
-        {
-            cursor:         default;
-            &::after
-            {
-                content: none;
-            }
+            background: var( --PC-RED--D15 );
         }
     }
 
     .handleLabel
     {
-
+        color:  var( --PC-RED );
     }
-
-    .ticksContainer
-    {
-        display:            none;
-    }
-
-    .stepLabel
-    {
-        color:              var( --PC-GREY--L70 );
-    }
-}
-
-
-.labelContainer
-{
-    margin-bottom:  8px;
 }
 
 
@@ -433,10 +381,44 @@
 
     .handle
     {
-        width:              var( --handleSize );
-        height:             var( --handleSize );
+        width:          var( --handleSize );
+        height:         var( --handleSize );
 
-        background-color:   var( --PC-BLUE );
-        border-color:       var( --PC-BLUE );
+        background:     var( --PC-BLUE );
+    }
+}
+
+
+.disabled
+{
+    .track,
+    .handle
+    {
+        cursor: default !important;
+    }
+
+    .handle
+    {
+        background:     var( --PC-BLUE--L70 );
+
+        &::after
+        {
+            display:    none;
+        }
+    }
+
+    .trackFill
+    {
+        background: var( --PC-BLUE--L70 );
+    }
+
+    .ticksContainer
+    {
+        display:    none;
+    }
+
+    .stepLabel
+    {
+        color:  var( --PC-GREY--L70 );
     }
 }
