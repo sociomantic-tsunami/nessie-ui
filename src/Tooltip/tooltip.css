@@ -176,7 +176,6 @@
 }
 
 
-
 .position__top,
 .position__bottom
 {
@@ -202,6 +201,14 @@
     .tooltipContainer
     {
       transform: translate3d( -50%, -10px, 0 );
+    }
+    &Left,
+    &Right
+    {
+        .tooltip::after
+        {
+            transform: translateX( 0 ) rotate( 225deg );
+        }
     }
     &Left
     {
@@ -229,6 +236,14 @@
     {
       transform: translate3d( -50%, 10px, 0 );
     }
+    &Left,
+    &Right
+    {
+        .tooltip::after
+        {
+            transform: translateX( 0 ) rotate( 45deg );
+        }
+    }
     &Left
     {
       .tooltipContainer
@@ -245,6 +260,25 @@
     }
 }
 
+.position__top,
+.position__bottom
+{
+    &Left
+    {
+        .tooltip::after
+        {
+            right: 15px;
+        }
+    }
+
+    &Right
+    {
+        .tooltip::after
+        {
+            left: 15px;
+        }
+    }
+}
 .position__topLeft,
 .position__bottomLeft
 {
@@ -255,11 +289,7 @@
   }
   .tooltip
   {
-    &::after
-    {
-      transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
-      right: 14px;
-    }
+
   }
 }
 
@@ -272,11 +302,7 @@
   }
   .tooltip
   {
-    &::after
-    {
-      transform: translate3d( 0, calc( 1.75 * var( --tooltipOffset ) ), 0);
-      left: 14px;
-    }
+
   }
 }
 
@@ -287,7 +313,7 @@
     {
       &::after
       {
-        transform: translate3d( 0, calc( -1.75 * var( --tooltipOffset ) ), 0);
+
       }
     }
 }
