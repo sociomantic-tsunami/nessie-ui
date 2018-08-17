@@ -93,27 +93,27 @@
         }
         &::after
         {
-          transition: opacity 450ms;
-          content: '';
-          position: absolute;
-          background-color:  var( --PC-BLUE--D15 );
-          opacity: 0;
-          width: 24px;
-          height: 24px;
-          top: 50%;
-          left: 50%;
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
+            transition: opacity 450ms;
+            content: '';
+            position: absolute;
+            background-color:  var( --PC-BLUE--D15 );
+            opacity: 0;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
 
     }
 
     .handleFocus
     {
-      &::after
-      {
-        opacity: .2;
-      }
+        &::after
+        {
+            opacity: .2;
+        }
     }
 
     .handleLabel
@@ -355,6 +355,11 @@
         background: color( var( --PC-RED ) a( 35% ) );
     }
 
+    .handle
+    {
+        background-color: var( --PC-RED );
+    }
+
     .handleLabel
     {
         color:      var( --PC-RED );
@@ -367,11 +372,11 @@
 
     .track:hover
     {
-      cursor: default;
-      .handle
-      {
-          border-color:   var( --PC-GREY--L85 );
-      }
+        cursor: default;
+        .handle
+        {
+            border-color:   var( --PC-GREY--L85 );
+        }
     }
 
     .trackFill
@@ -390,7 +395,7 @@
             cursor:         default;
             &::after
             {
-              content: none;
+                content: none;
             }
         }
     }
