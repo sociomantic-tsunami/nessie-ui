@@ -9,6 +9,8 @@
     --tooltipMaxWidth:      350px;
 
     --tooltipOffset:        var( --spacing-1 );
+
+    --boxShadow:            0 2px 8px var( --PC-GREY );
 }
 
 
@@ -28,7 +30,7 @@
     {
         visibility: hidden;
         position:   absolute;
-        width: 350px;
+        width: var( --tooltipMaxWidth );
         z-index: 99999;
     }
 
@@ -38,7 +40,6 @@
         position:       relative;
         text-align:     left;
         box-sizing:     border-box;
-        width:          var( --tooltipMaxWidth );
         display: inline-block;
 
         border-radius:  var( --tooltipBorderRadius );
