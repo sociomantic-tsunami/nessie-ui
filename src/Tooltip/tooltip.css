@@ -147,7 +147,6 @@
         &::after
         {
             bottom: var( --caretPos );
-            transform:  rotate( 225deg );
         }
     }
 }
@@ -171,8 +170,7 @@
         }
         &::after
         {
-          top: 0;
-          border-top-color: transparent;
+          top: var( --caretPos );
         }
     }
 }
@@ -192,18 +190,14 @@
     .tooltip::after
     {
       left: 50%;
-      transform: translateX( -50% ) rotate( 225deg );
     }
 }
 
 .position__top
 {
-    .tooltip
+    .tooltip::after
     {
-        &::after
-        {
-
-        }
+        transform: translateX( -50% ) rotate( 225deg );
     }
     .tooltipContainer
     {
@@ -227,13 +221,9 @@
 
 .position__bottom
 {
-    .tooltip
+    .tooltip::after
     {
-
-        &::after
-        {
-          transform: translate3d( -50%, calc( -1.75 * var( --tooltipOffset ) ), 0);
-        }
+      transform: translateX( -50% ) rotate( 45deg );
     }
     .tooltipContainer
     {
