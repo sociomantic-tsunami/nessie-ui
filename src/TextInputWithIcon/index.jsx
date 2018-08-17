@@ -9,6 +9,9 @@ import InputContainer                      from '../proto/InputContainer';
 
 const TextInputWithIcon = ( {
     aria,
+    autoCorrect,
+    autoCapitalize,
+    spellCheck,
     className,
     cssMap,
     defaultValue,
@@ -76,27 +79,30 @@ const TextInputWithIcon = ( {
             onMouseOver           = { onMouseOver }>
             <div className = { cssMap.container }>
                 <InputField
-                    aria         = { aria }
-                    className    = { cssMap.input }
-                    defaultValue = { defaultValue }
-                    forceHover   = { forceHover }
-                    hasError     = { hasError }
-                    id           = { id }
-                    inputRef     = { inputRef }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnlyInput || isReadOnly }
-                    name         = { name }
-                    onBlur       = { onBlur }
-                    onChange     = { onChange }
-                    onClick      = { onClick }
-                    onFocus      = { onFocus }
-                    onKeyDown    = { onKeyDown }
-                    onKeyPress   = { onKeyPress }
-                    onKeyUp      = { onKeyUp }
-                    placeholder  = { placeholder }
-                    textAlign    = { alignText }
-                    type         = { inputType }
-                    value        = { value } />
+                    aria           = { aria }
+                    className      = { cssMap.input }
+                    defaultValue   = { defaultValue }
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { id }
+                    inputRef       = { inputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnlyInput || isReadOnly }
+                    name           = { name }
+                    onBlur         = { onBlur }
+                    onChange       = { onChange }
+                    onClick        = { onClick }
+                    onFocus        = { onFocus }
+                    onKeyDown      = { onKeyDown }
+                    onKeyPress     = { onKeyPress }
+                    onKeyUp        = { onKeyUp }
+                    placeholder    = { placeholder }
+                    textAlign      = { alignText }
+                    type           = { inputType }
+                    value          = { value }
+                    autocorrect    = { autoCorrect }
+                    autocapitalize = { autoCapitalize }
+                    spellcheck     = { spellCheck } />
                 { ( iconType && iconType !== 'none' ) &&
                     <Tooltip
                         className   = { cssMap.icon }
@@ -361,6 +367,18 @@ TextInputWithIcon.propTypes =
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
     inputRef        : PropTypes.func,
+    /**
+     *  HTML attribute for disabling input auto correct when PasswordInput
+     */
+    autoCorrect     : PropTypes.string,
+    /**
+     * HTML attribute for disabling input auto capitalize when PasswordInput
+     */
+    autoCapitalize  : PropTypes.string,
+    /**
+     * HTML attribute for disabling input spell check when PasswordInput
+     */
+    spellCheck      : PropTypes.bool,
 };
 
 TextInputWithIcon.defaultProps =
