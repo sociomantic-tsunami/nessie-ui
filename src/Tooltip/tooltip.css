@@ -124,7 +124,18 @@
 .position__topLeft,
 .position__topRight,
 .position__bottomLeft,
-.position__bottomRight,
+.position__bottomRight
+{
+    .tooltip
+    {
+      &::before
+      {
+        left:   0;
+        right:  0;
+        height: var( --tooltipOffset );
+      }
+    }
+}
 
 .position__left,
 .position__right,
@@ -137,9 +148,9 @@
     {
       &::before
       {
-        left:   0;
-        right:  0;
-        height: var( --tooltipOffset );
+        top:   0;
+        bottom:  0;
+        width: var( --tooltipOffset );
       }
     }
 }
@@ -180,8 +191,6 @@
     }
     .tooltip
     {
-        top:    0;
-
         &::before
         {
             bottom: 100%;
@@ -256,7 +265,7 @@
 {
     .tooltip::after
     {
-      transform: translateX( -50% ) rotate( 45deg );
+        transform: translateX( -50% ) rotate( 45deg );
     }
     &Left,
     &Right
@@ -279,9 +288,16 @@
         top: 50%;
     }
 
-    .tooltip::after
+    .tooltip
     {
-        right:  var( --caretPosOuter );
+        &::before
+        {
+            left: 100%;
+        }
+        &::after
+        {
+            right:  var( --caretPosOuter );
+        }
     }
 }
 
@@ -297,9 +313,16 @@
         top: 50%;
     }
 
-    .tooltip::after
+    .tooltip
     {
-        left:  var( --caretPosOuter );
+        &::before
+        {
+            right: 100%;
+        }
+        &::after
+        {
+            left:  var( --caretPosOuter );
+        }
     }
 }
 .position__left,
@@ -312,12 +335,6 @@
 
     .tooltip
     {
-        &::before
-        {
-            top:    0;
-            bottom: 0;
-            width:  var( --tooltipOffset );
-        }
         &::after
         {
           top:    50%;
@@ -390,7 +407,7 @@
     .tooltip
     {
       background: var( --PC-RED );
-      border-color: var( --PC-RED );
+      border-color: var( --PC-RED--D15 );
     }
 }
 
@@ -399,7 +416,7 @@
     .tooltip
     {
       background: var( --PC-GREEN );
-      border-color: var( --PC-GREEN );
+      border-color: var( --PC-GREEN--D15 );
     }
 }
 
@@ -408,7 +425,7 @@
     .tooltip
     {
       background: var( --PC-ORANGE );
-      border-color: var( --PC-ORANGE );
+      border-color: var( --PC-ORANGE--D15 );
     }
 
 }
