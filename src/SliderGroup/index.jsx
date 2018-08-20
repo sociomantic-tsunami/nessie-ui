@@ -38,7 +38,7 @@ const SliderGroup = ( {
     stepLabels = [],
     maxValue,
     minValue,
-    onChange
+    onChange,
 } ) =>
 {
     const ticks = stepLabels.map( label =>
@@ -98,7 +98,7 @@ const SliderGroup = ( {
         <div
             className = { buildClassName( className, cssMap, {
                 error    : !isDisabled && hasError,
-                disabled : isDisabled
+                disabled : isDisabled,
 
             } ) } >
             { sliders &&
@@ -114,8 +114,8 @@ const SliderGroup = ( {
                                             `${getOffset(
                                                 value.step,
                                                 minValue,
-                                                maxValue
-                                            )}%`
+                                                maxValue,
+                                            )}%`,
                             } } >
                             <div
                                 className = { cssMap.stepLabel } >
@@ -178,7 +178,7 @@ SliderGroup.propTypes =
     /**
     *  onChange callback function : ( e ) => { ... }
     */
-    onChange     : PropTypes.func
+    onChange     : PropTypes.func,
 };
 
 SliderGroup.defaultProps =
@@ -188,7 +188,7 @@ SliderGroup.defaultProps =
     hasError   : false,
     maxValue   : 100,
     minValue   : 0,
-    cssMap     : require( './sliderGroup.css' )
+    cssMap     : require( './sliderGroup.css' ),
 
 };
 

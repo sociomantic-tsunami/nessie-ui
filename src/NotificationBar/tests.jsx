@@ -21,3 +21,31 @@ describe( 'NotificationBar', () =>
             .toHaveLength( 1 );
     } );
 } );
+
+
+describe( 'NotificationBarDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <NotificationBar /> );
+        driver = wrapper.driver();
+    } );
+
+
+    describe( 'clickClose()', () =>
+    {
+        test( 'should trigger onClickClose callback once', () =>
+        {
+            const onClickClose = jest.fn();
+
+            wrapper.setProps( { onClickClose, isDismissible: true } );
+
+            driver.clickClose();
+
+            expect( onClickClose ).toBeCalledTimes( 1 );
+        } );
+    } );
+} );

@@ -53,32 +53,3 @@ describe( 'Section', () =>
         } );
     } );
 } );
-
-
-describe( 'SectionDriver', () =>
-{
-    let wrapper;
-    let driver;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <Section /> );
-        driver  = wrapper.driver();
-    } );
-
-    describe( 'getContent()', () =>
-    {
-        test( 'should return the content', () =>
-        {
-            const children = (
-                <Section title = "Pikachu">
-                    <h2>Lightning Strike</h2>
-                </Section>
-            );
-
-            wrapper.setProps( {  children } );
-            const content = driver.getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
-        } );
-    } );
-} );

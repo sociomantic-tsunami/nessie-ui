@@ -30,20 +30,22 @@ describe( 'Switch', () =>
 describe( 'SwitchDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Switch /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'toggle()', () =>
+    describe( 'change()', () =>
     {
         test( 'should call onChange once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            wrapper.driver().toggle();
+            driver.change();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -55,13 +57,13 @@ describe( 'SwitchDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
-            wrapper.driver().toggle();
+            driver.change();
 
             expect( targetChecked ).toBeFalsy();
         } );
     } );
 
-    describe( 'mouseOut', () =>
+    describe( 'mouseOut()', () =>
     {
         test( 'should trigger onMouseOut callback function', () =>
         {
@@ -69,13 +71,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalled();
         } );
     } );
 
-    describe( 'mouseOver', () =>
+    describe( 'mouseOver()', () =>
     {
         test( 'should trigger onMouseOver callback function', () =>
         {
@@ -83,13 +85,13 @@ describe( 'SwitchDriver', () =>
 
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalled();
         } );
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should trigger onBlur callback function', () =>
         {
@@ -103,7 +105,7 @@ describe( 'SwitchDriver', () =>
         } );
     } );
 
-    describe( 'focus', () =>
+    describe( 'focus()', () =>
     {
         test( 'should trigger onFocus callback function', () =>
         {

@@ -2,7 +2,7 @@ import { ScrollBar } from 'nessie-ui';
 
 const ERRORS = {
     SCROLL_CANNOT_BE_CLICKED   : ( prop ) => `Button cannot be clicked since it doesn't have ${prop} prop`, // eslint-disable-line max-len
-    CANNOT_SCROLL_IN_DIRECTION : ( direction ) => `Cannot scroll because scroll direction is neither '${direction}' nor 'both'` // eslint-disable-line max-len
+    CANNOT_SCROLL_IN_DIRECTION : ( direction ) => `Cannot scroll because scroll direction is neither '${direction}' nor 'both'`, // eslint-disable-line max-len
 };
 
 export default class ScrollBoxDriver
@@ -10,9 +10,8 @@ export default class ScrollBoxDriver
     constructor( wrapper )
     {
         this.wrapper   = wrapper;
-        this.props     = this.wrapper.props();
-        this.scrollBox = this.wrapper.find(
-            `.${wrapper.prop( 'cssMap' ).inner}` );
+        this.props     = wrapper.props();
+        this.scrollBox = wrapper.find( `.${wrapper.prop( 'cssMap' ).inner}` );
     }
 
     clickScrollUp()

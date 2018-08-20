@@ -64,12 +64,12 @@ const Tooltip = ( {
                         </div>
                         { isDismissible &&
                             <IconButton
-                                className    = { cssMap.close }
-                                iconSize     = "S"
-                                iconTheme    = "button"
-                                iconType     = "close"
-                                label        = "Close"
-                                onClickClose = { onClickClose } />
+                                className = { cssMap.close }
+                                iconSize  = "S"
+                                iconTheme = "button"
+                                iconType  = "close"
+                                label     = "Close"
+                                onClick   = { onClickClose } />
                         }
                     </div>
                 </div>

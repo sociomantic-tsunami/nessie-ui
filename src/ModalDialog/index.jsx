@@ -2,7 +2,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import IconButton           from '../IconButton';
 
 const ModalDialog = ( {
@@ -17,7 +16,7 @@ const ModalDialog = ( {
     title,
     onClickPrev,
     onClickNext,
-    onClickClose
+    onClickClose,
 } ) =>
 {
     if ( !isVisible )
@@ -67,7 +66,7 @@ const ModalDialog = ( {
                 className = { buildClassName( className, cssMap, {
                     type,
                     wide    : isWide,
-                    showNav : hasNavigation
+                    showNav : hasNavigation,
                 } ) }
                 onClick   = { onClickOverlay } >
                 { modalUI }
@@ -92,7 +91,7 @@ ModalDialog.propTypes =
         'neutral',
         'crucial',
         'promoted',
-        'carousel'
+        'carousel',
     ] ),
     /**
      *  Display the dialog
@@ -133,7 +132,7 @@ ModalDialog.defaultProps =
     type          : 'default',
     isVisible     : false,
     hasNavigation : true,
-    cssMap        : require( './modalDialog.css' )
+    cssMap        : require( './modalDialog.css' ),
 };
 
 export default ModalDialog;

@@ -5,7 +5,7 @@ import { IconButton } from 'nessie-ui';
 const ERRORS = {
     MODULE_NOT_COLLAPSIBLE      : 'Module is not collapsible. Cannot simulate toggle.',
     MODULE_HAS_NO_DELETE        : 'Module has no delete button. Cannot simulate delete.',
-    MODULE_HAS_NO_CUSTOM_HEADER : 'Module has no customHeader. Cannot get contents.'
+    MODULE_HAS_NO_CUSTOM_HEADER : 'Module has no customHeader. Cannot get contents.',
 };
 /* eslint-disable max-len */
 
@@ -20,7 +20,7 @@ export default class ModuleDriver
     /**
      * Simulate human toggle by clicking on the arrow.
      */
-    toggle()
+    clickToggle()
     {
         const toggle = this.wrapper.find( IconButton ).last();
 
@@ -50,6 +50,30 @@ export default class ModuleDriver
         return this.wrapper;
     }
 
+    mouseOverHeader()
+    {
+        this.wrapper.find( `.${this.cssMap.header}` ).first().simulate( 'mouseOver' );
+        return this;
+    }
+
+    mouseOutHeader()
+    {
+        this.wrapper.find( `.${this.cssMap.header}` ).simulate( 'mouseOut' );
+        return this;
+    }
+
+    mouseOverError()
+    {
+        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOutError()
+    {
+        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseleave' );
+        return this;
+    }
+
     getCustomHeader()
     {
         if ( !this.wrapper.props().customHeader )
@@ -57,10 +81,5 @@ export default class ModuleDriver
             throw new Error( ERRORS.MODULE_HAS_NO_CUSTOM_HEADER );
         }
         return this.wrapper.find( `.${this.cssMap.header}` ).children();
-    }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
     }
 }

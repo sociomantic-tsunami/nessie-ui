@@ -35,6 +35,38 @@ describe( 'ComboBox', () =>
             expect( wrapper.find( 'label' ).length ).toBe( 1 );
         } );
     } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver() callback function once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( {
+                onMouseOver,
+            } );
+
+            wrapper.simulate( 'mouseenter' );
+
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut() callback function once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( {
+                onMouseOut,
+            } );
+
+            wrapper.simulate( 'mouseleave' );
+
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
 } );
 
 
@@ -49,7 +81,7 @@ describe( 'ComboBoxDriver', () =>
         driver   = wrapper.driver();
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should trigger onBlur() callback function once', () =>
         {
@@ -64,7 +96,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'changeInput', () =>
+
+    describe( 'changeInput()', () =>
     {
         test( 'should trigger onChangeInput() callback function once', () =>
         {
@@ -79,7 +112,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'clickInput', () =>
+
+    describe( 'clickInput()', () =>
     {
         test( 'should trigger onClickInput() callback function once', () =>
         {
@@ -94,7 +128,25 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'clickOption', () =>
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should trigger onClickIcon callback function once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( {
+                onClickIcon,
+                'iconType' : 'up',
+            } );
+
+            driver.clickIcon();
+
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickOption()', () =>
     {
         test( 'should trigger onClickOption() callback function once', () =>
         {
@@ -125,7 +177,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'focus', () =>
+
+    describe( 'focus()', () =>
     {
         test( 'should trigger onFocus() callback function once', () =>
         {
@@ -140,7 +193,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'keyDown', () =>
+
+    describe( 'keyDown()', () =>
     {
         test( 'should trigger onKeyDown() callback function once', () =>
         {
@@ -149,13 +203,14 @@ describe( 'ComboBoxDriver', () =>
                 onKeyDown,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyDown();
 
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'keyPress', () =>
+
+    describe( 'keyPress()', () =>
     {
         test( 'should trigger onKeyPress() callback function once', () =>
         {
@@ -164,13 +219,14 @@ describe( 'ComboBoxDriver', () =>
                 onKeyPress,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyPress();
 
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'keyUp', () =>
+
+    describe( 'keyUp()', () =>
     {
         test( 'should trigger onKeyUp() callback function once', () =>
         {
@@ -179,28 +235,14 @@ describe( 'ComboBoxDriver', () =>
                 onKeyUp,
             } );
 
-            driver.keyPress( 'abc' );
+            driver.keyUp();
 
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut', () =>
-    {
-        test( 'should trigger onMouseOut() callback function once', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( {
-                onMouseOut,
-            } );
 
-            driver.mouseOut();
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'mouseOutOption', () =>
+    describe( 'mouseOutOption()', () =>
     {
         test( 'should trigger onMouseOutOption() callback function once', () =>
         {
@@ -231,22 +273,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'mouseOver', () =>
-    {
-        test( 'should trigger onMouseOver() callback function once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                onMouseOver,
-            } );
 
-            driver.mouseOver();
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'mouseOverOption', () =>
+    describe( 'mouseOverOption()', () =>
     {
         test( 'should trigger onMouseOverOption() callback function once', () =>
         {
@@ -277,7 +305,8 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'scroll', () =>
+
+    describe( 'scroll()', () =>
     {
         test( 'should trigger onScroll() callback function once', () =>
         {

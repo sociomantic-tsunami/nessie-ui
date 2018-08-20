@@ -32,7 +32,7 @@ const Tag = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                disabled : isDisabled
+                disabled : isDisabled,
             } ) }>
             { labelText }
             <IconButton

@@ -1,10 +1,9 @@
-import React                            from 'react';
-import { ReactWrapper, mount, shallow } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import InputContainer                   from '../proto/InputContainer';
+import InputContainer       from '../proto/InputContainer';
 
-
-import FlounderDropdown                 from './index';
+import FlounderDropdown     from './index';
 
 
 describe( 'FlounderDropdown', () =>
@@ -67,293 +66,81 @@ describe( 'FlounderDropdownDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'chooseItemByIndex( index )', () =>
+
+    describe( 'change( value )', () =>
     {
-        test(
-            'should choose an item by index when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label : 'Flounder Label',
-                    data  : [
-                        'Pikachu',
-                        'Jigglypuff',
-                        'Squirtle',
-                        'Balbasaur',
-                    ],
-                    onChange : changeSpy,
-                } );
-
-                driver.chooseItemByIndex( 1 );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'Jigglypuff' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            },
-        );
-
-        test( 'should choose multiple items by index when uncontolled', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
-                onChange : changeSpy,
-                multiple : true,
-            } );
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange, children: pokemonList } );
 
-            driver.chooseItemByIndex( [ 1, 3 ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'Jigglypuff' );
-            expect( selected ).toContain( 'Balbasaur' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
-        test( 'should throw error when isReadOnly', () =>
-        {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.change( 'a' );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'chooseItemByText( text )', () =>
+
+    describe( 'close()', () =>
     {
-        test( 'should choose item by text when Flounder is uncontolled', () =>
+        test( 'should trigger onClose callback prop once', () =>
         {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy,
-            } );
+            const onClose = jest.fn();
+            wrapper.setProps( { onClose } );
 
-            driver.chooseItemByText( 'Jigglypuff' );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 1 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( changeSpy ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should choose multiple items by text when uncontolled', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy,
-                multiple : true,
-            } );
-
-            driver.chooseItemByText( [ 'Jigglypuff', 'Balbasaur' ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( selected ).toContain( 'pokemon4' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
-        test( 'should throw error when isReadOnly', () =>
-        {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.close();
+            expect( onClose ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'chooseItemByValues( value )', () =>
+
+    describe( 'open()', () =>
     {
-        test(
-            'should choose an item by value when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label    : 'Flounder Label',
-                    data     : pokemonList,
-                    onChange : changeSpy,
-                } );
-
-                driver.chooseItemByValue( 'pokemon2' );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'pokemon2' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            },
-        );
-
-        test( 'should choose multiple items by value when uncontolled', () =>
+        test( 'should trigger onOpen callback prop once', () =>
         {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy,
-                multiple : true,
-            } );
+            const onOpen = jest.fn();
+            wrapper.setProps( { onOpen } );
 
-            driver.chooseItemByValue( [ 'pokemon1', 'pokemon3' ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon1' );
-            expect( selected ).toContain( 'pokemon3' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
-        test( 'should throw error when isReadOnly', () =>
-        {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.open();
+            expect( onOpen ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'removeAllTags()', () =>
+
+    describe( 'firstTouch()', () =>
     {
-        test( 'should remove all tags from an uncontrolled Flounder', () =>
+        test( 'should trigger onFirstTouch callback prop once', () =>
         {
-            const changeSpy = jest.fn();
-            const props = {
-                label        : 'Flounder Label',
-                data         : pokemonList,
-                onChange     : changeSpy,
-                defaultValue : [ 'pokemon1', 'pokemon3' ],
-                multiple     : true,
-                multipleTags : true,
-            };
+            const onFirstTouch = jest.fn();
+            wrapper.setProps( { children: pokemonList, onFirstTouch } );
 
-            wrapper = mount( <FlounderDropdown { ...props } /> );
-            driver  = wrapper.driver();
-
-            driver.removeAllTags();
-
-            const selected = driver.getSelectedValues();
-            expect( selected ).toHaveLength( 0 );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
-        test( 'should throw error when isReadOnly', () =>
-        {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => driver.removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
-        } );
-
-        test( 'should throw error when not configured with multipleTags', () =>
-        {
-            wrapper.setProps( { data: pokemonList } );
-
-            expect( () => wrapper.driver().removeAllTags() )
-                .toThrowError( 'Cannot deselect tags when flounder dropdown \
-is not configured with multipleTags' );
+            driver.firstTouch();
+            expect( onFirstTouch ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'getErrorMessage()', () =>
+
+    describe( 'mouseOver()', () =>
     {
-        beforeEach( () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
-            wrapper.setProps( {
-                label                 : 'Flounder Label',
-                data                  : pokemonList,
-                value                 : [ 'pokemon1', 'pokemon3' ],
-                hasError              : true,
-                errorMessageIsVisible : true,
-                errorMessage          : <p className = "attack">Lightning</p>,
-            } );
-        } );
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
 
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
+    } );
 
-        test( 'should contain the error message content', () =>
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
-            const content = driver.getErrorMessage();
-            expect( content.find( '.attack' ) ).toHaveLength( 1 );
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

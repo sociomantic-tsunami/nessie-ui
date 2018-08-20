@@ -1,34 +1,64 @@
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
-import { Tooltip } from 'nessie-ui';
+const ERRORS = {
+    CANNOT_MOUSEOVER : () =>
+        'Cannot mouseOver because it is disabled',
+    CANNOT_MOUSEOUT : () =>
+        'Cannot mouseOut because it is disabled',
+    CANNOT_MOUSEOVER_ICON : () =>
+        'Cannot mouseOverIcon because it is disabled',
+    CANNOT_MOUSEOUT_ICON : () =>
+        'Cannot mouseOutIcon because it is disabled',
+};
 
-export default class IconWithTooltipDriver extends SimpleComponentDriver
+export default class IconWithTooltipDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
-        this.tooltip = wrapper.children( Tooltip ).first();
+        this.wrapper = wrapper;
+        this.tooltip = wrapper
+            .find( `.${this.wrapper.props().cssMap.iconWithTooltip}` ).first();
     }
 
     mouseOverIcon()
     {
-        this.tooltip.driver().mouseOver();
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.CANNOT_MOUSEOVER_ICON() );
+        }
+
+        this.tooltip.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.driver().mouseOut();
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.CANNOT_MOUSEOUT_ICON() );
+        }
+
+        this.tooltip.simulate( 'mouseleave' );
         return this;
     }
 
-    getContent()
+    mouseOver()
     {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.CANNOT_MOUSEOVER() );
+        }
+
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
     }
 
-    getMessage()
+    mouseOut()
     {
-        return this.tooltip.driver().getMessage();
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS.CANNOT_MOUSEOUT() );
+        }
+
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

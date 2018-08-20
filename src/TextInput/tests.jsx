@@ -62,7 +62,58 @@ describe( 'TextInputDriver', () =>
             driver.blur();
             expect( blurSpy ).toBeCalled();
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Input can\'t blur since it is disabled';
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.blur() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Input can\'t blur since it is read only';
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.blur() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
+
 
     describe( 'focus()', () =>
     {
@@ -74,209 +125,248 @@ describe( 'TextInputDriver', () =>
             driver.focus();
             expect( focusSpy ).toBeCalled();
         } );
-    } );
 
-    describe( 'setInputValue( value )', () =>
-    {
-        test( 'should fire the onChange callback prop', () =>
+
+        describe( 'isDisabled', () =>
         {
-            const changeSpy = jest.fn();
-            wrapper.setProps( { onChange: changeSpy } );
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
 
-            driver.setInputValue( 'test' );
+                const expectedError =
+                    'Input can\'t focus since it is disabled';
 
-            expect( changeSpy ).toBeCalled();
-            expect( driver.getInputValue() ).toBe( 'test' );
-        } );
-
-        test( 'should throw an error when TextInput is disabled', () =>
-        {
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isDisabled : true,
-                onChange   : onChangeSpy,
+                expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            const expectedError =
-                'Input \'test\' value cannot be changed since it is disabled';
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
 
-            expect( () => wrapper.driver().setInputValue( 'pikachu' ) )
-                .toThrowError( expectedError );
+                wrapper.setProps( { isDisabled: true } );
 
-            expect( onChangeSpy ).not.toBeCalled();
+                expect( () => driver.focus() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
 
-        test( 'should throw an error TextInput is read only', () =>
+
+        describe( 'isReadOnly', () =>
         {
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isReadOnly : true,
-                onChange   : onChangeSpy,
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Input can\'t focus since it is read only';
+
+                expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            const expectedError =
-                'Input \'test\' value cannot be changed since it is read only';
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
 
-            expect( () => wrapper.driver().setInputValue( 'pikachu' ) )
-                .toThrowError( expectedError );
+                wrapper.setProps( { isReadOnly: true } );
 
-            expect( onChangeSpy ).not.toBeCalled();
-        } );
-    } );
-
-    describe( 'clearInputValue()', () =>
-    {
-        test( 'should throw an error when TextInput is disabled', () =>
-        {
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isDisabled : true,
-                onChange   : onChangeSpy,
+                expect( () => driver.focus() );
+                expect( simulate ).not.toBeCalled();
             } );
-
-            const expectedError =
-                'Input \'test\' value cannot be changed since it is disabled';
-
-            expect( () => wrapper.driver().clearInputValue() )
-                .toThrowError( expectedError );
-
-            expect( onChangeSpy ).not.toBeCalled();
-        } );
-
-        test( 'should throw an error when TextInput is read only', () =>
-        {
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isReadOnly : true,
-                onChange   : onChangeSpy,
-            } );
-
-            const expectedError =
-                'Input \'test\' value cannot be changed since it is read only';
-
-            expect( () => wrapper.driver().clearInputValue() )
-                .toThrowError( expectedError );
-
-            expect( onChangeSpy ).not.toBeCalled();
         } );
     } );
 
-    describe( 'pressKey( keyCode )', () =>
+
+    describe( 'keyPress()', () =>
     {
         test( 'keyPress Text input should fire an event', () =>
         {
-            const keyCodeEnter = 13;
             const keyPressSpy = jest.fn();
             wrapper.setProps( { onKeyPress: keyPressSpy } );
 
-            driver.pressKey( keyCodeEnter );
+            driver.keyPress();
             expect( keyPressSpy ).toBeCalled();
         } );
 
-        test( 'keyPress Text input should fire an onInput event', () =>
-        {
-            const keyCodeChar = String.fromCharCode( 74 );
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( { onChange: onChangeSpy } );
 
-            driver.pressKey( keyCodeChar );
-            expect( onChangeSpy ).toBeCalled();
-        } );
-
-        test( 'inputValue should fire event for each key', () =>
+        describe( 'isDisabled', () =>
         {
-            const keyPressSpy = jest.fn();
-            const onChangeSpy = jest.fn();
-            wrapper.setProps( {
-                onKeyPress : keyPressSpy,
-                onChange   : onChangeSpy,
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Input can\'t keyPress since it is disabled';
+
+                expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            driver.inputValue( 'Harry Potter' );
-            expect( keyPressSpy ).toBeCalledTimes( 12 );
-            expect( onChangeSpy ).toBeCalledTimes( 12 );
-        } );
-        test( 'inputValue should change the text', () =>
-        {
-            driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
-        } );
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
 
-        test( 'should throw an error when TextInput is disabled', () =>
-        {
-            const keyPressSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isDisabled : true,
-                onKeyPress : keyPressSpy,
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyPress() );
+                expect( simulate ).not.toBeCalled();
             } );
-
-            const expectedError =
-                'Cannot press a key on Input \'test\' since it is disabled';
-
-            expect( () => wrapper.driver().pressKey() )
-                .toThrowError( expectedError );
-
-            expect( keyPressSpy ).not.toBeCalled();
-        } );
-
-        test( 'should throw an error when TextInput is read only', () =>
-        {
-            const keyPressSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isReadOnly : true,
-                onKeyPress : keyPressSpy,
-            } );
-
-            const expectedError =
-                'Cannot press a key on Input \'test\' since it is read only';
-
-            expect( () => wrapper.driver().pressKey() )
-                .toThrowError( expectedError );
-
-            expect( keyPressSpy ).not.toBeCalled();
         } );
     } );
 
-    describe( 'click()', () =>
+
+    describe( 'change()', () =>
     {
-        test( 'should throw an error when TextInput is disabled', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
-            const handleClickSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isDisabled : true,
-                onClick    : handleClickSpy,
-            } );
+            const onChange = jest.fn();
+            wrapper.setProps( {  onChange } );
 
-            const expectedError =
-                'Input \'test\' cannot be clicked since it is disabled';
-
-            expect( () => wrapper.driver().click() )
-                .toThrowError( expectedError );
-            expect( handleClickSpy ).not.toBeCalled();
+            driver.change( 'cba' );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should throw an error when TextInput is read only', () =>
+
+        describe( 'isDisabled', () =>
         {
-            const handleClickSpy = jest.fn();
-            wrapper.setProps( {
-                label      : 'test',
-                isReadOnly : true,
-                onClick    : handleClickSpy,
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Input can\'t change since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            const expectedError =
-                'Input \'test\' cannot be clicked since it is read only';
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
 
-            expect( () => wrapper.driver().click() )
-                .toThrowError( expectedError );
-            expect( handleClickSpy ).not.toBeCalled();
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Input can\'t change since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'click()', () =>
+    {
+        test( 'should trigger onClick callback once', () =>
+        {
+            const clickSpy = jest.fn();
+            wrapper.setProps( {
+                onClick : clickSpy,
+            } );
+
+            driver.click();
+
+            expect( clickSpy ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Input can\'t click since it is disabled';
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Input can\'t click since it is read only';
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

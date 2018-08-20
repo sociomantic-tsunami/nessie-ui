@@ -129,14 +129,6 @@ PasswordInput.propTypes =
      */
     onClickIcon           : PropTypes.func,
     /**
-     *  Icon focus callback function
-     */
-    onFocusIcon           : PropTypes.func,
-    /**
-     *  Icon blur callback function
-     */
-    onBlurIcon            : PropTypes.func,
-    /**
      *  Icon mouseOver callback function
      */
     onMouseOverIcon       : PropTypes.func,
@@ -173,7 +165,6 @@ PasswordInput.defaultProps =
     labelPosition         : 'top',
     name                  : undefined,
     onBlur                : undefined,
-    onBlurIcon            : undefined,
     onChange              : undefined,
     onClickIcon           : undefined,
     onFocus               : undefined,

@@ -3,7 +3,6 @@
 import React                from 'react';
 import { mount, shallow }   from 'enzyme';
 
-
 import DatePicker           from './index';
 
 describe( 'DatePicker', () =>
@@ -37,7 +36,7 @@ describe( 'DatePickerDriver', () =>
     } );
 
 
-    describe( 'clickItem', () =>
+    describe( 'clickItem()', () =>
     {
         test( 'should simulate and trigger onClickItem() once', () =>
         {
@@ -110,7 +109,8 @@ describe( 'DatePickerDriver', () =>
         } );
     } );
 
-    describe( 'clickNext', () =>
+
+    describe( 'clickNext()', () =>
     {
         test( 'should simulate and trigger onClickNext() once', () =>
         {
@@ -123,9 +123,35 @@ describe( 'DatePickerDriver', () =>
 
             expect( onClickNext ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'nextIsDisabled', () =>
+        {
+            test( 'should throw the expected error when nextIsDisabled', () =>
+            {
+                const expectedError =
+                    'Next cannot be clicked since it is disabled';
+
+                wrapper.setProps( { nextIsDisabled: true } );
+
+                expect( () => driver.clickNext() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { nextIsDisabled: true } );
+
+                expect( () => driver.clickNext() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
 
-    describe( 'clickPrev', () =>
+
+    describe( 'clickPrev()', () =>
     {
         test( 'should simulate and trigger onClickPrev() once', () =>
         {
@@ -137,6 +163,558 @@ describe( 'DatePickerDriver', () =>
             driver.clickPrev();
 
             expect( onClickPrev ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'prevIsDisabled', () =>
+        {
+            test( 'should throw the expected error when prevIsDisabled', () =>
+            {
+                const expectedError =
+                    'Previous cannot be clicked since it is disabled';
+
+                wrapper.setProps( { prevIsDisabled: true } );
+
+                expect( () => driver.clickPrev() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { prevIsDisabled: true } );
+
+                expect( () => driver.clickPrev() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'blurHour()', () =>
+    {
+        test( 'should trigger onBlur callback once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blurHour();
+
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.blurHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.blurHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Hour input cannot have blur since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.blurHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.blurHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Hour input cannot have blur since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.blurHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.blurHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'focusHour()', () =>
+    {
+        test( 'should trigger onFocus callback once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focusHour();
+
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.focusHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.focusHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Hour input cannot have focus since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.focusHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.focusHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Hour input cannot have focus since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.focusHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.focusHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'changeHour()', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeHour();
+
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.changeHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.changeHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'keyPressHour()', () =>
+    {
+        test( 'should trigger onKeyPress callback once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPressHour();
+
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.keyPressHour() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.keyPressHour() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'blurMinute()', () =>
+    {
+        test( 'should trigger onBlur callback once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blurMinute();
+
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'month' } );
+
+                expect( () => driver.blurMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'month' } );
+
+                expect( () => driver.blurMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Minute input cannot have blur since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.blurMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.min}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.blurMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Minute input cannot have blur since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.blurMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.min}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.blurMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'focusMinute()', () =>
+    {
+        test( 'should trigger onFocus callback once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focusMinute();
+
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'month' } );
+
+                expect( () => driver.focusMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'month' } );
+
+                expect( () => driver.focusMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Minute input cannot have focus since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.focusMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.min}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.focusMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Minute input cannot have focus since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.focusMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.min}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.focusMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'changeMinute()', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeMinute();
+
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.changeMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.changeMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'keyPressMinute()', () =>
+    {
+        test( 'should trigger onKeyPress callback once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPressMinute();
+
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'mode is not <default>', () =>
+        {
+            test( 'should throw an error if mode is not <default>', () =>
+            {
+                const expectedError =
+                    'There\'s no input because <mode> is not <default>';
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.keyPressMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.hour}` ), 'simulate' );
+
+                wrapper.setProps( { mode: 'date' } );
+
+                expect( () => driver.keyPressMinute() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 } );

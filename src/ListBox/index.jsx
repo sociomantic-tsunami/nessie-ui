@@ -51,14 +51,16 @@ const ListBox = ( {
             onKeyPress  = { onKeyPress }
             onMouseDown = { !isFocusable && killFocus }
             tabIndex    = { isFocusable ? '0' : '-1' }>
-            { updateOptions( children || buildOptions( options ),
+            { updateOptions(
+                children || buildOptions( options ),
                 {
                     activeOption,
                     onClickOption,
                     onMouseOutOption,
                     onMouseOverOption,
                     selection : realSelection,
-                } )
+                },
+            )
             }
         </ul>
     );

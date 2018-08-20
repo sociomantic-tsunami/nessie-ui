@@ -290,19 +290,17 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars.push(
-                    <ScrollBar
-                        className        = { cssMap.scrollBarHorizontal }
-                        key              = "horizontal"
-                        onClickTrack     = { this.handleClickTrackX }
-                        onChange         = { this.handleChangeX }
-                        orientation      = "horizontal"
-                        scrollPos        = { scrollLeft }
-                        thumbSize        = {
-                            `${( clientWidth / scrollWidth ) * 100}%`
-                        }
-                        scrollMax = { scrollWidth - clientWidth } />
-                );
+                scrollBars.push( <ScrollBar
+                    className        = { cssMap.scrollBarHorizontal }
+                    key              = "horizontal"
+                    onClickTrack     = { this.handleClickTrackX }
+                    onChange         = { this.handleChangeX }
+                    orientation      = "horizontal"
+                    scrollPos        = { scrollLeft }
+                    thumbSize        = {
+                        `${( clientWidth / scrollWidth ) * 100}%`
+                    }
+                    scrollMax = { scrollWidth - clientWidth } /> );
             }
         }
 

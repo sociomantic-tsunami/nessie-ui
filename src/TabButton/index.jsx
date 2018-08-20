@@ -1,7 +1,7 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
+import { buildClassName }   from '../utils';
 
 const TabButton = ( {
     buttonRef,
@@ -12,27 +12,30 @@ const TabButton = ( {
     label,
     onClick,
     subtitle,
-    tabIndex
+    tabIndex,
 } ) =>
-
-    ( <button
-        ref       = { buttonRef }
-        className = { buildClassName( className, cssMap, { active: isActive } ) }
-        role      = "tab"
-        value     = { String( tabIndex ) }
-        disabled  = { isDisabled }
-        onClick   = { onClick }>
-        <div className = { cssMap.content }>
-            <div className = { cssMap.label }>
-                { label }
-                { subtitle &&
-                <span className = { cssMap.subtitle }>
-                    { subtitle }
-                </span>
-                }
+    (
+        <button
+            ref       = { buttonRef }
+            className = {
+                buildClassName( className, cssMap, { active: isActive } )
+            }
+            role      = "tab"
+            value     = { String( tabIndex ) }
+            disabled  = { isDisabled }
+            onClick   = { onClick }>
+            <div className = { cssMap.content }>
+                <div className = { cssMap.label }>
+                    { label }
+                    { subtitle &&
+                    <span className = { cssMap.subtitle }>
+                        { subtitle }
+                    </span>
+                    }
+                </div>
             </div>
-        </div>
-      </button> );
+        </button>
+    );
 
 TabButton.propTypes =
 {
@@ -70,7 +73,7 @@ TabButton.defaultProps =
 {
     tabIndex : 0,
     isActive : false,
-    cssMap   : require( './tabButton.css' )
+    cssMap   : require( './tabButton.css' ),
 };
 
 export default TabButton;

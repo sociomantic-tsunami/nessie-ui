@@ -3,10 +3,6 @@ export default class ScrollBarDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap = wrapper.prop( 'cssMap' );
-
-        this.thumb = wrapper.find( `.${this.cssMap.thumb}` );
-        this.track = wrapper.find( `.${this.cssMap.default}` );
     }
 
     clickTrack( val )

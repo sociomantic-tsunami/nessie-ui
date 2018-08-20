@@ -11,7 +11,7 @@ const InputFrame = ( {
     cssMap,
     hasError,
     forceHover,
-    isDisabled
+    isDisabled,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {

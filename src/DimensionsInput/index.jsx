@@ -1,9 +1,9 @@
-import React                             from 'react';
-import PropTypes                         from 'prop-types';
+import React                                             from 'react';
+import PropTypes                                         from 'prop-types';
 
 import { generateId, buildClassName }                    from '../utils';
-import { Column, InputField, Row, Text } from '../index';
-import InputContainer                    from '../proto/InputContainer';
+import { Column, InputField, Row, Text }                 from '../index';
+import InputContainer                                    from '../proto/InputContainer';
 
 const DimensionsInput = ( {
     className,

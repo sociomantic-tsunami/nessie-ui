@@ -47,22 +47,6 @@ describe( 'FormDriver', () =>
         wrapper = mount( <Form /> );
     } );
 
-    describe( 'getContent()', () =>
-    {
-        test( 'should return a ReactWrapper', () =>
-        {
-            const content = wrapper.driver().getContent();
-            expect( content ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the content node', () =>
-        {
-            wrapper.setProps( { children: <h2>Pikachu</h2> } );
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ) ).toHaveLength( 1 );
-        } );
-    } );
-
     describe( 'submit()', () =>
     {
         test( 'should fire the onSubmit callback prop once', () =>

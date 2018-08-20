@@ -44,7 +44,7 @@ alternative layout.' );
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
                 wrap    : hasWrap,
-                spacing : spacing !== 'none' && spacing
+                spacing : spacing !== 'none' && spacing,
             } ) }
             onClick      = { onClick }
             onMouseEnter = { onMouseOver }

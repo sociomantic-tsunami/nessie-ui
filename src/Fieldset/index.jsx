@@ -2,7 +2,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
 
@@ -17,7 +16,7 @@ const Fieldset = ( {
     isDisabled,
     label,
     onMouseOver,
-    onMouseOut
+    onMouseOut,
 } ) => (
 
     <fieldset
@@ -86,8 +85,8 @@ Fieldset.propTypes =
         'top',
         'bottom',
         'topLeft',
-        'topRight'
-    ] )
+        'topRight',
+    ] ),
 };
 
 Fieldset.defaultProps =
@@ -96,7 +95,7 @@ Fieldset.defaultProps =
     hasError              : false,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
-    cssMap                : require( './fieldset.css' )
+    cssMap                : require( './fieldset.css' ),
 };
 
 export default Fieldset;

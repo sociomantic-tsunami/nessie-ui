@@ -2,9 +2,12 @@ const ERRORS = {
     DISABLED : ( label, action ) =>
         `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
 disabled`,
+    READONLY : ( label, action ) =>
+        `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
+read only`,
 };
 
-const toArray = value => Array.isArray( value ) ? value : [ value ];
+const toArray = value => ( Array.isArray( value ) ? value : [ value ] );
 
 export default class SliderDriver
 {
@@ -31,11 +34,16 @@ export default class SliderDriver
         return this;
     }
 
-    change( value, index = 0 )
+    change( value = '0', index = 0 )
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+        }
+
+        if ( this.wrapper.prop( 'isReadOnly' ) )
+        {
+            throw new Error( ERRORS.READONLY( this.label, 'changed' ) );
         }
 
         const input = this.inputContainer.childAt( index );
@@ -91,51 +99,27 @@ export default class SliderDriver
         return this;
     }
 
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
+
     mouseDown()
     {
         this.track.first().simulate( 'mouseDown' );
         return this;
     }
 
-    mouseOut()
-    {
-        this.default.first().simulate( 'mouseLeave' );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.default.first().simulate( 'mouseEnter' );
-        return this;
-    }
-
     mouseUp() // not a React SyntheticEvent
     {
         this.wrapper.node.handleUp();
-        return this;
-    }
-
-    setInputValue( value )
-    {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
-        }
-
-        const oldValues = toArray( props.value );
-        const newValues = toArray( value );
-
-        oldValues.forEach( ( val, i ) =>
-        {
-            const newValue = newValues[ i ];
-            if ( Number.isFinite( newValue ) )
-            {
-                this.change( newValues[ i ], i );
-            }
-        } );
-
         return this;
     }
 }

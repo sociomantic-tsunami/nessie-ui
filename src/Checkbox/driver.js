@@ -1,62 +1,140 @@
-import InputComponentDriver
-    from '../Testing/CommonDrivers/inputComponentDriver';
+const ERRORS = {
+    CHECKBOX_CANNOT_BE_CLICKED : ( label, state ) =>
+        `Checkbox '${label}' cannot be clicked since it is ${state}`,
+    CHECKBOX_CANNOT_BE_CHANGED : ( label, state ) =>
+        `Checkbox '${label}' cannot be changed since it is ${state}`,
+    CHECKBOX_CANNOT_BE_BLURED : ( label, state ) =>
+        `Checkbox '${label}' cannot have blur since it is ${state}`,
+    CHECKBOX_CANNOT_BE_FOCUSED : ( label, state ) =>
+        `Checkbox '${label}' cannot have focus since it is ${state}`,
+    CHECKBOX_CANNOT_MOUSEOVER : ( label, state ) =>
+        `Checkbox '${label}' cannot have onMouseOver since it is ${state}`,
+    CHECKBOX_CANNOT_MOUSEOUT : ( label, state ) =>
+        `Checkbox '${label}' cannot have onMouseOut since it is ${state}`,
+};
 
-export default class CheckboxDriver extends InputComponentDriver
+export default class CheckboxDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.input}` );
-        this.outer = wrapper.find( `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.control = wrapper
+            .find( `.${this.wrapper.props().cssMap.input}` );
     }
 
-    setChecked()
+    blur()
     {
-        const node = this.control.getNode();
+        const props     = this.wrapper.props();
+        const { label } = props;
 
-        if ( !node.checked )
+        if ( props.isDisabled )
         {
-            node.checked  = true;
-            this.control.simulate( 'change' );
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_BLURED( label, 'disabled' ) );
         }
 
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_BLURED( label, 'read only' ) );
+        }
+
+        this.control.simulate( 'blur' );
         return this;
     }
 
-    setUnchecked()
+    focus()
     {
-        const node = this.control.getNode();
+        const props     = this.wrapper.props();
+        const { label } = props;
 
-        if ( node.checked )
+        if ( props.isDisabled )
         {
-            node.checked = false;
-            this.control.simulate( 'change' );
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'disabled' ) );
         }
 
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'read only' ) );
+        }
+
+        this.control.simulate( 'focus' );
         return this;
     }
 
-    toggleChecked()
+    change()
     {
-        const node   = this.control.getNode();
+        const props     = this.wrapper.props();
+        const { label } = props;
+        const node      = this.control.getNode();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_CHANGED( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_CHANGED( label, 'read only' ) );
+        }
+
         node.checked = !node.checked;
         this.control.simulate( 'change' );
         return this;
     }
 
-    getChecked()
+    click()
     {
-        return this.control.getNode().checked;
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_CLICKED( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_BE_CLICKED( label, 'read only' ) );
+        }
+
+        this.control.simulate( 'click' );
+        return this;
     }
 
     mouseOver()
     {
-        this.outer.simulate( 'mouseenter' );
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_MOUSEOVER( label, 'disabled' ) );
+        }
+
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.outer.simulate( 'mouseleave' );
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CHECKBOX_CANNOT_MOUSEOUT( label, 'disabled' ) );
+        }
+
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

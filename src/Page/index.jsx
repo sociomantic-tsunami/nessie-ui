@@ -7,7 +7,7 @@ const Page = ( {
     children,
     cssMap,
     className,
-    overflow
+    overflow,
 } ) =>
 
     <div className = { buildClassName( className, cssMap, { overflow } ) }>
@@ -31,14 +31,14 @@ Page.propTypes =
         'visible',
         'scroll',
         'scrollX',
-        'scrollY'
+        'scrollY',
     ] ),
 };
 
 Page.defaultProps =
 {
     cssMap : require( './page.css' ),
-    scroll : 'auto'
+    scroll : 'auto',
 };
 
 export default Page;

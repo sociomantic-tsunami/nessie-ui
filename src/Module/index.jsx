@@ -104,7 +104,7 @@ export default class Module extends Component
         isLoading     : false,
         isReadOnly    : false,
         headerLevel   : 2,
-        cssMap        : require( './module.css' )
+        cssMap        : require( './module.css' ),
     };
 
     constructor( props )
@@ -225,7 +225,7 @@ export default class Module extends Component
                     collapsed   : isCollapsible && isCollapsed,
                     error       : hasError,
                     moduleError : hasModuleError,
-                    level       : headerLevel
+                    level       : headerLevel,
                 } ) }>
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&

@@ -54,7 +54,7 @@ describe( 'TabButton Driver', () =>
                 isDisabled : true,
             } );
 
-            expect( () => driver.click() ).toThrowError( 'Button cannot be \
+            expect( () => driver.click() ).toThrowError( 'TabButton cannot be \
 clicked because it is disabled' );
         } );
     } );

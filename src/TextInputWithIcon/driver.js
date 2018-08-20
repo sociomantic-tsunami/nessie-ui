@@ -1,17 +1,81 @@
-import InputComponentDriver from '../Testing/CommonDrivers/inputComponentDriver';
-import { IconWithTooltip }  from 'nessie-ui';
-
-export default class TextInputWithIconDriver extends InputComponentDriver
+export default class TextInputWithIconDriver
 {
-    getErrorMessage()
+    constructor( wrapper )
     {
-        const iconWithTooltip = this.wrapper.find( IconWithTooltip ).first();
-        return iconWithTooltip.driver().getMessage();
+        this.wrapper        = wrapper;
+        this.inputcontainer = wrapper.find( 'InputContainer' );
+        this.inputfield     = wrapper.find( 'InputField' );
     }
 
-    getIconTooltipMessage()
+    change( val )
     {
-        // TODO: getIconTooltipMessage
-        throw new Error( 'Not implemented yet.' );
+        this.inputfield.driver().change( val );
+        return this;
+    }
+
+    click()
+    {
+        this.inputfield.driver().click();
+        return this;
+    }
+
+    keyDown()
+    {
+        this.inputfield.driver().keyDown();
+        return this;
+    }
+
+    keyPress()
+    {
+        this.inputfield.driver().keyPress();
+        return this;
+    }
+
+    keyUp()
+    {
+        this.inputfield.driver().keyUp();
+        return this;
+    }
+
+    focus()
+    {
+        this.inputfield.driver().focus();
+        return this;
+    }
+
+    blur()
+    {
+        this.inputfield.driver().blur();
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.inputcontainer.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.inputcontainer.simulate( 'mouseleave' );
+        return this;
+    }
+
+    clickIcon()
+    {
+        this.wrapper.find( 'IconButton' ).driver().click();
+        return this;
+    }
+
+    mouseOverIcon()
+    {
+        this.wrapper.find( 'Tooltip' ).driver().mouseOver();
+        return this;
+    }
+
+    mouseOutIcon()
+    {
+        this.wrapper.find( 'Tooltip' ).driver().mouseOut();
+        return this;
     }
 }

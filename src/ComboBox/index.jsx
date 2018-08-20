@@ -1,15 +1,15 @@
 /* global document */
 
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React, { Component }             from 'react';
+import PropTypes                        from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
-import TextInputWithIcon    from '../TextInputWithIcon';
-import ListBox              from '../ListBox';
-import withDropdown         from '../Dropdown/withDropdown';
-import { generateId, buildClassName }       from '../utils';
-import InputContainer       from '../proto/InputContainer';
-import styles               from './comboBox.css';
+import { ScrollBox, Text }              from '../index';
+import TextInputWithIcon                from '../TextInputWithIcon';
+import ListBox                          from '../ListBox';
+import withDropdown                     from '../Dropdown/withDropdown';
+import { generateId, buildClassName }   from '../utils';
+import InputContainer                   from '../proto/InputContainer';
+import styles                           from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -347,7 +347,7 @@ export default class ComboBox extends Component
 
     setDropdownPosition( props = this.props )
     {
-        let dropdownPosition = props.dropdownPosition;
+        let { dropdownPosition } = props;
 
         if ( props.dropdownPosition === 'auto' )
         {
@@ -482,10 +482,10 @@ export default class ComboBox extends Component
 
         return (
             <InputContainer
-                onMouseOut          = { onMouseOut }
-                onMouseOver         = { onMouseOver }
-                label               = { label }
-                labelPosition       = { labelPosition } >
+                onMouseOut      = { onMouseOut }
+                onMouseOver     = { onMouseOver }
+                label           = { label }
+                labelPosition   = { labelPosition } >
                 <InputWithDropdown
                     aria = { {
                         autocomplete     : hasAutocomplete ? 'both' : 'list',

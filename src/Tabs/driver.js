@@ -5,36 +5,9 @@ export default class TabsDriver
         this.wrapper = wrapper;
     }
 
-    getTabButtons()
+    change( index = 0 )
     {
-        return this.wrapper.find( 'TabButton' );
-    }
-
-    getTabButtonsByIndex( index = 0 )
-    {
-        if ( Array.isArray( index ) )
-        {
-            const tabButtons = [];
-
-            index.forEach( i =>
-            {
-                tabButtons.push( index[ i ] );
-            } );
-
-            return tabButtons;
-        }
-
-        return this.wrapper.find( 'TabButton' ).at( index );
-    }
-
-    getTabButtonsByLabel( label )
-    {
-        return this.wrapper.findWhere( n =>
-            n.prop( 'label' ) === label ).first();
-    }
-
-    getTabContent()
-    {
-        return this.wrapper.find( 'Tab' ).driver().getContent();
+        this.wrapper.find( 'TabButton' ).at( index ).driver().click();
+        return this;
     }
 }

@@ -8,7 +8,7 @@ const Required = ( {
     className,
     cssMap,
     isRequired,
-    text
+    text,
 } ) =>
 {
     if ( !Required.didWarn )
@@ -35,13 +35,13 @@ Required.propTypes =
     /**
     *  Show as required
     */
-    isRequired : PropTypes.bool
+    isRequired : PropTypes.bool,
 };
 
 Required.defaultProps =
 {
     isRequired : true,
-    cssMap     : require( './required.css' )
+    cssMap     : require( './required.css' ),
 };
 
 export default Required;

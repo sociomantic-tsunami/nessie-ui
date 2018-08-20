@@ -30,7 +30,8 @@ describe( 'ModalDialog', () =>
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.driver().getContent();
+        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+            .children();
         expect( children ).toHaveLength( 0 );
     } );
 
@@ -42,7 +43,8 @@ describe( 'ModalDialog', () =>
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.driver().getContent();
+        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+            .children();
         expect( children ).toBeTruthy();
         expect( children.html() ).toBe( '<span class="thisguy">boom</span>' );
     } );

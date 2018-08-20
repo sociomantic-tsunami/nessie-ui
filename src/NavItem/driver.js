@@ -1,13 +1,9 @@
-import { NavItem, NavDropdown } from 'nessie-ui';
-
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
-
-export default class NavItemDriver extends SimpleComponentDriver
+export default class NavItemDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     click()
@@ -16,20 +12,15 @@ export default class NavItemDriver extends SimpleComponentDriver
             .first().simulate( 'click' );
     }
 
-    getLabel()
+    mouseOver()
     {
-        return this.wrapper.find( `.${this.cssMap.link} span` )
-            .first().children();
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
     }
 
-    getChildNavItems()
+    mouseOut()
     {
-        const dropdown = this.wrapper.find( NavDropdown );
-        if ( dropdown.length !== 1 )
-        {
-            return [];
-        }
-
-        return dropdown.children( NavItem );
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-
 import React                      from 'react';
 import { mount }                  from 'enzyme';
 
@@ -110,15 +109,17 @@ state', () =>
 describe( 'UploaderDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Uploader /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'onClick', () =>
+    describe( 'onClick()', () =>
     {
-        test( 'should trigger onClick event', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
@@ -126,11 +127,43 @@ describe( 'UploaderDriver', () =>
                 uploadState : 'default',
             } );
 
-            wrapper.driver().click();
+            driver.click();
             expect( onClick ).toBeCalled();
         } );
 
-        test( 'should trigger onClick event when clicked on secondary', () =>
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+    } );
+
+
+    describe( 'onClickSecondary()', () =>
+    {
+        test( 'should trigger onClickSecondary callback prop once', () =>
         {
             const onClickSecondary = jest.fn();
             wrapper.setProps( {
@@ -138,44 +171,134 @@ describe( 'UploaderDriver', () =>
                 uploadState : 'uploaded',
             } );
 
-            wrapper.driver().clickSecondary();
+            driver.clickSecondary();
             expect( onClickSecondary ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
-    describe( 'onChange', () =>
+
+    describe( 'onChange( val )', () =>
     {
         test( 'should be undefined by default', () =>
         {
-            wrapper = mount( <Uploader /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+        } );
+
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change( 'jkl' );
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Uploader can\'t change since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                const expectedError =
+                    'Uploader can\'t change since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isReadOnly', () =>
+            {
+                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
+                    .cssMap.default}` ), 'simulate' );
+
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.change() );
+                expect( simulate ).not.toBeCalled();
+            } );
         } );
     } );
 
+
     describe( 'mouseOut', () =>
     {
-        test( 'should trigger onMouseOut() callback function', () =>
+        test( 'should trigger onMouseOut() callback function once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
                 onMouseOut,
             } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalled();
         } );
     } );
+
+
     describe( 'mouseOver', () =>
     {
-        test( 'should trigger onMouseOver() callback function', () =>
+        test( 'should trigger onMouseOver() callback function once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
                 onMouseOver,
             } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalled();
         } );

@@ -37,7 +37,7 @@ const DatePickerItem = ( {
                 fakeHovered : forceHover,
                 disabled    : isDisabled,
                 selected    : isSelected,
-                type        : type,
+                type,
             } ) }
             disabled     = { isDisabled }
             onClick      = { handleClick }

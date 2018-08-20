@@ -1,7 +1,15 @@
 /* global document */
-
 const ERRORS = {
-    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it’s read only'
+    CODEEDITOR_CANNOT_BE_CHANGED : ( label, state ) =>
+        `CodeEditor '${label}' cannot be changed since it is ${state}`,
+    CODEEDITOR_CANNOT_BE_BLURED : ( label, state ) =>
+        `CodeEditor '${label}' cannot have blur since it is ${state}`,
+    CODEEDITOR_CANNOT_BE_FOCUSED : ( label, state ) =>
+        `CodeEditor '${label}' cannot have focus since it is ${state}`,
+    CODEEDITOR_CANNOT_MOUSEOVER : ( label, state ) =>
+        `CodeEditor '${label}' cannot have onMouseOver since it is ${state}`,
+    CODEEDITOR_CANNOT_MOUSEOUT : ( label, state ) =>
+        `CodeEditor '${label}' cannot have onMouseOut since it is ${state}`,
 };
 
 export default class CodeEditorDriver
@@ -12,111 +20,119 @@ export default class CodeEditorDriver
         this.wrapper = wrapper;
         // the 3rd party control
         this.control = wrapper.node.codeMirror;
+
+        this.content = wrapper.find( 'InputContainer' ).first();
     }
+
 
     focus()
     {
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_FOCUSED( label, 'read only' ) );
+        }
+
         this.control.focus();
         return this;
     }
 
     blur()
     {
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_BLURED( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_BLURED( label, 'read only' ) );
+        }
+
         if ( this.control.hasFocus() && Boolean( document ) &&
             Boolean( document.activeElement ) )
         {
             document.activeElement.blur();
         }
+
         return this;
     }
 
-    /**
-     * Simulates the pressing of a given key. In case of a printable character
-     * the input will be updated accordingly as well.
-     * @param {Integer} keyCode the integer code of a key
-     * @return {InputComponentDriver} this driver (for chaining commands)
-     */
-    pressKey( keyCode )
+    change( val )
     {
-        if ( isCharPrintable( keyCode ) )
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
         {
-            const oldVal = this.control.getValue();
-            this.control.setValue( oldVal + String.fromCharCode( keyCode ) );
-            const onChange = this.wrapper.prop( 'onChange' );
-            if ( onChange )
-            {
-                onChange( this.getInputValue() );
-            }
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_CHANGED( label, 'disabled' ) );
         }
 
-        return this;
-    }
-
-    /**
-    * Pressing each character of the value one by one.
-    * @param {String} value a value press
-    * @return {InputComponentDriver} this driver (for chaining commands)
-    */
-    inputValue( value )
-    {
-        const FIRST_CHARACTER = 0;
-        const keys = value.toString().split( '' );
-
-        keys.forEach( key =>
+        if ( props.isReadOnly )
         {
-            const keyCode = key.charCodeAt( FIRST_CHARACTER );
-            this.pressKey( keyCode );
-        } );
-
-        return this;
-    }
-
-
-    setInputValue( value )
-    {
-        if ( this.isReadOnly() )
-        {
-            throw new Error( ERRORS.EDITOR_READ_ONLY );
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_BE_CHANGED( label, 'read only' ) );
         }
 
-        const onChange = this.wrapper.prop( 'onChange' );
-
-        this.focus();
-        this.control.setValue( value );
-        if ( onChange )
-        {
-            onChange( this.getInputValue() );
-        }
-        this.blur();
+        this.control.setValue( val );
+        this.wrapper.prop( 'onChange' )( this.control.getValue() );
         return this;
     }
 
-    clearInputValue()
+    mouseOver()
     {
-        return this.setInputValue( '' );
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_MOUSEOVER( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_MOUSEOVER( label, 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
     }
 
-    getInputValue()
+    mouseOut()
     {
-        return this.control.getValue();
+        const props     = this.wrapper.props();
+        const { label } = props;
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_MOUSEOUT( label, 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERRORS
+                .CODEEDITOR_CANNOT_MOUSEOUT( label, 'read only' ) );
+        }
+
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
-
-    isReadOnly()
-    {
-        return Boolean( this.control.options.readOnly ) && !this.isDisabled();
-    }
-
-    isDisabled()
-    {
-        return this.control.options.readOnly === 'nocursor';
-    }
-}
-
-function isCharPrintable( keyCode )
-{
-    const blackList = [
-        13, // Enter
-    ];
-
-    return !blackList.includes( keyCode );
 }

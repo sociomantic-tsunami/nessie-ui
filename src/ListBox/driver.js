@@ -1,5 +1,6 @@
 const ERRORS = {
-    OPTION_CANNOT_BE_CLICKED : () => 'Option cannot be clicked since it\'s disabled', // eslint-disable-line max-len
+    OPTION_CANNOT_BE_CLICKED : () =>
+        'Option cannot be clicked since it\'s disabled',
 };
 
 export default class ListBoxDriver
@@ -9,20 +10,13 @@ export default class ListBoxDriver
         this.wrapper = wrapper;
     }
 
-    get options()
-    {
-        return this.wrapper.findWhere( node => node.props().role === 'option' );
-    }
-
     clickOption( index = 0 )
     {
-        const option = this.options.at( index );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
 
         if ( option.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
         option.simulate( 'click' );
@@ -31,19 +25,35 @@ export default class ListBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        this.options.at( index ).simulate( 'mouseenter' );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+
+        if ( option.props().isDisabled )
+        {
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
+        }
+
+        this.wrapper.find( 'ListBoxOption' ).at( index )
+            .simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutOption( index = 0 )
     {
-        this.options.at( index ).simulate( 'mouseleave' );
+        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+
+        if ( option.props().isDisabled )
+        {
+            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
+        }
+
+        this.wrapper.find( 'ListBoxOption' ).at( index )
+            .simulate( 'mouseleave' );
         return this;
     }
 
     keyPress()
     {
-        this.wrapper.simulate( 'keyPress' );
+        this.wrapper.simulate( 'keyPress', { keyCode: 49 } );
         return this;
     }
 }

@@ -79,7 +79,7 @@ const updateOptions = ( options = [], props ) =>
         if ( option.props.header )
         {
             return cloneElement( option, {
-                children : updateOptions( option.props.children, props )
+                children : updateOptions( option.props.children, props ),
             } );
         }
 

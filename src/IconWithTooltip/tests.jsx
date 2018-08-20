@@ -1,11 +1,11 @@
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
-import React                            from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import { Tooltip }                      from '../index';
+import { Tooltip }          from '../index';
 
-import IconWithTooltip                  from './index';
+import IconWithTooltip      from './index';
 
 
 describe( 'IconWithTooltip', () =>
@@ -114,88 +114,147 @@ describe( 'IconWithTooltipDriver', () =>
         test( 'should call onMouseOver prop exactly once', () =>
         {
             const onMouseOver = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOver } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOver } );
 
             driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError = 'Cannot mouseOver because it is disabled';
+
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper, 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.mouseOver() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
+
 
     describe( 'mouseOut()', () =>
     {
         test( 'should call onMouseOut prop exactly once', () =>
         {
             const onMouseOut = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOut } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOut } );
 
             driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError = 'Cannot mouseOut because it is disabled';
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper, 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.mouseOut() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
+
 
     describe( 'mouseOverIcon()', () =>
     {
         test( 'should call onMouseOverIcon prop exactly once', () =>
         {
             const onMouseOverIcon = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOverIcon } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOverIcon } );
 
             driver.mouseOverIcon();
 
             expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Cannot mouseOverIcon because it is disabled';
+
+                expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
+            } );
+
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper, 'simulate' );
+
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.mouseOverIcon() );
+                expect( simulate ).not.toBeCalled();
+            } );
+        } );
     } );
+
 
     describe( 'mouseOutIcon()', () =>
     {
         test( 'should call onMouseOutIcon prop exactly once', () =>
         {
             const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOutIcon } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOutIcon } );
 
             driver.mouseOutIcon();
 
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
-    } );
 
-    describe( 'getContent()', () =>
-    {
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getContent() ).toBeInstanceOf( ReactWrapper );
-        } );
 
-        test( 'should contain the wrapped content', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( {
-                message  : 'Pikachu!',
-                children : <h1>Who am i?</h1>,
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+
+                const expectedError =
+                    'Cannot mouseOutIcon because it is disabled';
+
+                expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
             } );
 
-            const content = driver.getContent();
-            expect( content.find( 'h1' ) ).toHaveLength( 1 );
-        } );
-    } );
+            test( 'does not call simulate( event ) when isDisabled', () =>
+            {
+                const simulate = jest.spyOn( wrapper, 'simulate' );
 
-    describe( 'getMessage()', () =>
-    {
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
+                wrapper.setProps( { isDisabled: true } );
 
-        test( 'should contain the Tooltip message', () =>
-        {
-            wrapper.setProps( {
-                message          : <h2>Pikachu!</h2>,
-                tooltipIsVisible : true,
+                expect( () => driver.mouseOutIcon() );
+                expect( simulate ).not.toBeCalled();
             } );
-
-            const message = driver.getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 } );

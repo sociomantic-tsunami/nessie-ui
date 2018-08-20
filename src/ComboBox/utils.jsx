@@ -85,8 +85,7 @@ function getScrollParent( el )
     {
         return document.documentElement;
     }
-    else if ( `${style.overflow} ${style.overflowX} ${style.overflowY}`.match(
-        /(auto|scroll|hidden)/ ) )
+    else if ( `${style.overflow} ${style.overflowX} ${style.overflowY}`.match( /(auto|scroll|hidden)/ ) )
     {
         return el;
     }

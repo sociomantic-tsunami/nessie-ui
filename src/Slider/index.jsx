@@ -49,7 +49,7 @@ export default class Slider extends React.Component
         errorMessagePosition  : PropTypes.oneOf( [
             'top',
             'topLeft',
-            'topRight'
+            'topRight',
         ] ),
         /**
         * Display track fill
@@ -78,7 +78,7 @@ export default class Slider extends React.Component
             'top',
             'right',
             'bottom',
-            'left'
+            'left',
         ] ),
         /**
         * hasHandleLabels
@@ -91,7 +91,7 @@ export default class Slider extends React.Component
             'top',
             'right',
             'bottom',
-            'left'
+            'left',
         ] ),
         /**
         * Slider minimum value
@@ -110,7 +110,7 @@ export default class Slider extends React.Component
         */
         value    : PropTypes.oneOfType( [
             PropTypes.number,
-            PropTypes.arrayOf( PropTypes.number )
+            PropTypes.arrayOf( PropTypes.number ),
         ] ),
         /**
         *  Set the track to use a logarithmic calculated value
@@ -169,7 +169,7 @@ export default class Slider extends React.Component
         ticks : PropTypes.arrayOf( PropTypes.shape( {
             stepLabel : PropTypes.string,
             step      : PropTypes.number,
-        } ) )
+        } ) ),
     };
 
     static defaultProps =
@@ -372,7 +372,7 @@ export default class Slider extends React.Component
     getValue( x, y )
     {
         const {
-            isLogarithmic, orientation, maxValue, minValue
+            isLogarithmic, orientation, maxValue, minValue,
         } = this.props;
         const { track } = this;
 
@@ -694,7 +694,7 @@ export default class Slider extends React.Component
             step,
             stepLabelsPosition,
             value,
-            ticks = []
+            ticks = [],
         } = this.props;
 
         let values = [];
@@ -791,7 +791,7 @@ export default class Slider extends React.Component
                                             handleLabelPosition,
                     hasHandleLabels,
                     orientation,
-                    grabbing : this.state.isGrabbing
+                    grabbing : this.state.isGrabbing,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>

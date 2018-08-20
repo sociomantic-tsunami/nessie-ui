@@ -3,8 +3,8 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import styles               from './paginator.css';
-import IconButton           from '../IconButton';
-import Text                 from '../Text';
+import { IconButton, Text } from '../index';
+
 
 const Paginator = ( {
     className,

@@ -1,5 +1,6 @@
 const ERRORS = {
-    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled'
+    CANNOT_BE_CLICKED : () =>
+        'TabButton cannot be clicked because it is disabled',
 };
 
 export default class TabButtonDriver
@@ -13,9 +14,7 @@ export default class TabButtonDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERRORS.CANNOT_BE_CLICKED() );
         }
 
         return this.wrapper.simulate( 'click' );

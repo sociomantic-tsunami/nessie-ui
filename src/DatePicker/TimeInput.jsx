@@ -20,11 +20,11 @@ const TimeInput = ( {
     onKeyPress,
     minuteIsDisabled,
     minutePlaceholder,
-    minuteValue
+    minuteValue,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
-            fakeHovered : forceHover
+            fakeHovered : forceHover,
         } ) }>
         <input
             id          = { `${id}-input-hour` }
@@ -71,7 +71,6 @@ TimeInput.propTypes = {
     minuteIsDisabled  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-
 };
 
 TimeInput.defaultProps = {

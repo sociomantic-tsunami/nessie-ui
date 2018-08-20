@@ -13,9 +13,15 @@ export default class ComboBoxDriver
         return this;
     }
 
-    changeInput()
+    changeInput( val )
     {
-        this.wrapper.find( InputField ).driver().pressKey( 'c' );
+        this.wrapper.find( 'InputField' ).driver().change( val );
+        return this;
+    }
+
+    clickIcon()
+    {
+        this.wrapper.find( 'IconButton' ).driver().click();
         return this;
     }
 
@@ -37,27 +43,27 @@ export default class ComboBoxDriver
         return this;
     }
 
-    keyPress( string )
+    keyPress()
     {
-        this.wrapper.find( InputField ).driver().pressKey( string );
+        this.wrapper.find( 'InputField' ).driver().keyPress();
         return this;
     }
 
-    mouseOut()
+    keyDown()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.find( 'InputField' ).driver().keyDown();
+        return this;
+    }
+
+    keyUp()
+    {
+        this.wrapper.find( 'InputField' ).driver().keyUp();
         return this;
     }
 
     mouseOutOption( index = 0 )
     {
-        this.wrapper.find( ListBox ).driver().mouseOutOption( index );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
         return this;
     }
 
