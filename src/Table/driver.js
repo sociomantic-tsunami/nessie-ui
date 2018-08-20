@@ -1,3 +1,5 @@
+import { TableCell } from '../index';
+
 export default class TableDriver
 {
     constructor( wrapper )
@@ -7,7 +9,7 @@ export default class TableDriver
 
     toggle( index = 0 )
     {
-        this.wrapper.find( 'TableCell' ).at( index ).driver().toggle();
+        this.wrapper.find( TableCell ).at( index ).driver().toggle();
         return this;
     }
 

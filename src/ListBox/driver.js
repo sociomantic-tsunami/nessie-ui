@@ -32,8 +32,7 @@ export default class ListBoxDriver
             throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseenter' );
+        option.simulate( 'mouseenter' );
         return this;
     }
 
@@ -46,8 +45,7 @@ export default class ListBoxDriver
             throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
         }
 
-        this.wrapper.find( 'ListBoxOption' ).at( index )
-            .simulate( 'mouseleave' );
+        option.simulate( 'mouseleave' );
         return this;
     }
 

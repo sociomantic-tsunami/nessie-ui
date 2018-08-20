@@ -1,4 +1,4 @@
-import { InputField, ListBox, ScrollBox } from 'nessie-ui';
+import { IconButton, InputField, ListBox, ScrollBox } from 'nessie-ui';
 
 export default class ComboBoxDriver
 {
@@ -15,13 +15,13 @@ export default class ComboBoxDriver
 
     changeInput( val )
     {
-        this.wrapper.find( 'InputField' ).driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val );
         return this;
     }
 
     clickIcon()
     {
-        this.wrapper.find( 'IconButton' ).driver().click();
+        this.wrapper.find( IconButton ).driver().click();
         return this;
     }
 
@@ -45,25 +45,25 @@ export default class ComboBoxDriver
 
     keyPress()
     {
-        this.wrapper.find( 'InputField' ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress();
         return this;
     }
 
     keyDown()
     {
-        this.wrapper.find( 'InputField' ).driver().keyDown();
+        this.wrapper.find( InputField ).driver().keyDown();
         return this;
     }
 
     keyUp()
     {
-        this.wrapper.find( 'InputField' ).driver().keyUp();
+        this.wrapper.find( InputField ).driver().keyUp();
         return this;
     }
 
     mouseOutOption( index = 0 )
     {
-        this.wrapper.find( 'ListBox' ).driver().mouseOutOption( index );
+        this.wrapper.find( ListBox ).driver().mouseOutOption( index );
         return this;
     }
 

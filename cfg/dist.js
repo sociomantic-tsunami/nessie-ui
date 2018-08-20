@@ -39,7 +39,7 @@ const displayComponents = merge( {}, distConfig, {
     output : {
         filename      : 'displayComponents.js',
         library       : 'DisplayComponents',
-        libraryTarget : 'window'
+        libraryTarget : 'window',
     },
 
     externals : {

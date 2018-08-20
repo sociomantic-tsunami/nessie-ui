@@ -1,3 +1,5 @@
+import { IconButton, InputField, Tooltip } from '../index';
+
 const ERRORS = {
     PASS_CANNOT_BE_CHANGED : ( label, state ) =>
         `PasswordInput '${label}' cannot be changed since it is ${state}`,
@@ -46,7 +48,7 @@ export default class PasswordInput
                 .PASS_CANNOT_BE_BLURED( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().blur();
+        this.wrapper.find( InputField ).driver().blur();
         return this;
     }
 
@@ -67,7 +69,7 @@ export default class PasswordInput
                 .PASS_CANNOT_BE_FOCUSED( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().focus();
+        this.wrapper.find( InputField ).driver().focus();
         return this;
     }
 
@@ -88,7 +90,7 @@ export default class PasswordInput
                 .PASS_CANNOT_BE_CHANGED( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val );
         return this;
     }
 
@@ -109,7 +111,7 @@ export default class PasswordInput
                 .PASS_CANNOT_HAVE_KEYPRESS( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress();
         return this;
     }
 
@@ -172,7 +174,7 @@ export default class PasswordInput
                 .PASS_CANNOT_CLICKICON( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'IconButton' ).simulate( 'click' );
+        this.wrapper.find( IconButton ).simulate( 'click' );
         return this;
     }
 
@@ -193,7 +195,7 @@ export default class PasswordInput
                 .PASS_CANNOT_MOUSEOVERICON( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'Tooltip' ).driver().mouseOver();
+        this.wrapper.find( Tooltip ).driver().mouseOver();
         return this;
     }
 
@@ -214,7 +216,7 @@ export default class PasswordInput
                 .PASS_CANNOT_MOUSEOUTICON( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'Tooltip' ).driver().mouseOut();
+        this.wrapper.find( Tooltip ).driver().mouseOut();
         return this;
     }
 }

@@ -1,10 +1,12 @@
+import { InputField, FlounderDropdown } from '../index';
+
 export default class TextInputWithDropdownDriver
 {
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.inputfield = wrapper.find( 'InputField' );
-        this.flounder   = wrapper.find( 'FlounderDropdown' );
+        this.inputfield = wrapper.find( InputField );
+        this.flounder   = wrapper.find( FlounderDropdown );
         this.row        = wrapper.find( `.${wrapper.props().cssMap.row}` );
     }
 

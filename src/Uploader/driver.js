@@ -1,3 +1,5 @@
+import { Button, IconButton } from '../index';
+
 const ERR = {
     UPLOADER_DISABLED : ( doWhat ) =>
         `Uploader can't ${doWhat} since it is disabled`,
@@ -15,13 +17,13 @@ export default class UploaderDriver
 
     click()
     {
-        this.wrapper.find( 'Button' ).first().driver().click();
+        this.wrapper.find( Button ).first().driver().click();
         return this;
     }
 
     clickSecondary()
     {
-        this.wrapper.find( 'IconButton' ).first().driver().click();
+        this.wrapper.find( IconButton ).first().driver().click();
         return this;
     }
 

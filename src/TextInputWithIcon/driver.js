@@ -1,10 +1,12 @@
+import { IconButton, InputField, Tooltip } from '../index';
+
 export default class TextInputWithIconDriver
 {
     constructor( wrapper )
     {
         this.wrapper        = wrapper;
         this.inputcontainer = wrapper.find( 'InputContainer' );
-        this.inputfield     = wrapper.find( 'InputField' );
+        this.inputfield     = wrapper.find( InputField );
     }
 
     change( val )
@@ -63,19 +65,19 @@ export default class TextInputWithIconDriver
 
     clickIcon()
     {
-        this.wrapper.find( 'IconButton' ).driver().click();
+        this.wrapper.find( IconButton ).driver().click();
         return this;
     }
 
     mouseOverIcon()
     {
-        this.wrapper.find( 'Tooltip' ).driver().mouseOver();
+        this.wrapper.find( Tooltip ).driver().mouseOver();
         return this;
     }
 
     mouseOutIcon()
     {
-        this.wrapper.find( 'Tooltip' ).driver().mouseOut();
+        this.wrapper.find( Tooltip ).driver().mouseOut();
         return this;
     }
 }
