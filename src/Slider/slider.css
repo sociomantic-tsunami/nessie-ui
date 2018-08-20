@@ -2,18 +2,14 @@
 
 :root
 {
-    --horizontalSliderHeight:   40px;
+    --horizontalSliderHeight:   var( --spacing-5 );
     --verticalSliderHeight:     300px;
 
-    --trackSize:                2px;
-    --trackBorderWidth:         1px;
+    --trackThickness:           calc( var( --spacing-1 ) / 4 );
+    --handleSize:               var( --spacing-2 );
+    --tickSize:                 calc( var( --spacing-1 / 2 ) );
 
-    --handleSize:               16px;
-
-    --tickSize:                 4px;
-
-    --labelMargin:              10px;
-    --stepLabelContainerHeight: 16px; /*matches line height of labels*/
+    --stepLabelLineHeight:      var( --line-height-s );
 }
 
 
@@ -22,23 +18,18 @@
     .inputContainer
     {
         position:   absolute;
-        left:       -9999999px;
+        left:       -99999px;
     }
 
-
-    /* Track + handles */
-
-    .handle,
-    .track,
+    .labelContainer
     {
-        box-sizing: border-box;
+        margin-bottom:  var( --spacing-1 );
     }
 
     .handle,
     .trackFill
     {
         position:   absolute;
-        z-index:    1;
     }
 
     .trackContainer
@@ -48,77 +39,75 @@
 
     .track
     {
-        position:                       relative;
+        position:       relative;
 
-        width:                          var( --trackSize );
-        border-radius:                  var( --trackSize );
+        width:          var( --trackThickness );
+        border-radius:  calc( var( --trackThickness ) / 2 );
 
-        background:                     var( --PC-GREY--L90 );
+        background:     var( --PC-GREY--L90 );
 
-        user-select:                    none;
-        cursor:                         pointer;
+        user-select:    none;
+        cursor:         pointer;
 
         -webkit-tap-highlight-color:    transparent;
-
-        &:hover
-        {
-            .handle
-            {
-                border-color: var( --PC-BLUE );
-            }
-        }
     }
 
     .trackFill
     {
-        border-radius:      calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
-        background:         var( --PC-BLUE );
+        border-radius:  calc( var( --trackThickness ) / 2 );
+        background:     var( --PC-BLUE );
     }
 
     .handle
     {
-        width:              var( --handleSize );
-        height:             var( --handleSize );
+        width:          var( --handleSize );
+        height:         var( --handleSize );
 
-        border-radius:      50%;
-        background-color:   var( --PC-BLUE );
+        border-radius:  50%;
+        background:     var( --PC-BLUE );
 
-        cursor:             grab;
+        cursor:         grab;
 
-        z-index:            9999;
+        z-index:        1;
+
+        &::after
+        {
+            content:        '';
+            display:        block;
+
+            position:       absolute;
+            top:            50%;
+            left:           50%;
+            transform:      translate( -50%, -50% );
+
+            width:          var( --spacing-3 );
+            height:         var( --spacing-3 );
+
+            background:     var( --PC-BLUE--D15 );
+
+            border-radius:  50%;
+
+            opacity:        0;
+            transition:     opacity 450ms;
+        }
 
         &:active
         {
-            cursor:         grabbing;
+            cursor: grabbing;
         }
-        &::after
-        {
-            transition: opacity 450ms;
-            content: '';
-            position: absolute;
-            background-color:  var( --PC-BLUE--D15 );
-            opacity: 0;
-            width: 24px;
-            height: 24px;
-            top: 50%;
-            left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
     }
 
     .handleFocus
     {
         &::after
         {
-            opacity: .2;
+            opacity:    0.2;
         }
     }
 
     .handleLabel
     {
-        display:            none;
+        display:    none;
     }
 
 
@@ -126,41 +115,39 @@
 
     .ticksContainer
     {
-        width:              100%;
-        height:             100%;
-        position:           relative;
+        position:   relative;
+        width:      100%;
+        height:     100%;
     }
 
     .tick
     {
-        position:           absolute;
-        transform:          translateX(-50%) translateY(-50%);
-        z-index:            2;
-
-        font-size:          0;
-
-        background-color:   var( --PC-WHITE );
-
-        width:              var( --tickSize );
-        height:             var( --tickSize );
+        position:   absolute;
+        background: var( --PC-WHITE );
+        font-size:  0;
     }
-
 
     /* Step labels */
 
     .stepLabelsContainer
     {
-        position:           relative;
+        position:   relative;
     }
 
     .stepLabel
     {
-        @extend %Nessie-RegularIt;
+        position:       absolute;
+
+        max-width:      100%;
+
+        white-space:    nowrap;
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+
+        @extend         %Nessie-RegularIt;
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-s );
         color:          var( --PC-GREY--L40 );
-
-        position:           absolute;
     }
 }
 
@@ -185,26 +172,26 @@
 
     .track
     {
-        height:         var( --trackSize );
+        height:         var( --trackThickness );
 
-        margin-top:     calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
-        margin-bottom:  calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
+        margin-top:     calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
+        margin-bottom:  calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
     }
 
     .handle
     {
-        top:            50%;
-        transform:      translateX( -50% ) translateY( -50% );
+        top:        50%;
+        transform:  translateX( -50% ) translateY( -50% );
     }
 
     .trackFill
     {
-        height:         var( --trackSize );
+        height: var( --trackThickness );
     }
 
     .stepLabelsContainer
     {
-        height:         var( --stepLabelContainerHeight );
+        height:         var( --stepLabelLineHeight );
 
         margin-left:    calc( var( --handleSize) / 2 );
         margin-right:   calc( var( --handleSize) / 2 );
@@ -215,19 +202,24 @@
         margin-bottom:  var( --spacing-1 );
     }
 
+    .track + .stepLabelsContainer
+    {
+        margin-top:     var( --spacing-1 );
+        margin-bottom:  0;
+    }
+
     .stepLabel
     {
         transform:  translateX( -50% );
+    }
 
-        &:first-child /* start label */
-        {
-            transform:  translateX( calc( -1 * ( var( --handleSize) / 2 ) ) );
-        }
+    .tick
+    {
+        width:  var( --tickSize );
+        height: var( --trackThickness );
 
-        &:last-child /* end label */
-        {
-            transform: translateX( calc( -100% + ( var( --handleSize) / 2 ) ) );
-        }
+        top:        50%;
+        transform:  translateX( -50% ) translateY( -50% );
     }
 }
 
@@ -236,52 +228,46 @@
 
 .orientation__vertical
 {
-    width:      auto;
-    height:     var( --verticalSliderHeight );
+    width:  auto;
+    height: var( --verticalSliderHeight );
 
     .trackContainer
     {
         height: 100%;
     }
 
-    .track,
-    .stepLabelsContainer
+    .track
     {
+        width:          var( --trackThickness );
         height:         calc( 100% - var( --handleSize ) );
 
         margin-top:     calc( var( --handleSize ) / 2 );
         margin-bottom:  calc( var( --handleSize ) / 2 );
+        margin-left:    calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
+        margin-right:   calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
     }
 
     .trackFill
     {
-        width:          var( --trackSize );
+        width:  var( --trackThickness );
     }
 
     .handle
     {
-        left:           50%;
-        transform:      translateX( -50% ) translateY( 50% );
+        left:       50%;
+        transform:  translateX( -50% ) translateY( 50% );
     }
 
     .stepLabelsContainer
     {
-        margin-right:       var( --labelMargin );
-
-        &:last-child
-        {
-            margin-right:   0;
-            margin-left:    var( --labelMargin );
-        }
-    }
-
-    .stepLabel
-    {
-        transform:  translateY( 50% );
+        display:    none;
     }
 
     .tick
     {
+        width:  var( --trackThickness );
+        height: var( --tickSize );
+
         left:       50%;
         transform:  translateX( -50% ) translateY( 50% );
     }
@@ -299,11 +285,10 @@
         justify-content:    center;
 
         color:              var( --PC-BLUE );
+        line-height:        var( --line-height-s );
 
         cursor:             default;
         user-select:        none;
-
-        line-height:        var( --line-height-s );
     }
 }
 
@@ -346,8 +331,6 @@
 }
 
 
-
-
 .error
 {
     .trackFill
@@ -357,69 +340,18 @@
 
     .handle
     {
-        background-color: var( --PC-RED );
-    }
+        background: var( --PC-RED ) !important;
 
-    .handleLabel
-    {
-        color:      var( --PC-RED );
-    }
-}
-
-
-.disabled
-{
-
-    .track:hover
-    {
-        cursor: default;
-        .handle
+        &::after
         {
-            border-color:   var( --PC-GREY--L85 );
-        }
-    }
-
-    .trackFill
-    {
-        background:         var( --PC-BLUE--L70 );
-        cursor: default;
-    }
-
-    .handle
-    {
-        background:         var( --PC-BLUE--L70 );
-        cursor:             default;
-
-        &:active
-        {
-            cursor:         default;
-            &::after
-            {
-                content: none;
-            }
+            background: var( --PC-RED--D15 );
         }
     }
 
     .handleLabel
     {
-
+        color:  var( --PC-RED );
     }
-
-    .ticksContainer
-    {
-        display:            none;
-    }
-
-    .stepLabel
-    {
-        color:              var( --PC-GREY--L70 );
-    }
-}
-
-
-.labelContainer
-{
-    margin-bottom:  8px;
 }
 
 
@@ -430,13 +362,34 @@
     {
         transition: none;
     }
+}
+
+
+.disabled
+{
+    .track,
+    .handle
+    {
+        cursor: default !important;
+    }
 
     .handle
     {
-        width:              var( --handleSize );
-        height:             var( --handleSize );
+        background: var( --PC-BLUE--L70 );
 
-        background-color:   var( --PC-BLUE );
-        border-color:       var( --PC-BLUE );
+        &::after
+        {
+            display:    none;
+        }
+    }
+
+    .trackFill
+    {
+        background: var( --PC-BLUE--L70 );
+    }
+
+    .stepLabel
+    {
+        color:  var( --PC-GREY--L70 );
     }
 }
