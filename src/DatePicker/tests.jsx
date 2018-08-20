@@ -38,7 +38,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'clickItem()', () =>
     {
-        test( 'should simulate and trigger onClickItem() once', () =>
+        test( 'should trigger onClickItem callback prop once', () =>
         {
             const onClickItem = jest.fn();
             wrapper.setProps( {
@@ -112,7 +112,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'clickNext()', () =>
     {
-        test( 'should simulate and trigger onClickNext() once', () =>
+        test( 'should trigger onClickNext callback prop once', () =>
         {
             const onClickNext = jest.fn();
             wrapper.setProps( {
@@ -137,15 +137,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.clickNext() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickNext callback prop when \
+nextIsDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onClickNext = jest.fn();
+                wrapper.setProps( {
+                    onClickNext,
+                    nextIsDisabled : true,
+                } );
 
-                wrapper.setProps( { nextIsDisabled: true } );
-
-                expect( () => driver.clickNext() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickNext();
+                }
+                catch ( error )
+                {
+                    expect( onClickNext ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -153,7 +161,7 @@ describe( 'DatePickerDriver', () =>
 
     describe( 'clickPrev()', () =>
     {
-        test( 'should simulate and trigger onClickPrev() once', () =>
+        test( 'should trigger onClickPrev callback prop once', () =>
         {
             const onClickPrev = jest.fn();
             wrapper.setProps( {
@@ -178,15 +186,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.clickPrev() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickPrev callback prop when \
+prevIsDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onClickPrev = jest.fn();
+                wrapper.setProps( {
+                    onClickPrev,
+                    prevIsDisabled : true,
+                } );
 
-                wrapper.setProps( { prevIsDisabled: true } );
-
-                expect( () => driver.clickPrev() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickPrev();
+                }
+                catch ( error )
+                {
+                    expect( onClickPrev ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -217,15 +233,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.blurHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur callback prop if mode is not \
+<default>', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    onBlur,
+                    mode : 'date',
+                } );
 
-                wrapper.setProps( { mode: 'date' } );
-
-                expect( () => driver.blurHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blurHour();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -244,15 +268,22 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.blurHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur callback prop when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    onBlur,
+                    isDisabled : true,
+                } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.blurHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blurHour();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -271,15 +302,22 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.blurHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onBlur callback prop when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    onBlur,
+                    isReadOnly : true,
+                } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.blurHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blurHour();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -310,15 +348,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.focusHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus callback prop if mode is not \
+<default>', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    onFocus,
+                    mode : 'date',
+                } );
 
-                wrapper.setProps( { mode: 'date' } );
-
-                expect( () => driver.focusHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focusHour();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -337,15 +383,22 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.focusHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus callback prop when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    onFocus,
+                    isDisabled : true,
+                } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.focusHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focusHour();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -364,15 +417,22 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.focusHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus callback prop when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    onFocus,
+                    isReadOnly : true,
+                } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.focusHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focusHour();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -402,15 +462,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.changeHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange callback prop if mode is not \
+<default>', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    mode : 'date',
+                } );
 
-                wrapper.setProps( { mode: 'date' } );
-
-                expect( () => driver.changeHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.changeHour();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -441,15 +509,23 @@ describe( 'DatePickerDriver', () =>
                 expect( () => driver.keyPressHour() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyPress callback prop if mode is not \
+<default>', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( {
+                    onKeyPress,
+                    mode : 'date',
+                } );
 
-                wrapper.setProps( { mode: 'date' } );
-
-                expect( () => driver.keyPressHour() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyPressHour();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
             } );
         } );
     } );
