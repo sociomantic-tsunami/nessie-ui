@@ -7,13 +7,14 @@ import Spinner              from '../Spinner';
 
 const PageContent = ( {
     children,
+    contentWidth,
     cssMap,
     className,
-    isLoading
+    isLoading,
 } ) =>
 
     <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
+        <div className = { cssMap.content } style = { { width: contentWidth } }>
             { children }
         </div>
         { isLoading &&
@@ -30,17 +31,22 @@ PageContent.propTypes =
     /**
      *  PageContent content
      */
-    children  : PropTypes.node,
+    children     : PropTypes.node,
     /**
      *  Display loading state
      */
-    isLoading : PropTypes.bool,
+    isLoading    : PropTypes.bool,
+    /**
+     *  adjust/configure content width
+     */
+    contentWidth : PropTypes.string,
 };
 
 PageContent.defaultProps =
 {
-    cssMap    : require( './pageContent.css' ),
-    isLoading : false
+    cssMap       : require( './pageContent.css' ),
+    isLoading    : false,
+    contentWidth : '1080px',
 };
 
 export default PageContent;
