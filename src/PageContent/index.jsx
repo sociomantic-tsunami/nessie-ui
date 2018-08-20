@@ -1,30 +1,29 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import Spinner              from '../Spinner';
+import Spinner            from '../Spinner';
+import { buildClassName } from '../utils';
+import styles             from './pageContent.css';
 
 
 const PageContent = ( {
     children,
+    className,
     contentWidth,
     cssMap,
-    className,
     isLoading,
-} ) =>
-
+} ) => (
     <div className = { buildClassName( className, cssMap ) }>
         <div className = { cssMap.content } style = { { width: contentWidth } }>
             { children }
         </div>
         { isLoading &&
-        <div className = { cssMap.loadingOverlay }>
-            <Spinner
-                className = { cssMap.spinner }
-                size = "big" />
-        </div>
+            <div className = { cssMap.loadingOverlay }>
+                <Spinner className = { cssMap.spinner } size = "big" />
+            </div>
         }
-    </div>;
+    </div>
+);
 
 PageContent.propTypes =
 {
@@ -32,6 +31,14 @@ PageContent.propTypes =
      *  PageContent content
      */
     children     : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Display loading state
      */
@@ -44,9 +51,11 @@ PageContent.propTypes =
 
 PageContent.defaultProps =
 {
-    cssMap       : require( './pageContent.css' ),
+    children     : undefined,
+    className    : undefined,
+    contentWidth : '100%',
+    cssMap       : styles,
     isLoading    : false,
-    contentWidth : '1080px',
 };
 
 export default PageContent;

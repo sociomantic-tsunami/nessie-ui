@@ -212,6 +212,10 @@
     {
         "message" : "Here you can view your campaign settings"
     },
+    "PageContent" :
+    {
+        "children" : "{<Text>This is the page content container. Not much to see here, really.</Text>}"
+    },
     "Paginator" :
     {
         "shownPages"    : [ 10, 11, 12 ],
