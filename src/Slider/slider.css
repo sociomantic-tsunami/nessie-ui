@@ -5,15 +5,11 @@
     --horizontalSliderHeight:   var( --spacing-5 );
     --verticalSliderHeight:     300px;
 
-    --trackSize:                2px;
-    --trackBorderWidth:         1px;
-
+    --trackThickness:           calc( var( --spacing-1 ) / 4 );
     --handleSize:               var( --spacing-2 );
-
     --tickSize:                 calc( var( --spacing-1 / 2 ) );
 
-    --labelMargin:              10px;
-    --stepLabelContainerHeight: var( --spacing-2 );
+    --stepLabelLineHeight:      var( --line-height-s );
 }
 
 
@@ -22,7 +18,7 @@
     .inputContainer
     {
         position:   absolute;
-        left:       -9999999px;
+        left:       -99999px;
     }
 
     .labelContainer
@@ -30,19 +26,10 @@
         margin-bottom:  var( --spacing-1 );
     }
 
-    /* Track + handles */
-
-    .handle,
-    .track,
-    {
-        box-sizing: border-box;
-    }
-
     .handle,
     .trackFill
     {
         position:   absolute;
-        z-index:    1;
     }
 
     .trackContainer
@@ -52,22 +39,22 @@
 
     .track
     {
-        position:                       relative;
+        position:       relative;
 
-        width:                          var( --trackSize );
-        border-radius:                  var( --trackSize );
+        width:          var( --trackThickness );
+        border-radius:  calc( var( --trackThickness ) / 2 );
 
-        background:                     var( --PC-GREY--L90 );
+        background:     var( --PC-GREY--L90 );
 
-        user-select:                    none;
-        cursor:                         pointer;
+        user-select:    none;
+        cursor:         pointer;
 
         -webkit-tap-highlight-color:    transparent;
     }
 
     .trackFill
     {
-        border-radius:  calc( var( --trackSize ) - ( 2 * var( --trackBorderWidth ) ) );
+        border-radius:  calc( var( --trackThickness ) / 2 );
         background:     var( --PC-BLUE );
     }
 
@@ -81,11 +68,12 @@
 
         cursor:         grab;
 
-        z-index:        9999;
+        z-index:        1;
 
         &::after
         {
-            content: '';
+            content:        '';
+            display:        block;
 
             position:       absolute;
             top:            50%;
@@ -135,18 +123,9 @@
     .tick
     {
         position:   absolute;
-        transform:  translateX(-50%) translateY(-50%);
-
-        width:      var( --tickSize );
-        height:     var( --tickSize );
-
-        font-size:  0;
-
         background: var( --PC-WHITE );
-
-        z-index:    2;
+        font-size:  0;
     }
-
 
     /* Step labels */
 
@@ -158,6 +137,12 @@
     .stepLabel
     {
         position:       absolute;
+
+        max-width:      100%;
+
+        white-space:    nowrap;
+        overflow:       hidden;
+        text-overflow:  ellipsis;
 
         @extend         %Nessie-RegularIt;
         font-size:      var( --typo-3 );
@@ -187,10 +172,10 @@
 
     .track
     {
-        height:         var( --trackSize );
+        height:         var( --trackThickness );
 
-        margin-top:     calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
-        margin-bottom:  calc( ( var( --horizontalSliderHeight ) - var( --trackSize ) ) / 2 );
+        margin-top:     calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
+        margin-bottom:  calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
     }
 
     .handle
@@ -201,12 +186,12 @@
 
     .trackFill
     {
-        height: var( --trackSize );
+        height: var( --trackThickness );
     }
 
     .stepLabelsContainer
     {
-        height:         var( --stepLabelContainerHeight );
+        height:         var( --stepLabelLineHeight );
 
         margin-left:    calc( var( --handleSize) / 2 );
         margin-right:   calc( var( --handleSize) / 2 );
@@ -217,19 +202,24 @@
         margin-bottom:  var( --spacing-1 );
     }
 
+    .track + .stepLabelsContainer
+    {
+        margin-top:     var( --spacing-1 );
+        margin-bottom:  0;
+    }
+
     .stepLabel
     {
         transform:  translateX( -50% );
+    }
 
-        &:first-child /* start label */
-        {
-            transform:  translateX( calc( -1 * ( var( --handleSize) / 2 ) ) );
-        }
+    .tick
+    {
+        width:  var( --tickSize );
+        height: var( --trackThickness );
 
-        &:last-child /* end label */
-        {
-            transform:  translateX( calc( -100% + ( var( --handleSize) / 2 ) ) );
-        }
+        top:        50%;
+        transform:  translateX( -50% ) translateY( -50% );
     }
 }
 
@@ -246,18 +236,20 @@
         height: 100%;
     }
 
-    .track,
-    .stepLabelsContainer
+    .track
     {
+        width:          var( --trackThickness );
         height:         calc( 100% - var( --handleSize ) );
 
         margin-top:     calc( var( --handleSize ) / 2 );
         margin-bottom:  calc( var( --handleSize ) / 2 );
+        margin-left:    calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
+        margin-right:   calc( ( var( --horizontalSliderHeight ) - var( --trackThickness ) ) / 2 );
     }
 
     .trackFill
     {
-        width:  var( --trackSize );
+        width:  var( --trackThickness );
     }
 
     .handle
@@ -268,22 +260,14 @@
 
     .stepLabelsContainer
     {
-        margin-right:   var( --labelMargin );
-
-        &:last-child
-        {
-            margin-left:    var( --labelMargin );
-            margin-right:   0;
-        }
-    }
-
-    .stepLabel
-    {
-        transform:  translateY( 50% );
+        display:    none;
     }
 
     .tick
     {
+        width:  var( --trackThickness );
+        height: var( --tickSize );
+
         left:       50%;
         transform:  translateX( -50% ) translateY( 50% );
     }
@@ -378,14 +362,6 @@
     {
         transition: none;
     }
-
-    .handle
-    {
-        width:          var( --handleSize );
-        height:         var( --handleSize );
-
-        background:     var( --PC-BLUE );
-    }
 }
 
 
@@ -399,7 +375,7 @@
 
     .handle
     {
-        background:     var( --PC-BLUE--L70 );
+        background: var( --PC-BLUE--L70 );
 
         &::after
         {
@@ -410,11 +386,6 @@
     .trackFill
     {
         background: var( --PC-BLUE--L70 );
-    }
-
-    .ticksContainer
-    {
-        display:    none;
     }
 
     .stepLabel
