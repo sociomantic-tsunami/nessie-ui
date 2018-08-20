@@ -481,6 +481,74 @@ prevIsDisabled', () =>
                 }
             } );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Input cannot be changed since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.changeHour() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus callback prop when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isDisabled : true,
+                } );
+
+                try
+                {
+                    driver.changeHour();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Input cannot be changed since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.changeHour() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus callback prop when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isReadOnly : true,
+                } );
+
+                try
+                {
+                    driver.changeHour();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
     } );
 
 
@@ -751,6 +819,74 @@ prevIsDisabled', () =>
 
                 expect( () => driver.changeMinute() );
                 expect( simulate ).not.toBeCalled();
+            } );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Input cannot be changed since it is disabled';
+
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.changeMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus callback prop when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isDisabled : true,
+                } );
+
+                try
+                {
+                    driver.changeMinute();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Input cannot be changed since it is read only';
+
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.changeMinute() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus callback prop when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isReadOnly : true,
+                } );
+
+                try
+                {
+                    driver.changeMinute();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
