@@ -22,7 +22,6 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
@@ -36,7 +35,6 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
