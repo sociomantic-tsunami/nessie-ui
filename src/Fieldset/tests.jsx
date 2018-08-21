@@ -85,11 +85,9 @@ describe( 'FieldsetDriver', () =>
         test( 'should trigger onMouseEnter callback once', () =>
         {
             const onMouseOver = jest.fn();
-
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
@@ -100,21 +98,24 @@ describe( 'FieldsetDriver', () =>
             {
                 const expectedError =
                     'Cannot trigger onMouseOver because it is disabled';
-
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOver when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -125,11 +126,9 @@ describe( 'FieldsetDriver', () =>
         test( 'should trigger onMouseEnter callback once', () =>
         {
             const onMouseOut = jest.fn();
-
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
@@ -140,21 +139,24 @@ describe( 'FieldsetDriver', () =>
             {
                 const expectedError =
                     'Cannot trigger onMouseOut because it is disabled';
-
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.hour}` ), 'simulate' );
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
     } );
