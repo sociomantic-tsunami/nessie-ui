@@ -1,3 +1,5 @@
+import { TabButton } from '../index';
+
 export default class TabsDriver
 {
     constructor( wrapper )
@@ -7,7 +9,7 @@ export default class TabsDriver
 
     change( index = 0 )
     {
-        this.wrapper.find( 'TabButton' ).at( index ).driver().click();
+        this.wrapper.find( TabButton ).at( index ).driver().click();
         return this;
     }
 }

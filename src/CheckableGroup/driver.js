@@ -1,3 +1,5 @@
+import { Checkbox, Radio } from '../index';
+
 const ERRORS = {
     CHECKABLEGROUP_CANNOT_BE_CHANGED : ( label, state ) =>
         `CheckableGroup '${label}' cannot be changed since it is ${state}`,
@@ -14,9 +16,9 @@ export default class CheckableGroupDriver
     {
         this.wrapper    = wrapper;
         this.cssMap     = wrapper.props().cssMap;
-        this.checkables = wrapper.find( 'Checkbox' ).length ?
-            wrapper.find( 'Checkbox' ) :
-            wrapper.find( 'Radio' );
+        this.checkables = wrapper.find( Checkbox ).length ?
+            wrapper.find( Checkbox ) :
+            wrapper.find( Radio );
     }
 
 
