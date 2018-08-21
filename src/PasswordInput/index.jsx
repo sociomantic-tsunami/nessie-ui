@@ -15,10 +15,13 @@ const PasswordInput = ( {
 } ) => (
     <TextInputWithIcon
         { ...props }
-        className = { buildClassName( className, cssMap ) }
-        id        = { id }
-        inputType = { passwordIsVisible ? 'text' : 'password' }
-        iconType  = { passwordIsVisible ? 'hide' : 'show' } />
+        className      = { buildClassName( className, cssMap ) }
+        id             = { id }
+        inputType      = { passwordIsVisible ? 'text' : 'password' }
+        iconType       = { passwordIsVisible ? 'hide' : 'show' }
+        autoCorrect    = { passwordIsVisible ? 'off' : null }
+        autoCapitalize = { passwordIsVisible ? 'off' : null }
+        spellCheck     = { passwordIsVisible ? false : null } />
 );
 
 
