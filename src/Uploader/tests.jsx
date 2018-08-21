@@ -134,28 +134,38 @@ describe( 'UploaderDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClick when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick, isDisabled: true } );
 
-                expect( () => driver.click() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
             } );
         } );
 
 
         describe( 'isReadOnly', () =>
         {
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClick when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick, isReadOnly: true } );
 
-                expect( () => driver.click() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -178,28 +188,38 @@ describe( 'UploaderDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickSecondary when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
+                const onClickSecondary = jest.fn();
+                wrapper.setProps( { onClickSecondary, isDisabled: true } );
 
-                expect( () => driver.click() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickSecondary();
+                }
+                catch ( error )
+                {
+                    expect( onClickSecondary ).not.toBeCalled();
+                }
             } );
         } );
 
 
         describe( 'isReadOnly', () =>
         {
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClickSecondary when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const onClickSecondary = jest.fn();
+                wrapper.setProps( { onClickSecondary, isReadOnly: true } );
 
-                expect( () => driver.click() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickSecondary();
+                }
+                catch ( error )
+                {
+                    expect( onClickSecondary ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -226,23 +246,26 @@ describe( 'UploaderDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Uploader can\'t change since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change( 't' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -251,23 +274,26 @@ describe( 'UploaderDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Uploader can\'t change since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change( 't' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -283,7 +309,6 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalled();
         } );
     } );
@@ -299,7 +324,6 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalled();
         } );
     } );
