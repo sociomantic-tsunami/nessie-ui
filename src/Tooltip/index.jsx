@@ -132,18 +132,18 @@ Tooltip.propTypes =
      *  Tooltip position relative to wrapped component
      */
     position         : PropTypes.oneOf( [
-        'left',
-        'right',
         'top',
-        'bottom',
         'topLeft',
         'topRight',
+        'bottom',
         'bottomLeft',
         'bottomRight',
+        'left',
         'leftTop',
         'leftBottom',
+        'right',
         'rightTop',
-        'rightBottom'
+        'rightBottom',
     ] ),
     /**
      *  Tooltip role/style
