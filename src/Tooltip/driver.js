@@ -1,3 +1,5 @@
+import { IconButton } from '../index';
+
 const ERR = {
     CANT_CLOSE : () =>
         'Input can\'t be clicked since it\'s not dismissable',
@@ -11,16 +13,6 @@ export default class TooltipDriver
         this.cssMap  = wrapper.props().cssMap;
     }
 
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
-    }
-
-    getMessage()
-    {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
-    }
-
     clickClose()
     {
         if ( !this.wrapper.props().isDismissible )
@@ -28,7 +20,7 @@ export default class TooltipDriver
             throw new Error( ERR.CANT_CLOSE() );
         }
 
-        this.wrapper.find( 'IconButton' ).driver().click();
+        this.wrapper.find( IconButton ).driver().click();
         return this;
     }
 

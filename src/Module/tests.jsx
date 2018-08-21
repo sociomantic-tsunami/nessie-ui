@@ -220,7 +220,8 @@ describe( 'ModuleDriver', () =>
                 customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
-            const header = driver.getCustomHeader();
+            const header = wrapper.find( `.${wrapper.props().cssMap.header}` )
+                .children();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
         } );
     } );

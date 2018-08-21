@@ -1,3 +1,5 @@
+import { Tag } from '../index';
+
 const ERR = {
     INPUT_DISABLED : ( doWhat ) => `Input can't ${doWhat} since it is disabled`,
     INPUT_READONLY : ( doWhat ) =>
@@ -24,7 +26,7 @@ export default class TagInputDriver
             throw new Error( ERR.INPUT_READONLY( 'clickCloseTagByIndex' ) );
         }
 
-        this.wrapper.find( 'Tag' ).at( index ).driver().clickClose();
+        this.wrapper.find( Tag ).at( index ).driver().clickClose();
         return this;
     }
 

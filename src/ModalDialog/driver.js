@@ -1,3 +1,5 @@
+import { IconButton } from '../index';
+
 const ERR = {
     NOT_A_CAROUSEL : item => `Cannot trigger click on the "${item}" because \
 the modal is not a Carousel`,
@@ -11,17 +13,14 @@ export default class ModalDialogDriver
         this.cssMap  = wrapper.props().cssMap;
 
         this.overlay = wrapper.find( `.${this.cssMap.default}` );
-
         this.content = wrapper.find( `.${this.cssMap.content}` );
 
         this.closeButton = wrapper.find( `.${this.cssMap.header}` )
-            .find( 'IconButton' );
-
+            .find( IconButton );
         this.prevButton = wrapper.find( `.${this.cssMap.navigation}` )
-            .find( 'IconButton' ).first();
-
+            .find( IconButton ).first();
         this.nextButton = wrapper.find( `.${this.cssMap.navigation}` )
-            .find( 'IconButton' ).last();
+            .find( IconButton ).last();
     }
 
     clickOverlay()

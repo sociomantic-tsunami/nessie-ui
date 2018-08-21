@@ -1,5 +1,5 @@
 /* eslint-disable valid-jsdoc, no-magic-numbers */
-import { IconButton } from 'nessie-ui';
+import { IconButton, IconWithTooltip } from 'nessie-ui';
 
 /* eslint-disable max-len */
 const ERRORS = {
@@ -52,7 +52,7 @@ export default class ModuleDriver
 
     mouseOverHeader()
     {
-        this.wrapper.find( `.${this.cssMap.header}` ).first().simulate( 'mouseOver' );
+        this.wrapper.find( `.${this.cssMap.header}` ).simulate( 'mouseOver' );
         return this;
     }
 
@@ -64,22 +64,13 @@ export default class ModuleDriver
 
     mouseOverError()
     {
-        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseenter' );
+        this.wrapper.find( IconWithTooltip ).simulate( 'mouseenter' );
         return this;
     }
 
     mouseOutError()
     {
-        this.wrapper.find( 'IconWithTooltip' ).simulate( 'mouseleave' );
+        this.wrapper.find( IconWithTooltip ).simulate( 'mouseleave' );
         return this;
-    }
-
-    getCustomHeader()
-    {
-        if ( !this.wrapper.props().customHeader )
-        {
-            throw new Error( ERRORS.MODULE_HAS_NO_CUSTOM_HEADER );
-        }
-        return this.wrapper.find( `.${this.cssMap.header}` ).children();
     }
 }

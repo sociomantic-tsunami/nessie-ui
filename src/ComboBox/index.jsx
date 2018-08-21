@@ -1,15 +1,15 @@
 /* global document */
 
-import React, { Component }             from 'react';
-import PropTypes                        from 'prop-types';
+import React, { Component }     from 'react';
+import PropTypes                from 'prop-types';
 
-import { ScrollBox, Text }              from '../index';
-import TextInputWithIcon                from '../TextInputWithIcon';
-import ListBox                          from '../ListBox';
-import withDropdown                     from '../Dropdown/withDropdown';
-import { generateId, buildClassName }   from '../utils';
-import InputContainer                   from '../proto/InputContainer';
-import styles                           from './comboBox.css';
+import { ScrollBox, Text }      from '../index';
+import TextInputWithIcon        from '../TextInputWithIcon';
+import ListBox                  from '../ListBox';
+import withDropdown             from '../Dropdown/withDropdown';
+import { generateId }           from '../utils';
+import InputContainer           from '../proto/InputContainer';
+import styles                   from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,

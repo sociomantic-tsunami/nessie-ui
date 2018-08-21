@@ -1,3 +1,5 @@
+import { InputField } from '../index';
+
 const ERR = {
     INPUT_DISABLED : ( doWhat ) => `Input can't ${doWhat} since it is disabled`,
     INPUT_READONLY : ( doWhat ) =>
@@ -23,7 +25,7 @@ export default class TextAreaDriver
             throw new Error( ERR.INPUT_READONLY( 'blur' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().blur();
+        this.wrapper.find( InputField ).driver().blur();
         return this;
     }
 
@@ -39,7 +41,7 @@ export default class TextAreaDriver
             throw new Error( ERR.INPUT_READONLY( 'click' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().click();
+        this.wrapper.find( InputField ).driver().click();
         return this;
     }
 
@@ -55,7 +57,7 @@ export default class TextAreaDriver
             throw new Error( ERR.INPUT_READONLY( 'change' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val );
         return this;
     }
 
@@ -71,7 +73,7 @@ export default class TextAreaDriver
             throw new Error( ERR.INPUT_READONLY( 'focus' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().focus();
+        this.wrapper.find( InputField ).driver().focus();
         return this;
     }
 
@@ -82,7 +84,7 @@ export default class TextAreaDriver
             throw new Error( ERR.INPUT_DISABLED( 'keyPress' ) );
         }
 
-        this.wrapper.find( 'InputField' ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress();
         return this;
     }
 

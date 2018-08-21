@@ -1,3 +1,5 @@
+import { DatePicker, IconButton } from '../index';
+
 export default class DateTimeInputDriver
 {
     constructor( wrapper )
@@ -8,7 +10,9 @@ export default class DateTimeInputDriver
         this.mainInput   = wrapper.find( `.${this.cssMap.input}` );
         this.hourInput   = wrapper.find( `.${this.cssMap.hour}` );
         this.minuteInput = wrapper.find( `.${this.cssMap.min}` );
-        this.calendar    = wrapper.find( 'DatePicker' );
+        this.calendar    = wrapper.find( DatePicker );
+        this.icon        = wrapper.find( IconButton )
+            .findWhere( node => node.props().iconType === 'calendar' );
         this.prev        = wrapper.find( `.${this.cssMap.prev}` );
         this.next        = wrapper.find( `.${this.cssMap.next}` );
     }
@@ -77,7 +81,7 @@ export default class DateTimeInputDriver
 
     clickIcon()
     {
-        this.wrapper.find( 'IconButton' ).first().driver().click();
+        this.icon.driver().click();
         return this;
     }
 
