@@ -55,7 +55,6 @@ describe( 'CodeEditorDriver', () =>
 
             driver.focus();
             driver.blur();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -72,7 +71,7 @@ blur since it is disabled';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur when isDisabled', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -81,8 +80,14 @@ blur since it is disabled';
                     onBlur,
                 } );
 
-                expect( () => driver.blur() );
-                expect( onBlur ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -99,7 +104,7 @@ blur since it is read only';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onBlur when isReadOnly', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -108,8 +113,14 @@ blur since it is read only';
                     onBlur,
                 } );
 
-                expect( () => driver.blur() );
-                expect( onBlur ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -140,7 +151,7 @@ focus since it is disabled';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus when isDisabled', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -149,8 +160,14 @@ focus since it is disabled';
                     onFocus,
                 } );
 
-                expect( () => driver.focus() );
-                expect( onFocus ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -167,7 +184,7 @@ focus since it is read only';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -176,8 +193,14 @@ focus since it is read only';
                     onFocus,
                 } );
 
-                expect( () => driver.focus() );
-                expect( onFocus ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -209,7 +232,7 @@ changed since it is disabled';
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -218,8 +241,14 @@ changed since it is disabled';
                     onChange,
                 } );
 
-                expect( () => driver.change( 'Cthulhu' ) );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change( 'Cthulhu' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -237,18 +266,23 @@ changed since it is read only';
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
                     onChange,
                 } );
 
-                expect( () => driver.change( 'Azathoth' ) );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change( 'Cthulhu' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -262,31 +296,39 @@ changed since it is read only';
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
-        test( 'throws the expected error when isDisabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'CodeEditor \'Tekeli-li\' cannot have \
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'CodeEditor \'Tekeli-li\' cannot have \
 onMouseOut since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            expect( () => driver.mouseOut() ).toThrow( expectedError );
-        } );
-
-        test( 'does not call simulate( event ) when isDisabled', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                isDisabled : true,
-                label      : 'Tekeli-li',
-                onMouseOver,
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            expect( () => driver.mouseOut() );
-            expect( onMouseOver ).not.toBeCalled();
+            test( 'should not trigger onMouseOver when isDisabled', () =>
+            {
+                const onMouseOver = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onMouseOver,
+                } );
+
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
@@ -299,7 +341,6 @@ onMouseOut since it is disabled';
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
@@ -308,15 +349,14 @@ onMouseOut since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot have \
 onMouseOut since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {
@@ -325,8 +365,14 @@ onMouseOut since it is disabled';
                     onMouseOut,
                 } );
 
-                expect( () => driver.mouseOut() );
-                expect( onMouseOut ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
     } );
