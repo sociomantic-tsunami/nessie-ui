@@ -20,7 +20,7 @@ describe( 'ComboBox', () =>
         } );
         test( 'should render ComboBox without label by default', () =>
         {
-            const label = '';
+            let label;
             wrapper.setProps( {
                 label,
             } );
@@ -33,38 +33,6 @@ describe( 'ComboBox', () =>
                 label,
             } );
             expect( wrapper.find( 'label' ).length ).toBe( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOver()', () =>
-    {
-        test( 'should trigger onMouseOver() callback function once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                onMouseOver,
-            } );
-
-            wrapper.simulate( 'mouseenter' );
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOut()', () =>
-    {
-        test( 'should trigger onMouseOut() callback function once', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( {
-                onMouseOut,
-            } );
-
-            wrapper.simulate( 'mouseleave' );
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );
@@ -91,7 +59,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.blur();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
@@ -107,7 +74,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.changeInput();
-
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );
     } );
@@ -123,7 +89,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.clickInput();
-
             expect( onClickInput ).toBeCalledTimes( 1 );
         } );
     } );
@@ -140,7 +105,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.clickIcon();
-
             expect( onClickIcon ).toBeCalledTimes( 1 );
         } );
     } );
@@ -188,7 +152,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.focus();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
@@ -204,7 +167,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.keyDown();
-
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
     } );
@@ -220,7 +182,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.keyPress();
-
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
@@ -236,8 +197,37 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.keyUp();
-
             expect( onKeyUp ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( {
+                onMouseOver,
+            } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( {
+                onMouseOut,
+            } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -268,7 +258,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.mouseOutOption();
-
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
     } );
@@ -300,7 +289,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.mouseOverOption();
-
             expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
     } );
@@ -332,7 +320,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.scroll( 0.3 );
-
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
     } );

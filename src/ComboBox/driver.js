@@ -61,6 +61,18 @@ export default class ComboBoxDriver
         return this;
     }
 
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
     mouseOutOption( index = 0 )
     {
         this.wrapper.find( ListBox ).driver().mouseOutOption( index );
