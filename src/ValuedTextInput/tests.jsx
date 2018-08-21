@@ -354,7 +354,7 @@ describe( 'ValuedTextInputDriver', () =>
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClick when isReadOnly', () =>
             {
                 const onClick = jest.fn();
                 wrapper.setProps( { onClick, isReadOnly: true } );

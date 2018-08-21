@@ -274,7 +274,7 @@ describe( 'SliderGroupDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -300,7 +300,7 @@ describe( 'SliderGroupDriver', () =>
 
         describe( 'isReadOnly', () =>
         {
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {

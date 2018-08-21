@@ -445,7 +445,7 @@ changed since it is read only';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( { onChange, isReadOnly: true } );

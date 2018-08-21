@@ -580,7 +580,7 @@ describe( 'InputFieldDriver', () =>
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyPress when isReadOnly', () =>
             {
                 const onKeyPress = jest.fn();
                 wrapper.setProps( { onKeyPress, isReadOnly: true } );
@@ -621,7 +621,7 @@ describe( 'InputFieldDriver', () =>
                 expect( () => driver.keyDown() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyDown when isDisabled', () =>
             {
                 const onKeyDown = jest.fn();
                 wrapper.setProps( { onKeyDown, isDisabled: true } );
@@ -718,7 +718,7 @@ describe( 'InputFieldDriver', () =>
                 expect( () => driver.keyUp() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyUp when isReadOnly', () =>
             {
                 const onKeyUp = jest.fn();
                 wrapper.setProps( { onKeyUp, isReadOnly: true } );
@@ -787,7 +787,7 @@ describe( 'InputFieldDriver', () =>
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOver when isReadOnly', () =>
             {
                 const onMouseOver = jest.fn();
                 wrapper.setProps( { onMouseOver, isReadOnly: true } );
@@ -856,7 +856,7 @@ describe( 'InputFieldDriver', () =>
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOut when isReadOnly', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( { onMouseOut, isReadOnly: true } );

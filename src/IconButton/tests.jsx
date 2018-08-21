@@ -367,7 +367,7 @@ since it is read only';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -400,7 +400,7 @@ since it is loading';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isLoading', () =>
+            test( 'should not trigger onFocus when isLoading', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {

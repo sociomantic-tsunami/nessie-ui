@@ -116,7 +116,7 @@ describe( 'ScrollBarDriver', () =>
             driver.change( 100 );
         } );
 
-        test( 'should call the onChange prop once', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
@@ -129,26 +129,24 @@ describe( 'ScrollBarDriver', () =>
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should simulate mouse over', () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
     describe( 'mouseOut', () =>
     {
-        test( 'should simulate mouse out', () =>
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
     } );

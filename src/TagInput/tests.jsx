@@ -58,33 +58,6 @@ describe( 'TagInput', () =>
         expect( wrapper.find( Tag ) ).toHaveLength( 2 );
     } );
 
-    test( 'should trigger onKeyDown callbacks when key pressed', () =>
-    {
-        const onKeyDown = jest.fn();
-        wrapper.setProps( { onKeyDown } );
-
-        wrapper.find( `.${cssMap.input}` ).simulate( 'keyDown' );
-        expect( onKeyDown ).toBeCalled();
-    } );
-
-    test( 'should trigger onKeyUp callbacks when key pressed', () =>
-    {
-        const onKeyUp = jest.fn();
-        wrapper.setProps( { onKeyUp } );
-
-        wrapper.find( `.${cssMap.input}` ).simulate( 'keyUp' );
-        expect( onKeyUp ).toBeCalled();
-    } );
-
-    test( 'should trigger onKeyPress callbacks when key pressed', () =>
-    {
-        const onKeyPress = jest.fn();
-        wrapper.setProps( { onKeyPress } );
-
-        wrapper.find( `.${cssMap.input}` ).simulate( 'keyPress' );
-        expect( onKeyPress ).toBeCalled();
-    } );
-
     describe( 'readOnly state', () =>
     {
         beforeEach( () =>
@@ -819,7 +792,7 @@ describe( 'TagInputDriver', () =>
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOver when isDisabled', () =>
             {
                 const onMouseOver = jest.fn();
                 wrapper.setProps( { onMouseOver, isDisabled: true } );

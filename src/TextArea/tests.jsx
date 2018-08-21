@@ -174,7 +174,7 @@ describe( 'TextAreaDriver', () =>
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isReadOnly: true } );
