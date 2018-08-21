@@ -399,62 +399,65 @@ describe( 'SliderDriver', () =>
         test( 'should trigger onChange callback once', () =>
         {
             const onChange = jest.fn();
-
             wrapper.setProps( { onChange } );
-            driver.change();
 
+            driver.change();
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
 
         describe( 'isDisabled', () =>
         {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { isDisabled: true } );
-            } );
-
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError = 'Slider \'Cthulhu\' cannot be \
 changed since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
 
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
 
         describe( 'isReadOnly', () =>
         {
-            beforeEach( () =>
-            {
-                wrapper.setProps( { isReadOnly: true } );
-            } );
-
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError = 'Slider \'Cthulhu\' cannot be \
 changed since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
             test( 'does not call simulate( event ) when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
 
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
