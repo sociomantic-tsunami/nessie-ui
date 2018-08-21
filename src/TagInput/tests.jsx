@@ -140,7 +140,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.blur();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -149,23 +148,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t blur since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.blur() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -174,23 +176,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t blur since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onBlur when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.blur() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -210,7 +215,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.focus();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -219,23 +223,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t focus since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.focus() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -244,23 +251,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t focus since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.focus() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -280,7 +290,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.change();
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -289,23 +298,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t change since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -314,23 +326,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t change since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -350,7 +365,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.clickCloseTagByIndex( 1 );
-
             expect( onClickClose ).toBeCalledTimes( 1 );
         } );
 
@@ -359,24 +373,27 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t clickCloseTagByIndex since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.clickCloseTagByIndex() )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickClose when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickClose = jest.fn();
+                wrapper.setProps( { onClickClose, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.clickCloseTagByIndex() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickCloseTagByIndex();
+                }
+                catch ( error )
+                {
+                    expect( onClickClose ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -385,24 +402,27 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t clickCloseTagByIndex since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.clickCloseTagByIndex() )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClickClose when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickClose = jest.fn();
+                wrapper.setProps( { onClickClose, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.clickCloseTagByIndex() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickCloseTagByIndex();
+                }
+                catch ( error )
+                {
+                    expect( onClickClose ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -421,7 +441,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.clickCloseTagByLabel( 'TagLabel 1' );
-
             expect( onClickClose ).toBeCalledTimes( 1 );
         } );
 
@@ -430,24 +449,34 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t clickCloseTagByLabel since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.clickCloseTagByLabel() )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickClose when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickClose = jest.fn();
+                wrapper.setProps( {
+                    onClickClose,
+                    isDisabled : true,
+                    children   : [
+                        <Tag label = "TagLabel 1" />,
+                        <Tag label = "TagLabel 2" />,
+                    ],
+                } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.clickCloseTagByLabel() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickCloseTagByLabel( 'TagLabel 2' );
+                }
+                catch ( error )
+                {
+                    expect( onClickClose ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -456,24 +485,34 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t clickCloseTagByLabel since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.clickCloseTagByLabel() )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClickClose when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickClose = jest.fn();
+                wrapper.setProps( {
+                    onClickClose,
+                    isReadOnly : true,
+                    children   : [
+                        <Tag label = "TagLabel 1" />,
+                        <Tag label = "TagLabel 2" />,
+                    ],
+                } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.clickCloseTagByLabel() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickCloseTagByLabel( 'TagLabel 2' );
+                }
+                catch ( error )
+                {
+                    expect( onClickClose ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -493,7 +532,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.keyPress();
-
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
@@ -502,23 +540,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t keyPress since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyPress when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( { onKeyPress, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.keyPress() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyPress();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -527,23 +568,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t keyPress since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyPress when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( { onKeyPress, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyPress() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyPress();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -563,7 +607,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.keyUp();
-
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
 
@@ -572,23 +615,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t keyUp since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyUp when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyUp = jest.fn();
+                wrapper.setProps( { onKeyUp, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.keyUp() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -597,23 +643,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t keyUp since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyUp when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyUp = jest.fn();
+                wrapper.setProps( { onKeyUp, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyUp() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -633,7 +682,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.keyDown();
-
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
 
@@ -642,23 +690,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t keyDown since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyDown when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyDown = jest.fn();
+                wrapper.setProps( { onKeyDown, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.keyDown() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -667,23 +718,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'Input can\'t keyDown since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyDown when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyDown = jest.fn();
+                wrapper.setProps( { onKeyDown, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyDown() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -703,7 +757,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
@@ -712,23 +765,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t mouseOut since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -748,7 +804,6 @@ describe( 'TagInputDriver', () =>
             } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
@@ -757,23 +812,26 @@ describe( 'TagInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'Input can\'t mouseOver since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
             test( 'does not call simulate( event ) when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
             } );
         } );
     } );
