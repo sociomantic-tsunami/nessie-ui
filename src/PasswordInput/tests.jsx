@@ -73,14 +73,11 @@ describe( 'PasswordInputDriver', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>
         {
-            const focusSpy = jest.fn();
-            wrapper.setProps( {
-                title   : 'Test',
-                onFocus : focusSpy,
-            } );
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
 
             driver.focus();
-            expect( focusSpy ).toBeCalledTimes( 1 );
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
 
@@ -88,23 +85,26 @@ describe( 'PasswordInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 focus since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.focus() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -113,23 +113,26 @@ focus since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 focus since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.focus() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -137,16 +140,13 @@ focus since it is read only';
 
     describe( 'blur()', () =>
     {
-        test( 'should fire the onBlur callback prop once', () =>
+        test( 'should trigger onBlur callback prop once', () =>
         {
-            const blurSpy = jest.fn();
-            wrapper.setProps( {
-                title  : 'Test',
-                onBlur : blurSpy,
-            } );
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
 
             driver.blur();
-            expect( blurSpy ).toBeCalledTimes( 1 );
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
 
@@ -154,23 +154,26 @@ focus since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.blur() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -179,23 +182,26 @@ blur since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 blur since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onBlur when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.blur() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -219,24 +225,27 @@ blur since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot be \
 changed since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.change( 'Azathoth' ) );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change( 'Azathoth' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -245,24 +254,27 @@ changed since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot be \
 changed since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
                     .toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.change( 'Azathoth' ) );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change( 'Azathoth' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -272,13 +284,11 @@ changed since it is read only';
     {
         test( 'should fire the onKeyPress callback prop once', () =>
         {
-            const keyPressSpy = jest.fn();
-            wrapper.setProps( {
-                onKeyPress : keyPressSpy,
-            } );
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
 
             driver.keyPress();
-            expect( keyPressSpy ).toBeCalledTimes( 1 );
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
 
@@ -286,23 +296,26 @@ changed since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 keyPress since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onKeyPress when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( { onKeyPress, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.keyPress() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyPress();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -311,23 +324,26 @@ keyPress since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 keyPress since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onKeyPress when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( { onKeyPress, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.keyPress() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.keyPress();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -338,11 +354,9 @@ keyPress since it is read only';
         test( 'should trigger onMouseOver callback once', () =>
         {
             const onMouseOver = jest.fn();
-
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
@@ -351,23 +365,26 @@ keyPress since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 onMouseOver since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOver when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.mouseOver() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -376,23 +393,26 @@ onMouseOver since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 onMouseOver since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOver when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.mouseOver() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -403,11 +423,9 @@ onMouseOver since it is read only';
         test( 'should trigger onMouseOut callback once', () =>
         {
             const onMouseOut = jest.fn();
-
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
@@ -416,23 +434,26 @@ onMouseOver since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 onMouseOut since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.mouseOut() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -441,23 +462,26 @@ onMouseOut since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 onMouseOut since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOut when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.mouseOut() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -465,7 +489,7 @@ onMouseOut since it is read only';
 
     describe( 'clickIcon()', () =>
     {
-        test( 'should trigger onClick callback once', () =>
+        test( 'should trigger onClickIcon callback once', () =>
         {
             const onClickIcon = jest.fn();
             wrapper.setProps( {
@@ -473,7 +497,6 @@ onMouseOut since it is read only';
             } );
 
             driver.clickIcon();
-
             expect( onClickIcon ).toBeCalledTimes( 1 );
         } );
 
@@ -482,23 +505,26 @@ onMouseOut since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 onClickIcon since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.clickIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClickIcon when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickIcon = jest.fn();
+                wrapper.setProps( { onClickIcon, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.clickIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickIcon();
+                }
+                catch ( error )
+                {
+                    expect( onClickIcon ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -507,23 +533,26 @@ onClickIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 onClickIcon since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.clickIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClickIcon when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onClickIcon = jest.fn();
+                wrapper.setProps( { onClickIcon, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.clickIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.clickIcon();
+                }
+                catch ( error )
+                {
+                    expect( onClickIcon ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -534,11 +563,9 @@ onClickIcon since it is read only';
         test( 'should trigger onMouseOverIcon callback once', () =>
         {
             const onMouseOverIcon = jest.fn();
-
             wrapper.setProps( { onMouseOverIcon } );
 
             driver.mouseOverIcon();
-
             expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
 
@@ -547,23 +574,26 @@ onClickIcon since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 onMouseOverIcon since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOverIcon when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOverIcon = jest.fn();
+                wrapper.setProps( { onMouseOverIcon, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.mouseOverIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOverIcon();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOverIcon ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -572,23 +602,26 @@ onMouseOverIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 onMouseOverIcon since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOverIcon when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOverIcon = jest.fn();
+                wrapper.setProps( { onMouseOverIcon, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.mouseOverIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOverIcon();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOverIcon ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -599,11 +632,9 @@ onMouseOverIcon since it is read only';
         test( 'should trigger onMouseOutIcon callback once', () =>
         {
             const onMouseOutIcon = jest.fn();
-
             wrapper.setProps( { onMouseOutIcon } );
 
             driver.mouseOutIcon();
-
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
 
@@ -612,23 +643,26 @@ onMouseOverIcon since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
                 const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
 onMouseOutIcon since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOutIcon when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOutIcon = jest.fn();
+                wrapper.setProps( { onMouseOutIcon, isDisabled: true } );
 
-                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
-
-                expect( () => driver.mouseOutIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOutIcon();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOutIcon ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -637,23 +671,26 @@ onMouseOutIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
 onMouseOutIcon since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOutIcon when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
+                const onMouseOutIcon = jest.fn();
+                wrapper.setProps( { onMouseOutIcon, isReadOnly: true } );
 
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.mouseOutIcon() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.mouseOutIcon();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOutIcon ).not.toBeCalled();
+                }
             } );
         } );
     } );
