@@ -43,7 +43,7 @@ describe( 'IconDriver', () =>
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should fire onMouseOver event once', () =>
+        test( 'should trigger onMouseOver event once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { type: 'alert', onMouseOver } );
@@ -83,7 +83,7 @@ describe( 'IconDriver', () =>
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should fire onMouseOver event once', () =>
+        test( 'should trigger onMouseOver event once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { type: 'alert', onMouseOut } );
@@ -103,7 +103,7 @@ describe( 'IconDriver', () =>
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( { onMouseOut, isDisabled: true } );
