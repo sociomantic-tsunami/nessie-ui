@@ -22,16 +22,67 @@ const Tooltip = ( {
     role,
 } ) =>
 {
-    let contentNode = children;
+    const hasChildren = typeof children !== 'undefined';
 
-    if ( typeof children === 'string' )
+    const tooltip = (
+        <div
+            className = { cssMap.tooltip }
+            id        = { id }
+            role      = "tooltip">
+            <div className = { cssMap.message }>
+                { typeof message === 'string' ?
+                    <Text>{ message }</Text> : message
+                }
+            </div>
+            { isDismissible &&
+                <IconButton
+                    className    = { cssMap.close }
+                    iconSize     = "S"
+                    iconTheme    = "button"
+                    iconType     = "close"
+                    label        = "Close"
+                    onClickClose = { onClickClose } />
+            }
+        </div>
+    );
+
+    if ( hasChildren )
     {
-        contentNode = (
-            <Text
-                noWrap           = { noWrap }
-                overflowIsHidden = { overflowIsHidden }>
-                { children }
-            </Text>
+        let contentNode = children;
+
+        if ( typeof children === 'string' )
+        {
+            contentNode = (
+                <Text
+                    noWrap           = { noWrap }
+                    overflowIsHidden = { overflowIsHidden }>
+                    { children }
+                </Text>
+            );
+        }
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    dismissible : isDismissible,
+                    position,
+                    role,
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
+                { contentNode &&
+                    <div
+                        aria-describedby = { isVisible ? id : null }
+                        className        = { cssMap.content }>
+                        { contentNode }
+                    </div>
+                }
+                { isVisible &&
+                    <div className = { cssMap.tooltipContainer }>
+                        { tooltip }
+                    </div>
+                }
+            </div>
         );
     }
 
@@ -44,36 +95,7 @@ const Tooltip = ( {
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>
-            { contentNode &&
-                <div
-                    aria-describedby = { isVisible ? id : null }
-                    className        = { cssMap.content }>
-                    { contentNode }
-                </div>
-            }
-            { isVisible &&
-                <div className = { cssMap.tooltipContainer }>
-                    <div
-                        className = { cssMap.tooltip }
-                        id        = { id }
-                        role      = "tooltip">
-                        <div className = { cssMap.message }>
-                            { typeof message === 'string' ?
-                                <Text>{ message }</Text> : message
-                            }
-                        </div>
-                        { isDismissible &&
-                            <IconButton
-                                className    = { cssMap.close }
-                                iconSize     = "S"
-                                iconTheme    = "button"
-                                iconType     = "close"
-                                label        = "Close"
-                                onClickClose = { onClickClose } />
-                        }
-                    </div>
-                </div>
-            }
+            { tooltip }
         </div>
     );
 };
