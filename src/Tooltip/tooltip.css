@@ -4,12 +4,33 @@
 
 :root
 {
-    --tooltipBorderRadius:  2px;
+    --tooltipBorderRadius:      4px;
 
-    --tooltipMaxWidth:      360px;
-    --tooltipMaxHeight:     100vh;
+    --tooltipMaxWidth:          350px;
 
-    --tooltipOffset:        var( --spacing-1 );
+    --tooltipMaxHeight:         44px;
+
+    --tooltipOffset:            var( --spacing-1 );
+
+    --boxShadow:                0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
+
+    --caretSize:                14px;
+
+    --caretPosOffset:                22px;
+
+    --caretPosOffsetHalf:            calc( 22px / 2 );
+
+    --caretPosOuter:            calc( ( var( --caretSize ) / -2 ) - 1px );
+
+    --tooltipContainerPosY:     calc( 100% + var( --caretSize ) );
+
+    --tooltipContainerPosLeft:  calc( ( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) ) * -1 );
+
+    --tooltipContainerPosRight: calc( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) );
+
+    --tooltipContainerPosTop:  calc( ( var( --tooltipMaxHeight ) - var( --caretPosOffset ) + var( --caretPosOffsetHalf ) ) * -1 );
+
+    --tooltipContainerPosBottom: calc( var( --tooltipMaxHeight ) - var( --caretPosOffset ) + var( --caretPosOffsetHalf ) );
 }
 
 
@@ -29,27 +50,42 @@
     {
         visibility: hidden;
         position:   absolute;
+        width: var( --tooltipMaxWidth );
+        z-index: 99999;
     }
 
     .tooltip
     {
         visibility:     visible;
-        position:       absolute;
-
+        position:       relative;
+        text-align:     left;
         box-sizing:     border-box;
-        max-width:      var( --tooltipMaxWidth );
-        max-height:     var( --tooltipMaxHeight );
-
+        display:        inline-block;
+        min-width:      calc( var( --caretPosOffset ) * 2 );
+        min-height:     calc( var( --caretPosOffset ) * 2 );
         border-radius:  var( --tooltipBorderRadius );
+        border:         1px solid var( --PC-GREY--D75 );
         box-shadow:     var( --boxShadow );
         padding:        var( --spacing-1 ) var( --spacing-2 );
 
-        background:     var( --PC-GREY--D15 );
+        background:     var( --PC-GREY--D45 );
 
-        &::before
+        &::before,
+        &::after
         {
             content:    "";
             position:   absolute;
+        }
+        &::after
+        {
+          position: absolute;
+          width: var( --caretSize );
+          height: var( --caretSize );
+          background: inherit;
+          border: inherit;
+          border-bottom-color: transparent;
+          border-right-color: transparent;
+
         }
     }
 
@@ -90,13 +126,35 @@
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltip::before
+    .tooltip
     {
+      &::before
+      {
         left:   0;
         right:  0;
         height: var( --tooltipOffset );
+      }
     }
 }
+
+.position__left,
+.position__right,
+.position__leftTop,
+.position__leftBottom,
+.position__rightTop,
+.position__rightBottom
+{
+    .tooltip
+    {
+      &::before
+      {
+        top:   0;
+        bottom:  0;
+        width: var( --tooltipOffset );
+      }
+    }
+}
+
 
 .position__top,
 .position__topLeft,
@@ -104,16 +162,20 @@
 {
     .tooltipContainer
     {
-        top:    0;
+        bottom:    var( --tooltipContainerPosY );
+        left: 50%;
     }
 
     .tooltip
     {
-        bottom: 0;
 
         &::before
         {
             top:    100%;
+        }
+        &::after
+        {
+            bottom: var( --caretPosOuter );
         }
     }
 }
@@ -124,211 +186,211 @@
 {
     .tooltipContainer
     {
-        bottom: 0;
+        top: var( --tooltipContainerPosY );
+        left: 50%;
     }
-
     .tooltip
     {
-        top:    0;
-
         &::before
         {
             bottom: 100%;
         }
+        &::after
+        {
+          top: var( --caretPosOuter );
+        }
     }
 }
+
 
 .position__top,
 .position__bottom
 {
     .tooltipContainer
     {
-        left:   50%;
-        width:  calc( var( --tooltipMaxWidth ) * 2 );
-        height: var( --tooltipMaxHeight );
+        transform: translateX( -50% );
+        text-align: center;
     }
 
-    .tooltip
+    .tooltip::after
     {
-        left:   50%;
+      left: 50%;
+    }
+    &Left
+    {
+        .tooltipContainer
+        {
+            transform: translateX( var( --tooltipContainerPosLeft ) );
+            text-align: right;
+        }
+        .tooltip::after
+        {
+            right: var( --caretPosOffset );
+        }
+    }
+
+    &Right
+    {
+        .tooltipContainer
+        {
+            transform: translateX( var( --tooltipContainerPosRight ) );
+            text-align: left;
+            right: 50%;
+            left: auto;
+        }
+        .tooltip::after
+        {
+            left: var( --caretPosOffset );
+        }
     }
 }
 
 .position__top
 {
-    .tooltipContainer
+    .tooltip::after
     {
-        transform:  translate3d( -50%, -100%, 0 );
+        transform: translateX( -50% ) rotate( 225deg );
     }
-
-    .tooltip
+    &Left,
+    &Right
     {
-        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+        .tooltip::after
+        {
+            transform: translateX( 0 ) rotate( 225deg );
+        }
     }
 }
 
 .position__bottom
 {
-    .tooltipContainer
+    .tooltip::after
     {
-        transform:  translate3d( -50%, 100%, 0 );
+        transform: translateX( -50% ) rotate( 45deg );
     }
-
-    .tooltip
+    &Left,
+    &Right
     {
-        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
+        .tooltip::after
+        {
+            transform: translateX( 0 ) rotate( 45deg );
+        }
     }
 }
 
-.position__topLeft,
-.position__topRight,
-.position__bottomLeft,
-.position__bottomRight
+.position__left,
+.position__leftTop,
+.position__leftBottom
 {
     .tooltipContainer
     {
-        width:      var( --tooltipMaxWidth );
-        height:     var( --tooltipMaxHeight );
+        text-align: right;
+        right:    var( --tooltipContainerPosY );
+        top: 50%;
+    }
+
+    .tooltip
+    {
+        &::before
+        {
+            left: 100%;
+        }
+        &::after
+        {
+            right:  var( --caretPosOuter );
+        }
     }
 }
 
-.position__topLeft,
-.position__bottomLeft
+
+.position__right,
+.position__rightTop,
+.position__rightBottom
 {
     .tooltipContainer
     {
-        left:  0;
+        text-align: left;
+        left: var( --tooltipContainerPosY );
+        top: 50%;
     }
 
     .tooltip
     {
-        left:  0;
+        &::before
+        {
+            right: 100%;
+        }
+        &::after
+        {
+            left:  var( --caretPosOuter );
+        }
     }
 }
-
-.position__topRight,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-        right:   0;
-    }
-
-    .tooltip
-    {
-        right:   0;
-    }
-}
-
-.position__topLeft,
-.position__topRight
-{
-    .tooltipContainer
-    {
-        transform:  translateY( -100% );
-    }
-}
-
-.position__topLeft
-{
-    .tooltip
-    {
-        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
-    }
-}
-
-.position__topRight
-{
-    .tooltip
-    {
-        transform:  translate3d( 50%, calc( -1 * var( --tooltipOffset ) ), 0 );
-    }
-}
-
-.position__bottomLeft,
-.position__bottomRight
-{
-    .tooltipContainer
-    {
-        transform:  translateY( 100% );
-    }
-}
-
-.position__bottomLeft
-{
-    .tooltip
-    {
-        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
-    }
-}
-
-.position__bottomRight
-{
-    .tooltip
-    {
-        transform:  translate3d( 50%, var( --tooltipOffset ), 0 );
-    }
-}
-
 .position__left,
 .position__right
 {
     .tooltipContainer
     {
-        top:    50%;
-        width:  var( --tooltipMaxWidth );
-        height: calc( 2 * var( --tooltipMaxHeight ) );
+        transform: translateY( -50% );
     }
 
-    .tooltip
+    .tooltip::after
     {
-        top:    50%;
-
-        &::before
+      top:    50%;
+    }
+    &Top
+    {
+        .tooltipContainer
         {
-            top:    0;
-            bottom: 0;
-            width:  var( --tooltipOffset );
+            transform: translateY( var( --tooltipContainerPosTop ) );
+        }
+        .tooltip::after
+        {
+            top: var( --caretPosOffset );
+        }
+    }
+    &Bottom
+    {
+        .tooltipContainer
+        {
+            transform: translateY( var( --tooltipContainerPosBottom ) );
+            bottom: 50%;
+            top: auto;
+        }
+        .tooltip::after
+        {
+            bottom: var( --caretPosOffset );
         }
     }
 }
 
 .position__left
 {
-    .tooltipContainer
+    .tooltip::after
     {
-        left:       0;
-        transform:  translate3d( -100%, -50%, 0 );
+        transform: translateY( -50% ) rotate( -225deg );
     }
-
-    .tooltip
+    &Top,
+    &Bottom
     {
-        right:      0;
-        transform:  translate3d( calc( -1 * var( --tooltipOffset ) ), -50%, 0 );
-
-        &::before
+        .tooltip::after
         {
-            left:   100%;
+            transform: translateY( 0 ) rotate( -225deg );
         }
     }
 }
 
 .position__right
 {
-    .tooltipContainer
+    .tooltip::after
     {
-        right:      0;
-        transform:  translate3d( 100%, -50%, 0 );
+      transform: translateY( -50% ) rotate( -45deg );
     }
-
-    .tooltip
+    &Top,
+    &Bottom
     {
-        left:       0;
-        transform:  translate3d( var( --tooltipOffset ), -50%, 0 );
-
-        &::before
+        .tooltip::after
         {
-            right:  100%;
+            transform: translateY( 0 ) rotate( -45deg );
         }
     }
 }
@@ -338,7 +400,8 @@
 {
     .tooltip
     {
-        background: var( --PC-RED );
+      background: var( --PC-RED );
+      border-color: var( --PC-RED--D15 );
     }
 }
 
@@ -346,7 +409,8 @@
 {
     .tooltip
     {
-        background: var( --PC-GREEN );
+      background: var( --PC-GREEN );
+      border-color: var( --PC-GREEN--D15 );
     }
 }
 
@@ -354,6 +418,8 @@
 {
     .tooltip
     {
-        background: var( --PC-ORANGE );
+      background: var( --PC-ORANGE );
+      border-color: var( --PC-ORANGE--D15 );
     }
+
 }

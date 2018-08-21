@@ -140,6 +140,10 @@ Tooltip.propTypes =
         'topRight',
         'bottomLeft',
         'bottomRight',
+        'leftTop',
+        'leftBottom',
+        'rightTop',
+        'rightBottom'
     ] ),
     /**
      *  Tooltip role/style
