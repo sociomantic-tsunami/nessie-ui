@@ -36,7 +36,6 @@ describe( 'Button', () =>
             wrapper.setProps( { onMouseOver } );
 
             instance.handleMouseOver();
-
             expect( instance.state.isHovered ).toEqual( true );
         } );
     } );
@@ -49,7 +48,6 @@ describe( 'Button', () =>
             wrapper.setProps( { onMouseOut } );
 
             instance.handleMouseOut();
-
             expect( instance.state.isHovered ).toEqual( false );
         } );
     } );
@@ -86,7 +84,6 @@ describe( 'Button', () =>
             test( 'should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
-
                 expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'add' );
             } );
         } );
@@ -221,10 +218,9 @@ describe( 'ButtonDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
-
                 const expectedError =
                     'Button \'Pikaboo\' cannot be clicked since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -254,10 +250,9 @@ describe( 'ButtonDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot be clicked \
 since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -287,10 +282,9 @@ since it is read only';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
-
                 const expectedError = 'Button \'Pikaboo\' cannot be clicked \
 since it is loading';
+                wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -333,10 +327,9 @@ since it is loading';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have \
 onMouseOver since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
@@ -366,10 +359,9 @@ onMouseOver since it is disabled';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have \
 onMouseOver since it is loading';
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
@@ -450,15 +442,9 @@ onMouseOut since it is disabled';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( {
-                    onMouseOut,
-                    isLoading : true,
-                    label     : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have \
 onMouseOut since it is loading';
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
@@ -501,15 +487,9 @@ onMouseOut since it is loading';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have blur \
 since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -539,15 +519,9 @@ since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have blur \
 since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -577,15 +551,9 @@ since it is read only';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isLoading : true,
-                    label     : 'Tekeli-li',
-                } );
-
                 const expectedError =
                     'Button \'Tekeli-li\' cannot have blur since it is loading';
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -628,15 +596,9 @@ since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have focus \
 since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -666,15 +628,9 @@ since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have focus \
 since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -704,15 +660,9 @@ since it is read only';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isLoading : true,
-                    label     : 'Tekeli-li',
-                } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot have focus \
 since it is loading';
+                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );

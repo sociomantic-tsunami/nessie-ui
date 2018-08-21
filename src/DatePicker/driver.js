@@ -3,6 +3,8 @@ const ERRORS = {
         `Item '${label}' cannot be clicked since it is ${state}`,
     INPUT_CANNOT_BE_CHANGED : ( state ) =>
         `Input cannot be changed since it is ${state}`,
+    INPUT_CANNOT_KEYPRESS : ( state ) =>
+        `Input didn't trigger onKeyPress since it is ${state}`,
     NAV_CANNOT_BE_CLICKED : ( el, state ) =>
         `${el} cannot be clicked since it is ${state}`,
     NO_INPUT : () =>
@@ -91,6 +93,18 @@ export default class DatePickerDriver
             throw new Error( ERRORS.NO_INPUT() );
         }
 
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS
+                .INPUT_CANNOT_KEYPRESS( 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERRORS
+                .INPUT_CANNOT_KEYPRESS( 'read only' ) );
+        }
+
         this.wrapper.find( `.${this.hour}` )
             .simulate( 'keyPress', { key: '3' } );
         return this;
@@ -101,6 +115,18 @@ export default class DatePickerDriver
         if ( this.wrapper.props().mode !== 'default' )
         {
             throw new Error( ERRORS.NO_INPUT() );
+        }
+
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERRORS
+                .INPUT_CANNOT_KEYPRESS( 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERRORS
+                .INPUT_CANNOT_KEYPRESS( 'read only' ) );
         }
 
         this.wrapper.find( `.${this.min}` )
