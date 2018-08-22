@@ -49,7 +49,7 @@
         box-sizing:     border-box;
         min-width:      var( --tooltipMinSize );
         min-height:     var( --tooltipMinSize);
-        max-width:      var( --tooltipMaxSize );
+        max-width:      var( --tooltipMaxWidth );
 
         border:         var( --tooltipBorderWidth ) solid;
         border-radius:  var( --tooltipBorderRadius );
