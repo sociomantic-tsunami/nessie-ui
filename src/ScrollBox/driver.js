@@ -1,8 +1,11 @@
 import { ScrollBar } from 'nessie-ui';
 
-const ERRORS = {
-    SCROLL_CANNOT_BE_CLICKED   : ( prop ) => `Button cannot be clicked since it doesn't have ${prop} prop`, // eslint-disable-line max-len
-    CANNOT_SCROLL_IN_DIRECTION : ( direction ) => `Cannot scroll because scroll direction is neither '${direction}' nor 'both'`, // eslint-disable-line max-len
+const ERR = {
+    SCROLL_CANNOT_BE_CLICKED : ( prop ) =>
+        `Button cannot be clicked since it doesn't have ${prop} prop`,
+    CANNOT_SCROLL_IN_DIRECTION : ( direction ) =>
+        `Cannot scroll because scroll direction is neither '${direction}' nor \
+'both'`,
 };
 
 export default class ScrollBoxDriver
@@ -18,7 +21,7 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollUpIsVisible )
         {
-            throw new Error( ERRORS
+            throw new Error( ERR
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollUpIsVisible' ) );
         }
 
@@ -31,7 +34,7 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollRightIsVisible )
         {
-            throw new Error( ERRORS
+            throw new Error( ERR
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' ) );
         }
 
@@ -44,7 +47,7 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollDownIsVisible )
         {
-            throw new Error( ERRORS
+            throw new Error( ERR
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollDownIsVisible' ) );
         }
 
@@ -57,7 +60,7 @@ export default class ScrollBoxDriver
     {
         if ( !this.props.scrollLeftIsVisible )
         {
-            throw new Error( ERRORS
+            throw new Error( ERR
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' ) );
         }
 
@@ -71,7 +74,7 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
+            throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
@@ -86,7 +89,7 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'horizontal' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error( ERRORS
+            throw new Error( ERR
                 .CANNOT_SCROLL_IN_DIRECTION( 'horizontal' ) );
         }
 
@@ -102,7 +105,7 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
+            throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
@@ -118,7 +121,7 @@ export default class ScrollBoxDriver
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
-            throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
+            throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
         const node     = this.scrollBox.getNode();
