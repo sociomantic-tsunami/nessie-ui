@@ -21,7 +21,7 @@ describe( 'CheckableGroupDriver', () =>
 
     describe( 'change( index )', () =>
     {
-        test( 'should call onChange exactly once', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( {
@@ -34,7 +34,6 @@ describe( 'CheckableGroupDriver', () =>
             } );
 
             wrapper.driver().change();
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -60,8 +59,14 @@ trigger onChange since it is disabled';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -87,8 +92,14 @@ trigger onChange since it is read only';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );

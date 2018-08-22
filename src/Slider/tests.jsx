@@ -362,34 +362,48 @@ describe( 'SliderDriver', () =>
 
     describe( 'click()', () =>
     {
-        let clickSpy;
+        let onClick;
 
         beforeEach( () =>
         {
-            clickSpy = jest.fn();
-            wrapper.setProps( { onClick: clickSpy } );
+            onClick = jest.fn();
+            wrapper.setProps( { onClick } );
         } );
 
         test( 'should fire the onClick callback prop exactly once', () =>
         {
             driver.click();
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should not fire onClick when slider is disabled ', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( () => driver.click() ).toThrow();
-            expect( clickSpy ).not.toBeCalled();
-        } );
 
-        test( 'should throw the expected error when slider is disabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true } );
-            const expectedError =
-                'Slider \'Cthulhu\' cannot be clicked since it is disabled';
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    wrapper.setProps( { isDisabled: true } );
+                    const expectedError = 'Slider \'Cthulhu\' cannot be \
+clicked since it is disabled';
 
-            expect( () => driver.click() ).toThrowError( expectedError );
+                    expect( () => driver.click() )
+                        .toThrowError( expectedError );
+                },
+            );
+
+            test( 'should not fire onClick when slider is disabled ', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
@@ -511,8 +525,14 @@ changed since it is read only';
 
             test( 'should not fire onBlur when slider is disabled ', () =>
             {
-                expect( () => driver.click() ).toThrow();
-                expect( onBlur ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
 
             test(
