@@ -139,7 +139,8 @@
     {
         "iconType"          : "error",
         "message"           : "Something’s wrong!",
-        "tooltipIsVisible"  : true
+        "tooltipIsVisible"  : true,
+        "lochness"          : { "isDeprecated": true }
     },
     "Label" :
     {

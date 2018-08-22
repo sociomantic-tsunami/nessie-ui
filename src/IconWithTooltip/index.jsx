@@ -2,7 +2,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Icon                 from '../Icon';
 import Tooltip              from '../Tooltip';
 import Text                 from '../Text';
@@ -17,6 +16,7 @@ const IconWithTooltip = ( {
     iconType,
     isDisabled,
     message,
+    noWarn,
     noWrap,
     onMouseOut,
     onMouseOutIcon,
@@ -27,14 +27,20 @@ const IconWithTooltip = ( {
     tooltipPosition,
 } ) =>
 {
+    if ( !noWarn && !IconWithTooltip.didWarn )
+    {
+        console.warn( 'IconWithTooltip: this component is deprecated and will \
+be removed in a future major release. Please compose from the Icon and Tooltip \
+components instead.' );
+        IconWithTooltip.didWarn = true;
+    }
+
     let contentNode = children;
 
     if ( typeof children === 'string' )
     {
         contentNode = (
-            <Text
-                overflowIsHidden = { overflowIsHidden }
-                noWrap           = { noWrap }>
+            <Text noWrap = { noWrap } overflowIsHidden = { overflowIsHidden }>
                 { children }
             </Text>
         );
@@ -45,29 +51,30 @@ const IconWithTooltip = ( {
         <div
             className    = { buildClassName( className, cssMap, {
                 iconVisible : iconIsVisible,
-                position    : !!children && iconPosition
+                position    : !!children && iconPosition,
             } ) }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }>
             { children &&
-            <div className = { cssMap.content }>
-                { contentNode }
-            </div>
+                <div className = { cssMap.content }>
+                    { contentNode }
+                </div>
             }
             { iconIsVisible &&
-            <Tooltip
-                className   = { cssMap.iconWithTooltip }
-                isVisible   = { tooltipIsVisible }
-                message     = { message }
-                onMouseOut  = { onMouseOutIcon }
-                onMouseOver = { onMouseOverIcon }
-                position    = { tooltipPosition }>
-                <Icon
-                    className = { cssMap.icon }
-                    isDisabled = { isDisabled }
-                    size       = { iconSize }
-                    type       = { iconType } />
-            </Tooltip>
+                <Tooltip
+                    className   = { cssMap.iconWithTooltip }
+                    isVisible   = { tooltipIsVisible }
+                    message     = { message }
+                    noWarn
+                    onMouseOut  = { onMouseOutIcon }
+                    onMouseOver = { onMouseOverIcon }
+                    position    = { tooltipPosition }>
+                    <Icon
+                        className  = { cssMap.icon }
+                        isDisabled = { isDisabled }
+                        size       = { iconSize }
+                        type       = { iconType } />
+                </Tooltip>
             }
         </div>
     );
@@ -87,22 +94,63 @@ IconWithTooltip.propTypes =
     *  Icon position relative to wrapped component
     */
     iconPosition  : PropTypes.oneOf( [
-        'right',
         'left',
+        'right',
+        'topLeft',
         'topRight',
-        'topLeft' ] ),
+    ] ),
     /**
     *  Icon to show
     */
     iconType : PropTypes.oneOf( [
-        'info',
+        'account',
+        'add-circle',
+        'add',
         'alert',
-        'error',
         'approved',
+        'arrow',
+        'bell',
+        'board',
+        'calendar',
+        'close-circle',
+        'close-thick',
+        'close',
+        'dash',
+        'dashboard',
         'declined',
-        'pending',
+        'delete',
+        'down',
+        'download',
+        'duplicate',
+        'edit-circle',
+        'edit',
         'ended',
-        'validation' ] ),
+        'error',
+        'file',
+        'graph',
+        'hide',
+        'info',
+        'inspect',
+        'left',
+        'lightbulb',
+        'link',
+        'megaphone',
+        'options',
+        'pending',
+        'preview',
+        'puzzle-piece',
+        'reset',
+        'right',
+        'search',
+        'show',
+        'star-stroke',
+        'star',
+        'swap',
+        'table',
+        'up',
+        'upload',
+        'validation',
+    ] ),
     /**
      *  Icon size
      */
@@ -123,12 +171,13 @@ IconWithTooltip.propTypes =
     *  Tooltip position relative to the icon
     */
     tooltipPosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
         'left',
         'right',
-        'top',
-        'bottom',
-        'topLeft',
-        'topRight' ] ),
+    ] ),
     /**
     *  onMouseOut callback function: ( e ) = { ... }
     */
