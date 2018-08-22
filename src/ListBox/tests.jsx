@@ -39,17 +39,16 @@ describe( 'ListBoxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ListBox /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <ListBox /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'clickOption', () =>
+    describe( 'clickOption( index )', () =>
     {
         test( 'should trigger onClickOption once when clicked on \
 ListBoxOption at given index', () =>
         {
             const onClickOption = jest.fn();
-
             wrapper.setProps( {
                 onClickOption,
                 options : [ {
@@ -84,19 +83,17 @@ ListBoxOption at given index', () =>
             } );
 
             driver.clickOption( 1 );
-
             expect( onClickOption ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'mouseOverOption', () =>
+    describe( 'mouseOverOption( index )', () =>
     {
         test( 'should trigger onMouseOverOption once when hovered on \
 ListBoxOption at given index', () =>
         {
             const onMouseOverOption = jest.fn();
-
             wrapper.setProps( {
                 onMouseOverOption,
                 options : [ {
@@ -131,19 +128,17 @@ ListBoxOption at given index', () =>
             } );
 
             driver.mouseOverOption( 1 );
-
             expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'mouseOutOption', () =>
+    describe( 'mouseOutOption( index )', () =>
     {
         test( 'should trigger onMouseOutOption once when hovered on \
 ListBoxOption at given index', () =>
         {
             const onMouseOutOption = jest.fn();
-
             wrapper.setProps( {
                 onMouseOutOption,
                 options : [ {
@@ -178,7 +173,6 @@ ListBoxOption at given index', () =>
             } );
 
             driver.mouseOutOption( 0 );
-
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
     } );
@@ -189,7 +183,6 @@ ListBoxOption at given index', () =>
         test( 'should trigger onKeyPress once', () =>
         {
             const onKeyPress = jest.fn();
-
             wrapper.setProps( {
                 onKeyPress,
                 options : [ {
@@ -208,7 +201,6 @@ ListBoxOption at given index', () =>
             } );
 
             driver.keyPress();
-
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );

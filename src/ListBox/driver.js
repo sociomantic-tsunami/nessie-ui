@@ -1,8 +1,3 @@
-const ERRORS = {
-    OPTION_CANNOT_BE_CLICKED : () =>
-        'Option cannot be clicked since it\'s disabled',
-};
-
 export default class ListBoxDriver
 {
     constructor( wrapper )
@@ -14,11 +9,6 @@ export default class ListBoxDriver
     {
         const option = this.wrapper.find( 'ListBoxOption' ).at( index );
 
-        if ( option.props().isDisabled )
-        {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
-        }
-
         option.simulate( 'click' );
         return this;
     }
@@ -27,11 +17,6 @@ export default class ListBoxDriver
     {
         const option = this.wrapper.find( 'ListBoxOption' ).at( index );
 
-        if ( option.props().isDisabled )
-        {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
-        }
-
         option.simulate( 'mouseenter' );
         return this;
     }
@@ -39,11 +24,6 @@ export default class ListBoxDriver
     mouseOutOption( index = 0 )
     {
         const option = this.wrapper.find( 'ListBoxOption' ).at( index );
-
-        if ( option.props().isDisabled )
-        {
-            throw new Error( ERRORS.OPTION_CANNOT_BE_CLICKED() );
-        }
 
         option.simulate( 'mouseleave' );
         return this;
