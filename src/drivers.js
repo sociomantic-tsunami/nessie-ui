@@ -51,6 +51,7 @@ import {
 import ButtonDriver                from './Button/driver';
 import CheckableGroupDriver        from './CheckableGroup/driver';
 import CheckboxDriver              from './Checkbox/driver';
+import CheckboxGroupDriver         from './CheckboxGroup/driver';
 import CodeEditorDriver            from './CodeEditor/driver';
 import ComboBoxDriver              from './ComboBox/driver';
 import DatePickerDriver            from './DatePicker/driver';
@@ -59,6 +60,7 @@ import FieldsetDriver              from './Fieldset/driver';
 import FlounderDropdownDriver      from './FlounderDropdown/driver';
 import FormDriver                  from './Form/driver';
 import IconDriver                  from './Icon/driver';
+import IconButtonDriver            from './IconButton/driver';
 import IconWithTooltipDriver       from './IconWithTooltip/driver';
 import InputFieldDriver            from './InputField/driver';
 import LabelDriver                 from './Label/driver';
@@ -70,6 +72,7 @@ import NotificationBarDriver       from './NotificationBar/driver';
 import PaginatorDriver             from './Paginator/driver';
 import PasswordInputDriver         from './PasswordInput/driver';
 import RadioDriver                 from './Radio/driver';
+import RadioGroupDriver            from './RadioGroup/driver';
 import ScrollBarDriver             from './ScrollBar/driver';
 import ScrollBoxDriver             from './ScrollBox/driver';
 import SliderDriver                from './Slider/driver';
@@ -83,11 +86,14 @@ import TableCellDriver             from './TableCell/driver';
 import TabsDriver                  from './Tabs/driver';
 import TagDriver                   from './Tag/driver';
 import TagInputDriver              from './TagInput/driver';
+import TextAreaDriver              from './TextArea/driver';
 import TextInputDriver             from './TextInput/driver';
 import TextInputWithDropdownDriver from './TextInputWithDropdown/driver';
 import TextInputWithIconDriver     from './TextInputWithIcon/driver';
+import ToggleButtonDriver          from './ToggleButton/driver';
 import TooltipDriver               from './Tooltip/driver';
 import UploaderDriver              from './Uploader/driver';
+import ValuedTextInputDriver       from './ValuedTextInput/driver';
 
 
 const drivers =
@@ -106,7 +112,7 @@ const drivers =
     },
     {
         Component : CheckboxGroup,
-        Driver    : CheckableGroupDriver,
+        Driver    : CheckboxGroupDriver,
     },
     {
         Component : CodeEditor,
@@ -142,7 +148,7 @@ const drivers =
     },
     {
         Component : IconButton,
-        Driver    : ButtonDriver,
+        Driver    : IconButtonDriver,
     },
     {
         Component : IconWithTooltip,
@@ -190,7 +196,7 @@ const drivers =
     },
     {
         Component : RadioGroup,
-        Driver    : CheckableGroupDriver,
+        Driver    : RadioGroupDriver,
     },
     {
         Component : ScrollBar,
@@ -246,7 +252,7 @@ const drivers =
     },
     {
         Component : TextArea,
-        Driver    : TextInputDriver,
+        Driver    : TextAreaDriver,
     },
     {
         Component : TextInput,
@@ -266,7 +272,7 @@ const drivers =
     },
     {
         Component : ToggleButton,
-        Driver    : ButtonDriver,
+        Driver    : ToggleButtonDriver,
     },
     {
         Component : Uploader,
@@ -274,7 +280,7 @@ const drivers =
     },
     {
         Component : ValuedTextInput,
-        Driver    : TextInputDriver,
+        Driver    : ValuedTextInputDriver,
     },
 ];
 
