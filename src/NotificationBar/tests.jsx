@@ -40,12 +40,18 @@ describe( 'NotificationBarDriver', () =>
         test( 'should trigger onClickClose callback once', () =>
         {
             const onClickClose = jest.fn();
-
-            wrapper.setProps( { onClickClose, isDismissible: true } );
+            wrapper.setProps( { onClickClose } );
 
             driver.clickClose();
-
             expect( onClickClose ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'should throw expected error if isDismissible: false', () =>
+        {
+            const error = 'NotificationBar is not dismissible';
+            wrapper.setProps( { isDismissible: false } );
+
+            expect( () => driver.clickClose() ).toThrowError( error );
         } );
     } );
 } );

@@ -1,5 +1,5 @@
 const ERR = {
-    NOTIFICATION_NOT_DISMISSIBLE : 'The NotificationBar is not dismissible',
+    NOTIFICATION_NOT_DISMISSIBLE : 'NotificationBar is not dismissible',
 };
 
 export default class NotificationBarDriver
