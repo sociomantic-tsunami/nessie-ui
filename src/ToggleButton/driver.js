@@ -1,14 +1,6 @@
-const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Button '${label}' cannot be clicked since it is ${state}`,
-    BUTTON_CANNOT_BE_BLURED : ( label, state ) =>
-        `Button '${label}' cannot have blur since it is ${state}`,
-    BUTTON_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `Button '${label}' cannot have focus since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOVER : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOver since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOUT : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOut since it is ${state}`,
+const ERR = {
+    TOGGLEBUTTON_ERR : ( label, doWhat, state ) =>
+        `Button '${label}' cannot ${doWhat} since it is ${state}`,
 };
 
 export default class ToggleButtonDriver
@@ -27,20 +19,20 @@ export default class ToggleButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'disabled' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onClick', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'read only' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onClick', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onClick', 'loading' ) );
         }
 
         this.button.simulate( 'click' );
@@ -54,14 +46,14 @@ export default class ToggleButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOVER( label, 'disabled' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onMouseOver', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOVER( label, 'loading' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onMouseOver', 'loading' ) );
         }
 
         this.button.simulate( 'mouseenter' );
@@ -75,14 +67,14 @@ export default class ToggleButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOUT( label, 'disabled' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onMouseOut', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOUT( label, 'loading' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onMouseOut', 'loading' ) );
         }
 
         this.button.simulate( 'mouseleave' );
@@ -96,20 +88,20 @@ export default class ToggleButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onFocus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'read only' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onFocus', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'loading' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onFocus', 'loading' ) );
         }
 
         this.button.simulate( 'focus' );
@@ -123,20 +115,20 @@ export default class ToggleButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'disabled' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onBlur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'read only' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onBlur', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'loading' ) );
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'onBlur', 'loading' ) );
         }
 
         this.button.simulate( 'blur' );

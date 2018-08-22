@@ -165,7 +165,7 @@ describe( 'ToggleButton', () =>
 } );
 
 
-describe( 'ButtonDriver', () =>
+describe( 'ToggleButtonDriver', () =>
 {
     let wrapper;
     let driver;
