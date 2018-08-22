@@ -274,33 +274,37 @@ describe( 'SliderGroupDriver', () =>
 
         describe( 'isDisabled', () =>
         {
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-
+                const onChange = jest.fn();
                 wrapper.setProps( {
-                    isReadOnly : true,
+                    onChange,
+                    isDisabled : true,
                     sliders    : [ {
                         'value' : 50,
                         'label' : 'Cthulhu',
                     } ],
                 } );
 
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
 
         describe( 'isReadOnly', () =>
         {
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
-                const simulate = jest.spyOn( wrapper.find( `.${wrapper.props()
-                    .cssMap.default}` ), 'simulate' );
-
+                const onChange = jest.fn();
                 wrapper.setProps( {
+                    onChange,
                     isReadOnly : true,
                     sliders    : [ {
                         'value' : 50,
@@ -308,8 +312,14 @@ describe( 'SliderGroupDriver', () =>
                     } ],
                 } );
 
-                expect( () => driver.change() );
-                expect( simulate ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );

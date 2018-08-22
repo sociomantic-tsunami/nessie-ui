@@ -19,7 +19,7 @@ export default class IconDriver
             throw new Error( ERRORS.CANNOT_MOUSEOVER() );
         }
 
-        this.wrapper.simulate( 'mouseOver' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
@@ -30,7 +30,7 @@ export default class IconDriver
             throw new Error( ERRORS.CANNOT_MOUSEOUT() );
         }
 
-        this.wrapper.simulate( 'mouseOut' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

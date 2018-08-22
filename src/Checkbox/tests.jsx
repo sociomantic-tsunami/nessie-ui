@@ -131,7 +131,7 @@ since it is disabled';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onBlur when isDisabled', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -157,7 +157,7 @@ since it is read only';
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onBlur when isReadOnly', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( {
@@ -196,7 +196,7 @@ focus since it is disabled';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onFocus when isDisabled', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -222,7 +222,7 @@ focus since it is read only';
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onFocus when isReadOnly', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( {
@@ -283,7 +283,7 @@ changed since it is disabled';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -309,7 +309,7 @@ changed since it is read only';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -348,7 +348,7 @@ clicked since it is disabled';
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onClick when isDisabled', () =>
             {
                 const onClick = jest.fn();
                 wrapper.setProps( {
@@ -374,7 +374,7 @@ clicked since it is read only';
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onClick when isReadOnly', () =>
             {
                 const onClick = jest.fn();
                 wrapper.setProps( {
@@ -410,7 +410,7 @@ onMouseOut since it is disabled';
             expect( () => driver.mouseOut() ).toThrow( expectedError );
         } );
 
-        test( 'does not call simulate( event ) when isDisabled', () =>
+        test( 'should not trigger onMouseOver when isDisabled', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
@@ -448,7 +448,7 @@ onMouseOut since it is disabled';
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {

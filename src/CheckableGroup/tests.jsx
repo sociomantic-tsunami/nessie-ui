@@ -51,7 +51,7 @@ be changed since it is disabled';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onChange when isDisabled', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -78,7 +78,7 @@ be changed since it is read only';
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( {
@@ -119,7 +119,7 @@ have onMouseOver since it is disabled';
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOver when isDisabled', () =>
             {
                 const onMouseOver = jest.fn();
                 wrapper.setProps( {
@@ -146,7 +146,7 @@ have onMouseOver since it is read only';
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOver when isReadOnly', () =>
             {
                 const mouseOver = jest.fn();
                 wrapper.setProps( {
@@ -187,7 +187,7 @@ have onMouseOut since it is disabled';
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isDisabled', () =>
+            test( 'should not trigger onMouseOut when isDisabled', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {
@@ -214,7 +214,7 @@ have onMouseOut since it is read only';
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
 
-            test( 'does not call simulate( event ) when isReadOnly', () =>
+            test( 'should not trigger onMouseOut when isReadOnly', () =>
             {
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {
