@@ -179,16 +179,23 @@ describe( 'ModuleDriver', () =>
     {
         test( 'should fire the onClickToggle prop once', () =>
         {
-            const toggleSpy = jest.fn();
+            const onClickToggle = jest.fn();
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
-                onClickToggle : toggleSpy,
+                onClickToggle,
             } );
 
             driver.clickToggle();
+            expect( onClickToggle ).toBeCalledTimes( 1 );
+        } );
 
-            expect( toggleSpy ).toBeCalledTimes( 1 );
+        test( 'should throw expected error if isCollapsible: false', () =>
+        {
+            const error = 'Module is not collapsible. Cannot simulate toggle.';
+            wrapper.setProps( { title: 'Boom' } );
+
+            expect( () => driver.clickToggle() ).toThrowError( error );
         } );
     } );
 
@@ -197,16 +204,24 @@ describe( 'ModuleDriver', () =>
     {
         test( 'should fire the onClickDelete prop once', () =>
         {
-            const clickDeleteSpy = jest.fn();
+            const onClickDelete = jest.fn();
             wrapper.setProps( {
-                title         : 'Boom',
-                isDeletable   : true,
-                onClickDelete : clickDeleteSpy,
+                title       : 'Boom',
+                isDeletable : true,
+                onClickDelete,
             } );
 
             driver.clickDelete();
+            expect( onClickDelete ).toBeCalledTimes( 1 );
+        } );
 
-            expect( clickDeleteSpy ).toBeCalledTimes( 1 );
+        test( 'should throw expected error if isDeletable: false', () =>
+        {
+            const error =
+                'Module has no delete button. Cannot simulate delete.';
+            wrapper.setProps( { title: 'Boom' } );
+
+            expect( () => driver.clickDelete() ).toThrowError( error );
         } );
     } );
 
@@ -232,11 +247,9 @@ describe( 'ModuleDriver', () =>
         test( 'should trigger onMouseOverHeader callback once', () =>
         {
             const onMouseOverHeader = jest.fn();
-
             wrapper.setProps( { onMouseOverHeader, title: 'Cthulhu' } );
 
             driver.mouseOverHeader();
-
             expect( onMouseOverHeader ).toBeCalledTimes( 1 );
         } );
     } );
@@ -247,11 +260,9 @@ describe( 'ModuleDriver', () =>
         test( 'should trigger onMouseOutHeader callback once', () =>
         {
             const onMouseOutHeader = jest.fn();
-
             wrapper.setProps( { onMouseOutHeader, title: 'Cthulhu' } );
 
             driver.mouseOutHeader();
-
             expect( onMouseOutHeader ).toBeCalledTimes( 1 );
         } );
     } );
@@ -262,7 +273,6 @@ describe( 'ModuleDriver', () =>
         test( 'should trigger onMouseOverError callback once', () =>
         {
             const onMouseOverError = jest.fn();
-
             wrapper.setProps( {
                 onMouseOverError,
                 hasError     : true,
@@ -271,7 +281,6 @@ describe( 'ModuleDriver', () =>
             } );
 
             driver.mouseOverError();
-
             expect( onMouseOverError ).toBeCalledTimes( 1 );
         } );
     } );
@@ -282,7 +291,6 @@ describe( 'ModuleDriver', () =>
         test( 'should trigger onMouseOutError callback once', () =>
         {
             const onMouseOutError = jest.fn();
-
             wrapper.setProps( {
                 onMouseOutError,
                 hasError     : true,
@@ -291,7 +299,6 @@ describe( 'ModuleDriver', () =>
             } );
 
             driver.mouseOutError();
-
             expect( onMouseOutError ).toBeCalledTimes( 1 );
         } );
     } );
