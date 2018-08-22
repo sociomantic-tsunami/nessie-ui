@@ -1,15 +1,11 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie StatusIndicator is used as an indicator (no hover state).
+StatusIndicator displays some text inside a pill.
 
-2 StatusIndicator states:
-- Active.
-- Deactive.
+## Example Usage
 
-Example Usage
--------------
-
-    <StatusIndicator status="deactive">
-        DEACTIVE
-    </StatusIndicator>
+```
+<StatusIndicator status="critical">
+    Error
+</StatusIndicator>
+```

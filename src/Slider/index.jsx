@@ -656,8 +656,8 @@ export default class Slider extends React.Component
         if ( stepLabelStart || stepLabelEnd )
         {
             return [
-                ...stepLabels,
                 { 'stepLabel': stepLabelStart, 'step': minValue },
+                ...stepLabels,
                 { 'stepLabel': stepLabelEnd, 'step': maxValue },
             ];
         }
@@ -784,7 +784,6 @@ export default class Slider extends React.Component
         );
 
         return (
-
             <div
                 className = { buildClassName( className, cssMap, {
                     disabled            : isDisabled,
