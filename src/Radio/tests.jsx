@@ -129,7 +129,7 @@ describe( 'RadioDriver', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot have blur \
+                const expectedError = 'Radio \'Tekeli-li\' cannot onBlur \
 since it is disabled';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -162,7 +162,7 @@ since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot have blur \
+                const expectedError = 'Radio \'Tekeli-li\' cannot onBlur \
 since it is read only';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -209,8 +209,8 @@ since it is read only';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot have \
-focus since it is disabled';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onFocus since it is disabled';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -242,8 +242,8 @@ focus since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot have \
-focus since it is read only';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onFocus since it is read only';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -309,8 +309,8 @@ focus since it is read only';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot be \
-changed since it is disabled';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onChange since it is disabled';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -342,8 +342,8 @@ changed since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot be \
-changed since it is read only';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onChange since it is read only';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -390,8 +390,8 @@ changed since it is read only';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot be \
-clicked since it is disabled';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onClick since it is disabled';
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -423,8 +423,8 @@ clicked since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot be \
-clicked since it is read only';
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
+onClick since it is read only';
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -468,7 +468,7 @@ clicked since it is read only';
         {
             wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            const expectedError = 'Radio \'Tekeli-li\' cannot have \
+            const expectedError = 'Radio \'Tekeli-li\' cannot \
 onMouseOut since it is disabled';
 
             expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -508,7 +508,7 @@ onMouseOut since it is disabled';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Radio \'Tekeli-li\' cannot have \
+                const expectedError = 'Radio \'Tekeli-li\' cannot \
 onMouseOut since it is disabled';
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
