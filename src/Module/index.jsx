@@ -98,13 +98,13 @@ export default class Module extends Component
 
     static defaultProps =
     {
-        isCollapsible : false,
+        cssMap        : require( './module.css' ),
+        headerLevel   : 2,
         isCollapsed   : false,
+        isCollapsible : false,
         isDeletable   : false,
         isLoading     : false,
         isReadOnly    : false,
-        headerLevel   : 2,
-        cssMap        : require( './module.css' ),
     };
 
     constructor( props )
@@ -138,27 +138,26 @@ export default class Module extends Component
     render()
     {
         const {
-            cssMap,
+            children,
             className,
+            cssMap,
+            customHeader,
+            errorMessage,
+            errorMessageIsVisible,
+            hasError,
+            hasModuleError,
+            headerLevel,
             isCollapsed,
             isCollapsible,
             isDeletable,
             isLoading,
             isReadOnly,
-            children,
-            customHeader,
-            headerLevel,
-            hasError,
-            hasModuleError,
-            errorMessage,
-            errorMessageIsVisible,
             onClickHeader,
             onMouseOutError,
-            onMouseOverError,
             onMouseOutHeader,
+            onMouseOverError,
             onMouseOverHeader,
             title,
-
         } = this.props;
 
         let header;
@@ -190,17 +189,18 @@ export default class Module extends Component
                     <div className = { cssMap.controls }>
                         { !!errorMessage && hasError &&
                             <IconWithTooltip
-                                message          = { errorMessage }
                                 iconType         = "error"
-                                tooltipIsVisible = { errorMessageIsVisible }
+                                message          = { errorMessage }
+                                noWarn
                                 onMouseOut       = { onMouseOutError }
-                                onMouseOver      = { onMouseOverError } />
+                                onMouseOver      = { onMouseOverError }
+                                tooltipIsVisible = { errorMessageIsVisible } />
                         }
                         { isDeletable &&
                             <IconButton
                                 iconType   = "delete"
-                                onClick    = { this.handleClickDelete }
-                                isReadOnly = { isReadOnly }>
+                                isReadOnly = { isReadOnly }
+                                onClick    = { this.handleClickDelete }>
                                 Delete
                             </IconButton>
                         }
@@ -216,26 +216,22 @@ export default class Module extends Component
             );
         }
 
-
         return (
-
             <Card
                 className = { buildClassName( className, cssMap, {
-                    collapsible : isCollapsible,
                     collapsed   : isCollapsible && isCollapsed,
+                    collapsible : isCollapsible,
                     error       : hasError,
-                    moduleError : hasModuleError,
                     level       : headerLevel,
+                    moduleError : hasModuleError,
                 } ) }>
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
+                    <div className = { cssMap.content }>
+                        { children }
+                    </div>
                 }
-                { isLoading  &&
-                <div className = { cssMap.loadingOverlay } />
-                }
+                { isLoading  && <div className = { cssMap.loadingOverlay } /> }
             </Card>
         );
     }

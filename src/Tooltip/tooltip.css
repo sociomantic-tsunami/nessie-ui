@@ -4,33 +4,18 @@
 
 :root
 {
-    --tooltipBorderRadius:      4px;
+    --tooltipBorderRadius:  4px;
+    --tooltipBorderWidth:   1px;
+    --tooltipBoxShadow:     0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
+    --tooltipMaxWidth:      360px;
+    --tooltipOffset:        var( --spacing-2 );
+    --tooltipPadding:       var( --spacing-2 );
 
-    --tooltipMaxWidth:          350px;
+    --messageLineHeight:    var( --line-height-m );
 
-    --tooltipMaxHeight:         44px;
-
-    --tooltipOffset:            var( --spacing-1 );
-
-    --boxShadow:                0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
-
-    --caretSize:                14px;
-
-    --caretPosOffset:                22px;
-
-    --caretPosOffsetHalf:            calc( 22px / 2 );
-
-    --caretPosOuter:            calc( ( var( --caretSize ) / -2 ) - 1px );
-
-    --tooltipContainerPosY:     calc( 100% + var( --caretSize ) );
-
-    --tooltipContainerPosLeft:  calc( ( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) ) * -1 );
-
-    --tooltipContainerPosRight: calc( var( --tooltipMaxWidth ) - var( --caretPosOffset ) - var( --caretPosOffsetHalf ) );
-
-    --tooltipContainerPosTop:  calc( ( var( --tooltipMaxHeight ) - var( --caretPosOffset ) + var( --caretPosOffsetHalf ) ) * -1 );
-
-    --tooltipContainerPosBottom: calc( var( --tooltipMaxHeight ) - var( --caretPosOffset ) + var( --caretPosOffsetHalf ) );
+    --caretSize:            10px;
+    --carretOffset: /* center the caret to the first line of message text */
+        calc( var( --tooltipPadding ) + ( var( --messageLineHeight ) / 2 ) );
 }
 
 
@@ -48,52 +33,67 @@
 
     .tooltipContainer
     {
-        visibility: hidden;
-        position:   absolute;
-        width: var( --tooltipMaxWidth );
-        z-index: 99999;
+        visibility:     hidden;
+        position:       absolute;
+        width:          var( --tooltipMaxWidth );
+        line-height:    0;
+        z-index:        99999;
     }
 
     .tooltip
     {
         visibility:     visible;
         position:       relative;
-        text-align:     left;
-        box-sizing:     border-box;
         display:        inline-block;
-        min-width:      calc( var( --caretPosOffset ) * 2 );
-        min-height:     calc( var( --caretPosOffset ) * 2 );
+
+        box-sizing:     border-box;
+        min-width:      var( --tooltipMinSize );
+        min-height:     var( --tooltipMinSize);
+        max-width:      var( --tooltipMaxWidth );
+
+        border:         var( --tooltipBorderWidth ) solid;
         border-radius:  var( --tooltipBorderRadius );
-        border:         1px solid var( --PC-GREY--D75 );
-        box-shadow:     var( --boxShadow );
-        padding:        var( --spacing-1 ) var( --spacing-2 );
+        box-shadow:     var( --tooltipBoxShadow );
 
-        background:     var( --PC-GREY--D45 );
+        padding:        var( --spacing-2 );
 
-        &::before,
-        &::after
+        text-align:     left;
+
+        &::before /* hover area */
         {
             content:    "";
             position:   absolute;
+            display:    block;
         }
-        &::after
-        {
-          position: absolute;
-          width: var( --caretSize );
-          height: var( --caretSize );
-          background: inherit;
-          border: inherit;
-          border-bottom-color: transparent;
-          border-right-color: transparent;
 
+        &::after /* caret */
+        {
+            content:                "";
+            display:                block;
+            position:               absolute;
+
+            box-sizing:             inherit;
+            width:                  var( --caretSize );
+            height:                 var( --caretSize );
+
+            border:                 inherit;
+            border-top-color:       transparent;
+            border-left-color:      transparent;
+
+            background:             inherit;
         }
     }
 
     .message
     {
+        min-height:     var( --messageLineHeight );
+        min-width:      var( --messageLineHeight );
+
+        line-height:    var( --messageLineHeight );
+
         @extend %Nessie-SemiBold;
         color:          var( --PC-WHITE );
-        overflow-wrap:  break-word;
+        word-break:     break-word;
 
         a:any-link
         {
@@ -105,7 +105,7 @@
     .close
     {
         position:   absolute;
-        top:        var( --spacing-1 );
+        top:        var( --spacing-2 );
         right:      var( --spacing-2 );
     }
 }
@@ -119,42 +119,24 @@
     }
 }
 
+
 .position__top,
-.position__bottom,
 .position__topLeft,
 .position__topRight,
+.position__bottom,
 .position__bottomLeft,
 .position__bottomRight
 {
     .tooltip
     {
-      &::before
-      {
-        left:   0;
-        right:  0;
-        height: var( --tooltipOffset );
-      }
+        &::before
+        {
+            left:   0;
+            right:  0;
+            height: var( --tooltipOffset );
+        }
     }
 }
-
-.position__left,
-.position__right,
-.position__leftTop,
-.position__leftBottom,
-.position__rightTop,
-.position__rightBottom
-{
-    .tooltip
-    {
-      &::before
-      {
-        top:   0;
-        bottom:  0;
-        width: var( --tooltipOffset );
-      }
-    }
-}
-
 
 .position__top,
 .position__topLeft,
@@ -162,20 +144,20 @@
 {
     .tooltipContainer
     {
-        bottom:    var( --tooltipContainerPosY );
-        left: 50%;
+        bottom: calc( 100% + var( --tooltipOffset ) );
     }
 
     .tooltip
     {
-
-        &::before
-        {
-            top:    100%;
-        }
+        &::before,
         &::after
         {
-            bottom: var( --caretPosOuter );
+            top:    calc( 100% + var( --tooltipBorderWidth ) );
+        }
+
+        &::after
+        {
+            transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
         }
     }
 }
@@ -186,94 +168,92 @@
 {
     .tooltipContainer
     {
-        top: var( --tooltipContainerPosY );
-        left: 50%;
+        top:    calc( 100% + var( --tooltipOffset ) );
     }
+
     .tooltip
     {
-        &::before
-        {
-            bottom: 100%;
-        }
+        &::before,
         &::after
         {
-          top: var( --caretPosOuter );
+            bottom: calc( 100% + var( --tooltipBorderWidth ) );
+        }
+
+        &::after
+        {
+            transform:  translateX( -50% ) translateY( 50% ) rotate( 225deg );
         }
     }
 }
-
 
 .position__top,
 .position__bottom
 {
     .tooltipContainer
     {
-        transform: translateX( -50% );
+        left:       50%;
         text-align: center;
+        transform:  translateX( -50% );
     }
 
-    .tooltip::after
+    .tooltip
     {
-      left: 50%;
-    }
-    &Left
-    {
-        .tooltipContainer
+        &::after
         {
-            transform: translateX( var( --tooltipContainerPosLeft ) );
-            text-align: right;
-        }
-        .tooltip::after
-        {
-            right: var( --caretPosOffset );
-        }
-    }
-
-    &Right
-    {
-        .tooltipContainer
-        {
-            transform: translateX( var( --tooltipContainerPosRight ) );
-            text-align: left;
-            right: 50%;
-            left: auto;
-        }
-        .tooltip::after
-        {
-            left: var( --caretPosOffset );
+            left:   50%;
         }
     }
 }
 
-.position__top
+.position__topLeft,
+.position__bottomLeft
 {
-    .tooltip::after
+    .tooltipContainer
     {
-        transform: translateX( -50% ) rotate( 225deg );
+        right:      calc( 50% - var( --carretOffset ) );
+        text-align: right;
     }
-    &Left,
-    &Right
+
+    .tooltip
     {
-        .tooltip::after
+        &::after
         {
-            transform: translateX( 0 ) rotate( 225deg );
+            left:  calc( 100% - var( --carretOffset ) );
         }
     }
 }
 
-.position__bottom
+.position__topRight,
+.position__bottomRight
 {
-    .tooltip::after
+    .tooltipContainer
     {
-        transform: translateX( -50% ) rotate( 45deg );
+        left:       calc( 50% - var( --carretOffset ) );
+        text-align: left;
     }
-    &Left,
-    &Right
+
+    .tooltip
     {
-        .tooltip::after
+        &::after
         {
-            transform: translateX( 0 ) rotate( 45deg );
+            left:   var( --carretOffset );
         }
+    }
+}
+
+
+.position__left,
+.position__leftTop,
+.position__leftBottom,
+.position__right
+.position__rightTop,
+.position__rightBottom
+{
+    .tooltip::before
+    {
+        top:    0;
+        bottom: 0;
+        width:  var( --tooltipOffset );
     }
 }
 
@@ -283,24 +263,19 @@
 {
     .tooltipContainer
     {
+        right:      calc( 100% + var( --tooltipOffset ) );
         text-align: right;
-        right:    var( --tooltipContainerPosY );
-        top: 50%;
     }
 
     .tooltip
     {
-        &::before
-        {
-            left: 100%;
-        }
+        &::before,
         &::after
         {
-            right:  var( --caretPosOuter );
+            left:   calc( 100% + var( --tooltipBorderWidth ) );
         }
     }
 }
-
 
 .position__right,
 .position__rightTop,
@@ -308,100 +283,110 @@
 {
     .tooltipContainer
     {
+        left:       calc( 100% + var( --tooltipOffset ) );
         text-align: left;
-        left: var( --tooltipContainerPosY );
-        top: 50%;
     }
 
     .tooltip
     {
-        &::before
-        {
-            right: 100%;
-        }
+        &::before,
         &::after
         {
-            left:  var( --caretPosOuter );
+            right:  calc( 100% + var( --tooltipBorderWidth ) );
         }
     }
 }
+
 .position__left,
 .position__right
 {
     .tooltipContainer
     {
-        transform: translateY( -50% );
+        top:        50%;
+        transform:  translateY( -50% );
     }
 
-    .tooltip::after
+    .tooltip
     {
-      top:    50%;
-    }
-    &Top
-    {
-        .tooltipContainer
+        &::after
         {
-            transform: translateY( var( --tooltipContainerPosTop ) );
-        }
-        .tooltip::after
-        {
-            top: var( --caretPosOffset );
-        }
-    }
-    &Bottom
-    {
-        .tooltipContainer
-        {
-            transform: translateY( var( --tooltipContainerPosBottom ) );
-            bottom: 50%;
-            top: auto;
-        }
-        .tooltip::after
-        {
-            bottom: var( --caretPosOffset );
+            top:   50%;
         }
     }
 }
 
-.position__left
+.position__left,
+.position__leftTop,
+.position__leftBottom
 {
-    .tooltip::after
+    .tooltip
     {
-        transform: translateY( -50% ) rotate( -225deg );
-    }
-    &Top,
-    &Bottom
-    {
-        .tooltip::after
+        &::after
         {
-            transform: translateY( 0 ) rotate( -225deg );
+            left:       100%;
+            transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
         }
     }
 }
 
-.position__right
+.position__right,
+.position__rightTop,
+.position__rightBottom
 {
-    .tooltip::after
+    .tooltip
     {
-      transform: translateY( -50% ) rotate( -45deg );
-    }
-    &Top,
-    &Bottom
-    {
-        .tooltip::after
+        &::after
         {
-            transform: translateY( 0 ) rotate( -45deg );
+            right:      100%;
+            transform:  translateX( 50% ) translateY( -50% ) rotate( 135deg );
         }
     }
 }
 
+.position__leftTop,
+.position__rightTop
+{
+    .tooltipContainer
+    {
+        bottom: calc( 50% - var( --carretOffset) );
+    }
+
+    .tooltip::after
+    {
+        top:    calc( 100% - var( --carretOffset ) );
+    }
+}
+
+.position__leftBottom,
+.position__rightBottom
+{
+    .tooltipContainer
+    {
+        top:    calc( 50% - var( --carretOffset) );
+    }
+
+    .tooltip::after
+    {
+        top:    var( --carretOffset );
+    }
+}
+
+
+.role__default
+{
+    .tooltip
+    {
+        background:     var( --PC-GREY--D45 );
+        border-color:   var( --PC-GREY--D75 );
+    }
+}
 
 .role__critical
 {
     .tooltip
     {
-      background: var( --PC-RED );
-      border-color: var( --PC-RED--D15 );
+        background:     var( --PC-RED );
+        border-color:   var( --PC-RED--D15 );
     }
 }
 
@@ -409,8 +394,8 @@
 {
     .tooltip
     {
-      background: var( --PC-GREEN );
-      border-color: var( --PC-GREEN--D15 );
+        background:     var( --PC-GREEN );
+        border-color:   var( --PC-GREEN--D15 );
     }
 }
 
@@ -418,8 +403,7 @@
 {
     .tooltip
     {
-      background: var( --PC-ORANGE );
-      border-color: var( --PC-ORANGE--D15 );
+        background:     var( --PC-ORANGE );
+        border-color:   var( --PC-ORANGE--D15 );
     }
-
 }

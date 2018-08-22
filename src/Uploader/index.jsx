@@ -103,6 +103,7 @@ const Uploader = ( {
                 iconPosition     = "topRight"
                 iconType         = { messageType }
                 message          = { message }
+                noWarn
                 tooltipIsVisible = { tooltipIsVisible }
                 tooltipPosition  = { errorMessagePosition }>
                 <div className = { cssMap.buttonsContainer }>
@@ -110,7 +111,8 @@ const Uploader = ( {
                         className = { cssMap.previewTooltip }
                         isVisible = { uploadState ===
                             'uploaded' && previewTooltipIsVisible }
-                        message   = { previewTooltipMessage }>
+                        message = { previewTooltipMessage }
+                        noWarn>
                         <Button
                             className  = { uploaderButtonClass }
                             iconType   = { iconType }
@@ -242,8 +244,6 @@ Uploader.propTypes =
     *  Tooltip warning message text (string or JSX)
     */
     warningMessage : PropTypes.node,
-
-
 };
 
 Uploader.defaultProps =

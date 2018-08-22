@@ -139,7 +139,8 @@
     {
         "iconType"          : "error",
         "message"           : "Something’s wrong!",
-        "tooltipIsVisible"  : true
+        "tooltipIsVisible"  : true,
+        "lochness"          : { "isDeprecated": true }
     },
     "Label" :
     {
@@ -361,8 +362,7 @@
     },
     "Tooltip" :
     {
-        "message"  : "Cost per click",
-        "children" : "{<Label>CPC</Label>}"
+        "message"  : "Pro tip!"
     },
     "Uploader" :
     {

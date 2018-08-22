@@ -2,9 +2,9 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
+
 
 const Fieldset = ( {
     children,
@@ -16,27 +16,25 @@ const Fieldset = ( {
     hasError,
     isDisabled,
     label,
+    onMouseOut,
     onMouseOver,
-    onMouseOut
 } ) => (
-
     <fieldset
         className    = { buildClassName( className, cssMap ) }
         onMouseEnter = { onMouseOver }
         onMouseLeave = { onMouseOut }>
         { label &&
-        <IconWithTooltip
-            className        = { cssMap.labelContainer }
-            iconType         = "error"
-            iconPosition     = "right"
-            message          = { errorMessage }
-            tooltipIsVisible = { errorMessageIsVisible }
-            tooltipPosition  = { errorMessagePosition }
-            iconIsVisible    = { !isDisabled &&
-                                             !!errorMessage &&
-                                             hasError }>
-            <Label element = "legend">{ label }</Label>
-        </IconWithTooltip>
+            <IconWithTooltip
+                className        = { cssMap.labelContainer }
+                iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
+                iconPosition     = "right"
+                iconType         = "error"
+                message          = { errorMessage }
+                noWarn
+                tooltipIsVisible = { errorMessageIsVisible }
+                tooltipPosition  = { errorMessagePosition }>
+                <Label element = "legend">{ label }</Label>
+            </IconWithTooltip>
         }
         { children }
     </fieldset>
@@ -81,22 +79,21 @@ Fieldset.propTypes =
     *  Error message position relative to the icon
     */
     errorMessagePosition : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
         'left',
         'right',
-        'top',
-        'bottom',
-        'topLeft',
-        'topRight'
-    ] )
+    ] ),
 };
 
 Fieldset.defaultProps =
 {
-    infoMessage           : '',
-    hasError              : false,
+    cssMap                : require( './fieldset.css' ),
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
-    cssMap                : require( './fieldset.css' )
+    hasError              : false,
 };
 
 export default Fieldset;
