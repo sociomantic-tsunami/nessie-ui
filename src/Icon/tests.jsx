@@ -57,7 +57,8 @@ describe( 'IconDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOver because it is disabled';
+                const expectedError =
+                    'Icon cannot onMouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -97,7 +98,8 @@ describe( 'IconDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOut because it is disabled';
+                const expectedError =
+                    'Icon cannot onMouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

@@ -97,7 +97,7 @@ describe( 'FieldsetDriver', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Cannot trigger onMouseOver because it is disabled';
+                    'Fieldset cannot onMouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -138,7 +138,7 @@ describe( 'FieldsetDriver', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Cannot trigger onMouseOut because it is disabled';
+                    'Fieldset cannot onMouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

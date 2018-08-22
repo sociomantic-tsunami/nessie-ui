@@ -1,8 +1,6 @@
-const ERRORS = {
-    CANNOT_MOUSEOVER : () =>
-        'Cannot mouseOver because it is disabled',
-    CANNOT_MOUSEOUT : () =>
-        'Cannot mouseOut because it is disabled',
+const ERR = {
+    ICON_ERR : ( doWhat ) =>
+        `Icon cannot ${doWhat} because it is disabled`,
 };
 
 export default class IconDriver
@@ -16,7 +14,7 @@ export default class IconDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOVER() );
+            throw new Error( ERR.ICON_ERR( 'onMouseOver' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -27,7 +25,7 @@ export default class IconDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOUT() );
+            throw new Error( ERR.ICON_ERR( 'onMouseOut' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

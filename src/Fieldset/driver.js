@@ -1,8 +1,6 @@
-const ERRORS = {
-    CANNOT_MOUSEOVER : () =>
-        'Cannot trigger onMouseOver because it is disabled',
-    CANNOT_MOUSEOUT : () =>
-        'Cannot trigger onMouseOut because it is disabled',
+const ERR = {
+    FIELDSET_ERR : ( doWhat ) =>
+        `Fieldset cannot ${doWhat} because it is disabled`,
 };
 
 export default class DatePickerDriver
@@ -16,7 +14,7 @@ export default class DatePickerDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOVER() );
+            throw new Error( ERR.FIELDSET_ERR( 'onMouseOver' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -27,7 +25,7 @@ export default class DatePickerDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOUT() );
+            throw new Error( ERR.FIELDSET_ERR( 'onMouseOut' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

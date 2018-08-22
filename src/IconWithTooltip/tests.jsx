@@ -125,7 +125,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOver because it is disabled';
+                const expectedError =
+                    'IconWithTooltip cannot onMouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -165,7 +166,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOut because it is disabled';
+                const expectedError =
+                    'IconWithTooltip cannot onMouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -205,8 +207,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'Cannot mouseOverIcon because it is disabled';
+                const expectedError = 'IconWithTooltip cannot onMouseOverIcon \
+because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
@@ -246,8 +248,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'Cannot mouseOutIcon because it is disabled';
+                const expectedError = 'IconWithTooltip cannot onMouseOutIcon \
+because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
