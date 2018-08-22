@@ -144,8 +144,14 @@ since it is disabled';
                     onBlur,
                 } );
 
-                expect( () => driver.blur() );
-                expect( onBlur ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -171,8 +177,14 @@ since it is read only';
                     onBlur,
                 } );
 
-                expect( () => driver.blur() );
-                expect( onBlur ).not.toBeCalled();
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -212,8 +224,14 @@ focus since it is disabled';
                     onFocus,
                 } );
 
-                expect( () => driver.focus() );
-                expect( onFocus ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -239,8 +257,14 @@ focus since it is read only';
                     onFocus,
                 } );
 
-                expect( () => driver.focus() );
-                expect( onFocus ).not.toBeCalled();
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -300,8 +324,14 @@ changed since it is disabled';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -328,8 +358,14 @@ changed since it is read only';
                     onChange,
                 } );
 
-                expect( () => driver.change() );
-                expect( onChange ).not.toBeCalled();
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
             } );
         } );
     } );
@@ -369,8 +405,14 @@ clicked since it is disabled';
                     onClick,
                 } );
 
-                expect( () => driver.click() );
-                expect( onClick ).not.toBeCalled();
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
             } );
         } );
 
@@ -397,8 +439,14 @@ clicked since it is read only';
                     onClick,
                 } );
 
-                expect( () => driver.click() );
-                expect( onClick ).not.toBeCalled();
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
             } );
         } );
     } );
