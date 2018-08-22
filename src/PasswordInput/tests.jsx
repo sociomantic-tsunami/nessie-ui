@@ -85,8 +85,8 @@ describe( 'PasswordInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
-focus since it is disabled';
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
+onFocus since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -113,8 +113,8 @@ focus since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
-focus since it is read only';
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
+onFocus since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -154,8 +154,8 @@ focus since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
-blur since it is disabled';
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
+onBlur since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -182,8 +182,8 @@ blur since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
-blur since it is read only';
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
+onBlur since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -225,8 +225,8 @@ blur since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot be \
-changed since it is disabled';
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
+onChange since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
@@ -254,8 +254,8 @@ changed since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot be \
-changed since it is read only';
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
+onChange since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
@@ -296,8 +296,8 @@ changed since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
-keyPress since it is disabled';
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
+onKeyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -324,8 +324,8 @@ keyPress since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
-keyPress since it is read only';
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
+onKeyPress since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -365,7 +365,7 @@ keyPress since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
 onMouseOver since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
@@ -393,7 +393,7 @@ onMouseOver since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
 onMouseOver since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -434,7 +434,7 @@ onMouseOver since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
 onMouseOut since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
@@ -462,7 +462,7 @@ onMouseOut since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
 onMouseOut since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -505,7 +505,7 @@ onMouseOut since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
 onClickIcon since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
@@ -533,7 +533,7 @@ onClickIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
 onClickIcon since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -574,7 +574,7 @@ onClickIcon since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
 onMouseOverIcon since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
@@ -602,7 +602,7 @@ onMouseOverIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
 onMouseOverIcon since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -643,7 +643,7 @@ onMouseOverIcon since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot have \
+                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
 onMouseOutIcon since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
@@ -671,7 +671,7 @@ onMouseOutIcon since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot have \
+                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
 onMouseOutIcon since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
