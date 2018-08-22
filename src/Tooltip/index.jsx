@@ -13,6 +13,7 @@ const Tooltip = ( {
     isDismissible,
     isVisible,
     message,
+    noWarn,
     noWrap,
     onClickClose,
     onMouseOut,
@@ -24,35 +25,38 @@ const Tooltip = ( {
 {
     const hasChildren = children !== undefined;
 
-    if ( !Tooltip.didWarn.children && hasChildren )
+    if ( !noWarn )
     {
-        console.warn( 'Tooltip: Using Tooltip as a wrapper is deprecated and \
-‘children’ will become the tooltip content in a future major release. Please \
-position the tooltip using a library such as Popper.js instead.' );
-        Tooltip.didWarn.children = true;
-    }
+        if ( !Tooltip.didWarn.children && hasChildren )
+        {
+            console.warn( 'Tooltip: Using Tooltip as a wrapper is deprecated \
+and ‘children’ will become the tooltip content in a future major release. \
+Please position the tooltip using a library such as Popper.js instead.' );
+            Tooltip.didWarn.children = true;
+        }
 
-    if ( !Tooltip.didWarn.isVisible && isVisible !== undefined )
-    {
-        console.warn( 'Tooltip: prop ‘isVisible’ is deprecated and will be \
+        if ( !Tooltip.didWarn.isVisible && isVisible !== undefined )
+        {
+            console.warn( 'Tooltip: prop ‘isVisible’ is deprecated and will be \
 removed in a future major release.' );
-        Tooltip.didWarn.isVisible = true;
-    }
+            Tooltip.didWarn.isVisible = true;
+        }
 
-    if ( !Tooltip.didWarn.noWrap && noWrap !== undefined )
-    {
-        console.warn( 'Tooltip: prop ‘noWrap’ is deprecated and will be \
+        if ( !Tooltip.didWarn.noWrap && noWrap !== undefined )
+        {
+            console.warn( 'Tooltip: prop ‘noWrap’ is deprecated and will be \
 removed in a future major release.' );
-        Tooltip.didWarn.noWrap = true;
-    }
+            Tooltip.didWarn.noWrap = true;
+        }
 
-    if ( !Tooltip.didWarn.overflowIsHidden && overflowIsHidden !== undefined )
-    {
-        console.warn( 'Tooltip: prop ‘overflowIsHidden’ is deprecated and will \
-be removed in a future major release.' );
-        Tooltip.didWarn.overflowIsHidden = true;
+        if ( !Tooltip.didWarn.overflowIsHidden &&
+            overflowIsHidden !== undefined )
+        {
+            console.warn( 'Tooltip: prop ‘overflowIsHidden’ is deprecated and \
+will be removed in a future major release.' );
+            Tooltip.didWarn.overflowIsHidden = true;
+        }
     }
-
 
     const tooltip = (
         <div
@@ -165,7 +169,7 @@ Tooltip.propTypes =
      */
     onMouseOut    : PropTypes.func,
     /**
-     *  Tooltip position relative to wrapped component
+     *  Tooltip position relative to associated component
      */
     position      : PropTypes.oneOf( [
         'top',

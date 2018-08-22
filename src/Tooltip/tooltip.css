@@ -37,6 +37,7 @@
         position:       absolute;
         width:          var( --tooltipMaxWidth );
         line-height:    0;
+        z-index:        99999;
     }
 
     .tooltip
@@ -80,7 +81,7 @@
             border-left-color:      transparent;
 
             background:             inherit;
-         }
+        }
     }
 
     .message
