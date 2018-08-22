@@ -1,13 +1,8 @@
 import { Radio } from '../index';
 
-const ERRORS = {
-    CHECKABLEGROUP_CANNOT_BE_CHANGED : ( label, state ) =>
-        `CheckableGroup '${label}' cannot be changed since it is ${state}`,
-    CHECKABLEGROUP_CANNOT_MOUSEOVER : ( label, state ) =>
-        `CheckableGroup '${label}' cannot have onMouseOver since it is \
-${state}`,
-    CHECKABLEGROUP_CANNOT_MOUSEOUT : ( label, state ) =>
-        `CheckableGroup '${label}' cannot have onMouseOut since it is ${state}`,
+const ERR = {
+    CHECKABLEGROUP_ERR : ( label, doWhat, state ) =>
+        `CheckableGroup '${label}' cannot ${doWhat} since it is ${state}`,
 };
 
 export default class RadioGroupDriver
@@ -27,14 +22,14 @@ export default class RadioGroupDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_BE_CHANGED( label, 'disabled' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onChange', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_BE_CHANGED( label, 'read only' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onChange', 'read only' ) );
         }
 
 
@@ -49,14 +44,14 @@ export default class RadioGroupDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_MOUSEOVER( label, 'disabled' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onMouseOver', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_MOUSEOVER( label, 'read only' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onMouseOver', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -70,14 +65,14 @@ export default class RadioGroupDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_MOUSEOUT( label, 'disabled' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onMouseOut', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKABLEGROUP_CANNOT_MOUSEOUT( label, 'read only' ) );
+            throw new Error( ERR
+                .CHECKABLEGROUP_ERR( label, 'onMouseOut', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );
