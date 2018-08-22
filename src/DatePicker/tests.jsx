@@ -104,7 +104,7 @@ describe( 'DatePickerDriver', () =>
             test( 'should throw the expected error when nextIsDisabled', () =>
             {
                 const expectedError =
-                    'Next cannot be clicked since it is disabled';
+                    'Next cannot onClick since it is disabled';
                 wrapper.setProps( { nextIsDisabled: true } );
 
                 expect( () => driver.clickNext() ).toThrow( expectedError );
@@ -151,7 +151,7 @@ nextIsDisabled', () =>
             test( 'should throw the expected error when prevIsDisabled', () =>
             {
                 const expectedError =
-                    'Previous cannot be clicked since it is disabled';
+                    'Previous cannot onClick since it is disabled';
                 wrapper.setProps( { prevIsDisabled: true } );
 
                 expect( () => driver.clickPrev() ).toThrow( expectedError );
@@ -228,7 +228,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Hour input cannot have blur since it is disabled';
+                    'TimeInput cannot onBlur since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -261,7 +261,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Hour input cannot have blur since it is read only';
+                    'TimeInput cannot onBlur since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -339,7 +339,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Hour input cannot have focus since it is disabled';
+                    'TimeInput cannot onFocus since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -372,7 +372,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Hour input cannot have focus since it is read only';
+                    'TimeInput cannot onFocus since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -449,7 +449,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input cannot be changed since it is disabled';
+                    'Input cannot onChange since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -482,7 +482,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input cannot be changed since it is read only';
+                    'Input cannot onChange since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -560,7 +560,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input didn\'t trigger onKeyPress since it is disabled';
+                    'TimeInput cannot onKeyPress since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -593,7 +593,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input didn\'t trigger onKeyPress since it is read only';
+                    'TimeInput cannot onKeyPress since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -668,7 +668,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Minute input cannot have blur since it is disabled';
+                    'TimeInput cannot onBlur since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -698,7 +698,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Minute input cannot have blur since it is read only';
+                    'TimeInput cannot onBlur since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -770,7 +770,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Minute input cannot have focus since it is disabled';
+                    'TimeInput cannot onFocus since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -800,7 +800,7 @@ prevIsDisabled', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Minute input cannot have focus since it is read only';
+                    'TimeInput cannot onFocus since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -872,7 +872,7 @@ not <default>', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input cannot be changed since it is disabled';
+                    'TimeInput cannot onChange since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -905,7 +905,7 @@ not <default>', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input cannot be changed since it is read only';
+                    'TimeInput cannot onChange since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
@@ -980,7 +980,7 @@ not <default>', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input didn\'t trigger onKeyPress since it is disabled';
+                    'TimeInput cannot onKeyPress since it is disabled';
                 wrapper.setProps( {
                     isDisabled : true,
                 } );
@@ -1013,7 +1013,7 @@ not <default>', () =>
             test( 'should throw the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input didn\'t trigger onKeyPress since it is read only';
+                    'Input cannot onKeyPress since it is read only';
                 wrapper.setProps( {
                     isReadOnly : true,
                 } );
