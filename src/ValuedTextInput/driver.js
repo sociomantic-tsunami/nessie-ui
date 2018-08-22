@@ -6,7 +6,7 @@ const ERR = {
         `Input can't ${doWhat} since it is read only`,
 };
 
-export default class TextInputDriver
+export default class ValuedTextInputDriver
 {
     constructor( wrapper )
     {
