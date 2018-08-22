@@ -219,7 +219,7 @@ describe( 'ButtonDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Button \'Pikaboo\' cannot be clicked since it is disabled';
+                    'Button \'Pikaboo\' cannot onClick since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Pikaboo' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -250,7 +250,7 @@ describe( 'ButtonDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot be clicked \
+                const expectedError = 'Button \'Tekeli-li\' cannot onClick \
 since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -282,7 +282,7 @@ since it is read only';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const expectedError = 'Button \'Pikaboo\' cannot be clicked \
+                const expectedError = 'Button \'Pikaboo\' cannot onClick \
 since it is loading';
                 wrapper.setProps( { isLoading: true, label: 'Pikaboo'  } );
 
@@ -327,7 +327,7 @@ since it is loading';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
+                const expectedError = 'Button \'Tekeli-li\' cannot \
 onMouseOver since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -359,7 +359,7 @@ onMouseOver since it is disabled';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
+                const expectedError = 'Button \'Tekeli-li\' cannot \
 onMouseOver since it is loading';
                 wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
@@ -411,7 +411,7 @@ onMouseOver since it is loading';
                     label      : 'Tekeli-li',
                 } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
+                const expectedError = 'Button \'Tekeli-li\' cannot \
 onMouseOut since it is disabled';
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -442,7 +442,7 @@ onMouseOut since it is disabled';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
+                const expectedError = 'Button \'Tekeli-li\' cannot \
 onMouseOut since it is loading';
                 wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
@@ -487,7 +487,7 @@ onMouseOut since it is loading';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
+                const expectedError = 'Button \'Tekeli-li\' cannot onBlur \
 since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -519,7 +519,7 @@ since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
+                const expectedError = 'Button \'Tekeli-li\' cannot onBlur \
 since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -552,7 +552,7 @@ since it is read only';
             test( 'throws the expected error when isLoading', () =>
             {
                 const expectedError =
-                    'Button \'Tekeli-li\' cannot have blur since it is loading';
+                    'Button \'Tekeli-li\' cannot onBlur since it is loading';
                 wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -596,7 +596,7 @@ since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+                const expectedError = 'Button \'Tekeli-li\' cannot onFocus \
 since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
@@ -628,7 +628,7 @@ since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+                const expectedError = 'Button \'Tekeli-li\' cannot onFocus \
 since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
@@ -660,7 +660,7 @@ since it is read only';
         {
             test( 'throws the expected error when isLoading', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
+                const expectedError = 'Button \'Tekeli-li\' cannot onFocus \
 since it is loading';
                 wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
 
