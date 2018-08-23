@@ -1,6 +1,6 @@
 const ERR = {
-    ICONWITHTOOLTIP_ERR : ( onEvent ) =>
-        `IconWithTooltip cannot ${onEvent} because it is disabled`,
+    ICONWITHTOOLTIP_ERR : ( event ) =>
+        `IconWithTooltip cannot simulate ${event} because it is disabled`,
 };
 
 export default class IconWithTooltipDriver
@@ -16,7 +16,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'onMouseOverIcon' ) );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOverIcon' ) );
         }
 
         this.tooltip.simulate( 'mouseenter' );
@@ -27,7 +27,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'onMouseOutIcon' ) );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOutIcon' ) );
         }
 
         this.tooltip.simulate( 'mouseleave' );
@@ -38,7 +38,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'onMouseOver' ) );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOver' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -49,7 +49,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'onMouseOut' ) );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOut' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

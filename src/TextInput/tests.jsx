@@ -67,7 +67,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 const expectedError =
-                    'TextInput cannot onBlur since it is disabled';
+                    'TextInput cannot simulate blur since it is disabled';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -96,7 +96,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isReadOnly: true } );
 
                 const expectedError =
-                    'TextInput cannot onBlur since it is read only';
+                    'TextInput cannot simulate blur since it is read only';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -138,7 +138,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 const expectedError =
-                    'TextInput cannot onFocus since it is disabled';
+                    'TextInput cannot simulate focus since it is disabled';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -167,7 +167,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isReadOnly: true } );
 
                 const expectedError =
-                    'TextInput cannot onFocus since it is read only';
+                    'TextInput cannot simulate focus since it is read only';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -209,7 +209,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 const expectedError =
-                    'TextInput cannot onKeyPress since it is disabled';
+                    'TextInput cannot simulate keyPress since it is disabled';
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
@@ -251,7 +251,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 const expectedError =
-                    'TextInput cannot onChange since it is disabled';
+                    'TextInput cannot simulate change since it is disabled';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -280,7 +280,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isReadOnly: true } );
 
                 const expectedError =
-                    'TextInput cannot onChange since it is read only';
+                    'TextInput cannot simulate change since it is read only';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -323,7 +323,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 const expectedError =
-                    'TextInput cannot onClick since it is disabled';
+                    'TextInput cannot simulate click since it is disabled';
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -352,7 +352,7 @@ describe( 'TextInputDriver', () =>
                 wrapper.setProps( { isReadOnly: true } );
 
                 const expectedError =
-                    'TextInput cannot onClick since it is read only';
+                    'TextInput cannot simulate click since it is read only';
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );

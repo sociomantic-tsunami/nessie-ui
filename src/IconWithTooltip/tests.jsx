@@ -125,8 +125,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'IconWithTooltip cannot onMouseOver because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -166,8 +166,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'IconWithTooltip cannot onMouseOut because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -207,8 +207,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'IconWithTooltip cannot onMouseOverIcon \
-because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOverIcon because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
@@ -248,8 +248,8 @@ because it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'IconWithTooltip cannot onMouseOutIcon \
-because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOutIcon because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );

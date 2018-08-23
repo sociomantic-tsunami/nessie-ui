@@ -66,7 +66,7 @@ describe( 'CodeEditorDriver', () =>
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onBlur since it is disabled';
+simulate blur since it is disabled';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -99,7 +99,7 @@ onBlur since it is disabled';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onBlur since it is read only';
+simulate blur since it is read only';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -146,7 +146,7 @@ onBlur since it is read only';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onFocus since it is disabled';
+simulate focus since it is disabled';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -179,7 +179,7 @@ onFocus since it is disabled';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onFocus since it is read only';
+simulate focus since it is read only';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -226,7 +226,7 @@ onFocus since it is read only';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onChange since it is disabled';
+simulate change since it is disabled';
 
                 expect( () => driver.change( 'Cthulhu' ) )
                     .toThrow( expectedError );
@@ -260,7 +260,7 @@ onChange since it is disabled';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onChange since it is read only';
+simulate change since it is read only';
 
                 expect( () => driver.change( 'Azathoth' ) )
                     .toThrow( expectedError );
@@ -305,7 +305,7 @@ onChange since it is read only';
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onMouseOut since it is disabled';
+simulate mouseOut since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -350,7 +350,7 @@ onMouseOut since it is disabled';
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError = 'CodeEditor \'Tekeli-li\' cannot \
-onMouseOut since it is disabled';
+simulate mouseOut since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

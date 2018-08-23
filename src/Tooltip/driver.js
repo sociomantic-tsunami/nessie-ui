@@ -1,8 +1,8 @@
 import { IconButton } from '../index';
 
 const ERR = {
-    TOOLTIP_ERR : ( onEvent, state ) =>
-        `Tooltip cannot ${onEvent} since it is ${state}`,
+    TOOLTIP_ERR : ( event, state ) =>
+        `Tooltip cannot simulate ${event} since it is ${state}`,
 };
 
 export default class TooltipDriver
@@ -18,7 +18,7 @@ export default class TooltipDriver
         if ( !this.wrapper.props().isDismissible )
         {
             throw new Error( ERR
-                .TOOLTIP_ERR( 'onClickClose', 'not dismissable' ) );
+                .TOOLTIP_ERR( 'clickClose', 'not dismissable' ) );
         }
 
         this.wrapper.find( IconButton ).driver().click();

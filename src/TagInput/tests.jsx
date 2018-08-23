@@ -122,7 +122,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onBlur since it is disabled';
+                    'TagInput cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -150,7 +150,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onBlur since it is read only';
+                    'TagInput cannot simulate blur since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -197,7 +197,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onFocus since it is disabled';
+                    'TagInput cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -225,7 +225,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onFocus since it is read only';
+                    'TagInput cannot simulate focus since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -272,7 +272,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onChange since it is disabled';
+                    'TagInput cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -300,7 +300,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onChange since it is read only';
+                    'TagInput cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -347,7 +347,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onClickClose since it is disabled';
+                    'TagInput cannot simulate clickClose since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.clickCloseTagByIndex() )
@@ -376,7 +376,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onClickClose since it is read only';
+                    'TagInput cannot simulate clickClose since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.clickCloseTagByIndex() )
@@ -423,7 +423,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onClickClose since it is disabled';
+                    'TagInput cannot simulate clickClose since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.clickCloseTagByLabel() )
@@ -459,7 +459,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onClickClose since it is read only';
+                    'TagInput cannot simulate clickClose since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.clickCloseTagByLabel() )
@@ -514,7 +514,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyPress since it is disabled';
+                    'TagInput cannot simulate keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -542,7 +542,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyPress since it is read only';
+                    'TagInput cannot simulate keyPress since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -589,7 +589,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyUp since it is disabled';
+                    'TagInput cannot simulate keyUp since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
@@ -617,7 +617,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyUp since it is read only';
+                    'TagInput cannot simulate keyUp since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
@@ -664,7 +664,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyDown since it is disabled';
+                    'TagInput cannot simulate keyDown since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -692,7 +692,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'TagInput cannot onKeyDown since it is read only';
+                    'TagInput cannot simulate keyDown since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -739,7 +739,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onMouseOut since it is disabled';
+                    'TagInput cannot simulate mouseOut since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -786,7 +786,7 @@ describe( 'TagInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TagInput cannot onMouseOver since it is disabled';
+                    'TagInput cannot simulate mouseOver since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );

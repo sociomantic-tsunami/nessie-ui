@@ -72,7 +72,7 @@ describe( 'ValuedTextInputDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'ValuedTextInput cannot onBlur since it is disabled';
+                    'ValuedTextInput cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -99,8 +99,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onBlur since it is read only';
+                const expectedError = 'ValuedTextInput cannot simulate blur \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -140,8 +140,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onFocus since it is disabled';
+                const expectedError = 'ValuedTextInput cannot simulate focus \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -168,8 +168,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onFocus since it is read only';
+                const expectedError = 'ValuedTextInput cannot simulate focus \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -209,8 +209,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onKeyPress since it is disabled';
+                const expectedError = 'ValuedTextInput cannot simulate \
+keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -250,8 +250,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onChange since it is disabled';
+                const expectedError = 'ValuedTextInput cannot simulate change \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -278,8 +278,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onChange since it is read only';
+                const expectedError = 'ValuedTextInput cannot simulate change \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -319,8 +319,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onClick since it is disabled';
+                const expectedError = 'ValuedTextInput cannot simulate click \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -347,8 +347,8 @@ describe( 'ValuedTextInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'ValuedTextInput cannot onClick since it is read only';
+                const expectedError = 'ValuedTextInput cannot simulate click \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );

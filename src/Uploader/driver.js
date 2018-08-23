@@ -1,8 +1,8 @@
 import { Button, IconButton } from '../index';
 
 const ERR = {
-    UPLOADER_ERR : ( onEvent, state ) =>
-        `Uploader cannot ${onEvent} since it is ${state}`,
+    UPLOADER_ERR : ( event, state ) =>
+        `Uploader cannot simulate ${event} since it is ${state}`,
 };
 
 export default class UploaderDriver
@@ -29,12 +29,12 @@ export default class UploaderDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.UPLOADER_ERR( 'onChange', 'disabled' ) );
+            throw new Error( ERR.UPLOADER_ERR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.UPLOADER_ERR( 'onChange', 'read only' ) );
+            throw new Error( ERR.UPLOADER_ERR( 'change', 'read only' ) );
         }
 
         this.wrapper.find( `.${this.cssMap.input}` )

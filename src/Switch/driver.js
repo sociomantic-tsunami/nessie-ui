@@ -1,6 +1,6 @@
 const ERR = {
-    SWITCH_ERR : ( onEvent, state ) =>
-        `Switch cannot ${onEvent} since it is ${state}`,
+    SWITCH_ERR : ( event, state ) =>
+        `Switch cannot simulate ${event} since it is ${state}`,
 };
 
 export default class SwitchDriver
@@ -18,12 +18,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onChange', 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onChange', 'read only' ) );
+            throw new Error( ERR.SWITCH_ERR( 'change', 'read only' ) );
         }
 
         const node = this.input.getNode();
@@ -40,12 +40,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onBlur', 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onBlur', 'read only' ) );
+            throw new Error( ERR.SWITCH_ERR( 'blur', 'read only' ) );
         }
 
         this.input.simulate( 'blur' );
@@ -58,12 +58,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onFocus', 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.SWITCH_ERR( 'onFocus', 'read only' ) );
+            throw new Error( ERR.SWITCH_ERR( 'focus', 'read only' ) );
         }
 
         this.input.simulate( 'focus' );

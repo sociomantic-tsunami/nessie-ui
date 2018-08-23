@@ -1,6 +1,6 @@
 const ERR = {
-    RADIO_ERR : ( label, onEvent, state ) =>
-        `Radio '${label}' cannot ${onEvent} since it is ${state}`,
+    RADIO_ERR : ( label, event, state ) =>
+        `Radio '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class RadioDriver
@@ -19,12 +19,12 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onBlur', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onBlur', 'read only' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'blur', 'read only' ) );
         }
 
         this.control.simulate( 'blur' );
@@ -38,12 +38,12 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onFocus', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onFocus', 'read only' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'focus', 'read only' ) );
         }
 
         this.control.simulate( 'focus' );
@@ -58,12 +58,12 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onChange', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onChange', 'read only' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'change', 'read only' ) );
         }
 
         if ( node.checked !== true )
@@ -83,12 +83,12 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onClick', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'click', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.RADIO_ERR( label, 'onClick', 'read only' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'click', 'read only' ) );
         }
 
         this.control.simulate( 'click' );
@@ -102,8 +102,7 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .RADIO_ERR( label, 'onMouseOver', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -117,8 +116,7 @@ export default class RadioDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .RADIO_ERR( label, 'onMouseOut', 'disabled' ) );
+            throw new Error( ERR.RADIO_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

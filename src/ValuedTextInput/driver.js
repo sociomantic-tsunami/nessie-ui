@@ -1,8 +1,8 @@
 import { InputField } from '../index';
 
 const ERR = {
-    VALUEDTEXTINPUT_ERR : ( onEvent, state ) =>
-        `ValuedTextInput cannot ${onEvent} since it is ${state}`,
+    VALUEDTEXTINPUT_ERR : ( event, state ) =>
+        `ValuedTextInput cannot simulate ${event} since it is ${state}`,
 };
 
 export default class ValuedTextInputDriver
@@ -16,12 +16,12 @@ export default class ValuedTextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'onBlur', 'disabled' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'blur', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'onBlur', 'read only' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'blur', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().blur();
@@ -32,13 +32,12 @@ export default class ValuedTextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'onClick', 'disabled' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'click', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR
-                .VALUEDTEXTINPUT_ERR( 'onClick', 'read only' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'click', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().click();
@@ -49,14 +48,12 @@ export default class ValuedTextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .VALUEDTEXTINPUT_ERR( 'onChange', 'disabled' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR
-                .VALUEDTEXTINPUT_ERR( 'onChange', 'read only' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'change', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().change( val );
@@ -67,13 +64,12 @@ export default class ValuedTextInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'onFocus', 'disabled' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'focus', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR
-                .VALUEDTEXTINPUT_ERR( 'onFocus', 'read only' ) );
+            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();
@@ -85,7 +81,7 @@ export default class ValuedTextInputDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
-                .VALUEDTEXTINPUT_ERR( 'onKeyPress', 'disabled' ) );
+                .VALUEDTEXTINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.find( InputField ).driver().keyPress();

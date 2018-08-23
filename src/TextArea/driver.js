@@ -1,8 +1,8 @@
 import { InputField } from '../index';
 
 const ERR = {
-    TEXTAREA_ERR : ( onEvent, state ) =>
-        `TextArea cannot ${onEvent} since it is ${state}`,
+    TEXTAREA_ERR : ( event, state ) =>
+        `TextArea cannot simulate ${event} since it is ${state}`,
 };
 
 export default class TextAreaDriver
@@ -16,12 +16,12 @@ export default class TextAreaDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onBlur', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'blur', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onBlur', 'read only' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'blur', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().blur();
@@ -32,12 +32,12 @@ export default class TextAreaDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onClick', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'click', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onClick', 'read only' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'click', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().click();
@@ -48,12 +48,12 @@ export default class TextAreaDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onChange', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onChange', 'read only' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'change', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().change( val );
@@ -64,12 +64,12 @@ export default class TextAreaDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onFocus', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'focus', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onFocus', 'read only' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();
@@ -80,7 +80,7 @@ export default class TextAreaDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.TEXTAREA_ERR( 'onKeyPress', 'disabled' ) );
+            throw new Error( ERR.TEXTAREA_ERR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.find( InputField ).driver().keyPress();

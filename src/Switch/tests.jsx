@@ -65,7 +65,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Switch cannot onChange since it is disabled';
+                    'Switch cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -93,7 +93,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Switch cannot onChange since it is read only';
+                    'Switch cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -134,7 +134,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Switch cannot onBlur since it is disabled';
+                    'Switch cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -162,7 +162,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Switch cannot onBlur since it is read only';
+                    'Switch cannot simulate blur since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -203,7 +203,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Switch cannot onFocus since it is disabled';
+                    'Switch cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -231,7 +231,7 @@ describe( 'SwitchDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Switch cannot onFocus since it is read only';
+                    'Switch cannot simulate focus since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );

@@ -1,6 +1,6 @@
 const ERR = {
-    BUTTON_ERR : ( label, onEvent, state ) =>
-        `Button '${label}' cannot ${onEvent} since it is ${state}`,
+    BUTTON_ERR : ( label, event, state ) =>
+        `Button '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class ButtonDriver
@@ -19,20 +19,17 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onClick', 'disabled' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onClick', 'read only' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onClick', 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'loading' ) );
         }
 
         this.button.simulate( 'click' );
@@ -46,14 +43,12 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onMouseOver', 'disabled' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onMouseOver', 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'loading' ) );
         }
 
         this.button.simulate( 'mouseenter' );
@@ -67,14 +62,12 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onMouseOut', 'disabled' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onMouseOut', 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'loading' ) );
         }
 
         this.button.simulate( 'mouseleave' );
@@ -88,20 +81,17 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onFocus', 'disabled' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onFocus', 'read only' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'focus', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onFocus', 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'focus', 'loading' ) );
         }
 
         this.button.simulate( 'focus' );
@@ -115,20 +105,17 @@ export default class ButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onBlur', 'disabled' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onBlur', 'read only' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'blur', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERR
-                .BUTTON_ERR( label, 'onBlur', 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'blur', 'loading' ) );
         }
 
         this.button.simulate( 'blur' );

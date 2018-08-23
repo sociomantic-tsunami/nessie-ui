@@ -65,8 +65,8 @@ describe( 'TooltipDriver', () =>
 
         test( 'should throw an expected error when is not dismissable', () =>
         {
-            const expectedError =
-                'Tooltip cannot onClickClose since it is not dismissable';
+            const expectedError = 'Tooltip cannot simulate clickClose since \
+it is not dismissable';
             wrapper.setProps( {
                 message : 'Sithis',
             } );

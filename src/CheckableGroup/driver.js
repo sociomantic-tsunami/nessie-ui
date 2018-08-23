@@ -1,8 +1,8 @@
 import { Checkbox, Radio } from '../index';
 
 const ERR = {
-    CHECKABLEGROUP_ERR : ( label, onEvent, state ) => `CheckableGroup \
-'${label}' cannot ${onEvent} since it is ${state}`,
+    CHECKABLEGROUP_ERR : ( label, event, state ) => `CheckableGroup \
+'${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class CheckableGroupDriver
@@ -25,13 +25,13 @@ export default class CheckableGroupDriver
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CHECKABLEGROUP_ERR( label, 'onChange', 'disabled' ) );
+                .CHECKABLEGROUP_ERR( label, 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CHECKABLEGROUP_ERR( label, 'onChange', 'read only' ) );
+                .CHECKABLEGROUP_ERR( label, 'change', 'read only' ) );
         }
 
 

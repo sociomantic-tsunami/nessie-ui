@@ -1,7 +1,7 @@
 /* global document */
 const ERR = {
-    CODEEDITOR_ERR : ( label, onEvent, state ) =>
-        `CodeEditor '${label}' cannot ${onEvent} since it is ${state}`,
+    CODEEDITOR_ERR : ( label, event, state ) =>
+        `CodeEditor '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class CodeEditorDriver
@@ -24,14 +24,13 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onFocus', 'disabled' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onFocus', 'read only' ) );
+                .CODEEDITOR_ERR( label, 'focus', 'read only' ) );
         }
 
         this.control.focus();
@@ -45,14 +44,12 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onBlur', 'disabled' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onBlur', 'read only' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'blur', 'read only' ) );
         }
 
         if ( this.control.hasFocus() && Boolean( document ) &&
@@ -72,13 +69,13 @@ export default class CodeEditorDriver
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onChange', 'disabled' ) );
+                .CODEEDITOR_ERR( label, 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onChange', 'read only' ) );
+                .CODEEDITOR_ERR( label, 'change', 'read only' ) );
         }
 
         this.control.setValue( val );
@@ -94,13 +91,13 @@ export default class CodeEditorDriver
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onMouseOver', 'disabled' ) );
+                .CODEEDITOR_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onMouseOver', 'read only' ) );
+                .CODEEDITOR_ERR( label, 'mouseOver', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -115,13 +112,13 @@ export default class CodeEditorDriver
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onMouseOut', 'disabled' ) );
+                .CODEEDITOR_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( label, 'onMouseOut', 'read only' ) );
+                .CODEEDITOR_ERR( label, 'mouseOut', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

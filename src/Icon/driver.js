@@ -1,6 +1,6 @@
 const ERR = {
-    ICON_ERR : ( onEvent ) =>
-        `Icon cannot ${onEvent} because it is disabled`,
+    ICON_ERR : ( event ) =>
+        `Icon cannot simulate ${event} because it is disabled`,
 };
 
 export default class IconDriver
@@ -14,7 +14,7 @@ export default class IconDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICON_ERR( 'onMouseOver' ) );
+            throw new Error( ERR.ICON_ERR( 'mouseOver' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -25,7 +25,7 @@ export default class IconDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.ICON_ERR( 'onMouseOut' ) );
+            throw new Error( ERR.ICON_ERR( 'mouseOut' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );
