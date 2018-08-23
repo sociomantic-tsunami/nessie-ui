@@ -1,9 +1,10 @@
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
 import InputContainer                   from '../proto/InputContainer';
 import InputField                       from '../InputField';
+import { generateId, buildClassName }   from '../utils';
+import styles                           from './valuedTextInput.css';
 
 
 export default class ValuedTextInput extends React.Component
@@ -11,21 +12,72 @@ export default class ValuedTextInput extends React.Component
     static propTypes =
     {
         /**
-         *  Label text string or JSX node
+         *  ARIA properties
          */
-        label         : PropTypes.node,
+        aria : PropTypes.objectOf( PropTypes.oneOfType( [
+            PropTypes.bool,
+            PropTypes.number,
+            PropTypes.string,
+        ] ) ),
         /**
-         *  Label position
+         *  HTML attribute controlling input auto capitalize
          */
-        labelPosition : PropTypes.oneOf( [
-            'top',
-            'left',
-            'right'
+        autoCapitalize : PropTypes.oneOf( [
+            'on',
+            'off',
+            'none',
+            'sentences',
+            'words',
+            'characters',
         ] ),
         /**
-         *  Placeholder text
+         *  HTML attribute controlling input auto complete
          */
-        placeholder           : PropTypes.string,
+        autoComplete          : PropTypes.string,
+        /**
+         *  HTML attribute controlling input auto correct (Safari-specific)
+         */
+        autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
+        /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Initial input string value
+         */
+        defaultValue          : PropTypes.string,
+        /**
+         *  Tooltip message text (string or JSX)
+         */
+        errorMessage          : PropTypes.node,
+        /**
+         *  Error Tooltip is displayed
+         */
+        errorMessageIsVisible : PropTypes.bool,
+        /**
+        *   Error message position relative to the icon
+        */
+        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        /**
+         *  Display as hover when required from another component
+         */
+        forceHover            : PropTypes.bool,
+        /**
+         *  Display as error/invalid
+         */
+        hasError              : PropTypes.bool,
+        /**
+         *  HTML id attribute
+         */
+        id                    : PropTypes.string,
+        /**
+         *  Callback that receives the native <input>: ( ref ) => { ... }
+         */
+        inputRef              : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -35,123 +87,120 @@ export default class ValuedTextInput extends React.Component
          */
         isReadOnly            : PropTypes.bool,
         /**
-         *  Display as error/invalid
+         *  Label text (string or JSX node)
          */
-        hasError              : PropTypes.bool,
+        label                 : PropTypes.node,
         /**
-         *  Tooltip message text (string or JSX)
+         *  Label position
          */
-        errorMessage          : PropTypes.node,
+        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
-         *  error message is displayed
+         *  HTML name attribute
          */
-        errorMessageIsVisible : PropTypes.bool,
+        name                  : PropTypes.string,
         /**
-         *  Error message position relative to the icon
+         *  Blur callback function
          */
-        errorMessagePosition  : PropTypes.oneOf( [
-            'top',
-            'topLeft'
-        ] ),
+        onBlur                : PropTypes.func,
         /**
-         * Initial input string value
+         *  Input change callback function
          */
-        defaultValue       : PropTypes.string,
-        /**
-         * Input string value
-         */
-        value              : PropTypes.string,
-        /**
-         * Value label text
-         */
-        valueLabel         : PropTypes.string,
-        /**
-         * Position of the value label
-         */
-        valueLabelPosition : PropTypes.oneOf( [
-            'left',
-            'right'
-        ] ),
-        /**
-         * Input text alignment
-         */
-        textAlign : PropTypes.oneOf( [
-            'auto',
-            'left',
-            'right'
-        ] ),
-        /**
-         * HTML id attribute of TextInput (overwrite default)
-         */
-        id          : PropTypes.string,
-        /**
-         * HTML name attribute
-         */
-        name        : PropTypes.string,
+        onChange              : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick     : PropTypes.func,
+        onClick               : PropTypes.func,
         /**
-         * onChange callback function: ( e ) => { ... }
+         *  Focus callback function
          */
-        onChange    : PropTypes.func,
+        onFocus               : PropTypes.func,
         /**
-         * onKeyPress callback function: ( e ) => { ... }
+         *  Key down callback function
          */
-        onKeyPress  : PropTypes.func,
+        onKeyDown             : PropTypes.func,
         /**
-         * onFocus callback function: ( e ) => { ... }
+         *  Key press callback function
          */
-        onFocus     : PropTypes.func,
+        onKeyPress            : PropTypes.func,
         /**
-         * onBlur callback function: ( e ) => { ... }
+         *  Key up callback function
          */
-        onBlur      : PropTypes.func,
+        onKeyUp               : PropTypes.func,
         /**
-         * onMouseOver callback function: ( e ) => { ... }
+         *  Mouse out callback function
          */
-        onMouseOver : PropTypes.func,
+        onMouseOut            : PropTypes.func,
         /**
-         * onMouseOut callback function: ( e ) => { ... }
+         *  Mouse over  callback function
          */
-        onMouseOut  : PropTypes.func,
+        onMouseOver           : PropTypes.func,
         /**
-         * Display as hover when required from another component
+         *  Placeholder text
          */
-        forceHover  : PropTypes.bool,
+        placeholder           : PropTypes.string,
         /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
+         *  HTML attribute controlling input spell check
          */
-        inputRef    : PropTypes.func,
+        spellCheck            : PropTypes.bool,
+        /**
+         *  Input text alignment
+         */
+        textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        /**
+         * Value label text
+         */
+        valueLabel            : PropTypes.string,
+        /**
+         * Position of the value label
+         */
+        valueLabelPosition    : PropTypes.oneOf( [ 'left', 'right' ] ),
     };
 
     static defaultProps =
     {
-        labelPosition         : 'top',
-        id                    : undefined,
-        isDisabled            : false,
-        isReadOnly            : false,
-        hasError              : false,
+        aria                  : undefined,
+        autoCapitalize        : undefined,
+        autoComplete          : undefined,
+        autoCorrect           : undefined,
+        className             : undefined,
+        cssMap                : styles,
+        defaultValue          : undefined,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
-        valueLabelPosition    : 'left',
-        textAlign             : 'auto',
         forceHover            : false,
-        cssMap                : require( './valuedTextInput.css' )
+        hasError              : false,
+        id                    : undefined,
+        inputRef              : undefined,
+        isDisabled            : false,
+        isReadOnly            : false,
+        label                 : undefined,
+        labelPosition         : 'top',
+        name                  : undefined,
+        onBlur                : undefined,
+        onChange              : undefined,
+        onClick               : undefined,
+        onFocus               : undefined,
+        onKeyDown             : undefined,
+        onKeyPress            : undefined,
+        onKeyUp               : undefined,
+        onMouseOut            : undefined,
+        onMouseOver           : undefined,
+        placeholder           : undefined,
+        spellCheck            : undefined,
+        textAlign             : 'auto',
+        valueLabel            : undefined,
+        valueLabelPosition    : 'left',
     };
 
     constructor( props )
     {
         super( props );
 
-        this.state = {
-            ...this.state,
-            isFocused : false
-        };
+        this.state = { ...this.state, isFocused: false };
 
-        this.handleFocus     = this.handleFocus.bind( this );
-        this.handleBlur      = this.handleBlur.bind( this );
+        this.handleFocus = this.handleFocus.bind( this );
+        this.handleBlur  = this.handleBlur.bind( this );
     }
 
     handleFocus( e )
@@ -210,20 +259,20 @@ export default class ValuedTextInput extends React.Component
                 className   = { buildClassName( className, cssMap, {
                     disabled    : isDisabled,
                     error       : hasError,
+                    fakeHovered : forceHover || isFocused,
                     position    : valueLabelPosition,
-                    fakeHovered : forceHover || isFocused
                 }  ) }
                 id          = { id }
-                onMouseOver = { onMouseOver }
-                onMouseOut  = { onMouseOut }>
+                onMouseOut  = { onMouseOut }
+                onMouseOver = { onMouseOver }>
                 <div className = { cssMap.container }>
                     <InputField
                         { ...props }
-                        id           = { id }
                         className    = { cssMap.input }
-                        onFocus      = { this.handleFocus }
+                        id           = { id }
                         onBlur       = { this.handleBlur }
-                        textAlign    = { alignText }  />
+                        onFocus      = { this.handleFocus }
+                        textAlign    = { alignText } />
                     <label
                         className = { cssMap.valueLabel }
                         htmlFor   = { id }>
@@ -231,7 +280,6 @@ export default class ValuedTextInput extends React.Component
                     </label>
                 </div>
             </InputContainer>
-
         );
     }
 }
