@@ -1,4 +1,4 @@
-import { Checkbox } from '../index';
+import { CheckableGroup } from '../index';
 
 const ERRORS = {
     CHECKABLEGROUP_CANNOT_BE_CHANGED : ( label, state ) =>
@@ -16,7 +16,7 @@ export default class CheckboxGroupDriver
     {
         this.wrapper    = wrapper;
         this.cssMap     = wrapper.props().cssMap;
-        this.checkables = wrapper.find( Checkbox );
+        this.checkables = wrapper.find( CheckableGroup );
     }
 
 
@@ -38,7 +38,7 @@ export default class CheckboxGroupDriver
         }
 
 
-        this.checkables.at( index ).driver().change();
+        this.checkables.driver().change( index );
         return this;
     }
 
