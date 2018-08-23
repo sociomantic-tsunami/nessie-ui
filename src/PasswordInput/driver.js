@@ -1,8 +1,8 @@
 import { IconButton, InputField, Tooltip } from '../index';
 
 const ERR = {
-    PASS_ERR : ( label, doWhat, state ) =>
-        `PasswordInput '${label}' cannot ${doWhat} since it is ${state}`,
+    PASS_ERR : ( label, onEvent, state ) =>
+        `PasswordInput '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class PasswordInput

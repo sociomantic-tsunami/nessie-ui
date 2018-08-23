@@ -1,8 +1,8 @@
 import { InputField } from '../index';
 
 const ERR = {
-    TEXTINPUT_ERR : ( doWhat, state ) =>
-        `TextInput cannot ${doWhat} since it is ${state}`,
+    TEXTINPUT_ERR : ( onEvent, state ) =>
+        `TextInput cannot ${onEvent} since it is ${state}`,
 };
 
 export default class TextInputDriver

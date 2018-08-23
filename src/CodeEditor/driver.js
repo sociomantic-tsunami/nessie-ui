@@ -1,7 +1,7 @@
 /* global document */
 const ERR = {
-    CODEEDITOR_ERR : ( label, doWhat, state ) =>
-        `CodeEditor '${label}' cannot ${doWhat} since it is ${state}`,
+    CODEEDITOR_ERR : ( label, onEvent, state ) =>
+        `CodeEditor '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class CodeEditorDriver

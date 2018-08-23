@@ -1,6 +1,6 @@
 const ERR = {
-    RADIO_ERR : ( label, doWhat, state ) =>
-        `Radio '${label}' cannot ${doWhat} since it is ${state}`,
+    RADIO_ERR : ( label, onEvent, state ) =>
+        `Radio '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class RadioDriver

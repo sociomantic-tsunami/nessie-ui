@@ -1,6 +1,6 @@
 const ERR = {
-    BUTTON_ERR : ( label, doWhat, state ) =>
-        `Button '${label}' cannot ${doWhat} since it is ${state}`,
+    BUTTON_ERR : ( label, onEvent, state ) =>
+        `Button '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class ButtonDriver

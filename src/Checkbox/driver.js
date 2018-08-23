@@ -1,6 +1,6 @@
 const ERR = {
-    CHECKBOX_ERR : ( label, doWhat, state ) =>
-        `Checkbox '${label}' cannot ${doWhat} since it is ${state}`,
+    CHECKBOX_ERR : ( label, onEvent, state ) =>
+        `Checkbox '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class CheckboxDriver

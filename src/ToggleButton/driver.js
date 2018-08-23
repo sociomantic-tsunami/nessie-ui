@@ -1,6 +1,6 @@
 const ERR = {
-    TOGGLEBUTTON_ERR : ( label, doWhat, state ) =>
-        `ToggleButton '${label}' cannot ${doWhat} since it is ${state}`,
+    TOGGLEBUTTON_ERR : ( label, onEvent, state ) =>
+        `ToggleButton '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class ToggleButtonDriver

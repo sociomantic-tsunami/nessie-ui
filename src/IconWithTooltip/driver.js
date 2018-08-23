@@ -1,6 +1,6 @@
 const ERR = {
-    ICONWITHTOOLTIP_ERR : ( doWhat ) =>
-        `IconWithTooltip cannot ${doWhat} because it is disabled`,
+    ICONWITHTOOLTIP_ERR : ( onEvent ) =>
+        `IconWithTooltip cannot ${onEvent} because it is disabled`,
 };
 
 export default class IconWithTooltipDriver

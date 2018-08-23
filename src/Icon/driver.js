@@ -1,6 +1,6 @@
 const ERR = {
-    ICON_ERR : ( doWhat ) =>
-        `Icon cannot ${doWhat} because it is disabled`,
+    ICON_ERR : ( onEvent ) =>
+        `Icon cannot ${onEvent} because it is disabled`,
 };
 
 export default class IconDriver

@@ -1,8 +1,8 @@
 import { InputField } from '../index';
 
 const ERR = {
-    TEXTAREA_ERR : ( doWhat, state ) =>
-        `TextArea cannot ${doWhat} since it is ${state}`,
+    TEXTAREA_ERR : ( onEvent, state ) =>
+        `TextArea cannot ${onEvent} since it is ${state}`,
 };
 
 export default class TextAreaDriver

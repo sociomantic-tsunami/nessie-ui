@@ -44,8 +44,8 @@ describe( 'CheckableGroupDriver', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'CheckableGroup \'Tekeli-li\' can\'t \
-trigger onChange since it is disabled';
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+onChange since it is disabled';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -77,8 +77,8 @@ trigger onChange since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'CheckableGroup \'Tekeli-li\' can\'t \
-trigger onChange since it is read only';
+                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
+onChange since it is read only';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );

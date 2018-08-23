@@ -1,8 +1,8 @@
 import { IconButton } from '../index';
 
 const ERR = {
-    TOOLTIP_ERR : ( doWhat, state ) =>
-        `Tooltip cannot ${doWhat} since it is ${state}`,
+    TOOLTIP_ERR : ( onEvent, state ) =>
+        `Tooltip cannot ${onEvent} since it is ${state}`,
 };
 
 export default class TooltipDriver

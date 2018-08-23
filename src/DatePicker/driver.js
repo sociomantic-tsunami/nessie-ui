@@ -5,8 +5,8 @@ const ERR = {
         `${el} cannot onClick since it is ${state}`,
     NO_INPUT : () =>
         'There\'s no input because <mode> is not <default>',
-    TIMEINPUT_ERR : ( doWhat, state ) =>
-        `TimeInput cannot ${doWhat} since it is ${state}`,
+    TIMEINPUT_ERR : ( onEvent, state ) =>
+        `TimeInput cannot ${onEvent} since it is ${state}`,
 };
 
 export default class DatePickerDriver

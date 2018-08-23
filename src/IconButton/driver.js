@@ -1,6 +1,6 @@
 const ERR = {
-    ICONBUTTON_ERR : ( label, doWhat, state ) =>
-        `Button '${label}' cannot ${doWhat} since it is ${state}`,
+    ICONBUTTON_ERR : ( label, onEvent, state ) =>
+        `Button '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class IconButtonDriver

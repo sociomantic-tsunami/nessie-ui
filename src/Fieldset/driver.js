@@ -1,6 +1,6 @@
 const ERR = {
-    FIELDSET_ERR : ( doWhat ) =>
-        `Fieldset cannot ${doWhat} because it is disabled`,
+    FIELDSET_ERR : ( onEvent ) =>
+        `Fieldset cannot ${onEvent} because it is disabled`,
 };
 
 export default class DatePickerDriver

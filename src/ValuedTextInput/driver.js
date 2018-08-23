@@ -1,8 +1,8 @@
 import { InputField } from '../index';
 
 const ERR = {
-    VALUEDTEXTINPUT_ERR : ( doWhat, state ) =>
-        `ValuedTextInput cannot ${doWhat} since it is ${state}`,
+    VALUEDTEXTINPUT_ERR : ( onEvent, state ) =>
+        `ValuedTextInput cannot ${onEvent} since it is ${state}`,
 };
 
 export default class ValuedTextInputDriver

@@ -1,8 +1,8 @@
 import { Button, IconButton } from '../index';
 
 const ERR = {
-    UPLOADER_ERR : ( doWhat, state ) =>
-        `Uploader cannot ${doWhat} since it is ${state}`,
+    UPLOADER_ERR : ( onEvent, state ) =>
+        `Uploader cannot ${onEvent} since it is ${state}`,
 };
 
 export default class UploaderDriver

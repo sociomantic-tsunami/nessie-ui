@@ -1,8 +1,8 @@
 import { Tag } from '../index';
 
 const ERR = {
-    TAGINPUT_ERR : ( doWhat, state ) =>
-        `TagInput cannot ${doWhat} since it is ${state}`,
+    TAGINPUT_ERR : ( onEvent, state ) =>
+        `TagInput cannot ${onEvent} since it is ${state}`,
 };
 
 export default class TagInputDriver

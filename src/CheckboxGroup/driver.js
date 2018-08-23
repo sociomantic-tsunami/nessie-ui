@@ -1,8 +1,8 @@
 import { Checkbox } from '../index';
 
 const ERR = {
-    CHECKABLEGROUP_ERR : ( label, doWhat, state ) =>
-        `CheckableGroup '${label}' cannot ${doWhat} since it is ${state}`,
+    CHECKABLEGROUP_ERR : ( label, onEvent, state ) =>
+        `CheckableGroup '${label}' cannot ${onEvent} since it is ${state}`,
 };
 
 export default class CheckboxGroupDriver
