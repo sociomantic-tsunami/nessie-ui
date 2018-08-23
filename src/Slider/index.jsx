@@ -15,7 +15,7 @@ export default class Slider extends React.Component
         */
         label                 : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         id                    : PropTypes.string,
         /**
