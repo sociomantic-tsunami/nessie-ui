@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import InputContainer       from '../proto/InputContainer';
 import styles               from './codeEditor.css';
 
@@ -14,7 +13,7 @@ import 'codemirror/mode/jsx/jsx';
 const defaultOptions = {
     lineNumbers  : true,
     lineWrapping : true,
-    theme        : 'monokai'
+    theme        : 'monokai',
 };
 
 const SCROLL_CLASS = 'CodeMirror-scroll';
@@ -66,49 +65,62 @@ export default class CodeEditor extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          * Input string default value
          */
-        defaultValue          : PropTypes.string,
+        defaultValue : PropTypes.string,
         /**
          * Input string value
          */
-        value                 : PropTypes.string,
+        value        : PropTypes.string,
         /**
          * HTML id attribute (overwrite default)
          */
-        onChange              : PropTypes.func,
+        onChange     : PropTypes.func,
         /**
          * Handles CodeMirror focus event
          */
-        onFocus               : PropTypes.func,
+        onFocus      : PropTypes.func,
         /**
          * Handles CodeMirror blur event
          */
-        onBlur                : PropTypes.func,
+        onBlur       : PropTypes.func,
         /**
          * Handles component mouseover event
          */
-        onMouseOver           : PropTypes.func,
+        onMouseOver  : PropTypes.func,
         /**
          * Handles component mouseout event
          */
-        onMouseOut            : PropTypes.func,
+        onMouseOut   : PropTypes.func,
         /**
          * Codemirror options object
          */
-        options               : PropTypes.object,
+        options      : PropTypes.object,
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover   : PropTypes.bool,
         /**
          * cursor position: { line, ch }
          */
-        cursor                : PropTypes.shape( {
+        cursor       : PropTypes.shape( {
             line : PropTypes.number,
-            ch   : PropTypes.number
+            ch   : PropTypes.number,
         } ),
         /**
          * onCursorActivity callback function: ( cursor ) => { ... }
@@ -153,13 +165,13 @@ export default class CodeEditor extends Component
             isDisabled,
             isReadOnly,
             options,
-            value = ''
+            value = '',
         } = this.props;
 
         const combinedOptions = {
             ...defaultOptions,
             ...options,
-            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
         const codeMirrorInstance = require( 'codemirror' );
@@ -215,7 +227,7 @@ export default class CodeEditor extends Component
             isDisabled,
             isReadOnly,
             options = {},
-            value
+            value,
         } = this.props;
 
         const { codeMirror } = this;
@@ -223,7 +235,7 @@ export default class CodeEditor extends Component
         const combinedOptions = {
             ...defaultOptions,
             ...options,
-            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly
+            readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
         Object.keys( combinedOptions ).forEach( option =>
@@ -356,7 +368,7 @@ export default class CodeEditor extends Component
                 className = { buildClassName( className, cssMap, {
                     error       : !isDisabled && hasError,
                     disabled    : isDisabled,
-                    fakeHovered : !isDisabled && ( forceHover || isFocused )
+                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
                 } ) }>
                 <div
                     className = { cssMap.editor }

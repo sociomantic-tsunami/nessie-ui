@@ -161,12 +161,18 @@ Uploader.propTypes =
     *  Error message position relative to the icon
     */
     errorMessagePosition : PropTypes.oneOf( [
-        'left',
-        'right',
         'top',
-        'bottom',
         'topLeft',
         'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
     ] ),
     /**
     *  Display as error/invalid

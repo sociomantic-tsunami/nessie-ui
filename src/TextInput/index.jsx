@@ -78,63 +78,76 @@ TextInput.propTypes =
     /**
     *  Error message position relative to the icon
     */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Initial input string value
      */
-    defaultValue          : PropTypes.string,
+    defaultValue : PropTypes.string,
     /**
      *  Input string value
      */
-    value                 : PropTypes.string,
+    value        : PropTypes.string,
     /**
      *  HTML id attribute (overwrite default)
      */
-    id                    : PropTypes.string,
+    id           : PropTypes.string,
     /**
      *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name         : PropTypes.string,
     /**
      *  Input click callback function
      */
-    onClick               : PropTypes.func,
+    onClick      : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange     : PropTypes.func,
     /**
      *  Input focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus      : PropTypes.func,
     /**
      *  Input blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur       : PropTypes.func,
     /**
      * onInput callback function
      */
-    onInput               : PropTypes.func,
+    onInput      : PropTypes.func,
     /**
      * onKeyPress callback function
      */
-    onKeyPress            : PropTypes.func,
+    onKeyPress   : PropTypes.func,
     /**
      *  Input mouseOver callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver  : PropTypes.func,
     /**
      *  Input mouseOut callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut   : PropTypes.func,
     /**
      * Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover   : PropTypes.bool,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef     : PropTypes.func,
 };
 
 TextInput.defaultProps =

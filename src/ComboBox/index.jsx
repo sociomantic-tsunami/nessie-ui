@@ -1,15 +1,15 @@
 /* global document */
 
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React, { Component }                 from 'react';
+import PropTypes                            from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
-import TextInputWithIcon    from '../TextInputWithIcon';
-import ListBox              from '../ListBox';
-import withDropdown         from '../Dropdown/withDropdown';
+import { ScrollBox, Text }                  from '../index';
+import TextInputWithIcon                    from '../TextInputWithIcon';
+import ListBox                              from '../ListBox';
+import withDropdown                         from '../Dropdown/withDropdown';
 import { generateId, buildClassName }       from '../utils';
-import InputContainer       from '../proto/InputContainer';
-import styles               from './comboBox.css';
+import InputContainer                       from '../proto/InputContainer';
+import styles                               from './comboBox.css';
 import {
     addPrefix,
     buildListBoxOptions,
@@ -48,23 +48,36 @@ export default class ComboBox extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover      : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete       : PropTypes.bool,
+        hasAutocomplete : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError        : PropTypes.bool,
         /**
          *  Icon type to display
          */
-        iconType              : PropTypes.oneOf( [
+        iconType        : PropTypes.oneOf( [
             'account',
             'add',
             'add-circle',

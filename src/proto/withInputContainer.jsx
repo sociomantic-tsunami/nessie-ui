@@ -44,15 +44,28 @@ const withInputContainer = Component =>
         /**
          *  Position of tooltip relative to error icon
          */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          *  Component label
          */
-        label                 : PropTypes.node,
+        label         : PropTypes.node,
         /**
          *  Position of component label relative to component
          */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     };
 
     WithInputContainer.defaultProps = {

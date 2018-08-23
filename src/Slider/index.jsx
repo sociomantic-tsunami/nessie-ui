@@ -52,6 +52,15 @@ export default class Slider extends React.Component
             'top',
             'topLeft',
             'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
         ] ),
         /**
         * Display track fill

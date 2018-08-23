@@ -278,91 +278,104 @@ TextInputWithIcon.propTypes =
     /**
     *  Error message position relative to the icon
     */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Initial input string value
      */
-    defaultValue          : PropTypes.string,
+    defaultValue    : PropTypes.string,
     /**
      *  Input string value
      */
-    value                 : PropTypes.string,
+    value           : PropTypes.string,
     /**
      *  HTML id attribute (overwrite default)
      */
-    id                    : PropTypes.string,
+    id              : PropTypes.string,
     /**
      *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name            : PropTypes.string,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange        : PropTypes.func,
     /**
      *  Input click callback function
      */
-    onClick               : PropTypes.func,
+    onClick         : PropTypes.func,
     /**
      * key down callback function
      */
-    onKeyDown             : PropTypes.func,
+    onKeyDown       : PropTypes.func,
     /**
      * key press callback function
      */
-    onKeyPress            : PropTypes.func,
+    onKeyPress      : PropTypes.func,
     /**
      * key up callback function
      */
-    onKeyUp               : PropTypes.func,
+    onKeyUp         : PropTypes.func,
     /**
      *  focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus         : PropTypes.func,
     /**
      *  blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur          : PropTypes.func,
     /**
      *  mouseOver callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver     : PropTypes.func,
     /**
      *  mouseOut callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut      : PropTypes.func,
     /**
      *  Icon click callback function
      */
-    onClickIcon           : PropTypes.func,
+    onClickIcon     : PropTypes.func,
     /**
      *  Icon mouseOver callback function
      */
-    onMouseOverIcon       : PropTypes.func,
+    onMouseOverIcon : PropTypes.func,
     /**
      *  Icon mouseOut callback function
      */
-    onMouseOutIcon        : PropTypes.func,
+    onMouseOutIcon  : PropTypes.func,
     /**
      * Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover      : PropTypes.bool,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef        : PropTypes.func,
     /**
      *  HTML attribute for disabling input auto correct when PasswordInput
      */
-    autoCorrect           : PropTypes.string,
+    autoCorrect     : PropTypes.string,
     /**
      * HTML attribute for disabling input auto capitalize when PasswordInput
      */
-    autoCapitalize        : PropTypes.string,
+    autoCapitalize  : PropTypes.string,
     /**
      * HTML attribute for disabling input spell check when PasswordInput
      */
-    spellCheck            : PropTypes.bool,
+    spellCheck      : PropTypes.bool,
 };
 
 TextInputWithIcon.defaultProps =

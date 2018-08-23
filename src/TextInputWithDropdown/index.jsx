@@ -40,7 +40,7 @@ const TextInputWithDropdown = ( {
     onFocus,
     onMouseOver,
     onMouseOut,
-    textAlign
+    textAlign,
 } ) =>
 {
     let alignText = textAlign;
@@ -53,7 +53,7 @@ const TextInputWithDropdown = ( {
     return (
         <InputContainer
             className = { buildClassName( className, cssMap, {
-                position : dropdownPosition
+                position : dropdownPosition,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }
@@ -144,79 +144,92 @@ TextInputWithDropdown.propTypes =
     /**
      *  Error message position relative to the icon
      */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      * Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover        : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError          : PropTypes.bool,
     /**
      * HTML id attribute (overwrite default)
      */
-    id                    : PropTypes.string,
+    id                : PropTypes.string,
     /**
      * Initial input string value
      */
-    inputDefaultValue     : PropTypes.string,
+    inputDefaultValue : PropTypes.string,
     /**
      *  Input placeholder text
      */
-    inputPlaceholder      : PropTypes.string,
+    inputPlaceholder  : PropTypes.string,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef          : PropTypes.func,
     /**
      * Input string value
      */
-    inputValue            : PropTypes.string,
+    inputValue        : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled        : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
     /**
      *  Label text string or JSX node
      */
-    label                 : PropTypes.node,
+    label             : PropTypes.node,
     /**
      *  Label position
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      * HTML name attribute
      */
-    name                  : PropTypes.string,
+    name              : PropTypes.string,
     /**
      *  onBlur callback function: ( e ) => { ... }
      */
-    onBlur                : PropTypes.func,
+    onBlur            : PropTypes.func,
     /**
      *  onChange callback function: ( e ) => { ... }
      */
-    onChange              : PropTypes.func,
+    onChange          : PropTypes.func,
     /**
      *  onFocus callback function: ( e ) => { ... }
      */
-    onFocus               : PropTypes.func,
+    onFocus           : PropTypes.func,
     /**
      *  onMouseOut callback function: ( e ) => { ... }
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut        : PropTypes.func,
     /**
      *  onMouseOver callback function: ( e ) => { ... }
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver       : PropTypes.func,
     /**
      * Input text alignment
      */
-    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
 };
 
 TextInputWithDropdown.defaultProps =

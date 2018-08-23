@@ -95,8 +95,8 @@ IconWithTooltip.propTypes =
     */
     iconPosition  : PropTypes.oneOf( [
         'left',
-        'right',
         'topLeft',
+        'right',
         'topRight',
     ] ),
     /**
@@ -175,8 +175,14 @@ IconWithTooltip.propTypes =
         'topLeft',
         'topRight',
         'bottom',
+        'bottomLeft',
+        'bottomRight',
         'left',
+        'leftTop',
+        'leftBottom',
         'right',
+        'rightTop',
+        'rightBottom',
     ] ),
     /**
     *  onMouseOut callback function: ( e ) = { ... }
