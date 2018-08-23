@@ -1,10 +1,7 @@
-const ERRORS = {
-    DISABLED : ( label, action ) =>
-        `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
-disabled`,
-    READONLY : ( label, action ) =>
-        `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
-read only`,
+const ERR = {
+    SLIDER_ERR : ( label, action, state ) =>
+        `Slider ${label ? `'${label}'` : ''} cannot ${action} since it is \
+${state}`,
 };
 
 const toArray = value => ( Array.isArray( value ) ? value : [ value ] );
@@ -14,9 +11,8 @@ export default class SliderDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-
-        this.cssMap = wrapper.prop( 'cssMap' );
-        this.label  = wrapper.prop( 'label' );
+        this.cssMap  = wrapper.prop( 'cssMap' );
+        this.label   = wrapper.prop( 'label' );
 
         this.default        = wrapper.find( `.${this.cssMap.default}` );
         this.inputContainer = wrapper.find( `.${this.cssMap.inputContainer}` );
@@ -27,7 +23,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'blurred' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onBlur', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'blur' );
@@ -38,12 +35,14 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onChange', 'disabled' ) );
         }
 
         if ( this.wrapper.prop( 'isReadOnly' ) )
         {
-            throw new Error( ERRORS.READONLY( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onChange', 'read only' ) );
         }
 
         const input = this.inputContainer.childAt( index );
@@ -59,7 +58,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'clicked' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onClick', 'disabled' ) );
         }
 
         this.track.simulate( 'click' );
@@ -70,7 +70,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'focused' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onFocus', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'focus' );
@@ -81,7 +82,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onKeyDown', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'keyDown', { keyCode } );
@@ -92,7 +94,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onKeyUp', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'keyUp', { keyCode } );

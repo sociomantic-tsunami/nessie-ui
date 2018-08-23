@@ -384,8 +384,8 @@ describe( 'SliderDriver', () =>
                 () =>
                 {
                     wrapper.setProps( { isDisabled: true } );
-                    const expectedError = 'Slider \'Cthulhu\' cannot be \
-clicked since it is disabled';
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onClick since it is disabled';
 
                     expect( () => driver.click() )
                         .toThrowError( expectedError );
@@ -424,8 +424,8 @@ clicked since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Slider \'Cthulhu\' cannot be \
-changed since it is disabled';
+                const expectedError = 'Slider \'Cthulhu\' cannot \
+onChange since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -452,8 +452,8 @@ changed since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'Slider \'Cthulhu\' cannot be \
-changed since it is read only';
+                const expectedError = 'Slider \'Cthulhu\' cannot \
+onChange since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -539,8 +539,8 @@ changed since it is read only';
                 'should throw the expected error when slider is disabled',
                 () =>
                 {
-                    const expectedError = 'Slider \'Cthulhu\' cannot be \
-blurred since it is disabled';
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onBlur since it is disabled';
 
                     expect( () => driver.blur() ).toThrowError( expectedError );
                 },
@@ -585,6 +585,39 @@ blurred since it is disabled';
             const input = inputContainer.childAt( index ).node;
 
             expect( event.target ).toBe( input );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onFocus since it is disabled';
+
+                    expect( () => driver.focus() )
+                        .toThrowError( expectedError );
+                },
+            );
         } );
     } );
 
@@ -631,6 +664,39 @@ blurred since it is disabled';
 
             expect( event.target ).toBe( input );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onKeyDown since it is disabled';
+
+                    expect( () => driver.keyDown() )
+                        .toThrowError( expectedError );
+                },
+            );
+        } );
     } );
 
 
@@ -675,6 +741,39 @@ blurred since it is disabled';
             const input = inputContainer.childAt( index ).node;
 
             expect( event.target ).toBe( input );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onKeyUp since it is disabled';
+
+                    expect( () => driver.keyUp() )
+                        .toThrowError( expectedError );
+                },
+            );
         } );
     } );
 
