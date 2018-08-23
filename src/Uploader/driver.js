@@ -1,10 +1,8 @@
 import { Button, IconButton } from '../index';
 
 const ERR = {
-    UPLOADER_DISABLED : ( doWhat ) =>
-        `Uploader can't ${doWhat} since it is disabled`,
-    UPLOADER_READONLY : ( doWhat ) =>
-        `Uploader can't ${doWhat} since it is read only`,
+    UPLOADER_ERR : ( doWhat, state ) =>
+        `Uploader cannot ${doWhat} since it is ${state}`,
 };
 
 export default class UploaderDriver
@@ -31,12 +29,12 @@ export default class UploaderDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.UPLOADER_DISABLED( 'change' ) );
+            throw new Error( ERR.UPLOADER_ERR( 'onChange', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.UPLOADER_READONLY( 'change' ) );
+            throw new Error( ERR.UPLOADER_ERR( 'onChange', 'read only' ) );
         }
 
         this.wrapper.find( `.${this.cssMap.input}` )
