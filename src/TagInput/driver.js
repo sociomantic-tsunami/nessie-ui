@@ -1,9 +1,8 @@
 import { Tag } from '../index';
 
 const ERR = {
-    INPUT_DISABLED : ( doWhat ) => `Input can't ${doWhat} since it is disabled`,
-    INPUT_READONLY : ( doWhat ) =>
-        `Input can't ${doWhat} since it is read only`,
+    TAGINPUT_ERR : ( doWhat, state ) =>
+        `TagInput cannot ${doWhat} since it is ${state}`,
 };
 
 export default class TagInputDriver
@@ -18,12 +17,14 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'clickCloseTagByIndex' ) );
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'onClickClose', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'clickCloseTagByIndex' ) );
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'onClickClose', 'read only' ) );
         }
 
         this.wrapper.find( Tag ).at( index ).driver().clickClose();
@@ -34,12 +35,14 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'clickCloseTagByLabel' ) );
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'onClickClose', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'clickCloseTagByLabel' ) );
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'onClickClose', 'read only' ) );
         }
 
         if ( Array.isArray( label ) )
@@ -71,12 +74,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'blur' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onBlur', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'blur' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onBlur', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -88,12 +91,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'change' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onChange', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'change' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onChange', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -105,12 +108,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'focus' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onFocus', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'focus' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onFocus', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -122,12 +125,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'keyPress' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyPress', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'keyPress' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyPress', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -139,12 +142,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'keyDown' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyDown', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'keyDown' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyDown', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -156,12 +159,12 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'keyUp' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyUp', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR.INPUT_READONLY( 'keyUp' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onKeyUp', 'read only' ) );
         }
 
         this.control.find( `.${this.control.props().cssMap.input}` )
@@ -173,7 +176,7 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'mouseOver' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onMouseOver', 'disabled' ) );
         }
 
         this.control.simulate( 'mouseenter' );
@@ -184,7 +187,7 @@ export default class TagInputDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR.INPUT_DISABLED( 'mouseOut' ) );
+            throw new Error( ERR.TAGINPUT_ERR( 'onMouseOut', 'disabled' ) );
         }
 
         this.control.simulate( 'mouseleave' );
