@@ -42,8 +42,8 @@ import {
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
-    Tooltip,
     ToggleButton,
+    Tooltip,
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
@@ -267,12 +267,12 @@ const drivers =
         Driver    : TextInputWithIconDriver,
     },
     {
-        Component : Tooltip,
-        Driver    : TooltipDriver,
-    },
-    {
         Component : ToggleButton,
         Driver    : ToggleButtonDriver,
+    },
+    {
+        Component : Tooltip,
+        Driver    : TooltipDriver,
     },
     {
         Component : Uploader,
