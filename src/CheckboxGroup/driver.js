@@ -1,4 +1,4 @@
-import { Checkbox } from '../index';
+import { CheckableGroup } from '../index';
 
 export default class CheckboxGroupDriver
 {
@@ -6,13 +6,13 @@ export default class CheckboxGroupDriver
     {
         this.wrapper    = wrapper;
         this.cssMap     = wrapper.props().cssMap;
-        this.checkables = wrapper.find( Checkbox );
+        this.checkables = wrapper.find( CheckableGroup );
     }
 
 
     change( index = 0 )
     {
-        this.checkables.at( index ).driver().change();
+        this.checkables.driver().change( index );
         return this;
     }
 
