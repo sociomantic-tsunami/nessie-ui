@@ -71,7 +71,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input can\'t blur since it is disabled';
+                    'TextArea cannot onBlur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -99,7 +99,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input can\'t blur since it is read only';
+                    'TextArea cannot onBlur since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -140,7 +140,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input can\'t focus since it is disabled';
+                    'TextArea cannot onFocus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -168,7 +168,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input can\'t focus since it is read only';
+                    'TextArea cannot onFocus since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -209,7 +209,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input can\'t click since it is disabled';
+                    'TextArea cannot onClick since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -237,7 +237,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input can\'t click since it is read only';
+                    'TextArea cannot onClick since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -278,7 +278,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Input can\'t change since it is disabled';
+                    'TextArea cannot onChange since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -306,7 +306,7 @@ describe( 'TextAreaDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Input can\'t change since it is read only';
+                    'TextArea cannot onChange since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
