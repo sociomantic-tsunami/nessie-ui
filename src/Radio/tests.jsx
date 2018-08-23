@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';

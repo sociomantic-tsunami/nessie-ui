@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 
 import React        from 'react';

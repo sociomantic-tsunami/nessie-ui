@@ -1,6 +1,6 @@
-const ERRORS = {
-    SWITCH_CANNOT_BE_TOGGLED : ( state ) =>
-        `Switch cannot be toggled since it is ${state}`,
+const ERR = {
+    SWITCH_ERR : ( onEvent, state ) =>
+        `Switch cannot ${onEvent} since it is ${state}`,
 };
 
 export default class SwitchDriver
@@ -18,11 +18,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'onChange', 'disabled' ) );
         }
+
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'readonly' ) );
+            throw new Error( ERR.SWITCH_ERR( 'onChange', 'read only' ) );
         }
 
         const node = this.input.getNode();
@@ -39,7 +40,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'onBlur', 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.SWITCH_ERR( 'onBlur', 'read only' ) );
         }
 
         this.input.simulate( 'blur' );
@@ -52,7 +58,12 @@ export default class SwitchDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' ) );
+            throw new Error( ERR.SWITCH_ERR( 'onFocus', 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.SWITCH_ERR( 'onFocus', 'read only' ) );
         }
 
         this.input.simulate( 'focus' );
