@@ -34,16 +34,15 @@
             box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
         }
     }
-}
 
-.label
-{
-    @extend %Nessie-Bold;
+    .label
+    {
+        @extend %Nessie-Bold;
 
-    font-size:      var( --typo-3 );
-    line-height:    var( --line-height-s );
-    padding-left:   var( --spacing-1 );
-    padding-right:  var( --spacing-1 );
+        letter-spacing: 0;
+        padding-left:   var( --spacing-1 );
+        padding-right:  var( --spacing-1 );
+    }
 }
 
 .active
