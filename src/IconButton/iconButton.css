@@ -57,7 +57,6 @@
     .icon
     {
         fill:   var( --PC-GREY--D25 );
-        color:  var( --PC-GREY--D25 );
     }
 
     &:hover,
@@ -82,7 +81,6 @@
     .icon
     {
         fill:   var( --PC-WHITE );
-        color:  var( --PC-WHITE );
     }
 
     &:hover,
