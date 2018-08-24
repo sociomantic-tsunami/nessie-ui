@@ -113,6 +113,12 @@
     background: var( --PC-BLUE );
     color:      var( --PC-WHITE );
 
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+        color:  var( --PC-WHITE );
+    }
+
     &.fakeHovered,
     &:hover
     {
@@ -172,6 +178,12 @@
     background: var( --PC-GREEN );
     color:      var( --PC-WHITE );
 
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+        color:  var( --PC-WHITE );
+    }
+
     &.fakeHovered,
     &:hover
     {
@@ -191,6 +203,12 @@
 {
     background: var( --PC-RED );
     color:      var( --PC-WHITE );
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+        color:  var( --PC-WHITE );
+    }
 
     &.fakeHovered,
     &:hover

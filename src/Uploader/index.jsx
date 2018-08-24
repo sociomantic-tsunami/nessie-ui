@@ -129,11 +129,11 @@ const Uploader = ( {
                     { uploaded &&
                     <IconButton
                         className  = { cssMap.uploadedButton }
-                        iconTheme  = "button"
                         iconType   = "delete"
                         isDisabled = { isDisabled }
                         isReadOnly = { isReadOnly }
-                        onClick    = { onClickSecondary } />
+                        onClick    = { onClickSecondary }
+                        role       = "inverted" />
                     }
                 </div>
             </IconWithTooltip>

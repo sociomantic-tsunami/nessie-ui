@@ -2,46 +2,43 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Icon                 from '../Icon';
 import Text                 from '../Text';
 import IconButton           from '../IconButton';
 
 const NotificationBar = ( {
-    cssMap,
-    className,
     children,
+    className,
+    cssMap,
+    isDismissible,
+    isFixed,
     message,
     messageType,
     onClickClose,
-    isDismissible,
-    isFixed } ) =>
-{
-    return (
-            <div className  = { buildClassName( className, cssMap, {
+} ) =>
+    (
+        <div
+            className = { buildClassName( className, cssMap, {
+                top  : isFixed,
                 type : messageType,
-                top  : isFixed
-              } ) }>
-
-                <Icon
-                    className  = { cssMap.info }
-                    type       = "info"/>
-
-                { ( children || message ) &&
+            } ) }>
+            <Icon
+                className = { cssMap.icon }
+                type      = "info" />
+            { ( children || message ) &&
                 <Text className = { cssMap.message }>
                     { children || message }
                 </Text>
-
-                }
-
-                { isDismissible && <IconButton
-                    className  = { cssMap.close }
-                    iconType   = "close"
-                    iconTheme  = "button"
-                    onClick    = { onClickClose } />}
-            </div>
+            }
+            { isDismissible &&
+                <IconButton
+                    className = { cssMap.close }
+                    iconType  = "close"
+                    onClick   = { onClickClose }
+                    role      = "inverted" />
+            }
+        </div>
     );
-};
 
 NotificationBar.propTypes =
 {
@@ -58,9 +55,9 @@ NotificationBar.propTypes =
     */
     messageType : PropTypes.oneOf( [
         'alert',
-        'info',
         'error',
-        'success'
+        'info',
+        'success',
     ] ),
     /**
      *  Close button onClick callback function
@@ -73,15 +70,15 @@ NotificationBar.propTypes =
     /**
     *  Change position to fixed top in the viewport
     */
-    isFixed       : PropTypes.bool
+    isFixed       : PropTypes.bool,
 };
 
 NotificationBar.defaultProps =
 {
-    messageType   : 'info',
+    cssMap        : require( './notificationBar.css' ),
     isDismissible : true,
     isFixed       : false,
-    cssMap        : require( './notificationBar.css' )
+    messageType   : 'info',
 };
 
 export default NotificationBar;

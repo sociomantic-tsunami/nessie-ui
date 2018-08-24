@@ -50,11 +50,8 @@ describe( 'Tag', () =>
         } );
     } );
 
-    test( 'should have an IconButton with control theme and close icon as a \
-child', () =>
+    test( 'should have an IconButton with close icon as a child', () =>
     {
-        expect( wrapper.find( IconButton ).props().iconTheme )
-            .toBe( 'control' );
         expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
     } );
 

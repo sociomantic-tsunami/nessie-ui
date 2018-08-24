@@ -32,7 +32,6 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-        
         test( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).toHaveLength( 1 );
@@ -82,17 +81,6 @@ describe( 'Button', () =>
             {
                 expect( instance.props.role ).toBe( 'default' );
             } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control'
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
-            } );
         } );
 
         describe( 'isLoading', () =>
@@ -100,17 +88,6 @@ describe( 'Button', () =>
             test( 'should be false by default', () =>
             {
                 expect( instance.props.isLoading ).toBe( false );
-            } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control'
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
             } );
         } );
 

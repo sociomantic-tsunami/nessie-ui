@@ -45,7 +45,8 @@ const InputContainer = ( {
             message          = { errorMessage }
             tooltipIsVisible = { errorMessageIsVisible }
             tooltipPosition  = { errorMessagePosition }
-            iconIsVisible    = { !isDisabled && !!errorMessage && hasError }>
+            iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
+            iconRole         = "critical">
             { children }
         </IconWithTooltip>
     </div>

@@ -37,14 +37,14 @@ const DatePickerHeader = ( {
                 isDisabled = { isDisabled || prevIsDisabled }
                 isReadOnly = { isReadOnly }
                 onClick    = { onClickPrev }
-                iconTheme  = "button" />
+                role       = "inverted" />
             <IconButton
                 className  = { cssMap.next }
                 iconType   = "right"
                 isDisabled = { isDisabled || nextIsDisabled }
                 isReadOnly = { isReadOnly }
                 onClick    = { onClickNext }
-                iconTheme  = "button" />
+                role       = "inverted" />
         </div>
         <Text className = { cssMap.date }>
             { month }

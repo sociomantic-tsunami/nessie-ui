@@ -126,13 +126,21 @@
 
 .disabled
 {
-    opacity:        0.36;
     cursor:         default;
     pointer-events: none;
 
-    .icon
+    &.role__default
     {
-        fill:   var( --PC-GREY--L70 );
-        color:  var( --PC-GREY--L70 );
+        .icon
+        {
+            fill:   var( --PC-GREY--L70 );
+        }
+    }
+    &.role__inverted
+    {
+        .icon
+        {
+            fill:   var( --PC-BLUE--L25 );
+        }
     }
 }
