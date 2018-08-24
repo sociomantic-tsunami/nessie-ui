@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React               from 'react';
 import { shallow, mount }  from 'enzyme';
@@ -165,7 +165,7 @@ describe( 'ToggleButton', () =>
 } );
 
 
-describe( 'ButtonDriver', () =>
+describe( 'ToggleButtonDriver', () =>
 {
     let wrapper;
     let driver;
@@ -202,8 +202,8 @@ describe( 'ButtonDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'Button \'Cthulhu\' cannot be clicked since it is disabled';
+                const expectedError = 'ToggleButton \'Cthulhu\' cannot \
+simulate click since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -230,8 +230,8 @@ describe( 'ButtonDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot be clicked \
-since it is read only';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate click since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -271,8 +271,8 @@ since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
-onMouseOver since it is disabled';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate mouseOver since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -314,8 +314,8 @@ onMouseOver since it is disabled';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have \
-onMouseOut since it is disabled';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate mouseOut since it is disabled';
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
             } );
@@ -356,8 +356,8 @@ onMouseOut since it is disabled';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
-since it is disabled';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate blur since it is disabled';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -385,8 +385,8 @@ since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have blur \
-since it is read only';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate blur since it is read only';
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -427,8 +427,8 @@ since it is read only';
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
-since it is disabled';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate focus since it is disabled';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -456,8 +456,8 @@ since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'Button \'Tekeli-li\' cannot have focus \
-since it is read only';
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate focus since it is read only';
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );

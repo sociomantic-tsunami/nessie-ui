@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React                      from 'react';
 import { mount }                  from 'enzyme';
@@ -247,7 +247,7 @@ describe( 'UploaderDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Uploader can\'t change since it is disabled';
+                    'Uploader cannot simulate change since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
@@ -275,7 +275,7 @@ describe( 'UploaderDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'Uploader can\'t change since it is read only';
+                    'Uploader cannot simulate change since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );

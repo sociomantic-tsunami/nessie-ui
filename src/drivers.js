@@ -31,8 +31,8 @@ import {
     SliderGroup,
     Sorter,
     Switch,
-    TabButton,
     Tab,
+    TabButton,
     Table,
     TableCell,
     Tabs,
@@ -42,8 +42,8 @@ import {
     TextInput,
     TextInputWithDropdown,
     TextInputWithIcon,
-    Tooltip,
     ToggleButton,
+    Tooltip,
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
@@ -79,8 +79,8 @@ import SliderDriver                from './Slider/driver';
 import SliderGroupDriver           from './SliderGroup/driver';
 import SorterDriver                from './Sorter/driver';
 import SwitchDriver                from './Switch/driver';
-import TabButtonDriver             from './TabButton/driver';
 import TabDriver                   from './Tab/driver';
+import TabButtonDriver             from './TabButton/driver';
 import TableDriver                 from './Table/driver';
 import TableCellDriver             from './TableCell/driver';
 import TabsDriver                  from './Tabs/driver';
@@ -223,12 +223,12 @@ const drivers =
         Driver    : SwitchDriver,
     },
     {
-        Component : TabButton,
-        Driver    : TabButtonDriver,
-    },
-    {
         Component : Tab,
         Driver    : TabDriver,
+    },
+    {
+        Component : TabButton,
+        Driver    : TabButtonDriver,
     },
     {
         Component : Table,
@@ -267,12 +267,12 @@ const drivers =
         Driver    : TextInputWithIconDriver,
     },
     {
-        Component : Tooltip,
-        Driver    : TooltipDriver,
-    },
-    {
         Component : ToggleButton,
         Driver    : ToggleButtonDriver,
+    },
+    {
+        Component : Tooltip,
+        Driver    : TooltipDriver,
     },
     {
         Component : Uploader,

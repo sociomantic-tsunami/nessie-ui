@@ -1,16 +1,6 @@
-const ERRORS = {
-    CHECKBOX_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Checkbox '${label}' cannot be clicked since it is ${state}`,
-    CHECKBOX_CANNOT_BE_CHANGED : ( label, state ) =>
-        `Checkbox '${label}' cannot be changed since it is ${state}`,
-    CHECKBOX_CANNOT_BE_BLURED : ( label, state ) =>
-        `Checkbox '${label}' cannot have blur since it is ${state}`,
-    CHECKBOX_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `Checkbox '${label}' cannot have focus since it is ${state}`,
-    CHECKBOX_CANNOT_MOUSEOVER : ( label, state ) =>
-        `Checkbox '${label}' cannot have onMouseOver since it is ${state}`,
-    CHECKBOX_CANNOT_MOUSEOUT : ( label, state ) =>
-        `Checkbox '${label}' cannot have onMouseOut since it is ${state}`,
+const ERR = {
+    CHECKBOX_ERR : ( label, event, state ) =>
+        `Checkbox '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class CheckboxDriver
@@ -29,14 +19,12 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_BLURED( label, 'disabled' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_BLURED( label, 'read only' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'read only' ) );
         }
 
         this.control.simulate( 'blur' );
@@ -50,14 +38,12 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_FOCUSED( label, 'read only' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'read only' ) );
         }
 
         this.control.simulate( 'focus' );
@@ -72,14 +58,12 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CHANGED( label, 'disabled' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CHANGED( label, 'read only' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'read only' ) );
         }
 
         node.checked = !node.checked;
@@ -94,14 +78,12 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CLICKED( label, 'disabled' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_BE_CLICKED( label, 'read only' ) );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'read only' ) );
         }
 
         this.control.simulate( 'click' );
@@ -115,8 +97,8 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_MOUSEOVER( label, 'disabled' ) );
+            throw new Error( ERR
+                .CHECKBOX_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -130,8 +112,8 @@ export default class CheckboxDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CHECKBOX_CANNOT_MOUSEOUT( label, 'disabled' ) );
+            throw new Error( ERR
+                .CHECKBOX_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

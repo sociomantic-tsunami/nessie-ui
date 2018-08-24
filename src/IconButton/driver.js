@@ -1,14 +1,6 @@
-const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Button '${label}' cannot be clicked since it is ${state}`,
-    BUTTON_CANNOT_BE_BLURED : ( label, state ) =>
-        `Button '${label}' cannot have blur since it is ${state}`,
-    BUTTON_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `Button '${label}' cannot have focus since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOVER : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOver since it is ${state}`,
-    BUTTON_CANNOT_MOUSEOUT : ( label, state ) =>
-        `Button '${label}' cannot have onMouseOut since it is ${state}`,
+const ERR = {
+    ICONBUTTON_ERR : ( label, event, state ) =>
+        `Button '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class IconButtonDriver
@@ -27,20 +19,20 @@ export default class IconButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'disabled' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'click', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'read only' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'click', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'click', 'loading' ) );
         }
 
         this.button.simulate( 'click' );
@@ -54,14 +46,14 @@ export default class IconButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOVER( label, 'disabled' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOVER( label, 'loading' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'mouseOver', 'loading' ) );
         }
 
         this.button.simulate( 'mouseenter' );
@@ -75,14 +67,14 @@ export default class IconButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOUT( label, 'disabled' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_MOUSEOUT( label, 'loading' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'mouseOut', 'loading' ) );
         }
 
         this.button.simulate( 'mouseleave' );
@@ -96,20 +88,18 @@ export default class IconButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+            throw new Error( ERR.ICONBUTTON_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'read only' ) );
+            throw new Error( ERR
+                .ICONBUTTON_ERR( label, 'focus', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_FOCUSED( label, 'loading' ) );
+            throw new Error( ERR.ICONBUTTON_ERR( label, 'focus', 'loading' ) );
         }
 
         this.button.simulate( 'focus' );
@@ -123,20 +113,17 @@ export default class IconButtonDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'disabled' ) );
+            throw new Error( ERR.ICONBUTTON_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'read only' ) );
+            throw new Error( ERR.ICONBUTTON_ERR( label, 'blur', 'read only' ) );
         }
 
         if ( props.isLoading )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_BLURED( label, 'loading' ) );
+            throw new Error( ERR.ICONBUTTON_ERR( label, 'blur', 'loading' ) );
         }
 
         this.button.simulate( 'blur' );

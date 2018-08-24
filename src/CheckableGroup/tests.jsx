@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React            from 'react';
 import { mount }        from 'enzyme';
@@ -45,7 +45,7 @@ describe( 'CheckableGroupDriver', () =>
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-be changed since it is disabled';
+simulate change since it is disabled';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -78,7 +78,7 @@ be changed since it is disabled';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-be changed since it is read only';
+simulate change since it is read only';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -116,60 +116,6 @@ be changed since it is read only';
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-have onMouseOver since it is disabled';
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOver when isDisabled', () =>
-            {
-                const onMouseOver = jest.fn();
-                wrapper.setProps( {
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                    onMouseOver,
-                } );
-
-                expect( () => driver.mouseOver() );
-                expect( onMouseOver ).not.toBeCalled();
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-have onMouseOver since it is read only';
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOver when isReadOnly', () =>
-            {
-                const mouseOver = jest.fn();
-                wrapper.setProps( {
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                    mouseOver,
-                } );
-
-                expect( () => driver.mouseOver() );
-                expect( mouseOver ).not.toBeCalled();
-            } );
-        } );
     } );
 
 
@@ -183,60 +129,6 @@ have onMouseOver since it is read only';
             driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-have onMouseOut since it is disabled';
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isDisabled', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( {
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                    onMouseOut,
-                } );
-
-                expect( () => driver.mouseOut() );
-                expect( onMouseOut ).not.toBeCalled();
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-have onMouseOut since it is read only';
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isReadOnly', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( {
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                    onMouseOut,
-                } );
-
-                expect( () => driver.mouseOut() );
-                expect( onMouseOut ).not.toBeCalled();
-            } );
         } );
     } );
 } );

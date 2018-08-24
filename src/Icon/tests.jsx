@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
@@ -57,7 +57,8 @@ describe( 'IconDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOver because it is disabled';
+                const expectedError =
+                    'Icon cannot simulate mouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -97,7 +98,8 @@ describe( 'IconDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOut because it is disabled';
+                const expectedError =
+                    'Icon cannot simulate mouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

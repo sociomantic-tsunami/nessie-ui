@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React          from 'react';
 import { mount }      from 'enzyme';
@@ -339,7 +339,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t blur since it is disabled';
+                    'InputField cannot simulate blur since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -367,7 +367,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t blur since it is read only';
+                    'InputField cannot simulate blur since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -408,7 +408,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t focus since it is disabled';
+                    'InputField cannot simulate focus since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -436,7 +436,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t focus since it is read only';
+                    'InputField cannot simulate focus since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -477,7 +477,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t click since it is disabled';
+                    'InputField cannot simulate click since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -505,7 +505,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t click since it is read only';
+                    'InputField cannot simulate click since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
@@ -546,7 +546,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyPress since it is disabled';
+                    'InputField cannot simulate keyPress since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -574,7 +574,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyPress since it is read only';
+                    'InputField cannot simulate keyPress since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -615,7 +615,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyDown since it is disabled';
+                    'InputField cannot simulate keyDown since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -643,7 +643,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyDown since it is read only';
+                    'InputField cannot simulate keyDown since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyDown() ).toThrow( expectedError );
@@ -684,7 +684,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyUp since it is disabled';
+                    'InputField cannot simulate keyUp since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
@@ -712,7 +712,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t keyUp since it is read only';
+                    'InputField cannot simulate keyUp since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.keyUp() ).toThrow( expectedError );
@@ -753,7 +753,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t mouseOver since it is disabled';
+                    'InputField cannot simulate mouseOver since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -780,8 +780,8 @@ describe( 'InputFieldDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError =
-                    'InputField can\'t mouseOver since it is read only';
+                const expectedError = 'InputField cannot simulate mouseOver \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -822,7 +822,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'InputField can\'t mouseOut since it is disabled';
+                    'InputField cannot simulate mouseOut since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -850,7 +850,7 @@ describe( 'InputFieldDriver', () =>
             test( 'throws the expected error when isReadOnly', () =>
             {
                 const expectedError =
-                    'InputField can\'t mouseOut since it is read only';
+                    'InputField cannot simulate mouseOut since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

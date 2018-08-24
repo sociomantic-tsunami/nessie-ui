@@ -1,12 +1,6 @@
-const ERRORS = {
-    CANNOT_MOUSEOVER : () =>
-        'Cannot mouseOver because it is disabled',
-    CANNOT_MOUSEOUT : () =>
-        'Cannot mouseOut because it is disabled',
-    CANNOT_MOUSEOVER_ICON : () =>
-        'Cannot mouseOverIcon because it is disabled',
-    CANNOT_MOUSEOUT_ICON : () =>
-        'Cannot mouseOutIcon because it is disabled',
+const ERR = {
+    ICONWITHTOOLTIP_ERR : ( event ) =>
+        `IconWithTooltip cannot simulate ${event} because it is disabled`,
 };
 
 export default class IconWithTooltipDriver
@@ -22,7 +16,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOVER_ICON() );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOverIcon' ) );
         }
 
         this.tooltip.simulate( 'mouseenter' );
@@ -33,7 +27,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOUT_ICON() );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOutIcon' ) );
         }
 
         this.tooltip.simulate( 'mouseleave' );
@@ -44,7 +38,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOVER() );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOver' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -55,7 +49,7 @@ export default class IconWithTooltipDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERRORS.CANNOT_MOUSEOUT() );
+            throw new Error( ERR.ICONWITHTOOLTIP_ERR( 'mouseOut' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );

@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React                from 'react';
 import { shallow, mount }   from 'enzyme';
@@ -97,7 +97,7 @@ describe( 'FieldsetDriver', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Cannot trigger onMouseOver because it is disabled';
+                    'Fieldset cannot simulate mouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -138,7 +138,7 @@ describe( 'FieldsetDriver', () =>
             test( 'should throw the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'Cannot trigger onMouseOut because it is disabled';
+                    'Fieldset cannot simulate mouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );

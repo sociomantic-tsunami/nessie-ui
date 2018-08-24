@@ -1,6 +1,6 @@
 const ERR = {
-    INPUTFIELD_ERROR : ( doWhat, state ) =>
-        `InputField can't ${doWhat} since it is ${state}`,
+    INPUTFIELD_ERROR : ( event, state ) =>
+        `InputField cannot simulate ${event} since it is ${state}`,
 };
 
 export default class InputFieldDriver

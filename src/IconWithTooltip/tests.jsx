@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React                from 'react';
 import { mount, shallow }   from 'enzyme';
@@ -125,7 +125,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOver because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOver because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOver() ).toThrow( expectedError );
@@ -165,7 +166,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'Cannot mouseOut because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOut because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOut() ).toThrow( expectedError );
@@ -205,8 +207,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'Cannot mouseOverIcon because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOverIcon because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
@@ -246,8 +248,8 @@ describe( 'IconWithTooltipDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError =
-                    'Cannot mouseOutIcon because it is disabled';
+                const expectedError = 'IconWithTooltip cannot simulate \
+mouseOutIcon because it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.mouseOutIcon() ).toThrow( expectedError );

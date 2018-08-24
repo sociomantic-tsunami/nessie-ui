@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React     from 'react';
 import { mount } from 'enzyme';
@@ -22,17 +22,13 @@ describe( 'TooltipDriver', () =>
         test( 'should fire onMouseOver event', () =>
         {
             const onMouseOverHandler = jest.fn();
-            const onMouseOutHandler = jest.fn();
             wrapper.setProps( {
                 message     : 'Tekeli-li!',
                 onMouseOver : onMouseOverHandler,
-                onMouseOut  : onMouseOutHandler,
             } );
 
             driver.mouseOver();
-
             expect( onMouseOverHandler ).toBeCalledTimes( 1 );
-            expect( onMouseOutHandler ).not.toBeCalled();
         } );
     } );
 
@@ -41,17 +37,13 @@ describe( 'TooltipDriver', () =>
     {
         test( 'should fire onMouseOut event', () =>
         {
-            const onMouseOverHandler = jest.fn();
             const onMouseOutHandler = jest.fn();
             wrapper.setProps( {
-                message     : 'Tekeli-li!',
-                onMouseOver : onMouseOverHandler,
-                onMouseOut  : onMouseOutHandler,
+                message    : 'Tekeli-li!',
+                onMouseOut : onMouseOutHandler,
             } );
 
             driver.mouseOut();
-
-            expect( onMouseOverHandler ).not.toBeCalled();
             expect( onMouseOutHandler ).toBeCalledTimes( 1 );
         } );
     } );
@@ -73,12 +65,11 @@ describe( 'TooltipDriver', () =>
 
         test( 'should throw an expected error when is not dismissable', () =>
         {
+            const expectedError = 'Tooltip cannot simulate clickClose since \
+it is not dismissable';
             wrapper.setProps( {
                 message : 'Sithis',
             } );
-
-            const expectedError =
-                'Input can\'t be clicked since it\'s not dismissable';
 
             expect( () => driver.clickClose() ).toThrow( expectedError );
         } );

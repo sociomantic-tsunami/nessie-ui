@@ -1,15 +1,7 @@
 /* global document */
-const ERRORS = {
-    CODEEDITOR_CANNOT_BE_CHANGED : ( label, state ) =>
-        `CodeEditor '${label}' cannot be changed since it is ${state}`,
-    CODEEDITOR_CANNOT_BE_BLURED : ( label, state ) =>
-        `CodeEditor '${label}' cannot have blur since it is ${state}`,
-    CODEEDITOR_CANNOT_BE_FOCUSED : ( label, state ) =>
-        `CodeEditor '${label}' cannot have focus since it is ${state}`,
-    CODEEDITOR_CANNOT_MOUSEOVER : ( label, state ) =>
-        `CodeEditor '${label}' cannot have onMouseOver since it is ${state}`,
-    CODEEDITOR_CANNOT_MOUSEOUT : ( label, state ) =>
-        `CodeEditor '${label}' cannot have onMouseOut since it is ${state}`,
+const ERR = {
+    CODEEDITOR_ERR : ( label, event, state ) =>
+        `CodeEditor '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
 export default class CodeEditorDriver
@@ -32,14 +24,13 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_FOCUSED( label, 'disabled' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_FOCUSED( label, 'read only' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'focus', 'read only' ) );
         }
 
         this.control.focus();
@@ -53,14 +44,12 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_BLURED( label, 'disabled' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_BLURED( label, 'read only' ) );
+            throw new Error( ERR.CODEEDITOR_ERR( label, 'blur', 'read only' ) );
         }
 
         if ( this.control.hasFocus() && Boolean( document ) &&
@@ -79,14 +68,14 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_CHANGED( label, 'disabled' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_BE_CHANGED( label, 'read only' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'change', 'read only' ) );
         }
 
         this.control.setValue( val );
@@ -101,14 +90,14 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_MOUSEOVER( label, 'disabled' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_MOUSEOVER( label, 'read only' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'mouseOver', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -122,14 +111,14 @@ export default class CodeEditorDriver
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_MOUSEOUT( label, 'disabled' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERRORS
-                .CODEEDITOR_CANNOT_MOUSEOUT( label, 'read only' ) );
+            throw new Error( ERR
+                .CODEEDITOR_ERR( label, 'mouseOut', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );
