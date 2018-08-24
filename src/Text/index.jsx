@@ -110,11 +110,15 @@ Text.propTypes =
     */
     variant : PropTypes.oneOf( [
         'Light',
+        'LightIt',
         'Regular',
         'RegularIt',
         'SemiBold',
+        'SemiBoldIt',
         'Bold',
+        'BoldIt',
         'ExtraBold',
+        'ExtraBoldIt',
     ] ),
 };
 

@@ -107,6 +107,11 @@
     @extend %Nessie-Light;
 }
 
+.variant__LightIt
+{
+    @extend %Nessie-LightIt;
+}
+
 .variant__Regular
 {
     @extend %Nessie-Regular;
@@ -122,9 +127,29 @@
     @extend %Nessie-SemiBold;
 }
 
+.variant__SemiBoldIt
+{
+    @extend %Nessie-SemiBoldIt;
+}
+
 .variant__Bold
 {
     @extend %Nessie-Bold;
+}
+
+.variant__BoldIt
+{
+    @extend %Nessie-BoldIt;
+}
+
+.variant__ExtraBold
+{
+    @extend %Nessie-ExtraBold;
+}
+
+.variant__ExtraBoldIt
+{
+    @extend %Nessie-ExtraBoldIt;
 }
 
 /* TEXT ALIGN */
