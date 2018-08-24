@@ -23,11 +23,6 @@ describe( 'Icon', () =>
     {
         expect( instance.props.size ).toBe( 'S' );
     } );
-
-    test( 'should have light theme by default', () =>
-    {
-        expect( instance.props.theme ).toBe( 'light' );
-    } );
 } );
 
 

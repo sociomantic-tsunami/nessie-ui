@@ -9,39 +9,22 @@ const Icon = ( {
     children,
     className,
     cssMap,
-    forceHover,
-    isDisabled,
     label,
     onMouseOut,
     onMouseOver,
+    role,
     size,
-    theme,
     type,
-} ) =>
-{
-    let xLink;
+} ) => (
+    <svg
+        aria-label   = { children || label }
+        className    = { buildClassName( className, cssMap, { role, size } ) }
+        onMouseEnter = { onMouseOver }
+        onMouseLeave = { onMouseOut }>
+        { ( type !== 'none' ) && <use xlinkHref = { `#icon__${type}` } /> }
+    </svg>
+);
 
-    if ( type !== 'none' )
-    {
-        xLink = `#icon__${type}`;
-    }
-
-    return (
-        <svg
-            aria-label   = { children || label }
-            className = { buildClassName( className, cssMap, {
-                disabled    : isDisabled,
-                fakeHovered : !isDisabled && forceHover,
-                size,
-                theme,
-                type,
-            } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { xLink && <use xlinkHref = { xLink } /> }
-        </svg>
-    );
-};
 
 Icon.propTypes =
 {
@@ -58,14 +41,6 @@ Icon.propTypes =
      */
     cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
-     * Display as hover when required from another component
-     */
-    forceHover  : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled  : PropTypes.bool,
-    /**
      * Icon label
      */
     label       : PropTypes.string,
@@ -78,19 +53,18 @@ Icon.propTypes =
      */
     onMouseOver : PropTypes.func,
     /**
+     *  Icon role
+     */
+    role        : PropTypes.oneOf( [
+        'default',
+        'critical',
+        'promoted',
+        'warning',
+    ] ),
+    /**
      *  Icon size
      */
-    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-    /**
-     *  Icon theme
-     */
-    theme       : PropTypes.oneOf( [
-        'light',
-        'dark',
-        'control',
-        'button',
-        'navigation',
-    ] ),
+    size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
     /**
      *  Icon to show
      */
@@ -151,13 +125,11 @@ Icon.defaultProps =
     children    : undefined,
     className   : undefined,
     cssMap      : styles,
-    forceHover  : false,
-    isDisabled  : false,
     label       : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
+    role        : 'default',
     size        : 'S',
-    theme       : 'light',
     type        : 'none',
 };
 
