@@ -17,7 +17,7 @@
         justify-content:    center;
         align-items:        center;
         box-sizing:         border-box;
-        height:             40px;
+        height:             var( --spacing-5 );
         text-align:         center;
     }
 
@@ -42,7 +42,7 @@
     {
         outline:    none;
 
-        box-shadow:       0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
 
         .flexContainer
         {
@@ -129,6 +129,7 @@
 {
     .flexContainer
     {
+        height:         var( --spacing-3 );
         border:         1px solid transparent;
         border-radius:  2px;
         padding:        0 var( --spacing-1 );
