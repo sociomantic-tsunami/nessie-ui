@@ -34,19 +34,33 @@
 
 .borders__cells
 {
-    .row .cell
+    .row
     {
         border: 1px solid color( var( --PC-GREY ) a(12%) );
 
-        + .cell
+        + .row
         {
-            border-left: none;
+            border-top: none;
+        }
+
+        .cell
+        {
+            &:not(:last-child)
+            {
+                border-right: 1px solid color( var( --PC-GREY ) a(12%) );
+            }
+
+            + .cell
+            {
+                border-left: none;
+            }
         }
     }
 }
 
 .borders__columnDivider
 {
+    .cell,
     .row .cell
     {
         border-right: 1px solid color( var( --PC-GREY ) a(12%) );
@@ -78,7 +92,8 @@
 
 .borders__rowDivider
 {
-    .row
+    .row:not(:last-child),
+    .headerRow
     {
         border-bottom: 1px solid color( var( --PC-GREY ) a(12%) );
 
