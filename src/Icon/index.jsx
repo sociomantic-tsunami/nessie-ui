@@ -10,17 +10,13 @@ const Icon = ( {
     className,
     cssMap,
     label,
-    onMouseOut,
-    onMouseOver,
     role,
     size,
     type,
 } ) => (
     <svg
-        aria-label   = { children || label }
-        className    = { buildClassName( className, cssMap, { role, size } ) }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }>
+        aria-label = { children || label }
+        className  = { buildClassName( className, cssMap, { role, size } ) }>
         { ( type !== 'none' ) && <use xlinkHref = { `#icon__${type}` } /> }
     </svg>
 );
@@ -31,31 +27,23 @@ Icon.propTypes =
     /**
      * Icon label (overrides label prop)
      */
-    children    : PropTypes.node,
+    children  : PropTypes.string,
     /**
      *  CSS class name
      */
-    className   : PropTypes.string,
+    className : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
     /**
      * Icon label
      */
-    label       : PropTypes.string,
-    /**
-     *  onMouseOut callback function: ( e ) = { ... }
-     */
-    onMouseOut  : PropTypes.func,
-    /**
-     *  onMouseOver callback function: ( e ) = { ... }
-     */
-    onMouseOver : PropTypes.func,
+    label     : PropTypes.string,
     /**
      *  Icon role
      */
-    role        : PropTypes.oneOf( [
+    role      : PropTypes.oneOf( [
         'default',
         'critical',
         'promoted',
@@ -122,15 +110,13 @@ Icon.propTypes =
 
 Icon.defaultProps =
 {
-    children    : undefined,
-    className   : undefined,
-    cssMap      : styles,
-    label       : undefined,
-    onMouseOut  : undefined,
-    onMouseOver : undefined,
-    role        : 'default',
-    size        : 'S',
-    type        : 'none',
+    children  : undefined,
+    className : undefined,
+    cssMap    : styles,
+    label     : undefined,
+    role      : 'default',
+    size      : 'S',
+    type      : 'none',
 };
 
 export default Icon;
