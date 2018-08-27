@@ -75,7 +75,7 @@ export default class CodeEditor extends Component
          */
         value                 : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         onChange              : PropTypes.func,
         /**
@@ -356,8 +356,8 @@ export default class CodeEditor extends Component
             <InputContainer
                 { ...props }
                 className = { buildClassName( className, cssMap, {
-                    error       : !isDisabled && hasError,
                     disabled    : isDisabled,
+                    error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
                 } ) }>
                 <div
@@ -368,9 +368,12 @@ export default class CodeEditor extends Component
                         maxHeight : String( maxHeight ),
                     } }>
                     <textarea
-                        ref          = { this.handleTextareaRef }
-                        defaultValue = { value }
-                        autoComplete = "off" />
+                        autoCapitalize = "off"
+                        autoComplete   = "off"
+                        autoCorrect    = "off"
+                        defaultValue   = { value }
+                        ref            = { this.handleTextareaRef }
+                        spellCheck     = { false } />
                 </div>
             </InputContainer>
         );

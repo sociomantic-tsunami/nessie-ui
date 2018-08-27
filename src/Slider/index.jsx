@@ -15,7 +15,7 @@ export default class Slider extends React.Component
         */
         label                 : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         id                    : PropTypes.string,
         /**
@@ -654,8 +654,8 @@ export default class Slider extends React.Component
         if ( stepLabelStart || stepLabelEnd )
         {
             return [
-                ...stepLabels,
                 { 'stepLabel': stepLabelStart, 'step': minValue },
+                ...stepLabels,
                 { 'stepLabel': stepLabelEnd, 'step': maxValue },
             ];
         }
@@ -782,16 +782,15 @@ export default class Slider extends React.Component
         );
 
         return (
-
             <div
-                className    = { buildClassName( className, cssMap, {
-                    error               : !isDisabled && hasError,
+                className = { buildClassName( className, cssMap, {
                     disabled            : isDisabled,
+                    error               : !isDisabled && hasError,
+                    grabbing            : this.state.isGrabbing,
                     handleLabelPosition : hasHandleLabels &&
-                                            handleLabelPosition,
+                        handleLabelPosition,
                     hasHandleLabels,
                     orientation,
-                    grabbing : this.state.isGrabbing,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
@@ -824,7 +823,8 @@ export default class Slider extends React.Component
 
                 <div className = { cssMap.trackContainer }>
                     { ( stepLabelsTrack && !stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
+                        stepLabelsTrack
+                    }
                     <div
                         aria-hidden
                         className    = { cssMap.track }
@@ -833,18 +833,14 @@ export default class Slider extends React.Component
                         onMouseDown  = { this.handleDown }
                         onTouchStart = { this.handleDown }>
                         { trackFillMarkUp }
-
-                        { values.map( ( val, i ) =>
-                            buildHandle( val, i ) )
-                        }
-
+                        { values.map( buildHandle ) }
                         { ticksMarkUp }
                     </div>
                     { ( stepLabelsTrack && stepLabelsTrackEnd ) &&
-                                stepLabelsTrack }
+                        stepLabelsTrack
+                    }
                 </div>
             </div>
-
         );
     }
 }

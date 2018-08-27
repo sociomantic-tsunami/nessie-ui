@@ -15,7 +15,7 @@ const SpriteMap = ( {
 SpriteMap.propTypes =
 {
     /**
-     * HTML id attribute (overwrite default)
+     * HTML id attribute
      */
     id             : PropTypes.string,
     /**
