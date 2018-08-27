@@ -4,7 +4,7 @@ import PropTypes          from 'prop-types';
 import { buildClassName } from '../utils';
 import styles             from './tabs.css';
 import TabButton          from '../TabButton';
-
+import ScrollBox          from '../ScrollBox';
 
 const Tabs = ( {
     activeTabIndex,
@@ -38,14 +38,18 @@ in the next major release. Please use ‘onClickTab’ instead.' );
                 isDisabled = { isDisabled || isActive }
                 key        = { label || tabIndex }
                 label      = { label }
-                onClick    = { e => clickHandler && clickHandler( e,
-                    { activeTabIndex: tabIndex } ) }
+                onClick    = { e => clickHandler && clickHandler(
+                    e,
+                    { activeTabIndex: tabIndex },
+                ) }
                 tabIndex = { tabIndex } />
         );
     } );
 
     return (
-        <div className = { buildClassName( className, cssMap ) }>
+        <ScrollBox
+            className = { buildClassName( className, cssMap ) }
+            padding = "S">
             <div className = { cssMap.header }>
                 <div className = { cssMap.tabs }>
                     { tabButtons }
@@ -59,7 +63,7 @@ in the next major release. Please use ‘onClickTab’ instead.' );
             <div className = { cssMap.content }>
                 { tabs[ activeTabIndex ] }
             </div>
-        </div>
+        </ScrollBox>
     );
 };
 
