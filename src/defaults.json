@@ -320,13 +320,6 @@
         "placeholder"  : "Your full name",
         "errorMessage" : "Please enter a valid name"
     },
-    "TextInputWithDropdown" :
-    {
-        "label"            : "How long?",
-        "inputPlaceholder" : "number",
-        "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
-        "errorMessage"     : "That’s too long!"
-    },
     "TextInputWithIcon" :
     {
         "label"            : "Name",

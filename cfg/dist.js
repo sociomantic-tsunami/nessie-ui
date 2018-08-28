@@ -16,6 +16,9 @@ const distConfig = merge( {}, baseConfig, {
         'prop-types'    : 'prop-types',
         react           : 'react',
         'react-dom'     : 'react-dom',
+        codemirror      : 'CodeMirror',
+        flounder        : 'Flounder',
+        addons          : 'nessie-ui/dist/addons',
     },
     mode : 'production',
 } );
@@ -46,6 +49,8 @@ const displayComponents = merge( {}, distConfig, {
         'prop-types' : 'PropTypes',
         react        : 'React',
         'react-dom'  : 'ReactDOM',
+        codemirror   : 'CodeMirror',
+        flounder     : 'Flounder'
     },
     plugins : [
         new MiniCssExtractPlugin( {

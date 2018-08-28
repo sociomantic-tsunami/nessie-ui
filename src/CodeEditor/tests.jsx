@@ -24,7 +24,7 @@ describe( 'CodeEditor', () =>
 
     describe( 'render()', () =>
     {
-      
+
 
         test( 'should contain exactly one textArea', () =>
         {

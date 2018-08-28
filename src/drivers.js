@@ -5,7 +5,6 @@ import {
     CheckableGroup,
     Checkbox,
     CheckboxGroup,
-    CodeEditor,
     Column,
     ComboBox,
     DatePicker,
@@ -13,7 +12,6 @@ import {
     DragNDrop,
     Dropdown,
     Fieldset,
-    FlounderDropdown,
     Grid,
     H1,
     H2,
@@ -62,13 +60,14 @@ import {
     Text,
     TextArea,
     TextInput,
-    TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
     ToggleButton,
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
+
+import { CodeEditor, FlounderDropdown } from 'addons';
 
 import ButtonDriver         from './Button/driver';
 import CheckableGroupDriver from './CheckableGroup/driver';
@@ -363,10 +362,6 @@ const drivers =
     {
         Component : TextInput,
         Driver    : InputComponentDriver,
-    },
-    {
-        Component : TextInputWithDropdown,
-        Driver    : InputComponentDriver
     },
     {
         Component : TextInputWithIcon,

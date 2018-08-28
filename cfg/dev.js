@@ -18,6 +18,8 @@ module.exports = merge( {}, baseConfig, {
         'prop-types' : 'PropTypes',
         react        : 'React',
         'react-dom'  : 'ReactDOM',
+        codemirror   : 'CodeMirror',
+        flounder     : 'Flounder'
     },
     mode    : 'development',
     plugins : [
