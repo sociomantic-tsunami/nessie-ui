@@ -20,7 +20,6 @@
         padding:   0;
 
         border-radius:          2px;
-        border:                 1px solid transparent;
         border-bottom-color:    var( --PC-GREY--L70 );
     }
 
@@ -44,12 +43,15 @@
     line-height:    var( --line-height-s );
     padding-left:   var( --spacing-1 );
     padding-right:  var( --spacing-1 );
+
+    margin-bottom:  -1px;
 }
 
 .active
 {
     color:          var( --PC-BLUE );
     border-bottom:  1px solid var( --PC-BLUE );
+    margin-bottom:  -1px;
     pointer-events: none;
     cursor:         default;
 }

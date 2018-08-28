@@ -11,9 +11,9 @@
     flex-direction: row;
     align-items:    flex-end;
 
-    border-bottom:  solid 1px var( --PC-GREY--L70 );
+    /* border-bottom:  solid 1px var( --PC-GREY--L70 ); */
 
-    margin-bottom:	var( --spacing-2 );
+    margin-bottom:	0;
 }
 
 .tabs
@@ -21,6 +21,8 @@
     display:        flex;
     flex-direction: row;
     flex-grow:      1;
+
+    border-bottom:  solid 1px var( --PC-GREY--L70 );
 
     margin-bottom:  -1px;
 }

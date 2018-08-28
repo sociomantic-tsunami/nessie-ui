@@ -47,10 +47,9 @@ in the next major release. Please use ‘onClickTab’ instead.' );
     } );
 
     return (
-        <ScrollBox
-            className = { buildClassName( className, cssMap ) }
-            padding = "S">
-            <div className = { cssMap.header }>
+        <div
+            className = { buildClassName( className, cssMap ) }>
+            <ScrollBox className = { cssMap.header } scroll = "horizontal">
                 <div className = { cssMap.tabs }>
                     { tabButtons }
                 </div>
@@ -59,11 +58,11 @@ in the next major release. Please use ‘onClickTab’ instead.' );
                         { secondaryControls }
                     </div>
                 }
-            </div>
+            </ScrollBox>
             <div className = { cssMap.content }>
                 { tabs[ activeTabIndex ] }
             </div>
-        </ScrollBox>
+        </div>
     );
 };
 
