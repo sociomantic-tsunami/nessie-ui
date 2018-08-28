@@ -48,7 +48,7 @@ export default class TagInput extends Component
          */
         hasError              : PropTypes.bool,
         /**
-         *  HTML id attribute (overwrite default)
+         *  HTML id attribute
          */
         id                    : PropTypes.string,
         /**

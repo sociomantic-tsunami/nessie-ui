@@ -5,8 +5,7 @@
     },
     "Card" :
     {
-        "children" : "{<TextInput label='Your name'/>}",
-        "padding"  : "S"
+        "children" : "{<TextInput label='Your name'/>}"
     },
     "CheckableGroup" :
     {
@@ -269,7 +268,7 @@
     },
     "StatusIndicator" :
     {
-        "label" :  "Deactivated"
+        "label" :  "Active"
     },
     "Tab" :
     {
