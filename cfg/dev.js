@@ -11,15 +11,12 @@ module.exports = merge( {}, baseConfig, {
     output : {
         filename      : 'displayComponents.js',
         library       : 'DisplayComponents',
-        libraryTarget : 'window'
+        libraryTarget : 'window',
     },
 
     externals : {
         'prop-types' : 'PropTypes',
         react        : 'React',
-        'react-dom'  : 'ReactDOM',
-        codemirror   : 'CodeMirror',
-        flounder     : 'Flounder'
     },
     mode    : 'development',
     plugins : [

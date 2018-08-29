@@ -10,16 +10,13 @@ const distConfig = merge( {}, baseConfig, {
     output : { libraryTarget: 'commonjs2' },
 
     devtool   : 'source-map',
-    externals : {
-        componentDriver : 'nessie-ui/dist/componentDriver',
-        'nessie-ui'     : 'nessie-ui',
-        'prop-types'    : 'prop-types',
-        react           : 'react',
-        'react-dom'     : 'react-dom',
-        codemirror      : 'CodeMirror',
-        flounder        : 'Flounder',
-        addons          : 'nessie-ui/dist/addons',
-    },
+    externals : [
+        'prop-types',
+        'react',
+        /^codemirror(\/.+)?$/,
+        /^flounder(\/.+)?$/,
+        /^nessie-ui(\/.+)?$/,
+    ],
     mode : 'production',
 } );
 
@@ -37,27 +34,9 @@ const addons = merge( {}, distConfig, {
     ],
 } );
 
-const displayComponents = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : {
-        filename      : 'displayComponents.js',
-        library       : 'DisplayComponents',
-        libraryTarget : 'window'
-    },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-        codemirror   : 'CodeMirror',
-        flounder     : 'Flounder'
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
+const componentDriver = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/Testing/index.js' ),
+    output : { filename: 'componentDriver.js' },
 } );
 
 const components = merge( {}, distConfig, {
@@ -72,11 +51,6 @@ const components = merge( {}, distConfig, {
     ],
 } );
 
-const componentDriver = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/Testing/index.js' ),
-    output : { filename: 'componentDriver.js' },
-} );
-
 const driverSuite = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/drivers.js' ),
     output : { filename: 'driverSuite.js' },
@@ -85,8 +59,7 @@ const driverSuite = merge( {}, distConfig, {
 
 module.exports = [
     addons,
-    components,
     componentDriver,
-    displayComponents,
+    components,
     driverSuite,
 ];
