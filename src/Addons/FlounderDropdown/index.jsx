@@ -5,14 +5,13 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import Flounder             from 'flounder/src/core/flounder';
 
-import { buildClassName }   from '../utils';
-
-import InputContainer       from '../proto/InputContainer';
-import H1                   from '../H1';
-import H2                   from '../H2';
-import H3                   from '../H3';
-import H4                   from '../H4';
+import H1                   from '../../H1';
+import H2                   from '../../H2';
+import H3                   from '../../H3';
+import H4                   from '../../H4';
+import InputContainer       from '../../proto/InputContainer';
 import styles               from './flounderDropdown.css';
+import { buildClassName }   from '../../utils';
 import {
     addExtraClasses,
     mapCssToFlounder,
@@ -23,7 +22,7 @@ import {
 
 
 const headers = {
-    1 : H1, 2 : H2, 3 : H3, 4 : H4
+    1 : H1, 2 : H2, 3 : H3, 4 : H4,
 };
 
 const rebuildOnProps = [
@@ -77,8 +76,8 @@ export default class FlounderDropdown extends Component
                 description : PropTypes.string,
                 disabled    : PropTypes.bool,
                 icon        : PropTypes.string,
-                extraClass  : PropTypes.string
-            } )
+                extraClass  : PropTypes.string,
+            } ),
         ] ) ),
         /**
          *  Display the dropdown as a header (H1-4)
@@ -114,14 +113,14 @@ export default class FlounderDropdown extends Component
          */
         defaultValue          : PropTypes.oneOfType( [
             PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string )
+            PropTypes.arrayOf( PropTypes.string ),
         ] ),
         /**
          *  Selected value(s)
          */
         value : PropTypes.oneOfType( [
             PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string )
+            PropTypes.arrayOf( PropTypes.string ),
         ] ),
         /**
          *  onChange callback function triggered when the selection is changed:
@@ -202,7 +201,7 @@ export default class FlounderDropdown extends Component
         icon                 : PropTypes.oneOf( [
             'arrow',
             'magnifier',
-            'none'
+            'none',
         ] ),
     };
 
@@ -226,7 +225,7 @@ export default class FlounderDropdown extends Component
         forceHover            : false,
         placeholder           : 'Please choose an option',
         icon                  : 'arrow',
-        cssMap                : styles
+        cssMap                : styles,
     };
 
     constructor( props )
@@ -336,7 +335,7 @@ export default class FlounderDropdown extends Component
 
             let data = addExtraClasses(
                 props.data,
-                props.cssMap.optionWithDescription
+                props.cssMap.optionWithDescription,
             );
 
             data = mapIconClassesToFlounder( data, props.cssMap );
@@ -359,7 +358,7 @@ export default class FlounderDropdown extends Component
                 onOpen               : props.onOpen,
                 openOnHover          : props.openOnHover,
                 placeholder          : props.placeholder || '',
-                search               : !props.isHeader && props.search
+                search               : !props.isHeader && props.search,
             };
 
             const keepOpen = this.isOpen();

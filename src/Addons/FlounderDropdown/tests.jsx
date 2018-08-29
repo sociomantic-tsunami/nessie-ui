@@ -3,8 +3,7 @@
 
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
-
-import InputContainer                   from '../proto/InputContainer';
+import { InputContainer }               from 'nessie-ui';
 
 
 import FlounderDropdown                 from './index';
