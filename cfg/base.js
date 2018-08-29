@@ -10,7 +10,7 @@ module.exports = {
     output  : { path: path.join( __dirname, '../dist' ) },
     resolve : {
         extensions : [ '.js', '.json', '.jsx' ],
-        modules    : [ path.join( __dirname, '../node_modules' ) ]
+        modules    : [ path.join( __dirname, '../node_modules' ) ],
     },
     module : {
         rules : [
@@ -29,7 +29,7 @@ module.exports = {
                             importLoaders : 1,
                             modules       : true,
                             localIdentName,
-                        }
+                        },
                     },
                     'postcss-loader',
                 ],
@@ -39,7 +39,7 @@ module.exports = {
                 use  : {
                     loader  : 'url-loader',
                     options : { limit: 8192 },
-                }
+                },
             },
             {
                 test : /\.svg$/,
@@ -48,14 +48,14 @@ module.exports = {
                     options :
                     {
                         limit    : 8192,
-                        mimetype : 'image/svg+xml'
-                    }
+                        mimetype : 'image/svg+xml',
+                    },
                 },
             },
             {
                 test : /\.html$/,
-                use  : 'raw-loader'
+                use  : 'raw-loader',
             },
-        ]
-    }
+        ],
+    },
 };

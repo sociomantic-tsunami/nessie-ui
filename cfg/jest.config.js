@@ -14,8 +14,8 @@ module.exports = {
     // versions of a module loaded (such as react).
     moduleDirectories :
     [
-        '<rootDir>/src',
-        '<rootDir>/node_modules'
+        '<rootDir>/node_modules',
+        '<rootDir>/src'
     ],
 
     // Tell jest explicitly where to search for source files
@@ -38,8 +38,9 @@ module.exports = {
         {},
         // Map module aliases to directories
         {
-            componentDriver : '<rootDir>/src/Testing/index',
-            'nessie-ui'     : '<rootDir>/src/index'
+            'nessie-ui'       : '<rootDir>/src/index',
+            'addons'          : '<rootDir>/src/addons',
+            'componentDriver' : '<rootDir>/src/Testing/index'
         },
         // Mock assets
         {
@@ -54,5 +55,5 @@ module.exports = {
     transformIgnorePatterns :
     [
         'node_modules/(?!flounder)'
-    ],
+    ]
 };

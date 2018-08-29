@@ -1,10 +1,9 @@
 import React                                from 'react';
 import PropTypes                            from 'prop-types';
 
+import Dropdown                             from '../../Dropdown';
 import styles                               from './withDropdown.css';
-import { buildClassName, buildDisplayName } from '../utils';
-
-import Dropdown                             from './index';
+import { buildClassName, buildDisplayName } from '../../utils';
 
 
 const withDropdown = Component =>
@@ -17,16 +16,16 @@ const withDropdown = Component =>
         onMouseOut,
         onMouseOver,
         wrapperRef,
-        ...componentProps,
+        ...componentProps
     } ) => (
         <div
-            ref       = { wrapperRef }
             className = { buildClassName( '', styles, {
                 open     : dropdownIsOpen,
                 position : dropdownPosition,
             } ) }
             onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            onMouseLeave = { onMouseOut }
+            ref          = { wrapperRef }>
             <Component { ...componentProps } />
             <Dropdown { ...dropdownProps } className = { styles.dropdown } />
         </div>

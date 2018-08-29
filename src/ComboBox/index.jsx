@@ -6,7 +6,7 @@ import PropTypes            from 'prop-types';
 import { ScrollBox, Text }  from '../index';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
-import withDropdown         from '../Dropdown/withDropdown';
+import withDropdown         from '../Addons/withDropdown';
 import { generateId }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
 import styles               from './comboBox.css';
