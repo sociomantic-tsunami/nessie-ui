@@ -20,12 +20,9 @@ describe( 'Button', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name Button', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'Button' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
     describe( 'render()', () =>
