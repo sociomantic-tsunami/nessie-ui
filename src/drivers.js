@@ -5,7 +5,6 @@ import {
     CheckableGroup,
     Checkbox,
     CheckboxGroup,
-    CodeEditor,
     Column,
     ComboBox,
     DatePicker,
@@ -13,7 +12,6 @@ import {
     DragNDrop,
     Dropdown,
     Fieldset,
-    FlounderDropdown,
     Grid,
     H1,
     H2,
@@ -62,24 +60,24 @@ import {
     Text,
     TextArea,
     TextInput,
-    TextInputWithDropdown,
     TextInputWithIcon,
     Tooltip,
     ToggleButton,
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
+import { CodeEditor, FlounderDropdown } from 'addons';
 
-import ButtonDriver         from './Button/driver';
-import CheckableGroupDriver from './CheckableGroup/driver';
-import CheckboxDriver       from './Checkbox/driver';
+import ButtonDriver                     from './Button/driver';
+import CheckableGroupDriver             from './CheckableGroup/driver';
+import CheckboxDriver                   from './Checkbox/driver';
 import ClickableComponentDriver
     from './Testing/CommonDrivers/clickableComponentDriver';
-import CodeEditorDriver       from './CodeEditor/driver';
+import CodeEditorDriver       from './Addons/CodeEditor/driver';
 import ComboBoxDriver         from './ComboBox/driver';
 import DatePickerDriver       from './DatePicker/driver';
 import DateTimeInputDriver    from './DateTimeInput/driver';
-import FlounderDropdownDriver from './FlounderDropdown/driver';
+import FlounderDropdownDriver from './Addons/FlounderDropdown/driver';
 import GridColumnDriver       from './Grid/driver';
 import IconDriver             from './Icon/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
@@ -150,23 +148,23 @@ const drivers =
     },
     {
         Component : DatePicker,
-        Driver    : DatePickerDriver
+        Driver    : DatePickerDriver,
     },
     {
         Component : DateTimeInput,
-        Driver    : DateTimeInputDriver
+        Driver    : DateTimeInputDriver,
     },
     {
         Component : DragNDrop,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : Dropdown,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : Fieldset,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : FlounderDropdown,
@@ -290,15 +288,15 @@ const drivers =
     },
     {
         Component : ScrollBar,
-        Driver    : ScrollBarDriver
+        Driver    : ScrollBarDriver,
     },
     {
         Component : ScrollBox,
-        Driver    : ScrollBoxDriver
+        Driver    : ScrollBoxDriver,
     },
     {
         Component : Section,
-        Driver    : SectionDriver
+        Driver    : SectionDriver,
     },
     {
         Component : Slider,
@@ -318,7 +316,7 @@ const drivers =
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : Tab,
@@ -350,7 +348,7 @@ const drivers =
     },
     {
         Component : TagInput,
-        Driver    : TagInputDriver
+        Driver    : TagInputDriver,
     },
     {
         Component : Text,
@@ -365,10 +363,6 @@ const drivers =
         Driver    : InputComponentDriver,
     },
     {
-        Component : TextInputWithDropdown,
-        Driver    : InputComponentDriver
-    },
-    {
         Component : TextInputWithIcon,
         Driver    : TextInputWithIconDriver,
     },
@@ -378,7 +372,7 @@ const drivers =
     },
     {
         Component : ToggleButton,
-        Driver    : ClickableComponentDriver
+        Driver    : ClickableComponentDriver,
     },
     {
         Component : Uploader,
@@ -387,14 +381,14 @@ const drivers =
     {
         Component : ValuedTextInput,
         Driver    : InputComponentDriver,
-    }
+    },
 ];
 
 export {
     ClickableComponentDriver,
     InputComponentDriver,
     SimpleComponentDriver,
-    WrapperDriver
+    WrapperDriver,
 };
 
 export default ComponentDriver.createDriverSuite( drivers );

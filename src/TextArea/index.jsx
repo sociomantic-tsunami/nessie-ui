@@ -28,7 +28,34 @@ const TextArea = ( {
 TextArea.propTypes =
 {
     /**
-     * Extra CSS class name
+     *  ARIA properties
+     */
+    aria : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.number,
+        PropTypes.string,
+    ] ) ),
+    /**
+     *  HTML attribute controlling input auto capitalize
+     */
+    autoCapitalize : PropTypes.oneOf( [
+        'on',
+        'off',
+        'none',
+        'sentences',
+        'words',
+        'characters',
+    ] ),
+    /**
+     *  HTML attribute controlling input auto complete
+     */
+    autoComplete          : PropTypes.string,
+    /**
+     *  HTML attribute controlling input auto correct (Safari-specific)
+     */
+    autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
+    /**
+     *  Extra CSS class name
      */
     className             : PropTypes.string,
     /**
@@ -36,29 +63,33 @@ TextArea.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Label text (string or JSX node)
+     *  Tooltip message text (string or JSX)
      */
-    label                 : PropTypes.node,
+    errorMessage          : PropTypes.node,
     /**
-     *  Label position
+     *  Error Tooltip is displayed
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    errorMessageIsVisible : PropTypes.bool,
     /**
-     *  Placeholder text
+    *   Error message position relative to the icon
+    */
+    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    /**
+     *  Display as hover when required from another component
      */
-    placeholder           : PropTypes.string,
+    forceHover            : PropTypes.bool,
     /**
-     *  Number of text input rows
+     *  Display as error/invalid
      */
-    rows                  : PropTypes.number,
+    hasError              : PropTypes.bool,
     /**
-      * Sets the text area to be vertically resizable
-      */
-    isResizable           : PropTypes.bool,
-    /**
-     *  Alignment of the input text
+     *  HTML id attribute
      */
-    textAlign             : PropTypes.oneOf( [ 'left', 'right' ] ),
+    id                    : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef              : PropTypes.func,
     /**
      *  Display as disabled
      */
@@ -68,33 +99,25 @@ TextArea.propTypes =
      */
     isReadOnly            : PropTypes.bool,
     /**
-     *  Display as error/invalid
+     * Sets the input to be vertically resizable
      */
-    hasError              : PropTypes.bool,
+    isResizable           : PropTypes.bool,
     /**
-     *  Error tooltip message text (string or JSX)
+     *  Label text (string or JSX node)
      */
-    errorMessage          : PropTypes.node,
+    label                 : PropTypes.node,
     /**
-     *  Error Tooltip is displayed
+     *  Label position
      */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-    *  Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
-    /**
-     * Input string value
-     */
-    value                 : PropTypes.string,
-    /**
-     * HTML id attribute (overwrite default)
-     */
-    id                    : PropTypes.string,
+    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  HTML name attribute
      */
     name                  : PropTypes.string,
+    /**
+     *  Blur callback function
+     */
+    onBlur                : PropTypes.func,
     /**
      *  Input change callback function
      */
@@ -104,33 +127,57 @@ TextArea.propTypes =
      */
     onClick               : PropTypes.func,
     /**
-     *  Input focus callback function
+     *  Focus callback function
      */
     onFocus               : PropTypes.func,
     /**
-     *  Input blur callback function
+     *  Key down callback function
      */
-    onBlur                : PropTypes.func,
+    onKeyDown             : PropTypes.func,
     /**
-     *  Input mouseOver callback function
+     *  Key press callback function
      */
-    onMouseOver           : PropTypes.func,
+    onKeyPress            : PropTypes.func,
     /**
-     *  Input mouseOut callback function
+     *  Key up callback function
+     */
+    onKeyUp               : PropTypes.func,
+    /**
+     *  Mouse out callback function
      */
     onMouseOut            : PropTypes.func,
     /**
-     * Display as hover when required from another component
+     *  Mouse over  callback function
      */
-    forceHover            : PropTypes.bool,
+    onMouseOver           : PropTypes.func,
     /**
-     * Callback that receives the native <textarea>: ( ref ) => { ... }
+     *  Placeholder text
      */
-    inputRef              : PropTypes.func,
+    placeholder           : PropTypes.string,
+    /**
+     *  Number of rows
+     */
+    rows                  : PropTypes.number,
+    /**
+     *  HTML attribute controlling input spell check
+     */
+    spellCheck            : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value                 : PropTypes.string,
 };
 
 TextArea.defaultProps =
 {
+    aria                  : undefined,
+    autoCapitalize        : undefined,
+    autoComplete          : undefined,
+    autoCorrect           : undefined,
     className             : undefined,
     cssMap                : styles,
     errorMessage          : undefined,
@@ -150,10 +197,14 @@ TextArea.defaultProps =
     onChange              : undefined,
     onClick               : undefined,
     onFocus               : undefined,
+    onKeyDown             : undefined,
+    onKeyPress            : undefined,
+    onKeyUp               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,
     placeholder           : undefined,
     rows                  : 3,
+    spellCheck            : undefined,
     textAlign             : 'left',
     value                 : '',
 };

@@ -2,17 +2,21 @@
 
 .default
 {
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+
     width:              auto;
+    height:             var( --spacing-3 );
 
-    padding:            8px 20px;
+    padding:            0 var( --spacing-1 );
 
-    border-radius:      16px;
+    border-radius:      calc( var( --spacing-3 ) / 2 );
 
     @extend %Nessie-Bold;
 
     font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
-    letter-spacing:     0.4px;
     text-align:         center;
 
     overflow:           hidden;

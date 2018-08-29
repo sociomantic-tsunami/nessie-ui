@@ -1,7 +1,7 @@
 import React                             from 'react';
 import PropTypes                         from 'prop-types';
 
-import { generateId, buildClassName }    from '../utils';
+import { generateId }                    from '../utils';
 import { Column, InputField, Row, Text } from '../index';
 import InputContainer                    from '../proto/InputContainer';
 
@@ -20,8 +20,8 @@ const DimensionsInput = ( {
     isReadOnly,
     label,
     labelPosition,
-    onChange,
     onBlur,
+    onChange,
     onFocus,
     onMouseOut,
     onMouseOver,
@@ -48,40 +48,52 @@ const DimensionsInput = ( {
             verticalAlign = "middle">
             <Column>
                 <InputField
-                    forceHover   = { forceHover }
-                    hasError     = { hasError }
-                    id           = { `${id}-width` }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnly }
-                    inputRef     = { widthInputRef }
-                    onChange     = { onChange }
-                    onBlur       = { onBlur }
-                    onFocus      = { onFocus }
-                    placeholder  = { widthPlaceholder }
-                    value        = { widthValue } />
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-width` }
+                    inputRef       = { widthInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { onBlur }
+                    onChange       = { onChange }
+                    onFocus        = { onFocus }
+                    placeholder    = { widthPlaceholder }
+                    spellCheck     = { false }
+                    value          = { widthValue } />
             </Column>
             <Column size = "content">
                 <Text>✕</Text>
             </Column>
             <Column>
                 <InputField
-                    forceHover   = { forceHover }
-                    hasError     = { hasError }
-                    id           = { `${id}-height` }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnly }
-                    inputRef     = { heightInputRef }
-                    onChange     = { onChange }
-                    onBlur       = { onBlur }
-                    onFocus      = { onFocus }
-                    placeholder  = { heightPlaceholder }
-                    value        = { heightValue } />
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-height` }
+                    inputRef       = { heightInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { onBlur }
+                    onChange       = { onChange }
+                    onFocus        = { onFocus }
+                    placeholder    = { heightPlaceholder }
+                    spellCheck     = { false }
+                    value          = { heightValue } />
             </Column>
         </Row>
     </InputContainer>
 );
 
 DimensionsInput.propTypes = {
+    /**
+     *  Extra CSS class name
+     */
+    className             : PropTypes.string,
     /**
      *  Tooltip message text (string or JSX)
      */
@@ -91,11 +103,11 @@ DimensionsInput.propTypes = {
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-     *  Error Tooltip position relative to error icon
-     */
+    *   Error message position relative to the icon
+    */
     errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
-     * Display as hover when required from another component
+     *  Display as hover when required from another component
      */
     forceHover            : PropTypes.bool,
     /**
@@ -116,19 +128,19 @@ DimensionsInput.propTypes = {
      */
     heightValue           : PropTypes.string,
     /**
-     * HTML id attribute (overwrite default)
+     *  HTML id attribute
      */
     id                    : PropTypes.string,
     /**
-    *  Display as disabled
-    */
+     *  Display as disabled
+     */
     isDisabled            : PropTypes.bool,
     /**
-    *  Display as read-only
-    */
+     *  Display as read-only
+     */
     isReadOnly            : PropTypes.bool,
     /**
-     *  Label text string or JSX node
+     *  Label text (string or JSX node)
      */
     label                 : PropTypes.node,
     /**
@@ -136,24 +148,24 @@ DimensionsInput.propTypes = {
      */
     labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
-    *  onChange callback function: ( e ) => { ... }
-    */
-    onChange              : PropTypes.func,
-    /**
-    *  onBlur callback function: ( e ) => { ... }
-    */
+     *  Blur callback function
+     */
     onBlur                : PropTypes.func,
     /**
-    *  onFocus callback function: ( e ) => { ... }
-    */
+     *  Input change callback function
+     */
+    onChange              : PropTypes.func,
+    /**
+     *  Focus callback function
+     */
     onFocus               : PropTypes.func,
     /**
-    *  onMouseOut callback function: ( e ) => { ... }
-    */
+     *  Mouse out callback function
+     */
     onMouseOut            : PropTypes.func,
     /**
-    *  onMouseOver callback function: ( e ) => { ... }
-    */
+     *  Mouse over  callback function
+     */
     onMouseOver           : PropTypes.func,
     /**
      * Callback that receives the native width <input>:
@@ -185,8 +197,8 @@ DimensionsInput.defaultProps = {
     isReadOnly            : false,
     label                 : undefined,
     labelPosition         : 'top',
-    onChange              : undefined,
     onBlur                : undefined,
+    onChange              : undefined,
     onFocus               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,

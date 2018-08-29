@@ -15,17 +15,29 @@ const PasswordInput = ( {
 } ) => (
     <TextInputWithIcon
         { ...props }
-        className = { buildClassName( className, cssMap ) }
-        id        = { id }
-        inputType = { passwordIsVisible ? 'text' : 'password' }
-        iconType  = { passwordIsVisible ? 'hide' : 'show' } />
+        autoCapitalize = "off"
+        autoComplete   = "off"
+        autoCorrect    = "off"
+        className      = { buildClassName( className, cssMap ) }
+        iconType       = { passwordIsVisible ? 'hide' : 'show' }
+        id             = { id }
+        inputType      = { passwordIsVisible ? 'text' : 'password' }
+        spellCheck     = { false } />
 );
 
 
 PasswordInput.propTypes =
 {
     /**
-     * Extra CSS class name
+     *  ARIA properties
+     */
+    aria : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.number,
+        PropTypes.string,
+    ] ) ),
+    /**
+     *  Extra CSS class name
      */
     className             : PropTypes.string,
     /**
@@ -33,125 +45,157 @@ PasswordInput.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Label text string or JSX node
+     *  Tooltip message text (string or JSX)
      */
-    label                 : PropTypes.node,
+    errorMessage          : PropTypes.node,
     /**
-     *  alternates input and icon types accordingly.
+     *  Error Tooltip is displayed
      */
-    passwordIsVisible     : PropTypes.bool,
+    errorMessageIsVisible : PropTypes.bool,
     /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    *   Error message position relative to the icon
+    */
+    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
     /**
-     *  Placeholder text
+     *  Display as hover when required from another component
      */
-    placeholder           : PropTypes.string,
-    /**
-     *  Display as disabled/read-only
-     */
-    isDisabled            : PropTypes.bool,
-    /**
-     *  Display as read-only
-     */
-    isReadOnly            : PropTypes.bool,
+    forceHover            : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
     hasError              : PropTypes.bool,
     /**
-     *  Tooltip message text (string or JSX)
+     *  Display Button icon as disabled
      */
-    errorMessage          : PropTypes.node,
+    iconButtonIsDisabled  : PropTypes.bool,
     /**
-     *  Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-     *  Error message position relative to the icon
-     */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
-    /**
-     * Input string value
-     */
-    value                 : PropTypes.string,
-    /**
-     * HTML id attribute (overwrite default)
-     */
-    id                    : PropTypes.string,
-    /**
-     *  HTML name attribute
-     */
-    name                  : PropTypes.string,
-    /**
-     *  Alignment of the show/hide icon
+     *  Alignment of the icon
      */
     iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
-     * Input text alignment
+     *  Display the icon tooltip
      */
-    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    iconTooltipIsVisible  : PropTypes.bool,
+    /**
+     *  icon Tooltip message text (string or JSX)
+     */
+    iconTooltipMessage    : PropTypes.node,
+    /**
+     *  Icon Tooltip position relative to icon
+     */
+    iconTooltipPosition   : PropTypes.oneOf( [
+        'left',
+        'right',
+        'top',
+        'bottom',
+        'topLeft',
+        'topRight',
+    ] ),
+    /**
+     *  HTML id attribute
+     */
+    id                : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef          : PropTypes.func,
+    /**
+     *  Display as disabled
+     */
+    isDisabled        : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly        : PropTypes.bool,
+    /**
+     *  Display as read-only for IconButton
+     */
+    isReadOnlyButton  : PropTypes.bool,
+    /**
+     *  Display as read-only for TextInput
+     */
+    isReadOnlyInput   : PropTypes.bool,
+    /**
+     *  Label text (string or JSX node)
+     */
+    label             : PropTypes.node,
+    /**
+     *  Label position
+     */
+    labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    /**
+     *  HTML name attribute
+     */
+    name              : PropTypes.string,
+    /**
+     *  Blur callback function
+     */
+    onBlur            : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange          : PropTypes.func,
     /**
-     *  input callback function
+     *  Input click callback function
      */
-    onInput               : PropTypes.func,
-    /**
-     * keyPress callback function
-     */
-    onKeyPress            : PropTypes.func,
-    /**
-     *  focus callback function
-     */
-    onFocus               : PropTypes.func,
-    /**
-     *  blur callback function
-     */
-    onBlur                : PropTypes.func,
-    /**
-     *  mouseOver callback function
-     */
-    onMouseOver           : PropTypes.func,
-    /**
-     *  mouseOut callback function
-     */
-    onMouseOut            : PropTypes.func,
+    onClick           : PropTypes.func,
     /**
      *  Icon click callback function
      */
-    onClickIcon           : PropTypes.func,
+    onClickIcon       : PropTypes.func,
     /**
-     *  Icon focus callback function
+     *  Focus callback function
      */
-    onFocusIcon           : PropTypes.func,
+    onFocus           : PropTypes.func,
     /**
-     *  Icon blur callback function
+     *  Key down callback function
      */
-    onBlurIcon            : PropTypes.func,
+    onKeyDown         : PropTypes.func,
     /**
-     *  Icon mouseOver callback function
+     *  Key press callback function
      */
-    onMouseOverIcon       : PropTypes.func,
+    onKeyPress        : PropTypes.func,
     /**
-     *  Icon mouseOut callback function
+     *  Key up callback function
      */
-    onMouseOutIcon        : PropTypes.func,
+    onKeyUp           : PropTypes.func,
     /**
-     * Display as hover when required from another component
+     *  Mouse out callback function
      */
-    forceHover            : PropTypes.bool,
+    onMouseOut        : PropTypes.func,
     /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
+     *  Icon mouse out callback function
      */
-    inputRef              : PropTypes.func,
+    onMouseOutIcon    : PropTypes.func,
+    /**
+     *  Mouse over  callback function
+     */
+    onMouseOver       : PropTypes.func,
+    /**
+     *  Icon mouse over callback function
+     */
+    onMouseOverIcon   : PropTypes.func,
+    /**
+     *  alternates input and icon types accordingly.
+     */
+    passwordIsVisible : PropTypes.bool,
+    /**
+     *  Placeholder text
+     */
+    placeholder       : PropTypes.string,
+    /**
+     *  Input text alignment
+     */
+    textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value             : PropTypes.string,
 };
 
 PasswordInput.defaultProps =
 {
+    aria                  : undefined,
     className             : undefined,
     cssMap                : styles,
     errorMessage          : undefined,
@@ -159,21 +203,27 @@ PasswordInput.defaultProps =
     errorMessagePosition  : 'top',
     forceHover            : false,
     hasError              : false,
+    iconButtonIsDisabled  : undefined,
     iconPosition          : 'right',
+    iconTooltipIsVisible  : undefined,
+    iconTooltipMessage    : undefined,
+    iconTooltipPosition   : undefined,
     id                    : undefined,
     inputRef              : undefined,
     isDisabled            : false,
     isReadOnly            : false,
+    isReadOnlyButton      : undefined,
+    isReadOnlyInput       : undefined,
     label                 : undefined,
     labelPosition         : 'top',
     name                  : undefined,
     onBlur                : undefined,
-    onBlurIcon            : undefined,
     onChange              : undefined,
     onClickIcon           : undefined,
     onFocus               : undefined,
-    onInput               : undefined,
+    onKeyDown             : undefined,
     onKeyPress            : undefined,
+    onKeyUp               : undefined,
     onMouseOut            : undefined,
     onMouseOutIcon        : undefined,
     onMouseOver           : undefined,

@@ -4,9 +4,7 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-
-import Icon               from '../Icon';
-import Spinner            from '../Spinner';
+import { Icon, Spinner }  from '../index';
 
 import Button             from './index';
 
@@ -32,7 +30,6 @@ describe( 'Button', () =>
 
     describe( 'render()', () =>
     {
-        
         test( 'should contain exactly one <button>', () =>
         {
             expect( wrapper.find( 'button' ) ).toHaveLength( 1 );
@@ -87,7 +84,7 @@ describe( 'Button', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    role     : 'control',
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
@@ -106,7 +103,7 @@ describe( 'Button', () =>
             {
                 wrapper.setProps( {
                     iconType : 'add',
-                    role     : 'control'
+                    role     : 'control',
                 } );
 
                 expect( wrapper.find( Icon ).prop( 'theme' ) )
@@ -161,7 +158,7 @@ describe( 'ButtonDriver', () =>
             wrapper.setProps( {
                 label      : 'Pikaboo',
                 isDisabled : true,
-                onClick    : clickSpy
+                onClick    : clickSpy,
             } );
 
             expect( () => driver.click() )
@@ -174,7 +171,7 @@ describe( 'ButtonDriver', () =>
             wrapper.setProps( {
                 label     : 'Pikaboo',
                 isLoading : true,
-                onClick   : clickSpy
+                onClick   : clickSpy,
             } );
 
             const expectedError =

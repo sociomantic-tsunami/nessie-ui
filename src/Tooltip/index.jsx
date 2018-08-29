@@ -3,7 +3,8 @@ import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
 import styles                         from './tooltip.css';
-import { IconButton, Text }           from '../index';
+import IconButton                     from '../IconButton';
+import Text                           from '../Text';
 
 const Tooltip = ( {
     children,
@@ -93,7 +94,7 @@ Tooltip.propTypes =
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
-     * HTML id attribute (overwrite default)
+     * HTML id attribute
      */
     id               : PropTypes.string,
     /**

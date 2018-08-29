@@ -61,7 +61,7 @@ Switch.propTypes =
      */
     forceHover  : PropTypes.bool,
     /**
-     * HTML id attribute (overrides default)
+     * HTML id attribute
      */
     id          : PropTypes.string,
     /**

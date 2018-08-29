@@ -102,7 +102,7 @@ export default class Button extends React.Component
         */
         value        : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         id           : PropTypes.string,
         /**

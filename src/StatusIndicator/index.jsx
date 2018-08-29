@@ -12,8 +12,8 @@ const StatusIndicator = ( { children, className, cssMap, label, status } ) =>
     if ( deprecatedStatusOptions.includes( status ) &&
         !StatusIndicator.didWarn[ status ] )
     {
-        console.warn( `StatusIndicator status option '${status}' is deprecated.\
-        Please use one of 'alert, 'critical' or promoted' instead.` );
+        console.warn( `StatusIndicator: 'status' option '${status}' is \
+deprecated. Please use one of 'alert', 'critical' or 'promoted' instead.` );
         StatusIndicator.didWarn[ status ] = true;
     }
 
@@ -41,8 +41,7 @@ StatusIndicator.propTypes =
     /**
      *  Display as active/deactivated
      */
-    status   : PropTypes.oneOf( [
-        'alert', 'critical', 'promoted' ] ),
+    status   : PropTypes.oneOf( [ 'alert', 'critical', 'promoted' ] ),
 };
 
 StatusIndicator.defaultProps =
