@@ -22,11 +22,6 @@
         "values"         : ["apples", "oranges", "kaki"],
         "selectedValues" : ["apples", "kaki"]
     },
-    "CodeEditor" :
-    {
-        "label" : "Hack the planet"
-    },
-
     "Column" :
     {
         "children"  : "column content"
@@ -73,24 +68,6 @@
     {
         "label"    : "Fieldset legend",
         "children" : "{<Text>Fieldset content</Text>}"
-    },
-    "FlounderDropdown" :
-    {
-        "placeholder" : "Just a placeholder",
-        "label"       : "Pick an option",
-        "data"        : [
-           "Option",
-            {
-                "text"        : "Option with description",
-                "value"       : "value2",
-                "description" : "Option description"
-            },
-            {
-                "text"     : "Disabled option",
-                "value"    : "value5",
-                "disabled" : true
-            }
-        ]
     },
     "Grid" :
     {
