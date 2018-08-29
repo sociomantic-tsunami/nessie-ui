@@ -108,17 +108,9 @@ export default class FlounderDropdown extends Component
         */
         isReadOnly            : PropTypes.bool,
         /**
-         *  Initial selected value(s). Not the same as the native Flounder
-         *  option with the same name
-         */
-        defaultValue          : PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string ),
-        ] ),
-        /**
          *  Selected value(s)
          */
-        value : PropTypes.oneOfType( [
+        value                 : PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.arrayOf( PropTypes.string ),
         ] ),
@@ -226,6 +218,7 @@ export default class FlounderDropdown extends Component
         placeholder           : 'Please choose an option',
         icon                  : 'arrow',
         cssMap                : styles,
+        value                 : '',
     };
 
     constructor( props )
@@ -239,7 +232,7 @@ export default class FlounderDropdown extends Component
         const { props } = this;
 
         this.buildFlounder();
-        this.setValue( props.value || props.defaultValue );
+        this.setValue( props.value );
         this.setDisabled();
     }
 

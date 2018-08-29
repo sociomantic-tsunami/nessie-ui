@@ -14,7 +14,6 @@ const TextInputWithIcon = ( {
     autoCorrect,
     className,
     cssMap,
-    defaultValue,
     errorMessage,
     errorMessageIsVisible,
     errorMessagePosition,
@@ -86,7 +85,6 @@ const TextInputWithIcon = ( {
                     autoComplete   = { autoComplete }
                     autoCorrect    = { autoCorrect }
                     className      = { cssMap.input }
-                    defaultValue   = { defaultValue }
                     forceHover     = { forceHover }
                     hasError       = { hasError }
                     id             = { id }
@@ -168,10 +166,6 @@ TextInputWithIcon.propTypes =
      *  CSS class map
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Initial input string value
-     */
-    defaultValue          : PropTypes.string,
     /**
      *  Tooltip message text (string or JSX)
      */
@@ -386,7 +380,6 @@ TextInputWithIcon.defaultProps =
     autoCorrect           : undefined,
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -423,7 +416,7 @@ TextInputWithIcon.defaultProps =
     placeholder           : undefined,
     spellCheck            : undefined,
     textAlign             : 'auto',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextInputWithIcon;

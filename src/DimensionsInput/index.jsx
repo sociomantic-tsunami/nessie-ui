@@ -12,7 +12,6 @@ const DimensionsInput = ( {
     errorMessagePosition,
     forceHover,
     hasError,
-    heightDefaultValue,
     heightInputRef,
     heightPlaceholder,
     heightValue,
@@ -26,7 +25,6 @@ const DimensionsInput = ( {
     onFocus,
     onMouseOut,
     onMouseOver,
-    widthDefaultValue,
     widthInputRef,
     widthPlaceholder,
     widthValue,
@@ -53,7 +51,6 @@ const DimensionsInput = ( {
                     autoCapitalize = "off"
                     autoComplete   = "off"
                     autoCorrect    = "off"
-                    defaultValue   = { widthDefaultValue }
                     forceHover     = { forceHover }
                     hasError       = { hasError }
                     id             = { `${id}-width` }
@@ -75,7 +72,6 @@ const DimensionsInput = ( {
                     autoCapitalize = "off"
                     autoComplete   = "off"
                     autoCorrect    = "off"
-                    defaultValue   = { heightDefaultValue }
                     forceHover     = { forceHover }
                     hasError       = { hasError }
                     id             = { `${id}-height` }
@@ -118,10 +114,6 @@ DimensionsInput.propTypes = {
      *  Display as error/invalid
      */
     hasError              : PropTypes.bool,
-    /**
-     * Initial width input string value
-     */
-    heightDefaultValue    : PropTypes.string,
     /**
      * Callback that receives the native height <input>:
      * ( focusFunc ) => { ... }
@@ -176,10 +168,6 @@ DimensionsInput.propTypes = {
      */
     onMouseOver           : PropTypes.func,
     /**
-     * Initial height input string value
-     */
-    widthDefaultValue     : PropTypes.string,
-    /**
      * Callback that receives the native width <input>:
      * ( focusFunc ) => { ... }
      */
@@ -201,10 +189,9 @@ DimensionsInput.defaultProps = {
     errorMessagePosition  : 'top',
     forceHover            : false,
     hasError              : false,
-    heightDefaultValue    : undefined,
     heightInputRef        : undefined,
     heightPlaceholder     : 'height',
-    heightValue           : undefined,
+    heightValue           : '',
     id                    : undefined,
     isDisabled            : false,
     isReadOnly            : false,
@@ -215,10 +202,9 @@ DimensionsInput.defaultProps = {
     onFocus               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,
-    widthDefaultValue     : undefined,
     widthInputRef         : undefined,
     widthPlaceholder      : 'width',
-    widthValue            : undefined,
+    widthValue            : '',
 };
 
 export default DimensionsInput;

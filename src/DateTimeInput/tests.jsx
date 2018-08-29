@@ -29,16 +29,6 @@ describe( 'DateTimeInputDriver', () =>
         } );
     } );
 
-    describe( 'setMainInputValue()', () =>
-    {
-        test( 'should set main input value', () =>
-        {
-            wrapper.driver().setMainInputValue( '2018-05-05 12:00' );
-
-            expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
-        } );
-    } );
-
     describe( 'blurMainInput()', () =>
     {
         test( 'should call onBlur once', () =>
@@ -75,16 +65,6 @@ describe( 'DateTimeInputDriver', () =>
             } );
 
             expect( driver.getHourInputValue() ).toBe( '13' );
-        } );
-    } );
-
-    describe( 'setHourInputValue()', () =>
-    {
-        test( 'should set hour input value', () =>
-        {
-            wrapper.driver().setHourInputValue( '21' );
-
-            expect( driver.getHourInputValue() ).toBe( '21' );
         } );
     } );
 
@@ -127,15 +107,6 @@ describe( 'DateTimeInputDriver', () =>
         } );
     } );
 
-    describe( 'setMinuteInputValue()', () =>
-    {
-        test( 'should set minute input value', () =>
-        {
-            wrapper.driver().setMinuteInputValue( '37' );
-
-            expect( driver.getMinuteInputValue() ).toBe( '37' );
-        } );
-    } );
 
     describe( 'blurMinuteInput()', () =>
     {

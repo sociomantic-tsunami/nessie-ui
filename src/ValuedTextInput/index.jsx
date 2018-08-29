@@ -47,10 +47,6 @@ export default class ValuedTextInput extends React.Component
          */
         cssMap                : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Initial input string value
-         */
-        defaultValue          : PropTypes.string,
-        /**
          *  Tooltip message text (string or JSX)
          */
         errorMessage          : PropTypes.node,
@@ -147,6 +143,10 @@ export default class ValuedTextInput extends React.Component
          */
         textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
+         * Input value
+         */
+        value                 : PropTypes.string,
+        /**
          * Value label text
          */
         valueLabel            : PropTypes.string,
@@ -164,7 +164,6 @@ export default class ValuedTextInput extends React.Component
         autoCorrect           : undefined,
         className             : undefined,
         cssMap                : styles,
-        defaultValue          : undefined,
         errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
@@ -189,6 +188,7 @@ export default class ValuedTextInput extends React.Component
         placeholder           : undefined,
         spellCheck            : undefined,
         textAlign             : 'auto',
+        value                 : '',
         valueLabel            : undefined,
         valueLabelPosition    : 'left',
     };

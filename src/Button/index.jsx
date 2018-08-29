@@ -26,7 +26,7 @@ export default class Button extends React.Component
             'subtle',
             'promoted',
             'critical',
-            'control'
+            'control',
         ] ),
         /**
         *  Icon type to display (overrides customIcon)
@@ -98,10 +98,6 @@ export default class Button extends React.Component
         */
         isLoading    : PropTypes.bool,
         /**
-        *  Initial HTML value attribute
-        */
-        defaultValue : PropTypes.string,
-        /**
         *  HTML value attribute
         */
         value        : PropTypes.string,
@@ -142,7 +138,8 @@ export default class Button extends React.Component
         isDisabled   : false,
         isReadOnly   : false,
         forceHover   : false,
-        cssMap       : require( './button.css' )
+        value        : '',
+        cssMap       : require( './button.css' ),
     };
 
     constructor( props )
@@ -183,7 +180,6 @@ export default class Button extends React.Component
             children,
             className,
             cssMap,
-            defaultValue,
             forceHover,
             iconPosition,
             iconType,
@@ -195,7 +191,7 @@ export default class Button extends React.Component
             onClick,
             role,
             type,
-            value
+            value,
         } = this.props;
 
         let iconMarkup;
@@ -233,10 +229,9 @@ export default class Button extends React.Component
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
-                    fakeHovered : forceHover
+                    fakeHovered : forceHover,
                 } ) }
                 id             = { id }
-                defaultValue   = { defaultValue }
                 value          = { value }
                 disabled       = { isDisabled || isLoading || isReadOnly }
                 onClick        = { onClick }

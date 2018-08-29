@@ -210,12 +210,6 @@ describe( 'PasswordInputDriver', () =>
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
         } );
-
-        test( 'inputValue should change the text', () =>
-        {
-            driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
-        } );
     } );
 
     describe( 'click()', () =>
