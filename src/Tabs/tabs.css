@@ -11,8 +11,6 @@
     flex-direction: row;
     align-items:    flex-end;
 
-    /* border-bottom:  solid 1px var( --PC-GREY--L70 ); */
-
     margin-bottom:	0;
 }
 
@@ -21,6 +19,8 @@
     display:        flex;
     flex-direction: row;
     flex-grow:      1;
+
+    min-width:      min-content;
 
     border-bottom:  solid 1px var( --PC-GREY--L70 );
 
