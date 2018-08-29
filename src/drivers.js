@@ -1,4 +1,4 @@
-import { ComponentDriver } from 'nessie-ui/dist/componentDriver';
+import { ComponentDriver } from 'componentDriver';
 import {
     Button,
     Card,
@@ -66,7 +66,7 @@ import {
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
-import { CodeEditor, FlounderDropdown } from 'nessie-ui/dist/addons';
+import { CodeEditor, FlounderDropdown } from 'addons';
 
 import ButtonDriver                     from './Button/driver';
 import CheckableGroupDriver             from './CheckableGroup/driver';

@@ -3,7 +3,7 @@
 
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
-import { InputContainer }               from 'nessie-ui';
+import InputContainer                   from '../../proto/InputContainer';
 
 
 import FlounderDropdown                 from './index';
