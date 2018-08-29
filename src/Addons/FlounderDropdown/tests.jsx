@@ -72,52 +72,6 @@ describe( 'FlounderDropdownDriver', () =>
 
     describe( 'chooseItemByIndex( index )', () =>
     {
-        test(
-            'should choose an item by index when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label : 'Flounder Label',
-                    data  : [
-                        'Pikachu',
-                        'Jigglypuff',
-                        'Squirtle',
-                        'Balbasaur'
-                    ],
-                    onChange : changeSpy
-                } );
-
-                driver.chooseItemByIndex( 1 );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'Jigglypuff' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            }
-        );
-
-        test( 'should choose multiple items by index when uncontolled', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : [ 'Pikachu', 'Jigglypuff', 'Squirtle', 'Balbasaur' ],
-                onChange : changeSpy,
-                multiple : true
-            } );
-
-            driver.chooseItemByIndex( [ 1, 3 ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'Jigglypuff' );
-            expect( selected ).toContain( 'Balbasaur' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
         test( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
@@ -145,44 +99,6 @@ since it is disabled' );
 
     describe( 'chooseItemByText( text )', () =>
     {
-        test( 'should choose item by text when Flounder is uncontolled', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy
-            } );
-
-            driver.chooseItemByText( 'Jigglypuff' );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 1 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( changeSpy ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should choose multiple items by text when uncontolled', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy,
-                multiple : true
-            } );
-
-            driver.chooseItemByText( [ 'Jigglypuff', 'Balbasaur' ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon2' );
-            expect( selected ).toContain( 'pokemon4' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
         test( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
@@ -210,47 +126,6 @@ since it is disabled' );
 
     describe( 'chooseItemByValues( value )', () =>
     {
-        test(
-            'should choose an item by value when Flounder is uncontolled',
-            () =>
-            {
-                const changeSpy = jest.fn();
-                wrapper.setProps( {
-                    label    : 'Flounder Label',
-                    data     : pokemonList,
-                    onChange : changeSpy
-                } );
-
-                driver.chooseItemByValue( 'pokemon2' );
-
-                const selected = driver.getSelectedValues();
-
-                expect( selected ).toHaveLength( 1 );
-                expect( selected ).toContain( 'pokemon2' );
-                expect( changeSpy ).toBeCalledTimes( 1 );
-            }
-        );
-
-        test( 'should choose multiple items by value when uncontolled', () =>
-        {
-            const changeSpy = jest.fn();
-            wrapper.setProps( {
-                label    : 'Flounder Label',
-                data     : pokemonList,
-                onChange : changeSpy,
-                multiple : true
-            } );
-
-            driver.chooseItemByValue( [ 'pokemon1', 'pokemon3' ] );
-
-            const selected = driver.getSelectedValues();
-
-            expect( selected ).toHaveLength( 2 );
-            expect( selected ).toContain( 'pokemon1' );
-            expect( selected ).toContain( 'pokemon3' );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
         test( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {
@@ -278,28 +153,6 @@ since it is disabled' );
 
     describe( 'removeAllTags()', () =>
     {
-        test( 'should remove all tags from an uncontrolled Flounder', () =>
-        {
-            const changeSpy = jest.fn();
-            const props = {
-                label        : 'Flounder Label',
-                data         : pokemonList,
-                onChange     : changeSpy,
-                defaultValue : [ 'pokemon1', 'pokemon3' ],
-                multiple     : true,
-                multipleTags : true
-            };
-
-            wrapper = mount( <FlounderDropdown { ...props } /> );
-            driver  = wrapper.driver();
-
-            driver.removeAllTags();
-
-            const selected = driver.getSelectedValues();
-            expect( selected ).toHaveLength( 0 );
-            expect( changeSpy ).toBeCalledTimes( 2 );
-        } );
-
         test( 'should throw error when isReadOnly', () =>
         {
             wrapper.setProps( {

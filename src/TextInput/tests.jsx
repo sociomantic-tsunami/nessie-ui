@@ -88,7 +88,6 @@ describe( 'TextInputDriver', () =>
             driver.setInputValue( 'test' );
 
             expect( changeSpy ).toBeCalled();
-            expect( driver.getInputValue() ).toBe( 'test' );
         } );
 
         test( 'should throw an error when TextInput is disabled', () =>
@@ -201,11 +200,6 @@ describe( 'TextInputDriver', () =>
             driver.inputValue( 'Harry Potter' );
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
-        } );
-        test( 'inputValue should change the text', () =>
-        {
-            driver.inputValue( 'Harry Potter' );
-            expect( driver.getInputValue() ).toBe( 'Harry Potter' );
         } );
 
         test( 'should throw an error when TextInput is disabled', () =>
