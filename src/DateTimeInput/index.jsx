@@ -3,7 +3,7 @@ import PropTypes                    from 'prop-types';
 
 import { DatePicker }               from '../index';
 import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Dropdown/withDropdown';
+import withDropdown                 from '../Addons/withDropdown';
 import withInputContainer           from '../proto/withInputContainer';
 import { eventHandler, generateId } from '../utils';
 

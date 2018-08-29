@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
+import CodeMirror           from 'codemirror';
 
-import { buildClassName }   from '../utils';
-import InputContainer       from '../proto/InputContainer';
+import InputContainer       from '../../proto/InputContainer';
+import { buildClassName }   from '../../utils';
 import styles               from './codeEditor.css';
 
-
 import 'codemirror/mode/jsx/jsx';
+
 
 const defaultOptions = {
     lineNumbers  : true,
@@ -17,6 +18,7 @@ const defaultOptions = {
 };
 
 const SCROLL_CLASS = 'CodeMirror-scroll';
+
 
 export default class CodeEditor extends Component
 {
@@ -161,9 +163,8 @@ export default class CodeEditor extends Component
             readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
-        const codeMirrorInstance = require( 'codemirror' );
-
-        const codeMirror = codeMirrorInstance.fromTextArea( this.textarea, combinedOptions );
+        const codeMirror =
+            CodeMirror.fromTextArea( this.textarea, combinedOptions );
 
         codeMirror.setValue( defaultValue || value );
 
