@@ -188,7 +188,7 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            if ( diffX || diffX )
+            if ( diffX || diffY )
             {
                 Object.assign( style, {
                     width        : diffX ? `calc( 100% + ${diffX}px )` : null,

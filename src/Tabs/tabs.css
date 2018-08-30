@@ -2,16 +2,14 @@
 
 .default
 {
-    position:       relative;
+    position: relative;
 }
 
 .header
 {
-    display:        flex;
-    flex-direction: row;
-    align-items:    flex-end;
-
-    margin-bottom:	0;
+    display:           flex;
+    flex-direction:    row;
+    align-items:       flex-end;
 }
 
 .tabs
@@ -24,7 +22,10 @@
 
     border-bottom:  solid 1px var( --PC-GREY--L70 );
 
-    margin-bottom:  -1px;
+    > *:last-child /* overrides inherited default margin-bottom: 0; */
+    {
+        margin-bottom: -1px;
+    }
 }
 
 .secondaryControls
