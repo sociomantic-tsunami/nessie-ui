@@ -2324,6 +2324,7 @@ legend.label__default + *
     {
         visibility: hidden;
         position:   absolute;
+        z-index:    99999;
     }
 
 .tooltip__default .tooltip__tooltip
@@ -13840,7 +13841,7 @@ only used in type__carousel for now
             flex:           0 0 auto;
     width:          100%;
     margin:         0;
-    padding-top:    24px 40px;
+    padding:        24px 40px;
     background:     #19a2e2;
     color:          #ffffff;
 }
@@ -14862,6 +14863,8 @@ only used in type__carousel for now
         width:      100%;
         height:     100%;
         overflow:   scroll;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
     }
 
 /* force webkit scrollbars to be always visible on macOS */
@@ -16439,7 +16442,7 @@ only used in type__carousel for now
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.tabButton__default, .tabButton__label
+.tabButton__default, .tabButton__default .tabButton__label
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
@@ -16947,14 +16950,13 @@ only used in type__carousel for now
                     box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
         }
 
-.tabButton__label
-{
+.tabButton__default .tabButton__label
+    {
 
-    font-size:      14px;
-    line-height:    16px;
-    padding-left:   8px;
-    padding-right:  8px;
-}
+        letter-spacing: 0;
+        padding-left:   8px;
+        padding-right:  8px;
+    }
 
 .tabButton__active
 {
@@ -17247,27 +17249,37 @@ only used in type__carousel for now
         background: #ffffff;
     }
 
-.table__borders__cells .table__row .table__cell
+.table__borders__cells .table__row
     {
         border: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__cells .table__row .table__cell + .table__cell
+.table__borders__cells .table__row + .table__row
         {
-            border-left: none;
+            border-top: none;
         }
 
-.table__borders__columnDivider .table__row .table__cell
+.table__borders__cells .table__row .table__cell:not(:last-child)
+            {
+                border-right: 1px solid rgba(89, 116, 148, 0.12);
+            }
+
+.table__borders__cells .table__row .table__cell + .table__cell
+            {
+                border-left: none;
+            }
+
+.table__borders__columnDivider .table__cell, .table__borders__columnDivider .table__row .table__cell
     {
         border-right: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__columnDivider .table__row .table__cell + .table__cell
+.table__borders__columnDivider .table__cell + .table__cell, .table__borders__columnDivider .table__row .table__cell + .table__cell
         {
             border-left: none;
         }
 
-.table__borders__columnDivider .table__row .table__cell:last-child
+.table__borders__columnDivider .table__cell:last-child, .table__borders__columnDivider .table__row .table__cell:last-child
         {
             border-right: none;
         }
@@ -17282,12 +17294,12 @@ only used in type__carousel for now
             border-top: none;
         }
 
-.table__borders__rowDivider .table__row
+.table__borders__rowDivider .table__row:not(:last-child), .table__borders__rowDivider .table__headerRow
     {
         border-bottom: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__rowDivider .table__row + .table__row
+.table__borders__rowDivider .table__row:not(:last-child) + .table__row, .table__borders__rowDivider .table__headerRow + .table__row
         {
             border-top: none;
         }
