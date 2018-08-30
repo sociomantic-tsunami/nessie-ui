@@ -88,6 +88,7 @@ const Uploader = ( {
                 name      = { `${id}-file` }
                 onChange  = { onChange }
                 ref       = { inputRef }
+                tabIndex  = "-1"
                 type      = "file" />
             { label &&
             <Label
