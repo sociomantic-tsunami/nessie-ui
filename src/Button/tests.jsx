@@ -20,12 +20,9 @@ describe( 'Button', () =>
         instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        test( 'should have name Button', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'Button' );
-        } );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
     describe( 'render()', () =>
@@ -79,17 +76,6 @@ describe( 'Button', () =>
             {
                 expect( instance.props.role ).toBe( 'default' );
             } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control',
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
-            } );
         } );
 
         describe( 'isLoading', () =>
@@ -97,17 +83,6 @@ describe( 'Button', () =>
             test( 'should be false by default', () =>
             {
                 expect( instance.props.isLoading ).toBe( false );
-            } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control',
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
             } );
         } );
 

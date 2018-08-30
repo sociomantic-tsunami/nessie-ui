@@ -11,16 +11,21 @@
     background:         var( --PC-BLUE );
 
     .message,
-    .info,
+    .icon,
     .close
     {
         margin-bottom:  0;
     }
 
-    .info
+    .message
+    {
+        color: var( --PC-WHITE );
+    }
+
+    .icon
     {
         margin-right:   20px;
-        fill:           var( --PC-GREY--D25 );
+        fill:           var( --PC-WHITE );
     }
 
     .close
@@ -50,10 +55,5 @@
 
 .type__success
 {
-    background: var(  --PC-GREEN );
-}
-
-.message
-{
-    color: var( --PC-WHITE );
+    background: var( --PC-GREEN );
 }

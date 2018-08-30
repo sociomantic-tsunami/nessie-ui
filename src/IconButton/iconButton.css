@@ -1,9 +1,11 @@
 @import "../proto/base.css";
 
+
 :root
 {
     --sqrt2: 1.4142135623730951; /* Math.sqrt( 2 ) */
 }
+
 
 .default
 {
@@ -34,28 +36,69 @@
         &::after
         {
             content:        '';
+            display:        block;
 
             position:       absolute;
-            top:            calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
-            bottom:         calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
-            left:           calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
-            right:          calc( -1 * calc( ( ( 100% * var( --sqrt2 ) ) - 100% ) / 2 ) );
+            top:            50%;
+            left:           50%;
+            transform:      translateX( -50% ) translateY( -50% );
 
-            border:         1px solid transparent;
+            width:          calc( 100% * var( --sqrt2 ) );
+            height:         calc( 100% * var( --sqrt2 ) );
+
             border-radius:  50%;
-
-            border-color:   var( --PC-BLUE );
-            box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
         }
     }
 }
 
-.disabled
+
+.role__default
 {
-    cursor:         default;
-    pointer-events: none;
-    opacity:        0.36;
+    .icon
+    {
+        fill:   var( --PC-GREY--D25 );
+    }
+
+    &:hover,
+    &:focus,
+    &.fakeHovered
+    {
+        .icon
+        {
+            fill:   var( --PC-BLUE );
+        }
+    }
+
+    &:focus::after
+    {
+        border:     1px solid var( --PC-BLUE );
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
+
+.role__inverted
+{
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
+    &:hover,
+    &:focus,
+    &.fakeHovered
+    {
+        .icon
+        {
+            fill:   var( --PC-WHITE );
+        }
+    }
+
+    &:focus::after
+    {
+        box-shadow:     0 0 0 2px color( var( --PC-WHITE ) a( 30% ) );
+    }
+}
+
 
 .background
 {
@@ -74,6 +117,28 @@
         &::after
         {
             display:    none;
+        }
+    }
+}
+
+
+.disabled
+{
+    cursor:         default;
+    pointer-events: none;
+
+    &.role__default
+    {
+        .icon
+        {
+            fill:   var( --PC-GREY--L70 );
+        }
+    }
+    &.role__inverted
+    {
+        .icon
+        {
+            fill:   var( --PC-BLUE--L25 );
         }
     }
 }

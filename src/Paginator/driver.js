@@ -8,14 +8,14 @@ export default class PaginatorDriver
 
     clickPrev()
     {
-        this.wrapper.find( `.${this.cssMap.arrows}` )
+        this.wrapper.find( `.${this.cssMap.arrow}` )
             .first().simulate( 'click' );
         return this;
     }
 
     clickNext()
     {
-        this.wrapper.find( `.${this.cssMap.arrows}` )
+        this.wrapper.find( `.${this.cssMap.arrow}` )
             .last().simulate( 'click' );
         return this;
     }

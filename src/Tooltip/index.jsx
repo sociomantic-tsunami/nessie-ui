@@ -67,10 +67,10 @@ const Tooltip = ( {
                             <IconButton
                                 className    = { cssMap.close }
                                 iconSize     = "S"
-                                iconTheme    = "button"
                                 iconType     = "close"
                                 label        = "Close"
-                                onClickClose = { onClickClose } />
+                                onClickClose = { onClickClose }
+                                role         = "inverted" />
                         }
                     </div>
                 </div>

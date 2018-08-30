@@ -53,9 +53,8 @@ const Paginator = ( {
             role       = "navigation">
             { showPrev &&
                 <IconButton
-                    className = { cssMap.arrows }
+                    className = { cssMap.arrow }
                     iconSize  = "S"
-                    iconTheme = "navigation"
                     iconType  = "left"
                     onClick   = { onClickPrev }>
                     { prevLabel }
@@ -96,8 +95,7 @@ const Paginator = ( {
 
             { showNext &&
                 <IconButton
-                    className = { cssMap.arrows }
-                    iconTheme = "navigation"
+                    className = { cssMap.arrow }
                     iconSize  = "S"
                     iconType  = "right"
                     onClick   = { onClickNext }>

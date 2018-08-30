@@ -2,150 +2,52 @@
 
 .default
 {
-    display:                block;
-    background-repeat:      no-repeat;
-    background-position:    center;
-
-    fill:                   var( --PC-GREY--D25 );
-    color:                  var( --PC-GREY--D25 );
+    display:    block;
+    position:   relative;
 }
+
 
 .size__S
 {
-    width:                  var( --spacing-3 );
-    height:                 var( --spacing-3 );
+    width:  var( --spacing-3 );
+    height: var( --spacing-3 );
 }
 
 .size__M
 {
-    width:                  var( --spacing-4 );
-    height:                 var( --spacing-4 );
+    width:  var( --spacing-4 );
+    height: var( --spacing-4 );
 }
 
 .size__L
 {
-    width:                  var( --spacing-5 );
-    height:                 var( --spacing-5 );
+    width:  var( --spacing-5 );
+    height: var( --spacing-5 );
 }
 
 .size__XL
 {
-    width:                  var( --spacing-6 );
-    height:                 var( --spacing-6 );
+    width:  var( --spacing-6 );
+    height: var( --spacing-6 );
 }
 
 
-
-
-.theme__control
+.role__default
 {
-    /* fill:                       var( --GS-2 ); */
-
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        fill:                   var( --PC-BLUE );
-    }
+    fill:   var( --PC-GREY--D25 );
 }
 
-.theme__button
+.role__critical
 {
-    fill:                       var( --PC-WHITE );
-    color:                      var( --PC-WHITE );
+    fill:   var( --PC-RED );
 }
 
-.theme__light,
-.theme__dark,
-.theme__navigation
+.role__promoted
 {
-    /* fill:                       color( var( --GS-2 ) a( 50% ) ); */
+    fill:   var( --PC-GREEN );
 }
 
-.theme__light
+.role__warning
 {
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        fill:                   var( --PC-BLUE );
-    }
-}
-
-.theme__dark
-{
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        fill:                   var( --PC-WHITE );
-    }
-}
-
-.theme__navigation
-{
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        /* fill:                   var( --GS-2 ); */
-    }
-}
-
-:not( .theme__button ).type
-{
-    &__alert
-    {
-        color:                      var( --PC-ORANGE );
-        fill:                       var( --PC-ORANGE );
-    }
-
-    &__approved,
-    &__validation
-    {
-        color:                      var( --PC-GREEN );
-        fill:                       var( --PC-GREEN );
-    }
-
-    &__declined,
-    &__error
-    {
-        color:                      var( --PC-RED );
-        fill:                       var( --PC-RED );
-    }
-
-    &__ended
-    {
-        color:                      var( --PC-GREY--L10 );
-        fill:                       var( --PC-GREY--L10 );
-    }
-
-    &__running,
-    &__info
-    {
-        color:                      var( --PC-BLUE  );
-        fill:                       var( --PC-BLUE  );
-    }
-
-    &__pending
-    {
-        color:                      var( --PC-ORANGE );
-        fill:                       var( --PC-ORANGE );
-    }
-}
-
-
-.disabled:not( .theme__button )
-{
-    pointer-events:                 none;
-    fill:                           var( --PC-GREY--L70 );
-    color:                          var( --PC-GREY--L70 );
-}
-
-
-@each $icon in (account, add, add-circle, alert, approved, bell, board, calendar, close-circle, close-thick, dash, dashboard, declined, delete, down, download, duplicate, edit-circle, edit, ended, error, file, graph, hide, info, inspect, left, lightbulb, link, megaphone, options, pending, preview, puzzle-piece, reset, right, search, show, star-stroke, star, swap, table, up, upload, validation)
-{
-    .type__$(icon)
-    {
-    }
+    fill:   var( --PC-ORANGE );
 }

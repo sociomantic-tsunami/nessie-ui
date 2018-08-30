@@ -93,16 +93,6 @@ export default class IconButton extends React.Component
             'none',
         ] ),
         /**
-         *  Icon theme
-         */
-        iconTheme : PropTypes.oneOf( [
-            'button',
-            'control',
-            'dark',
-            'light',
-            'navigation',
-        ] ),
-        /**
          * HTML id attribute
          */
         id          : PropTypes.string,
@@ -145,6 +135,10 @@ export default class IconButton extends React.Component
         /**
          *  HTML value attribute
          */
+        role        : PropTypes.oneOf( [ 'default', 'inverted' ] ),
+        /**
+         *  HTML value attribute
+         */
         value       : PropTypes.string,
     };
 
@@ -157,7 +151,6 @@ export default class IconButton extends React.Component
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
-        iconTheme     : 'control',
         id            : undefined,
         isDisabled    : false,
         isFocusable   : true,
@@ -168,6 +161,7 @@ export default class IconButton extends React.Component
         onFocus       : undefined,
         onMouseOut    : undefined,
         onMouseOver   : undefined,
+        role          : 'default',
         value         : undefined,
     };
 
@@ -181,7 +175,6 @@ export default class IconButton extends React.Component
             forceHover,
             hasBackground,
             iconSize,
-            iconTheme,
             iconType,
             id = generateId( 'IconButton' ),
             isDisabled,
@@ -193,15 +186,18 @@ export default class IconButton extends React.Component
             onFocus,
             onMouseOut,
             onMouseOver,
+            role,
             value,
         } = this.props;
 
         return (
             <button
                 className = { buildClassName( className, cssMap, {
-                    background : hasBackground,
-                    disabled   : isDisabled,
-                    size       : iconSize,
+                    background  : hasBackground,
+                    disabled    : isDisabled,
+                    fakeHovered : forceHover,
+                    role,
+                    size        : iconSize,
                 }  ) }
                 disabled     = { isDisabled }
                 id           = { id }
@@ -217,10 +213,8 @@ export default class IconButton extends React.Component
                 value        = { value }>
                 <Icon
                     className  = { cssMap.icon }
-                    forceHover = { forceHover }
                     isDisabled = { isDisabled }
                     size       = { iconSize }
-                    theme      = { iconTheme }
                     type       = { iconType }>
                     { children || label }
                 </Icon>
