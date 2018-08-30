@@ -69,10 +69,6 @@ export default class CodeEditor extends Component
         */
         errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
         /**
-         * Input string default value
-         */
-        defaultValue          : PropTypes.string,
-        /**
          * Input string value
          */
         value                 : PropTypes.string,
@@ -150,7 +146,6 @@ export default class CodeEditor extends Component
         const {
             codeMirrorRef,
             cursor,
-            defaultValue,
             isDisabled,
             isReadOnly,
             options,
@@ -166,7 +161,7 @@ export default class CodeEditor extends Component
         const codeMirror =
             CodeMirror.fromTextArea( this.textarea, combinedOptions );
 
-        codeMirror.setValue( defaultValue || value );
+        codeMirror.setValue( value );
 
         codeMirror.on( 'change', this.handleChange );
         codeMirror.on( 'cursorActivity', this.handleCursorActivity );

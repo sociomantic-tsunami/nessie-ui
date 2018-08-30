@@ -45,10 +45,6 @@ PasswordInput.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      *  Tooltip message text (string or JSX)
      */
     errorMessage          : PropTypes.node,
@@ -202,7 +198,6 @@ PasswordInput.defaultProps =
     aria                  : undefined,
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -236,7 +231,7 @@ PasswordInput.defaultProps =
     passwordIsVisible     : undefined,
     placeholder           : undefined,
     textAlign             : 'auto',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default PasswordInput;

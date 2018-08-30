@@ -12,7 +12,6 @@ prop.
 The following native Flounder options are supported as props:
 
 - `data` (with additional property `icon`)
-- `defaultValue` (has the usual React meaning here, unlike in native Flounder, also supports array)
 - `multiple`
 - `multipleTags`
 - `multipleMessage`

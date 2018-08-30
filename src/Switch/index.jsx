@@ -10,7 +10,6 @@ const Switch = ( {
     forceHover,
     id = generateId( 'Switch' ),
     isChecked,
-    isDefaultChecked,
     isDisabled,
     isReadOnly,
     label,
@@ -32,7 +31,6 @@ const Switch = ( {
         <input
             checked        = { isChecked }
             className      = { cssMap.input }
-            defaultChecked = { isDefaultChecked }
             disabled       = { isDisabled || isReadOnly }
             id             = { id }
             name           = { name }
@@ -53,82 +51,77 @@ Switch.propTypes =
     /**
      * extra CSS classname
      */
-    className        : PropTypes.string,
+    className   : PropTypes.string,
     /**
      * CSS classname map
      */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
+    cssMap      : PropTypes.objectOf( PropTypes.string ),
     /**
      * Display as hover when required from another component
      */
-    forceHover       : PropTypes.bool,
+    forceHover  : PropTypes.bool,
     /**
      * HTML id attribute
      */
-    id               : PropTypes.string,
+    id          : PropTypes.string,
     /**
      *  Display as checked/“on”
      */
-    isChecked        : PropTypes.bool,
-    /**
-     *  Display as checked/“on” by default
-     */
-    isDefaultChecked : PropTypes.bool,
+    isChecked   : PropTypes.bool,
     /**
      *  Display as disabled
      */
-    isDisabled       : PropTypes.bool,
+    isDisabled  : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly       : PropTypes.bool,
+    isReadOnly  : PropTypes.bool,
     /**
      *  switch label (used as aria-label)
      */
-    label            : PropTypes.string,
+    label       : PropTypes.string,
     /**
      *  input name
      */
-    name             : PropTypes.string,
+    name        : PropTypes.string,
     /**
      * onBlur callback function: ( e ) => { ... }
      */
-    onBlur           : PropTypes.func,
+    onBlur      : PropTypes.func,
     /**
      * onChange callback function: ( e ) => { ... }
      */
-    onChange         : PropTypes.func,
+    onChange    : PropTypes.func,
     /**
      *  onFocus callback function: ( e ) => { ... }
      */
-    onFocus          : PropTypes.func,
+    onFocus     : PropTypes.func,
     /**
      *  onMouseOut callback function: ( e ) => { ... }
      */
-    onMouseOut       : PropTypes.func,
+    onMouseOut  : PropTypes.func,
     /**
      *  onMouseOver callback function: ( e ) => { ... }
      */
-    onMouseOver      : PropTypes.func,
+    onMouseOver : PropTypes.func,
     /**
      * HTML value attribute
      */
-    value            : PropTypes.string,
+    value       : PropTypes.string,
 };
 
 Switch.defaultProps =
 {
-    className        : undefined,
-    cssMap           : styles,
-    forceHover       : false,
-    id               : undefined,
-    isChecked        : undefined,
-    isDefaultChecked : false,
-    isDisabled       : false,
-    isReadOnly       : false,
-    label            : undefined,
-    onChange         : undefined,
-    value            : undefined,
+    className  : undefined,
+    cssMap     : styles,
+    forceHover : false,
+    id         : undefined,
+    isChecked  : false,
+    isDisabled : false,
+    isReadOnly : false,
+    label      : undefined,
+    onChange   : undefined,
+    value      : undefined,
 };
 
 export default Switch;

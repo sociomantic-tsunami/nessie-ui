@@ -383,27 +383,11 @@ describe( 'TextInputWithIcon', () =>
             } );
         } );
 
-        describe( 'defaultValue', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.defaultValue ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                wrapper.setProps( { defaultValue: 'yes!' } );
-
-                expect( wrapper.find( InputField ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
-            } );
-        } );
-
         describe( 'value', () =>
         {
-            test( 'should be undefined by default', () =>
+            test( 'should be empty string by default', () =>
             {
-                expect( props.value ).toBeUndefined();
+                expect( props.value ).toBe( '' );
             } );
 
             test( 'should be passed to the InputField', () =>

@@ -12,7 +12,6 @@ const InputField = ( {
     autoCorrect,
     className,
     cssMap,
-    defaultValue,
     element,
     forceHover,
     hasError,
@@ -26,7 +25,6 @@ const InputField = ( {
     onChange,
     onClick,
     onFocus,
-    onInput,
     onKeyDown,
     onKeyPress,
     onKeyUp,
@@ -40,13 +38,6 @@ const InputField = ( {
     value,
 } ) =>
 {
-    if ( !InputField.didWarn && onInput )
-    {
-        console.warn( 'InputField: onInput prop is deprecated. Please use \
-onChange instead.' );
-        InputField.didWarn = true;
-    }
-
     const InputElement = element || 'input';
 
     return (
@@ -62,12 +53,11 @@ onChange instead.' );
                 fakeHovered : !isDisabled && forceHover,
                 resizable   : element === 'textarea' && isResizable,
             } ) }
-            defaultValue = { defaultValue }
             disabled     = { isDisabled }
             id           = { id }
             name         = { name }
             onBlur       = { onBlur }
-            onChange     = { onChange || onInput }
+            onChange     = { onChange }
             onClick      = { onClick }
             onFocus      = { onFocus }
             onKeyDown    = { onKeyDown }
@@ -122,10 +112,6 @@ InputField.propTypes =
      *  CSS class map
      */
     cssMap       : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Initial input string value
-     */
-    defaultValue : PropTypes.string,
     /**
      *  HTML element
      */
@@ -236,7 +222,6 @@ InputField.defaultProps =
     autoCorrect    : undefined,
     className      : undefined,
     cssMap         : styles,
-    defaultValue   : undefined,
     element        : 'input',
     forceHover     : false,
     hasError       : false,
@@ -260,7 +245,7 @@ InputField.defaultProps =
     spellCheck     : undefined,
     textAlign      : 'left',
     type           : 'text',
-    value          : undefined,
+    value          : '',
 };
 
 export default InputField;

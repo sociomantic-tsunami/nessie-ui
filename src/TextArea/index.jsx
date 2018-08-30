@@ -63,10 +63,6 @@ TextArea.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      *  Tooltip message text (string or JSX)
      */
     errorMessage          : PropTypes.node,
@@ -184,7 +180,6 @@ TextArea.defaultProps =
     autoCorrect           : undefined,
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -211,7 +206,7 @@ TextArea.defaultProps =
     rows                  : 3,
     spellCheck            : undefined,
     textAlign             : 'left',
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextArea;

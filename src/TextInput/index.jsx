@@ -63,10 +63,6 @@ TextInput.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Initial input string value
-     */
-    defaultValue          : PropTypes.string,
-    /**
      *  Tooltip message text (string or JSX)
      */
     errorMessage          : PropTypes.node,
@@ -176,7 +172,6 @@ TextInput.defaultProps =
     autoCorrect           : undefined,
     className             : undefined,
     cssMap                : styles,
-    defaultValue          : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -201,7 +196,7 @@ TextInput.defaultProps =
     placeholder           : undefined,
     spellCheck            : undefined,
     textAlign             : undefined,
-    value                 : undefined,
+    value                 : '',
 };
 
 export default TextInput;
