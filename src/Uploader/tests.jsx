@@ -24,6 +24,11 @@ describe( 'Uploader', () =>
             expect( wrapper.find( 'input' ).prop( 'type' ) ).toBe( 'file' );
         } );
 
+        test( '<input> should have tabIndex="-1"', () =>
+        {
+            expect( wrapper.find( 'input' ).prop( 'tabIndex' ) ).toBe( '-1' );
+        } );
+
         test( 'should render component based on Button iconType=upload', () =>
         {
             expect( wrapper.find( 'Button', 'Uploader', 'Icon' ) )
