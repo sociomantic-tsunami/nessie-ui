@@ -21,9 +21,14 @@ export default class FlounderDropdownDriver
         this.innerFlounderComponent = wrapper.node.flounderInstance;
     }
 
-    change( value = 'jkl' )
+    getFlounderAPI()
     {
-        this.innerFlounderComponent.onChange( value );
+        return this.innerFlounderComponent;
+    }
+
+    change( val )
+    {
+        this.innerFlounderComponent.onChange( val );
         return this;
     }
 

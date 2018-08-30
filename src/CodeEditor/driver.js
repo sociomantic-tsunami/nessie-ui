@@ -16,6 +16,10 @@ export default class CodeEditorDriver
         this.content = wrapper.find( 'InputContainer' ).first();
     }
 
+    getCodeMirrorAPI()
+    {
+        return this.control;
+    }
 
     focus()
     {

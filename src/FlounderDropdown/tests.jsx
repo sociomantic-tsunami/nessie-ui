@@ -67,7 +67,7 @@ describe( 'FlounderDropdownDriver', () =>
     } );
 
 
-    describe( 'change( value )', () =>
+    describe( 'change( val )', () =>
     {
         test( 'should trigger onChange callback prop once', () =>
         {

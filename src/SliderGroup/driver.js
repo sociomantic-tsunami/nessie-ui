@@ -8,7 +8,7 @@ export default class SliderGroupDriver
         this.cssMap  = wrapper.props().cssMap;
     }
 
-    change(  val = '0', index = 0  )
+    change(  val, index = 0  )
     {
         this.wrapper.find( Slider ).driver().change( val, index );
         return this;

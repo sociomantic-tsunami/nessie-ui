@@ -46,8 +46,10 @@ export default class InputFieldDriver
         return this;
     }
 
-    change( value = 'a' )
+    change( val )
     {
+        const node = this.wrapper.getNode();
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
@@ -60,7 +62,8 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'change', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'change', { target: { value } } );
+        node.value = val;
+        this.wrapper.simulate( 'change' );
         return this;
     }
 

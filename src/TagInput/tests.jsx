@@ -324,7 +324,7 @@ describe( 'TagInputDriver', () =>
     } );
 
 
-    describe( 'clickCloseTagByIndex( index )', () =>
+    describe( 'clickClose( index )', () =>
     {
         test( 'should call onClickClose exactly once', () =>
         {
@@ -337,7 +337,7 @@ describe( 'TagInputDriver', () =>
                 ],
             } );
 
-            driver.clickCloseTagByIndex( 1 );
+            driver.clickClose( 1 );
             expect( onClickClose ).toBeCalledTimes( 1 );
         } );
 
@@ -350,7 +350,7 @@ describe( 'TagInputDriver', () =>
                     'TagInput cannot simulate clickClose since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( () => driver.clickCloseTagByIndex() )
+                expect( () => driver.clickClose() )
                     .toThrow( expectedError );
             } );
 
@@ -361,7 +361,7 @@ describe( 'TagInputDriver', () =>
 
                 try
                 {
-                    driver.clickCloseTagByIndex();
+                    driver.clickClose();
                 }
                 catch ( error )
                 {
@@ -379,7 +379,7 @@ describe( 'TagInputDriver', () =>
                     'TagInput cannot simulate clickClose since it is read only';
                 wrapper.setProps( { isReadOnly: true } );
 
-                expect( () => driver.clickCloseTagByIndex() )
+                expect( () => driver.clickClose() )
                     .toThrow( expectedError );
             } );
 
@@ -390,97 +390,7 @@ describe( 'TagInputDriver', () =>
 
                 try
                 {
-                    driver.clickCloseTagByIndex();
-                }
-                catch ( error )
-                {
-                    expect( onClickClose ).not.toBeCalled();
-                }
-            } );
-        } );
-    } );
-
-    describe( 'clickCloseTagByLabel( label )', () =>
-    {
-        test( 'should call onClickClose exactly once', () =>
-        {
-            const onClickClose = jest.fn();
-            wrapper.setProps( {
-                onClickClose,
-                children : [
-                    <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />,
-                ],
-            } );
-
-            driver.clickCloseTagByLabel( 'TagLabel 1' );
-            expect( onClickClose ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate clickClose since it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.clickCloseTagByLabel() )
-                    .toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClickClose when isDisabled', () =>
-            {
-                const onClickClose = jest.fn();
-                wrapper.setProps( {
-                    onClickClose,
-                    isDisabled : true,
-                    children   : [
-                        <Tag label = "TagLabel 1" />,
-                        <Tag label = "TagLabel 2" />,
-                    ],
-                } );
-
-                try
-                {
-                    driver.clickCloseTagByLabel( 'TagLabel 2' );
-                }
-                catch ( error )
-                {
-                    expect( onClickClose ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate clickClose since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.clickCloseTagByLabel() )
-                    .toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClickClose when isReadOnly', () =>
-            {
-                const onClickClose = jest.fn();
-                wrapper.setProps( {
-                    onClickClose,
-                    isReadOnly : true,
-                    children   : [
-                        <Tag label = "TagLabel 1" />,
-                        <Tag label = "TagLabel 2" />,
-                    ],
-                } );
-
-                try
-                {
-                    driver.clickCloseTagByLabel( 'TagLabel 2' );
+                    driver.clickClose();
                 }
                 catch ( error )
                 {

@@ -191,7 +191,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    changeHour()
+    changeHour( val )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -208,12 +208,14 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( `.${this.hour}` )
-            .simulate( 'change', { target: { value: '02' } } );
+        const node = this.wrapper.find( `.${this.hour}` ).getNode();
+        node.value = val;
+
+        this.wrapper.find( `.${this.hour}` ).simulate( 'change' );
         return this;
     }
 
-    changeMinute()
+    changeMinute( val )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -230,8 +232,10 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( `.${this.min}` )
-            .simulate( 'change', { target: { value: '23' } } );
+        const node = this.wrapper.find( `.${this.min}` ).getNode();
+        node.value = val;
+
+        this.wrapper.find( `.${this.min}` ).simulate( 'change' );
         return this;
     }
 }

@@ -408,7 +408,7 @@ onClick since it is disabled';
     } );
 
 
-    describe( 'change( value = 0, index = 0 )', () =>
+    describe( 'change( val, index = 0 )', () =>
     {
         test( 'should trigger onChange callback once', () =>
         {

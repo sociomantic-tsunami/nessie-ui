@@ -7,7 +7,6 @@ export default class TextInputWithDropdownDriver
         this.wrapper    = wrapper;
         this.inputfield = wrapper.find( InputField );
         this.flounder   = wrapper.find( FlounderDropdown );
-        this.row        = wrapper.find( `.${wrapper.props().cssMap.row}` );
     }
 
     blur()
@@ -22,12 +21,12 @@ export default class TextInputWithDropdownDriver
         return this;
     }
 
-    changeInput( val = 'k' )
+    changeInput( val )
     {
         this.inputfield.driver().change( val );
     }
 
-    changeFlounder( val = 'g' )
+    changeFlounder( val )
     {
         this.flounder.driver().change( val );
     }
@@ -38,21 +37,9 @@ export default class TextInputWithDropdownDriver
         return this;
     }
 
-    mouseOverRow()
-    {
-        this.row.simulate( 'mouseenter' );
-        return this;
-    }
-
     mouseOut()
     {
         this.wrapper.simulate( 'mouseleave' );
-        return this;
-    }
-
-    mouseOutRow()
-    {
-        this.row.simulate( 'mouseleave' );
         return this;
     }
 }

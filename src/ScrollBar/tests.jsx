@@ -105,7 +105,7 @@ describe( 'ScrollBarDriver', () =>
         } );
     } );
 
-    describe( 'onChange( val )', () =>
+    describe( 'change( val )', () =>
     {
         let onChange;
 

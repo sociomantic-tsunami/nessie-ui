@@ -31,8 +31,11 @@ export default class SliderDriver
         return this;
     }
 
-    change( value = '0', index = 0 )
+    change( val, index = 0 )
     {
+        const input = this.inputContainer.childAt( index );
+        const node  = input.getNode();
+
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error( ERR
@@ -45,10 +48,7 @@ export default class SliderDriver
                 .SLIDER_ERR( this.label, 'onChange', 'read only' ) );
         }
 
-        const input = this.inputContainer.childAt( index );
-        const node  = input.getNode();
-
-        node.value = value;
+        node.value = val;
         input.simulate( 'change' );
 
         return this;

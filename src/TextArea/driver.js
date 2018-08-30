@@ -44,7 +44,7 @@ export default class TextAreaDriver
         return this;
     }
 
-    change( val = 'abc' )
+    change( val )
     {
         if ( this.wrapper.props().isDisabled )
         {

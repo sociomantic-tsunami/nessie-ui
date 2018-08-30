@@ -225,7 +225,7 @@ describe( 'UploaderDriver', () =>
     } );
 
 
-    describe( 'onChange( val )', () =>
+    describe( 'change( val )', () =>
     {
         test( 'should be undefined by default', () =>
         {

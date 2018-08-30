@@ -27,6 +27,8 @@ export default class UploaderDriver
 
     change( val )
     {
+        const node = this.wrapper.find( `.${this.cssMap.input}` ).getNode();
+
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.UPLOADER_ERR( 'change', 'disabled' ) );
@@ -37,8 +39,8 @@ export default class UploaderDriver
             throw new Error( ERR.UPLOADER_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( `.${this.cssMap.input}` )
-            .simulate( 'change', { target: { value: val } } );
+        node.name = val;
+        this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'change' );
         return this;
     }
 

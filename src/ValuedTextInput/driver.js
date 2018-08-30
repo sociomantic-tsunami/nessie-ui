@@ -44,7 +44,7 @@ export default class ValuedTextInputDriver
         return this;
     }
 
-    change( val = 'abc' )
+    change( val )
     {
         if ( this.wrapper.props().isDisabled )
         {

@@ -13,7 +13,7 @@ export default class TagInputDriver
         this.control = wrapper.find( 'InputContainer' );
     }
 
-    clickCloseTagByIndex( index = 0 )
+    clickClose( index = 0 )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -28,45 +28,6 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( Tag ).at( index ).driver().clickClose();
-        return this;
-    }
-
-    clickCloseTagByLabel( label )
-    {
-        if ( this.wrapper.props().isDisabled )
-        {
-            throw new Error( ERR
-                .TAGINPUT_ERR( 'clickClose', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR
-                .TAGINPUT_ERR( 'clickClose', 'read only' ) );
-        }
-
-        if ( Array.isArray( label ) )
-        {
-            let value;
-
-            value.forEach( i =>
-            {
-                const item =
-                    this.wrapper.findWhere( n =>
-                        n.prop( 'label' ) === i ).first();
-                item.find( `.${this.wrapper.prop( 'cssMap' ).delete}` )
-                    .simulate( 'click' );
-            } );
-        }
-        else
-        {
-            const item =
-                this.wrapper.findWhere( n =>
-                    n.prop( 'label' ) === label ).first();
-            item.find( `.${this.wrapper.prop( 'cssMap' ).delete}` )
-                .simulate( 'click' );
-        }
-
         return this;
     }
 

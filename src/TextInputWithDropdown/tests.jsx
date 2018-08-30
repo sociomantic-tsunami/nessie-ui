@@ -115,19 +115,6 @@ describe( 'TextInputWithDropdownDriver', () =>
     } );
 
 
-    describe( 'mouseOverRow()', () =>
-    {
-        test( 'should trigger onMouseOver callback prop once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( { onMouseOver } );
-
-            driver.mouseOverRow();
-            expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
     describe( 'mouseOut()', () =>
     {
         test( 'should trigger onMouseOut callback prop once', () =>
@@ -136,19 +123,6 @@ describe( 'TextInputWithDropdownDriver', () =>
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'mouseOutRow()', () =>
-    {
-        test( 'should trigger onMouseOut callback prop once', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( { onMouseOut } );
-
-            driver.mouseOutRow();
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
