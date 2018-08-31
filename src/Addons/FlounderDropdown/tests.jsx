@@ -1,10 +1,8 @@
-/* global test jest */
+/* global test */
 /* eslint no-console: 0 */
 
 import React                            from 'react';
 import { ReactWrapper, mount, shallow } from 'enzyme';
-import InputContainer                   from '../../proto/InputContainer';
-
 
 import FlounderDropdown                 from './index';
 
@@ -25,15 +23,6 @@ describe( 'FlounderDropdown', () =>
         test( 'should have name FlounderDropdown', () =>
         {
             expect( instance.constructor.name ).toBe( 'FlounderDropdown' );
-        } );
-    } );
-
-    describe( 'render()', () =>
-    {
-
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
         } );
     } );
 } );
