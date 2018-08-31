@@ -2,11 +2,6 @@
 
 .default
 {
-
-}
-
-.container
-{
     display:        flex;
     flex-direction: row;
     align-items:    center;
@@ -17,14 +12,15 @@
         min-width:      0;
         margin-bottom:  0;
     }
+
+    .icon
+    {
+        position:   absolute;
+        top:        50%;
+        transform:  translateY( -50% );
+    }
 }
 
-.icon
-{
-    position:   absolute;
-    top:        50%;
-    transform:  translateY( -50% );
-}
 
 .position__left
 {
