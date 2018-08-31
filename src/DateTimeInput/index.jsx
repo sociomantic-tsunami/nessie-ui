@@ -4,7 +4,6 @@ import PropTypes                    from 'prop-types';
 import { DatePicker }               from '../index';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Addons/withDropdown';
-import withInputContainer           from '../proto/withInputContainer';
 import { eventHandler, generateId } from '../utils';
 
 
@@ -382,5 +381,4 @@ DateTimeInput.defaultProps =
     weeks                 : undefined,
 };
 
-export { DateTimeInput };
-export default withInputContainer( DateTimeInput );
+export default DateTimeInput;
