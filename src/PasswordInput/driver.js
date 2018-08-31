@@ -7,7 +7,7 @@ export default class PasswordInput extends InputComponentDriver
 {
     getErrorMessage()
     {
-        const textInputWithIcon = this.wrapper.find( TextInputWithIcon );
-        return textInputWithIcon.driver().getErrorMessage();
+        return this.wrapper.find( TextInputWithIcon ).driver()
+            .getErrorMessage();
     }
 }

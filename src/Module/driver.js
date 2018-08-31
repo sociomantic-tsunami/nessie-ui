@@ -14,7 +14,7 @@ export default class ModuleDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.prop( 'cssMap' );
     }
 
     /**
@@ -52,7 +52,7 @@ export default class ModuleDriver
 
     getCustomHeader()
     {
-        if ( !this.wrapper.props().customHeader )
+        if ( !this.wrapper.prop( 'customHeader' ) )
         {
             throw new Error( ERRORS.MODULE_HAS_NO_CUSTOM_HEADER );
         }

@@ -1,12 +1,15 @@
-import InputComponentDriver from '../Testing/CommonDrivers/inputComponentDriver';
-import { IconWithTooltip }  from 'nessie-ui';
+import { IconWithTooltip } from 'nessie-ui';
+
+import InputComponentDriver from
+    '../Testing/CommonDrivers/inputComponentDriver';
+
 
 export default class TextInputWithIconDriver extends InputComponentDriver
 {
     getErrorMessage()
     {
-        const iconWithTooltip = this.wrapper.find( IconWithTooltip ).first();
-        return iconWithTooltip.driver().getMessage();
+        return this.wrapper.find( IconWithTooltip ).first().driver()
+            .getMessage();
     }
 
     getIconTooltipMessage()

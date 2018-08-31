@@ -39,7 +39,7 @@ export default class SliderDriver
         }
 
         const input = this.inputContainer.childAt( index );
-        const node  = input.getNode();
+        const node  = input.instance();
 
         node.value = value;
         input.simulate( 'change' );
@@ -111,7 +111,7 @@ export default class SliderDriver
 
     mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.node.handleUp();
+        this.wrapper.instance().handleUp();
         return this;
     }
 

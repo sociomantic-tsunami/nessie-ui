@@ -1,13 +1,12 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable max-len */
 
-import React                from 'react';
-import { shallow, mount }   from 'enzyme';
+import React              from 'react';
+import { shallow, mount } from 'enzyme';
 
-import { Label, Slider }    from '../index';
+import { Label, Slider }  from '../index';
 
-import SliderGroup          from './index';
+import SliderGroup        from './index';
 
 
 describe( 'SliderGroup', () =>
@@ -289,7 +288,7 @@ describe( 'SliderGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSlider( 1 ).props().value ).toBe( 80 );
+            expect( wrapper.driver().getSlider( 1 ).prop( 'value' ) ).toBe( 80 );
         } );
 
         test( 'should get Sliders when indexes are passed as an array', () =>
@@ -317,7 +316,7 @@ describe( 'SliderGroupDriver', () =>
                 ],
             } );
 
-            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].props().value )
+            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].prop( 'value' ) )
                 .toBe( 20 );
         } );
     } );

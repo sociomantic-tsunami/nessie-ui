@@ -14,7 +14,7 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Checkbox /> );
+        wrapper = shallow( <Checkbox /> );
     } );
 
     describe( 'render()', () =>
@@ -34,7 +34,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -42,7 +42,7 @@ describe( 'Checkbox', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
+                expect( Checkbox.defaultProps.isReadOnly ).toBe( false );
             } );
 
             test( 'should be passed to Checkable', () =>
@@ -62,7 +62,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -73,7 +73,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -81,7 +81,7 @@ describe( 'Checkbox', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+                expect( Checkbox.defaultProps.onChange ).toBeUndefined();
             } );
 
             test( 'should be passed to Checkable', () =>
@@ -100,12 +100,10 @@ describe( 'Checkbox', () =>
 describe( 'CheckboxDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Checkbox /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'focus()', () =>
@@ -115,7 +113,7 @@ describe( 'CheckboxDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            driver.focus();
+            wrapper.driver().focus();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -129,7 +127,7 @@ describe( 'CheckboxDriver', () =>
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            driver.blur();
+            wrapper.driver().blur();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -143,7 +141,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
             expect( onChange ).toBeCalledTimes( 0 );
         } );
@@ -153,7 +151,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: false, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -165,9 +163,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: false, onChange } );
 
-            driver.setChecked();
+            wrapper.driver().setChecked();
 
-            expect( targetChecked ).toBeTruthy();
+            expect( targetChecked ).toBe( true );
         } );
     } );
 
@@ -189,7 +187,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setUnchecked();
+            wrapper.driver().setUnchecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -201,9 +199,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
-            driver.setUnchecked();
+            wrapper.driver().setUnchecked();
 
-            expect( targetChecked ).toBeFalsy();
+            expect( targetChecked ).toBe( false );
         } );
     } );
 
@@ -215,7 +213,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            driver.toggleChecked();
+            wrapper.driver().toggleChecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -227,9 +225,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { onChange, isChecked: true } );
 
-            driver.toggleChecked();
+            wrapper.driver().toggleChecked();
 
-            expect( targetChecked ).toBeFalsy();
+            expect( targetChecked ).toBe( false );
         } );
     } );
 
@@ -241,7 +239,7 @@ describe( 'CheckboxDriver', () =>
             const onClick = jest.fn();
 
             wrapper.setProps( { onClick } );
-            driver.click();
+            wrapper.driver().click();
 
             expect( onClick ).toBeCalledTimes( 1 );
         } );
@@ -255,7 +253,7 @@ describe( 'CheckboxDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            driver.mouseOver();
+            wrapper.driver().mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );

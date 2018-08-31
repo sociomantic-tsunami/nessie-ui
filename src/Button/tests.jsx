@@ -12,17 +12,15 @@ import Button             from './index';
 describe( 'Button', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Button /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should a stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     describe( 'render()', () =>
@@ -51,7 +49,7 @@ describe( 'Button', () =>
         {
             test( 'should be "none" by default', () =>
             {
-                expect( instance.props.iconType ).toBe( 'none' );
+                expect( Button.defaultProps.iconType ).toBe( 'none' );
             } );
 
             test( 'should be passed to the Icon as type', () =>
@@ -66,7 +64,7 @@ describe( 'Button', () =>
         {
             test( 'should be "left" by default', () =>
             {
-                expect( instance.props.iconPosition ).toBe( 'left' );
+                expect( Button.defaultProps.iconPosition ).toBe( 'left' );
             } );
         } );
 
@@ -74,7 +72,7 @@ describe( 'Button', () =>
         {
             test( 'should be "default" by default', () =>
             {
-                expect( instance.props.role ).toBe( 'default' );
+                expect( Button.defaultProps.role ).toBe( 'default' );
             } );
         } );
 
@@ -82,7 +80,7 @@ describe( 'Button', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( instance.props.isLoading ).toBe( false );
+                expect( Button.defaultProps.isLoading ).toBe( false );
             } );
         } );
 
@@ -90,7 +88,7 @@ describe( 'Button', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.buttonRef ).toBeUndefined();
+                expect( Button.defaultProps.buttonRef ).toBeUndefined();
             } );
         } );
     } );
@@ -100,12 +98,10 @@ describe( 'Button', () =>
 describe( 'ButtonDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Button /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'click', () =>
@@ -120,7 +116,7 @@ describe( 'ButtonDriver', () =>
         test( 'should have the button clicked once', () =>
         {
             wrapper.setProps( { onClick: clickSpy } );
-            driver.click();
+            wrapper.driver().click();
 
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
@@ -136,8 +132,7 @@ describe( 'ButtonDriver', () =>
                 onClick    : clickSpy,
             } );
 
-            expect( () => driver.click() )
-                .toThrow( expectedError );
+            expect( () => wrapper.driver().click() ).toThrow( expectedError );
             expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
 
@@ -152,8 +147,7 @@ describe( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => driver.click() )
-                .toThrow( expectedError );
+            expect( () => wrapper.driver().click() ).toThrow( expectedError );
             expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
     } );

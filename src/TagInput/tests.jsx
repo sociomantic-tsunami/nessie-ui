@@ -8,18 +8,17 @@ import { Tag }            from '../index';
 
 import TagInput           from './index';
 
+const { cssMap } = TagInput.defaultProps;
 
 describe( 'TagInput', () =>
 {
     let wrapper;
     let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper      = shallow( <TagInput /> );
         instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
     } );
 
     describe( 'constructor( props )', () =>

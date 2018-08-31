@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
 
 import React                            from 'react';
@@ -13,17 +12,15 @@ import PasswordInput                    from './index';
 describe( 'PasswordInput', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <PasswordInput /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should be stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should contain exactly one TextInputWithIcon', () =>
@@ -91,12 +88,10 @@ describe( 'PasswordInput', () =>
 describe( 'PasswordInputDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <PasswordInput /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'getErrorMessage()', () =>
@@ -112,12 +107,14 @@ describe( 'PasswordInputDriver', () =>
 
         test( 'should return a ReactWrapper', () =>
         {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+            expect( wrapper.driver().getErrorMessage() )
+                .toBeInstanceOf( ReactWrapper );
         } );
 
         test( 'should contain the error message content', () =>
         {
-            const message = driver.getErrorMessage();
+            const message = wrapper.driver().getErrorMessage();
+
             expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
@@ -133,7 +130,7 @@ describe( 'PasswordInputDriver', () =>
                 onFocus  : focusSpy,
             } );
 
-            driver.focus();
+            wrapper.driver().focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -149,7 +146,7 @@ describe( 'PasswordInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            driver.blur();
+            wrapper.driver().blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -165,7 +162,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange : changeSpy,
             } );
 
-            driver.setInputValue( 'test' );
+            wrapper.driver().setInputValue( 'test' );
             expect( changeSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -180,7 +177,7 @@ describe( 'PasswordInputDriver', () =>
                 onKeyPress : keyPressSpy,
             } );
 
-            driver.pressKey( keyCodeEnter );
+            wrapper.driver().pressKey( keyCodeEnter );
             expect( keyPressSpy ).toBeCalledTimes( 1 );
         } );
 
@@ -192,7 +189,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange : onChangeSpy,
             } );
 
-            driver.pressKey( keyCodeChar );
+            wrapper.driver().pressKey( keyCodeChar );
             expect( onChangeSpy ).toBeCalledTimes( 1 );
         } );
 
@@ -205,7 +202,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange   : onChangeSpy,
             } );
 
-            driver.inputValue( 'Harry Potter' );
+            wrapper.driver().inputValue( 'Harry Potter' );
 
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
@@ -226,7 +223,9 @@ describe( 'PasswordInputDriver', () =>
             const expectedError =
                 'Input \'test\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).toThrowError( expectedError );
+            expect( () => wrapper.driver().click() )
+                .toThrowError( expectedError );
+
             expect( clickSpy ).not.toBeCalled();
         } );
     } );
