@@ -6,4 +6,4 @@ A Nessie Label is a text label.
 Example Usage
 -------------
 
-    <Label><Required>Just a label</Required></Label>
+    <Label>Just a label</Label>

@@ -58,7 +58,7 @@
     "DragNDrop" :
     {
         "message"  : "Drop image file to upload",
-        "children" : "{<Label><Required>Image</Required></Label><Uploader/>}"
+        "children" : "{<Label>Image</Label><Uploader/>}"
     },
     "Dropdown" :
     {

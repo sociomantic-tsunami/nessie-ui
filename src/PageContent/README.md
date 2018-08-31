@@ -7,12 +7,10 @@ Example Usage
 -------------
 
 	<PageContent>
-        <Form>
-    		<Module title='Module 1'>
-    			Module 1 content...
-    		</Module>
-    		<Module title='Module 2'>
-    			Module 2 content...
-    		</Module>
-        </Form>
+		<Module title='Module 1'>
+			Module 1 content...
+		</Module>
+		<Module title='Module 2'>
+			Module 2 content...
+		</Module>
 	</PageContent>
