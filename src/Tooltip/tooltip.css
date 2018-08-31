@@ -29,6 +29,7 @@
     {
         visibility: hidden;
         position:   absolute;
+        z-index:    99999;
     }
 
     .tooltip
