@@ -3,10 +3,7 @@
 
 .default
 {
-    .editor
-    {
-        height: auto;
-    }
+    height: auto;
 
     :global .CodeMirror
     {
@@ -40,6 +37,7 @@
     :global .CodeMirror
     {
         border-color:   var( --PC-RED );
+
         .fakeHovered&
         {
             box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );
