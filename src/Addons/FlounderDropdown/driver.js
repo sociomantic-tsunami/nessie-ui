@@ -134,11 +134,6 @@ export default class FlounderDropdownDriver
     {
         return this.innerFlounderComponent.getSelected();
     }
-
-    getErrorMessage()
-    {
-        return this.wrapper.find( 'IconWithTooltip' ).driver().getMessage();
-    }
 }
 
 /**

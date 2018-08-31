@@ -99,29 +99,6 @@ describe( 'PasswordInputDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                hasError              : true,
-                errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true,
-            } );
-        } );
-
-        test( 'should return a ReactWrapper', () =>
-        {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the error message content', () =>
-        {
-            const message = driver.getErrorMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
-        } );
-    } );
-
     describe( 'focus()', () =>
     {
         test( 'should fire the onFocus callback prop once', () =>

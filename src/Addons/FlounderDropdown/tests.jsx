@@ -175,30 +175,4 @@ since it is disabled' );
 is not configured with multipleTags' );
         } );
     } );
-
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                label                 : 'Flounder Label',
-                data                  : pokemonList,
-                value                 : [ 'pokemon1', 'pokemon3' ],
-                hasError              : true,
-                errorMessageIsVisible : true,
-                errorMessage          : <p className = "attack">Lightning</p>
-            } );
-        } );
-
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the error message content', () =>
-        {
-            const content = driver.getErrorMessage();
-            expect( content.find( '.attack' ) ).toHaveLength( 1 );
-        } );
-    } );
 } );
