@@ -1,6 +1,8 @@
 import SimpleComponentDriver
     from '../Testing/CommonDrivers/simpleComponentDriver';
+
 import { Tooltip } from 'nessie-ui';
+
 
 export default class IconWithTooltipDriver extends SimpleComponentDriver
 {
