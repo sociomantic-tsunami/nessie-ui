@@ -3,7 +3,7 @@ import PropTypes                from 'prop-types';
 
 import { buildClassName }       from '../utils';
 import styles                   from './tabs.css';
-import { ScrollBox, TabButton } from '../TabButton';
+import { ScrollBox, TabButton } from '../index';
 
 const Tabs = ( {
     activeTabIndex,
