@@ -50,8 +50,12 @@ in the next major release. Please use ‘onClickTab’ instead.' );
         <div
             className = { buildClassName( className, cssMap ) }>
             <div className = { cssMap.header }>
-                <ScrollBox className = { cssMap.tabs } scroll = "horizontal">
-                    { tabButtons }
+                <ScrollBox
+                    className = { cssMap.tabsContainer }
+                    scroll    = "horizontal">
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
                 </ScrollBox>
                 { secondaryControls &&
                     <div className = { cssMap.secondaryControls }>

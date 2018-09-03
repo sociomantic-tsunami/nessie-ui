@@ -14,39 +14,37 @@
 
     max-width:         100%;
 
-    border-bottom:  solid 1px var( --PC-GREY--L70 );
+    border-bottom:     solid 1px var( --PC-GREY--L70 );
 }
 
-.tabs
+.tabsContainer
 {
-    flex-shrink: 1;
+    flex-shrink:    1;
 
-    div[class^="scrollBox__content"]
+    &:last-child
     {
-        display: flex;
-        flex-flow: row nowrap;
-        min-width: min-content;
+        margin-bottom:  -1px;
+    }
 
-        > *:last-child /* overrides inherited default margin-bottom: 0; */
-        {
-            margin-left: var( --spacing-1 );
-            margin-bottom: -1px;
-        }
+    .tabs
+    {
+        display:    flex;
+        flex-flow:  row nowrap;
+        min-width:  min-content;
     }
 }
 
 .secondaryControls
 {
-    display: flex;
-    flex-flow: row wrap;
+    display:        flex;
+    flex-flow:      row wrap;
 
-    align-self: flex-start;
-    flex-shrink: 0;
-    max-width: 40%;
-    word-break: break-word;
+    align-self:     flex-start;
+    flex-shrink:    0;
+    word-break:     break-word;
 }
 
 .content
 {
-    /* margin-top: var( --spacing-2 ); */
+    margin-top: var( --spacing-2 );
 }

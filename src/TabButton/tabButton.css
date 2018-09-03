@@ -19,8 +19,8 @@
         margin:    0;
         padding:   0;
 
+        border:                 1px solid transparent;
         border-radius:          2px;
-        border-bottom-color:    var( --PC-GREY--L70 );
     }
 
     &:focus
@@ -51,7 +51,7 @@
 {
     color:          var( --PC-BLUE );
     border-bottom:  1px solid var( --PC-BLUE );
-    margin-bottom:  -1px;
+    margin-bottom:  0;
     pointer-events: none;
     cursor:         default;
 }
