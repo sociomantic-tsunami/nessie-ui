@@ -8,33 +8,45 @@
 .header
 {
     display:           flex;
-    flex-direction:    row;
-    align-items:       flex-end;
+    flex-flow:         row nowrap;
+    align-items:       flex-start;
+    justify-content:   space-between;
+
+    max-width:         100%;
+
+    border-bottom:  solid 1px var( --PC-GREY--L70 );
 }
 
 .tabs
 {
-    display:        flex;
-    flex-direction: row;
-    flex-grow:      1;
+    flex-shrink: 1;
 
-    min-width:      min-content;
-
-    border-bottom:  solid 1px var( --PC-GREY--L70 );
-
-    > *:last-child /* overrides inherited default margin-bottom: 0; */
+    div[class^="scrollBox__content"]
     {
-        margin-bottom: -1px;
+        display: flex;
+        flex-flow: row nowrap;
+        min-width: min-content;
+
+        > *:last-child /* overrides inherited default margin-bottom: 0; */
+        {
+            margin-left: var( --spacing-1 );
+            margin-bottom: -1px;
+        }
     }
 }
 
 .secondaryControls
 {
-    margin-top:     var( --spacing-2 );
-    margin-bottom:  var( --spacing-2 );
+    display: flex;
+    flex-flow: row wrap;
+
+    align-self: flex-start;
+    flex-shrink: 0;
+    max-width: 40%;
+    word-break: break-word;
 }
 
 .content
 {
-    /* padding? */
+    /* margin-top: var( --spacing-2 ); */
 }
