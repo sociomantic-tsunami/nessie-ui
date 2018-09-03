@@ -1,10 +1,9 @@
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { buildClassName } from '../utils';
-import styles             from './tabs.css';
-import TabButton          from '../TabButton';
-import ScrollBox          from '../ScrollBox';
+import { buildClassName }       from '../utils';
+import styles                   from './tabs.css';
+import { ScrollBox, TabButton } from '../TabButton';
 
 const Tabs = ( {
     activeTabIndex,
