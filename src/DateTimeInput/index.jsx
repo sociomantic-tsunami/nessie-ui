@@ -17,7 +17,6 @@ const DateTimeInput = ( {
     days,
     forceHover,
     hasError,
-    hasTimeInput,
     hourInputRef,
     hourIsDisabled,
     hourPlaceholder,
@@ -72,7 +71,7 @@ const DateTimeInput = ( {
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            hasTimeInput      = { hasTimeInput }
+            hasTimeInput      = { mode === "default" }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
             onBlur            = { onBlur }
@@ -342,7 +341,6 @@ DateTimeInput.defaultProps =
     errorMessagePosition  : undefined,
     forceHover            : false,
     hasError              : false,
-    hasTimeInput          : true,
     hourInputRef          : undefined,
     hourIsDisabled        : false,
     hourPlaceholder       : undefined,
