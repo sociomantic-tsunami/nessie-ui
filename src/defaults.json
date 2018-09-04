@@ -345,6 +345,7 @@
     "TextInputWithDropdown" :
     {
         "label"            : "How long?",
+        "lochness"         : { "isDeprecated" : true },
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
