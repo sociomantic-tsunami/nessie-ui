@@ -17,6 +17,7 @@ const DateTimeInput = ( {
     days,
     forceHover,
     hasError,
+    hasTimeInput,
     hourInputRef,
     hourIsDisabled,
     hourPlaceholder,
@@ -71,7 +72,7 @@ const DateTimeInput = ( {
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            mode              = { mode }
+            hasTimeInput      = { hasTimeInput }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
             onBlur            = { onBlur }
@@ -167,6 +168,10 @@ DateTimeInput.propTypes =
      */
     hasError              : PropTypes.bool,
     /**
+     *  Display TimeInput if true
+     */
+    hasTimeInput          : PropTypes.bool,
+    /**
      *  Hour input ref callback function:
      *  ( ref ) = { ... }
      */
@@ -251,83 +256,79 @@ DateTimeInput.propTypes =
     /**
      *  Months to display in month mode
      */
-    months                : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    months                : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
      *  “Next” button is disabled
      */
-    nextIsDisabled  : PropTypes.bool,
+    nextIsDisabled        : PropTypes.bool,
     /**
      *  Blur callback function
      */
-    onBlur          : PropTypes.func,
+    onBlur                : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange        : PropTypes.func,
+    onChange              : PropTypes.func,
     /**
      *  Icon click callback function
      */
-    onClickIcon     : PropTypes.func,
+    onClickIcon           : PropTypes.func,
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell     : PropTypes.func,
+    onClickCell           : PropTypes.func,
     /**
      *  onClick callback function for “Previous” button
      */
-    onClickNext     : PropTypes.func,
+    onClickNext           : PropTypes.func,
     /**
      *  onClick callback function for “Next” button
      */
-    onClickPrev     : PropTypes.func,
+    onClickPrev           : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus         : PropTypes.func,
+    onFocus               : PropTypes.func,
     /**
      *  Key down callback function
      */
-    onKeyDown       : PropTypes.func,
+    onKeyDown             : PropTypes.func,
     /**
      *  Key press callback function
      */
-    onKeyPress      : PropTypes.func,
+    onKeyPress            : PropTypes.func,
     /**
      *  Key up callback function
      */
-    onKeyUp         : PropTypes.func,
+    onKeyUp               : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut      : PropTypes.func,
+    onMouseOut            : PropTypes.func,
     /**
      *  Icon mouse out callback function
      */
-    onMouseOutIcon  : PropTypes.func,
+    onMouseOutIcon        : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver     : PropTypes.func,
+    onMouseOver           : PropTypes.func,
     /**
      *  Icon mouse over callback function
      */
-    onMouseOverIcon : PropTypes.func,
+    onMouseOverIcon       : PropTypes.func,
     /**
      *  “Previous” button is disabled
      */
-    prevIsDisabled  : PropTypes.bool,
+    prevIsDisabled        : PropTypes.bool,
     /**
      *  Input text alignment
      */
-    textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     /**
      *  Weeks to display in default/day mode
      */
-    weeks           : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    weeks                 : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
 };
 
 DateTimeInput.defaultProps =
@@ -341,6 +342,7 @@ DateTimeInput.defaultProps =
     errorMessagePosition  : undefined,
     forceHover            : false,
     hasError              : false,
+    hasTimeInput          : true,
     hourInputRef          : undefined,
     hourIsDisabled        : false,
     hourPlaceholder       : undefined,
