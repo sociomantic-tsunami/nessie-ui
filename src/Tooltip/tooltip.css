@@ -68,6 +68,7 @@
         @extend %Nessie-SemiBold;
         color:          var( --PC-WHITE );
         overflow-wrap:  break-word;
+        text-transform: none;
 
         a:any-link
         {
