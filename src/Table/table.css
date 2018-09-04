@@ -20,6 +20,7 @@
     }
 }
 
+.borders__none,
 .borders__rows,
 .borders__cells,
 .borders__rowDivider,
@@ -38,6 +39,15 @@
     {
         margin:     0;
         background: var( --PC-WHITE );
+    }
+}
+
+.borders__none
+{
+    .row,
+    .cell
+    {
+        border: none;
     }
 }
 
