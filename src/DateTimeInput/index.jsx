@@ -167,10 +167,6 @@ DateTimeInput.propTypes =
      */
     hasError              : PropTypes.bool,
     /**
-     *  Display TimeInput if true
-     */
-    hasTimeInput          : PropTypes.bool,
-    /**
      *  Hour input ref callback function:
      *  ( ref ) = { ... }
      */
