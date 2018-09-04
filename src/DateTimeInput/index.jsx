@@ -71,7 +71,7 @@ const DateTimeInput = ( {
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            hasTimeInput      = { mode === "default" }
+            hasTimeInput      = { mode === 'default' }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
             onBlur            = { onBlur }
