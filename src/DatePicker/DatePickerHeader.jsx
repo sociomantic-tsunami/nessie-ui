@@ -17,7 +17,7 @@ const DatePickerHeader = ( {
     minuteIsDisabled,
     minutePlaceholder,
     minuteValue,
-    mode,
+    hasTimeInput,
     month,
     onBlur,
     onChange,
@@ -50,7 +50,7 @@ const DatePickerHeader = ( {
             { month }
             <span className = { cssMap.year }> { year } </span>
         </Text>
-        { mode === 'default' &&
+        { hasTimeInput &&
             <TimeInput
                 hourIsDisabled    = { hourIsDisabled }
                 hourPlaceholder   = { hourPlaceholder }
@@ -79,7 +79,7 @@ DatePickerHeader.propTypes = {
     minuteIsDisabled  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    hasTimeInput      : PropTypes.bool,
     month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
     onBlur            : PropTypes.func,
@@ -103,7 +103,7 @@ DatePickerHeader.defaultProps = {
     minuteIsDisabled  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
-    mode              : 'default',
+    hasTimeInput      : true,
     month             : undefined,
     nextIsDisabled    : undefined,
     onBlur            : undefined,
