@@ -34,6 +34,16 @@ const ModalDialog = ( {
         return <div className = "modalContainer" />;
     }
 
+    const handleOverlayClick = ( e ) => {
+        if( e.target !== e.currentTarget ) return;
+
+        if( onClickOverlay )
+        {
+            onClickOverlay( e );
+        }
+
+    };
+
     const isCarousel = type === 'carousel';
     let modalUI      = null;
 
@@ -78,7 +88,7 @@ const ModalDialog = ( {
                     wide    : isWide,
                     showNav : hasNavigation
                 } ) }
-                onClick   = { onClickOverlay } >
+                onClick   = { handleOverlayClick } >
                 { modalUI }
                 <div className = { cssMap.content }>
                     { children }
