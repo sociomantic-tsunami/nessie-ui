@@ -75,14 +75,14 @@ describe( 'ModalDialog', () =>
     );
 
     test(
-        'should trigger `onClickOverlay` once when close button is clicked',
+        'should trigger `onClickClose` once when close button is clicked',
         () =>
         {
             const callBack = jest.fn();
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack,
+                onClickClose   : callBack,
                 type           : 'carousel'
             };
             wrapper = mount( <ModalDialog { ...props } /> );
