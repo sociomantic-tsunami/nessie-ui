@@ -43,6 +43,13 @@ const TextInputWithDropdown = ( {
     textAlign,
 } ) =>
 {
+    if ( !TextInputWithDropdown.didWarn )
+    {
+        console.warn( 'TextInputWithDropdown: This component is deprecated and will be \
+removed in the next major release.' );
+        TextInputWithDropdown.didWarn = true;
+    }
+
     let alignText = textAlign;
 
     if ( textAlign === 'auto' )
