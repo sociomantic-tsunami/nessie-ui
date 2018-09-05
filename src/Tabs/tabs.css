@@ -2,58 +2,46 @@
 
 .default
 {
-    position: relative;
-}
-
-.header
-{
-    display:           flex;
-    flex-flow:         row nowrap;
-    align-items:       flex-start;
-    justify-content:   space-between;
-
-    max-width:         100%;
-
-    border-bottom:     solid 1px var( --PC-GREY--L70 );
-}
-
-.tabsContainer
-{
-    flex-shrink:    1;
-    align-self:     flex-end;
-    margin-bottom:  -1px;
-
-    &:last-child /* overrides ScrollBox 'margin-bottom: 0' */
+    .header
     {
-        margin-bottom:  -1px;
+        display:        flex;
+        align-items:    flex-end;
+        max-width:      100%;
+        border-bottom:  solid 1px var( --PC-GREY--L70 );
+        margin-bottom:  var( --spacing-2 );
+
+        & > *
+        {
+            margin-bottom:  0;
+        }
     }
 
-    &:not(:last-child)
+    .tabsContainer
     {
-        margin-right: var( --spacing-2 );
+        flex:           auto;
+        margin-bottom:  -1px;
     }
 
     .tabs
     {
         display:    flex;
-        flex-flow:  row nowrap;
 
-        > *
+        & > *
         {
-            flex-shrink: 0;
+            flex:           none;
+            margin-bottom:  0;
         }
     }
-}
 
-.secondaryControls
-{
-    > *:last-child /* overrides default 'margin-bottom: 0' */
+    .secondaryControls
     {
-        margin-bottom: var( --spacing-2 );
+        flex:           none;
+        margin-left:    var( --spacing-2 );
+        margin-bottom:  var( --spacing-2 );
     }
-}
 
-.content
-{
-    margin-top: var( --spacing-2 );
+    .content
+    {
+        /* nothing to do here */
+    }
 }
