@@ -20,28 +20,33 @@
 .tabsContainer
 {
     flex-shrink:    1;
+    align-self:     flex-end;
+    margin-bottom:  -1px;
 
-    &:last-child
+    &:last-child /* overrides ScrollBox 'margin-bottom: 0' */
     {
         margin-bottom:  -1px;
+    }
+
+    &:not(:last-child)
+    {
+        margin-right: var( --spacing-2 );
     }
 
     .tabs
     {
         display:    flex;
         flex-flow:  row nowrap;
-        min-width:  min-content;
+
+        > *
+        {
+            flex-shrink: 0;
+        }
     }
 }
 
 .secondaryControls
 {
-    display:        flex;
-    flex-flow:      row wrap;
-
-    align-self:     flex-start;
-    flex-shrink:    0;
-    word-break:     break-word;
 }
 
 .content
