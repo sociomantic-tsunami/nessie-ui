@@ -142,7 +142,7 @@ Table.propTypes =
     /**
      *  Body Text style configuration
      */
-    bodyTextProps : PropTypes.shape,
+    bodyTextProps : PropTypes.object,
     /**
      *  Display table with borders
      */
@@ -171,7 +171,7 @@ Table.propTypes =
     /**
      *  Header Text style configuration
      */
-    headerTextProps : PropTypes.shape,
+    headerTextProps : PropTypes.object,
     /**
      *  Display as zebra-striped
      */
