@@ -1,6 +1,6 @@
 ## Component Description
 
-ValuedTextInput is a TextInput value label inset into the input.
+ValuedTextInput is a TextInput with a value label inset into the input.
 
 ## Example Usage
 

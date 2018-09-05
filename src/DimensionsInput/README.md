@@ -1,7 +1,6 @@
 ## Component Description
----------------------
 
-DimensionsInput is an input for entering image dimensions ( width ✕ height).
+DimensionsInput is an input for entering image dimensions (width ✕ height).
 It consists of two TextInputs separated by _✕_.
 
 
