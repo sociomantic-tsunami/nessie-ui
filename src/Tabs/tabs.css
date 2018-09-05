@@ -2,35 +2,58 @@
 
 .default
 {
-    position:       relative;
+    position: relative;
 }
 
 .header
 {
-    display:        flex;
-    flex-direction: row;
-    align-items:    flex-end;
+    display:           flex;
+    flex-flow:         row nowrap;
+    align-items:       flex-start;
+    justify-content:   space-between;
 
-    border-bottom:  solid 1px var( --PC-GREY--L70 );
+    max-width:         100%;
 
-    margin-bottom:	var( --spacing-2 );
+    border-bottom:     solid 1px var( --PC-GREY--L70 );
 }
 
-.tabs
+.tabsContainer
 {
-    display:        flex;
-    flex-direction: row;
-    flex-grow:      1;
-
+    flex-shrink:    1;
+    align-self:     flex-end;
     margin-bottom:  -1px;
+
+    &:last-child /* overrides ScrollBox 'margin-bottom: 0' */
+    {
+        margin-bottom:  -1px;
+    }
+
+    &:not(:last-child)
+    {
+        margin-right: var( --spacing-2 );
+    }
+
+    .tabs
+    {
+        display:    flex;
+        flex-flow:  row nowrap;
+
+        > *
+        {
+            flex-shrink: 0;
+        }
+    }
 }
 
 .secondaryControls
 {
-    margin-bottom: var( --spacing-2 );
+    > *:last-child /* overrides default 'margin-bottom: 0' */
+    {
+        margin-bottom: var( --spacing-2 );
+    }
 }
 
 .content
 {
-    /* padding? */
+    margin-top: var( --spacing-2 );
 }

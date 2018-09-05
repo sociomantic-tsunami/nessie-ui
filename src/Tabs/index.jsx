@@ -1,10 +1,9 @@
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { buildClassName } from '../utils';
-import styles             from './tabs.css';
-import TabButton          from '../TabButton';
-
+import { buildClassName }       from '../utils';
+import styles                   from './tabs.css';
+import { ScrollBox, TabButton } from '../index';
 
 const Tabs = ( {
     activeTabIndex,
@@ -38,18 +37,25 @@ in the next major release. Please use ‘onClickTab’ instead.' );
                 isDisabled = { isDisabled || isActive }
                 key        = { label || tabIndex }
                 label      = { label }
-                onClick    = { e => clickHandler && clickHandler( e,
-                    { activeTabIndex: tabIndex } ) }
+                onClick    = { e => clickHandler && clickHandler(
+                    e,
+                    { activeTabIndex: tabIndex },
+                ) }
                 tabIndex = { tabIndex } />
         );
     } );
 
     return (
-        <div className = { buildClassName( className, cssMap ) }>
+        <div
+            className = { buildClassName( className, cssMap ) }>
             <div className = { cssMap.header }>
-                <div className = { cssMap.tabs }>
-                    { tabButtons }
-                </div>
+                <ScrollBox
+                    className = { cssMap.tabsContainer }
+                    scroll    = "horizontal">
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
+                </ScrollBox>
                 { secondaryControls &&
                     <div className = { cssMap.secondaryControls }>
                         { secondaryControls }
