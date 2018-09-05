@@ -55,7 +55,12 @@ const Table = ( {
                 const column      = columns[ j ];
                 const columnProps = column && {
                     align     : cell.props.align || column.align,
-                    textProps : { ...bodyTextProps, ...column.textProps, ...( rows[ i ] && rows[ i ].textProps ), ...cell.props.textProps },
+                    textProps : {
+                        ...bodyTextProps,
+                        ...column.textProps,
+                        ...( rows[ i ] && rows[ i ].textProps ),
+                        ...cell.props.textProps,
+                    },
                     columnTitle : cell.props.columnTitle || column.title,
                     size        : cell.props.size || column.size,
                     isRowHeader : cell.props.isRowHeader ||
@@ -196,11 +201,12 @@ Table.propTypes =
     /**
      * 2D Array of table values (for convenience)
      */
-    values          : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.string ) ),
+    values          : PropTypes.arrayOf( PropTypes
+        .arrayOf( PropTypes.string ) ),
     /**
      *  Vertical alignment inside cells
      */
-    verticalAlign   : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
+    verticalAlign : PropTypes.oneOf( [ 'top', 'bottom', 'middle' ] ),
 };
 
 Table.defaultProps =
