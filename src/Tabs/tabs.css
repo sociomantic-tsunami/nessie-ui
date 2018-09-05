@@ -47,6 +47,10 @@
 
 .secondaryControls
 {
+    > *:last-child /* overrides default 'margin-bottom: 0' */
+    {
+        margin-bottom: var( --spacing-2 );
+    }
 }
 
 .content
