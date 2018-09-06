@@ -6,7 +6,6 @@ import React            from 'react';
 import { shallow }      from 'enzyme';
 
 import { InputField }   from '../index';
-import InputContainer   from '../proto/InputContainer';
 
 import TextArea         from './index';
 
@@ -25,11 +24,6 @@ describe( 'TextArea', () =>
     test( 'should be an instance of StatelessComponent', () =>
     {
         expect( instance.constructor.name ).toBe( 'StatelessComponent' );
-    } );
-
-    test( 'should contain exactly one InputContainer', () =>
-    {
-        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain exactly one InputField', () =>

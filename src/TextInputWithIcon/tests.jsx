@@ -1,4 +1,4 @@
-/* global test jest Event */
+/* global test */
 /* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -660,42 +660,6 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( InputField ).prop( 'forceHover' ) )
                     .toBeTruthy();
             } );
-        } );
-    } );
-} );
-
-
-describe( 'TextInputWithIconDriver', () =>
-{
-    let wrapper;
-    let driver;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <WrappedTextInputWithIcon /> );
-        driver  = wrapper.driver();
-    } );
-
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                hasError              : true,
-                errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true,
-            } );
-        } );
-
-        test( 'should return a ReactWrapper', () =>
-        {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the message content', () =>
-        {
-            const message = driver.getErrorMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 } );

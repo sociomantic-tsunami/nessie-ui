@@ -89,7 +89,6 @@ import ModuleDriver          from './Module/driver';
 import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
-import PasswordInputDriver   from './PasswordInput/driver';
 import RadioGroupDriver      from './RadioGroup/driver';
 import ScrollBarDriver       from './ScrollBar/driver';
 import ScrollBoxDriver       from './ScrollBox/driver';
@@ -106,7 +105,6 @@ import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
-import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 import WrapperDriver           from './Testing/CommonDrivers/wrapperDriver';
@@ -272,7 +270,7 @@ const drivers =
     },
     {
         Component : PasswordInput,
-        Driver    : PasswordInputDriver,
+        Driver    : InputComponentDriver,
     },
     {
         Component : Radio,
@@ -364,7 +362,7 @@ const drivers =
     },
     {
         Component : TextInputWithIcon,
-        Driver    : TextInputWithIconDriver,
+        Driver    : InputComponentDriver,
     },
     {
         Component : Tooltip,

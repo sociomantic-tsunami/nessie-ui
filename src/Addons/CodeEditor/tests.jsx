@@ -5,27 +5,22 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-
-
 import CodeEditor         from './index';
+
 
 describe( 'CodeEditor', () =>
 {
     let wrapper;
     let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
         wrapper      = shallow( <CodeEditor /> );
         instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
     } );
 
     describe( 'render()', () =>
     {
-
-
         test( 'should contain exactly one textArea', () =>
         {
             expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
@@ -98,12 +93,6 @@ end of the code editor’s value', () =>
 
     describe( 'setInputValue( value )', () =>
     {
-        test( 'should set the input value to "foo"', () =>
-        {
-            driver.setInputValue( 'foo' );
-            expect( CodeMirror.getValue() ).toBe( 'foo' );
-        } );
-
         test( 'should fire the onChange callback prop once', () =>
         {
             const onChange = jest.fn();
