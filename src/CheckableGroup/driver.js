@@ -1,9 +1,20 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import { Checkbox, Radio } from '../index';
+
 
 const ERR = {
     CHECKABLEGROUP_ERR : ( label, event, state ) => `CheckableGroup \
 '${label}' cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class CheckableGroupDriver
 {
@@ -15,7 +26,6 @@ export default class CheckableGroupDriver
             wrapper.find( Checkbox ) :
             wrapper.find( Radio );
     }
-
 
     change( index = 0 )
     {

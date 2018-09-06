@@ -1,9 +1,18 @@
-import React, { Children }              from 'react';
-import PropTypes                        from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { CheckableGroup }               from '../index';
-import { generateId, buildClassName }   from '../utils';
-import { buildCheckboxesFromValues }    from './utils';
+import React, { Children }           from 'react';
+import PropTypes                     from 'prop-types';
+
+import { CheckableGroup }            from '../index';
+import { generateId }                from '../utils';
+import { buildCheckboxesFromValues } from './utils';
 
 
 const CheckboxGroup = ( {

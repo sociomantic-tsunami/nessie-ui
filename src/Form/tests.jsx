@@ -1,9 +1,19 @@
-/* eslint-disable no-magic-numbers, no-multi-str */
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import React                            from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* global test jest */
 
-import Form                             from './index';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
+
+import Form               from './index';
 
 describe( 'Form', () =>
 {

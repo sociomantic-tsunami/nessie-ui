@@ -1,39 +1,27 @@
-/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
-
-/**
- * 1. Change the default font family in all browsers (opinionated).
- * 2. Correct the line height in all browsers.
- * 3. Prevent adjustments of font size after orientation changes in
- *    IE on Windows Phone and in iOS.
- */
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
 
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
 html {
-  font-family: sans-serif; /* 1 */
-  line-height: 1.15; /* 2 */
-  -ms-text-size-adjust: 100%; /* 3 */
-  -webkit-text-size-adjust: 100%; /* 3 */
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
    ========================================================================== */
 
 /**
- * Remove the margin in all browsers (opinionated).
+ * Remove the margin in all browsers.
  */
 
 body {
   margin: 0;
-}
-
-/**
- * Add the correct display in IE 9-.
- */
-
-article, aside, footer, header, nav, section {
-  display: block;
 }
 
 /**
@@ -48,23 +36,6 @@ h1 {
 
 /* Grouping content
    ========================================================================== */
-
-/**
- * Add the correct display in IE 9-.
- * 1. Add the correct display in IE.
- */
-
-figcaption, figure, main { /* 1 */
-  display: block;
-}
-
-/**
- * Add the correct margin in IE 8.
- */
-
-figure {
-  margin: 1em 40px;
-}
 
 /**
  * 1. Add the correct box sizing in Firefox.
@@ -92,26 +63,15 @@ pre {
    ========================================================================== */
 
 /**
- * 1. Remove the gray background on active links in IE 10.
- * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ * Remove the gray background on active links in IE 10.
  */
 
 a {
-  background-color: transparent; /* 1 */
-  -webkit-text-decoration-skip: objects; /* 2 */
+  background-color: transparent;
 }
 
 /**
- * Remove the outline on focused links when they are also active or hovered
- * in all browsers (opinionated).
- */
-
-a:active, a:hover {
-  outline-width: 0;
-}
-
-/**
- * 1. Remove the bottom border in Firefox 39-.
+ * 1. Remove the bottom border in Chrome 57-
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
@@ -120,14 +80,6 @@ abbr[title] {
   text-decoration: underline; /* 2 */
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted; /* 2 */
-}
-
-/**
- * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
- */
-
-b, strong {
-  font-weight: inherit;
 }
 
 /**
@@ -146,23 +98,6 @@ b, strong {
 code, kbd, samp {
   font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
-}
-
-/**
- * Add the correct font style in Android 4.3-.
- */
-
-dfn {
-  font-style: italic;
-}
-
-/**
- * Add the correct background and color in IE 9-.
- */
-
-mark {
-  background-color: #ff0;
-  color: #000;
 }
 
 /**
@@ -197,48 +132,23 @@ sup {
    ========================================================================== */
 
 /**
- * Add the correct display in IE 9-.
- */
-
-audio, video {
-  display: inline-block;
-}
-
-/**
- * Add the correct display in iOS 4-7.
- */
-
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-/**
- * Remove the border on images inside links in IE 10-.
+ * Remove the border on images inside links in IE 10.
  */
 
 img {
   border-style: none;
 }
 
-/**
- * Hide the overflow in IE.
- */
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
 /* Forms
    ========================================================================== */
 
 /**
- * 1. Change the font styles in all browsers (opinionated).
+ * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
  */
 
 button, input, optgroup, select, textarea {
-  font-family: sans-serif; /* 1 */
+  font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
@@ -263,13 +173,11 @@ button, select { /* 1 */
 }
 
 /**
- * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
- *    controls in Android 4.
- * 2. Correct the inability to style clickable types in iOS and Safari.
+ * Correct the inability to style clickable types in iOS and Safari.
  */
 
-button, html [type="button"], [type="reset"], [type="submit"] {
-  -webkit-appearance: button; /* 2 */
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
 }
 
 /**
@@ -290,13 +198,11 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
 }
 
 /**
- * Change the border, margin, and padding in all browsers (opinionated).
+ * Correct the padding in Firefox.
  */
 
 fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
+  padding: 0.35em 0.75em 0.625em;
 }
 
 /**
@@ -317,17 +223,15 @@ legend {
 }
 
 /**
- * 1. Add the correct display in IE 9-.
- * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 
 progress {
-  display: inline-block; /* 1 */
-  vertical-align: baseline; /* 2 */
+  vertical-align: baseline;
 }
 
 /**
- * Remove the default vertical scrollbar in IE.
+ * Remove the default vertical scrollbar in IE 10+.
  */
 
 textarea {
@@ -335,8 +239,8 @@ textarea {
 }
 
 /**
- * 1. Add the correct box sizing in IE 10-.
- * 2. Remove the padding in IE 10-.
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
  */
 
 [type="checkbox"], [type="radio"] {
@@ -364,10 +268,10 @@ textarea {
 }
 
 /**
- * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-[type="search"]::-webkit-search-cancel-button, [type="search"]::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -385,11 +289,10 @@ textarea {
    ========================================================================== */
 
 /*
- * Add the correct display in IE 9-.
- * 1. Add the correct display in Edge, IE, and Firefox.
+ * Add the correct display in Edge, IE 10+, and Firefox.
  */
 
-details, menu {
+details {
   display: block;
 }
 
@@ -401,35 +304,33 @@ summary {
   display: list-item;
 }
 
-/* Scripting
+/* Misc
    ========================================================================== */
 
 /**
- * Add the correct display in IE 9-.
- */
-
-canvas {
-  display: inline-block;
-}
-
-/**
- * Add the correct display in IE.
+ * Add the correct display in IE 10+.
  */
 
 template {
   display: none;
 }
 
-/* Hidden
-   ========================================================================== */
-
 /**
- * Add the correct display in IE 10-.
+ * Add the correct display in IE 10.
  */
 
 [hidden] {
   display: none;
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 .animate__default__2pmKn
 {
@@ -812,6 +713,33 @@ template {
             animation: animate__slideOutUp__oH91M 1000ms;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -845,6 +773,15 @@ template {
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -853,6 +790,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -1154,6 +1100,42 @@ template {
     {
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -1187,6 +1169,15 @@ template {
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -1195,6 +1186,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -1344,6 +1344,42 @@ template {
     }
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -1377,6 +1413,15 @@ template {
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -1392,6 +1437,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -1851,6 +1905,42 @@ template {
             color:  #98a8bc;
         }
 
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -1884,6 +1974,15 @@ template {
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -1892,6 +1991,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2007,6 +2115,42 @@ template {
     padding-bottom:  40px;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2039,6 +2183,15 @@ template {
 
     /* navyscale colors */
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
@@ -2083,6 +2236,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2237,6 +2399,42 @@ template {
     text-align: right;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2270,6 +2468,15 @@ template {
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -2285,6 +2492,15 @@ template {
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2349,6 +2565,33 @@ legend.label__default__1KHiG + *
     text-transform: uppercase;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2382,6 +2625,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -2397,6 +2649,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2432,6 +2693,7 @@ legend.label__default__1KHiG + *
     {
         visibility: hidden;
         position:   absolute;
+        z-index:    99999;
     }
 
 .tooltip__default__mBPQb .tooltip__tooltip__hehe5
@@ -2463,6 +2725,7 @@ legend.label__default__1KHiG + *
     {
         color:          #ffffff;
         word-wrap:  break-word;
+        text-transform: none;
     }
 
 .tooltip__default__mBPQb .tooltip__message__2x0kz a:link,.tooltip__default__mBPQb .tooltip__message__2x0kz a:visited
@@ -2708,6 +2971,33 @@ legend.label__default__1KHiG + *
         background: #ff965a;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2741,6 +3031,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -2749,6 +3048,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2882,6 +3190,42 @@ legend.label__default__1KHiG + *
     z-index:            1;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -2915,6 +3259,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -2923,6 +3276,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -2968,6 +3330,15 @@ legend.label__default__1KHiG + *
 {
     margin-bottom:  8px;
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 .checkableGroup__default__1i-T7
 {
@@ -3030,6 +3401,51 @@ legend.label__default__1KHiG + *
         margin: 0;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -3063,6 +3479,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -3078,6 +3503,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -3284,6 +3718,42 @@ legend.label__default__1KHiG + *
         background-color:       #ff5460;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -3317,6 +3787,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -3325,6 +3804,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -3433,6 +3921,42 @@ legend.label__default__1KHiG + *
         margin-right:   10px;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -3466,6 +3990,15 @@ legend.label__default__1KHiG + *
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -3474,6 +4007,15 @@ legend.label__default__1KHiG + *
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -3505,6 +4047,15 @@ legend.label__default__1KHiG + *
     {
         margin-bottom:  0;
     }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*
   DON'T TOUCH HERE!!!!
@@ -3961,6 +4512,33 @@ span.CodeMirror-selectedtext { background: none; }
                     box-shadow: 0 0 0 2px rgba(255, 84, 96, 0.3);
         }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -3994,6 +4572,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -4002,6 +4589,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8233,6 +8829,42 @@ span.CodeMirror-selectedtext { background: none; }
     max-width:  48px;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8266,6 +8898,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8274,6 +8915,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8366,6 +9016,33 @@ span.CodeMirror-selectedtext { background: none; }
         right:   11px;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8399,6 +9076,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8407,6 +9093,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8497,6 +9192,33 @@ span.CodeMirror-selectedtext { background: none; }
         color:          #98a8bc;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8530,6 +9252,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8545,6 +9276,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8589,12 +9329,48 @@ span.CodeMirror-selectedtext { background: none; }
         padding:    0;
     }
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 .listBox__default__1-fww
 {
     display:    block;
     margin:     0;
     padding:    0;
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -8629,6 +9405,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8637,6 +9422,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8684,6 +9478,42 @@ span.CodeMirror-selectedtext { background: none; }
                 transform:  translateY( -100% ) translateY( -8px );
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8717,6 +9547,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8725,6 +9564,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8803,6 +9651,33 @@ span.CodeMirror-selectedtext { background: none; }
     width: auto;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8836,6 +9711,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8851,6 +9735,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -8873,6 +9766,42 @@ span.CodeMirror-selectedtext { background: none; }
     color:  #c7d0db;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -8906,6 +9835,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -8921,6 +9859,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9000,6 +9947,42 @@ span.CodeMirror-selectedtext { background: none; }
         padding: 0;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9033,6 +10016,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9041,6 +10033,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9181,6 +10182,33 @@ span.CodeMirror-selectedtext { background: none; }
         color:      #c7d0db;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9214,6 +10242,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9236,6 +10273,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9320,6 +10366,33 @@ span.CodeMirror-selectedtext { background: none; }
                     box-shadow:   0 0 0 2px rgba(255, 255, 255, 0.3);
         }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9353,6 +10426,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9361,6 +10443,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9467,6 +10558,42 @@ span.CodeMirror-selectedtext { background: none; }
         display:            inline-block;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9500,6 +10627,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9508,6 +10644,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9551,6 +10696,33 @@ span.CodeMirror-selectedtext { background: none; }
     background-color:       color( var(--GS-2) a( 20% ) );
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9584,6 +10756,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9599,6 +10780,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9707,6 +10897,42 @@ span.CodeMirror-selectedtext { background: none; }
         border-top-color:   #19a2e2;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9740,6 +10966,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9755,6 +10990,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9817,6 +11061,42 @@ span.CodeMirror-selectedtext { background: none; }
     color:	#ff5460;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9850,6 +11130,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9865,6 +11154,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -9928,6 +11226,42 @@ span.CodeMirror-selectedtext { background: none; }
     color:	#ff5460;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -9961,6 +11295,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -9976,6 +11319,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -10039,6 +11391,42 @@ span.CodeMirror-selectedtext { background: none; }
     color:	#ff5460;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -10072,6 +11460,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -10087,6 +11484,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -10150,6 +11556,42 @@ span.CodeMirror-selectedtext { background: none; }
     color:	#ff5460;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -10183,6 +11625,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -10212,6 +11663,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -11102,6 +12562,42 @@ span.CodeMirror-selectedtext { background: none; }
     }
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -11135,6 +12631,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -11143,6 +12648,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -11180,6 +12694,42 @@ span.CodeMirror-selectedtext { background: none; }
 
 }
 
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -11213,6 +12763,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -11221,6 +12780,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -11520,6 +13088,42 @@ span.CodeMirror-selectedtext { background: none; }
     min-height: 87px; /* label + input */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -11553,6 +13157,15 @@ span.CodeMirror-selectedtext { background: none; }
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -11561,6 +13174,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -11689,6 +13311,42 @@ span.CodeMirror-selectedtext { background: none; }
             display:    none;
         }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -11721,6 +13379,15 @@ span.CodeMirror-selectedtext { background: none; }
 
     /* navyscale colors */
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
@@ -11765,6 +13432,15 @@ span.CodeMirror-selectedtext { background: none; }
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -11946,6 +13622,42 @@ textarea.inputField__resizable__2CfEu
         resize: vertical;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -11979,6 +13691,15 @@ textarea.inputField__resizable__2CfEu
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -11987,6 +13708,15 @@ textarea.inputField__resizable__2CfEu
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12068,6 +13798,33 @@ textarea.inputField__resizable__2CfEu
     background: #1bbab0;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12101,6 +13858,15 @@ textarea.inputField__resizable__2CfEu
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12116,6 +13882,15 @@ textarea.inputField__resizable__2CfEu
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12325,6 +14100,42 @@ only used in type__carousel for now
             right:  150px;
         }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12358,6 +14169,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12366,6 +14186,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12622,6 +14451,42 @@ only used in type__carousel for now
         padding-left: 19px;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12655,6 +14520,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12663,6 +14537,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12757,6 +14640,42 @@ only used in type__carousel for now
             align-items:        stretch;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12790,6 +14709,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12798,6 +14726,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12853,6 +14790,33 @@ only used in type__carousel for now
     background:         #ffffff;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12886,6 +14850,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12894,6 +14867,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -12925,6 +14907,42 @@ only used in type__carousel for now
     z-index:                999;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -12958,6 +14976,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -12973,6 +15000,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13175,6 +15211,42 @@ only used in type__carousel for now
         fill: #c7d0db;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13208,6 +15280,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13216,6 +15297,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13253,6 +15343,42 @@ only used in type__carousel for now
     width:	100%;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13286,6 +15412,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13294,6 +15429,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13391,6 +15535,42 @@ only used in type__carousel for now
     color: #ffffff;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13424,6 +15604,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13432,6 +15621,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13551,6 +15749,42 @@ only used in type__carousel for now
         max-height:   100vh;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13584,6 +15818,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13592,6 +15835,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13695,6 +15947,33 @@ only used in type__carousel for now
         border-top-color:   #19a2e2 !important;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13728,6 +16007,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13736,6 +16024,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13768,6 +16065,42 @@ only used in type__carousel for now
     line-height:    18px;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13801,6 +16134,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13809,6 +16151,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13867,6 +16218,42 @@ only used in type__carousel for now
     opacity:	0.3;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -13900,6 +16287,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -13908,6 +16304,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -13948,10 +16353,46 @@ only used in type__carousel for now
             flex:           0 0 auto;
     width:          100%;
     margin:         0;
-    padding-top:    24px 40px;
+    padding:        16px 32px;
     background:     #19a2e2;
     color:          #ffffff;
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -13986,6 +16427,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14001,6 +16451,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14163,6 +16622,42 @@ only used in type__carousel for now
         border-radius:  2px;
     }
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -14196,6 +16691,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14204,6 +16708,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14240,6 +16753,42 @@ only used in type__carousel for now
 {
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -14273,6 +16822,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14281,6 +16839,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14344,6 +16911,42 @@ only used in type__carousel for now
         border-radius:          50%;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -14377,6 +16980,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14392,6 +17004,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14510,6 +17131,51 @@ only used in type__carousel for now
     }
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -14543,6 +17209,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14558,6 +17233,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14766,6 +17450,15 @@ only used in type__carousel for now
         background-color: #ff5460;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 .required__default__vzCL1
 {
 
@@ -14775,6 +17468,42 @@ only used in type__carousel for now
     {
         content:    '\A0*';
     }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -14809,6 +17538,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14817,6 +17555,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14887,6 +17634,42 @@ only used in type__carousel for now
         min-height: 20px;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -14920,6 +17703,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -14928,6 +17720,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -14970,6 +17771,8 @@ only used in type__carousel for now
         width:      100%;
         height:     100%;
         overflow:   scroll;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
     }
 
 /* force webkit scrollbars to be always visible on macOS */
@@ -15230,6 +18033,42 @@ only used in type__carousel for now
     padding-bottom:  40px;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -15263,6 +18102,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -15271,6 +18119,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -15358,6 +18215,42 @@ only used in type__carousel for now
 }
 */
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -15391,6 +18284,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -15406,6 +18308,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -15438,28 +18349,20 @@ only used in type__carousel for now
         margin-bottom:  0;
     }
 
-:root
-{ /*matches line height of labels*/
-}
-
 .slider__default__20oIL .slider__inputContainer__3VL0Q
     {
         position:   absolute;
-        left:       -9999999px;
+        left:       -99999px;
     }
 
-/* Track + handles */
-
-.slider__default__20oIL .slider__handle__1ztac, .slider__default__20oIL .slider__track__1YpS7, .slider__default__20oIL
+.slider__default__20oIL .slider__labelContainer__3eyva
     {
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+        margin-bottom:  8px;
     }
 
 .slider__default__20oIL .slider__handle__1ztac, .slider__default__20oIL .slider__trackFill__3sE-C
     {
         position:   absolute;
-        z-index:    1;
     }
 
 .slider__default__20oIL .slider__trackContainer__3nwI6
@@ -15472,123 +18375,120 @@ only used in type__carousel for now
 
 .slider__default__20oIL .slider__track__1YpS7
     {
-        position:                       relative;
+        position:       relative;
 
-        width:                          2px;
-        border-radius:                  2px;
+        width:          2px;
+        border-radius:  1px;
 
-        background:                     #eef1f4;
+        background:     #eef1f4;
 
-        -webkit-user-select:                    none;
+        -webkit-user-select:    none;
 
-           -moz-user-select:                    none;
+           -moz-user-select:    none;
 
-            -ms-user-select:                    none;
+            -ms-user-select:    none;
 
-                user-select:                    none;
-        cursor:                         pointer;
+                user-select:    none;
+        cursor:         pointer;
 
         -webkit-tap-highlight-color:    transparent;
     }
 
-.slider__default__20oIL .slider__track__1YpS7:hover .slider__handle__1ztac
-            {
-                border-color: #19a2e2;
-            }
-
 .slider__default__20oIL .slider__trackFill__3sE-C
     {
-        border-radius:      0px;
-        background:         #19a2e2;
+        border-radius:  1px;
+        background:     #19a2e2;
     }
 
 .slider__default__20oIL .slider__handle__1ztac
     {
-        width:              16px;
-        height:             16px;
+        width:          16px;
+        height:         16px;
 
-        border-radius:      50%;
-        background-color:   #19a2e2;
+        border-radius:  50%;
+        background:     #19a2e2;
 
-        cursor:             -webkit-grab;
+        cursor:         -webkit-grab;
 
-        cursor:             grab;
+        cursor:         grab;
 
-        z-index:            9999;
-
+        z-index:        1;
     }
-
-.slider__default__20oIL .slider__handle__1ztac:active
-        {
-            cursor:         -webkit-grabbing;
-            cursor:         grabbing;
-        }
 
 .slider__default__20oIL .slider__handle__1ztac::after
         {
-          -webkit-transition: opacity 450ms;
-          transition: opacity 450ms;
-          content: '';
-          position: absolute;
-          background-color:  #1589c0;
-          opacity: 0;
-          width: 24px;
-          height: 24px;
-          top: 50%;
-          left: 50%;
-          border-radius: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
+            content:        '';
+            display:        block;
+
+            position:       absolute;
+            top:            50%;
+            left:           50%;
+            -webkit-transform:      translate( -50%, -50% );
+                    transform:      translate( -50%, -50% );
+
+            width:          24px;
+            height:         24px;
+
+            background:     #1589c0;
+
+            border-radius:  50%;
+
+            opacity:        0;
+            -webkit-transition:     opacity 450ms;
+            transition:     opacity 450ms;
+        }
+
+.slider__default__20oIL .slider__handle__1ztac:active
+        {
+            cursor: -webkit-grabbing;
+            cursor: grabbing;
         }
 
 .slider__default__20oIL .slider__handleFocus__qQ8dl::after
-      {
-        opacity: .2;
-      }
+        {
+            opacity:    0.2;
+        }
 
 .slider__default__20oIL .slider__handleLabel__2uauA
     {
-        display:            none;
+        display:    none;
     }
 
 /* Ticks */
 
 .slider__default__20oIL .slider__ticksContainer__xPkAF
     {
-        width:              100%;
-        height:             100%;
-        position:           relative;
+        position:   relative;
+        width:      100%;
+        height:     100%;
     }
 
 .slider__default__20oIL .slider__tick__1De3L
     {
-        position:           absolute;
-        -webkit-transform:          translateX(-50%) translateY(-50%);
-                transform:          translateX(-50%) translateY(-50%);
-        z-index:            2;
-
-        font-size:          0;
-
-        background-color:   #ffffff;
-
-        width:              4px;
-        height:             4px;
+        position:   absolute;
+        background: #ffffff;
+        font-size:  0;
     }
 
 /* Step labels */
 
 .slider__default__20oIL .slider__stepLabelsContainer__2EG-O
     {
-        position:           relative;
+        position:   relative;
     }
 
 .slider__default__20oIL .slider__stepLabel__1t8SF
     {
+        position:       absolute;
+
+        max-width:      100%;
+
+        white-space:    nowrap;
+        overflow:       hidden;
+        text-overflow:  ellipsis;
         font-size:      14px;
         line-height:    16px;
         color:          #98a8bc;
-
-        position:           absolute;
     }
 
 .slider__orientation__horizontal__WBsKX .slider__trackContainer__3nwI6
@@ -15618,14 +18518,14 @@ only used in type__carousel for now
 
 .slider__orientation__horizontal__WBsKX .slider__handle__1ztac
     {
-        top:            50%;
-        -webkit-transform:      translateX( -50% ) translateY( -50% );
-                transform:      translateX( -50% ) translateY( -50% );
+        top:        50%;
+        -webkit-transform:  translateX( -50% ) translateY( -50% );
+                transform:  translateX( -50% ) translateY( -50% );
     }
 
 .slider__orientation__horizontal__WBsKX .slider__trackFill__3sE-C
     {
-        height:         2px;
+        height: 2px;
     }
 
 .slider__orientation__horizontal__WBsKX .slider__stepLabelsContainer__2EG-O
@@ -15641,28 +18541,32 @@ only used in type__carousel for now
         margin-bottom:  8px;
     }
 
+.slider__orientation__horizontal__WBsKX .slider__track__1YpS7 + .slider__stepLabelsContainer__2EG-O
+    {
+        margin-top:     8px;
+        margin-bottom:  0;
+    }
+
 .slider__orientation__horizontal__WBsKX .slider__stepLabel__1t8SF
     {
         -webkit-transform:  translateX( -50% );
                 transform:  translateX( -50% );
     }
 
-.slider__orientation__horizontal__WBsKX .slider__stepLabel__1t8SF:first-child /* start label */
-        {
-            -webkit-transform:  translateX( -8px );
-                    transform:  translateX( -8px );
-        }
+.slider__orientation__horizontal__WBsKX .slider__tick__1De3L
+    {
+        width:  8px;
+        height: 2px;
 
-.slider__orientation__horizontal__WBsKX .slider__stepLabel__1t8SF:last-child /* end label */
-        {
-            -webkit-transform: translateX( calc(-100% + 8px) );
-                    transform: translateX( calc(-100% + 8px) );
-        }
+        top:        50%;
+        -webkit-transform:  translateX( -50% ) translateY( -50% );
+                transform:  translateX( -50% ) translateY( -50% );
+    }
 
 .slider__orientation__vertical__MG37D
 {
-    width:      auto;
-    height:     300px;
+    width:  auto;
+    height: 300px;
 }
 
 .slider__orientation__vertical__MG37D .slider__trackContainer__3nwI6
@@ -15670,45 +18574,39 @@ only used in type__carousel for now
         height: 100%;
     }
 
-.slider__orientation__vertical__MG37D .slider__track__1YpS7, .slider__orientation__vertical__MG37D .slider__stepLabelsContainer__2EG-O
+.slider__orientation__vertical__MG37D .slider__track__1YpS7
     {
+        width:          2px;
         height:         calc(100% - 16px);
 
         margin-top:     8px;
         margin-bottom:  8px;
+        margin-left:    19px;
+        margin-right:   19px;
     }
 
 .slider__orientation__vertical__MG37D .slider__trackFill__3sE-C
     {
-        width:          2px;
+        width:  2px;
     }
 
 .slider__orientation__vertical__MG37D .slider__handle__1ztac
     {
-        left:           50%;
-        -webkit-transform:      translateX( -50% ) translateY( 50% );
-                transform:      translateX( -50% ) translateY( 50% );
+        left:       50%;
+        -webkit-transform:  translateX( -50% ) translateY( 50% );
+                transform:  translateX( -50% ) translateY( 50% );
     }
 
 .slider__orientation__vertical__MG37D .slider__stepLabelsContainer__2EG-O
     {
-        margin-right:       10px;
-    }
-
-.slider__orientation__vertical__MG37D .slider__stepLabelsContainer__2EG-O:last-child
-        {
-            margin-right:   0;
-            margin-left:    10px;
-        }
-
-.slider__orientation__vertical__MG37D .slider__stepLabel__1t8SF
-    {
-        -webkit-transform:  translateY( 50% );
-                transform:  translateY( 50% );
+        display:    none;
     }
 
 .slider__orientation__vertical__MG37D .slider__tick__1De3L
     {
+        width:  2px;
+        height: 8px;
+
         left:       50%;
         -webkit-transform:  translateX( -50% ) translateY( 50% );
                 transform:  translateX( -50% ) translateY( 50% );
@@ -15727,14 +18625,13 @@ only used in type__carousel for now
                 justify-content:    center;
 
         color:              #19a2e2;
+        line-height:        16px;
 
         cursor:             default;
         -webkit-user-select:        none;
            -moz-user-select:        none;
             -ms-user-select:        none;
                 user-select:        none;
-
-        line-height:        16px;
     }
 
 .slider__handleLabelPosition__top__1JcMk .slider__handleLabel__2uauA
@@ -15771,62 +18668,20 @@ only used in type__carousel for now
         background: rgba(255, 84, 96, 0.35);
     }
 
-.slider__error__2jyFq .slider__handleLabel__2uauA
+.slider__error__2jyFq .slider__handle__1ztac
     {
-        color:      #ff5460;
+        background: #ff5460 !important;
     }
 
-.slider__disabled__19QJe .slider__track__1YpS7:hover
-    {
-      cursor: default;
-    }
-
-.slider__disabled__19QJe .slider__track__1YpS7:hover .slider__handle__1ztac
-      {
-          border-color:   #dfe4ea;
-      }
-
-.slider__disabled__19QJe .slider__trackFill__3sE-C
-    {
-        background:         #bae3f6;
-        cursor: default;
-    }
-
-.slider__disabled__19QJe .slider__handle__1ztac
-    {
-        background:         #bae3f6;
-        cursor:             default;
-    }
-
-.slider__disabled__19QJe .slider__handle__1ztac:active
+.slider__error__2jyFq .slider__handle__1ztac::after
         {
-            cursor:         default;
+            background: #d94751;
         }
 
-.slider__disabled__19QJe .slider__handle__1ztac:active::after
-            {
-              content: none;
-            }
-
-.slider__disabled__19QJe .slider__handleLabel__2uauA
+.slider__error__2jyFq .slider__handleLabel__2uauA
     {
-
+        color:  #ff5460;
     }
-
-.slider__disabled__19QJe .slider__ticksContainer__xPkAF
-    {
-        display:            none;
-    }
-
-.slider__disabled__19QJe .slider__stepLabel__1t8SF
-    {
-        color:              #c7d0db;
-    }
-
-.slider__labelContainer__3eyva
-{
-    margin-bottom:  8px;
-}
 
 .slider__grabbing__oeOnb .slider__handle__1ztac, .slider__grabbing__oeOnb .slider__trackFill__3sE-C
     {
@@ -15834,14 +18689,66 @@ only used in type__carousel for now
         transition: none;
     }
 
-.slider__grabbing__oeOnb .slider__handle__1ztac
+.slider__disabled__19QJe .slider__track__1YpS7, .slider__disabled__19QJe .slider__handle__1ztac
     {
-        width:              16px;
-        height:             16px;
-
-        background-color:   #19a2e2;
-        border-color:       #19a2e2;
+        cursor: default !important;
     }
+
+.slider__disabled__19QJe .slider__handle__1ztac
+    {
+        background: #bae3f6;
+    }
+
+.slider__disabled__19QJe .slider__handle__1ztac::after
+        {
+            display:    none;
+        }
+
+.slider__disabled__19QJe .slider__trackFill__3sE-C
+    {
+        background: #bae3f6;
+    }
+
+.slider__disabled__19QJe .slider__stepLabel__1t8SF
+    {
+        color:  #c7d0db;
+    }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -15876,6 +18783,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -15891,6 +18807,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -16039,6 +18964,42 @@ only used in type__carousel for now
 
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -16072,6 +19033,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -16080,6 +19050,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -16193,6 +19172,42 @@ only used in type__carousel for now
     margin-top: -11px;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -16226,6 +19241,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -16241,6 +19265,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -16327,6 +19360,42 @@ only used in type__carousel for now
     background-color:   #c7d0db;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -16360,6 +19429,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -16368,6 +19446,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -16546,10 +19633,64 @@ only used in type__carousel for now
                 border-color: #75c7ed;
             }
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 .tab__default__3X9OU
 {
     /*  placeholder */
 }
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -16583,11 +19724,20 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.tabButton__default__2fot-, .tabButton__label__s-MZG
+.tabButton__default__2fot-, .tabButton__default__2fot- .tabButton__label__s-MZG
 {
     font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
@@ -16598,6 +19748,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17095,14 +20254,13 @@ only used in type__carousel for now
                     box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
         }
 
-.tabButton__label__s-MZG
-{
+.tabButton__default__2fot- .tabButton__label__s-MZG
+    {
 
-    font-size:      14px;
-    line-height:    16px;
-    padding-left:   8px;
-    padding-right:  8px;
-}
+        letter-spacing: 0;
+        padding-left:   8px;
+        padding-right:  8px;
+    }
 
 .tabButton__active__2GsXf
 {
@@ -17118,6 +20276,33 @@ only used in type__carousel for now
     text-transform: none;
     text-transform: initial;
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -17152,6 +20337,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -17167,6 +20361,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17212,6 +20415,33 @@ only used in type__carousel for now
     z-index:    1;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -17245,6 +20475,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -17253,6 +20492,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17293,6 +20541,42 @@ only used in type__carousel for now
             background: #f6f7f9;
         }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -17326,6 +20610,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -17334,6 +20627,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17379,43 +20681,58 @@ only used in type__carousel for now
         margin-bottom: 0;
     }
 
-.table__borders__rows__UCxfS, .table__borders__cells__2eSO-, .table__borders__rowDivider__2HMZP, .table__borders__columnDivider__3L3w6, .table__zebra__1Wxas
+.table__borders__none__3yh3k, .table__borders__rows__UCxfS, .table__borders__cells__2eSO-, .table__borders__rowDivider__2HMZP, .table__borders__columnDivider__3L3w6, .table__zebra__1Wxas
 {
     margin-bottom:  16px;
 }
 
-.table__borders__rows__UCxfS .table__row__1YGNP, .table__borders__rows__UCxfS .table__headerRow__3nmry, .table__borders__cells__2eSO- .table__row__1YGNP, .table__borders__cells__2eSO- .table__headerRow__3nmry, .table__borders__rowDivider__2HMZP .table__row__1YGNP, .table__borders__rowDivider__2HMZP .table__headerRow__3nmry, .table__borders__columnDivider__3L3w6 .table__row__1YGNP, .table__borders__columnDivider__3L3w6 .table__headerRow__3nmry, .table__zebra__1Wxas .table__row__1YGNP, .table__zebra__1Wxas .table__headerRow__3nmry
+.table__borders__none__3yh3k .table__row__1YGNP, .table__borders__none__3yh3k .table__headerRow__3nmry, .table__borders__rows__UCxfS .table__row__1YGNP, .table__borders__rows__UCxfS .table__headerRow__3nmry, .table__borders__cells__2eSO- .table__row__1YGNP, .table__borders__cells__2eSO- .table__headerRow__3nmry, .table__borders__rowDivider__2HMZP .table__row__1YGNP, .table__borders__rowDivider__2HMZP .table__headerRow__3nmry, .table__borders__columnDivider__3L3w6 .table__row__1YGNP, .table__borders__columnDivider__3L3w6 .table__headerRow__3nmry, .table__zebra__1Wxas .table__row__1YGNP, .table__zebra__1Wxas .table__headerRow__3nmry
     {
         margin: 0;
     }
 
-.table__borders__rows__UCxfS .table__cell__3NkUW, .table__borders__cells__2eSO- .table__cell__3NkUW, .table__borders__rowDivider__2HMZP .table__cell__3NkUW, .table__borders__columnDivider__3L3w6 .table__cell__3NkUW, .table__zebra__1Wxas .table__cell__3NkUW
+.table__borders__none__3yh3k .table__cell__3NkUW, .table__borders__rows__UCxfS .table__cell__3NkUW, .table__borders__cells__2eSO- .table__cell__3NkUW, .table__borders__rowDivider__2HMZP .table__cell__3NkUW, .table__borders__columnDivider__3L3w6 .table__cell__3NkUW, .table__zebra__1Wxas .table__cell__3NkUW
     {
         margin:     0;
         background: #ffffff;
     }
 
-.table__borders__cells__2eSO- .table__row__1YGNP .table__cell__3NkUW
+.table__borders__none__3yh3k .table__row__1YGNP, .table__borders__none__3yh3k .table__cell__3NkUW
+    {
+        border: none;
+    }
+
+.table__borders__cells__2eSO- .table__row__1YGNP
     {
         border: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__cells__2eSO- .table__row__1YGNP .table__cell__3NkUW + .table__cell__3NkUW
+.table__borders__cells__2eSO- .table__row__1YGNP + .table__row__1YGNP
         {
-            border-left: none;
+            border-top: none;
         }
 
-.table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW
+.table__borders__cells__2eSO- .table__row__1YGNP .table__cell__3NkUW:not(:last-child)
+            {
+                border-right: 1px solid rgba(89, 116, 148, 0.12);
+            }
+
+.table__borders__cells__2eSO- .table__row__1YGNP .table__cell__3NkUW + .table__cell__3NkUW
+            {
+                border-left: none;
+            }
+
+.table__borders__columnDivider__3L3w6 .table__cell__3NkUW, .table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW
     {
         border-right: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW + .table__cell__3NkUW
+.table__borders__columnDivider__3L3w6 .table__cell__3NkUW + .table__cell__3NkUW, .table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW + .table__cell__3NkUW
         {
             border-left: none;
         }
 
-.table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW:last-child
+.table__borders__columnDivider__3L3w6 .table__cell__3NkUW:last-child, .table__borders__columnDivider__3L3w6 .table__row__1YGNP .table__cell__3NkUW:last-child
         {
             border-right: none;
         }
@@ -17430,12 +20747,12 @@ only used in type__carousel for now
             border-top: none;
         }
 
-.table__borders__rowDivider__2HMZP .table__row__1YGNP
+.table__borders__rowDivider__2HMZP .table__row__1YGNP:not(:last-child), .table__borders__rowDivider__2HMZP .table__headerRow__3nmry
     {
         border-bottom: 1px solid rgba(89, 116, 148, 0.12);
     }
 
-.table__borders__rowDivider__2HMZP .table__row__1YGNP + .table__row__1YGNP
+.table__borders__rowDivider__2HMZP .table__row__1YGNP:not(:last-child) + .table__row__1YGNP, .table__borders__rowDivider__2HMZP .table__headerRow__3nmry + .table__row__1YGNP
         {
             border-top: none;
         }
@@ -17444,6 +20761,42 @@ only used in type__carousel for now
     {
         background: #f6f7f9;
     }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*----------------------------------------------------------------------------//
 //    $color definitions
@@ -17478,6 +20831,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -17486,6 +20848,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17573,6 +20944,42 @@ only used in type__carousel for now
     /* padding? */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -17606,6 +21013,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -17621,6 +21037,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17708,6 +21133,42 @@ only used in type__carousel for now
         color:          #98a8bc;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -17740,6 +21201,15 @@ only used in type__carousel for now
 
     /* navyscale colors */
 }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
@@ -17784,6 +21254,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -17963,6 +21442,42 @@ only used in type__carousel for now
         resize:        vertical;
     }
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -17996,6 +21511,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18004,6 +21528,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -18041,6 +21574,42 @@ only used in type__carousel for now
     /* nothing to see here */
 }
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -18074,6 +21643,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18082,6 +21660,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -18119,6 +21706,42 @@ only used in type__carousel for now
     /* nothing to see here! */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -18152,6 +21775,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18160,6 +21792,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -18211,6 +21852,42 @@ only used in type__carousel for now
     /* nothing to do here */
 }
 
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -18244,6 +21921,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18273,6 +21959,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -18505,6 +22200,42 @@ only used in type__carousel for now
         margin-left:    4px;
     }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -18538,6 +22269,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18546,6 +22286,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {
@@ -18741,6 +22490,42 @@ only used in type__carousel for now
     width:      auto;
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*----------------------------------------------------------------------------//
 //    $color definitions
 //----------------------------------------------------------------------------*/
@@ -18774,6 +22559,15 @@ only used in type__carousel for now
     /* navyscale colors */
 }
 
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
@@ -18782,6 +22576,15 @@ only used in type__carousel for now
 {
     /*  TYPOGRAPHY SIZES */
 }
+
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 :root
 {

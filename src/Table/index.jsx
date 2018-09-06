@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                   from 'react';
 import PropTypes               from 'prop-types';
 
@@ -47,7 +56,10 @@ const Table = ( {
                 const columnProps = column && {
                     align     : cell.props.align || column.align,
                     textProps : {
-                        ...bodyTextProps, ...column.textProps, ...( rows[ i ] && rows[ i ].textProps ), ...cell.props.textProps,
+                        ...bodyTextProps,
+                        ...column.textProps,
+                        ...( rows[ i ] && rows[ i ].textProps ),
+                        ...cell.props.textProps,
                     },
                     columnTitle : cell.props.columnTitle || column.title,
                     size        : cell.props.size || column.size,

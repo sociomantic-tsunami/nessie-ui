@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+
 /**
  * Driver for flounder dropdown driver. The flounder dropdown uses currently
  * a non React control. This renders Enzyme useless in many cases and a manual

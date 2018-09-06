@@ -1,4 +1,15 @@
-/* eslint-disable no-magic-numbers, no-multi-str */
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* global jest test */
+/* eslint no-console: 0*/
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';

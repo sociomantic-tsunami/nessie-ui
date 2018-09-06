@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 .default
@@ -11,6 +20,7 @@
     }
 }
 
+.borders__none,
 .borders__rows,
 .borders__cells,
 .borders__rowDivider,
@@ -32,21 +42,44 @@
     }
 }
 
+.borders__none
+{
+    .row,
+    .cell
+    {
+        border: none;
+    }
+}
+
 .borders__cells
 {
-    .row .cell
+    .row
     {
         border: 1px solid color( var( --PC-GREY ) a(12%) );
 
-        + .cell
+        + .row
         {
-            border-left: none;
+            border-top: none;
+        }
+
+        .cell
+        {
+            &:not(:last-child)
+            {
+                border-right: 1px solid color( var( --PC-GREY ) a(12%) );
+            }
+
+            + .cell
+            {
+                border-left: none;
+            }
         }
     }
 }
 
 .borders__columnDivider
 {
+    .cell,
     .row .cell
     {
         border-right: 1px solid color( var( --PC-GREY ) a(12%) );
@@ -78,7 +111,8 @@
 
 .borders__rowDivider
 {
-    .row
+    .row:not(:last-child),
+    .headerRow
     {
         border-bottom: 1px solid color( var( --PC-GREY ) a(12%) );
 

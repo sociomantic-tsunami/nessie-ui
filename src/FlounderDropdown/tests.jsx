@@ -1,9 +1,20 @@
-import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import InputContainer       from '../proto/InputContainer';
+/* global test jest */
 
-import FlounderDropdown     from './index';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
+
+import InputContainer     from '../proto/InputContainer';
+
+import FlounderDropdown   from './index';
 
 
 describe( 'FlounderDropdown', () =>
