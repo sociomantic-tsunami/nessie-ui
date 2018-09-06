@@ -18,170 +18,77 @@
 
 .default
 {
-    display:        flex;
-    flex-direction: column;
-    align-items:    stretch;
+    display:                grid;
+    grid-template-columns:  repeat(auto-fill, 100%);
 
-    width:          auto;
-    max-width:      none;
+    width:                  auto;
+    max-width:              100%;
 
-    margin-bottom:  0;
-
-    /*& > *
-    {
-        flex:       0 0 100%;
-        box-sizing: border-box;
-    }*/
+    margin-bottom:          0;
 }
 
-/*
-@media( min-width: 768px )
-{ */
-    .default
-    {
-        flex-direction: row;
 
-        /*& > *
-        {
-            flex:   1 0 0%;
-        }*/
-    }
+.alignX__left
+{
+    justify-items: start;
+}
 
-    .alignX__left,
-    .alignX__center,
-    .alignX__right
-    {
-        & > * /* Columns */
-        {
-            flex:   0 0 auto;
-        }
-    }
+.alignX__center
+{
+    justify-items: center;
+}
 
-    .alignX__left
-    {
-        justify-content:    flex-start;
-    }
+.alignX__right
+{
+    justify-items: end;
+}
 
-    .alignX__center
-    {
-        justify-content:    center;
-    }
+.alignY__top
+{
+    align-items:   start;
+}
 
-    .alignX__right
-    {
-        justify-content:    flex-end;
-    }
+.alignY__middle
+{
+    align-items:   center;
+}
 
-    .alignY__top
-    {
-        align-items:    flex-start;
-    }
+.alignY__bottom
+{
+    align-items:   end;
+}
 
-    .alignY__middle
-    {
-        align-items:    center;
-    }
-
-    .alignY__bottom
-    {
-        align-items:    flex-end;
-    }
-
-    .wrap
-    {
-        flex-wrap:  wrap;
-    }
-/* } */
+.wrap
+{
+    flex-wrap: wrap;
+}
 
 
 .gutters__S
 {
-    margin-left:    calc( -1 * ( var( --S ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --S ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --S ) / 2 );
-        padding-right:  calc( var( --S ) / 2 );
-    }
+    grid-column-gap: var( --S );
 }
 .gutters__M
 {
-    margin-left:    calc( -1 * ( var( --M ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --M ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --M ) / 2 );
-        padding-right:  calc( var( --M ) / 2 );
-    }
+    grid-column-gap: var( --M );
 }
 .gutters__L
 {
-    margin-left:    calc( -1 * ( var( --L ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --L ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --L ) / 2 );
-        padding-right:  calc( var( --L ) / 2 );
-    }
+    grid-column-gap: var( --L );
 }
 
 
 .spacing__S
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --S ) / 2 );
-        padding-bottom: calc( var( --S ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --S ) / 2 ) );
-        margin-bottom:  calc( var( --S ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --S ) );
-    }
+    grid-row-gap: var( --S );
 }
 .spacing__M
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --M ) / 2 );
-        padding-bottom: calc( var( --M ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --M ) / 2 ) );
-        margin-bottom:  calc( var( --M ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --M ) );
-    }
+    grid-row-gap: var( --M );
 }
 .spacing__L
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --L ) / 2 );
-        padding-bottom: calc( var( --L ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --L ) / 2 ) );
-        margin-bottom:  calc( var( --L ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --L ) );
-    }
+    grid-row-gap: var( --L );
 }
 
 /* legacy spacing options (deprecated) */
