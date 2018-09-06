@@ -9,12 +9,12 @@ export default class NotificationBarDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
     }
 
     clickClose()
     {
-        if ( !this.wrapper.props().isDismissible )
+        if ( !this.wrapper.prop( 'isDismissible' ) )
         {
             throw new Error( ERR.NOTIFICATION_NOT_DISMISSIBLE );
         }

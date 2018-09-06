@@ -1,29 +1,21 @@
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React            from 'react';
-import { shallow }      from 'enzyme';
+import React          from 'react';
+import { shallow }    from 'enzyme';
 
-import { InputField }   from '../index';
+import { InputField } from '../index';
 
-import TextArea         from './index';
+import TextArea       from './index';
 
 
 describe( 'TextArea', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <TextArea /> );
-        instance = wrapper.instance();
-    } );
-
-    test( 'should be an instance of StatelessComponent', () =>
-    {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
     test( 'should contain exactly one InputField', () =>

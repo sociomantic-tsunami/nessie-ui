@@ -1,13 +1,13 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React      from 'react';
+import { mount }  from 'enzyme';
 
-import ScrollBar          from '../ScrollBar';
-import * as utils         from './utils';
+import ScrollBar  from '../ScrollBar';
+import * as utils from './utils';
 
-import ScrollBox          from './index';
+import ScrollBox  from './index';
 
 
 describe( 'ScrollBox', () =>
@@ -17,20 +17,19 @@ describe( 'ScrollBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <ScrollBox /> );
+        wrapper = mount( <ScrollBox /> );
         instance = wrapper.instance();
-        instance.innerRef = {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-        };
-        wrapper.setState();
     } );
 
     test( 'should have exactly one ScrollBar when scroll is "horizontal"', () =>
     {
         wrapper.setProps( { scroll: 'horizontal' } );
+        wrapper.setState( {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
@@ -38,6 +37,12 @@ describe( 'ScrollBox', () =>
     test( 'should have exactly one ScrollBar when scroll is "vertical"', () =>
     {
         wrapper.setProps( { scroll: 'vertical' } );
+        wrapper.setState( {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
@@ -45,6 +50,12 @@ describe( 'ScrollBox', () =>
     test( 'should have exactly two ScrollBars when scroll is "both"', () =>
     {
         wrapper.setProps( { scroll: 'both' } );
+        wrapper.setState( {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 2 );
     } );
@@ -52,6 +63,12 @@ describe( 'ScrollBox', () =>
     test( 'thumbSize should be set on the scrollBars', () =>
     {
         wrapper.setProps( { scroll: 'both' } );
+        wrapper.setState( {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        } );
 
         expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) )
             .toBe( '50%' );

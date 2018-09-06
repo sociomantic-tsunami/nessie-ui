@@ -10,8 +10,8 @@ export default class SwitchDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
-        this.input = wrapper.find( `.${wrapper.props().cssMap.input}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.input = wrapper.find( `.${wrapper.prop( 'cssMap' ).input}` );
     }
 
     toggle()
@@ -31,7 +31,7 @@ export default class SwitchDriver extends SimpleComponentDriver
             );
         }
 
-        const node = this.input.getNode();
+        const node = this.input.instance();
 
         node.checked = !node.checked;
         this.input.simulate( 'change' );

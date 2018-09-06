@@ -31,7 +31,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
             ERRORS.INPUT_CANNOT_CHANGE_VALUE );
 
         const input = this.control;
-        const node  = input.getNode();
+        const node  = input.instance();
 
         this.focus();
         node.value = value;
@@ -61,7 +61,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
 
         if ( isCharPrintable( keyCode ) )
         {
-            const node = this.control.getNode();
+            const node = this.control.instance();
 
             node.value += String.fromCharCode( keyCode );
             this.control.simulate( 'change' );
@@ -103,7 +103,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
      */
     getInputValue()
     {
-        return this.control.getNode().value;
+        return this.control.instance().value;
     }
 
     click()

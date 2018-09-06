@@ -9,12 +9,10 @@ import DateTimeInput from './index';
 describe( 'DateTimeInputDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <DateTimeInput /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <DateTimeInput /> );
     } );
 
     describe( 'getMainInputValue()', () =>
@@ -25,7 +23,7 @@ describe( 'DateTimeInputDriver', () =>
                 inputValue : '2018-05-05 12:00'
             } );
 
-            expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
+            expect( wrapper.driver().getMainInputValue() ).toBe( '2018-05-05 12:00' );
         } );
     } );
 
@@ -64,7 +62,7 @@ describe( 'DateTimeInputDriver', () =>
                 hourValue : '13'
             } );
 
-            expect( driver.getHourInputValue() ).toBe( '13' );
+            expect( wrapper.driver().getHourInputValue() ).toBe( '13' );
         } );
     } );
 
@@ -103,7 +101,7 @@ describe( 'DateTimeInputDriver', () =>
                 minuteValue : '45'
             } );
 
-            expect( driver.getMinuteInputValue() ).toBe( '45' );
+            expect( wrapper.driver().getMinuteInputValue() ).toBe( '45' );
         } );
     } );
 

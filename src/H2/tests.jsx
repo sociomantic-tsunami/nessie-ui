@@ -1,12 +1,11 @@
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import H2          from './index';
 
-import H2           from './index';
 
 describe( 'H2', () =>
 {
@@ -14,12 +13,11 @@ describe( 'H2', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <H2 /> );
+        wrapper = shallow( <H2 /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain a <h2> element', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( 'h2' ) ).toHaveLength( 1 );
     } );
 } );

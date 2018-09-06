@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
 import React       from 'react';
@@ -36,7 +35,7 @@ describe( 'Radio', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -47,7 +46,7 @@ describe( 'Radio', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -58,42 +57,19 @@ describe( 'Radio', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
         describe( 'onChange', () =>
         {
-            test( 'should be `undefined` if readOnly', () =>
+            test( 'should be passed to the Checkable', () =>
             {
-                const onChange = jest.fn().mockImplementation( e =>
-                    targetChecked = e.target.checked );
-                wrapper.setProps( { isReadOnly: true, onChange } );
-
-                expect( wrapper.prop( onChange ) ).toBeUndefined();
-            } );
-
-            test(
-                'should be passed as `undefined` to Checkable if readOnly',
-                () =>
-                {
-                    const onChange = jest.fn().mockImplementation( e =>
-                        targetChecked = e.target.checked );
-                    wrapper.setProps( { isReadOnly: true, onChange } );
-
-                    expect( wrapper.find( Checkable ).prop( onChange ) )
-                        .toBeUndefined();
-                }
-            );
-
-            test( 'should be defined if not readOnly', () =>
-            {
-                const onChange = jest.fn().mockImplementation( e =>
-                    targetChecked = e.target.checked );
+                const onChange = jest.fn();
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.prop( onChange ) )
-                    .toBe( wrapper.instance().onChange );
+                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                    .toBe( onChange );
             } );
         } );
     } );

@@ -75,7 +75,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -91,7 +91,7 @@ export default class ScrollBoxDriver
                 .CANNOT_SCROLL_IN_DIRECTION( 'horizontal' ) );
         }
 
-        const node      = this.scrollBox.getNode();
+        const node      = this.scrollBox.instance();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -106,7 +106,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         const scrollBar = this.wrapper.find( ScrollBar ).last();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
@@ -122,7 +122,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         const scrollBar = this.wrapper.find( ScrollBar ).first();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );

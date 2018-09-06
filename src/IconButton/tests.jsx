@@ -72,12 +72,10 @@ describe( 'IconButton', () =>
 describe( 'IconButtonDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <IconButton /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'click()', () =>
@@ -87,7 +85,7 @@ describe( 'IconButtonDriver', () =>
             const clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
 
-            driver.click();
+            wrapper.driver().click();
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -99,7 +97,7 @@ describe( 'IconButtonDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.driver().focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -111,7 +109,7 @@ describe( 'IconButtonDriver', () =>
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            driver.blur();
+            wrapper.driver().blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

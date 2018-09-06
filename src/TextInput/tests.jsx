@@ -1,5 +1,4 @@
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
@@ -13,17 +12,15 @@ import TextInput          from './index';
 describe( 'TextInput', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <TextInput /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should be stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should contain exactly one InputField', () =>
@@ -36,12 +33,10 @@ describe( 'TextInput', () =>
 describe( 'TextInputDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <TextInput /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'blur()', () =>
@@ -55,7 +50,7 @@ describe( 'TextInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            driver.blur();
+            wrapper.driver().blur();
             expect( blurSpy ).toBeCalled();
         } );
     } );
@@ -67,7 +62,7 @@ describe( 'TextInputDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.driver().focus();
             expect( focusSpy ).toBeCalled();
         } );
     } );
@@ -79,7 +74,7 @@ describe( 'TextInputDriver', () =>
             const changeSpy = jest.fn();
             wrapper.setProps( { onChange: changeSpy } );
 
-            driver.setInputValue( 'test' );
+            wrapper.driver().setInputValue( 'test' );
 
             expect( changeSpy ).toBeCalled();
         } );
@@ -168,7 +163,7 @@ describe( 'TextInputDriver', () =>
             const keyPressSpy = jest.fn();
             wrapper.setProps( { onKeyPress: keyPressSpy } );
 
-            driver.pressKey( keyCodeEnter );
+            wrapper.driver().pressKey( keyCodeEnter );
             expect( keyPressSpy ).toBeCalled();
         } );
 
@@ -178,7 +173,7 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( { onChange: onChangeSpy } );
 
-            driver.pressKey( keyCodeChar );
+            wrapper.driver().pressKey( keyCodeChar );
             expect( onChangeSpy ).toBeCalled();
         } );
 
@@ -191,7 +186,7 @@ describe( 'TextInputDriver', () =>
                 onChange   : onChangeSpy,
             } );
 
-            driver.inputValue( 'Harry Potter' );
+            wrapper.driver().inputValue( 'Harry Potter' );
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
         } );
