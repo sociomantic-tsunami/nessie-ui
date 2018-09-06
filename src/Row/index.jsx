@@ -7,12 +7,43 @@
  *
  */
 
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { Grid }  from '../index';
+import { buildClassName } from '../utils';
+import styles             from './row.css';
 
-const Row = props => <Grid { ...props } hasWrap = { false } />;
+const Row = ( {
+    align,
+    children,
+    className,
+    cssMap,
+    onClick,
+    onMouseOut,
+    onMouseOver,
+    gutters,
+    hasWrap,
+    role,
+    spacing,
+    verticalAlign,
+} ) =>
+    (
+        <div
+            className = { buildClassName( className, cssMap, {
+                alignX  : align,
+                alignY  : verticalAlign,
+                gutters : gutters !== 'none' && gutters,
+                wrap    : hasWrap,
+                spacing : spacing !== 'none' && spacing,
+            } ) }
+            hasWrap      = { false }
+            onClick      = { onClick }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }
+            role         = { role && role !== 'none' ? role : null }>
+            { children }
+        </div>
+    );
 
 Row.propTypes =
 {
@@ -22,7 +53,7 @@ Row.propTypes =
      */
     align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
-     *  Row content (Columns)
+     *  Grid content (Columns)
      */
     children      : PropTypes.node,
     /**
@@ -38,7 +69,26 @@ Row.propTypes =
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     *  Row role
+     * Wrap content
+     */
+    hasWrap       : PropTypes.bool,
+    /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver   : PropTypes.func,
+    /**
+     *  Grid role
      */
     role          : PropTypes.string,
     /**
@@ -57,7 +107,7 @@ Row.defaultProps =
     align         : 'auto',
     children      : undefined,
     className     : undefined,
-    cssMap        : undefined,
+    cssMap        : styles,
     gutters       : 'M',
     onClick       : undefined,
     onMouseOut    : undefined,
