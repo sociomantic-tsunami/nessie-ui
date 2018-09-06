@@ -18,13 +18,12 @@
 
 .default
 {
-    display:                grid;
-    grid-template-columns:  repeat(auto-fill, 100%);
+    display:            grid;
 
-    width:                  auto;
-    max-width:              100%;
+    width:              auto;
+    max-width:          100%;
 
-    margin-bottom:          0;
+    margin-bottom:      0;
 }
 
 
@@ -58,12 +57,11 @@
     align-items:   end;
 }
 
-.wrap
+
+.gutters__none
 {
-    flex-wrap: wrap;
+    grid-column-gap: 0;
 }
-
-
 .gutters__S
 {
     grid-column-gap: var( --S );
@@ -78,6 +76,10 @@
 }
 
 
+.spacing__none
+{
+    grid-row-gap: 0;
+}
 .spacing__S
 {
     grid-row-gap: var( --S );
@@ -89,83 +91,4 @@
 .spacing__L
 {
     grid-row-gap: var( --L );
-}
-
-/* legacy spacing options (deprecated) */
-.spacing__default,
-.spacing__h3,
-.spacing__h4
-{
-    & > *
-    {
-        padding-top:    calc( 16px / 2 );
-        padding-bottom: calc( 16px / 2 );
-
-        margin-top:     calc( -1 * ( 16px / 2 ) );
-        margin-bottom:  calc( 16px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -16px );
-    }
-}
-.spacing__label
-{
-    & > *
-    {
-        padding-top:    calc( 8px / 2 );
-        padding-bottom: calc( 8px / 2 );
-
-        margin-top:     calc( -1 * ( 8px / 2 ) );
-        margin-bottom:  calc( 8px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -8px );
-    }
-}
-.spacing__h1
-{
-    & > *
-    {
-        padding-top:    calc( 56px / 2 );
-        padding-bottom: calc( 56px / 2 );
-
-        margin-top:     calc( -1 * ( 56px / 2 ) );
-        margin-bottom:  calc( 56px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -56px );
-    }
-}
-.spacing__h2
-{
-    & > *
-    {
-        padding-top:    calc( 40px / 2 );
-        padding-bottom: calc( 40px / 2 );
-
-        margin-top:     calc( -1 * ( 40px / 2 ) );
-        margin-bottom:  calc( 40px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -40px );
-    }
-}
-
-
-.wrap
-{
-    flex-wrap:  wrap;
-}
-
-.hasMinHeight
-{
-    min-height: 87px; /* label + input */
 }
