@@ -122,13 +122,6 @@ describe( 'ToggleButton', () =>
             {
                 expect( ToggleButton.defaultProps.onClick ).toBeUndefined();
             } );
-
-            test( 'should be passed to the <button> element', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick } );
-                expect( wrapper.prop( 'onClick' ) ).toEqual( onClick );
-            } );
         } );
 
         describe( 'onFocus', () =>

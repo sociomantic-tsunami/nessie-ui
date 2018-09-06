@@ -7,13 +7,17 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import styles               from './paginator.css';
-import IconButton           from '../IconButton';
-import Text                 from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../utils';
+import styles     from './paginator.css';
+import IconButton from '../IconButton';
+import Text       from '../Text';
 
 const Paginator = ( {
     className,
@@ -21,6 +25,7 @@ const Paginator = ( {
     currentPage,
     ellipsisText,
     endPage,
+    id = generateId( 'Paginator' ),
     nextLabel,
     onClickNext,
     onClickPage,
@@ -39,9 +44,12 @@ const Paginator = ( {
             className = { cssMap.pageButton }
             disabled  = { pageNum === currentPage }
             key       = { pageNum }
-            onClick   = { onClickPage }
-            type      = "button"
-            value     = { String( pageNum ) }>
+            onClick   = { createEventHandler( onClickPage, {
+                id,
+                page : pageNum,
+            } ) }
+            type  = "button"
+            value = { String( pageNum ) }>
             { pageNum }
         </button>
     ) );
@@ -74,9 +82,12 @@ const Paginator = ( {
                 <button
                     className = { cssMap.pageButton }
                     disabled  = { currentPage === startPage }
-                    onClick   = { onClickPage }
-                    type      = "button"
-                    value     = { String( startPage ) }>
+                    onClick   = { createEventHandler( onClickPage, {
+                        id,
+                        page : startPage,
+                    } ) }
+                    type  = "button"
+                    value = { String( startPage ) }>
                     <Text role = { null }>{ startPage }</Text>
                 </button>
             }
@@ -95,9 +106,12 @@ const Paginator = ( {
                 <button
                     className = { cssMap.pageButton }
                     disabled  = { currentPage === endPage }
-                    onClick   = { onClickPage }
-                    type      = "button"
-                    value     = { String( endPage ) }>
+                    onClick   = { createEventHandler( onClickPage, {
+                        id,
+                        page : endPage,
+                    } ) }
+                    type  = "button"
+                    value = { String( endPage ) }>
                     <Text role = { null }> { endPage }</Text>
                 </button>
             }

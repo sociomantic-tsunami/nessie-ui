@@ -13,8 +13,12 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import CodeMirror           from 'codemirror';
 
-import { buildClassName }   from '../../utils';
-import styles               from './codeEditor.css';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../../utils';
+import styles from './codeEditor.css';
 
 import 'codemirror/mode/jsx/jsx';
 
@@ -337,6 +341,7 @@ export default class CodeEditor extends Component
             forceHover,
             hasError,
             height,
+            id = generateId( 'CodeEditor'),
             isDisabled,
             maxHeight,
             onMouseOut,
@@ -353,10 +358,10 @@ export default class CodeEditor extends Component
                     error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
                 } ) }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                ref          = { this.handleWrapperRef }
-                style        = { {
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+                ref         = { this.handleWrapperRef }
+                style       = { {
                     height    : String( height ),
                     maxHeight : String( maxHeight ),
                 } }>

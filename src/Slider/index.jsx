@@ -8,12 +8,16 @@
  */
 
 /* global addEventListener removeEventListener Event */
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import IconWithTooltip                  from '../IconWithTooltip';
-import Label                            from '../Label';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../utils';
+import IconWithTooltip from '../IconWithTooltip';
+import Label           from '../Label';
 
 export default class Slider extends React.Component
 {
@@ -183,23 +187,23 @@ export default class Slider extends React.Component
 
     static defaultProps =
     {
-        isDisabled            : false,
-        isReadOnly            : false,
-        hasError              : false,
+        cssMap                : require( './slider.css' ),
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
-        hasFill               : true,
-        id                    : undefined,
         fillFrom              : 'start',
-        orientation           : 'horizontal',
-        stepLabelsPosition    : 'top',
-        hasHandleLabels       : false,
         handleLabelPosition   : 'top',
+        hasError              : false,
+        hasFill               : true,
+        hasHandleLabels       : false,
+        id                    : undefined,
+        isDisabled            : false,
+        isLogarithmic         : false,
+        isReadOnly            : false,
         maxValue              : 100,
         minValue              : 0,
+        orientation           : 'horizontal',
         step                  : 1,
-        isLogarithmic         : false,
-        cssMap                : require( './slider.css' ),
+        stepLabelsPosition    : 'top',
         value                 : 0,
     };
 
@@ -702,8 +706,8 @@ export default class Slider extends React.Component
             orientation,
             step,
             stepLabelsPosition,
-            value,
             ticks = [],
+            value,
         } = this.props;
 
         let values = [];
@@ -740,13 +744,12 @@ export default class Slider extends React.Component
         const sliderLabelMarkUp = label && (
             <IconWithTooltip
                 className        = { cssMap.labelContainer }
-                iconType         = "error"
+                iconIsVisible    = { !!errorMessage && hasError && !isDisabled }
                 iconPosition     = "right"
+                iconType         = "error"
                 message          = { errorMessage }
                 tooltipIsVisible = { errorMessageIsVisible }
-                tooltipPosition  = { errorMessagePosition }
-                iconIsVisible    = { !!errorMessage && hasError
-                    && !isDisabled } >
+                tooltipPosition  = { errorMessagePosition }>
                 <Label htmlFor = { `${id}_0` }>{ label }</Label>
             </IconWithTooltip>
         );
@@ -766,9 +769,9 @@ export default class Slider extends React.Component
             }
             return (
                 <div
-                    key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                    data-index  = { i }
                     className   = { handleClassName }
+                    data-index  = { i }
+                    key         = { i }
                     style       = { this.getHandleStyle( val ) } >
                     <span className = { cssMap.handleLabel }>
                         { val }
@@ -782,8 +785,8 @@ export default class Slider extends React.Component
                 { ticks.map( ( tick, i ) =>
                     ( tick.step !== minValue || tick.step !== maxValue ) &&
                         <div
-                            key       = { i } // eslint-disable-line react/no-array-index-key, max-len
                             className = { cssMap.tick }
+                            key       = { i }
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
                         </div> ) }
@@ -801,8 +804,16 @@ export default class Slider extends React.Component
                     hasHandleLabels,
                     orientation,
                 } ) }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }>
+                onBlur      = { this.handleBlur }
+                onChange    = { createEventHandler( onClick, { id } ) }
+                onClick     = { createEventHandler( onClick, { id } ) }
+                onFocus     = { this.handleFocus }
+                onKeyDown   = { createEventHandler( onKeyDown, { id } ) }
+                onKeyUp     = { createEventHandler( onKeyUp, { id } ) }
+                onMouseDown = { createEventHandler( onMouseDown, { id } ) }
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+                onMouseUp   = { createEventHandler( onMouseUp, { id } ) }>
                 <div
                     className = { cssMap.inputContainer }
                     ref       = { this.setInputContainerRef }>
@@ -814,14 +825,6 @@ export default class Slider extends React.Component
                             key         = { i } // eslint-disable-line react/no-array-index-key, max-len
                             max         = { maxValue }
                             min         = { minValue }
-                            onBlur      = { this.handleBlur }
-                            onChange    = { onChange }
-                            onClick     = { onClick }
-                            onFocus     = { this.handleFocus }
-                            onKeyDown   = { onKeyDown }
-                            onKeyUp     = { onKeyUp }
-                            onMouseDown = { onMouseDown }
-                            onMouseUp   = { onMouseUp }
                             step        = { step }
                             type        = "range"
                             value       = { val } />

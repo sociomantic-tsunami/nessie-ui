@@ -19,7 +19,11 @@ import H2                   from '../../H2';
 import H3                   from '../../H3';
 import H4                   from '../../H4';
 import styles               from './flounderDropdown.css';
-import { buildClassName }   from '../../utils';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../../utils';
 import {
     addExtraClasses,
     mapCssToFlounder,
@@ -418,7 +422,10 @@ export default class FlounderDropdown extends Component
             hasError,
             headerLevel,
             icon,
+            id = generateId( 'FlounderDropdown' ),
             isDisabled,
+            onMouseOut,
+            onMouseOver,
         } = this.props;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
@@ -432,7 +439,9 @@ export default class FlounderDropdown extends Component
                     headerLevel,
                     headerMode  : isHeader,
                     toggleIcon  : icon,
-                } ) }>
+                } ) }
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
                 <div ref = { this.handleRef } />
             </Wrapper>
         );

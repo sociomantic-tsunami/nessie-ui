@@ -10,7 +10,7 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
+import { createEventHandler, generateId, buildClassName } from '../utils';
 import Icon                           from '../Icon';
 import Spinner                        from '../Spinner';
 
@@ -62,15 +62,15 @@ const Button = ( {
                 loading     : isLoading && !isDisabled,
                 role,
             } ) }
-            defaultValue   = { defaultValue }
-            disabled       = { isDisabled || isLoading || isReadOnly }
-            id             = { id }
-            onClick        = { onClick }
-            onMouseEnter   = { onMouseOver }
-            onMouseLeave   = { onMouseOut }
-            ref            = { buttonRef }
-            type           = { type }
-            value          = { value }>
+            defaultValue = { defaultValue }
+            disabled     = { isDisabled || isLoading || isReadOnly }
+            id           = { id }
+            onClick      = { createEventHandler( onClick, { id } ) }
+            onMouseOut   = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver  = { createEventHandler( onMouseOver, { id } ) }
+            ref          = { buttonRef }
+            type         = { type }
+            value        = { value }>
             { content }
             { ( isLoading && !isDisabled ) &&
                 <div className = { cssMap.loadingOverlay }>

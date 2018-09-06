@@ -7,13 +7,16 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName, generateId }  from '../utils';
-import styles                          from './toggleButton.css';
-import { Icon }                        from '../index';
-
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}  from '../utils';
+import { Icon } from '../index';
+import styles   from './toggleButton.css';
 
 const ToggleButton = ( {
     children,
@@ -42,16 +45,16 @@ const ToggleButton = ( {
             iconPosition,
             role,
         } ) }
-        disabled     = { isDisabled }
-        readOnly     = { isReadOnly }
-        id           = { id }
-        onBlur       = { onBlur }
-        onClick      = { onClick }
-        onFocus      = { onFocus }
-        onMouseLeave = { onMouseOut }
-        onMouseEnter = { onMouseOver }
-        role         = { role }
-        type         = "button" >
+        disabled    = { isDisabled }
+        readOnly    = { isReadOnly }
+        id          = { id }
+        onBlur      = { createEventHandler( onBlur, { id } ) }
+        onClick     = { createEventHandler( onClick, { id } ) }
+        onFocus     = { createEventHandler( onFocus, { id } ) }
+        onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+        onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+        role        = { role }
+        type        = "button" >
         <div className = { cssMap.flexContainer }>
             { iconType !== 'none' &&
                 <Icon

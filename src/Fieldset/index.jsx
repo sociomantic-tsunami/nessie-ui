@@ -7,13 +7,17 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName }   from '../utils';
-
-import Label                from '../Label';
-import IconWithTooltip      from '../IconWithTooltip';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import Label           from '../Label';
+import IconWithTooltip from '../IconWithTooltip';
+import styles          from './fieldset.css';
 
 const Fieldset = ( {
     children,
@@ -23,29 +27,29 @@ const Fieldset = ( {
     errorMessageIsVisible,
     errorMessagePosition,
     hasError,
+    id = generateId( 'Fieldset' ),
     isDisabled,
     label,
+    onMouseOut,
     onMouseOver,
-    onMouseOut
 } ) => (
-
     <fieldset
-        className    = { buildClassName( className, cssMap ) }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }>
+        className   = { buildClassName( className, cssMap ) }
+        onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+        onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
         { label &&
-        <IconWithTooltip
-            className        = { cssMap.labelContainer }
-            iconType         = "error"
-            iconPosition     = "right"
-            message          = { errorMessage }
-            tooltipIsVisible = { errorMessageIsVisible }
-            tooltipPosition  = { errorMessagePosition }
-            iconIsVisible    = { !isDisabled &&
-                                             !!errorMessage &&
-                                             hasError }>
-            <Label element = "legend">{ label }</Label>
-        </IconWithTooltip>
+            <IconWithTooltip
+                className     = { cssMap.labelContainer }
+                iconIsVisible = { !isDisabled && !!errorMessage &&
+                    hasError
+                }
+                iconPosition     = "right"
+                iconType         = "error"
+                message          = { errorMessage }
+                tooltipIsVisible = { errorMessageIsVisible }
+                tooltipPosition  = { errorMessagePosition }>
+                <Label element = "legend">{ label }</Label>
+            </IconWithTooltip>
         }
         { children }
     </fieldset>
@@ -95,17 +99,16 @@ Fieldset.propTypes =
         'top',
         'bottom',
         'topLeft',
-        'topRight'
-    ] )
+        'topRight',
+    ] ),
 };
 
 Fieldset.defaultProps =
 {
-    infoMessage           : '',
-    hasError              : false,
+    cssMap                : styles,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
-    cssMap                : require( './fieldset.css' )
+    hasError              : false,
 };
 
 export default Fieldset;

@@ -7,11 +7,15 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName, generateId } from '../utils';
-import styles                         from './switch.css';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import styles from './switch.css';
 
 const Switch = ( {
     className,
@@ -35,17 +39,17 @@ const Switch = ( {
             disabled    : isDisabled,
             fakeHovered : !isDisabled && forceHover,
         } ) }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }>
+        onBlur      = { createEventHandler( onBlur, { id } ) }
+        onChange    = { !isReadOnly &&  createEventHandler( onChange, { id } ) }
+        onFocus     = { createEventHandler( onFocus, { id } ) }
+        onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+        onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
         <input
             checked        = { isChecked }
             className      = { cssMap.input }
             disabled       = { isDisabled || isReadOnly }
             id             = { id }
             name           = { name }
-            onBlur         = { onBlur }
-            onChange       = { !isReadOnly && onChange }
-            onFocus        = { onFocus }
             type           = "checkbox"
             value          = { value } />
         <label

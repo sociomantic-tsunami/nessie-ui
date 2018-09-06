@@ -7,13 +7,17 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
-import IconButton                     from '../IconButton';
-import Text                           from '../Text';
-import { buildClassName, generateId } from '../utils';
-import styles                         from './tag.css';
+import IconButton from '../IconButton';
+import Text       from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import styles from './tag.css';
 
 const Tag = ( {
     children,
@@ -41,8 +45,9 @@ const Tag = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                disabled : isDisabled
-            } ) }>
+                disabled : isDisabled,
+            } ) }
+            onClick = { createEventHandler( onClick, { id } ) }>
             { labelText }
             <IconButton
                 className  = { cssMap.delete }
@@ -51,7 +56,6 @@ const Tag = ( {
                 iconType   = "close"
                 isDisabled = { isDisabled }
                 isReadOnly = { isReadOnly }
-                onClick    = { onClick }
                 value      = { id } />
         </div>
     );

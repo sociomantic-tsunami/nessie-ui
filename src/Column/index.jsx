@@ -34,9 +34,9 @@ is deprecated. Please use an alternative layout.' );
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                size,
                 alignX : align,
-                alignY : verticalAlign
+                alignY : verticalAlign,
+                size,
             } ) }
             role              = { role }
             data-column-title = { columnTitle }>

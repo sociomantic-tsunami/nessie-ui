@@ -10,9 +10,13 @@
 import React, { Children, Component } from 'react';
 import PropTypes                      from 'prop-types';
 
-import { buildClassName, generateId } from '../utils';
-import { buildTagsFromValues }        from './utils';
-import styles                         from './tagInput.css';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import { buildTagsFromValues } from './utils';
+import styles                  from './tagInput.css';
 
 
 export default class TagInput extends Component
@@ -152,7 +156,10 @@ export default class TagInput extends Component
     {
         super();
 
-        this.state = { isFocused: false };
+        this.state = {
+            id        : generateId( 'TagInput' ),
+            isFocused : false,
+        };
 
         this.handleBlur  = this.handleBlur.bind( this );
         this.handleFocus = this.handleFocus.bind( this );
@@ -161,10 +168,11 @@ export default class TagInput extends Component
     handleBlur( event )
     {
         const { onBlur } = this.props;
+        const { id } = this.state;
 
         if ( onBlur )
         {
-            onBlur( event );
+            createEventHandler( onBlur, { id } )( event );
         }
 
         this.setState( { isFocused: false } );
@@ -173,10 +181,11 @@ export default class TagInput extends Component
     handleFocus( event )
     {
         const { onFocus } = this.props;
+        const { id } = this.state;
 
         if ( onFocus )
         {
-            onFocus( event );
+            createEventHandler( onFocus, { id } )( event );
         }
 
         this.setState( { isFocused: true } );
@@ -191,7 +200,6 @@ export default class TagInput extends Component
             forceHover,
             hasError,
             height,
-            id = generateId( 'TagInput' ),
             inputRef,
             isDisabled,
             isReadOnly,
@@ -209,7 +217,7 @@ export default class TagInput extends Component
             value,
         } = this.props;
 
-        const { isFocused } = this.state;
+        const { id, isFocused } = this.state;
 
         let items = children ?
             Children.toArray( children ) : buildTagsFromValues( tags );
@@ -251,22 +259,22 @@ export default class TagInput extends Component
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
                     resizable   : isResizable,
                 } ) }
-                htmlFor      = { id }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                style        = { { height } }>
+                htmlFor     = { id }
+                onBlur      = { this.handleBlur }
+                onChange    = { createEventHandler( onChange, { id } ) }
+                onFocus     = { this.handleFocus }
+                onKeyDown   = { createEventHandler( onKeyDown, { id } ) }
+                onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
+                onKeyUp     = { createEventHandler( onKeyUp, { id } ) }
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+                style       = { { height } }>
                 { items }
                 <input
                     className   = { cssMap.input }
                     disabled    = { isDisabled }
                     id          = { id }
                     name        = { name }
-                    onBlur      = { this.handleBlur }
-                    onChange    = { onChange }
-                    onFocus     = { this.handleFocus }
-                    onKeyDown   = { onKeyDown }
-                    onKeyPress  = { onKeyPress }
-                    onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
                     ref         = { inputRef }

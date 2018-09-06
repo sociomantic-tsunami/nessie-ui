@@ -7,25 +7,32 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName } from '../utils';
-import styles             from './grid.css';
+import {
+    createEventHandler,
+    buildClassName,
+    generateId,
+} from '../utils';
+import styles from './grid.css';
+
 
 const deprecatedSpacingOptions = [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
+
 
 const Grid = ( {
     align,
     children,
     className,
     cssMap,
-    onClick,
-    onMouseOut,
-    onMouseOver,
     gutters,
     hasMinHeight,
     hasWrap,
+    id = generateId( 'Grid' ),
+    onClick,
+    onMouseOut,
+    onMouseOver,
     role,
     spacing,
     verticalAlign,
@@ -50,15 +57,15 @@ alternative layout.' );
             className = { buildClassName( className, cssMap, {
                 alignX  : align,
                 alignY  : verticalAlign,
-                hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
+                hasMinHeight,
+                spacing : spacing !== 'none' && spacing,
                 wrap    : hasWrap,
-                spacing : spacing !== 'none' && spacing
             } ) }
-            onClick      = { onClick }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = { role && role !== 'none' ? role : null }>
+            onClick     = { createEventHandler( onClick, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            role        = { role && role !== 'none' ? role : null }>
             { children }
         </div>
     );

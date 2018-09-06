@@ -14,16 +14,22 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React                     from 'react';
-import PropTypes                 from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { clamp, buildClassName } from '../utils';
-import styles                    from './scrollBar.css';
+import {
+    clamp,
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import styles from './scrollBar.css';
 
 
 const ScrollBar = ( {
     className,
     cssMap,
+    id = generateId( 'ScrollBar' ),
     onChange,
     onClickTrack,
     onMouseOut,
@@ -48,9 +54,9 @@ const ScrollBar = ( {
         <div
             aria-controls    = { scrollBoxId }
             aria-orientation = { orientation }
-            aria-valuenow    = { scrollPos }
-            aria-valuemin    = { scrollMin }
             aria-valuemax    = { scrollMax }
+            aria-valuemin    = { scrollMin }
+            aria-valuenow    = { scrollPos }
             className = { buildClassName( className, cssMap, {
                 orientation,
             } ) }
@@ -69,12 +75,12 @@ const ScrollBar = ( {
                 const scale = scrollLength / trackLength;
                 const newPos = clickOffset * scale;
 
-                onClickTrack( newPos );
+                onClickTrack( { newPos }, e );
             } }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            ref          = { ref => trackRef = ref }
-            role         = "scrollbar">
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            ref         = { ref => trackRef = ref }
+            role        = "scrollbar">
             <div
                 className   = { cssMap.thumb }
                 onMouseDown = { md =>
@@ -103,10 +109,10 @@ const ScrollBar = ( {
 
                         const newPos = clamp(
                             scrollPos + scrollDiff,
-                            scrollMin, scrollMax
+                            scrollMin, scrollMax,
                         );
 
-                        onChange( newPos );
+                        onChange( { newPos }, e );
                     };
 
                     addEventListener( 'mousemove', handleMouseMove );

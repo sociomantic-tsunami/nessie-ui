@@ -13,10 +13,7 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 
 
-const NavList = ( {
-    children, className, cssMap, layout
-} ) => (
-
+const NavList = ( { children, className, cssMap, layout } ) => (
     <ul className = { buildClassName( className, cssMap, { layout } ) }>
         { children }
     </ul>
@@ -37,7 +34,7 @@ NavList.propTypes =
 NavList.defaultProps =
 {
     layout : 'horizontal',
-    cssMap : require( './navList.css' )
+    cssMap : require( './navList.css' ),
 };
 
 export default NavList;

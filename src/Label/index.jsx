@@ -7,12 +7,16 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName }   from '../utils';
-
-import Text                 from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import Text   from '../Text';
+import styles from './label.css';
 
 const Label = ( {
     children,
@@ -20,27 +24,29 @@ const Label = ( {
     cssMap,
     element,
     htmlFor,
+    id = generateId( 'Label' ),
     label,
     noWrap,
     onMouseOut,
     onMouseOver,
-    overflowIsHidden } ) =>
+    overflowIsHidden,
+} ) =>
 {
     const LabelElement = element || 'label';
 
     return (
-            <LabelElement
-                className    = { buildClassName( className, cssMap ) }
-                htmlFor      = { element === 'label' ? htmlFor : null }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut } >
-                <Text
-                    className        = { cssMap.label }
-                    noWrap           = { noWrap }
-                    overflowIsHidden = { overflowIsHidden }>
-                    { children || label }
-                </Text>
-            </LabelElement>
+        <LabelElement
+            className   = { buildClassName( className, cssMap ) }
+            htmlFor     = { element === 'label' ? htmlFor : null }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) } >
+            <Text
+                className        = { cssMap.label }
+                noWrap           = { noWrap }
+                overflowIsHidden = { overflowIsHidden }>
+                { children || label }
+            </Text>
+        </LabelElement>
     );
 };
 Label.propTypes =
@@ -77,10 +83,10 @@ Label.propTypes =
 
 Label.defaultProps =
 {
+    cssMap           : styles,
     element          : 'label',
     noWrap           : false,
     overflowIsHidden : false,
-    cssMap           : require( './label.css' )
 };
 
 export default Label;

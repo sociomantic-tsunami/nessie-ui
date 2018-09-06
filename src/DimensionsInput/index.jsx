@@ -7,11 +7,11 @@
  *
  */
 
-import React                             from 'react';
-import PropTypes                         from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { generateId }                    from '../utils';
-import { Column, InputField, Row, Text } from '../index';
+import { createEventHandler, generateId } from '../utils';
+import { Column, InputField, Row, Text }  from '../index';
 
 const DimensionsInput = ( {
     className,
@@ -32,52 +32,51 @@ const DimensionsInput = ( {
     widthPlaceholder,
     widthValue,
 } ) => (
-    <Row
+    <div
         className     = { className }
-        gutters       = "S"
-        onMouseOut    = { onMouseOut }
-        onMouseOver   = { onMouseOver }
-        verticalAlign = "middle">
-        <Column>
-            <InputField
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                forceHover     = { forceHover }
-                hasError       = { hasError }
-                id             = { `${id}-width` }
-                inputRef       = { widthInputRef }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { isReadOnly }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
-                placeholder    = { widthPlaceholder }
-                spellCheck     = { false }
-                value          = { widthValue } />
-        </Column>
-        <Column size = "content">
-            <Text>✕</Text>
-        </Column>
-        <Column>
-            <InputField
-                autoCapitalize = "off"
-                autoComplete   = "off"
-                autoCorrect    = "off"
-                forceHover     = { forceHover }
-                hasError       = { hasError }
-                id             = { `${id}-height` }
-                inputRef       = { heightInputRef }
-                isDisabled     = { isDisabled }
-                isReadOnly     = { isReadOnly }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
-                placeholder    = { heightPlaceholder }
-                spellCheck     = { false }
-                value          = { heightValue } />
-        </Column>
-    </Row>
+        onBlur        = { createEventHandler( onBlur, { id } ) }
+        onChange      = { createEventHandler( onChange, { id } ) }
+        onFocus       = { createEventHandler( onFocus, { id } ) }
+        onMouseOut    = { createEventHandler( onMouseOut, { id } ) }
+        onMouseOver   = { createEventHandler( onMouseOver, { id } ) }>
+        <Row
+            gutters       = "S"
+            verticalAlign = "middle">
+            <Column>
+                <InputField
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-width` }
+                    inputRef       = { widthInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    placeholder    = { widthPlaceholder }
+                    spellCheck     = { false }
+                    value          = { widthValue } />
+            </Column>
+            <Column size = "content">
+                <Text>✕</Text>
+            </Column>
+            <Column>
+                <InputField
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-height` }
+                    inputRef       = { heightInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    placeholder    = { heightPlaceholder }
+                    spellCheck     = { false }
+                    value          = { heightValue } />
+            </Column>
+        </Row>
+    </div>
 );
 
 DimensionsInput.propTypes = {

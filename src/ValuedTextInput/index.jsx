@@ -7,12 +7,16 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
-import InputField                       from '../InputField';
-import { generateId, buildClassName }   from '../utils';
-import styles                           from './valuedTextInput.css';
+import InputField from '../InputField';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../utils';
+import styles from './valuedTextInput.css';
 
 
 export default class ValuedTextInput extends React.Component
@@ -188,21 +192,21 @@ export default class ValuedTextInput extends React.Component
 
     handleFocus( e )
     {
-        const { onFocus } = this.props;
+        const { id, onFocus } = this.props;
         this.setState( { isFocused: true  } );
         if ( onFocus )
         {
-            onFocus( e );
+            createEventHandler( onFocus, { id } )( e );
         }
     }
 
     handleBlur( e )
     {
-        const { onBlur } = this.props;
+        const { id, onBlur } = this.props;
         this.setState( { isFocused: false } );
         if ( onBlur )
         {
-            onBlur( e );
+            createEventHandler( onBlur, { id } )( e );
         }
     }
 
@@ -240,15 +244,15 @@ export default class ValuedTextInput extends React.Component
                     fakeHovered : forceHover || isFocused,
                     position    : valueLabelPosition,
                 }  ) }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }>
+                onBlur      = { this.handleBlur }
+                onFocus     = { this.handleFocus }
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
                 <InputField
                     { ...props }
-                    className    = { cssMap.input }
-                    id           = { id }
-                    onBlur       = { this.handleBlur }
-                    onFocus      = { this.handleFocus }
-                    textAlign    = { alignText } />
+                    className  = { cssMap.input }
+                    id         = { id }
+                    textAlign  = { alignText } />
                 <label
                     className = { cssMap.valueLabel }
                     htmlFor   = { id }>

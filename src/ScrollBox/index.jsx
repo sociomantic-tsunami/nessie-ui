@@ -11,7 +11,7 @@ import React, { Component }    from 'react';
 import PropTypes               from 'prop-types';
 import isEqual                 from 'lodash.isequal';
 
-import { createScrollHandler } from './utils';
+import { createEventHandler, generateId } from './utils';
 import { buildClassName }      from '../utils';
 import styles                  from './scrollBox.css';
 import IconButton              from '../IconButton';
@@ -154,6 +154,7 @@ export default class ScrollBox extends Component
         this.state = {
             clientHeight : null,
             clientWidth  : null,
+            id           : generateId( 'ScrollBox' ),
             offsetHeight : null,
             offsetWidth  : null,
             scrollHeight : null,
@@ -273,12 +274,10 @@ export default class ScrollBox extends Component
     {
         this.forceUpdate();
 
-        const { props } = this;
+        const { onScroll } = this.props;
+        const { id } = this.state;
 
-        if ( props.onScroll )
-        {
-            createScrollHandler( props.onScroll, props.scroll )( e );
-        }
+        createEventHandler( onScroll, { id } )( e );
     }
 
     renderScrollBars()
@@ -382,6 +381,8 @@ export default class ScrollBox extends Component
             scrollIndicatorVariant,
         } = this.props;
 
+        const { id } = this.state;
+
         return (
             <div
                 className = { buildClassName( className, cssMap, {
@@ -393,9 +394,9 @@ export default class ScrollBox extends Component
                     scrollBarsAreVisible,
                     scrollIndicatorVariant,
                 } ) }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                style        = { { maxHeight: height } }>
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+                style       = { { maxHeight: height } }>
                 <div
                     className = { cssMap.inner }
                     onScroll  = { this.handleScroll }

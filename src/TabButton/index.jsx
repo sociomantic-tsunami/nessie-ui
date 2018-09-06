@@ -7,41 +7,46 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName }   from '../utils';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
 
 const TabButton = ( {
     buttonRef,
-    cssMap,
     className,
+    cssMap,
+    id = generateId( 'TabButton' ),
     isActive,
     isDisabled,
     label,
     onClick,
     subtitle,
-    tabIndex
-} ) =>
-
-    ( <button
-        ref       = { buttonRef }
-        className = { buildClassName( className, cssMap, { active: isActive } ) }
-        role      = "tab"
-        value     = { String( tabIndex ) }
-        disabled  = { isDisabled }
-        onClick   = { onClick }>
+    tabIndex,
+} ) => (
+    <button
+        className = { buildClassName( className, cssMap, {
+            active : isActive,
+        } ) }
+        disabled = { isDisabled }
+        onClick  = { createEventHandler( onClick, { id } ) }
+        ref      = { buttonRef }
+        role     = "tab"
+        value    = { String( tabIndex ) }>
         <div className = { cssMap.content }>
             <div className = { cssMap.label }>
                 { label }
                 { subtitle &&
-                <span className = { cssMap.subtitle }>
-                    { subtitle }
-                </span>
+                    <span className = { cssMap.subtitle }>{ subtitle }</span>
                 }
             </div>
         </div>
-      </button> );
+    </button>
+);
 
 TabButton.propTypes =
 {

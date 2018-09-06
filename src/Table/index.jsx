@@ -90,9 +90,9 @@ const Table = ( {
                 borders,
                 zebra : isZebra,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = "grid">
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            role        = "grid">
             { columns.length > 0 &&
                 <TableRow
                     align         = { align }
@@ -103,8 +103,8 @@ const Table = ( {
                     verticalAlign = { verticalAlign } >
                     { columns.map( ( column, i ) =>
                     {
-                        const title = column.title;
-                        const text  = title;
+                        const { title } = column;
+                        const text = title;
                         const stickyCell = column.isSticky;
 
                         return (

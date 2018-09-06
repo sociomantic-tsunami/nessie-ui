@@ -7,11 +7,15 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import Text                           from '../Text';
-import { buildClassName, generateId } from '../utils';
+import Text      from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
 
 
 const Checkable = ( {
@@ -51,21 +55,21 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseLeave = { onMouseOut }
-            onMouseEnter = { onMouseOver }>
+            onBlur      = { createEventHandler( onBlur, { id } ) }
+            onChange    = { createEventHandler( onChange, { id } ) }
+            onClick     = { createEventHandler( onClick, { id } ) }
+            onFocus     = { createEventHandler( onFocus, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
             <input
-                checked        = { isChecked }
-                className      = { cssMap.input }
-                disabled       = { isDisabled || isReadOnly }
-                id             = { id }
-                name           = { name }
-                onClick        = { onClick }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
-                onBlur         = { onBlur }
-                ref            = { inputRef }
-                type           = { type }
-                value          = { value } />
+                checked   = { isChecked }
+                className = { cssMap.input }
+                disabled  = { isDisabled || isReadOnly }
+                id        = { id }
+                name      = { name }
+                ref       = { inputRef }
+                type      = { type }
+                value     = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
                 { labelText }
             </label>
@@ -167,8 +171,8 @@ Checkable.defaultProps =
     hasError    : false,
     id          : undefined,
     inputRef    : undefined,
-    isDisabled  : false,
     isChecked   : false,
+    isDisabled  : false,
     isReadOnly  : false,
     label       : undefined,
     name        : undefined,

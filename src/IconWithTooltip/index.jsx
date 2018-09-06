@@ -7,13 +7,17 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName } from '../utils';
-import Icon               from '../Icon';
-import Tooltip            from '../Tooltip';
-import Text               from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import Icon    from '../Icon';
+import Tooltip from '../Tooltip';
+import Text    from '../Text';
 
 const IconWithTooltip = ( {
     children,
@@ -24,6 +28,7 @@ const IconWithTooltip = ( {
     iconRole,
     iconSize,
     iconType,
+    id = generateId( 'IconWithTooltip' ),
     isDisabled,
     message,
     noWrap,
@@ -55,8 +60,8 @@ const IconWithTooltip = ( {
                 iconVisible : iconIsVisible,
                 position    : !!children && iconPosition,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
             { children &&
                 <div className = { cssMap.content }>
                     { contentNode }

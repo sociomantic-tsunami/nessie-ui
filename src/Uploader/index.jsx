@@ -7,17 +7,21 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import Button                         from '../Button';
-import IconWithTooltip                from '../IconWithTooltip';
-import Spinner                        from '../Spinner';
-import IconButton                     from '../IconButton';
-import Tooltip                        from '../Tooltip';
-import Label                          from '../Label';
-import styles                         from './uploader.css';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import Button          from '../Button';
+import IconWithTooltip from '../IconWithTooltip';
+import Spinner         from '../Spinner';
+import IconButton      from '../IconButton';
+import Tooltip         from '../Tooltip';
+import Label           from '../Label';
+import styles          from './uploader.css';
 
 
 const Uploader = ( {
@@ -90,12 +94,13 @@ const Uploader = ( {
                 previewDisabled : previewIsDisabled,
                 uploaded,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut } >
+            onChange    = { createEventHandler( onChange, { id } ) }
+            onClick     = { createEventHandler( onClick, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) } >
             <input
                 className = { cssMap.input }
                 name      = { `${id}-file` }
-                onChange  = { onChange }
                 ref       = { inputRef }
                 tabIndex  = "-1"
                 type      = "file" />
@@ -126,7 +131,6 @@ const Uploader = ( {
                             iconType   = { iconType }
                             isDisabled = { isDisabled }
                             isReadOnly = { isReadOnly }
-                            onClick    = { onClick }
                             role       = "default">
                             { buttonLabel }
                         </Button>
@@ -142,8 +146,10 @@ const Uploader = ( {
                         iconType   = "delete"
                         isDisabled = { isDisabled }
                         isReadOnly = { isReadOnly }
-                        onClick    = { onClickSecondary }
-                        role       = "inverted" />
+                        onClick    = {
+                            createEventHandler( onClickSecondary, { id } )
+                        }
+                        role = "inverted" />
                     }
                 </div>
             </IconWithTooltip>

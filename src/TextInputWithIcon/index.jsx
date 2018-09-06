@@ -7,12 +7,20 @@
  *
  */
 
-import React                               from 'react';
-import PropTypes                           from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName, generateId }      from '../utils';
-import styles                              from './textInputWithIcon.css';
-import { IconButton, InputField, Tooltip } from '../index';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}      from '../utils';
+import {
+    IconButton,
+    InputField,
+    Tooltip,
+} from '../index';
+import styles from './textInputWithIcon.css';
 
 
 const TextInputWithIcon = ( {
@@ -71,8 +79,15 @@ const TextInputWithIcon = ( {
                 error    : hasError,
                 position : iconPosition,
             } ) }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }>
+            onBlur      = { createEventHandler( onBlur, { id } ) }
+            onChange    = { createEventHandler( onChange, { id } ) }
+            onClick     = { createEventHandler( onClick, { id } ) }
+            onFocus     = { createEventHandler( onFocus, { id } ) }
+            onKeyDown   = { createEventHandler( onKeyDown, { id } ) }
+            onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
+            onKeyUp     = { createEventHandler( onKeyUp, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
             <InputField
                 aria           = { aria }
                 autocapitalize = { autoCapitalize }
@@ -86,13 +101,6 @@ const TextInputWithIcon = ( {
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnlyInput || isReadOnly }
                 name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
-                onClick        = { onClick }
-                onFocus        = { onFocus }
-                onKeyDown      = { onKeyDown }
-                onKeyPress     = { onKeyPress }
-                onKeyUp        = { onKeyUp }
                 placeholder    = { placeholder }
                 spellcheck     = { spellCheck }
                 textAlign      = { alignText }
@@ -106,16 +114,20 @@ const TextInputWithIcon = ( {
                     isReadOnly  = { isReadOnly }
                     isVisible   = { iconTooltipIsVisible }
                     message     = { iconTooltipMessage }
-                    onMouseOut  = { onMouseOutIcon }
-                    onMouseOver = { onMouseOverIcon }
-                    position    = { iconTooltipPosition } >
+                    onClick     = { createEventHandler( onClickIcon, { id } ) }
+                    onMouseOut  = {
+                        createEventHandler( onMouseOutIcon, { id } )
+                    }
+                    onMouseOver = {
+                        createEventHandler( onMouseOverIcon, { id } )
+                    }
+                    position = { iconTooltipPosition } >
                     <IconButton
                         hasError    = { hasError }
                         iconType    = { iconType }
                         isDisabled  = { isDisabled || iconButtonIsDisabled }
                         isFocusable = { false }
-                        isReadOnly  = { isReadOnlyButton || isReadOnly }
-                        onClick     = { onClickIcon } />
+                        isReadOnly  = { isReadOnlyButton || isReadOnly } />
                 </Tooltip>
             }
         </div>

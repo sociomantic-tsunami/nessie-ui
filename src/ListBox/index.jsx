@@ -18,6 +18,7 @@ import {
 } from './utils';
 import {
     buildClassName,
+    createEventHandler,
     generateId,
     killFocus,
     mapAria,
@@ -26,52 +27,46 @@ import styles from './listBox.css';
 
 
 const ListBox = ( {
-    aria,
     activeOption,
+    aria,
     children,
     className,
     cssMap,
+    id = generateId( 'ListBox' ),
     isFocusable,
     isMultiselect,
-    id = generateId( 'ListBox' ),
     onClickOption,
+    onKeyPress,
     onMouseOutOption,
     onMouseOverOption,
-    onKeyPress,
     options,
     selection,
-} ) =>
-{
-    let realSelection = selection;
-    if ( Array.isArray( selection ) )
-    {
-        realSelection = isMultiselect ? selection : selection[ 0 ];
-    }
-    return (
-        <ul
-            { ...mapAria( {
-                ...aria,
-                activeDescendant : isFocusable ? activeOption : null,
-                multiSelectable  : isMultiselect,
-                role             : 'listbox',
-            } ) }
-            className   = { buildClassName( className, cssMap ) }
-            id          = { id }
-            onKeyPress  = { onKeyPress }
-            onMouseDown = { !isFocusable && killFocus }
-            tabIndex    = { isFocusable ? '0' : '-1' }>
-            { updateOptions( children || buildOptions( options ),
-                {
-                    activeOption,
-                    onClickOption,
-                    onMouseOutOption,
-                    onMouseOverOption,
-                    selection : realSelection,
-                } )
-            }
-        </ul>
-    );
-};
+} ) => (
+    <ul
+        { ...mapAria( {
+            ...aria,
+            activeDescendant : isFocusable ? activeOption : null,
+            multiSelectable  : isMultiselect,
+            role             : 'listbox',
+        } ) }
+        className   = { buildClassName( className, cssMap ) }
+        id          = { id }
+        onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
+        onMouseDown = { !isFocusable && killFocus }
+        tabIndex    = { isFocusable ? '0' : '-1' }>
+        { updateOptions(
+            children || buildOptions( options ),
+            {
+                activeOption,
+                onClickOption,
+                onMouseOutOption,
+                onMouseOverOption,
+                selection : ( isMultiselect && Array.isArray( selection ) ) ?
+                    selection[ 0 ] : selection,
+            },
+        ) }
+    </ul>
+);
 
 
 ListBox.propTypes = {

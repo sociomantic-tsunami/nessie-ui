@@ -7,11 +7,16 @@
  *
  */
 
-import React                                   from 'react';
-import PropTypes                               from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName, mapAria, generateId } from '../utils';
-import styles                                  from './inputField.css';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+    mapAria,
+} from '../utils';
+import styles from './inputField.css';
 
 
 const InputField = ( {
@@ -62,25 +67,25 @@ const InputField = ( {
                 fakeHovered : !isDisabled && forceHover,
                 resizable   : element === 'textarea' && isResizable,
             } ) }
-            disabled     = { isDisabled }
-            id           = { id }
-            name         = { name }
-            onBlur       = { onBlur }
-            onChange     = { onChange }
-            onClick      = { onClick }
-            onFocus      = { onFocus }
-            onKeyDown    = { onKeyDown }
-            onKeyPress   = { onKeyPress }
-            onKeyUp      = { onKeyUp }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            placeholder  = { placeholder }
-            readOnly     = { isReadOnly }
-            ref          = { inputRef }
-            rows         = { element === 'textarea' ? rows : null }
-            spellCheck   = { spellCheck }
-            type         = { element === 'input' ? type : null }
-            value        = { value } />
+            disabled    = { isDisabled }
+            id          = { id }
+            name        = { name }
+            onBlur      = { createEventHandler( onBlur, { id } ) }
+            onChange    = { createEventHandler( onChange, { id } ) }
+            onClick     = { createEventHandler( onClick, { id } ) }
+            onFocus     = { createEventHandler( onFocus, { id } ) }
+            onKeyDown   = { createEventHandler( onKeyDown, { id } ) }
+            onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
+            onKeyUp     = { createEventHandler( onKeyUp, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            placeholder = { placeholder }
+            readOnly    = { isReadOnly }
+            ref         = { inputRef }
+            rows        = { element === 'textarea' ? rows : null }
+            spellCheck  = { spellCheck }
+            type        = { element === 'input' ? type : null }
+            value       = { value } />
     );
 };
 

@@ -7,14 +7,20 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import Icon                             from '../Icon';
-import styles                           from './iconButton.css';
+import {
+    createEventHandler,
+    buildClassName,
+    generateId,
+} from '../utils';
+import Icon   from '../Icon';
+import styles from './iconButton.css';
+
 
 const killFocus = e => e.preventDefault();
+
 
 export default class IconButton extends React.Component
 {
@@ -208,14 +214,16 @@ export default class IconButton extends React.Component
                     role,
                     size        : iconSize,
                 }  ) }
-                disabled     = { isDisabled }
-                id           = { id }
-                onBlur       = { onBlur }
-                onClick      = { !isReadOnly && onClick }
-                onFocus      = { onFocus }
+                disabled = { isDisabled }
+                id       = { id }
+                onBlur   = { createEventHandler( onBlur, { id } ) }
+                onClick  = { !isReadOnly &&
+                    createEventHandler( onClick, { id } )
+                }
+                onFocus      = { createEventHandler( onFocus, { id } ) }
                 onMouseDown  = { !isFocusable ? killFocus : undefined }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
+                onMouseOut   = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver  = { createEventHandler( onMouseOver, { id } ) }
                 ref          = { buttonRef }
                 tabIndex     = { isFocusable ? '0' : '-1' }
                 type         = "button"

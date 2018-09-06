@@ -7,13 +7,18 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import styles                         from './tooltip.css';
-import IconButton                     from '../IconButton';
-import Text                           from '../Text';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import IconButton  from '../IconButton';
+import Text        from '../Text';
+import styles      from './tooltip.css';
+
 
 const Tooltip = ( {
     children,
@@ -52,8 +57,8 @@ const Tooltip = ( {
                 position,
                 role,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }>
             { contentNode &&
                 <div
                     aria-describedby = { isVisible ? id : null }
@@ -74,12 +79,12 @@ const Tooltip = ( {
                         </div>
                         { isDismissible &&
                             <IconButton
-                                className    = { cssMap.close }
-                                iconSize     = "S"
-                                iconType     = "close"
-                                label        = "Close"
-                                onClickClose = { onClickClose }
-                                role         = "inverted" />
+                                className = { cssMap.close }
+                                iconSize  = "S"
+                                iconType  = "close"
+                                label     = "Close"
+                                onClick   = { onClickClose }
+                                role      = "inverted" />
                         }
                     </div>
                 </div>

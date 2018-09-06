@@ -7,12 +7,16 @@
  *
  */
 
-import React, { Children }            from 'react';
-import PropTypes                      from 'prop-types';
+import React, { Children } from 'react';
+import PropTypes           from 'prop-types';
 
-import Fieldset                       from '../Fieldset';
-import { buildClassName, generateId } from '../utils';
-import styles                         from './checkableGroup.css';
+import Fieldset            from '../Fieldset';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+} from '../utils';
+import styles from './checkableGroup.css';
 
 
 const CheckableGroup = ( {
@@ -69,15 +73,17 @@ const CheckableGroup = ( {
     return (
         <Fieldset
             className = { buildClassName( className, cssMap, {
-                layout
+                layout,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }
             hasError              = { hasError }
             isDisabled            = { isDisabled }
             label                 = { label }
-            onMouseOut            = { onMouseOut }
-            onMouseOver           = { onMouseOver }>
+            onMouseOut            = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver           = {
+                createEventHandler( onMouseOver, { id } )
+            }>
             { items &&
                 <ul className = { cssMap.list }>
                     { items.map( ( item, i ) => (

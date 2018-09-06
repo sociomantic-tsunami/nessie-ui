@@ -72,23 +72,19 @@ export default class Sorter extends Component
         } = this.props;
 
         const { isHovered } = this.state;
-        const fakeHovered = isHovered || forceHover;
 
         return (
             <div
                 className = { buildClassName( className, cssMap, {
-                    desc          : sort,
-                    fakeHovered   : forceHover,
+                    desc        : sort,
+                    fakeHovered : isHovered || forceHover,
                     sort,
                     sorterVisible : sorterIsVisible,
                 }  ) }
-                onClick = { onToggle }>
-                <div
-                    className    = { cssMap.content }
-                    onMouseEnter = { this.toggleHover }
-                    onMouseLeave = { this.toggleHover }>
-                    { children }
-                </div>
+                onClick        = { createEventHandler( onToggle, { id } ) }
+                onMouseEnter   = { this.toggleHover }
+                onMouseLeave   = { this.toggleHover }>
+                <div className = { cssMap.content }>{ children }</div>
                 { sorterIsVisible &&
                     <div className = { cssMap.sorter }>
                         <Icon

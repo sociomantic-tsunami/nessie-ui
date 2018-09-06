@@ -7,12 +7,17 @@
  *
  */
 
-import React                                from 'react';
-import PropTypes                            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import Dropdown                             from '../../Dropdown';
-import styles                               from './withDropdown.css';
-import { buildClassName, buildDisplayName } from '../../utils';
+import Dropdown  from '../../Dropdown';
+import styles    from './withDropdown.css';
+import {
+    buildClassName,
+    buildDisplayName,
+    createEventHandler,
+    generateId,
+} from '../../utils';
 
 
 const withDropdown = Component =>
@@ -22,6 +27,7 @@ const withDropdown = Component =>
         dropdownIsOpen,
         dropdownPosition,
         dropdownProps,
+        id = generateId( 'withDropdown' ),
         onMouseOut,
         onMouseOver,
         wrapperRef,
@@ -32,9 +38,9 @@ const withDropdown = Component =>
                 open     : dropdownIsOpen,
                 position : dropdownPosition,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            ref          = { wrapperRef }>
+            onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+            onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+            ref         = { wrapperRef }>
             <Component { ...componentProps } />
             <Dropdown { ...dropdownProps } className = { styles.dropdown } />
         </div>

@@ -7,17 +7,23 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import IconButton           from '../IconButton';
+import {
+    buildClassName,
+    createEventHandler,
+    generateId,
+}   from '../utils';
+import IconButton from '../IconButton';
+import styles     from './modalDialog.css';
 
 const ModalDialog = ( {
     children,
     className,
     cssMap,
     hasNavigation,
+    id = generateId( 'ModalDialog' ),
     isVisible,
     isWide,
     onClickClose,
@@ -28,23 +34,8 @@ const ModalDialog = ( {
     type,
 } ) =>
 {
-    if ( !isVisible )
-    {
-        return <div className = "modalContainer" />;
-    }
-
-    const handleOverlayClick = ( e ) => {
-        if( e.target !== e.currentTarget ) return;
-
-        if( onClickOverlay )
-        {
-            onClickOverlay( e );
-        }
-
-    };
-
     const isCarousel = type === 'carousel';
-    let modalUI      = null;
+    let modalUI = null;
 
     if ( isCarousel )
     {
@@ -75,18 +66,22 @@ const ModalDialog = ( {
 
     return (
         <div className = "modalContainer">
-            <div
-                className = { buildClassName( className, cssMap, {
-                    showNav : hasNavigation,
-                    type,
-                    wide    : isWide,
-                } ) }
-                onClick   = { handleOverlayClick } >
-                { modalUI }
-                <div className = { cssMap.content }>
-                    { children }
+            { isVisible &&
+                <div
+                    className = { buildClassName( className, cssMap, {
+                        showNav : hasNavigation,
+                        type,
+                        wide    : isWide,
+                    } ) }
+                    onClick = { e => ( e.target === e.currentTarget ) &&
+                        createEventHandler( onClickOverlay, { id } )
+                    }>
+                    { modalUI }
+                    <div className = { cssMap.content }>
+                        { children }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     );
 };
@@ -142,7 +137,7 @@ ModalDialog.propTypes =
 
 ModalDialog.defaultProps =
 {
-    cssMap        : require( './modalDialog.css' ),
+    cssMap        : styles,
     hasNavigation : true,
     isVisible     : false,
     type          : 'default',
