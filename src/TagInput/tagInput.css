@@ -2,34 +2,31 @@
 
 .default
 {
-    .container
+    display:            flex;
+    flex-wrap:          wrap;
+    align-items:        flex-start;
+    align-content:      flex-start;
+
+    box-sizing:         border-box;
+    width:              100%;
+
+    border:             1px solid var( --PC-GREY--L70 );
+    border-radius:      2px;
+
+    padding-top:        3px;
+    padding-right:      3px;
+    padding-bottom:     0;
+    padding-left:       3px;
+
+    background-color:   var( --PC-WHITE );
+    outline:            none;
+
+    overflow-x:         hidden;
+
+    & > *
     {
-        display:            flex;
-        flex-wrap:          wrap;
-        align-items:        flex-start;
-        align-content:      flex-start;
-
-        box-sizing:         border-box;
-        width:              100%;
-
-        border:             1px solid var( --PC-GREY--L70 );
-        border-radius:      2px;
-
-        padding-top:        3px;
-        padding-right:      3px;
-        padding-bottom:     0;
-        padding-left:       3px;
-
-        background-color:   var( --PC-WHITE );
-        outline:            none;
-
-        overflow-x:         hidden;
-
-        & > *
-        {
-            margin-right:   4px;
-            margin-bottom:  3px;
-        }
+        margin-right:   4px;
+        margin-bottom:  3px;
     }
 
     .input
@@ -78,42 +75,30 @@
 
 .fakeHovered
 {
-    .container
-    {
-        border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+    border-color:   var( --PC-BLUE );
+    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
 }
 
 
 .disabled
 {
-    .container
-    {
-        pointer-events: none;
+    pointer-events: none;
 
-        &:hover
-        {
-            border-color:   ( --PC-GREY--L70 );
-        }
+    &:hover
+    {
+        border-color:   ( --PC-GREY--L70 );
     }
 }
 
 
 .error
 {
-    .container
-    {
-        border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-        box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
-    }
+    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+    box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
 }
 
 
 .resizable
 {
-    .container
-    {
-        resize:        vertical;
-    }
+    resize: vertical;
 }

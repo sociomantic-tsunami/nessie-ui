@@ -1,14 +1,11 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                 from 'react';
+import PropTypes             from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import { TextInputWithIcon }          from '../index';
-import styles                         from './passwordInput.css';
+import { generateId }        from '../utils';
+import { TextInputWithIcon } from '../index';
 
 
 const PasswordInput = ( {
-    className,
-    cssMap,
     id = generateId( 'PasswordInput' ),
     passwordIsVisible,
     ...props
@@ -18,7 +15,6 @@ const PasswordInput = ( {
         autoCapitalize = "off"
         autoComplete   = "off"
         autoCorrect    = "off"
-        className      = { buildClassName( className, cssMap ) }
         iconType       = { passwordIsVisible ? 'hide' : 'show' }
         id             = { id }
         inputType      = { passwordIsVisible ? 'text' : 'password' }
@@ -197,7 +193,7 @@ PasswordInput.defaultProps =
 {
     aria                  : undefined,
     className             : undefined,
-    cssMap                : styles,
+    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',

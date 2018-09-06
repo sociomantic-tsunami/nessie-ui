@@ -1,12 +1,12 @@
-Component Description
----------------------
+## Component Description
 
-A text-input with an icon button inside
+A TextInput with an icon button “inside”.
 
-Example Usage
--------------
+## Example Usage
 
-  <TextInputWithIcon label        = "Enter a URL"
-                     iconType     = "preview"
-                     iconPosition = "left"
-                     textAlign    = "left" />
+```
+<TextInputWithIcon
+    iconType     = "preview"
+    iconPosition = "left"
+    textAlign    = "left" />
+```

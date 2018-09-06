@@ -677,38 +677,3 @@ describe( 'TextInputWithIcon', () =>
         } );
     } );
 } );
-
-
-describe( 'TextInputWithIconDriver', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <WrappedTextInputWithIcon /> );
-    } );
-
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                hasError              : true,
-                errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true,
-            } );
-        } );
-
-        test( 'should return a ReactWrapper', () =>
-        {
-            expect( wrapper.driver().getErrorMessage() )
-                .toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the message content', () =>
-        {
-            const message = wrapper.driver().getErrorMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
-        } );
-    } );
-} );

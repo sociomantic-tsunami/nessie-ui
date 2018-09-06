@@ -5,7 +5,6 @@ import React          from 'react';
 import { shallow }    from 'enzyme';
 
 import { InputField } from '../index';
-import InputContainer from '../proto/InputContainer';
 
 import TextArea       from './index';
 
@@ -17,11 +16,6 @@ describe( 'TextArea', () =>
     beforeEach( () =>
     {
         wrapper  = shallow( <TextArea /> );
-    } );
-
-    test( 'should contain exactly one InputContainer', () =>
-    {
-        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain exactly one InputField', () =>

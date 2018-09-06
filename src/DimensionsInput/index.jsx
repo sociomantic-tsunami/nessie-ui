@@ -3,13 +3,9 @@ import PropTypes                         from 'prop-types';
 
 import { generateId }                    from '../utils';
 import { Column, InputField, Row, Text } from '../index';
-import InputContainer                    from '../proto/InputContainer';
 
 const DimensionsInput = ( {
     className,
-    errorMessage,
-    errorMessageIsVisible,
-    errorMessagePosition,
     forceHover,
     hasError,
     heightInputRef,
@@ -18,8 +14,6 @@ const DimensionsInput = ( {
     id = generateId( 'DimensionsInput' ),
     isDisabled,
     isReadOnly,
-    label,
-    labelPosition,
     onBlur,
     onChange,
     onFocus,
@@ -29,182 +23,145 @@ const DimensionsInput = ( {
     widthPlaceholder,
     widthValue,
 } ) => (
-    <InputContainer
-        className             = { className }
-        errorMessage          = { errorMessage }
-        errorMessageIsVisible = { errorMessageIsVisible }
-        errorMessagePosition  = { errorMessagePosition }
-        hasError              = { hasError }
-        id                    = { `${id}-width` }
-        isDisabled            = { isDisabled }
-        label                 = { label }
-        labelPosition         = { labelPosition }
-        onMouseOut            = { onMouseOut }
-        onMouseOver           = { onMouseOver }>
-        <Row
-            gutters       = "S"
-            onMouseOut    = { onMouseOut }
-            onMouseOver   = { onMouseOver }
-            verticalAlign = "middle">
-            <Column>
-                <InputField
-                    autoCapitalize = "off"
-                    autoComplete   = "off"
-                    autoCorrect    = "off"
-                    forceHover     = { forceHover }
-                    hasError       = { hasError }
-                    id             = { `${id}-width` }
-                    inputRef       = { widthInputRef }
-                    isDisabled     = { isDisabled }
-                    isReadOnly     = { isReadOnly }
-                    onBlur         = { onBlur }
-                    onChange       = { onChange }
-                    onFocus        = { onFocus }
-                    placeholder    = { widthPlaceholder }
-                    spellCheck     = { false }
-                    value          = { widthValue } />
-            </Column>
-            <Column size = "content">
-                <Text>✕</Text>
-            </Column>
-            <Column>
-                <InputField
-                    autoCapitalize = "off"
-                    autoComplete   = "off"
-                    autoCorrect    = "off"
-                    forceHover     = { forceHover }
-                    hasError       = { hasError }
-                    id             = { `${id}-height` }
-                    inputRef       = { heightInputRef }
-                    isDisabled     = { isDisabled }
-                    isReadOnly     = { isReadOnly }
-                    onBlur         = { onBlur }
-                    onChange       = { onChange }
-                    onFocus        = { onFocus }
-                    placeholder    = { heightPlaceholder }
-                    spellCheck     = { false }
-                    value          = { heightValue } />
-            </Column>
-        </Row>
-    </InputContainer>
+    <Row
+        className     = { className }
+        gutters       = "S"
+        onMouseOut    = { onMouseOut }
+        onMouseOver   = { onMouseOver }
+        verticalAlign = "middle">
+        <Column>
+            <InputField
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                forceHover     = { forceHover }
+                hasError       = { hasError }
+                id             = { `${id}-width` }
+                inputRef       = { widthInputRef }
+                isDisabled     = { isDisabled }
+                isReadOnly     = { isReadOnly }
+                onBlur         = { onBlur }
+                onChange       = { onChange }
+                onFocus        = { onFocus }
+                placeholder    = { widthPlaceholder }
+                spellCheck     = { false }
+                value          = { widthValue } />
+        </Column>
+        <Column size = "content">
+            <Text>✕</Text>
+        </Column>
+        <Column>
+            <InputField
+                autoCapitalize = "off"
+                autoComplete   = "off"
+                autoCorrect    = "off"
+                forceHover     = { forceHover }
+                hasError       = { hasError }
+                id             = { `${id}-height` }
+                inputRef       = { heightInputRef }
+                isDisabled     = { isDisabled }
+                isReadOnly     = { isReadOnly }
+                onBlur         = { onBlur }
+                onChange       = { onChange }
+                onFocus        = { onFocus }
+                placeholder    = { heightPlaceholder }
+                spellCheck     = { false }
+                value          = { heightValue } />
+        </Column>
+    </Row>
 );
 
 DimensionsInput.propTypes = {
     /**
      *  Extra CSS class name
      */
-    className             : PropTypes.string,
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    errorMessage          : PropTypes.node,
-    /**
-     *  Error Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    className         : PropTypes.string,
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover        : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError          : PropTypes.bool,
     /**
      * Callback that receives the native height <input>:
      * ( focusFunc ) => { ... }
      */
-    heightInputRef        : PropTypes.func,
+    heightInputRef    : PropTypes.func,
     /**
     *  Height placeholder text
     */
-    heightPlaceholder     : PropTypes.string,
+    heightPlaceholder : PropTypes.string,
     /**
      * Width input string value
      */
-    heightValue           : PropTypes.string,
+    heightValue       : PropTypes.string,
     /**
      *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id                : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled        : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
-    /**
-     *  Label text (string or JSX node)
-     */
-    label                 : PropTypes.node,
-    /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    isReadOnly        : PropTypes.bool,
     /**
      *  Blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur            : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange          : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus           : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut        : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver       : PropTypes.func,
     /**
      * Callback that receives the native width <input>:
      * ( focusFunc ) => { ... }
      */
-    widthInputRef         : PropTypes.func,
+    widthInputRef     : PropTypes.func,
     /**
     *  Width placeholder text
     */
-    widthPlaceholder      : PropTypes.string,
+    widthPlaceholder  : PropTypes.string,
     /**
      * Height input string value
      */
-    widthValue            : PropTypes.string,
+    widthValue        : PropTypes.string,
 };
 
 DimensionsInput.defaultProps = {
-    className             : undefined,
-    errorMessage          : undefined,
-    errorMessageIsVisible : false,
-    errorMessagePosition  : 'top',
-    forceHover            : false,
-    hasError              : false,
-    heightInputRef        : undefined,
-    heightPlaceholder     : 'height',
-    heightValue           : '',
-    id                    : undefined,
-    isDisabled            : false,
-    isReadOnly            : false,
-    label                 : undefined,
-    labelPosition         : 'top',
-    onBlur                : undefined,
-    onChange              : undefined,
-    onFocus               : undefined,
-    onMouseOut            : undefined,
-    onMouseOver           : undefined,
-    widthInputRef         : undefined,
-    widthPlaceholder      : 'width',
-    widthValue            : '',
+    className         : undefined,
+    forceHover        : false,
+    hasError          : false,
+    heightInputRef    : undefined,
+    heightPlaceholder : 'height',
+    heightValue       : '',
+    id                : undefined,
+    isDisabled        : false,
+    isReadOnly        : false,
+    onBlur            : undefined,
+    onChange          : undefined,
+    onFocus           : undefined,
+    onMouseOut        : undefined,
+    onMouseOver       : undefined,
+    widthInputRef     : undefined,
+    widthPlaceholder  : 'width',
+    widthValue        : '',
 };
 
 export default DimensionsInput;

@@ -5,41 +5,6 @@ import { mount }    from 'enzyme';
 
 import { ComboBox } from '../index';
 
-describe( 'ComboBox', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper  = mount( <ComboBox /> );
-    } );
-
-    describe( 'render()', () =>
-    {
-        test( 'should render ComboBox', () =>
-        {
-            expect( wrapper ).toHaveLength( 1 );
-        } );
-        test( 'should render ComboBox without label by default', () =>
-        {
-            const label = '';
-            wrapper.setProps( {
-                label
-            } );
-            expect( wrapper.find( 'label' ).length ).toBe( 0 );
-        } );
-        test( 'should render ComboBox with label if defined', () =>
-        {
-            const label = 'label';
-            wrapper.setProps( {
-                label
-            } );
-            expect( wrapper.find( 'label' ).length ).toBe( 1 );
-        } );
-    } );
-} );
-
-
 describe( 'ComboBoxDriver', () =>
 {
     let wrapper;

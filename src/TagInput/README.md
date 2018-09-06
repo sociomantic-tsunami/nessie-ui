@@ -1,7 +1,6 @@
 ## Component Description
 
-A Nessie TagInput component is a text input where we can add different values as
-tags.
+TagInput is a text input where we can add different values as tags.
 
 ## Example Usage
 

@@ -5,8 +5,6 @@ import React           from 'react';
 import { shallow }     from 'enzyme';
 
 import { InputField }  from '../index';
-import InputContainer  from '../proto/InputContainer';
-
 
 import ValuedTextInput from './index';
 
@@ -22,11 +20,6 @@ describe( 'ValuedTextInput', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
-
         test( 'should contain exactly one InputField', () =>
         {
             expect( wrapper.find( InputField ) ).toHaveLength( 1 );

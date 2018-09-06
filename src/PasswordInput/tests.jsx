@@ -1,12 +1,12 @@
 /* global test jest */
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
 
-import React                            from 'react';
-import { ReactWrapper, mount, shallow } from 'enzyme';
+import React                 from 'react';
+import { mount, shallow }    from 'enzyme';
 
-import { TextInputWithIcon }            from '../index';
+import { TextInputWithIcon } from '../index';
 
-import PasswordInput                    from './index';
+import PasswordInput         from './index';
 
 
 describe( 'PasswordInput', () =>
@@ -92,31 +92,6 @@ describe( 'PasswordInputDriver', () =>
     beforeEach( () =>
     {
         wrapper = mount( <PasswordInput /> );
-    } );
-
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                hasError              : true,
-                errorMessage          : <h2>Pikachu!</h2>,
-                errorMessageIsVisible : true,
-            } );
-        } );
-
-        test( 'should return a ReactWrapper', () =>
-        {
-            expect( wrapper.driver().getErrorMessage() )
-                .toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the error message content', () =>
-        {
-            const message = wrapper.driver().getErrorMessage();
-
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
-        } );
     } );
 
     describe( 'focus()', () =>

@@ -5,7 +5,6 @@ import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { InputField }     from '../index';
-import InputContainer     from '../proto/InputContainer';
 
 import TextInput          from './index';
 
@@ -22,11 +21,6 @@ describe( 'TextInput', () =>
     test( 'should be stateless functional component', () =>
     {
         expect( wrapper.instance() ).toBe( null );
-    } );
-
-    test( 'should contain exactly one InputContainer', () =>
-    {
-        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain exactly one InputField', () =>

@@ -88,12 +88,6 @@ end of the code editor’s value', () =>
 
     describe( 'setInputValue( value )', () =>
     {
-        test( 'should set the input value to "foo"', () =>
-        {
-            wrapper.driver().setInputValue( 'foo' );
-            expect( CodeMirror.getValue() ).toBe( 'foo' );
-        } );
-
         test( 'should fire the onChange callback prop once', () =>
         {
             const onChange = jest.fn();
