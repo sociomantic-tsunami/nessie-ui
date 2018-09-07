@@ -63,10 +63,10 @@ const Grid = ( {
 Grid.propTypes =
 {
     /**
-     * Horizontal alignment of the columns (“auto” makes all columns equal
-     * width)
+     * Horizontal alignment of the grid items
      */
-    align            : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    align : PropTypes
+        .oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
     /**
      *  Grid content (Columns)
      */
@@ -96,11 +96,11 @@ Grid.propTypes =
      */
     customRows       : PropTypes.string,
     /**
-     *  has custom columns
+     *  If it has custom columns
      */
     hasCustomColumns : PropTypes.bool,
     /**
-     *  has custom rows
+     *  If it has custom rows
      */
     hasCustomRows    : PropTypes.bool,
     /**
@@ -131,10 +131,10 @@ Grid.propTypes =
      */
     rows             : PropTypes.number,
     /**
-     * Vertical alignment of the columns (“auto” makes all columns equal
-     * height)
+     * Vertical alignment of the grid items
      */
-    verticalAlign    : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
+    verticalAlign    : PropTypes
+        .oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
 };
 
 Grid.defaultProps =

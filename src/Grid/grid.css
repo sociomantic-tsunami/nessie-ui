@@ -48,6 +48,11 @@
     justify-items: end;
 }
 
+.alignX__stretch
+{
+    justify-items: stretch;
+}
+
 .alignY__top
 {
     align-items:   start;
@@ -61,6 +66,11 @@
 .alignY__bottom
 {
     align-items:   end;
+}
+
+.alignY__stretch
+{
+    align-items:   stretch;
 }
 
 
