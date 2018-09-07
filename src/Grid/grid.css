@@ -64,37 +64,37 @@
 }
 
 
-.gutters__none
+.columnGap__none
 {
     grid-column-gap: 0;
 }
-.gutters__S
+.columnGap__S
 {
     grid-column-gap: var( --S );
 }
-.gutters__M
+.columnGap__M
 {
     grid-column-gap: var( --M );
 }
-.gutters__L
+.columnGap__L
 {
     grid-column-gap: var( --L );
 }
 
 
-.spacing__none
+.rowGap__none
 {
     grid-row-gap: 0;
 }
-.spacing__S
+.rowGap__S
 {
     grid-row-gap: var( --S );
 }
-.spacing__M
+.rowGap__M
 {
     grid-row-gap: var( --M );
 }
-.spacing__L
+.rowGap__L
 {
     grid-row-gap: var( --L );
 }

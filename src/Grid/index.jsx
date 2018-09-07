@@ -26,10 +26,10 @@ const Grid = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    gutters,
+    columnGap,
     role,
     rows,
-    spacing,
+    rowGap,
     verticalAlign,
 } ) =>
 {
@@ -47,8 +47,8 @@ const Grid = ( {
                 alignY : verticalAlign,
                 col    : columns,
                 row    : rows,
-                gutters,
-                spacing,
+                columnGap,
+                rowGap,
             } ) }
             style        = { layout }
             onClick      = { onClick }
@@ -76,13 +76,25 @@ Grid.propTypes =
      */
     className        : PropTypes.string,
     /**
+     *  Column gap
+     */
+    columnGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
      *  Number of columns
      */
     columns          : PropTypes.number,
     /**
+     *  CSS class map
+     */
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
+    /**
      *  Custom sizes of columns
      */
     customColumns    : PropTypes.string,
+    /**
+     *  Custom sizes of rows
+     */
+    customRows       : PropTypes.string,
     /**
      *  has custom columns
      */
@@ -91,18 +103,6 @@ Grid.propTypes =
      *  has custom rows
      */
     hasCustomRows    : PropTypes.bool,
-    /**
-     *  Custom sizes of rows
-     */
-    customRows       : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Gutter size
-     */
-    gutters          : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      *  onClick callback function:
      *  ( e ) => { ... }
@@ -123,13 +123,13 @@ Grid.propTypes =
      */
     role             : PropTypes.string,
     /**
+     *  Row gap
+     */
+    rowGap           : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
      *  Number of rows
      */
     rows             : PropTypes.number,
-    /**
-     *  Row spacing
-     */
-    spacing          : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
@@ -142,19 +142,19 @@ Grid.defaultProps =
     align            : 'auto',
     children         : undefined,
     className        : undefined,
+    columnGap        : 'M',
     columns          : 4,
+    cssMap           : styles,
     customColumns    : undefined,
     customRows       : undefined,
-    cssMap           : styles,
-    gutters          : 'M',
     hasCustomColumns : false,
     hasCustomRows    : false,
     onClick          : undefined,
     onMouseOut       : undefined,
     onMouseOver      : undefined,
     role             : undefined,
+    rowGap           : 'M',
     rows             : 1,
-    spacing          : 'M',
     verticalAlign    : 'auto',
 };
 
