@@ -139,7 +139,7 @@ Grid.propTypes =
 
 Grid.defaultProps =
 {
-    align            : 'auto',
+    align            : 'left',
     children         : undefined,
     className        : undefined,
     columnGap        : 'M',
@@ -155,7 +155,7 @@ Grid.defaultProps =
     role             : undefined,
     rowGap           : 'M',
     rows             : 1,
-    verticalAlign    : 'auto',
+    verticalAlign    : 'top',
 };
 
 Grid.didWarn = {};
