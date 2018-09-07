@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -30,6 +30,24 @@
         overflow:   hidden;
         min-width:  0;
     }
+}
+
+
+.flow__row
+{
+    grid-auto-flow: row;
+}
+.flow__col
+{
+    grid-auto-flow: column;
+}
+.flow__row_dense
+{
+    grid-auto-flow: row dense;
+}
+.flow__col_dense
+{
+    grid-auto-flow: column dense;
 }
 
 

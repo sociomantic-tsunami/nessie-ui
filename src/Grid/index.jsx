@@ -15,17 +15,13 @@ import styles             from './grid.css';
 
 const Grid = ( {
     align,
+    autoFlow,
     children,
     className,
     columns,
     customColumns,
     customRows,
     cssMap,
-    hasCustomColumns,
-    hasCustomRows,
-    onClick,
-    onMouseOut,
-    onMouseOver,
     columnGap,
     role,
     rows,
@@ -34,9 +30,9 @@ const Grid = ( {
 } ) =>
 {
     const layout = {
-        'gridTemplateColumns' : hasCustomColumns ?
+        'gridTemplateColumns' : customColumns !== undefined ?
             `${customColumns}` : `repeat( ${columns}, 1fr )`,
-        'gridTemplateRows' : hasCustomRows ?
+        'gridTemplateRows' : customRows !== undefined ?
             `${customRows}` : `repeat( ${rows}, 1fr )`,
     };
 
@@ -45,16 +41,12 @@ const Grid = ( {
             className = { buildClassName( className, cssMap, {
                 alignX : align,
                 alignY : verticalAlign,
-                col    : columns,
-                row    : rows,
+                flow   : autoFlow,
                 columnGap,
                 rowGap,
             } ) }
-            style        = { layout }
-            onClick      = { onClick }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = { role && role !== 'none' ? role : null }>
+            style = { layout }
+            role  = { role && role !== 'none' ? role : null }>
             { children }
         </div>
     );
@@ -67,6 +59,11 @@ Grid.propTypes =
      */
     align : PropTypes
         .oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
+    /**
+     * Controls where to auto place new grid items if their place is undefined
+     */
+    autoFlow : PropTypes
+        .oneOf( [ 'row', 'col', 'row_dense', 'col_dense' ] ),
     /**
      *  Grid content (Columns)
      */
@@ -104,21 +101,6 @@ Grid.propTypes =
      */
     hasCustomRows    : PropTypes.bool,
     /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick          : PropTypes.func,
-    /**
-     *  onMouseOut callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOut       : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOver      : PropTypes.func,
-    /**
      *  Grid role
      */
     role             : PropTypes.string,
@@ -140,24 +122,20 @@ Grid.propTypes =
 Grid.defaultProps =
 {
     align            : 'left',
+    autoFlow         : 'row',
     children         : undefined,
     className        : undefined,
     columnGap        : 'M',
-    columns          : 4,
+    columns          : undefined,
     cssMap           : styles,
     customColumns    : undefined,
     customRows       : undefined,
     hasCustomColumns : false,
     hasCustomRows    : false,
-    onClick          : undefined,
-    onMouseOut       : undefined,
-    onMouseOver      : undefined,
     role             : undefined,
     rowGap           : 'M',
-    rows             : 1,
+    rows             : undefined,
     verticalAlign    : 'top',
 };
-
-Grid.didWarn = {};
 
 export default Grid;
