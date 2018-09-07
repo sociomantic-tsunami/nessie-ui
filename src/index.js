@@ -28,6 +28,7 @@ export Fieldset                 from './Fieldset';
 export FlounderDropdown         from './FlounderDropdown';
 export Form                     from './Form';
 export Grid                     from './Grid';
+export GridItem                 from './GridItem';
 export H1                       from './H1';
 export H2                       from './H2';
 export H3                       from './H3';
