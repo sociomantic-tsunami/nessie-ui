@@ -18,12 +18,18 @@
 
 .default
 {
-    display:            grid;
+    display:        grid;
 
-    width:              auto;
-    max-width:          100%;
+    width:          auto;
+    max-width:      100%;
 
-    margin-bottom:      0;
+    margin-bottom:  0;
+
+    > *
+    {
+        overflow:   hidden;
+        min-width:  0;
+    }
 }
 
 
