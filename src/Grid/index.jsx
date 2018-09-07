@@ -21,7 +21,8 @@ const Grid = ( {
     customColumns,
     customRows,
     cssMap,
-    hasCustomLayout,
+    hasCustomColumns,
+    hasCustomRows,
     onClick,
     onMouseOut,
     onMouseOver,
@@ -33,13 +34,10 @@ const Grid = ( {
 } ) =>
 {
     const layout = {
-        'gridTemplateColumns' : `repeat( ${columns}, 1fr )`,
-        'gridTemplateRows'    : `repeat( ${rows}, 1fr )`,
-    };
-
-    const customLayout = {
-        'gridTemplateColumns' : `${customColumns}`,
-        'gridTemplateRows'    : `${customRows}`,
+        'gridTemplateColumns' : hasCustomColumns ?
+            `${customColumns}` : `repeat( ${columns}, 1fr )`,
+        'gridTemplateRows' : hasCustomRows ?
+            `${customRows}` : `repeat( ${rows}, 1fr )`,
     };
 
     return (
@@ -52,7 +50,7 @@ const Grid = ( {
                 gutters,
                 spacing,
             } ) }
-            style        = { hasCustomLayout ? customLayout : layout }
+            style        = { layout }
             onClick      = { onClick }
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }
@@ -68,91 +66,96 @@ Grid.propTypes =
      * Horizontal alignment of the columns (“auto” makes all columns equal
      * width)
      */
-    align           : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    align            : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
      *  Grid content (Columns)
      */
-    children        : PropTypes.node,
+    children         : PropTypes.node,
     /**
      *  CSS class name
      */
-    className       : PropTypes.string,
+    className        : PropTypes.string,
     /**
      *  Number of columns
      */
-    columns         : PropTypes.number,
+    columns          : PropTypes.number,
     /**
      *  Custom sizes of columns
      */
-    customColumns   : PropTypes.string,
+    customColumns    : PropTypes.string,
     /**
-     *  has customLayout
+     *  has custom columns
      */
-    hasCustomLayout : PropTypes.bool,
+    hasCustomColumns : PropTypes.bool,
+    /**
+     *  has custom rows
+     */
+    hasCustomRows    : PropTypes.bool,
     /**
      *  Custom sizes of rows
      */
-    customRows      : PropTypes.string,
+    customRows       : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap          : PropTypes.objectOf( PropTypes.string ),
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Gutter size
      */
-    gutters         : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    gutters          : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      *  onClick callback function:
      *  ( e ) => { ... }
      */
-    onClick         : PropTypes.func,
+    onClick          : PropTypes.func,
     /**
      *  onMouseOut callback function:
      *  ( e ) => { ... }
      */
-    onMouseOut      : PropTypes.func,
+    onMouseOut       : PropTypes.func,
     /**
      *  onMouseOver callback function:
      *  ( e ) => { ... }
      */
-    onMouseOver     : PropTypes.func,
+    onMouseOver      : PropTypes.func,
     /**
      *  Grid role
      */
-    role            : PropTypes.string,
+    role             : PropTypes.string,
     /**
      *  Number of rows
      */
-    rows            : PropTypes.number,
+    rows             : PropTypes.number,
     /**
      *  Row spacing
      */
-    spacing         : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    spacing          : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      * Vertical alignment of the columns (“auto” makes all columns equal
      * height)
      */
-    verticalAlign   : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
+    verticalAlign    : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
 
 Grid.defaultProps =
 {
-    align           : 'auto',
-    children        : undefined,
-    className       : undefined,
-    columns         : 4,
-    customColumns   : undefined,
-    customRows      : undefined,
-    cssMap          : styles,
-    gutters         : 'M',
-    hasCustomLayout : false,
-    onClick         : undefined,
-    onMouseOut      : undefined,
-    onMouseOver     : undefined,
-    role            : undefined,
-    rows            : 1,
-    spacing         : 'M',
-    verticalAlign   : 'auto',
+    align            : 'auto',
+    children         : undefined,
+    className        : undefined,
+    columns          : 4,
+    customColumns    : undefined,
+    customRows       : undefined,
+    cssMap           : styles,
+    gutters          : 'M',
+    hasCustomColumns : false,
+    hasCustomRows    : false,
+    onClick          : undefined,
+    onMouseOut       : undefined,
+    onMouseOver      : undefined,
+    role             : undefined,
+    rows             : 1,
+    spacing          : 'M',
+    verticalAlign    : 'auto',
 };
 
 Grid.didWarn = {};
