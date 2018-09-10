@@ -15,7 +15,9 @@ import styles             from './grid.css';
 
 const Grid = ( {
     align,
+    autoCols,
     autoFlow,
+    autoRows,
     children,
     className,
     columns,
@@ -30,6 +32,8 @@ const Grid = ( {
 } ) =>
 {
     const layout = {
+        'gridAutoColumns'     : autoCols !== undefined ? `${autoCols}` : '1fr',
+        'gridAutoRows'        : autoRows !== undefined ? `${autoRows}` : '1fr',
         'gridTemplateColumns' : customColumns !== undefined ?
             `${customColumns}` : `repeat( ${columns}, 1fr )`,
         'gridTemplateRows' : customRows !== undefined ?
@@ -60,82 +64,82 @@ Grid.propTypes =
     align : PropTypes
         .oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
     /**
+     * Defines the size of implicitly set columns
+     */
+    autoCols : PropTypes.string,
+    /**
      * Controls where to auto place new grid items if their place is undefined
      */
     autoFlow : PropTypes
         .oneOf( [ 'row', 'col', 'row_dense', 'col_dense' ] ),
     /**
+     * Defines the size of implicitly set rows
+     */
+    autoRows      : PropTypes.string,
+    /**
      *  Grid content (Columns)
      */
-    children         : PropTypes.node,
+    children      : PropTypes.node,
     /**
      *  CSS class name
      */
-    className        : PropTypes.string,
+    className     : PropTypes.string,
     /**
      *  Column gap
      */
-    columnGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      *  Number of columns
      */
-    columns          : PropTypes.number,
+    columns       : PropTypes.number,
     /**
      *  CSS class map
      */
-    cssMap           : PropTypes.objectOf( PropTypes.string ),
+    cssMap        : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Custom sizes of columns
      */
-    customColumns    : PropTypes.string,
+    customColumns : PropTypes.string,
     /**
      *  Custom sizes of rows
      */
-    customRows       : PropTypes.string,
-    /**
-     *  If it has custom columns
-     */
-    hasCustomColumns : PropTypes.bool,
-    /**
-     *  If it has custom rows
-     */
-    hasCustomRows    : PropTypes.bool,
+    customRows    : PropTypes.string,
     /**
      *  Grid role
      */
-    role             : PropTypes.string,
+    role          : PropTypes.string,
     /**
      *  Row gap
      */
-    rowGap           : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
      *  Number of rows
      */
-    rows             : PropTypes.number,
+    rows          : PropTypes.number,
     /**
      * Vertical alignment of the grid items
      */
-    verticalAlign    : PropTypes
+    verticalAlign : PropTypes
         .oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
 };
 
 Grid.defaultProps =
 {
-    align            : 'left',
-    autoFlow         : 'row',
-    children         : undefined,
-    className        : undefined,
-    columnGap        : 'M',
-    columns          : undefined,
-    cssMap           : styles,
-    customColumns    : undefined,
-    customRows       : undefined,
-    hasCustomColumns : false,
-    hasCustomRows    : false,
-    role             : undefined,
-    rowGap           : 'M',
-    rows             : undefined,
-    verticalAlign    : 'top',
+    align         : 'left',
+    autoCols      : undefined,
+    autoFlow      : 'row',
+    autoRows      : undefined,
+    children      : undefined,
+    className     : undefined,
+    columnGap     : 'M',
+    columns       : undefined,
+    cssMap        : styles,
+    customColumns : undefined,
+    customRows    : undefined,
+    role          : undefined,
+    rowGap        : 'M',
+    rows          : undefined,
+    verticalAlign : 'top',
 };
 
 export default Grid;

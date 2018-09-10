@@ -107,7 +107,7 @@
     },
     "Grid" :
     {
-        "children": "{<Column size='1/2'><Text>First column</Text></Column><Column size='1/2'><Text>Second column</Text></Column><Column size='1/2'><Text>Third column</Text></Column>}"
+        "children": "{<Text>First column</Text><Text>Second column</Text><Text>Third column</Text>}"
     },
     "H1" :
     {
