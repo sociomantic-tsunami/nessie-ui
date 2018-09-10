@@ -17,22 +17,17 @@ const GridItem = ( {
     align,
     children,
     className,
-    columnEnd,
-    columnStart,
     cssMap,
+    gridCol,
+    gridRow,
     justify,
     onMouseOut,
     onMouseOver,
-    role,
-    rowEnd,
-    rowStart,
 } ) =>
 {
     const position = {
-        'gridColumnStart' : `${columnStart}`,
-        'gridColumnEnd'   : `${columnEnd}`,
-        'gridRowStart'    : `${rowStart}`,
-        'gridRowEnd'      : `${rowEnd}`,
+        'gridColumn' : `${gridCol}`,
+        'gridRow'    : `${gridRow}`,
     };
 
     return (
@@ -43,8 +38,7 @@ const GridItem = ( {
             } ) }
             style        = { position }
             onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = { role && role !== 'none' ? role : null }>
+            onMouseLeave = { onMouseOut }>
             { children }
         </div>
     );
@@ -66,17 +60,17 @@ GridItem.propTypes =
      */
     className   : PropTypes.string,
     /**
-     *  Last column or span of GridItem
-     */
-    columnEnd   : PropTypes.string,
-    /**
-     *  First column of GridItem
-     */
-    columnStart : PropTypes.string,
-    /**
      *  CSS class map
      */
     cssMap      : PropTypes.objectOf( PropTypes.string ),
+    /**
+     * Column position of the GridItem: <start-line> / <end-line>
+     */
+    gridCol     : PropTypes.string,
+    /**
+     * Row position of the GridItem: <start-line> / <end-line>
+     */
+    gridRow     : PropTypes.string,
     /**
      * Horizontal alignment of the GridItem content
      */
@@ -91,18 +85,6 @@ GridItem.propTypes =
      *  ( e ) => { ... }
      */
     onMouseOver : PropTypes.func,
-    /**
-     *  GridItem role
-     */
-    role        : PropTypes.string,
-    /**
-     *  Last row or span of GridItem
-     */
-    rowEnd      : PropTypes.string,
-    /**
-     *  First row of GridItem
-     */
-    rowStart    : PropTypes.string,
 };
 
 GridItem.defaultProps =
@@ -110,15 +92,12 @@ GridItem.defaultProps =
     align       : 'start',
     children    : undefined,
     className   : undefined,
-    columnEnd   : undefined,
-    columnStart : undefined,
     cssMap      : styles,
     justify     : 'start',
+    gridCol     : undefined,
+    gridRow     : undefined,
     onMouseOut  : undefined,
     onMouseOver : undefined,
-    role        : undefined,
-    rowEnd      : undefined,
-    rowStart    : undefined,
 };
 
 export default GridItem;
