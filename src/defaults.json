@@ -107,7 +107,7 @@
     },
     "Grid" :
     {
-        "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
+        "children": "{<GridItem gridCol='1'><Text>First column</Text></GridItem><GridItem gridCol='2'><Text>Second column</Text></GridItem><GridItem gridCol='3'><Text>Third column</Text></GridItem>}"
     },
     "GridItem" :
     {
