@@ -13,52 +13,44 @@ import PropTypes          from 'prop-types';
 import { buildClassName } from '../utils';
 import styles             from './grid.css';
 
-const deprecatedSpacingOptions = [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
-
 const Grid = ( {
     align,
+    autoCols,
+    autoFlow,
+    autoRows,
     children,
     className,
+    columns,
+    customColumns,
+    customRows,
     cssMap,
-    onClick,
-    onMouseOut,
-    onMouseOver,
-    gutters,
-    hasMinHeight,
-    hasWrap,
+    columnGap,
     role,
-    spacing,
+    rows,
+    rowGap,
     verticalAlign,
 } ) =>
 {
-    if ( deprecatedSpacingOptions.includes( spacing ) &&
-        !Grid.didWarn[ spacing ] )
-    {
-        console.warn( `Grid spacing option '${spacing}' is deprecated. Please \
-use one of 'S', 'M', 'L' or 'none' instead.` );
-        Grid.didWarn[ spacing ] = true;
-    }
-    if ( !Grid.didWarn.hasMinHeight && hasMinHeight !== undefined )
-    {
-        console.warn( 'Grid: hasMinHeight prop is deprecated. Please use an \
-alternative layout.' );
-        Grid.didWarn.hasMinHeight = true;
-    }
+    const layout = {
+        'gridAutoColumns'     : autoCols !== undefined ? `${autoCols}` : '1fr',
+        'gridAutoRows'        : autoRows !== undefined ? `${autoRows}` : '1fr',
+        'gridTemplateColumns' : customColumns !== undefined ?
+            `${customColumns}` : `repeat( ${columns}, 1fr )`,
+        'gridTemplateRows' : customRows !== undefined ?
+            `${customRows}` : `repeat( ${rows}, 1fr )`,
+    };
 
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                alignX  : align,
-                alignY  : verticalAlign,
-                hasMinHeight,
-                gutters : gutters !== 'none' && gutters,
-                wrap    : hasWrap,
-                spacing : spacing !== 'none' && spacing
+                alignX : align,
+                alignY : verticalAlign,
+                flow   : autoFlow,
+                columnGap,
+                rowGap,
             } ) }
-            onClick      = { onClick }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = { role && role !== 'none' ? role : null }>
+            style = { layout }
+            role  = { role && role !== 'none' ? role : null }>
             { children }
         </div>
     );
@@ -67,10 +59,23 @@ alternative layout.' );
 Grid.propTypes =
 {
     /**
-     * Horizontal alignment of the columns (“auto” makes all columns equal
-     * width)
+     * Horizontal alignment of the grid items
      */
-    align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
+    align : PropTypes
+        .oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
+    /**
+     * Defines the size of implicitly set columns
+     */
+    autoCols : PropTypes.string,
+    /**
+     * Controls where to auto place new grid items if their place is undefined
+     */
+    autoFlow : PropTypes
+        .oneOf( [ 'row', 'col', 'row_dense', 'col_dense' ] ),
+    /**
+     * Defines the size of implicitly set rows
+     */
+    autoRows      : PropTypes.string,
     /**
      *  Grid content (Columns)
      */
@@ -80,63 +85,61 @@ Grid.propTypes =
      */
     className     : PropTypes.string,
     /**
+     *  Column gap
+     */
+    columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Number of columns
+     */
+    columns       : PropTypes.number,
+    /**
      *  CSS class map
      */
     cssMap        : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Gutter size
+     *  Custom sizes of columns
      */
-    gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    customColumns : PropTypes.string,
     /**
-     * Wrap content
+     *  Custom sizes of rows
      */
-    hasWrap       : PropTypes.bool,
-    /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick       : PropTypes.func,
-    /**
-     *  onMouseOut callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOut    : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOver   : PropTypes.func,
+    customRows    : PropTypes.string,
     /**
      *  Grid role
      */
     role          : PropTypes.string,
     /**
-     *  Row spacing
+     *  Row gap
      */
-    spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     * Vertical alignment of the columns (“auto” makes all columns equal
-     * height)
+     *  Number of rows
      */
-    verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
+    rows          : PropTypes.number,
+    /**
+     * Vertical alignment of the grid items
+     */
+    verticalAlign : PropTypes
+        .oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
 };
 
 Grid.defaultProps =
 {
-    align         : 'auto',
+    align         : 'left',
+    autoCols      : undefined,
+    autoFlow      : 'row',
+    autoRows      : undefined,
     children      : undefined,
     className     : undefined,
+    columnGap     : 'M',
+    columns       : undefined,
     cssMap        : styles,
-    gutters       : 'M',
-    hasWrap       : true,
-    onClick       : undefined,
-    onMouseOut    : undefined,
-    onMouseOver   : undefined,
+    customColumns : undefined,
+    customRows    : undefined,
     role          : undefined,
-    spacing       : 'M',
-    verticalAlign : 'auto',
+    rowGap        : 'M',
+    rows          : undefined,
+    verticalAlign : 'top',
 };
-
-Grid.didWarn = {};
 
 export default Grid;
