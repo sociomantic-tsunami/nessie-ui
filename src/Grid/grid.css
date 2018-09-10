@@ -18,247 +18,111 @@
 
 .default
 {
-    display:        flex;
-    flex-direction: column;
-    align-items:    stretch;
+    display:        grid;
 
     width:          auto;
-    max-width:      none;
+    max-width:      100%;
 
     margin-bottom:  0;
 
-    /*& > *
+    > *
     {
-        flex:       0 0 100%;
-        box-sizing: border-box;
-    }*/
-}
-
-/*
-@media( min-width: 768px )
-{ */
-    .default
-    {
-        flex-direction: row;
-
-        /*& > *
-        {
-            flex:   1 0 0%;
-        }*/
-    }
-
-    .alignX__left,
-    .alignX__center,
-    .alignX__right
-    {
-        & > * /* Columns */
-        {
-            flex:   0 0 auto;
-        }
-    }
-
-    .alignX__left
-    {
-        justify-content:    flex-start;
-    }
-
-    .alignX__center
-    {
-        justify-content:    center;
-    }
-
-    .alignX__right
-    {
-        justify-content:    flex-end;
-    }
-
-    .alignY__top
-    {
-        align-items:    flex-start;
-    }
-
-    .alignY__middle
-    {
-        align-items:    center;
-    }
-
-    .alignY__bottom
-    {
-        align-items:    flex-end;
-    }
-
-    .wrap
-    {
-        flex-wrap:  wrap;
-    }
-/* } */
-
-
-.gutters__S
-{
-    margin-left:    calc( -1 * ( var( --S ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --S ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --S ) / 2 );
-        padding-right:  calc( var( --S ) / 2 );
-    }
-}
-.gutters__M
-{
-    margin-left:    calc( -1 * ( var( --M ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --M ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --M ) / 2 );
-        padding-right:  calc( var( --M ) / 2 );
-    }
-}
-.gutters__L
-{
-    margin-left:    calc( -1 * ( var( --L ) / 2 ) );
-    margin-right:   calc( -1 * ( var( --L ) / 2 ) );
-
-    & > * /* Columns */
-    {
-        padding-left:   calc( var( --L ) / 2 );
-        padding-right:  calc( var( --L ) / 2 );
+        overflow:   hidden;
+        min-width:  0;
     }
 }
 
 
-.spacing__S
+.flow__row
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --S ) / 2 );
-        padding-bottom: calc( var( --S ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --S ) / 2 ) );
-        margin-bottom:  calc( var( --S ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --S ) );
-    }
+    grid-auto-flow: row;
 }
-.spacing__M
+.flow__col
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --M ) / 2 );
-        padding-bottom: calc( var( --M ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --M ) / 2 ) );
-        margin-bottom:  calc( var( --M ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --M ) );
-    }
+    grid-auto-flow: column;
 }
-.spacing__L
+.flow__row_dense
 {
-    & > * /* Columns */
-    {
-        /* these paddings will be used by TableCells (yeah, this is ugly) */
-        padding-top:    calc( var( --L ) / 2 );
-        padding-bottom: calc( var( --L ) / 2 );
-
-        /* override those paddings when *not* a TableCell... */
-        margin-top:     calc( -1 * ( var( --L ) / 2 ) );
-        margin-bottom:  calc( var( --L ) / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -1 * var( --L ) );
-    }
+    grid-auto-flow: row dense;
 }
-
-/* legacy spacing options (deprecated) */
-.spacing__default,
-.spacing__h3,
-.spacing__h4
+.flow__col_dense
 {
-    & > *
-    {
-        padding-top:    calc( 16px / 2 );
-        padding-bottom: calc( 16px / 2 );
-
-        margin-top:     calc( -1 * ( 16px / 2 ) );
-        margin-bottom:  calc( 16px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -16px );
-    }
-}
-.spacing__label
-{
-    & > *
-    {
-        padding-top:    calc( 8px / 2 );
-        padding-bottom: calc( 8px / 2 );
-
-        margin-top:     calc( -1 * ( 8px / 2 ) );
-        margin-bottom:  calc( 8px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -8px );
-    }
-}
-.spacing__h1
-{
-    & > *
-    {
-        padding-top:    calc( 56px / 2 );
-        padding-bottom: calc( 56px / 2 );
-
-        margin-top:     calc( -1 * ( 56px / 2 ) );
-        margin-bottom:  calc( 56px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -56px );
-    }
-}
-.spacing__h2
-{
-    & > *
-    {
-        padding-top:    calc( 40px / 2 );
-        padding-bottom: calc( 40px / 2 );
-
-        margin-top:     calc( -1 * ( 40px / 2 ) );
-        margin-bottom:  calc( 40px / 2 );
-    }
-
-    &:last-child
-    {
-        margin-bottom:  calc( -40px );
-    }
+    grid-auto-flow: column dense;
 }
 
 
-.wrap
+.alignX__left
 {
-    flex-wrap:  wrap;
+    justify-items: start;
 }
 
-.hasMinHeight
+.alignX__center
 {
-    min-height: 87px; /* label + input */
+    justify-items: center;
+}
+
+.alignX__right
+{
+    justify-items: end;
+}
+
+.alignX__stretch
+{
+    justify-items: stretch;
+}
+
+.alignY__top
+{
+    align-items:   start;
+}
+
+.alignY__middle
+{
+    align-items:   center;
+}
+
+.alignY__bottom
+{
+    align-items:   end;
+}
+
+.alignY__stretch
+{
+    align-items:   stretch;
+}
+
+
+.columnGap__none
+{
+    grid-column-gap: 0;
+}
+.columnGap__S
+{
+    grid-column-gap: var( --S );
+}
+.columnGap__M
+{
+    grid-column-gap: var( --M );
+}
+.columnGap__L
+{
+    grid-column-gap: var( --L );
+}
+
+
+.rowGap__none
+{
+    grid-row-gap: 0;
+}
+.rowGap__S
+{
+    grid-row-gap: var( --S );
+}
+.rowGap__M
+{
+    grid-row-gap: var( --M );
+}
+.rowGap__L
+{
+    grid-row-gap: var( --L );
 }
