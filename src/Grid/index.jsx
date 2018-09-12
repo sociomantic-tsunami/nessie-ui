@@ -89,7 +89,7 @@ Grid.propTypes =
      */
     columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     *  Number of columns
+     *  Number of columns - should be an integer > 0
      */
     columns       : PropTypes.number,
     /**
@@ -113,7 +113,7 @@ Grid.propTypes =
      */
     rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     *  Number of rows
+     *  Number of rows - should be an integer > 0
      */
     rows          : PropTypes.number,
     /**

@@ -94,8 +94,8 @@ GridItem.defaultProps =
     className   : undefined,
     cssMap      : styles,
     justify     : 'start',
-    gridCol     : undefined,
-    gridRow     : undefined,
+    gridCol     : '',
+    gridRow     : '',
     onMouseOut  : undefined,
     onMouseOver : undefined,
 };
