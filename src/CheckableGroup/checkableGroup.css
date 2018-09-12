@@ -32,11 +32,6 @@
 
     margin:         0;
     margin-right:	30px;
-
-    &:last-child
-    {
-        margin:	0;
-    }
 }
 
 .layout__vertical
