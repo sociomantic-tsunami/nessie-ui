@@ -111,7 +111,6 @@
             flex:           0 0 auto;
 
             margin-right:   var( --spacing-2 );
-            margin-bottom:  0;
 
             &:last-child
             {

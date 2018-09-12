@@ -89,14 +89,8 @@
 
 .pageButtons
 {
-    display:            inline-flex;
-    align-items:        flex-start;
-
-    & > *
-    {
-        margin-bottom:  0;
-    }
-
+    display:        inline-flex;
+    align-items:    flex-start;
 }
 
 
@@ -119,10 +113,11 @@
 
     &:focus::after
     {
-        top:    0;
-        bottom: 0;
-        left:   0;
-        right:  0;
-        border-radius:  2px;
+        top:                0;
+        bottom:             0;
+        left:               0;
+        right:              0;
+
+        border-radius:      2px;
     }
 }
