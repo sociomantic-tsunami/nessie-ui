@@ -1,28 +1,28 @@
 <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <circle id="path-1" cx="8" cy="8" r="8"></circle>
-        <path d="M0,4.49188346 C0,3.86746268 2.58045756,2.4892793 2.9479552,3.19724074 C3.31545285,3.90520219 3.08454725,6.8367097 2.9479552,7.47576534 C2.81136316,8.11482098 4.47059829,6.76640273 4.47059829,7.6984412 C4.47059829,8.63047968 2.46760686,9.53310547 1.27772987,9.5226646 C0.0878528755,9.51222373 1.73904273,5.12209171 1.73904273,4.6564794 C1.73904273,4.19086709 0,5.11630423 0,4.49188346 Z M2,2 C1.44771525,2 1,1.55228475 1,1 C1,0.44771525 1.44771525,-3.94430453e-31 2,-3.94430453e-31 C2.55228475,-3.94430453e-31 3,0.44771525 3,1 C3,1.55228475 2.55228475,2 2,2 Z" id="path-3"></path>
+        <path d="M1.90926474,3.55391905 C1.44131557,3.26058984 0.824177516,3.40214728 0.530848308,3.87009645 C0.237519101,4.33804561 0.379076545,4.95518367 0.84702571,5.24851288 L3.4225202,6.82010923 C3.93726428,7.14277135 4.61611614,6.98705817 4.93877827,6.47231408 C4.94686189,6.4592841 4.94686189,6.4592841 4.95470195,6.44610614 L7.50742671,1.92528218 C7.78759751,1.4493381 7.62889191,0.836385884 7.15294783,0.556215083 C6.67700375,0.276044282 6.06405153,0.434749882 5.78388073,0.910693962 L3.70063018,4.63399202 L1.90926474,3.55391905 Z" id="path-3"></path>
     </defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icon-/-Info" transform="translate(-4.000000, -4.000000)">
+        <g id="Icon-/-Status-/-Active" transform="translate(-4.000000, -4.000000)">
             <g id="Colors-/-Dark-Blue-/-primary-800" transform="translate(4.000000, 4.000000)">
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>
                 </mask>
-                <use id="Mask" fill="#FFB043" xlink:href="#path-1"></use>
+                <use id="Mask" fill="#1DC2B9" xlink:href="#path-1"></use>
                 <g id="Colors-/-Grey-/-swatch-D25" mask="url(#mask-2)" fill="#42566E">
                     <g transform="translate(-4.000000, -4.000000)">
                         <rect x="0" y="0" width="24" height="24"></rect>
                     </g>
                 </g>
             </g>
-            <g id="Colors-/-White" transform="translate(10.000000, 7.000000)">
+            <g id="Colors-/-White" transform="translate(8.000000, 8.000000)">
                 <mask id="mask-4" fill="white">
                     <use xlink:href="#path-3"></use>
                 </mask>
-                <use id="Mask" fill="#FFB043" xlink:href="#path-3"></use>
+                <use id="Mask" fill="#1DC2B9" xlink:href="#path-3"></use>
                 <g mask="url(#mask-4)" fill="#FFFFFF" id="Rectangle-10-Copy-33">
-                    <g transform="translate(-6.000000, -3.000000)">
+                    <g transform="translate(-4.000000, -6.000000)">
                         <rect x="0" y="0" width="16" height="16"></rect>
                     </g>
                 </g>
