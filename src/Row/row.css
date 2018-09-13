@@ -19,7 +19,7 @@
 .default
 {
     display:        flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items:    stretch;
 
     width:          auto;
@@ -33,7 +33,7 @@
 .alignX__center,
 .alignX__right
 {
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         flex:   0 0 auto;
     }
@@ -80,7 +80,7 @@
     margin-left:    calc( -1 * ( var( --S ) / 2 ) );
     margin-right:   calc( -1 * ( var( --S ) / 2 ) );
 
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         padding-left:   calc( var( --S ) / 2 );
         padding-right:  calc( var( --S ) / 2 );
@@ -91,7 +91,7 @@
     margin-left:    calc( -1 * ( var( --M ) / 2 ) );
     margin-right:   calc( -1 * ( var( --M ) / 2 ) );
 
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         padding-left:   calc( var( --M ) / 2 );
         padding-right:  calc( var( --M ) / 2 );
@@ -102,7 +102,7 @@
     margin-left:    calc( -1 * ( var( --L ) / 2 ) );
     margin-right:   calc( -1 * ( var( --L ) / 2 ) );
 
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         padding-left:   calc( var( --L ) / 2 );
         padding-right:  calc( var( --L ) / 2 );
@@ -112,7 +112,7 @@
 
 .spacing__S
 {
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    calc( var( --S ) / 2 );
@@ -130,7 +130,7 @@
 }
 .spacing__M
 {
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    calc( var( --M ) / 2 );
@@ -148,7 +148,7 @@
 }
 .spacing__L
 {
-    & > * /* Columns */
+    & > * /* Columns / Flex items */
     {
         /* these paddings will be used by TableCells (yeah, this is ugly) */
         padding-top:    calc( var( --L ) / 2 );
