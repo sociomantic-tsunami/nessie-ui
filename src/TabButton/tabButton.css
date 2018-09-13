@@ -57,9 +57,13 @@
 .active
 {
     color:          var( --PC-BLUE );
-    border-bottom:  1px solid var( --PC-BLUE );
     pointer-events: none;
     cursor:         default;
+
+    .content
+    {
+        border-bottom-color:   var( --PC-BLUE );
+    }
 }
 
 .subtitle
