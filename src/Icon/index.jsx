@@ -101,6 +101,8 @@ Icon.propTypes =
         'alert',
         'approved',
         'arrow',
+        'arrow-up',
+        'arrow-down',
         'bell',
         'board',
         'calendar',
