@@ -21,7 +21,7 @@ const TabButton = ( {
     label,
     onClick,
     subtitle,
-    tabIndex
+    tabIndex,
 } ) =>
 
     ( <button
@@ -41,7 +41,7 @@ const TabButton = ( {
                 }
             </div>
         </div>
-      </button> );
+    </button> );
 
 TabButton.propTypes =
 {
