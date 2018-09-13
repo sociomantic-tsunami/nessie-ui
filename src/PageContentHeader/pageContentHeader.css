@@ -22,8 +22,6 @@
     box-sizing:     border-box;
     width:          100%;
 
-    margin-bottom:  var( --spacing-6 );
-
     font-size:      14px;
     line-height:    18px;
 }

@@ -16,11 +16,6 @@
 
     width:              auto;
 
-    &:last-child
-    {
-        margin-bottom:  0;
-    }
-
     &:hover .label
     {
         cursor:         pointer;

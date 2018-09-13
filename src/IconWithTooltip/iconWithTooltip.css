@@ -11,7 +11,7 @@
 
 :root
 {
-    --iconSpacing:  var( --spacing-1 )
+    --iconSpacing:  var( --spacing-1 );
 }
 
 .default
@@ -25,13 +25,6 @@
 
     font:           inherit;
     line-height:    inherit;
-
-    margin-bottom:   var( --spacing-2 );
-
-    &:last-child
-    {
-        margin-bottom:  0;
-    }
 }
 
 .position__topRight,

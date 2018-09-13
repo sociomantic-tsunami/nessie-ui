@@ -11,10 +11,8 @@
 
 .default
 {
-    display:        block;
-    margin-bottom:  var( --spacing-1 );
-
-    width:          auto;
+    display:    block;
+    width:      auto;
 
     &[for]
     {

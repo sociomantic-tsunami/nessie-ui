@@ -13,8 +13,6 @@
 {
     width:          auto;
 
-    margin-bottom:  var( --spacing-1 );
-
     line-height:    var( --line-height-m );
     text-transform: none;
 

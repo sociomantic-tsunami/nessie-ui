@@ -11,15 +11,15 @@
 
 .default
 {
-    margin:                 0;
-    color:                  var( --PC-GREY--L70 );
+    margin:             0;
+    color:              var( --PC-GREY--L70 );
 
-    text-transform:         none;
+    text-transform:     none;
 
 
     &:not(:last-child)
     {
-        margin-right: var( --spacing-2 );
+        margin-right:   var( --spacing-2 );
     }
 
     .content
