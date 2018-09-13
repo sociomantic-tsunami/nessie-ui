@@ -131,6 +131,7 @@ Icon.propTypes =
         'loader',
         'megaphone',
         'options',
+        'paused',
         'pending',
         'preview',
         'puzzle-piece',

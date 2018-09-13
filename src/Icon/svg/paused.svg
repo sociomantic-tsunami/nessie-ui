@@ -1,44 +1,5 @@
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z" id="path-1"></path>
-        <path d="M5,4 C5,3.44771525 4.55228475,3 4,3 L-2,3 C-2.55228475,3 -3,3.44771525 -3,4 C-3,4.55228475 -2.55228475,5 -2,5 L4,5 C4.55228475,5 5,4.55228475 5,4 Z" id="path-3"></path>
-        <path d="M5,4 C5,3.44771525 4.55228475,3 4,3 L-2,3 C-2.55228475,3 -3,3.44771525 -3,4 C-3,4.55228475 -2.55228475,5 -2,5 L4,5 C4.55228475,5 5,4.55228475 5,4 Z" id="path-5"></path>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icon-/-Status-/-Paused" transform="translate(-4.000000, -4.000000)">
-            <g id="Colors-/-Dark-Blue-/-primary-800" transform="translate(4.000000, 4.000000)">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <use id="Mask" fill="white" xlink:href="#path-1"></use>
-                <g id="Colors-/-Grey-/-swatch-D25" mask="url(#mask-2)" fill="#42566E">
-                    <g transform="translate(-4.000000, -4.000000)">
-                        <rect x="0" y="0" width="24" height="24"></rect>
-                    </g>
-                </g>
-            </g>
-            <g id="Colors-/-White" transform="translate(9.000000, 8.000000)">
-                <mask id="mask-4" fill="white">
-                    <use xlink:href="#path-3"></use>
-                </mask>
-                <use id="Mask" fill="white" transform="translate(1.000000, 4.000000) rotate(-270.000000) translate(-1.000000, -4.000000) " xlink:href="#path-3"></use>
-                <g mask="url(#mask-4)" fill="transparent" id="Rectangle-10-Copy-33">
-                    <g transform="translate(-4.000000, -4.000000)">
-                        <rect x="0" y="0" width="16" height="16"></rect>
-                    </g>
-                </g>
-            </g>
-            <g id="Colors-/-White" transform="translate(13.000000, 8.000000)">
-                <mask id="mask-6" fill="white">
-                    <use xlink:href="#path-5"></use>
-                </mask>
-                <use id="Mask" fill="white" transform="translate(1.000000, 4.000000) rotate(-270.000000) translate(-1.000000, -4.000000) " xlink:href="#path-5"></use>
-                <g mask="url(#mask-6)" fill="transparent" id="Rectangle-10-Copy-33">
-                    <g transform="translate(-4.000000, -4.000000)">
-                        <rect x="0" y="0" width="16" height="16"></rect>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z" id="path-1"></path>
+    <path fill="white" transform="translate(6.000000, 8.000000) rotate(-270.000000) translate(-1.000000, -4.000000) " d="M5,4 C5,3.44771525 4.55228475,3 4,3 L-2,3 C-2.55228475,3 -3,3.44771525 -3,4 C-3,4.55228475 -2.55228475,5 -2,5 L4,5 C4.55228475,5 5,4.55228475 5,4 Z" id="path-3"></path>
+    <path fill="white" transform="translate(10.000000, 8.000000) rotate(-270.000000) translate(-1.000000, -4.000000) " d="M5,4 C5,3.44771525 4.55228475,3 4,3 L-2,3 C-2.55228475,3 -3,3.44771525 -3,4 C-3,4.55228475 -2.55228475,5 -2,5 L4,5 C4.55228475,5 5,4.55228475 5,4 Z" id="path-5"></path>
 </svg>
