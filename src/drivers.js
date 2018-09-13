@@ -25,7 +25,6 @@ import {
     FlounderDropdown,
     Form,
     Grid,
-    GridItem,
     H1,
     H2,
     H3,
@@ -94,7 +93,6 @@ import DateTimeInputDriver    from './DateTimeInput/driver';
 import FlounderDropdownDriver from './FlounderDropdown/driver';
 import FormDriver             from './Form/driver';
 import GridColumnDriver       from './Grid/driver';
-import GridItemDriver         from './GridItem/driver';
 import IconDriver             from './Icon/driver';
 import IconWithTooltipDriver  from './IconWithTooltip/driver';
 import InputComponentDriver
@@ -193,10 +191,6 @@ const drivers =
     {
         Component : Grid,
         Driver    : GridColumnDriver,
-    },
-    {
-        Component : GridItem,
-        Driver    : GridItemDriver,
     },
     {
         Component : H1,

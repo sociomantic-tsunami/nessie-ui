@@ -7,42 +7,27 @@
  *
  */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React        from 'react';
+import { shallow }  from 'enzyme';
 
-import GridItem   from './index';
+import GridItem     from './index';
 
 
-describe( 'GridItemDriver', () =>
+describe( 'GridItem', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <GridItem>dummy text</GridItem> );
+        wrapper = shallow( <GridItem>dummy text</GridItem> );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'render()', () =>
     {
-        test( 'should trigger onMouseOut callback prop once', () =>
+        test( 'should be rendered with `children` prop', () =>
         {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( { onMouseOut } );
-
-            wrapper.driver().mouseOut();
-            expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'mouseOver()', () =>
-    {
-        test( 'should trigger onMouseOver callback prop once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( { onMouseOver } );
-
-            wrapper.driver().mouseOver();
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+            wrapper.setProps( { children: 'Cthulhu' } );
+            expect( wrapper.text() ).toEqual( 'Cthulhu' );
         } );
     } );
 } );

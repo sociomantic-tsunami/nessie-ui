@@ -15,15 +15,15 @@
 }
 
 
-.align__start
+.align__top
 {
     align-self: start;
 }
-.align__center
+.align__middle
 {
     align-self: center;
 }
-.align__end
+.align__bottom
 {
     align-self: end;
 }
@@ -33,7 +33,7 @@
 }
 
 
-.justify__start
+.justify__left
 {
     justify-self: start;
 }
@@ -41,7 +41,7 @@
 {
     justify-self: center;
 }
-.justify__end
+.justify__right
 {
     justify-self: end;
 }

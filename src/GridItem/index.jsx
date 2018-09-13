@@ -18,31 +18,17 @@ const GridItem = ( {
     children,
     className,
     cssMap,
-    gridCol,
-    gridRow,
     justify,
-    onMouseOut,
-    onMouseOver,
 } ) =>
-{
-    const position = {
-        'gridColumn' : `${gridCol}`,
-        'gridRow'    : `${gridRow}`,
-    };
-
-    return (
+    (
         <div
             className = { buildClassName( className, cssMap, {
                 align,
                 justify,
-            } ) }
-            style        = { position }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            } ) }>
             { children }
         </div>
     );
-};
 
 
 GridItem.propTypes =
@@ -50,54 +36,32 @@ GridItem.propTypes =
     /**
      * Vertical alignment of the GridItem content
      */
-    align       : PropTypes.oneOf( [ 'start', 'end', 'center', 'stretch' ] ),
+    align     : PropTypes.oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
     /**
      *  GridItem content
      */
-    children    : PropTypes.node,
+    children  : PropTypes.node,
     /**
      *  CSS class name
      */
-    className   : PropTypes.string,
+    className : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * Column position of the GridItem: <start-line> / <end-line>
-     */
-    gridCol     : PropTypes.string,
-    /**
-     * Row position of the GridItem: <start-line> / <end-line>
-     */
-    gridRow     : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
     /**
      * Horizontal alignment of the GridItem content
      */
-    justify     : PropTypes.oneOf( [ 'start', 'end', 'center', 'stretch' ] ),
-    /**
-     *  onMouseOut callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOut  : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOver : PropTypes.func,
+    justify   : PropTypes.oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
 };
 
 GridItem.defaultProps =
 {
-    align       : 'start',
-    children    : undefined,
-    className   : undefined,
-    cssMap      : styles,
-    justify     : 'start',
-    gridCol     : '',
-    gridRow     : '',
-    onMouseOut  : undefined,
-    onMouseOver : undefined,
+    align     : 'top',
+    children  : undefined,
+    className : undefined,
+    cssMap    : styles,
+    justify   : 'left',
 };
 
 export default GridItem;
