@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                                   from 'react';
 import PropTypes                               from 'prop-types';
 
@@ -5,207 +14,262 @@ import { buildClassName, mapAria, generateId } from '../utils';
 import styles                                  from './inputField.css';
 
 
-export default class InputField extends React.Component
+const InputField = ( {
+    aria,
+    autoCapitalize,
+    autoComplete,
+    autoCorrect,
+    className,
+    cssMap,
+    defaultValue,
+    element,
+    forceHover,
+    hasError,
+    id = generateId( 'InputField' ),
+    inputRef,
+    isDisabled,
+    isReadOnly,
+    isResizable,
+    name,
+    onBlur,
+    onChange,
+    onClick,
+    onFocus,
+    onInput,
+    onKeyDown,
+    onKeyPress,
+    onKeyUp,
+    onMouseOut,
+    onMouseOver,
+    placeholder,
+    rows,
+    spellCheck,
+    textAlign,
+    type,
+    value,
+} ) =>
 {
-    static propTypes =
+    if ( !InputField.didWarn && onInput )
     {
-        /**
-         *  HTML element
-         */
-        element        : PropTypes.oneOf( [ 'input', 'textarea' ] ),
-        /**
-         *  HTML type attribute (input element only)
-         */
-        type           : PropTypes.oneOf( [ 'text', 'password', 'number' ] ),
-        /**
-         *  Placeholder text
-         */
-        placeholder    : PropTypes.string,
-        /**
-         *  Alignment of the input text
-         */
-        textAlign      : PropTypes.oneOf( [ 'left', 'right' ] ),
-        /**
-         *  Number of rows (textarea element only)
-         */
-        rows           : PropTypes.number,
-        /**
-         * Sets the text area to be vertically resizable
-         */
-        isResizable    : PropTypes.bool,
-        /**
-         *  Display as disabled
-         */
-        isDisabled     : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly     : PropTypes.bool,
-        /**
-         *  Display as error/invalid
-         */
-        hasError       : PropTypes.bool,
-        /**
-         *  Message to display in info icon
-         */
-        defaultValue   : PropTypes.string,
-        /**
-         *  Input string value
-         */
-        value          : PropTypes.string,
-        /**
-         *  HTML id attribute (overwrite default)
-         */
-        id             : PropTypes.string,
-        /**
-         *  HTML name attribute
-         */
-        name           : PropTypes.string,
-        /**
-         *  Input change callback function
-         */
-        onChange       : PropTypes.func,
-        /**
-         *  Input click callback function
-         */
-        onClick        : PropTypes.func,
-        /**
-         *  Input focus callback function
-         */
-        onFocus        : PropTypes.func,
-        /**
-         *  Input blur callback function
-         */
-        onBlur         : PropTypes.func,
-        /**
-         * onKeyPress callback function
-         */
-        onKeyPress     : PropTypes.func,
-        /**
-         *  Input mouseOver callback function
-         */
-        onMouseOver    : PropTypes.func,
-        /**
-         *  Input mouseOut callback function
-         */
-        onMouseOut     : PropTypes.func,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover     : PropTypes.bool,
-        /**
-         * Callback that receives a ref to the <input>: ( ref ) => { ... }
-         */
-        inputRef       : PropTypes.func,
-        /**
-         *  HTML attribute for disabling input auto correct when PasswordInput
-         */
-        autocorrect    : PropTypes.string,
-        /**
-         * HTML attribute for disabling input auto capitalize when PasswordInput
-         */
-        autocapitalize : PropTypes.string,
-        /**
-         * HTML attribute for disabling input spell check when PasswordInput
-         */
-        spellcheck     : PropTypes.bool,
-    };
-
-    static defaultProps =
-    {
-        element    : 'input',
-        type       : 'text',
-        textAlign  : 'left',
-        id         : undefined,
-        isDisabled : false,
-        isReadOnly : false,
-        hasError   : false,
-        forceHover : false,
-        cssMap     : styles,
-    };
-
-    constructor( props )
-    {
-        super( props );
-
-        if ( typeof onInput !== 'undefined' )
-        {
-            console.warn( `${this.constructor.name}: onInput prop is
-deprecated. Please use onChange instead.` );
-        }
+        console.warn( 'InputField: onInput prop is deprecated. Please use \
+onChange instead.' );
+        InputField.didWarn = true;
     }
 
-    render()
-    {
-        const {
-            aria,
-            autocorrect,
-            autocapitalize,
-            spellcheck,
-            className,
-            cssMap,
-            defaultValue,
-            element,
-            forceHover,
-            hasError,
-            id = generateId( 'InputField' ),
-            inputRef,
-            isDisabled,
-            isReadOnly,
-            isResizable,
-            name,
-            onBlur,
-            onInput,
-            onChange,
-            onClick,
-            onFocus,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOver,
-            placeholder,
-            rows,
-            textAlign,
-            type,
-            value,
-        } = this.props;
+    const InputElement = element || 'input';
 
-        const InputElement = element || 'input';
+    return (
+        <InputElement
+            { ...mapAria( aria ) }
+            autoCapitalize = { autoCapitalize }
+            autoComplete   = { autoComplete }
+            autoCorrect    = { autoCorrect }
+            className      = { buildClassName( className, cssMap, {
+                align       : textAlign,
+                disabled    : isDisabled,
+                error       : !isDisabled && hasError,
+                fakeHovered : !isDisabled && forceHover,
+                resizable   : element === 'textarea' && isResizable,
+            } ) }
+            defaultValue = { defaultValue }
+            disabled     = { isDisabled }
+            id           = { id }
+            name         = { name }
+            onBlur       = { onBlur }
+            onChange     = { onChange || onInput }
+            onClick      = { onClick }
+            onFocus      = { onFocus }
+            onKeyDown    = { onKeyDown }
+            onKeyPress   = { onKeyPress }
+            onKeyUp      = { onKeyUp }
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }
+            placeholder  = { placeholder }
+            readOnly     = { isReadOnly }
+            ref          = { inputRef }
+            rows         = { element === 'textarea' ? rows : null }
+            spellCheck   = { spellCheck }
+            type         = { element === 'input' ? type : null }
+            value        = { value } />
+    );
+};
 
-        return (
-            <InputElement
-                { ...mapAria( aria ) }
-                autoComplete = { element !== 'textarea' ? 'off' : null }
-                className    = { buildClassName( className, cssMap, {
-                    error       : !isDisabled && hasError,
-                    disabled    : isDisabled,
-                    fakeHovered : !isDisabled && forceHover,
-                    align       : textAlign,
-                    resizable   : element === 'textarea' && isResizable,
-                } ) }
-                defaultValue   = { defaultValue }
-                disabled       = { isDisabled }
-                id             = { id }
-                name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChange || onInput }
-                onClick        = { onClick }
-                onFocus        = { onFocus }
-                onKeyDown      = { onKeyDown }
-                onKeyPress     = { onKeyPress }
-                onKeyUp        = { onKeyUp }
-                onMouseLeave   = { onMouseOut }
-                onMouseEnter   = { onMouseOver }
-                placeholder    = { placeholder }
-                readOnly       = { isReadOnly }
-                ref            = { inputRef }
-                rows           = { element === 'textarea' ? rows : null }
-                type           = { element === 'input' ? type : null }
-                value          = { value }
-                autoCorrect    = { autocorrect }
-                autoCapitalize = { autocapitalize }
-                spellCheck     = { spellcheck } />
-        );
-    }
-}
+InputField.propTypes =
+{
+    /**
+     *  ARIA properties
+     */
+    aria : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.number,
+        PropTypes.string,
+    ] ) ),
+    /**
+     *  HTML attribute controlling input auto capitalize
+     */
+    autoCapitalize : PropTypes.oneOf( [
+        'on',
+        'off',
+        'none',
+        'sentences',
+        'words',
+        'characters',
+    ] ),
+    /**
+     *  HTML attribute controlling input auto complete
+     */
+    autoComplete : PropTypes.string,
+    /**
+     *  HTML attribute controlling input auto correct (Safari-specific)
+     */
+    autoCorrect  : PropTypes.oneOf( [ 'on', 'off' ] ),
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    /**
+     *  Initial input string value
+     */
+    defaultValue : PropTypes.string,
+    /**
+     *  HTML element
+     */
+    element      : PropTypes.oneOf( [ 'input', 'textarea' ] ),
+    /**
+     *  Display as hover when required from another component
+     */
+    forceHover   : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError     : PropTypes.bool,
+    /**
+     *  HTML id attribute
+     */
+    id           : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef     : PropTypes.func,
+    /**
+     *  Display as disabled
+     */
+    isDisabled   : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly   : PropTypes.bool,
+    /**
+     * Sets the input to be vertically resizable (textarea element only)
+     */
+    isResizable  : PropTypes.bool,
+    /**
+     *  HTML name attribute
+     */
+    name         : PropTypes.string,
+    /**
+     *  Blur callback function
+     */
+    onBlur       : PropTypes.func,
+    /**
+     *  Input change callback function
+     */
+    onChange     : PropTypes.func,
+    /**
+     *  Input click callback function
+     */
+    onClick      : PropTypes.func,
+    /**
+     *  Icon click callback function
+     */
+    onClickIcon  : PropTypes.func,
+    /**
+     *  Focus callback function
+     */
+    onFocus      : PropTypes.func,
+    /**
+     *  Key down callback function
+     */
+    onKeyDown    : PropTypes.func,
+    /**
+     *  Key press callback function
+     */
+    onKeyPress   : PropTypes.func,
+    /**
+     *  Key up callback function
+     */
+    onKeyUp      : PropTypes.func,
+    /**
+     *  Mouse out callback function
+     */
+    onMouseOut   : PropTypes.func,
+    /**
+     *  Mouse over  callback function
+     */
+    onMouseOver  : PropTypes.func,
+    /**
+     *  Placeholder text
+     */
+    placeholder  : PropTypes.string,
+    /**
+     *  Number of rows (textarea element only)
+     */
+    rows         : PropTypes.number,
+    /**
+     *  HTML attribute controlling input spell check
+     */
+    spellCheck   : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign    : PropTypes.oneOf( [ 'left', 'right' ] ),
+    /**
+     *  HTML type attribute (input element only)
+     */
+    type         : PropTypes.oneOf( [ 'text', 'password', 'number' ] ),
+    /**
+     *  Input string value
+     */
+    value        : PropTypes.string,
+};
+
+InputField.defaultProps =
+{
+    aria           : undefined,
+    autoCapitalize : undefined,
+    autoComplete   : undefined,
+    autoCorrect    : undefined,
+    className      : undefined,
+    cssMap         : styles,
+    defaultValue   : undefined,
+    element        : 'input',
+    forceHover     : false,
+    hasError       : false,
+    id             : undefined,
+    inputRef       : undefined,
+    isDisabled     : false,
+    isReadOnly     : false,
+    isResizable    : undefined,
+    name           : undefined,
+    onBlur         : undefined,
+    onChange       : undefined,
+    onClick        : undefined,
+    onFocus        : undefined,
+    onKeyDown      : undefined,
+    onKeyPress     : undefined,
+    onKeyUp        : undefined,
+    onMouseOut     : undefined,
+    onMouseOver    : undefined,
+    placeholder    : undefined,
+    rows           : undefined,
+    spellCheck     : undefined,
+    textAlign      : 'left',
+    type           : 'text',
+    value          : undefined,
+};
+
+export default InputField;
