@@ -62,7 +62,7 @@ PageContent.defaultProps =
 {
     children     : undefined,
     className    : undefined,
-    contentWidth : '100%',
+    contentWidth : '1080px',
     cssMap       : styles,
     isLoading    : false,
 };

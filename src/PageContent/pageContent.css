@@ -22,7 +22,6 @@
     .content
     {
         box-sizing:    border-box;
-        width:         1080px;
 
         margin:        0 auto;
         padding:       var( --spacing-9 ) 0;
