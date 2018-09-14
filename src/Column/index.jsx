@@ -19,6 +19,7 @@ const Column = ( {
     className,
     columnTitle,
     cssMap,
+    dividers,
     role,
     size,
     verticalAlign,
@@ -35,8 +36,9 @@ is deprecated. Please use an alternative layout.' );
         <div
             className = { buildClassName( className, cssMap, {
                 size,
-                alignX : align,
-                alignY : verticalAlign,
+                alignX   : align,
+                alignY   : verticalAlign,
+                dividers : dividers !== 'none' && dividers,
             } ) }
             role              = { role }
             data-column-title = { columnTitle }>
@@ -98,6 +100,10 @@ Column.propTypes =
         'right',
     ] ),
     /**
+     * Dividers between items
+     */
+    dividers      : PropTypes.oneOf( [ 'none', 'before', 'after' ] ),
+    /**
      *  Vertical alignment of content (“auto” is equivalent to “top”)
      */
     verticalAlign : PropTypes.oneOf( [
@@ -118,8 +124,9 @@ Column.propTypes =
 
 Column.defaultProps =
 {
-    align  : 'auto',
-    cssMap : styles,
+    align    : 'auto',
+    cssMap   : styles,
+    dividers : 'none',
 };
 
 export default Column;
