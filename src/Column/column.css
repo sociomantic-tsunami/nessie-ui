@@ -101,7 +101,7 @@ $shark: 768px;
         height:     2px;
         width:      100%;
 
-        background: var( --PC-BLUE );
+        background: var( --PC-GREY--L70 );
     }
 }
 
@@ -117,7 +117,7 @@ $shark: 768px;
         height:     2px;
         width:      100%;
 
-        background: var( --PC-BLUE );
+        background: var( --PC-GREY--L70 );
     }
 }
 
