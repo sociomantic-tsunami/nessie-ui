@@ -17,7 +17,6 @@ const DimensionsInput = ( {
     className,
     forceHover,
     hasError,
-    heightInputRef,
     heightPlaceholder,
     heightValue,
     id = generateId( 'DimensionsInput' ),
@@ -28,7 +27,6 @@ const DimensionsInput = ( {
     onFocus,
     onMouseOut,
     onMouseOver,
-    widthInputRef,
     widthPlaceholder,
     widthValue,
 } ) => (
@@ -46,7 +44,6 @@ const DimensionsInput = ( {
                 forceHover     = { forceHover }
                 hasError       = { hasError }
                 id             = { `${id}-width` }
-                inputRef       = { widthInputRef }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnly }
                 onBlur         = { onBlur }
@@ -67,7 +64,6 @@ const DimensionsInput = ( {
                 forceHover     = { forceHover }
                 hasError       = { hasError }
                 id             = { `${id}-height` }
-                inputRef       = { heightInputRef }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnly }
                 onBlur         = { onBlur }
@@ -93,11 +89,6 @@ DimensionsInput.propTypes = {
      *  Display as error/invalid
      */
     hasError          : PropTypes.bool,
-    /**
-     * Callback that receives the native height <input>:
-     * ( focusFunc ) => { ... }
-     */
-    heightInputRef    : PropTypes.func,
     /**
     *  Height placeholder text
     */
@@ -139,11 +130,6 @@ DimensionsInput.propTypes = {
      */
     onMouseOver       : PropTypes.func,
     /**
-     * Callback that receives the native width <input>:
-     * ( focusFunc ) => { ... }
-     */
-    widthInputRef     : PropTypes.func,
-    /**
     *  Width placeholder text
     */
     widthPlaceholder  : PropTypes.string,
@@ -157,7 +143,6 @@ DimensionsInput.defaultProps = {
     className         : undefined,
     forceHover        : false,
     hasError          : false,
-    heightInputRef    : undefined,
     heightPlaceholder : 'height',
     heightValue       : '',
     id                : undefined,
@@ -168,7 +153,6 @@ DimensionsInput.defaultProps = {
     onFocus           : undefined,
     onMouseOut        : undefined,
     onMouseOver       : undefined,
-    widthInputRef     : undefined,
     widthPlaceholder  : 'width',
     widthValue        : '',
 };

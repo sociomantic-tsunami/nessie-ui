@@ -67,10 +67,6 @@ export default class ValuedTextInput extends React.Component
          */
         id                 : PropTypes.string,
         /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef           : PropTypes.func,
-        /**
          *  Display as disabled
          */
         isDisabled         : PropTypes.bool,
@@ -155,7 +151,6 @@ export default class ValuedTextInput extends React.Component
         forceHover         : false,
         hasError           : false,
         id                 : undefined,
-        inputRef           : undefined,
         isDisabled         : false,
         isReadOnly         : false,
         name               : undefined,

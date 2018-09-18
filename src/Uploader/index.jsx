@@ -29,7 +29,6 @@ const Uploader = ( {
     hasError,
     hasWarning,
     id = generateId( 'Uploader' ),
-    inputRef,
     isDisabled,
     isReadOnly,
     label,
@@ -96,7 +95,6 @@ const Uploader = ( {
                 className = { cssMap.input }
                 name      = { `${id}-file` }
                 onChange  = { onChange }
-                ref       = { inputRef }
                 tabIndex  = "-1"
                 type      = "file" />
             { label &&
@@ -189,10 +187,6 @@ Uploader.propTypes =
      */
     id                      : PropTypes.string,
     /**
-     * callback that receives ref to native input: ( ref ) => { ... }
-     */
-    inputRef                : PropTypes.func,
-    /**
     *  Display as disabled
     */
     isDisabled              : PropTypes.bool,
@@ -265,7 +259,6 @@ Uploader.defaultProps =
     hasError                : false,
     hasWarning              : false,
     id                      : undefined,
-    inputRef                : undefined,
     isDisabled              : false,
     isReadOnly              : false,
     label                   : undefined,

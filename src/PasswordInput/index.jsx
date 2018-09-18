@@ -101,10 +101,6 @@ PasswordInput.propTypes =
      */
     id                : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef          : PropTypes.func,
-    /**
      *  Display as disabled
      */
     isDisabled        : PropTypes.bool,
@@ -214,7 +210,6 @@ PasswordInput.defaultProps =
     iconTooltipMessage    : undefined,
     iconTooltipPosition   : undefined,
     id                    : undefined,
-    inputRef              : undefined,
     isDisabled            : false,
     isReadOnly            : false,
     isReadOnlyButton      : undefined,

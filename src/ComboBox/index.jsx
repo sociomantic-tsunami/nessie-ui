@@ -130,10 +130,6 @@ export default class ComboBox extends Component
          */
         inputPlaceholder  : PropTypes.string,
         /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef          : PropTypes.func,
-        /**
          *  Display as disabled
          */
         isDisabled        : PropTypes.bool,
@@ -261,7 +257,6 @@ export default class ComboBox extends Component
         id                   : undefined,
         inputIsReadOnly      : false,
         inputPlaceholder     : undefined,
-        inputRef             : undefined,
         inputValue           : undefined,
         isDisabled           : false,
         isMultiselect        : false,
@@ -435,7 +430,6 @@ export default class ComboBox extends Component
             id = generateId( 'ComboBox' ),
             inputIsReadOnly,
             inputPlaceholder,
-            inputRef,
             inputValue,
             isDisabled,
             isMultiselect,
@@ -527,7 +521,6 @@ export default class ComboBox extends Component
                 iconPosition          = { iconPosition }
                 iconType              = { iconType }
                 id                    = { id }
-                inputRef              = { inputRef }
                 isDisabled            = { isDisabled }
                 isReadOnly            = { isReadOnly }
                 isReadOnlyButton      = { buttonIsReadOnly }

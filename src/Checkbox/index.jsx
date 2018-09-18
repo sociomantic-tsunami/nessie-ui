@@ -45,10 +45,6 @@ Checkbox.propTypes =
      */
     id          : PropTypes.string,
     /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef    : PropTypes.func,
-    /**
      *  Display as checked (controlled input)
      */
     isChecked   : PropTypes.bool,
@@ -106,7 +102,6 @@ Checkbox.defaultProps =
     forceHover  : false,
     hasError    : false,
     id          : undefined,
-    inputRef    : undefined,
     isDisabled  : false,
     isChecked   : false,
     isReadOnly  : false,

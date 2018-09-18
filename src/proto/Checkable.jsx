@@ -21,7 +21,6 @@ const Checkable = ( {
     forceHover,
     hasError,
     id = generateId( 'Checkable' ),
-    inputRef,
     isDisabled,
     isChecked,
     isReadOnly,
@@ -63,7 +62,6 @@ const Checkable = ( {
                 onChange       = { onChange }
                 onFocus        = { onFocus }
                 onBlur         = { onBlur }
-                ref            = { inputRef }
                 type           = { type }
                 value          = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
@@ -100,10 +98,6 @@ Checkable.propTypes =
      *  HTML id attribute
      */
     id          : PropTypes.string,
-    /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef    : PropTypes.func,
     /**
      *  Display as checked (controlled input)
      */
@@ -166,7 +160,6 @@ Checkable.defaultProps =
     forceHover  : false,
     hasError    : false,
     id          : undefined,
-    inputRef    : undefined,
     isDisabled  : false,
     isChecked   : false,
     isReadOnly  : false,

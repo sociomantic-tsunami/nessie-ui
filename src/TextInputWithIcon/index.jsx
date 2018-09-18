@@ -31,7 +31,6 @@ const TextInputWithIcon = ( {
     iconTooltipPosition,
     iconType,
     id = generateId( 'TextInputWithIcon' ),
-    inputRef,
     inputType,
     isDisabled,
     isReadOnly,
@@ -82,7 +81,6 @@ const TextInputWithIcon = ( {
                 forceHover     = { forceHover }
                 hasError       = { hasError }
                 id             = { id }
-                inputRef       = { inputRef }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnlyInput || isReadOnly }
                 name           = { name }
@@ -252,10 +250,6 @@ TextInputWithIcon.propTypes =
      */
     id               : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef         : PropTypes.func,
-    /**
      *  HTML input type
      */
     inputType        : PropTypes.oneOf( [ 'text', 'password' ] ),
@@ -362,7 +356,6 @@ TextInputWithIcon.defaultProps =
     iconTooltipPosition  : 'top',
     iconType             : 'none',
     id                   : undefined,
-    inputRef             : undefined,
     inputType            : 'text',
     isDisabled           : false,
     isReadOnly           : false,

@@ -48,10 +48,6 @@ export default class TagInput extends Component
          */
         id           : PropTypes.string,
         /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef     : PropTypes.func,
-        /**
          *  Display as disabled
          */
         isDisabled   : PropTypes.bool,
@@ -129,7 +125,6 @@ export default class TagInput extends Component
         hasError     : false,
         height       : undefined,
         id           : undefined,
-        inputRef     : undefined,
         isDisabled   : false,
         isReadOnly   : false,
         isResizable  : false,
@@ -192,7 +187,6 @@ export default class TagInput extends Component
             hasError,
             height,
             id = generateId( 'TagInput' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             isResizable,
@@ -269,7 +263,6 @@ export default class TagInput extends Component
                     onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
-                    ref         = { inputRef }
                     type        = "text"
                     value       = { value } />
             </label>

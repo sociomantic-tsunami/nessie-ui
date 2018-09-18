@@ -25,7 +25,6 @@ const InputField = ( {
     forceHover,
     hasError,
     id = generateId( 'InputField' ),
-    inputRef,
     isDisabled,
     isReadOnly,
     isResizable,
@@ -76,7 +75,6 @@ const InputField = ( {
             onMouseLeave = { onMouseOut }
             placeholder  = { placeholder }
             readOnly     = { isReadOnly }
-            ref          = { inputRef }
             rows         = { element === 'textarea' ? rows : null }
             spellCheck   = { spellCheck }
             type         = { element === 'input' ? type : null }
@@ -137,10 +135,6 @@ InputField.propTypes =
      *  HTML id attribute
      */
     id           : PropTypes.string,
-    /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef     : PropTypes.func,
     /**
      *  Display as disabled
      */
@@ -235,7 +229,6 @@ InputField.defaultProps =
     forceHover     : false,
     hasError       : false,
     id             : undefined,
-    inputRef       : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     isResizable    : undefined,
