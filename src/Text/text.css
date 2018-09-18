@@ -29,6 +29,16 @@
         text-transform: inherit;
         white-space:    inherit;
     }
+
+    a:any-link
+    {
+        color:              var( --PC-BLUE );
+        text-decoration:    underline;
+        &:hover
+        {
+            text-decoration:    none;
+        }
+    }
 }
 
 .overflowHidden
