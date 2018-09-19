@@ -177,6 +177,11 @@ export default class TagInput extends Component
         this.setState( { isFocused: true } );
     }
 
+    focus()
+    {
+        this.inputRef.focus();
+    }
+
     render()
     {
         const {
@@ -263,6 +268,7 @@ export default class TagInput extends Component
                     onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
+                    ref         = { r => this.inputRef = r }
                     type        = "text"
                     value       = { value } />
             </label>
