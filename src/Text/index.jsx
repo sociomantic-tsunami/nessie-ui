@@ -25,14 +25,13 @@ const Text = ( {
         className = { buildClassName( className, cssMap, {
             allCaps,
             overflowHidden : overflowIsHidden,
-            lineHeight,
             noWrap,
             role,
             size,
             textAlign,
             variant,
         } ) }
-        style = { { color, letterSpacing, lineHeight} }
+        style = { { color, letterSpacing, lineHeight } }
         ref = { textRef }>
         { children || text }
     </div>
