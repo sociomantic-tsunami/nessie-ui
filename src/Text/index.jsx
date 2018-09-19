@@ -140,12 +140,8 @@ Text.defaultProps =
     allCaps          : false,
     color            : undefined,
     cssMap           : styles,
-<<<<<<< HEAD
     letterSpacing    : '0',
     lineHeight       : undefined,
-=======
-    letterSpacing    : undefined,
->>>>>>> MinorChanges-Mongoose
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',
