@@ -180,3 +180,29 @@
 {
     text-align: right;
 }
+
+/* Line-height */
+.lineHeight__S
+{
+    line-height:                 var( --line-height-s );
+}
+
+.lineHeight__M
+{
+    line-height:                 var( --line-height-m );
+}
+
+.lineHeight__L
+{
+    line-height:                 var( --line-height-l );
+}
+
+.lineHeight__XL
+{
+    line-height:                 var( --line-height-xl );
+}
+
+.lineHeight__XXL
+{
+    line-height:                 var( --line-height-xxl );
+}

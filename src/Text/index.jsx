@@ -20,6 +20,7 @@ const Text = ( {
     color,
     cssMap,
     letterSpacing,
+    lineHeight,
     noWrap,
     overflowIsHidden,
     role,
@@ -39,7 +40,7 @@ const Text = ( {
             textAlign,
             variant,
         } ) }
-        style = { { color, letterSpacing } }
+        style = { { color, letterSpacing, lineHeight } }
         ref = { textRef }>
         { children || text }
     </div>
@@ -72,8 +73,12 @@ Text.propTypes =
      */
     letterSpacing    : PropTypes.string,
     /**
-     *  Don’t wrap text to the next line
-     */
+    * Line Height for the text
+    */
+    lineHeight       : PropTypes.string,
+    /**
+    *  Don’t wrap text to the next line
+    */
     noWrap           : PropTypes.bool,
     /**
      *  Clip overflow
@@ -135,7 +140,8 @@ Text.defaultProps =
     allCaps          : false,
     color            : undefined,
     cssMap           : styles,
-    letterSpacing    : undefined,
+    letterSpacing    : '0',
+    lineHeight       : undefined,
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',
