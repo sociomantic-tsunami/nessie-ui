@@ -116,91 +116,104 @@ DimensionsInput.propTypes = {
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+     *  Error Tooltip position relative to error icon
+     */
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover         : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError           : PropTypes.bool,
     /**
      * Initial width input string value
      */
-    heightDefaultValue    : PropTypes.string,
+    heightDefaultValue : PropTypes.string,
     /**
      * Callback that receives the native height <input>:
      * ( focusFunc ) => { ... }
      */
-    heightInputRef        : PropTypes.func,
+    heightInputRef     : PropTypes.func,
     /**
     *  Height placeholder text
     */
-    heightPlaceholder     : PropTypes.string,
+    heightPlaceholder  : PropTypes.string,
     /**
      * Width input string value
      */
-    heightValue           : PropTypes.string,
+    heightValue        : PropTypes.string,
     /**
      *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id                 : PropTypes.string,
     /**
-     *  Display as disabled
-     */
-    isDisabled            : PropTypes.bool,
+    *  Display as disabled
+    */
+    isDisabled         : PropTypes.bool,
     /**
-     *  Display as read-only
-     */
-    isReadOnly            : PropTypes.bool,
+    *  Display as read-only
+    */
+    isReadOnly         : PropTypes.bool,
     /**
      *  Label text (string or JSX node)
      */
-    label                 : PropTypes.node,
+    label              : PropTypes.node,
     /**
      *  Label position
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition      : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
-     *  Blur callback function
-     */
-    onBlur                : PropTypes.func,
+    *  onChange callback function: ( e ) => { ... }
+    */
+    onChange           : PropTypes.func,
     /**
-     *  Input change callback function
-     */
-    onChange              : PropTypes.func,
+    *  onBlur callback function: ( e ) => { ... }
+    */
+    onBlur             : PropTypes.func,
     /**
-     *  Focus callback function
-     */
-    onFocus               : PropTypes.func,
+    *  onFocus callback function: ( e ) => { ... }
+    */
+    onFocus            : PropTypes.func,
     /**
-     *  Mouse out callback function
-     */
-    onMouseOut            : PropTypes.func,
+    *  onMouseOut callback function: ( e ) => { ... }
+    */
+    onMouseOut         : PropTypes.func,
     /**
-     *  Mouse over  callback function
-     */
-    onMouseOver           : PropTypes.func,
+    *  onMouseOver callback function: ( e ) => { ... }
+    */
+    onMouseOver        : PropTypes.func,
     /**
      * Initial height input string value
      */
-    widthDefaultValue     : PropTypes.string,
+    widthDefaultValue  : PropTypes.string,
     /**
      * Callback that receives the native width <input>:
      * ( focusFunc ) => { ... }
      */
-    widthInputRef         : PropTypes.func,
+    widthInputRef      : PropTypes.func,
     /**
     *  Width placeholder text
     */
-    widthPlaceholder      : PropTypes.string,
+    widthPlaceholder   : PropTypes.string,
     /**
      * Height input string value
      */
-    widthValue            : PropTypes.string,
+    widthValue         : PropTypes.string,
 };
 
 DimensionsInput.defaultProps = {

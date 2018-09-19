@@ -19,11 +19,13 @@ const DatePickerHeader = ( {
     className,
     cssMap,
     hourIsDisabled,
+    hourIsReadOnly,
     hourPlaceholder,
     hourValue,
     isDisabled,
     isReadOnly,
     minuteIsDisabled,
+    minuteIsReadOnly,
     minutePlaceholder,
     minuteValue,
     mode,
@@ -33,9 +35,11 @@ const DatePickerHeader = ( {
     onFocus,
     onKeyPress,
     nextIsDisabled,
+    nextIsReadOnly,
     onClickNext,
     onClickPrev,
     prevIsDisabled,
+    prevIsReadOnly,
     year,
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
@@ -44,14 +48,14 @@ const DatePickerHeader = ( {
                 className  = { cssMap.prev }
                 iconType   = "left"
                 isDisabled = { isDisabled || prevIsDisabled }
-                isReadOnly = { isReadOnly }
+                isReadOnly = { isReadOnly || prevIsReadOnly }
                 onClick    = { onClickPrev }
                 iconTheme  = "button" />
             <IconButton
                 className  = { cssMap.next }
                 iconType   = "right"
                 isDisabled = { isDisabled || nextIsDisabled }
-                isReadOnly = { isReadOnly }
+                isReadOnly = { isReadOnly || nextIsReadOnly }
                 onClick    = { onClickNext }
                 iconTheme  = "button" />
         </div>
@@ -62,11 +66,13 @@ const DatePickerHeader = ( {
         { mode === 'default' &&
             <TimeInput
                 hourIsDisabled    = { hourIsDisabled }
+                hourIsReadOnly    = { hourIsReadOnly }
                 hourPlaceholder   = { hourPlaceholder }
                 hourValue         = { hourValue }
                 isDisabled        = { isDisabled }
                 isReadOnly        = { isReadOnly }
                 minuteIsDisabled  = { minuteIsDisabled }
+                minuteIsReadOnly  = { minuteIsReadOnly }
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       = { minuteValue }
                 onBlur            = { onBlur }
@@ -81,16 +87,19 @@ DatePickerHeader.propTypes = {
     className         : PropTypes.string,
     cssMap            : PropTypes.objectOf( PropTypes.string ),
     hourIsDisabled    : PropTypes.bool,
+    hourIsReadOnly    : PropTypes.bool,
     hourPlaceholder   : PropTypes.string,
     hourValue         : PropTypes.string,
     isDisabled        : PropTypes.bool,
     isReadOnly        : PropTypes.bool,
     minuteIsDisabled  : PropTypes.bool,
+    minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
     mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
     month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
+    nextIsReadOnly    : PropTypes.bool,
     onBlur            : PropTypes.func,
     onChange          : PropTypes.func,
     onClickNext       : PropTypes.func,
@@ -98,6 +107,7 @@ DatePickerHeader.propTypes = {
     onFocus           : PropTypes.func,
     onKeyPress        : PropTypes.func,
     prevIsDisabled    : PropTypes.bool,
+    prevIsReadOnly    : PropTypes.bool,
     year              : PropTypes.string,
 };
 
@@ -105,16 +115,19 @@ DatePickerHeader.defaultProps = {
     className         : undefined,
     cssMap            : styles,
     hourIsDisabled    : false,
+    hourIsReadOnly    : false,
     hourPlaceholder   : undefined,
     hourValue         : undefined,
     isDisabled        : undefined,
     isReadOnly        : undefined,
     minuteIsDisabled  : false,
+    minuteIsReadOnly  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
     mode              : 'default',
     month             : undefined,
     nextIsDisabled    : undefined,
+    nextIsReadOnly    : undefined,
     onBlur            : undefined,
     onChange          : undefined,
     onFocus           : undefined,
@@ -122,6 +135,7 @@ DatePickerHeader.defaultProps = {
     onClickNext       : undefined,
     onClickPrev       : undefined,
     prevIsDisabled    : undefined,
+    prevIsReadOnly    : undefined,
     year              : undefined,
 };
 

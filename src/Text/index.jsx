@@ -60,28 +60,28 @@ Text.propTypes =
      */
     className        : PropTypes.string,
     /**
-    *  Text Color
-    */
+     *  Text Color
+     */
     color            : PropTypes.string,
     /**
      *  CSS class map
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
-    * Letter Spacing for the text
-    */
+     * Letter Spacing for the text
+     */
     letterSpacing    : PropTypes.string,
     /**
-    *  Don’t wrap text to the next line
-    */
+     *  Don’t wrap text to the next line
+     */
     noWrap           : PropTypes.bool,
     /**
      *  Clip overflow
      */
     overflowIsHidden : PropTypes.bool,
     /**
-    *  Role (style) to apply to text
-    */
+     *  Role (style) to apply to text
+     */
     role             : PropTypes.oneOf( [
         'default',
         'subtle',
@@ -89,8 +89,8 @@ Text.propTypes =
         'critical',
     ] ),
     /**
-    *  Size to apply to text
-    */
+     *  Size to apply to text
+     */
     size : PropTypes.oneOf( [
         'XXXL',
         'XXL',
@@ -102,28 +102,31 @@ Text.propTypes =
         'XXS',
     ] ),
     /**
-    *  Text string
-    */
+     *  Text string
+     */
     text      : PropTypes.string,
     /**
-    * Text alignment
-    */
+     * Text alignment
+     */
     textAlign : PropTypes.oneOf( [ 'left', 'center', 'right' ] ),
-
     /**
-    *  Callback that receives ref to the text div: ref => ...
-    */
+     *  Callback that receives ref to the text div: ref => ...
+     */
     textRef : PropTypes.func,
     /**
-    *  Style to apply to text
-    */
+     *  Style to apply to text
+     */
     variant : PropTypes.oneOf( [
         'Light',
+        'LightIt',
         'Regular',
         'RegularIt',
         'SemiBold',
+        'SemiBoldIt',
         'Bold',
+        'BoldIt',
         'ExtraBold',
+        'ExtraBoldIt',
     ] ),
 };
 
@@ -132,7 +135,7 @@ Text.defaultProps =
     allCaps          : false,
     color            : undefined,
     cssMap           : styles,
-    letterSpacing    : '0',
+    letterSpacing    : undefined,
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',

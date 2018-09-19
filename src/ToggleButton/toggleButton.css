@@ -184,6 +184,78 @@
     }
 }
 
+.role__subtle
+{
+    .flexContainer
+    {
+        height:         var( --spacing-3 );
+        border:         1px solid var( --PC-BLUE );
+        border-radius:  2px;
+        padding:        0 12px;
+        background:     var( --PC-WHITE );
+    }
+
+    .title
+    {
+        @extend %Nessie-SemiBold;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-BLUE );
+    }
+
+    .subLabel
+    {
+        display:        none;
+    }
+
+    &:not( .disabled ):hover
+    {
+        .flexContainer
+        {
+            background: var( --PC-BLUE--L90 );
+        }
+    }
+
+    &.pressed
+    {
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+            background:   var( --PC-BLUE );
+
+            &:hover
+            {
+                background: var( --PC-BLUE--L10 );
+            }
+        }
+
+        .title
+        {
+            color: var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill: var( --PC-WHITE );
+        }
+    }
+
+    .icon
+    {
+        fill:     var( --PC-BLUE );
+
+        .iconPosition__left&
+        {
+            margin-left: calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right: calc( -1 * var( --spacing-1 ) );
+        }
+    }
+}
+
 .disabled
 {
     opacity:        0.5;
@@ -192,7 +264,19 @@
 
     .icon
     {
-        fill: var(--PC-GREY--D15);
+        fill: var( --PC-GREY--D15 );
+    }
+
+    &.role__subtle .icon
+    {
+        .icon
+        {
+            fill: var( --PC-BLUE--L10 );
+        }
+        &.pressed .icon
+        {
+            fill: var( --PC-WHITE );
+        }
     }
 }
 

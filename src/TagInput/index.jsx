@@ -43,102 +43,115 @@ export default class TagInput extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover    : PropTypes.bool,
         /**
         *  specifies the height for the InputContainer (CSS length value)
         */
-        height                : PropTypes.string,
+        height        : PropTypes.string,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError      : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id                    : PropTypes.string,
+        id            : PropTypes.string,
         /**
          * Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef              : PropTypes.func,
+        inputRef      : PropTypes.func,
         /**
          *  Display as disabled
          */
-        isDisabled            : PropTypes.bool,
+        isDisabled    : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly            : PropTypes.bool,
+        isReadOnly    : PropTypes.bool,
         /**
         *  Allows container to be resize by the user
         */
-        isResizable           : PropTypes.bool,
+        isResizable   : PropTypes.bool,
         /**
          *  Label text string or JSX node
          */
-        label                 : PropTypes.node,
+        label         : PropTypes.node,
         /**
          *  Label position
          */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  HTML name attribute
          */
-        name                  : PropTypes.string,
+        name          : PropTypes.string,
         /**
          * onBlur callback function
          */
-        onBlur                : PropTypes.func,
+        onBlur        : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange              : PropTypes.func,
+        onChange      : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClickClose          : PropTypes.func,
+        onClickClose  : PropTypes.func,
         /**
          * onFocus callback function
          */
-        onFocus               : PropTypes.func,
+        onFocus       : PropTypes.func,
         /**
          * onKeyDown callback function
          */
-        onKeyDown             : PropTypes.func,
+        onKeyDown     : PropTypes.func,
         /**
          * onKeyPress callback function
          */
-        onKeyUp               : PropTypes.func,
+        onKeyUp       : PropTypes.func,
         /**
          * onKeyUp callback function
          */
-        onKeyPress            : PropTypes.func,
+        onKeyPress    : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut            : PropTypes.func,
+        onMouseOut    : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver           : PropTypes.func,
+        onMouseOver   : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder           : PropTypes.string,
+        placeholder   : PropTypes.string,
         /**
          * Array of strings to build Tag components
          */
-        tags                  : PropTypes.arrayOf( PropTypes.oneOfType( [
+        tags          : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.object,
         ] ) ),
         /**
          * Input's value
          */
-        value                 : PropTypes.string
+        value : PropTypes.string,
     };
 
     static defaultProps =
@@ -171,7 +184,7 @@ export default class TagInput extends Component
         onMouseOver           : undefined,
         placeholder           : undefined,
         tags                  : undefined,
-        value                 : undefined
+        value                 : undefined,
     };
 
     constructor()
@@ -237,7 +250,7 @@ export default class TagInput extends Component
             onMouseOver,
             placeholder,
             tags,
-            value
+            value,
         } = this.props;
 
         const { isFocused } = this.state;
