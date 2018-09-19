@@ -121,9 +121,10 @@ const TextInputWithIcon = ( {
                         isReadOnly  = { isReadOnly }
                         isVisible   = { iconTooltipIsVisible }
                         message     = { iconTooltipMessage }
+                        noWarn
                         onMouseOut  = { onMouseOutIcon }
                         onMouseOver = { onMouseOverIcon }
-                        position    = { iconTooltipPosition } >
+                        position    = { iconTooltipPosition }>
                         <IconButton
                             hasError    = { hasError }
                             iconType    = { iconType }
@@ -184,37 +185,50 @@ TextInputWithIcon.propTypes =
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+     *  Error message position relative to the icon
+     */
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover           : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError             : PropTypes.bool,
     /**
      *  Display Button icon as disabled
      */
-    iconButtonIsDisabled  : PropTypes.bool,
+    iconButtonIsDisabled : PropTypes.bool,
     /**
      *  Alignment of the icon
      */
-    iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
+    iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
      *  Display the icon tooltip
      */
-    iconTooltipIsVisible  : PropTypes.bool,
+    iconTooltipIsVisible : PropTypes.bool,
     /**
      *  icon Tooltip message text (string or JSX)
      */
-    iconTooltipMessage    : PropTypes.node,
+    iconTooltipMessage   : PropTypes.node,
     /**
      *  Icon Tooltip position relative to icon
      */
-    iconTooltipPosition   : PropTypes.oneOf( [
+    iconTooltipPosition  : PropTypes.oneOf( [
         'left',
         'right',
         'top',
@@ -300,7 +314,7 @@ TextInputWithIcon.propTypes =
      */
     isReadOnlyButton : PropTypes.bool,
     /**
-     *  Display as read-only for TextInput
+     *  is read only
      */
     isReadOnlyInput  : PropTypes.bool,
     /**

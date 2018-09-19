@@ -61,19 +61,32 @@ export default class ComboBox extends Component
         /**
         *   Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          *  Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover      : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete       : PropTypes.bool,
+        hasAutocomplete : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError        : PropTypes.bool,
         /**
          *  Display Button icon as disabled
          */
@@ -85,7 +98,7 @@ export default class ComboBox extends Component
         /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType              : PropTypes.oneOf( [
+        iconType        : PropTypes.oneOf( [
             'account',
             'add-circle',
             'add',

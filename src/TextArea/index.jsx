@@ -82,103 +82,116 @@ TextArea.propTypes =
     /**
     *   Error message position relative to the icon
     */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover    : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError      : PropTypes.bool,
     /**
      *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id            : PropTypes.string,
     /**
      *  Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef      : PropTypes.func,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled    : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
+    isReadOnly    : PropTypes.bool,
     /**
      * Sets the input to be vertically resizable
      */
-    isResizable           : PropTypes.bool,
+    isResizable   : PropTypes.bool,
     /**
      *  Label text (string or JSX node)
      */
-    label                 : PropTypes.node,
+    label         : PropTypes.node,
     /**
      *  Label position
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name          : PropTypes.string,
     /**
      *  Blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur        : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange      : PropTypes.func,
     /**
      *  Input click callback function
      */
-    onClick               : PropTypes.func,
+    onClick       : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus       : PropTypes.func,
     /**
      *  Key down callback function
      */
-    onKeyDown             : PropTypes.func,
+    onKeyDown     : PropTypes.func,
     /**
      *  Key press callback function
      */
-    onKeyPress            : PropTypes.func,
+    onKeyPress    : PropTypes.func,
     /**
      *  Key up callback function
      */
-    onKeyUp               : PropTypes.func,
+    onKeyUp       : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut    : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver   : PropTypes.func,
     /**
      *  Placeholder text
      */
-    placeholder           : PropTypes.string,
+    placeholder   : PropTypes.string,
     /**
      *  Number of rows
      */
-    rows                  : PropTypes.number,
+    rows          : PropTypes.number,
     /**
      *  HTML attribute controlling input spell check
      */
-    spellCheck            : PropTypes.bool,
+    spellCheck    : PropTypes.bool,
     /**
      *  Input text alignment
      */
-    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    textAlign     : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     /**
      *  Input string value
      */
-    value                 : PropTypes.string,
+    value         : PropTypes.string,
 };
 
 TextArea.defaultProps =

@@ -39,9 +39,9 @@ const InputContainer = ( {
         onMouseLeave = { onMouseOut }>
         { label &&
             <Label
-                overflowIsHidden = { typeof label === 'string' }
                 className        = { cssMap.label }
                 htmlFor          = { id }
+                overflowIsHidden = { typeof label === 'string' }
                 role             = { labelPosition === 'top' ?
                     'header' : 'default' }>
                 { label }
@@ -49,13 +49,14 @@ const InputContainer = ( {
         }
         <IconWithTooltip
             className        = { cssMap.container }
-            iconType         = "error"
-            iconPosition     = "topRight"
-            message          = { errorMessage }
-            tooltipIsVisible = { errorMessageIsVisible }
-            tooltipPosition  = { errorMessagePosition }
             iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
-            iconRole         = "critical">
+            iconPosition     = "topRight"
+            iconRole         = "critical"
+            iconType         = "error"
+            message          = { errorMessage }
+            noWarn
+            tooltipIsVisible = { errorMessageIsVisible }
+            tooltipPosition  = { errorMessagePosition }>
             { children }
         </IconWithTooltip>
     </div>
@@ -81,35 +82,48 @@ InputContainer.propTypes = {
     /**
      *  Position of error tooltip relative to error icon
      */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Whether error icon is shown
      */
-    hasError              : PropTypes.bool,
+    hasError      : PropTypes.bool,
     /**
      *  id of the associated input
      */
-    id                    : PropTypes.string,
+    id            : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled    : PropTypes.bool,
     /**
      *  Input label text
      */
-    label                 : PropTypes.node,
+    label         : PropTypes.node,
     /**
      *  Label position relative to the input
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  Mouse over callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut    : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver   : PropTypes.func,
 };
 
 InputContainer.defaultProps = {

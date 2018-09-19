@@ -76,43 +76,56 @@ export default class CodeEditor extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          * Input string value
          */
-        value                 : PropTypes.string,
+        value       : PropTypes.string,
         /**
          * HTML id attribute
          */
-        onChange              : PropTypes.func,
+        onChange    : PropTypes.func,
         /**
          * Handles CodeMirror focus event
          */
-        onFocus               : PropTypes.func,
+        onFocus     : PropTypes.func,
         /**
          * Handles CodeMirror blur event
          */
-        onBlur                : PropTypes.func,
+        onBlur      : PropTypes.func,
         /**
          * Handles component mouseover event
          */
-        onMouseOver           : PropTypes.func,
+        onMouseOver : PropTypes.func,
         /**
          * Handles component mouseout event
          */
-        onMouseOut            : PropTypes.func,
+        onMouseOut  : PropTypes.func,
         /**
          * Codemirror options object
          */
-        options               : PropTypes.object,
+        options     : PropTypes.object,
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover  : PropTypes.bool,
         /**
          * cursor position: { line, ch }
          */
-        cursor                : PropTypes.shape( {
+        cursor      : PropTypes.shape( {
             line : PropTypes.number,
             ch   : PropTypes.number,
         } ),

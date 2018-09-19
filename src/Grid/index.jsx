@@ -12,6 +12,7 @@ import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
 import styles             from './grid.css';
+import { Column }         from '../index';
 
 const deprecatedSpacingOptions = [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
 
@@ -26,23 +27,41 @@ const Grid = ( {
     gutters,
     hasMinHeight,
     hasWrap,
+    noWarn,
     role,
     spacing,
     verticalAlign,
 } ) =>
 {
-    if ( deprecatedSpacingOptions.includes( spacing ) &&
-        !Grid.didWarn[ spacing ] )
+    if ( !noWarn )
     {
-        console.warn( `Grid spacing option '${spacing}' is deprecated. Please \
-use one of 'S', 'M', 'L' or 'none' instead.` );
-        Grid.didWarn[ spacing ] = true;
-    }
-    if ( !Grid.didWarn.hasMinHeight && hasMinHeight !== undefined )
-    {
-        console.warn( 'Grid: hasMinHeight prop is deprecated. Please use an \
-alternative layout.' );
-        Grid.didWarn.hasMinHeight = true;
+        if ( deprecatedSpacingOptions.includes( spacing ) &&
+            !Grid.didWarn[ spacing ] )
+        {
+            console.warn( `Grid spacing option '${spacing}' is depreacted. \
+Please use one of 'S', 'M', 'L' or 'none' instead.` );
+            Grid.didWarn[ spacing ] = true;
+        }
+
+        if ( !Grid.didWarn.hasMinHeight && hasMinHeight !== undefined )
+        {
+            console.warn( 'Grid: \'hasMinHeight\' prop is deprecated. Please \
+use alternative layout.' );
+            Grid.didWarn.hasMinHeight = true;
+        }
+
+        if ( !Grid.didWarn.children && children !== undefined  )
+        {
+            React.Children.toArray( children ).map( ( child ) =>
+            {
+                if ( child.type !== Column )
+                {
+                    console.warn( 'Grid / Row must have Columns as direct \
+children' );
+                    Grid.didWarn.children = true;
+                }
+            } );
+        }
     }
 
     return (
@@ -92,6 +111,10 @@ Grid.propTypes =
      */
     hasWrap       : PropTypes.bool,
     /**
+     *  stop Console Warnings
+     */
+    noWarn        : PropTypes.bool,
+    /**
      *  onClick callback function:
      *  ( e ) => { ... }
      */
@@ -129,6 +152,7 @@ Grid.defaultProps =
     cssMap        : styles,
     gutters       : 'M',
     hasWrap       : true,
+    noWarn        : false,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,
