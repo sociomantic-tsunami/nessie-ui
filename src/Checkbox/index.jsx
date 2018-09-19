@@ -11,7 +11,7 @@ import React          from 'react';
 import PropTypes      from 'prop-types';
 
 import Checkable      from '../proto/Checkable';
-import { generateId, buildClassName } from '../utils';
+import { generateId } from '../utils';
 import styles         from './checkbox.css';
 
 const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
@@ -111,9 +111,9 @@ Checkbox.defaultProps =
     hasError         : false,
     id               : undefined,
     inputRef         : undefined,
+    isChecked        : undefined,
     isDefaultChecked : undefined,
     isDisabled       : false,
-    isChecked        : undefined,
     isReadOnly       : false,
     label            : undefined,
     name             : undefined,

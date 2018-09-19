@@ -7,49 +7,64 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import Spinner              from '../Spinner';
+import Spinner            from '../Spinner';
+import { buildClassName } from '../utils';
+import styles             from './pageContent.css';
 
 
 const PageContent = ( {
     children,
-    cssMap,
     className,
-    isLoading
-} ) =>
-
+    contentWidth,
+    cssMap,
+    isLoading,
+} ) => (
     <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
+        <div className = { cssMap.content } style = { { width: contentWidth } }>
             { children }
         </div>
         { isLoading &&
-        <div className = { cssMap.loadingOverlay }>
-            <Spinner
-                className = { cssMap.spinner }
-                size = "big" />
-        </div>
+            <div className = { cssMap.loadingOverlay }>
+                <Spinner className = { cssMap.spinner } size = "big" />
+            </div>
         }
-    </div>;
+    </div>
+);
 
 PageContent.propTypes =
 {
     /**
      *  PageContent content
      */
-    children  : PropTypes.node,
+    children     : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Display loading state
      */
-    isLoading : PropTypes.bool,
+    isLoading    : PropTypes.bool,
+    /**
+     *  adjust/configure content width
+     */
+    contentWidth : PropTypes.string,
 };
 
 PageContent.defaultProps =
 {
-    cssMap    : require( './pageContent.css' ),
-    isLoading : false
+    children     : undefined,
+    className    : undefined,
+    contentWidth : '1080px',
+    cssMap       : styles,
+    isLoading    : false,
 };
 
 export default PageContent;
