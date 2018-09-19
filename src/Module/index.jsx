@@ -233,7 +233,8 @@ export default class Module extends Component
                     error       : hasError,
                     level       : headerLevel,
                     moduleError : hasModuleError,
-                } ) }>
+                } ) }
+                padding = "none">
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
                     <div className = { cssMap.content }>
