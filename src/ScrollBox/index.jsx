@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React, { Component }    from 'react';
 import PropTypes               from 'prop-types';
 import isEqual                 from 'lodash.isequal';
@@ -188,7 +197,7 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            if ( diffX || diffX )
+            if ( diffX || diffY )
             {
                 Object.assign( style, {
                     width        : diffX ? `calc( 100% + ${diffX}px )` : null,
@@ -231,8 +240,8 @@ export default class ScrollBox extends Component
 
     handleClickTrackY( pos )
     {
-        const { clientWidth, scrollTop } = this.state;
-        const increment = pos >= scrollTop ? clientWidth : -clientWidth;
+        const { clientHeight, scrollTop } = this.state;
+        const increment = pos >= scrollTop ? clientHeight : -clientHeight;
 
         this.innerRef.scrollTop = scrollTop + increment;
     }
@@ -290,8 +299,8 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars.push(
-                    <ScrollBar
+                scrollBars
+                    .push( <ScrollBar
                         className        = { cssMap.scrollBarHorizontal }
                         key              = "horizontal"
                         onClickTrack     = { this.handleClickTrackX }
@@ -301,8 +310,7 @@ export default class ScrollBox extends Component
                         thumbSize        = {
                             `${( clientWidth / scrollWidth ) * 100}%`
                         }
-                        scrollMax = { scrollWidth - clientWidth } />
-                );
+                        scrollMax = { scrollWidth - clientWidth } /> );
             }
         }
 
@@ -312,8 +320,8 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars.push(
-                    <ScrollBar
+                scrollBars
+                    .push( <ScrollBar
                         className        = { cssMap.scrollBarVertical }
                         key              = "vertical"
                         onClickTrack     = { this.handleClickTrackY }
@@ -324,8 +332,7 @@ export default class ScrollBox extends Component
                             `${( clientHeight / scrollHeight ) * 100}%`
                         }
                         scrollMax = { scrollHeight - clientHeight  }
-                        length    = { `${clientHeight}px` } />
-                );
+                        length    = { `${clientHeight}px` } /> );
             }
         }
 
@@ -341,16 +348,14 @@ export default class ScrollBox extends Component
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push(
-                    <IconButton
-                        className     = { props.cssMap[ `icon${dir}` ] }
-                        hasBackground = {
-                            props.scrollIndicatorVariant === 'circle' }
-                        iconSize = "S"
-                        iconType = { dir.toLowerCase() }
-                        key      = { dir }
-                        onClick  = { props[ `onClickScroll${dir}` ] } />
-                );
+                scrollButtons.push( <IconButton
+                    className     = { props.cssMap[ `icon${dir}` ] }
+                    hasBackground = {
+                        props.scrollIndicatorVariant === 'circle' }
+                    iconSize = "S"
+                    iconType = { dir.toLowerCase() }
+                    key      = { dir }
+                    onClick  = { props[ `onClickScroll${dir}` ] } /> );
             }
         } );
 

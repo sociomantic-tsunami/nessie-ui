@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
@@ -52,16 +61,16 @@ Text.propTypes =
      */
     className        : PropTypes.string,
     /**
-    *  Text Color
-    */
+     *  Text Color
+     */
     color            : PropTypes.string,
     /**
      *  CSS class map
      */
     cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
-    * Letter Spacing for the text
-    */
+     * Letter Spacing for the text
+     */
     letterSpacing    : PropTypes.string,
     /**
     * Line Height for the text
@@ -76,8 +85,8 @@ Text.propTypes =
      */
     overflowIsHidden : PropTypes.bool,
     /**
-    *  Role (style) to apply to text
-    */
+     *  Role (style) to apply to text
+     */
     role             : PropTypes.oneOf( [
         'default',
         'subtle',
@@ -85,8 +94,8 @@ Text.propTypes =
         'critical',
     ] ),
     /**
-    *  Size to apply to text
-    */
+     *  Size to apply to text
+     */
     size : PropTypes.oneOf( [
         'XXXL',
         'XXL',
@@ -98,28 +107,31 @@ Text.propTypes =
         'XXS',
     ] ),
     /**
-    *  Text string
-    */
+     *  Text string
+     */
     text      : PropTypes.string,
     /**
-    * Text alignment
-    */
+     * Text alignment
+     */
     textAlign : PropTypes.oneOf( [ 'left', 'center', 'right' ] ),
-
     /**
-    *  Callback that receives ref to the text div: ref => ...
-    */
+     *  Callback that receives ref to the text div: ref => ...
+     */
     textRef : PropTypes.func,
     /**
-    *  Style to apply to text
-    */
+     *  Style to apply to text
+     */
     variant : PropTypes.oneOf( [
         'Light',
+        'LightIt',
         'Regular',
         'RegularIt',
         'SemiBold',
+        'SemiBoldIt',
         'Bold',
+        'BoldIt',
         'ExtraBold',
+        'ExtraBoldIt',
     ] ),
 };
 
@@ -128,8 +140,12 @@ Text.defaultProps =
     allCaps          : false,
     color            : undefined,
     cssMap           : styles,
+<<<<<<< HEAD
     letterSpacing    : '0',
     lineHeight       : undefined,
+=======
+    letterSpacing    : undefined,
+>>>>>>> MinorChanges-Mongoose
     noWrap           : false,
     overflowIsHidden : false,
     role             : 'default',

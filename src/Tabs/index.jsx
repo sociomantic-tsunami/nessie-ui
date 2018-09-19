@@ -1,10 +1,18 @@
-import React              from 'react';
-import PropTypes          from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { buildClassName } from '../utils';
-import styles             from './tabs.css';
-import TabButton          from '../TabButton';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
+import { buildClassName }       from '../utils';
+import styles                   from './tabs.css';
+import { ScrollBox, TabButton } from '../index';
 
 const Tabs = ( {
     activeTabIndex,
@@ -38,18 +46,25 @@ in the next major release. Please use ‘onClickTab’ instead.' );
                 isDisabled = { isDisabled || isActive }
                 key        = { label || tabIndex }
                 label      = { label }
-                onClick    = { e => clickHandler && clickHandler( e,
-                    { activeTabIndex: tabIndex } ) }
+                onClick    = { e => clickHandler && clickHandler(
+                    e,
+                    { activeTabIndex: tabIndex },
+                ) }
                 tabIndex = { tabIndex } />
         );
     } );
 
     return (
-        <div className = { buildClassName( className, cssMap ) }>
+        <div
+            className = { buildClassName( className, cssMap ) }>
             <div className = { cssMap.header }>
-                <div className = { cssMap.tabs }>
-                    { tabButtons }
-                </div>
+                <ScrollBox
+                    className = { cssMap.tabsContainer }
+                    scroll    = "horizontal">
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
+                </ScrollBox>
                 { secondaryControls &&
                     <div className = { cssMap.secondaryControls }>
                         { secondaryControls }

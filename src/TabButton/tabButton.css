@@ -1,27 +1,45 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../Button/button.css"; /* imports base.css */
 
 .default
 {
-    margin:                 0;
-    color:                  var( --PC-GREY--L70 );
-
-    text-transform:         none;
-
-
-    &:not(:last-child)
-    {
-        margin-right: var( --spacing-2 );
-    }
+    color:          var( --PC-GREY--L70 );
+    text-transform: none;
 
     .content
     {
-        min-width: 0;
-        margin:    0;
-        padding:   0;
+        min-width:      0;
+        margin:         0;
+        padding:        0;
 
-        border-radius:          2px;
-        border:                 1px solid transparent;
-        border-bottom-color:    var( --PC-GREY--L70 );
+        border:         1px solid transparent;
+        border-radius:  0 0 2px;
+    }
+
+    .label
+    {
+        @extend %Nessie-Bold;
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        padding-left:   var( --spacing-1 );
+        padding-right:  var( --spacing-1 );
+        letter-spacing: 0;
+        margin-bottom:  -1px;
+    }
+
+    .subtitle
+    {
+        font-weight: 	normal;
+        text-transform: initial;
     }
 
     &:focus
@@ -36,26 +54,15 @@
     }
 }
 
-.label
-{
-    @extend %Nessie-Bold;
-
-    font-size:      var( --typo-3 );
-    line-height:    var( --line-height-s );
-    padding-left:   var( --spacing-1 );
-    padding-right:  var( --spacing-1 );
-}
-
 .active
 {
     color:          var( --PC-BLUE );
-    border-bottom:  1px solid var( --PC-BLUE );
+    margin-bottom:  0;
     pointer-events: none;
     cursor:         default;
-}
 
-.subtitle
-{
-    font-weight: 	normal;
-    text-transform: initial;
+    .content
+    {
+        border-bottom-color:   var( --PC-BLUE );
+    }
 }

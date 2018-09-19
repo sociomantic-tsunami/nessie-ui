@@ -1,9 +1,18 @@
-import React                                             from 'react';
-import PropTypes                                         from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { generateId, buildClassName }                    from '../utils';
-import { Column, InputField, Row, Text }                 from '../index';
-import InputContainer                                    from '../proto/InputContainer';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
+
+import { generateId }                    from '../utils';
+import { Column, InputField, Row, Text } from '../index';
+import InputContainer                    from '../proto/InputContainer';
 
 const DimensionsInput = ( {
     className,
@@ -21,8 +30,8 @@ const DimensionsInput = ( {
     isReadOnly,
     label,
     labelPosition,
-    onChange,
     onBlur,
+    onChange,
     onFocus,
     onMouseOut,
     onMouseOver,
@@ -50,42 +59,54 @@ const DimensionsInput = ( {
             verticalAlign = "middle">
             <Column>
                 <InputField
-                    defaultValue = { widthDefaultValue }
-                    forceHover   = { forceHover }
-                    hasError     = { hasError }
-                    id           = { `${id}-width` }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnly }
-                    inputRef     = { widthInputRef }
-                    onChange     = { onChange }
-                    onBlur       = { onBlur }
-                    onFocus      = { onFocus }
-                    placeholder  = { widthPlaceholder }
-                    value        = { widthValue } />
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    defaultValue   = { widthDefaultValue }
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-width` }
+                    inputRef       = { widthInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { onBlur }
+                    onChange       = { onChange }
+                    onFocus        = { onFocus }
+                    placeholder    = { widthPlaceholder }
+                    spellCheck     = { false }
+                    value          = { widthValue } />
             </Column>
             <Column size = "content">
                 <Text>✕</Text>
             </Column>
             <Column>
                 <InputField
-                    defaultValue = { heightDefaultValue }
-                    forceHover   = { forceHover }
-                    hasError     = { hasError }
-                    id           = { `${id}-height` }
-                    isDisabled   = { isDisabled }
-                    isReadOnly   = { isReadOnly }
-                    inputRef     = { heightInputRef }
-                    onChange     = { onChange }
-                    onBlur       = { onBlur }
-                    onFocus      = { onFocus }
-                    placeholder  = { heightPlaceholder }
-                    value        = { heightValue } />
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    defaultValue   = { heightDefaultValue }
+                    forceHover     = { forceHover }
+                    hasError       = { hasError }
+                    id             = { `${id}-height` }
+                    inputRef       = { heightInputRef }
+                    isDisabled     = { isDisabled }
+                    isReadOnly     = { isReadOnly }
+                    onBlur         = { onBlur }
+                    onChange       = { onChange }
+                    onFocus        = { onFocus }
+                    placeholder    = { heightPlaceholder }
+                    spellCheck     = { false }
+                    value          = { heightValue } />
             </Column>
         </Row>
     </InputContainer>
 );
 
 DimensionsInput.propTypes = {
+    /**
+     *  Extra CSS class name
+     */
+    className             : PropTypes.string,
     /**
      *  Tooltip message text (string or JSX)
      */
@@ -112,7 +133,7 @@ DimensionsInput.propTypes = {
         'rightBottom',
     ] ),
     /**
-     * Display as hover when required from another component
+     *  Display as hover when required from another component
      */
     forceHover         : PropTypes.bool,
     /**
@@ -137,7 +158,7 @@ DimensionsInput.propTypes = {
      */
     heightValue        : PropTypes.string,
     /**
-     * HTML id attribute (overwrite default)
+     *  HTML id attribute
      */
     id                 : PropTypes.string,
     /**
@@ -149,7 +170,7 @@ DimensionsInput.propTypes = {
     */
     isReadOnly         : PropTypes.bool,
     /**
-     *  Label text string or JSX node
+     *  Label text (string or JSX node)
      */
     label              : PropTypes.node,
     /**
@@ -211,8 +232,8 @@ DimensionsInput.defaultProps = {
     isReadOnly            : false,
     label                 : undefined,
     labelPosition         : 'top',
-    onChange              : undefined,
     onBlur                : undefined,
+    onChange              : undefined,
     onFocus               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,

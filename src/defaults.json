@@ -9,8 +9,7 @@
     },
     "Card" :
     {
-        "children" : "{<TextInput label='Your name'/>}",
-        "padding"  : "S"
+        "children" : "{<TextInput label='Your name'/>}"
     },
     "CheckableGroup" :
     {
@@ -345,6 +344,7 @@
     "TextInputWithDropdown" :
     {
         "label"            : "How long?",
+        "lochness"         : { "isDeprecated" : true },
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
