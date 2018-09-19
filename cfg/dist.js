@@ -28,19 +28,6 @@ const distConfig = merge( {}, baseConfig, {
 } );
 
 
-const addons = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/addons.js' ),
-    output : { filename: 'addons.js' },
-
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            fallback  : 'css-loader',
-            filename  : 'addons.css',
-        } ),
-    ],
-} );
-
 const componentDriver = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/Testing/index.js' ),
     output : { filename: 'componentDriver.js' },
@@ -65,7 +52,6 @@ const driverSuite = merge( {}, distConfig, {
 
 
 module.exports = [
-    addons,
     componentDriver,
     components,
     driverSuite,

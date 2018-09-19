@@ -39,7 +39,6 @@ module.exports = {
         // Map module aliases to directories
         {
             'nessie-ui'       : '<rootDir>/src/index',
-            'addons'          : '<rootDir>/src/addons',
             'componentDriver' : '<rootDir>/src/Testing/index'
         },
         // Mock assets

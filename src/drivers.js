@@ -75,7 +75,7 @@ import {
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
-import { CodeEditor, FlounderDropdown } from 'addons';
+import { CodeEditor, FlounderDropdown } from 'nessie-ui';
 
 import ButtonDriver                     from './Button/driver';
 import CheckableGroupDriver             from './CheckableGroup/driver';
