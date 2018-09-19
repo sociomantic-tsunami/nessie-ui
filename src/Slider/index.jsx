@@ -216,68 +216,6 @@ export default class Slider extends React.Component
         this.handleUp    = this.handleUp.bind( this );
     }
 
-    componentDidMount()
-    {
-        this.attachInputRefs();
-    }
-
-    componentWillUpdate( nextProps )
-    {
-        if ( nextProps.id !== this.props.id )
-        {
-            this.detachInputRefs();
-        }
-    }
-
-    componentDidUpdate( prevProps )
-    {
-        const { props } = this;
-
-        if ( prevProps.id !== props.id ||
-            prevProps.value.length !== props.value.length )
-        {
-            this.attachInputRefs();
-        }
-    }
-
-    componentWillUnmount()
-    {
-        this.detachInputRefs();
-    }
-
-    /* eslint-disable react/sort-comp */
-    attachInputRefs()
-    {
-        const { id } = this.props;
-
-        if ( id )
-        {
-            const inputs = Array.from( this.inputContainer.childNodes );
-
-            if ( inputs.length === 1 )
-            {
-                id( inputs[ 0 ] );
-            }
-            else if ( inputs.length > 1 )
-            {
-                id( inputs );
-            }
-            else
-            {
-                id( null );
-            }
-        }
-    }
-
-    detachInputRefs()
-    {
-        const { id } = this.props;
-
-        if ( id )
-        {
-            id( null );
-        }
-    }
 
     /**
     * Generate track fill style object depending on input values

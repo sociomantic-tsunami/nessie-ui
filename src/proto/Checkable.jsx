@@ -121,54 +121,11 @@ export default class Checkable extends React.Component
         super();
 
         this.props = props;
-
-        this.handleClick = this.handleClick.bind( this );
-        this.handleFocus = this.handleFocus.bind( this );
     }
 
-    handleFocus( event )
+    focus()
     {
-        const { onFocus } = this.props;
-
-        if ( onFocus )
-        {
-            onFocus( event );
-        }
-
-        if ( event.defaultPrevented || this.props.isDisabled )
-        {
-            return;
-        }
-    }
-
-    handleChange( event )
-    {
-        const { onChange } = this.props;
-
-        if ( onChange )
-        {
-            onChange( event );
-        }
-
-        if ( event.defaultPrevented || this.props.isDisabled )
-        {
-            return;
-        }
-    }
-
-    handleClick( event )
-    {
-        const { onClick } = this.props;
-
-        if ( onClick )
-        {
-            onClick( event );
-        }
-
-        if ( event.defaultPrevented || this.props.isDisabled )
-        {
-            return;
-        }
+        this.inputRef.focus();
     }
 
     render()
@@ -186,7 +143,9 @@ export default class Checkable extends React.Component
             label,
             name,
             onBlur,
+            onClick,
             onChange,
+            onFocus,
             onMouseOut,
             onMouseOver,
             type,
@@ -211,14 +170,15 @@ export default class Checkable extends React.Component
                 onMouseLeave = { onMouseOut }
                 onMouseEnter = { onMouseOver }>
                 <input
+                    ref            = { r => this.inputRef = r }
                     checked        = { isChecked }
                     className      = { cssMap.input }
                     disabled       = { isDisabled || isReadOnly }
                     id             = { id }
                     name           = { name }
-                    onClick        = { this.handleClick }
+                    onClick        = { onClick }
                     onChange       = { onChange }
-                    onFocus        = { this.handleFocus }
+                    onFocus        = { onFocus }
                     onBlur         = { onBlur }
                     type           = { type }
                     value          = { value } />
