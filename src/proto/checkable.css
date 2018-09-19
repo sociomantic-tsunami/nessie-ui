@@ -67,6 +67,7 @@
 
     .labelContent
     {
+        display:        block;
         margin-left:    var( --spacing-1 );
     }
 
