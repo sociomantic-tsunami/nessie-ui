@@ -22,12 +22,6 @@
     {
         display:        inline;
         position:       static;
-
-        color:          inherit;
-        font:           inherit;
-        text-align:     inherit;
-        text-transform: inherit;
-        white-space:    inherit;
     }
 
     a:any-link
