@@ -413,6 +413,11 @@ export default class ComboBox extends Component
         }
     }
 
+    focus()
+    {
+        this.inputRef.focus();
+    }
+
 
     render()
     {
@@ -539,6 +544,7 @@ export default class ComboBox extends Component
                 onMouseOver           = { onMouseOver }
                 onMouseOverIcon       = { onMouseOverIcon }
                 placeholder           = { inputPlaceholder }
+                ref                   = { r => this.inputRef = r }
                 spellCheck            = { false }
                 textAlign             = { textAlign }
                 value                 = { inputValue }

@@ -116,13 +116,6 @@ export default class Checkable extends React.Component
         value       : undefined,
     };
 
-    constructor( props )
-    {
-        super();
-
-        this.props = props;
-    }
-
     focus()
     {
         this.inputRef.focus();
@@ -170,7 +163,6 @@ export default class Checkable extends React.Component
                 onMouseLeave = { onMouseOut }
                 onMouseEnter = { onMouseOver }>
                 <input
-                    ref            = { r => this.inputRef = r }
                     checked        = { isChecked }
                     className      = { cssMap.input }
                     disabled       = { isDisabled || isReadOnly }
@@ -180,6 +172,7 @@ export default class Checkable extends React.Component
                     onChange       = { onChange }
                     onFocus        = { onFocus }
                     onBlur         = { onBlur }
+                    ref            = { r => this.inputRef = r }
                     type           = { type }
                     value          = { value } />
                 <label className = { cssMap.label } htmlFor = { id }>

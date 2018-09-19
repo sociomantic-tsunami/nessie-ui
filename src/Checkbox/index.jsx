@@ -115,13 +115,6 @@ export default class Checkbox extends React.Component
         value       : undefined,
     };
 
-    constructor( props )
-    {
-        super();
-
-        this.props = props;
-    }
-
     focus()
     {
         this.inputRef.focus();
