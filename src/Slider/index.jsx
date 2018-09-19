@@ -40,11 +40,6 @@ export default class Slider extends React.Component
         */
         hasError              : PropTypes.bool,
         /**
-        *  Callback that receives ref to native input; or array of refs to
-        *  native inputs
-        */
-        inputRef              : PropTypes.func,
-        /**
         *  Tooltip message text (string or JSX)
         */
         errorMessage          : PropTypes.node,
@@ -228,7 +223,7 @@ export default class Slider extends React.Component
 
     componentWillUpdate( nextProps )
     {
-        if ( nextProps.inputRef !== this.props.inputRef )
+        if ( nextProps.id !== this.props.id )
         {
             this.detachInputRefs();
         }
@@ -238,7 +233,7 @@ export default class Slider extends React.Component
     {
         const { props } = this;
 
-        if ( prevProps.inputRef !== props.inputRef ||
+        if ( prevProps.id !== props.id ||
             prevProps.value.length !== props.value.length )
         {
             this.attachInputRefs();
@@ -253,34 +248,34 @@ export default class Slider extends React.Component
     /* eslint-disable react/sort-comp */
     attachInputRefs()
     {
-        const { inputRef } = this.props;
+        const { id } = this.props;
 
-        if ( inputRef )
+        if ( id )
         {
             const inputs = Array.from( this.inputContainer.childNodes );
 
             if ( inputs.length === 1 )
             {
-                inputRef( inputs[ 0 ] );
+                id( inputs[ 0 ] );
             }
             else if ( inputs.length > 1 )
             {
-                inputRef( inputs );
+                id( inputs );
             }
             else
             {
-                inputRef( null );
+                id( null );
             }
         }
     }
 
     detachInputRefs()
     {
-        const { inputRef } = this.props;
+        const { id } = this.props;
 
-        if ( inputRef )
+        if ( id )
         {
-            inputRef( null );
+            id( null );
         }
     }
 

@@ -15,7 +15,7 @@ const ERRORS = {
     INPUT_CANNOT_CHANGE_VALUE : ( label, state ) =>
         `Input '${label}' value cannot be changed since it is ${state}`,
     INPUT_CANNOT_PRESS_KEY : ( label, state ) =>
-        `Cannot press a key on Input '${label}' since it is ${state}`
+        `Cannot press a key on Input '${label}' since it is ${state}`,
 };
 
 
@@ -36,8 +36,10 @@ export default class InputComponentDriver extends ClickableComponentDriver
      */
     setInputValue( value )
     {
-        checkIfSimulationIsValid( this.wrapper,
-            ERRORS.INPUT_CANNOT_CHANGE_VALUE );
+        checkIfSimulationIsValid(
+            this.wrapper,
+            ERRORS.INPUT_CANNOT_CHANGE_VALUE,
+        );
 
         const input = this.control;
         const node  = input.instance();
@@ -117,8 +119,10 @@ export default class InputComponentDriver extends ClickableComponentDriver
 
     click()
     {
-        checkIfSimulationIsValid( this.wrapper,
-                                  ERRORS.INPUT_CANNOT_BE_CLICKED );
+        checkIfSimulationIsValid(
+            this.wrapper,
+            ERRORS.INPUT_CANNOT_BE_CLICKED,
+        );
 
         return super.click();
     }
