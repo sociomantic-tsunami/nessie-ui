@@ -63,9 +63,11 @@ const ToggleButton = ( {
                 <div className = { cssMap.title }>
                     { children || label }
                 </div>
-                <div className = { cssMap.subLabel }>
-                    { subLabel }
-                </div>
+                { subLabel &&
+                    <div className = { cssMap.subLabel }>
+                        { subLabel }
+                    </div>
+                }
             </div>
         </div>
 
@@ -186,7 +188,7 @@ ToggleButton.propTypes =
     /**
     *  ToggleButton role (style)
     */
-    role        : PropTypes.oneOf( [ 'primary', 'secondary' ] ),
+    role        : PropTypes.oneOf( [ 'primary', 'secondary', 'subtle' ] ),
     /**
      *  sub-label text
      */

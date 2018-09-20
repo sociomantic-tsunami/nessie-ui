@@ -135,6 +135,15 @@
 {
     width:  100%;
 
+    .uploadedButton,
+    .loadingOverlay
+    {
+        background:         var( --PC-BLUE--L70 );
+        color:              var( --PC-BLUE--L25 );
+        pointer-events:     none;
+        opacity:            1;
+    }
+
     .uploaderButton
     {
         pointer-events: none;

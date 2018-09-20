@@ -80,17 +80,17 @@ export default class CodeEditor extends Component
          */
         onBlur           : PropTypes.func,
         /**
-         * HTML id attribute
+         * Handles CodeMirror change event
          */
         onChange         : PropTypes.func,
-        /**
-         * onCursorActivity callback function: ( cursor ) => { ... }
-         */
-        onCursorActivity : PropTypes.func,
         /**
          * Handles CodeMirror focus event
          */
         onFocus          : PropTypes.func,
+        /**
+         * onCursorActivity callback function: ( cursor ) => { ... }
+         */
+        onCursorActivity : PropTypes.func,
         /**
          * Handles component mouseout event
          */
