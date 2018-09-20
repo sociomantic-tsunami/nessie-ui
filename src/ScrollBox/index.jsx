@@ -79,13 +79,13 @@ export default class ScrollBox extends Component
             'both',
         ] ),
         /**
-         *  Horizontal Scroll lenght
+         *  Horizontal Scroll Amount
          */
-        scrollLenghtHorizontal : PropTypes.number,
+        scrollAmountHorizontal : PropTypes.number,
         /**
-         *  Vertical Scroll lenght
+         *  Vertical Scroll Amount
          */
-        scrollLenghtVertical   : PropTypes.number,
+        scrollAmountVertical   : PropTypes.number,
         /**
         *   ScrollBox padding
         */
@@ -149,12 +149,12 @@ export default class ScrollBox extends Component
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
-        scrollLenghtHorizontal : undefined,
+        scrollAmountHorizontal : undefined,
         scrollIndicatorVariant : 'circle',
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
-        scrollLenghtVertical   : undefined,
+        scrollAmountVertical   : undefined,
     };
 
     constructor()
@@ -373,34 +373,49 @@ export default class ScrollBox extends Component
 
     clickScrollButton( direction )
     {
-        const { scrollTop, scrollLeft } = this.state;
         const {
-            scrollLenghtHorizontal, scrollLenghtVertical, onClickScrollDown,
-            onClickScrollLeft, onClickScrollRight, onClickScrollUp,
+            clientHeight, clientWidth, scrollTop, scrollLeft,
+        } = this.state;
+
+        const {
+            onClickScrollDown, onClickScrollLeft, onClickScrollRight,
+            onClickScrollUp,
         } = this.props;
+
+        let { scrollAmountHorizontal, scrollAmountVertical } = this.props;
+
+        if ( typeof scrollAmountVertical === 'undefined' )
+        {
+            scrollAmountVertical = clientHeight;
+        }
+
+        if ( typeof scrollAmountHorizontal === 'undefined' )
+        {
+            scrollAmountHorizontal = clientWidth;
+        }
 
         if ( direction === 'Down' )
         {
             if ( onClickScrollDown ) onClickScrollDown();
-            this.handleChangeY( scrollTop + scrollLenghtVertical );
+            this.handleChangeY( scrollTop + scrollAmountVertical );
         }
 
         if ( direction === 'Left' )
         {
             if ( onClickScrollLeft ) onClickScrollLeft();
-            this.handleChangeX( scrollLeft - scrollLenghtHorizontal );
+            this.handleChangeX( scrollLeft - scrollAmountHorizontal );
         }
 
         if ( direction === 'Right' )
         {
             if ( onClickScrollRight ) onClickScrollRight();
-            this.handleChangeX( scrollLenghtHorizontal + scrollLeft );
+            this.handleChangeX( scrollAmountHorizontal + scrollLeft );
         }
 
         if ( direction === 'Up' )
         {
             if ( onClickScrollUp ) onClickScrollUp();
-            this.handleChangeY( scrollTop - scrollLenghtVertical );
+            this.handleChangeY( scrollTop - scrollAmountVertical );
         }
     }
 

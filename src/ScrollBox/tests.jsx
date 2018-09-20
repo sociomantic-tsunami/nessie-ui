@@ -167,7 +167,7 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollUp indicator should scroll to the top', () =>
         {
             wrapper.setProps( {
-                scrollLenghtVertical : 50,
+                scrollAmountVertical : 50,
                 scrollUpIsVisible    : true,
             } );
 
@@ -179,7 +179,7 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollRight indicator should scroll to the right', () =>
         {
             wrapper.setProps( {
-                scrollLenghtHorizontal : 50,
+                scrollAmountHorizontal : 50,
                 scrollRightIsVisible   : true,
             } );
 
@@ -191,7 +191,7 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollDown indicator should scroll to the bottom', () =>
         {
             wrapper.setProps( {
-                scrollLenghtVertical : 50,
+                scrollAmountVertical : 50,
                 scrollDownIsVisible  : true,
             } );
 
@@ -203,7 +203,7 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollLeft indicator should scroll to the left', () =>
         {
             wrapper.setProps( {
-                scrollLenghtHorizontal : 50,
+                scrollAmountHorizontal : 50,
                 scrollLeftIsVisible    : true,
             } );
 
