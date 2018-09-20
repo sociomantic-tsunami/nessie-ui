@@ -146,15 +146,11 @@ export default class Uploader extends React.Component
         warningMessage          : undefined,
     };
 
-    constructor( props )
-    {
-        super( props );
-        this.inputRef = React.createRef();
-    }
+    inputRef = React.createRef();
 
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
