@@ -22,26 +22,27 @@ const Checkable = ( {
     hasError,
     id = generateId( 'Checkable' ),
     inputRef,
-    isDisabled,
     isChecked,
+    isDisabled,
     isReadOnly,
     label,
     name,
     onBlur,
+    onChange,
     onClick,
     onFocus,
-    onChange,
     onMouseOut,
     onMouseOver,
     type,
     value,
 } ) =>
 {
-    let labelText = children || label;
+    let labelContent = children || label;
 
-    if ( typeof labelText === 'string' )
+    if ( typeof labelContent === 'string' )
     {
-        labelText = <Text className = { cssMap.labelText }>{ labelText }</Text>;
+        labelContent =
+            <Text className = { cssMap.labelText }>{ labelContent }</Text>;
     }
 
     return (
@@ -51,23 +52,25 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseLeave = { onMouseOut }
-            onMouseEnter = { onMouseOver }>
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
                 disabled       = { isDisabled || isReadOnly }
                 id             = { id }
                 name           = { name }
-                onClick        = { onClick }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
                 onBlur         = { onBlur }
+                onChange       = { onChange }
+                onClick        = { onClick }
+                onFocus        = { onFocus }
                 ref            = { inputRef }
                 type           = { type }
                 value          = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
-                { labelText }
+                <span className = { cssMap.labelContent }>
+                    { labelContent }
+                </span>
             </label>
         </div>
     );

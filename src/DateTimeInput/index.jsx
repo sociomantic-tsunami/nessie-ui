@@ -25,8 +25,9 @@ const DateTimeInput = ( {
     days,
     forceHover,
     hasError,
-    hourInputRef,
     hourIsDisabled,
+    hourIsReadOnly,
+    hourInputRef,
     hourPlaceholder,
     hourValue,
     id = generateId( 'DateTimeInput' ),
@@ -38,13 +39,15 @@ const DateTimeInput = ( {
     isReadOnly,
     isReadOnlyButton,
     isReadOnlyInput,
-    minuteInputRef,
     minuteIsDisabled,
+    minuteIsReadOnly,
+    minuteInputRef,
     minutePlaceholder,
     minuteValue,
     mode,
     months,
     nextIsDisabled,
+    nextIsReadOnly,
     onBlur,
     onChange,
     onClickCell,
@@ -60,6 +63,7 @@ const DateTimeInput = ( {
     onMouseOver,
     onMouseOverIcon,
     prevIsDisabled,
+    prevIsReadOnly,
     textAlign,
     weeks,
 } ) =>
@@ -69,6 +73,7 @@ const DateTimeInput = ( {
             headers           = { mode !== 'month' ? days : undefined }
             hourInputRef      = { hourInputRef }
             hourIsDisabled    = { hourIsDisabled }
+            hourIsReadOnly    = { hourIsReadOnly }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
             isDisabled        = { isDisabled }
@@ -77,11 +82,13 @@ const DateTimeInput = ( {
             key               = "datePicker"
             minuteInputRef    = { minuteInputRef }
             minuteIsDisabled  = { minuteIsDisabled }
+            minuteIsReadOnly  = { minuteIsReadOnly }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
             hasTimeInput      = { mode === 'default' }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
+            nextIsReadOnly    = { nextIsReadOnly }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onClickItem       = { onClickCell }
@@ -90,6 +97,7 @@ const DateTimeInput = ( {
             onFocus           = { onFocus }
             onKeyPress        = { onKeyPress }
             prevIsDisabled    = { prevIsDisabled }
+            prevIsReadOnly    = { prevIsReadOnly }
             type              = { mode === 'month' ? 'month' : 'day' }
             year              = { currentYear } />
     );
@@ -224,9 +232,17 @@ DateTimeInput.propTypes =
      */
     isReadOnlyButton      : PropTypes.bool,
     /**
+     *  “Previous” button is read only
+     */
+    prevIsReadOnly        : PropTypes.bool,
+    /**
      *  Display as read-only for TextInput
      */
     isReadOnlyInput       : PropTypes.bool,
+    /**
+     *  “Next” button is read only
+     */
+    nextIsReadOnly        : PropTypes.bool,
     /**
      *  Label text (string or JSX node)
      */
@@ -241,9 +257,17 @@ DateTimeInput.propTypes =
      */
     minuteInputRef        : PropTypes.func,
     /**
+     *  Hour input is read only
+     */
+    hourIsReadOnly        : PropTypes.bool,
+    /**
      *  Minute input is disabled
      */
     minuteIsDisabled      : PropTypes.bool,
+    /**
+     *  Minute input is read only
+     */
+    minuteIsReadOnly      : PropTypes.bool,
     /**
      *  Minute input placeholder text
      */
@@ -281,11 +305,11 @@ DateTimeInput.propTypes =
      */
     onClickCell           : PropTypes.func,
     /**
-     *  onClick callback function for “Previous” button
+     *  onClick callback function for “Next” button
      */
     onClickNext           : PropTypes.func,
     /**
-     *  onClick callback function for “Next” button
+     *  onClick callback function for “Previous” button
      */
     onClickPrev           : PropTypes.func,
     /**

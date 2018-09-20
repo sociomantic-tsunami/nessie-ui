@@ -23,6 +23,7 @@ const DatePicker = ( {
     year,
     headers,
     hourIsDisabled,
+    hourIsReadOnly,
     hourPlaceholder,
     hourValue,
     isDisabled,
@@ -30,10 +31,12 @@ const DatePicker = ( {
     items,
     label,
     minuteIsDisabled,
+    minuteIsReadOnly,
     minutePlaceholder,
     minuteValue,
     hasTimeInput,
     nextIsDisabled,
+    nextIsReadOnly,
     onBlur,
     onChange,
     onFocus,
@@ -42,23 +45,28 @@ const DatePicker = ( {
     onClickNext,
     onClickPrev,
     prevIsDisabled,
+    prevIsReadOnly,
     type,
 } ) => (
     <div className = { buildClassName( className, cssMap ) }>
         <DatePickerHeader
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            label          = { label }
-            month          = { month }
-            year           = { year }
-            nextIsDisabled = { nextIsDisabled }
-            onClickNext    = { onClickNext }
-            onClickPrev    = { onClickPrev }
-            prevIsDisabled = { prevIsDisabled }
+            isDisabled        = { isDisabled }
+            isReadOnly        = { isReadOnly }
+            label             = { label }
+            month             = { month }
+            year              = { year }
+            nextIsDisabled    = { nextIsDisabled }
+            nextIsReadOnly    = { nextIsReadOnly }
+            onClickNext       = { onClickNext }
+            onClickPrev       = { onClickPrev }
+            prevIsDisabled    = { prevIsDisabled }
+            prevIsReadOnly    = { prevIsReadOnly }
             hourIsDisabled    = { hourIsDisabled }
+            hourIsReadOnly    = { hourIsReadOnly }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
             minuteIsDisabled  = { minuteIsDisabled }
+            minuteIsReadOnly  = { minuteIsReadOnly }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
             hasTimeInput      = { hasTimeInput }
@@ -101,22 +109,29 @@ const DatePicker = ( {
 );
 
 DatePicker.propTypes = {
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    headers           : PropTypes.arrayOf( PropTypes.objectOf( PropTypes.string ) ),
-    hourIsDisabled    : PropTypes.bool,
-    hourPlaceholder   : PropTypes.string,
-    hourValue         : PropTypes.string,
-    isDisabled        : PropTypes.bool,
-    isReadOnly        : PropTypes.bool,
-    items             : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
+    className : PropTypes.string,
+    cssMap    : PropTypes.objectOf( PropTypes.string ),
+    headers   : PropTypes.arrayOf(
+        PropTypes.objectOf( PropTypes.string )
+    ),
+    hourIsDisabled  : PropTypes.bool,
+    hourIsReadOnly  : PropTypes.bool,
+    hourPlaceholder : PropTypes.string,
+    hourValue       : PropTypes.string,
+    isDisabled      : PropTypes.bool,
+    isReadOnly      : PropTypes.bool,
+    items           : PropTypes.arrayOf( PropTypes.arrayOf(
+        PropTypes.object
+    ) ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
+    minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
     hasTimeInput      : PropTypes.bool,
     month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
+    nextIsReadOnly    : PropTypes.bool,
     onBlur            : PropTypes.func,
     onChange          : PropTypes.func,
     onClickItem       : PropTypes.func,
@@ -125,6 +140,7 @@ DatePicker.propTypes = {
     onFocus           : PropTypes.func,
     onKeyPress        : PropTypes.func,
     prevIsDisabled    : PropTypes.bool,
+    prevIsReadOnly    : PropTypes.bool,
     type              : PropTypes.oneOf( [ 'day', 'month' ] ),
     year              : PropTypes.string,
 };
@@ -134,6 +150,7 @@ DatePicker.defaultProps = {
     cssMap            : styles,
     headers           : undefined,
     hourIsDisabled    : false,
+    hourIsReadOnly    : false,
     hourPlaceholder   : undefined,
     hourValue         : undefined,
     isDisabled        : false,
@@ -146,6 +163,7 @@ DatePicker.defaultProps = {
     hasTimeInput      : true,
     month             : undefined,
     nextIsDisabled    : false,
+    nextIsReadOnly    : false,
     onBlur            : undefined,
     onChange          : undefined,
     onClickItem       : undefined,
@@ -154,6 +172,7 @@ DatePicker.defaultProps = {
     onFocus           : undefined,
     onKeyPress        : undefined,
     prevIsDisabled    : false,
+    prevIsReadOnly    : false,
     type              : 'day',
     year              : undefined,
 };
