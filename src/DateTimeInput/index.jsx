@@ -18,7 +18,7 @@ import { eventHandler, generateId } from '../utils';
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 
-export default class DateTimeInput extends React.PureComponent
+export default class DateTimeInput extends React.Component
 {
     static propTypes =
     {

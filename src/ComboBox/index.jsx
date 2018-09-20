@@ -9,7 +9,7 @@
 
 /* global document */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { ScrollBox, Text }  from '../index';
@@ -28,7 +28,7 @@ import {
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 
-export default class ComboBox extends Component
+export default class ComboBox extends React.Component
 {
     static propTypes =
     {

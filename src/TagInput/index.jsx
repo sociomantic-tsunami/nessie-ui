@@ -7,7 +7,7 @@
  *
  */
 
-import React, { Children, Component } from 'react';
+import React, { Children }            from 'react';
 import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
@@ -15,7 +15,7 @@ import { buildTagsFromValues }        from './utils';
 import styles                         from './tagInput.css';
 
 
-export default class TagInput extends Component
+export default class TagInput extends React.Component
 {
     static propTypes =
     {

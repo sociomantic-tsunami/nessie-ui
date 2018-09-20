@@ -14,7 +14,7 @@ import { buildClassName, mapAria, generateId } from '../utils';
 import styles                                  from './inputField.css';
 
 
-export default class InputField extends React.PureComponent
+export default class InputField extends React.Component
 {
     static propTypes =
     {

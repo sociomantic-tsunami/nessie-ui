@@ -14,7 +14,7 @@ import { generateId }                    from '../utils';
 import { Column, InputField, Row, Text } from '../index';
 
 
-export default class DimensionsInput extends React.PureComponent
+export default class DimensionsInput extends React.Component
 {
     static propTypes = {
         /**

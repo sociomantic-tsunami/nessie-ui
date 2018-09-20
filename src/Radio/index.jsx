@@ -15,7 +15,7 @@ import { generateId } from '../utils';
 import styles         from './radio.css';
 
 
-export default class Radio extends React.PureComponent
+export default class Radio extends React.Component
 {
     static propTypes =
     {
