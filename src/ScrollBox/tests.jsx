@@ -103,10 +103,12 @@ describe( 'ScrollBox', () =>
 describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBox /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'clickScrollX', () =>
@@ -160,6 +162,54 @@ describe( 'ScrollBoxDriver', () =>
             wrapper.driver().clickScrollLeft();
 
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'clicking scrollUp indicator should scroll to the top', () =>
+        {
+            wrapper.setProps( {
+                scrollAmountVertical : 50,
+                scrollUpIsVisible    : true,
+            } );
+
+            wrapper.driver().clickScrollUp();
+
+            expect( instance.innerRef.scrollTop ).toBe( -50 );
+        } );
+
+        test( 'clicking scrollRight indicator should scroll to the right', () =>
+        {
+            wrapper.setProps( {
+                scrollAmountHorizontal : 50,
+                scrollRightIsVisible   : true,
+            } );
+
+            wrapper.driver().clickScrollRight();
+
+            expect( instance.innerRef.scrollLeft ).toBe( 50 );
+        } );
+
+        test( 'clicking scrollDown indicator should scroll to the bottom', () =>
+        {
+            wrapper.setProps( {
+                scrollAmountVertical : 50,
+                scrollDownIsVisible  : true,
+            } );
+
+            wrapper.driver().clickScrollDown();
+
+            expect( instance.innerRef.scrollTop ).toBe( 50 );
+        } );
+
+        test( 'clicking scrollLeft indicator should scroll to the left', () =>
+        {
+            wrapper.setProps( {
+                scrollAmountHorizontal : 50,
+                scrollLeftIsVisible    : true,
+            } );
+
+            wrapper.driver().clickScrollLeft();
+
+            expect( instance.innerRef.scrollLeft ).toBe( -50 );
         } );
     } );
 

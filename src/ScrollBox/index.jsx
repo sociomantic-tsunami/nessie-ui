@@ -43,6 +43,18 @@ export default class ScrollBox extends Component
          */
         height             : PropTypes.string,
         /**
+         *  mouseOver callback function
+         */
+        onMouseOver        : PropTypes.func,
+        /**
+         *  mouseOut callback function
+         */
+        onMouseOut         : PropTypes.func,
+        /**
+         *  on scroll callback function
+         */
+        onScroll           : PropTypes.func,
+        /**
          *  scroll down button click callback function
          */
         onClickScrollDown  : PropTypes.func,
@@ -59,18 +71,6 @@ export default class ScrollBox extends Component
          */
         onClickScrollUp    : PropTypes.func,
         /**
-         *  mouseOver callback function
-         */
-        onMouseOver        : PropTypes.func,
-        /**
-         *  mouseOut callback function
-         */
-        onMouseOut         : PropTypes.func,
-        /**
-         *  on scroll callback function
-         */
-        onScroll           : PropTypes.func,
-        /**
          *  Scroll direction
          */
         scroll             : PropTypes.oneOf( [
@@ -79,9 +79,17 @@ export default class ScrollBox extends Component
             'both',
         ] ),
         /**
+         *  Horizontal Scroll Amount
+         */
+        scrollAmountHorizontal : PropTypes.number,
+        /**
+         *  Vertical Scroll Amount
+         */
+        scrollAmountVertical   : PropTypes.number,
+        /**
         *   ScrollBox padding
         */
-        padding : PropTypes.oneOfType( [
+        padding                : PropTypes.oneOfType( [
             PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
             PropTypes.arrayOf( PropTypes.oneOf( [
                 'none',
@@ -129,22 +137,24 @@ export default class ScrollBox extends Component
         contentWidth           : undefined,
         cssMap                 : styles,
         height                 : undefined,
+        onMouseOut             : undefined,
+        onMouseOver            : undefined,
+        onScroll               : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
         onClickScrollRight     : undefined,
         onClickScrollUp        : undefined,
-        onMouseOut             : undefined,
-        onMouseOver            : undefined,
-        onScroll               : undefined,
         padding                : 'none',
         scroll                 : 'both',
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
+        scrollAmountHorizontal : undefined,
         scrollIndicatorVariant : 'circle',
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
+        scrollAmountVertical   : undefined,
     };
 
     constructor()
@@ -299,18 +309,17 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars
-                    .push( <ScrollBar
-                        className        = { cssMap.scrollBarHorizontal }
-                        key              = "horizontal"
-                        onClickTrack     = { this.handleClickTrackX }
-                        onChange         = { this.handleChangeX }
-                        orientation      = "horizontal"
-                        scrollPos        = { scrollLeft }
-                        thumbSize        = {
-                            `${( clientWidth / scrollWidth ) * 100}%`
-                        }
-                        scrollMax = { scrollWidth - clientWidth } /> );
+                scrollBars.push( <ScrollBar
+                    className        = { cssMap.scrollBarHorizontal }
+                    key              = "horizontal"
+                    onClickTrack     = { this.handleClickTrackX }
+                    onChange         = { this.handleChangeX }
+                    orientation      = "horizontal"
+                    scrollPos        = { scrollLeft }
+                    thumbSize        = {
+                        `${( clientWidth / scrollWidth ) * 100}%`
+                    }
+                    scrollMax = { scrollWidth - clientWidth } /> );
             }
         }
 
@@ -320,19 +329,18 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars
-                    .push( <ScrollBar
-                        className        = { cssMap.scrollBarVertical }
-                        key              = "vertical"
-                        onClickTrack     = { this.handleClickTrackY }
-                        onChange         = { this.handleChangeY }
-                        orientation      = "vertical"
-                        scrollPos        = { scrollTop }
-                        thumbSize        = {
-                            `${( clientHeight / scrollHeight ) * 100}%`
-                        }
-                        scrollMax = { scrollHeight - clientHeight  }
-                        length    = { `${clientHeight}px` } /> );
+                scrollBars.push( <ScrollBar
+                    className        = { cssMap.scrollBarVertical }
+                    key              = "vertical"
+                    onClickTrack     = { this.handleClickTrackY }
+                    onChange         = { this.handleChangeY }
+                    orientation      = "vertical"
+                    scrollPos        = { scrollTop }
+                    thumbSize        = {
+                        `${( clientHeight / scrollHeight ) * 100}%`
+                    }
+                    scrollMax = { scrollHeight - clientHeight  }
+                    length    = { `${clientHeight}px` } /> );
             }
         }
 
@@ -352,14 +360,63 @@ export default class ScrollBox extends Component
                     className     = { props.cssMap[ `icon${dir}` ] }
                     hasBackground = {
                         props.scrollIndicatorVariant === 'circle' }
-                    iconSize = "S"
-                    iconType = { dir.toLowerCase() }
-                    key      = { dir }
-                    onClick  = { props[ `onClickScroll${dir}` ] } /> );
+                    iconSize      = "S"
+                    iconType      = { dir.toLowerCase() }
+                    key           = { dir }
+                    onClick       = {
+                        this.clickScrollButton.bind( this, dir ) } /> );
             }
         } );
 
         return scrollButtons;
+    }
+
+    clickScrollButton( direction )
+    {
+        const {
+            clientHeight, clientWidth, scrollTop, scrollLeft,
+        } = this.state;
+
+        const {
+            onClickScrollDown, onClickScrollLeft, onClickScrollRight,
+            onClickScrollUp,
+        } = this.props;
+
+        let { scrollAmountHorizontal, scrollAmountVertical } = this.props;
+
+        if ( typeof scrollAmountVertical === 'undefined' )
+        {
+            scrollAmountVertical = clientHeight;
+        }
+
+        if ( typeof scrollAmountHorizontal === 'undefined' )
+        {
+            scrollAmountHorizontal = clientWidth;
+        }
+
+        if ( direction === 'Down' )
+        {
+            if ( onClickScrollDown ) onClickScrollDown();
+            this.handleChangeY( scrollTop + scrollAmountVertical );
+        }
+
+        if ( direction === 'Left' )
+        {
+            if ( onClickScrollLeft ) onClickScrollLeft();
+            this.handleChangeX( scrollLeft - scrollAmountHorizontal );
+        }
+
+        if ( direction === 'Right' )
+        {
+            if ( onClickScrollRight ) onClickScrollRight();
+            this.handleChangeX( scrollAmountHorizontal + scrollLeft );
+        }
+
+        if ( direction === 'Up' )
+        {
+            if ( onClickScrollUp ) onClickScrollUp();
+            this.handleChangeY( scrollTop - scrollAmountVertical );
+        }
     }
 
     render()
