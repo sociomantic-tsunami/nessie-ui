@@ -19,6 +19,7 @@ const TimeInput = ( {
     forceHover,
     hourPlaceholder,
     hourIsDisabled,
+    hourIsReadOnly,
     hourValue,
     id = generateId( 'TimeInput' ),
     isDisabled,
@@ -28,6 +29,7 @@ const TimeInput = ( {
     onFocus,
     onKeyPress,
     minuteIsDisabled,
+    minuteIsReadOnly,
     minutePlaceholder,
     minuteValue,
 } ) => (
@@ -42,7 +44,7 @@ const TimeInput = ( {
             value       = { hourValue }
             className   = { cssMap.hour }
             disabled    = { isDisabled || hourIsDisabled }
-            readOnly    = { isReadOnly }
+            readOnly    = { isReadOnly || hourIsReadOnly }
             onFocus     = { eventHandler( onFocus, 'hour' ) }
             onBlur      = { eventHandler( onBlur, 'hour' ) }
             onChange    = { eventHandler( onChange, 'hour' ) }
@@ -55,7 +57,7 @@ const TimeInput = ( {
             value       = { minuteValue }
             className   = { cssMap.min }
             disabled    = { isDisabled || minuteIsDisabled }
-            readOnly    = { isReadOnly }
+            readOnly    = { isReadOnly || minuteIsReadOnly }
             onFocus     = { eventHandler( onFocus, 'minute' ) }
             onBlur      = { eventHandler( onBlur, 'minute' ) }
             onChange    = { eventHandler( onChange, 'minute' ) }
@@ -69,6 +71,7 @@ TimeInput.propTypes = {
     forceHover        : PropTypes.bool,
     hourPlaceholder   : PropTypes.string,
     hourIsDisabled    : PropTypes.bool,
+    hourIsReadOnly    : PropTypes.bool,
     hourValue         : PropTypes.string,
     id                : PropTypes.string,
     isDisabled        : PropTypes.bool,
@@ -78,6 +81,7 @@ TimeInput.propTypes = {
     onFocus           : PropTypes.func,
     onKeyPress        : PropTypes.func,
     minuteIsDisabled  : PropTypes.bool,
+    minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
 };
@@ -88,6 +92,7 @@ TimeInput.defaultProps = {
     forceHover        : false,
     hourPlaceholder   : 'HH',
     hourIsDisabled    : false,
+    hourIsReadOnly    : false,
     hourValue         : undefined,
     id                : undefined,
     isDisabled        : false,
@@ -97,6 +102,7 @@ TimeInput.defaultProps = {
     onFocus           : undefined,
     onKeyPress        : undefined,
     minuteIsDisabled  : false,
+    minuteIsReadOnly  : false,
     minutePlaceholder : 'MM',
     minuteValue       : undefined,
 };

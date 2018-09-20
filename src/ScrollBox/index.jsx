@@ -197,7 +197,7 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            if ( diffX || diffX )
+            if ( diffX || diffY )
             {
                 Object.assign( style, {
                     width        : diffX ? `calc( 100% + ${diffX}px )` : null,
@@ -240,8 +240,8 @@ export default class ScrollBox extends Component
 
     handleClickTrackY( pos )
     {
-        const { clientWidth, scrollTop } = this.state;
-        const increment = pos >= scrollTop ? clientWidth : -clientWidth;
+        const { clientHeight, scrollTop } = this.state;
+        const increment = pos >= scrollTop ? clientHeight : -clientHeight;
 
         this.innerRef.scrollTop = scrollTop + increment;
     }
@@ -319,8 +319,8 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars.push(
-                    <ScrollBar
+                scrollBars
+                    .push( <ScrollBar
                         className        = { cssMap.scrollBarVertical }
                         key              = "vertical"
                         onClickTrack     = { this.handleClickTrackY }
@@ -331,8 +331,7 @@ export default class ScrollBox extends Component
                             `${( clientHeight / scrollHeight ) * 100}%`
                         }
                         scrollMax = { scrollHeight - clientHeight  }
-                        length    = { `${clientHeight}px` } />
-                );
+                        length    = { `${clientHeight}px` } /> );
             }
         }
 
@@ -348,16 +347,14 @@ export default class ScrollBox extends Component
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push(
-                    <IconButton
-                        className     = { props.cssMap[ `icon${dir}` ] }
-                        hasBackground = {
-                            props.scrollIndicatorVariant === 'circle' }
-                        iconSize = "S"
-                        iconType = { dir.toLowerCase() }
-                        key      = { dir }
-                        onClick  = { props[ `onClickScroll${dir}` ] } />
-                );
+                scrollButtons.push( <IconButton
+                    className     = { props.cssMap[ `icon${dir}` ] }
+                    hasBackground = {
+                        props.scrollIndicatorVariant === 'circle' }
+                    iconSize = "S"
+                    iconType = { dir.toLowerCase() }
+                    key      = { dir }
+                    onClick  = { props[ `onClickScroll${dir}` ] } /> );
             }
         } );
 

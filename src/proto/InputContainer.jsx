@@ -39,9 +39,9 @@ const InputContainer = ( {
         onMouseLeave = { onMouseOut }>
         { label &&
             <Label
-                overflowIsHidden = { typeof label === 'string' }
                 className        = { cssMap.label }
                 htmlFor          = { id }
+                overflowIsHidden = { typeof label === 'string' }
                 role             = { labelPosition === 'top' ?
                     'header' : 'default' }>
                 { label }
@@ -49,12 +49,13 @@ const InputContainer = ( {
         }
         <IconWithTooltip
             className        = { cssMap.container }
-            iconType         = "error"
+            iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
             iconPosition     = "topRight"
+            iconType         = "error"
             message          = { errorMessage }
+            noWarn
             tooltipIsVisible = { errorMessageIsVisible }
-            tooltipPosition  = { errorMessagePosition }
-            iconIsVisible    = { !isDisabled && !!errorMessage && hasError }>
+            tooltipPosition  = { errorMessagePosition }>
             { children }
         </IconWithTooltip>
     </div>
@@ -80,7 +81,20 @@ InputContainer.propTypes = {
     /**
      *  Position of error tooltip relative to error icon
      */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
      *  Whether error icon is shown
      */

@@ -107,20 +107,33 @@ export default class FlounderDropdown extends Component
         /**
         *  Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
         *  Display as disabled
         */
-        isDisabled            : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
         *  Display as read only
         */
-        isReadOnly            : PropTypes.bool,
+        isReadOnly   : PropTypes.bool,
         /**
          *  Initial selected value(s). Not the same as the native Flounder
          *  option with the same name
          */
-        defaultValue          : PropTypes.oneOfType( [
+        defaultValue : PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.arrayOf( PropTypes.string ),
         ] ),

@@ -11,6 +11,7 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import Row                from '../Row';
+import TableCell          from '../TableCell';
 import { buildClassName } from '../utils';
 import styles             from './tableRow.css';
 
@@ -26,6 +27,19 @@ const TableRow = ( {
     ...props
 } ) =>
 {
+    if ( !TableRow.didWarn.children && children !== undefined  )
+    {
+        React.Children.toArray( children ).map( ( child ) =>
+        {
+            if ( child.type !== TableCell )
+            {
+                console.warn( 'TableRow must have TableCells as direct \
+children' );
+                TableRow.didWarn.children = true;
+            }
+        } );
+    }
+
     const cells = React.Children.toArray( children ).map( cell =>
         React.cloneElement( cell, {
             align     : cell.props.align || align,
@@ -42,7 +56,8 @@ const TableRow = ( {
                 clickable : isClickable,
                 sticky    : isSticky,
             } ) }
-            role = "row">
+            role = "row"
+            noWarn>
             { cells }
         </Row>
     );
@@ -124,5 +139,7 @@ TableRow.defaultProps =
     spacing       : undefined,
     verticalAlign : undefined,
 };
+
+TableRow.didWarn = {};
 
 export default TableRow;

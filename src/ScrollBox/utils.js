@@ -7,7 +7,6 @@
  *
  */
 
-
 /**
  * ## createScrollHandler
  * Higher-order function that adds scroll percentage as second argument

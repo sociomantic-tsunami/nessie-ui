@@ -113,6 +113,7 @@ const Uploader = ( {
                 iconPosition     = "topRight"
                 iconType         = { messageType }
                 message          = { message }
+                noWarn
                 tooltipIsVisible = { tooltipIsVisible }
                 tooltipPosition  = { errorMessagePosition }>
                 <div className = { cssMap.buttonsContainer }>
@@ -120,7 +121,8 @@ const Uploader = ( {
                         className = { cssMap.previewTooltip }
                         isVisible = { uploadState ===
                             'uploaded' && previewTooltipIsVisible }
-                        message   = { previewTooltipMessage }>
+                        message = { previewTooltipMessage }
+                        noWarn>
                         <Button
                             className  = { uploaderButtonClass }
                             iconType   = { iconType }
@@ -169,12 +171,18 @@ Uploader.propTypes =
     *  Error message position relative to the icon
     */
     errorMessagePosition : PropTypes.oneOf( [
-        'left',
-        'right',
         'top',
-        'bottom',
         'topLeft',
         'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
     ] ),
     /**
     *  Display as error/invalid
@@ -252,8 +260,6 @@ Uploader.propTypes =
     *  Tooltip warning message text (string or JSX)
     */
     warningMessage : PropTypes.node,
-
-
 };
 
 Uploader.defaultProps =
