@@ -116,9 +116,11 @@ export default class Checkable extends React.Component
         value       : undefined,
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -172,7 +174,7 @@ export default class Checkable extends React.Component
                     onChange       = { onChange }
                     onFocus        = { onFocus }
                     onBlur         = { onBlur }
-                    ref            = { r => this.inputRef = r }
+                    ref            = { this.inputRef }
                     type           = { type }
                     value          = { value } />
                 <label className = { cssMap.label } htmlFor = { id }>

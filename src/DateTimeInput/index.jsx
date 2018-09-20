@@ -268,9 +268,11 @@ export default class DateTimeInput extends React.PureComponent
         weeks                 : undefined,
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -385,7 +387,7 @@ export default class DateTimeInput extends React.PureComponent
                 onMouseOver      = { onMouseOver }
                 onMouseOverIcon  = { onMouseOverIcon }
                 placeholder      = { inputPlaceholder }
-                ref              = { r => this.inputRef = r }
+                ref              = { this.inputRef }
                 spellCheck       = { false }
                 textAlign        = { textAlign }
                 value            = { inputValue } />

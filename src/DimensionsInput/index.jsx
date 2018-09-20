@@ -98,14 +98,17 @@ export default class DimensionsInput extends React.PureComponent
     };
 
 
+    widthRef  = React.createRef();
+    heightRef = React.createRef();
+
     focusWidth()
     {
-        this.widthRef.focus();
+        this.widthRef.current.focus();
     }
 
     focusHeight()
     {
-        this.heightRef.focus();
+        this.heightRef.current.focus();
     }
 
     render()
@@ -149,7 +152,7 @@ export default class DimensionsInput extends React.PureComponent
                         onChange       = { onChange }
                         onFocus        = { onFocus }
                         placeholder    = { widthPlaceholder }
-                        ref            = { r => this.widthRef = r }
+                        ref            = { this.widthRef }
                         spellCheck     = { false }
                         value          = { widthValue } />
                 </Column>
@@ -170,7 +173,7 @@ export default class DimensionsInput extends React.PureComponent
                         onChange       = { onChange }
                         onFocus        = { onFocus }
                         placeholder    = { heightPlaceholder }
-                        ref            = { r => this.heightRef = r }
+                        ref            = { this.heightRef }
                         spellCheck     = { false }
                         value          = { heightValue } />
                 </Column>

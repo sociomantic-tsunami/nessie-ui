@@ -177,9 +177,11 @@ export default class TagInput extends Component
         this.setState( { isFocused: true } );
     }
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -268,7 +270,7 @@ export default class TagInput extends Component
                     onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
-                    ref         = { r => this.inputRef = r }
+                    ref         = { this.inputRef }
                     type        = "text"
                     value       = { value } />
             </label>

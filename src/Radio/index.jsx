@@ -115,9 +115,11 @@ export default class Radio extends React.PureComponent
         value       : undefined,
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -131,7 +133,7 @@ export default class Radio extends React.PureComponent
             <Checkable
                 { ...props }
                 id   = { id }
-                ref  = { r => this.inputRef = r }
+                ref  = { this.inputRef }
                 type = "radio" />
         );
     }

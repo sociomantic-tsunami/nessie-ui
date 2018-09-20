@@ -277,9 +277,11 @@ export default class TextInputWithIcon extends React.Component
         value                : '',
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -361,7 +363,7 @@ export default class TextInputWithIcon extends React.Component
                     onKeyPress     = { onKeyPress }
                     onKeyUp        = { onKeyUp }
                     placeholder    = { placeholder }
-                    ref            = { r => this.inputRef = r }
+                    ref            = { this.inputRef }
                     spellcheck     = { spellCheck }
                     textAlign      = { alignText }
                     type           = { inputType }

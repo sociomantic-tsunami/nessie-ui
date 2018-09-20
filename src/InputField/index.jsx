@@ -184,9 +184,11 @@ export default class InputField extends React.PureComponent
         value          : '',
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -252,7 +254,7 @@ export default class InputField extends React.PureComponent
                 onMouseLeave = { onMouseOut }
                 placeholder  = { placeholder }
                 readOnly     = { isReadOnly }
-                ref          = { r => this.inputRef = r }
+                ref          = { this.inputRef }
                 rows         = { element === 'textarea' ? rows : null }
                 spellCheck   = { spellCheck }
                 type         = { element === 'input' ? type : null }

@@ -170,9 +170,11 @@ export default class TextArea extends React.Component
         value          : '',
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -187,7 +189,7 @@ export default class TextArea extends React.Component
                 { ...props }
                 id      = { id }
                 element = "textarea"
-                ref     = { r => this.inputRef = r } />
+                ref     = { this.inputRef } />
         );
     }
 }

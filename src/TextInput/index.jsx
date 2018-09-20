@@ -160,9 +160,11 @@ export default class TextInput extends React.Component
         value          : '',
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -176,7 +178,7 @@ export default class TextInput extends React.Component
             <InputField
                 { ...props }
                 id   = { id }
-                ref  = { r => this.inputRef = r }
+                ref  = { this.inputRef }
                 type = "text" />
         );
     }

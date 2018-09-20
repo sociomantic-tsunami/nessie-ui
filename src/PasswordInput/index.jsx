@@ -219,9 +219,11 @@ export default class PasswordInput extends React.Component
         value                 : '',
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -241,7 +243,7 @@ export default class PasswordInput extends React.Component
                 iconType       = { passwordIsVisible ? 'hide' : 'show' }
                 id             = { id }
                 inputType      = { passwordIsVisible ? 'text' : 'password' }
-                ref            = { r => this.inputRef = r }
+                ref            = { this.inputRef }
                 spellCheck     = { false } />
         );
     }

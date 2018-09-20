@@ -413,9 +413,11 @@ export default class ComboBox extends Component
         }
     }
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
 
@@ -544,7 +546,7 @@ export default class ComboBox extends Component
                 onMouseOver           = { onMouseOver }
                 onMouseOverIcon       = { onMouseOverIcon }
                 placeholder           = { inputPlaceholder }
-                ref                   = { r => this.inputRef = r }
+                ref                   = { this.inputRef }
                 spellCheck            = { false }
                 textAlign             = { textAlign }
                 value                 = { inputValue }

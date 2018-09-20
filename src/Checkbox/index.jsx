@@ -115,9 +115,11 @@ export default class Checkbox extends React.Component
         value       : undefined,
     };
 
+    inputRef = React.createRef();
+
     focus()
     {
-        this.inputRef.focus();
+        this.inputRef.current.focus();
     }
 
     render()
@@ -130,8 +132,8 @@ export default class Checkbox extends React.Component
         return (
             <Checkable
                 { ...props }
-                ref  = { r => this.inputRef = r }
                 id   = { id }
+                ref  = { this.inputRef }
                 type = "checkbox" />
         );
     }
