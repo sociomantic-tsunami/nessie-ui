@@ -201,6 +201,13 @@ export default class ValuedTextInput extends React.Component
         }
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -243,6 +250,7 @@ export default class ValuedTextInput extends React.Component
                     id           = { id }
                     onBlur       = { this.handleBlur }
                     onFocus      = { this.handleFocus }
+                    ref          = { this.inputRef }
                     textAlign    = { alignText } />
                 <label
                     className = { cssMap.valueLabel }
