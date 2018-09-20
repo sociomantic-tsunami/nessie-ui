@@ -31,11 +31,6 @@ describe( 'TextInputWithIcon', () =>
         wrapper  = shallow( <TextInputWithIcon /> );
     } );
 
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
 
     test( 'should contain exactly one InputField', () =>
     {
