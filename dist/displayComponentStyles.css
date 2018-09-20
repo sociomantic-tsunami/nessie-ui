@@ -11261,7 +11261,7 @@ span.CodeMirror-selectedtext { background: none; }
 
 .h2__default
 {
-    font-family: Nessie-SemiBold, sans-serif;
+    font-family: Nessie-Bold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -17808,6 +17808,10 @@ only used in type__carousel for now
 
 .scrollBox__default .scrollBox__inner
     {
+        /* creates stacking context */
+        position:   relative;
+        z-index:    0;
+
         width:      100%;
         height:     100%;
         overflow:   scroll;
@@ -21978,16 +21982,16 @@ only used in type__carousel for now
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
-.toggleButton__role__primary .toggleButton__subLabel
+.toggleButton__role__primary .toggleButton__title, .toggleButton__role__subtle .toggleButton__title
 {
-    font-family: Nessie-RegularIt, sans-serif;
+    font-family: Nessie-SemiBold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
 
-.toggleButton__role__primary .toggleButton__title, .toggleButton__role__subtle .toggleButton__title
+.toggleButton__role__primary .toggleButton__subLabel
 {
-    font-family: Nessie-SemiBold, sans-serif;
+    font-family: Nessie-SemiBoldIt, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
