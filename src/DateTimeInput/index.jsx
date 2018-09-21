@@ -1,16 +1,26 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { DatePicker }                 from '../index';
-import TextInputWithIcon              from '../TextInputWithIcon';
-import withDropdown                   from '../Dropdown/withDropdown';
-import withInputContainer             from '../proto/withInputContainer';
-import { eventHandler, generateId }   from '../utils';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
+
+import { DatePicker }               from '../index';
+import TextInputWithIcon            from '../TextInputWithIcon';
+import withDropdown                 from '../Dropdown/withDropdown';
+import withInputContainer           from '../proto/withInputContainer';
+import { eventHandler, generateId } from '../utils';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 const DateTimeInput = ( {
+    className,
     currentMonth,
     currentYear,
     days,
@@ -24,9 +34,12 @@ const DateTimeInput = ( {
     id = generateId( 'DateTimeInput' ),
     inputPlaceholder,
     inputRef,
+    inputValue,
     isDisabled,
     isOpen,
     isReadOnly,
+    isReadOnlyButton,
+    isReadOnlyInput,
     minuteIsDisabled,
     minuteIsReadOnly,
     minuteInputRef,
@@ -43,47 +56,51 @@ const DateTimeInput = ( {
     onClickNext,
     onClickPrev,
     onFocus,
+    onKeyDown,
     onKeyPress,
+    onKeyUp,
     onMouseOut,
+    onMouseOutIcon,
     onMouseOver,
+    onMouseOverIcon,
     prevIsDisabled,
     prevIsReadOnly,
-    inputValue,
+    textAlign,
     weeks,
 } ) =>
 {
     const datePicker = (
         <DatePicker
-            key            = "datePicker"
-            headers        = { mode !== 'month' ? days : undefined }
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            items          = { mode === 'month' ? months : weeks }
-            month          = { currentMonth }
-            year           = { currentYear }
-            onClickNext    = { onClickNext }
-            onClickPrev    = { onClickPrev }
-            nextIsDisabled = { nextIsDisabled }
-            nextIsReadOnly = { nextIsReadOnly }
-            prevIsDisabled = { prevIsDisabled }
-            prevIsReadOnly = { prevIsReadOnly }
-            onClickItem    = { onClickCell }
-            type           = { mode === 'month' ? 'month' : 'day' }
+            headers           = { mode !== 'month' ? days : undefined }
+            hourInputRef      = { hourInputRef }
             hourIsDisabled    = { hourIsDisabled }
             hourIsReadOnly    = { hourIsReadOnly }
-            hourInputRef      = { hourInputRef }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
+            isDisabled        = { isDisabled }
+            isReadOnly        = { isReadOnly }
+            items             = { mode === 'month' ? months : weeks }
+            key               = "datePicker"
+            minuteInputRef    = { minuteInputRef }
             minuteIsDisabled  = { minuteIsDisabled }
             minuteIsReadOnly  = { minuteIsReadOnly }
-            minuteInputRef    = { minuteInputRef }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
             mode              = { mode }
+            month             = { currentMonth }
+            nextIsDisabled    = { nextIsDisabled }
+            nextIsReadOnly    = { nextIsReadOnly }
             onBlur            = { onBlur }
             onChange          = { onChange }
+            onClickItem       = { onClickCell }
+            onClickNext       = { onClickNext }
+            onClickPrev       = { onClickPrev }
             onFocus           = { onFocus }
-            onKeyPress        = { onKeyPress } />
+            onKeyPress        = { onKeyPress }
+            prevIsDisabled    = { prevIsDisabled }
+            prevIsReadOnly    = { prevIsReadOnly }
+            type              = { mode === 'month' ? 'month' : 'day' }
+            year              = { currentYear } />
     );
 
     const dropdownProps = {
@@ -95,53 +112,45 @@ const DateTimeInput = ( {
 
     return (
         <InputWithDropdown
-            dropdownProps  = { dropdownProps }
-            dropdownIsOpen = { isOpen }
-            forceHover     = { forceHover || isOpen }
-            hasError       = { hasError }
-            id             = { id }
-            iconType       = "calendar"
-            isDisabled     = { isDisabled }
-            isReadOnly     = { isReadOnly }
-            inputRef       = { inputRef }
-            onBlur         = { eventHandler( onBlur, 'main' ) }
-            onChange       = { eventHandler( onChange, 'main' ) }
-            onClickIcon    = { onClickIcon }
-            onFocus        = { eventHandler( onFocus, 'main' ) }
-            onKeyPress     = { eventHandler( onKeyPress, 'main' ) }
-            onMouseOut     = { onMouseOut }
-            onMouseOver    = { onMouseOver }
-            placeholder    = { inputPlaceholder }
-            value          = { inputValue } />
+            autoCapitalize   = "off"
+            autoComplete     = "off"
+            autoCorrect      = "off"
+            className        = { className }
+            dropdownIsOpen   = { isOpen }
+            dropdownProps    = { dropdownProps }
+            forceHover       = { forceHover || isOpen }
+            hasError         = { hasError }
+            iconType         = "calendar"
+            id               = { id }
+            inputRef         = { inputRef }
+            isDisabled       = { isDisabled }
+            isReadOnly       = { isReadOnly }
+            isReadOnlyButton = { isReadOnlyButton }
+            isReadOnlyInput  = { isReadOnlyInput }
+            onBlur           = { eventHandler( onBlur, 'main' ) }
+            onChange         = { eventHandler( onChange, 'main' ) }
+            onClickIcon      = { onClickIcon }
+            onFocus          = { eventHandler( onFocus, 'main' ) }
+            onKeyDown        = { onKeyDown }
+            onKeyPress       = { eventHandler( onKeyPress, 'main' ) }
+            onKeyUp          = { onKeyUp }
+            onMouseOut       = { onMouseOut }
+            onMouseOutIcon   = { onMouseOutIcon }
+            onMouseOver      = { onMouseOver }
+            onMouseOverIcon  = { onMouseOverIcon }
+            placeholder      = { inputPlaceholder }
+            spellCheck       = { false }
+            textAlign        = { textAlign }
+            value            = { inputValue } />
     );
 };
 
 DateTimeInput.propTypes =
 {
     /**
-    *  Label text
-    */
-    label                 : PropTypes.string,
-    /**
-     *  Label position
+     *  Extra CSS class name
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-    /**
-     * HTML id attribute (overwrite default)
-     */
-    id                    : PropTypes.string,
-    /**
-    *  Display as disabled
-    */
-    isDisabled            : PropTypes.bool,
-    /**
-    *  Display as read-only
-    */
-    isReadOnly            : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    hasError              : PropTypes.bool,
+    className             : PropTypes.string,
     /**
      *  Tooltip message text (string or JSX)
      */
@@ -151,53 +160,103 @@ DateTimeInput.propTypes =
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-     *  Main input placeholder text
+    *   Error message position relative to the icon
+    */
+    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    /**
+     *  Current month to disaplay in default/day mode
      */
-    inputPlaceholder      : PropTypes.string,
+    currentMonth          : PropTypes.string,
+    /**
+     *  Current year to display
+     */
+    currentYear           : PropTypes.string,
+    /**
+     *  Days of week to display
+     */
+    days                  : PropTypes.arrayOf( PropTypes.object ),
+    /**
+     *  Display as hover when required from another component
+     */
+    forceHover            : PropTypes.bool,
+    /**
+     *  Display as error/invalid
+     */
+    hasError              : PropTypes.bool,
+    /**
+     *  Hour input ref callback function:
+     *  ( ref ) = { ... }
+     */
+    hourInputRef          : PropTypes.func,
+    /**
+     *  Hour input is disabled
+     */
+    hourIsDisabled        : PropTypes.bool,
     /**
      *  Hour input placeholder text
      */
     hourPlaceholder       : PropTypes.string,
     /**
-     *  Minute input placeholder text
+     *  Hour input value
      */
-    minutePlaceholder     : PropTypes.string,
+    hourValue             : PropTypes.string,
+    /**
+     *  HTML id attribute
+     */
+    id                    : PropTypes.string,
+    /**
+     *  Main input placeholder text
+     */
+    inputPlaceholder      : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef              : PropTypes.func,
     /**
      *  Main input value
      */
     inputValue            : PropTypes.string,
     /**
-     *  Hour input value
+     *  Display as disabled
      */
-    hourValue             : PropTypes.string,
+    isDisabled            : PropTypes.bool,
     /**
-     *  Minute input value
+     *  Picker is open
      */
-    minuteValue           : PropTypes.string,
+    isOpen                : PropTypes.bool,
     /**
-     *  Picker mode
+     *  Display as read-only
      */
-    mode                  : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    isReadOnly            : PropTypes.bool,
     /**
-     *  “Previous” button is disabled
+     *  Display as read-only for IconButton
      */
-    prevIsDisabled        : PropTypes.bool,
+    isReadOnlyButton      : PropTypes.bool,
     /**
      *  “Previous” button is read only
      */
     prevIsReadOnly        : PropTypes.bool,
     /**
-     *  “Next” button is disabled
+     *  Display as read-only for TextInput
      */
-    nextIsDisabled        : PropTypes.bool,
+    isReadOnlyInput       : PropTypes.bool,
     /**
      *  “Next” button is read only
      */
     nextIsReadOnly        : PropTypes.bool,
     /**
-     *  Hour input is disabled
+     *  Label text (string or JSX node)
      */
-    hourIsDisabled        : PropTypes.bool,
+    label                 : PropTypes.node,
+    /**
+     *  Label position
+     */
+    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    /**
+     *  Minute input ref callback function:
+     *  ( ref ) = { ... }
+     */
+    minuteInputRef        : PropTypes.func,
     /**
      *  Hour input is read only
      */
@@ -211,132 +270,145 @@ DateTimeInput.propTypes =
      */
     minuteIsReadOnly      : PropTypes.bool,
     /**
-     *  Picker is open
+     *  Minute input placeholder text
      */
-    isOpen                : PropTypes.bool,
+    minutePlaceholder     : PropTypes.string,
     /**
-     *  Days of week to display
+     *  Minute input value
      */
-    days                  : PropTypes.arrayOf( PropTypes.object ),
+    minuteValue           : PropTypes.string,
     /**
-     *  Weeks to display in default/day mode
+     *  Picker mode
      */
-    weeks                 : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object ) ),
+    mode                  : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
     /**
      *  Months to display in month mode
      */
-    months                : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object ) ),
+    months                : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
-     *  Current month to disaplay in default/day mode
+     *  “Next” button is disabled
      */
-    currentMonth   : PropTypes.string,
+    nextIsDisabled        : PropTypes.bool,
     /**
-     *  Current year to display
+     *  Blur callback function
      */
-    currentYear    : PropTypes.string,
+    onBlur                : PropTypes.func,
     /**
-     *  Display as hovered
+     *  Input change callback function
      */
-    forceHover     : PropTypes.bool,
+    onChange              : PropTypes.func,
     /**
-     *  onChange callback function
+     *  Icon click callback function
      */
-    onChange       : PropTypes.func,
-    /**
-     *  onKeyPress callback function
-     */
-    onKeyPress     : PropTypes.func,
-    /**
-     *  onFocus callback function
-     */
-    onFocus        : PropTypes.func,
-    /**
-     *  onBlur callback function
-     */
-    onBlur         : PropTypes.func,
-    /**
-     *  onMouseOver callback function
-     */
-    onMouseOver    : PropTypes.func,
-    /**
-     *  onMouseOut callback function
-     */
-    onMouseOut     : PropTypes.func,
-    /**
-     *  onClick callback function for “Next” button
-     */
-    onClickPrev    : PropTypes.func,
-    /**
-     *  onClick callback function for “Previous” button
-     */
-    onClickNext    : PropTypes.func,
-    /**
-     *  onClick callback function for calendar icon
-     */
-    onClickIcon    : PropTypes.func,
+    onClickIcon           : PropTypes.func,
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell    : PropTypes.func,
+    onClickCell           : PropTypes.func,
     /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
+     *  onClick callback function for “Next” button
      */
-    inputRef       : PropTypes.func,
+    onClickNext           : PropTypes.func,
     /**
-     *  Hour input ref callback function:
-     *  ( ref ) = { ... }
+     *  onClick callback function for “Previous” button
      */
-    hourInputRef   : PropTypes.func,
+    onClickPrev           : PropTypes.func,
     /**
-     *  Minute input ref callback function:
-     *  ( ref ) = { ... }
+     *  Focus callback function
      */
-    minuteInputRef : PropTypes.func,
+    onFocus               : PropTypes.func,
+    /**
+     *  Key down callback function
+     */
+    onKeyDown             : PropTypes.func,
+    /**
+     *  Key press callback function
+     */
+    onKeyPress            : PropTypes.func,
+    /**
+     *  Key up callback function
+     */
+    onKeyUp               : PropTypes.func,
+    /**
+     *  Mouse out callback function
+     */
+    onMouseOut            : PropTypes.func,
+    /**
+     *  Icon mouse out callback function
+     */
+    onMouseOutIcon        : PropTypes.func,
+    /**
+     *  Mouse over  callback function
+     */
+    onMouseOver           : PropTypes.func,
+    /**
+     *  Icon mouse over callback function
+     */
+    onMouseOverIcon       : PropTypes.func,
+    /**
+     *  “Previous” button is disabled
+     */
+    prevIsDisabled        : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Weeks to display in default/day mode
+     */
+    weeks                 : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
 };
 
 DateTimeInput.defaultProps =
 {
-    currentMonth      : undefined,
-    currentYear       : undefined,
-    days              : undefined,
-    forceHover        : false,
-    hasError          : false,
-    hourInputRef      : undefined,
-    hourIsDisabled    : false,
-    hourIsReadOnly    : false,
-    hourPlaceholder   : undefined,
-    hourValue         : undefined,
-    id                : undefined,
-    inputPlaceholder  : undefined,
-    inputRef          : undefined,
-    inputValue        : undefined,
-    isDisabled        : false,
-    isOpen            : false,
-    isReadOnly        : false,
-    minuteInputRef    : undefined,
-    minuteIsDisabled  : false,
-    minuteIsReadOnly  : false,
-    minutePlaceholder : undefined,
-    minuteValue       : undefined,
-    mode              : 'default',
-    months            : undefined,
-    nextIsDisabled    : false,
-    nextIsReadOnly    : false,
-    onBlur            : undefined,
-    onChange          : undefined,
-    onClickCell       : undefined,
-    onClickIcon       : undefined,
-    onClickNext       : undefined,
-    onClickPrev       : undefined,
-    onFocus           : undefined,
-    onKeyPress        : undefined,
-    onMouseOut        : undefined,
-    onMouseOver       : undefined,
-    prevIsDisabled    : false,
-    prevIsReadOnly    : false,
-    weeks             : undefined,
+    className             : undefined,
+    currentMonth          : undefined,
+    currentYear           : undefined,
+    days                  : undefined,
+    errorMessage          : undefined,
+    errorMessageIsVisible : undefined,
+    errorMessagePosition  : undefined,
+    forceHover            : false,
+    hasError              : false,
+    hourInputRef          : undefined,
+    hourIsDisabled        : false,
+    hourPlaceholder       : undefined,
+    hourValue             : undefined,
+    id                    : undefined,
+    inputPlaceholder      : undefined,
+    inputRef              : undefined,
+    inputValue            : undefined,
+    isDisabled            : false,
+    isOpen                : false,
+    isReadOnly            : false,
+    isReadOnlyButton      : undefined,
+    isReadOnlyInput       : undefined,
+    label                 : undefined,
+    labelPosition         : undefined,
+    minuteInputRef        : undefined,
+    minuteIsDisabled      : false,
+    minutePlaceholder     : undefined,
+    minuteValue           : undefined,
+    mode                  : 'default',
+    months                : undefined,
+    nextIsDisabled        : false,
+    onBlur                : undefined,
+    onChange              : undefined,
+    onClickCell           : undefined,
+    onClickIcon           : undefined,
+    onClickNext           : undefined,
+    onClickPrev           : undefined,
+    onFocus               : undefined,
+    onKeyDown             : undefined,
+    onKeyPress            : undefined,
+    onKeyUp               : undefined,
+    onMouseOut            : undefined,
+    onMouseOutIcon        : undefined,
+    onMouseOver           : undefined,
+    onMouseOverIcon       : undefined,
+    prevIsDisabled        : false,
+    textAlign             : 'auto',
+    weeks                 : undefined,
 };
 
 export { DateTimeInput };

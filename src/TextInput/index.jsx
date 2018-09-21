@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
@@ -17,18 +26,18 @@ const TextInput = ( {
 } ) => (
     <InputContainer
         { ...props }
-        id          = { id }
         className   = { buildClassName( className, cssMap ) }
+        id          = { id }
         onMouseOut  = { onMouseOut }
         onMouseOver = { onMouseOver }>
-        <InputField { ...props } id = { id } />
+        <InputField { ...props } id = { id } type = "text" />
     </InputContainer>
 );
 
 TextInput.propTypes =
 {
     /**
-     *  aria properties
+     *  ARIA properties
      */
     aria : PropTypes.objectOf( PropTypes.oneOfType( [
         PropTypes.bool,
@@ -36,37 +45,36 @@ TextInput.propTypes =
         PropTypes.string,
     ] ) ),
     /**
+     *  HTML attribute controlling input auto capitalize
+     */
+    autoCapitalize : PropTypes.oneOf( [
+        'on',
+        'off',
+        'none',
+        'sentences',
+        'words',
+        'characters',
+    ] ),
+    /**
+     *  HTML attribute controlling input auto complete
+     */
+    autoComplete          : PropTypes.string,
+    /**
+     *  HTML attribute controlling input auto correct (Safari-specific)
+     */
+    autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
+    /**
+     *  Extra CSS class name
+     */
+    className             : PropTypes.string,
+    /**
      *  CSS class map
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Label text (string or JSX node)
+     *  Initial input string value
      */
-    label                 : PropTypes.node,
-    /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-    /**
-     *  Placeholder text
-     */
-    placeholder           : PropTypes.string,
-    /**
-     *  Alignment of the input text
-     */
-    textAlign             : PropTypes.oneOf( [ 'left', 'right' ] ),
-    /**
-     *  Display as disabled
-     */
-    isDisabled            : PropTypes.bool,
-    /**
-     *  Display as read-only
-     */
-    isReadOnly            : PropTypes.bool,
-    /**
-     *  Display as error/invalid
-     */
-    hasError              : PropTypes.bool,
+    defaultValue          : PropTypes.string,
     /**
      *  Tooltip message text (string or JSX)
      */
@@ -76,7 +84,7 @@ TextInput.propTypes =
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-    *  Error message position relative to the icon
+    *   Error message position relative to the icon
     */
     errorMessagePosition  : PropTypes.oneOf( [
         'top',
@@ -93,66 +101,102 @@ TextInput.propTypes =
         'rightBottom',
     ] ),
     /**
-     *  Initial input string value
+     *  Display as hover when required from another component
      */
-    defaultValue : PropTypes.string,
+    forceHover    : PropTypes.bool,
     /**
-     *  Input string value
+     *  Display as error/invalid
      */
-    value        : PropTypes.string,
+    hasError      : PropTypes.bool,
     /**
-     *  HTML id attribute (overwrite default)
+     *  HTML id attribute
      */
-    id           : PropTypes.string,
+    id            : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef      : PropTypes.func,
+    /**
+     *  Display as disabled
+     */
+    isDisabled    : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly    : PropTypes.bool,
+    /**
+     *  Label text (string or JSX node)
+     */
+    label         : PropTypes.node,
+    /**
+     *  Label position
+     */
+    labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  HTML name attribute
      */
-    name         : PropTypes.string,
+    name          : PropTypes.string,
     /**
-     *  Input click callback function
+     *  Blur callback function
      */
-    onClick      : PropTypes.func,
+    onBlur        : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange     : PropTypes.func,
+    onChange      : PropTypes.func,
     /**
-     *  Input focus callback function
+     *  Input click callback function
      */
-    onFocus      : PropTypes.func,
+    onClick       : PropTypes.func,
     /**
-     *  Input blur callback function
+     *  Focus callback function
      */
-    onBlur       : PropTypes.func,
+    onFocus       : PropTypes.func,
     /**
-     * onInput callback function
+     *  Key down callback function
      */
-    onInput      : PropTypes.func,
+    onKeyDown     : PropTypes.func,
     /**
-     * onKeyPress callback function
+     *  Key press callback function
      */
-    onKeyPress   : PropTypes.func,
+    onKeyPress    : PropTypes.func,
     /**
-     *  Input mouseOver callback function
+     *  Key up callback function
      */
-    onMouseOver  : PropTypes.func,
+    onKeyUp       : PropTypes.func,
     /**
-     *  Input mouseOut callback function
+     *  Mouse out callback function
      */
-    onMouseOut   : PropTypes.func,
+    onMouseOut    : PropTypes.func,
     /**
-     * Display as hover when required from another component
+     *  Mouse over  callback function
      */
-    forceHover   : PropTypes.bool,
+    onMouseOver   : PropTypes.func,
     /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
+     *  Placeholder text
      */
-    inputRef     : PropTypes.func,
+    placeholder   : PropTypes.string,
+    /**
+     *  HTML attribute controlling input spell check
+     */
+    spellCheck    : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign     : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value         : PropTypes.string,
 };
 
 TextInput.defaultProps =
 {
     aria                  : undefined,
+    autoCapitalize        : undefined,
+    autoComplete          : undefined,
+    autoCorrect           : undefined,
+    className             : undefined,
     cssMap                : styles,
     defaultValue          : undefined,
     errorMessage          : undefined,
@@ -171,10 +215,13 @@ TextInput.defaultProps =
     onChange              : undefined,
     onClick               : undefined,
     onFocus               : undefined,
-    onInput               : undefined,
+    onKeyDown             : undefined,
     onKeyPress            : undefined,
+    onKeyUp               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,
+    placeholder           : undefined,
+    spellCheck            : undefined,
     textAlign             : undefined,
     value                 : undefined,
 };

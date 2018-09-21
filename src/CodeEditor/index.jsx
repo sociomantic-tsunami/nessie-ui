@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* eslint-disable react/forbid-prop-types */
 
 import React, { Component } from 'react';
@@ -88,7 +97,7 @@ export default class CodeEditor extends Component
          */
         value        : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         onChange     : PropTypes.func,
         /**
@@ -366,8 +375,8 @@ export default class CodeEditor extends Component
             <InputContainer
                 { ...props }
                 className = { buildClassName( className, cssMap, {
-                    error       : !isDisabled && hasError,
                     disabled    : isDisabled,
+                    error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
                 } ) }>
                 <div
@@ -378,9 +387,12 @@ export default class CodeEditor extends Component
                         maxHeight : String( maxHeight ),
                     } }>
                     <textarea
-                        ref          = { this.handleTextareaRef }
-                        defaultValue = { value }
-                        autoComplete = "off" />
+                        autoCapitalize = "off"
+                        autoComplete   = "off"
+                        autoCorrect    = "off"
+                        defaultValue   = { value }
+                        ref            = { this.handleTextareaRef }
+                        spellCheck     = { false } />
                 </div>
             </InputContainer>
         );

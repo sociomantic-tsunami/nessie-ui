@@ -1,5 +1,13 @@
-/* global addEventListener document removeEventListener */
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
+/* global addEventListener removeEventListener Event */
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
@@ -17,7 +25,7 @@ export default class Slider extends React.Component
         */
         label                 : PropTypes.string,
         /**
-         * HTML id attribute (overwrite default)
+         * HTML id attribute
          */
         id                    : PropTypes.string,
         /**
