@@ -81,7 +81,7 @@
     .subLabel
     {
         @extend %Nessie-SemiBoldIt;
-        color:         var ( --PC-GREY--L40 );
+        color:         var( --PC-GREY--L40 );
         font-size:     11px;
         line-height:   14px;
     }
