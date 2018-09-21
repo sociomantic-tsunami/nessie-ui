@@ -30,11 +30,11 @@ const Row = ( {
     (
         <div
             className = { buildClassName( className, cssMap, {
-                alignX   : align,
-                alignY   : verticalAlign,
-                gutters  : gutters !== 'none' && gutters,
-                wrap     : hasWrap,
-                spacing  : spacing !== 'none' && spacing,
+                alignX  : align,
+                alignY  : verticalAlign,
+                gutters : gutters !== 'none' && gutters,
+                wrap    : hasWrap,
+                spacing : spacing !== 'none' && spacing,
             } ) }
             hasWrap      = { false }
             onClick      = { onClick }
