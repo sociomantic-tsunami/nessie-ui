@@ -107,7 +107,11 @@
     },
     "Grid" :
     {
-        "children": "{<Text>First column</Text><Text>Second column</Text><Text>Third column</Text>}"
+        "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
+    },
+    "GridItem" :
+    {
+        "children": "{<Text>Grid Item dummy text</Text>}"
     },
     "H1" :
     {

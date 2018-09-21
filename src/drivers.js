@@ -162,23 +162,23 @@ const drivers =
     },
     {
         Component : DatePicker,
-        Driver    : DatePickerDriver
+        Driver    : DatePickerDriver,
     },
     {
         Component : DateTimeInput,
-        Driver    : DateTimeInputDriver
+        Driver    : DateTimeInputDriver,
     },
     {
         Component : DragNDrop,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : Dropdown,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : Fieldset,
-        Driver    : WrapperDriver
+        Driver    : WrapperDriver,
     },
     {
         Component : FlounderDropdown,
@@ -310,15 +310,15 @@ const drivers =
     },
     {
         Component : ScrollBar,
-        Driver    : ScrollBarDriver
+        Driver    : ScrollBarDriver,
     },
     {
         Component : ScrollBox,
-        Driver    : ScrollBoxDriver
+        Driver    : ScrollBoxDriver,
     },
     {
         Component : Section,
-        Driver    : SectionDriver
+        Driver    : SectionDriver,
     },
     {
         Component : Slider,
@@ -338,7 +338,7 @@ const drivers =
     },
     {
         Component : Switch,
-        Driver    : SwitchDriver
+        Driver    : SwitchDriver,
     },
     {
         Component : Tab,
@@ -370,7 +370,7 @@ const drivers =
     },
     {
         Component : TagInput,
-        Driver    : TagInputDriver
+        Driver    : TagInputDriver,
     },
     {
         Component : Text,
@@ -386,7 +386,7 @@ const drivers =
     },
     {
         Component : TextInputWithDropdown,
-        Driver    : InputComponentDriver
+        Driver    : InputComponentDriver,
     },
     {
         Component : TextInputWithIcon,
@@ -398,7 +398,7 @@ const drivers =
     },
     {
         Component : ToggleButton,
-        Driver    : ClickableComponentDriver
+        Driver    : ClickableComponentDriver,
     },
     {
         Component : Uploader,
@@ -407,14 +407,14 @@ const drivers =
     {
         Component : ValuedTextInput,
         Driver    : InputComponentDriver,
-    }
+    },
 ];
 
 export {
     ClickableComponentDriver,
     InputComponentDriver,
     SimpleComponentDriver,
-    WrapperDriver
+    WrapperDriver,
 };
 
 export default ComponentDriver.createDriverSuite( drivers );

@@ -25,10 +25,10 @@ const Grid = ( {
     customRows,
     cssMap,
     columnGap,
+    justify,
     role,
     rows,
     rowGap,
-    verticalAlign,
 } ) =>
 {
     const layout = {
@@ -43,9 +43,9 @@ const Grid = ( {
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                alignX : align,
-                alignY : verticalAlign,
-                flow   : autoFlow,
+                flow : autoFlow,
+                justify,
+                align,
                 columnGap,
                 rowGap,
             } ) }
@@ -59,10 +59,9 @@ const Grid = ( {
 Grid.propTypes =
 {
     /**
-     * Horizontal alignment of the grid items
+     * Vertical alignment of the grid items
      */
-    align : PropTypes
-        .oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
+    align    : PropTypes.oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
     /**
      * Defines the size of implicitly set columns
      */
@@ -89,7 +88,7 @@ Grid.propTypes =
      */
     columnGap     : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     *  Number of columns
+     *  Number of columns - should be an integer > 0
      */
     columns       : PropTypes.number,
     /**
@@ -105,6 +104,10 @@ Grid.propTypes =
      */
     customRows    : PropTypes.string,
     /**
+     * Horizontal alignment of the grid items
+     */
+    justify       : PropTypes.oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
+    /**
      *  Grid role
      */
     role          : PropTypes.string,
@@ -113,19 +116,14 @@ Grid.propTypes =
      */
     rowGap        : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     *  Number of rows
+     *  Number of rows - should be an integer > 0
      */
     rows          : PropTypes.number,
-    /**
-     * Vertical alignment of the grid items
-     */
-    verticalAlign : PropTypes
-        .oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
 };
 
 Grid.defaultProps =
 {
-    align         : 'left',
+    align         : 'top',
     autoCols      : undefined,
     autoFlow      : 'row',
     autoRows      : undefined,
@@ -136,10 +134,10 @@ Grid.defaultProps =
     cssMap        : styles,
     customColumns : undefined,
     customRows    : undefined,
+    justify       : 'left',
     role          : undefined,
     rowGap        : 'M',
     rows          : undefined,
-    verticalAlign : 'top',
 };
 
 export default Grid;

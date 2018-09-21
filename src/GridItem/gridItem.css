@@ -1,0 +1,51 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+@import "../proto/base.css";
+
+.default
+{
+    margin-bottom: 0;
+}
+
+
+.align__top
+{
+    align-self: start;
+}
+.align__middle
+{
+    align-self: center;
+}
+.align__bottom
+{
+    align-self: end;
+}
+.align__stretch
+{
+    align-self: stretch;
+}
+
+
+.justify__left
+{
+    justify-self: start;
+}
+.justify__center
+{
+    justify-self: center;
+}
+.justify__right
+{
+    justify-self: end;
+}
+.justify__stretch
+{
+    justify-self: stretch;
+}

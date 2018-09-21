@@ -20,9 +20,7 @@
 {
     display:        grid;
 
-    width:          auto;
     max-width:      100%;
-
     margin-bottom:  0;
 
     > *
@@ -51,44 +49,45 @@
 }
 
 
-.alignX__left
-{
-    justify-items: start;
-}
-
-.alignX__center
-{
-    justify-items: center;
-}
-
-.alignX__right
-{
-    justify-items: end;
-}
-
-.alignX__stretch
-{
-    justify-items: stretch;
-}
-
-.alignY__top
+.align__top
 {
     align-items:   start;
 }
 
-.alignY__middle
+.align__middle
 {
     align-items:   center;
 }
 
-.alignY__bottom
+.align__bottom
 {
     align-items:   end;
 }
 
-.alignY__stretch
+.align__stretch
 {
     align-items:   stretch;
+}
+
+
+.justify__left
+{
+    justify-items: start;
+}
+
+.justify__center
+{
+    justify-items: center;
+}
+
+.justify__right
+{
+    justify-items: end;
+}
+
+.justify__stretch
+{
+    justify-items: stretch;
 }
 
 
