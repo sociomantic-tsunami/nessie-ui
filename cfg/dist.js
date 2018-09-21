@@ -73,8 +73,14 @@ const componentDriver = merge( {}, distConfig, {
 } );
 
 const driverSuite = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/drivers.js' ),
-    output : { filename: 'driverSuite.js' },
+    entry   : path.join( __dirname, '../src/drivers.js' ),
+    output  : { filename: 'driverSuite.js' },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'driverSuite.css',
+        } ),
+    ],
 } );
 
 
