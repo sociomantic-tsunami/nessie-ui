@@ -90,38 +90,6 @@ $shark: 768px;
 }
 
 
-.dividers__before
-{
-    & > *:not(:first-child)::before
-    {
-        content:    '';
-        position:   absolute;
-        top:        -1px;
-
-        height:     2px;
-        width:      100%;
-
-        background: var( --PC-GREY--L70 );
-    }
-}
-
-.dividers__after
-{
-    & > *:not(:last-child)::after
-    {
-        content:    '';
-        position:   absolute;
-        bottom:     -1px;
-        left:       0;
-
-        height:     2px;
-        width:      100%;
-
-        background: var( --PC-GREY--L70 );
-    }
-}
-
-
 @for $i from 1 to 24
 {
     @for $j from 1 to 24

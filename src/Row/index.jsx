@@ -18,7 +18,6 @@ const Row = ( {
     children,
     className,
     cssMap,
-    dividers,
     onClick,
     onMouseOut,
     onMouseOver,
@@ -33,7 +32,6 @@ const Row = ( {
             className = { buildClassName( className, cssMap, {
                 alignX   : align,
                 alignY   : verticalAlign,
-                dividers : dividers !== 'none' && dividers,
                 gutters  : gutters !== 'none' && gutters,
                 wrap     : hasWrap,
                 spacing  : spacing !== 'none' && spacing,
@@ -66,10 +64,6 @@ Row.propTypes =
      *  CSS class map
      */
     cssMap        : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Dividers between items
-     */
-    dividers      : PropTypes.oneOf( [ 'none', 'before', 'after' ] ),
     /**
      *  Gutter size
      */
@@ -114,7 +108,6 @@ Row.defaultProps =
     children      : undefined,
     className     : undefined,
     cssMap        : styles,
-    dividers      : 'none',
     gutters       : 'M',
     onClick       : undefined,
     onMouseOut    : undefined,

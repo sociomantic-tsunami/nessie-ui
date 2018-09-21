@@ -236,34 +236,3 @@
 {
     flex-wrap:  wrap;
 }
-
-
-.dividers__before
-{
-    & > *:not(:first-child)::before
-    {
-        content:    '';
-        position:   absolute;
-        left:       -1px;
-
-        width:      2px;
-        height:     100%;
-
-        background: var( --PC-GREY--L70 );
-    }
-}
-
-.dividers__after
-{
-    & > *:not(:last-child)::after
-    {
-        content:    '';
-        position:   absolute;
-        right:      -1px;
-
-        width:      2px;
-        height:     100%;
-
-        background: var( --PC-GREY--L70 );
-    }
-}
