@@ -79,17 +79,16 @@ export default class ScrollBox extends Component
             'both',
         ] ),
         /**
-         *  Horizontal Scroll Amount
+         *  Amount of pixels to scroll by
          */
-        scrollAmountHorizontal : PropTypes.number,
-        /**
-         *  Vertical Scroll Amount
-         */
-        scrollAmountVertical   : PropTypes.number,
+        scrollAmount : PropTypes.oneOfType( [
+            PropTypes.number,
+            PropTypes.arrayOf( PropTypes.number ),
+        ] ),
         /**
         *   ScrollBox padding
         */
-        padding                : PropTypes.oneOfType( [
+        padding              : PropTypes.oneOfType( [
             PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
             PropTypes.arrayOf( PropTypes.oneOf( [
                 'none',
@@ -137,24 +136,23 @@ export default class ScrollBox extends Component
         contentWidth           : undefined,
         cssMap                 : styles,
         height                 : undefined,
-        onMouseOut             : undefined,
-        onMouseOver            : undefined,
-        onScroll               : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
         onClickScrollRight     : undefined,
         onClickScrollUp        : undefined,
+        onMouseOut             : undefined,
+        onMouseOver            : undefined,
+        onScroll               : undefined,
         padding                : 'none',
         scroll                 : 'both',
+        scrollAmount           : undefined,
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
-        scrollAmountHorizontal : undefined,
         scrollIndicatorVariant : 'circle',
         scrollLeftIsVisible    : false,
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
-        scrollAmountVertical   : undefined,
     };
 
     constructor()
@@ -240,19 +238,76 @@ export default class ScrollBox extends Component
         return newState;
     }
 
+    handleClickScrollButton( dir, e )
+    {
+        const callback = this.props[ `onClickScroll${dir}` ];
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        const { scrollAmount } = this.props;
+
+        if ( dir === 'Up' || dir === 'Down' )
+        {
+            const { clientHeight, scrollTop } = this.state;
+
+            let amount = clientHeight;
+            if ( scrollAmount )
+            {
+                amount = Array.isArray( scrollAmount ) ?
+                    scrollAmount[ 1 ] : scrollAmount;
+            }
+
+            const increment = dir === 'Down' ? amount : -amount;
+            this.innerRef.scrollTop = scrollTop + increment;
+        }
+
+        if ( dir === 'Left' || dir === 'Right' )
+        {
+            const { clientWidth, scrollLeft } = this.state;
+
+            let amount = clientWidth;
+            if ( scrollAmount )
+            {
+                amount = Array.isArray( scrollAmount ) ?
+                    scrollAmount[ 0 ] : scrollAmount;
+            }
+
+            const increment = dir === 'Right' ? amount : -amount;
+            this.innerRef.scrollLeft = scrollLeft + increment;
+        }
+    }
+
     handleClickTrackX( pos )
     {
+        const { scrollAmount } = this.props;
         const { clientWidth, scrollLeft } = this.state;
-        const increment = pos >= scrollLeft ? clientWidth : -clientWidth;
 
+        let amount = clientWidth;
+        if ( scrollAmount )
+        {
+            amount = Array.isArray( scrollAmount ) ?
+                scrollAmount[ 0 ] : scrollAmount;
+        }
+
+        const increment = pos >= scrollLeft ? amount : -amount;
         this.innerRef.scrollLeft = scrollLeft + increment;
     }
 
     handleClickTrackY( pos )
     {
+        const { scrollAmount } = this.props;
         const { clientHeight, scrollTop } = this.state;
-        const increment = pos >= scrollTop ? clientHeight : -clientHeight;
 
+        let amount = clientHeight;
+        if ( scrollAmount )
+        {
+            amount = Array.isArray( scrollAmount ) ?
+                scrollAmount[ 1 ] : scrollAmount;
+        }
+
+        const increment = pos >= scrollTop ? amount : -amount;
         this.innerRef.scrollTop = scrollTop + increment;
     }
 
@@ -309,17 +364,19 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars.push( <ScrollBar
-                    className        = { cssMap.scrollBarHorizontal }
-                    key              = "horizontal"
-                    onClickTrack     = { this.handleClickTrackX }
-                    onChange         = { this.handleChangeX }
-                    orientation      = "horizontal"
-                    scrollPos        = { scrollLeft }
-                    thumbSize        = {
-                        `${( clientWidth / scrollWidth ) * 100}%`
-                    }
-                    scrollMax = { scrollWidth - clientWidth } /> );
+                scrollBars.push(
+                    <ScrollBar
+                        className        = { cssMap.scrollBarHorizontal }
+                        key              = "horizontal"
+                        onClickTrack     = { this.handleClickTrackX }
+                        onChange         = { this.handleChangeX }
+                        orientation      = "horizontal"
+                        scrollPos        = { scrollLeft }
+                        thumbSize        = {
+                            `${( clientWidth / scrollWidth ) * 100}%`
+                        }
+                        scrollMax = { scrollWidth - clientWidth } />
+                );
             }
         }
 
@@ -329,18 +386,20 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars.push( <ScrollBar
-                    className        = { cssMap.scrollBarVertical }
-                    key              = "vertical"
-                    onClickTrack     = { this.handleClickTrackY }
-                    onChange         = { this.handleChangeY }
-                    orientation      = "vertical"
-                    scrollPos        = { scrollTop }
-                    thumbSize        = {
-                        `${( clientHeight / scrollHeight ) * 100}%`
-                    }
-                    scrollMax = { scrollHeight - clientHeight  }
-                    length    = { `${clientHeight}px` } /> );
+                scrollBars.push(
+                    <ScrollBar
+                        className        = { cssMap.scrollBarVertical }
+                        key              = "vertical"
+                        onClickTrack     = { this.handleClickTrackY }
+                        onChange         = { this.handleChangeY }
+                        orientation      = "vertical"
+                        scrollPos        = { scrollTop }
+                        thumbSize        = {
+                            `${( clientHeight / scrollHeight ) * 100}%`
+                        }
+                        scrollMax = { scrollHeight - clientHeight  }
+                        length    = { `${clientHeight}px` } />
+                );
             }
         }
 
@@ -352,72 +411,28 @@ export default class ScrollBox extends Component
         const { props } = this;
         const scrollButtons = [];
 
-        [ 'Down', 'Left', 'Right', 'Up' ].forEach( dir =>
+        [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push( <IconButton
-                    className     = { props.cssMap[ `icon${dir}` ] }
-                    hasBackground = {
-                        props.scrollIndicatorVariant === 'circle' }
-                    iconSize      = "S"
-                    iconType      = { dir.toLowerCase() }
-                    key           = { dir }
-                    onClick       = {
-                        this.clickScrollButton.bind( this, dir ) } /> );
+                scrollButtons.push(
+                    <IconButton
+                        className     = { props.cssMap[ `icon${dir}` ] }
+                        hasBackground = {
+                            props.scrollIndicatorVariant === 'circle' }
+                        iconSize      = "S"
+                        iconType      = { dir.toLowerCase() }
+                        key           = { dir }
+                        onClick       = { e =>
+                            this.handleClickScrollButton( dir, e )
+                        } />
+                );
             }
         } );
 
         return scrollButtons;
     }
 
-    clickScrollButton( direction )
-    {
-        const {
-            clientHeight, clientWidth, scrollTop, scrollLeft,
-        } = this.state;
-
-        const {
-            onClickScrollDown, onClickScrollLeft, onClickScrollRight,
-            onClickScrollUp,
-        } = this.props;
-
-        let { scrollAmountHorizontal, scrollAmountVertical } = this.props;
-
-        if ( typeof scrollAmountVertical === 'undefined' )
-        {
-            scrollAmountVertical = clientHeight;
-        }
-
-        if ( typeof scrollAmountHorizontal === 'undefined' )
-        {
-            scrollAmountHorizontal = clientWidth;
-        }
-
-        if ( direction === 'Down' )
-        {
-            if ( onClickScrollDown ) onClickScrollDown();
-            this.handleChangeY( scrollTop + scrollAmountVertical );
-        }
-
-        if ( direction === 'Left' )
-        {
-            if ( onClickScrollLeft ) onClickScrollLeft();
-            this.handleChangeX( scrollLeft - scrollAmountHorizontal );
-        }
-
-        if ( direction === 'Right' )
-        {
-            if ( onClickScrollRight ) onClickScrollRight();
-            this.handleChangeX( scrollAmountHorizontal + scrollLeft );
-        }
-
-        if ( direction === 'Up' )
-        {
-            if ( onClickScrollUp ) onClickScrollUp();
-            this.handleChangeY( scrollTop - scrollAmountVertical );
-        }
-    }
 
     render()
     {
