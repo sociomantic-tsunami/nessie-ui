@@ -109,6 +109,15 @@ describe( 'ScrollBoxDriver', () =>
     {
         wrapper = mount( <ScrollBox /> );
         instance = wrapper.instance();
+        instance.innerRef = {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+            scrollLeft   : 0,
+            scrollTop    : 0,
+        };
+        wrapper.setState();
     } );
 
     describe( 'clickScrollX', () =>
@@ -164,11 +173,11 @@ describe( 'ScrollBoxDriver', () =>
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
         } );
 
-        test( 'clicking scrollUp indicator should scroll to the top', () =>
+        test( 'clicking scrollUp indicator should scroll up', () =>
         {
             wrapper.setProps( {
-                scrollAmountVertical : 50,
-                scrollUpIsVisible    : true,
+                scrollAmount      : 50,
+                scrollUpIsVisible : true,
             } );
 
             wrapper.driver().clickScrollUp();
@@ -179,8 +188,8 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollRight indicator should scroll to the right', () =>
         {
             wrapper.setProps( {
-                scrollAmountHorizontal : 50,
-                scrollRightIsVisible   : true,
+                scrollAmount         : 50,
+                scrollRightIsVisible : true,
             } );
 
             wrapper.driver().clickScrollRight();
@@ -191,8 +200,8 @@ describe( 'ScrollBoxDriver', () =>
         test( 'clicking scrollDown indicator should scroll to the bottom', () =>
         {
             wrapper.setProps( {
-                scrollAmountVertical : 50,
-                scrollDownIsVisible  : true,
+                scrollAmount        : 50,
+                scrollDownIsVisible : true,
             } );
 
             wrapper.driver().clickScrollDown();
@@ -200,11 +209,11 @@ describe( 'ScrollBoxDriver', () =>
             expect( instance.innerRef.scrollTop ).toBe( 50 );
         } );
 
-        test( 'clicking scrollLeft indicator should scroll to the left', () =>
+        test( 'clicking scrollLeft indicator should scroll down', () =>
         {
             wrapper.setProps( {
-                scrollAmountHorizontal : 50,
-                scrollLeftIsVisible    : true,
+                scrollAmount        : 50,
+                scrollLeftIsVisible : true,
             } );
 
             wrapper.driver().clickScrollLeft();
