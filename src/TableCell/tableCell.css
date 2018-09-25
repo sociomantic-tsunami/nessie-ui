@@ -25,7 +25,6 @@ $shark: 768px;
     font-size:          var( --typo-2 );
     line-height:        var( --line-height-m );
     letter-spacing:     0.5px;
-    text-transform:     uppercase;
     text-decoration:    none;
     color:              var( --PC-GREY--D25 );
     cursor:             text;
