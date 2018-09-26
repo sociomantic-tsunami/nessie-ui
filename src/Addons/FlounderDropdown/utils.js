@@ -51,7 +51,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
             return datum;
         }
 
-        let extraClass  = datum.extraClass;
+        let { extraClass } = datum;
         const iconClass = cssMap[ `optionIcon__${datum.icon}` ];
 
         if ( iconClass )
@@ -83,7 +83,10 @@ const addExtraClasses = ( data = [], className ) => (
             return { ...datum, extraClass };
         }
 
-        return { ...datum, data: datum.data && addExtraClasses( datum.data ) };
+        return {
+            ...datum,
+            data : datum.data && addExtraClasses( datum.data, className ),
+        };
     } )
 );
 
