@@ -51,8 +51,9 @@
         padding:                    0 var( --spacing-2 );
 
         background:                 var( --PC-WHITE );
-        color:                      var( --PC-GREY--D5 );
 
+        @extend %Nessie-Regular;
+        color:                      var( --PC-GREY--D5 );
         font-size:                  var( --typo-1 );
 
         line-height:                calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );

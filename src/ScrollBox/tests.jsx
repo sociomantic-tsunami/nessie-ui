@@ -120,10 +120,21 @@ describe( 'ScrollBox', () =>
 describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBox /> );
+        instance = wrapper.instance();
+        instance.innerRef = {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+            scrollLeft   : 0,
+            scrollTop    : 0,
+        };
+        wrapper.setState();
     } );
 
     describe( 'clickScrollX', () =>
@@ -177,6 +188,54 @@ describe( 'ScrollBoxDriver', () =>
             wrapper.driver().clickScrollLeft();
 
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'clicking scrollUp indicator should scroll up', () =>
+        {
+            wrapper.setProps( {
+                scrollAmount      : 50,
+                scrollUpIsVisible : true,
+            } );
+
+            wrapper.driver().clickScrollUp();
+
+            expect( instance.innerRef.scrollTop ).toBe( -50 );
+        } );
+
+        test( 'clicking scrollRight indicator should scroll to the right', () =>
+        {
+            wrapper.setProps( {
+                scrollAmount         : 50,
+                scrollRightIsVisible : true,
+            } );
+
+            wrapper.driver().clickScrollRight();
+
+            expect( instance.innerRef.scrollLeft ).toBe( 50 );
+        } );
+
+        test( 'clicking scrollDown indicator should scroll to the bottom', () =>
+        {
+            wrapper.setProps( {
+                scrollAmount        : 50,
+                scrollDownIsVisible : true,
+            } );
+
+            wrapper.driver().clickScrollDown();
+
+            expect( instance.innerRef.scrollTop ).toBe( 50 );
+        } );
+
+        test( 'clicking scrollLeft indicator should scroll down', () =>
+        {
+            wrapper.setProps( {
+                scrollAmount        : 50,
+                scrollLeftIsVisible : true,
+            } );
+
+            wrapper.driver().clickScrollLeft();
+
+            expect( instance.innerRef.scrollLeft ).toBe( -50 );
         } );
     } );
 

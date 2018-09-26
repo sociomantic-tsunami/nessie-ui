@@ -34,10 +34,9 @@ const TableCell = ( {
 
     if ( isHeader || isRowHeader )
     {
-        headerStyle.allCaps = true;
         headerStyle.color = '#4b627d';
         headerStyle.letterSpacing = '0.5';
-        headerStyle.size = 'S';
+        headerStyle.size = 'M';
         headerStyle.variant = 'SemiBold';
     }
 

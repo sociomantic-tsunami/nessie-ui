@@ -22,10 +22,9 @@ $shark: 768px;
     display:    flex;
 
     @extend %Nessie-SemiBold;
-    font-size:          var( --typo-2 );
+    font-size:          var( --typo-3 );
     line-height:        var( --line-height-m );
     letter-spacing:     0.5px;
-    text-transform:     uppercase;
     text-decoration:    none;
     color:              var( --PC-GREY--D25 );
     cursor:             text;
