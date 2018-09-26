@@ -140,6 +140,11 @@
     {
         color:                      var( --PC-ORANGE );
         fill:                       var( --PC-ORANGE );
+    },
+    &__paused
+    {
+        color:                      var( --PC-LIME );
+        fill:                       var( --PC-LIME );
     }
 }
 
