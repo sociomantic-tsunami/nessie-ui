@@ -272,7 +272,7 @@ TextInputWithIcon.propTypes =
      */
     isReadOnlyButton : PropTypes.bool,
     /**
-     *  Display as read-only for TextInput
+     *  is read only
      */
     isReadOnlyInput  : PropTypes.bool,
     /**

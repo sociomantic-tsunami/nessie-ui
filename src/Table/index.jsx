@@ -38,6 +38,18 @@ const Table = ( {
     verticalAlign,
 } ) =>
 {
+    if ( !Table.didWarn.children && children !== undefined  )
+    {
+        React.Children.toArray( children ).map( ( child ) =>
+        {
+            if ( child.type !== TableRow )
+            {
+                console.warn( 'Table must have TableRows as direct children' );
+                Table.didWarn.children = true;
+            }
+        } );
+    }
+
     const body = React.Children.toArray( children ||
         buildRowsFromValues( values ) ).map( ( row, i ) =>
     {
@@ -228,5 +240,7 @@ Table.defaultProps =
     values          : undefined,
     verticalAlign   : 'middle',
 };
+
+Table.didWarn = {};
 
 export default Table;
