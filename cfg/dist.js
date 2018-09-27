@@ -27,16 +27,23 @@ const distConfig = merge( {}, baseConfig, {
     mode : 'production',
 } );
 
+const components = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/index.js' ),
+    output  : {
+        filename: 'index.js'
+    },
+    plugins : [],
+} );
+components.module.rules[ 1 ].use[ 0 ] = 'style-loader';
 
 const componentDriver = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/Testing/index.js' ),
     output : { filename: 'componentDriver.js' },
 } );
 
-const components = merge( {}, distConfig, {
+const componentsJS = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
-    output : { filename: 'index.js' },
-
+    output : { filename: 'componentsJS.js' },
     plugins : [
         new MiniCssExtractPlugin( {
             allChunks : true,
@@ -54,5 +61,6 @@ const driverSuite = merge( {}, distConfig, {
 module.exports = [
     componentDriver,
     components,
+    componentsJS,
     driverSuite,
 ];
