@@ -28,7 +28,7 @@ const distConfig = merge( {}, baseConfig, {
 } );
 
 const components = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
+    entry   : path.join( __dirname, '../src/index.js' ),
     output  : {
         filename: 'index.js'
     },
@@ -42,8 +42,8 @@ const componentDriver = merge( {}, distConfig, {
 } );
 
 const componentsJS = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : { filename: 'componentsJS.js' },
+    entry   : path.join( __dirname, '../src/index.js' ),
+    output  : { filename: 'componentsJS.js' },
     plugins : [
         new MiniCssExtractPlugin( {
             allChunks : true,
