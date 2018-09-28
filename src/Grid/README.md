@@ -47,7 +47,6 @@ spaces them evenly.
 
 ### Difference between implicit and explicit grids
 
-
 **Explicit grid** is manually defined grid that is formed by defining a fixed
 number of lines and tracks. In order to set explicit grid, use
 `customColumns` and `customRows` props. It's not obligatory to define an
@@ -64,7 +63,6 @@ sizes of implicit grid.
 
 ### Columns and rows
 
-
 You can simply set the number of `columns` and/or `rows` that you want. This
 way, you can have an explicit grid (e.g. 6x3) with all grid cells of the same
 size (`1fr`).
@@ -77,25 +75,34 @@ grid) and/or `customCols`/`customRows` (explicit grid); note that
 
 All props are accepting string values, so you can define your grid however you
 want, e.g.:
-- `100px 1fr auto 200px`
-- `1fr 3fr 50%`
+- `100px 1fr auto 200px` (creates a grid with 4 columns)
+- `1fr 3fr 50%` (creates a grid with 3 columns)
 - etc.
 
 
-### Grid gaps
+### Grid flow
 
+With `autoFlow`, you can choose where the new items will be placed if you have
+grid items that you don't explicitly place on the grid - the auto-placement
+algorithm kicks in to automatically place the items. This property controls how
+the auto-placement algorithm works.
+
+The prop accepts one of four values:
+- `"row"` - tells the auto-placement algorithm to fill in each row in turn,
+adding new rows as necessary (default)
+- `"col"` - tells the auto-placement algorithm to fill in each column in turn,
+adding new columns as necessary
+- `"row_dense"` and `"col_dense"` - tells the auto-placement algorithm to
+attempt to fill in holes earlier in the grid if smaller items come up later
+
+
+### Grid gaps
 
 `columnGap` and `rowGap` are used for defining a space between columns and rows
 respectively.
 
 The props accept one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
 (no gaps).
-
-
-### Grid alignment — or, aligning Columns inside Grids
-
-You can control horizontal and vertical alignment of Columns inside a Grid using
-the Grid’s `justify` and `align` props, respectively.
 
 
 #### Horizontal alignment
