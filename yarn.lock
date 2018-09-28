@@ -3137,7 +3137,7 @@ decompress-response@^3.3.0:
   dependencies:
     mimic-response "^1.0.0"
 
-deep-equal@^1.0.0, deep-equal@^1.0.1:
+deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -4900,14 +4900,14 @@ hexy@^0.2.10:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.2.11.tgz#9939c25cb6f86a91302f22b8a8a72573518e25b4"
 
-history@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/history/-/history-2.1.2.tgz#4aa2de897a0e4867e4539843be6ecdb2986bfdec"
+history@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/history/-/history-3.3.0.tgz#fcedcce8f12975371545d735461033579a6dae9c"
   dependencies:
-    deep-equal "^1.0.0"
-    invariant "^2.0.0"
-    query-string "^3.0.0"
-    warning "^2.0.0"
+    invariant "^2.2.1"
+    loose-envify "^1.2.0"
+    query-string "^4.2.2"
+    warning "^3.0.0"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -4925,7 +4925,7 @@ hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
-hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
@@ -6398,9 +6398,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-loch-ness@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.2.6.tgz#cfea9887183a8c6941d6a0998f610efca81c250c"
+loch-ness@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/loch-ness/-/loch-ness-2.3.0.tgz#299b7955c9aa3d79612b2493cd753528b6c96497"
   dependencies:
     autoprefixer "^6.3.3"
     babel-cli "^6.24.1"
@@ -6439,18 +6439,18 @@ loch-ness@^2.2.6:
     postcss-color-mix "^1.1.0"
     postcss-loader "^0.9.1"
     precss "^1.4.0"
-    prop-types "^15.5.10"
+    prop-types "^15.6.2"
     raw-loader "^0.5.1"
-    react "^15.4.1"
+    react "^16.5.2"
     react-copy-to-clipboard "^4.1.0"
     react-dev-server "^0.6.2"
     react-docgen "^2.17.0"
-    react-dom "^15.4.1"
+    react-dom "^16.5.2"
     react-dom-server "0.0.5"
     react-hot-loader "^1.2.9"
-    react-redux "^4.4.0"
-    react-router "^2.4.1"
-    react-router-redux "^4.0.5"
+    react-redux "^4.4.6"
+    react-router "^3.0.0"
+    react-router-redux "^4.0.7"
     redux "^3.3.1"
     rimraf "^2.4.3"
     slimerjs "^0.10.3"
@@ -8577,7 +8577,7 @@ prompts@^0.1.9:
     clorox "^1.0.3"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -8685,13 +8685,7 @@ qs@~6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
-query-string@^3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-3.0.3.tgz#ae2e14b4d05071d4e9b9eb4873c35b0dcd42e638"
-  dependencies:
-    strict-uri-encode "^1.0.0"
-
-query-string@^4.1.0:
+query-string@^4.1.0, query-string@^4.2.2:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.4.tgz#bbb693b9ca915c232515b228b1a02b609043dbeb"
   dependencies:
@@ -8830,15 +8824,6 @@ react-dom-server@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-dom-server/-/react-dom-server-0.0.5.tgz#75b6c0f5946e08e84db9dda6eca5e48fed25f723"
 
-react-dom@^15.4.1:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.10"
-
 react-dom@^16.4.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
@@ -8847,6 +8832,15 @@ react-dom@^16.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-dom@^16.5.2:
+  version "16.5.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.5.2.tgz#b69ee47aa20bab5327b2b9d7c1fe2a30f2cfa9d7"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    schedule "^0.5.0"
 
 react-hot-api@^0.4.5:
   version "0.4.7"
@@ -8884,9 +8878,9 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-redux@^4.4.0:
+react-redux@^4.4.6:
   version "4.4.9"
-  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.9.tgz#8ca6d4670925a454ce67086c2305e9630670909a"
+  resolved "http://registry.npmjs.org/react-redux/-/react-redux-4.4.9.tgz#8ca6d4670925a454ce67086c2305e9630670909a"
   dependencies:
     create-react-class "^15.5.1"
     hoist-non-react-statics "^2.5.0"
@@ -8906,18 +8900,20 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
 
-react-router-redux@^4.0.5:
+react-router-redux@^4.0.7:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-4.0.8.tgz#227403596b5151e182377dab835b5d45f0f8054e"
 
-react-router@^2.4.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-2.8.1.tgz#73e9491f6ceb316d0f779829081863e378ee4ed7"
+react-router@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.2.1.tgz#b9a3279962bdfbe684c8bd0482b81ef288f0f244"
   dependencies:
-    history "^2.1.2"
-    hoist-non-react-statics "^1.2.0"
+    create-react-class "^15.5.1"
+    history "^3.0.0"
+    hoist-non-react-statics "^2.3.1"
     invariant "^2.2.1"
     loose-envify "^1.2.0"
+    prop-types "^15.5.6"
     warning "^3.0.0"
 
 react-sticky@^6.0.1:
@@ -8943,7 +8939,7 @@ react-toggle-button@^2.1.0:
     prop-types "^15.6.0"
     react-motion "^0.5.2"
 
-react@^15.4.1, react@^15.6.2:
+react@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:
@@ -8961,6 +8957,15 @@ react@^16.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react@^16.5.2:
+  version "16.5.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    schedule "^0.5.0"
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -9522,6 +9527,12 @@ sane@^2.0.0:
 sax@>=0.1.1, sax@>=0.6.0, sax@^1.2.4, sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+
+schedule@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/schedule/-/schedule-0.5.0.tgz#c128fffa0b402488b08b55ae74bb9df55cc29cc8"
+  dependencies:
+    object-assign "^4.1.1"
 
 schema-utils@^0.4.0, schema-utils@^0.4.3, schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.5"
@@ -10809,12 +10820,6 @@ walker@~1.0.5:
   resolved "https://registry.yarnpkg.com/walker/-/walker-1.0.7.tgz#2f7f9b8fd10d677262b18a884e28d19618e028fb"
   dependencies:
     makeerror "1.0.x"
-
-warning@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
-  dependencies:
-    loose-envify "^1.0.0"
 
 warning@^3.0.0:
   version "3.0.0"
