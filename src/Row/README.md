@@ -1,7 +1,7 @@
 ## Component Description
 
-The Row is specialized version of the Grid component whose `hasWrap` prop is
-always `false`. It is provided for convenience and accepts the same props as the
-Grid component (except `hasWrap`).
+The Row component is part of the Nessie layout system. Row is a flex
+container that is laying it's items in horizontal (row) direction.
 
-For further details see Grid.
+For full details about Grids and the Nessie layout system, see the Grid
+component.
