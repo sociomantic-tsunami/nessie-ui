@@ -6,10 +6,10 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const baseConfig           = require( './base' );
 
 
-module.exports = merge( {}, baseConfig, {
+const devConfig = merge( {}, baseConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
     output : {
-        filename      : 'displayComponents.js',
+        filename      : 'index.dev.js',
         library       : 'DisplayComponents',
         libraryTarget : 'window',
     },
@@ -19,10 +19,9 @@ module.exports = merge( {}, baseConfig, {
         react        : 'React',
     },
     mode    : 'development',
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
+    plugins : [],
 } );
+
+devConfig.module.rules[ 1 ].use[ 0 ] = 'style-loader';
+
+module.exports = devConfig
