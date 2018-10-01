@@ -39,9 +39,3 @@ ideally, throughout your application to ensure a consistent overall layout.
 
 
 If you don’t set column sizes the column widths will be distributed evenly.
-
-
-
-
-For full details about Grids and the Nessie layout system, see the Grid
-component.

@@ -31,7 +31,3 @@ You can configure the vertical spacing between Row's items using the Row’s
 
 You can control whether the Row content will wrap using the `hasWrap` boolean
 prop (default `false`).
-
-
-For full details about Grids and the Nessie layout system, see the Grid
-component.
