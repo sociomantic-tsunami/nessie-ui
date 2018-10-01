@@ -21,6 +21,7 @@ const Tabs = ( {
     cssMap,
     onChange,
     onClickTab,
+    padding,
     secondaryControls,
 } ) =>
 {
@@ -56,7 +57,10 @@ in the next major release. Please use ‘onClickTab’ instead.' );
 
     return (
         <div
-            className = { buildClassName( className, cssMap ) }>
+            className = { buildClassName( className, cssMap, {
+                paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
+                paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
+            } ) }>
             <div className = { cssMap.header }>
                 <ScrollBox
                     className = { cssMap.tabsContainer }
@@ -83,23 +87,37 @@ Tabs.propTypes =
     /**
      *  The active tab index
      */
-    activeTabIndex    : PropTypes.number,
+    activeTabIndex : PropTypes.number,
     /**
      *  A set of <Tab> components
      */
-    children          : PropTypes.node,
+    children       : PropTypes.node,
     /**
      *  Extra CSS class name
      */
-    className         : PropTypes.string,
+    className      : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
+    cssMap         : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Tab button click callback function: ( e, newProps ) => { ... }
      */
-    onClickTab        : PropTypes.func,
+    onClickTab     : PropTypes.func,
+    /**
+    *   Card padding
+    */
+    padding        : PropTypes.oneOfType( [
+        PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+        PropTypes.arrayOf( PropTypes.oneOf( [
+            'none',
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+        ] ) ),
+    ] ),
     /**
      *  Secondary controls to add to tabs header
      */
@@ -113,6 +131,7 @@ Tabs.defaultProps =
     className         : undefined,
     cssMap            : styles,
     onClickTab        : undefined,
+    padding           : 'M',
     secondaryControls : undefined,
 };
 
