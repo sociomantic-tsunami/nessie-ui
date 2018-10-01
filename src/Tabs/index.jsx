@@ -58,8 +58,8 @@ in the next major release. Please use ‘onClickTab’ instead.' );
     return (
         <div
             className = { buildClassName( className, cssMap, {
-                paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
                 paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
+                paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
             } ) }>
             <div className = { cssMap.header }>
                 <ScrollBox
