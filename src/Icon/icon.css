@@ -62,12 +62,6 @@
 {
     fill:                       var( --PC-WHITE );
     color:                      var( --PC-WHITE );
-
-    path
-    {
-        fill: blue;
-    }
-
 }
 
 .theme__light,
