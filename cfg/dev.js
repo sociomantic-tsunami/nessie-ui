@@ -10,7 +10,7 @@ const devConfig = merge( {}, baseConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
     output : {
         filename      : 'index.dev.js',
-        library       : 'DisplayComponents',
+        library       : 'Nessie',
         libraryTarget : 'window',
     },
 

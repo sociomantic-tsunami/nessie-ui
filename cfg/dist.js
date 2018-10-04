@@ -13,8 +13,7 @@ const distConfig = merge( {}, baseConfig, {
     externals : {
         'codemirror/mode/jsx/jsx' : {
             commonjs  : 'codemirror/mode/jsx/jsx',
-            commonjs2 : 'codemirror/mode/jsx/jsx',
-            window    : 'jsx'
+            commonjs2 : 'codemirror/mode/jsx/jsx'
         },
         'componentDriver'         : {
             commonjs  : 'nessie-ui/dist/componentDriver',
@@ -38,8 +37,7 @@ const distConfig = merge( {}, baseConfig, {
         },
         addons       : {
             'commonjs' : 'nessie-ui/dist/addons',
-            'commonjs2': 'nessie-ui/dist/addons',
-            'window'   : 'Addons'
+            'commonjs2': 'nessie-ui/dist/addons'
         },
         codemirror   : {
             'commonjs' : 'codemirror',
