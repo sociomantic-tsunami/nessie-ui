@@ -8,10 +8,11 @@
  */
 
 import React                from 'react';
+import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 
-const Divider = ( { cssMap, className } ) =>
+const Divider = ( { cssMap, className, isVertical } ) =>
 {
     if ( !Divider.didWarn )
     {
@@ -23,14 +24,26 @@ major release' );
 
     return (
 
-        <hr className = { buildClassName( className, cssMap ) } />
+        <hr
+            className  = { buildClassName( className, cssMap, {
+                isVertical,
+            } ) } />
 
     );
 };
 
+Divider.propTypes =
+{
+    /**
+     *  Vertical Divider
+     */
+    isVertical : PropTypes.bool,
+};
+
 Divider.defaultProps =
 {
-    cssMap : require( './divider.css' )
+    isVertical : false,
+    cssMap     : require( './divider.css' ),
 };
 
 export default Divider;

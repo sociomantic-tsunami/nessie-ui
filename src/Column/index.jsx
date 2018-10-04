@@ -19,16 +19,30 @@ const Column = ( {
     className,
     columnTitle,
     cssMap,
+    hasDividers,
     role,
     size,
     verticalAlign,
 } ) =>
 {
+    let elements;
+
     if ( !Column.didWarn && verticalAlign === 'space-around' )
     {
         console.warn( 'Column: \'space-around\' option for verticalAlign prop \
 is deprecated. Please use an alternative layout.' );
         Column.didWarn = true;
+    }
+
+    if ( hasDividers )
+    {
+        elements = React.Children.toArray( children ).flatMap( (
+            child,
+            index,
+            { length },
+        ) =>
+            ( index < length - 1 ?
+                [ child, <div className = { cssMap.divider } /> ] : child ) );
     }
 
     return (
@@ -40,7 +54,7 @@ is deprecated. Please use an alternative layout.' );
             } ) }
             role              = { role }
             data-column-title = { columnTitle }>
-            { children }
+            { hasDividers ? elements : children }
         </div>
     );
 };
@@ -48,9 +62,30 @@ is deprecated. Please use an alternative layout.' );
 Column.propTypes =
 {
     /**
+     *  Horizontal alignment of content (“auto” makes all items 100% width)
+     */
+    align : PropTypes.oneOf( [
+        'auto',
+        'left',
+        'center',
+        'right',
+    ] ),
+    /**
+     *  Column content
+     */
+    children    : PropTypes.node,
+    /**
     *  Title of Column
     */
     columnTitle : PropTypes.string,
+    /**
+     *  Adds dividers between column items
+     */
+    hasDividers : PropTypes.bool,
+    /**
+    *  Column role
+    */
+    role        : PropTypes.string,
     /**
      *  Width of the Column
      */
@@ -74,7 +109,7 @@ Column.propTypes =
         '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10', '8/10', '9/10', '10/10',
         '1/11', '2/11', '3/11', '4/11', '5/11', '6/11', '7/11', '8/11', '9/11', '10/11', '11/11',
         '1/12', '2/12', '3/12', '4/12', '5/12', '6/12', '7/12', '8/12', '9/12', '10/12', '11/12', '12/12',
-        '1/14', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13',
+        '1/13', '2/13', '3/13', '4/13', '5/13', '6/13', '7/13', '8/13', '9/13', '10/13', '11/13', '12/13', '13/13',
         '1/14', '2/14', '3/14', '4/14', '5/14', '6/14', '7/14', '8/14', '9/14', '10/14', '11/14', '12/14', '13/14', '14/14',
         '1/15', '2/15', '3/15', '4/15', '5/15', '6/15', '7/15', '8/15', '9/15', '10/15', '11/15', '12/15', '13/15', '14/15', '15/15',
         '1/16', '2/16', '3/16', '4/16', '5/16', '6/16', '7/16', '8/16', '9/16', '10/16', '11/16', '12/16', '13/16', '14/16', '15/16', '16/16',
@@ -89,15 +124,6 @@ Column.propTypes =
         /* eslint-enable max-len */
     ] ),
     /**
-     *  Horizontal alignment of content (“auto” makes all items 100% width)
-     */
-    align : PropTypes.oneOf( [
-        'auto',
-        'left',
-        'center',
-        'right',
-    ] ),
-    /**
      *  Vertical alignment of content (“auto” is equivalent to “top”)
      */
     verticalAlign : PropTypes.oneOf( [
@@ -106,20 +132,13 @@ Column.propTypes =
         'middle',
         'bottom',
     ] ),
-    /**
-     *  Column content
-     */
-    children : PropTypes.node,
-    /**
-    *  Column role
-    */
-    role     : PropTypes.string,
 };
 
 Column.defaultProps =
 {
-    align  : 'auto',
-    cssMap : styles,
+    align       : 'auto',
+    cssMap      : styles,
+    hasDividers : false,
 };
 
 export default Column;
