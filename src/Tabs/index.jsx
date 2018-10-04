@@ -1,10 +1,18 @@
-import React              from 'react';
-import PropTypes          from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { buildClassName } from '../utils';
-import styles             from './tabs.css';
-import TabButton          from '../TabButton';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
+import { buildClassName }       from '../utils';
+import styles                   from './tabs.css';
+import { ScrollBox, TabButton } from '../index';
 
 const Tabs = ( {
     activeTabIndex,
@@ -13,6 +21,7 @@ const Tabs = ( {
     cssMap,
     onChange,
     onClickTab,
+    padding,
     secondaryControls,
 } ) =>
 {
@@ -38,18 +47,28 @@ in the next major release. Please use ‘onClickTab’ instead.' );
                 isDisabled = { isDisabled || isActive }
                 key        = { label || tabIndex }
                 label      = { label }
-                onClick    = { e => clickHandler && clickHandler( e,
-                    { activeTabIndex: tabIndex } ) }
+                onClick    = { e => clickHandler && clickHandler(
+                    e,
+                    { activeTabIndex: tabIndex },
+                ) }
                 tabIndex = { tabIndex } />
         );
     } );
 
     return (
-        <div className = { buildClassName( className, cssMap ) }>
+        <div
+            className = { buildClassName( className, cssMap, {
+                paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
+                paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
+            } ) }>
             <div className = { cssMap.header }>
-                <div className = { cssMap.tabs }>
-                    { tabButtons }
-                </div>
+                <ScrollBox
+                    className = { cssMap.tabsContainer }
+                    scroll    = "horizontal">
+                    <div className = { cssMap.tabs }>
+                        { tabButtons }
+                    </div>
+                </ScrollBox>
                 { secondaryControls &&
                     <div className = { cssMap.secondaryControls }>
                         { secondaryControls }
@@ -68,23 +87,37 @@ Tabs.propTypes =
     /**
      *  The active tab index
      */
-    activeTabIndex    : PropTypes.number,
+    activeTabIndex : PropTypes.number,
     /**
      *  A set of <Tab> components
      */
-    children          : PropTypes.node,
+    children       : PropTypes.node,
     /**
      *  Extra CSS class name
      */
-    className         : PropTypes.string,
+    className      : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
+    cssMap         : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Tab button click callback function: ( e, newProps ) => { ... }
      */
-    onClickTab        : PropTypes.func,
+    onClickTab     : PropTypes.func,
+    /**
+    *   Card padding
+    */
+    padding        : PropTypes.oneOfType( [
+        PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+        PropTypes.arrayOf( PropTypes.oneOf( [
+            'none',
+            'S',
+            'M',
+            'L',
+            'XL',
+            'XXL',
+        ] ) ),
+    ] ),
     /**
      *  Secondary controls to add to tabs header
      */
@@ -98,6 +131,7 @@ Tabs.defaultProps =
     className         : undefined,
     cssMap            : styles,
     onClickTab        : undefined,
+    padding           : [ 'none', 'M' ],
     secondaryControls : undefined,
 };
 

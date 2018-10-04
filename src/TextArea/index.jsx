@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
@@ -28,7 +37,34 @@ const TextArea = ( {
 TextArea.propTypes =
 {
     /**
-     * Extra CSS class name
+     *  ARIA properties
+     */
+    aria : PropTypes.objectOf( PropTypes.oneOfType( [
+        PropTypes.bool,
+        PropTypes.number,
+        PropTypes.string,
+    ] ) ),
+    /**
+     *  HTML attribute controlling input auto capitalize
+     */
+    autoCapitalize : PropTypes.oneOf( [
+        'on',
+        'off',
+        'none',
+        'sentences',
+        'words',
+        'characters',
+    ] ),
+    /**
+     *  HTML attribute controlling input auto complete
+     */
+    autoComplete          : PropTypes.string,
+    /**
+     *  HTML attribute controlling input auto correct (Safari-specific)
+     */
+    autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
+    /**
+     *  Extra CSS class name
      */
     className             : PropTypes.string,
     /**
@@ -36,43 +72,11 @@ TextArea.propTypes =
      */
     cssMap                : PropTypes.objectOf( PropTypes.string ),
     /**
-     *  Label text (string or JSX node)
+     *  Initial input string value
      */
-    label                 : PropTypes.node,
+    defaultValue          : PropTypes.string,
     /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-    /**
-     *  Placeholder text
-     */
-    placeholder           : PropTypes.string,
-    /**
-     *  Number of text input rows
-     */
-    rows                  : PropTypes.number,
-    /**
-      * Sets the text area to be vertically resizable
-      */
-    isResizable           : PropTypes.bool,
-    /**
-     *  Alignment of the input text
-     */
-    textAlign             : PropTypes.oneOf( [ 'left', 'right' ] ),
-    /**
-     *  Display as disabled
-     */
-    isDisabled            : PropTypes.bool,
-    /**
-     *  Display as read-only
-     */
-    isReadOnly            : PropTypes.bool,
-    /**
-     *  Display as error/invalid
-     */
-    hasError              : PropTypes.bool,
-    /**
-     *  Error tooltip message text (string or JSX)
+     *  Tooltip message text (string or JSX)
      */
     errorMessage          : PropTypes.node,
     /**
@@ -80,61 +84,126 @@ TextArea.propTypes =
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
-    *  Error message position relative to the icon
+    *   Error message position relative to the icon
     */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
-     * Initial input string value
+     *  Display as hover when required from another component
      */
-    defaultValue          : PropTypes.string,
+    forceHover    : PropTypes.bool,
     /**
-     * Input string value
+     *  Display as error/invalid
      */
-    value                 : PropTypes.string,
+    hasError      : PropTypes.bool,
     /**
-     * HTML id attribute (overwrite default)
+     *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id            : PropTypes.string,
+    /**
+     *  Callback that receives the native <input>: ( ref ) => { ... }
+     */
+    inputRef      : PropTypes.func,
+    /**
+     *  Display as disabled
+     */
+    isDisabled    : PropTypes.bool,
+    /**
+     *  Display as read-only
+     */
+    isReadOnly    : PropTypes.bool,
+    /**
+     * Sets the input to be vertically resizable
+     */
+    isResizable   : PropTypes.bool,
+    /**
+     *  Label text (string or JSX node)
+     */
+    label         : PropTypes.node,
+    /**
+     *  Label position
+     */
+    labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name          : PropTypes.string,
+    /**
+     *  Blur callback function
+     */
+    onBlur        : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange      : PropTypes.func,
     /**
      *  Input click callback function
      */
-    onClick               : PropTypes.func,
+    onClick       : PropTypes.func,
     /**
-     *  Input focus callback function
+     *  Focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus       : PropTypes.func,
     /**
-     *  Input blur callback function
+     *  Key down callback function
      */
-    onBlur                : PropTypes.func,
+    onKeyDown     : PropTypes.func,
     /**
-     *  Input mouseOver callback function
+     *  Key press callback function
      */
-    onMouseOver           : PropTypes.func,
+    onKeyPress    : PropTypes.func,
     /**
-     *  Input mouseOut callback function
+     *  Key up callback function
      */
-    onMouseOut            : PropTypes.func,
+    onKeyUp       : PropTypes.func,
     /**
-     * Display as hover when required from another component
+     *  Mouse out callback function
      */
-    forceHover            : PropTypes.bool,
+    onMouseOut    : PropTypes.func,
     /**
-     * Callback that receives the native <textarea>: ( ref ) => { ... }
+     *  Mouse over  callback function
      */
-    inputRef              : PropTypes.func,
+    onMouseOver   : PropTypes.func,
+    /**
+     *  Placeholder text
+     */
+    placeholder   : PropTypes.string,
+    /**
+     *  Number of rows
+     */
+    rows          : PropTypes.number,
+    /**
+     *  HTML attribute controlling input spell check
+     */
+    spellCheck    : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign     : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    /**
+     *  Input string value
+     */
+    value         : PropTypes.string,
 };
 
 TextArea.defaultProps =
 {
+    aria                  : undefined,
+    autoCapitalize        : undefined,
+    autoComplete          : undefined,
+    autoCorrect           : undefined,
     className             : undefined,
     cssMap                : styles,
     defaultValue          : undefined,
@@ -155,10 +224,14 @@ TextArea.defaultProps =
     onChange              : undefined,
     onClick               : undefined,
     onFocus               : undefined,
+    onKeyDown             : undefined,
+    onKeyPress            : undefined,
+    onKeyUp               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,
     placeholder           : undefined,
     rows                  : 3,
+    spellCheck            : undefined,
     textAlign             : 'left',
     value                 : undefined,
 };

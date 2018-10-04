@@ -9,8 +9,7 @@
     },
     "Card" :
     {
-        "children" : "{<TextInput label='Your name'/>}",
-        "padding"  : "S"
+        "children" : "{<TextInput label='Your name'/>}"
     },
     "CheckableGroup" :
     {
@@ -139,7 +138,8 @@
     {
         "iconType"          : "error",
         "message"           : "Something’s wrong!",
-        "tooltipIsVisible"  : true
+        "tooltipIsVisible"  : true,
+        "lochness"          : { "isDeprecated": true }
     },
     "Label" :
     {
@@ -211,6 +211,10 @@
     "NotificationBar" :
     {
         "message" : "Here you can view your campaign settings"
+    },
+    "PageContent" :
+    {
+        "children" : "{<Text>This is the page content container. Not much to see here, really.</Text>}"
     },
     "Paginator" :
     {
@@ -286,7 +290,7 @@
     },
     "StatusIndicator" :
     {
-        "label" :  "Deactivated"
+        "label" :  "Active"
     },
     "Tab" :
     {
@@ -340,6 +344,7 @@
     "TextInputWithDropdown" :
     {
         "label"            : "How long?",
+        "lochness"         : { "isDeprecated" : true },
         "inputPlaceholder" : "number",
         "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
         "errorMessage"     : "That’s too long!"
@@ -357,8 +362,7 @@
     },
     "Tooltip" :
     {
-        "message"  : "Cost per click",
-        "children" : "{<Label>CPC</Label>}"
+        "message"  : "Pro tip!"
     },
     "Uploader" :
     {

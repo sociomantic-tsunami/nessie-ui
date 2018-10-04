@@ -1,18 +1,18 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie PageContent Wraps the body content of the page, usually a Nessie Module.
+PageContent wraps the body content of the page. It should be placed inside the
+Page component, between a PageHeader component and a PageFooter component. It
+provides a overlay with a Spinner to be displayed while the page content loads.
 
-Example Usage
--------------
+## Example Usage
 
-	<PageContent>
-        <Form>
-    		<Module title='Module 1'>
-    			Module 1 content...
-    		</Module>
-    		<Module title='Module 2'>
-    			Module 2 content...
-    		</Module>
-        </Form>
-	</PageContent>
+```
+<Page>
+    <PageHeader>…</PageHeader>
+    <PageContent>
+        <Card>…</Card>
+        <Card>…</Card>
+    </PageContent>
+    <PageFooter>…</PageFooter>
+</Page>
+```

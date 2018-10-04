@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 144);
+/******/ 	return __webpack_require__(__webpack_require__.s = 143);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -5758,7 +5758,7 @@ module.exports = PropTypes;
 var _prodInvariant = __webpack_require__(2);
 
 var DOMProperty = __webpack_require__(31);
-var ReactDOMComponentFlags = __webpack_require__(114);
+var ReactDOMComponentFlags = __webpack_require__(113);
 
 var invariant = __webpack_require__(1);
 
@@ -5949,7 +5949,7 @@ exports.__esModule = true;
 exports.default = routerWarning;
 exports._resetWarned = _resetWarned;
 
-var _warning = __webpack_require__(173);
+var _warning = __webpack_require__(172);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -6083,11 +6083,11 @@ module.exports = ExecutionEnvironment;
 exports.__esModule = true;
 exports.connect = exports.Provider = undefined;
 
-var _Provider = __webpack_require__(145);
+var _Provider = __webpack_require__(144);
 
 var _Provider2 = _interopRequireDefault(_Provider);
 
-var _connect = __webpack_require__(146);
+var _connect = __webpack_require__(145);
 
 var _connect2 = _interopRequireDefault(_connect);
 
@@ -6518,7 +6518,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(115);
+var CallbackQueue = __webpack_require__(114);
 var PooledClass = __webpack_require__(22);
 var ReactFeatureFlags = __webpack_require__(235);
 var ReactReconciler = __webpack_require__(32);
@@ -6870,11 +6870,20 @@ function createRoutes(routes) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (payload) {
-    return {
-        type: 'UPDATE_PROPS',
-        payload: payload
-    };
+  return {
+    type: 'UPDATE_PROPS',
+    payload: payload
+  };
 };
 
 /***/ }),
@@ -7149,7 +7158,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 /**
  * Simply checks if the toggling prop has changed.
@@ -7202,15 +7218,15 @@ var _createStore = __webpack_require__(83);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _combineReducers = __webpack_require__(160);
+var _combineReducers = __webpack_require__(159);
 
 var _combineReducers2 = _interopRequireDefault(_combineReducers);
 
-var _bindActionCreators = __webpack_require__(161);
+var _bindActionCreators = __webpack_require__(160);
 
 var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 
-var _applyMiddleware = __webpack_require__(162);
+var _applyMiddleware = __webpack_require__(161);
 
 var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
@@ -7518,10 +7534,10 @@ var _assign = __webpack_require__(4);
 var ReactCurrentOwner = __webpack_require__(23);
 
 var warning = __webpack_require__(3);
-var canDefineProperty = __webpack_require__(126);
+var canDefineProperty = __webpack_require__(125);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(127);
+var REACT_ELEMENT_TYPE = __webpack_require__(126);
 
 var RESERVED_PROPS = {
   key: true,
@@ -7860,8 +7876,8 @@ module.exports = ReactElement;
 var EventPluginHub = __webpack_require__(30);
 var EventPluginUtils = __webpack_require__(62);
 
-var accumulateInto = __webpack_require__(111);
-var forEachAccumulated = __webpack_require__(112);
+var accumulateInto = __webpack_require__(110);
+var forEachAccumulated = __webpack_require__(111);
 var warning = __webpack_require__(3);
 
 var getListener = EventPluginHub.getListener;
@@ -8002,8 +8018,8 @@ var EventPluginRegistry = __webpack_require__(61);
 var EventPluginUtils = __webpack_require__(62);
 var ReactErrorUtils = __webpack_require__(63);
 
-var accumulateInto = __webpack_require__(111);
-var forEachAccumulated = __webpack_require__(112);
+var accumulateInto = __webpack_require__(110);
+var forEachAccumulated = __webpack_require__(111);
 var invariant = __webpack_require__(1);
 
 /**
@@ -8720,7 +8736,7 @@ var DOMNamespaces = __webpack_require__(68);
 var setInnerHTML = __webpack_require__(69);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(70);
-var setTextContent = __webpack_require__(119);
+var setTextContent = __webpack_require__(118);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -8839,7 +8855,7 @@ module.exports = DOMLazyTree;
 
 var _assign = __webpack_require__(4);
 
-var ReactBaseClasses = __webpack_require__(124);
+var ReactBaseClasses = __webpack_require__(123);
 var ReactChildren = __webpack_require__(265);
 var ReactDOMFactories = __webpack_require__(270);
 var ReactElement = __webpack_require__(28);
@@ -9122,7 +9138,7 @@ var _warning = __webpack_require__(13);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _queryString = __webpack_require__(180);
+var _queryString = __webpack_require__(179);
 
 var _runTransitionHook = __webpack_require__(52);
 
@@ -9326,7 +9342,7 @@ var _deprecateObjectProperties = __webpack_require__(37);
 
 var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 
-var _getRouteParams = __webpack_require__(187);
+var _getRouteParams = __webpack_require__(186);
 
 var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
 
@@ -9475,7 +9491,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.unwrapNode = exports.nodeToJsx = exports.nodeToHtml = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*
+                                                                                                                                                                                                                                                                               * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                               * All rights reserved.
+                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                               * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                               * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                               */
 
 var _react = __webpack_require__(0);
 
@@ -9935,7 +9958,7 @@ module.exports = TransactionImpl;
 
 
 var SyntheticUIEvent = __webpack_require__(33);
-var ViewportMetrics = __webpack_require__(118);
+var ViewportMetrics = __webpack_require__(117);
 
 var getEventModifierState = __webpack_require__(66);
 
@@ -10549,7 +10572,7 @@ Object.defineProperty(exports, 'formatPattern', {
   }
 });
 
-var _Router2 = __webpack_require__(174);
+var _Router2 = __webpack_require__(173);
 
 var _Router3 = _interopRequireDefault(_Router2);
 
@@ -10557,19 +10580,19 @@ var _Link2 = __webpack_require__(95);
 
 var _Link3 = _interopRequireDefault(_Link2);
 
-var _IndexLink2 = __webpack_require__(188);
+var _IndexLink2 = __webpack_require__(187);
 
 var _IndexLink3 = _interopRequireDefault(_IndexLink2);
 
-var _withRouter2 = __webpack_require__(189);
+var _withRouter2 = __webpack_require__(188);
 
 var _withRouter3 = _interopRequireDefault(_withRouter2);
 
-var _IndexRedirect2 = __webpack_require__(191);
+var _IndexRedirect2 = __webpack_require__(190);
 
 var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
 
-var _IndexRoute2 = __webpack_require__(192);
+var _IndexRoute2 = __webpack_require__(191);
 
 var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
 
@@ -10577,23 +10600,23 @@ var _Redirect2 = __webpack_require__(96);
 
 var _Redirect3 = _interopRequireDefault(_Redirect2);
 
-var _Route2 = __webpack_require__(193);
+var _Route2 = __webpack_require__(192);
 
 var _Route3 = _interopRequireDefault(_Route2);
 
-var _History2 = __webpack_require__(194);
+var _History2 = __webpack_require__(193);
 
 var _History3 = _interopRequireDefault(_History2);
 
-var _Lifecycle2 = __webpack_require__(195);
+var _Lifecycle2 = __webpack_require__(194);
 
 var _Lifecycle3 = _interopRequireDefault(_Lifecycle2);
 
-var _RouteContext2 = __webpack_require__(196);
+var _RouteContext2 = __webpack_require__(195);
 
 var _RouteContext3 = _interopRequireDefault(_RouteContext2);
 
-var _useRoutes2 = __webpack_require__(197);
+var _useRoutes2 = __webpack_require__(196);
 
 var _useRoutes3 = _interopRequireDefault(_useRoutes2);
 
@@ -10601,13 +10624,13 @@ var _RouterContext2 = __webpack_require__(40);
 
 var _RouterContext3 = _interopRequireDefault(_RouterContext2);
 
-var _RoutingContext2 = __webpack_require__(198);
+var _RoutingContext2 = __webpack_require__(197);
 
 var _RoutingContext3 = _interopRequireDefault(_RoutingContext2);
 
 var _PropTypes3 = _interopRequireDefault(_PropTypes2);
 
-var _match2 = __webpack_require__(199);
+var _match2 = __webpack_require__(198);
 
 var _match3 = _interopRequireDefault(_match2);
 
@@ -10615,15 +10638,15 @@ var _useRouterHistory2 = __webpack_require__(99);
 
 var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
 
-var _applyRouterMiddleware2 = __webpack_require__(201);
+var _applyRouterMiddleware2 = __webpack_require__(200);
 
 var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
 
-var _browserHistory2 = __webpack_require__(202);
+var _browserHistory2 = __webpack_require__(201);
 
 var _browserHistory3 = _interopRequireDefault(_browserHistory2);
 
-var _hashHistory2 = __webpack_require__(204);
+var _hashHistory2 = __webpack_require__(203);
 
 var _hashHistory3 = _interopRequireDefault(_hashHistory2);
 
@@ -10954,21 +10977,21 @@ var _routerWarning = __webpack_require__(8);
 
 var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-var _computeChangedRoutes2 = __webpack_require__(182);
+var _computeChangedRoutes2 = __webpack_require__(181);
 
 var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
 
-var _TransitionUtils = __webpack_require__(183);
+var _TransitionUtils = __webpack_require__(182);
 
-var _isActive2 = __webpack_require__(184);
+var _isActive2 = __webpack_require__(183);
 
 var _isActive3 = _interopRequireDefault(_isActive2);
 
-var _getComponents = __webpack_require__(185);
+var _getComponents = __webpack_require__(184);
 
 var _getComponents2 = _interopRequireDefault(_getComponents);
 
-var _matchRoutes = __webpack_require__(186);
+var _matchRoutes = __webpack_require__(185);
 
 var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
 
@@ -11411,7 +11434,7 @@ function get_beautify(js_beautify, css_beautify, html_beautify) {
 
 if (true) {
     // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58), __webpack_require__(211)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (js_beautify, css_beautify, html_beautify) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(57), __webpack_require__(58), __webpack_require__(210)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (js_beautify, css_beautify, html_beautify) {
         return get_beautify(js_beautify, css_beautify, html_beautify);
     }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -15262,7 +15285,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _sprite = __webpack_require__(105);
+var _sprite = __webpack_require__(215);
 
 var _sprite2 = _interopRequireDefault(_sprite);
 
@@ -15276,7 +15299,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* global document */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/* global document */
 
 var LochnessHeader = function (_Component) {
     _inherits(LochnessHeader, _Component);
@@ -15371,7 +15403,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var Navigation = function (_Component) {
     _inherits(Navigation, _Component);
@@ -16164,7 +16203,7 @@ var ReactInstrumentation = __webpack_require__(12);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(70);
 var setInnerHTML = __webpack_require__(69);
-var setTextContent = __webpack_require__(119);
+var setTextContent = __webpack_require__(118);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -16549,7 +16588,7 @@ var _assign = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(61);
 var ReactEventEmitterMixin = __webpack_require__(257);
-var ViewportMetrics = __webpack_require__(118);
+var ViewportMetrics = __webpack_require__(117);
 
 var getVendorPrefixedEventName = __webpack_require__(258);
 var isEventSupported = __webpack_require__(65);
@@ -16875,7 +16914,7 @@ module.exports = ReactBrowserEventEmitter;
 var _prodInvariant = __webpack_require__(2);
 
 var ReactPropTypesSecret = __webpack_require__(260);
-var propTypesFactory = __webpack_require__(123);
+var propTypesFactory = __webpack_require__(122);
 
 var React = __webpack_require__(35);
 var PropTypes = propTypesFactory(React.isValidElement);
@@ -17666,6 +17705,14 @@ module.exports = getEventCharCode;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /**
  * Loads README for component and returns HTML generated from MD
@@ -17778,7 +17825,7 @@ var _isPlainObject = __webpack_require__(84);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _symbolObservable = __webpack_require__(157);
+var _symbolObservable = __webpack_require__(156);
 
 var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -18041,15 +18088,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseGetTag = __webpack_require__(149);
+var _baseGetTag = __webpack_require__(148);
 
 var _baseGetTag2 = _interopRequireDefault(_baseGetTag);
 
-var _getPrototype = __webpack_require__(154);
+var _getPrototype = __webpack_require__(153);
 
 var _getPrototype2 = _interopRequireDefault(_getPrototype);
 
-var _isObjectLike = __webpack_require__(156);
+var _isObjectLike = __webpack_require__(155);
 
 var _isObjectLike2 = _interopRequireDefault(_isObjectLike);
 
@@ -18124,7 +18171,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _root = __webpack_require__(150);
+var _root = __webpack_require__(149);
 
 var _root2 = _interopRequireDefault(_root);
 
@@ -18219,7 +18266,7 @@ function compose() {
 "use strict";
 
 
-var root = __webpack_require__(165);
+var root = __webpack_require__(164);
 
 /** Built-in value references. */
 var _Symbol = root.Symbol;
@@ -18654,17 +18701,17 @@ var _warning = __webpack_require__(13);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _deepEqual = __webpack_require__(175);
+var _deepEqual = __webpack_require__(174);
 
 var _deepEqual2 = _interopRequireDefault(_deepEqual);
 
 var _PathUtils = __webpack_require__(20);
 
-var _AsyncUtils = __webpack_require__(178);
+var _AsyncUtils = __webpack_require__(177);
 
 var _Actions = __webpack_require__(27);
 
-var _createLocation2 = __webpack_require__(179);
+var _createLocation2 = __webpack_require__(178);
 
 var _createLocation3 = _interopRequireDefault(_createLocation2);
 
@@ -19363,7 +19410,7 @@ var _useBasename = __webpack_require__(98);
 
 var _useBasename2 = _interopRequireDefault(_useBasename);
 
-var _createMemoryHistory = __webpack_require__(200);
+var _createMemoryHistory = __webpack_require__(199);
 
 var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 
@@ -19689,11 +19736,11 @@ Object.defineProperty(exports, 'routerActions', {
   }
 });
 
-var _sync = __webpack_require__(205);
+var _sync = __webpack_require__(204);
 
 var _sync2 = _interopRequireDefault(_sync);
 
-var _middleware = __webpack_require__(206);
+var _middleware = __webpack_require__(205);
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
@@ -19832,6 +19879,15 @@ var babelOptions = { 'presets': ['react'] };
  * @param  {String} jsxStr - a string containing JSX
  * @return {String}
  */
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global Babel */
 
 var cleanseJsx = exports.cleanseJsx = function cleanseJsx() {
@@ -19874,9 +19930,26 @@ var jsxToReactNode = exports.jsxToReactNode = function jsxToReactNode() {
 
 /***/ }),
 /* 105 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
+"use strict";
+
+
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+module.exports = function (payload) {
+  return {
+    type: 'TOGGLE_COLLAPSE',
+    payload: payload
+  };
+};
 
 /***/ }),
 /* 106 */
@@ -19885,11 +19958,20 @@ module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http:
 "use strict";
 
 
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (payload) {
-    return {
-        type: 'TOGGLE_COLLAPSE',
-        payload: payload
-    };
+  return {
+    type: 'TOGGLE_COLLAPSE_DESC',
+    payload: payload
+  };
 };
 
 /***/ }),
@@ -19899,11 +19981,20 @@ module.exports = function (payload) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (payload) {
-    return {
-        type: 'TOGGLE_COLLAPSE_DESC',
-        payload: payload
-    };
+  return {
+    type: 'TOGGLE_COLLAPSE_SPECS',
+    payload: payload
+  };
 };
 
 /***/ }),
@@ -19913,29 +20004,24 @@ module.exports = function (payload) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (payload) {
-    return {
-        type: 'TOGGLE_COLLAPSE_SPECS',
-        payload: payload
-    };
+  return {
+    type: 'SWITCH_TAB',
+    payload: payload
+  };
 };
 
 /***/ }),
 /* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (payload) {
-    return {
-        type: 'SWITCH_TAB',
-        payload: payload
-    };
-};
-
-/***/ }),
-/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19995,7 +20081,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var ComponentContainer = function (_Component) {
     _inherits(ComponentContainer, _Component);
@@ -20199,7 +20292,7 @@ ComponentContainer.defaultProps = {
 exports.default = ComponentContainer;
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20260,7 +20353,7 @@ function accumulateInto(current, next) {
 module.exports = accumulateInto;
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20294,7 +20387,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20330,7 +20423,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20351,7 +20444,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20473,7 +20566,7 @@ var CallbackQueue = function () {
 module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20598,7 +20691,7 @@ var inputValueTracking = {
 module.exports = inputValueTracking;
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20652,7 +20745,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20680,7 +20773,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20735,7 +20828,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20765,7 +20858,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20923,7 +21016,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21161,7 +21254,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21187,7 +21280,7 @@ module.exports = function (isValidElement) {
 };
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21206,9 +21299,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(36),
     _assign = __webpack_require__(4);
 
-var ReactNoopUpdateQueue = __webpack_require__(125);
+var ReactNoopUpdateQueue = __webpack_require__(124);
 
-var canDefineProperty = __webpack_require__(126);
+var canDefineProperty = __webpack_require__(125);
 var emptyObject = __webpack_require__(45);
 var invariant = __webpack_require__(1);
 var lowPriorityWarning = __webpack_require__(264);
@@ -21335,7 +21428,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21433,7 +21526,7 @@ var ReactNoopUpdateQueue = {
 module.exports = ReactNoopUpdateQueue;
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21462,7 +21555,7 @@ if (false) {
 module.exports = canDefineProperty;
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21485,7 +21578,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22272,7 +22365,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
 module.exports = factory;
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22475,7 +22568,7 @@ function _handleChange(event) {
 module.exports = ReactDOMSelect;
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22668,7 +22761,7 @@ process.umask = function () {
 };
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22688,8 +22781,8 @@ var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(4);
 
 var ReactCompositeComponent = __webpack_require__(279);
-var ReactEmptyComponent = __webpack_require__(133);
-var ReactHostComponent = __webpack_require__(134);
+var ReactEmptyComponent = __webpack_require__(132);
+var ReactHostComponent = __webpack_require__(133);
 
 var getNextDebugID = __webpack_require__(281);
 var invariant = __webpack_require__(1);
@@ -22802,7 +22895,7 @@ _assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
 module.exports = instantiateReactComponent;
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22849,7 +22942,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22882,7 +22975,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22953,7 +23046,7 @@ var ReactHostComponent = {
 module.exports = ReactHostComponent;
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23134,7 +23227,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23517,7 +23610,7 @@ var ReactComponentTreeHook = {
 module.exports = ReactComponentTreeHook;
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23610,7 +23703,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 module.exports = ReactServerRenderingTransaction;
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23849,7 +23942,7 @@ var ReactUpdateQueue = {
 module.exports = ReactUpdateQueue;
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23920,7 +24013,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24000,7 +24093,7 @@ var EventListener = {
 module.exports = EventListener;
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24017,8 +24110,8 @@ module.exports = EventListener;
 var ReactDOMSelection = __webpack_require__(293);
 
 var containsNode = __webpack_require__(295);
-var focusNode = __webpack_require__(120);
-var getActiveElement = __webpack_require__(142);
+var focusNode = __webpack_require__(119);
+var getActiveElement = __webpack_require__(141);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -24126,7 +24219,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24169,7 +24262,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24193,7 +24286,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var LochnessFooter = function (_Component) {
     _inherits(LochnessFooter, _Component);
@@ -24217,7 +24317,7 @@ var LochnessFooter = function (_Component) {
 exports.default = LochnessFooter;
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24235,21 +24335,30 @@ var _reactRouter = __webpack_require__(49);
 
 var _reactRouterRedux = __webpack_require__(101);
 
-var _stores = __webpack_require__(207);
+var _stores = __webpack_require__(206);
 
 var _stores2 = _interopRequireDefault(_stores);
 
-var _routes = __webpack_require__(214);
+var _routes = __webpack_require__(213);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-__webpack_require__(494);
+__webpack_require__(495);
 
-__webpack_require__(496);
+__webpack_require__(497);
 
-__webpack_require__(498);
+__webpack_require__(499);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /* global document */
 
@@ -24267,7 +24376,7 @@ var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.hashHisto
 ), document.getElementById('app'));
 
 /***/ }),
-/* 145 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24369,7 +24478,7 @@ Provider.childContextTypes = {
 };
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24397,11 +24506,11 @@ var _storeShape = __webpack_require__(81);
 
 var _storeShape2 = _interopRequireDefault(_storeShape);
 
-var _shallowEqual = __webpack_require__(147);
+var _shallowEqual = __webpack_require__(146);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _wrapActionCreators = __webpack_require__(148);
+var _wrapActionCreators = __webpack_require__(147);
 
 var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 
@@ -24409,11 +24518,11 @@ var _warning = __webpack_require__(82);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _isPlainObject = __webpack_require__(163);
+var _isPlainObject = __webpack_require__(162);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _hoistNonReactStatics = __webpack_require__(172);
+var _hoistNonReactStatics = __webpack_require__(171);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
@@ -24793,7 +24902,7 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
 }
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24825,7 +24934,7 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24843,7 +24952,7 @@ function wrapActionCreators(actionCreators) {
 }
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24857,11 +24966,11 @@ var _Symbol2 = __webpack_require__(85);
 
 var _Symbol3 = _interopRequireDefault(_Symbol2);
 
-var _getRawTag = __webpack_require__(152);
+var _getRawTag = __webpack_require__(151);
 
 var _getRawTag2 = _interopRequireDefault(_getRawTag);
 
-var _objectToString = __webpack_require__(153);
+var _objectToString = __webpack_require__(152);
 
 var _objectToString2 = _interopRequireDefault(_objectToString);
 
@@ -24891,7 +25000,7 @@ function baseGetTag(value) {
 exports.default = baseGetTag;
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24903,7 +25012,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _freeGlobal = __webpack_require__(151);
+var _freeGlobal = __webpack_require__(150);
 
 var _freeGlobal2 = _interopRequireDefault(_freeGlobal);
 
@@ -24918,7 +25027,7 @@ var root = _freeGlobal2.default || freeSelf || Function('return this')();
 exports.default = root;
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24937,7 +25046,7 @@ exports.default = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48)))
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24999,7 +25108,7 @@ function getRawTag(value) {
 exports.default = getRawTag;
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25032,7 +25141,7 @@ function objectToString(value) {
 exports.default = objectToString;
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25042,7 +25151,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _overArg = __webpack_require__(155);
+var _overArg = __webpack_require__(154);
 
 var _overArg2 = _interopRequireDefault(_overArg);
 
@@ -25054,7 +25163,7 @@ var getPrototype = (0, _overArg2.default)(Object.getPrototypeOf, Object);
 exports.default = getPrototype;
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25080,7 +25189,7 @@ function overArg(func, transform) {
 exports.default = overArg;
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25123,7 +25232,7 @@ function isObjectLike(value) {
 exports.default = isObjectLike;
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25133,7 +25242,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(159);
+var _ponyfill = __webpack_require__(158);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -25156,10 +25265,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2.default)(root);
 exports.default = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48), __webpack_require__(158)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48), __webpack_require__(157)(module)))
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25189,7 +25298,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25218,7 +25327,7 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25369,7 +25478,7 @@ function combineReducers(reducers) {
 }
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25431,7 +25540,7 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25504,15 +25613,15 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var baseGetTag = __webpack_require__(164),
-    getPrototype = __webpack_require__(169),
-    isObjectLike = __webpack_require__(171);
+var baseGetTag = __webpack_require__(163),
+    getPrototype = __webpack_require__(168),
+    isObjectLike = __webpack_require__(170);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -25573,15 +25682,15 @@ function isPlainObject(value) {
 module.exports = isPlainObject;
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var _Symbol = __webpack_require__(88),
-    getRawTag = __webpack_require__(167),
-    objectToString = __webpack_require__(168);
+    getRawTag = __webpack_require__(166),
+    objectToString = __webpack_require__(167);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -25607,7 +25716,7 @@ function baseGetTag(value) {
 module.exports = baseGetTag;
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25615,7 +25724,7 @@ module.exports = baseGetTag;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var freeGlobal = __webpack_require__(166);
+var freeGlobal = __webpack_require__(165);
 
 /** Detect free variable `self`. */
 var freeSelf = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) == 'object' && self && self.Object === Object && self;
@@ -25626,7 +25735,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 module.exports = root;
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25641,7 +25750,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(48)))
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25695,7 +25804,7 @@ function getRawTag(value) {
 module.exports = getRawTag;
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25725,13 +25834,13 @@ function objectToString(value) {
 module.exports = objectToString;
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var overArg = __webpack_require__(170);
+var overArg = __webpack_require__(169);
 
 /** Built-in value references. */
 var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -25739,7 +25848,7 @@ var getPrototype = overArg(Object.getPrototypeOf, Object);
 module.exports = getPrototype;
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25762,7 +25871,7 @@ function overArg(func, transform) {
 module.exports = overArg;
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25801,7 +25910,7 @@ function isObjectLike(value) {
 module.exports = isObjectLike;
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25878,7 +25987,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 module.exports = hoistNonReactStatics;
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25937,7 +26046,7 @@ if (false) {
 module.exports = warning;
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26176,7 +26285,7 @@ exports.default = Router;
 module.exports = exports['default'];
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26185,8 +26294,8 @@ module.exports = exports['default'];
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var pSlice = Array.prototype.slice;
-var objectKeys = __webpack_require__(176);
-var isArguments = __webpack_require__(177);
+var objectKeys = __webpack_require__(175);
+var isArguments = __webpack_require__(176);
 
 var deepEqual = module.exports = function (actual, expected, opts) {
   if (!opts) opts = {};
@@ -26277,7 +26386,7 @@ function objEquiv(a, b, opts) {
 }
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26294,7 +26403,7 @@ function shim(obj) {
 }
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26319,7 +26428,7 @@ function unsupported(object) {
 };
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26383,7 +26492,7 @@ function loopAsync(turns, work, callback) {
 }
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26452,13 +26561,13 @@ exports['default'] = createLocation;
 module.exports = exports['default'];
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var strictUriEncode = __webpack_require__(181);
+var strictUriEncode = __webpack_require__(180);
 
 exports.extract = function (str) {
 	return str.split('?')[1] || '';
@@ -26525,7 +26634,7 @@ exports.stringify = function (obj) {
 };
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26538,7 +26647,7 @@ module.exports = function (str) {
 };
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26621,7 +26730,7 @@ exports.default = computeChangedRoutes;
 module.exports = exports['default'];
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26751,7 +26860,7 @@ function runLeaveHooks(routes, prevState) {
 }
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26915,7 +27024,7 @@ function isActive(_ref, indexOnly, currentLocation, routes, params) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26969,7 +27078,7 @@ exports.default = getComponents;
 module.exports = exports['default'];
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27242,7 +27351,7 @@ function matchRoutes(routes, location, callback, remainingPathname) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27274,7 +27383,7 @@ exports.default = getRouteParams;
 module.exports = exports['default'];
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27318,7 +27427,7 @@ exports.default = IndexLink;
 module.exports = exports['default'];
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27346,7 +27455,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _hoistNonReactStatics = __webpack_require__(190);
+var _hoistNonReactStatics = __webpack_require__(189);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
@@ -27398,7 +27507,7 @@ function withRouter(WrappedComponent, options) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27453,7 +27562,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 };
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27523,7 +27632,7 @@ exports.default = IndexRedirect;
 module.exports = exports['default'];
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27590,7 +27699,7 @@ exports.default = IndexRoute;
 module.exports = exports['default'];
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27654,7 +27763,7 @@ exports.default = Route;
 module.exports = exports['default'];
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27691,7 +27800,7 @@ exports.default = History;
 module.exports = exports['default'];
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27767,7 +27876,7 @@ exports.default = Lifecycle;
 module.exports = exports['default'];
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27820,7 +27929,7 @@ exports.default = RouteContext;
 module.exports = exports['default'];
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27891,7 +28000,7 @@ exports.default = useRoutes;
 module.exports = exports['default'];
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27929,7 +28038,7 @@ exports.default = RoutingContext;
 module.exports = exports['default'];
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28032,7 +28141,7 @@ exports.default = match;
 module.exports = exports['default'];
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28204,7 +28313,7 @@ exports['default'] = createMemoryHistory;
 module.exports = exports['default'];
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28277,7 +28386,7 @@ exports.default = function () {
 module.exports = exports['default'];
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28285,7 +28394,7 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-var _createBrowserHistory = __webpack_require__(203);
+var _createBrowserHistory = __webpack_require__(202);
 
 var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
@@ -28301,7 +28410,7 @@ exports.default = (0, _createRouterHistory2.default)(_createBrowserHistory2.defa
 module.exports = exports['default'];
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28497,7 +28606,7 @@ exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28521,7 +28630,7 @@ exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default
 module.exports = exports['default'];
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28689,7 +28798,7 @@ function syncHistoryWithStore(history, store) {
 }
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28736,7 +28845,7 @@ function routerMiddleware(history) {
 }
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28744,11 +28853,11 @@ function routerMiddleware(history) {
 
 var _redux = __webpack_require__(25);
 
-var _reducers = __webpack_require__(208);
+var _reducers = __webpack_require__(207);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _debounceMiddleware = __webpack_require__(213);
+var _debounceMiddleware = __webpack_require__(212);
 
 var _debounceMiddleware2 = _interopRequireDefault(_debounceMiddleware);
 
@@ -28768,7 +28877,54 @@ module.exports = function (initialState) {
     }
 
     return store;
-};
+}; /*
+    * Copyright (c) 2017 dunnhumby Germany GmbH.
+    * All rights reserved.
+    *
+    * This source code is licensed under the MIT license found in the LICENSE file
+    * in the root directory of this source tree.
+    *
+    */
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(25);
+
+var _reactRouterRedux = __webpack_require__(101);
+
+var _components = __webpack_require__(208);
+
+var _components2 = _interopRequireDefault(_components);
+
+var _editor = __webpack_require__(211);
+
+var _editor2 = _interopRequireDefault(_editor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+exports.default = (0, _redux.combineReducers)(Object.assign({}, {
+  routing: _reactRouterRedux.routerReducer,
+  components: _components2.default,
+  editor: _editor2.default
+}));
 
 /***/ }),
 /* 208 */
@@ -28781,40 +28937,16 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redux = __webpack_require__(25);
-
-var _reactRouterRedux = __webpack_require__(101);
-
-var _components = __webpack_require__(209);
-
-var _components2 = _interopRequireDefault(_components);
-
-var _editor = __webpack_require__(212);
-
-var _editor2 = _interopRequireDefault(_editor);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)(Object.assign({}, {
-    routing: _reactRouterRedux.routerReducer,
-    components: _components2.default,
-    editor: _editor2.default
-}));
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
+                                                                                                                                                                                                                                                                   * Copyright (c) 2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                   * All rights reserved.
+                                                                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                                                                   * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                   * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                                                                   */
 
 exports.default = components;
 
@@ -28822,7 +28954,7 @@ var _displayComponents = __webpack_require__(21);
 
 var DisplayComponents = _interopRequireWildcard(_displayComponents);
 
-var _displayComponentsDefaults = __webpack_require__(210);
+var _displayComponentsDefaults = __webpack_require__(209);
 
 var _displayComponentsDefaults2 = _interopRequireDefault(_displayComponentsDefaults);
 
@@ -28962,13 +29094,13 @@ function components() {
 }
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, exports) {
 
-module.exports = {"Animate":{"lochness":{"isDeprecated":true}},"Button":{"label":"Click me!"},"Card":{"children":"{<TextInput label='Your name'/>}","padding":"S"},"CheckableGroup":{"label":"What’s your favorite fruit?","children":"{<Radio>Apples</Radio><Radio>Oranges</Radio><Radio isChecked>Kaki</Radio><Radio isDisabled>Forbidden fruit</Radio>}"},"Checkbox":{"label":"Check it out"},"CheckboxGroup":{"label":"Which fruits do you like?","values":["apples","oranges","kaki"],"selectedValues":["apples","kaki"]},"CodeEditor":{"label":"Hack the planet"},"Column":{"children":"column content"},"ComboBox":{"isOpen":true,"options":[{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option4","text":"Option 3"},{"id":"option5","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]},"DatePicker":{"month":"February","year":"2018","label":"January 2000","headers":[{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],"items":[[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]},"DateTimeInput":{"currentMonth":"January","currentYear":"2000","days":[{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],"hourPlaceholder":"HH","inputPlaceholder":"YYYY-MM-DD HH:MM","minutePlaceholder":"MM","months":[[{"label":"Jan","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Feb","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Mar","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Apr","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"May","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jun","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jul","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Aug","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"Sep","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Oct","value":"10","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"Nov","value":"11","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"Dec","value":"12","isCurrent":false,"isDisabled":false,"isSelected":false}]],"weeks":[[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]},"DimensionsInput":{"label":"Banner size","errorMessage":"Wrong size!"},"Divider":{"lochness":{"isDeprecated":true}},"DragNDrop":{"message":"Drop image file to upload","children":"{<Label><Required>Image</Required></Label><Uploader/>}"},"Dropdown":{"children":"{<ul><li>List item A</li><li>List item B</li><li>List item C</li></ul>}"},"Fieldset":{"label":"Fieldset legend","children":"{<Text>Fieldset content</Text>}"},"Form":{"lochness":{"isDeprecated":true},"children":"{<TextInput label='Your name'/><TextArea label='Your address'/>}"},"FlounderDropdown":{"placeholder":"Just a placeholder","label":"Pick an option","data":["Option",{"text":"Option with description","value":"value2","description":"Option description"},{"text":"Disabled option","value":"value5","disabled":true}]},"Grid":{"children":"{<Column size='1/2'><Text>First column</Text></Column><Column size='1/2'><Text>Second column</Text></Column><Column size='1/2'><Text>Third column</Text></Column>}"},"H1":{"title":"h1 element"},"H2":{"title":"h2 element"},"H3":{"title":"h3 element"},"H4":{"title":"h4 element"},"Icon":{"type":"add"},"IconButton":{"iconType":"add","label":"Add"},"IconWithTooltip":{"iconType":"error","message":"Something’s wrong!","tooltipIsVisible":true},"Label":{"label":" Label example"},"ListBox":{"options":[{"text":"Option"},{"text":"Option with description","value":"value2","description":"Option description"},{"text":"Disabled option","value":"value3","disabled":true},{"header":"Subsection 1","options":[{"text":"Subsection option 1"},{"text":"Subsection option 2"},{"text":"Subsection option with really, really, long text and a long description","description":"Option description is also really, really, long","value":"value12"}]}]},"MessageBox":{"message":"Our Wonderful Message"},"Module":{"title":"Our Wonderful Module","children":"{<Text>Some other components go here....</Text>}"},"ModalDialog":{"children":"{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"},"NavBar":{"children":"{<NavItem iconType='lightbulb' label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isCurrent/></NavItem><NavItem iconType='megaphone' label='Campaigns' href='#'/><NavItem iconType='account' label='Account' href='#'/>}"},"NavDropdown":{"children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NavItem":{"label":"Creatives","children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NavList":{"children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NotificationBar":{"message":"Here you can view your campaign settings"},"Paginator":{"shownPages":[10,11,12],"startPage":1,"endPage":99,"currentPage":10,"startEllipsis":true,"endEllipsis":true,"showPrev":true,"showNext":true},"PasswordInput":{"label":"Tell me your secrets","errorMessage":"Please enter a valid name"},"ProgressIndicator":{"currentPercentage":17},"Radio":{"label":"Ga Ga"},"RadioGroup":{"label":"What’s your favorite fruit?","values":["apples","oranges","kaki"],"selectedValue":"apples"},"Required":{"lochness":{"isDeprecated":true}},"Row":{"children":"{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"},"ScrollBar":{"scrollMax":100},"ScrollBox":{"children":"{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/3', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}","contentWidth":"150%","height":"100px"},"Section":{"title":"The Life and Times of David Hasselhoff","level":1,"children":"{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"},"Slider":{"stepLabelStart":"Today","stepLabelEnd":"Future","value":[25,75],"ticks":[{"stepLabel":"|","step":25},{"stepLabel":"|","step":50},{"stepLabel":"|","step":75}],"stepLabels":[{"stepLabel":"25","step":25},{"stepLabel":"50","step":50},{"stepLabel":"75","step":75}]},"SliderGroup":{"sliders":[{"value":50},{"value":50,"isDisabled":true},{"value":50,"isDisabled":true},{"value":50,"isDisabled":true}],"stepLabels":[{"stepLabel":"No filter","step":0},{"stepLabel":"Low","step":25},{"stepLabel":"Medium","step":50},{"stepLabel":"High","step":75},{"stepLabel":"Very high","step":100}],"sliderLabels":["category 1","category 2","category 3","category 4"]},"Sorter":{"children":"Something to sort"},"StatusIndicator":{"label":"Deactivated"},"Tab":{"label":"Tab title text","children":"{<Text>Tab content goes here</Text>}"},"TabButton":{"label":"Tab title","subtitle":"Something subtitly"},"Table":{"values":[["Create","2016/06/10","Made a thing"],["Delete","2016/06/10","Erased a thing"],["Edit","2016/06/12","Modified a thing"],["Create","2016/06/15","Made another thing"]],"columns":[{"title":"Action","isSortable":true,"size":"1/4"},{"title":"Date","isSortable":true,"size":"1/4"},{"title":"Comments","isSortable":false,"size":"1/2"}]},"TableCell":{"children":"cell content","columnTitle":"column title"},"TableRow":{"children":"{<TableCell size='1/3' columnTitle='left column title'><Text>left</Text><Text>column</Text><Text>content</Text></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"},"Tabs":{"children":"{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}","activeTabIndex":1},"Tag":{"label":"Tag Label"},"TagInput":{"children":"{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}","tags":["TagLabelString 1","TagLabelString 2"]},"TextArea":{"label":"Text Area Label","placeholder":"Please enter max. 500 characters"},"TextInput":{"label":"Name","placeholder":"Your full name","errorMessage":"Please enter a valid name"},"TextInputWithDropdown":{"label":"How long?","inputPlaceholder":"number","dropdownData":["seconds","minutes","hours","days"],"errorMessage":"That’s too long!"},"TextInputWithIcon":{"label":"Name","inputPlaceholder":"name","inputType":"text","iconType":"show"},"ToggleButton":{"label":"Toggle me tender","subLabel":"Toggle me sweet"},"Tooltip":{"message":"Cost per click","children":"{<Label>CPC</Label>}"},"Uploader":{"label":"Banner image"},"ValuedTextInput":{"label":"How much is the fish?","placeholder":"0.00","valueLabel":"EUR","errorMessage":"Enter a price in euros and cents"}}
+module.exports = {"Animate":{"lochness":{"isDeprecated":true}},"Button":{"label":"Click me!"},"Card":{"children":"{<TextInput label='Your name'/>}"},"CheckableGroup":{"label":"What’s your favorite fruit?","children":"{<Radio>Apples</Radio><Radio>Oranges</Radio><Radio isChecked>Kaki</Radio><Radio isDisabled>Forbidden fruit</Radio>}"},"Checkbox":{"label":"Check it out"},"CheckboxGroup":{"label":"Which fruits do you like?","values":["apples","oranges","kaki"],"selectedValues":["apples","kaki"]},"CodeEditor":{"label":"Hack the planet"},"Column":{"children":"column content"},"ComboBox":{"isOpen":true,"options":[{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option4","text":"Option 3"},{"id":"option5","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]},"DatePicker":{"month":"February","year":"2018","label":"January 2000","headers":[{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],"items":[[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]},"DateTimeInput":{"currentMonth":"January","currentYear":"2000","days":[{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],"hourPlaceholder":"HH","inputPlaceholder":"YYYY-MM-DD HH:MM","minutePlaceholder":"MM","months":[[{"label":"Jan","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Feb","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Mar","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Apr","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"May","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jun","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jul","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Aug","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"Sep","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Oct","value":"10","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"Nov","value":"11","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"Dec","value":"12","isCurrent":false,"isDisabled":false,"isSelected":false}]],"weeks":[[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]},"DimensionsInput":{"label":"Banner size","errorMessage":"Wrong size!"},"Divider":{"lochness":{"isDeprecated":true}},"DragNDrop":{"message":"Drop image file to upload","children":"{<Label><Required>Image</Required></Label><Uploader/>}"},"Dropdown":{"children":"{<ul><li>List item A</li><li>List item B</li><li>List item C</li></ul>}"},"Fieldset":{"label":"Fieldset legend","children":"{<Text>Fieldset content</Text>}"},"Form":{"lochness":{"isDeprecated":true},"children":"{<TextInput label='Your name'/><TextArea label='Your address'/>}"},"FlounderDropdown":{"placeholder":"Just a placeholder","label":"Pick an option","data":["Option",{"text":"Option with description","value":"value2","description":"Option description"},{"text":"Disabled option","value":"value5","disabled":true}]},"Grid":{"children":"{<Column size='1/2'><Text>First column</Text></Column><Column size='1/2'><Text>Second column</Text></Column><Column size='1/2'><Text>Third column</Text></Column>}"},"H1":{"title":"h1 element"},"H2":{"title":"h2 element"},"H3":{"title":"h3 element"},"H4":{"title":"h4 element"},"Icon":{"type":"add"},"IconButton":{"iconType":"add","label":"Add"},"IconWithTooltip":{"iconType":"error","message":"Something’s wrong!","tooltipIsVisible":true,"lochness":{"isDeprecated":true}},"Label":{"label":" Label example"},"ListBox":{"options":[{"text":"Option"},{"text":"Option with description","value":"value2","description":"Option description"},{"text":"Disabled option","value":"value3","disabled":true},{"header":"Subsection 1","options":[{"text":"Subsection option 1"},{"text":"Subsection option 2"},{"text":"Subsection option with really, really, long text and a long description","description":"Option description is also really, really, long","value":"value12"}]}]},"MessageBox":{"message":"Our Wonderful Message"},"Module":{"title":"Our Wonderful Module","children":"{<Text>Some other components go here....</Text>}"},"ModalDialog":{"children":"{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"},"NavBar":{"children":"{<NavItem iconType='lightbulb' label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isCurrent/></NavItem><NavItem iconType='megaphone' label='Campaigns' href='#'/><NavItem iconType='account' label='Account' href='#'/>}"},"NavDropdown":{"children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NavItem":{"label":"Creatives","children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NavList":{"children":"{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"},"NotificationBar":{"message":"Here you can view your campaign settings"},"PageContent":{"children":"{<Text>This is the page content container. Not much to see here, really.</Text>}"},"Paginator":{"shownPages":[10,11,12],"startPage":1,"endPage":99,"currentPage":10,"startEllipsis":true,"endEllipsis":true,"showPrev":true,"showNext":true},"PasswordInput":{"label":"Tell me your secrets","errorMessage":"Please enter a valid name"},"ProgressIndicator":{"currentPercentage":17},"Radio":{"label":"Ga Ga"},"RadioGroup":{"label":"What’s your favorite fruit?","values":["apples","oranges","kaki"],"selectedValue":"apples"},"Required":{"lochness":{"isDeprecated":true}},"Row":{"children":"{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"},"ScrollBar":{"scrollMax":100},"ScrollBox":{"children":"{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/3', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}","contentWidth":"150%","height":"100px"},"Section":{"title":"The Life and Times of David Hasselhoff","level":1,"children":"{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"},"Slider":{"stepLabelStart":"Today","stepLabelEnd":"Future","value":[25,75],"ticks":[{"stepLabel":"|","step":25},{"stepLabel":"|","step":50},{"stepLabel":"|","step":75}],"stepLabels":[{"stepLabel":"25","step":25},{"stepLabel":"50","step":50},{"stepLabel":"75","step":75}]},"SliderGroup":{"sliders":[{"value":50},{"value":50,"isDisabled":true},{"value":50,"isDisabled":true},{"value":50,"isDisabled":true}],"stepLabels":[{"stepLabel":"No filter","step":0},{"stepLabel":"Low","step":25},{"stepLabel":"Medium","step":50},{"stepLabel":"High","step":75},{"stepLabel":"Very high","step":100}],"sliderLabels":["category 1","category 2","category 3","category 4"]},"Sorter":{"children":"Something to sort"},"StatusIndicator":{"label":"Active"},"Tab":{"label":"Tab title text","children":"{<Text>Tab content goes here</Text>}"},"TabButton":{"label":"Tab title","subtitle":"Something subtitly"},"Table":{"values":[["Create","2016/06/10","Made a thing"],["Delete","2016/06/10","Erased a thing"],["Edit","2016/06/12","Modified a thing"],["Create","2016/06/15","Made another thing"]],"columns":[{"title":"Action","isSortable":true,"size":"1/4"},{"title":"Date","isSortable":true,"size":"1/4"},{"title":"Comments","isSortable":false,"size":"1/2"}]},"TableCell":{"children":"cell content","columnTitle":"column title"},"TableRow":{"children":"{<TableCell size='1/3' columnTitle='left column title'><Text>left</Text><Text>column</Text><Text>content</Text></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"},"Tabs":{"children":"{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}","activeTabIndex":1},"Tag":{"label":"Tag Label"},"TagInput":{"children":"{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}","tags":["TagLabelString 1","TagLabelString 2"]},"TextArea":{"label":"Text Area Label","placeholder":"Please enter max. 500 characters"},"TextInput":{"label":"Name","placeholder":"Your full name","errorMessage":"Please enter a valid name"},"TextInputWithDropdown":{"label":"How long?","lochness":{"isDeprecated":true},"inputPlaceholder":"number","dropdownData":["seconds","minutes","hours","days"],"errorMessage":"That’s too long!"},"TextInputWithIcon":{"label":"Name","inputPlaceholder":"name","inputType":"text","iconType":"show"},"ToggleButton":{"label":"Toggle me tender","subLabel":"Toggle me sweet"},"Tooltip":{"message":"Pro tip!"},"Uploader":{"label":"Banner image"},"ValuedTextInput":{"label":"How much is the fish?","placeholder":"0.00","valueLabel":"EUR","errorMessage":"Enter a price in euros and cents"}}
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30372,7 +30504,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })();
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30385,6 +30517,15 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = editor;
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 var LOCAL_JSXSTRING = 'lochness-jsxString';
 var defaultJsxString = '<H1>Page Title</H1>\n<Row align="right" verticalAlign="middle">\n    <Column>\n        <Switch isChecked onLabel="Active" offLabel="Deactivated" />\n    </Column>\n    <Column>\n        <Tooltip message="Delete">\n            <IconButton iconType="delete" iconTheme="control" iconSize="M">\n                Delete\n            </IconButton>\n        </Tooltip>\n    </Column>\n</Row>\n<Module title="Module">\n    <Text>Module content...</Text>\n</Module>\n<Module isCollapsible isCollapsed title="Collapsed Module">\n    <Text>Collapsed module content...</Text>\n</Module>';
 
@@ -30474,7 +30615,7 @@ function editor() {
 }
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30483,6 +30624,15 @@ function editor() {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /**
  * Allows `debounce` of any action using meta value
  * { meta : { debounce : 50 } }
@@ -30515,7 +30665,7 @@ var debounceMiddleware = function debounceMiddleware() {
 exports.default = debounceMiddleware;
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30529,7 +30679,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Editor = __webpack_require__(215);
+var _Editor = __webpack_require__(214);
 
 var _Editor2 = _interopRequireDefault(_Editor);
 
@@ -30548,6 +30698,15 @@ var _ComponentToTest2 = _interopRequireDefault(_ComponentToTest);
 var _reactRouter = __webpack_require__(49);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 var Routes = _react2.default.createElement(
     _reactRouter.Route,
@@ -30572,7 +30731,7 @@ var Routes = _react2.default.createElement(
 exports.default = Routes;
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30648,7 +30807,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* global Babel */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/* global Babel */
 
 
 var babelOptions = { 'presets': ['react'] };
@@ -30851,10 +31019,16 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Editor);
 
 /***/ }),
+/* 215 */
+/***/ (function(module, exports) {
+
+module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M7.974 13.248a5.5 5.5 0 1 1 8.052 0C18.119 14.67 19.5 17.169 19.5 20a1 1 0 0 1-2 0c0-3.33-2.48-6-5.5-6-3.021 0-5.5 2.67-5.5 6a1 1 0 0 1-2 0c0-2.831 1.381-5.33 3.474-6.752m1.942-.936A7.084 7.084 0 0 1 12 12c.724 0 1.423.109 2.084.312a3.5 3.5 0 1 0-4.168 0\"/>\n\n</symbol>\n<symbol id=\"icon__add-circle\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M13 11h3a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-3H8a1 1 0 0 1 0-2h3V8a1 1 0 0 1 2 0v3z\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 24 24\">\n    <path d=\"M13 11V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0v-4h4a1 1 0 0 0 0-2h-4z\"/>\n\n</symbol>\n<symbol id=\"icon__alert\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M10.816 8.486c-.045-.55.373-1.054 1.134-1.08.762-.027 1.194.446 1.194.999a1 1 0 0 1-.004.091l-.443 4.822a.75.75 0 0 1-.747.682.742.742 0 0 1-.74-.682l-.394-4.832zM12 15a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\"/>\n\n</symbol>\n<symbol id=\"icon__approved\" viewBox=\"0 0 24 24\">\n    <circle cx=\"12\" cy=\"12\" r=\"8\"/>\n    <path fill=\"#fff\" d=\"M9.91 11.554a1 1 0 0 0-1.063 1.695l2.576 1.571a1.1 1.1 0 0 0 1.516-.348l.016-.026 2.552-4.52a1 1 0 1 0-1.723-1.015L11.7 12.634l-1.792-1.08z\"/>\n\n</symbol>\n<symbol id=\"icon__arrow-down\" viewBox=\"0 0 24 24\">\n    <path d=\"M11.027 14.076V8a1 1 0 0 1 2 0v6.07l1.212-1.66a1 1 0 1 1 1.615 1.18l-2.858 3.914a1.2 1.2 0 0 1-1.938.001l-2.865-3.914a1 1 0 0 1 1.614-1.182l1.22 1.667z\"/>\n\n</symbol>\n<symbol id=\"icon__arrow-up\" viewBox=\"0 0 24 24\">\n    <path d=\"M13 10.924V17a1 1 0 0 1-2 0v-6.07l-1.212 1.66a1 1 0 0 1-1.615-1.18l2.858-3.914a1.2 1.2 0 0 1 1.938-.001l2.865 3.914a1 1 0 0 1-1.614 1.182L13 10.924z\"/>\n\n</symbol>\n<symbol id=\"icon__arrow\" viewBox=\"0 0 24 24\">\n    <path d=\"M20.657 11.292l-5.887-5.99a1.006 1.006 0 0 0-1.421-.016.997.997 0 0 0-.016 1.414L17.56 11H4.005C3.45 11 3 11.448 3 12c0 .553.45 1 1.005 1h13.747l-4.403 4.286A.997.997 0 0 0 14.052 19c.253 0 .506-.094.702-.285l5.883-5.725a1.197 1.197 0 0 0 .02-1.698\"/>\n\n</symbol>\n<symbol id=\"icon__bell\" viewBox=\"0 0 24 24\">\n    <path d=\"M10.1 4.374A5.002 5.002 0 0 0 7 9c-.004.709-.004 1.364 0 1.966.004.602-.33 1.613-1 3.034h12c-.667-1.438-1-2.45-1-3.034V9a5.002 5.002 0 0 0-3.1-4.626 2 2 0 0 0-3.8 0zM6 14h12a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1zm6 5h4c-.019 1.715-.343 2-2 2-1.394 0-2-.352-2-2z\"/>\n\n</symbol>\n<symbol id=\"icon__board\" viewBox=\"0 0 24 24\">\n    <path d=\"M5.02 5.952a2 2 0 0 0-1.39 1.367C3.21 8.747 3 10.304 3 11.994c0 1.702.214 3.271.639 4.713a2 2 0 0 0 1.38 1.361 24.53 24.53 0 0 0 6.643.932c2.17 0 4.275-.299 6.322-.896a2 2 0 0 0 1.358-1.352c.437-1.477.658-3.086.658-4.834 0-1.71-.21-3.258-.627-4.652a2 2 0 0 0-1.359-1.347A22.545 22.545 0 0 0 11.698 5c-2.137 0-4.362.316-6.679.952zm-.53-1.929C6.975 3.341 9.378 3 11.698 3c2.292 0 4.583.333 6.874.998a4 4 0 0 1 2.717 2.696c.474 1.586.711 3.327.711 5.224 0 1.935-.247 3.736-.74 5.402a4 4 0 0 1-2.715 2.704c-2.23.65-4.525.976-6.883.976-2.394 0-4.789-.335-7.183-1.006a4 4 0 0 1-2.759-2.722c-.48-1.63-.72-3.39-.72-5.278 0-1.875.237-3.62.71-5.237a4 4 0 0 1 2.78-2.734zM7 11a1 1 0 0 1 0-2h5a1 1 0 0 1 0 2H7zm0 4a1 1 0 0 1 0-2h9a1 1 0 0 1 0 2H7z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 24 24\">\n    <path d=\"M17 4h.882C19.052 4 20 4.896 20 6v12c0 1.104-.948 2-2.118 2H6.118C4.948 20 4 19.104 4 18V6c0-1.104.948-2 2.118-2H7v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V4h4v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V4zM6 18h12v-8H6v8z\"/>\n\n</symbol>\n<symbol id=\"icon__close-circle\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M13.657 12.243l2.121-2.122a1 1 0 1 0-1.414-1.414l-2.121 2.121-2.122-2.12a1 1 0 1 0-1.414 1.413l2.121 2.122-2.12 2.121a1 1 0 0 0 1.413 1.414l2.122-2.121 2.121 2.121a1 1 0 0 0 1.414-1.414l-2.121-2.121z\"/>\n\n</symbol>\n<symbol id=\"icon__close-thick\" viewBox=\"0 0 24 24\">\n    <path d=\"M13.364 11.95l4.243 4.242a1 1 0 1 1-1.415 1.415l-4.242-4.243-4.243 4.243a1 1 0 0 1-1.414-1.415l4.243-4.242-4.243-4.243a1 1 0 0 1 1.414-1.414l4.243 4.243 4.242-4.243a1 1 0 1 1 1.415 1.414l-4.243 4.243z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 24 24\">\n    <path d=\"M12.01 11.303L6.707 6 6 6.707l5.303 5.303L6 17.314l.707.707 5.303-5.303 5.304 5.303.707-.707-5.303-5.304 5.303-5.303L17.314 6z\"/>\n\n</symbol>\n<symbol id=\"icon__dash\" viewBox=\"0 0 24 24\">\n    <path d=\"M7 11a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2H7z\"/>\n\n</symbol>\n<symbol id=\"icon__dashboard\" viewBox=\"0 0 24 24\">\n    <path d=\"M6 18h3V6H6v12zM5 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm9 9h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1zm0-9h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 14h3v-3h-3v3z\"/>\n\n</symbol>\n<symbol id=\"icon__declined\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M16 12a1 1 0 0 0-1-1H9a1 1 0 0 0 0 2h6a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 24 24\">\n    <path d=\"M17.5 10a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1c-.12 1.27-.12 2.603 0 4 .12 1.397.356 2.786.705 4.167a1 1 0 0 0 .986.833h7.618a1 1 0 0 0 .985-.833A27.47 27.47 0 0 0 17.5 14a23.316 23.316 0 0 0 0-4zm1.214 9.35A2 2 0 0 1 16.745 21h-9.49a2.001 2.001 0 0 1-1.969-1.65A51.009 51.009 0 0 1 4.622 14a49.953 49.953 0 0 1-.098-5.062 2 2 0 0 1 2-1.938h10.953a2 2 0 0 1 2 1.937c.051 1.683.018 3.37-.1 5.063a51.01 51.01 0 0 1-.663 5.35zM6.537 4l.101-.31A1 1 0 0 1 7.59 3H9.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1h1.911c.433 0 .817.279.95.69l.101.31a.762.762 0 0 1-.726 1H7.263a.764.764 0 0 1-.726-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 24 24\">\n    <path d=\"M8.713 10.299A1 1 0 1 0 7.287 11.7l3.858 3.92a1.2 1.2 0 0 0 1.697.014l3.87-3.934a1 1 0 1 0-1.425-1.402L12 13.639 8.713 10.3z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 24 24\">\n    <path d=\"M11 11.707L8.834 8.428a1 1 0 0 0-1.668 1.103l3.95 5.98c.322.489.98.623 1.468.3.17-.13.17-.13.3-.3l3.95-5.98a1 1 0 0 0-1.668-1.103L13 11.708V3a1 1 0 0 0-2 0v8.707zm8 9.28v-5a1 1 0 1 1 2 0v7H3v-7a1 1 0 1 1 2 0v5h14z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 24 24\">\n    <path d=\"M10 4V2h10c1.322 0 2 .848 2 2v9.045h-2V4H10zM5 6h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2v11h11V8H5z\"/>\n\n</symbol>\n<symbol id=\"icon__edit-circle\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M14.971 11.029L13.133 9.19l.447-.446c.336-.336.814-.403 1.068-.15l.919.92c.254.254.187.732-.15 1.068l-.446.447zm-1.085 1.085l-2.718 2.718c-.25.25-.56.426-.873.496l-1.43.32c-.21.047-.372-.08-.36-.286a.396.396 0 0 1 .009-.066l.32-1.43c.07-.313.246-.622.496-.873l2.718-2.717 1.838 1.838z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 24 24\">\n    <path d=\"M8.778 18.276a1.5 1.5 0 0 0 .93-.434l9.874-9.873-2.828-2.828-9.874 9.873a1.5 1.5 0 0 0-.433.93l-.222 2.554 2.553-.222zm9.39-14.55l2.828 2.829a2 2 0 0 1 0 2.828l-9.873 9.873a3.5 3.5 0 0 1-2.171 1.012l-3.74.326a1 1 0 0 1-1.083-1.083l.325-3.74A3.5 3.5 0 0 1 5.466 13.6l9.873-9.874a2 2 0 0 1 2.829 0zm-3.536 3.536l2.829 2.828-1.415 1.415-2.828-2.829 1.414-1.414z\"/>\n\n</symbol>\n<symbol id=\"icon__ended\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M15.11 8.876a1 1 0 0 0-1.414 0l-4.411 4.98a1 1 0 1 0 1.414 1.414l4.41-4.98a1 1 0 0 0 0-1.414z\"/>\n\n</symbol>\n<symbol id=\"icon__error\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M10.816 8.486c-.045-.55.373-1.054 1.134-1.08.762-.027 1.194.446 1.194.999a1 1 0 0 1-.004.091l-.443 4.822a.75.75 0 0 1-.747.682.742.742 0 0 1-.74-.682l-.394-4.832zM12 15a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\"/>\n\n</symbol>\n<symbol id=\"icon__file\" viewBox=\"0 0 24 24\">\n    <path d=\"M18 13h-3a1 1 0 0 0-1 1v4H7V6h11v7zm1-9H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h8.002L20 13V5a1 1 0 0 0-1-1zm-9 4h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm0 4h2a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2z\"/>\n\n</symbol>\n<symbol id=\"icon__graph\" viewBox=\"0 0 24 24\">\n    <path d=\"M18 12.288V6H6v5.317c1.584-.013 2.447.827 3.193 2.417.063.133.254.557.274.6.097.21.171.357.225.459.14-.263.294-.643.482-1.18.102-.293.475-1.413.481-1.433.984-2.908 1.732-4.17 3.364-4.18 1.4-.01 2.07.75 2.945 2.52l.2.41c.316.636.575 1.072.836 1.358zm0 2.334c-1.128-.313-1.844-1.223-2.628-2.805l-.202-.411c-.543-1.1-.815-1.408-1.138-1.406-.305.002-.826.88-1.482 2.82-.002.007-.38 1.143-.489 1.453-.68 1.947-1.161 2.755-2.324 2.727-1.034-.026-1.525-.61-2.086-1.83-.025-.053-.213-.469-.269-.587-.45-.96-.772-1.273-1.371-1.266H6V18h12v-3.378zM6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 26 24\">\n    <path d=\"M4.266 17.82C2.78 16.47 1.4 14.698.128 12.51l-.293-.502.293-.504C3.396 5.892 7.363 3.01 12 3.01c1.966 0 3.812.518 5.534 1.542l1.39-1.39a1 1 0 0 1 1.415 1.413L4.075 20.84a1 1 0 1 1-1.414-1.414l1.605-1.605zM16.063 6.022A8.63 8.63 0 0 0 12 5.01c-3.702 0-6.974 2.287-9.844 6.998 1.114 1.828 2.288 3.291 3.525 4.397l1.958-1.958a5 5 0 0 1 6.808-6.808l1.616-1.617zM12.937 9.15a3 3 0 0 0-3.788 3.788l3.788-3.788zM8.26 18.154c1.195.57 2.44.851 3.74.851 3.701 0 6.972-2.289 9.837-7.005-1.035-1.7-2.123-3.083-3.265-4.158l1.413-1.413c1.387 1.316 2.68 3.008 3.88 5.068l.292.503-.292.502C20.602 18.12 16.638 21.005 12 21.005c-1.85 0-3.592-.458-5.226-1.365l1.486-1.486zm1.623-1.623l1.58-1.58a3 3 0 0 0 3.49-3.49l1.578-1.578a5 5 0 0 1-6.648 6.648z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 24 24\">\n    <circle cx=\"12\" cy=\"12\" r=\"8\"/>\n    <path fill=\"#fff\" d=\"M10 11.492c0-.625 2.58-2.003 2.948-1.295.367.708.137 3.64 0 4.279-.137.639 1.523-.71 1.523.222 0 .932-2.003 1.835-3.193 1.825-1.19-.01.461-4.4.461-4.867 0-.465-1.739.46-1.739-.164zM12 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 24 24\">\n    <path d=\"M20.39 19.89a1 1 0 0 1-1.415 0l-2.214-2.215a6 6 0 1 1 1.33-1.498l2.298 2.298a1 1 0 0 1 0 1.414zM6.995 21H4.533A2.533 2.533 0 0 1 2 18.467V4.533C2 3.134 3.134 2 4.533 2h13.934C19.866 2 21 3.134 21 4.533v2.459h-1.973V3.976H3.952v15.029h3.044V21zM13 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 24 24\">\n    <path d=\"M13.701 8.713A1 1 0 0 0 12.3 7.287l-3.92 3.858a1.2 1.2 0 0 0-.014 1.697l3.934 3.87a1 1 0 0 0 1.402-1.425L10.361 12l3.34-3.287z\"/>\n\n</symbol>\n<symbol id=\"icon__lightbulb\" viewBox=\"0 0 24 24\">\n    <path d=\"M15.781 12.806a.992.992 0 0 1-1.407-.147 1.024 1.024 0 0 1 .146-1.427A4.067 4.067 0 0 0 16 8.083c0-2.239-1.791-4.055-4-4.055S8 5.844 8 8.083a4.078 4.078 0 0 0 1.502 3.167c.43.35.5.988.155 1.425a.991.991 0 0 1-1.406.157 6.071 6.071 0 0 1-1.603-1.998A6.125 6.125 0 0 1 6 8.083C6 4.723 8.686 2 12 2s6 2.723 6 6.083a6.104 6.104 0 0 1-2.219 4.723m-5.297 1.622l3.863 1.049c.534.145.851.701.707 1.242a.997.997 0 0 1-1.224.716l-3.864-1.049a1.015 1.015 0 0 1-.707-1.242.999.999 0 0 1 1.225-.716m1 4.055l1.931.524c.534.145.85.701.708 1.242a.999.999 0 0 1-1.225.717l-1.932-.525a1.015 1.015 0 0 1-.707-1.241.999.999 0 0 1 1.225-.717\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 24 24\">\n    <path d=\"M10 15v2H6c-2.264 0-4-1.97-4-4v-2c0-2.03 1.736-4 4-4h4v2H6c-1.15 0-2.06 1.034-2 2v2c-.06.966.85 2 2 2h4zm0 0v2H6c-2.264 0-4-1.97-4-4v-2c0-2.03 1.736-4 4-4h4v2H6c-1.15 0-2.06 1.034-2 2v2c-.06.966.85 2 2 2h4zm4 0h2c.614-.003 1.317-.003 2 0 1.176-.003 2.079-1.037 2-2v-2c.079-.967-.824-2-2-2h-4V7h4c2.28 0 4 1.97 4 4v2c0 2.027-1.72 3.996-4 4-1.81-.004-3.016 0-4 0v-2zm0 0h2c.614-.003 1.317-.003 2 0 1.176-.003 2.079-1.037 2-2v-2c.079-.967-.824-2-2-2h-4V7h4c2.28 0 4 1.97 4 4v2c0 2.027-1.72 3.996-4 4-1.81-.004-3.016 0-4 0v-2zm-5-4h6a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2z\"/>\n\n</symbol>\n<symbol id=\"icon__loader\" viewBox=\"0 0 24 24\">\n    <path fill=\"#EEF1F4\" d=\"M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z\"/>\n    <path d=\"M21.412 15.387a1 1 0 1 1-1.882-.677c.31-.861.47-1.774.47-2.71a8 8 0 0 0-8-8 1 1 0 0 1 0-2c5.523 0 10 4.477 10 10 0 1.168-.2 2.31-.588 3.387z\"/>\n\n</symbol>\n<symbol id=\"icon__megaphone\" viewBox=\"0 0 24 24\">\n    <path d=\"M16.108 14.356c-.103.571-.262.86-.394.964-.513.016-1.209-.107-2.653-.43l-.28-.062c-.394-.087-.75-.16-1.077-.22.217-.882.165-1.966-.207-3.054-.375-1.095-1.004-1.988-1.72-2.547.24-.272.501-.58.793-.933L10.632 8c.962-1.16 1.456-1.704 1.887-2.014.188.013.492.152.903.52.79.704 1.555 1.958 2.131 3.642.577 1.687.744 3.16.555 4.208m-6.414.078a3.633 3.633 0 0 0-.962.201l-.006-.016c-.38.132-1.188-.42-1.577-1.557a3.49 3.49 0 0 1-.113-.412c-.01-.046-.013-.089-.02-.134-.015-.085-.03-.17-.038-.252-.004-.052-.002-.098-.004-.148-.002-.07-.007-.14-.004-.205.002-.05.01-.093.014-.139.007-.06.011-.122.021-.176.008-.044.02-.082.031-.123.012-.05.023-.1.04-.146.011-.037.028-.067.043-.1.017-.04.034-.082.054-.116.017-.028.036-.049.055-.074.021-.029.042-.059.065-.082.02-.019.042-.03.063-.045.027-.019.054-.042.084-.052.31-.108.591-.25.877-.45l.003.008c.098.05.22.132.358.257.385.345.731.884.951 1.53.333.97.268 1.848.065 2.231m9.143-5.37a2.967 2.967 0 0 0-2.5-1.998c-1.394-2.423-3.178-3.434-4.58-2.948l.004.013-.007-.012c-.785.453-1.33 1.03-2.638 2.606l-.06.073C7.885 8.21 7.286 8.801 6.796 8.98v-.002c-1.547.536-2.226 2.655-1.515 4.733.09.261.196.508.318.742.042.08.095.147.14.224.087.146.17.296.268.428l.005.008 2.65 4.43a.934.934 0 0 0 1.328.296l.15-.102a.998.998 0 0 0 .36-1.205l-.856-2.084c.524-.086 1.34.02 2.713.324l.275.061c2.006.448 2.746.563 3.641.433l-.003-.019c1.382-.465 2.152-2.332 1.8-5.042a2.996 2.996 0 0 0 .766-3.14\"/>\n\n</symbol>\n<symbol id=\"icon__options\" viewBox=\"0 0 29 24\">\n    <path d=\"M26.607 10.107a1 1 0 1 1 1.276 1.54l-2.3 1.905a1.1 1.1 0 0 1-1.479-.07l-1.898-1.898a1 1 0 1 1 1.414-1.414l1.319 1.319 1.668-1.382zM6 16.995a1 1 0 1 1 0-2h11.998a1 1 0 0 1 0 2H6zm0-4a1 1 0 1 1 0-2h11.998a1 1 0 0 1 0 2H6zm0-4a1 1 0 1 1 0-2h11.998a1 1 0 0 1 0 2H6z\"/>\n\n</symbol>\n<symbol id=\"icon__paused\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M10 16a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1zM14 16a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16z\"/>\n    <path fill=\"#fff\" d=\"M15.122 12.165a1 1 0 0 1-.367 1.966l-3.394-.634a1.1 1.1 0 0 1-.898-1.081V9.111a1 1 0 0 1 2 0v2.557l2.659.497z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 24 24\">\n    <path d=\"M13 4V2h7c1.322 0 2 .848 2 2v6.045h-2V4h-7zm-2 15.008V21H5.032C3.69 21 3 20.155 3 19.008V13h2.032v6.008H11zM8.467 6h8.066C17.343 6 18 6.657 18 7.467v8.066c0 .81-.657 1.467-1.467 1.467H8.467C7.657 17 7 16.343 7 15.533V7.467C7 6.657 7.657 6 8.467 6zM9 8v7h7V8H9z\"/>\n\n</symbol>\n<symbol id=\"icon__puzzle-piece\" viewBox=\"0 0 24 24\">\n    <path d=\"M5 17.964h2.501a8.098 8.098 0 0 1-.143-.757c-.243-1.807.638-3.05 2.832-3.023 2.19.027 3.016 1.294 2.676 3.077-.043.23-.1.45-.183.744h2.515l-.018-3.754c0-.969.792-1.373 1.587-1.188.166.038.332.097.545.184.103.042.462.196.49.209.237.1.412.166.571.212.594.176.625.152.627-1.095.002-1.267-.064-1.32-.685-1.177-.15.035-.312.084-.546.163l-.253.087c-.105.035-.185.062-.263.086a2.978 2.978 0 0 1-.603.134c-.8.079-1.47-.426-1.47-1.31V7H5v10.964zm12.18.246c0 .968-.783 1.754-1.75 1.754h-3.69c-.9 0-1.306-.701-1.23-1.46.016-.167.052-.338.108-.55.031-.118.196-.688.142-.499.069-.24.112-.41.142-.568.123-.65.095-.693-.737-.703-.86-.01-.917.07-.825.756.023.169.058.347.118.606.183.792.175.753.19 1.013.041.732-.34 1.405-1.22 1.405H4.752A1.752 1.752 0 0 1 3 18.21V6.917C3 5.967 3.741 5 4.751 5H15.43c.968 0 1.751.786 1.751 1.753v2.894c.266-.09.47-.15.686-.2 1.88-.433 3.137.58 3.134 3.129-.003 2.572-1.31 3.566-3.193 3.01a6.52 6.52 0 0 1-.627-.223v2.847z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 24 24\">\n    <path d=\"M6.74 8.865l1.533-.836a1 1 0 0 1 .958 1.756 485.274 485.274 0 0 0-4.08 2.26c-.662.379-1.339.077-1.411-.573-.049-.433-.188-2.04-.42-4.822a1 1 0 1 1 1.997-.119l.042.71a9 9 0 1 1 2.752 12.316A1 1 0 1 1 9.2 17.88a7 7 0 1 0-2.46-9.015z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 24 24\">\n    <path d=\"M10.299 15.287a1 1 0 0 0 1.402 1.426l3.92-3.858a1.2 1.2 0 0 0 .014-1.697l-3.934-3.87A1 1 0 0 0 10.3 8.712L13.639 12l-3.34 3.287z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 24 24\">\n    <path d=\"M17.084 15.43l3.573 3.572a1.17 1.17 0 1 1-1.655 1.655l-3.572-3.573A7.802 7.802 0 0 1 3 10.802a7.802 7.802 0 1 1 15.604 0 7.767 7.767 0 0 1-1.52 4.627m-6.284.834a5.461 5.461 0 1 0 .002-10.922 5.461 5.461 0 0 0-.002 10.922\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 26 24\">\n    <path d=\"M12 20.005c-4.637 0-8.604-2.882-11.872-8.494l-.293-.503.293-.504C3.396 4.892 7.363 2.01 12 2.01s8.602 2.88 11.864 8.487l.293.503-.292.502C20.602 17.12 16.638 20.005 12 20.005zm0-2c3.701 0 6.972-2.289 9.837-7.005C18.972 6.295 15.702 4.01 12 4.01s-6.974 2.287-9.844 6.998c2.87 4.71 6.142 6.997 9.844 6.997zM12 16a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z\"/>\n\n</symbol>\n<symbol id=\"icon__sociomantic\" viewBox=\"0 0 24 24\">\n    <path d=\"M6.033 10.828a5.99 5.99 0 0 1 1.63-3.086l-.703-.69c-.999 1.037-1.597 2.163-1.886 3.577l.959.199m5.837 1.163l-6.966 1.115c.523 2.939 2.601 5.172 5.476 5.87 2.895.704 5.721-.354 7.42-2.8 1.71-2.465 1.741-5.567.065-8.127l-5.995 3.942\"/>\n    <path fill=\"#eef1f4\" d=\"M17.561 18.18l1.111 1.242c-3.57 3.201-8.735 3.446-12.6.591-3.858-2.847-5.14-7.852-3.13-12.21 2.012-4.35 6.662-6.62 11.336-5.534 4.676 1.092 7.839 5.179 7.719 9.973l-1.669-.041c.099-3.996-2.537-7.398-6.431-8.306-3.89-.907-7.762.98-9.436 4.611-1.677 3.627-.607 7.797 2.606 10.17 3.216 2.374 7.517 2.172 10.494-.496\"/>\n\n</symbol>\n<symbol id=\"icon__star-stroke\" viewBox=\"0 0 24 24\">\n    <path d=\"M15.768 14.732a2.256 2.256 0 0 1 .655-2.004l2.709-2.625-3.744-.54a2.276 2.276 0 0 1-1.714-1.239L12 4.952l-1.674 3.372A2.276 2.276 0 0 1 8.61 9.563l-3.743.54 2.709 2.625c.536.52.781 1.27.655 2.004l-.64 3.707 3.348-1.75a2.289 2.289 0 0 1 2.12 0l3.348 1.75-.64-3.707zm-8.962 6.164a.913.913 0 0 1-1.23-.38.901.901 0 0 1-.091-.575l.951-5.515a.451.451 0 0 0-.13-.4l-4.03-3.906a.902.902 0 0 1-.017-1.28.913.913 0 0 1 .52-.265l5.57-.805a.455.455 0 0 0 .343-.247l2.491-5.018a.913.913 0 0 1 1.634 0l2.49 5.018a.455.455 0 0 0 .343.247l5.57.805a.906.906 0 0 1 .505 1.545l-4.03 3.905a.451.451 0 0 0-.131.401l.951 5.515a.906.906 0 0 1-.744 1.046.915.915 0 0 1-.578-.091l-4.981-2.604a.458.458 0 0 0-.424 0l-4.982 2.604z\"/>\n\n</symbol>\n<symbol id=\"icon__star\" viewBox=\"0 0 24 24\">\n    <path d=\"M6.806 20.896a.913.913 0 0 1-1.23-.38.901.901 0 0 1-.091-.575l.951-5.515a.451.451 0 0 0-.13-.4l-4.03-3.906a.902.902 0 0 1-.017-1.28.913.913 0 0 1 .52-.265l5.57-.805a.455.455 0 0 0 .343-.247l2.491-5.018a.913.913 0 0 1 1.634 0l2.49 5.018a.455.455 0 0 0 .343.247l5.57.805a.906.906 0 0 1 .505 1.545l-4.03 3.905a.451.451 0 0 0-.131.401l.951 5.515a.906.906 0 0 1-.744 1.046.915.915 0 0 1-.578-.091l-4.981-2.604a.458.458 0 0 0-.424 0l-4.982 2.604z\"/>\n\n</symbol>\n<symbol id=\"icon__swap\" viewBox=\"0 0 24 24\">\n    <path d=\"M6.668 7.001l.878-.354a1 1 0 1 1 .736 1.86 683.52 683.52 0 0 0-3.95 1.619c-.705.294-1.341-.087-1.332-.74.005-.437.03-1.956.078-4.559a1 1 0 1 1 1.996.126l-.03.882C6.707 3.558 9.568 2 12.47 2c4.339 0 7.965 2.78 8.97 6.755a1 1 0 1 1-1.94.49C18.721 6.163 15.9 4 12.47 4c-2.24 0-4.503 1.235-5.802 3.001zm11.11 9.592l-1.113.216a1 1 0 0 1-.367-1.966c2.293-.454 3.689-.733 4.187-.836.746-.155 1.297.34 1.165.98-.088.428-.403 1.914-.946 4.46a1 1 0 0 1-1.936-.504l.152-.658C17.23 19.936 14.861 21 12.47 21c-4.335 0-7.956-2.777-8.97-6.753a1 1 0 0 1 1.939-.494C6.225 16.838 9.044 19 12.469 19c1.975 0 3.973-.965 5.31-2.407z\"/>\n\n</symbol>\n<symbol id=\"icon__table\" viewBox=\"0 0 24 24\">\n    <path d=\"M6 6v12h12V6H6zm0-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm-1 8h15v2H5v-2zm8-4v11h-2V8H5V5h14v3h-6z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 24 24\">\n    <path d=\"M8.713 13.701A1 1 0 0 1 7.287 12.3l3.858-3.92a1.2 1.2 0 0 1 1.697-.014l3.87 3.934a1 1 0 0 1-1.425 1.402L12 10.361 8.713 13.7z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 24 24\">\n    <path d=\"M11 6.28L8.834 9.559a1 1 0 0 1-1.668-1.103l3.95-5.98a1.06 1.06 0 0 1 1.768 0l3.95 5.98a1 1 0 0 1-1.668 1.103L13 6.279v8.708a1 1 0 0 1-2 0V6.28zm8 14.707v-5a1 1 0 1 1 2 0v7H3v-7a1 1 0 1 1 2 0v5h14z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 24 24\">\n    <path d=\"M10.923 14.983l5.613-8.533a1 1 0 1 1 1.67 1.1l-6.124 9.31c-.052.076-.052.076-.111.145a1.2 1.2 0 0 1-1.695.087L6.33 13.534a1 1 0 0 1 1.34-1.486l3.253 2.935z\"/>\n\n</symbol></svg>"
+
+/***/ }),
 /* 216 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"nessie-ui","version":"6.2.1","description":"Nessie React Components","author":"Sociomantic Labs GmbH","contributors":["Conor Cafferkey (https://github.com/conor-cafferkey-sociomantic)","daniel-martic-sociomantic (https://github.com/daniel-martic-sociomantic)","Eric (https://github.com/eric-martinez-sociomantic)","Damian Rodriguez (https://github.com/damian-rodriguez-sociomantic)","Mihail Alexe (https://github.com/mihail-alexe-sociomantic)","Andrei Placinta (https://github.com/andrei-placinta-sociomantic)","Joppe Rhebergen (https://github.com/joppe-rhebergen-sociomantic)","Eric Martinez Solis (https://github.com/ericgraficode)","Josh Wilson <josh.wilson@sociomantic.com> (https://github.com/josh-wilson-sociomantic)","Mahmoud Zakria (https://github.com/mahmoud-zakria-sociomantic)"],"main":"dist","scripts":{"build":"yarn updateStyles && yarn updateSprite","bump:major":"yarn pre-bump ; release-it major --config=preReleaseit.json -n && yarn changelog && release-it major --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","bump:minor":"yarn pre-bump ; release-it minor --config=preReleaseit.json -n && yarn changelog && release-it minor --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","bump":"yarn pre-bump ; release-it --config=preReleaseit.json -n && yarn changelog && release-it --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","changelog":"yarn auto-changelog -- --commit-limit false --output CHANGELOG.md && git tag --delete $(git describe --tags --abbrev=0) && git add . && git commit --amend --no-edit","copy:all":"yarn copy:dist && yarn copy:loch","copy:dist":"copyfiles --flat ./.lochness/dist/index.html  ./dist/displayComponents.js ./dist/displayComponentStyles.css ./docs/ ","copy:loch":"copyfiles --flat .lochness/dist/assets/*  ./docs/assets ","dev":"webpack --env=dev --watch","dist-watch":"webpack --env=dist --watch","dist":"webpack --env=dist","gh":"webpack --env=dev && yarn loch:build && yarn copy:all","lint-fix":"npm run lint -- --fix","lint":"eslint --cache --format=node_modules/eslint-formatter-pretty .","loch:build":"node ./node_modules/loch-ness/bin/build.js -e dev -c ./ -j src/defaults.json","loch:clean":"rimraf .lochness","npm-publish":"npm publish --registry=https://registry.npmjs.org/","post-bump":"git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify","pre-bump":"git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn build && git add . && git commit -m 'compiled styles and sprite'","serve":"loch -e dev -c ./ -j src/defaults.json","start":"yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"","svgSprite":"./.prep-icon.sh && ./.generate-sprite.sh","test:v:build":"yarn loch:build","test:v:buildFresh":"concurrently \"yarn build\" \"yarn test:v:build\"","test:v:clean":"yarn loch:clean","test:v:ref":"visualTest -e dev -c ./ -j src/defaults.json -t reference","test:v":"visualTest -e dev -c ./ -j src/defaults.json","test:visuals":"yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v","test:watch":"jest --watch --config=cfg/jest.config.js","test":"jest --maxWorkers=4 --config=cfg/jest.config.js","updateSprite":"yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'","updateStyles":"yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'"},"keywords":["scotland","nessie","react","css","javascript"],"repository":{"type":"git","url":"git+https://github.com/sociomantic-tsunami/nessie.git"},"license":"MIT","bugs":{"url":"https://github.com/sociomantic-tsunami/nessie/issues"},"homepage":"https://github.com/sociomantic-tsunami/nessie#readme","devDependencies":{"auto-changelog":"^1.4.5","autoprefixer":"^8.5.2","babel-cli":"^6.26.0","babel-eslint":"^8.2.3","babel-jest":"^23.0.1","babel-loader":"^7.1.4","babel-polyfill":"^6.26.0","babel-preset-es2015":"^6.24.1","babel-preset-react":"^6.24.1","babel-preset-stage-0":"^6.24.1","codemirror":"^5.35.0","concurrently":"^3.5.1","css-loader":"^0.28.11","enzyme":"^2.9.1","eslint":"^4.6.1","eslint-config-airbnb":"^16.1.0","eslint-formatter-pretty":"^1.3.0","eslint-plugin-arca":"^0.6.0","eslint-plugin-compat":"^2.3.0","eslint-plugin-import":"^2.7.0","eslint-plugin-jsx-a11y":"^6.0.3","eslint-plugin-promise":"^3.5.0","eslint-plugin-react":"^7.3.0","file-loader":"^1.1.11","flounder":"^1.3.5","identity-obj-proxy":"^3.0.0","jest":"^23.4.2","jest-webpack":"^0.4.0","loch-ness":"^2.2.4","lodash.isequal":"^4.5.0","lodash.merge":"^4.6.1","microbejs":"^0.5.2","mini-css-extract-plugin":"^0.4.0","normalize.css":"^8.0.0","null-loader":"^0.1.1","postcss":"^6.0.22","postcss-advanced-variables":"^2.3.3","postcss-attribute-case-insensitive":"^3.0.0","postcss-calc":"^6.0.1","postcss-color-function":"^4.0.1","postcss-custom-media":"^6.0.0","postcss-custom-properties":"^7.0.0","postcss-custom-selectors":"^4.0.1","postcss-extend":"^1.0.5","postcss-font-variant":"^3.0.0","postcss-initial":"^2.0.0","postcss-loader":"^2.1.5","postcss-media-minmax":"^3.0.0","postcss-nested":"^3.0.0","postcss-partial-import":"^4.1.0","postcss-pseudo-class-any-link":"^5.0.0","postcss-replace-overflow-wrap":"^2.0.0","postcss-selector-matches":"^3.0.1","postcss-selector-not":"^3.0.1","prop-types":"^15.5.8","raw-loader":"^0.5.1","react":"^15.6.2","react-addons-css-transition-group":"^15.6.2","react-dom":"^15.6.2","react-test-renderer":"^15.6.2","release-it":"^7.4.5","replace":"^1.0.0","rimraf":"^2.6.2","svg-loader":"^0.0.2","svg-sprite-generator":"^0.0.7","svgo":"^0.7.2","url-loader":"^1.0.1","webpack":"^4.16.0","webpack-cli":"^3.0.8"},"dependencies":{}}
+module.exports = {"name":"nessie-ui","version":"6.4.0","description":"Nessie React Components","author":"Sociomantic Labs GmbH","contributors":["Conor Cafferkey (https://github.com/conor-cafferkey-sociomantic)","daniel-martic-sociomantic (https://github.com/daniel-martic-sociomantic)","Eric (https://github.com/eric-martinez-sociomantic)","Damian Rodriguez (https://github.com/damian-rodriguez-sociomantic)","Mihail Alexe (https://github.com/mihail-alexe-sociomantic)","Andrei Placinta (https://github.com/andrei-placinta-sociomantic)","Joppe Rhebergen (https://github.com/joppe-rhebergen-sociomantic)","Eric Martinez Solis (https://github.com/ericgraficode)","Josh Wilson <josh.wilson@sociomantic.com> (https://github.com/josh-wilson-sociomantic)","Mahmoud Zakria (https://github.com/mahmoud-zakria-sociomantic)"],"main":"dist","scripts":{"build":"yarn updateStyles && yarn updateSprite","bump:major":"yarn pre-bump ; release-it major --config=preReleaseit.json -n && yarn changelog && release-it major --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","bump:minor":"yarn pre-bump ; release-it minor --config=preReleaseit.json -n && yarn changelog && release-it minor --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","bump":"yarn pre-bump ; release-it --config=preReleaseit.json -n && yarn changelog && release-it --config=postReleaseit.json -n && yarn npm-publish && yarn post-bump","changelog":"yarn auto-changelog -- --commit-limit false --output CHANGELOG.md && git tag --delete $(git describe --tags --abbrev=0) && git add . && git commit --amend --no-edit","copy:all":"yarn copy:dist && yarn copy:loch","copy:dist":"copyfiles --flat ./.lochness/dist/index.html  ./dist/displayComponents.js ./dist/displayComponentStyles.css ./docs/ ","copy:loch":"copyfiles --flat .lochness/dist/assets/*  ./docs/assets ","dev":"webpack --env=dev --watch","dist-watch":"webpack --env=dist --watch","dist":"webpack --env=dist","gh":"webpack --env=dev && yarn loch:build && yarn copy:all","lint-fix":"npm run lint -- --fix","lint":"eslint --cache --format=node_modules/eslint-formatter-pretty .","loch:build":"node ./node_modules/loch-ness/bin/build.js -e dev -c ./ -j src/defaults.json","loch:clean":"rimraf .lochness","npm-publish":"npm publish --registry=https://registry.npmjs.org/","post-bump":"git checkout master && git cherry-pick --strategy=recursive -X theirs Release && git push --no-verify","pre-bump":"git checkout Release && git pull && git merge master -X theirs --no-ff --no-edit && yarn build && git add . && git commit -m 'compiled styles and sprite'","serve":"loch -e dev -c ./ -j src/defaults.json","start":"yarn loch:build && concurrently --kill-others \"yarn dev\" \"yarn serve\"","svgSprite":"./.prep-icon.sh && ./.generate-sprite.sh","test:v:build":"yarn loch:build","test:v:buildFresh":"concurrently \"yarn build\" \"yarn test:v:build\"","test:v:clean":"yarn loch:clean","test:v:ref":"visualTest -e dev -c ./ -j src/defaults.json -t reference","test:v":"visualTest -e dev -c ./ -j src/defaults.json","test:visuals":"yarn test:v:clean && yarn build && yarn test:v:build && yarn test:v","test:watch":"jest --watch --config=cfg/jest.config.js","test":"jest --maxWorkers=4 --config=cfg/jest.config.js","updateSprite":"yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'","updateStyles":"yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'"},"keywords":["scotland","nessie","react","css","javascript"],"repository":{"type":"git","url":"git+https://github.com/sociomantic-tsunami/nessie.git"},"license":"MIT","bugs":{"url":"https://github.com/sociomantic-tsunami/nessie/issues"},"homepage":"https://github.com/sociomantic-tsunami/nessie#readme","devDependencies":{"auto-changelog":"^1.4.5","autoprefixer":"^8.5.2","babel-cli":"^6.26.0","babel-eslint":"^8.2.3","babel-jest":"^23.0.1","babel-loader":"^7.1.4","babel-polyfill":"^6.26.0","babel-preset-es2015":"^6.24.1","babel-preset-react":"^6.24.1","babel-preset-stage-0":"^6.24.1","codemirror":"^5.35.0","concurrently":"^3.5.1","css-loader":"^0.28.11","enzyme":"^2.9.1","eslint":"^4.6.1","eslint-config-airbnb":"^16.1.0","eslint-formatter-pretty":"^1.3.0","eslint-plugin-arca":"^0.6.0","eslint-plugin-compat":"^2.3.0","eslint-plugin-import":"^2.7.0","eslint-plugin-jsx-a11y":"^6.0.3","eslint-plugin-promise":"^3.5.0","eslint-plugin-react":"^7.3.0","file-loader":"^1.1.11","flounder":"^1.3.5","identity-obj-proxy":"^3.0.0","jest":"^23.4.2","jest-webpack":"^0.4.0","loch-ness":"^2.2.6","lodash.isequal":"^4.5.0","lodash.merge":"^4.6.1","microbejs":"^0.5.2","mini-css-extract-plugin":"^0.4.0","normalize.css":"^8.0.0","null-loader":"^0.1.1","postcss":"^6.0.22","postcss-advanced-variables":"^2.3.3","postcss-attribute-case-insensitive":"^3.0.0","postcss-calc":"^6.0.1","postcss-color-function":"^4.0.1","postcss-custom-media":"^6.0.0","postcss-custom-properties":"^7.0.0","postcss-custom-selectors":"^4.0.1","postcss-extend":"^1.0.5","postcss-font-variant":"^3.0.0","postcss-initial":"^2.0.0","postcss-loader":"^2.1.5","postcss-media-minmax":"^3.0.0","postcss-nested":"^3.0.0","postcss-partial-import":"^4.1.0","postcss-pseudo-class-any-link":"^5.0.0","postcss-replace-overflow-wrap":"^2.0.0","postcss-selector-matches":"^3.0.1","postcss-selector-not":"^3.0.1","prop-types":"^15.5.8","raw-loader":"^0.5.1","react":"^15.6.2","react-addons-css-transition-group":"^15.6.2","react-dom":"^15.6.2","react-test-renderer":"^15.6.2","release-it":"^7.4.5","replace":"^1.0.0","rimraf":"^2.6.2","svg-loader":"^0.0.2","svg-sprite-generator":"^0.0.7","svgo":"^0.7.2","url-loader":"^1.0.1","webpack":"^4.16.0","webpack-cli":"^3.0.8"},"dependencies":{}}
 
 /***/ }),
 /* 217 */
@@ -30883,7 +31057,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var NavItem = function (_Component) {
     _inherits(NavItem, _Component);
@@ -30951,7 +31132,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var LivePreview = function (_Component) {
     _inherits(LivePreview, _Component);
@@ -30992,11 +31180,20 @@ exports.default = LivePreview;
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (cursor) {
-    return {
-        type: 'UPDATE_CURSOR',
-        payload: { cursor: cursor }
-    };
+  return {
+    type: 'UPDATE_CURSOR',
+    payload: { cursor: cursor }
+  };
 };
 
 /***/ }),
@@ -31006,11 +31203,20 @@ module.exports = function (cursor) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (newJsx) {
-    return {
-        type: 'UPDATE_JSX',
-        jsxString: newJsx
-    };
+  return {
+    type: 'UPDATE_JSX',
+    jsxString: newJsx
+  };
 };
 
 /***/ }),
@@ -31020,11 +31226,20 @@ module.exports = function (newJsx) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (newComponent) {
-    return {
-        type: 'UPDATE_COMPONENT',
-        selectedComponent: newComponent
-    };
+  return {
+    type: 'UPDATE_COMPONENT',
+    selectedComponent: newComponent
+  };
 };
 
 /***/ }),
@@ -31034,12 +31249,21 @@ module.exports = function (newComponent) {
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (jsxSnippet, insertAt) {
-    return {
-        type: 'SPLICE_JSX',
-        payload: { jsxSnippet: jsxSnippet,
-            insertAt: insertAt }
-    };
+  return {
+    type: 'SPLICE_JSX',
+    payload: { jsxSnippet: jsxSnippet,
+      insertAt: insertAt }
+  };
 };
 
 /***/ }),
@@ -31048,6 +31272,15 @@ module.exports = function (jsxSnippet, insertAt) {
 
 "use strict";
 
+
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 module.exports = function () {
   return { type: 'RESET_JSX' };
@@ -31078,23 +31311,23 @@ var _updateFilter = __webpack_require__(225);
 
 var _updateFilter2 = _interopRequireDefault(_updateFilter);
 
-var _toggleCollapse = __webpack_require__(106);
+var _toggleCollapse = __webpack_require__(105);
 
 var _toggleCollapse2 = _interopRequireDefault(_toggleCollapse);
 
-var _toggleCollapseDesc = __webpack_require__(107);
+var _toggleCollapseDesc = __webpack_require__(106);
 
 var _toggleCollapseDesc2 = _interopRequireDefault(_toggleCollapseDesc);
 
-var _toggleCollapseSpecs = __webpack_require__(108);
+var _toggleCollapseSpecs = __webpack_require__(107);
 
 var _toggleCollapseSpecs2 = _interopRequireDefault(_toggleCollapseSpecs);
 
-var _switchTab = __webpack_require__(109);
+var _switchTab = __webpack_require__(108);
 
 var _switchTab2 = _interopRequireDefault(_switchTab);
 
-var _ComponentContainer = __webpack_require__(110);
+var _ComponentContainer = __webpack_require__(109);
 
 var _ComponentContainer2 = _interopRequireDefault(_ComponentContainer);
 
@@ -31106,7 +31339,7 @@ var _Navigation = __webpack_require__(60);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _Footer = __webpack_require__(143);
+var _Footer = __webpack_require__(142);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -31120,7 +31353,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var Components = function (_Component) {
     _inherits(Components, _Component);
@@ -31260,12 +31500,21 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 "use strict";
 
 
+/*
+ * Copyright (c) 2017 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 module.exports = function (payload, meta) {
-    return {
-        type: 'UPDATE_FILTER',
-        payload: payload,
-        meta: meta
-    };
+  return {
+    type: 'UPDATE_FILTER',
+    payload: payload,
+    meta: meta
+  };
 };
 
 /***/ }),
@@ -31333,7 +31582,7 @@ var ReactDOMComponentTree = __webpack_require__(7);
 var ReactDOMEmptyComponent = __webpack_require__(286);
 var ReactDOMTreeTraversal = __webpack_require__(287);
 var ReactDOMTextComponent = __webpack_require__(288);
-var ReactDefaultBatchingStrategy = __webpack_require__(139);
+var ReactDefaultBatchingStrategy = __webpack_require__(138);
 var ReactEventListener = __webpack_require__(289);
 var ReactInjection = __webpack_require__(291);
 var ReactReconcileTransaction = __webpack_require__(292);
@@ -31880,7 +32129,7 @@ var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(22);
 
-var getTextContentAccessor = __webpack_require__(113);
+var getTextContentAccessor = __webpack_require__(112);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -32060,10 +32309,10 @@ var ReactDOMComponentTree = __webpack_require__(7);
 var ReactUpdates = __webpack_require__(16);
 var SyntheticEvent = __webpack_require__(15);
 
-var inputValueTracking = __webpack_require__(116);
+var inputValueTracking = __webpack_require__(115);
 var getEventTarget = __webpack_require__(64);
 var isEventSupported = __webpack_require__(65);
-var isTextInputElement = __webpack_require__(117);
+var isTextInputElement = __webpack_require__(116);
 
 var eventTypes = {
   change: {
@@ -33398,26 +33647,26 @@ var CSSPropertyOperations = __webpack_require__(249);
 var DOMLazyTree = __webpack_require__(34);
 var DOMNamespaces = __webpack_require__(68);
 var DOMProperty = __webpack_require__(31);
-var DOMPropertyOperations = __webpack_require__(122);
+var DOMPropertyOperations = __webpack_require__(121);
 var EventPluginHub = __webpack_require__(30);
 var EventPluginRegistry = __webpack_require__(61);
 var ReactBrowserEventEmitter = __webpack_require__(71);
-var ReactDOMComponentFlags = __webpack_require__(114);
+var ReactDOMComponentFlags = __webpack_require__(113);
 var ReactDOMComponentTree = __webpack_require__(7);
 var ReactDOMInput = __webpack_require__(259);
 var ReactDOMOption = __webpack_require__(275);
-var ReactDOMSelect = __webpack_require__(129);
+var ReactDOMSelect = __webpack_require__(128);
 var ReactDOMTextarea = __webpack_require__(276);
 var ReactInstrumentation = __webpack_require__(12);
 var ReactMultiChild = __webpack_require__(277);
-var ReactServerRenderingTransaction = __webpack_require__(137);
+var ReactServerRenderingTransaction = __webpack_require__(136);
 
 var emptyFunction = __webpack_require__(14);
 var escapeTextContentForBrowser = __webpack_require__(44);
 var invariant = __webpack_require__(1);
 var isEventSupported = __webpack_require__(65);
 var shallowEqual = __webpack_require__(75);
-var inputValueTracking = __webpack_require__(116);
+var inputValueTracking = __webpack_require__(115);
 var validateDOMNesting = __webpack_require__(77);
 var warning = __webpack_require__(3);
 
@@ -34407,7 +34656,7 @@ module.exports = ReactDOMComponent;
 
 var ReactDOMComponentTree = __webpack_require__(7);
 
-var focusNode = __webpack_require__(120);
+var focusNode = __webpack_require__(119);
 
 var AutoFocusUtils = {
   focusDOMComponent: function focusDOMComponent() {
@@ -34432,7 +34681,7 @@ module.exports = AutoFocusUtils;
 
 
 
-var CSSProperty = __webpack_require__(121);
+var CSSProperty = __webpack_require__(120);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactInstrumentation = __webpack_require__(12);
 
@@ -34728,7 +34977,7 @@ module.exports = camelize;
 
 
 
-var CSSProperty = __webpack_require__(121);
+var CSSProperty = __webpack_require__(120);
 var warning = __webpack_require__(3);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -35092,7 +35341,7 @@ module.exports = getVendorPrefixedEventName;
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(4);
 
-var DOMPropertyOperations = __webpack_require__(122);
+var DOMPropertyOperations = __webpack_require__(121);
 var LinkedValueUtils = __webpack_require__(72);
 var ReactDOMComponentTree = __webpack_require__(7);
 var ReactUpdates = __webpack_require__(16);
@@ -36428,7 +36677,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(36);
 
 var ReactCurrentOwner = __webpack_require__(23);
-var REACT_ELEMENT_TYPE = __webpack_require__(127);
+var REACT_ELEMENT_TYPE = __webpack_require__(126);
 
 var getIteratorFn = __webpack_require__(268);
 var invariant = __webpack_require__(1);
@@ -36885,7 +37134,7 @@ module.exports = ReactDOMFactories;
 var _require = __webpack_require__(28),
     isValidElement = _require.isValidElement;
 
-var factory = __webpack_require__(123);
+var factory = __webpack_require__(122);
 
 module.exports = factory(isValidElement);
 
@@ -36921,14 +37170,14 @@ module.exports = '15.6.2';
 
 
 
-var _require = __webpack_require__(124),
+var _require = __webpack_require__(123),
     Component = _require.Component;
 
 var _require2 = __webpack_require__(28),
     isValidElement = _require2.isValidElement;
 
-var ReactNoopUpdateQueue = __webpack_require__(125);
-var factory = __webpack_require__(128);
+var ReactNoopUpdateQueue = __webpack_require__(124);
+var factory = __webpack_require__(127);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
@@ -36992,7 +37241,7 @@ var _assign = __webpack_require__(4);
 
 var React = __webpack_require__(35);
 var ReactDOMComponentTree = __webpack_require__(7);
-var ReactDOMSelect = __webpack_require__(129);
+var ReactDOMSelect = __webpack_require__(128);
 
 var warning = __webpack_require__(3);
 var didWarnInvalidOptionChildren = false;
@@ -37727,10 +37976,10 @@ module.exports = ReactMultiChild;
 
 var ReactReconciler = __webpack_require__(32);
 
-var instantiateReactComponent = __webpack_require__(131);
+var instantiateReactComponent = __webpack_require__(130);
 var KeyEscapeUtils = __webpack_require__(76);
-var shouldUpdateReactComponent = __webpack_require__(132);
-var traverseAllChildren = __webpack_require__(135);
+var shouldUpdateReactComponent = __webpack_require__(131);
+var traverseAllChildren = __webpack_require__(134);
 var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
@@ -37741,7 +37990,7 @@ if (typeof process !== 'undefined' && process.env && "production" === 'test') {
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(136);
+  ReactComponentTreeHook = __webpack_require__(135);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -37865,7 +38114,7 @@ var ReactChildReconciler = {
 };
 
 module.exports = ReactChildReconciler;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(130)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(129)))
 
 /***/ }),
 /* 279 */
@@ -37903,7 +38152,7 @@ if (false) {
 var emptyObject = __webpack_require__(45);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(75);
-var shouldUpdateReactComponent = __webpack_require__(132);
+var shouldUpdateReactComponent = __webpack_require__(131);
 var warning = __webpack_require__(3);
 
 var CompositeTypes = {
@@ -38925,7 +39174,7 @@ module.exports = getIteratorFn;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var KeyEscapeUtils = __webpack_require__(76);
-var traverseAllChildren = __webpack_require__(135);
+var traverseAllChildren = __webpack_require__(134);
 var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
@@ -38936,7 +39185,7 @@ if (typeof process !== 'undefined' && process.env && "production" === 'test') {
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(136);
+  ReactComponentTreeHook = __webpack_require__(135);
 }
 
 /**
@@ -38986,7 +39235,7 @@ function flattenChildren(children, selfDebugID) {
 }
 
 module.exports = flattenChildren;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(130)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(129)))
 
 /***/ }),
 /* 285 */
@@ -39010,7 +39259,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var ReactUpdateQueue = __webpack_require__(138);
+var ReactUpdateQueue = __webpack_require__(137);
 
 var warning = __webpack_require__(3);
 
@@ -39513,7 +39762,7 @@ module.exports = ReactDOMTextComponent;
 
 var _assign = __webpack_require__(4);
 
-var EventListener = __webpack_require__(140);
+var EventListener = __webpack_require__(139);
 var ExecutionEnvironment = __webpack_require__(10);
 var PooledClass = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(7);
@@ -39715,9 +39964,9 @@ var DOMProperty = __webpack_require__(31);
 var EventPluginHub = __webpack_require__(30);
 var EventPluginUtils = __webpack_require__(62);
 var ReactComponentEnvironment = __webpack_require__(73);
-var ReactEmptyComponent = __webpack_require__(133);
+var ReactEmptyComponent = __webpack_require__(132);
 var ReactBrowserEventEmitter = __webpack_require__(71);
-var ReactHostComponent = __webpack_require__(134);
+var ReactHostComponent = __webpack_require__(133);
 var ReactUpdates = __webpack_require__(16);
 
 var ReactInjection = {
@@ -39750,13 +39999,13 @@ module.exports = ReactInjection;
 
 var _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(115);
+var CallbackQueue = __webpack_require__(114);
 var PooledClass = __webpack_require__(22);
 var ReactBrowserEventEmitter = __webpack_require__(71);
-var ReactInputSelection = __webpack_require__(141);
+var ReactInputSelection = __webpack_require__(140);
 var ReactInstrumentation = __webpack_require__(12);
 var Transaction = __webpack_require__(42);
-var ReactUpdateQueue = __webpack_require__(138);
+var ReactUpdateQueue = __webpack_require__(137);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -39932,7 +40181,7 @@ module.exports = ReactReconcileTransaction;
 var ExecutionEnvironment = __webpack_require__(10);
 
 var getNodeForCharacterOffset = __webpack_require__(294);
-var getTextContentAccessor = __webpack_require__(113);
+var getTextContentAccessor = __webpack_require__(112);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -40631,11 +40880,11 @@ module.exports = SVGDOMPropertyConfig;
 var EventPropagators = __webpack_require__(29);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(7);
-var ReactInputSelection = __webpack_require__(141);
+var ReactInputSelection = __webpack_require__(140);
 var SyntheticEvent = __webpack_require__(15);
 
-var getActiveElement = __webpack_require__(142);
-var isTextInputElement = __webpack_require__(117);
+var getActiveElement = __webpack_require__(141);
+var isTextInputElement = __webpack_require__(116);
 var shallowEqual = __webpack_require__(75);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
@@ -40822,7 +41071,7 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(2);
 
-var EventListener = __webpack_require__(140);
+var EventListener = __webpack_require__(139);
 var EventPropagators = __webpack_require__(29);
 var ReactDOMComponentTree = __webpack_require__(7);
 var SyntheticAnimationEvent = __webpack_require__(301);
@@ -41558,16 +41807,16 @@ var _prodInvariant = __webpack_require__(2);
 
 var React = __webpack_require__(35);
 var ReactDOMContainerInfo = __webpack_require__(311);
-var ReactDefaultBatchingStrategy = __webpack_require__(139);
+var ReactDefaultBatchingStrategy = __webpack_require__(138);
 var ReactInstrumentation = __webpack_require__(12);
 var ReactMarkupChecksum = __webpack_require__(312);
 var ReactReconciler = __webpack_require__(32);
 var ReactServerBatchingStrategy = __webpack_require__(314);
-var ReactServerRenderingTransaction = __webpack_require__(137);
+var ReactServerRenderingTransaction = __webpack_require__(136);
 var ReactUpdates = __webpack_require__(16);
 
 var emptyObject = __webpack_require__(45);
-var instantiateReactComponent = __webpack_require__(131);
+var instantiateReactComponent = __webpack_require__(130);
 var invariant = __webpack_require__(1);
 
 var pendingTransactions = 0;
@@ -41846,7 +42095,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var CodeViewer = function (_Component) {
     _inherits(CodeViewer, _Component);
@@ -42031,7 +42287,7 @@ var CopyToClipboard = exports.CopyToClipboard = (0, _createReactClass2.default)(
 
 
 var React = __webpack_require__(0);
-var factory = __webpack_require__(128);
+var factory = __webpack_require__(127);
 
 if (typeof React === 'undefined') {
   throw Error('create-react-class could not find the React object. If you are using script tags, ' + 'make sure that React is being loaded before create-react-class.');
@@ -42191,7 +42447,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*
+                                                                                                                                                                                                                                                                               * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                               * All rights reserved.
+                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                               * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                               * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                               */
 
 var _react = __webpack_require__(0);
 
@@ -42403,7 +42666,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var Configurator = function (_Component) {
     _inherits(Configurator, _Component);
@@ -42557,7 +42827,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var BoolToggle = function (_ProtoToggle) {
     _inherits(BoolToggle, _ProtoToggle);
@@ -42664,7 +42941,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var StringToggle = function (_ProtoToggle) {
     _inherits(StringToggle, _ProtoToggle);
@@ -42770,7 +43054,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var EnumToggle = function (_ProtoToggle) {
     _inherits(EnumToggle, _ProtoToggle);
@@ -42886,7 +43177,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var ArrayToggle = function (_ProtoToggle) {
     _inherits(ArrayToggle, _ProtoToggle);
@@ -42998,7 +43296,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var FuncToggle = function (_ProtoToggle) {
     _inherits(FuncToggle, _ProtoToggle);
@@ -43118,7 +43423,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* global Babel */
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/* global Babel */
 
 var NodeToggle = function (_ProtoToggle) {
     _inherits(NodeToggle, _ProtoToggle);
@@ -43237,7 +43551,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var NumberToggle = function (_ProtoToggle) {
     _inherits(NumberToggle, _ProtoToggle);
@@ -43338,7 +43659,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var ModalWrapper = function (_Component) {
     _inherits(ModalWrapper, _Component);
@@ -43636,7 +43964,7 @@ module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<
 /* 358 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>A Nessie icon with a tooltip its a wrapper, can be standalone or contain other nodes in which case it appends the icon with tooltip to the wrapped content.</p>\n<p>By default the icon is the <strong>info</strong> <strong>?</strong></p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<p>this will produce the <strong>orange !</strong> icon</p>\n<pre><code>&lt;IconWithTooltip message=&quot;Something’s wrong!&quot; iconType=&quot;alert&quot;/&gt;\n</code></pre><p>this will produce the <strong>green ✓</strong> icon</p>\n<pre><code>&lt;IconWithTooltip message=&quot;Input validated&quot; iconType=&quot;validation&quot;/&gt;\n</code></pre><p>this will produce the <strong>info ?</strong> icon</p>\n<pre><code>&lt;H2&gt;\n    &lt;IconWithTooltip message=&quot;Detailed explanation of My Module&quot;&gt;\n        My Module Header\n    &lt;/IconWithTooltip&gt;\n&lt;/H2&gt;\n</code></pre>";
+module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>IconWithTooltip can be used in two ways: as a standalone icon-with-tooltip\ncombo, or as a wrapper for other components. In the latter case it will position\nthe icon and associated tooltip relative to the wrapped content.</p>\n<p>The default icon is the “info” icon.</p>\n<p><strong>This component is deprecated. If you need an icon with tooltip you should\ncompose it from the Icon and Tooltip components.</strong></p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<p>a simple icon with an associated tooltip:</p>\n<pre><code>&lt;IconWithTooltip message=&quot;Input validated&quot; iconType=&quot;validation&quot;/&gt;\n</code></pre><p>an icon with tooltip positioned relative to some wrapped content:</p>\n<pre><code>&lt;IconWithTooltip message=&quot;Detailed explanation of My Module&quot;&gt;\n    &lt;H2&gt;My Module Header&lt;/H2&gt;\n&lt;/IconWithTooltip&gt;\n</code></pre>";
 
 /***/ }),
 /* 359 */
@@ -43714,7 +44042,7 @@ module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<
 /* 371 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>A Nessie PageContent Wraps the body content of the page, usually a Nessie Module.</p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>&lt;PageContent&gt;\n    &lt;Form&gt;\n        &lt;Module title=&#39;Module 1&#39;&gt;\n            Module 1 content...\n        &lt;/Module&gt;\n        &lt;Module title=&#39;Module 2&#39;&gt;\n            Module 2 content...\n        &lt;/Module&gt;\n    &lt;/Form&gt;\n&lt;/PageContent&gt;\n</code></pre>";
+module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>PageContent wraps the body content of the page. It should be placed inside the\nPage component, between a PageHeader component and a PageFooter component. It\nprovides a overlay with a Spinner to be displayed while the page content loads.</p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>&lt;Page&gt;\n    &lt;PageHeader&gt;…&lt;/PageHeader&gt;\n    &lt;PageContent&gt;\n        &lt;Card&gt;…&lt;/Card&gt;\n        &lt;Card&gt;…&lt;/Card&gt;\n    &lt;/PageContent&gt;\n    &lt;PageFooter&gt;…&lt;/PageFooter&gt;\n&lt;/Page&gt;\n</code></pre>";
 
 /***/ }),
 /* 372 */
@@ -43834,7 +44162,7 @@ module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<
 /* 391 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>A Nessie StatusIndicator is used as an indicator (no hover state).</p>\n<p>2 StatusIndicator states:</p>\n<ul>\n<li>Active.</li>\n<li>Deactive.</li>\n</ul>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>&lt;StatusIndicator status=&quot;deactive&quot;&gt;\n    DEACTIVE\n&lt;/StatusIndicator&gt;\n</code></pre>";
+module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>StatusIndicator displays some text inside a pill.</p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>&lt;StatusIndicator status=&quot;critical&quot;&gt;\n    Error\n&lt;/StatusIndicator&gt;\n</code></pre>";
 
 /***/ }),
 /* 392 */
@@ -43942,7 +44270,7 @@ module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<
 /* 409 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>Tooltip wraps other components and displays a message.</p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>    &lt;Tooltip message=&quot;There’s an error!&quot; position=&quot;top&quot;&gt;\n        &lt;MyComponent /&gt;  \n    &lt;/Tooltip&gt;\n</code></pre>";
+module.exports = "<h2 id=\"component-description\">Component Description</h2>\n<p>A tooltip container with different appearances (“roles”) and an optional\nclose/dismiss button. The caret/pointer can be configured for different tooltip\npositions.</p>\n<p><strong>Previously, the Tooltip wrapped other components and positioned itself using\nCSS. This approach is deprecated. You should position the tooltip using\na library such as <a href=\"https://popper.js.org/\">Popper.js</a> instead.</strong></p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<pre><code>&lt;Tooltip message=&quot;There’s an error!&quot; position=&quot;top&quot;/&gt;\n</code></pre>";
 
 /***/ }),
 /* 410 */
@@ -44065,13 +44393,13 @@ module.exports = {"description":"","displayName":"Animate","methods":[],"props":
 /* 414 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Button","methods":[{"name":"handleMouseOver","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"handleMouseOut","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null}],"props":{"label":{"type":{"name":"string"},"required":false,"description":"Label text"},"type":{"type":{"name":"enum","value":[{"value":"'button'","computed":false},{"value":"'reset'","computed":false},{"value":"'submit'","computed":false}]},"required":false,"description":"HTML type attribute","defaultValue":{"value":"'button'","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'secondary'","computed":false},{"value":"'subtle'","computed":false},{"value":"'promoted'","computed":false},{"value":"'critical'","computed":false},{"value":"'control'","computed":false}]},"required":false,"description":"Button role/style","defaultValue":{"value":"'default'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display (overrides customIcon)","defaultValue":{"value":"'none'","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Icon position relative to Button text","defaultValue":{"value":"'left'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isLoading":{"type":{"name":"bool"},"required":false,"description":"Display loading state","defaultValue":{"value":"false","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial HTML value attribute"},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Button click callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function: ( e ) => { ... }"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"buttonRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <button>: ( ref ) => { ... }"},"cssMap":{"defaultValue":{"value":"require( './button.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"Button","methods":[{"name":"handleMouseOver","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"handleMouseOut","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null}],"props":{"label":{"type":{"name":"string"},"required":false,"description":"Label text"},"type":{"type":{"name":"enum","value":[{"value":"'button'","computed":false},{"value":"'reset'","computed":false},{"value":"'submit'","computed":false}]},"required":false,"description":"HTML type attribute","defaultValue":{"value":"'button'","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'secondary'","computed":false},{"value":"'subtle'","computed":false},{"value":"'promoted'","computed":false},{"value":"'critical'","computed":false},{"value":"'control'","computed":false}]},"required":false,"description":"Button role/style","defaultValue":{"value":"'default'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display (overrides customIcon)","defaultValue":{"value":"'none'","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Icon position relative to Button text","defaultValue":{"value":"'left'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isLoading":{"type":{"name":"bool"},"required":false,"description":"Display loading state","defaultValue":{"value":"false","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial HTML value attribute"},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Button click callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function: ( e ) => { ... }"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"buttonRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <button>: ( ref ) => { ... }"},"cssMap":{"defaultValue":{"value":"require( './button.css' )","computed":true},"required":false}}}
 
 /***/ }),
 /* 415 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Card","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Module content"},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"padding":{"type":{"name":"union","value":[{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},{"name":"arrayOf","value":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]}}]},"required":false,"description":"Card padding","defaultValue":{"value":"'none'","computed":false}}}}
+module.exports = {"description":"","displayName":"Card","methods":[],"props":{"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Horizontal alignment of content (“auto” makes all items 100% width)","defaultValue":{"value":"'auto'","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Module content"},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"padding":{"type":{"name":"union","value":[{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},{"name":"arrayOf","value":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]}}]},"required":false,"description":"Card padding","defaultValue":{"value":"'M'","computed":false}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Vertical alignment of content","defaultValue":{"value":"'top'","computed":false}}}}
 
 /***/ }),
 /* 416 */
@@ -44083,7 +44411,7 @@ module.exports = {"description":"","displayName":"CheckableGroup","methods":[],"
 /* 417 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Checkbox","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (override default)","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked (controlled input)","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked by default (uncontrolled input)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label content (string)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"Checkbox group name","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"OnBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"OnClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"OnChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Checkbox","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked (controlled input)","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked by default (uncontrolled input)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label content (string)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"Checkbox group name","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"OnBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"OnClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"OnChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 418 */
@@ -44095,31 +44423,31 @@ module.exports = {"description":"","displayName":"CheckboxGroup","methods":[],"p
 /* 419 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"CodeEditor","methods":[{"name":"setMaxHeight","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null}],"returns":null},{"name":"handleCursorActivity","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleChange","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null},{"name":"change","type":null}],"returns":null},{"name":"handleTextareaRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"handleWrapperRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null}],"props":{"codeMirrorRef":{"type":{"name":"func"},"required":false,"description":"callback ref to native CodeMirror object"},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node"},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"height":{"type":{"name":"string"},"required":false,"description":"Code editor height (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"maxHeight":{"type":{"name":"string"},"required":false,"description":"Code editor max height (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Input string default value"},"value":{"type":{"name":"string"},"required":false,"description":"Input string value"},"onChange":{"type":{"name":"func"},"required":false,"description":"HTML id attribute (overwrite default)"},"onFocus":{"type":{"name":"func"},"required":false,"description":"Handles CodeMirror focus event"},"onBlur":{"type":{"name":"func"},"required":false,"description":"Handles CodeMirror blur event"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Handles component mouseover event"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Handles component mouseout event"},"options":{"type":{"name":"object"},"required":false,"description":"Codemirror options object"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"cursor":{"type":{"name":"shape","value":{"line":{"name":"number","required":false},"ch":{"name":"number","required":false}}},"required":false,"description":"cursor position: { line, ch }"},"onCursorActivity":{"type":{"name":"func"},"required":false,"description":"onCursorActivity callback function: ( cursor ) => { ... }"},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"CodeEditor","methods":[{"name":"setMaxHeight","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null}],"returns":null},{"name":"handleCursorActivity","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleChange","docblock":null,"modifiers":[],"params":[{"name":"cm","type":null},{"name":"change","type":null}],"returns":null},{"name":"handleTextareaRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"handleWrapperRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null}],"props":{"codeMirrorRef":{"type":{"name":"func"},"required":false,"description":"callback ref to native CodeMirror object"},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node"},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"height":{"type":{"name":"string"},"required":false,"description":"Code editor height (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"maxHeight":{"type":{"name":"string"},"required":false,"description":"Code editor max height (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Input string default value"},"value":{"type":{"name":"string"},"required":false,"description":"Input string value"},"onChange":{"type":{"name":"func"},"required":false,"description":"HTML id attribute"},"onFocus":{"type":{"name":"func"},"required":false,"description":"Handles CodeMirror focus event"},"onBlur":{"type":{"name":"func"},"required":false,"description":"Handles CodeMirror blur event"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Handles component mouseover event"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Handles component mouseout event"},"options":{"type":{"name":"object"},"required":false,"description":"Codemirror options object"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"cursor":{"type":{"name":"shape","value":{"line":{"name":"number","required":false},"ch":{"name":"number","required":false}}},"required":false,"description":"cursor position: { line, ch }"},"onCursorActivity":{"type":{"name":"func"},"required":false,"description":"onCursorActivity callback function: ( cursor ) => { ... }"},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
 
 /***/ }),
 /* 420 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Column","methods":[],"props":{"columnTitle":{"type":{"name":"string"},"required":false,"description":"Title of Column"},"size":{"type":{"name":"enum","value":[{"value":"'icon-S'","computed":false},{"value":"'icon-M'","computed":false},{"value":"'icon-L'","computed":false},{"value":"'icon-XL'","computed":false},{"value":"'icon-XXL'","computed":false},{"value":"'1/1'","computed":false},{"value":"'content'","computed":false},{"value":"'1/2'","computed":false},{"value":"'2/2'","computed":false},{"value":"'1/3'","computed":false},{"value":"'2/3'","computed":false},{"value":"'3/3'","computed":false},{"value":"'1/4'","computed":false},{"value":"'2/4'","computed":false},{"value":"'3/4'","computed":false},{"value":"'4/4'","computed":false},{"value":"'1/5'","computed":false},{"value":"'2/5'","computed":false},{"value":"'3/5'","computed":false},{"value":"'4/5'","computed":false},{"value":"'5/5'","computed":false},{"value":"'1/6'","computed":false},{"value":"'2/6'","computed":false},{"value":"'3/6'","computed":false},{"value":"'4/6'","computed":false},{"value":"'5/6'","computed":false},{"value":"'6/6'","computed":false},{"value":"'1/7'","computed":false},{"value":"'2/7'","computed":false},{"value":"'3/7'","computed":false},{"value":"'4/7'","computed":false},{"value":"'5/7'","computed":false},{"value":"'6/7'","computed":false},{"value":"'7/7'","computed":false},{"value":"'1/8'","computed":false},{"value":"'2/8'","computed":false},{"value":"'3/8'","computed":false},{"value":"'4/8'","computed":false},{"value":"'5/8'","computed":false},{"value":"'6/8'","computed":false},{"value":"'7/8'","computed":false},{"value":"'8/8'","computed":false},{"value":"'1/9'","computed":false},{"value":"'2/9'","computed":false},{"value":"'3/9'","computed":false},{"value":"'4/9'","computed":false},{"value":"'5/9'","computed":false},{"value":"'6/9'","computed":false},{"value":"'7/9'","computed":false},{"value":"'8/9'","computed":false},{"value":"'9/9'","computed":false},{"value":"\"1/10\"","computed":false},{"value":"'2/10'","computed":false},{"value":"'3/10'","computed":false},{"value":"'4/10'","computed":false},{"value":"'5/10'","computed":false},{"value":"'6/10'","computed":false},{"value":"'7/10'","computed":false},{"value":"'8/10'","computed":false},{"value":"'9/10'","computed":false},{"value":"'10/10'","computed":false},{"value":"'1/11'","computed":false},{"value":"'2/11'","computed":false},{"value":"'3/11'","computed":false},{"value":"'4/11'","computed":false},{"value":"'5/11'","computed":false},{"value":"'6/11'","computed":false},{"value":"'7/11'","computed":false},{"value":"'8/11'","computed":false},{"value":"'9/11'","computed":false},{"value":"'10/11'","computed":false},{"value":"'11/11'","computed":false},{"value":"'1/12'","computed":false},{"value":"'2/12'","computed":false},{"value":"'3/12'","computed":false},{"value":"'4/12'","computed":false},{"value":"'5/12'","computed":false},{"value":"'6/12'","computed":false},{"value":"'7/12'","computed":false},{"value":"'8/12'","computed":false},{"value":"'9/12'","computed":false},{"value":"'10/12'","computed":false},{"value":"'11/12'","computed":false},{"value":"'12/12'","computed":false},{"value":"'1/14'","computed":false},{"value":"'2/13'","computed":false},{"value":"'3/13'","computed":false},{"value":"'4/13'","computed":false},{"value":"'5/13'","computed":false},{"value":"'6/13'","computed":false},{"value":"'7/13'","computed":false},{"value":"'8/13'","computed":false},{"value":"'9/13'","computed":false},{"value":"'10/13'","computed":false},{"value":"'11/13'","computed":false},{"value":"'12/13'","computed":false},{"value":"'13/13'","computed":false},{"value":"'1/14'","computed":false},{"value":"'2/14'","computed":false},{"value":"'3/14'","computed":false},{"value":"'4/14'","computed":false},{"value":"'5/14'","computed":false},{"value":"'6/14'","computed":false},{"value":"'7/14'","computed":false},{"value":"'8/14'","computed":false},{"value":"'9/14'","computed":false},{"value":"'10/14'","computed":false},{"value":"'11/14'","computed":false},{"value":"'12/14'","computed":false},{"value":"'13/14'","computed":false},{"value":"'14/14'","computed":false},{"value":"'1/15'","computed":false},{"value":"'2/15'","computed":false},{"value":"'3/15'","computed":false},{"value":"'4/15'","computed":false},{"value":"'5/15'","computed":false},{"value":"'6/15'","computed":false},{"value":"'7/15'","computed":false},{"value":"'8/15'","computed":false},{"value":"'9/15'","computed":false},{"value":"'10/15'","computed":false},{"value":"'11/15'","computed":false},{"value":"'12/15'","computed":false},{"value":"'13/15'","computed":false},{"value":"'14/15'","computed":false},{"value":"'15/15'","computed":false},{"value":"'1/16'","computed":false},{"value":"'2/16'","computed":false},{"value":"'3/16'","computed":false},{"value":"'4/16'","computed":false},{"value":"'5/16'","computed":false},{"value":"'6/16'","computed":false},{"value":"'7/16'","computed":false},{"value":"'8/16'","computed":false},{"value":"'9/16'","computed":false},{"value":"'10/16'","computed":false},{"value":"'11/16'","computed":false},{"value":"'12/16'","computed":false},{"value":"'13/16'","computed":false},{"value":"'14/16'","computed":false},{"value":"'15/16'","computed":false},{"value":"'16/16'","computed":false},{"value":"'1/17'","computed":false},{"value":"'2/17'","computed":false},{"value":"'3/17'","computed":false},{"value":"'4/17'","computed":false},{"value":"'5/17'","computed":false},{"value":"'6/17'","computed":false},{"value":"'7/17'","computed":false},{"value":"'8/17'","computed":false},{"value":"'9/17'","computed":false},{"value":"'10/17'","computed":false},{"value":"'11/17'","computed":false},{"value":"'12/17'","computed":false},{"value":"'13/17'","computed":false},{"value":"'14/17'","computed":false},{"value":"'15/17'","computed":false},{"value":"'16/17'","computed":false},{"value":"'17/17'","computed":false},{"value":"'1/18'","computed":false},{"value":"'2/18'","computed":false},{"value":"'3/18'","computed":false},{"value":"'4/18'","computed":false},{"value":"'5/18'","computed":false},{"value":"'6/18'","computed":false},{"value":"'7/18'","computed":false},{"value":"'8/18'","computed":false},{"value":"'9/18'","computed":false},{"value":"'10/18'","computed":false},{"value":"'11/18'","computed":false},{"value":"'12/18'","computed":false},{"value":"'13/18'","computed":false},{"value":"'14/18'","computed":false},{"value":"'15/18'","computed":false},{"value":"'16/18'","computed":false},{"value":"'17/18'","computed":false},{"value":"'18/18'","computed":false},{"value":"'1/19'","computed":false},{"value":"'2/19'","computed":false},{"value":"'3/19'","computed":false},{"value":"'4/19'","computed":false},{"value":"'5/19'","computed":false},{"value":"'6/19'","computed":false},{"value":"'7/19'","computed":false},{"value":"'8/19'","computed":false},{"value":"'9/19'","computed":false},{"value":"'10/19'","computed":false},{"value":"'11/19'","computed":false},{"value":"'12/19'","computed":false},{"value":"'13/19'","computed":false},{"value":"'14/19'","computed":false},{"value":"'15/19'","computed":false},{"value":"'16/19'","computed":false},{"value":"'17/19'","computed":false},{"value":"'18/19'","computed":false},{"value":"'19/19'","computed":false},{"value":"'1/20'","computed":false},{"value":"'2/20'","computed":false},{"value":"'3/20'","computed":false},{"value":"'4/20'","computed":false},{"value":"'5/20'","computed":false},{"value":"'6/20'","computed":false},{"value":"'7/20'","computed":false},{"value":"'8/20'","computed":false},{"value":"'9/20'","computed":false},{"value":"'10/20'","computed":false},{"value":"'11/20'","computed":false},{"value":"'12/20'","computed":false},{"value":"'13/20'","computed":false},{"value":"'14/20'","computed":false},{"value":"'15/20'","computed":false},{"value":"'16/20'","computed":false},{"value":"'17/20'","computed":false},{"value":"'18/20'","computed":false},{"value":"'19/20'","computed":false},{"value":"'20/20'","computed":false},{"value":"'1/21'","computed":false},{"value":"'2/21'","computed":false},{"value":"'3/21'","computed":false},{"value":"'4/21'","computed":false},{"value":"'5/21'","computed":false},{"value":"'6/21'","computed":false},{"value":"'7/21'","computed":false},{"value":"'8/21'","computed":false},{"value":"'9/21'","computed":false},{"value":"'10/21'","computed":false},{"value":"'11/21'","computed":false},{"value":"'12/21'","computed":false},{"value":"'13/21'","computed":false},{"value":"'14/21'","computed":false},{"value":"'15/21'","computed":false},{"value":"'16/21'","computed":false},{"value":"'17/21'","computed":false},{"value":"'18/21'","computed":false},{"value":"'19/21'","computed":false},{"value":"'20/21'","computed":false},{"value":"'21/21'","computed":false},{"value":"'1/22'","computed":false},{"value":"'2/22'","computed":false},{"value":"'3/22'","computed":false},{"value":"'4/22'","computed":false},{"value":"'5/22'","computed":false},{"value":"'6/22'","computed":false},{"value":"'7/22'","computed":false},{"value":"'8/22'","computed":false},{"value":"'9/22'","computed":false},{"value":"'10/22'","computed":false},{"value":"'11/22'","computed":false},{"value":"'12/22'","computed":false},{"value":"'13/22'","computed":false},{"value":"'14/22'","computed":false},{"value":"'15/22'","computed":false},{"value":"'16/22'","computed":false},{"value":"'17/22'","computed":false},{"value":"'18/22'","computed":false},{"value":"'19/22'","computed":false},{"value":"'20/22'","computed":false},{"value":"'21/22'","computed":false},{"value":"'22/22'","computed":false},{"value":"'1/23'","computed":false},{"value":"'2/23'","computed":false},{"value":"'3/23'","computed":false},{"value":"'4/23'","computed":false},{"value":"'5/23'","computed":false},{"value":"'6/23'","computed":false},{"value":"'7/23'","computed":false},{"value":"'8/23'","computed":false},{"value":"'9/23'","computed":false},{"value":"'10/23'","computed":false},{"value":"'11/23'","computed":false},{"value":"'12/23'","computed":false},{"value":"'13/23'","computed":false},{"value":"'14/23'","computed":false},{"value":"'15/23'","computed":false},{"value":"'16/23'","computed":false},{"value":"'17/23'","computed":false},{"value":"'18/23'","computed":false},{"value":"'19/23'","computed":false},{"value":"'20/23'","computed":false},{"value":"'21/23'","computed":false},{"value":"'22/23'","computed":false},{"value":"'23/23'","computed":false},{"value":"'1/24'","computed":false},{"value":"'2/24'","computed":false},{"value":"'3/24'","computed":false},{"value":"'4/24'","computed":false},{"value":"'5/24'","computed":false},{"value":"'6/24'","computed":false},{"value":"'7/24'","computed":false},{"value":"'8/24'","computed":false},{"value":"'9/24'","computed":false},{"value":"'10/24'","computed":false},{"value":"'11/24'","computed":false},{"value":"'12/24'","computed":false},{"value":"'13/24'","computed":false},{"value":"'14/24'","computed":false},{"value":"'15/24'","computed":false},{"value":"'16/24'","computed":false},{"value":"'17/24'","computed":false},{"value":"'18/24'","computed":false},{"value":"'19/24'","computed":false},{"value":"'20/24'","computed":false},{"value":"'21/24'","computed":false},{"value":"'22/24'","computed":false},{"value":"'23/24'","computed":false},{"value":"\"24/24\"","computed":false}]},"required":false,"description":"Width of the Column"},"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Horizontal alignment of content (“auto” makes all items 100% width)","defaultValue":{"value":"'auto'","computed":false}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Vertical alignment of content (“auto” is equivalent to “top”)"},"children":{"type":{"name":"node"},"required":false,"description":"Column content"},"role":{"type":{"name":"string"},"required":false,"description":"Column role"},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"Column","methods":[],"props":{"columnTitle":{"type":{"name":"string"},"required":false,"description":"Title of Column"},"size":{"type":{"name":"enum","value":[{"value":"'icon-S'","computed":false},{"value":"'icon-M'","computed":false},{"value":"'icon-L'","computed":false},{"value":"'icon-XL'","computed":false},{"value":"'icon-XXL'","computed":false},{"value":"'1/1'","computed":false},{"value":"'content'","computed":false},{"value":"'1/2'","computed":false},{"value":"'2/2'","computed":false},{"value":"'1/3'","computed":false},{"value":"'2/3'","computed":false},{"value":"'3/3'","computed":false},{"value":"'1/4'","computed":false},{"value":"'2/4'","computed":false},{"value":"'3/4'","computed":false},{"value":"'4/4'","computed":false},{"value":"'1/5'","computed":false},{"value":"'2/5'","computed":false},{"value":"'3/5'","computed":false},{"value":"'4/5'","computed":false},{"value":"'5/5'","computed":false},{"value":"'1/6'","computed":false},{"value":"'2/6'","computed":false},{"value":"'3/6'","computed":false},{"value":"'4/6'","computed":false},{"value":"'5/6'","computed":false},{"value":"'6/6'","computed":false},{"value":"'1/7'","computed":false},{"value":"'2/7'","computed":false},{"value":"'3/7'","computed":false},{"value":"'4/7'","computed":false},{"value":"'5/7'","computed":false},{"value":"'6/7'","computed":false},{"value":"'7/7'","computed":false},{"value":"'1/8'","computed":false},{"value":"'2/8'","computed":false},{"value":"'3/8'","computed":false},{"value":"'4/8'","computed":false},{"value":"'5/8'","computed":false},{"value":"'6/8'","computed":false},{"value":"'7/8'","computed":false},{"value":"'8/8'","computed":false},{"value":"'1/9'","computed":false},{"value":"'2/9'","computed":false},{"value":"'3/9'","computed":false},{"value":"'4/9'","computed":false},{"value":"'5/9'","computed":false},{"value":"'6/9'","computed":false},{"value":"'7/9'","computed":false},{"value":"'8/9'","computed":false},{"value":"'9/9'","computed":false},{"value":"\"1/10\"","computed":false},{"value":"'2/10'","computed":false},{"value":"'3/10'","computed":false},{"value":"'4/10'","computed":false},{"value":"'5/10'","computed":false},{"value":"'6/10'","computed":false},{"value":"'7/10'","computed":false},{"value":"'8/10'","computed":false},{"value":"'9/10'","computed":false},{"value":"'10/10'","computed":false},{"value":"'1/11'","computed":false},{"value":"'2/11'","computed":false},{"value":"'3/11'","computed":false},{"value":"'4/11'","computed":false},{"value":"'5/11'","computed":false},{"value":"'6/11'","computed":false},{"value":"'7/11'","computed":false},{"value":"'8/11'","computed":false},{"value":"'9/11'","computed":false},{"value":"'10/11'","computed":false},{"value":"'11/11'","computed":false},{"value":"'1/12'","computed":false},{"value":"'2/12'","computed":false},{"value":"'3/12'","computed":false},{"value":"'4/12'","computed":false},{"value":"'5/12'","computed":false},{"value":"'6/12'","computed":false},{"value":"'7/12'","computed":false},{"value":"'8/12'","computed":false},{"value":"'9/12'","computed":false},{"value":"'10/12'","computed":false},{"value":"'11/12'","computed":false},{"value":"'12/12'","computed":false},{"value":"'1/13'","computed":false},{"value":"'2/13'","computed":false},{"value":"'3/13'","computed":false},{"value":"'4/13'","computed":false},{"value":"'5/13'","computed":false},{"value":"'6/13'","computed":false},{"value":"'7/13'","computed":false},{"value":"'8/13'","computed":false},{"value":"'9/13'","computed":false},{"value":"'10/13'","computed":false},{"value":"'11/13'","computed":false},{"value":"'12/13'","computed":false},{"value":"'13/13'","computed":false},{"value":"'1/14'","computed":false},{"value":"'2/14'","computed":false},{"value":"'3/14'","computed":false},{"value":"'4/14'","computed":false},{"value":"'5/14'","computed":false},{"value":"'6/14'","computed":false},{"value":"'7/14'","computed":false},{"value":"'8/14'","computed":false},{"value":"'9/14'","computed":false},{"value":"'10/14'","computed":false},{"value":"'11/14'","computed":false},{"value":"'12/14'","computed":false},{"value":"'13/14'","computed":false},{"value":"'14/14'","computed":false},{"value":"'1/15'","computed":false},{"value":"'2/15'","computed":false},{"value":"'3/15'","computed":false},{"value":"'4/15'","computed":false},{"value":"'5/15'","computed":false},{"value":"'6/15'","computed":false},{"value":"'7/15'","computed":false},{"value":"'8/15'","computed":false},{"value":"'9/15'","computed":false},{"value":"'10/15'","computed":false},{"value":"'11/15'","computed":false},{"value":"'12/15'","computed":false},{"value":"'13/15'","computed":false},{"value":"'14/15'","computed":false},{"value":"'15/15'","computed":false},{"value":"'1/16'","computed":false},{"value":"'2/16'","computed":false},{"value":"'3/16'","computed":false},{"value":"'4/16'","computed":false},{"value":"'5/16'","computed":false},{"value":"'6/16'","computed":false},{"value":"'7/16'","computed":false},{"value":"'8/16'","computed":false},{"value":"'9/16'","computed":false},{"value":"'10/16'","computed":false},{"value":"'11/16'","computed":false},{"value":"'12/16'","computed":false},{"value":"'13/16'","computed":false},{"value":"'14/16'","computed":false},{"value":"'15/16'","computed":false},{"value":"'16/16'","computed":false},{"value":"'1/17'","computed":false},{"value":"'2/17'","computed":false},{"value":"'3/17'","computed":false},{"value":"'4/17'","computed":false},{"value":"'5/17'","computed":false},{"value":"'6/17'","computed":false},{"value":"'7/17'","computed":false},{"value":"'8/17'","computed":false},{"value":"'9/17'","computed":false},{"value":"'10/17'","computed":false},{"value":"'11/17'","computed":false},{"value":"'12/17'","computed":false},{"value":"'13/17'","computed":false},{"value":"'14/17'","computed":false},{"value":"'15/17'","computed":false},{"value":"'16/17'","computed":false},{"value":"'17/17'","computed":false},{"value":"'1/18'","computed":false},{"value":"'2/18'","computed":false},{"value":"'3/18'","computed":false},{"value":"'4/18'","computed":false},{"value":"'5/18'","computed":false},{"value":"'6/18'","computed":false},{"value":"'7/18'","computed":false},{"value":"'8/18'","computed":false},{"value":"'9/18'","computed":false},{"value":"'10/18'","computed":false},{"value":"'11/18'","computed":false},{"value":"'12/18'","computed":false},{"value":"'13/18'","computed":false},{"value":"'14/18'","computed":false},{"value":"'15/18'","computed":false},{"value":"'16/18'","computed":false},{"value":"'17/18'","computed":false},{"value":"'18/18'","computed":false},{"value":"'1/19'","computed":false},{"value":"'2/19'","computed":false},{"value":"'3/19'","computed":false},{"value":"'4/19'","computed":false},{"value":"'5/19'","computed":false},{"value":"'6/19'","computed":false},{"value":"'7/19'","computed":false},{"value":"'8/19'","computed":false},{"value":"'9/19'","computed":false},{"value":"'10/19'","computed":false},{"value":"'11/19'","computed":false},{"value":"'12/19'","computed":false},{"value":"'13/19'","computed":false},{"value":"'14/19'","computed":false},{"value":"'15/19'","computed":false},{"value":"'16/19'","computed":false},{"value":"'17/19'","computed":false},{"value":"'18/19'","computed":false},{"value":"'19/19'","computed":false},{"value":"'1/20'","computed":false},{"value":"'2/20'","computed":false},{"value":"'3/20'","computed":false},{"value":"'4/20'","computed":false},{"value":"'5/20'","computed":false},{"value":"'6/20'","computed":false},{"value":"'7/20'","computed":false},{"value":"'8/20'","computed":false},{"value":"'9/20'","computed":false},{"value":"'10/20'","computed":false},{"value":"'11/20'","computed":false},{"value":"'12/20'","computed":false},{"value":"'13/20'","computed":false},{"value":"'14/20'","computed":false},{"value":"'15/20'","computed":false},{"value":"'16/20'","computed":false},{"value":"'17/20'","computed":false},{"value":"'18/20'","computed":false},{"value":"'19/20'","computed":false},{"value":"'20/20'","computed":false},{"value":"'1/21'","computed":false},{"value":"'2/21'","computed":false},{"value":"'3/21'","computed":false},{"value":"'4/21'","computed":false},{"value":"'5/21'","computed":false},{"value":"'6/21'","computed":false},{"value":"'7/21'","computed":false},{"value":"'8/21'","computed":false},{"value":"'9/21'","computed":false},{"value":"'10/21'","computed":false},{"value":"'11/21'","computed":false},{"value":"'12/21'","computed":false},{"value":"'13/21'","computed":false},{"value":"'14/21'","computed":false},{"value":"'15/21'","computed":false},{"value":"'16/21'","computed":false},{"value":"'17/21'","computed":false},{"value":"'18/21'","computed":false},{"value":"'19/21'","computed":false},{"value":"'20/21'","computed":false},{"value":"'21/21'","computed":false},{"value":"'1/22'","computed":false},{"value":"'2/22'","computed":false},{"value":"'3/22'","computed":false},{"value":"'4/22'","computed":false},{"value":"'5/22'","computed":false},{"value":"'6/22'","computed":false},{"value":"'7/22'","computed":false},{"value":"'8/22'","computed":false},{"value":"'9/22'","computed":false},{"value":"'10/22'","computed":false},{"value":"'11/22'","computed":false},{"value":"'12/22'","computed":false},{"value":"'13/22'","computed":false},{"value":"'14/22'","computed":false},{"value":"'15/22'","computed":false},{"value":"'16/22'","computed":false},{"value":"'17/22'","computed":false},{"value":"'18/22'","computed":false},{"value":"'19/22'","computed":false},{"value":"'20/22'","computed":false},{"value":"'21/22'","computed":false},{"value":"'22/22'","computed":false},{"value":"'1/23'","computed":false},{"value":"'2/23'","computed":false},{"value":"'3/23'","computed":false},{"value":"'4/23'","computed":false},{"value":"'5/23'","computed":false},{"value":"'6/23'","computed":false},{"value":"'7/23'","computed":false},{"value":"'8/23'","computed":false},{"value":"'9/23'","computed":false},{"value":"'10/23'","computed":false},{"value":"'11/23'","computed":false},{"value":"'12/23'","computed":false},{"value":"'13/23'","computed":false},{"value":"'14/23'","computed":false},{"value":"'15/23'","computed":false},{"value":"'16/23'","computed":false},{"value":"'17/23'","computed":false},{"value":"'18/23'","computed":false},{"value":"'19/23'","computed":false},{"value":"'20/23'","computed":false},{"value":"'21/23'","computed":false},{"value":"'22/23'","computed":false},{"value":"'23/23'","computed":false},{"value":"'1/24'","computed":false},{"value":"'2/24'","computed":false},{"value":"'3/24'","computed":false},{"value":"'4/24'","computed":false},{"value":"'5/24'","computed":false},{"value":"'6/24'","computed":false},{"value":"'7/24'","computed":false},{"value":"'8/24'","computed":false},{"value":"'9/24'","computed":false},{"value":"'10/24'","computed":false},{"value":"'11/24'","computed":false},{"value":"'12/24'","computed":false},{"value":"'13/24'","computed":false},{"value":"'14/24'","computed":false},{"value":"'15/24'","computed":false},{"value":"'16/24'","computed":false},{"value":"'17/24'","computed":false},{"value":"'18/24'","computed":false},{"value":"'19/24'","computed":false},{"value":"'20/24'","computed":false},{"value":"'21/24'","computed":false},{"value":"'22/24'","computed":false},{"value":"'23/24'","computed":false},{"value":"\"24/24\"","computed":false}]},"required":false,"description":"Width of the Column"},"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Horizontal alignment of content (“auto” makes all items 100% width)","defaultValue":{"value":"'auto'","computed":false}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Vertical alignment of content (“auto” is equivalent to “top”)"},"children":{"type":{"name":"node"},"required":false,"description":"Column content"},"role":{"type":{"name":"string"},"required":false,"description":"Column role"},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
 
 /***/ }),
 /* 421 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"ComboBox","methods":[{"name":"setScrollBoxRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setWrapperRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setDropdownPosition","docblock":null,"modifiers":[],"params":[{"name":"props","type":null}],"returns":null},{"name":"handleClickOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null},{"name":"handleMouseOutOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null},{"name":"handleMouseOverOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null}],"props":{"activeOption":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"dropdownPlaceholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text to show when no dropdown list options","defaultValue":{"value":"undefined","computed":true}},"dropdownPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'auto'","computed":false}]},"required":false,"description":"Position of the dropdown relative to the text input","defaultValue":{"value":"'auto'","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasAutocomplete":{"type":{"name":"bool"},"required":false,"description":"Input has autocomplete","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display","defaultValue":{"value":"'none'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"isMultiselect":{"type":{"name":"bool"},"required":false,"description":"Dropdown list allows multiple selection","defaultValue":{"value":"false","computed":false}},"inputIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"inputType":{"type":{"name":"string"},"required":false,"description":"HTML type attribute for input","defaultValue":{"value":"'text'","computed":false}},"inputValue":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isOpen":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"blur callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onChangeInput":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"key up callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"focus callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"inputPlaceholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"onClickInput":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onMouseOutOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onMouseOverOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onScroll":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"options":{"type":{"name":"arrayOf","value":{"name":"object"}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"selection":{"type":{"name":"union","value":[{"name":"string"},{"name":"objectOf","value":{"name":"string"}}]},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"noOptiosText":{"defaultValue":{"value":"undefined","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"ComboBox","methods":[{"name":"setScrollBoxRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setWrapperRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setDropdownPosition","docblock":null,"modifiers":[],"params":[{"name":"props","type":null}],"returns":null},{"name":"handleClickOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null},{"name":"handleMouseOutOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null},{"name":"handleMouseOverOption","docblock":null,"modifiers":[],"params":[{"name":"e","type":null},{"name":"optId","type":null}],"returns":null}],"props":{"activeOption":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"dropdownPlaceholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text to show when no dropdown list options","defaultValue":{"value":"undefined","computed":true}},"dropdownPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'auto'","computed":false}]},"required":false,"description":"Position of the dropdown relative to the text input","defaultValue":{"value":"'auto'","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasAutocomplete":{"type":{"name":"bool"},"required":false,"description":"Input has autocomplete","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"iconButtonIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Display Button icon as disabled","defaultValue":{"value":"undefined","computed":true}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the icon","defaultValue":{"value":"undefined","computed":true}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'add'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'close'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'edit'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'star'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display (overrides customIcon)","defaultValue":{"value":"'none'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputPlaceholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"undefined","computed":true}},"buttonIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for IconButton","defaultValue":{"value":"undefined","computed":true}},"inputIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for TextInput","defaultValue":{"value":"false","computed":false}},"inputValue":{"type":{"name":"string"},"required":false,"description":"Input field value","defaultValue":{"value":"undefined","computed":true}},"isMultiselect":{"type":{"name":"bool"},"required":false,"description":"Dropdown list allows multiple selection","defaultValue":{"value":"false","computed":false}},"isOpen":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChangeInput":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickInput":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse over callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverOption":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onScroll":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"options":{"type":{"name":"arrayOf","value":{"name":"object"}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"selection":{"type":{"name":"union","value":[{"name":"string"},{"name":"objectOf","value":{"name":"string"}}]},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}}}}
 
 /***/ }),
 /* 422 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"DatePicker","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"","defaultValue":{"value":"styles","computed":true}},"headers":{"type":{"name":"arrayOf","value":{"name":"objectOf","value":{"name":"string"}}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"hourIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"hourPlaceholder":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"hourValue":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"items":{"type":{"name":"arrayOf","value":{"name":"arrayOf","value":{"name":"object"}}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"label":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"minuteIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"minutePlaceholder":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"minuteValue":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"mode":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'date'","computed":false},{"value":"'month'","computed":false}]},"required":false,"description":"","defaultValue":{"value":"'default'","computed":false}},"month":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"nextIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"onBlur":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickItem":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickNext":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickPrev":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"prevIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'day'","computed":false},{"value":"'month'","computed":false}]},"required":false,"description":"","defaultValue":{"value":"'day'","computed":false}},"year":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"DatePicker","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"","defaultValue":{"value":"styles","computed":true}},"headers":{"type":{"name":"arrayOf","value":{"name":"objectOf","value":{"name":"string"}}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"hourIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"hourIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"hourPlaceholder":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"hourValue":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"items":{"type":{"name":"arrayOf","value":{"name":"arrayOf","value":{"name":"object"}}},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"label":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"minuteIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"minuteIsReadOnly":{"type":{"name":"bool"},"required":false,"description":""},"minutePlaceholder":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"minuteValue":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"mode":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'date'","computed":false},{"value":"'month'","computed":false}]},"required":false,"description":"","defaultValue":{"value":"'default'","computed":false}},"month":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"nextIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"nextIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"onBlur":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickItem":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickNext":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onClickPrev":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}},"prevIsDisabled":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"prevIsReadOnly":{"type":{"name":"bool"},"required":false,"description":"","defaultValue":{"value":"false","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'day'","computed":false},{"value":"'month'","computed":false}]},"required":false,"description":"","defaultValue":{"value":"'day'","computed":false}},"year":{"type":{"name":"string"},"required":false,"description":"","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 423 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"DimensionsInput","methods":[],"props":{"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error Tooltip position relative to error icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"heightDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial width input string value","defaultValue":{"value":"undefined","computed":true}},"heightInputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native height <input>:\n( focusFunc ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"heightPlaceholder":{"type":{"name":"string"},"required":false,"description":"Height placeholder text","defaultValue":{"value":"'height'","computed":false}},"heightValue":{"type":{"name":"string"},"required":false,"description":"Width input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"widthDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial height input string value","defaultValue":{"value":"undefined","computed":true}},"widthInputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native width <input>:\n( focusFunc ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"widthPlaceholder":{"type":{"name":"string"},"required":false,"description":"Width placeholder text","defaultValue":{"value":"'width'","computed":false}},"widthValue":{"type":{"name":"string"},"required":false,"description":"Height input string value","defaultValue":{"value":"undefined","computed":true}},"className":{"defaultValue":{"value":"undefined","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"DimensionsInput","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error Tooltip position relative to error icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"heightDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial width input string value","defaultValue":{"value":"undefined","computed":true}},"heightInputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native height <input>:\n( focusFunc ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"heightPlaceholder":{"type":{"name":"string"},"required":false,"description":"Height placeholder text","defaultValue":{"value":"'height'","computed":false}},"heightValue":{"type":{"name":"string"},"required":false,"description":"Width input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"widthDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial height input string value","defaultValue":{"value":"undefined","computed":true}},"widthInputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native width <input>:\n( focusFunc ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"widthPlaceholder":{"type":{"name":"string"},"required":false,"description":"Width placeholder text","defaultValue":{"value":"'width'","computed":false}},"widthValue":{"type":{"name":"string"},"required":false,"description":"Height input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 424 */
@@ -44143,13 +44471,13 @@ module.exports = {"description":"","displayName":"Dropdown","methods":[],"props"
 /* 427 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Fieldset","methods":[],"props":{"label":{"type":{"name":"node"},"required":false,"description":"Fieldset label string or JSX node"},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Fieldset content (usually Checkboxes or Radios)"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }"},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"infoMessage":{"defaultValue":{"value":"''","computed":false},"required":false},"cssMap":{"defaultValue":{"value":"require( './fieldset.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"Fieldset","methods":[],"props":{"label":{"type":{"name":"node"},"required":false,"description":"Fieldset label string or JSX node"},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Fieldset content (usually Checkboxes or Radios)"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }"},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"cssMap":{"defaultValue":{"value":"require( './fieldset.css' )","computed":true},"required":false}}}
 
 /***/ }),
 /* 428 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"FlounderDropdown","methods":[{"name":"setDisabled","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"setValue","docblock":null,"modifiers":[],"params":[{"name":"value","type":null}],"returns":null},{"name":"buildFlounder","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"isOpen","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleRef","docblock":null,"modifiers":[],"params":[{"name":"node","type":null}],"returns":null}],"props":{"label":{"type":{"name":"node"},"required":false,"description":"Label text"},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"'Please choose an option'","computed":false}},"data":{"type":{"name":"arrayOf","value":{"name":"union","value":[{"name":"string"},{"name":"shape","value":{"text":{"name":"string","required":false},"value":{"name":"string","required":false},"description":{"name":"string","required":false},"disabled":{"name":"bool","required":false},"icon":{"name":"string","required":false},"extraClass":{"name":"string","required":false}}}]}},"required":false,"description":"Array of strings or objects (to build the options)"},"headerLevel":{"type":{"name":"enum","value":[{"value":"1","computed":false},{"value":"2","computed":false},{"value":"3","computed":false},{"value":"4","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Display the dropdown as a header (H1-4)","defaultValue":{"value":"'none'","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read only","defaultValue":{"value":"false","computed":false}},"defaultValue":{"type":{"name":"union","value":[{"name":"string"},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Initial selected value(s). Not the same as the native Flounder\n option with the same name"},"value":{"type":{"name":"union","value":[{"name":"string"},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Selected value(s)"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function triggered when the selection is changed:\n ( e ) => { ... }"},"onClose":{"type":{"name":"func"},"required":false,"description":"Triggered when the selectbox is closed"},"onFirstTouch":{"type":{"name":"func"},"required":false,"description":"Triggered the first time flounder is interacted with. An example\nusage would be calling an api for a list of data to populate a\ndropdown, but waiting to see if the user interacts with it"},"onInputChange":{"type":{"name":"func"},"required":false,"description":"Triggered when someone types in a search box. note: this will do\nnothing if search is not enabled"},"onOpen":{"type":{"name":"func"},"required":false,"description":"Triggered when the selectbox is opened"},"openOnHover":{"type":{"name":"bool"},"required":false,"description":"replaces click to open action with hover","defaultValue":{"value":"false","computed":false}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function (not yet implemented)"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function (not yet implemented)"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }"},"multiple":{"type":{"name":"bool"},"required":false,"description":"Determines whether it is a multi-select box or single","defaultValue":{"value":"false","computed":false}},"multipleMessage":{"type":{"name":"string"},"required":false,"description":"If there are no tags, this is the message that will be displayed in\nthe selected area when there are multiple options selected","defaultValue":{"value":"'(Multiple Items Selected)'","computed":false}},"noMoreOptionsMessage":{"type":{"name":"string"},"required":false,"description":"message to display when there are no option left","defaultValue":{"value":"'No more options to add'","computed":false}},"noMoreResultsMessage":{"type":{"name":"string"},"required":false,"description":"message to display when there are no results left after a search","defaultValue":{"value":"'No matches found'","computed":false}},"multipleTags":{"type":{"name":"bool"},"required":false,"description":"Determines how a multi-select box is displayed","defaultValue":{"value":"false","computed":false}},"search":{"type":{"name":"bool"},"required":false,"description":"Add option to search dropdown","defaultValue":{"value":"false","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"icon":{"type":{"name":"enum","value":[{"value":"'arrow'","computed":false},{"value":"'magnifier'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Toggle icon to show on the right of the dropdown","defaultValue":{"value":"'arrow'","computed":false}},"disableArrow":{"defaultValue":{"value":"false","computed":false},"required":false},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"FlounderDropdown","methods":[{"name":"setDisabled","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"setValue","docblock":null,"modifiers":[],"params":[{"name":"value","type":null}],"returns":null},{"name":"buildFlounder","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"isOpen","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleRef","docblock":null,"modifiers":[],"params":[{"name":"node","type":null}],"returns":null}],"props":{"label":{"type":{"name":"node"},"required":false,"description":"Label text"},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"'Please choose an option'","computed":false}},"data":{"type":{"name":"arrayOf","value":{"name":"union","value":[{"name":"string"},{"name":"shape","value":{"text":{"name":"string","required":false},"value":{"name":"string","required":false},"description":{"name":"string","required":false},"disabled":{"name":"bool","required":false},"icon":{"name":"string","required":false},"extraClass":{"name":"string","required":false}}}]}},"required":false,"description":"Array of strings or objects (to build the options)"},"headerLevel":{"type":{"name":"enum","value":[{"value":"1","computed":false},{"value":"2","computed":false},{"value":"3","computed":false},{"value":"4","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Display the dropdown as a header (H1-4)","defaultValue":{"value":"'none'","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read only","defaultValue":{"value":"false","computed":false}},"defaultValue":{"type":{"name":"union","value":[{"name":"string"},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Initial selected value(s). Not the same as the native Flounder\n option with the same name"},"value":{"type":{"name":"union","value":[{"name":"string"},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Selected value(s)"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function triggered when the selection is changed:\n ( e ) => { ... }"},"onClose":{"type":{"name":"func"},"required":false,"description":"Triggered when the selectbox is closed"},"onFirstTouch":{"type":{"name":"func"},"required":false,"description":"Triggered the first time flounder is interacted with. An example\nusage would be calling an api for a list of data to populate a\ndropdown, but waiting to see if the user interacts with it"},"onInputChange":{"type":{"name":"func"},"required":false,"description":"Triggered when someone types in a search box. note: this will do\nnothing if search is not enabled"},"onOpen":{"type":{"name":"func"},"required":false,"description":"Triggered when the selectbox is opened"},"openOnHover":{"type":{"name":"bool"},"required":false,"description":"replaces click to open action with hover","defaultValue":{"value":"false","computed":false}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function (not yet implemented)"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function (not yet implemented)"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }"},"multiple":{"type":{"name":"bool"},"required":false,"description":"Determines whether it is a multi-select box or single","defaultValue":{"value":"false","computed":false}},"multipleMessage":{"type":{"name":"string"},"required":false,"description":"If there are no tags, this is the message that will be displayed in\nthe selected area when there are multiple options selected","defaultValue":{"value":"'(Multiple Items Selected)'","computed":false}},"noMoreOptionsMessage":{"type":{"name":"string"},"required":false,"description":"message to display when there are no option left","defaultValue":{"value":"'No more options to add'","computed":false}},"noMoreResultsMessage":{"type":{"name":"string"},"required":false,"description":"message to display when there are no results left after a search","defaultValue":{"value":"'No matches found'","computed":false}},"multipleTags":{"type":{"name":"bool"},"required":false,"description":"Determines how a multi-select box is displayed","defaultValue":{"value":"false","computed":false}},"search":{"type":{"name":"bool"},"required":false,"description":"Add option to search dropdown","defaultValue":{"value":"false","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"icon":{"type":{"name":"enum","value":[{"value":"'arrow'","computed":false},{"value":"'magnifier'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Toggle icon to show on the right of the dropdown","defaultValue":{"value":"'arrow'","computed":false}},"disableArrow":{"defaultValue":{"value":"false","computed":false},"required":false},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
 
 /***/ }),
 /* 429 */
@@ -44161,7 +44489,7 @@ module.exports = {"description":"","displayName":"Form","methods":[],"props":{"a
 /* 430 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Grid","methods":[],"props":{"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Horizontal alignment of the columns (“auto” makes all columns equal\nwidth)","defaultValue":{"value":"'auto'","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Grid content (Columns)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"gutters":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Gutter size","defaultValue":{"value":"'M'","computed":false}},"hasWrap":{"type":{"name":"bool"},"required":false,"description":"Wrap content","defaultValue":{"value":"true","computed":false}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"role":{"type":{"name":"string"},"required":false,"description":"Grid role","defaultValue":{"value":"undefined","computed":true}},"spacing":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Row spacing","defaultValue":{"value":"'M'","computed":false}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Vertical alignment of the columns (“auto” makes all columns equal\nheight)","defaultValue":{"value":"'auto'","computed":false}}}}
+module.exports = {"description":"","displayName":"Grid","methods":[],"props":{"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Horizontal alignment of the columns (“auto” makes all columns equal\nwidth)","defaultValue":{"value":"'auto'","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Grid content (Columns)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"gutters":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Gutter size","defaultValue":{"value":"'M'","computed":false}},"hasWrap":{"type":{"name":"bool"},"required":false,"description":"Wrap content","defaultValue":{"value":"true","computed":false}},"noWarn":{"type":{"name":"bool"},"required":false,"description":"stop Console Warnings","defaultValue":{"value":"false","computed":false}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"role":{"type":{"name":"string"},"required":false,"description":"Grid role","defaultValue":{"value":"undefined","computed":true}},"spacing":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Row spacing","defaultValue":{"value":"'M'","computed":false}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Vertical alignment of the columns (“auto” makes all columns equal\nheight)","defaultValue":{"value":"'auto'","computed":false}}}}
 
 /***/ }),
 /* 431 */
@@ -44191,7 +44519,7 @@ module.exports = {"description":"","displayName":"H4","methods":[],"props":{"tit
 /* 435 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Icon","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Icon label (overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Icon label","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) = { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) = { ... }","defaultValue":{"value":"undefined","computed":true}},"size":{"type":{"name":"enum","value":[{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false}]},"required":false,"description":"Icon size","defaultValue":{"value":"'S'","computed":false}},"theme":{"type":{"name":"enum","value":[{"value":"'light'","computed":false},{"value":"'dark'","computed":false},{"value":"'control'","computed":false},{"value":"'button'","computed":false},{"value":"'navigation'","computed":false}]},"required":false,"description":"Icon theme","defaultValue":{"value":"'light'","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'add'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'close'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'edit'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'star'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon to show","defaultValue":{"value":"'none'","computed":false}}}}
+module.exports = {"description":"","displayName":"Icon","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Icon label (overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Icon label","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) = { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) = { ... }","defaultValue":{"value":"undefined","computed":true}},"size":{"type":{"name":"enum","value":[{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false}]},"required":false,"description":"Icon size","defaultValue":{"value":"'S'","computed":false}},"theme":{"type":{"name":"enum","value":[{"value":"'light'","computed":false},{"value":"'dark'","computed":false},{"value":"'control'","computed":false},{"value":"'button'","computed":false},{"value":"'navigation'","computed":false}]},"required":false,"description":"Icon theme","defaultValue":{"value":"'light'","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'add'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'arrow-up'","computed":false},{"value":"'arrow-down'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'close'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'edit'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'loader'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'paused'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'star'","computed":false},{"value":"'sociomantic'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon to show","defaultValue":{"value":"'none'","computed":false}}}}
 
 /***/ }),
 /* 436 */
@@ -44203,13 +44531,13 @@ module.exports = {"description":"","displayName":"IconButton","methods":[],"prop
 /* 437 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"IconWithTooltip","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Node that the Tooltip wraps"},"iconIsVisible":{"type":{"name":"bool"},"required":false,"description":"Icon visibility","defaultValue":{"value":"true","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'right'","computed":false},{"value":"'left'","computed":false},{"value":"'topRight'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Icon position relative to wrapped component","defaultValue":{"value":"'right'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'info'","computed":false},{"value":"'alert'","computed":false},{"value":"'error'","computed":false},{"value":"'approved'","computed":false},{"value":"'declined'","computed":false},{"value":"'pending'","computed":false},{"value":"'ended'","computed":false},{"value":"'validation'","computed":false}]},"required":false,"description":"Icon to show","defaultValue":{"value":"'info'","computed":false}},"iconSize":{"type":{"name":"enum","value":[{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},"required":false,"description":"Icon size","defaultValue":{"value":"'M'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"is disabled","defaultValue":{"value":"false","computed":false}},"message":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"tooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display the tooltip","defaultValue":{"value":"false","computed":false}},"tooltipPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Tooltip position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) = { ... }"},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function for icon: ( e ) = { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) = { ... }"},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function for icon: ( e ) = { ... }"},"overflowIsHidden":{"type":{"name":"bool"},"required":false,"description":"Hides wrapped content overflow","defaultValue":{"value":"false","computed":false}},"noWrap":{"type":{"name":"bool"},"required":false,"description":"Text won´t wrap to the next line.","defaultValue":{"value":"false","computed":false}},"cssMap":{"defaultValue":{"value":"require( './iconWithTooltip.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"IconWithTooltip","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Node that the Tooltip wraps"},"iconIsVisible":{"type":{"name":"bool"},"required":false,"description":"Icon visibility","defaultValue":{"value":"true","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'right'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Icon position relative to wrapped component","defaultValue":{"value":"'right'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'add'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'close'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'edit'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'star'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false}]},"required":false,"description":"Icon to show","defaultValue":{"value":"'info'","computed":false}},"iconSize":{"type":{"name":"enum","value":[{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},"required":false,"description":"Icon size","defaultValue":{"value":"'M'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"is disabled","defaultValue":{"value":"false","computed":false}},"message":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"tooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display the tooltip","defaultValue":{"value":"false","computed":false}},"tooltipPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Tooltip position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) = { ... }"},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function for icon: ( e ) = { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) = { ... }"},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function for icon: ( e ) = { ... }"},"overflowIsHidden":{"type":{"name":"bool"},"required":false,"description":"Hides wrapped content overflow","defaultValue":{"value":"false","computed":false}},"noWrap":{"type":{"name":"bool"},"required":false,"description":"Text won´t wrap to the next line.","defaultValue":{"value":"false","computed":false}},"cssMap":{"defaultValue":{"value":"require( './iconWithTooltip.css' )","computed":true},"required":false}}}
 
 /***/ }),
 /* 438 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"InputField","methods":[],"props":{"element":{"type":{"name":"enum","value":[{"value":"'input'","computed":false},{"value":"'textarea'","computed":false}]},"required":false,"description":"HTML element","defaultValue":{"value":"'input'","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'text'","computed":false},{"value":"'password'","computed":false},{"value":"'number'","computed":false}]},"required":false,"description":"HTML type attribute (input element only)","defaultValue":{"value":"'text'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text"},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the input text","defaultValue":{"value":"'left'","computed":false}},"rows":{"type":{"name":"number"},"required":false,"description":"Number of rows (textarea element only)"},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Sets the text area to be vertically resizable"},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Message to display in info icon"},"value":{"type":{"name":"string"},"required":false,"description":"Input string value"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute"},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function"},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function"},"onFocus":{"type":{"name":"func"},"required":false,"description":"Input focus callback function"},"onBlur":{"type":{"name":"func"},"required":false,"description":"Input blur callback function"},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"onKeyPress callback function"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Input mouseOver callback function"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Input mouseOut callback function"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives a ref to the <input>: ( ref ) => { ... }"},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"InputField","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"element":{"type":{"name":"enum","value":[{"value":"'input'","computed":false},{"value":"'textarea'","computed":false}]},"required":false,"description":"HTML element","defaultValue":{"value":"'input'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Sets the input to be vertically resizable (textarea element only)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function"},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"rows":{"type":{"name":"number"},"required":false,"description":"Number of rows (textarea element only)","defaultValue":{"value":"undefined","computed":true}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'left'","computed":false}},"type":{"type":{"name":"enum","value":[{"value":"'text'","computed":false},{"value":"'password'","computed":false},{"value":"'number'","computed":false}]},"required":false,"description":"HTML type attribute (input element only)","defaultValue":{"value":"'text'","computed":false}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 439 */
@@ -44287,7 +44615,7 @@ module.exports = {"description":"","displayName":"Page","methods":[],"props":{"c
 /* 451 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"PageContent","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"PageContent content"},"isLoading":{"type":{"name":"bool"},"required":false,"description":"Display loading state","defaultValue":{"value":"false","computed":false}},"cssMap":{"defaultValue":{"value":"require( './pageContent.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"PageContent","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"PageContent content","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"node"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"isLoading":{"type":{"name":"bool"},"required":false,"description":"Display loading state","defaultValue":{"value":"false","computed":false}},"contentWidth":{"type":{"name":"string"},"required":false,"description":"adjust/configure content width","defaultValue":{"value":"'1080px'","computed":false}}}}
 
 /***/ }),
 /* 452 */
@@ -44317,7 +44645,7 @@ module.exports = {"description":"","displayName":"Paginator","methods":[],"props
 /* 456 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"PasswordInput","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node","defaultValue":{"value":"undefined","computed":true}},"passwordIsVisible":{"type":{"name":"bool"},"required":false,"description":"alternates input and icon types accordingly.","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled/read-only","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the show/hide icon","defaultValue":{"value":"'right'","computed":false}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onInput":{"type":{"name":"func"},"required":false,"description":"input callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"keyPress callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"focus callback function","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"blur callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocusIcon":{"type":{"name":"func"},"required":false,"description":"Icon focus callback function"},"onBlurIcon":{"type":{"name":"func"},"required":false,"description":"Icon blur callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"PasswordInput","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"iconButtonIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Display Button icon as disabled","defaultValue":{"value":"undefined","computed":true}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the icon","defaultValue":{"value":"'right'","computed":false}},"iconTooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display the icon tooltip","defaultValue":{"value":"undefined","computed":true}},"iconTooltipMessage":{"type":{"name":"node"},"required":false,"description":"icon Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"iconTooltipPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Icon Tooltip position relative to icon","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isReadOnlyButton":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for IconButton","defaultValue":{"value":"undefined","computed":true}},"isReadOnlyInput":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for TextInput","defaultValue":{"value":"undefined","computed":true}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function"},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse over callback function","defaultValue":{"value":"undefined","computed":true}},"passwordIsVisible":{"type":{"name":"bool"},"required":false,"description":"alternates input and icon types accordingly.","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 457 */
@@ -44335,7 +44663,7 @@ module.exports = {"description":"","displayName":"ProgressIndicator","methods":[
 /* 459 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Radio","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (override default)","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked (controlled input)","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked by default (uncontrolled input)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label content (string)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"Radio group name","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"OnBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"OnClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"OnChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Radio","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked (controlled input)","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked by default (uncontrolled input)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label content (string)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"Radio group name","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"OnBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"OnClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"OnChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function : ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 460 */
@@ -44365,19 +44693,19 @@ module.exports = {"description":"","displayName":"ScrollBar","methods":[],"props
 /* 464 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"ScrollBox","methods":[{"name":"getInnerStyle","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"getNewState","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleClickTrackX","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleClickTrackY","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleChangeX","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleChangeY","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"handleScroll","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"renderScrollBars","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"renderScrollButtons","docblock":null,"modifiers":[],"params":[],"returns":null}],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"ScrollBox content","defaultValue":{"value":"undefined","computed":true}},"contentWidth":{"type":{"name":"string"},"required":false,"description":"ScrollBox content width, any CSS length string","defaultValue":{"value":"undefined","computed":true}},"height":{"type":{"name":"string"},"required":false,"description":"ScrollBox height, any CSS length string","defaultValue":{"value":"undefined","computed":true}},"onClickScrollDown":{"type":{"name":"func"},"required":false,"description":"scroll down button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollLeft":{"type":{"name":"func"},"required":false,"description":"scroll left button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollRight":{"type":{"name":"func"},"required":false,"description":"scroll right button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollUp":{"type":{"name":"func"},"required":false,"description":"scroll up button click callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onScroll":{"type":{"name":"func"},"required":false,"description":"on scroll callback function","defaultValue":{"value":"undefined","computed":true}},"scroll":{"type":{"name":"enum","value":[{"value":"'horizontal'","computed":false},{"value":"'vertical'","computed":false},{"value":"'both'","computed":false}]},"required":false,"description":"Scroll direction","defaultValue":{"value":"'both'","computed":false}},"padding":{"type":{"name":"union","value":[{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},{"name":"arrayOf","value":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]}}]},"required":false,"description":"ScrollBox padding","defaultValue":{"value":"'none'","computed":false}},"scrollBarsAreVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll bars","defaultValue":{"value":"true","computed":false}},"scrollBoxRef":{"type":{"name":"string"},"required":false,"description":"DOM element \"Scrollbox inner\"","defaultValue":{"value":"undefined","computed":true}},"scrollDownIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll down icon","defaultValue":{"value":"false","computed":false}},"scrollIndicatorVariant":{"type":{"name":"enum","value":[{"value":"'circle'","computed":false},{"value":"'gradient'","computed":false}]},"required":false,"description":"Display Scroll down icon","defaultValue":{"value":"'circle'","computed":false}},"scrollLeftIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll left icon","defaultValue":{"value":"false","computed":false}},"scrollRightIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll right icon","defaultValue":{"value":"false","computed":false}},"scrollUpIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll up icon","defaultValue":{"value":"false","computed":false}}}}
+module.exports = {"description":"","displayName":"ScrollBox","methods":[{"name":"getInnerStyle","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"getNewState","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleClickScrollButton","docblock":null,"modifiers":[],"params":[{"name":"dir","type":null},{"name":"e","type":null}],"returns":null},{"name":"handleClickTrackX","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleClickTrackY","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleChangeX","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleChangeY","docblock":null,"modifiers":[],"params":[{"name":"pos","type":null}],"returns":null},{"name":"handleRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"handleScroll","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"renderScrollBars","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"renderScrollButtons","docblock":null,"modifiers":[],"params":[],"returns":null}],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"ScrollBox content","defaultValue":{"value":"undefined","computed":true}},"contentWidth":{"type":{"name":"string"},"required":false,"description":"ScrollBox content width, any CSS length string","defaultValue":{"value":"undefined","computed":true}},"height":{"type":{"name":"string"},"required":false,"description":"ScrollBox height, any CSS length string","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onScroll":{"type":{"name":"func"},"required":false,"description":"on scroll callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollDown":{"type":{"name":"func"},"required":false,"description":"scroll down button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollLeft":{"type":{"name":"func"},"required":false,"description":"scroll left button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollRight":{"type":{"name":"func"},"required":false,"description":"scroll right button click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickScrollUp":{"type":{"name":"func"},"required":false,"description":"scroll up button click callback function","defaultValue":{"value":"undefined","computed":true}},"scroll":{"type":{"name":"enum","value":[{"value":"'horizontal'","computed":false},{"value":"'vertical'","computed":false},{"value":"'both'","computed":false}]},"required":false,"description":"Scroll direction","defaultValue":{"value":"'both'","computed":false}},"scrollAmount":{"type":{"name":"union","value":[{"name":"number"},{"name":"arrayOf","value":{"name":"number"}}]},"required":false,"description":"Amount of pixels to scroll by","defaultValue":{"value":"undefined","computed":true}},"padding":{"type":{"name":"union","value":[{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]},{"name":"arrayOf","value":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false},{"value":"'XL'","computed":false},{"value":"'XXL'","computed":false}]}}]},"required":false,"description":"ScrollBox padding","defaultValue":{"value":"'none'","computed":false}},"scrollBarsAreVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll bars","defaultValue":{"value":"true","computed":false}},"scrollBoxRef":{"type":{"name":"string"},"required":false,"description":"DOM element \"Scrollbox inner\"","defaultValue":{"value":"undefined","computed":true}},"scrollDownIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll down icon","defaultValue":{"value":"false","computed":false}},"scrollIndicatorVariant":{"type":{"name":"enum","value":[{"value":"'circle'","computed":false},{"value":"'gradient'","computed":false}]},"required":false,"description":"Display Scroll down icon","defaultValue":{"value":"'circle'","computed":false}},"scrollLeftIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll left icon","defaultValue":{"value":"false","computed":false}},"scrollRightIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll right icon","defaultValue":{"value":"false","computed":false}},"scrollUpIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display Scroll up icon","defaultValue":{"value":"false","computed":false}}}}
 
 /***/ }),
 /* 465 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Section","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Section content","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"title":{"type":{"name":"string"},"required":false,"description":"Section title","defaultValue":{"value":"undefined","computed":true}},"level":{"type":{"name":"number"},"required":false,"description":"Section level in the document outline","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Section","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Section content","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"title":{"type":{"name":"string"},"required":false,"description":"Section title","defaultValue":{"value":"undefined","computed":true}},"level":{"type":{"name":"number"},"required":false,"description":"Section level in the document outline","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 466 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Slider","methods":[{"name":"attachInputRefs","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"detachInputRefs","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"getTrackFillStyle","docblock":"Generate track fill style object depending on input values\n@param  {Array}   values    slider values\n@return {Object}            style object","modifiers":[],"params":[{"name":"values","description":"slider values","type":{"name":"Array"}}],"returns":{"description":"style object","type":{"name":"Object"}},"description":"Generate track fill style object depending on input values"},{"name":"getOffset","docblock":"gets the handle offset for a given value (as a percentage)\n@param  {Number} value   value to convert\n@return {Number}         normalized percentage","modifiers":[],"params":[{"name":"value","description":"value to convert","type":{"name":"Number"}}],"returns":{"description":"normalized percentage","type":{"name":"Number"}},"description":"gets the handle offset for a given value (as a percentage)"},{"name":"getHandleStyle","docblock":"Generate a style object for handle based on input value\n@param  {Number}  value   slider value\n@return {Object}          style object","modifiers":[],"params":[{"name":"value","description":"slider value","type":{"name":"Number"}}],"returns":{"description":"style object","type":{"name":"Object"}},"description":"Generate a style object for handle based on input value"},{"name":"getValue","docblock":"Calculates the new value based on current mouse coordinates\n@param  {Number}   x the horizontal mouse coordinate\n@param  {Number}   y the vertical mouse coordinate\n@return {Number}","modifiers":[],"params":[{"name":"x","description":"the horizontal mouse coordinate","type":{"name":"Number"}},{"name":"y","description":"the vertical mouse coordinate","type":{"name":"Number"}}],"returns":{"description":null,"type":{"name":"Number"}},"description":"Calculates the new value based on current mouse coordinates"},{"name":"getStep","docblock":"Converts value to nearest step\n@param  {Number}   value value to convert\n@return {Number}         value converted to nearest step","modifiers":[],"params":[{"name":"value","description":"value to convert","type":{"name":"Number"}}],"returns":{"description":"value converted to nearest step","type":{"name":"Number"}},"description":"Converts value to nearest step"},{"name":"setInputContainerRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setTrackRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setTargetInput","docblock":null,"modifiers":[],"params":[{"name":"index","type":null}],"returns":null},{"name":"setTargetInputValue","docblock":null,"modifiers":[],"params":[{"name":"value","type":null}],"returns":null},{"name":"focusTargetInput","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleDown","docblock":"Updates target input with new value from the mouse down on track position\n@param {Event}  event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Updates target input with new value from the mouse down on track position"},{"name":"handleMove","docblock":"Updates target input with new value from handle position\n@param {Event}  event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Updates target input with new value from handle position"},{"name":"handleUp","docblock":"Removes mouseMove and mouseUp listeners\n @param {Event}   event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Removes mouseMove and mouseUp listeners"},{"name":"handleClick","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"mergeStepLabels","docblock":"Get stepLabelStart and stepLabelEnd and store them\ninside labels array of objects\n@param  {String}   stepLabelStart Start step label\n@param  {String}   stepLabelEnd End step label\n@return {Object}     object","modifiers":[],"params":[],"returns":{"description":"object","type":{"name":"Object"}},"description":"Get stepLabelStart and stepLabelEnd and store them\ninside labels array of objects"}],"props":{"label":{"type":{"name":"string"},"required":false,"description":"Label text"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives ref to native input; or array of refs to\n native inputs"},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"hasFill":{"type":{"name":"bool"},"required":false,"description":"Display track fill","defaultValue":{"value":"true","computed":false}},"fillFrom":{"type":{"name":"enum","value":[{"value":"'start'","computed":false},{"value":"'end'","computed":false}]},"required":false,"description":"Sets the track fill location","defaultValue":{"value":"'start'","computed":false}},"orientation":{"type":{"name":"enum","value":[{"value":"'horizontal'","computed":false},{"value":"'vertical'","computed":false}]},"required":false,"description":"Display the slider horizontally/vertically","defaultValue":{"value":"'horizontal'","computed":false}},"stepLabelStart":{"type":{"name":"string"},"required":false,"description":"Step Label Start text"},"stepLabelEnd":{"type":{"name":"string"},"required":false,"description":"Step Label End text"},"stepLabelsPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'right'","computed":false},{"value":"'bottom'","computed":false},{"value":"'left'","computed":false}]},"required":false,"description":"Sets the position of labels","defaultValue":{"value":"'top'","computed":false}},"hasHandleLabels":{"type":{"name":"bool"},"required":false,"description":"hasHandleLabels","defaultValue":{"value":"false","computed":false}},"handleLabelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'right'","computed":false},{"value":"'bottom'","computed":false},{"value":"'left'","computed":false}]},"required":false,"description":"Sets the position of handle labels","defaultValue":{"value":"'top'","computed":false}},"minValue":{"type":{"name":"number"},"required":false,"description":"Slider minimum value","defaultValue":{"value":"0","computed":false}},"maxValue":{"type":{"name":"number"},"required":false,"description":"Slider maximum value","defaultValue":{"value":"100","computed":false}},"step":{"type":{"name":"number"},"required":false,"description":"Slider value step","defaultValue":{"value":"1","computed":false}},"value":{"type":{"name":"union","value":[{"name":"number"},{"name":"arrayOf","value":{"name":"number"}}]},"required":false,"description":"Slider handle value(s)","defaultValue":{"value":"0","computed":false}},"isLogarithmic":{"type":{"name":"bool"},"required":false,"description":"Set the track to use a logarithmic calculated value","defaultValue":{"value":"false","computed":false}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }"},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }"},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"onKeyDown callback function: ( e ) => { ... }"},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"onKeyUp callback function: ( e ) => { ... }"},"onMouseDown":{"type":{"name":"func"},"required":false,"description":"onMouseDown callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }"},"onMouseUp":{"type":{"name":"func"},"required":false,"description":"onMouseUp callback function: ( e ) => { ... }"},"stepLabels":{"type":{"name":"arrayOf","value":{"name":"shape","value":{"stepLabel":{"name":"string","required":false},"step":{"name":"number","required":false}}}},"required":false,"description":"Step labels"},"ticks":{"type":{"name":"arrayOf","value":{"name":"shape","value":{"stepLabel":{"name":"string","required":false},"step":{"name":"number","required":false}}}},"required":false,"description":"Slider ticks separators"},"cssMap":{"defaultValue":{"value":"require( './slider.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"Slider","methods":[{"name":"attachInputRefs","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"detachInputRefs","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"getTrackFillStyle","docblock":"Generate track fill style object depending on input values\n@param  {Array}   values    slider values\n@return {Object}            style object","modifiers":[],"params":[{"name":"values","description":"slider values","type":{"name":"Array"}}],"returns":{"description":"style object","type":{"name":"Object"}},"description":"Generate track fill style object depending on input values"},{"name":"getOffset","docblock":"gets the handle offset for a given value (as a percentage)\n@param  {Number} value   value to convert\n@return {Number}         normalized percentage","modifiers":[],"params":[{"name":"value","description":"value to convert","type":{"name":"Number"}}],"returns":{"description":"normalized percentage","type":{"name":"Number"}},"description":"gets the handle offset for a given value (as a percentage)"},{"name":"getHandleStyle","docblock":"Generate a style object for handle based on input value\n@param  {Number}  value   slider value\n@return {Object}          style object","modifiers":[],"params":[{"name":"value","description":"slider value","type":{"name":"Number"}}],"returns":{"description":"style object","type":{"name":"Object"}},"description":"Generate a style object for handle based on input value"},{"name":"getValue","docblock":"Calculates the new value based on current mouse coordinates\n@param  {Number}   x the horizontal mouse coordinate\n@param  {Number}   y the vertical mouse coordinate\n@return {Number}","modifiers":[],"params":[{"name":"x","description":"the horizontal mouse coordinate","type":{"name":"Number"}},{"name":"y","description":"the vertical mouse coordinate","type":{"name":"Number"}}],"returns":{"description":null,"type":{"name":"Number"}},"description":"Calculates the new value based on current mouse coordinates"},{"name":"getStep","docblock":"Converts value to nearest step\n@param  {Number}   value value to convert\n@return {Number}         value converted to nearest step","modifiers":[],"params":[{"name":"value","description":"value to convert","type":{"name":"Number"}}],"returns":{"description":"value converted to nearest step","type":{"name":"Number"}},"description":"Converts value to nearest step"},{"name":"setInputContainerRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setTrackRef","docblock":null,"modifiers":[],"params":[{"name":"ref","type":null}],"returns":null},{"name":"setTargetInput","docblock":null,"modifiers":[],"params":[{"name":"index","type":null}],"returns":null},{"name":"setTargetInputValue","docblock":null,"modifiers":[],"params":[{"name":"value","type":null}],"returns":null},{"name":"focusTargetInput","docblock":null,"modifiers":[],"params":[],"returns":null},{"name":"handleDown","docblock":"Updates target input with new value from the mouse down on track position\n@param {Event}  event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Updates target input with new value from the mouse down on track position"},{"name":"handleMove","docblock":"Updates target input with new value from handle position\n@param {Event}  event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Updates target input with new value from handle position"},{"name":"handleUp","docblock":"Removes mouseMove and mouseUp listeners\n @param {Event}   event   event being passed","modifiers":[],"params":[{"name":"event","description":"event being passed","type":{"name":"Event"}}],"returns":null,"description":"Removes mouseMove and mouseUp listeners"},{"name":"handleClick","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"mergeStepLabels","docblock":"Get stepLabelStart and stepLabelEnd and store them\ninside labels array of objects\n@param  {String}   stepLabelStart Start step label\n@param  {String}   stepLabelEnd End step label\n@return {Object}     object","modifiers":[],"params":[],"returns":{"description":"object","type":{"name":"Object"}},"description":"Get stepLabelStart and stepLabelEnd and store them\ninside labels array of objects"}],"props":{"label":{"type":{"name":"string"},"required":false,"description":"Label text"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives ref to native input; or array of refs to\n native inputs"},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"hasFill":{"type":{"name":"bool"},"required":false,"description":"Display track fill","defaultValue":{"value":"true","computed":false}},"fillFrom":{"type":{"name":"enum","value":[{"value":"'start'","computed":false},{"value":"'end'","computed":false}]},"required":false,"description":"Sets the track fill location","defaultValue":{"value":"'start'","computed":false}},"orientation":{"type":{"name":"enum","value":[{"value":"'horizontal'","computed":false},{"value":"'vertical'","computed":false}]},"required":false,"description":"Display the slider horizontally/vertically","defaultValue":{"value":"'horizontal'","computed":false}},"stepLabelStart":{"type":{"name":"string"},"required":false,"description":"Step Label Start text"},"stepLabelEnd":{"type":{"name":"string"},"required":false,"description":"Step Label End text"},"stepLabelsPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Sets the position of labels","defaultValue":{"value":"'top'","computed":false}},"hasHandleLabels":{"type":{"name":"bool"},"required":false,"description":"hasHandleLabels","defaultValue":{"value":"false","computed":false}},"handleLabelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Sets the position of handle labels","defaultValue":{"value":"'top'","computed":false}},"minValue":{"type":{"name":"number"},"required":false,"description":"Slider minimum value","defaultValue":{"value":"0","computed":false}},"maxValue":{"type":{"name":"number"},"required":false,"description":"Slider maximum value","defaultValue":{"value":"100","computed":false}},"step":{"type":{"name":"number"},"required":false,"description":"Slider value step","defaultValue":{"value":"1","computed":false}},"value":{"type":{"name":"union","value":[{"name":"arrayOf","value":{"name":"number"}},{"name":"number"}]},"required":false,"description":"Slider handle value(s)","defaultValue":{"value":"0","computed":false}},"isLogarithmic":{"type":{"name":"bool"},"required":false,"description":"Set the track to use a logarithmic calculated value","defaultValue":{"value":"false","computed":false}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }"},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }"},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"onKeyDown callback function: ( e ) => { ... }"},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"onKeyUp callback function: ( e ) => { ... }"},"onMouseDown":{"type":{"name":"func"},"required":false,"description":"onMouseDown callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }"},"onMouseUp":{"type":{"name":"func"},"required":false,"description":"onMouseUp callback function: ( e ) => { ... }"},"stepLabels":{"type":{"name":"arrayOf","value":{"name":"shape","value":{"step":{"name":"number","required":false},"stepLabel":{"name":"string","required":false}}}},"required":false,"description":"Step labels"},"ticks":{"type":{"name":"arrayOf","value":{"name":"shape","value":{"step":{"name":"number","required":false},"stepLabel":{"name":"string","required":false}}}},"required":false,"description":"Slider ticks separators"},"cssMap":{"defaultValue":{"value":"require( './slider.css' )","computed":true},"required":false}}}
 
 /***/ }),
 /* 467 */
@@ -44401,7 +44729,7 @@ module.exports = {"description":"","displayName":"Spinner","methods":[],"props":
 /* 470 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"SpriteMap","methods":[],"props":{"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"spriteTemplate":{"type":{"name":"shape","value":{"__html":{"name":"string","required":false}}},"required":false,"description":"Custom SVG sprite","defaultValue":{"value":"{ __html: spriteHtml }","computed":false}}}}
+module.exports = {"description":"","displayName":"SpriteMap","methods":[],"props":{"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"spriteTemplate":{"type":{"name":"shape","value":{"__html":{"name":"string","required":false}}},"required":false,"description":"Custom SVG sprite","defaultValue":{"value":"{ __html: spriteHtml }","computed":false}}}}
 
 /***/ }),
 /* 471 */
@@ -44413,19 +44741,19 @@ module.exports = {"description":"","displayName":"StatusIndicator","methods":[],
 /* 472 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Switch","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"extra CSS classname","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS classname map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overrides default)","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked/“on”","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked/“on” by default","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"switch label (used as aria-label)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"input name"},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }"},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Switch","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"extra CSS classname","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS classname map","defaultValue":{"value":"styles","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked/“on”","defaultValue":{"value":"undefined","computed":true}},"isDefaultChecked":{"type":{"name":"bool"},"required":false,"description":"Display as checked/“on” by default","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"switch label (used as aria-label)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"input name"},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }"},"value":{"type":{"name":"string"},"required":false,"description":"HTML value attribute","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 473 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Tab","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Section content","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"label":{"type":{"name":"string"},"required":false,"description":"Label to show in TabButton of this tab","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Tab","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Section content","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"label":{"type":{"name":"string"},"required":false,"description":"Label to show in TabButton of this tab","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 474 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TabButton","methods":[],"props":{"label":{"type":{"name":"string"},"required":false,"description":"Label text"},"subtitle":{"type":{"name":"string"},"required":false,"description":"Subtitle text"},"tabIndex":{"type":{"name":"number"},"required":false,"description":"Index of this tab","defaultValue":{"value":"0","computed":false}},"isActive":{"type":{"name":"bool"},"required":false,"description":"Display as active","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as Disabled"},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }"},"buttonRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <button>: ( ref ) => { ... }"},"cssMap":{"defaultValue":{"value":"require( './tabButton.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"TabButton","methods":[],"props":{"buttonRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <button>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"isActive":{"type":{"name":"bool"},"required":false,"description":"Display as active","defaultValue":{"value":"false","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label text","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Click callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"subtitle":{"type":{"name":"string"},"required":false,"description":"Subtitle text","defaultValue":{"value":"undefined","computed":true}},"tabIndex":{"type":{"name":"number"},"required":false,"description":"Index of this tab","defaultValue":{"value":"0","computed":false}}}}
 
 /***/ }),
 /* 475 */
@@ -44443,13 +44771,13 @@ module.exports = {"description":"","displayName":"TableCell","methods":[],"props
 /* 477 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TableRow","methods":[],"props":{"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Globally sets cell horizonal alignment for this row (individual cell\n alignment will override)","defaultValue":{"value":"undefined","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"Row content (TableCells)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"node"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"gutters":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Gutter size","defaultValue":{"value":"undefined","computed":true}},"isActive":{"type":{"name":"bool"},"required":false,"description":"Display as active/highlighted"},"isClickable":{"type":{"name":"bool"},"required":false,"description":"Row is clickable","defaultValue":{"value":"undefined","computed":true}},"isSticky":{"type":{"name":"bool"},"required":false,"description":"Makes the row sticky","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function:\n ( e ) => { ... }"},"spacing":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Row spacing","defaultValue":{"value":"undefined","computed":true}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Globally sets cell vertical alignment for this row (individual cell\n alignment will overrides)","defaultValue":{"value":"undefined","computed":true}},"onMouseOVer":{"defaultValue":{"value":"undefined","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"TableRow","methods":[],"props":{"align":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Globally sets cell horizonal alignment for this row (individual cell\n alignment will override)","defaultValue":{"value":"undefined","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"Row content (TableCells)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"node"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"gutters":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Gutter size","defaultValue":{"value":"undefined","computed":true}},"isActive":{"type":{"name":"bool"},"required":false,"description":"Display as active/highlighted"},"isClickable":{"type":{"name":"bool"},"required":false,"description":"Row is clickable","defaultValue":{"value":"undefined","computed":true}},"isSticky":{"type":{"name":"bool"},"required":false,"description":"Makes the row sticky","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function:\n ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"spacing":{"type":{"name":"enum","value":[{"value":"'none'","computed":false},{"value":"'S'","computed":false},{"value":"'M'","computed":false},{"value":"'L'","computed":false}]},"required":false,"description":"Row spacing","defaultValue":{"value":"undefined","computed":true}},"verticalAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'top'","computed":false},{"value":"'middle'","computed":false},{"value":"'bottom'","computed":false}]},"required":false,"description":"Globally sets cell vertical alignment for this row (individual cell\n alignment will overrides)","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 478 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Tabs","methods":[{"name":"handleChange","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"renderHeader","docblock":null,"modifiers":[],"params":[{"name":"tabs","type":null}],"returns":null}],"props":{"activeTabIndex":{"type":{"name":"number"},"required":false,"description":"The active tab index","defaultValue":{"value":"0","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"A set of <Tab> components"},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e, newProps ) => { ... }"},"secondaryControls":{"type":{"name":"node"},"required":false,"description":"Secondary Control in Tabs Header","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"defaultValue":{"value":"require( './tabs.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"Tabs","methods":[],"props":{"activeTabIndex":{"type":{"name":"number"},"required":false,"description":"The active tab index","defaultValue":{"value":"0","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"A set of <Tab> components","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"onClickTab":{"type":{"name":"func"},"required":false,"description":"Tab button click callback function: ( e, newProps ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"secondaryControls":{"type":{"name":"node"},"required":false,"description":"Secondary controls to add to tabs header","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 479 */
@@ -44461,61 +44789,61 @@ module.exports = {"description":"","displayName":"Tag","methods":[],"props":{"ch
 /* 480 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TagInput","methods":[{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null}],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Node containing Tag components ( overrides tags prop )","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"height":{"type":{"name":"string"},"required":false,"description":"specifies the height for the InputContainer (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Allows container to be resize by the user","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClickClose":{"type":{"name":"func"},"required":false,"description":"Button click callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"onKeyDown callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"onKeyPress callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"onKeyUp callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Input mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Input mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"tags":{"type":{"name":"arrayOf","value":{"name":"union","value":[{"name":"string"},{"name":"object"}]}},"required":false,"description":"Array of strings to build Tag components","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input's value","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"TagInput","methods":[{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null},{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"event","type":null}],"returns":null}],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Node containing Tag components ( overrides tags prop )","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"height":{"type":{"name":"string"},"required":false,"description":"specifies the height for the InputContainer (CSS length value)","defaultValue":{"value":"undefined","computed":true}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Allows container to be resize by the user","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClickClose":{"type":{"name":"func"},"required":false,"description":"Button click callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"onKeyDown callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"onKeyPress callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"onKeyUp callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Input mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Input mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"tags":{"type":{"name":"arrayOf","value":{"name":"union","value":[{"name":"string"},{"name":"object"}]}},"required":false,"description":"Array of strings to build Tag components","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input's value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 481 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Text","methods":[],"props":{"allCaps":{"type":{"name":"bool"},"required":false,"description":"Capitalize text","defaultValue":{"value":"false","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Text content (JSX node; overrides text prop)"},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name"},"color":{"type":{"name":"string"},"required":false,"description":"Text Color","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"letterSpacing":{"type":{"name":"string"},"required":false,"description":"Letter Spacing for the text","defaultValue":{"value":"'0'","computed":false}},"noWrap":{"type":{"name":"bool"},"required":false,"description":"Don’t wrap text to the next line","defaultValue":{"value":"false","computed":false}},"overflowIsHidden":{"type":{"name":"bool"},"required":false,"description":"Clip overflow","defaultValue":{"value":"false","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'subtle'","computed":false},{"value":"'promoted'","computed":false},{"value":"'critical'","computed":false}]},"required":false,"description":"Role (style) to apply to text","defaultValue":{"value":"'default'","computed":false}},"size":{"type":{"name":"enum","value":[{"value":"'XXXL'","computed":false},{"value":"'XXL'","computed":false},{"value":"'XL'","computed":false},{"value":"'L'","computed":false},{"value":"'M'","computed":false},{"value":"'S'","computed":false},{"value":"'XS'","computed":false},{"value":"'XXS'","computed":false}]},"required":false,"description":"Size to apply to text","defaultValue":{"value":"'M'","computed":false}},"text":{"type":{"name":"string"},"required":false,"description":"Text string","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Text alignment","defaultValue":{"value":"'left'","computed":false}},"textRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives ref to the text div: ref => ...","defaultValue":{"value":"undefined","computed":true}},"variant":{"type":{"name":"enum","value":[{"value":"'Light'","computed":false},{"value":"'Regular'","computed":false},{"value":"'RegularIt'","computed":false},{"value":"'SemiBold'","computed":false},{"value":"'Bold'","computed":false},{"value":"'ExtraBold'","computed":false}]},"required":false,"description":"Style to apply to text","defaultValue":{"value":"'Regular'","computed":false}}}}
+module.exports = {"description":"","displayName":"Text","methods":[],"props":{"allCaps":{"type":{"name":"bool"},"required":false,"description":"Capitalize text","defaultValue":{"value":"false","computed":false}},"children":{"type":{"name":"node"},"required":false,"description":"Text content (JSX node; overrides text prop)"},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name"},"color":{"type":{"name":"string"},"required":false,"description":"Text Color","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"letterSpacing":{"type":{"name":"string"},"required":false,"description":"Letter Spacing for the text","defaultValue":{"value":"undefined","computed":true}},"lineHeight":{"type":{"name":"string"},"required":false,"description":"Line Height for the text","defaultValue":{"value":"undefined","computed":true}},"noWrap":{"type":{"name":"bool"},"required":false,"description":"Don’t wrap text to the next line","defaultValue":{"value":"false","computed":false}},"overflowIsHidden":{"type":{"name":"bool"},"required":false,"description":"Clip overflow","defaultValue":{"value":"false","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'subtle'","computed":false},{"value":"'promoted'","computed":false},{"value":"'critical'","computed":false}]},"required":false,"description":"Role (style) to apply to text","defaultValue":{"value":"'default'","computed":false}},"size":{"type":{"name":"enum","value":[{"value":"'XXXL'","computed":false},{"value":"'XXL'","computed":false},{"value":"'XL'","computed":false},{"value":"'L'","computed":false},{"value":"'M'","computed":false},{"value":"'S'","computed":false},{"value":"'XS'","computed":false},{"value":"'XXS'","computed":false}]},"required":false,"description":"Size to apply to text","defaultValue":{"value":"'M'","computed":false}},"text":{"type":{"name":"string"},"required":false,"description":"Text string","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'center'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Text alignment","defaultValue":{"value":"'left'","computed":false}},"textRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives ref to the text div: ref => ...","defaultValue":{"value":"undefined","computed":true}},"variant":{"type":{"name":"enum","value":[{"value":"'Light'","computed":false},{"value":"'LightIt'","computed":false},{"value":"'Regular'","computed":false},{"value":"'RegularIt'","computed":false},{"value":"'SemiBold'","computed":false},{"value":"'SemiBoldIt'","computed":false},{"value":"'Bold'","computed":false},{"value":"'BoldIt'","computed":false},{"value":"'ExtraBold'","computed":false},{"value":"'ExtraBoldIt'","computed":false}]},"required":false,"description":"Style to apply to text","defaultValue":{"value":"'Regular'","computed":false}}}}
 
 /***/ }),
 /* 482 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TextArea","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"rows":{"type":{"name":"number"},"required":false,"description":"Number of text input rows","defaultValue":{"value":"3","computed":false}},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Sets the text area to be vertically resizable","defaultValue":{"value":"true","computed":false}},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the input text","defaultValue":{"value":"'left'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Error tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Input focus callback function","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Input blur callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Input mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Input mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <textarea>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"TextArea","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isResizable":{"type":{"name":"bool"},"required":false,"description":"Sets the input to be vertically resizable","defaultValue":{"value":"true","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"rows":{"type":{"name":"number"},"required":false,"description":"Number of rows","defaultValue":{"value":"3","computed":false}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'left'","computed":false}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 483 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TextInput","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"aria properties","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text"},"textAlign":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the input text","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Input focus callback function","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Input blur callback function","defaultValue":{"value":"undefined","computed":true}},"onInput":{"type":{"name":"func"},"required":false,"description":"onInput callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"onKeyPress callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Input mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Input mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"TextInput","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 484 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TextInputWithDropdown","methods":[],"props":{"dropdownData":{"type":{"name":"union","value":[{"name":"arrayOf","value":{"name":"object"}},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Array of strings or objects to build the dropdown","defaultValue":{"value":"undefined","computed":true}},"dropdownDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial dropdown selected value","defaultValue":{"value":"undefined","computed":true}},"dropdownPlaceholder":{"type":{"name":"string"},"required":false,"description":"Dropdown placeholder text","defaultValue":{"value":"undefined","computed":true}},"dropdownPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Position of the dropdown","defaultValue":{"value":"'right'","computed":false}},"dropdownValue":{"type":{"name":"string"},"required":false,"description":"Dropdown selected value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error message is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"inputDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"inputPlaceholder":{"type":{"name":"string"},"required":false,"description":"Input placeholder text","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"inputValue":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"cssMap":{"defaultValue":{"value":"styles","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"TextInputWithDropdown","methods":[],"props":{"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"dropdownData":{"type":{"name":"union","value":[{"name":"arrayOf","value":{"name":"object"}},{"name":"arrayOf","value":{"name":"string"}}]},"required":false,"description":"Array of strings or objects to build the dropdown","defaultValue":{"value":"undefined","computed":true}},"dropdownDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial dropdown selected value","defaultValue":{"value":"undefined","computed":true}},"dropdownPlaceholder":{"type":{"name":"string"},"required":false,"description":"Dropdown placeholder text","defaultValue":{"value":"undefined","computed":true}},"dropdownPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Position of the dropdown","defaultValue":{"value":"'right'","computed":false}},"dropdownValue":{"type":{"name":"string"},"required":false,"description":"Dropdown selected value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputDefaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"inputPlaceholder":{"type":{"name":"string"},"required":false,"description":"Input placeholder text","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"inputValue":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}}}}
 
 /***/ }),
 /* 485 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"TextInputWithIcon","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"aria properties","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"inputType":{"type":{"name":"enum","value":[{"value":"'text'","computed":false},{"value":"'password'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'text'","computed":false}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display (overrides customIcon)","defaultValue":{"value":"'none'","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the icon","defaultValue":{"value":"'right'","computed":false}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"iconTooltipPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"icon Tooltip position relative to icon","defaultValue":{"value":"'top'","computed":false}},"iconTooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display the icon tooltip","defaultValue":{"value":"false","computed":false}},"iconTooltipMessage":{"type":{"name":"node"},"required":false,"description":"icon Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"iconButtonIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Display Button icon as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isReadOnlyInput":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for TextInput","defaultValue":{"value":"false","computed":false}},"isReadOnlyButton":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for IconButton","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function"},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"key up callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"focus callback function","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"blur callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouseOver callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouseOut callback function","defaultValue":{"value":"undefined","computed":true}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }"}}}
+module.exports = {"description":"","displayName":"TextInputWithIcon","methods":[],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"iconButtonIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Display Button icon as disabled","defaultValue":{"value":"false","computed":false}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Alignment of the icon","defaultValue":{"value":"'right'","computed":false}},"iconTooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Display the icon tooltip","defaultValue":{"value":"false","computed":false}},"iconTooltipMessage":{"type":{"name":"node"},"required":false,"description":"icon Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"iconTooltipPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Icon Tooltip position relative to icon","defaultValue":{"value":"'top'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'add'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'close'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'edit'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'star'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"Icon type to display (overrides customIcon)","defaultValue":{"value":"'none'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"inputType":{"type":{"name":"enum","value":[{"value":"'text'","computed":false},{"value":"'password'","computed":false}]},"required":false,"description":"HTML input type","defaultValue":{"value":"'text'","computed":false}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"isReadOnlyButton":{"type":{"name":"bool"},"required":false,"description":"Display as read-only for IconButton","defaultValue":{"value":"false","computed":false}},"isReadOnlyInput":{"type":{"name":"bool"},"required":false,"description":"is read only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onClickIcon":{"type":{"name":"func"},"required":false,"description":"Icon click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOutIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOverIcon":{"type":{"name":"func"},"required":false,"description":"Icon mouse over callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"value":{"type":{"name":"string"},"required":false,"description":"Input string value","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 486 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"ToggleButton","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"icon position relative to text","defaultValue":{"value":"'left'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"icon type to display","defaultValue":{"value":"'none'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"display as read-only","defaultValue":{"value":"false","computed":false}},"isPressed":{"type":{"name":"bool"},"required":false,"description":"display with pressed state","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"label text","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"blur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"click callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"focus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouse out callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouse over callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"role":{"type":{"name":"enum","value":[{"value":"'primary'","computed":false},{"value":"'secondary'","computed":false}]},"required":false,"description":"ToggleButton role (style)","defaultValue":{"value":"'primary'","computed":false}},"subLabel":{"type":{"name":"string"},"required":false,"description":"sub-label text"}}}
+module.exports = {"description":"","displayName":"ToggleButton","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"children":{"type":{"name":"node"},"required":false,"description":"label content (JSX node; overrides label prop)","defaultValue":{"value":"undefined","computed":true}},"iconPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"icon position relative to text","defaultValue":{"value":"'left'","computed":false}},"iconType":{"type":{"name":"enum","value":[{"value":"'account'","computed":false},{"value":"'add'","computed":false},{"value":"'add-circle'","computed":false},{"value":"'alert'","computed":false},{"value":"'approved'","computed":false},{"value":"'arrow'","computed":false},{"value":"'bell'","computed":false},{"value":"'board'","computed":false},{"value":"'calendar'","computed":false},{"value":"'close'","computed":false},{"value":"'close-circle'","computed":false},{"value":"'close-thick'","computed":false},{"value":"'dash'","computed":false},{"value":"'dashboard'","computed":false},{"value":"'declined'","computed":false},{"value":"'delete'","computed":false},{"value":"'down'","computed":false},{"value":"'download'","computed":false},{"value":"'duplicate'","computed":false},{"value":"'edit'","computed":false},{"value":"'edit-circle'","computed":false},{"value":"'ended'","computed":false},{"value":"'error'","computed":false},{"value":"'file'","computed":false},{"value":"'graph'","computed":false},{"value":"'hide'","computed":false},{"value":"'info'","computed":false},{"value":"'inspect'","computed":false},{"value":"'left'","computed":false},{"value":"'lightbulb'","computed":false},{"value":"'link'","computed":false},{"value":"'megaphone'","computed":false},{"value":"'options'","computed":false},{"value":"'pending'","computed":false},{"value":"'preview'","computed":false},{"value":"'puzzle-piece'","computed":false},{"value":"'reset'","computed":false},{"value":"'right'","computed":false},{"value":"'search'","computed":false},{"value":"'show'","computed":false},{"value":"'star'","computed":false},{"value":"'star-stroke'","computed":false},{"value":"'swap'","computed":false},{"value":"'table'","computed":false},{"value":"'up'","computed":false},{"value":"'upload'","computed":false},{"value":"'validation'","computed":false},{"value":"'none'","computed":false}]},"required":false,"description":"icon type to display","defaultValue":{"value":"'none'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"display as read-only","defaultValue":{"value":"false","computed":false}},"isPressed":{"type":{"name":"bool"},"required":false,"description":"display with pressed state","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"label text","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"blur callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"click callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"focus callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"mouse out callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"mouse over callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"role":{"type":{"name":"enum","value":[{"value":"'primary'","computed":false},{"value":"'secondary'","computed":false},{"value":"'subtle'","computed":false}]},"required":false,"description":"ToggleButton role (style)","defaultValue":{"value":"'primary'","computed":false}},"subLabel":{"type":{"name":"string"},"required":false,"description":"sub-label text"}}}
 
 /***/ }),
 /* 487 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Tooltip","methods":[],"props":{"children":{"type":{"name":"node"},"required":false,"description":"Node that the Tooltip wraps","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"isDismissible":{"type":{"name":"bool"},"required":false,"description":"Display the tooltip as user dismissible","defaultValue":{"value":"undefined","computed":true}},"isVisible":{"type":{"name":"bool"},"required":false,"description":"Display the tooltip","defaultValue":{"value":"true","computed":false}},"message":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"noWrap":{"type":{"name":"bool"},"required":false,"description":"Text won’t wrap to the next line","defaultValue":{"value":"false","computed":false}},"onClickClose":{"type":{"name":"func"},"required":false,"description":"Function to call on “Close” button click: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"overflowIsHidden":{"type":{"name":"bool"},"required":false,"description":"Hides overflow of wrapped content","defaultValue":{"value":"false","computed":false}},"position":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false}]},"required":false,"description":"Tooltip position relative to wrapped component","defaultValue":{"value":"'top'","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'critical'","computed":false},{"value":"'promoted'","computed":false},{"value":"'warning'","computed":false}]},"required":false,"description":"Tooltip role/style","defaultValue":{"value":"'default'","computed":false}}}}
+module.exports = {"description":"","displayName":"Tooltip","methods":[],"props":{"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"isDismissible":{"type":{"name":"bool"},"required":false,"description":"Display the tooltip as user dismissible","defaultValue":{"value":"undefined","computed":true}},"message":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"onClickClose":{"type":{"name":"func"},"required":false,"description":"Function to call on “Close” button click: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"position":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Tooltip position relative to associated component","defaultValue":{"value":"'top'","computed":false}},"role":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'critical'","computed":false},{"value":"'promoted'","computed":false},{"value":"'warning'","computed":false}]},"required":false,"description":"Tooltip role/style","defaultValue":{"value":"'default'","computed":false}}}}
 
 /***/ }),
 /* 488 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"Uploader","methods":[],"props":{"buttonLabel":{"type":{"name":"string"},"required":false,"description":"“Upload” Button text","defaultValue":{"value":"'Upload'","computed":false}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip error message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false},{"value":"'top'","computed":false},{"value":"'bottom'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"hasWarning":{"type":{"name":"bool"},"required":false,"description":"Display as warning ( adds warning icon )","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"callback that receives ref to native input: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label text","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClickSecondary":{"type":{"name":"func"},"required":false,"description":"onClickSecondary callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"previewIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Preview button is disabled","defaultValue":{"value":"undefined","computed":true}},"previewTooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Preview tootltip is visible","defaultValue":{"value":"false","computed":false}},"previewTooltipMessage":{"type":{"name":"node"},"required":false,"description":"Preview tootltip messsage text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"tooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error or warning tooltip is visible","defaultValue":{"value":"false","computed":false}},"uploadState":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'uploading'","computed":false},{"value":"'uploaded'","computed":false}]},"required":false,"description":"Uploader state","defaultValue":{"value":"'default'","computed":false}},"warningMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip warning message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}}}}
+module.exports = {"description":"","displayName":"Uploader","methods":[],"props":{"buttonLabel":{"type":{"name":"string"},"required":false,"description":"“Upload” Button text","defaultValue":{"value":"'Upload'","computed":false}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip error message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false},{"value":"'topRight'","computed":false},{"value":"'bottom'","computed":false},{"value":"'bottomLeft'","computed":false},{"value":"'bottomRight'","computed":false},{"value":"'left'","computed":false},{"value":"'leftTop'","computed":false},{"value":"'leftBottom'","computed":false},{"value":"'right'","computed":false},{"value":"'rightTop'","computed":false},{"value":"'rightBottom'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"hasWarning":{"type":{"name":"bool"},"required":false,"description":"Display as warning ( adds warning icon )","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"callback that receives ref to native input: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"string"},"required":false,"description":"Label text","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"onClick callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onClickSecondary":{"type":{"name":"func"},"required":false,"description":"onClickSecondary callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"previewIsDisabled":{"type":{"name":"bool"},"required":false,"description":"Preview button is disabled","defaultValue":{"value":"undefined","computed":true}},"previewTooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Preview tootltip is visible","defaultValue":{"value":"false","computed":false}},"previewTooltipMessage":{"type":{"name":"node"},"required":false,"description":"Preview tootltip messsage text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"tooltipIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error or warning tooltip is visible","defaultValue":{"value":"false","computed":false}},"uploadState":{"type":{"name":"enum","value":[{"value":"'default'","computed":false},{"value":"'uploading'","computed":false},{"value":"'uploaded'","computed":false}]},"required":false,"description":"Uploader state","defaultValue":{"value":"'default'","computed":false}},"warningMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip warning message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}}}}
 
 /***/ }),
 /* 489 */
 /***/ (function(module, exports) {
 
-module.exports = {"description":"","displayName":"ValuedTextInput","methods":[{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null}],"props":{"label":{"type":{"name":"node"},"required":false,"description":"Label text string or JSX node"},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text"},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)"},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"error message is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value"},"value":{"type":{"name":"string"},"required":false,"description":"Input string value"},"valueLabel":{"type":{"name":"string"},"required":false,"description":"Value label text"},"valueLabelPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Position of the value label","defaultValue":{"value":"'left'","computed":false}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute of TextInput (overwrite default)","defaultValue":{"value":"undefined","computed":true}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute"},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function"},"onChange":{"type":{"name":"func"},"required":false,"description":"onChange callback function: ( e ) => { ... }"},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"onKeyPress callback function: ( e ) => { ... }"},"onFocus":{"type":{"name":"func"},"required":false,"description":"onFocus callback function: ( e ) => { ... }"},"onBlur":{"type":{"name":"func"},"required":false,"description":"onBlur callback function: ( e ) => { ... }"},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"onMouseOver callback function: ( e ) => { ... }"},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"onMouseOut callback function: ( e ) => { ... }"},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }"},"cssMap":{"defaultValue":{"value":"require( './valuedTextInput.css' )","computed":true},"required":false}}}
+module.exports = {"description":"","displayName":"ValuedTextInput","methods":[{"name":"handleFocus","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null},{"name":"handleBlur","docblock":null,"modifiers":[],"params":[{"name":"e","type":null}],"returns":null}],"props":{"aria":{"type":{"name":"objectOf","value":{"name":"union","value":[{"name":"bool"},{"name":"number"},{"name":"string"}]}},"required":false,"description":"ARIA properties","defaultValue":{"value":"undefined","computed":true}},"autoCapitalize":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false},{"value":"'none'","computed":false},{"value":"'sentences'","computed":false},{"value":"'words'","computed":false},{"value":"'characters'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto capitalize","defaultValue":{"value":"undefined","computed":true}},"autoComplete":{"type":{"name":"string"},"required":false,"description":"HTML attribute controlling input auto complete","defaultValue":{"value":"undefined","computed":true}},"autoCorrect":{"type":{"name":"enum","value":[{"value":"'on'","computed":false},{"value":"'off'","computed":false}]},"required":false,"description":"HTML attribute controlling input auto correct (Safari-specific)","defaultValue":{"value":"undefined","computed":true}},"className":{"type":{"name":"string"},"required":false,"description":"Extra CSS class name","defaultValue":{"value":"undefined","computed":true}},"cssMap":{"type":{"name":"objectOf","value":{"name":"string"}},"required":false,"description":"CSS class map","defaultValue":{"value":"styles","computed":true}},"defaultValue":{"type":{"name":"string"},"required":false,"description":"Initial input string value","defaultValue":{"value":"undefined","computed":true}},"errorMessage":{"type":{"name":"node"},"required":false,"description":"Tooltip message text (string or JSX)","defaultValue":{"value":"undefined","computed":true}},"errorMessageIsVisible":{"type":{"name":"bool"},"required":false,"description":"Error Tooltip is displayed","defaultValue":{"value":"false","computed":false}},"errorMessagePosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'topLeft'","computed":false}]},"required":false,"description":"Error message position relative to the icon","defaultValue":{"value":"'top'","computed":false}},"forceHover":{"type":{"name":"bool"},"required":false,"description":"Display as hover when required from another component","defaultValue":{"value":"false","computed":false}},"hasError":{"type":{"name":"bool"},"required":false,"description":"Display as error/invalid","defaultValue":{"value":"false","computed":false}},"id":{"type":{"name":"string"},"required":false,"description":"HTML id attribute","defaultValue":{"value":"undefined","computed":true}},"inputRef":{"type":{"name":"func"},"required":false,"description":"Callback that receives the native <input>: ( ref ) => { ... }","defaultValue":{"value":"undefined","computed":true}},"isDisabled":{"type":{"name":"bool"},"required":false,"description":"Display as disabled","defaultValue":{"value":"false","computed":false}},"isReadOnly":{"type":{"name":"bool"},"required":false,"description":"Display as read-only","defaultValue":{"value":"false","computed":false}},"label":{"type":{"name":"node"},"required":false,"description":"Label text (string or JSX node)","defaultValue":{"value":"undefined","computed":true}},"labelPosition":{"type":{"name":"enum","value":[{"value":"'top'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Label position","defaultValue":{"value":"'top'","computed":false}},"name":{"type":{"name":"string"},"required":false,"description":"HTML name attribute","defaultValue":{"value":"undefined","computed":true}},"onBlur":{"type":{"name":"func"},"required":false,"description":"Blur callback function","defaultValue":{"value":"undefined","computed":true}},"onChange":{"type":{"name":"func"},"required":false,"description":"Input change callback function","defaultValue":{"value":"undefined","computed":true}},"onClick":{"type":{"name":"func"},"required":false,"description":"Input click callback function","defaultValue":{"value":"undefined","computed":true}},"onFocus":{"type":{"name":"func"},"required":false,"description":"Focus callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyDown":{"type":{"name":"func"},"required":false,"description":"Key down callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyPress":{"type":{"name":"func"},"required":false,"description":"Key press callback function","defaultValue":{"value":"undefined","computed":true}},"onKeyUp":{"type":{"name":"func"},"required":false,"description":"Key up callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOut":{"type":{"name":"func"},"required":false,"description":"Mouse out callback function","defaultValue":{"value":"undefined","computed":true}},"onMouseOver":{"type":{"name":"func"},"required":false,"description":"Mouse over  callback function","defaultValue":{"value":"undefined","computed":true}},"placeholder":{"type":{"name":"string"},"required":false,"description":"Placeholder text","defaultValue":{"value":"undefined","computed":true}},"spellCheck":{"type":{"name":"bool"},"required":false,"description":"HTML attribute controlling input spell check","defaultValue":{"value":"undefined","computed":true}},"textAlign":{"type":{"name":"enum","value":[{"value":"'auto'","computed":false},{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Input text alignment","defaultValue":{"value":"'auto'","computed":false}},"valueLabel":{"type":{"name":"string"},"required":false,"description":"Value label text","defaultValue":{"value":"undefined","computed":true}},"valueLabelPosition":{"type":{"name":"enum","value":[{"value":"'left'","computed":false},{"value":"'right'","computed":false}]},"required":false,"description":"Position of the value label","defaultValue":{"value":"'left'","computed":false}}}}
 
 /***/ }),
 /* 490 */
@@ -44538,23 +44866,23 @@ var _redux = __webpack_require__(25);
 
 var _reactRedux = __webpack_require__(11);
 
-var _ComponentContainer = __webpack_require__(110);
+var _ComponentContainer = __webpack_require__(109);
 
 var _ComponentContainer2 = _interopRequireDefault(_ComponentContainer);
 
-var _switchTab = __webpack_require__(109);
+var _switchTab = __webpack_require__(108);
 
 var _switchTab2 = _interopRequireDefault(_switchTab);
 
-var _toggleCollapse = __webpack_require__(106);
+var _toggleCollapse = __webpack_require__(105);
 
 var _toggleCollapse2 = _interopRequireDefault(_toggleCollapse);
 
-var _toggleCollapseDesc = __webpack_require__(107);
+var _toggleCollapseDesc = __webpack_require__(106);
 
 var _toggleCollapseDesc2 = _interopRequireDefault(_toggleCollapseDesc);
 
-var _toggleCollapseSpecs = __webpack_require__(108);
+var _toggleCollapseSpecs = __webpack_require__(107);
 
 var _toggleCollapseSpecs2 = _interopRequireDefault(_toggleCollapseSpecs);
 
@@ -44562,7 +44890,7 @@ var _Header = __webpack_require__(59);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Footer = __webpack_require__(143);
+var _Footer = __webpack_require__(142);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -44580,7 +44908,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -44692,11 +45027,11 @@ var _nessieUi = __webpack_require__(5);
 
 var _componentHelpers = __webpack_require__(79);
 
-var _sprite = __webpack_require__(105);
+var _sprite = __webpack_require__(492);
 
 var _sprite2 = _interopRequireDefault(_sprite);
 
-__webpack_require__(492);
+__webpack_require__(493);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -44708,7 +45043,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * All rights reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This source code is licensed under the MIT license found in the LICENSE file
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * in the root directory of this source tree.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -44799,12 +45141,18 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(SingleComponentPage)
 
 /***/ }),
 /* 492 */
+/***/ (function(module, exports) {
+
+module.exports = "\n<svg width=\"0\" height=\"0\" display=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<symbol id=\"icon__account\" viewBox=\"0 0 24 24\">\n    <path d=\"M12 0C5.4 0 0 5.4 0 12c0 2.6.9 5.1 2.3 7 2.2 3 5.7 5 9.7 5 4 0 7.5-2 9.7-5 1.4-2 2.3-4.4 2.3-7 0-6.6-5.4-12-12-12zm8.2 17.7c-2.2-1.6-5-2.6-8.2-2.6s-6 1-8.2 2.6C2.7 16.1 2 14.1 2 11.9c0-5.5 4.5-10 10-10s10 4.5 10 10c0 2.2-.7 4.2-1.8 5.8z\"/>\n    <circle cx=\"12\" cy=\"9.5\" r=\"4\"/>\n\n</symbol>\n<symbol id=\"icon__add\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 7H9V3c0-.6-.4-1-1-1s-1 .4-1 1v4H3c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1V9h4c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__alert-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__alert-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__approved-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.4 7.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__calendar\" viewBox=\"0 0 16 16\">\n    <path d=\"M14 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H5V2c0-.6-.4-1-1-1s-1 .4-1 1v1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h12c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1zm-1 4v6H3V7h10z\"/>\n\n</symbol>\n<symbol id=\"icon__close\" viewBox=\"0 0 16 16\">\n    <path d=\"M9.4 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L8 6.6 4.5 3.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L6.6 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L8 9.4l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L9.4 8z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__declined-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M19 12c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1s.4 1 1 1h12c.6 0 1-.4 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__delete\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 13h2l1-6c0-.6.4-1 1-1s1 .4 1 1l-1 7c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1L2 7c0-.6.4-1 1-1s1 .4 1 1l1 6h4zm4-10h-2.5c0-1.1-.9-2-2-2h-1c-1.1 0-2 .9-2 2H3c-.6 0-1 .4-1 1s.4 1 1 1h10c.6 0 1-.4 1-1s-.4-1-1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__down\" viewBox=\"0 0 16 16\">\n    <path d=\"M11.5 5.2L8 8.7 4.5 5.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l4.2 4.2c.2.2.4.3.7.3s.5-.1.7-.3l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__download\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 14c0 .6.4 1 1 1h8c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1z\"/>\n    <path d=\"M3.1 6.5l4.2 4.2c.1.1.2.2.3.2.2.1.5.1.8 0 .1 0 .2-.1.3-.2l4.2-4.2c.4-.4.4-1 0-1.4s-1-.4-1.4 0L9 7.6V2c0-.6-.4-1-1-1s-1 .4-1 1v5.6L4.5 5.1c-.4-.4-1-.4-1.4 0-.4.3-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__duplicate\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 3h5v5c0 .6.4 1 1 1s1-.4 1-1V2c0-.3-.1-.5-.3-.7S14.3 1 14 1H8c-.6 0-1 .4-1 1s.4 1 1 1z\"/>\n    <path d=\"M10 5H2c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h8c.3 0 .5-.1.7-.3s.3-.4.3-.7V6c0-.6-.4-1-1-1zM3 7h6v6H3V7z\"/>\n\n</symbol>\n<symbol id=\"icon__edit\" viewBox=\"0 0 16 16\">\n    <path d=\"M12 10c-.6 0-1 .4-1 1v2H3V5h2c.6 0 1-.4 1-1s-.4-1-1-1H2c-.6 0-1 .4-1 1v10c0 .3.1.5.3.7s.4.3.7.3h10c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1zm2.7-8.7c-.4-.4-1-.4-1.4 0l-.7.7L14 3.4l.7-.7c.4-.4.4-1 0-1.4z\"/>\n    <path d=\"M5.5 9.1s-.1.1-.1.2v1c0 .2.1.3.3.3h1c.1 0 .2 0 .2-.1l6.4-6.4-1.4-1.4-6.4 6.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4s.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__ended-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M18.1 8.5c-.3-.5-.8-.7-1.4-.4l-10.4 6c-.5.3-.7.8-.4 1.4.3.6.8.7 1.4.4l10.4-6c.5-.3.7-.9.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__error-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"#FFF\" cx=\"12\" cy=\"19\" r=\"1\"/>\n\n</symbol>\n<symbol id=\"icon__error-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 16c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1s-1 .4-1 1v10c0 .6.4 1 1 1z\"/>\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"19\" r=\"1\"/>\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n\n</symbol>\n<symbol id=\"icon__hide\" viewBox=\"0 0 16 16\">\n    <path d=\"M8.573 10.317l1.745-1.746a2.387 2.387 0 0 1-1.745 1.746zm6.249-7.445L2.873 14.822a1.191 1.191 0 0 1-1.689.006l-.007-.006a1.193 1.193 0 0 1 0-1.696l1.72-1.721a12.801 12.801 0 0 1-2.57-3.084l-.202-.323.203-.323C2.419 4.318 5 2.621 8 2.621a7.319 7.319 0 0 1 3.036.598l2.09-2.044a1.2 1.2 0 0 1 1.696 1.697zm-5.28 1.887A3.718 3.718 0 0 0 8 4.412a3.586 3.586 0 0 0-3.238 5.127l.932-.932a2.098 2.098 0 0 1-.083-.61 2.39 2.39 0 0 1 2.39-2.39 2.2 2.2 0 0 1 .61.083l.931-.931zm6.118 2.916a14.57 14.57 0 0 0-1.948-2.51l-2.186 2.199c.018.21.018.423 0 .633a3.587 3.587 0 0 1-3.585 3.587 3.74 3.74 0 0 1-.635 0l-1.47 1.47c.7.217 1.43.326 2.164.322 3.001 0 5.58-1.696 7.672-5.055l.203-.323-.215-.323z\"/>\n\n</symbol>\n<symbol id=\"icon__info\" viewBox=\"0 0 16 16\">\n    <path d=\"M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12c0 .6-.4 1-1 1s-1-.4-1-1V7c0-.6.4-1 1-1s1 .4 1 1v5zM8 5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z\"/>\n\n</symbol>\n<symbol id=\"icon__inspect\" viewBox=\"0 0 16 16\">\n    <path d=\"M3 13h1a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3H3zm12.5-3A5.5 5.5 0 1 1 10 4.5a5.5 5.5 0 0 1 5.5 5.5zm-1.88-2.78a1 1 0 0 0-1.41.16l-3.14 3.93-1.24-1.86a1 1 0 1 0-1.66 1.11l2 3A1 1 0 0 0 9 14a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0-.16-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__left\" viewBox=\"0 0 16 16\">\n    <path d=\"M10.8 11.5L7.3 8l3.5-3.5c.4-.4.4-1 0-1.4s-1-.4-1.4 0L5.2 7.3c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l4.2 4.2c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__link\" viewBox=\"0 0 16 16\">\n    <path d=\"M11 9H5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm4 0V7a3.89 3.89 0 0 0-4-4h-1a1 1 0 0 0 0 2h1a1.88 1.88 0 0 1 2 2v2a1.88 1.88 0 0 1-2 2h-1a1 1 0 0 0 0 2h1a3.89 3.89 0 0 0 4-4zm-8 3a1 1 0 0 0-1-1H5a1.88 1.88 0 0 1-2-2V7a1.88 1.88 0 0 1 2-2h1a1 1 0 0 0 0-2H5a3.89 3.89 0 0 0-4 4v2a3.89 3.89 0 0 0 4 4h1a1 1 0 0 0 1-1z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-fill\" viewBox=\"0 0 24 24\">\n    <circle fill=\"currentColor\" cx=\"12\" cy=\"12\" r=\"12\"/>\n    <path fill=\"#FFF\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__pending-stroke\" viewBox=\"0 0 24 24\">\n    <path fill=\"currentColor\" d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z\"/>\n    <path fill=\"currentColor\" d=\"M16.8 13.6L13 11.4V5c0-.6-.4-1-1-1s-1 .4-1 1v7.3c0 .1.1.1.1.2s.1.1.1.2.1.1.2.1l.1.1 4.3 2.5c.5.3 1.1.1 1.4-.4.2-.5.1-1.1-.4-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__preview\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.71 13.29l-1.4-1.4a4.5 4.5 0 1 0-1.41 1.41l1.4 1.4a1 1 0 0 0 1.41-1.41zM9.5 12A2.5 2.5 0 1 1 12 9.5 2.5 2.5 0 0 1 9.5 12zM3 13h2a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3H3z\"/>\n\n</symbol>\n<symbol id=\"icon__reset\" viewBox=\"0 0 16 16\">\n    <path d=\"M9 3.09V2a1 1 0 0 0-1.71-.71l-2 2a1 1 0 0 0 0 1.41l2 2A1 1 0 0 0 9 6v-.86A4 4 0 1 1 4 9a1 1 0 0 0-2 0 6 6 0 1 0 7-5.91z\"/>\n\n</symbol>\n<symbol id=\"icon__right\" viewBox=\"0 0 16 16\">\n    <path d=\"M5.2 4.5L8.7 8l-3.5 3.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0l4.2-4.2c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L6.6 3.1c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__search\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.7 13.3l-2.8-2.8c1.7-2.3 1.5-5.6-.6-7.7C9 .5 5.2.5 2.8 2.8.5 5.1.5 8.9 2.8 11.3c2.1 2.1 5.4 2.3 7.7.6l2.8 2.8c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zM4.2 9.8c-1.6-1.6-1.6-4.1 0-5.7s4.1-1.6 5.7 0 1.6 4.1 0 5.7-4.2 1.6-5.7 0z\"/>\n\n</symbol>\n<symbol id=\"icon__show\" viewBox=\"0 0 16 16\">\n    <path d=\"M15.672 7.678c-2.082-3.36-4.665-5.059-7.666-5.059S2.421 4.317.328 7.678L.125 8l.203.323c2.093 3.361 4.677 5.058 7.678 5.058s5.584-1.696 7.666-5.058L15.875 8l-.203-.322zm-7.666 3.91a3.587 3.587 0 1 1 0-7.175 3.587 3.587 0 0 1 0 7.175zM10.398 8a2.392 2.392 0 1 1-4.784-.002A2.392 2.392 0 0 1 10.398 8z\"/>\n\n</symbol>\n<symbol id=\"icon__up\" viewBox=\"0 0 16 16\">\n    <path d=\"M4.5 10.8L8 7.3l3.5 3.5c.4.4 1 .4 1.4 0s.4-1 0-1.4L8.7 5.2c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3L3.1 9.4c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z\"/>\n\n</symbol>\n<symbol id=\"icon__upload\" viewBox=\"0 0 16 16\">\n    <path d=\"M13 2c0-.6-.4-1-1-1H4c-.6 0-1 .5-1 1s.4 1 1 1h8c.6 0 1-.4 1-1z\"/>\n    <path d=\"M12.9 9.5L8.7 5.3c-.1-.1-.2-.2-.3-.2-.3-.1-.5-.1-.8 0-.1 0-.2.1-.3.2L3.1 9.5c-.4.4-.4 1 0 1.4s1 .4 1.4 0L7 8.4V14c0 .6.4 1 1 1s1-.4 1-1V8.4l2.5 2.5c.4.4 1 .4 1.4 0 .4-.3.4-1 0-1.4z\"/>\n\n</symbol>\n<symbol id=\"icon__validation\" viewBox=\"0 0 16 16\">\n    <path d=\"M14.4 3.4c-.4-.4-1-.4-1.4 0l-7.1 7.1-2.8-2.8c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.5 3.5c.2.2.5.3.7.3.3 0 .5-.1.7-.3l7.8-7.8c.4-.4.4-1 0-1.4z\"/>\n\n</symbol></svg>"
+
+/***/ }),
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(493);
+var content = __webpack_require__(494);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(47)(content, {});
@@ -44824,7 +45172,7 @@ if(false) {
 }
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(46)(false);
@@ -44832,19 +45180,19 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\n.visualTesting *,\n.visualTesting *:after,\n.visualTesting *:before\n{\n    animation: none !important;\n}\n\n.lochness_testbox\n{\n    padding: 1rem;\n    display: flex;\n    /*flex-direction: row;*/\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (c) 2017 dunnhumby Germany GmbH.\n * All rights reserved.\n *\n * This source code is licensed under the MIT license found in the LICENSE file\n * in the root directory of this source tree.\n *\n */\n\n\n.visualTesting *,\n.visualTesting *:after,\n.visualTesting *:before\n{\n    animation: none !important;\n}\n\n.lochness_testbox\n{\n    padding: 1rem;\n    display: flex;\n    /*flex-direction: row;*/\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(495);
+var content = __webpack_require__(496);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(47)(content, {});
@@ -44864,7 +45212,7 @@ if(false) {
 }
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(46)(false);
@@ -44878,13 +45226,13 @@ exports.push([module.i, "/*! normalize.css v5.0.0 | MIT License | github.com/nec
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(497);
+var content = __webpack_require__(498);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(47)(content, {});
@@ -44904,7 +45252,7 @@ if(false) {
 }
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(46)(false);
@@ -44918,13 +45266,13 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(499);
+var content = __webpack_require__(500);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(47)(content, {});
@@ -44944,22 +45292,22 @@ if(false) {
 }
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(500);
+var escape = __webpack_require__(501);
 exports = module.exports = __webpack_require__(46)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".lochNessLogo\n{\n    width:      100px;\n    height:     100px;\n    background: no-repeat center/100% url(" + escape(__webpack_require__(501)) + ");\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (c) 2018 dunnhumby Germany GmbH.\n * All rights reserved.\n *\n * This source code is licensed under the MIT license found in the LICENSE file\n * in the root directory of this source tree.\n *\n */\n\n.lochNessLogo\n{\n    width:      100px;\n    height:     100px;\n    background: no-repeat center/100% url(" + escape(__webpack_require__(502)) + ");\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44983,7 +45331,7 @@ module.exports = function escape(url) {
 };
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e9ebbc2bef5c3b6ecb911f40ed34061f.svg";

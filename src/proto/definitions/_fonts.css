@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
 /*------------------------------------//
 //    $FONT DEFINITIONS
@@ -24,9 +32,23 @@
     font-style: normal;
 }
 
+%Nessie-SemiBoldIt
+{
+    font-family: Nessie-SemiBoldIt, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 %Nessie-Bold
 {
     font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+%Nessie-BoldIt
+{
+    font-family: Nessie-BoldIt, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -38,9 +60,23 @@
     font-style: normal;
 }
 
+%Nessie-ExtraBoldIt
+{
+    font-family: Nessie-ExtraBoldIt, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 %Nessie-Light
 {
     font-family: Nessie-Light, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+%Nessie-LightIt
+{
+    font-family: Nessie-LightIt, sans-serif;
     font-weight: normal;
     font-style: normal;
 }

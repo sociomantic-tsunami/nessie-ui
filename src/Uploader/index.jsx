@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
@@ -88,6 +97,7 @@ const Uploader = ( {
                 name      = { `${id}-file` }
                 onChange  = { onChange }
                 ref       = { inputRef }
+                tabIndex  = "-1"
                 type      = "file" />
             { label &&
             <Label
@@ -103,6 +113,7 @@ const Uploader = ( {
                 iconPosition     = "topRight"
                 iconType         = { messageType }
                 message          = { message }
+                noWarn
                 tooltipIsVisible = { tooltipIsVisible }
                 tooltipPosition  = { errorMessagePosition }>
                 <div className = { cssMap.buttonsContainer }>
@@ -110,7 +121,8 @@ const Uploader = ( {
                         className = { cssMap.previewTooltip }
                         isVisible = { uploadState ===
                             'uploaded' && previewTooltipIsVisible }
-                        message   = { previewTooltipMessage }>
+                        message = { previewTooltipMessage }
+                        noWarn>
                         <Button
                             className  = { uploaderButtonClass }
                             iconType   = { iconType }
@@ -159,12 +171,18 @@ Uploader.propTypes =
     *  Error message position relative to the icon
     */
     errorMessagePosition : PropTypes.oneOf( [
-        'left',
-        'right',
         'top',
-        'bottom',
         'topLeft',
         'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
     ] ),
     /**
     *  Display as error/invalid
@@ -175,7 +193,7 @@ Uploader.propTypes =
     */
     hasWarning              : PropTypes.bool,
     /**
-     * HTML id attribute (overwrite default)
+     * HTML id attribute
      */
     id                      : PropTypes.string,
     /**
@@ -242,8 +260,6 @@ Uploader.propTypes =
     *  Tooltip warning message text (string or JSX)
     */
     warningMessage : PropTypes.node,
-
-
 };
 
 Uploader.defaultProps =

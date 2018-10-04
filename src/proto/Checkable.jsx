@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
@@ -13,27 +22,28 @@ const Checkable = ( {
     hasError,
     id = generateId( 'Checkable' ),
     inputRef,
+    isChecked,
     isDefaultChecked,
     isDisabled,
-    isChecked,
     isReadOnly,
     label,
     name,
     onBlur,
+    onChange,
     onClick,
     onFocus,
-    onChange,
     onMouseOut,
     onMouseOver,
     type,
     value,
 } ) =>
 {
-    let labelText = children || label;
+    let labelContent = children || label;
 
-    if ( typeof labelText === 'string' )
+    if ( typeof labelContent === 'string' )
     {
-        labelText = <Text className = { cssMap.labelText }>{ labelText }</Text>;
+        labelContent =
+            <Text className = { cssMap.labelText }>{ labelContent }</Text>;
     }
 
     return (
@@ -43,8 +53,8 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseLeave = { onMouseOut }
-            onMouseEnter = { onMouseOver }>
+            onMouseEnter = { onMouseOver }
+            onMouseLeave = { onMouseOut }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
@@ -52,15 +62,17 @@ const Checkable = ( {
                 disabled       = { isDisabled || isReadOnly }
                 id             = { id }
                 name           = { name }
-                onClick        = { onClick }
-                onChange       = { onChange }
-                onFocus        = { onFocus }
                 onBlur         = { onBlur }
+                onChange       = { onChange }
+                onClick        = { onClick }
+                onFocus        = { onFocus }
                 ref            = { inputRef }
                 type           = { type }
                 value          = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
-                { labelText }
+                <span className = { cssMap.labelContent }>
+                    { labelContent }
+                </span>
             </label>
         </div>
     );
@@ -90,7 +102,7 @@ Checkable.propTypes =
      */
     hasError         : PropTypes.bool,
     /**
-     *  HTML id attribute (override default)
+     *  HTML id attribute
      */
     id               : PropTypes.string,
     /**
@@ -164,9 +176,9 @@ Checkable.defaultProps =
     hasError         : false,
     id               : undefined,
     inputRef         : undefined,
+    isChecked        : undefined,
     isDefaultChecked : undefined,
     isDisabled       : false,
-    isChecked        : undefined,
     isReadOnly       : false,
     label            : undefined,
     name             : undefined,

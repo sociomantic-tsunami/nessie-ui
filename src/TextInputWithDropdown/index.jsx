@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
@@ -13,6 +22,9 @@ import InputContainer                 from '../proto/InputContainer';
 
 
 const TextInputWithDropdown = ( {
+    autoCapitalize,
+    autoComplete,
+    autoCorrect,
     className,
     cssMap,
     dropdownData,
@@ -38,11 +50,19 @@ const TextInputWithDropdown = ( {
     onBlur,
     onChange,
     onFocus,
-    onMouseOver,
     onMouseOut,
-    textAlign
+    onMouseOver,
+    spellCheck,
+    textAlign,
 } ) =>
 {
+    if ( !TextInputWithDropdown.didWarn )
+    {
+        console.warn( 'TextInputWithDropdown: This component is deprecated and will be \
+removed in the next major release.' );
+        TextInputWithDropdown.didWarn = true;
+    }
+
     let alignText = textAlign;
 
     if ( textAlign === 'auto' )
@@ -53,7 +73,7 @@ const TextInputWithDropdown = ( {
     return (
         <InputContainer
             className = { buildClassName( className, cssMap, {
-                position : dropdownPosition
+                position : dropdownPosition,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }
@@ -73,34 +93,38 @@ const TextInputWithDropdown = ( {
                 verticalAlign = "middle">
                 <Column>
                     <InputField
-                        hasError     = { hasError }
-                        id           = { id }
-                        inputRef     = { inputRef }
-                        isDisabled   = { isDisabled }
-                        isReadOnly   = { isReadOnly }
-                        placeholder  = { inputPlaceholder }
-                        defaultValue = { inputDefaultValue }
-                        forceHover   = { forceHover }
-                        onBlur       = { onBlur }
-                        onChange     = { onChange }
-                        onFocus      = { onFocus }
-                        name         = { name }
-                        textAlign    = { alignText }
-                        value        = { inputValue } />
+                        autoCapitalize = { autoCapitalize }
+                        autoComplete   = { autoComplete }
+                        autoCorrect    = { autoCorrect }
+                        defaultValue   = { inputDefaultValue }
+                        forceHover     = { forceHover }
+                        hasError       = { hasError }
+                        id             = { id }
+                        inputRef       = { inputRef }
+                        isDisabled     = { isDisabled }
+                        isReadOnly     = { isReadOnly }
+                        name           = { name }
+                        onBlur         = { onBlur }
+                        onChange       = { onChange }
+                        onFocus        = { onFocus }
+                        placeholder    = { inputPlaceholder }
+                        spellCheck     = { spellCheck }
+                        textAlign      = { alignText }
+                        value          = { inputValue } />
                 </Column>
                 <Column size = "content">
                     <FlounderDropdown
                         data         = { dropdownData }
+                        defaultValue = { dropdownDefaultValue }
+                        forceHover   = { forceHover }
                         hasError     = { hasError }
                         isDisabled   = { isDisabled }
                         isReadOnly   = { isReadOnly }
-                        placeholder  = { dropdownPlaceholder }
-                        defaultValue = { dropdownDefaultValue }
-                        value        = { dropdownValue }
-                        forceHover   = { forceHover }
                         onBlur       = { onBlur }
                         onChange     = { onChange }
-                        onFocus      = { onFocus } />
+                        onFocus      = { onFocus }
+                        placeholder  = { dropdownPlaceholder }
+                        value        = { dropdownValue } />
                 </Column>
             </Row>
         </InputContainer>
@@ -110,6 +134,33 @@ const TextInputWithDropdown = ( {
 
 TextInputWithDropdown.propTypes =
 {
+    /**
+     *  HTML attribute controlling input auto capitalize
+     */
+    autoCapitalize : PropTypes.oneOf( [
+        'on',
+        'off',
+        'none',
+        'sentences',
+        'words',
+        'characters',
+    ] ),
+    /**
+     *  HTML attribute controlling input auto complete
+     */
+    autoComplete : PropTypes.string,
+    /**
+     *  HTML attribute controlling input auto correct (Safari-specific)
+     */
+    autoCorrect  : PropTypes.oneOf( [ 'on', 'off' ] ),
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.string,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Array of strings or objects to build the dropdown
      */
@@ -138,89 +189,110 @@ TextInputWithDropdown.propTypes =
      */
     errorMessage          : PropTypes.node,
     /**
-     *  Error message is displayed
+     *  Error Tooltip is displayed
      */
     errorMessageIsVisible : PropTypes.bool,
     /**
      *  Error message position relative to the icon
      */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    errorMessagePosition  : PropTypes.oneOf( [
+        'top',
+        'topLeft',
+        'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
+    ] ),
     /**
-     * Display as hover when required from another component
+     *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover        : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError          : PropTypes.bool,
     /**
-     * HTML id attribute (overwrite default)
+     *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id                : PropTypes.string,
     /**
      * Initial input string value
      */
-    inputDefaultValue     : PropTypes.string,
+    inputDefaultValue : PropTypes.string,
     /**
      *  Input placeholder text
      */
-    inputPlaceholder      : PropTypes.string,
+    inputPlaceholder  : PropTypes.string,
     /**
      * Callback that receives the native <input>: ( ref ) => { ... }
      */
-    inputRef              : PropTypes.func,
+    inputRef          : PropTypes.func,
     /**
      * Input string value
      */
-    inputValue            : PropTypes.string,
+    inputValue        : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled        : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
     /**
-     *  Label text string or JSX node
+     *  Label text (string or JSX node)
      */
-    label                 : PropTypes.node,
+    label             : PropTypes.node,
     /**
      *  Label position
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
-     * HTML name attribute
+     *  HTML name attribute
      */
-    name                  : PropTypes.string,
+    name              : PropTypes.string,
     /**
-     *  onBlur callback function: ( e ) => { ... }
+     *  Blur callback function
      */
-    onBlur                : PropTypes.func,
+    onBlur            : PropTypes.func,
     /**
-     *  onChange callback function: ( e ) => { ... }
+     *  Input change callback function
      */
-    onChange              : PropTypes.func,
+    onChange          : PropTypes.func,
     /**
-     *  onFocus callback function: ( e ) => { ... }
+     *  Focus callback function
      */
-    onFocus               : PropTypes.func,
+    onFocus           : PropTypes.func,
     /**
-     *  onMouseOut callback function: ( e ) => { ... }
+     *  Mouse out callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut        : PropTypes.func,
     /**
-     *  onMouseOver callback function: ( e ) => { ... }
+     *  Mouse over  callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver       : PropTypes.func,
     /**
-     * Input text alignment
+     *  HTML attribute controlling input spell check
      */
-    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    spellCheck        : PropTypes.bool,
+    /**
+     *  Input text alignment
+     */
+    textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
 };
 
 TextInputWithDropdown.defaultProps =
 {
+    autoCapitalize        : undefined,
+    autoComplete          : undefined,
+    autoCorrect           : undefined,
+    className             : undefined,
     cssMap                : styles,
     dropdownData          : undefined,
     dropdownDefaultValue  : undefined,
@@ -247,6 +319,7 @@ TextInputWithDropdown.defaultProps =
     onFocus               : undefined,
     onMouseOut            : undefined,
     onMouseOver           : undefined,
+    spellCheck            : undefined,
     textAlign             : 'auto',
 };
 

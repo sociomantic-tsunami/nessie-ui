@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
@@ -101,6 +110,8 @@ Icon.propTypes =
         'alert',
         'approved',
         'arrow',
+        'arrow-up',
+        'arrow-down',
         'bell',
         'board',
         'calendar',
@@ -126,8 +137,10 @@ Icon.propTypes =
         'left',
         'lightbulb',
         'link',
+        'loader',
         'megaphone',
         'options',
+        'paused',
         'pending',
         'preview',
         'puzzle-piece',
@@ -137,6 +150,7 @@ Icon.propTypes =
         'show',
         'star-stroke',
         'star',
+        'sociomantic',
         'swap',
         'table',
         'up',

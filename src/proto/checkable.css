@@ -1,80 +1,94 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "./base.css";
 
 .default
 {
-    padding-top:        var( --spacing-1 );
-    padding-bottom:     var( --spacing-1 );
+    padding-top:    var( --spacing-1 );
+    padding-bottom: var( --spacing-1 );
 
-    width:              auto;
+    width:          auto;
 
-    &:last-child
+    .input /* the (hidden) native input */
     {
-        margin-bottom:  0;
+        position:   absolute;
+        left:       -9999px;
     }
 
-    &:hover .label
+    .label /* ‘label’ is the styled checkbox/radio */
     {
+        display:        flex;
+        align-items:    center;
+
+        position:       relative;
+
+        height:         var( --spacing-3 );
+
         cursor:         pointer;
-    }
-}
 
-.fakeHovered
-{
-    .label::before,
-    .input:focus + .label::before
-    {
-        border:         1px solid var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
-}
+        &::before
+        {
+            content:        '';
 
-.label
-{
-    display:            flex;
-    align-items:        center;
+            display:        block;
+            position:       relative;
 
-    position:           relative;
-    height:             var( --spacing-3 );
+            box-sizing:     border-box;
+            width:          var( --spacing-3 );
+            height:         var( --spacing-3 );
 
-    &::before
-    {
-        content:            '';
+            border:         1px solid var( --PC-BLUE--L55 );
+            border-radius:  2px;
 
-        display:            inline-block;
-        vertical-align:     middle;
+            background:     var( --PC-WHITE );
+        }
 
-        position:           relative;
+        &::after
+        {
+            content:    '';
 
-        box-sizing:         border-box;
-        width:              var( --spacing-3 );
-        height:             var( --spacing-3 );
+            display:    none;
+            position:   absolute;
 
-        border:             1px solid var( --PC-BLUE--L55 );
-        border-radius:      2px;
+            top:        0;
+            left:       0;
 
-        background:         var( --PC-WHITE );
+            width:      var( --spacing-3 );
+            height:     var( --spacing-3 );
+        }
     }
 
-    &::after
+    .labelContent
     {
-        content:            '';
-        display:            none;
-        background-size:    100%;
-        background-repeat:  no-repeat;
-    }
-
-    & > :first-child
-    {
-        display:        inline-block;
-        vertical-align: middle;
+        display:        block;
         margin-left:    var( --spacing-1 );
     }
-}
 
-.labelText
-{
-    @extend             %Nessie-SemiBold;
-    color:              var( --PC-GREY--D15 );
+    .labelText
+    {
+        @extend %Nessie-SemiBold;
+        color:  var( --PC-GREY--D15 );
+    }
+
+    .input:checked + .label::before,
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
+    {
+        border-color:   var( --PC-BLUE );
+    }
+
+    .input:focus + .label::before,
+    &.fakeHovered .label::before
+    {
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
 
 .error
@@ -93,40 +107,18 @@
 
 .disabled
 {
-    cursor:                 default;
-
-    .label,
-    .label:hover
+    .label
     {
-        cursor:             default;
-    }
+        cursor: default;
 
-    .label::before,
-    &:hover .label::before,
-    .input:focus + .label::before
-    {
-        cursor:             default;
+        &::before
+        {
+            border-color:   var( --PC-GREY--L70 ) !important;
+        }
     }
 
     .labelText
     {
         color:  var( --PC-GREY--L70 );
-    }
-}
-
-.input
-{
-    position:               absolute;
-    left:                   -9999px;
-
-    &:checked + .label::after
-    {
-        position:           absolute;
-    }
-
-    &:focus + .label::before
-    {
-        border:         1px solid var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 }

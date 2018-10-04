@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
 /* eslint no-console: 0*/
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
@@ -37,26 +46,54 @@ describe( 'PasswordInput', () =>
             .toBe( 'password' );
     } );
 
-    test( 'it should pass inputType "text" when passwordIsVisible', () =>
-    {
-        wrapper.setProps( { passwordIsVisible: true } );
-
-        expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
-            .toBe( 'text' );
-    } );
-
     test( 'it should pass iconType "show" by default', () =>
     {
         expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
             .toBe( 'show' );
     } );
 
-    test( 'it should pass iconType "hide" when passwordIsVisible', () =>
+    test( 'it should pass autoCapitalize "off"', () =>
     {
-        wrapper.setProps( { passwordIsVisible: true } );
+        expect( wrapper.find( TextInputWithIcon )
+            .prop( 'autoCapitalize' ) ).toBe( 'off' );
+    } );
 
-        expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
-            .toBe( 'hide' );
+    test( 'it should pass autoComplete "off"', () =>
+    {
+        expect( wrapper.find( TextInputWithIcon ).prop( 'autoComplete' ) )
+            .toBe( 'off' );
+    } );
+
+    test( 'it should pass autoCorrect "off"', () =>
+    {
+        expect( wrapper.find( TextInputWithIcon ).prop( 'autoCorrect' ) )
+            .toBe( 'off' );
+    } );
+
+    test( 'it should pass spellCheck false', () =>
+    {
+        expect( wrapper.find( TextInputWithIcon ).prop( 'spellCheck' ) )
+            .toBe( false );
+    } );
+
+    describe( 'when passwordIsVisible', () =>
+    {
+        beforeEach( () =>
+        {
+            wrapper.setProps( { passwordIsVisible: true } );
+        } );
+
+        test( 'it should pass inputType "text"', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'inputType' ) )
+                .toBe( 'text' );
+        } );
+
+        test( 'it should pass iconType "hide"', () =>
+        {
+            expect( wrapper.find( TextInputWithIcon ).prop( 'iconType' ) )
+                .toBe( 'hide' );
+        } );
     } );
 } );
 

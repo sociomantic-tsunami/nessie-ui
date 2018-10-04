@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global document */
 
 import React, { Component } from 'react';
@@ -7,7 +16,7 @@ import { ScrollBox, Text }  from '../index';
 import TextInputWithIcon    from '../TextInputWithIcon';
 import ListBox              from '../ListBox';
 import withDropdown         from '../Dropdown/withDropdown';
-import { generateId, buildClassName }       from '../utils';
+import { generateId }       from '../utils';
 import InputContainer       from '../proto/InputContainer';
 import styles               from './comboBox.css';
 import {
@@ -30,6 +39,10 @@ export default class ComboBox extends Component
          */
         activeOption          : PropTypes.string,
         /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
          * Placeholder text to show when no dropdown list options
          */
         dropdownPlaceholder   : PropTypes.string,
@@ -46,37 +59,58 @@ export default class ComboBox extends Component
          */
         errorMessageIsVisible : PropTypes.bool,
         /**
-        *  Error message position relative to the icon
+        *   Error message position relative to the icon
         */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
-         * Display as hover when required from another component
+         *  Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover      : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete       : PropTypes.bool,
+        hasAutocomplete : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError        : PropTypes.bool,
         /**
-         *  Icon type to display
+         *  Display Button icon as disabled
          */
-        iconType              : PropTypes.oneOf( [
+        iconButtonIsDisabled  : PropTypes.bool,
+        /**
+         *  Alignment of the icon
+         */
+        iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
+        /**
+         *  Icon type to display (overrides customIcon)
+         */
+        iconType        : PropTypes.oneOf( [
             'account',
-            'add',
             'add-circle',
+            'add',
             'alert',
             'approved',
             'arrow',
             'bell',
             'board',
             'calendar',
-            'close',
             'close-circle',
             'close-thick',
+            'close',
             'dash',
             'dashboard',
             'declined',
@@ -84,8 +118,8 @@ export default class ComboBox extends Component
             'down',
             'download',
             'duplicate',
-            'edit',
             'edit-circle',
+            'edit',
             'ended',
             'error',
             'file',
@@ -105,8 +139,8 @@ export default class ComboBox extends Component
             'right',
             'search',
             'show',
-            'star',
             'star-stroke',
+            'star',
             'swap',
             'table',
             'up',
@@ -115,33 +149,41 @@ export default class ComboBox extends Component
             'none',
         ] ),
         /**
-         *  HTML id attribute (overwrite default)
+         *  HTML id attribute
          */
         id                : PropTypes.string,
         /**
-         *  Dropdown list allows multiple selection
+         *  Placeholder text
          */
-        isMultiselect     : PropTypes.bool,
+        inputPlaceholder  : PropTypes.string,
         /**
-         *  Display as read-only
-         */
-        inputIsReadOnly   : PropTypes.bool,
-        /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
+         *  Callback that receives the native <input>: ( ref ) => { ... }
          */
         inputRef          : PropTypes.func,
-        /**
-         * HTML type attribute for input
-         */
-        inputType         : PropTypes.string,
-        /*
-         * Input field value
-         */
-        inputValue        : PropTypes.string,
         /**
          *  Display as disabled
          */
         isDisabled        : PropTypes.bool,
+        /**
+         *  Display as read-only
+         */
+        isReadOnly        : PropTypes.bool,
+        /**
+         *  Display as read-only for IconButton
+         */
+        buttonIsReadOnly  : PropTypes.bool,
+        /**
+         *  Display as read-only for TextInput
+         */
+        inputIsReadOnly   : PropTypes.bool,
+        /**
+         *  Input field value
+         */
+        inputValue        : PropTypes.string,
+        /**
+         *  Dropdown list allows multiple selection
+         */
+        isMultiselect     : PropTypes.bool,
         /*
          * Dropdown is open
          */
@@ -159,45 +201,17 @@ export default class ComboBox extends Component
          */
         name              : PropTypes.string,
         /**
-         *  blur callback function
+         *  Blur callback function
          */
         onBlur            : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon       : PropTypes.func,
         /**
          *  Input change callback function
          */
         onChangeInput     : PropTypes.func,
         /**
-         * key down callback function
+         *  Icon click callback function
          */
-        onKeyDown         : PropTypes.func,
-        /**
-         * key press callback function
-         */
-        onKeyPress        : PropTypes.func,
-        /**
-         * key up callback function
-         */
-        onKeyUp           : PropTypes.func,
-        /**
-         *  focus callback function
-         */
-        onFocus           : PropTypes.func,
-        /**
-         *  mouseOver callback function
-         */
-        onMouseOver       : PropTypes.func,
-        /**
-         *  mouseOut callback function
-         */
-        onMouseOut        : PropTypes.func,
-        /**
-         *  Placeholder text
-         */
-        inputPlaceholder  : PropTypes.string,
+        onClickIcon       : PropTypes.func,
         /*
          * On click callback function for input
          */
@@ -206,10 +220,42 @@ export default class ComboBox extends Component
          * On click callback function for dropdown option
          */
         onClickOption     : PropTypes.func,
+        /**
+         *  Focus callback function
+         */
+        onFocus           : PropTypes.func,
+        /**
+         *  Key down callback function
+         */
+        onKeyDown         : PropTypes.func,
+        /**
+         *  Key press callback function
+         */
+        onKeyPress        : PropTypes.func,
+        /**
+         *  Key up callback function
+         */
+        onKeyUp           : PropTypes.func,
+        /**
+         *  Mouse out callback function
+         */
+        onMouseOut        : PropTypes.func,
+        /**
+         *  Icon mouse out callback function
+         */
+        onMouseOutIcon    : PropTypes.func,
         /*
          * On mouse out callback function for dropdown option
          */
         onMouseOutOption  : PropTypes.func,
+        /**
+         *  Mouse over  callback function
+         */
+        onMouseOver       : PropTypes.func,
+        /**
+         *  Icon mouse over callback function
+         */
+        onMouseOverIcon   : PropTypes.func,
         /*
          * On mouse over callback function for dropdown option
          */
@@ -229,31 +275,39 @@ export default class ComboBox extends Component
             PropTypes.string,
             PropTypes.objectOf( PropTypes.string ),
         ] ),
+        /**
+         *  Input text alignment
+         */
+        textAlign : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     };
 
     static defaultProps = {
         activeOption          : undefined,
+        buttonIsReadOnly      : undefined,
+        className             : undefined,
         dropdownPlaceholder   : undefined,
         dropdownPosition      : 'auto',
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         forceHover            : false,
         hasAutocomplete       : false,
         hasError              : false,
+        iconButtonIsDisabled  : undefined,
+        iconPosition          : undefined,
         iconType              : 'none',
         id                    : undefined,
         inputIsReadOnly       : false,
         inputPlaceholder      : undefined,
         inputRef              : undefined,
-        inputType             : 'text',
         inputValue            : undefined,
         isDisabled            : false,
         isMultiselect         : false,
         isOpen                : false,
+        isReadOnly            : undefined,
         label                 : undefined,
         labelPosition         : 'top',
         name                  : undefined,
-        noOptiosText          : undefined,
         onBlur                : undefined,
         onChangeInput         : undefined,
         onClickIcon           : undefined,
@@ -264,12 +318,15 @@ export default class ComboBox extends Component
         onKeyPress            : undefined,
         onKeyUp               : undefined,
         onMouseOut            : undefined,
+        onMouseOutIcon        : undefined,
         onMouseOutOption      : undefined,
         onMouseOver           : undefined,
+        onMouseOverIcon       : undefined,
         onMouseOverOption     : undefined,
         onScroll              : undefined,
         options               : undefined,
         selection             : undefined,
+        textAlign             : 'auto',
     };
 
     constructor( props )
@@ -347,7 +404,7 @@ export default class ComboBox extends Component
 
     setDropdownPosition( props = this.props )
     {
-        let dropdownPosition = props.dropdownPosition;
+        let { dropdownPosition } = props;
 
         if ( props.dropdownPosition === 'auto' )
         {
@@ -406,6 +463,8 @@ export default class ComboBox extends Component
     {
         const {
             activeOption,
+            buttonIsReadOnly,
+            className,
             dropdownPlaceholder,
             errorMessage,
             errorMessageIsVisible,
@@ -413,16 +472,18 @@ export default class ComboBox extends Component
             forceHover,
             hasAutocomplete,
             hasError,
+            iconButtonIsDisabled,
+            iconPosition,
             iconType,
             id = generateId( 'ComboBox' ),
             inputIsReadOnly,
             inputPlaceholder,
             inputRef,
-            inputType,
             inputValue,
             isDisabled,
             isMultiselect,
             isOpen,
+            isReadOnly,
             label,
             labelPosition,
             name,
@@ -435,10 +496,13 @@ export default class ComboBox extends Component
             onKeyPress,
             onKeyUp,
             onMouseOut,
+            onMouseOutIcon,
             onMouseOver,
+            onMouseOverIcon,
             onScroll,
             options = [],
             selection,
+            textAlign,
         } = this.props;
 
         const { dropdownPosition } = this.state;
@@ -456,8 +520,8 @@ export default class ComboBox extends Component
                     <ListBox
                         activeOption      = { addPrefix( activeOption, id ) }
                         id                = { addPrefix( 'listbox', id ) }
-                        isMultiselect     = { isMultiselect }
                         isFocusable       = { false }
+                        isMultiselect     = { isMultiselect }
                         onClickOption     = { this.handleClickOption }
                         onMouseOutOption  = { this.handleMouseOutOption }
                         onMouseOverOption = { this.handleMouseOverOption }
@@ -482,28 +546,24 @@ export default class ComboBox extends Component
 
         return (
             <InputContainer
-                onMouseOut          = { onMouseOut }
-                onMouseOver         = { onMouseOver }
-                label               = { label }
-                labelPosition       = { labelPosition } >
+                className     = { className }
+                label         = { label }
+                labelPosition = { labelPosition }
+                onMouseOut    = { onMouseOut }
+                onMouseOver   = { onMouseOver }>
                 <InputWithDropdown
                     aria = { {
-                        autocomplete     : hasAutocomplete ? 'both' : 'list',
                         activeDescendant :
                             activeOption && addPrefix( activeOption, id ),
-                        expanded : isOpen,
-                        hasPopup : 'listbox',
-                        owns     : addPrefix( 'listbox', id ),
-                        role     : 'combobox',
+                        autocomplete : hasAutocomplete ? 'both' : 'list',
+                        expanded     : isOpen,
+                        hasPopup     : 'listbox',
+                        owns         : addPrefix( 'listbox', id ),
+                        role         : 'combobox',
                     } }
-                    forceHover       = { forceHover }
-                    hasError         = { hasError }
-                    iconType         = { iconType }
-                    id               = { id }
-                    inputRef         = { inputRef }
-                    inputType        = { inputType }
-                    isDisabled       = { isDisabled }
-                    isReadOnly       = { inputIsReadOnly }
+                    autoCapitalize   = "off"
+                    autoComplete     = "off"
+                    autoCorrect      = "off"
                     dropdownIsOpen   = { isOpen }
                     dropdownPosition = { dropdownPosition }
                     dropdownProps    = { {
@@ -514,6 +574,17 @@ export default class ComboBox extends Component
                     errorMessage          = { errorMessage }
                     errorMessageIsVisible = { errorMessageIsVisible }
                     errorMessagePosition  = { errorMessagePosition }
+                    forceHover            = { forceHover }
+                    hasError              = { hasError }
+                    iconButtonIsDisabled  = { iconButtonIsDisabled }
+                    iconPosition          = { iconPosition }
+                    iconType              = { iconType }
+                    id                    = { id }
+                    inputRef              = { inputRef }
+                    isDisabled            = { isDisabled }
+                    isReadOnly            = { isReadOnly }
+                    isReadOnlyButton      = { buttonIsReadOnly }
+                    isReadOnlyInput       = { inputIsReadOnly }
                     name                  = { name }
                     onBlur                = { onBlur }
                     onChange              = { onChangeInput }
@@ -523,7 +594,11 @@ export default class ComboBox extends Component
                     onKeyDown             = { onKeyDown }
                     onKeyPress            = { onKeyPress }
                     onKeyUp               = { onKeyUp }
+                    onMouseOutIcon        = { onMouseOutIcon }
+                    onMouseOverIcon       = { onMouseOverIcon }
                     placeholder           = { inputPlaceholder }
+                    spellCheck            = { false }
+                    textAlign             = { textAlign }
                     value                 = { inputValue }
                     wrapperRef            = { this.setWrapperRef } />
             </InputContainer>

@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
@@ -44,15 +53,28 @@ const withInputContainer = Component =>
         /**
          *  Position of tooltip relative to error icon
          */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        errorMessagePosition  : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
         /**
          *  Component label
          */
-        label                 : PropTypes.node,
+        label         : PropTypes.node,
         /**
          *  Position of component label relative to component
          */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     };
 
     WithInputContainer.defaultProps = {
