@@ -6,20 +6,49 @@ const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const baseConfig           = require( './base' );
 
 
-module.exports = merge( {}, baseConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
+const devConfig = merge( {}, baseConfig, {
+    entry : path.join( __dirname, '../src/index.js' ),
+    mode  : 'development',
+} );
+
+
+const devComponents = merge( {}, devConfig, {
+    output : {
+        filename      : 'index.dev.js',
+        libraryTarget : 'umd',
+        library       : 'Nessie',
+    },
+    externals : {
+        'prop-types' : {
+            commonjs  : 'prop-types',
+            commonjs2 : 'prop-types',
+            window    : 'PropTypes',
+        },
+        react : {
+            commonjs  : 'react',
+            commonjs2 : 'react',
+            window    : 'React',
+        },
+        'react-dom' : {
+            commonjs  : 'react-dom',
+            commonjs2 : 'react-dom',
+            window    : 'ReactDOM',
+        },
+    },
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'styles.dev.css',
+        } ),
+    ],
+} );
+
+const deprecatedDisplayComponents = merge( {}, devConfig, {
     output : {
         filename      : 'displayComponents.js',
         library       : 'DisplayComponents',
-        libraryTarget : 'window'
+        libraryTarget : 'window',
     },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-    },
-    mode    : 'development',
     plugins : [
         new MiniCssExtractPlugin( {
             allChunks : true,
@@ -27,3 +56,9 @@ module.exports = merge( {}, baseConfig, {
         } ),
     ],
 } );
+
+
+module.exports = [
+    devComponents,
+    deprecatedDisplayComponents,
+];

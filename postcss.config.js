@@ -1,22 +1,22 @@
-const calc = require( 'postcss-calc' );
-const autoprefixer = require( 'autoprefixer' );
-const partialImport = require( 'postcss-partial-import' );
 const advancedVariables = require( 'postcss-advanced-variables' );
-const customSelectors = require( 'postcss-custom-selectors' );
-const customMedia = require( 'postcss-custom-media' );
-const customProperties = require( 'postcss-custom-properties' );
-const mediaMinMax = require( 'postcss-media-minmax' );
-const extend = require( 'postcss-extend' );
-const selectorMatches = require( 'postcss-selector-matches' );
-const selectorNot = require( 'postcss-selector-not' );
-const nested = require( 'postcss-nested' );
-const colorFunction = require( 'postcss-color-function' );
-const pseudoClassAnyLink = require( 'postcss-pseudo-class-any-link' );
-const fontVariant = require( 'postcss-font-variant' );
-const replaceOverflowWrap = require( 'postcss-replace-overflow-wrap' );
-const initial = require( 'postcss-initial' );
 const attributeCaseInsensitive =
     require( 'postcss-attribute-case-insensitive' );
+const autoprefixer = require( 'autoprefixer' );
+const calc = require( 'postcss-calc' );
+const colorFunction = require( 'postcss-color-function' );
+const customMedia = require( 'postcss-custom-media' );
+const customProperties = require( 'postcss-custom-properties' );
+const customSelectors = require( 'postcss-custom-selectors' );
+const extend = require( 'postcss-extend' );
+const fontVariant = require( 'postcss-font-variant' );
+const initial = require( 'postcss-initial' );
+const mediaMinMax = require( 'postcss-media-minmax' );
+const nested = require( 'postcss-nested' );
+const partialImport = require( 'postcss-partial-import' );
+const pseudoClassAnyLink = require( 'postcss-pseudo-class-any-link' );
+const replaceOverflowWrap = require( 'postcss-replace-overflow-wrap' );
+const selectorMatches = require( 'postcss-selector-matches' );
+const selectorNot = require( 'postcss-selector-not' );
 
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
         calc,
         colorFunction,
         autoprefixer( {
-            browsers : [ 'last 2 versions', 'ie 10', 'ie 11', 'safari 8' ]
+            browsers : [ 'last 2 versions', 'ie 10', 'ie 11', 'safari 8' ],
         } ),
-    ]
+    ],
 };
