@@ -131,7 +131,7 @@ Tabs.defaultProps =
     className         : undefined,
     cssMap            : styles,
     onClickTab        : undefined,
-    padding           : 'M',
+    padding           : [ 'none', 'M' ],
     secondaryControls : undefined,
 };
 
