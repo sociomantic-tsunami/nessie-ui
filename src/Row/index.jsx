@@ -18,16 +18,31 @@ const Row = ( {
     children,
     className,
     cssMap,
+    gutters,
+    hasDividers,
+    hasWrap,
     onClick,
     onMouseOut,
     onMouseOver,
-    gutters,
-    hasWrap,
     role,
     spacing,
     verticalAlign,
 } ) =>
-    (
+{
+    let elements;
+
+    if ( hasDividers )
+    {
+        elements = React.Children.toArray( children ).flatMap( (
+            child,
+            index,
+            { length },
+        ) =>
+            ( index < length - 1 ?
+                [ child, <div className = { cssMap.divider } /> ] : child ) );
+    }
+
+    return (
         <div
             className = { buildClassName( className, cssMap, {
                 alignX  : align,
@@ -41,15 +56,16 @@ const Row = ( {
             onMouseEnter = { onMouseOver }
             onMouseLeave = { onMouseOut }
             role         = { role && role !== 'none' ? role : null }>
-            { children }
+            { hasDividers ? elements : children }
         </div>
     );
+};
 
 Row.propTypes =
 {
     /**
-     * Horizontal alignment of the columns (“auto” makes all columns equal
-     * width)
+     *  Horizontal alignment of the columns (“auto” makes all columns equal
+     *  width)
      */
     align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
     /**
@@ -69,7 +85,11 @@ Row.propTypes =
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     * Wrap content
+     *  Adds dividers between row items
+     */
+    hasDividers   : PropTypes.bool,
+    /**
+     *  Wrap content
      */
     hasWrap       : PropTypes.bool,
     /**
@@ -96,8 +116,8 @@ Row.propTypes =
      */
     spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
-     * Vertical alignment of the columns (“auto” makes all columns equal
-     * height)
+     *  Vertical alignment of the columns (“auto” makes all columns equal
+     *  height)
      */
     verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
 };
@@ -109,6 +129,7 @@ Row.defaultProps =
     className     : undefined,
     cssMap        : styles,
     gutters       : 'M',
+    hasDividers   : false,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,
