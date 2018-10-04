@@ -16,6 +16,7 @@ const devComponents = merge( {}, devConfig, {
     output : {
         filename      : 'index.dev.js',
         libraryTarget : 'umd',
+        library       : 'Nessie',
     },
     externals : {
         'prop-types' : {
