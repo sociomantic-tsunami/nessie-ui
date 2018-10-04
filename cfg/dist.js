@@ -62,35 +62,6 @@ const components = merge( {}, distConfig, {
     ],
 } );
 
-const umdComponents = merge( {}, distConfig, {
-    output : {
-        filename      : 'index.umd.js',
-        library       : 'Nessie',
-        libraryTarget : 'umd',
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'styles.css',
-        } ),
-    ],
-} );
-
-const deprecatedDisplayComponents = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : {
-        filename      : 'displayComponents.js',
-        library       : 'DisplayComponents',
-        libraryTarget : 'window',
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
-} );
-
 const componentDriver = merge( {}, distConfig, {
     entry  : path.join( __dirname, '../src/Testing/index.js' ),
     output : { filename: 'componentDriver.js' },
@@ -106,7 +77,5 @@ module.exports = [
     addons,
     componentDriver,
     components,
-    deprecatedDisplayComponents,
     driverSuite,
-    umdComponents,
 ];
