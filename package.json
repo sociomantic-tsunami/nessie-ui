@@ -48,7 +48,7 @@
     "test:watch": "jest --watch --config=cfg/jest.config.js",
     "test": "jest --maxWorkers=4 --config=cfg/jest.config.js",
     "updateSprite": "yarn svgSprite && cp src/Icon/sprite.html dist/sprite.html && echo 'updated dist sprite'",
-    "updateStyles": "yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'"
+    "updateStyles": "webpack --env=dev && yarn dist && cp dist/styles.css dist/styles.scss && echo 'updated nessie dist styles'"
   },
   "keywords": [
     "scotland",
