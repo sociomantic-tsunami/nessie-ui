@@ -7,22 +7,48 @@ const baseConfig           = require( './base' );
 
 
 const distConfig = merge( {}, baseConfig, {
-    output : { libraryTarget: 'commonjs2' },
+    output : { libraryTarget: 'umd' },
 
     devtool   : 'source-map',
     externals : {
-        'codemirror/mode/jsx/jsx' : { commonjs2: 'codemirror/mode/jsx/jsx' },
+        'codemirror/mode/jsx/jsx' : {
+            commonjs  : 'codemirror/mode/jsx/jsx',
+            commonjs2 : 'codemirror/mode/jsx/jsx'
+        },
         'componentDriver'         : {
+            commonjs  : 'nessie-ui/dist/componentDriver',
             commonjs2 : 'nessie-ui/dist/componentDriver',
+            'window'  : 'ComponentDriver'
         },
         'flounder/src/core/flounder' : {
+            commonjs  : 'flounder/src/core/flounder',
             commonjs2 : 'flounder/src/core/flounder',
+            'window'  : 'Flounder'
         },
-        'nessie-ui'  : { 'commonjs2': 'nessie-ui' },
-        'prop-types' : { 'commonjs2': 'prop-types' },
-        addons       : { 'commonjs2': 'nessie-ui/dist/addons' },
-        codemirror   : { 'commonjs2': 'codemirror' },
-        react        : { 'commonjs2': 'react' },
+        'nessie-ui'  : {
+            'commonjs' : 'nessie-ui',
+            'commonjs2': 'nessie-ui',
+            'window'   : 'Nessie'
+         },
+        'prop-types' : {
+            'commonjs' : 'prop-types',
+            'commonjs2': 'prop-types',
+            'window'   : 'PropTypes'
+        },
+        addons       : {
+            'commonjs' : 'nessie-ui/dist/addons',
+            'commonjs2': 'nessie-ui/dist/addons'
+        },
+        codemirror   : {
+            'commonjs' : 'codemirror',
+            'commonjs2': 'codemirror',
+            'window'   : 'CodeMirror'
+        },
+        react        : {
+            'commonjs' : 'react',
+            'commonjs2': 'react',
+            'window'   : 'React'
+        },
     },
     mode : 'production',
 } );
