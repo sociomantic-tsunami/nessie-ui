@@ -46,4 +46,9 @@ export default class TabsDriver
     {
         return this.wrapper.find( 'Tab' ).driver().getContent();
     }
+
+    clickTab( index = 1 )
+    {
+        return this.getTabButtonsByIndex( index ).driver().click();
+    }
 }
