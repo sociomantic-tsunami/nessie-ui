@@ -84,7 +84,7 @@ const Paginator = ( {
 
             { showStartPage && showPrevEllipsis && ellipsis }
 
-            { ( pageButtons && pageButtons.length ) &&
+            { ( pageButtons && pageButtons.length > 0 ) &&
                 <div className = { cssMap.pageButtons }>
                     <Text>{ pageButtons }</Text>
                 </div>
