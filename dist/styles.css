@@ -812,298 +812,358 @@ template {
 
 .icon__default
 {
-    display:                block;
-    background-repeat:      no-repeat;
-    background-position:    center;
-
-    fill:                   #42566e;
-    color:                  #42566e;
+    display:    block;
+    fill:       #42566e;
 }
 
 .icon__size__S
 {
-    width:                  24px;
-    height:                 24px;
+    width:  24px;
+    height: 24px;
 }
 
 .icon__size__M
 {
-    width:                  32px;
-    height:                 32px;
+    width:  32px;
+    height: 32px;
 }
 
 .icon__size__L
 {
-    width:                  40px;
-    height:                 40px;
+    width:  40px;
+    height: 40px;
 }
 
 .icon__size__XL
 {
-    width:                  48px;
-    height:                 48px;
+    width:  48px;
+    height: 48px;
 }
 
-/* fill:                       var( --GS-2 ); */
-
-.icon__theme__control:hover, .icon__theme__control.icon__fakeHovered, button:focus > .icon__theme__control
+.icon__theme__control:hover, .icon__theme__control.icon__fakeHovered, button:focus > .icon__theme__control, .icon__theme__light:hover, .icon__theme__light.icon__fakeHovered, button:focus > .icon__theme__light
     {
-        fill:                   #19a2e2;
+        fill:   #19a2e2;
     }
 
 .icon__theme__button
 {
-    fill:                       #ffffff;
-    color:                      #ffffff;
+    fill:   #ffffff;
 }
-
-.icon__theme__light, .icon__theme__dark, .icon__theme__navigation
-{
-    /* fill:                       color( var( --GS-2 ) a( 50% ) ); */
-}
-
-.icon__theme__light:hover, .icon__theme__light.icon__fakeHovered, button:focus > .icon__theme__light
-    {
-        fill:                   #19a2e2;
-    }
 
 .icon__theme__dark:hover, .icon__theme__dark.icon__fakeHovered, button:focus > .icon__theme__dark
     {
-        fill:                   #ffffff;
+        fill:   #ffffff;
     }
 
-.icon__theme__navigation:hover, .icon__theme__navigation.icon__fakeHovered, button:focus > .icon__theme__navigation
-    {
-        /* fill:                   var( --GS-2 ); */
-    }
+.icon__theme__navigation
+{
+    /* not implemented */
+}
 
 :not(.icon__theme__button).icon__type__alert
     {
-        color:                      #ff965a;
-        fill:                       #ff965a;
+        fill:   #ff965a;
     }
 
-:not(.icon__theme__button).icon__type__approved, :not(.icon__theme__button).icon__type__validation
+:not(.icon__theme__button).icon__type__approved
     {
-        color:                      #1bbab0;
-        fill:                       #1bbab0;
+        fill:   #19a2e2;
     }
 
-:not(.icon__theme__button).icon__type__declined, :not(.icon__theme__button).icon__type__error
+:not(.icon__theme__button).icon__type__declined, :not(.icon__theme__button).icon__type__ended
     {
-        color:                      #ff5460;
-        fill:                       #ff5460;
+        fill:   #98a8bc;
     }
 
-:not(.icon__theme__button).icon__type__ended
+:not(.icon__theme__button).icon__type__error
     {
-        color:                      #69829e;
-        fill:                       #69829e;
+        fill:   #ff5460;
     }
 
-:not(.icon__theme__button).icon__type__running, :not(.icon__theme__button).icon__type__info
+:not(.icon__theme__button).icon__type__info
     {
-        color:                      #19a2e2;
-        fill:                       #19a2e2;
-    }
-
-:not(.icon__theme__button).icon__type__pending
-    {
-        color:                      #ff965a;
-        fill:                       #ff965a;
+        fill:   #19a2e2;
     }
 
 :not(.icon__theme__button).icon__type__paused
     {
-        color:                      #b1dc68;
-        fill:                       #b1dc68;
+        fill:   #b1dc68;
+    }
+
+:not(.icon__theme__button).icon__type__pending
+    {
+        fill:   #ff965a;
+    }
+
+:not(.icon__theme__button).icon__type__validation
+    {
+        fill:   #1bbab0;
     }
 
 .icon__disabled:not(.icon__theme__button)
 {
-    pointer-events:                 none;
-    fill:                           #c7d0db;
-    color:                          #c7d0db;
+    pointer-events: none;
+    fill:           #c7d0db;
 }
 
 .icon__type__account
     {
-    }
-
-.icon__type__add
-    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__add-circle
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__add
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__alert
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__approved
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__arrow-down
+    {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__arrow-up
+    {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__arrow
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__bell
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__board
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__calendar
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__close-circle
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__close-thick
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__close
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__dash
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__dashboard
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__declined
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__delete
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__down
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__download
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__duplicate
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__edit-circle
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__edit
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__ended
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__error
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__file
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__graph
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__hide
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__info
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__inspect
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__left
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__lightbulb
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__link
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__loader
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__megaphone
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__options
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__paused
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__pending
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__preview
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__puzzle-piece
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__reset
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__right
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__search
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__show
     {
+        /* generate placehodler classnames */
+    }
+
+.icon__type__sociomantic
+    {
+        /* generate placehodler classnames */
     }
 
 .icon__type__star-stroke
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__star
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__swap
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__table
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__up
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__upload
     {
+        /* generate placehodler classnames */
     }
 
 .icon__type__validation
     {
+        /* generate placehodler classnames */
     }
 
 /*
@@ -2408,17 +2468,14 @@ template {
 .text__default
 {
     width:          auto;
-
     margin-bottom:  8px;
-
-    line-height:    24px;
     text-transform: none;
 }
 
 .text__default .text__default
     {
-        display:        inline;
-        position:       static;
+        display:    inline;
+        position:   static;
     }
 
 .text__default a:link,.text__default a:visited
@@ -2506,6 +2563,11 @@ template {
 
 /* SIZES */
 
+.text__size__XXS, .text__size__XS, .text__size__S
+{
+    line-height:    14px;
+}
+
 .text__size__XXS
 {
     font-size:  10px;
@@ -2523,7 +2585,14 @@ template {
 
 .text__size__M
 {
-    font-size:  14px;
+
+    font-size:      14px;
+    line-height:    16px;
+}
+
+.text__size__L, .text__size__XL
+{
+    line-height:    24px;
 }
 
 .text__size__L
@@ -2534,6 +2603,11 @@ template {
 .text__size__XL
 {
     font-size:  18px;
+}
+
+.text__size__XXL, .text__size__XXXL
+{
+    line-height:    32px;
 }
 
 .text__size__XXL
@@ -2725,8 +2799,8 @@ legend.label__default + *
 .label__label
 {
     font-size:      12px;
-    line-height:    24px;
-    letter-spacing: 0.5px;
+    line-height:    14px;
+    letter-spacing: 0.35px;
     color:          #4b627d;
     text-transform: uppercase;
 }
@@ -11542,10 +11616,10 @@ span.CodeMirror-selectedtext { background: none; }
 .h3__default
 {
     position: 		relative;
-    min-height:     32px;
+    min-height:     24px;
     margin-bottom:  16px;
     font-size:      16px;
-    line-height:    32px;
+    line-height:    24px;
     color:          #42566e;
     letter-spacing: 0.2px;
 }
@@ -11707,10 +11781,10 @@ span.CodeMirror-selectedtext { background: none; }
 .h4__default
 {
     position: 		relative;
-    min-height:     32px;
+    min-height:     16px;
     margin-bottom:  16px;
     font-size:      14px;
-    line-height:    32px;
+    line-height:    16px;
     color:          #42566e;
     letter-spacing: 0;
 }
@@ -16754,10 +16828,8 @@ only used in type__carousel for now
 
 .paginator__arrows:focus::after
     {
-        top:    0;
-        bottom: 0;
-        left:   0;
-        right:  0;
+        width:          100%;
+        height:         100%;
         border-radius:  2px;
     }
 
