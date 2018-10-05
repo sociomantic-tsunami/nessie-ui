@@ -55,9 +55,6 @@ const Paginator = ( {
         </div>
     );
 
-
-    console.log( pageButtons );
-
     return (
         <div
             aria-label = "Pagination"
