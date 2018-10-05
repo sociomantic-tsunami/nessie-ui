@@ -12,22 +12,20 @@
 .default
 {
     width:          auto;
-
     margin-bottom:  var( --spacing-1 );
-
-    line-height:    var( --line-height-m );
     text-transform: none;
 
     .default
     {
-        display:        inline;
-        position:       static;
+        display:    inline;
+        position:   static;
     }
 
     a:any-link
     {
         color:              var( --PC-BLUE );
         text-decoration:    underline;
+
         &:hover
         {
             text-decoration:    none;
@@ -73,7 +71,16 @@
     color:  var( --PC-RED );
 }
 
+
 /* SIZES */
+
+.size__XXS,
+.size__XS,
+.size__S
+{
+    line-height:    var( --line-height-xs );
+}
+
 .size__XXS
 {
     font-size:  var( --typo-1 );
@@ -91,7 +98,15 @@
 
 .size__M
 {
-    font-size:  var( --typo-3 );
+
+    font-size:      var( --typo-3 );
+    line-height:    var( --line-height-s );
+}
+
+.size__L,
+.size__XL
+{
+    line-height:    var( --line-height-m );
 }
 
 .size__L
@@ -102,6 +117,12 @@
 .size__XL
 {
     font-size:  var( --typo-5 );
+}
+
+.size__XXL,
+.size__XXXL
+{
+    line-height:    var( --line-height-l );
 }
 
 .size__XXL

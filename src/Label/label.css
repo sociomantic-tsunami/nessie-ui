@@ -35,8 +35,8 @@
 {
     @extend %Nessie-SemiBold;
     font-size:      var( --typo-2 );
-    line-height:    var( --line-height-m );
-    letter-spacing: 0.5px;
+    line-height:    var( --line-height-xs );
+    letter-spacing: 0.35px;
     color:          var( --PC-GREY--D15 );
     text-transform: uppercase;
 }
