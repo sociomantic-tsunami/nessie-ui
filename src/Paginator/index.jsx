@@ -55,7 +55,7 @@ const Paginator = ( {
         </div>
     );
 
-    const pageButtonsMarkup  = (
+    const pageButtonsMarkup = (
         <div className = { cssMap.pageButtons }>
             <Text>{ pageButtons }</Text>
         </div>
