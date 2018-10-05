@@ -55,6 +55,12 @@ const Paginator = ( {
         </div>
     );
 
+    const pageButtonsMarkup  = (
+        <div className = { cssMap.pageButtons }>
+            <Text>{ pageButtons }</Text>
+        </div>
+    );
+
     return (
         <div
             aria-label = "Pagination"
@@ -84,11 +90,7 @@ const Paginator = ( {
 
             { showStartPage && showPrevEllipsis && ellipsis }
 
-            { ( pageButtons && pageButtons.length ) &&
-                <div className = { cssMap.pageButtons }>
-                    <Text>{ pageButtons }</Text>
-                </div>
-            }
+            { pageButtons && pageButtons.length ? pageButtonsMarkup : null }
 
             { showEndPage && showNextEllipsis && ellipsis }
 
