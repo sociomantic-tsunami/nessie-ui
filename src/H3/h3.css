@@ -12,12 +12,12 @@
 .default
 {
     position: 		relative;
-    min-height:     var( --line-height-l );
+    min-height:     var( --line-height-m );
     margin-bottom:  var( --spacing-2 );
 
     @extend %Nessie-SemiBold;
     font-size:      var( --typo-4 );
-    line-height:    var( --line-height-l );
+    line-height:    var( --line-height-m );
     color:          var( --PC-GREY--D25 );
     letter-spacing: 0.2px;
 }
