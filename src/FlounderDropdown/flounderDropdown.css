@@ -662,11 +662,14 @@
 
 .headerLevel__1 /* H1 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-4 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-4 ) + var( --spacing-1 ) );
 
-        font-size:      var( --typo-7 );
+        height:         var( --spacing-4 );
+
+        @extend %Nessie-Bold;
+        font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
         letter-spacing: 0.5px;
     }
@@ -685,9 +688,11 @@
 
 .headerLevel__2 /* H2 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-3 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-3 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
@@ -708,12 +713,14 @@
 
 .headerLevel__3 /* H3 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-4 );
-        line-height:    var( --line-height-l );
+        line-height:    var( --line-height-m );
         letter-spacing: 0.2px;
     }
 
@@ -731,12 +738,14 @@
 
 .headerLevel__4 /* H4 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-3 );
-        line-height:    var( --line-height-l );
+        line-height:    var( --line-height-s );
         letter-spacing: 0;
     }
 
