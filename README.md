@@ -32,7 +32,7 @@ import { ComponentName } from 'nessie-ui';
 
 ### CSS
 
-The Nessie CSS is bundled within the JS bundle. You can either [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to create a separate `.CSS` file.
+The Nessie CSS is bundled within the JS bundle. If you want to create a separate `.css` file, you can do that with [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin).
 
 ### Sprite map
 
