@@ -50,10 +50,10 @@
 
 .type__day
 {
-    height:             calc( var( --spacing-4 ) - 2px );
+    height:             calc( var( --spacing-4 ) );
     width:              var( --spacing-4 );
     min-width:          var( --spacing-4 ); /* IE fix */
-    border-radius:      100%;
+    border-radius:      50%;
     margin:             4px;
 
     &:last-child
