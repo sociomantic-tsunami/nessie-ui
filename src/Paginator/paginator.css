@@ -45,7 +45,7 @@
 
     color:              var( --PC-GREY--L55 );
 
-    @extend %Nessie-Bold;
+    @extend %Nessie-SemiBold;
 
     font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
@@ -96,7 +96,6 @@
 {
     display:            inline-flex;
     align-items:        flex-start;
-    font-size:          var( --typo-3 );
 
     & > *
     {
