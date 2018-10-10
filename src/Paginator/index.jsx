@@ -78,7 +78,7 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( startPage ) }>
-                    <Text role = { null }>{ startPage }</Text>
+                    { startPage }
                 </button>
             }
 
@@ -99,7 +99,7 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( endPage ) }>
-                    <Text role = { null }> { endPage }</Text>
+                    { endPage }
                 </button>
             }
 
