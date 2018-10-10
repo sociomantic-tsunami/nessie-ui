@@ -13,6 +13,12 @@
 {
     color:          var( --PC-GREY--L70 );
     text-transform: none;
+    margin-right:   var( --spacing-2 );
+
+    &:last-child
+    {
+        margin-right: 0;
+    }
 
     .content
     {
