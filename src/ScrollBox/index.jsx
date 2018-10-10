@@ -334,6 +334,42 @@ export default class ScrollBox extends Component
         }
     }
 
+    handleRenderScrollButton( dir )
+    {
+        const {
+            scrollTop,
+            scrollLeft,
+            clientHeight,
+            clientWidth,
+            scrollHeight,
+            scrollWidth,
+        } = this.state;
+
+        if ( dir === 'Up' && scrollTop === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Down' &&
+        ( scrollTop + clientHeight ) >= scrollHeight )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Left' && scrollLeft === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Right' &&
+        ( scrollLeft + clientWidth ) >= scrollWidth )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     handleScroll( e )
     {
         this.forceUpdate();
@@ -415,24 +451,26 @@ export default class ScrollBox extends Component
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push(
-                    <IconButton
-                        className     = { props.cssMap[ `icon${dir}` ] }
-                        hasBackground = {
-                            props.scrollIndicatorVariant === 'circle' }
-                        iconSize      = "S"
-                        iconType      = { dir.toLowerCase() }
-                        key           = { dir }
-                        onClick       = { e =>
-                            this.handleClickScrollButton( dir, e )
-                        } />
-                );
+                if ( this.handleRenderScrollButton( dir ) )
+                {
+                    scrollButtons.push(
+                        <IconButton
+                            className     = { props.cssMap[ `icon${dir}` ] }
+                            hasBackground = {
+                                props.scrollIndicatorVariant === 'circle' }
+                            iconSize      = "S"
+                            iconType      = { dir.toLowerCase() }
+                            key           = { dir }
+                            onClick       = { e =>
+                                this.handleClickScrollButton( dir, e )
+                            } />
+                    );
+                }
             }
         } );
 
         return scrollButtons;
     }
-
 
     render()
     {
