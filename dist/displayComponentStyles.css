@@ -2470,6 +2470,8 @@ template {
     width:          auto;
     margin-bottom:  8px;
     text-transform: none;
+
+    line-height:    24px;
 }
 
 .text__default .text__default
@@ -2563,10 +2565,12 @@ template {
 
 /* SIZES */
 
-.text__size__XXS, .text__size__XS, .text__size__S
+/* .size__XXS,
+.size__XS,
+.size__S
 {
-    line-height:    14px;
-}
+    line-height:    var( --line-height-xs );
+} */
 
 .text__size__XXS
 {
@@ -2585,15 +2589,15 @@ template {
 
 .text__size__M
 {
-
     font-size:      14px;
-    line-height:    16px;
+    /* line-height:    var( --line-height-s ); */
 }
 
-.text__size__L, .text__size__XL
+/* .size__L,
+.size__XL
 {
-    line-height:    24px;
-}
+    line-height:    var( --line-height-m );
+} */
 
 .text__size__L
 {
@@ -2605,10 +2609,11 @@ template {
     font-size:  18px;
 }
 
-.text__size__XXL, .text__size__XXXL
+/* .size__XXL,
+.size__XXXL
 {
-    line-height:    32px;
-}
+    line-height:    var( --line-height-l );
+} */
 
 .text__size__XXL
 {
@@ -10382,10 +10387,10 @@ span.CodeMirror-selectedtext { background: none; }
 
 .datePickerItem__type__day
 {
-    height:             30px;
+    height:             32px;
     width:              32px;
     min-width:          32px; /* IE fix */
-    border-radius:      100%;
+    border-radius:      50%;
     margin:             4px;
 }
 
@@ -11912,6 +11917,13 @@ span.CodeMirror-selectedtext { background: none; }
     font-style: normal;
 }
 
+.flounderDropdown__headerLevel__1 .flounderDropdown__main .flounderDropdown__selectedDisplayed
+{
+    font-family: Nessie-Bold, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root
 {
     /*  TYPOGRAPHY SIZES */
@@ -12641,11 +12653,12 @@ span.CodeMirror-selectedtext { background: none; }
         background-image:   url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgICA8cGF0aCBmaWxsPSIjMTlhMmUyIiBkPSJNOC43MTI3Njg4NCwxMC4yOTg2MDEgQzguMzI1Mzk2ODYsOS45MDQ5NDk2MiA3LjY5MjI1MjM0LDkuODk5ODU5MTggNy4yOTg2MDA5OCwxMC4yODcyMzEyIEM2LjkwNDk0OTYyLDEwLjY3NDYwMzEgNi44OTk4NTkxOCwxMS4zMDc3NDc3IDcuMjg3MjMxMTYsMTEuNzAxMzk5IEwxMS4xNDQ2Nzc0LDE1LjYyMTM3NTIgQzExLjYwOTUyMzgsMTYuMDkzNzU2OSAxMi4zNjkyOTcyLDE2LjA5OTg2NTQgMTIuODQxNjc4OCwxNS42MzUwMTkgQzEyLjg0NjI1MTEsMTUuNjMwNDk1NSAxNC4xMzY2MTQ1LDE0LjMxOTI4ODggMTYuNzEyNzY4OCwxMS43MDEzOTkgQzE3LjEwMDE0MDgsMTEuMzA3NzQ3NyAxNy4wOTUwNTA0LDEwLjY3NDYwMzEgMTYuNzAxMzk5LDEwLjI4NzIzMTIgQzE2LjMwNzc0NzcsOS44OTk4NTkxOCAxNS42NzQ2MDMxLDkuOTA0OTQ5NjIgMTUuMjg3MjMxMiwxMC4yOTg2MDEgTDEyLDEzLjYzOTExODggTDguNzEyNzY4ODQsMTAuMjk4NjAxIFoiLz4KPC9zdmc+Cg==);
     }
 
-.flounderDropdown__headerLevel__1 .flounderDropdown__selectedDisplayed
+.flounderDropdown__headerLevel__1 .flounderDropdown__main .flounderDropdown__selectedDisplayed
     {
-        padding-right:  48px;
+        padding-right:  40px;
 
-        font-size:      24px;
+        height:         32px;
+        font-size:      20px;
         line-height:    32px;
         letter-spacing: 0.5px;
     }
@@ -12661,9 +12674,11 @@ span.CodeMirror-selectedtext { background: none; }
         height: 32px;
     }
 
-.flounderDropdown__headerLevel__2 .flounderDropdown__selectedDisplayed
+.flounderDropdown__headerLevel__2 .flounderDropdown__main .flounderDropdown__selectedDisplayed
     {
-        padding-right:  40px;
+        padding-right:  32px;
+
+        height:         32px;
 
         font-size:      20px;
         line-height:    32px;
@@ -12681,12 +12696,14 @@ span.CodeMirror-selectedtext { background: none; }
         height: 24px;
     }
 
-.flounderDropdown__headerLevel__3 .flounderDropdown__selectedDisplayed
+.flounderDropdown__headerLevel__3 .flounderDropdown__main .flounderDropdown__selectedDisplayed
     {
-        padding-right:  32px;
+        padding-right:  24px;
+
+        height:         32px;
 
         font-size:      16px;
-        line-height:    32px;
+        line-height:    24px;
         letter-spacing: 0.2px;
     }
 
@@ -12701,12 +12718,14 @@ span.CodeMirror-selectedtext { background: none; }
         height: 16px;
     }
 
-.flounderDropdown__headerLevel__4 .flounderDropdown__selectedDisplayed
+.flounderDropdown__headerLevel__4 .flounderDropdown__main .flounderDropdown__selectedDisplayed
     {
-        padding-right:  32px;
+        padding-right:  24px;
+
+        height:         32px;
 
         font-size:      14px;
-        line-height:    32px;
+        line-height:    16px;
         letter-spacing: 0;
     }
 
@@ -16655,7 +16674,7 @@ only used in type__carousel for now
 
 .paginator__pageButton, .paginator__ellipsis
 {
-    font-family: Nessie-Bold, sans-serif;
+    font-family: Nessie-SemiBold, sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -16746,7 +16765,7 @@ only used in type__carousel for now
 
     color:              #afbccb;
 
-    font-size:          12px;
+    font-size:          14px;
     line-height:        16px;
     letter-spacing:     0.2px;
 
@@ -21110,7 +21129,13 @@ only used in type__carousel for now
                 -ms-flex:           none;
                     flex:           none;
             margin-bottom:  0;
+            margin-right:   16px;
         }
+
+.tabs__default .tabs__tabs > *:last-child
+            {
+                margin-right: 0;
+            }
 
 .tabs__default .tabs__secondaryControls
     {
@@ -22244,9 +22269,9 @@ only used in type__carousel for now
     {
         outline:    none;
 
-        -webkit-box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+        -webkit-box-shadow: 0 0 0 2px rgb(186, 227, 246);
 
-                box-shadow: 0 0 0 2px rgba(25, 162, 226, 0.3);
+                box-shadow: 0 0 0 2px rgb(186, 227, 246);
     }
 
 .toggleButton__default:focus .toggleButton__flexContainer
