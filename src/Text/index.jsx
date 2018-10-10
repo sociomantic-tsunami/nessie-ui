@@ -147,7 +147,7 @@ Text.defaultProps =
     role             : 'default',
     size             : 'M',
     text             : undefined,
-    textAlign        : 'left',
+    textAlign        : undefined,
     textRef          : undefined,
     variant          : 'Regular',
 };
