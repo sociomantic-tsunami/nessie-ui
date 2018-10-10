@@ -45,9 +45,9 @@
 
     color:              var( --PC-GREY--L55 );
 
-    @extend %Nessie-Bold;
+    @extend %Nessie-SemiBold;
 
-    font-size:          var( --typo-2 );
+    font-size:          var( --typo-3 );
     line-height:        var( --line-height-s );
     letter-spacing:     0.2px;
 

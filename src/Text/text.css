@@ -74,12 +74,12 @@
 
 /* SIZES */
 
-.size__XXS,
+/* .size__XXS,
 .size__XS,
 .size__S
 {
     line-height:    var( --line-height-xs );
-}
+} */
 
 .size__XXS
 {
@@ -98,16 +98,15 @@
 
 .size__M
 {
-
     font-size:      var( --typo-3 );
-    line-height:    var( --line-height-s );
+    /* line-height:    var( --line-height-s ); */
 }
 
-.size__L,
+/* .size__L,
 .size__XL
 {
     line-height:    var( --line-height-m );
-}
+} */
 
 .size__L
 {
@@ -119,11 +118,11 @@
     font-size:  var( --typo-5 );
 }
 
-.size__XXL,
+/* .size__XXL,
 .size__XXXL
 {
     line-height:    var( --line-height-l );
-}
+} */
 
 .size__XXL
 {
