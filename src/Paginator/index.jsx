@@ -86,7 +86,7 @@ const Paginator = ( {
 
             { ( pageButtons && pageButtons.length > 0 ) &&
                 <div className = { cssMap.pageButtons }>
-                    <Text>{ pageButtons }</Text>
+                    { pageButtons }
                 </div>
             }
 
