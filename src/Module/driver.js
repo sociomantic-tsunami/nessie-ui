@@ -30,7 +30,8 @@ export default class ModuleDriver
     clickToggle()
     {
         const toggle = this.wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === ( 'up' || 'down' ) );
+            .findWhere( node => [ 'up', 'down' ]
+                .includes( node.props().iconType ) );
 
         if ( toggle.length === 0 )
         {
