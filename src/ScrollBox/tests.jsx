@@ -114,8 +114,8 @@ describe( 'ScrollBoxDriver', () =>
             scrollHeight : 200,
             clientWidth  : 100,
             scrollWidth  : 200,
-            scrollLeft   : 0,
-            scrollTop    : 0,
+            scrollLeft   : 50,
+            scrollTop    : 50,
         };
         wrapper.setState();
     } );
@@ -182,7 +182,7 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollUp();
 
-            expect( instance.innerRef.scrollTop ).toBe( -50 );
+            expect( instance.innerRef.scrollTop ).toBe( 0 );
         } );
 
         test( 'clicking scrollRight indicator should scroll to the right', () =>
@@ -194,7 +194,7 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollRight();
 
-            expect( instance.innerRef.scrollLeft ).toBe( 50 );
+            expect( instance.innerRef.scrollLeft ).toBe( 100 );
         } );
 
         test( 'clicking scrollDown indicator should scroll to the bottom', () =>
@@ -206,7 +206,7 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollDown();
 
-            expect( instance.innerRef.scrollTop ).toBe( 50 );
+            expect( instance.innerRef.scrollTop ).toBe( 100 );
         } );
 
         test( 'clicking scrollLeft indicator should scroll down', () =>
@@ -218,7 +218,7 @@ describe( 'ScrollBoxDriver', () =>
 
             wrapper.driver().clickScrollLeft();
 
-            expect( instance.innerRef.scrollLeft ).toBe( -50 );
+            expect( instance.innerRef.scrollLeft ).toBe( 0 );
         } );
     } );
 
