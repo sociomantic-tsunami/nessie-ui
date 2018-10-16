@@ -86,6 +86,7 @@ simulate change since it is disabled';
             test( 'throws the expected error when isReadOnly', () =>
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                console.log( wrapper.debug() );
 
                 const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
 simulate change since it is read only';

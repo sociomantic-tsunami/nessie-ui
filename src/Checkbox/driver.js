@@ -23,8 +23,9 @@ export default class CheckboxDriver
 
     blur()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -42,8 +43,9 @@ export default class CheckboxDriver
 
     focus()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -61,9 +63,10 @@ export default class CheckboxDriver
 
     change()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
-        const node      = this.control.getNode();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+        const node   = this.control.getNode();
 
         if ( props.isDisabled )
         {
@@ -82,8 +85,9 @@ export default class CheckboxDriver
 
     click()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -101,8 +105,9 @@ export default class CheckboxDriver
 
     mouseOver()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -116,8 +121,9 @@ export default class CheckboxDriver
 
     mouseOut()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
