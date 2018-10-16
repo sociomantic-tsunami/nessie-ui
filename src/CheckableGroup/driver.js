@@ -29,8 +29,8 @@ export default class CheckableGroupDriver
 
     change( index = 0 )
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.list}` ).text();
+        const props     = this.wrapper.props();
+        const { label } = props;
 
         if ( props.isDisabled )
         {

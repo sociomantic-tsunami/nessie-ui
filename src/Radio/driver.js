@@ -14,8 +14,9 @@ export default class RadioDriver
 
     blur()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -33,8 +34,9 @@ export default class RadioDriver
 
     focus()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -52,9 +54,10 @@ export default class RadioDriver
 
     change()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
-        const node      = this.control.getNode();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+        const node  = this.control.getNode();
 
         if ( props.isDisabled )
         {
@@ -78,8 +81,9 @@ export default class RadioDriver
 
     click()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -97,8 +101,9 @@ export default class RadioDriver
 
     mouseOver()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -111,8 +116,9 @@ export default class RadioDriver
 
     mouseOut()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
