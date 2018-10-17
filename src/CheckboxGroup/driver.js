@@ -5,7 +5,6 @@ export default class CheckboxGroupDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.cssMap     = wrapper.props().cssMap;
         this.checkables = wrapper.find( CheckableGroup );
     }
 

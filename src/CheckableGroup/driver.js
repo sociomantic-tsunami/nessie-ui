@@ -11,8 +11,8 @@ import { Checkbox, Radio } from '../index';
 
 
 const ERR = {
-    CHECKABLEGROUP_ERR : ( label, event, state ) => `CheckableGroup \
-'${label}' cannot simulate ${event} since it is ${state}`,
+    CHECKABLEGROUP_ERR : ( event, state ) => `CheckableGroup cannot simulate \
+${event} since it is ${state}`,
 };
 
 
@@ -21,7 +21,6 @@ export default class CheckableGroupDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.cssMap     = wrapper.props().cssMap;
         this.checkables = wrapper.find( Checkbox ).length ?
             wrapper.find( Checkbox ) :
             wrapper.find( Radio );
@@ -29,19 +28,18 @@ export default class CheckableGroupDriver
 
     change( index = 0 )
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CHECKABLEGROUP_ERR( label, 'change', 'disabled' ) );
+                .CHECKABLEGROUP_ERR( 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .CHECKABLEGROUP_ERR( label, 'change', 'read only' ) );
+                .CHECKABLEGROUP_ERR( 'change', 'read only' ) );
         }
 
 
