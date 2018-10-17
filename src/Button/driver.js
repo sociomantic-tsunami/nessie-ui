@@ -18,14 +18,14 @@ export default class ButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.button  = wrapper
-            .find( `.${this.wrapper.props().cssMap.default}` ).first();
+        this.cssMap  = wrapper.props().cssMap;
+        this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
 
     click()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
@@ -49,7 +49,7 @@ export default class ButtonDriver
     mouseOver()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
@@ -68,7 +68,7 @@ export default class ButtonDriver
     mouseOut()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
@@ -87,7 +87,7 @@ export default class ButtonDriver
     focus()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
@@ -111,7 +111,7 @@ export default class ButtonDriver
     blur()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
