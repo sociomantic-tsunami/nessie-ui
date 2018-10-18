@@ -1,4 +1,5 @@
 import { InputField } from '../index';
+import InputContainer from '../proto/InputContainer';
 
 const ERR = {
     VALUEDTEXTINPUT_ERR : ( event, state ) =>
@@ -90,13 +91,13 @@ export default class ValuedTextInputDriver
 
     mouseOver()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseenter' );
+        this.wrapper.find( InputContainer ).simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseleave' );
+        this.wrapper.find( InputContainer ).simulate( 'mouseleave' );
         return this;
     }
 }
