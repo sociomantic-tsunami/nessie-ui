@@ -20,13 +20,16 @@
  * otherwise I think it's possible to change the elements through
  * this.flounderControl.refs and re-render the wrapper.
  */
+
+import InputContainer from '../proto/InputContainer';
+
 export default class FlounderDropdownDriver
 {
     constructor( wrapper )
     {
         // Nessie Control
         this.wrapper = wrapper;
-        this.control = wrapper.find( 'InputContainer' );
+        this.control = wrapper.find( InputContainer );
         // the 3rd party control
         this.innerFlounderComponent = wrapper.node.flounderInstance;
     }
