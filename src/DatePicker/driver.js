@@ -7,6 +7,9 @@
  *
  */
 
+import DatePickerHeader from './DatePickerHeader';
+import DatePickerItem   from './DatePickerItem';
+
 const ERR = {
     ITEM_ERR : ( label, state ) =>
         `Item '${label}' cannot be clicked since it is ${state}`,
@@ -24,16 +27,16 @@ export default class DatePickerDriver
     {
         this.wrapper = wrapper;
         this.cssMap  = wrapper.props().cssMap;
-        this.header  = wrapper.find( 'DatePickerHeader' ).props().cssMap;
+        this.header  = wrapper.find( DatePickerHeader ).props().cssMap;
         this.hour    = this.header.hour;
         this.min     = this.header.min;
     }
 
     clickItem( index = 0 )
     {
-        const dateItem = this.wrapper.find( 'DatePickerItem' )
-            .at( index ).props();
-        const { label } = dateItem;
+        const dateItem = this.wrapper.find( DatePickerItem )
+            .at( index );
+        const { label } = dateItem.props();
 
         if ( dateItem.isDisabled )
         {
@@ -45,8 +48,7 @@ export default class DatePickerDriver
             throw new Error( ERR.ITEM_ERR( label, 'read only' ) );
         }
 
-        this.wrapper.find( 'DatePickerItem' ).at( index )
-            .simulate( 'click' );
+        dateItem.simulate( 'click' );
         return this;
     }
 
