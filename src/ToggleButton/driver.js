@@ -15,7 +15,7 @@ export default class ToggleButtonDriver
     click()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -42,7 +42,7 @@ export default class ToggleButtonDriver
     mouseOver()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -63,7 +63,7 @@ export default class ToggleButtonDriver
     mouseOut()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -84,7 +84,7 @@ export default class ToggleButtonDriver
     focus()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -111,7 +111,7 @@ export default class ToggleButtonDriver
     blur()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
