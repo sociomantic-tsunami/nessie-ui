@@ -10329,28 +10329,7 @@ span.CodeMirror-selectedtext { background: none; }
 
 .datePickerItem__default
 {
-    display:            -webkit-box;
-    display:            -webkit-flex;
-    display:            -ms-flexbox;
-    display:            flex;
-
-    -webkit-box-orient:     horizontal;
-
-    -webkit-box-direction:     normal;
-
-    -webkit-flex-direction:     row;
-
-        -ms-flex-direction:     row;
-
-            flex-direction:     row;
-    -webkit-box-align:        center;
-    -webkit-align-items:        center;
-        -ms-flex-align:        center;
-            align-items:        center;
-    -webkit-box-pack:    center;
-    -webkit-justify-content:    center;
-        -ms-flex-pack:    center;
-            justify-content:    center;
+    display:            block;
 
     padding:            0;
     border:             1px solid transparent;
@@ -13337,6 +13316,11 @@ span.CodeMirror-selectedtext { background: none; }
     -webkit-flex-wrap:  wrap;
         -ms-flex-wrap:  wrap;
             flex-wrap:  wrap;
+}
+
+.grid__hasFullWidth
+{
+    width:      100%;
 }
 
 .grid__hasMinHeight
