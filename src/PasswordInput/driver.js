@@ -10,8 +10,8 @@
 import { IconButton, InputField, Tooltip } from '../index';
 
 const ERR = {
-    PASS_ERR : ( label, event, state ) => `PasswordInput '${label}' cannot \
-simulate ${event} since it is ${state}`,
+    PASS_ERR : ( event, state ) => `PasswordInput cannot simulate ${event} \
+since it is ${state}`,
 };
 
 export default class PasswordInput
@@ -24,16 +24,15 @@ export default class PasswordInput
     blur()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'blur', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'blur', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'blur', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'blur', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().blur();
@@ -43,16 +42,15 @@ export default class PasswordInput
     focus()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'focus', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'focus', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'focus', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();
@@ -62,16 +60,15 @@ export default class PasswordInput
     change( val )
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'change', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'change', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'change', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'change', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().change( val );
@@ -81,16 +78,15 @@ export default class PasswordInput
     keyPress()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'keyPress', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'keyPress', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'keyPress', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'keyPress', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().keyPress();
@@ -100,16 +96,15 @@ export default class PasswordInput
     mouseOver()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'mouseOver', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'mouseOver', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'mouseOver', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'mouseOver', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseenter' );
@@ -119,16 +114,15 @@ export default class PasswordInput
     mouseOut()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'mouseOut', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'mouseOut', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'mouseOut', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'mouseOut', 'read only' ) );
         }
 
         this.wrapper.simulate( 'mouseleave' );
@@ -138,16 +132,15 @@ export default class PasswordInput
     clickIcon()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'clickIcon', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'clickIcon', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
-            throw new Error( ERR.PASS_ERR( label, 'clickIcon', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'clickIcon', 'read only' ) );
         }
 
         this.wrapper.find( IconButton ).simulate( 'click' );
@@ -157,18 +150,17 @@ export default class PasswordInput
     mouseOverIcon()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .PASS_ERR( label, 'mouseOverIcon', 'disabled' ) );
+                .PASS_ERR( 'mouseOverIcon', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .PASS_ERR( label, 'mouseOverIcon', 'read only' ) );
+                .PASS_ERR( 'mouseOverIcon', 'read only' ) );
         }
 
         this.wrapper.find( Tooltip ).driver().mouseOver();
@@ -178,18 +170,17 @@ export default class PasswordInput
     mouseOutIcon()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .PASS_ERR( label, 'mouseOutIcon', 'disabled' ) );
+                .PASS_ERR( 'mouseOutIcon', 'disabled' ) );
         }
 
         if ( props.isReadOnly )
         {
             throw new Error( ERR
-                .PASS_ERR( label, 'mouseOutIcon', 'read only' ) );
+                .PASS_ERR( 'mouseOutIcon', 'read only' ) );
         }
 
         this.wrapper.find( Tooltip ).driver().mouseOut();
