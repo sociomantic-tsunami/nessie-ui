@@ -146,14 +146,10 @@
     {
         position:         absolute;
         background-color: transparent;
-        pointer-events:   none;
-        visibility:       hidden;
 
         svg
         {
             fill:           var( --PC-GREY--D5 );
-            pointer-events: auto;
-            visibility:     visible;
             z-index:        1;
         }
 
