@@ -22,6 +22,7 @@ const Text = ( {
     letterSpacing,
     lineHeight,
     noWrap,
+    onClick,
     overflowIsHidden,
     role,
     size,
@@ -40,8 +41,9 @@ const Text = ( {
             textAlign,
             variant,
         } ) }
-        style = { { color, letterSpacing, lineHeight } }
-        ref = { textRef }>
+        onClick = { onClick }
+        style   = { { color, letterSpacing, lineHeight } }
+        ref     = { textRef }>
         { children || text }
     </div>
 );
@@ -81,6 +83,10 @@ Text.propTypes =
      */
     noWrap           : PropTypes.bool,
     /**
+     *  OnClick callback function: ( e ) => { ... }
+     */
+    onClick          : PropTypes.func,
+    /**
      *  Clip overflow
      */
     overflowIsHidden : PropTypes.bool,
@@ -88,10 +94,11 @@ Text.propTypes =
      *  Role (style) to apply to text
      */
     role             : PropTypes.oneOf( [
-        'default',
-        'subtle',
-        'promoted',
         'critical',
+        'default',
+        'link',
+        'promoted',
+        'subtle',
     ] ),
     /**
      *  Size to apply to text
@@ -117,11 +124,11 @@ Text.propTypes =
     /**
      *  Callback that receives ref to the text div: ref => ...
      */
-    textRef : PropTypes.func,
+    textRef   : PropTypes.func,
     /**
      *  Style to apply to text
      */
-    variant : PropTypes.oneOf( [
+    variant   : PropTypes.oneOf( [
         'Light',
         'LightIt',
         'Regular',
@@ -143,6 +150,7 @@ Text.defaultProps =
     letterSpacing    : undefined,
     lineHeight       : undefined,
     noWrap           : false,
+    onClick          : undefined,
     overflowIsHidden : false,
     role             : 'default',
     size             : 'M',
