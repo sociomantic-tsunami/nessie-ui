@@ -15,6 +15,12 @@ export default class TextDriver
         this.cssMap  = wrapper.prop( 'cssMap' );
     }
 
+    click()
+    {
+        this.wrapper.simulate( 'click' );
+        return this;
+    }
+
     getContent()
     {
         if ( this.wrapper.prop( 'children' ) )
