@@ -160,6 +160,15 @@
             position:   absolute;
             visibility: visible;
         }
+
+        &:focus
+        {
+            &::after
+            {
+                border-color: transparent;
+                box-shadow: none;
+            }
+        }
     }
 
     .iconDown
