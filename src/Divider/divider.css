@@ -14,8 +14,26 @@
     position: 		        relative;
     margin-top:             var( --spacing-2 );
     margin-bottom:          var( --spacing-3 );
+    margin-left:            0;
+    margin-right:           0;
+    padding:                0 !important; /* resets padding set through old grid specificity */
     height:                 1px;
 
     border:                 none;
-    background-color:       color( var( --GS-2 ) a( 20% ) );
+    background-color:       var( --PC-GREY--L25 );
+
+    flex:                   0 1 auto;
+}
+
+.isVertical
+{
+    height:         auto;
+    width:          1px;
+
+    margin-top:     0;
+    margin-bottom:  0;
+    margin-left:    var( --spacing-2 );
+    margin-right:   var( --spacing-3 );
+
+    flex:           1 0 auto;
 }
