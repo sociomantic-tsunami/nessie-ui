@@ -7,7 +7,7 @@
  *
  */
 
-import { Checkbox, Radio } from '../index';
+import { Checkbox, Radio } from 'nessie-ui';
 
 
 const ERR = {

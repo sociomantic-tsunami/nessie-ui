@@ -7,7 +7,7 @@
  *
  */
 
-import { Slider } from '../index';
+import { Slider } from 'nessie-ui';
 
 export default class SliderGroupDriver
 {

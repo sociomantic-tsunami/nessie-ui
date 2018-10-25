@@ -7,7 +7,7 @@
  *
  */
 
-import { Tag } from '../index';
+import { Tag } from 'nessie-ui';
 
 const ERR = {
     TAGINPUT_ERR : ( event, state ) =>
