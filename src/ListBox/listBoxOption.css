@@ -40,13 +40,7 @@
     &:hover,
     &.active
     {
-        background:     var( --PC-BLUE );
-
-        .optionText,
-        .description
-        {
-            color:      var( --PC-WHITE );
-        }
+        background:     var( --PC-GREY--L95 );
     }
 }
 
@@ -62,7 +56,12 @@
 
 .selected
 {
-    background:         color( var( --PC-BLUE ) a( 10% ) );
+    background:         var( --PC-GREY--L95 );
+
+    &.optionText
+    {
+        @extend         %Nessie-Bold;
+    }
 }
 
 .disabled
