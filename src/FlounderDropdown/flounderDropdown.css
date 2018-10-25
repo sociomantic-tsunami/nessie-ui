@@ -102,7 +102,6 @@
         .selectedDisplayed
         {
             color:          var( --PC-GREY--D5 );
-            opacity:        0.5;
 
             &[data-value=""]
             {
@@ -251,8 +250,7 @@
         &:hover,
         &:hover .description
         {
-            background-color: var( --PC-BLUE );
-            color:      var( --PC-WHITE );
+            background-color:   var( --PC-GREY--L95 );
         }
 
         & > span,
@@ -264,7 +262,7 @@
 
     .selected:not( .section )
     {
-        background: color( var( --PC-BLUE ) a( 10% ) );
+        background:     var( --PC-GREY--L95 );
     }
 
     .option.optionWithDescription
@@ -276,9 +274,9 @@
         line-height:    var( --line-height-m );
         color:          var( --PC-BLUE );
 
-        &:hover
+        &.selected
         {
-            color:  var( --PC-WHITE );
+            @extend     %Nessie-Bold;
         }
     }
 
