@@ -76,14 +76,14 @@ export default class TextInputDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TEXTINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 

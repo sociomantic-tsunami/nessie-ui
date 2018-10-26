@@ -76,7 +76,7 @@ export default class ValuedTextInputDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -84,7 +84,7 @@ export default class ValuedTextInputDriver
                 .VALUEDTEXTINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
