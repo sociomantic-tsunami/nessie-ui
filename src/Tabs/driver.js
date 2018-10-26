@@ -7,7 +7,7 @@
  *
  */
 
-import { TabButton } from '../index';
+import { TabButton } from 'nessie-ui';
 
 export default class TabsDriver
 {

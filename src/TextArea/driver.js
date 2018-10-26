@@ -7,7 +7,7 @@
  *
  */
 
-import { InputField } from '../index';
+import { InputField } from 'nessie-ui';
 
 const ERR = {
     TEXTAREA_ERR : ( event, state ) =>

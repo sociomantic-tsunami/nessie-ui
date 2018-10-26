@@ -7,7 +7,7 @@
  *
  */
 
-import { CheckableGroup } from '../index';
+import { CheckableGroup } from 'nessie-ui';
 
 export default class RadioGroupDriver
 {

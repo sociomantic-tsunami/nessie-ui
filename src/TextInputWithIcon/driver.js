@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField, Tooltip } from '../index';
+import { IconButton, InputField, Tooltip } from 'nessie-ui';
 
 export default class TextInputWithIconDriver
 {

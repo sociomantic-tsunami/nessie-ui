@@ -1,4 +1,4 @@
-import { TableCell } from '../index';
+import { TableCell } from 'nessie-ui';
 
 export default class TableDriver
 {

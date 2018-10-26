@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField, Tooltip } from '../index';
+import { IconButton, InputField, Tooltip } from 'nessie-ui';
 
 const ERR = {
     PASS_ERR : ( label, event, state ) => `PasswordInput '${label}' cannot \

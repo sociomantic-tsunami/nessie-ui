@@ -1,4 +1,4 @@
-import { InputField } from '../index';
+import { InputField } from 'nessie-ui';
 
 const ERR = {
     TEXTINPUT_ERR : ( event, state ) =>
