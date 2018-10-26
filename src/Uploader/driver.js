@@ -7,7 +7,7 @@
  *
  */
 
-import { Button, IconButton } from '../index';
+import { Button, IconButton } from 'nessie-ui';
 
 const ERR = {
     UPLOADER_ERR : ( event, state ) =>

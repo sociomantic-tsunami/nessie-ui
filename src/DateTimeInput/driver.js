@@ -7,7 +7,7 @@
  *
  */
 
-import { DatePicker, IconButton } from '../index';
+import { DatePicker, IconButton } from 'nessie-ui';
 
 
 export default class DateTimeInputDriver

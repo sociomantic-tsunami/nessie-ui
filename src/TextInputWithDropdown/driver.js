@@ -1,4 +1,4 @@
-import { InputField, FlounderDropdown } from '../index';
+import { InputField, FlounderDropdown } from 'nessie-ui';
 
 export default class TextInputWithDropdownDriver
 {

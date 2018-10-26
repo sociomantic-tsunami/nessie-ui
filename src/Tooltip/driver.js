@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton } from '../index';
+import { IconButton } from 'nessie-ui';
 
 const ERR = {
     TOOLTIP_ERR : ( event, state ) =>
