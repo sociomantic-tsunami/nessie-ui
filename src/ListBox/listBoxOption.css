@@ -34,7 +34,7 @@
     .optionText
     {
         margin:         0;
-        color:          var( --PC-GREY );
+        color:          var( --PC-GREY--D15 );
     }
 
     &:hover,
