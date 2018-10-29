@@ -53,7 +53,7 @@ export default class TextAreaDriver
         return this;
     }
 
-    change( val )
+    change( val, input = 'textarea' )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -65,7 +65,7 @@ export default class TextAreaDriver
             throw new Error( ERR.TEXTAREA_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( InputField ).driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val, input );
         return this;
     }
 

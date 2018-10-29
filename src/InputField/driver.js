@@ -46,9 +46,9 @@ export default class InputFieldDriver
         return this;
     }
 
-    change( val )
+    change( val, input = 'input' )
     {
-        const node = this.wrapper.getNode();
+        const node = this.wrapper.find( input ).getNode();
 
         if ( this.wrapper.props().isDisabled )
         {
@@ -64,6 +64,7 @@ export default class InputFieldDriver
 
         node.value = val;
         this.wrapper.simulate( 'change' );
+
         return this;
     }
 
