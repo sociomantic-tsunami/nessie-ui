@@ -242,7 +242,7 @@ describe( 'TextInputDriver', () =>
     } );
 
 
-    describe( 'change()', () =>
+    describe( 'change( val )', () =>
     {
         test( 'should trigger onChange callback prop once', () =>
         {

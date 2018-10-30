@@ -13,9 +13,8 @@ export default class TextInputWithIconDriver
 {
     constructor( wrapper )
     {
-        this.wrapper        = wrapper;
-        this.inputcontainer = wrapper.find( 'InputContainer' );
-        this.inputfield     = wrapper.find( InputField );
+        this.wrapper    = wrapper;
+        this.inputfield = wrapper.find( InputField );
     }
 
     change( val )
@@ -62,13 +61,13 @@ export default class TextInputWithIconDriver
 
     mouseOver()
     {
-        this.inputcontainer.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.inputcontainer.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 
