@@ -1,4 +1,4 @@
-import { Sorter } from '../index';
+import { Sorter } from 'nessie-ui';
 
 const ERRORS = {
     TABLECELL_CANNOT_TOGGLE : () =>

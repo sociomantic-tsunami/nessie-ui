@@ -21,15 +21,12 @@
  * this.flounderControl.refs and re-render the wrapper.
  */
 
-import InputContainer from '../proto/InputContainer';
-
 export default class FlounderDropdownDriver
 {
     constructor( wrapper )
     {
         // Nessie Control
         this.wrapper = wrapper;
-        this.control = wrapper.find( InputContainer );
         // the 3rd party control
         this.innerFlounderComponent = wrapper.node.flounderInstance;
     }
@@ -65,13 +62,13 @@ export default class FlounderDropdownDriver
 
     mouseOver()
     {
-        this.control.simulate( 'mouseenter' );
+        this.wrapper.children().simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.control.simulate( 'mouseleave' );
+        this.wrapper.children().simulate( 'mouseleave' );
         return this;
     }
 }

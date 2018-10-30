@@ -7,15 +7,14 @@
  *
  */
 
-import { IconButton, InputField, Tooltip } from '../index';
+import { IconButton, InputField, Tooltip } from 'nessie-ui';
 
 export default class TextInputWithIconDriver
 {
     constructor( wrapper )
     {
-        this.wrapper        = wrapper;
-        this.inputcontainer = wrapper.find( 'InputContainer' );
-        this.inputfield     = wrapper.find( InputField );
+        this.wrapper    = wrapper;
+        this.inputfield = wrapper.find( InputField );
     }
 
     change( val )
@@ -30,21 +29,21 @@ export default class TextInputWithIconDriver
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
-        this.inputfield.driver().keyDown();
+        this.inputfield.driver().keyDown( keyCode );
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
-        this.inputfield.driver().keyPress();
+        this.inputfield.driver().keyPress( keyCode );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
-        this.inputfield.driver().keyUp();
+        this.inputfield.driver().keyUp( keyCode );
         return this;
     }
 
@@ -62,13 +61,13 @@ export default class TextInputWithIconDriver
 
     mouseOver()
     {
-        this.inputcontainer.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.inputcontainer.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 

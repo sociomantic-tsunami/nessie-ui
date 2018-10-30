@@ -40,9 +40,9 @@ export default class ListBoxDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
-        this.wrapper.simulate( 'keyPress', { keyCode: 49 } );
+        this.wrapper.simulate( 'keyPress', { keyCode } );
         return this;
     }
 }

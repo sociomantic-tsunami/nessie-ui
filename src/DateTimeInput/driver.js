@@ -7,7 +7,7 @@
  *
  */
 
-import { DatePicker, IconButton } from '../index';
+import { DatePicker, IconButton } from 'nessie-ui';
 
 
 export default class DateTimeInputDriver
@@ -95,21 +95,21 @@ export default class DateTimeInputDriver
         return this;
     }
 
-    keyPressInput()
+    keyPressInput( keyCode )
     {
-        this.wrapper.driver().keyPressInput();
+        this.wrapper.driver().keyPressInput( keyCode );
         return this;
     }
 
-    keyPressHour()
+    keyPressHour( keyCode )
     {
-        this.calendar.driver().keyPressHour();
+        this.calendar.driver().keyPressHour( keyCode );
         return this;
     }
 
-    keyPressMinute()
+    keyPressMinute( keyCode )
     {
-        this.calendar.driver().keyPressMinute();
+        this.calendar.driver().keyPressMinute( keyCode );
         return this;
     }
 

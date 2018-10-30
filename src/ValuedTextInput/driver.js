@@ -1,5 +1,4 @@
-import { InputField } from '../index';
-import InputContainer from '../proto/InputContainer';
+import { InputField } from 'nessie-ui';
 
 const ERR = {
     VALUEDTEXTINPUT_ERR : ( event, state ) =>
@@ -77,7 +76,7 @@ export default class ValuedTextInputDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -85,19 +84,19 @@ export default class ValuedTextInputDriver
                 .VALUEDTEXTINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
     mouseOver()
     {
-        this.wrapper.find( InputContainer ).simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.find( InputContainer ).simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

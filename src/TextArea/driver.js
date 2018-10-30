@@ -7,7 +7,7 @@
  *
  */
 
-import { InputField } from '../index';
+import { InputField } from 'nessie-ui';
 
 const ERR = {
     TEXTAREA_ERR : ( event, state ) =>
@@ -53,7 +53,7 @@ export default class TextAreaDriver
         return this;
     }
 
-    change( val )
+    change( val, input = 'textarea' )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -65,7 +65,7 @@ export default class TextAreaDriver
             throw new Error( ERR.TEXTAREA_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( InputField ).driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val, input );
         return this;
     }
 
@@ -85,26 +85,26 @@ export default class TextAreaDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TEXTAREA_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
     mouseOver()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

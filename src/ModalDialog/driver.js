@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton } from '../index';
+import { IconButton } from 'nessie-ui';
 
 const ERR = {
     NOT_A_CAROUSEL : item => `Cannot trigger click on the "${item}" because \

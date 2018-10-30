@@ -74,7 +74,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    keyPressHour()
+    keyPressHour( key )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -92,11 +92,11 @@ export default class DatePickerDriver
         }
 
         this.wrapper.find( `.${this.hour}` )
-            .simulate( 'keyPress', { key: '3' } );
+            .simulate( 'keyPress', { key } );
         return this;
     }
 
-    keyPressMinute()
+    keyPressMinute( key )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -114,7 +114,7 @@ export default class DatePickerDriver
         }
 
         this.wrapper.find( `.${this.min}` )
-            .simulate( 'keyPress', { key: '8' } );
+            .simulate( 'keyPress', { key } );
         return this;
     }
 

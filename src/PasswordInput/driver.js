@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton, InputField, Tooltip } from '../index';
+import { IconButton, InputField, Tooltip } from 'nessie-ui';
 
 const ERR = {
     PASS_ERR : ( event, state ) => `PasswordInput cannot simulate ${event} \
@@ -75,7 +75,7 @@ export default class PasswordInput
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         const props = this.wrapper.props();
 
@@ -89,7 +89,7 @@ export default class PasswordInput
             throw new Error( ERR.PASS_ERR( 'keyPress', 'read only' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 

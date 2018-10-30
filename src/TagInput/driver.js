@@ -7,7 +7,7 @@
  *
  */
 
-import { Tag } from '../index';
+import { Tag } from 'nessie-ui';
 
 const ERR = {
     TAGINPUT_ERR : ( event, state ) =>
@@ -19,7 +19,6 @@ export default class TagInputDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper.find( 'InputContainer' );
     }
 
     clickClose( index = 0 )
@@ -52,12 +51,12 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'blur', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'blur' );
         return this;
     }
 
-    change()
+    change( val )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -69,8 +68,8 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'change', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
-            .simulate( 'change', { 'target': { 'value': 'b' } } );
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'change', { 'target': { val } } );
         return this;
     }
 
@@ -86,12 +85,12 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'focus', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'focus' );
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -103,12 +102,12 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyPress', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
-            .simulate( 'keyPress', { keyCode: 49 } );
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyPress', { keyCode } );
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -120,12 +119,12 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyDown', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
-            .simulate( 'keyDown', { keyCode: 49 } );
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyDown', { keyCode } );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -137,8 +136,8 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyUp', 'read only' ) );
         }
 
-        this.control.find( `.${this.control.props().cssMap.input}` )
-            .simulate( 'keyUp', { keyCode: 49 } );
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyUp', { keyCode } );
         return this;
     }
 
@@ -149,7 +148,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'mouseOver', 'disabled' ) );
         }
 
-        this.control.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
@@ -160,7 +159,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'mouseOut', 'disabled' ) );
         }
 
-        this.control.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

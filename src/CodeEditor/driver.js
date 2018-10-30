@@ -8,6 +8,7 @@
  */
 
 /* global document */
+
 const ERR = {
     CODEEDITOR_ERR : ( event, state ) =>
         `CodeEditor cannot simulate ${event} since it is ${state}`,
@@ -21,8 +22,6 @@ export default class CodeEditorDriver
         this.wrapper = wrapper;
         // the 3rd party control
         this.control = wrapper.node.codeMirror;
-
-        this.content = wrapper.find( 'InputContainer' ).first();
     }
 
     getCodeMirrorAPI()
