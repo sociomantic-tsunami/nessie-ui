@@ -86,7 +86,7 @@ export default class InputFieldDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -100,11 +100,11 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyPress', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyPress', { keyCode: 49 } );
+        this.wrapper.simulate( 'keyPress', { keyCode } );
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -118,11 +118,11 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyDown', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyDown', { keyCode: 49 } );
+        this.wrapper.simulate( 'keyDown', { keyCode } );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -136,7 +136,7 @@ export default class InputFieldDriver
                 .INPUTFIELD_ERROR( 'keyUp', 'read only' ) );
         }
 
-        this.wrapper.simulate( 'keyUp', { keyCode: 49 } );
+        this.wrapper.simulate( 'keyUp', { keyCode } );
         return this;
     }
 

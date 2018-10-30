@@ -56,7 +56,7 @@ export default class TagInputDriver
         return this;
     }
 
-    change()
+    change( val )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -69,7 +69,7 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'change', { 'target': { 'value': 'b' } } );
+            .simulate( 'change', { 'target': { val } } );
         return this;
     }
 
@@ -90,7 +90,7 @@ export default class TagInputDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -103,11 +103,11 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyPress', { keyCode: 49 } );
+            .simulate( 'keyPress', { keyCode } );
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -120,11 +120,11 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyDown', { keyCode: 49 } );
+            .simulate( 'keyDown', { keyCode } );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
@@ -137,7 +137,7 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyUp', { keyCode: 49 } );
+            .simulate( 'keyUp', { keyCode } );
         return this;
     }
 

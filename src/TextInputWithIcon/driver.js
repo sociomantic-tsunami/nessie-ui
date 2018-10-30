@@ -29,21 +29,21 @@ export default class TextInputWithIconDriver
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
-        this.inputfield.driver().keyDown();
+        this.inputfield.driver().keyDown( keyCode );
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
-        this.inputfield.driver().keyPress();
+        this.inputfield.driver().keyPress( keyCode );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
-        this.inputfield.driver().keyUp();
+        this.inputfield.driver().keyUp( keyCode );
         return this;
     }
 
