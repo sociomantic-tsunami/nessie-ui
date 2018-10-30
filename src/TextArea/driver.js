@@ -85,14 +85,14 @@ export default class TextAreaDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TEXTAREA_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 

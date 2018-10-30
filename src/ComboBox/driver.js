@@ -52,21 +52,21 @@ export default class ComboBoxDriver
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
-    keyDown()
+    keyDown( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyDown();
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
         return this;
     }
 
-    keyUp()
+    keyUp( keyCode )
     {
-        this.wrapper.find( InputField ).driver().keyUp();
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
         return this;
     }
 

@@ -78,7 +78,7 @@ export default class PasswordInput
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
         const props = this.wrapper.props();
         const { label } = props;
@@ -93,7 +93,7 @@ export default class PasswordInput
             throw new Error( ERR.PASS_ERR( label, 'keyPress', 'read only' ) );
         }
 
-        this.wrapper.find( InputField ).driver().keyPress();
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
