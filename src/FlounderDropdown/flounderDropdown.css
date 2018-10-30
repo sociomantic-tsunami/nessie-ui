@@ -520,7 +520,7 @@
         padding-left:           calc( var( --iconPosition ) + var( --iconSize ) + var( --spacing-2 ) );
 
         background-repeat:      no-repeat;
-        background-position:    var( --iconPosition ) center;
+        background-position:    var( --iconPosition ) 12px;
         background-size:        var( --iconSize );
     }
 

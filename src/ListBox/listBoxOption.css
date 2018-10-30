@@ -15,14 +15,15 @@
     align-items:        center;
 
     margin:             0;
-    padding:            var( --spacing-1 ) var( --spacing-2 );
+    padding:            var( --typo-2 ) 27px;
 
     cursor:             pointer;
 
     .icon
     {
         flex:           0 0 auto;
-        margin-right:   var( --spacing-2 );
+        align-self:     flex-start;
+        margin-right:   28px;
     }
 
     .textContainer

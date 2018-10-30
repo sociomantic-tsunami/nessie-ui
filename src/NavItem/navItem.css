@@ -20,7 +20,7 @@
     &:hover,
     &.current
     {
-        background-color:  var(--PC-BLUE--L90 );
+        background-color:  var( --PC-BLUE--L90 );
     }
 }
 
@@ -62,7 +62,7 @@
     &.fakeHovered,
     &.open
     {
-        background-color:  var(--PC-BLUE--L90 );
+        background-color:  var( --PC-BLUE--L90 );
     }
 
     & > .link
@@ -87,9 +87,9 @@
     & > .link
     {
         padding-top:       0;
-        padding-right:     calc( var( --spacing-2 ) - 1px );
+        padding-right:     var( --spacing-2 );
         padding-bottom:    0;
-        padding-left:      calc( var( --spacing-2 ) - 1px );
+        padding-left:      var( --spacing-2 );
 
         border-radius:     2px;
 
@@ -114,8 +114,8 @@
     &.open > .link,
     &.current > .link
     {
-        background-color:   var( --PC-BLUE );
-        color:              var( --PC-WHITE );
+        background-color:   var( --PC-GREY--L95 );
+        color:              var( --PC-BLUE );
     }
 }
 
@@ -179,7 +179,7 @@
 {
     & > .link
     {
-        padding-top:    12px;
+        padding-top:    0;
         padding-right:  calc( var( --spacing-3 ) - 1px );
         padding-bottom: 14px;
         padding-left:   calc( var( --spacing-3 ) - 1px );
