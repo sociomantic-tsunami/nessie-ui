@@ -98,13 +98,13 @@ export default class TextAreaDriver
 
     mouseOver()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.find( 'InputContainer' ).simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }
