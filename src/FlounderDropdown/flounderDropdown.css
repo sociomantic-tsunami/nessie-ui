@@ -18,7 +18,6 @@
     --optionHeight:         48px;
     --borderWidth:          1px;
     --iconSize:             24px;
-    --iconPosition:         27px;
 }
 
 
@@ -517,10 +516,10 @@
     .optionIcon__exclude,
     .optionIcon__includeExclude
     {
-        padding-left:           calc( var( --iconPosition ) + var( --iconSize ) + 28px );
+        padding-left:           calc( var( --iconSize ) * 3 );
 
         background-repeat:      no-repeat;
-        background-position:    var( --iconPosition ) 12px;
+        background-position:    var( --iconSize ) 12px;
         background-size:        var( --iconSize );
     }
 
