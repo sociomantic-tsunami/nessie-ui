@@ -53,6 +53,11 @@
         line-height:    var( --line-height-m );
         color:          var( --PC-BLUE );
     }
+
+    .description
+    {
+        color:          var( --PC-GREY--L40 );
+    }
 }
 
 .selected
@@ -78,6 +83,6 @@
     &.withDescription .optionText,
     .description
     {
-        color:          var( --PC-GREY--L40 );
+        color:          var( --PC-GREY--L70 );
     }
 }
