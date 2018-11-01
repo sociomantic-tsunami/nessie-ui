@@ -528,7 +528,7 @@
         padding-left:           calc( var( --iconSize ) * 3 );
 
         background-repeat:      no-repeat;
-        background-position:    var( --iconSize ) 10px;
+        background-position:    var( --iconSize ) 8px;
         background-size:        var( --iconSize );
     }
 
