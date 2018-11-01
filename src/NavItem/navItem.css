@@ -84,6 +84,11 @@
     background:            var( --PC-WHITE );
     border-radius:         6px;
 
+    &.current > .link
+    {
+        @extend %Nessie-Bold;
+    }
+
     & > .link
     {
         padding-top:       0;

@@ -28,7 +28,7 @@
 
     .headerText
     {
-        @extend %Nessie-RegularIt;
+        @extend %Nessie-SemiBoldIt;
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-s );

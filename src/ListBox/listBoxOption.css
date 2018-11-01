@@ -47,17 +47,19 @@
 
 .withDescription
 {
+    padding-top:        var( --spacing-1 );
+
     .optionText
     {
         font-size:      var( --typo-5 );
         line-height:    var( --line-height-m );
-        color:          var( --PC-BLUE );
     }
 
     .description
     {
         color:          var( --PC-GREY--L40 );
         line-height:    var( --line-height-s );
+        margin-top:     4px;
     }
 }
 

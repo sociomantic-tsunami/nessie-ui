@@ -229,8 +229,6 @@
     .option,
     .header
     {
-        min-height:     var( --line-height-m );
-
         margin:         0;
 
         padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
@@ -278,6 +276,8 @@
         line-height:    var( --line-height-m );
         color:          var( --PC-GREY--D15 );
 
+        padding-top:    var( --spacing-1 );
+
         &.selected
         {
             @extend %Nessie-Bold;
@@ -292,6 +292,8 @@
         color:          var( --PC-GREY--L40 );
         line-height:    var( --line-height-s );
         font-size:      var( --typo-3 );
+
+        margin-top:     4px;
     }
 
 
@@ -499,11 +501,13 @@
 
     .header
     {
-        @extend %Nessie-RegularIt;
+        @extend %Nessie-SemiBoldIt;
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
         color:          var( --PC-GREY--D25 );
+
+        min-height:     var( --line-height-m );
     }
 
     .option.optionIcon__approved,
