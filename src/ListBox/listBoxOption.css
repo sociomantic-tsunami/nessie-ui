@@ -57,6 +57,7 @@
     .description
     {
         color:          var( --PC-GREY--L40 );
+        line-height:    var( --line-height-s );
     }
 }
 
