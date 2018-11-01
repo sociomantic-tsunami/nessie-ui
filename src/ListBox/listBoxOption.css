@@ -42,6 +42,11 @@
     &.active
     {
         background:     var( --PC-GREY--L95 );
+
+        .optionText:not(.description)
+        {
+            color:      var( --PC-BLUE );
+        }
     }
 }
 

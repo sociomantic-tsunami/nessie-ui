@@ -231,11 +231,6 @@
     {
         margin:         0;
 
-        padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
-        padding-bottom: calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
-        padding-left:   var( --spacing-2 );
-        padding-right:  var( --spacing-2 );
-
         line-height:    var( --line-height-s );
         font-size:      var( --typo-3 );
         color:          var( --PC-GREY );
@@ -251,6 +246,11 @@
     .option.selected
     {
         cursor: pointer;
+
+        padding-top:    var( --spacing-2 );
+        padding-bottom: var( --spacing-2 );
+        padding-left:   var( --spacing-2 );
+        padding-right:  var( --spacing-2 );
 
         &:hover:not(.description)
         {
@@ -507,6 +507,11 @@
         line-height:    var( --line-height-m );
         color:          var( --PC-GREY--D25 );
 
+        padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
+        padding-bottom: calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
+        padding-left:   var( --spacing-2 );
+        padding-right:  var( --spacing-2 );
+
         min-height:     var( --line-height-m );
     }
 
@@ -523,8 +528,15 @@
         padding-left:           calc( var( --iconSize ) * 3 );
 
         background-repeat:      no-repeat;
-        background-position:    var( --iconSize ) 12px;
+        background-position:    var( --iconSize ) 10px;
         background-size:        var( --iconSize );
+    }
+
+    .optionIcon__include,
+    .optionIcon__exclude,
+    .optionIcon__includeExclude
+    {
+        background-position:    var( --iconSize ) 18px;
     }
 
     .option.optionIcon__approved
