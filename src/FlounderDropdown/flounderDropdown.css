@@ -684,6 +684,18 @@
         width:  calc( var( --spacing-4 ) );
         height: calc( var( --spacing-4 ) );
     }
+
+    /* Fixes IE 11 arrow alignment */
+    .main,
+    .main .selectedDisplayed {
+        display: inline;
+    }
+
+    .arrow
+    {
+        display: inline-block;
+        vertical-align: top;
+    }
 }
 
 .headerLevel__2 /* H2 */
