@@ -38,6 +38,8 @@
 
         margin:         0;
         color:          var( --PC-GREY--D15 );
+        font-size:      10px;
+        line-height:    8px;
     }
 
     &:hover,
@@ -50,25 +52,25 @@
             color:      var( --PC-BLUE );
         }
     }
-}
 
-.withDescription
-{
-    padding-top:        var( --spacing-1 );
-
-    .optionText
+    &.withDescription
     {
-        @extend %Nessie-Regular;
-        font-size:      var( --typo-5 );
-        line-height:    var( --line-height-m );
-    }
+        padding-top:        var( --spacing-1 );
 
-    .description
-    {
-        @extend %Nessie-Regular;
-        color:          var( --PC-GREY--L40 );
-        line-height:    var( --line-height-s );
-        margin-top:     4px;
+        .optionText
+        {
+            @extend %Nessie-Regular;
+            font-size:      var( --typo-5 );
+            line-height:    var( --line-height-m );
+        }
+
+        .description
+        {
+            @extend %Nessie-Regular;
+            color:          var( --PC-GREY--L40 );
+            line-height:    var( --line-height-s );
+            margin-top:     4px;
+        }
     }
 }
 

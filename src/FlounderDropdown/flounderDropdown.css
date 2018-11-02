@@ -270,7 +270,7 @@
         background:     var( --PC-GREY--L95 );
     }
 
-    .option:not(.withDescription)
+    .option:not(.optionWithDescription)
     {
         @extend %Nessie-SemiBold;
     }
