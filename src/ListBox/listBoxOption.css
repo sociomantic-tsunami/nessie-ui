@@ -34,6 +34,8 @@
 
     .optionText
     {
+        @extend %Nessie-SemiBold;
+
         margin:         0;
         color:          var( --PC-GREY--D15 );
     }
@@ -56,12 +58,14 @@
 
     .optionText
     {
+        @extend %Nessie-Regular;
         font-size:      var( --typo-5 );
         line-height:    var( --line-height-m );
     }
 
     .description
     {
+        @extend %Nessie-Regular;
         color:          var( --PC-GREY--L40 );
         line-height:    var( --line-height-s );
         margin-top:     4px;

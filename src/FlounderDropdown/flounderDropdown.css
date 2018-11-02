@@ -233,7 +233,7 @@
 
         line-height:    var( --line-height-s );
         font-size:      var( --typo-3 );
-        color:          var( --PC-GREY );
+        color:          var( --PC-GREY--D15 );
     }
 
     .option.selected:not(.description)
@@ -268,6 +268,11 @@
     .selected:not( .section )
     {
         background:     var( --PC-GREY--L95 );
+    }
+
+    .option:not(.withDescription)
+    {
+        @extend %Nessie-SemiBold;
     }
 
     .option.optionWithDescription
@@ -505,7 +510,7 @@
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-        color:          var( --PC-GREY--D25 );
+        color:          var( --PC-GREY--D15 );
 
         padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
         padding-bottom: calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
