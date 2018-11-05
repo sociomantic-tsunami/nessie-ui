@@ -153,34 +153,6 @@ describe( 'TagInputDriver', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate blur since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -217,34 +189,6 @@ describe( 'TagInputDriver', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate focus since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
 
                 try
                 {
@@ -455,34 +399,6 @@ describe( 'TagInputDriver', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate keyPress since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyPress() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onKeyPress when isReadOnly', () =>
-            {
-                const onKeyPress = jest.fn();
-                wrapper.setProps( { onKeyPress, isReadOnly: true } );
-
-                try
-                {
-                    driver.keyPress();
-                }
-                catch ( error )
-                {
-                    expect( onKeyPress ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -519,34 +435,6 @@ describe( 'TagInputDriver', () =>
             {
                 const onKeyUp = jest.fn();
                 wrapper.setProps( { onKeyUp, isDisabled: true } );
-
-                try
-                {
-                    driver.keyUp();
-                }
-                catch ( error )
-                {
-                    expect( onKeyUp ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate keyUp since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyUp() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onKeyUp when isReadOnly', () =>
-            {
-                const onKeyUp = jest.fn();
-                wrapper.setProps( { onKeyUp, isReadOnly: true } );
 
                 try
                 {
@@ -605,34 +493,6 @@ describe( 'TagInputDriver', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate keyDown since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.keyDown() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onKeyDown when isReadOnly', () =>
-            {
-                const onKeyDown = jest.fn();
-                wrapper.setProps( { onKeyDown, isReadOnly: true } );
-
-                try
-                {
-                    driver.keyDown();
-                }
-                catch ( error )
-                {
-                    expect( onKeyDown ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -652,34 +512,6 @@ describe( 'TagInputDriver', () =>
             driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate mouseOut since it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isDisabled', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( { onMouseOut, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOut();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOut ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -698,34 +530,6 @@ describe( 'TagInputDriver', () =>
 
             driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError =
-                    'TagInput cannot simulate mouseOver since it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOver when isDisabled', () =>
-            {
-                const onMouseOver = jest.fn();
-                wrapper.setProps( { onMouseOver, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOver();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOver ).not.toBeCalled();
-                }
-            } );
         } );
     } );
 } );
