@@ -22,63 +22,63 @@
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: italic;
+    font-style: normal;
 }
 
 %Nessie-SemiBold
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: 600;
+    font-weight: normal;
     font-style: normal;
 }
 
 %Nessie-SemiBoldIt
 {
     font-family: Nessie-SemiBoldIt, sans-serif;
-    font-weight: 600;
-    font-style: italic;
+    font-weight: normal;
+    font-style: normal;
 }
 
 %Nessie-Bold
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     font-style: normal;
 }
 
 %Nessie-BoldIt
 {
     font-family: Nessie-BoldIt, sans-serif;
-    font-weight: bold;
-    font-style: italic;
+    font-weight: normal;
+    font-style: normal;
 }
 
 %Nessie-ExtraBold
 {
     font-family: Nessie-ExtraBold, sans-serif;
-    font-weight: 800;
+    font-weight: normal;
     font-style: normal;
 }
 
 %Nessie-ExtraBoldIt
 {
     font-family: Nessie-ExtraBoldIt, sans-serif;
-    font-weight: 800;
-    font-style: italic;
+    font-weight: normal;
+    font-style: normal;
 }
 
 %Nessie-Light
 {
     font-family: Nessie-Light, sans-serif;
-    font-weight: 300;
+    font-weight: normal;
     font-style: normal;
 }
 
 %Nessie-LightIt
 {
     font-family: Nessie-LightIt, sans-serif;
-    font-weight: 300;
-    font-style: italic;
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root

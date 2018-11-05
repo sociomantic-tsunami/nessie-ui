@@ -66,6 +66,7 @@
             .selectedDisplayed
             {
                 @extend %Nessie-SemiBold;
+                font-weight: 600;
             }
         }
     }
