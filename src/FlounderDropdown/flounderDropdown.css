@@ -57,6 +57,20 @@
         box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
     }
 
+    &:not(.headerMode)
+    {
+        .main:focus,
+        &.fakeHovered .main,
+        .mainWrapper.open .main
+        {
+            .selectedDisplayed
+            {
+                @extend %Nessie-SemiBold;
+                font-weight: 600;
+            }
+        }
+    }
+
     .main:focus .arrowInner,
     &.fakeHovered .main .arrowInner
     {
