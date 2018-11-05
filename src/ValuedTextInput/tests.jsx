@@ -103,34 +103,6 @@ describe( 'ValuedTextInputDriver', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate blur \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -161,34 +133,6 @@ since it is disabled';
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate focus \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
 
                 try
                 {
@@ -340,34 +284,6 @@ since it is disabled';
             {
                 const onClick = jest.fn();
                 wrapper.setProps( { onClick, isDisabled: true } );
-
-                try
-                {
-                    driver.click();
-                }
-                catch ( error )
-                {
-                    expect( onClick ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate click \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.click() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClick when isReadOnly', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick, isReadOnly: true } );
 
                 try
                 {
