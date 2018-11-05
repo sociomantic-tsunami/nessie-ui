@@ -97,28 +97,12 @@ export default class RadioDriver
 
     mouseOver()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERR.RADIO_ERR( label, 'mouseOver', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERR.RADIO_ERR( label, 'mouseOut', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }
