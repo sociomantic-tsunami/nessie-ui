@@ -1,11 +1,11 @@
-Component Description
----------------------
+## Component Description
 
-A Nessie ValuedTextInput is a text input with label and value inset into the input.
+ValuedTextInput is a TextInput with a value label inset into the input.
 
-Example Usage
--------------
+## Example Usage
 
-    <ValuedTextInput label       = "How much?"
-                     value       = "Euro"
-                     placeholder = "52.5"/>
+```
+<ValuedTextInput
+     value       = "€"
+     placeholder = "0.00" />
+```

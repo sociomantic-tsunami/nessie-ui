@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 .default
@@ -42,7 +51,7 @@
     {
         outline:    none;
 
-        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        box-shadow: 0 0 0 2px color( var( --PC-BLUE--L70 ) );
 
         .flexContainer
         {
@@ -71,8 +80,8 @@
 
     .subLabel
     {
-        @extend %Nessie-RegularIt;
-        color:         var ( --PC-GREY--L40 );
+        @extend %Nessie-SemiBoldIt;
+        color:         var( --PC-GREY--L40 );
         font-size:     11px;
         line-height:   14px;
     }
@@ -175,6 +184,78 @@
     }
 }
 
+.role__subtle
+{
+    .flexContainer
+    {
+        height:         var( --spacing-3 );
+        border:         1px solid var( --PC-BLUE );
+        border-radius:  2px;
+        padding:        0 12px;
+        background:     var( --PC-WHITE );
+    }
+
+    .title
+    {
+        @extend %Nessie-SemiBold;
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-BLUE );
+    }
+
+    .subLabel
+    {
+        display:        none;
+    }
+
+    &:not( .disabled ):hover
+    {
+        .flexContainer
+        {
+            background: var( --PC-BLUE--L90 );
+        }
+    }
+
+    &.pressed
+    {
+        .flexContainer
+        {
+            border-color: var( --PC-BLUE );
+            background:   var( --PC-BLUE );
+
+            &:hover
+            {
+                background: var( --PC-BLUE--L10 );
+            }
+        }
+
+        .title
+        {
+            color: var( --PC-WHITE );
+        }
+
+        .icon
+        {
+            fill: var( --PC-WHITE );
+        }
+    }
+
+    .icon
+    {
+        fill:     var( --PC-BLUE );
+
+        .iconPosition__left&
+        {
+            margin-left: calc( -1 * var( --spacing-1 ) );
+        }
+
+        .iconPosition__right&
+        {
+            margin-right: calc( -1 * var( --spacing-1 ) );
+        }
+    }
+}
+
 .disabled
 {
     opacity:        0.5;
@@ -183,7 +264,19 @@
 
     .icon
     {
-        fill: var(--PC-GREY--D15);
+        fill: var( --PC-GREY--D15 );
+    }
+
+    &.role__subtle .icon
+    {
+        .icon
+        {
+            fill: var( --PC-BLUE--L10 );
+        }
+        &.pressed .icon
+        {
+            fill: var( --PC-WHITE );
+        }
     }
 }
 

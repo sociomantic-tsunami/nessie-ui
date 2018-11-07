@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
@@ -68,15 +77,15 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( startPage ) }>
-                    <Text role = { null }>{ startPage }</Text>
+                    { startPage }
                 </button>
             }
 
             { showStartPage && showPrevEllipsis && ellipsis }
 
-            { ( pageButtons && pageButtons.length ) &&
+            { ( pageButtons && pageButtons.length > 0 ) &&
                 <div className = { cssMap.pageButtons }>
-                    <Text>{ pageButtons }</Text>
+                    { pageButtons }
                 </div>
             }
 
@@ -89,7 +98,7 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( endPage ) }>
-                    <Text role = { null }> { endPage }</Text>
+                    { endPage }
                 </button>
             }
 

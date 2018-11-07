@@ -1,38 +1,28 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React     from 'react';
+import { mount } from 'enzyme';
 
-import Text         from './index';
-
-describe( 'Text', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <Text /> );
-    } );
-
-    test( 'should have its component name and hash as default className', () =>
-    {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
-    } );
-} );
+import Text      from './index';
 
 
 describe( 'TextDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Text /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'getContent', () =>
@@ -41,7 +31,7 @@ describe( 'TextDriver', () =>
         {
             const text = 'the quick brown fox jumps over the lazy dog';
             wrapper.setProps( { text } );
-            expect( driver.getContent() ).toBe( text );
+            expect( wrapper.driver().getContent() ).toBe( text );
         } );
 
         test( 'should return the content set by children prop', () =>
@@ -50,7 +40,8 @@ describe( 'TextDriver', () =>
             const children = <div>{ text }</div>;
 
             wrapper.setProps( { children } );
-            expect( driver.getContent().find( 'div' ).text() ).toBe( text );
+            expect( wrapper.driver().getContent().find( 'div' ).text() )
+                .toBe( text );
         } );
 
         test(
@@ -64,7 +55,7 @@ alive.';
                 const children  = <div>{ textChild }</div>;
 
                 wrapper.setProps( { text: textProp, children } );
-                expect( driver.getContent().find( 'div' ).text() )
+                expect( wrapper.driver().getContent().find( 'div' ).text() )
                     .toBe( textChild );
             }
         );

@@ -1,5 +1,13 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React                 from 'react';
@@ -37,12 +45,10 @@ describe( 'ListBox', () =>
 describe( 'ListBoxDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper  = mount( <ListBox /> );
-        driver   = wrapper.driver();
     } );
 
     describe( 'clickOption', () =>
@@ -85,7 +91,7 @@ ListBoxOption at given index', () =>
                 } ]
             } );
 
-            driver.clickOption( 1 );
+            wrapper.driver().clickOption( 1 );
 
             expect( onClickOption ).toBeCalledTimes( 1 );
         } );
@@ -132,7 +138,7 @@ ListBoxOption at given index', () =>
                 } ]
             } );
 
-            driver.mouseOverOption( 1 );
+            wrapper.driver().mouseOverOption( 1 );
 
             expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
@@ -179,7 +185,7 @@ ListBoxOption at given index', () =>
                 } ]
             } );
 
-            driver.mouseOutOption( 0 );
+            wrapper.driver().mouseOutOption( 0 );
 
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
@@ -209,7 +215,7 @@ ListBoxOption at given index', () =>
                 } ]
             } );
 
-            driver.keyPress();
+            wrapper.driver().keyPress();
 
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );

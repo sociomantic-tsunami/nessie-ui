@@ -103,11 +103,10 @@ it( 'initial state is expanded', () =>
 it( 'clicking toggle changes the toggle state', () =>
 {
     const wrapper = mount( <Module title='my module title' /> );
-    const driver = wrapper.driver();
 
-    driver.humanClickToggle();
+    wrapper.driver().humanClickToggle();
     expect( driver.isExpanded() ).false;
-    driver.humanClickToggle();
+    wrapper.driver().humanClickToggle();
     expect( driver.isExpanded() ).true;
 } );
 ```

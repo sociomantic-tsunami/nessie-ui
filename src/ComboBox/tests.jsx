@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
 
 import React        from 'react';
@@ -5,50 +14,13 @@ import { mount }    from 'enzyme';
 
 import { ComboBox } from '../index';
 
-describe( 'ComboBox', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper  = mount( <ComboBox /> );
-    } );
-
-    describe( 'render()', () =>
-    {
-        test( 'should render ComboBox', () =>
-        {
-            expect( wrapper ).toHaveLength( 1 );
-        } );
-        test( 'should render ComboBox without label by default', () =>
-        {
-            const label = '';
-            wrapper.setProps( {
-                label
-            } );
-            expect( wrapper.find( 'label' ).length ).toBe( 0 );
-        } );
-        test( 'should render ComboBox with label if defined', () =>
-        {
-            const label = 'label';
-            wrapper.setProps( {
-                label
-            } );
-            expect( wrapper.find( 'label' ).length ).toBe( 1 );
-        } );
-    } );
-} );
-
-
 describe( 'ComboBoxDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ComboBox /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <ComboBox /> );
     } );
 
     describe( 'blur', () =>
@@ -60,7 +32,7 @@ describe( 'ComboBoxDriver', () =>
                 onBlur
             } );
 
-            driver.blur();
+            wrapper.driver().blur();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -75,7 +47,7 @@ describe( 'ComboBoxDriver', () =>
                 onChangeInput
             } );
 
-            driver.changeInput();
+            wrapper.driver().changeInput();
 
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );
@@ -90,7 +62,7 @@ describe( 'ComboBoxDriver', () =>
                 onClickInput
             } );
 
-            driver.clickInput();
+            wrapper.driver().clickInput();
 
             expect( onClickInput ).toBeCalledTimes( 1 );
         } );
@@ -121,7 +93,7 @@ describe( 'ComboBoxDriver', () =>
                 ]
             } );
 
-            driver.clickOption();
+            wrapper.driver().clickOption();
 
             expect( onClickOption ).toBeCalledTimes( 1 );
         } );
@@ -136,7 +108,7 @@ describe( 'ComboBoxDriver', () =>
                 onFocus
             } );
 
-            driver.focus();
+            wrapper.driver().focus();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -151,7 +123,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyDown
             } );
 
-            driver.keyPress( 'abc' );
+            wrapper.driver().keyPress( 'abc' );
 
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
@@ -166,7 +138,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyPress
             } );
 
-            driver.keyPress( 'abc' );
+            wrapper.driver().keyPress( 'abc' );
 
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
@@ -181,7 +153,7 @@ describe( 'ComboBoxDriver', () =>
                 onKeyUp
             } );
 
-            driver.keyPress( 'abc' );
+            wrapper.driver().keyPress( 'abc' );
 
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
@@ -196,7 +168,7 @@ describe( 'ComboBoxDriver', () =>
                 onMouseOut
             } );
 
-            driver.mouseOut();
+            wrapper.driver().mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
@@ -227,7 +199,7 @@ describe( 'ComboBoxDriver', () =>
                 ]
             } );
 
-            driver.mouseOutOption();
+            wrapper.driver().mouseOutOption();
 
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
@@ -242,7 +214,7 @@ describe( 'ComboBoxDriver', () =>
                 onMouseOver
             } );
 
-            driver.mouseOver();
+            wrapper.driver().mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
@@ -273,7 +245,7 @@ describe( 'ComboBoxDriver', () =>
                 ]
             } );
 
-            driver.mouseOverOption();
+            wrapper.driver().mouseOverOption();
 
             expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
@@ -304,7 +276,7 @@ describe( 'ComboBoxDriver', () =>
                 ]
             } );
 
-            driver.scroll( 0.3 );
+            wrapper.driver().scroll( 0.3 );
 
             expect( onScroll ).toBeCalledTimes( 1 );
         } );

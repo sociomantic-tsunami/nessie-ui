@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 :root
@@ -9,17 +18,6 @@
 
 .default
 {
-    /* this needs to be a flex column for vertical alignment
-    * of header w/min-height (flexbugs #3) */
-    display:        flex;
-    flex-direction: column;
-
-    background:     var( --PC-WHITE );
-
-    border-radius:  3px;
-
-    border:         var( --border ) solid color( var( --PC-GREY ) a(12%) );
-
     .default
     {
         border-radius:  0;

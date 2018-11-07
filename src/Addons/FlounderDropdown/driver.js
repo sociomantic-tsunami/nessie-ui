@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 const ERRORS =
     {
         CANNOT_SELECT_ITEMS : ( byWhat, index ) => `Item(s) not found by \
@@ -29,7 +38,7 @@ export default class FlounderDropdownDriver
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.innerFlounderComponent = wrapper.node.flounderInstance;
+        this.innerFlounderComponent = wrapper.instance().flounderInstance;
     }
 
     /**
@@ -133,11 +142,6 @@ export default class FlounderDropdownDriver
     getSelectedItems()
     {
         return this.innerFlounderComponent.getSelected();
-    }
-
-    getErrorMessage()
-    {
-        return this.wrapper.find( 'IconWithTooltip' ).driver().getMessage();
     }
 }
 

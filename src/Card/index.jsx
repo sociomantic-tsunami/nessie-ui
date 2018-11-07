@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
@@ -5,13 +14,17 @@ import { buildClassName }   from '../utils';
 import styles               from './card.css';
 
 const Card = ( {
+    align,
     cssMap,
     className,
     children,
     padding,
+    verticalAlign,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {
+            alignX   : align,
+            alignY   : verticalAlign,
             paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
             paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
         } ) }>
@@ -21,6 +34,15 @@ const Card = ( {
 
 Card.propTypes =
 {
+    /**
+     *  Horizontal alignment of content (“auto” makes all items 100% width)
+     */
+    align : PropTypes.oneOf( [
+        'auto',
+        'left',
+        'center',
+        'right',
+    ] ),
     /**
      *  Module content
      */
@@ -43,12 +65,22 @@ Card.propTypes =
             'XXL',
         ] ) ),
     ] ),
+    /**
+     *  Vertical alignment of content
+     */
+    verticalAlign : PropTypes.oneOf( [
+        'top',
+        'middle',
+        'bottom',
+    ] ),
 };
 
 Card.defaultProps =
 {
-    cssMap  : styles,
-    padding : 'M',
+    align         : 'auto',
+    cssMap        : styles,
+    padding       : 'M',
+    verticalAlign : 'top',
 };
 
 export default Card;

@@ -1,46 +1,70 @@
-import React                from 'react';
-import PropTypes            from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { buildClassName }   from '../utils';
-import Spinner              from '../Spinner';
+import React              from 'react';
+import PropTypes          from 'prop-types';
+
+import Spinner            from '../Spinner';
+import { buildClassName } from '../utils';
+import styles             from './pageContent.css';
 
 
 const PageContent = ( {
     children,
-    cssMap,
     className,
-    isLoading
-} ) =>
-
+    contentWidth,
+    cssMap,
+    isLoading,
+} ) => (
     <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
+        <div className = { cssMap.content } style = { { width: contentWidth } }>
             { children }
         </div>
         { isLoading &&
-        <div className = { cssMap.loadingOverlay }>
-            <Spinner
-                className = { cssMap.spinner }
-                size = "big" />
-        </div>
+            <div className = { cssMap.loadingOverlay }>
+                <Spinner className = { cssMap.spinner } size = "big" />
+            </div>
         }
-    </div>;
+    </div>
+);
 
 PageContent.propTypes =
 {
     /**
      *  PageContent content
      */
-    children  : PropTypes.node,
+    children     : PropTypes.node,
+    /**
+     *  Extra CSS class name
+     */
+    className    : PropTypes.node,
+    /**
+     *  CSS class map
+     */
+    cssMap       : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Display loading state
      */
-    isLoading : PropTypes.bool,
+    isLoading    : PropTypes.bool,
+    /**
+     *  adjust/configure content width
+     */
+    contentWidth : PropTypes.string,
 };
 
 PageContent.defaultProps =
 {
-    cssMap    : require( './pageContent.css' ),
-    isLoading : false
+    children     : undefined,
+    className    : undefined,
+    contentWidth : '1080px',
+    cssMap       : styles,
+    isLoading    : false,
 };
 
 export default PageContent;

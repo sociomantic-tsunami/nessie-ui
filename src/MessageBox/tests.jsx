@@ -1,12 +1,22 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
+import { Text }    from '../index';
 
-import MessageBox   from './index';
+import MessageBox  from './index';
+
 
 describe( 'MessageBox', () =>
 {
@@ -14,12 +24,12 @@ describe( 'MessageBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <MessageBox /> );
+        wrapper = shallow( <MessageBox /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain a Text component when message is set', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        wrapper.setProps( { message: 'hallo' } );
+        expect( wrapper.find( Text ) ).toHaveLength( 1 );
     } );
 } );

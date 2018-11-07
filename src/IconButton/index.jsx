@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
@@ -49,6 +58,8 @@ export default class IconButton extends React.Component
             'alert',
             'approved',
             'arrow',
+            'arrow-up',
+            'arrow-down',
             'bell',
             'board',
             'calendar',
@@ -74,8 +85,10 @@ export default class IconButton extends React.Component
             'left',
             'lightbulb',
             'link',
+            'loader',
             'megaphone',
             'options',
+            'paused',
             'pending',
             'preview',
             'puzzle-piece',
@@ -85,6 +98,7 @@ export default class IconButton extends React.Component
             'show',
             'star-stroke',
             'star',
+            'sociomantic',
             'swap',
             'table',
             'up',
