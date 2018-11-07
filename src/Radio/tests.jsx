@@ -128,7 +128,6 @@ describe( 'RadioDriver', () =>
             wrapper.setProps( { onBlur } );
 
             driver.blur();
-
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -137,10 +136,9 @@ describe( 'RadioDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -170,10 +168,9 @@ blur since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 blur since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -208,7 +205,6 @@ blur since it is read only';
             wrapper.setProps( { onFocus } );
 
             driver.focus();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -217,10 +213,9 @@ blur since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 focus since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -250,10 +245,9 @@ focus since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 focus since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -288,7 +282,6 @@ focus since it is read only';
             wrapper.setProps( { onChange } );
 
             driver.change();
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -317,10 +310,9 @@ focus since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 change since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -350,10 +342,9 @@ change since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 change since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -361,7 +352,6 @@ change since it is read only';
             test( 'should not trigger onChange when isReadOnly', () =>
             {
                 const onChange = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
@@ -386,10 +376,9 @@ change since it is read only';
         test( 'should call onClick once', () =>
         {
             const onClick = jest.fn();
-
             wrapper.setProps( { onClick } );
-            driver.click();
 
+            driver.click();
             expect( onClick ).toBeCalledTimes( 1 );
         } );
 
@@ -398,10 +387,9 @@ change since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 click since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -431,10 +419,9 @@ click since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 click since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -442,7 +429,6 @@ click since it is read only';
             test( 'should not trigger onClick when isReadOnly', () =>
             {
                 const onClick = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',
@@ -470,31 +456,7 @@ click since it is read only';
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'throws the expected error when isDisabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-            const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
-mouseOut since it is disabled';
-
-            expect( () => driver.mouseOut() ).toThrow( expectedError );
-        } );
-
-        test( 'should not trigger onMouseOver when isDisabled', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                isDisabled : true,
-                label      : 'Tekeli-li',
-                onMouseOver,
-            } );
-
-            expect( () => driver.mouseOut() );
-            expect( onMouseOver ).not.toBeCalled();
         } );
     } );
 
@@ -507,35 +469,7 @@ mouseOut since it is disabled';
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
-mouseOut since it is disabled';
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isDisabled', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( {
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                    onMouseOut,
-                } );
-
-                expect( () => driver.mouseOut() );
-                expect( onMouseOut ).not.toBeCalled();
-            } );
         } );
     } );
 } );

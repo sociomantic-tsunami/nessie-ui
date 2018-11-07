@@ -8,8 +8,7 @@ export default class RadioDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper
-            .find( `.${this.wrapper.props().cssMap.input}` );
+        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
     }
 
     blur()
@@ -101,30 +100,12 @@ export default class RadioDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
-            .text();
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERR.RADIO_ERR( label, 'mouseOver', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
-            .text();
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERR.RADIO_ERR( label, 'mouseOut', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }
