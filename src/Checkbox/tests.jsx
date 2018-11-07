@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
 
@@ -23,7 +14,7 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Checkbox /> );
+        wrapper  = shallow( <Checkbox /> );
     } );
 
     describe( 'render()', () =>
@@ -43,7 +34,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -51,7 +42,7 @@ describe( 'Checkbox', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( Checkbox.defaultProps.isReadOnly ).toBe( false );
+                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
             } );
 
             test( 'should be passed to Checkable', () =>
@@ -71,7 +62,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -82,7 +73,7 @@ describe( 'Checkbox', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBe( true );
+                    .toBeTruthy();
             } );
         } );
 
@@ -90,7 +81,7 @@ describe( 'Checkbox', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Checkbox.defaultProps.onChange ).toBeUndefined();
+                expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
             } );
 
             test( 'should be passed to Checkable', () =>
@@ -109,10 +100,12 @@ describe( 'Checkbox', () =>
 describe( 'CheckboxDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Checkbox /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'focus()', () =>
@@ -122,7 +115,7 @@ describe( 'CheckboxDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            wrapper.driver().focus();
+            driver.focus();
 
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
@@ -136,7 +129,7 @@ describe( 'CheckboxDriver', () =>
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            wrapper.driver().blur();
+            driver.blur();
 
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
@@ -150,7 +143,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            wrapper.driver().setChecked();
+            driver.setChecked();
 
             expect( onChange ).toBeCalledTimes( 0 );
         } );
@@ -160,7 +153,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: false, onChange } );
 
-            wrapper.driver().setChecked();
+            driver.setChecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -172,9 +165,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: false, onChange } );
 
-            wrapper.driver().setChecked();
+            driver.setChecked();
 
-            expect( targetChecked ).toBe( true );
+            expect( targetChecked ).toBeTruthy();
         } );
     } );
 
@@ -196,7 +189,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { isChecked: true, onChange } );
 
-            wrapper.driver().setUnchecked();
+            driver.setUnchecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -208,9 +201,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { isChecked: true, onChange } );
 
-            wrapper.driver().setUnchecked();
+            driver.setUnchecked();
 
-            expect( targetChecked ).toBe( false );
+            expect( targetChecked ).toBeFalsy();
         } );
     } );
 
@@ -222,7 +215,7 @@ describe( 'CheckboxDriver', () =>
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            wrapper.driver().toggleChecked();
+            driver.toggleChecked();
 
             expect( onChange ).toBeCalledTimes( 1 );
         } );
@@ -234,9 +227,9 @@ describe( 'CheckboxDriver', () =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { onChange, isChecked: true } );
 
-            wrapper.driver().toggleChecked();
+            driver.toggleChecked();
 
-            expect( targetChecked ).toBe( false );
+            expect( targetChecked ).toBeFalsy();
         } );
     } );
 
@@ -248,7 +241,7 @@ describe( 'CheckboxDriver', () =>
             const onClick = jest.fn();
 
             wrapper.setProps( { onClick } );
-            wrapper.driver().click();
+            driver.click();
 
             expect( onClick ).toBeCalledTimes( 1 );
         } );
@@ -262,7 +255,7 @@ describe( 'CheckboxDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );

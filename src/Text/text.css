@@ -1,37 +1,24 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 @import "../proto/base.css";
 
 .default
 {
     width:          auto;
+
     margin-bottom:  var( --spacing-1 );
-    text-transform: none;
 
     line-height:    var( --line-height-m );
+    text-transform: none;
 
     .default
     {
-        display:    inline;
-        position:   static;
-    }
+        display:        inline;
+        position:       static;
 
-    a:any-link
-    {
-        color:              var( --PC-BLUE );
-        text-decoration:    underline;
-
-        &:hover
-        {
-            text-decoration:    none;
-        }
+        color:          inherit;
+        font:           inherit;
+        text-align:     inherit;
+        text-transform: inherit;
+        white-space:    inherit;
     }
 }
 
@@ -73,16 +60,7 @@
     color:  var( --PC-RED );
 }
 
-
 /* SIZES */
-
-/* .size__XXS,
-.size__XS,
-.size__S
-{
-    line-height:    var( --line-height-xs );
-} */
-
 .size__XXS
 {
     font-size:  var( --typo-1 );
@@ -100,15 +78,8 @@
 
 .size__M
 {
-    font-size:      var( --typo-3 );
-    /* line-height:    var( --line-height-s ); */
+    font-size:  var( --typo-3 );
 }
-
-/* .size__L,
-.size__XL
-{
-    line-height:    var( --line-height-m );
-} */
 
 .size__L
 {
@@ -119,12 +90,6 @@
 {
     font-size:  var( --typo-5 );
 }
-
-/* .size__XXL,
-.size__XXXL
-{
-    line-height:    var( --line-height-l );
-} */
 
 .size__XXL
 {
@@ -142,11 +107,6 @@
     @extend %Nessie-Light;
 }
 
-.variant__LightIt
-{
-    @extend %Nessie-LightIt;
-}
-
 .variant__Regular
 {
     @extend %Nessie-Regular;
@@ -162,29 +122,9 @@
     @extend %Nessie-SemiBold;
 }
 
-.variant__SemiBoldIt
-{
-    @extend %Nessie-SemiBoldIt;
-}
-
 .variant__Bold
 {
     @extend %Nessie-Bold;
-}
-
-.variant__BoldIt
-{
-    @extend %Nessie-BoldIt;
-}
-
-.variant__ExtraBold
-{
-    @extend %Nessie-ExtraBold;
-}
-
-.variant__ExtraBoldIt
-{
-    @extend %Nessie-ExtraBoldIt;
 }
 
 /* TEXT ALIGN */

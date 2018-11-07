@@ -1,25 +1,26 @@
-## Component Description
+Component Description
+---------------------
 
-IconWithTooltip can be used in two ways: as a standalone icon-with-tooltip
-combo, or as a wrapper for other components. In the latter case it will position
-the icon and associated tooltip relative to the wrapped content.
+A Nessie icon with a tooltip its a wrapper, can be standalone or contain other nodes in which case it appends the icon with tooltip to the wrapped content.
 
-The default icon is the “info” icon.
+By default the icon is the **info** **?**
 
-**This component is deprecated. If you need an icon with tooltip you should
-compose it from the Icon and Tooltip components.**
+Example Usage
+-------------
+
+this will produce the **orange !** icon
+
+    <IconWithTooltip message="Something’s wrong!" iconType="alert"/>
+
+this will produce the **green ✓** icon
+
+    <IconWithTooltip message="Input validated" iconType="validation"/>
 
 
-## Example Usage
+this will produce the **info ?** icon
 
-a simple icon with an associated tooltip:
-```
-<IconWithTooltip message="Input validated" iconType="validation"/>
-```
-
-an icon with tooltip positioned relative to some wrapped content:
-```
-<IconWithTooltip message="Detailed explanation of My Module">
-	<H2>My Module Header</H2>
-</IconWithTooltip>
-```
+    <H2>
+    	<IconWithTooltip message="Detailed explanation of My Module">
+    		My Module Header
+		</IconWithTooltip>
+	</H2>

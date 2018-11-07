@@ -1,41 +1,35 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 @import "../proto/base.css";
 
 .default
 {
-    display:            flex;
-    flex-wrap:          wrap;
-    align-items:        flex-start;
-    align-content:      flex-start;
-
-    box-sizing:         border-box;
-    width:              100%;
-
-    border:             1px solid var( --PC-GREY--L70 );
-    border-radius:      2px;
-
-    padding-top:        3px;
-    padding-right:      3px;
-    padding-bottom:     0;
-    padding-left:       3px;
-
-    background-color:   var( --PC-WHITE );
-    outline:            none;
-
-    overflow-x:         hidden;
-
-    & > *
+    .container
     {
-        margin-right:   4px;
-        margin-bottom:  3px;
+        display:            flex;
+        flex-wrap:          wrap;
+        align-items:        flex-start;
+        align-content:      flex-start;
+
+        box-sizing:         border-box;
+        width:              100%;
+
+        border:             1px solid var( --PC-GREY--L70 );
+        border-radius:      2px;
+
+        padding-top:        3px;
+        padding-right:      3px;
+        padding-bottom:     0;
+        padding-left:       3px;
+
+        background-color:   var( --PC-WHITE );
+        outline:            none;
+
+        overflow-x:         hidden;
+
+        & > *
+        {
+            margin-right:   4px;
+            margin-bottom:  3px;
+        }
     }
 
     .input
@@ -84,30 +78,42 @@
 
 .fakeHovered
 {
-    border-color:   var( --PC-BLUE );
-    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    .container
+    {
+        border-color:   var( --PC-BLUE );
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
 }
 
 
 .disabled
 {
-    pointer-events: none;
-
-    &:hover
+    .container
     {
-        border-color:   ( --PC-GREY--L70 );
+        pointer-events: none;
+
+        &:hover
+        {
+            border-color:   ( --PC-GREY--L70 );
+        }
     }
 }
 
 
 .error
 {
-    border-color:   var( --PC-RED ) !important; /* yes, always override other states */
-    box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    .container
+    {
+        border-color:   var( --PC-RED ) !important; /* yes, always override other states */
+        box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
+    }
 }
 
 
 .resizable
 {
-    resize: vertical;
+    .container
+    {
+        resize:        vertical;
+    }
 }

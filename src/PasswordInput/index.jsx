@@ -1,20 +1,14 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import React                 from 'react';
-import PropTypes             from 'prop-types';
-
-import { generateId }        from '../utils';
-import { TextInputWithIcon } from '../index';
+import { generateId, buildClassName } from '../utils';
+import { TextInputWithIcon }          from '../index';
+import styles                         from './passwordInput.css';
 
 
 const PasswordInput = ( {
+    className,
+    cssMap,
     id = generateId( 'PasswordInput' ),
     passwordIsVisible,
     ...props
@@ -24,6 +18,7 @@ const PasswordInput = ( {
         autoCapitalize = "off"
         autoComplete   = "off"
         autoCorrect    = "off"
+        className      = { buildClassName( className, cssMap ) }
         iconType       = { passwordIsVisible ? 'hide' : 'show' }
         id             = { id }
         inputType      = { passwordIsVisible ? 'text' : 'password' }
@@ -202,7 +197,7 @@ PasswordInput.defaultProps =
 {
     aria                  : undefined,
     className             : undefined,
-    cssMap                : undefined,
+    cssMap                : styles,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',

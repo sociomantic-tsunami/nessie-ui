@@ -1,13 +1,5 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test */
+/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React              from 'react';
@@ -46,10 +38,12 @@ describe( 'Tabs', () =>
 describe( 'TabsDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tabs /> );
+        wrapper  = mount( <Tabs /> );
+        driver   = wrapper.driver();
     } );
 
     describe( 'getTabButtons()', () =>
@@ -62,12 +56,12 @@ Tabs as children',
                 wrapper.setProps( {
                     children : [
                         <Tab label = "Tabity" />,
-                        <Tab label = "Taby" />,
-                    ],
+                        <Tab label = "Taby" />
+                    ]
                 } );
 
-                expect( wrapper.driver().getTabButtons() ).toHaveLength( 2 );
-            },
+                expect( driver.getTabButtons() ).toHaveLength( 2 );
+            }
         );
     } );
 
@@ -78,11 +72,11 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />,
-                ],
+                    <Tab label = "Taby" />
+                ]
             } );
 
-            expect( wrapper.driver().getTabButtonsByIndex( 1 ).prop( 'label' ) )
+            expect( driver.getTabButtonsByIndex( 1 ).props().label )
                 .toBe( 'Taby' );
         } );
 
@@ -91,12 +85,11 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity">Ytibat</Tab>,
-                    <Tab label = "Taby">Ybat</Tab>,
-                ],
+                    <Tab label = "Taby">Ybat</Tab>
+                ]
             } );
 
-            expect( wrapper.driver().getTabButtonsByIndex( [ 0, 1 ] ) )
-                .toHaveLength( 2 );
+            expect( driver.getTabButtonsByIndex( [ 0, 1 ] ) ).toHaveLength( 2 );
         } );
     } );
 
@@ -107,12 +100,12 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />,
-                ],
+                    <Tab label = "Taby" />
+                ]
             } );
 
-            expect( wrapper.driver().getTabButtonsByLabel( 'Tabity' )
-                .prop( 'label' ) ).toBe( 'Tabity' );
+            expect( driver.getTabButtonsByLabel( 'Tabity' ).props().label )
+                .toBe( 'Tabity' );
         } );
     } );
 
@@ -123,11 +116,11 @@ Tabs as children',
             wrapper.setProps( {
                 children : [
                     <Tab label = "Tabity"><div>Ytibat</div></Tab>,
-                    <Tab label = "Taby">Ybat</Tab>,
-                ],
+                    <Tab label = "Taby">Ybat</Tab>
+                ]
             } );
 
-            expect( wrapper.driver().getTabContent() ).toHaveLength( 1 );
+            expect( driver.getTabContent() ).toHaveLength( 1 );
         } );
     } );
 } );

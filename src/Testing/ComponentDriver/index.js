@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 const Drivers = new WeakMap();
 
 const Err =
@@ -15,7 +6,7 @@ const Err =
     SHALLOW_NOT_SUPPORTED : 'ShallowWrapper::driver() is not supported.',
     NO_DRIVER_FOUND       : ( { name } ) => `Could not find driver for Component ${name}`,
     BAD_SUITE_COMPONENT   : 'Invalid driver suite specification; expect "Component" to be a function.',
-    BAD_SUITE_DRIVER      : 'Invalid driver suite specification; expect "Driver" to be a function.',
+    BAD_SUITE_DRIVER      : 'Invalid driver suite specification; expect "Driver" to be a function.'
 };
 
 
@@ -52,7 +43,7 @@ export function createDriverSuite( suiteSpec, ...extensions )
         {
             extensions.forEach( suite => suite.provideDrivers() );
             provideDrivers( suiteSpec );
-        },
+        }
     };
 }
 

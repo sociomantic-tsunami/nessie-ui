@@ -1,12 +1,11 @@
-## Component Description
+Component Description
+---------------------
 
-DimensionsInput is an input for entering image dimensions (width ✕ height).
-It consists of two TextInputs separated by _✕_.
+A Nessie DimensionsInput is an input for entering image dimensions ( width ✕ height). The Nessie DimensionsInput consists of two TextInputs separated by an _✕_.
 
 
-## Example Usage
+Example Usage
+-------------
 
-```
-<DimensionsInput widthPlaceholder  = "width"
-                 heightPlaceholder = "height"/>
-```
+    <DimensionsInput widthPlaceholder  = "width"
+                     heightPlaceholder = "height"/>

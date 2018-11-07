@@ -1,18 +1,9 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 export default class DateTimeInputDriver
 {
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.cssMap      = wrapper.prop( 'cssMap' );
+        this.cssMap      = wrapper.props().cssMap;
         this.mainInput   = wrapper.find( 'input' ).at( 0 );
         this.hourInput   = wrapper.find( 'input' ).at( 1 );
         this.minuteInput = wrapper.find( 'input' ).at( 2 );
@@ -23,12 +14,12 @@ export default class DateTimeInputDriver
 
     getMainInputValue()
     {
-        return this.mainInput.instance().value;
+        return this.mainInput.getNode().value;
     }
 
     setMainInputValue( value )
     {
-        const node = this.mainInput.instance();
+        const node = this.mainInput.getNode();
 
         node.value = value;
         this.mainInput.simulate( 'change' );
@@ -50,12 +41,12 @@ export default class DateTimeInputDriver
 
     getHourInputValue()
     {
-        return this.hourInput.instance().value;
+        return this.hourInput.getNode().value;
     }
 
     setHourInputValue( value )
     {
-        const node = this.hourInput.instance();
+        const node = this.hourInput.getNode();
 
         node.value = value;
         this.hourInput.simulate( 'change' );
@@ -77,12 +68,12 @@ export default class DateTimeInputDriver
 
     getMinuteInputValue()
     {
-        return this.minuteInput.instance().value;
+        return this.minuteInput.getNode().value;
     }
 
     setMinuteInputValue( value )
     {
-        const node = this.minuteInput.instance();
+        const node = this.minuteInput.getNode();
 
         node.value = value;
         this.minuteInput.simulate( 'change' );

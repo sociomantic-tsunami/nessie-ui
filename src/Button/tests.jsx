@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
 
@@ -21,15 +12,17 @@ import Button             from './index';
 describe( 'Button', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Button /> );
+        instance = wrapper.instance();
     } );
 
-    test( 'should a stateless functional component', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        expect( wrapper.instance() ).toBe( null );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
     describe( 'render()', () =>
@@ -58,7 +51,7 @@ describe( 'Button', () =>
         {
             test( 'should be "none" by default', () =>
             {
-                expect( Button.defaultProps.iconType ).toBe( 'none' );
+                expect( instance.props.iconType ).toBe( 'none' );
             } );
 
             test( 'should be passed to the Icon as type', () =>
@@ -73,7 +66,7 @@ describe( 'Button', () =>
         {
             test( 'should be "left" by default', () =>
             {
-                expect( Button.defaultProps.iconPosition ).toBe( 'left' );
+                expect( instance.props.iconPosition ).toBe( 'left' );
             } );
         } );
 
@@ -81,7 +74,7 @@ describe( 'Button', () =>
         {
             test( 'should be "default" by default', () =>
             {
-                expect( Button.defaultProps.role ).toBe( 'default' );
+                expect( instance.props.role ).toBe( 'default' );
             } );
         } );
 
@@ -89,7 +82,7 @@ describe( 'Button', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( Button.defaultProps.isLoading ).toBe( false );
+                expect( instance.props.isLoading ).toBe( false );
             } );
         } );
 
@@ -97,7 +90,7 @@ describe( 'Button', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Button.defaultProps.buttonRef ).toBeUndefined();
+                expect( instance.props.buttonRef ).toBeUndefined();
             } );
         } );
     } );
@@ -107,10 +100,12 @@ describe( 'Button', () =>
 describe( 'ButtonDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Button /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'click', () =>
@@ -125,7 +120,7 @@ describe( 'ButtonDriver', () =>
         test( 'should have the button clicked once', () =>
         {
             wrapper.setProps( { onClick: clickSpy } );
-            wrapper.driver().click();
+            driver.click();
 
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
@@ -141,7 +136,8 @@ describe( 'ButtonDriver', () =>
                 onClick    : clickSpy,
             } );
 
-            expect( () => wrapper.driver().click() ).toThrow( expectedError );
+            expect( () => driver.click() )
+                .toThrow( expectedError );
             expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
 
@@ -156,7 +152,8 @@ describe( 'ButtonDriver', () =>
             const expectedError =
                 'Button \'Pikaboo\' cannot be clicked since it is loading';
 
-            expect( () => wrapper.driver().click() ).toThrow( expectedError );
+            expect( () => driver.click() )
+                .toThrow( expectedError );
             expect( clickSpy ).toHaveBeenCalledTimes( 0 );
         } );
     } );

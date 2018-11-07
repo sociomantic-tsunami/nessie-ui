@@ -1,32 +1,31 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
+/* eslint no-console: 0*/
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React              from 'react';
+import { shallow, mount } from 'enzyme';
 
-import CodeEditor from './index';
 
+
+import CodeEditor         from './index';
 
 describe( 'CodeEditor', () =>
 {
     let wrapper;
+    let instance;
+    let cssMap;
 
     beforeEach( () =>
     {
-        wrapper = mount( <CodeEditor /> );
+        wrapper      = shallow( <CodeEditor /> );
+        instance     = wrapper.instance();
+        ( { cssMap } = instance.props );
     } );
 
     describe( 'render()', () =>
     {
+
+
         test( 'should contain exactly one textArea', () =>
         {
             expect( wrapper.find( 'textarea' ) ).toHaveLength( 1 );
@@ -49,11 +48,13 @@ describe( 'CodeEditorDriver', () =>
 {
     let wrapper;
     let CodeMirror;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper    = mount( <CodeEditor /> );
         CodeMirror = wrapper.instance().codeMirror;
+        driver     = wrapper.driver();
     } );
 
     describe( 'pressKey( keyCode )', () =>
@@ -63,15 +64,15 @@ end of the code editor’s value', () =>
         {
             wrapper.setProps( { value: 'hello' } );
 
-            wrapper.driver().pressKey( 49 ); // 1 key
-            expect( wrapper.driver().getInputValue() ).toBe( 'hello1' );
+            driver.pressKey( 49 ); // 1 key
+            expect( driver.getInputValue() ).toBe( 'hello1' );
         } );
 
         test( 'should call the onChange callback exactly once ', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().pressKey( 50 );
+            driver.pressKey( 50 );
             expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
@@ -82,26 +83,32 @@ end of the code editor’s value', () =>
         {
             wrapper.setProps( { value: 'hello' } );
 
-            wrapper.driver().inputValue( 'world' );
-            expect( wrapper.driver().getInputValue() ).toBe( 'helloworld' );
+            driver.inputValue( 'world' );
+            expect( driver.getInputValue() ).toBe( 'helloworld' );
         } );
         test( `should call the onChange callback once per
             printable character in value`, () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().inputValue( 'foo' );
+            driver.inputValue( 'foo' );
             expect( onChange ).toBeCalledTimes( 3 );
         } );
     } );
 
     describe( 'setInputValue( value )', () =>
     {
+        test( 'should set the input value to "foo"', () =>
+        {
+            driver.setInputValue( 'foo' );
+            expect( CodeMirror.getValue() ).toBe( 'foo' );
+        } );
+
         test( 'should fire the onChange callback prop once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().setInputValue( 'foo' );
+            driver.setInputValue( 'foo' );
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -109,14 +116,14 @@ end of the code editor’s value', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().setInputValue( 'foo' );
+            driver.setInputValue( 'foo' );
             expect( onChange ).toBeCalledWith( 'foo' );
         } );
 
         test( 'should throw the expected error when component isReadOnly', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-            expect( () => wrapper.driver().setInputValue( 'foo' ) )
+            expect( () => driver.setInputValue( 'foo' ) )
                 .toThrowError( 'Cannot change the CodeEditor value since \
 it’s read only' );
         } );
@@ -127,7 +134,7 @@ it’s read only' );
         test( 'should set the input value to an empty string', () =>
         {
             wrapper.setProps( { defaultValue: 'foo' } );
-            wrapper.driver().clearInputValue();
+            driver.clearInputValue();
             expect( CodeMirror.getValue() ).toBe( '' );
         } );
 
@@ -135,9 +142,9 @@ it’s read only' );
         {
             wrapper.setProps( {
                 value      : 'foo',
-                isReadOnly : true,
+                isReadOnly : true
             } );
-            expect( () => wrapper.driver().clearInputValue() )
+            expect( () => driver.clearInputValue() )
                 .toThrowError( 'Cannot change the CodeEditor value since \
 it’s read only' );
         } );
@@ -145,7 +152,7 @@ it’s read only' );
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().clearInputValue();
+            driver.clearInputValue();
             expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
@@ -155,7 +162,7 @@ it’s read only' );
         test( 'should return the value of the Code Editor input', () =>
         {
             wrapper.setProps( { value: 'foo' } );
-            expect( wrapper.driver().getInputValue() ).toBe( 'foo' );
+            expect( driver.getInputValue() ).toBe( 'foo' );
         } );
     } );
 
@@ -164,8 +171,8 @@ it’s read only' );
         test( 'should return true if the editor cannot be edited', () =>
         {
             wrapper.setProps( { isReadOnly: true } );
-            expect( wrapper.driver().isReadOnly() ).toBeTruthy();
-            expect( wrapper.driver().isDisabled() ).toBeFalsy();
+            expect( driver.isReadOnly() ).toBeTruthy();
+            expect( driver.isDisabled() ).toBeFalsy();
         } );
     } );
 
@@ -174,8 +181,8 @@ it’s read only' );
         test( 'should return true if the editor is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            expect( wrapper.driver().isDisabled() ).toBeTruthy();
-            expect( wrapper.driver().isReadOnly() ).toBeFalsy();
+            expect( driver.isDisabled() ).toBeTruthy();
+            expect( driver.isReadOnly() ).toBeFalsy();
         } );
     } );
 } );

@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 import { ComponentDriver } from 'componentDriver';
 import {
     Button,
@@ -75,7 +66,7 @@ import {
     Uploader,
     ValuedTextInput,
 } from 'nessie-ui';
-import { CodeEditor, FlounderDropdown } from 'nessie-ui';
+import { CodeEditor, FlounderDropdown } from 'addons';
 
 import ButtonDriver                     from './Button/driver';
 import CheckableGroupDriver             from './CheckableGroup/driver';
@@ -98,6 +89,7 @@ import ModuleDriver          from './Module/driver';
 import NavItemDriver         from './NavItem/driver';
 import NotificationBarDriver from './NotificationBar/driver';
 import PaginatorDriver       from './Paginator/driver';
+import PasswordInputDriver   from './PasswordInput/driver';
 import RadioGroupDriver      from './RadioGroup/driver';
 import ScrollBarDriver       from './ScrollBar/driver';
 import ScrollBoxDriver       from './ScrollBox/driver';
@@ -114,6 +106,7 @@ import TagDriver               from './Tag/driver';
 import TagInputDriver          from './TagInput/driver';
 import TextAreaDriver          from './TextArea/driver';
 import TextDriver              from './Text/driver';
+import TextInputWithIconDriver from './TextInputWithIcon/driver';
 import TooltipDriver           from './Tooltip/driver';
 import UploaderDriver          from './Uploader/driver';
 import WrapperDriver           from './Testing/CommonDrivers/wrapperDriver';
@@ -279,7 +272,7 @@ const drivers =
     },
     {
         Component : PasswordInput,
-        Driver    : InputComponentDriver,
+        Driver    : PasswordInputDriver,
     },
     {
         Component : Radio,
@@ -371,7 +364,7 @@ const drivers =
     },
     {
         Component : TextInputWithIcon,
-        Driver    : InputComponentDriver,
+        Driver    : TextInputWithIconDriver,
     },
     {
         Component : Tooltip,

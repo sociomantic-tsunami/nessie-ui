@@ -1,30 +1,15 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 @import "../proto/definitions/variables.css";
 @import "../proto/definitions/_fonts.css";
 
 
 :root
 {
-    --tooltipBorderRadius:  4px;
-    --tooltipBorderWidth:   1px;
-    --tooltipBoxShadow:     0 2px 8px  color( var( --PC-GREY ) a( 50% ) );
+    --tooltipBorderRadius:  2px;
+
     --tooltipMaxWidth:      360px;
-    --tooltipOffset:        var( --spacing-2 );
-    --tooltipPadding:       var( --spacing-2 );
+    --tooltipMaxHeight:     100vh;
 
-    --messageLineHeight:    var( --line-height-m );
-
-    --caretSize:            10px;
-    --carretOffset: /* center the caret to the first line of message text */
-        calc( var( --tooltipPadding ) + ( var( --messageLineHeight ) / 2 ) );
+    --tooltipOffset:        var( --spacing-1 );
 }
 
 
@@ -42,68 +27,38 @@
 
     .tooltipContainer
     {
-        visibility:     hidden;
-        position:       absolute;
-        width:          var( --tooltipMaxWidth );
-        line-height:    0;
-        z-index:        99999;
+        visibility: hidden;
+        position:   absolute;
+        z-index:    99999;
     }
 
     .tooltip
     {
         visibility:     visible;
-        position:       relative;
-        display:        inline-block;
+        position:       absolute;
 
         box-sizing:     border-box;
-        min-width:      var( --tooltipMinSize );
-        min-height:     var( --tooltipMinSize);
         max-width:      var( --tooltipMaxWidth );
+        max-height:     var( --tooltipMaxHeight );
 
-        border:         var( --tooltipBorderWidth ) solid;
         border-radius:  var( --tooltipBorderRadius );
-        box-shadow:     var( --tooltipBoxShadow );
+        box-shadow:     var( --boxShadow );
+        padding:        var( --spacing-1 ) var( --spacing-2 );
 
-        padding:        var( --spacing-2 );
+        background:     var( --PC-GREY--D15 );
 
-        text-align:     left;
-
-        &::before /* hover area */
+        &::before
         {
             content:    "";
             position:   absolute;
-            display:    block;
-        }
-
-        &::after /* caret */
-        {
-            content:                "";
-            display:                block;
-            position:               absolute;
-
-            box-sizing:             inherit;
-            width:                  var( --caretSize );
-            height:                 var( --caretSize );
-
-            border:                 inherit;
-            border-top-color:       transparent;
-            border-left-color:      transparent;
-
-            background:             inherit;
         }
     }
 
     .message
     {
-        min-height:     var( --messageLineHeight );
-        min-width:      var( --messageLineHeight );
-
-        line-height:    var( --messageLineHeight );
-
         @extend %Nessie-SemiBold;
         color:          var( --PC-WHITE );
         overflow-wrap:  break-word;
-        text-transform: none;
 
         a:any-link
         {
@@ -115,7 +70,7 @@
     .close
     {
         position:   absolute;
-        top:        var( --spacing-2 );
+        top:        var( --spacing-1 );
         right:      var( --spacing-2 );
     }
 }
@@ -129,22 +84,18 @@
     }
 }
 
-
 .position__top,
+.position__bottom,
 .position__topLeft,
 .position__topRight,
-.position__bottom,
 .position__bottomLeft,
 .position__bottomRight
 {
-    .tooltip
+    .tooltip::before
     {
-        &::before
-        {
-            left:   0;
-            right:  0;
-            height: var( --tooltipOffset );
-        }
+        left:   0;
+        right:  0;
+        height: var( --tooltipOffset );
     }
 }
 
@@ -154,20 +105,16 @@
 {
     .tooltipContainer
     {
-        bottom: calc( 100% + var( --tooltipOffset ) );
+        top:    0;
     }
 
     .tooltip
     {
-        &::before,
-        &::after
-        {
-            top:    calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        bottom: 0;
 
-        &::after
+        &::before
         {
-            transform:  translateX( -50% ) translateY( -50% ) rotate( 45deg );
+            top:    100%;
         }
     }
 }
@@ -178,20 +125,16 @@
 {
     .tooltipContainer
     {
-        top:    calc( 100% + var( --tooltipOffset ) );
+        bottom: 0;
     }
 
     .tooltip
     {
-        &::before,
-        &::after
-        {
-            bottom: calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        top:    0;
 
-        &::after
+        &::before
         {
-            transform:  translateX( -50% ) translateY( 50% ) rotate( 225deg );
+            bottom: 100%;
         }
     }
 }
@@ -201,17 +144,52 @@
 {
     .tooltipContainer
     {
-        left:       50%;
-        text-align: center;
-        transform:  translateX( -50% );
+        left:   50%;
+        width:  calc( var( --tooltipMaxWidth ) * 2 );
+        height: var( --tooltipMaxHeight );
     }
 
     .tooltip
     {
-        &::after
-        {
-            left:   50%;
-        }
+        left:   50%;
+    }
+}
+
+.position__top
+{
+    .tooltipContainer
+    {
+        transform:  translate3d( -50%, -100%, 0 );
+    }
+
+    .tooltip
+    {
+        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+    }
+}
+
+.position__bottom
+{
+    .tooltipContainer
+    {
+        transform:  translate3d( -50%, 100%, 0 );
+    }
+
+    .tooltip
+    {
+        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
+    }
+}
+
+.position__topLeft,
+.position__topRight,
+.position__bottomLeft,
+.position__bottomRight
+{
+    .tooltipContainer
+    {
+        width:      var( --tooltipMaxWidth );
+        height:     var( --tooltipMaxHeight );
     }
 }
 
@@ -220,16 +198,12 @@
 {
     .tooltipContainer
     {
-        right:      calc( 50% - var( --carretOffset ) );
-        text-align: right;
+        left:  0;
     }
 
     .tooltip
     {
-        &::after
-        {
-            left:  calc( 100% - var( --carretOffset ) );
-        }
+        left:  0;
     }
 }
 
@@ -238,72 +212,62 @@
 {
     .tooltipContainer
     {
-        left:       calc( 50% - var( --carretOffset ) );
-        text-align: left;
+        right:   0;
     }
 
     .tooltip
     {
-        &::after
-        {
-            left:   var( --carretOffset );
-        }
+        right:   0;
     }
 }
 
-
-.position__left,
-.position__leftTop,
-.position__leftBottom,
-.position__right
-.position__rightTop,
-.position__rightBottom
-{
-    .tooltip::before
-    {
-        top:    0;
-        bottom: 0;
-        width:  var( --tooltipOffset );
-    }
-}
-
-.position__left,
-.position__leftTop,
-.position__leftBottom
+.position__topLeft,
+.position__topRight
 {
     .tooltipContainer
     {
-        right:      calc( 100% + var( --tooltipOffset ) );
-        text-align: right;
-    }
-
-    .tooltip
-    {
-        &::before,
-        &::after
-        {
-            left:   calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        transform:  translateY( -100% );
     }
 }
 
-.position__right,
-.position__rightTop,
-.position__rightBottom
+.position__topLeft
+{
+    .tooltip
+    {
+        transform:  translate3d( -50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+    }
+}
+
+.position__topRight
+{
+    .tooltip
+    {
+        transform:  translate3d( 50%, calc( -1 * var( --tooltipOffset ) ), 0 );
+    }
+}
+
+.position__bottomLeft,
+.position__bottomRight
 {
     .tooltipContainer
     {
-        left:       calc( 100% + var( --tooltipOffset ) );
-        text-align: left;
+        transform:  translateY( 100% );
     }
+}
 
+.position__bottomLeft
+{
     .tooltip
     {
-        &::before,
-        &::after
-        {
-            right:  calc( 100% + var( --tooltipBorderWidth ) );
-        }
+        transform:  translate3d( -50%, var( --tooltipOffset ), 0 );
+    }
+}
+
+.position__bottomRight
+{
+    .tooltip
+    {
+        transform:  translate3d( 50%, var( --tooltipOffset ), 0 );
     }
 }
 
@@ -312,91 +276,70 @@
 {
     .tooltipContainer
     {
-        top:        50%;
-        transform:  translateY( -50% );
+        top:    50%;
+        width:  var( --tooltipMaxWidth );
+        height: calc( 2 * var( --tooltipMaxHeight ) );
     }
 
     .tooltip
     {
-        &::after
+        top:    50%;
+
+        &::before
         {
-            top:   50%;
+            top:    0;
+            bottom: 0;
+            width:  var( --tooltipOffset );
         }
     }
 }
 
-.position__left,
-.position__leftTop,
-.position__leftBottom
-{
-    .tooltip
-    {
-        &::after
-        {
-            left:       100%;
-            transform:  translateX( -50% ) translateY( -50% ) rotate( 320deg );
-        }
-    }
-}
-
-.position__right,
-.position__rightTop,
-.position__rightBottom
-{
-    .tooltip
-    {
-        &::after
-        {
-            right:      100%;
-            transform:  translateX( 50% ) translateY( -50% ) rotate( 135deg );
-        }
-    }
-}
-
-.position__leftTop,
-.position__rightTop
+.position__left
 {
     .tooltipContainer
     {
-        bottom: calc( 50% - var( --carretOffset) );
+        left:       0;
+        transform:  translate3d( -100%, -50%, 0 );
     }
 
-    .tooltip::after
+    .tooltip
     {
-        top:    calc( 100% - var( --carretOffset ) );
+        right:      0;
+        transform:  translate3d( calc( -1 * var( --tooltipOffset ) ), -50%, 0 );
+
+        &::before
+        {
+            left:   100%;
+        }
     }
 }
 
-.position__leftBottom,
-.position__rightBottom
+.position__right
 {
     .tooltipContainer
     {
-        top:    calc( 50% - var( --carretOffset) );
+        right:      0;
+        transform:  translate3d( 100%, -50%, 0 );
     }
 
-    .tooltip::after
-    {
-        top:    var( --carretOffset );
-    }
-}
-
-
-.role__default
-{
     .tooltip
     {
-        background:     var( --PC-GREY--D45 );
-        border-color:   var( --PC-GREY--D75 );
+        left:       0;
+        transform:  translate3d( var( --tooltipOffset ), -50%, 0 );
+
+        &::before
+        {
+            right:  100%;
+        }
     }
 }
+
 
 .role__critical
 {
     .tooltip
     {
-        background:     var( --PC-RED );
-        border-color:   var( --PC-RED--D15 );
+        background: var( --PC-RED );
     }
 }
 
@@ -404,8 +347,7 @@
 {
     .tooltip
     {
-        background:     var( --PC-GREEN );
-        border-color:   var( --PC-GREEN--D15 );
+        background: var( --PC-GREEN );
     }
 }
 
@@ -413,7 +355,6 @@
 {
     .tooltip
     {
-        background:     var( --PC-ORANGE );
-        border-color:   var( --PC-ORANGE--D15 );
+        background: var( --PC-ORANGE );
     }
 }

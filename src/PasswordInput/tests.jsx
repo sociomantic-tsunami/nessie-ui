@@ -1,35 +1,29 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
+/* eslint no-console: 0*/
 /* eslint-disable no-unused-expressions, no-magic-numbers  */
 
-import React                 from 'react';
-import { mount, shallow }    from 'enzyme';
+import React                            from 'react';
+import { ReactWrapper, mount, shallow } from 'enzyme';
 
-import { TextInputWithIcon } from '../index';
+import { TextInputWithIcon }            from '../index';
 
-import PasswordInput         from './index';
+import PasswordInput                    from './index';
 
 
 describe( 'PasswordInput', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <PasswordInput /> );
+        instance = wrapper.instance();
     } );
 
-    test( 'should be stateless functional component', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        expect( wrapper.instance() ).toBe( null );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
     } );
 
     test( 'should contain exactly one TextInputWithIcon', () =>
@@ -97,10 +91,35 @@ describe( 'PasswordInput', () =>
 describe( 'PasswordInputDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <PasswordInput /> );
+        driver  = wrapper.driver();
+    } );
+
+    describe( 'getErrorMessage()', () =>
+    {
+        beforeEach( () =>
+        {
+            wrapper.setProps( {
+                hasError              : true,
+                errorMessage          : <h2>Pikachu!</h2>,
+                errorMessageIsVisible : true,
+            } );
+        } );
+
+        test( 'should return a ReactWrapper', () =>
+        {
+            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
+        } );
+
+        test( 'should contain the error message content', () =>
+        {
+            const message = driver.getErrorMessage();
+            expect( message.find( 'h2' ) ).toHaveLength( 1 );
+        } );
     } );
 
     describe( 'focus()', () =>
@@ -114,7 +133,7 @@ describe( 'PasswordInputDriver', () =>
                 onFocus  : focusSpy,
             } );
 
-            wrapper.driver().focus();
+            driver.focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -130,7 +149,7 @@ describe( 'PasswordInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            wrapper.driver().blur();
+            driver.blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -146,7 +165,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange : changeSpy,
             } );
 
-            wrapper.driver().setInputValue( 'test' );
+            driver.setInputValue( 'test' );
             expect( changeSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -161,7 +180,7 @@ describe( 'PasswordInputDriver', () =>
                 onKeyPress : keyPressSpy,
             } );
 
-            wrapper.driver().pressKey( keyCodeEnter );
+            driver.pressKey( keyCodeEnter );
             expect( keyPressSpy ).toBeCalledTimes( 1 );
         } );
 
@@ -173,7 +192,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange : onChangeSpy,
             } );
 
-            wrapper.driver().pressKey( keyCodeChar );
+            driver.pressKey( keyCodeChar );
             expect( onChangeSpy ).toBeCalledTimes( 1 );
         } );
 
@@ -186,7 +205,7 @@ describe( 'PasswordInputDriver', () =>
                 onChange   : onChangeSpy,
             } );
 
-            wrapper.driver().inputValue( 'Harry Potter' );
+            driver.inputValue( 'Harry Potter' );
 
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
@@ -207,9 +226,7 @@ describe( 'PasswordInputDriver', () =>
             const expectedError =
                 'Input \'test\' cannot be clicked since it is disabled';
 
-            expect( () => wrapper.driver().click() )
-                .toThrowError( expectedError );
-
+            expect( () => driver.click() ).toThrowError( expectedError );
             expect( clickSpy ).not.toBeCalled();
         } );
     } );

@@ -1,9 +1,9 @@
-## Component Description
+Component Description
+---------------------
 
-TextArea is an InputField component with `element="textarea"`.
+A Nessie TextArea consists of a text area `<input>`.
 
-## Example Usage
+Example Usage
+-------------
 
-```
-<TextArea placeholder = "Please enter max. 500 characters"/>
-```
+    <TextArea placeholder = "Please enter max. 500 characters"/>

@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 export default class RadioGroupDriver
 {
     constructor( wrapper )
@@ -52,8 +43,8 @@ export default class RadioGroupDriver
 
     getSelectedValues()
     {
-        const items = this.wrapper.findWhere( n =>
-            n.instance() && n.instance().checked === true );
+        const items =
+            this.wrapper.findWhere( n => n.node.checked === true );
 
         return items.map( item => item.prop( 'value' ) );
     }

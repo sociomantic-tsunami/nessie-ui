@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* eslint-disable valid-jsdoc, no-magic-numbers */
 import { IconButton } from 'nessie-ui';
 
@@ -23,7 +14,7 @@ export default class ModuleDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.prop( 'cssMap' );
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     /**
@@ -61,7 +52,7 @@ export default class ModuleDriver
 
     getCustomHeader()
     {
-        if ( !this.wrapper.prop( 'customHeader' ) )
+        if ( !this.wrapper.props().customHeader )
         {
             throw new Error( ERRORS.MODULE_HAS_NO_CUSTOM_HEADER );
         }

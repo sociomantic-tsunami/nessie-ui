@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
@@ -22,27 +13,26 @@ const Checkable = ( {
     hasError,
     id = generateId( 'Checkable' ),
     inputRef,
-    isChecked,
     isDisabled,
+    isChecked,
     isReadOnly,
     label,
     name,
     onBlur,
-    onChange,
     onClick,
     onFocus,
+    onChange,
     onMouseOut,
     onMouseOver,
     type,
     value,
 } ) =>
 {
-    let labelContent = children || label;
+    let labelText = children || label;
 
-    if ( typeof labelContent === 'string' )
+    if ( typeof labelText === 'string' )
     {
-        labelContent =
-            <Text className = { cssMap.labelText }>{ labelContent }</Text>;
+        labelText = <Text className = { cssMap.labelText }>{ labelText }</Text>;
     }
 
     return (
@@ -52,25 +42,23 @@ const Checkable = ( {
                 error       : !isDisabled && hasError,
                 fakeHovered : !isDisabled && forceHover,
             } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
+            onMouseLeave = { onMouseOut }
+            onMouseEnter = { onMouseOver }>
             <input
                 checked        = { isChecked }
                 className      = { cssMap.input }
                 disabled       = { isDisabled || isReadOnly }
                 id             = { id }
                 name           = { name }
-                onBlur         = { onBlur }
-                onChange       = { onChange }
                 onClick        = { onClick }
+                onChange       = { onChange }
                 onFocus        = { onFocus }
+                onBlur         = { onBlur }
                 ref            = { inputRef }
                 type           = { type }
                 value          = { value } />
             <label className = { cssMap.label } htmlFor = { id }>
-                <span className = { cssMap.labelContent }>
-                    { labelContent }
-                </span>
+                { labelText }
             </label>
         </div>
     );

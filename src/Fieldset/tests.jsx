@@ -1,13 +1,5 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test */
+/* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React          from 'react';
@@ -19,10 +11,12 @@ import { Fieldset }   from '../index';
 describe( 'Fieldset', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Fieldset /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
@@ -35,11 +29,18 @@ describe( 'Fieldset', () =>
 
     describe( 'props', () =>
     {
+        let props;
+
+        beforeEach( () =>
+        {
+            ( { props } = instance );
+        } );
+
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( Fieldset.defaultProps.hasError ).toBe( false );
+                expect( props.hasError ).toBeFalsy();
             } );
         } );
 
@@ -47,7 +48,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.isDisabled ).toBeUndefined();
+                expect( props.isDisabled ).toBeUndefined();
             } );
         } );
 
@@ -55,7 +56,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.onMouseOut ).toBeUndefined();
+                expect( props.onMouseOut ).toBeUndefined();
             } );
         } );
 
@@ -63,7 +64,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.onMouseOver ).toBeUndefined();
+                expect( props.onMouseOver ).toBeUndefined();
             } );
         } );
     } );

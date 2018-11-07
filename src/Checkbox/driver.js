@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 import InputComponentDriver
     from '../Testing/CommonDrivers/inputComponentDriver';
 
@@ -14,13 +5,13 @@ export default class CheckboxDriver extends InputComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).input}` );
-        this.outer = wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` );
+        super( wrapper, `.${wrapper.props().cssMap.input}` );
+        this.outer = wrapper.find( `.${wrapper.props().cssMap.default}` );
     }
 
     setChecked()
     {
-        const node = this.control.instance();
+        const node = this.control.getNode();
 
         if ( !node.checked )
         {
@@ -33,7 +24,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     setUnchecked()
     {
-        const node = this.control.instance();
+        const node = this.control.getNode();
 
         if ( node.checked )
         {
@@ -46,7 +37,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     toggleChecked()
     {
-        const node   = this.control.instance();
+        const node   = this.control.getNode();
         node.checked = !node.checked;
         this.control.simulate( 'change' );
         return this;
@@ -54,7 +45,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     getChecked()
     {
-        return this.control.instance().checked;
+        return this.control.getNode().checked;
     }
 
     mouseOver()

@@ -1,10 +1,11 @@
-## Component Description
+Component Description
+---------------------
 
-TextInput is an InputField component with `element="input"`.
+A Nessie Text Input consists of a label and a text field.
 
 
-## Example Usage
+Example Usage
+-------------
 
-```
-<TextInput placeholder = "Max Mustermann" />
-```
+    <TextInput label       = "What is your name?"
+               placeholder = "Max Mustermann"/>

@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 @import "../proto/base.css";
 
 .default
@@ -134,15 +125,6 @@
 .loading
 {
     width:  100%;
-
-    .uploadedButton,
-    .loadingOverlay
-    {
-        background:         var( --PC-BLUE--L70 );
-        color:              var( --PC-BLUE--L25 );
-        pointer-events:     none;
-        opacity:            1;
-    }
 
     .uploaderButton
     {

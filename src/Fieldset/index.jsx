@@ -1,19 +1,10 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+
 import Label                from '../Label';
 import IconWithTooltip      from '../IconWithTooltip';
-
 
 const Fieldset = ( {
     children,
@@ -25,25 +16,27 @@ const Fieldset = ( {
     hasError,
     isDisabled,
     label,
-    onMouseOut,
     onMouseOver,
+    onMouseOut
 } ) => (
+
     <fieldset
         className    = { buildClassName( className, cssMap ) }
         onMouseEnter = { onMouseOver }
         onMouseLeave = { onMouseOut }>
         { label &&
-            <IconWithTooltip
-                className        = { cssMap.labelContainer }
-                iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
-                iconPosition     = "right"
-                iconType         = "error"
-                message          = { errorMessage }
-                noWarn
-                tooltipIsVisible = { errorMessageIsVisible }
-                tooltipPosition  = { errorMessagePosition }>
-                <Label element = "legend">{ label }</Label>
-            </IconWithTooltip>
+        <IconWithTooltip
+            className        = { cssMap.labelContainer }
+            iconType         = "error"
+            iconPosition     = "right"
+            message          = { errorMessage }
+            tooltipIsVisible = { errorMessageIsVisible }
+            tooltipPosition  = { errorMessagePosition }
+            iconIsVisible    = { !isDisabled &&
+                                             !!errorMessage &&
+                                             hasError }>
+            <Label element = "legend">{ label }</Label>
+        </IconWithTooltip>
         }
         { children }
     </fieldset>
@@ -88,27 +81,22 @@ Fieldset.propTypes =
     *  Error message position relative to the icon
     */
     errorMessagePosition : PropTypes.oneOf( [
-        'top',
-        'topLeft',
-        'topRight',
-        'bottom',
-        'bottomLeft',
-        'bottomRight',
         'left',
-        'leftTop',
-        'leftBottom',
         'right',
-        'rightTop',
-        'rightBottom',
-    ] ),
+        'top',
+        'bottom',
+        'topLeft',
+        'topRight'
+    ] )
 };
 
 Fieldset.defaultProps =
 {
-    cssMap                : require( './fieldset.css' ),
+    infoMessage           : '',
+    hasError              : false,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
-    hasError              : false,
+    cssMap                : require( './fieldset.css' )
 };
 
 export default Fieldset;

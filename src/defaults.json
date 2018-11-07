@@ -102,8 +102,7 @@
     {
         "iconType"          : "error",
         "message"           : "Something’s wrong!",
-        "tooltipIsVisible"  : true,
-        "lochness"          : { "isDeprecated": true }
+        "tooltipIsVisible"  : true
     },
     "Label" :
     {
@@ -175,10 +174,6 @@
     "NotificationBar" :
     {
         "message" : "Here you can view your campaign settings"
-    },
-    "PageContent" :
-    {
-        "children" : "{<Text>This is the page content container. Not much to see here, really.</Text>}"
     },
     "Paginator" :
     {
@@ -314,7 +309,8 @@
     },
     "Tooltip" :
     {
-        "message"  : "Pro tip!"
+        "message"  : "Cost per click",
+        "children" : "{<Label>CPC</Label>}"
     },
     "Uploader" :
     {

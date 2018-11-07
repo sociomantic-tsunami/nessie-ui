@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
@@ -104,19 +95,17 @@ NavItem.propTypes =
      */
     iconType      : PropTypes.oneOf( [
         'account',
-        'add-circle',
         'add',
+        'add-circle',
         'alert',
         'approved',
         'arrow',
-        'arrow-up',
-        'arrow-down',
         'bell',
         'board',
         'calendar',
+        'close',
         'close-circle',
         'close-thick',
-        'close',
         'dash',
         'dashboard',
         'declined',
@@ -124,8 +113,8 @@ NavItem.propTypes =
         'down',
         'download',
         'duplicate',
-        'edit-circle',
         'edit',
+        'edit-circle',
         'ended',
         'error',
         'file',
@@ -136,10 +125,8 @@ NavItem.propTypes =
         'left',
         'lightbulb',
         'link',
-        'loader',
         'megaphone',
         'options',
-        'paused',
         'pending',
         'preview',
         'puzzle-piece',
@@ -147,9 +134,8 @@ NavItem.propTypes =
         'right',
         'search',
         'show',
-        'star-stroke',
         'star',
-        'sociomantic',
+        'star-stroke',
         'swap',
         'table',
         'up',

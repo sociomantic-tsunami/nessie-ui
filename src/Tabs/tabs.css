@@ -1,62 +1,36 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 @import "../proto/base.css";
 
 .default
 {
-    .header
-    {
-        display:        flex;
-        align-items:    flex-end;
-        max-width:      100%;
-        border-bottom:  solid 1px var( --PC-GREY--L70 );
-        margin-bottom:  var( --spacing-2 );
+    position:       relative;
+}
 
-        & > *
-        {
-            margin-bottom:  0;
-        }
-    }
+.header
+{
+    display:        flex;
+    flex-direction: row;
+    align-items:    flex-end;
 
-    .tabsContainer
-    {
-        flex:           auto;
-        margin-bottom:  -1px;
-    }
+    border-bottom:  solid 1px var( --PC-GREY--L70 );
 
-    .tabs
-    {
-        display:    flex;
+    margin-bottom:	var( --spacing-2 );
+}
 
-        & > *
-        {
-            flex:           none;
-            margin-bottom:  0;
-            margin-right:   var( --spacing-2 );
+.tabs
+{
+    display:        flex;
+    flex-direction: row;
+    flex-grow:      1;
 
-            &:last-child
-            {
-                margin-right: 0;
-            }
-        }
-    }
+    margin-bottom:  -1px;
+}
 
-    .secondaryControls
-    {
-        flex:           none;
-        margin-left:    var( --spacing-2 );
-        margin-bottom:  var( --spacing-2 );
-    }
+.secondaryControls
+{
+    margin-bottom: var( --spacing-2 );
+}
 
-    .content
-    {
-        /* nothing to do here */
-    }
+.content
+{
+    /* padding? */
 }

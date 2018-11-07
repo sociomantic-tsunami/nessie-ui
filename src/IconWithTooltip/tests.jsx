@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-unused-expressions */
 
@@ -21,10 +12,12 @@ import IconWithTooltip                  from './index';
 describe( 'IconWithTooltip', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = shallow( <IconWithTooltip /> );
+        wrapper  = shallow( <IconWithTooltip /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'props', () =>
@@ -33,26 +26,27 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( IconWithTooltip.defaultProps.onMouseOver )
-                    .toBeUndefined();
+                expect( instance.props.onMouseOver ).toBeUndefined();
             } );
 
-            test( 'should be be passed to wrapper div as onMouseEnter', () =>
-            {
-                const onMouseOver = jest.fn();
-                wrapper.setProps( { onMouseOver } );
+            test(
+                'should be be passed to the wrapper div as onMouseEnter',
+                () =>
+                {
+                    const onMouseOver = jest.fn();
+                    wrapper.setProps( { onMouseOver } );
 
-                expect( wrapper.find( 'div' ).first()
-                    .prop( 'onMouseEnter' ) ).toBe( onMouseOver );
-            } );
+                    expect( wrapper.find( 'div' ).first()
+                        .prop( 'onMouseEnter' ) ).toBe( onMouseOver );
+                }
+            );
         } );
 
         describe( 'onMouseOut', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( IconWithTooltip.defaultProps.onMouseOut )
-                    .toBeUndefined();
+                expect( instance.props.onMouseOut ).toBeUndefined();
             } );
 
             test(
@@ -64,7 +58,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseLeave' ) ).toBe( onMouseOut );
-                },
+                }
             );
         } );
 
@@ -72,8 +66,7 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( IconWithTooltip.defaultProps.onMouseOverIcon )
-                    .toBeUndefined();
+                expect( instance.props.onMouseOverIcon ).toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOver', () =>
@@ -90,8 +83,7 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( IconWithTooltip.defaultProps.onMouseOutIcon )
-                    .toBeUndefined();
+                expect( instance.props.onMouseOutIcon ).toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOut', () =>
@@ -110,10 +102,12 @@ describe( 'IconWithTooltip', () =>
 describe( 'IconWithTooltipDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <IconWithTooltip /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'mouseOver()', () =>
@@ -123,7 +117,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
@@ -136,7 +130,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOut = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
@@ -149,7 +143,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOverIcon = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOverIcon } );
 
-            wrapper.driver().mouseOverIcon();
+            driver.mouseOverIcon();
 
             expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
@@ -162,7 +156,7 @@ describe( 'IconWithTooltipDriver', () =>
             const onMouseOutIcon = jest.fn();
             wrapper.setProps( { message: 'Pikachu!', onMouseOutIcon } );
 
-            wrapper.driver().mouseOutIcon();
+            driver.mouseOutIcon();
 
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
@@ -172,18 +166,17 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test( 'should return a Reactwrapper', () =>
         {
-            expect( wrapper.driver().getContent() )
-                .toBeInstanceOf( ReactWrapper );
+            expect( driver.getContent() ).toBeInstanceOf( ReactWrapper );
         } );
 
         test( 'should contain the wrapped content', () =>
         {
             wrapper.setProps( {
                 message  : 'Pikachu!',
-                children : <h1>Who am i?</h1>,
+                children : <h1>Who am i?</h1>
             } );
 
-            const content = wrapper.driver().getContent();
+            const content = driver.getContent();
             expect( content.find( 'h1' ) ).toHaveLength( 1 );
         } );
     } );
@@ -192,8 +185,7 @@ describe( 'IconWithTooltipDriver', () =>
     {
         test( 'should return a Reactwrapper', () =>
         {
-            expect( wrapper.driver().getMessage() )
-                .toBeInstanceOf( ReactWrapper );
+            expect( driver.getMessage() ).toBeInstanceOf( ReactWrapper );
         } );
 
         test( 'should contain the Tooltip message', () =>
@@ -203,7 +195,7 @@ describe( 'IconWithTooltipDriver', () =>
                 tooltipIsVisible : true,
             } );
 
-            const message = wrapper.driver().getMessage();
+            const message = driver.getMessage();
             expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );

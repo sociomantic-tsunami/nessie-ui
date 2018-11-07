@@ -1,14 +1,7 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global jest, test */
+/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+
 
 import React        from 'react';
 import { shallow }  from 'enzyme';
@@ -20,16 +13,13 @@ import ToggleButton from './index';
 
 describe( 'ToggleButton', () =>
 {
+    let instance;
     let wrapper;
 
     beforeEach( () =>
     {
         wrapper = shallow( <ToggleButton /> );
-    } );
-
-    test( 'should a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
+        instance = wrapper.instance();
     } );
 
     test( '<button> should always have type "button"', () =>
@@ -59,7 +49,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.label ).toBeUndefined();
+                expect( instance.props.label ).toBeUndefined();
             } );
         } );
 
@@ -67,7 +57,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be "primary" by default', () =>
             {
-                expect( ToggleButton.defaultProps.role ).toEqual( 'primary' );
+                expect( instance.props.role ).toEqual( 'primary' );
             } );
         } );
 
@@ -75,7 +65,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.id ).toBeUndefined();
+                expect( instance.props.id ).toBeUndefined();
             } );
         } );
 
@@ -83,8 +73,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be "left" by default', () =>
             {
-                expect( ToggleButton.defaultProps.iconPosition )
-                    .toEqual( 'left' );
+                expect( instance.props.iconPosition ).toEqual( 'left' );
             } );
         } );
 
@@ -92,7 +81,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( ToggleButton.defaultProps.isDisabled ).toEqual( false );
+                expect( instance.props.isDisabled ).toEqual( false );
             } );
 
             test( 'should be passed to <button> as "disabled" when true', () =>
@@ -106,7 +95,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( ToggleButton.defaultProps.isReadOnly ).toEqual( false );
+                expect( instance.props.isReadOnly ).toEqual( false );
             } );
 
             test( 'should be passed to <button> as "readOnly" when true', () =>
@@ -120,7 +109,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.onClick ).toBeUndefined();
+                expect( instance.props.onClick ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> element', () =>
@@ -135,7 +124,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.onFocus ).toBeUndefined();
+                expect( instance.props.onFocus ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button>', () =>
@@ -150,7 +139,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.onMouseOver ).toBeUndefined();
+                expect( instance.props.onMouseOver ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> as onMouseEnter', () =>
@@ -165,7 +154,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( ToggleButton.defaultProps.onMouseOut ).toBeUndefined();
+                expect( instance.props.onMouseOut ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> as onMouseLeave', () =>

@@ -1,27 +1,20 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global jest test */
 /* eslint-disable no-magic-numbers */
 
-import React         from 'react';
-import { mount }     from 'enzyme';
+import React                    from 'react';
+import { mount }                from 'enzyme';
 
-import DateTimeInput from './index';
+import { DateTimeInput }        from '../index';
 
 describe( 'DateTimeInputDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <DateTimeInput /> );
+        wrapper  = mount( <DateTimeInput /> );
+        driver   = wrapper.driver();
     } );
 
     describe( 'getMainInputValue()', () =>
@@ -32,7 +25,7 @@ describe( 'DateTimeInputDriver', () =>
                 inputValue : '2018-05-05 12:00'
             } );
 
-            expect( wrapper.driver().getMainInputValue() ).toBe( '2018-05-05 12:00' );
+            expect( driver.getMainInputValue() ).toBe( '2018-05-05 12:00' );
         } );
     } );
 
@@ -71,7 +64,7 @@ describe( 'DateTimeInputDriver', () =>
                 hourValue : '13'
             } );
 
-            expect( wrapper.driver().getHourInputValue() ).toBe( '13' );
+            expect( driver.getHourInputValue() ).toBe( '13' );
         } );
     } );
 
@@ -110,7 +103,7 @@ describe( 'DateTimeInputDriver', () =>
                 minuteValue : '45'
             } );
 
-            expect( wrapper.driver().getMinuteInputValue() ).toBe( '45' );
+            expect( driver.getMinuteInputValue() ).toBe( '45' );
         } );
     } );
 

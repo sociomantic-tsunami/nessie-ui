@@ -1,19 +1,12 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
+/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { InputField }     from '../index';
+import InputContainer     from '../proto/InputContainer';
 
 import TextInput          from './index';
 
@@ -21,15 +14,22 @@ import TextInput          from './index';
 describe( 'TextInput', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <TextInput /> );
+        instance = wrapper.instance();
     } );
 
-    test( 'should be stateless functional component', () =>
+    test( 'should be an instance of StatelessComponent', () =>
     {
-        expect( wrapper.instance() ).toBe( null );
+        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+    } );
+
+    test( 'should contain exactly one InputContainer', () =>
+    {
+        expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain exactly one InputField', () =>
@@ -42,10 +42,12 @@ describe( 'TextInput', () =>
 describe( 'TextInputDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <TextInput /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'blur()', () =>
@@ -59,7 +61,7 @@ describe( 'TextInputDriver', () =>
                 onBlur   : blurSpy,
             } );
 
-            wrapper.driver().blur();
+            driver.blur();
             expect( blurSpy ).toBeCalled();
         } );
     } );
@@ -71,7 +73,7 @@ describe( 'TextInputDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            wrapper.driver().focus();
+            driver.focus();
             expect( focusSpy ).toBeCalled();
         } );
     } );
@@ -83,7 +85,7 @@ describe( 'TextInputDriver', () =>
             const changeSpy = jest.fn();
             wrapper.setProps( { onChange: changeSpy } );
 
-            wrapper.driver().setInputValue( 'test' );
+            driver.setInputValue( 'test' );
 
             expect( changeSpy ).toBeCalled();
         } );
@@ -172,7 +174,7 @@ describe( 'TextInputDriver', () =>
             const keyPressSpy = jest.fn();
             wrapper.setProps( { onKeyPress: keyPressSpy } );
 
-            wrapper.driver().pressKey( keyCodeEnter );
+            driver.pressKey( keyCodeEnter );
             expect( keyPressSpy ).toBeCalled();
         } );
 
@@ -182,7 +184,7 @@ describe( 'TextInputDriver', () =>
             const onChangeSpy = jest.fn();
             wrapper.setProps( { onChange: onChangeSpy } );
 
-            wrapper.driver().pressKey( keyCodeChar );
+            driver.pressKey( keyCodeChar );
             expect( onChangeSpy ).toBeCalled();
         } );
 
@@ -195,7 +197,7 @@ describe( 'TextInputDriver', () =>
                 onChange   : onChangeSpy,
             } );
 
-            wrapper.driver().inputValue( 'Harry Potter' );
+            driver.inputValue( 'Harry Potter' );
             expect( keyPressSpy ).toBeCalledTimes( 12 );
             expect( onChangeSpy ).toBeCalledTimes( 12 );
         } );

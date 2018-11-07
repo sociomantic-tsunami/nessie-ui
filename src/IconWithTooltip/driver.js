@@ -1,17 +1,7 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
-import { Tooltip } from 'nessie-ui';
-
 import SimpleComponentDriver
     from '../Testing/CommonDrivers/simpleComponentDriver';
 
+import { Tooltip } from 'nessie-ui';
 
 
 export default class IconWithTooltipDriver extends SimpleComponentDriver
@@ -19,17 +9,18 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
     constructor( wrapper )
     {
         super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.tooltip = wrapper.children( Tooltip ).first();
     }
 
     mouseOverIcon()
     {
-        this.wrapper.find( Tooltip ).first().driver().mouseOver();
+        this.tooltip.driver().mouseOver();
         return this;
     }
 
     mouseOutIcon()
     {
-        this.wrapper.find( Tooltip ).first().driver().mouseOut();
+        this.tooltip.driver().mouseOut();
         return this;
     }
 
@@ -40,7 +31,6 @@ export default class IconWithTooltipDriver extends SimpleComponentDriver
 
     getMessage()
     {
-        return this.wrapper.find( `.${this.cssMap.iconWithTooltip}` ).first()
-            .driver().getMessage();
+        return this.tooltip.driver().getMessage();
     }
 }

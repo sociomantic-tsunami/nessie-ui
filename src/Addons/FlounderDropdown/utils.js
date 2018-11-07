@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 const mapCssToFlounder = ( cssMap = {} ) =>
     /* commented classes are currently unused */
     ( {
@@ -51,7 +42,7 @@ const mapIconClassesToFlounder = ( data = [], cssMap = {} ) =>
             return datum;
         }
 
-        let { extraClass } = datum;
+        let extraClass  = datum.extraClass;
         const iconClass = cssMap[ `optionIcon__${datum.icon}` ];
 
         if ( iconClass )
@@ -83,10 +74,7 @@ const addExtraClasses = ( data = [], className ) => (
             return { ...datum, extraClass };
         }
 
-        return {
-            ...datum,
-            data : datum.data && addExtraClasses( datum.data, className ),
-        };
+        return { ...datum, data: datum.data && addExtraClasses( datum.data ) };
     } )
 );
 

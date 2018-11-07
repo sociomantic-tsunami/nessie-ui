@@ -1,22 +1,13 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import ScrollBar  from '../ScrollBar';
-import * as utils from './utils';
+import ScrollBar          from '../ScrollBar';
+import * as utils         from './utils';
 
-import ScrollBox  from './index';
+import ScrollBox          from './index';
 
 
 describe( 'ScrollBox', () =>
@@ -26,19 +17,20 @@ describe( 'ScrollBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox /> );
+        wrapper = shallow( <ScrollBox /> );
         instance = wrapper.instance();
+        instance.innerRef = {
+            clientHeight : 100,
+            scrollHeight : 200,
+            clientWidth  : 100,
+            scrollWidth  : 200,
+        };
+        wrapper.setState();
     } );
 
     test( 'should have exactly one ScrollBar when scroll is "horizontal"', () =>
     {
         wrapper.setProps( { scroll: 'horizontal' } );
-        wrapper.setState( {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
@@ -46,12 +38,6 @@ describe( 'ScrollBox', () =>
     test( 'should have exactly one ScrollBar when scroll is "vertical"', () =>
     {
         wrapper.setProps( { scroll: 'vertical' } );
-        wrapper.setState( {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 1 );
     } );
@@ -59,12 +45,6 @@ describe( 'ScrollBox', () =>
     test( 'should have exactly two ScrollBars when scroll is "both"', () =>
     {
         wrapper.setProps( { scroll: 'both' } );
-        wrapper.setState( {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-        } );
 
         expect( wrapper.find( ScrollBar ) ).toHaveLength( 2 );
     } );
@@ -72,12 +52,6 @@ describe( 'ScrollBox', () =>
     test( 'thumbSize should be set on the scrollBars', () =>
     {
         wrapper.setProps( { scroll: 'both' } );
-        wrapper.setState( {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-        } );
 
         expect( wrapper.find( ScrollBar ).first().prop( 'thumbSize' ) )
             .toBe( '50%' );
@@ -120,21 +94,10 @@ describe( 'ScrollBox', () =>
 describe( 'ScrollBoxDriver', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBox /> );
-        instance = wrapper.instance();
-        instance.innerRef = {
-            clientHeight : 100,
-            scrollHeight : 200,
-            clientWidth  : 100,
-            scrollWidth  : 200,
-            scrollLeft   : 50,
-            scrollTop    : 50,
-        };
-        wrapper.setState();
     } );
 
     describe( 'clickScrollX', () =>
@@ -188,54 +151,6 @@ describe( 'ScrollBoxDriver', () =>
             wrapper.driver().clickScrollLeft();
 
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'clicking scrollUp indicator should scroll up', () =>
-        {
-            wrapper.setProps( {
-                scrollAmount      : 50,
-                scrollUpIsVisible : true,
-            } );
-
-            wrapper.driver().clickScrollUp();
-
-            expect( instance.innerRef.scrollTop ).toBe( 0 );
-        } );
-
-        test( 'clicking scrollRight indicator should scroll to the right', () =>
-        {
-            wrapper.setProps( {
-                scrollAmount         : 50,
-                scrollRightIsVisible : true,
-            } );
-
-            wrapper.driver().clickScrollRight();
-
-            expect( instance.innerRef.scrollLeft ).toBe( 100 );
-        } );
-
-        test( 'clicking scrollDown indicator should scroll to the bottom', () =>
-        {
-            wrapper.setProps( {
-                scrollAmount        : 50,
-                scrollDownIsVisible : true,
-            } );
-
-            wrapper.driver().clickScrollDown();
-
-            expect( instance.innerRef.scrollTop ).toBe( 100 );
-        } );
-
-        test( 'clicking scrollLeft indicator should scroll down', () =>
-        {
-            wrapper.setProps( {
-                scrollAmount        : 50,
-                scrollLeftIsVisible : true,
-            } );
-
-            wrapper.driver().clickScrollLeft();
-
-            expect( instance.innerRef.scrollLeft ).toBe( 0 );
         } );
     } );
 

@@ -1,13 +1,5 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
+/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React     from 'react';
@@ -15,64 +7,69 @@ import { mount } from 'enzyme';
 
 import NavItem   from './index';
 
-
-describe( 'NavItemDriver', () =>
+describe( 'NavItem', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavItem /> );
+        const props = {
+            label : 'testLabel',
+        };
+
+        wrapper = mount( <NavItem { ...props } /> );
     } );
 
-    describe( 'click()', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        test( 'should trigger onClick callback prop', () =>
-        {
-            const onClick = jest.fn().mockReset();
-            wrapper.setProps( { onClick } );
-
-            wrapper.driver().click();
-
-            expect( onClick ).toBeCalledTimes( 1 );
-        } );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 
-    describe( 'mouseOver()', () =>
+    test( 'should trigger callback on click once', () =>
     {
-        test( 'should trigger onMouseOver callback prop', () =>
-        {
-            const onMouseOver = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOver } );
-
-            wrapper.driver().mouseOver();
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+        const onClickSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onClick : onClickSpy
         } );
+
+        wrapper.driver().click();
+
+        expect( onClickSpy ).toBeCalledTimes( 1 );
     } );
 
-    describe( 'mouseOut()', () =>
+    test( 'should trigger callback on mouse over once', () =>
     {
-        test( 'should trigger onMouseOut callback prop', () =>
-        {
-            const onMouseOut = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOut } );
-
-            wrapper.driver().mouseOut();
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+        const onMouseOverSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOver : onMouseOverSpy
         } );
+
+        wrapper.driver().mouseOver();
+
+        expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
 
-    describe( 'getLabel()', () =>
+    test( 'should trigger callback on mouse out once', () =>
     {
-        test( 'should return the content of component label', () =>
-        {
-            wrapper.setProps( { label: <span>test label</span> } );
-
-            const label = wrapper.driver().getLabel();
-
-            expect( label.text() ).toBe( 'test label' );
+        const onMouseOutSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOut : onMouseOutSpy
         } );
+
+        wrapper.driver().mouseOut();
+
+        expect( onMouseOutSpy ).toBeCalledTimes( 1 );
+    } );
+
+    test( 'driver method `getLabel` should return the component label', () =>
+    {
+        wrapper = mount( <NavItem
+            label = { <span>testLabel</span> }
+        /> );
+
+        const label = wrapper.driver().getLabel();
+
+        expect( label.html() ).toBe( '<span>testLabel</span>' );
     } );
 } );

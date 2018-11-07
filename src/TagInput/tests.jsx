@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -17,17 +8,18 @@ import { Tag }            from '../index';
 
 import TagInput           from './index';
 
-const { cssMap } = TagInput.defaultProps;
 
 describe( 'TagInput', () =>
 {
     let wrapper;
     let instance;
+    let cssMap;
 
     beforeEach( () =>
     {
         wrapper      = shallow( <TagInput /> );
         instance     = wrapper.instance();
+        ( { cssMap } = instance.props );
     } );
 
     describe( 'constructor( props )', () =>

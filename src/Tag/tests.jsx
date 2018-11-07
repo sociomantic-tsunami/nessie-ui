@@ -1,21 +1,13 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
+/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import IconButton from '../IconButton';
+import IconButton   from '../IconButton';
 
-import Tag        from './index';
+import Tag          from './index';
 
 
 describe( 'Tag', () =>
@@ -60,7 +52,7 @@ describe( 'Tag', () =>
 
     test( 'should have an IconButton with close icon as a child', () =>
     {
-        expect( wrapper.find( IconButton ).prop( 'iconType' ) ).toBe( 'close' );
+        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>

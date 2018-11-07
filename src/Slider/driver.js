@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 const ERRORS = {
     DISABLED : ( label, action ) =>
         `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
@@ -48,7 +39,7 @@ export default class SliderDriver
         }
 
         const input = this.inputContainer.childAt( index );
-        const node  = input.instance();
+        const node  = input.getNode();
 
         node.value = value;
         input.simulate( 'change' );
@@ -120,7 +111,7 @@ export default class SliderDriver
 
     mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.instance().handleUp();
+        this.wrapper.node.handleUp();
         return this;
     }
 

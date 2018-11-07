@@ -1,15 +1,16 @@
 const path                 = require( 'path' );
 
 const merge                = require( 'lodash.merge' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 const baseConfig           = require( './base' );
 
 
-const devConfig = merge( {}, baseConfig, {
+module.exports = merge( {}, baseConfig, {
     entry  : path.join( __dirname, '../src/index.js' ),
     output : {
-        filename      : 'index.dev.js',
-        library       : 'Nessie',
+        filename      : 'displayComponents.js',
+        library       : 'DisplayComponents',
         libraryTarget : 'window',
     },
 
@@ -18,9 +19,10 @@ const devConfig = merge( {}, baseConfig, {
         react        : 'React',
     },
     mode    : 'development',
-    plugins : [],
+    plugins : [
+        new MiniCssExtractPlugin( {
+            allChunks : true,
+            filename  : 'displayComponentStyles.css',
+        } ),
+    ],
 } );
-
-devConfig.module.rules[ 1 ].use[ 0 ] = 'style-loader';
-
-module.exports = devConfig

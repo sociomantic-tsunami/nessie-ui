@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
 /* global test jest */
 
 
@@ -81,10 +72,12 @@ describe( 'IconButton', () =>
 describe( 'IconButtonDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <IconButton /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'click()', () =>
@@ -94,7 +87,7 @@ describe( 'IconButtonDriver', () =>
             const clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
 
-            wrapper.driver().click();
+            driver.click();
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -106,7 +99,7 @@ describe( 'IconButtonDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            wrapper.driver().focus();
+            driver.focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -118,7 +111,7 @@ describe( 'IconButtonDriver', () =>
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            wrapper.driver().blur();
+            driver.blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

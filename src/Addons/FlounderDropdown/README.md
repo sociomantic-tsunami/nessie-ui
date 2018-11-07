@@ -1,7 +1,7 @@
-## Component Description
+Component Description
+---------------------
 
-FlounderDropdown is a React wrapper for
-[Flounder](https://github.com/sociomantic-tsunami/flounder):
+Nessie Flounder dropdown component:
 
 - Does everything Flounder can do and more.
 - Native `flounder` object is accessible for API calls as `refs.flounder` (use
@@ -41,48 +41,45 @@ supported:
 - `selectDataOverride` (not applicable)
 
 
-## Example Usage
+Example Usage
+-------------
 
 Using a data object:
-```
-<FlounderDropdown
-    data = { [
-        {
-            "text"  : "flounderOptionText1",
-            "value" : "flounderOptionValue1",
-        },
-        {
-            "text"  : "flounderOptionText2",
-            "value" : "flounderOptionValue2"
-        }
-    ] } />
-```
+
+    <FlounderDropdown data = { [
+                                {
+                                    "text"  : "flounderOptionText1",
+                                    "value" : "flounderOptionValue1",
+                                },
+                                {
+                                    "text"  : "flounderOptionText2",
+                                    "value" : "flounderOptionValue2"
+                                }
+                            ] } />
 
 With a label, using simple strings as data:
-```
-<FlounderDropdown data={ [ 'dog', 'cat', 'panda' ] } />
-```
+
+    <FlounderDropdown label : "Pick an animal",
+                      data  : { [ 'dog', 'cat', 'panda' ] } />
 
 A header (H1) dropdown:
-```
-<FlounderDropdown
-    headerLevel = { 1 }
-    data        = { [ 'apples', 'oranges', 'pears' ] } />
-```
+
+    <FlounderDropdown headerLevel = { 1 }
+                      data  : { [ 'apples', 'oranges', 'pears' ] } />
+
 
 An icon can be shown for a given dropdown option by setting the `icon`
 property:
-```
-<FlounderDropdown
-    data = { [
-        {
-            "text"       : "flounderOptionText1",
-            "value"      : "flounderOptionValue1",
-            "icon"       : "blueDot"
-        },
-        ...
-    ] } />
-```
+
+
+    <FlounderDropdown data = { [
+                                {
+                                    "text"       : "flounderOptionText1",
+                                    "value"      : "flounderOptionValue1",
+                                    "icon"       : "blueDot"
+                                },
+                                ...
+                            ] } />
 
 The following icons are available:
 
@@ -99,7 +96,8 @@ The following icons are available:
 
 
 
-## Test `data` for LochNess
+Test `data` for Lochness
+------------------------
 
 Paste this into the `data` field to add extra test data:
 
