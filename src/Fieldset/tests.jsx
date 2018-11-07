@@ -100,34 +100,6 @@ describe( 'FieldsetDriver', () =>
             driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'should throw the expected error when isDisabled', () =>
-            {
-                const expectedError =
-                    'Fieldset cannot simulate mouseOver because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOver when isDisabled', () =>
-            {
-                const onMouseOver = jest.fn();
-                wrapper.setProps( { onMouseOver, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOver();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOver ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -140,34 +112,6 @@ describe( 'FieldsetDriver', () =>
 
             driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'should throw the expected error when isDisabled', () =>
-            {
-                const expectedError =
-                    'Fieldset cannot simulate mouseOut because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isDisabled', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( { onMouseOut, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOver();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOut ).not.toBeCalled();
-                }
-            } );
         } );
     } );
 } );
