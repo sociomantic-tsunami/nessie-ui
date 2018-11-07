@@ -103,34 +103,6 @@ describe( 'ValuedTextInputDriver', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate blur \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -161,34 +133,6 @@ since it is disabled';
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate focus \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
 
                 try
                 {
@@ -238,6 +182,88 @@ keyPress since it is disabled';
                 catch ( error )
                 {
                     expect( onKeyPress ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyUp()', () =>
+    {
+        test( 'should trigger onKeyUp callback prop once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( { onKeyUp } );
+
+            driver.keyUp();
+            expect( onKeyUp ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ValuedTextInput cannot simulate \
+keyUp since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyUp() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onKeyUp when isDisabled', () =>
+            {
+                const onKeyUp = jest.fn();
+                wrapper.setProps( { onKeyUp, isDisabled: true } );
+
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyDown()', () =>
+    {
+        test( 'should trigger onKeyDown callback prop once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( { onKeyDown } );
+
+            driver.keyDown();
+            expect( onKeyDown ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ValuedTextInput cannot simulate \
+keyDown since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyDown() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onKeyDown when isDisabled', () =>
+            {
+                const onKeyDown = jest.fn();
+                wrapper.setProps( { onKeyDown, isDisabled: true } );
+
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
                 }
             } );
         } );
@@ -340,34 +366,6 @@ since it is disabled';
             {
                 const onClick = jest.fn();
                 wrapper.setProps( { onClick, isDisabled: true } );
-
-                try
-                {
-                    driver.click();
-                }
-                catch ( error )
-                {
-                    expect( onClick ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ValuedTextInput cannot simulate click \
-since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
-
-                expect( () => driver.click() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClick when isReadOnly', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick, isReadOnly: true } );
 
                 try
                 {
