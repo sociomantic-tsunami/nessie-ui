@@ -107,7 +107,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( { onFocus } );
 
             driver.focus();
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
 
@@ -148,7 +148,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( { onKeyPress } );
 
             driver.keyPress();
-            expect( onKeyPress ).toBeCalled();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
 
@@ -230,7 +230,7 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( { onKeyDown } );
 
             driver.keyDown();
-            expect( onKeyDown ).toBeCalled();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
 
 

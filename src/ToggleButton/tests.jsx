@@ -196,6 +196,88 @@ describe( 'ToggleButtonDriver', () =>
         } );
     } );
 
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onBlur when isDisabled', () =>
+            {
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isDisabled: true } );
+
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate focus since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus when isDisabled', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isDisabled: true } );
+
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
     describe( 'click', () =>
     {
         test( 'should trigger onClick callback prop once', () =>
@@ -223,34 +305,6 @@ simulate click since it is disabled';
             {
                 const onClick = jest.fn();
                 wrapper.setProps( { onClick, isDisabled: true } );
-
-                try
-                {
-                    driver.click();
-                }
-                catch ( error )
-                {
-                    expect( onClick ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
-simulate click since it is read only';
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.click() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClick when isReadOnly', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick, isReadOnly: true } );
 
                 try
                 {
@@ -342,148 +396,6 @@ simulate mouseOut since it is disabled';
                 catch ( error )
                 {
                     expect( onMouseOut ).not.toBeCalled();
-                }
-            } );
-        } );
-    } );
-
-
-    describe( 'blur()', () =>
-    {
-        test( 'should trigger onBlur callback prop once', () =>
-        {
-            const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
-
-            driver.blur();
-            expect( onBlur ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
-simulate blur since it is disabled';
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isDisabled', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isDisabled: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
-simulate blur since it is read only';
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-    } );
-
-
-    describe( 'focus()', () =>
-    {
-        test( 'should trigger onFocus callback prop once', () =>
-        {
-            const onFocus = jest.fn();
-            wrapper.setProps( { onFocus } );
-
-            driver.focus();
-            expect( onFocus ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
-simulate focus since it is disabled';
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isDisabled', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
-simulate focus since it is read only';
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
                 }
             } );
         } );

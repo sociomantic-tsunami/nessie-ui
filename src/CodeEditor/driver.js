@@ -31,7 +31,7 @@ export default class CodeEditorDriver
 
     focus()
     {
-        const props     = this.wrapper.props();
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
@@ -50,7 +50,7 @@ export default class CodeEditorDriver
 
     blur()
     {
-        const props     = this.wrapper.props();
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
@@ -73,7 +73,7 @@ export default class CodeEditorDriver
 
     change( val )
     {
-        const props     = this.wrapper.props();
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
@@ -94,7 +94,7 @@ export default class CodeEditorDriver
 
     mouseOver()
     {
-        const props     = this.wrapper.props();
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
@@ -114,7 +114,7 @@ export default class CodeEditorDriver
 
     mouseOut()
     {
-        const props     = this.wrapper.props();
+        const props = this.wrapper.props();
 
         if ( props.isDisabled )
         {
