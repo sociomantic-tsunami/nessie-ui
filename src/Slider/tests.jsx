@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
@@ -26,7 +35,7 @@ describe( 'Slider', () =>
             bottom : 200,
             right  : 200,
             width  : 200,
-            height : 200
+            height : 200,
         };
     } );
 
@@ -51,9 +60,7 @@ describe( 'Slider', () =>
 
     test( 'should have slider__disabled if isDisabled = true', () =>
     {
-        const props = {
-            isDisabled : true
-        };
+        const props = { isDisabled: true };
 
         wrapper = mount( <Slider { ...props } /> );
 
@@ -64,7 +71,7 @@ describe( 'Slider', () =>
     test( 'should have slider__error if hasError = true', () =>
     {
         const props = {
-            hasError : true
+            hasError : true,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -78,20 +85,20 @@ describe( 'Slider', () =>
         () =>
         {
             const props = {
-                hasHandleLabels : true
+                hasHandleLabels : true,
             };
 
             wrapper = mount( <Slider { ...props } /> );
 
             expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
                 .hasHandleLabels}` ) ).toHaveLength( 1 );
-        }
+        },
     );
 
     test( 'should contain a label if filled', () =>
     {
         const props = {
-            label : 'label'
+            label : 'label',
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -107,8 +114,8 @@ describe( 'Slider', () =>
             stepLabelEnd   : 'Future',
             stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
                 { 'stepLabel': '50', 'step': 50 },
-                { 'stepLabel': '75', 'step': 75 }
-            ]
+                { 'stepLabel': '75', 'step': 75 },
+            ],
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -122,7 +129,7 @@ describe( 'Slider', () =>
     {
         let props = {
             value    : [ 1 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -132,7 +139,7 @@ describe( 'Slider', () =>
 
         props = {
             value    : [ 1, 2, 3 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -144,7 +151,7 @@ describe( 'Slider', () =>
     {
         let props = {
             value    : [ 1 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -155,7 +162,7 @@ describe( 'Slider', () =>
 
         props = {
             value    : [ 1, 2, 3 ],
-            onChange : noop
+            onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -170,7 +177,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'top',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -184,7 +191,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'right',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -198,7 +205,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'bottom',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -212,7 +219,7 @@ describe( 'Slider', () =>
             value               : [ 1 ],
             handleLabelPosition : 'left',
             hasHandleLabels     : true,
-            onChange            : noop
+            onChange            : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -241,7 +248,7 @@ describe( 'Slider', () =>
                 value         : [ 50, 150 ],
                 minValue      : 0,
                 maxValue      : 200,
-                onChange      : noop
+                onChange      : noop,
             };
 
             wrapper = mount( <Slider { ...props } /> );
@@ -264,7 +271,7 @@ describe( 'Slider', () =>
         {
             const props = {
                 value    : 150,
-                onChange : noop
+                onChange : noop,
             };
 
             wrapper = mount( <Slider { ...props } /> );
@@ -286,7 +293,7 @@ describe( 'Slider', () =>
             {
                 const props = {
                     value    : [ 50 ],
-                    onChange : noop
+                    onChange : noop,
                 };
                 wrapper = mount( <Slider { ...props } /> );
 
@@ -300,12 +307,11 @@ describe( 'Slider', () =>
 
                 wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
                     .simulate( 'mousedown' );
-                expect( eventListenerSpy ).toBeCalledTimes( 2 );
                 expect( eventListenerSpy )
                     .toBeCalledWith( 'mousemove', mouseMoveSpy );
                 expect( eventListenerSpy )
                     .toBeCalledWith( 'mouseup', mouseUpSpy );
-            }
+            },
         );
     } );
 
@@ -339,7 +345,6 @@ describe( 'Slider', () =>
 describe( 'SliderDriver', () =>
 {
     let wrapper;
-    let driver;
     let cssMap;
     let outer;
     let track;
@@ -355,7 +360,6 @@ describe( 'SliderDriver', () =>
         };
 
         wrapper = mount( <Slider { ...props } /> );
-        driver  = wrapper.driver();
         cssMap  = wrapper.prop( 'cssMap' );
         outer   = wrapper.find( `.${cssMap.default}` ).first();
         track   = wrapper.find( `.${cssMap.track}` );
@@ -374,14 +378,14 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onClick callback prop exactly once', () =>
         {
-            driver.click();
+            wrapper.driver().click();
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
 
         test( 'should not fire onClick when slider is disabled ', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            expect( () => driver.click() ).toThrow();
+            expect( () => wrapper.driver().click() ).toThrow();
             expect( clickSpy ).not.toBeCalled();
         } );
 
@@ -391,7 +395,8 @@ describe( 'SliderDriver', () =>
             const expectedError =
                 'Slider \'Pikaboo\' cannot be clicked since it is disabled';
 
-            expect( () => driver.click() ).toThrowError( expectedError );
+            expect( () => wrapper.driver().click() )
+                .toThrowError( expectedError );
         } );
     } );
 
@@ -407,7 +412,7 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onBlur callback prop exactly once', () =>
         {
-            driver.blur();
+            wrapper.driver().blur();
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -415,20 +420,20 @@ describe( 'SliderDriver', () =>
             'event target should be the first slider input when no index',
             () =>
             {
-                driver.blur();
+                wrapper.driver().blur();
                 const event = onBlur.mock.calls[ 0 ][ 0 ];
-                const firstInput = inputContainer.childAt( 0 ).node;
+                const firstInput = inputContainer.childAt( 0 ).instance();
 
                 expect( event.target ).toBe( firstInput );
-            }
+            },
         );
 
         test( 'event target should be the slider input at index', () =>
         {
             const index = 1;
-            driver.blur( index );
+            wrapper.driver().blur( index );
             const event = onBlur.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -436,7 +441,7 @@ describe( 'SliderDriver', () =>
         test( 'should not fire onBlur when slider is disabled ', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            expect( () => driver.click() ).toThrow();
+            expect( () => wrapper.driver().click() ).toThrow();
             expect( onBlur ).not.toBeCalled();
         } );
 
@@ -446,7 +451,8 @@ describe( 'SliderDriver', () =>
             const expectedError =
                 'Slider \'Pikaboo\' cannot be blurred since it is disabled';
 
-            expect( () => driver.blur() ).toThrowError( expectedError );
+            expect( () => wrapper.driver().blur() )
+                .toThrowError( expectedError );
         } );
     } );
 
@@ -462,7 +468,7 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onFocus callback prop exactly once', () =>
         {
-            driver.focus();
+            wrapper.driver().focus();
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -470,20 +476,20 @@ describe( 'SliderDriver', () =>
             'event target should be the first slider input when no index',
             () =>
             {
-                driver.focus();
+                wrapper.driver().focus();
                 const event = onFocus.mock.calls[ 0 ][ 0 ];
-                const firstInput = inputContainer.childAt( 0 ).node;
+                const firstInput = inputContainer.childAt( 0 ).instance();
 
                 expect( event.target ).toBe( firstInput );
-            }
+            },
         );
 
         test( 'event target should be the slider input at index', () =>
         {
             const index = 1;
-            driver.focus( index );
+            wrapper.driver().focus( index );
             const event = onFocus.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -502,22 +508,22 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onKeyDown callback prop exactly once', () =>
         {
-            driver.keyDown();
+            wrapper.driver().keyDown();
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
 
         test( 'should receive keyCode as event keyCode', () =>
         {
-            driver.keyDown( keyCode );
+            wrapper.driver().keyDown( keyCode );
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
             expect( event.keyCode ).toBe( keyCode );
         } );
 
         test( 'should receive first input as event target when no index', () =>
         {
-            driver.keyDown();
+            wrapper.driver().keyDown();
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
-            const firstInput = inputContainer.childAt( 0 ).node;
+            const firstInput = inputContainer.childAt( 0 ).instance();
 
             expect( event.target ).toBe( firstInput );
         } );
@@ -525,9 +531,9 @@ describe( 'SliderDriver', () =>
         test( 'should receive input at index as event target', () =>
         {
             const index = 1;
-            driver.keyDown( null, index );
+            wrapper.driver().keyDown( null, index );
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -546,22 +552,22 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onKeyUp callback prop exactly once', () =>
         {
-            driver.keyUp();
+            wrapper.driver().keyUp();
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
 
         test( 'should receive keyCode as event keyCode', () =>
         {
-            driver.keyUp( keyCode );
+            wrapper.driver().keyUp( keyCode );
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
             expect( event.keyCode ).toBe( keyCode );
         } );
 
         test( 'should receive first input as event target when no index', () =>
         {
-            driver.keyUp();
+            wrapper.driver().keyUp();
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
-            const firstInput = inputContainer.childAt( 0 ).node;
+            const firstInput = inputContainer.childAt( 0 ).instance();
 
             expect( event.target ).toBe( firstInput );
         } );
@@ -569,9 +575,9 @@ describe( 'SliderDriver', () =>
         test( 'should receive input at index as event target', () =>
         {
             const index = 1;
-            driver.keyUp( null, index );
+            wrapper.driver().keyUp( null, index );
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -589,21 +595,21 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onMouseOut callback prop exactly once', () =>
         {
-            driver.mouseOut();
+            wrapper.driver().mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire onMouseOut with outer wrapper as event target', () =>
         {
-            driver.mouseOut();
+            wrapper.driver().mouseOut();
             const event = onMouseOut.mock.calls[ 0 ][ 0 ];
-            expect( event.target ).toBe( outer.getNode() );
+            expect( event.target ).toBe( outer.instance() );
         } );
 
         test( 'should still fire onMouseOut when slider is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            driver.mouseOut();
+            wrapper.driver().mouseOut();
             expect( onMouseOut ).toBeCalled();
         } );
     } );
@@ -620,7 +626,7 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onMouseOver callback prop exactly once', () =>
         {
-            driver.mouseOver();
+            wrapper.driver().mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
 
@@ -628,16 +634,16 @@ describe( 'SliderDriver', () =>
             'should fire onMouseOver with outer wrapper as event target',
             () =>
             {
-                driver.mouseOver();
+                wrapper.driver().mouseOver();
                 const event = onMouseOver.mock.calls[ 0 ][ 0 ];
-                expect( event.target ).toBe( outer.getNode() );
-            }
+                expect( event.target ).toBe( outer.instance() );
+            },
         );
 
         test( 'should still fire onMouseOver when slider is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            driver.mouseOver();
+            wrapper.driver().mouseOver();
             expect( onMouseOver ).toBeCalled();
         } );
     } );
@@ -654,40 +660,33 @@ describe( 'SliderDriver', () =>
 
         test( 'should fire the onMouseDown callback prop exactly once', () =>
         {
-            driver.mouseDown();
+            wrapper.driver().mouseDown();
             expect( onMouseDown ).toBeCalledTimes( 1 );
         } );
 
         test( 'should fire onMouseOver with track as event target', () =>
         {
-            driver.mouseDown();
+            wrapper.driver().mouseDown();
             const event = onMouseDown.mock.calls[ 0 ][ 0 ];
-            expect( event.target ).toBe( track.getNode() );
+            expect( event.target ).toBe( track.instance() );
         } );
 
         test( 'should still fire onMouseDown when slider is disabled', () =>
         {
             wrapper.setProps( { isDisabled: true } );
-            driver.mouseDown();
+            wrapper.driver().mouseDown();
             expect( onMouseDown ).toBeCalled();
         } );
     } );
 
     describe( 'mouseUp()', () =>
     {
-        let handleUp;
-
-        beforeEach( () =>
-        {
-            handleUp = jest.fn( wrapper.node, 'handleUp' );
-        } );
-
         test( 'should fire handleUp on the component instance', () =>
         {
-            handleUp = jest.fn();
+            const handleUp = jest.fn();
             wrapper.setProps( { onMouseUp: handleUp } );
 
-            driver.mouseUp();
+            wrapper.driver().mouseUp();
             expect( handleUp ).toBeCalled();
         } );
     } );
@@ -702,7 +701,7 @@ describe( 'SliderDriver', () =>
             const expectedError =
                 'Slider \'Pikaboo\' cannot be changed since it is disabled';
 
-            expect( () => driver.setInputValue() )
+            expect( () => wrapper.driver().setInputValue() )
                 .toThrowError( expectedError );
         } );
 
@@ -710,28 +709,31 @@ describe( 'SliderDriver', () =>
             'should call the change method exactly once if single value',
             () =>
             {
+                const driver = wrapper.driver();
                 change = jest.spyOn( driver, 'change' );
 
                 const value = 20;
                 driver.setInputValue( value );
                 expect( change ).toBeCalledTimes( 1 );
-            }
+            },
         );
 
         test(
             'should call change method once per value if array of values',
             () =>
             {
+                const driver = wrapper.driver();
                 change = jest.spyOn( driver, 'change' );
 
                 const value = [ 10, 20 ];
                 driver.setInputValue( value );
                 expect( change ).toBeCalledTimes( 2 );
-            }
+            },
         );
 
         test( 'should call change with value and index for each value', () =>
         {
+            const driver = wrapper.driver();
             change = jest.spyOn( driver, 'change' );
 
             const value = [ 10, 20 ];

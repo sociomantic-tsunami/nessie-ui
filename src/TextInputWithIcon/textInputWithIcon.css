@@ -1,41 +1,61 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
+
+:root
+{
+    --iconSize:     24px;
+    --borderWidth:  1px;
+
+    --iconOffset:   calc( var( --spacing-1 ) + var( --borderWidth ) );
+    --inputPadding: calc( var( --iconSize ) + ( 2 * var( --spacing-1 ) ) +
+        var( --borderWidth ) );
+}
 
 .default
 {
-
-}
-
-.container
-{
-    display:        flex;
-    flex-direction: row;
-    align-items:    center;
-
-    .input
+    .icon
     {
-        flex:           1 1 auto;
-        min-width:      0;
-        margin-bottom:  0;
+        position:   absolute;
+        top:        50%;
+        margin-top: calc( -1 * ( var( --iconSize ) / 2 ) );
+    }
+
+
+    .container
+    {
+        display:        flex;
+        flex-direction: row;
+        align-items:    center;
+
+        .input
+        {
+            flex:           1 1 auto;
+            min-width:      0;
+            margin-bottom:  0;
+        }
     }
 }
 
-.icon
-{
-    position:   absolute;
-    top:        50%;
-    transform:  translateY( -50% );
-}
+
 
 .position__left
 {
     .input
     {
-        padding-left:    36px;
+        padding-left:   var( --inputPadding );
     }
 
     .icon
     {
-        left:   11px;
+        left:   var( --iconOffset );
     }
 }
 
@@ -43,11 +63,11 @@
 {
     .input
     {
-        padding-right:    36px;
+        padding-right:   var( --inputPadding );
     }
 
     .icon
     {
-        right:   11px;
+        right:  var( --iconOffset );
     }
 }

@@ -1,12 +1,18 @@
-/* global test jest */
-/* eslint no-console: 0 */
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import React                            from 'react';
-import { ReactWrapper, mount, shallow } from 'enzyme';
-import InputContainer                   from '../../proto/InputContainer';
+/* global test */
 
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import FlounderDropdown                 from './index';
+import FlounderDropdown   from './index';
 
 
 describe( 'FlounderDropdown', () =>
@@ -27,47 +33,37 @@ describe( 'FlounderDropdown', () =>
             expect( instance.constructor.name ).toBe( 'FlounderDropdown' );
         } );
     } );
-
-    describe( 'render()', () =>
-    {
-
-        test( 'should contain exactly one InputContainer', () =>
-        {
-            expect( wrapper.find( InputContainer ) ).toHaveLength( 1 );
-        } );
-    } );
 } );
 
 
 describe( 'FlounderDropdownDriver', () =>
 {
     let wrapper;
-    let driver;
+
 
     const pokemonList = [
         'Option',
         {
             text  : 'Pikachu',
-            value : 'pokemon1'
+            value : 'pokemon1',
         },
         {
             text  : 'Jigglypuff',
-            value : 'pokemon2'
+            value : 'pokemon2',
         },
         {
             text  : 'Squirtle',
-            value : 'pokemon3'
+            value : 'pokemon3',
         },
         {
             text  : 'Balbasaur',
-            value : 'pokemon4'
-        }
+            value : 'pokemon4',
+        },
     ];
 
     beforeEach( () =>
     {
         wrapper = mount( <FlounderDropdown /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'chooseItemByIndex( index )', () =>
@@ -79,7 +75,7 @@ describe( 'FlounderDropdownDriver', () =>
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByIndex( 0 ) )
+            expect( () => wrapper.driver().chooseItemByIndex( 0 ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is read-only' );
         } );
@@ -91,7 +87,7 @@ since it is read-only' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByIndex( 0 ) )
+            expect( () => wrapper.driver().chooseItemByIndex( 0 ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is disabled' );
         } );
@@ -106,7 +102,7 @@ since it is disabled' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByText( 'Pikachu' ) )
+            expect( () => wrapper.driver().chooseItemByText( 'Pikachu' ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is read-only' );
         } );
@@ -118,7 +114,7 @@ since it is read-only' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByText( 'Pikachu' ) )
+            expect( () => wrapper.driver().chooseItemByText( 'Pikachu' ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is disabled' );
         } );
@@ -133,7 +129,7 @@ since it is disabled' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByValue( 'pokemon1' ) )
+            expect( () => wrapper.driver().chooseItemByValue( 'pokemon1' ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is read-only' );
         } );
@@ -145,7 +141,7 @@ since it is read-only' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.chooseItemByValue( 'pokemon1' ) )
+            expect( () => wrapper.driver().chooseItemByValue( 'pokemon1' ) )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is disabled' );
         } );
@@ -160,7 +156,7 @@ since it is disabled' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.removeAllTags() )
+            expect( () => wrapper.driver().removeAllTags() )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is read-only' );
         } );
@@ -172,7 +168,7 @@ since it is read-only' );
                 data       : pokemonList,
             } );
 
-            expect( () => driver.removeAllTags() )
+            expect( () => wrapper.driver().removeAllTags() )
                 .toThrowError( 'Cannot change the flounder dropdown value \
 since it is disabled' );
         } );
@@ -184,32 +180,6 @@ since it is disabled' );
             expect( () => wrapper.driver().removeAllTags() )
                 .toThrowError( 'Cannot deselect tags when flounder dropdown \
 is not configured with multipleTags' );
-        } );
-    } );
-
-    describe( 'getErrorMessage()', () =>
-    {
-        beforeEach( () =>
-        {
-            wrapper.setProps( {
-                label                 : 'Flounder Label',
-                data                  : pokemonList,
-                value                 : [ 'pokemon1', 'pokemon3' ],
-                hasError              : true,
-                errorMessageIsVisible : true,
-                errorMessage          : <p className = "attack">Lightning</p>
-            } );
-        } );
-
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getErrorMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the error message content', () =>
-        {
-            const content = driver.getErrorMessage();
-            expect( content.find( '.attack' ) ).toHaveLength( 1 );
         } );
     } );
 } );

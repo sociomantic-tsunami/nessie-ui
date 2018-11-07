@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 
@@ -94,17 +103,19 @@ ListBoxOption.propTypes = {
     iconSize    : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL', 'XXL' ] ),
     iconType    : PropTypes.oneOf( [
         'account',
-        'add',
         'add-circle',
+        'add',
         'alert',
         'approved',
         'arrow',
+        'arrow-up',
+        'arrow-down',
         'bell',
         'board',
         'calendar',
-        'close',
         'close-circle',
         'close-thick',
+        'close',
         'dash',
         'dashboard',
         'declined',
@@ -112,8 +123,8 @@ ListBoxOption.propTypes = {
         'down',
         'download',
         'duplicate',
-        'edit',
         'edit-circle',
+        'edit',
         'ended',
         'error',
         'file',
@@ -124,8 +135,10 @@ ListBoxOption.propTypes = {
         'left',
         'lightbulb',
         'link',
+        'loader',
         'megaphone',
         'options',
+        'paused',
         'pending',
         'preview',
         'puzzle-piece',
@@ -133,8 +146,9 @@ ListBoxOption.propTypes = {
         'right',
         'search',
         'show',
-        'star',
         'star-stroke',
+        'star',
+        'sociomantic',
         'swap',
         'table',
         'up',

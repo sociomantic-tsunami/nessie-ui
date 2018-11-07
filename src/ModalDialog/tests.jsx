@@ -1,12 +1,20 @@
-/* global test jest */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
+/* global test jest */
+/* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React       from 'react';
 import { mount }   from 'enzyme';
 
 import ModalDialog from './index';
+
 
 describe( 'ModalDialog', () =>
 {
@@ -66,14 +74,14 @@ describe( 'ModalDialog', () =>
     );
 
     test(
-        'should trigger `onClickOverlay` once when close button is clicked',
+        'should trigger `onClickClose` once when close button is clicked',
         () =>
         {
             const callBack = jest.fn();
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack,
+                onClickClose   : callBack,
                 type           : 'carousel'
             };
             wrapper = mount( <ModalDialog { ...props } /> );

@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 .default
@@ -40,9 +49,9 @@
 
         color:          var( --PC-GREY--L55 );
 
-        @extend         %Nessie-Bold;
+        @extend %Nessie-SemiBold;
 
-        font-size:      var( --typo-2 );
+        font-size:      var( --typo-3 );
         line-height:    var( --line-height-s );
         letter-spacing: 0.2px;
 

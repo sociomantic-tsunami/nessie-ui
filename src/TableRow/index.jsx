@@ -1,7 +1,17 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import Row                from '../Row';
+import TableCell          from '../TableCell';
 import { buildClassName } from '../utils';
 import styles             from './tableRow.css';
 
@@ -14,17 +24,29 @@ const TableRow = ( {
     isClickable,
     isSticky,
     verticalAlign,
-    ...props,
+    ...props
 } ) =>
 {
+    if ( !TableRow.didWarn.children && children !== undefined  )
+    {
+        React.Children.toArray( children ).map( ( child ) =>
+        {
+            if ( child.type !== TableCell )
+            {
+                console.warn( 'TableRow must have TableCells as direct \
+children' );
+                TableRow.didWarn.children = true;
+            }
+        } );
+    }
+
     const cells = React.Children.toArray( children ).map( cell =>
         React.cloneElement( cell, {
             align     : cell.props.align || align,
             className : cell.props.className ?
                 `${cell.props.className}  ${cssMap.cell}` : cssMap.cell,
             verticalAlign : cell.props.verticalAlign || verticalAlign,
-        } )
-    );
+        } ) );
 
     return (
         <Row
@@ -34,7 +56,8 @@ const TableRow = ( {
                 clickable : isClickable,
                 sticky    : isSticky,
             } ) }
-            role = "row">
+            role = "row"
+            noWarn>
             { cells }
         </Row>
     );
@@ -112,9 +135,11 @@ TableRow.defaultProps =
     isSticky      : undefined,
     onClick       : undefined,
     onMouseOut    : undefined,
-    onMouseOVer   : undefined,
+    onMouseOver   : undefined,
     spacing       : undefined,
     verticalAlign : undefined,
 };
+
+TableRow.didWarn = {};
 
 export default TableRow;

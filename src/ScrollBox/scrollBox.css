@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 :root
@@ -11,10 +20,13 @@
 
     .inner
     {
+        /* creates stacking context */
+        position:   relative;
+        z-index:    0;
+
         width:      100%;
         height:     100%;
         overflow:   scroll;
-        box-sizing: border-box;
 
         /* force webkit scrollbars to be always visible on macOS */
         &::-webkit-scrollbar

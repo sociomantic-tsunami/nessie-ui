@@ -1,10 +1,19 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
 import Icon               from '../Icon';
-import Tooltip            from '../Tooltip';
 import Text               from '../Text';
+import Tooltip            from '../Tooltip';
 
 const IconWithTooltip = ( {
     children,
@@ -17,6 +26,7 @@ const IconWithTooltip = ( {
     iconType,
     isDisabled,
     message,
+    noWarn,
     noWrap,
     onMouseOut,
     onMouseOutIcon,
@@ -27,14 +37,20 @@ const IconWithTooltip = ( {
     tooltipPosition,
 } ) =>
 {
+    if ( !noWarn && !IconWithTooltip.didWarn )
+    {
+        console.warn( 'IconWithTooltip: this component is deprecated and will \
+be removed in a future major release. Please compose from the Icon and Tooltip \
+components instead.' );
+        IconWithTooltip.didWarn = true;
+    }
+
     let contentNode = children;
 
     if ( typeof children === 'string' )
     {
         contentNode = (
-            <Text
-                overflowIsHidden = { overflowIsHidden }
-                noWrap           = { noWrap }>
+            <Text noWrap = { noWrap } overflowIsHidden = { overflowIsHidden }>
                 { children }
             </Text>
         );
@@ -58,6 +74,7 @@ const IconWithTooltip = ( {
                     className   = { cssMap.iconWithTooltip }
                     isVisible   = { tooltipIsVisible }
                     message     = { message }
+                    noWarn
                     onMouseOut  = { onMouseOutIcon }
                     onMouseOver = { onMouseOverIcon }
                     position    = { tooltipPosition }>
@@ -88,10 +105,10 @@ IconWithTooltip.propTypes =
      *  Icon position relative to wrapped component
      */
     iconPosition  : PropTypes.oneOf( [
-        'right',
         'left',
-        'topRight',
         'topLeft',
+        'right',
+        'topRight',
     ] ),
     /**
      *  Icon role
@@ -110,14 +127,59 @@ IconWithTooltip.propTypes =
      *  Icon to show
      */
     iconType : PropTypes.oneOf( [
-        'info',
+        'account',
+        'add-circle',
+        'add',
         'alert',
-        'error',
         'approved',
+        'arrow',
+        'arrow-up',
+        'arrow-down',
+        'bell',
+        'board',
+        'calendar',
+        'close-circle',
+        'close-thick',
+        'close',
+        'dash',
+        'dashboard',
         'declined',
-        'pending',
+        'delete',
+        'down',
+        'download',
+        'duplicate',
+        'edit-circle',
+        'edit',
         'ended',
-        'validation' ] ),
+        'error',
+        'file',
+        'graph',
+        'hide',
+        'info',
+        'inspect',
+        'left',
+        'lightbulb',
+        'link',
+        'loader',
+        'megaphone',
+        'options',
+        'paused',
+        'pending',
+        'preview',
+        'puzzle-piece',
+        'reset',
+        'right',
+        'search',
+        'show',
+        'star-stroke',
+        'star',
+        'sociomantic',
+        'swap',
+        'table',
+        'up',
+        'upload',
+        'validation',
+    ] ),
     /**
      * is disabled
      */
@@ -134,12 +196,18 @@ IconWithTooltip.propTypes =
      *  Tooltip position relative to the icon
      */
     tooltipPosition  : PropTypes.oneOf( [
-        'left',
-        'right',
         'top',
-        'bottom',
         'topLeft',
         'topRight',
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'left',
+        'leftTop',
+        'leftBottom',
+        'right',
+        'rightTop',
+        'rightBottom',
     ] ),
     /**
      *  onMouseOut callback function: ( e ) = { ... }

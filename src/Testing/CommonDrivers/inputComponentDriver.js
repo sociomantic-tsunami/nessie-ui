@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import ClickableComponentDriver from './clickableComponentDriver';
 
 const ERRORS = {
@@ -31,7 +40,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
             ERRORS.INPUT_CANNOT_CHANGE_VALUE );
 
         const input = this.control;
-        const node  = input.getNode();
+        const node  = input.instance();
 
         this.focus();
         node.value = value;
@@ -61,7 +70,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
 
         if ( isCharPrintable( keyCode ) )
         {
-            const node = this.control.getNode();
+            const node = this.control.instance();
 
             node.value += String.fromCharCode( keyCode );
             this.control.simulate( 'change' );
@@ -103,7 +112,7 @@ export default class InputComponentDriver extends ClickableComponentDriver
      */
     getInputValue()
     {
-        return this.control.getNode().value;
+        return this.control.instance().value;
     }
 
     click()

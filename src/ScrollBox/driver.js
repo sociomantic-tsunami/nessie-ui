@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import { ScrollBar } from 'nessie-ui';
 
 const ERRORS = {
@@ -75,7 +84,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -91,7 +100,7 @@ export default class ScrollBoxDriver
                 .CANNOT_SCROLL_IN_DIRECTION( 'horizontal' ) );
         }
 
-        const node      = this.scrollBox.getNode();
+        const node      = this.scrollBox.instance();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -106,7 +115,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         const scrollBar = this.wrapper.find( ScrollBar ).last();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
@@ -122,7 +131,7 @@ export default class ScrollBoxDriver
             throw new Error( ERRORS.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
+        const node     = this.scrollBox.instance();
         const scrollBar = this.wrapper.find( ScrollBar ).first();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );

@@ -1,10 +1,18 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                               from 'react';
 import PropTypes                           from 'prop-types';
 
 import { buildClassName, generateId }      from '../utils';
 import styles                              from './textInputWithIcon.css';
 import { IconButton, InputField, Tooltip } from '../index';
-import InputContainer                      from '../proto/InputContainer';
 
 
 const TextInputWithIcon = ( {
@@ -14,9 +22,6 @@ const TextInputWithIcon = ( {
     autoCorrect,
     className,
     cssMap,
-    errorMessage,
-    errorMessageIsVisible,
-    errorMessagePosition,
     forceHover,
     hasError,
     iconButtonIsDisabled,
@@ -32,8 +37,6 @@ const TextInputWithIcon = ( {
     isReadOnly,
     isReadOnlyButton,
     isReadOnlyInput,
-    label,
-    labelPosition,
     name,
     onBlur,
     onChange,
@@ -62,70 +65,60 @@ const TextInputWithIcon = ( {
     }
 
     return (
-        <InputContainer
+        <div
             className = { buildClassName( className, cssMap, {
                 disabled : isDisabled,
                 error    : hasError,
                 position : iconPosition,
             } ) }
-            errorMessage          = { errorMessage }
-            errorMessageIsVisible = { errorMessageIsVisible }
-            errorMessagePosition  = { errorMessagePosition }
-            hasError              = { hasError }
-            id                    = { id }
-            isDisabled            = { isDisabled }
-            label                 = { label }
-            labelPosition         = { labelPosition }
-            onMouseOut            = { onMouseOut }
-            onMouseOver           = { onMouseOver }>
-            <div className = { cssMap.container }>
-                <InputField
-                    aria           = { aria }
-                    autocapitalize = { autoCapitalize }
-                    autoComplete   = { autoComplete }
-                    autoCorrect    = { autoCorrect }
-                    className      = { cssMap.input }
-                    forceHover     = { forceHover }
-                    hasError       = { hasError }
-                    id             = { id }
-                    inputRef       = { inputRef }
-                    isDisabled     = { isDisabled }
-                    isReadOnly     = { isReadOnlyInput || isReadOnly }
-                    name           = { name }
-                    onBlur         = { onBlur }
-                    onChange       = { onChange }
-                    onClick        = { onClick }
-                    onFocus        = { onFocus }
-                    onKeyDown      = { onKeyDown }
-                    onKeyPress     = { onKeyPress }
-                    onKeyUp        = { onKeyUp }
-                    placeholder    = { placeholder }
-                    spellcheck     = { spellCheck }
-                    textAlign      = { alignText }
-                    type           = { inputType }
-                    value          = { value } />
-                { ( iconType && iconType !== 'none' ) &&
-                    <Tooltip
-                        className   = { cssMap.icon }
+            onMouseOut  = { onMouseOut }
+            onMouseOver = { onMouseOver }>
+            <InputField
+                aria           = { aria }
+                autocapitalize = { autoCapitalize }
+                autoComplete   = { autoComplete }
+                autoCorrect    = { autoCorrect }
+                className      = { cssMap.input }
+                forceHover     = { forceHover }
+                hasError       = { hasError }
+                id             = { id }
+                inputRef       = { inputRef }
+                isDisabled     = { isDisabled }
+                isReadOnly     = { isReadOnlyInput || isReadOnly }
+                name           = { name }
+                onBlur         = { onBlur }
+                onChange       = { onChange }
+                onClick        = { onClick }
+                onFocus        = { onFocus }
+                onKeyDown      = { onKeyDown }
+                onKeyPress     = { onKeyPress }
+                onKeyUp        = { onKeyUp }
+                placeholder    = { placeholder }
+                spellcheck     = { spellCheck }
+                textAlign      = { alignText }
+                type           = { inputType }
+                value          = { value } />
+            { ( iconType && iconType !== 'none' ) &&
+                <Tooltip
+                    className   = { cssMap.icon }
+                    hasError    = { hasError }
+                    isDisabled  = { isDisabled }
+                    isReadOnly  = { isReadOnly }
+                    isVisible   = { iconTooltipIsVisible }
+                    message     = { iconTooltipMessage }
+                    onMouseOut  = { onMouseOutIcon }
+                    onMouseOver = { onMouseOverIcon }
+                    position    = { iconTooltipPosition } >
+                    <IconButton
                         hasError    = { hasError }
-                        isDisabled  = { isDisabled }
-                        isReadOnly  = { isReadOnly }
-                        isVisible   = { iconTooltipIsVisible }
-                        message     = { iconTooltipMessage }
-                        onMouseOut  = { onMouseOutIcon }
-                        onMouseOver = { onMouseOverIcon }
-                        position    = { iconTooltipPosition } >
-                        <IconButton
-                            hasError    = { hasError }
-                            iconType    = { iconType }
-                            isDisabled  = { isDisabled || iconButtonIsDisabled }
-                            isFocusable = { false }
-                            isReadOnly  = { isReadOnlyButton || isReadOnly }
-                            onClick     = { onClickIcon } />
-                    </Tooltip>
-                }
-            </div>
-        </InputContainer>
+                        iconType    = { iconType }
+                        isDisabled  = { isDisabled || iconButtonIsDisabled }
+                        isFocusable = { false }
+                        isReadOnly  = { isReadOnlyButton || isReadOnly }
+                        onClick     = { onClickIcon } />
+                </Tooltip>
+            }
+        </div>
     );
 };
 
@@ -153,59 +146,47 @@ TextInputWithIcon.propTypes =
     /**
      *  HTML attribute controlling input auto complete
      */
-    autoComplete          : PropTypes.string,
+    autoComplete         : PropTypes.string,
     /**
      *  HTML attribute controlling input auto correct (Safari-specific)
      */
-    autoCorrect           : PropTypes.oneOf( [ 'on', 'off' ] ),
+    autoCorrect          : PropTypes.oneOf( [ 'on', 'off' ] ),
     /**
      *  Extra CSS class name
      */
-    className             : PropTypes.string,
+    className            : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap                : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    errorMessage          : PropTypes.node,
-    /**
-     *  Error Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    cssMap               : PropTypes.objectOf( PropTypes.string ),
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover           : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
+    hasError             : PropTypes.bool,
     /**
      *  Display Button icon as disabled
      */
-    iconButtonIsDisabled  : PropTypes.bool,
+    iconButtonIsDisabled : PropTypes.bool,
     /**
      *  Alignment of the icon
      */
-    iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
+    iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
      *  Display the icon tooltip
      */
-    iconTooltipIsVisible  : PropTypes.bool,
+    iconTooltipIsVisible : PropTypes.bool,
     /**
      *  icon Tooltip message text (string or JSX)
      */
-    iconTooltipMessage    : PropTypes.node,
+    iconTooltipMessage   : PropTypes.node,
     /**
      *  Icon Tooltip position relative to icon
      */
-    iconTooltipPosition   : PropTypes.oneOf( [
+    iconTooltipPosition  : PropTypes.oneOf( [
         'left',
         'right',
         'top',
@@ -223,6 +204,8 @@ TextInputWithIcon.propTypes =
         'alert',
         'approved',
         'arrow',
+        'arrow-up',
+        'arrow-down',
         'bell',
         'board',
         'calendar',
@@ -248,8 +231,10 @@ TextInputWithIcon.propTypes =
         'left',
         'lightbulb',
         'link',
+        'loader',
         'megaphone',
         'options',
+        'paused',
         'pending',
         'preview',
         'puzzle-piece',
@@ -259,6 +244,7 @@ TextInputWithIcon.propTypes =
         'show',
         'star-stroke',
         'star',
+        'sociomantic',
         'swap',
         'table',
         'up',
@@ -291,17 +277,9 @@ TextInputWithIcon.propTypes =
      */
     isReadOnlyButton : PropTypes.bool,
     /**
-     *  Display as read-only for TextInput
+     *  is read only
      */
     isReadOnlyInput  : PropTypes.bool,
-    /**
-     *  Label text (string or JSX node)
-     */
-    label            : PropTypes.node,
-    /**
-     *  Label position
-     */
-    labelPosition    : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  HTML name attribute
      */
@@ -374,49 +352,44 @@ TextInputWithIcon.propTypes =
 
 TextInputWithIcon.defaultProps =
 {
-    aria                  : undefined,
-    autoCapitalize        : undefined,
-    autoComplete          : undefined,
-    autoCorrect           : undefined,
-    className             : undefined,
-    cssMap                : styles,
-    errorMessage          : undefined,
-    errorMessageIsVisible : false,
-    errorMessagePosition  : 'top',
-    forceHover            : false,
-    hasError              : false,
-    iconButtonIsDisabled  : false,
-    iconPosition          : 'right',
-    iconTooltipIsVisible  : false,
-    iconTooltipMessage    : undefined,
-    iconTooltipPosition   : 'top',
-    iconType              : 'none',
-    id                    : undefined,
-    inputRef              : undefined,
-    inputType             : 'text',
-    isDisabled            : false,
-    isReadOnly            : false,
-    isReadOnlyButton      : false,
-    isReadOnlyInput       : false,
-    label                 : undefined,
-    labelPosition         : 'top',
-    name                  : undefined,
-    onBlur                : undefined,
-    onChange              : undefined,
-    onClick               : undefined,
-    onClickIcon           : undefined,
-    onFocus               : undefined,
-    onKeyDown             : undefined,
-    onKeyPress            : undefined,
-    onKeyUp               : undefined,
-    onMouseOut            : undefined,
-    onMouseOutIcon        : undefined,
-    onMouseOver           : undefined,
-    onMouseOverIcon       : undefined,
-    placeholder           : undefined,
-    spellCheck            : undefined,
-    textAlign             : 'auto',
-    value                 : '',
+    aria                 : undefined,
+    autoCapitalize       : undefined,
+    autoComplete         : undefined,
+    autoCorrect          : undefined,
+    className            : undefined,
+    cssMap               : styles,
+    forceHover           : false,
+    hasError             : false,
+    iconButtonIsDisabled : false,
+    iconPosition         : 'right',
+    iconTooltipIsVisible : false,
+    iconTooltipMessage   : undefined,
+    iconTooltipPosition  : 'top',
+    iconType             : 'none',
+    id                   : undefined,
+    inputRef             : undefined,
+    inputType            : 'text',
+    isDisabled           : false,
+    isReadOnly           : false,
+    isReadOnlyButton     : false,
+    isReadOnlyInput      : false,
+    name                 : undefined,
+    onBlur               : undefined,
+    onChange             : undefined,
+    onClick              : undefined,
+    onClickIcon          : undefined,
+    onFocus              : undefined,
+    onKeyDown            : undefined,
+    onKeyPress           : undefined,
+    onKeyUp              : undefined,
+    onMouseOut           : undefined,
+    onMouseOutIcon       : undefined,
+    onMouseOver          : undefined,
+    onMouseOverIcon      : undefined,
+    placeholder          : undefined,
+    spellCheck           : undefined,
+    textAlign            : 'auto',
+    value                : '',
 };
 
 export default TextInputWithIcon;

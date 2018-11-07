@@ -1,10 +1,18 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
 import { DatePicker }               from '../index';
 import TextInputWithIcon            from '../TextInputWithIcon';
 import withDropdown                 from '../Addons/withDropdown';
-import withInputContainer           from '../proto/withInputContainer';
 import { eventHandler, generateId } from '../utils';
 
 
@@ -17,8 +25,9 @@ const DateTimeInput = ( {
     days,
     forceHover,
     hasError,
-    hourInputRef,
     hourIsDisabled,
+    hourIsReadOnly,
+    hourInputRef,
     hourPlaceholder,
     hourValue,
     id = generateId( 'DateTimeInput' ),
@@ -30,13 +39,15 @@ const DateTimeInput = ( {
     isReadOnly,
     isReadOnlyButton,
     isReadOnlyInput,
-    minuteInputRef,
     minuteIsDisabled,
+    minuteIsReadOnly,
+    minuteInputRef,
     minutePlaceholder,
     minuteValue,
     mode,
     months,
     nextIsDisabled,
+    nextIsReadOnly,
     onBlur,
     onChange,
     onClickCell,
@@ -52,6 +63,7 @@ const DateTimeInput = ( {
     onMouseOver,
     onMouseOverIcon,
     prevIsDisabled,
+    prevIsReadOnly,
     textAlign,
     weeks,
 } ) =>
@@ -61,6 +73,7 @@ const DateTimeInput = ( {
             headers           = { mode !== 'month' ? days : undefined }
             hourInputRef      = { hourInputRef }
             hourIsDisabled    = { hourIsDisabled }
+            hourIsReadOnly    = { hourIsReadOnly }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
             isDisabled        = { isDisabled }
@@ -69,11 +82,13 @@ const DateTimeInput = ( {
             key               = "datePicker"
             minuteInputRef    = { minuteInputRef }
             minuteIsDisabled  = { minuteIsDisabled }
+            minuteIsReadOnly  = { minuteIsReadOnly }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            mode              = { mode }
+            hasTimeInput      = { mode === 'default' }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
+            nextIsReadOnly    = { nextIsReadOnly }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onClickItem       = { onClickCell }
@@ -82,6 +97,7 @@ const DateTimeInput = ( {
             onFocus           = { onFocus }
             onKeyPress        = { onKeyPress }
             prevIsDisabled    = { prevIsDisabled }
+            prevIsReadOnly    = { prevIsReadOnly }
             type              = { mode === 'month' ? 'month' : 'day' }
             year              = { currentYear } />
     );
@@ -216,9 +232,17 @@ DateTimeInput.propTypes =
      */
     isReadOnlyButton      : PropTypes.bool,
     /**
+     *  “Previous” button is read only
+     */
+    prevIsReadOnly        : PropTypes.bool,
+    /**
      *  Display as read-only for TextInput
      */
     isReadOnlyInput       : PropTypes.bool,
+    /**
+     *  “Next” button is read only
+     */
+    nextIsReadOnly        : PropTypes.bool,
     /**
      *  Label text (string or JSX node)
      */
@@ -233,9 +257,17 @@ DateTimeInput.propTypes =
      */
     minuteInputRef        : PropTypes.func,
     /**
+     *  Hour input is read only
+     */
+    hourIsReadOnly        : PropTypes.bool,
+    /**
      *  Minute input is disabled
      */
     minuteIsDisabled      : PropTypes.bool,
+    /**
+     *  Minute input is read only
+     */
+    minuteIsReadOnly      : PropTypes.bool,
     /**
      *  Minute input placeholder text
      */
@@ -251,83 +283,79 @@ DateTimeInput.propTypes =
     /**
      *  Months to display in month mode
      */
-    months                : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    months                : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
     /**
      *  “Next” button is disabled
      */
-    nextIsDisabled  : PropTypes.bool,
+    nextIsDisabled        : PropTypes.bool,
     /**
      *  Blur callback function
      */
-    onBlur          : PropTypes.func,
+    onBlur                : PropTypes.func,
     /**
      *  Input change callback function
      */
-    onChange        : PropTypes.func,
+    onChange              : PropTypes.func,
     /**
      *  Icon click callback function
      */
-    onClickIcon     : PropTypes.func,
+    onClickIcon           : PropTypes.func,
     /**
      *  onClick callback function for calendar date cell
      */
-    onClickCell     : PropTypes.func,
-    /**
-     *  onClick callback function for “Previous” button
-     */
-    onClickNext     : PropTypes.func,
+    onClickCell           : PropTypes.func,
     /**
      *  onClick callback function for “Next” button
      */
-    onClickPrev     : PropTypes.func,
+    onClickNext           : PropTypes.func,
+    /**
+     *  onClick callback function for “Previous” button
+     */
+    onClickPrev           : PropTypes.func,
     /**
      *  Focus callback function
      */
-    onFocus         : PropTypes.func,
+    onFocus               : PropTypes.func,
     /**
      *  Key down callback function
      */
-    onKeyDown       : PropTypes.func,
+    onKeyDown             : PropTypes.func,
     /**
      *  Key press callback function
      */
-    onKeyPress      : PropTypes.func,
+    onKeyPress            : PropTypes.func,
     /**
      *  Key up callback function
      */
-    onKeyUp         : PropTypes.func,
+    onKeyUp               : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOut      : PropTypes.func,
+    onMouseOut            : PropTypes.func,
     /**
      *  Icon mouse out callback function
      */
-    onMouseOutIcon  : PropTypes.func,
+    onMouseOutIcon        : PropTypes.func,
     /**
      *  Mouse over  callback function
      */
-    onMouseOver     : PropTypes.func,
+    onMouseOver           : PropTypes.func,
     /**
      *  Icon mouse over callback function
      */
-    onMouseOverIcon : PropTypes.func,
+    onMouseOverIcon       : PropTypes.func,
     /**
      *  “Previous” button is disabled
      */
-    prevIsDisabled  : PropTypes.bool,
+    prevIsDisabled        : PropTypes.bool,
     /**
      *  Input text alignment
      */
-    textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+    textAlign             : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     /**
      *  Weeks to display in default/day mode
      */
-    weeks           : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    weeks                 : PropTypes.arrayOf( PropTypes.arrayOf( PropTypes.object ) ),
 };
 
 DateTimeInput.defaultProps =
@@ -382,5 +410,4 @@ DateTimeInput.defaultProps =
     weeks                 : undefined,
 };
 
-export { DateTimeInput };
-export default withInputContainer( DateTimeInput );
+export default DateTimeInput;

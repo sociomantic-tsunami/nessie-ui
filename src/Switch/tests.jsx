@@ -1,33 +1,43 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-return-assign */
 
-import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import Switch               from './index';
+import Switch             from './index';
+
+const { cssMap } = Switch.defaultProps;
+
 
 describe( 'Switch', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Switch /> );
-        instance = wrapper.instance();
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
-        const input = wrapper.find( `.${instance.props.cssMap.input}` );
+        const input = wrapper.find( `.${cssMap.input}` );
 
-        expect( input.prop( 'disabled' ) ).toBeTruthy();
+        expect( input.prop( 'disabled' ) ).toBe( true );
     } );
 } );
+
 
 describe( 'SwitchDriver', () =>
 {

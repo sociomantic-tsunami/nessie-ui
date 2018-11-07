@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 @import "../proto/base.css";
 
 
@@ -8,19 +17,16 @@
 }
 .default
 {
-    .container
+    display:        flex;
+    flex-direction: row;
+
+    margin:         0;
+
+    border-radius:  2px;
+
+    & > *
     {
-        display:        flex;
-        flex-direction: row;
-
-        margin:         0;
-
-        border-radius:  2px;
-
-        & > *
-        {
-            margin: 0;
-        }
+        margin: 0;
     }
 
     .input
@@ -45,8 +51,9 @@
         padding:                    0 var( --spacing-2 );
 
         background:                 var( --PC-WHITE );
-        color:                      var( --PC-GREY--D5 );
 
+        @extend %Nessie-Regular;
+        color:                      var( --PC-GREY--D5 );
         font-size:                  var( --typo-1 );
 
         line-height:                calc( var( --inputHeight ) - ( 2 * var( --borderWidth ) ) );
@@ -85,10 +92,7 @@
 
 .position__left
 {
-    .container
-    {
-        flex-direction:  row-reverse;
-    }
+    flex-direction:  row-reverse;
 
     .input
     {
@@ -130,10 +134,7 @@
 
 .fakeHovered
 {
-    .container
-    {
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
 
     .valueLabel
     {
@@ -161,7 +162,7 @@
         box-shadow:     none !important;
     }
 
-    &.fakeHovered .container
+    &.fakeHovered
     {
         box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
     }

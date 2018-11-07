@@ -1,20 +1,28 @@
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import { generateId, buildClassName } from '../utils';
-import styles                         from './tab.css';
+import React              from 'react';
+import PropTypes          from 'prop-types';
+
+import { buildClassName } from '../utils';
+import styles             from './tab.css';
+
 
 const Tab = ( {
     children,
     className,
     cssMap,
-    id = generateId( 'Tab' ),
     label,
 } ) => (
     <div
         className  = { buildClassName( className, cssMap ) }
         aria-label = { label }
-        id         = { id }
         role       = "tabpanel">
         { children }
     </div>
@@ -35,12 +43,8 @@ Tab.propTypes =
      */
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     /**
-     * HTML id attribute
+     *  Label to show in TabButton of this tab
      */
-    id        : PropTypes.string,
-    /**
-    *  Label to show in TabButton of this tab
-    */
     label     : PropTypes.string,
 };
 
@@ -49,7 +53,6 @@ Tab.defaultProps =
     children  : undefined,
     className : undefined,
     cssMap    : styles,
-    id        : undefined,
     label     : undefined,
 };
 

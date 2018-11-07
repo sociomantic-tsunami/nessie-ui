@@ -1,10 +1,17 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
 import React                       from 'react';
 import { mount, shallow }          from 'enzyme';
-
 
 import { H2, H3, IconWithTooltip } from '../index';
 
@@ -32,7 +39,6 @@ describe( 'Module', () =>
 
     describe( 'render()', () =>
     {
-
         test( 'should not contain a <header> by default', () =>
         {
             expect( wrapper.find( 'header' ) ).toHaveLength( 0 );
@@ -60,7 +66,7 @@ describe( 'Module', () =>
         {
             wrapper.setProps( {
                 title       : 'Boom',
-                headerLevel : 3
+                headerLevel : 3,
             } );
 
             expect( wrapper.find( H3 ) ).toHaveLength( 1 );
@@ -73,7 +79,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( Module.defaultProps.title ).toBeUndefined();
             } );
 
             test( 'should be passed to the header component as children', () =>
@@ -88,7 +94,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutError ).toBeUndefined();
+                expect( Module.defaultProps.onMouseOutError ).toBeUndefined();
             } );
 
             test( 'should be passed to the IconWithTooltip as onMouseOut', () =>
@@ -110,7 +116,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverError ).toBeUndefined();
+                expect( Module.defaultProps.onMouseOverError ).toBeUndefined();
             } );
 
             test(
@@ -127,7 +133,7 @@ describe( 'Module', () =>
 
                     expect( wrapper.find( IconWithTooltip )
                         .prop( 'onMouseOver' ) ).toBe( onMouseOverError );
-                }
+                },
             );
         } );
 
@@ -135,7 +141,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutHeader ).toBeUndefined();
+                expect( Module.defaultProps.onMouseOutHeader ).toBeUndefined();
             } );
 
             test( 'should be passed to the <header> as onMouseOut', () =>
@@ -152,7 +158,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverHeader ).toBeUndefined();
+                expect( Module.defaultProps.onMouseOverHeader ).toBeUndefined();
             } );
 
             test( 'should be passed to the <header> as onMouseOver', () =>
@@ -171,12 +177,10 @@ describe( 'Module', () =>
 describe( 'ModuleDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Module /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'toggle()', () =>
@@ -187,10 +191,10 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
-                onClickToggle : toggleSpy
+                onClickToggle : toggleSpy,
             } );
 
-            driver.toggle();
+            wrapper.driver().toggle();
 
             expect( toggleSpy ).toBeCalledTimes( 1 );
         } );
@@ -204,10 +208,10 @@ describe( 'ModuleDriver', () =>
             wrapper.setProps( {
                 title         : 'Boom',
                 isDeletable   : true,
-                onClickDelete : clickDeleteSpy
+                onClickDelete : clickDeleteSpy,
             } );
 
-            driver.clickDelete();
+            wrapper.driver().clickDelete();
 
             expect( clickDeleteSpy ).toBeCalledTimes( 1 );
         } );
@@ -219,10 +223,10 @@ describe( 'ModuleDriver', () =>
         {
             wrapper.setProps( {
                 title        : 'Boom',
-                customHeader : <h1 className = "pokemon">Pikachu</h1>
+                customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
-            const header = driver.getCustomHeader();
+            const header = wrapper.driver().getCustomHeader();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
         } );
     } );

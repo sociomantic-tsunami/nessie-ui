@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React, { Component }    from 'react';
 import PropTypes               from 'prop-types';
 import isEqual                 from 'lodash.isequal';
@@ -34,6 +43,34 @@ export default class ScrollBox extends Component
          */
         height             : PropTypes.string,
         /**
+         *  mouseOver callback function
+         */
+        onMouseOver        : PropTypes.func,
+        /**
+         *  mouseOut callback function
+         */
+        onMouseOut         : PropTypes.func,
+        /**
+         *  on scroll callback function
+         */
+        onScroll           : PropTypes.func,
+        /**
+         *  on Thumb Drag Start horizontal callback function
+         */
+        onThumbDragStartX : PropTypes.func,
+        /**
+         *  on Thumb Drag End horizontal callback function
+         */
+        onThumbDragEndX    : PropTypes.func,
+        /**
+         *  on Thumb Drag Start vertical callback function
+         */
+        onThumbDragStartY  : PropTypes.func,
+        /**
+         *  on Thumb Drag End vertical callback function
+         */
+        onThumbDragEndY    : PropTypes.func,
+        /**
          *  scroll down button click callback function
          */
         onClickScrollDown  : PropTypes.func,
@@ -50,24 +87,19 @@ export default class ScrollBox extends Component
          */
         onClickScrollUp    : PropTypes.func,
         /**
-         *  mouseOver callback function
-         */
-        onMouseOver        : PropTypes.func,
-        /**
-         *  mouseOut callback function
-         */
-        onMouseOut         : PropTypes.func,
-        /**
-         *  on scroll callback function
-         */
-        onScroll           : PropTypes.func,
-        /**
          *  Scroll direction
          */
         scroll             : PropTypes.oneOf( [
             'horizontal',
             'vertical',
             'both',
+        ] ),
+        /**
+         *  Amount of pixels to scroll by
+         */
+        scrollAmount : PropTypes.oneOfType( [
+            PropTypes.number,
+            PropTypes.arrayOf( PropTypes.number ),
         ] ),
         /**
         *   ScrollBox padding
@@ -127,8 +159,13 @@ export default class ScrollBox extends Component
         onMouseOut             : undefined,
         onMouseOver            : undefined,
         onScroll               : undefined,
+        onThumbDragStartX      : undefined,
+        onThumbDragEndX        : undefined,
+        onThumbDragStartY      : undefined,
+        onThumbDragEndY        : undefined,
         padding                : 'none',
         scroll                 : 'both',
+        scrollAmount           : undefined,
         scrollBarsAreVisible   : true,
         scrollBoxRef           : undefined,
         scrollDownIsVisible    : false,
@@ -188,7 +225,7 @@ export default class ScrollBox extends Component
             const diffX = state.offsetWidth - state.clientWidth;
             const diffY = state.offsetHeight - state.clientHeight;
 
-            if ( diffX || diffX )
+            if ( diffX || diffY )
             {
                 Object.assign( style, {
                     width        : diffX ? `calc( 100% + ${diffX}px )` : null,
@@ -221,19 +258,76 @@ export default class ScrollBox extends Component
         return newState;
     }
 
+    handleClickScrollButton( dir, e )
+    {
+        const callback = this.props[ `onClickScroll${dir}` ];
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        const { scrollAmount } = this.props;
+
+        if ( dir === 'Up' || dir === 'Down' )
+        {
+            const { clientHeight, scrollTop } = this.state;
+
+            let amount = clientHeight;
+            if ( scrollAmount )
+            {
+                amount = Array.isArray( scrollAmount ) ?
+                    scrollAmount[ 1 ] : scrollAmount;
+            }
+
+            const increment = dir === 'Down' ? amount : -amount;
+            this.innerRef.scrollTop = scrollTop + increment;
+        }
+
+        if ( dir === 'Left' || dir === 'Right' )
+        {
+            const { clientWidth, scrollLeft } = this.state;
+
+            let amount = clientWidth;
+            if ( scrollAmount )
+            {
+                amount = Array.isArray( scrollAmount ) ?
+                    scrollAmount[ 0 ] : scrollAmount;
+            }
+
+            const increment = dir === 'Right' ? amount : -amount;
+            this.innerRef.scrollLeft = scrollLeft + increment;
+        }
+    }
+
     handleClickTrackX( pos )
     {
+        const { scrollAmount } = this.props;
         const { clientWidth, scrollLeft } = this.state;
-        const increment = pos >= scrollLeft ? clientWidth : -clientWidth;
 
+        let amount = clientWidth;
+        if ( scrollAmount )
+        {
+            amount = Array.isArray( scrollAmount ) ?
+                scrollAmount[ 0 ] : scrollAmount;
+        }
+
+        const increment = pos >= scrollLeft ? amount : -amount;
         this.innerRef.scrollLeft = scrollLeft + increment;
     }
 
     handleClickTrackY( pos )
     {
-        const { clientWidth, scrollTop } = this.state;
-        const increment = pos >= scrollTop ? clientWidth : -clientWidth;
+        const { scrollAmount } = this.props;
+        const { clientHeight, scrollTop } = this.state;
 
+        let amount = clientHeight;
+        if ( scrollAmount )
+        {
+            amount = Array.isArray( scrollAmount ) ?
+                scrollAmount[ 1 ] : scrollAmount;
+        }
+
+        const increment = pos >= scrollTop ? amount : -amount;
         this.innerRef.scrollTop = scrollTop + increment;
     }
 
@@ -260,6 +354,42 @@ export default class ScrollBox extends Component
         }
     }
 
+    handleRenderScrollButton( dir )
+    {
+        const {
+            scrollTop,
+            scrollLeft,
+            clientHeight,
+            clientWidth,
+            scrollHeight,
+            scrollWidth,
+        } = this.state;
+
+        if ( dir === 'Up' && scrollTop === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Down' &&
+        ( scrollTop + clientHeight ) >= scrollHeight )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Left' && scrollLeft === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Right' &&
+        ( scrollLeft + clientWidth ) >= scrollWidth )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     handleScroll( e )
     {
         this.forceUpdate();
@@ -280,7 +410,14 @@ export default class ScrollBox extends Component
         }
 
         const { props } = this;
-        const { cssMap, scroll } = props;
+        const {
+            cssMap,
+            scroll,
+            onThumbDragStartX,
+            onThumbDragEndX,
+            onThumbDragStartY,
+            onThumbDragEndY,
+        } = props;
 
         const scrollBars = [];
 
@@ -290,19 +427,19 @@ export default class ScrollBox extends Component
 
             if ( scrollWidth > clientWidth )
             {
-                scrollBars.push(
-                    <ScrollBar
-                        className        = { cssMap.scrollBarHorizontal }
-                        key              = "horizontal"
-                        onClickTrack     = { this.handleClickTrackX }
-                        onChange         = { this.handleChangeX }
-                        orientation      = "horizontal"
-                        scrollPos        = { scrollLeft }
-                        thumbSize        = {
-                            `${( clientWidth / scrollWidth ) * 100}%`
-                        }
-                        scrollMax = { scrollWidth - clientWidth } />
-                );
+                scrollBars.push( <ScrollBar
+                    className             = { cssMap.scrollBarHorizontal }
+                    key                   = "horizontal"
+                    onClickTrack          = { this.handleClickTrackX }
+                    onChange              = { this.handleChangeX }
+                    onThumbDragStart      = { onThumbDragStartX }
+                    onThumbDragEnd        = { onThumbDragEndX }
+                    orientation           = "horizontal"
+                    scrollPos             = { scrollLeft }
+                    thumbSize             = {
+                        `${( clientWidth / scrollWidth ) * 100}%`
+                    }
+                    scrollMax = { scrollWidth - clientWidth } /> );
             }
         }
 
@@ -312,20 +449,20 @@ export default class ScrollBox extends Component
 
             if ( scrollHeight > clientHeight )
             {
-                scrollBars.push(
-                    <ScrollBar
-                        className        = { cssMap.scrollBarVertical }
-                        key              = "vertical"
-                        onClickTrack     = { this.handleClickTrackY }
-                        onChange         = { this.handleChangeY }
-                        orientation      = "vertical"
-                        scrollPos        = { scrollTop }
-                        thumbSize        = {
-                            `${( clientHeight / scrollHeight ) * 100}%`
-                        }
-                        scrollMax = { scrollHeight - clientHeight  }
-                        length    = { `${clientHeight}px` } />
-                );
+                scrollBars.push( <ScrollBar
+                    className            = { cssMap.scrollBarVertical }
+                    key                  = "vertical"
+                    onClickTrack         = { this.handleClickTrackY }
+                    onChange             = { this.handleChangeY }
+                    onThumbDragStart     = { onThumbDragStartY }
+                    onThumbDragEnd       = { onThumbDragEndY }
+                    orientation          = "vertical"
+                    scrollPos            = { scrollTop }
+                    thumbSize            = {
+                        `${( clientHeight / scrollHeight ) * 100}%`
+                    }
+                    scrollMax = { scrollHeight - clientHeight  }
+                    length    = { `${clientHeight}px` } /> );
             }
         }
 
@@ -337,20 +474,25 @@ export default class ScrollBox extends Component
         const { props } = this;
         const scrollButtons = [];
 
-        [ 'Down', 'Left', 'Right', 'Up' ].forEach( dir =>
+        [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push(
-                    <IconButton
-                        className     = { props.cssMap[ `icon${dir}` ] }
-                        hasBackground = {
-                            props.scrollIndicatorVariant === 'circle' }
-                        iconSize = "S"
-                        iconType = { dir.toLowerCase() }
-                        key      = { dir }
-                        onClick  = { props[ `onClickScroll${dir}` ] } />
-                );
+                if ( this.handleRenderScrollButton( dir ) )
+                {
+                    scrollButtons.push(
+                        <IconButton
+                            className     = { props.cssMap[ `icon${dir}` ] }
+                            hasBackground = {
+                                props.scrollIndicatorVariant === 'circle' }
+                            iconSize      = "S"
+                            iconType      = { dir.toLowerCase() }
+                            key           = { dir }
+                            onClick       = { e =>
+                                this.handleClickScrollButton( dir, e )
+                            } />
+                    );
+                }
             }
         } );
 

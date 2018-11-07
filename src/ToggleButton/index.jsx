@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 import React                           from 'react';
 import PropTypes                       from 'prop-types';
 
@@ -54,9 +63,11 @@ const ToggleButton = ( {
                 <div className = { cssMap.title }>
                     { children || label }
                 </div>
-                <div className = { cssMap.subLabel }>
-                    { subLabel }
-                </div>
+                { subLabel &&
+                    <div className = { cssMap.subLabel }>
+                        { subLabel }
+                    </div>
+                }
             </div>
         </div>
 
@@ -86,17 +97,19 @@ ToggleButton.propTypes =
      */
     iconType     : PropTypes.oneOf( [
         'account',
-        'add',
         'add-circle',
+        'add',
         'alert',
         'approved',
         'arrow',
+        'arrow-up',
+        'arrow-down',
         'bell',
         'board',
         'calendar',
-        'close',
         'close-circle',
         'close-thick',
+        'close',
         'dash',
         'dashboard',
         'declined',
@@ -104,8 +117,8 @@ ToggleButton.propTypes =
         'down',
         'download',
         'duplicate',
-        'edit',
         'edit-circle',
+        'edit',
         'ended',
         'error',
         'file',
@@ -116,8 +129,10 @@ ToggleButton.propTypes =
         'left',
         'lightbulb',
         'link',
+        'loader',
         'megaphone',
         'options',
+        'paused',
         'pending',
         'preview',
         'puzzle-piece',
@@ -125,8 +140,9 @@ ToggleButton.propTypes =
         'right',
         'search',
         'show',
-        'star',
         'star-stroke',
+        'star',
+        'sociomantic',
         'swap',
         'table',
         'up',
@@ -177,7 +193,7 @@ ToggleButton.propTypes =
     /**
     *  ToggleButton role (style)
     */
-    role        : PropTypes.oneOf( [ 'primary', 'secondary' ] ),
+    role        : PropTypes.oneOf( [ 'primary', 'secondary', 'subtle' ] ),
     /**
      *  sub-label text
      */
