@@ -536,9 +536,11 @@
 
     .option.optionIcon__approved,
     .option.optionIcon__declined,
+    .option.optionIcon__deactivated,
     .option.optionIcon__alert,
     .option.optionIcon__ended,
     .option.optionIcon__pending,
+    .option.optionIcon__paused,
     .option.optionIcon__error,
     .optionIcon__include,
     .optionIcon__exclude,
@@ -566,6 +568,10 @@
     {
         background-image:   url("./images/declined.svg");
     }
+    .option.optionIcon__deactivated
+    {
+        background-image:   url("./images/deactivated.svg");
+    }
     .option.optionIcon__ended
     {
         background-image:   url("./images/ended.svg");
@@ -573,6 +579,10 @@
     .option.optionIcon__pending
     {
         background-image:   url("./images/pending.svg");
+    }
+    .option.optionIcon__paused
+    {
+        background-image:   url("./images/paused.svg");
     }
     .option.optionIcon__alert
     {
