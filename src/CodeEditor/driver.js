@@ -89,6 +89,7 @@ export default class CodeEditorDriver
 
         this.control.setValue( val );
         this.wrapper.prop( 'onChange' )( this.control.getValue() );
+
         return this;
     }
 

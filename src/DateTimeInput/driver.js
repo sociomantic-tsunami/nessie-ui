@@ -71,8 +71,9 @@ export default class DateTimeInputDriver
 
     clickCellByValue( value )
     {
-        const day = this.calendar.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
+        const day = this.calendar.findWhere( n => n.prop( 'value' ) === value )
+            .first();
+
         day.simulate( 'click' );
         return this;
     }

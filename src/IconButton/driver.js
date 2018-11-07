@@ -14,7 +14,7 @@ export default class IconButtonDriver
 
     click()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -35,7 +35,7 @@ export default class IconButtonDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -50,7 +50,7 @@ export default class IconButtonDriver
 
     mouseOut()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -65,7 +65,7 @@ export default class IconButtonDriver
 
     focus()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )
@@ -79,7 +79,7 @@ export default class IconButtonDriver
 
     blur()
     {
-        const props = this.wrapper.props();
+        const props     = this.wrapper.props();
         const { label } = props;
 
         if ( props.isDisabled )

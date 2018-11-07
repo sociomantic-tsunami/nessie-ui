@@ -24,9 +24,9 @@ export default class ModalDialogDriver
 
         this.closeButton = wrapper.find( `.${this.cssMap.header}` )
             .find( IconButton );
-        this.prevButton = wrapper.find( `.${this.cssMap.navigation}` )
+        this.prevButton  = wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).first();
-        this.nextButton = wrapper.find( `.${this.cssMap.navigation}` )
+        this.nextButton  = wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).last();
     }
 

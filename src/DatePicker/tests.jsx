@@ -264,39 +264,6 @@ prevIsDisabled', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TimeInput cannot simulate blur since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.blurHour() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur callback prop when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isReadOnly : true,
-                } );
-
-                try
-                {
-                    driver.blurHour();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -363,39 +330,6 @@ prevIsDisabled', () =>
                 wrapper.setProps( {
                     onFocus,
                     isDisabled : true,
-                } );
-
-                try
-                {
-                    driver.focusHour();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TimeInput cannot simulate focus since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.focusHour() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus callback prop when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isReadOnly : true,
                 } );
 
                 try
@@ -596,39 +530,6 @@ prevIsDisabled', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TimeInput cannot simulate keyPress since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.keyPressHour() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onKeyPress callback prop when isReadOnly', () =>
-            {
-                const onKeyPress = jest.fn();
-                wrapper.setProps( {
-                    onKeyPress,
-                    isReadOnly : true,
-                } );
-
-                try
-                {
-                    driver.keyPressHour();
-                }
-                catch ( error )
-                {
-                    expect( onKeyPress ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -701,36 +602,6 @@ prevIsDisabled', () =>
                 }
             } );
         } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TimeInput cannot simulate blur since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.blurMinute() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur callback prop when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
-
-                try
-                {
-                    driver.blurMinute();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -792,36 +663,6 @@ prevIsDisabled', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focusMinute();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'TimeInput cannot simulate focus since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.focusMinute() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus callback prop when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
 
                 try
                 {
@@ -1004,39 +845,6 @@ not <default>', () =>
                 wrapper.setProps( {
                     onKeyPress,
                     isDisabled : true,
-                } );
-
-                try
-                {
-                    driver.keyPressMinute();
-                }
-                catch ( error )
-                {
-                    expect( onKeyPress ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'should throw the expected error when isReadOnly', () =>
-            {
-                const expectedError =
-                    'Input cannot simulate keyPress since it is read only';
-                wrapper.setProps( {
-                    isReadOnly : true,
-                } );
-
-                expect( () => driver.keyPressMinute() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onKeyPress callback prop when isReadOnly', () =>
-            {
-                const onKeyPress = jest.fn();
-                wrapper.setProps( {
-                    onKeyPress,
-                    isReadOnly : true,
                 } );
 
                 try

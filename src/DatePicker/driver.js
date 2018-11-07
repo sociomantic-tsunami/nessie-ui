@@ -34,18 +34,13 @@ export default class DatePickerDriver
 
     clickItem( index = 0 )
     {
-        const dateItem = this.wrapper.find( DatePickerItem )
+        const dateItem  = this.wrapper.find( DatePickerItem )
             .at( index );
         const { label } = dateItem.props();
 
         if ( dateItem.isDisabled )
         {
             throw new Error( ERR.ITEM_ERR( label, 'disabled' ) );
-        }
-
-        if ( dateItem.isReadOnly )
-        {
-            throw new Error( ERR.ITEM_ERR( label, 'read only' ) );
         }
 
         dateItem.simulate( 'click' );
@@ -86,13 +81,7 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'read only' ) );
-        }
-
-        this.wrapper.find( `.${this.hour}` )
-            .simulate( 'keyPress', { key } );
+        this.wrapper.find( `.${this.hour}` ).simulate( 'keyPress', { key } );
         return this;
     }
 
@@ -108,13 +97,7 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'read only' ) );
-        }
-
-        this.wrapper.find( `.${this.min}` )
-            .simulate( 'keyPress', { key } );
+        this.wrapper.find( `.${this.min}` ).simulate( 'keyPress', { key } );
         return this;
     }
 
@@ -128,11 +111,6 @@ export default class DatePickerDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'read only' ) );
         }
 
         this.wrapper.find( `.${this.hour}` ).simulate( 'blur' );
@@ -151,11 +129,6 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.min}` ).simulate( 'blur' );
         return this;
     }
@@ -172,11 +145,6 @@ export default class DatePickerDriver
             throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.hour}` ).simulate( 'focus' );
         return this;
     }
@@ -191,11 +159,6 @@ export default class DatePickerDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( `.${this.min}` ).simulate( 'focus' );

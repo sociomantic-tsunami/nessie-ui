@@ -24,6 +24,7 @@ export default class SwitchDriver
     change()
     {
         const props = this.wrapper.props();
+        const node  = this.input.getNode();
 
         if ( props.isDisabled )
         {
@@ -34,8 +35,6 @@ export default class SwitchDriver
         {
             throw new Error( ERR.SWITCH_ERR( 'change', 'read only' ) );
         }
-
-        const node = this.input.getNode();
 
         node.checked = !node.checked;
         this.input.simulate( 'change' );

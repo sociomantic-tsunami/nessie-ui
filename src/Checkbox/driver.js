@@ -17,8 +17,7 @@ export default class CheckboxDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper
-            .find( `.${this.wrapper.props().cssMap.input}` );
+        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
     }
 
     blur()
@@ -80,6 +79,7 @@ export default class CheckboxDriver
 
         node.checked = !node.checked;
         this.control.simulate( 'change' );
+
         return this;
     }
 
