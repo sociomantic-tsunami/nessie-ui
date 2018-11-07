@@ -46,11 +46,6 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'blur', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'blur' );
         return this;
@@ -80,11 +75,6 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'focus', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'focus', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'focus' );
         return this;
@@ -95,11 +85,6 @@ export default class TagInputDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TAGINPUT_ERR( 'keyPress', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'keyPress', 'read only' ) );
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
@@ -114,11 +99,6 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyDown', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'keyDown', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'keyDown', { keyCode } );
         return this;
@@ -131,11 +111,6 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyUp', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'keyUp', 'read only' ) );
-        }
-
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
             .simulate( 'keyUp', { keyCode } );
         return this;
@@ -143,22 +118,12 @@ export default class TagInputDriver
 
     mouseOver()
     {
-        if ( this.wrapper.props().isDisabled )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'mouseOver', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        if ( this.wrapper.props().isDisabled )
-        {
-            throw new Error( ERR.TAGINPUT_ERR( 'mouseOut', 'disabled' ) );
-        }
-
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }

@@ -18,7 +18,7 @@ export default class SwitchDriver
     {
         this.wrapper = wrapper;
         this.cssMap  = wrapper.props().cssMap;
-        this.input = wrapper.find( `.${wrapper.props().cssMap.input}` );
+        this.input   = wrapper.find( `.${wrapper.props().cssMap.input}` );
     }
 
     change()
