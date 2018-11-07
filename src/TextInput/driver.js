@@ -19,11 +19,6 @@ export default class TextInputDriver
             throw new Error( ERR.TEXTINPUT_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTINPUT_ERR( 'blur', 'read only' ) );
-        }
-
         this.wrapper.find( InputField ).driver().blur();
         return this;
     }
@@ -33,11 +28,6 @@ export default class TextInputDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TEXTINPUT_ERR( 'click', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTINPUT_ERR( 'click', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().click();
@@ -67,11 +57,6 @@ export default class TextInputDriver
             throw new Error( ERR.TEXTINPUT_ERR( 'focus', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTINPUT_ERR( 'focus', 'read only' ) );
-        }
-
         this.wrapper.find( InputField ).driver().focus();
         return this;
     }
@@ -84,6 +69,28 @@ export default class TextInputDriver
         }
 
         this.wrapper.find( InputField ).driver().keyPress( keyCode );
+        return this;
+    }
+
+    keyUp( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTINPUT_ERR( 'keyUp', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
+        return this;
+    }
+
+    keyDown( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTINPUT_ERR( 'keyDown', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
         return this;
     }
 
