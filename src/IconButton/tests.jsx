@@ -150,10 +150,9 @@ click since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot simulate \
 click since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -196,10 +195,9 @@ click since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Button \'Tekeli-li\' cannot simulate \
 blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
