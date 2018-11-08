@@ -14,8 +14,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'blur', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'blur', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'blur' );
@@ -26,8 +25,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'focus', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'focus', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'focus' );
@@ -40,14 +38,12 @@ export default class InputFieldDriver
 
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'change', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'change', 'disabled' ) );
         }
 
         if ( this.wrapper.props().isReadOnly )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'change', 'read only' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'change', 'read only' ) );
         }
 
         node.value = val;
@@ -60,8 +56,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'click', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'click', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'click' );
@@ -72,8 +67,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'keyPress', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyPress', { keyCode } );
@@ -84,8 +78,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'keyDown', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'keyDown', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyDown', { keyCode } );
@@ -96,8 +89,7 @@ export default class InputFieldDriver
     {
         if ( this.wrapper.props().isDisabled )
         {
-            throw new Error( ERR
-                .INPUTFIELD_ERROR( 'keyUp', 'disabled' ) );
+            throw new Error( ERR.INPUTFIELD_ERROR( 'keyUp', 'disabled' ) );
         }
 
         this.wrapper.simulate( 'keyUp', { keyCode } );
