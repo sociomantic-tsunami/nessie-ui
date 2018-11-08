@@ -68,6 +68,7 @@ export default class IconButton extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',

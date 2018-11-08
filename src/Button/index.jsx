@@ -57,6 +57,7 @@ export default class Button extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
