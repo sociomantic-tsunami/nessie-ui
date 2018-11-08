@@ -141,10 +141,13 @@ describe( 'ScrollBoxDriver', () =>
     {
         test( 'invokes onClickScrollUp callback prop', () =>
         {
+
             const onClickScrollUp = jest.fn();
             wrapper.setProps( { onClickScrollUp, scrollUpIsVisible: true } );
+            wrapper.setState();
 
             wrapper.driver().clickScrollUp();
+
 
             expect( onClickScrollUp ).toBeCalledTimes( 1 );
         } );
@@ -156,6 +159,8 @@ describe( 'ScrollBoxDriver', () =>
                 onClickScrollRight,
                 scrollRightIsVisible : true,
             } );
+
+            wrapper.setState();
 
             wrapper.driver().clickScrollRight();
 
@@ -171,6 +176,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollDownIsVisible : true,
             } );
 
+            wrapper.setState();
+
             wrapper.driver().clickScrollDown();
 
             expect( onClickScrollDown ).toBeCalledTimes( 1 );
@@ -185,6 +192,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollLeftIsVisible : true,
             } );
 
+            wrapper.setState();
+
             wrapper.driver().clickScrollLeft();
 
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
@@ -196,6 +205,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount      : 50,
                 scrollUpIsVisible : true,
             } );
+
+            wrapper.setState();
 
             wrapper.driver().clickScrollUp();
 
@@ -209,6 +220,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollRightIsVisible : true,
             } );
 
+            wrapper.setState();
+
             wrapper.driver().clickScrollRight();
 
             expect( instance.innerRef.scrollLeft ).toBe( 100 );
@@ -220,6 +233,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount        : 50,
                 scrollDownIsVisible : true,
             } );
+
+            wrapper.setState();
 
             wrapper.driver().clickScrollDown();
 
@@ -233,6 +248,8 @@ describe( 'ScrollBoxDriver', () =>
                 scrollLeftIsVisible : true,
             } );
 
+            wrapper.setState();
+
             wrapper.driver().clickScrollLeft();
 
             expect( instance.innerRef.scrollLeft ).toBe( 0 );
@@ -245,6 +262,8 @@ describe( 'ScrollBoxDriver', () =>
         {
             const onScroll = jest.fn();
             wrapper.setProps( { onScroll, scroll: 'vertical' } );
+
+            wrapper.setState();
 
             wrapper.driver().scrollVertical( 250 );
 
