@@ -19,11 +19,6 @@ export default class ValuedTextInputDriver
             throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'blur', 'read only' ) );
-        }
-
         this.wrapper.find( InputField ).driver().blur();
         return this;
     }
@@ -33,11 +28,6 @@ export default class ValuedTextInputDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'click', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'click', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().click();
@@ -65,11 +55,6 @@ export default class ValuedTextInputDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'focus', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.VALUEDTEXTINPUT_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();

@@ -98,31 +98,31 @@ InputContainer.propTypes = {
     /**
      *  Whether error icon is shown
      */
-    hasError              : PropTypes.bool,
+    hasError      : PropTypes.bool,
     /**
      *  id of the associated input
      */
-    id                    : PropTypes.string,
+    id            : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled    : PropTypes.bool,
     /**
      *  Input label text
      */
-    label                 : PropTypes.node,
+    label         : PropTypes.node,
     /**
      *  Label position relative to the input
      */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+    labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
     /**
      *  Mouse over callback function
      */
-    onMouseOut            : PropTypes.func,
+    onMouseOut    : PropTypes.func,
     /**
      *  Mouse out callback function
      */
-    onMouseOver           : PropTypes.func,
+    onMouseOver   : PropTypes.func,
 };
 
 InputContainer.defaultProps = {

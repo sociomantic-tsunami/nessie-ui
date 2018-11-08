@@ -74,10 +74,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'TextInput cannot simulate blur since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -86,35 +85,6 @@ describe( 'TextInputDriver', () =>
             {
                 const onBlur = jest.fn();
                 wrapper.setProps( { onBlur, isDisabled: true } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true } );
-
-                const expectedError =
-                    'TextInput cannot simulate blur since it is read only';
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( { onBlur, isReadOnly: true } );
 
                 try
                 {
@@ -145,10 +115,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'TextInput cannot simulate focus since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -157,35 +126,6 @@ describe( 'TextInputDriver', () =>
             {
                 const onFocus = jest.fn();
                 wrapper.setProps( { onFocus, isDisabled: true } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true } );
-
-                const expectedError =
-                    'TextInput cannot simulate focus since it is read only';
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( { onFocus, isReadOnly: true } );
 
                 try
                 {
@@ -216,10 +156,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'TextInput cannot simulate keyPress since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
@@ -258,10 +197,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'TextInput cannot simulate change since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -287,10 +225,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError =
                     'TextInput cannot simulate change since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -321,7 +258,6 @@ describe( 'TextInputDriver', () =>
             wrapper.setProps( { onClick } );
 
             driver.click();
-
             expect( onClick ).toBeCalledTimes( 1 );
         } );
 
@@ -330,10 +266,9 @@ describe( 'TextInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError =
                     'TextInput cannot simulate click since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -342,35 +277,6 @@ describe( 'TextInputDriver', () =>
             {
                 const onClick = jest.fn();
                 wrapper.setProps( { onClick, isDisabled: true } );
-
-                try
-                {
-                    driver.click();
-                }
-                catch ( error )
-                {
-                    expect( onClick ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                wrapper.setProps( { isReadOnly: true } );
-
-                const expectedError =
-                    'TextInput cannot simulate click since it is read only';
-
-                expect( () => driver.click() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onClick when isReadOnly', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick, isReadOnly: true } );
 
                 try
                 {

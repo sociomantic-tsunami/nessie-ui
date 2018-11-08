@@ -28,11 +28,6 @@ export default class TextAreaDriver
             throw new Error( ERR.TEXTAREA_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTAREA_ERR( 'blur', 'read only' ) );
-        }
-
         this.wrapper.find( InputField ).driver().blur();
         return this;
     }
@@ -74,11 +69,6 @@ export default class TextAreaDriver
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TEXTAREA_ERR( 'focus', 'disabled' ) );
-        }
-
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTAREA_ERR( 'focus', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();
