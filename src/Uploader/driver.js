@@ -50,6 +50,7 @@ export default class UploaderDriver
 
         node.name = val;
         this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'change' );
+
         return this;
     }
 

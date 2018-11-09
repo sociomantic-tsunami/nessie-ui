@@ -183,7 +183,6 @@ describe( 'InputField', () =>
             test( 'should be passed to the InputField', () =>
             {
                 const onChange = () => undefined;
-
                 wrapper.setProps( { onChange } );
 
                 expect( wrapper.find( InputField ).prop( 'onChange' ) )
@@ -209,7 +208,6 @@ describe( 'InputField', () =>
             test( 'should be passed to the InputField', () =>
             {
                 const onKeyPress = () => undefined;
-
                 wrapper.setProps( { onKeyPress } );
 
                 expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
@@ -227,7 +225,6 @@ describe( 'InputField', () =>
             test( 'should be passed to the InputField', () =>
             {
                 const onMouseOut = () => undefined;
-
                 wrapper.setProps( { onMouseOut } );
 
                 expect( wrapper.find( InputField ).prop( 'onMouseOut' ) )
@@ -245,7 +242,6 @@ describe( 'InputField', () =>
             test( 'should be passed to the InputField', () =>
             {
                 const onMouseOver = () => undefined;
-
                 wrapper.setProps( { onMouseOver } );
 
                 expect( wrapper.find( InputField ).prop( 'onMouseOver' ) )

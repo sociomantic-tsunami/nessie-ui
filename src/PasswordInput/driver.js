@@ -10,8 +10,8 @@
 import { IconButton, InputField, Tooltip } from 'nessie-ui';
 
 const ERR = {
-    PASS_ERR : ( label, event, state ) => `PasswordInput '${label}' cannot \
-simulate ${event} since it is ${state}`,
+    PASS_ERR : ( event, state ) => `PasswordInput cannot simulate ${event} \
+since it is ${state}`,
 };
 
 export default class PasswordInput
@@ -24,11 +24,10 @@ export default class PasswordInput
     blur()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'blur', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'blur', 'disabled' ) );
         }
 
         this.wrapper.find( InputField ).driver().blur();
@@ -38,11 +37,10 @@ export default class PasswordInput
     focus()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'focus', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'focus', 'disabled' ) );
         }
 
         this.wrapper.find( InputField ).driver().focus();
@@ -52,16 +50,15 @@ export default class PasswordInput
     change( val )
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'change', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( props.isReadOnly || props.isReadOnlyInput )
         {
-            throw new Error( ERR.PASS_ERR( label, 'change', 'read only' ) );
+            throw new Error( ERR.PASS_ERR( 'change', 'read only' ) );
         }
 
         this.wrapper.find( InputField ).driver().change( val );
@@ -71,11 +68,10 @@ export default class PasswordInput
     keyPress( keyCode )
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'keyPress', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'keyPress', 'disabled' ) );
         }
 
         this.wrapper.find( InputField ).driver().keyPress( keyCode );
@@ -97,11 +93,15 @@ export default class PasswordInput
     clickIcon()
     {
         const props = this.wrapper.props();
-        const { label } = props;
 
         if ( props.isDisabled )
         {
-            throw new Error( ERR.PASS_ERR( label, 'clickIcon', 'disabled' ) );
+            throw new Error( ERR.PASS_ERR( 'clickIcon', 'disabled' ) );
+        }
+
+        if ( props.isReadOnly || props.isReadOnlyButton )
+        {
+            throw new Error( ERR.PASS_ERR( 'clickIcon', 'read only' ) );
         }
 
         this.wrapper.find( IconButton ).simulate( 'click' );

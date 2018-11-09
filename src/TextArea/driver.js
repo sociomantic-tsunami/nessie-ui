@@ -39,11 +39,6 @@ export default class TextAreaDriver
             throw new Error( ERR.TEXTAREA_ERR( 'click', 'disabled' ) );
         }
 
-        if ( this.wrapper.props().isReadOnly )
-        {
-            throw new Error( ERR.TEXTAREA_ERR( 'click', 'read only' ) );
-        }
-
         this.wrapper.find( InputField ).driver().click();
         return this;
     }
@@ -83,6 +78,28 @@ export default class TextAreaDriver
         }
 
         this.wrapper.find( InputField ).driver().keyPress( keyCode );
+        return this;
+    }
+
+    keyUp( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTAREA_ERR( 'keyUp', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
+        return this;
+    }
+
+    keyDown( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTAREA_ERR( 'keyDown', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
         return this;
     }
 

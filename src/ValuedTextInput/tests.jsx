@@ -188,6 +188,88 @@ keyPress since it is disabled';
     } );
 
 
+    describe( 'keyUp()', () =>
+    {
+        test( 'should trigger onKeyUp callback prop once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( { onKeyUp } );
+
+            driver.keyUp();
+            expect( onKeyUp ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ValuedTextInput cannot simulate \
+keyUp since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyUp() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onKeyUp when isDisabled', () =>
+            {
+                const onKeyUp = jest.fn();
+                wrapper.setProps( { onKeyUp, isDisabled: true } );
+
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyDown()', () =>
+    {
+        test( 'should trigger onKeyDown callback prop once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( { onKeyDown } );
+
+            driver.keyDown();
+            expect( onKeyDown ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ValuedTextInput cannot simulate \
+keyDown since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyDown() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onKeyDown when isDisabled', () =>
+            {
+                const onKeyDown = jest.fn();
+                wrapper.setProps( { onKeyDown, isDisabled: true } );
+
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
     describe( 'change()', () =>
     {
         test( 'should trigger onChange callback prop once', () =>

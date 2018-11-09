@@ -54,8 +54,8 @@ describe( 'CheckableGroupDriver', () =>
             {
                 wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-simulate change since it is disabled';
+                const expectedError = 'CheckableGroup cannot simulate change \
+since it is disabled';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -87,8 +87,8 @@ simulate change since it is disabled';
             {
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
-                const expectedError = 'CheckableGroup \'Tekeli-li\' cannot \
-simulate change since it is read only';
+                const expectedError = 'CheckableGroup cannot simulate change \
+since it is read only';
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );

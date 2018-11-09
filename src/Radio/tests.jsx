@@ -376,10 +376,9 @@ change since it is read only';
         test( 'should call onClick once', () =>
         {
             const onClick = jest.fn();
-
             wrapper.setProps( { onClick } );
-            driver.click();
 
+            driver.click();
             expect( onClick ).toBeCalledTimes( 1 );
         } );
 
@@ -420,10 +419,9 @@ click since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'Radio \'Tekeli-li\' cannot simulate \
 click since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.click() ).toThrow( expectedError );
             } );
@@ -431,7 +429,6 @@ click since it is read only';
             test( 'should not trigger onClick when isReadOnly', () =>
             {
                 const onClick = jest.fn();
-
                 wrapper.setProps( {
                     isReadOnly : true,
                     label      : 'Tekeli-li',

@@ -129,34 +129,6 @@ describe( 'IconWithTooltipDriver', () =>
             driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'IconWithTooltip cannot simulate \
-mouseOver because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOver() ).toThrow( expectedError );
-            } );
-
-            test( 'shoud not trigger onMouseOver when isDisabled', () =>
-            {
-                const onMouseOver = jest.fn();
-                wrapper.setProps( { onMouseOver, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOver();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOver ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -169,34 +141,6 @@ mouseOver because it is disabled';
 
             driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'IconWithTooltip cannot simulate \
-mouseOut because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOut() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOut when isDisabled', () =>
-            {
-                const onMouseOut = jest.fn();
-                wrapper.setProps( { onMouseOut, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOut();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOut ).not.toBeCalled();
-                }
-            } );
         } );
     } );
 
@@ -211,34 +155,6 @@ mouseOut because it is disabled';
             driver.mouseOverIcon();
             expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'IconWithTooltip cannot simulate \
-mouseOverIcon because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOverIcon() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOverIcon when isDisabled', () =>
-            {
-                const onMouseOverIcon = jest.fn();
-                wrapper.setProps( { onMouseOverIcon, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOverIcon();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOverIcon ).not.toBeCalled();
-                }
-            } );
-        } );
     } );
 
 
@@ -251,34 +167,6 @@ mouseOverIcon because it is disabled';
 
             driver.mouseOutIcon();
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'IconWithTooltip cannot simulate \
-mouseOutIcon because it is disabled';
-                wrapper.setProps( { isDisabled: true } );
-
-                expect( () => driver.mouseOutIcon() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onMouseOutIcon when isDisabled', () =>
-            {
-                const onMouseOutIcon = jest.fn();
-                wrapper.setProps( { onMouseOutIcon, isDisabled: true } );
-
-                try
-                {
-                    driver.mouseOutIcon();
-                }
-                catch ( error )
-                {
-                    expect( onMouseOutIcon ).not.toBeCalled();
-                }
-            } );
         } );
     } );
 } );

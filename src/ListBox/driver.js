@@ -7,6 +7,7 @@
  *
  */
 
+import ListBoxOption from './ListBoxOption';
 
 export default class ListBoxDriver
 {
@@ -17,7 +18,7 @@ export default class ListBoxDriver
 
     clickOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+        const option = this.wrapper.find( ListBoxOption ).at( index );
 
         option.simulate( 'click' );
         return this;
@@ -25,7 +26,7 @@ export default class ListBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+        const option = this.wrapper.find( ListBoxOption ).at( index );
 
         option.simulate( 'mouseenter' );
         return this;
@@ -33,7 +34,7 @@ export default class ListBoxDriver
 
     mouseOutOption( index = 0 )
     {
-        const option = this.wrapper.find( 'ListBoxOption' ).at( index );
+        const option = this.wrapper.find( ListBoxOption ).at( index );
 
         option.simulate( 'mouseleave' );
         return this;

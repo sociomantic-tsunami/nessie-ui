@@ -20,21 +20,20 @@ export default class ModalDialogDriver
     {
         this.wrapper = wrapper;
         this.cssMap  = wrapper.props().cssMap;
-
         this.overlay = wrapper.find( `.${this.cssMap.default}` );
-        this.content = wrapper.find( `.${this.cssMap.content}` );
 
         this.closeButton = wrapper.find( `.${this.cssMap.header}` )
             .find( IconButton );
-        this.prevButton = wrapper.find( `.${this.cssMap.navigation}` )
+        this.prevButton  = wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).first();
-        this.nextButton = wrapper.find( `.${this.cssMap.navigation}` )
+        this.nextButton  = wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).last();
     }
 
     clickOverlay()
     {
         this.overlay.simulate( 'click' );
+        return this;
     }
 
     clickClose()
@@ -43,7 +42,9 @@ export default class ModalDialogDriver
         {
             throw new Error( ERR.NOT_A_CAROUSEL( 'Close Button' ) );
         }
+
         this.closeButton.driver().click();
+        return this;
     }
 
     clickPrev()
@@ -52,7 +53,9 @@ export default class ModalDialogDriver
         {
             throw new Error( ERR.NOT_A_CAROUSEL( 'Prev Button' ) );
         }
+
         this.prevButton.driver().click();
+        return this;
     }
 
     clickNext()
@@ -61,6 +64,8 @@ export default class ModalDialogDriver
         {
             throw new Error( ERR.NOT_A_CAROUSEL( 'Next Button' ) );
         }
+
         this.nextButton.driver().click();
+        return this;
     }
 }

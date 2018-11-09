@@ -80,13 +80,14 @@ export default class ScrollBoxDriver
 
     scrollVertical( scrollOffset = 0 )
     {
+        const node = this.scrollBox.getNode();
+
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
             throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -95,6 +96,8 @@ export default class ScrollBoxDriver
 
     scrollHorizontal( scrollOffset = 0 )
     {
+        const node = this.scrollBox.getNode();
+
         if ( !( this.props.scroll === 'horizontal' ||
             this.props.scroll === 'both' ) )
         {
@@ -102,7 +105,6 @@ export default class ScrollBoxDriver
                 .CANNOT_SCROLL_IN_DIRECTION( 'horizontal' ) );
         }
 
-        const node      = this.scrollBox.getNode();
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
 
@@ -111,33 +113,38 @@ export default class ScrollBoxDriver
 
     seekVertical( scrollOffset )
     {
+        const node      = this.scrollBox.getNode();
+        const scrollBar = this.wrapper.find( ScrollBar ).last();
+
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
             throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
-        const scrollBar = this.wrapper.find( ScrollBar ).last();
         node.scrollTop = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
         scrollBar.driver().change( scrollOffset );
+
         return this;
     }
 
     seekHorizontal( scrollOffset )
     {
+        const node      = this.scrollBox.getNode();
+        const scrollBar = this.wrapper.find( ScrollBar ).first();
+
         if ( !( this.props.scroll === 'vertical' ||
             this.props.scroll === 'both' ) )
         {
             throw new Error( ERR.CANNOT_SCROLL_IN_DIRECTION( 'vertical' ) );
         }
 
-        const node     = this.scrollBox.getNode();
-        const scrollBar = this.wrapper.find( ScrollBar ).first();
+
         node.scrollLeft = scrollOffset;
         this.scrollBox.simulate( 'scroll' );
         scrollBar.driver().change( scrollOffset );
+
         return this;
     }
 }

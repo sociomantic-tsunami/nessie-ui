@@ -8,14 +8,14 @@ export default class RadioDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper
-            .find( `.${this.wrapper.props().cssMap.input}` );
+        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
     }
 
     blur()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -33,8 +33,9 @@ export default class RadioDriver
 
     focus()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {
@@ -52,9 +53,10 @@ export default class RadioDriver
 
     change()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
-        const node      = this.control.getNode();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+        const node  = this.control.getNode();
 
         if ( props.isDisabled )
         {
@@ -78,8 +80,9 @@ export default class RadioDriver
 
     click()
     {
-        const props     = this.wrapper.props();
-        const { label } = props;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
         if ( props.isDisabled )
         {

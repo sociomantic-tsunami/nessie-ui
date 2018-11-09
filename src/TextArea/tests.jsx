@@ -184,31 +184,126 @@ describe( 'TextAreaDriver', () =>
                 }
             } );
         } );
+    } );
 
 
-        describe( 'isReadOnly', () =>
+    describe( 'keyPress()', () =>
+    {
+        test( 'should trigger onKeyPress callback prop once', () =>
         {
-            test( 'throws the expected error when isReadOnly', () =>
+            const onKeyPress = jest.fn();
+            wrapper.setProps( {  onKeyPress } );
+
+            driver.keyPress();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
             {
                 const expectedError =
-                    'TextArea cannot simulate click since it is read only';
-                wrapper.setProps( { isReadOnly: true } );
+                    'TextArea cannot simulate keyPress since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
-                expect( () => driver.click() ).toThrow( expectedError );
+                expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
-            test( 'should not trigger onClick when isReadOnly', () =>
+            test( 'should not trigger onClick when isDisabled', () =>
             {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick, isReadOnly: true } );
+                const onKeyPress = jest.fn();
+                wrapper.setProps( { onKeyPress, isDisabled: true } );
 
                 try
                 {
-                    driver.click();
+                    driver.keyPress();
                 }
                 catch ( error )
                 {
-                    expect( onClick ).not.toBeCalled();
+                    expect( onKeyPress ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyUp()', () =>
+    {
+        test( 'should trigger onKeyUp callback prop once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( {  onKeyUp } );
+
+            driver.keyUp();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'TextArea cannot simulate keyUp since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyUp() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onKeyUp = jest.fn();
+                wrapper.setProps( { onKeyUp, isDisabled: true } );
+
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyDown()', () =>
+    {
+        test( 'should trigger onKeyDown callback prop once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( {  onKeyDown } );
+
+            driver.keyDown();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'TextArea cannot simulate keyDown since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyDown() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onKeyDown = jest.fn();
+                wrapper.setProps( { onKeyDown, isDisabled: true } );
+
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
                 }
             } );
         } );

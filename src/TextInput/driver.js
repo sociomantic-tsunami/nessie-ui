@@ -72,6 +72,28 @@ export default class TextInputDriver
         return this;
     }
 
+    keyUp( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTINPUT_ERR( 'keyUp', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
+        return this;
+    }
+
+    keyDown( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TEXTINPUT_ERR( 'keyDown', 'disabled' ) );
+        }
+
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
+        return this;
+    }
+
     mouseOver()
     {
         this.wrapper.simulate( 'mouseenter' );

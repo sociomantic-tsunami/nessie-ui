@@ -123,8 +123,8 @@ describe( 'PasswordInputDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
-simulate focus since it is disabled';
+                const expectedError = 'PasswordInput cannot simulate focus \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
@@ -164,8 +164,8 @@ simulate focus since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
-simulate blur since it is disabled';
+                const expectedError = 'PasswordInput cannot simulate blur \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
@@ -193,13 +193,13 @@ simulate blur since it is disabled';
     {
         test( 'should fire the onChange callback prop once', () =>
         {
-            const changeSpy = jest.fn();
+            const onChange = jest.fn();
             wrapper.setProps( {
-                onChange : changeSpy,
+                onChange,
             } );
 
             driver.change( 'Azathoth' );
-            expect( changeSpy ).toBeCalledTimes( 1 );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
 
@@ -207,8 +207,8 @@ simulate blur since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
-simulate change since it is disabled';
+                const expectedError = 'PasswordInput cannot simulate change \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
@@ -236,8 +236,8 @@ simulate change since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                const expectedError = 'PasswordInput \'Tekeli-li\' cannot \
-simulate change since it is read only';
+                const expectedError = 'PasswordInput cannot simulate change \
+since it is read only';
                 wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change( 'Azathoth' ) )
@@ -278,8 +278,8 @@ simulate change since it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
-simulate keyPress since it is disabled';
+                const expectedError = 'PasswordInput cannot simulate keyPress \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.keyPress() ).toThrow( expectedError );
@@ -347,8 +347,8 @@ simulate keyPress since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'PasswordInput \'Cthulhu\' cannot \
-simulate clickIcon since it is disabled';
+                const expectedError = 'PasswordInput cannot simulate clickIcon \
+since it is disabled';
                 wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
 
                 expect( () => driver.clickIcon() ).toThrow( expectedError );
@@ -358,6 +358,34 @@ simulate clickIcon since it is disabled';
             {
                 const onClickIcon = jest.fn();
                 wrapper.setProps( { onClickIcon, isDisabled: true } );
+
+                try
+                {
+                    driver.clickIcon();
+                }
+                catch ( error )
+                {
+                    expect( onClickIcon ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                const expectedError = 'PasswordInput cannot simulate clickIcon \
+since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.clickIcon() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClickIcon when isReadOnly', () =>
+            {
+                const onClickIcon = jest.fn();
+                wrapper.setProps( { onClickIcon, isReadOnly: true } );
 
                 try
                 {

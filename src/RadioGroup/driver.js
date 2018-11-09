@@ -14,7 +14,6 @@ export default class RadioGroupDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.cssMap     = wrapper.props().cssMap;
         this.checkables = wrapper.find( CheckableGroup );
     }
 

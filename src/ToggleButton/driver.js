@@ -12,10 +12,40 @@ export default class ToggleButtonDriver
             .find( `.${this.wrapper.props().cssMap.default}` ).first();
     }
 
+    focus()
+    {
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'focus', 'disabled' ) );
+        }
+
+        this.button.simulate( 'focus' );
+        return this;
+    }
+
+    blur()
+    {
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR
+                .TOGGLEBUTTON_ERR( label, 'blur', 'disabled' ) );
+        }
+
+        this.button.simulate( 'blur' );
+        return this;
+    }
+
     click()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -30,7 +60,7 @@ export default class ToggleButtonDriver
     mouseOver()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -45,7 +75,7 @@ export default class ToggleButtonDriver
     mouseOut()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
 
         if ( props.isDisabled )
         {
@@ -54,18 +84,6 @@ export default class ToggleButtonDriver
         }
 
         this.button.simulate( 'mouseleave' );
-        return this;
-    }
-
-    focus()
-    {
-        this.button.simulate( 'focus' );
-        return this;
-    }
-
-    blur()
-    {
-        this.button.simulate( 'blur' );
         return this;
     }
 }
