@@ -354,6 +354,42 @@ export default class ScrollBox extends Component
         }
     }
 
+    handleRenderScrollButton( dir )
+    {
+        const {
+            scrollTop,
+            scrollLeft,
+            clientHeight,
+            clientWidth,
+            scrollHeight,
+            scrollWidth,
+        } = this.state;
+
+        if ( dir === 'Up' && scrollTop === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Down' &&
+        ( scrollTop + clientHeight ) >= scrollHeight )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Left' && scrollLeft === 0 )
+        {
+            return false;
+        }
+
+        else if ( dir === 'Right' &&
+        ( scrollLeft + clientWidth ) >= scrollWidth )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     handleScroll( e )
     {
         this.forceUpdate();
@@ -457,7 +493,6 @@ export default class ScrollBox extends Component
 
         return scrollButtons;
     }
-
 
     render()
     {

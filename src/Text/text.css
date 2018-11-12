@@ -12,22 +12,22 @@
 .default
 {
     width:          auto;
-
     margin-bottom:  var( --spacing-1 );
+    text-transform: none;
 
     line-height:    var( --line-height-m );
-    text-transform: none;
 
     .default
     {
-        display:        inline;
-        position:       static;
+        display:    inline;
+        position:   static;
     }
 
     a:any-link
     {
-        color:              var( --PC-BLUE );
-        text-decoration:    underline;
+        color:                  var( --PC-BLUE );
+        text-decoration:        underline;
+
         &:hover
         {
             text-decoration:    none;
@@ -44,7 +44,7 @@
 
 .noWrap
 {
-    white-space: nowrap;
+    white-space:    nowrap;
 }
 
 .allCaps
@@ -55,23 +55,36 @@
 /* ROLES */
 .role__default
 {
-    color:  inherit;
-}
-
-.role__subtle
-{
-    color:  var( --PC-GREY--D5 );
-}
-
-.role__promoted
-{
-    color:  var( --PC-GREEN );
+    color:                  inherit;
 }
 
 .role__critical
 {
-    color:  var( --PC-RED );
+    color:                  var( --PC-RED );
 }
+
+.role__link
+{
+    color:                  var( --PC-BLUE );
+    text-decoration:        underline;
+
+    &:hover
+    {
+        text-decoration:    none;
+        cursor:             pointer;
+    }
+}
+
+.role__promoted
+{
+    color:                  var( --PC-GREEN );
+}
+
+.role__subtle
+{
+    color:                  var( --PC-GREY--D5 );
+}
+
 
 /* SIZES */
 .size__XXS

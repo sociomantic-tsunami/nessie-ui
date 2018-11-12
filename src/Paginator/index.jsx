@@ -78,15 +78,15 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( startPage ) }>
-                    <Text role = { null }>{ startPage }</Text>
+                    { startPage }
                 </button>
             }
 
             { showStartPage && showPrevEllipsis && ellipsis }
 
-            { ( pageButtons && pageButtons.length ) &&
+            { ( pageButtons && pageButtons.length > 0 ) &&
                 <div className = { cssMap.pageButtons }>
-                    <Text>{ pageButtons }</Text>
+                    { pageButtons }
                 </div>
             }
 
@@ -99,7 +99,7 @@ const Paginator = ( {
                     onClick   = { onClickPage }
                     type      = "button"
                     value     = { String( endPage ) }>
-                    <Text role = { null }> { endPage }</Text>
+                    { endPage }
                 </button>
             }
 
