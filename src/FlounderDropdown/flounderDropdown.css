@@ -737,6 +737,7 @@
     .main,
     .main .selectedDisplayed {
         display: inline;
+        float: left; //Fixes arrow clickable state in Edge
     }
 
     .arrow
