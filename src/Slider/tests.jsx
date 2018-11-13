@@ -654,7 +654,7 @@ onFocus since it is disabled';
         {
             driver.keyDown( keyCode );
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
-            expect( event.keyCode ).toBe( keyCode );
+            expect( event.which ).toBe( keyCode );
         } );
 
         test( 'should receive first input as event target when no index', () =>
@@ -732,7 +732,7 @@ onKeyDown since it is disabled';
         {
             driver.keyUp( keyCode );
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
-            expect( event.keyCode ).toBe( keyCode );
+            expect( event.which ).toBe( keyCode );
         } );
 
         test( 'should receive first input as event target when no index', () =>
