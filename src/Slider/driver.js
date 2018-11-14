@@ -94,7 +94,7 @@ export default class SliderDriver
         }
 
         this.inputContainer.childAt( index )
-            .simulate( 'keyDown', { which: keyCode } );
+            .simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -107,7 +107,7 @@ export default class SliderDriver
         }
 
         this.inputContainer.childAt( index )
-            .simulate( 'keyUp', { which: keyCode } );
+            .simulate( 'keyUp', { keyCode, which: keyCode } );
         return this;
     }
 

@@ -42,7 +42,7 @@ export default class ListBoxDriver
 
     keyPress( keyCode )
     {
-        this.wrapper.simulate( 'keyPress', { which: keyCode } );
+        this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
         return this;
     }
 }
