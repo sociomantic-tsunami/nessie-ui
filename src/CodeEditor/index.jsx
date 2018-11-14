@@ -201,7 +201,7 @@ export default class CodeEditor extends Component
         codeMirror.on( 'change', this.handleChange );
         codeMirror.on( 'cursorActivity', this.handleCursorActivity );
         codeMirror.on( 'focus', this.handleFocus );
-        codeMirror.on( 'keyPress', this.handleKeyPress );
+        codeMirror.on( 'keypress', this.handleKeyPress );
 
         if ( cursor )
         {
@@ -399,7 +399,6 @@ export default class CodeEditor extends Component
                 } ) }>
                 <div
                     className = { cssMap.editor }
-                    onKeyPress     = { this.handleKeyPress }
                     ref       = { this.handleWrapperRef }
                     style     = { {
                         height    : String( height ),
