@@ -7,6 +7,8 @@
  *
  */
 
-import React from 'react';
+import React        from 'react';
 
-export default React.createContext( { } );
+import DefaultTheme from '../DefaultTheme';
+
+export default React.createContext( { theme: DefaultTheme } );
