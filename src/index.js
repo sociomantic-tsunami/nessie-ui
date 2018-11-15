@@ -7,8 +7,6 @@
  *
  */
 
-import 'normalize.css';
-
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
