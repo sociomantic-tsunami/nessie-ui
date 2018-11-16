@@ -76,10 +76,9 @@ describe( 'CodeEditorDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate blur since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -109,10 +108,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate blur since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -156,10 +154,9 @@ it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate focus since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -189,10 +186,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate focus since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -227,7 +223,6 @@ it is read only';
             wrapper.setProps( { onChange } );
 
             driver.change( 'Tekeli-li' );
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -236,10 +231,9 @@ it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate change since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change( 'Cthulhu' ) )
                     .toThrow( expectedError );
@@ -250,7 +244,6 @@ it is disabled';
                 const onChange = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onChange,
                 } );
 
@@ -270,10 +263,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate change since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change( 'Azathoth' ) )
                     .toThrow( expectedError );
@@ -284,7 +276,6 @@ it is read only';
                 const onChange = jest.fn();
                 wrapper.setProps( {
                     isReadOnly : true,
-                    label      : 'Tekeli-li',
                     onChange,
                 } );
 
@@ -329,7 +320,6 @@ since it is disabled';
                 const onMouseOver = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onMouseOver,
                 } );
 
@@ -374,7 +364,6 @@ since it is disabled';
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onMouseOut,
                 } );
 
@@ -393,140 +382,44 @@ since it is disabled';
 
     describe( 'pressKey( keyCode )', () =>
     {
-        test( 'should add the character corresponding to keyCode to the \
-end of the code editor’s value', () =>
+        test( 'should call the onKeyPress callback exactly once ', () =>
         {
-            wrapper.setProps( { value: 'hello' } );
-
-            driver.pressKey( 49 ); // key '1'
-            expect( driver.getInputValue() ).toBe( 'hello1' );
-        } );
-
-        test( 'should call the onChange callback exactly once ', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
 
             driver.pressKey( 50 );
-            expect( onChange ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-
-    describe( 'inputValue( value )', () =>
-    {
-        test( 'should add the value string to end of codeEditor’s value', () =>
-        {
-            wrapper.setProps( { value: 'hello' } );
-
-            driver.inputValue( 'world' );
-            expect( driver.getInputValue() ).toBe( 'helloworld' );
-        } );
-        test( `should call the onChange callback once per
-            printable character in value`, () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
-
-            driver.inputValue( 'foo' );
-            expect( onChange ).toBeCalledTimes( 3 );
-        } );
-    } );
-
-
-    describe( 'setInputValue( value )', () =>
-    {
-        test( 'should set the input value to "foo"', () =>
-        {
-            driver.setInputValue( 'foo' );
-            expect( CodeMirror.getValue() ).toBe( 'foo' );
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should fire the onChange callback prop once', () =>
+
+        describe( 'isDisabled', () =>
         {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'CodeEditor cannot simulate pressKey \
+since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
-            driver.setInputValue( 'foo' );
-            expect( onChange ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should call onChange with new value as argument', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
-
-            driver.setInputValue( 'foo' );
-            expect( onChange ).toBeCalledWith( 'foo' );
-        } );
-
-        test( 'should throw the expected error when component isReadOnly', () =>
-        {
-            wrapper.setProps( { isReadOnly: true } );
-            expect( () => driver.setInputValue( 'foo' ) )
-                .toThrowError( 'CodeEditor cannot simulate setInputValue since \
-it is read only' );
-        } );
-    } );
-
-
-    describe( 'clearInputValue()', () =>
-    {
-        test( 'should set the input value to an empty string', () =>
-        {
-            wrapper.setProps( { defaultValue: 'foo' } );
-
-            driver.clearInputValue();
-            expect( CodeMirror.getValue() ).toBe( '' );
-        } );
-
-        test( 'should throw the expected error when component isReadOnly', () =>
-        {
-            wrapper.setProps( {
-                value      : 'foo',
-                isReadOnly : true,
+                expect( () => driver.pressKey() ).toThrow( expectedError );
             } );
-            expect( () => driver.clearInputValue() )
-                .toThrowError( 'CodeEditor cannot simulate setInputValue since \
-it is read only' );
-        } );
-        test( 'should call the onChange callback exactly once', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
 
-            driver.clearInputValue();
-            expect( onChange ).toBeCalledTimes( 1 );
-        } );
-    } );
+            test( 'should not trigger onKeyPress when isDisabled', () =>
+            {
+                const onKeyPress = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    onKeyPress,
+                } );
 
-
-    describe( 'getInputValue()', () =>
-    {
-        test( 'should return the value of the Code Editor input', () =>
-        {
-            wrapper.setProps( { value: 'foo' } );
-            expect( driver.getInputValue() ).toBe( 'foo' );
-        } );
-    } );
-
-
-    describe( 'isReadOnly()', () =>
-    {
-        test( 'should return true if the editor cannot be edited', () =>
-        {
-            wrapper.setProps( { isReadOnly: true } );
-            expect( driver.isReadOnly() ).toBeTruthy();
-        } );
-    } );
-
-
-    describe( 'isDisabled()', () =>
-    {
-        test( 'should return true if the editor is disabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( driver.isDisabled() ).toBeTruthy();
+                try
+                {
+                    driver.pressKey();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 } );

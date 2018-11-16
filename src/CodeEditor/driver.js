@@ -133,94 +133,22 @@ export default class CodeEditorDriver
         return this;
     }
 
-    /**
-     * Simulates the pressing of a given key. In case of a printable character
-     * the input will be updated accordingly as well.
-     * @param {Integer} keyCode the integer code of a key
-     * @return {InputComponentDriver} this driver (for chaining commands)
-     */
     pressKey( keyCode )
     {
-        if ( isCharPrintable( keyCode ) )
-        {
-            const oldVal = this.control.getValue();
-            this.control.setValue( oldVal + String.fromCharCode( keyCode ) );
-            const onChange = this.wrapper.prop( 'onChange' );
-            if ( onChange )
-            {
-                onChange( this.getInputValue() );
-            }
-        }
+        const props = this.wrapper.props();
+        const onKeyPress = this.wrapper.prop( 'onKeyPress' );
 
-        return this;
-    }
-
-    /**
-    * Pressing each character of the value one by one.
-    * @param {String} value a value press
-    * @return {InputComponentDriver} this driver (for chaining commands)
-    */
-    inputValue( value )
-    {
-        const FIRST_CHARACTER = 0;
-        const keys = value.toString().split( '' );
-
-        keys.forEach( key =>
-        {
-            const keyCode = key.charCodeAt( FIRST_CHARACTER );
-            this.pressKey( keyCode );
-        } );
-
-        return this;
-    }
-
-
-    setInputValue( value )
-    {
-        if ( this.isReadOnly() )
+        if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( 'setInputValue', 'read only' ) );
+                .CODEEDITOR_ERR( 'pressKey', 'disabled' ) );
         }
 
-        const onChange = this.wrapper.prop( 'onChange' );
-
-        this.focus();
-        this.control.setValue( value );
-        if ( onChange )
+        if ( onKeyPress )
         {
-            onChange( this.getInputValue() );
+            onKeyPress( keyCode );
         }
-        this.blur();
+
         return this;
     }
-
-    clearInputValue()
-    {
-        return this.setInputValue( '' );
-    }
-
-    getInputValue()
-    {
-        return this.control.getValue();
-    }
-
-    isReadOnly()
-    {
-        return Boolean( this.control.options.readOnly ) && !this.isDisabled();
-    }
-
-    isDisabled()
-    {
-        return this.control.options.readOnly === 'nocursor';
-    }
-}
-
-function isCharPrintable( keyCode )
-{
-    const blackList = [
-        13, // Enter
-    ];
-
-    return !blackList.includes( keyCode );
 }
