@@ -3333,6 +3333,11 @@ legend.label__default + *
         margin-bottom:  0;
     }
 
+.iconWithTooltip__default .iconWithTooltip__icon
+    {
+        pointer-events: none;
+    }
+
 .iconWithTooltip__position__topRight > .iconWithTooltip__content, .iconWithTooltip__position__topLeft > .iconWithTooltip__content
     {
         -webkit-box-flex:   1;
@@ -12726,7 +12731,7 @@ span.CodeMirror-selectedtext { background: none; }
 /* Fixes IE 11 arrow alignment */
 
 .flounderDropdown__headerLevel__1 .flounderDropdown__main, .flounderDropdown__headerLevel__1 .flounderDropdown__main .flounderDropdown__selectedDisplayed {
-        display: inline;
+        float: left; /* Fixes arrow clickable state in Edge */
     }
 
 .flounderDropdown__headerLevel__1 .flounderDropdown__arrow
