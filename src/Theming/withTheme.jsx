@@ -7,9 +7,10 @@
  *
  */
 
-import React        from 'react';
+import React                from 'react';
 
-import ThemeContext from './ThemeContext';
+import ThemeContext         from './ThemeContext';
+import { buildDisplayName } from '../utils';
 
 /* interpolates component’s props into the theme */
 const evalTheme = ( theme, props ) =>
@@ -25,8 +26,8 @@ const evalTheme = ( theme, props ) =>
 
 /* creates a new component with theme applied to it */
 const withTheme = Component =>
-    props  =>
-    {
+{
+    const ComponentWithTheme =  props =>
         <ThemeContext.Consumer>
             { theme =>
             {
@@ -37,6 +38,13 @@ const withTheme = Component =>
             }
             }
         </ThemeContext.Consumer>;
-    };
+
+    ComponentWithTheme.displayName =
+        buildDisplayName( ComponentWithTheme, Component );
+
+    ComponentWithTheme.defaultProps = Component.defaultProps;
+
+    return ComponentWithTheme;
+};
 
 export default withTheme;

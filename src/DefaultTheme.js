@@ -50,7 +50,6 @@ import pageHeader           from './PageHeader/pageHeader.css';
 import paginator            from './Paginator/paginator.css';
 import progressBar          from './ProgressBar/progressBar.css';
 import progressIndicator    from './ProgressIndicator/progressIndicator.css';
-import base                 from './proto/base.css';
 import checkable            from './proto/checkable.css';
 import radio                from './Radio/radio.css';
 import scrollBar            from './ScrollBar/scrollBar.css';
@@ -80,7 +79,6 @@ import valuedTextInput      from './ValuedTextInput/valuedTextInput.css';
 import codeEditor           from './Addons/CodeEditor/codeEditor.css';
 import flounderDropdown
     from './Addons/FlounderDropdown/flounderDropdown.css';
-import withDropdown from './Addons/withDropdown/withDropdown.css';
 
 export default {
     Button         : button,
@@ -153,6 +151,4 @@ export default {
     ValuedTextInput   : valuedTextInput,
     CodeEditor        : codeEditor,
     FlounderDropdown  : flounderDropdown,
-    withDropdown,
-    base,
 };
