@@ -736,7 +736,7 @@
     /* Fixes IE 11 arrow alignment */
     .main,
     .main .selectedDisplayed {
-        float: left; //Fixes arrow clickable state in Edge
+        float: left; /* Fixes arrow clickable state in Edge */
     }
 
     .arrow
