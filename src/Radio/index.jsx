@@ -12,7 +12,6 @@ import PropTypes      from 'prop-types';
 
 import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
-import styles         from './radio.css';
 
 const Radio = ( { id = generateId( 'Radio' ), ...props } ) => (
     <Checkable { ...props } id = { id } type = "radio" />
@@ -102,7 +101,6 @@ Radio.defaultProps =
 {
     children    : undefined,
     className   : undefined,
-    cssMap      : styles,
     forceHover  : false,
     hasError    : false,
     id          : undefined,
@@ -120,5 +118,7 @@ Radio.defaultProps =
     onMouseOver : undefined,
     value       : undefined,
 };
+
+Radio.displayName = 'Radio';
 
 export default Radio;

@@ -29,9 +29,6 @@ NavBar.propTypes =
     children : PropTypes.node,
 };
 
-NavBar.defaultProps =
-{
-    cssMap : require( './navBar.css' )
-};
+NavBar.displayName = 'NavBar';
 
 export default NavBar;

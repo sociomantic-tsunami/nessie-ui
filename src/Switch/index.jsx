@@ -11,7 +11,6 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
-import styles                         from './switch.css';
 
 const Switch = ( {
     className,
@@ -122,7 +121,6 @@ Switch.propTypes =
 Switch.defaultProps =
 {
     className  : undefined,
-    cssMap     : styles,
     forceHover : false,
     id         : undefined,
     isChecked  : false,
@@ -132,5 +130,7 @@ Switch.defaultProps =
     onChange   : undefined,
     value      : undefined,
 };
+
+Switch.displayName = 'Switch';
 
 export default Switch;

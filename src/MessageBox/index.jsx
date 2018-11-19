@@ -55,7 +55,8 @@ MessageBox.propTypes =
 MessageBox.defaultProps =
 {
     messageType : 'default',
-    cssMap      : require( './messageBox.css' ),
 };
+
+MessageBox.displayName = 'MessageBox';
 
 export default MessageBox;

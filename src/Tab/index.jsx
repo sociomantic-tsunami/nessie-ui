@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './tab.css';
 
 
 const Tab = ( {
@@ -52,8 +51,9 @@ Tab.defaultProps =
 {
     children  : undefined,
     className : undefined,
-    cssMap    : styles,
     label     : undefined,
 };
+
+Tab.displayName = 'Tab';
 
 export default Tab;

@@ -12,7 +12,6 @@ import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
 import Icon                             from '../Icon';
-import styles                           from './iconButton.css';
 
 const killFocus = e => e.preventDefault();
 
@@ -161,7 +160,6 @@ export default class IconButton extends React.Component
         buttonRef     : undefined,
         children      : undefined,
         className     : undefined,
-        cssMap        : styles,
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
@@ -178,6 +176,8 @@ export default class IconButton extends React.Component
         role          : 'default',
         value         : undefined,
     };
+
+    static displayName = 'IconButton';
 
     render()
     {

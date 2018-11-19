@@ -7,6 +7,7 @@
  *
  */
 
+import withTheme                from './Theming/withTheme';
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
@@ -79,156 +80,231 @@ import Tooltip                  from './Tooltip';
 import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
+
+const styledButton              = withTheme( Button );
+const styledCard                = withTheme( Card );
+const styledCheckableGroup      = withTheme( CheckableGroup );
+const styledCheckbox            = withTheme( Checkbox );
+const styledCheckboxGroup       = withTheme( CheckboxGroup );
+const styledColumn              = withTheme( Column );
+const styledComboBox            = withTheme( ComboBox );
+const styledDatePicker          = withTheme( DatePicker );
+const styledDateTimeInput       = withTheme( DateTimeInput );
+const styledDimensionsInput     = withTheme( DimensionsInput );
+const styledDragNDrop           = withTheme( DragNDrop );
+const styledDropdown            = withTheme( Dropdown );
+const styledFieldset            = withTheme( Fieldset );
+const styledGrid                = withTheme( Grid );
+const styledH1                  = withTheme( H1 );
+const styledH2                  = withTheme( H2 );
+const styledH3                  = withTheme( H3 );
+const styledH4                  = withTheme( H4 );
+const styledIcon                = withTheme( Icon );
+const styledIconButton          = withTheme( IconButton );
+const styledIconWithTooltip     = withTheme( IconWithTooltip );
+const styledInputField          = withTheme( InputField );
+const styledLabel               = withTheme( Label );
+const styledListBox             = withTheme( ListBox );
+const styledMessageBox          = withTheme( MessageBox );
+const styledModalDialog         = withTheme( ModalDialog );
+const styledModule              = withTheme( Module );
+const styledNavBar              = withTheme( NavBar );
+const styledNavDropdown         = withTheme( NavDropdown );
+const styledNavItem             = withTheme( NavItem );
+const styledNavList             = withTheme( NavList );
+const styledNessieLogo          = withTheme( NessieLogo );
+const styledNotificationBar     = withTheme( NotificationBar );
+const styledPage                = withTheme( Page );
+const styledPageContent         = withTheme( PageContent );
+const styledPageContentHeader   = withTheme( PageContentHeader );
+const styledPageFooter          = withTheme( PageFooter );
+const styledPageHeader          = withTheme( PageHeader );
+const styledPaginator           = withTheme( Paginator );
+const styledPasswordInput       = withTheme( PasswordInput );
+const styledProgressBar         = withTheme( ProgressBar );
+const styledProgressIndicator   = withTheme( ProgressIndicator );
+const styledRadio               = withTheme( Radio );
+const styledRadioGroup          = withTheme( RadioGroup );
+const styledRow                 = withTheme( Row );
+const styledScrollBar           = withTheme( ScrollBar );
+const styledScrollBox           = withTheme( ScrollBox );
+const styledSection             = withTheme( Section );
+const styledSlider              = withTheme( Slider );
+const styledSliderGroup         = withTheme( SliderGroup );
+const styledSorter              = withTheme( Sorter );
+const styledSpinner             = withTheme( Spinner );
+const styledSpriteMap           = withTheme( SpriteMap );
+const styledStatusIndicator     = withTheme( StatusIndicator );
+const styledSwitch              = withTheme( Switch );
+const styledTab                 = withTheme( Tab );
+const styledTabButton           = withTheme( TabButton );
+const styledTable               = withTheme( Table );
+const styledTableCell           = withTheme( TableCell );
+const styledTableRow            = withTheme( TableRow );
+const styledTabs                = withTheme( Tabs );
+const styledTag                 = withTheme( Tag );
+const styledTagInput            = withTheme( TagInput );
+const styledText                = withTheme( Text );
+const styledTextArea            = withTheme( TextArea );
+const styledTextInput           = withTheme( TextInput );
+const styledTextInputWithIcon   = withTheme( TextInputWithIcon );
+const styledToggleButton        = withTheme( ToggleButton );
+const styledTooltip             = withTheme( Tooltip );
+const styledUploader            = withTheme( Uploader );
+const styledValuedTextInput     = withTheme( ValuedTextInput );
+
+
 export {
-    Button,
-    Card,
-    CheckableGroup,
-    Checkbox,
-    CheckboxGroup,
-    Column,
-    ComboBox,
-    DatePicker,
-    DateTimeInput,
-    DimensionsInput,
-    DragNDrop,
-    Dropdown,
-    Fieldset,
-    Grid,
-    H1,
-    H2,
-    H3,
-    H4,
-    Icon,
-    IconButton,
-    IconWithTooltip,
-    InputField,
-    Label,
-    ListBox,
-    MessageBox,
-    ModalDialog,
-    Module,
-    NavBar,
-    NavDropdown,
-    NavItem,
-    NavList,
-    NessieLogo,
-    NotificationBar,
-    Page,
-    PageContent,
-    PageContentHeader,
-    PageFooter,
-    PageHeader,
-    Paginator,
-    PasswordInput,
-    ProgressBar,
-    ProgressIndicator,
-    Radio,
-    RadioGroup,
-    Row,
-    ScrollBar,
-    ScrollBox,
-    Section,
-    Slider,
-    SliderGroup,
-    Sorter,
-    Spinner,
-    SpriteMap,
-    StatusIndicator,
-    Switch,
-    Tab,
-    TabButton,
-    Table,
-    TableCell,
-    TableRow,
-    Tabs,
-    Tag,
-    TagInput,
-    Text,
-    TextArea,
-    TextInput,
-    TextInputWithIcon,
-    ToggleButton,
-    Tooltip,
-    Uploader,
-    ValuedTextInput
-}
+    styledButton                as Button,
+    styledCard                  as Card,
+    styledCheckableGroup        as CheckableGroup,
+    styledCheckbox              as Checkbox,
+    styledCheckboxGroup         as CheckboxGroup,
+    styledColumn                as Column,
+    styledComboBox              as ComboBox,
+    styledDatePicker            as DatePicker,
+    styledDateTimeInput         as DateTimeInput,
+    styledDimensionsInput       as DimensionsInput,
+    styledDragNDrop             as DragNDrop,
+    styledDropdown              as Dropdown,
+    styledFieldset              as Fieldset,
+    styledGrid                  as Grid,
+    styledH1                    as H1,
+    styledH2                    as H2,
+    styledH3                    as H3,
+    styledH4                    as H4,
+    styledIcon                  as Icon,
+    styledIconButton            as IconButton,
+    styledIconWithTooltip       as IconWithTooltip,
+    styledInputField            as InputField,
+    styledLabel                 as Label,
+    styledListBox               as ListBox,
+    styledMessageBox            as MessageBox,
+    styledModalDialog           as ModalDialog,
+    styledModule                as Module,
+    styledNavBar                as NavBar,
+    styledNavDropdown           as NavDropdown,
+    styledNavItem               as NavItem,
+    styledNavList               as NavList,
+    styledNessieLogo            as NessieLogo,
+    styledNotificationBar       as NotificationBar,
+    styledPage                  as Page,
+    styledPageContent           as PageContent,
+    styledPageContentHeader     as PageContentHeader,
+    styledPageFooter            as PageFooter,
+    styledPageHeader            as PageHeader,
+    styledPaginator             as Paginator,
+    styledPasswordInput         as PasswordInput,
+    styledProgressBar           as ProgressBar,
+    styledProgressIndicator     as ProgressIndicator,
+    styledRadio                 as Radio,
+    styledRadioGroup            as RadioGroup,
+    styledRow                   as Row,
+    styledScrollBar             as ScrollBar,
+    styledScrollBox             as ScrollBox,
+    styledSection               as Section,
+    styledSlider                as Slider,
+    styledSliderGroup           as SliderGroup,
+    styledSorter                as Sorter,
+    styledSpinner               as Spinner,
+    styledSpriteMap             as SpriteMap,
+    styledStatusIndicator       as StatusIndicator,
+    styledSwitch                as Switch,
+    styledTab                   as Tab,
+    styledTabButton             as TabButton,
+    styledTable                 as Table,
+    styledTableCell             as TableCell,
+    styledTableRow              as TableRow,
+    styledTabs                  as Tabs,
+    styledTag                   as Tag,
+    styledTagInput              as TagInput,
+    styledText                  as Text,
+    styledTextArea              as TextArea,
+    styledTextInput             as TextInput,
+    styledTextInputWithIcon     as TextInputWithIcon,
+    styledToggleButton          as ToggleButton,
+    styledTooltip               as Tooltip,
+    styledUploader              as Uploader,
+    styledValuedTextInput       as ValuedTextInput,
+};
 
 
 export default {
-    Button,
-    Card,
-    CheckableGroup,
-    Checkbox,
-    CheckboxGroup,
-    Column,
-    ComboBox,
-    DatePicker,
-    DateTimeInput,
-    DimensionsInput,
-    DragNDrop,
-    Dropdown,
-    Fieldset,
-    Grid,
-    H1,
-    H2,
-    H3,
-    H4,
-    Icon,
-    IconButton,
-    IconWithTooltip,
-    InputField,
-    Label,
-    ListBox,
-    MessageBox,
-    ModalDialog,
-    Module,
-    NavBar,
-    NavDropdown,
-    NavItem,
-    NavList,
-    NessieLogo,
-    NotificationBar,
-    Page,
-    PageContent,
-    PageContentHeader,
-    PageFooter,
-    PageHeader,
-    Paginator,
-    PasswordInput,
-    ProgressBar,
-    ProgressIndicator,
-    Radio,
-    RadioGroup,
-    Row,
-    ScrollBar,
-    ScrollBox,
-    Section,
-    Slider,
-    SliderGroup,
-    Sorter,
-    Spinner,
-    SpriteMap,
-    StatusIndicator,
-    Switch,
-    Tab,
-    TabButton,
-    Table,
-    TableCell,
-    TableRow,
-    Tabs,
-    Tag,
-    TagInput,
-    Text,
-    TextArea,
-    TextInput,
-    TextInputWithIcon,
-    ToggleButton,
-    Tooltip,
-    Uploader,
-    ValuedTextInput
-}
+    Button            : withTheme( Button ),
+    Card              : withTheme( Card ),
+    CheckableGroup    : withTheme( CheckableGroup ),
+    Checkbox          : withTheme( Checkbox ),
+    CheckboxGroup     : withTheme( CheckboxGroup ),
+    Column            : withTheme( Column ),
+    ComboBox          : withTheme( ComboBox ),
+    DatePicker        : withTheme( DatePicker ),
+    DateTimeInput     : withTheme( DateTimeInput ),
+    DimensionsInput   : withTheme( DimensionsInput ),
+    DragNDrop         : withTheme( DragNDrop ),
+    Dropdown          : withTheme( Dropdown ),
+    Fieldset          : withTheme( Fieldset ),
+    Grid              : withTheme( Grid ),
+    H1                : withTheme( H1 ),
+    H2                : withTheme( H2 ),
+    H3                : withTheme( H3 ),
+    H4                : withTheme( H4 ),
+    Icon              : withTheme( Icon ),
+    IconButton        : withTheme( IconButton ),
+    IconWithTooltip   : withTheme( IconWithTooltip ),
+    InputField        : withTheme( InputField ),
+    Label             : withTheme( Label ),
+    ListBox           : withTheme( ListBox ),
+    MessageBox        : withTheme( MessageBox ),
+    ModalDialog       : withTheme( ModalDialog ),
+    Module            : withTheme( Module ),
+    NavBar            : withTheme( NavBar ),
+    NavDropdown       : withTheme( NavDropdown ),
+    NavItem           : withTheme( NavItem ),
+    NavList           : withTheme( NavList ),
+    NessieLogo        : withTheme( NessieLogo ),
+    NotificationBar   : withTheme( NotificationBar ),
+    Page              : withTheme( Page ),
+    PageContent       : withTheme( PageContent ),
+    PageContentHeader : withTheme( PageContentHeader ),
+    PageFooter        : withTheme( PageFooter ),
+    PageHeader        : withTheme( PageHeader ),
+    Paginator         : withTheme( Paginator ),
+    PasswordInput     : withTheme( PasswordInput ),
+    ProgressBar       : withTheme( ProgressBar ),
+    ProgressIndicator : withTheme( ProgressIndicator ),
+    Radio             : withTheme( Radio ),
+    RadioGroup        : withTheme( RadioGroup ),
+    Row               : withTheme( Row ),
+    ScrollBar         : withTheme( ScrollBar ),
+    ScrollBox         : withTheme( ScrollBox ),
+    Section           : withTheme( Section ),
+    Slider            : withTheme( Slider ),
+    SliderGroup       : withTheme( SliderGroup ),
+    Sorter            : withTheme( Sorter ),
+    Spinner           : withTheme( Spinner ),
+    SpriteMap         : withTheme( SpriteMap ),
+    StatusIndicator   : withTheme( StatusIndicator ),
+    Switch            : withTheme( Switch ),
+    Tab               : withTheme( Tab ),
+    TabButton         : withTheme( TabButton ),
+    Table             : withTheme( Table ),
+    TableCell         : withTheme( TableCell ),
+    TableRow          : withTheme( TableRow ),
+    Tabs              : withTheme( Tabs ),
+    Tag               : withTheme( Tag ),
+    TagInput          : withTheme( TagInput ),
+    Text              : withTheme( Text ),
+    TextArea          : withTheme( TextArea ),
+    TextInput         : withTheme( TextInput ),
+    TextInputWithIcon : withTheme( TextInputWithIcon ),
+    ToggleButton      : withTheme( ToggleButton ),
+    Tooltip           : withTheme( Tooltip ),
+    Uploader          : withTheme( Uploader ),
+    ValuedTextInput   : withTheme( ValuedTextInput ),
+};
 
-//Addons
+
+// Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';

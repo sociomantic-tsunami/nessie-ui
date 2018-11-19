@@ -239,4 +239,6 @@ PasswordInput.defaultProps =
     value                 : '',
 };
 
+PasswordInput.displayName = 'PasswordInput';
+
 export default PasswordInput;

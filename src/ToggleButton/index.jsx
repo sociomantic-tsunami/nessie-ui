@@ -11,7 +11,6 @@ import React                           from 'react';
 import PropTypes                       from 'prop-types';
 
 import { buildClassName, generateId }  from '../utils';
-import styles                          from './toggleButton.css';
 import { Icon }                        from '../index';
 
 
@@ -204,7 +203,6 @@ ToggleButton.defaultProps =
 {
     children     : undefined,
     className    : undefined,
-    cssMap       : styles,
     iconPosition : 'left',
     iconType     : 'none',
     id           : undefined,
@@ -219,5 +217,7 @@ ToggleButton.defaultProps =
     onMouseOver  : undefined,
     role         : 'primary',
 };
+
+ToggleButton.displayName = 'ToggleButton';
 
 export default ToggleButton;

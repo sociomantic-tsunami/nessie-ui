@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import styles               from './paginator.css';
 import IconButton           from '../IconButton';
 import Text                 from '../Text';
 
@@ -181,7 +180,6 @@ Paginator.propTypes =
 
 Paginator.defaultProps =
 {
-    cssMap           : styles,
     currentPage      : undefined,
     ellipsisText     : '…',
     endPage          : undefined,
@@ -197,5 +195,7 @@ Paginator.defaultProps =
     showPrevEllipsis : true,
     startPage        : undefined,
 };
+
+Paginator.displayName = 'Paginator';
 
 export default Paginator;

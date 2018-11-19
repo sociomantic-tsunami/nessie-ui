@@ -11,12 +11,13 @@ import React                           from 'react';
 import PropTypes                       from 'prop-types';
 
 import { buildClassName }              from '../utils';
-import styles                          from './statusIndicator.css';
 
 const deprecatedStatusOptions = [ 'active', 'deactivated' ];
 
 
-const StatusIndicator = ( { children, className, cssMap, label, status } ) =>
+const StatusIndicator = ( {
+    children, className, cssMap, label, status,
+} ) =>
 {
     if ( deprecatedStatusOptions.includes( status ) &&
         !StatusIndicator.didWarn[ status ] )
@@ -56,10 +57,11 @@ StatusIndicator.propTypes =
 StatusIndicator.defaultProps =
 {
     children : undefined,
-    cssMap   : styles,
     label    : undefined,
     status   : 'promoted',
 };
+
+StatusIndicator.displayName = 'StatusIndicator';
 
 StatusIndicator.didWarn = {};
 

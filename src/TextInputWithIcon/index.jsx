@@ -11,7 +11,6 @@ import React                               from 'react';
 import PropTypes                           from 'prop-types';
 
 import { buildClassName, generateId }      from '../utils';
-import styles                              from './textInputWithIcon.css';
 import { IconButton, InputField, Tooltip } from '../index';
 
 
@@ -357,7 +356,6 @@ TextInputWithIcon.defaultProps =
     autoComplete         : undefined,
     autoCorrect          : undefined,
     className            : undefined,
-    cssMap               : styles,
     forceHover           : false,
     hasError             : false,
     iconButtonIsDisabled : false,
@@ -391,5 +389,7 @@ TextInputWithIcon.defaultProps =
     textAlign            : 'auto',
     value                : '',
 };
+
+TextInputWithIcon.displayName = 'TextInputWithIcon';
 
 export default TextInputWithIcon;

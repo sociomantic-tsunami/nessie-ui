@@ -13,7 +13,6 @@ import PropTypes               from 'prop-types';
 import TableCell               from '../TableCell';
 import TableRow                from '../TableRow';
 import { buildClassName }      from '../utils';
-import styles                  from './table.css';
 import { buildRowsFromValues } from './utils';
 
 
@@ -227,7 +226,6 @@ Table.defaultProps =
     children        : undefined,
     className       : undefined,
     columns         : undefined,
-    cssMap          : styles,
     gutters         : 'M',
     hasStickyHeader : false,
     headerTextProps : undefined,
@@ -240,6 +238,8 @@ Table.defaultProps =
     values          : undefined,
     verticalAlign   : 'middle',
 };
+
+Table.displayName = 'Table';
 
 Table.didWarn = {};
 

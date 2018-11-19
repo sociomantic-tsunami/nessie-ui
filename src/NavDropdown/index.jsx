@@ -12,7 +12,6 @@ import PropTypes           from 'prop-types';
 
 import { buildClassName }  from '../utils';
 import NavList             from '../NavList';
-import styles              from './navDropdown.css';
 
 const NavDropdown = ( { children, className, cssMap } ) =>
 {
@@ -48,7 +47,8 @@ NavDropdown.defaultProps =
 {
     children  : undefined,
     className : undefined,
-    cssMap    : styles,
 };
+
+NavDropdown.displayName = 'NavDropdown';
 
 export default NavDropdown;

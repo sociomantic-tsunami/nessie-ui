@@ -21,9 +21,6 @@ const NessieLogo = ( { cssMap, className } ) =>
 
 NessieLogo.propTypes = {};
 
-NessieLogo.defaultProps =
-{
-    cssMap : require( './nessieLogo.css' )
-};
+NessieLogo.displayName = 'NessieLogo';
 
 export default NessieLogo;

@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './text.css';
 
 const Text = ( {
     allCaps,
@@ -117,11 +116,11 @@ Text.propTypes =
     /**
      *  Callback that receives ref to the text div: ref => ...
      */
-    textRef : PropTypes.func,
+    textRef   : PropTypes.func,
     /**
      *  Style to apply to text
      */
-    variant : PropTypes.oneOf( [
+    variant   : PropTypes.oneOf( [
         'Light',
         'LightIt',
         'Regular',
@@ -139,7 +138,6 @@ Text.defaultProps =
 {
     allCaps          : false,
     color            : undefined,
-    cssMap           : styles,
     letterSpacing    : undefined,
     lineHeight       : undefined,
     noWrap           : false,
@@ -151,5 +149,7 @@ Text.defaultProps =
     textRef          : undefined,
     variant          : 'Regular',
 };
+
+Text.displayName = 'Text';
 
 export default Text;

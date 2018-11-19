@@ -10,7 +10,6 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
-import withTheme                      from '../Theming/withTheme';
 import { generateId, buildClassName } from '../utils';
 import Icon                           from '../Icon';
 import Spinner                        from '../Spinner';
@@ -230,4 +229,4 @@ Button.defaultProps =
 
 Button.displayName = 'Button';
 
-export default withTheme( Button );
+export default Button;

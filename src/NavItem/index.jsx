@@ -13,7 +13,6 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import Icon                 from '../Icon';
 import NavDropdown          from '../NavDropdown';
-import styles               from './navItem.css';
 
 
 const NavItem = ( {
@@ -32,7 +31,7 @@ const NavItem = ( {
     onClick,
     onMouseOut,
     onMouseOver,
-    role
+    role,
 } ) =>
 {
     if ( typeof isCurrentPage !== 'undefined' )
@@ -51,7 +50,7 @@ removed in the next major release. Please use isCurrent instead.' );
                 dropdownAlign,
                 open        : isOpen,
                 fakeHovered : forceHover,
-                hasIcon     : iconType !== 'none'
+                hasIcon     : iconType !== 'none',
             } ) }
             onMouseEnter  = { onMouseOver }
             onMouseLeave  = { onMouseOut }>
@@ -189,7 +188,6 @@ NavItem.propTypes =
 
 NavItem.defaultProps =
 {
-    cssMap        : styles,
     dropdownAlign : 'left',
     href          : '#',
     iconType      : 'none',
@@ -198,5 +196,7 @@ NavItem.defaultProps =
     isOpen        : false,
     role          : 'default',
 };
+
+NavItem.displayName = 'NavItem';
 
 export default NavItem;

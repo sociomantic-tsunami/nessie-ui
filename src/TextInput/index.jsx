@@ -145,7 +145,6 @@ TextInput.defaultProps =
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
-    cssMap         : undefined,
     forceHover     : false,
     hasError       : false,
     id             : undefined,
@@ -167,5 +166,7 @@ TextInput.defaultProps =
     textAlign      : undefined,
     value          : '',
 };
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;

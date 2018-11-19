@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './column.css';
 
 const Column = ( {
     align,
@@ -118,8 +117,9 @@ Column.propTypes =
 
 Column.defaultProps =
 {
-    align  : 'auto',
-    cssMap : styles,
+    align : 'auto',
 };
+
+Column.displayName = 'Column';
 
 export default Column;

@@ -23,12 +23,9 @@ PageHeader.propTypes =
     /**
      *  PageHeader content
      */
-    children : PropTypes.node
+    children : PropTypes.node,
 };
 
-PageHeader.defaultProps =
-{
-    cssMap : require( './pageHeader.css' )
-};
+PageHeader.displayName = 'PageHeader';
 
 export default PageHeader;

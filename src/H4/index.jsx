@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './h4.css';
 
 const H4 = ( {
     cssMap,
@@ -44,9 +43,10 @@ H4.propTypes =
 
 H4.defaultProps =
 {
-    title  : undefined,
-    role   : 'default',
-    cssMap : styles,
+    title : undefined,
+    role  : 'default',
 };
+
+H4.displayName = 'H4';
 
 export default H4;

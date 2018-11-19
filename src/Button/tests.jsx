@@ -11,9 +11,10 @@
 /* global jest test */
 
 import React              from 'react';
-import { mount }          from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import { Icon, Spinner }  from '../index';
+import styles             from './button.css';
 
 import Button             from './index';
 
@@ -24,7 +25,7 @@ describe( 'Button', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Button /> );
+        wrapper  = shallow( <Button cssMap = { styles } /> );
     } );
 
     test( 'should a stateless functional component', () =>

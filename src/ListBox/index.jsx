@@ -22,7 +22,6 @@ import {
     killFocus,
     mapAria,
 } from '../utils';
-import styles from './listBox.css';
 
 
 const ListBox = ( {
@@ -123,7 +122,6 @@ ListBox.defaultProps = {
     activeOption      : undefined,
     children          : undefined,
     className         : undefined,
-    cssMap            : styles,
     isFocusable       : true,
     isMultiselect     : false,
     id                : undefined,
@@ -134,5 +132,7 @@ ListBox.defaultProps = {
     onKeyPress        : undefined,
     selection         : undefined,
 };
+
+ListBox.displayName = 'ListBox';
 
 export default ListBox;

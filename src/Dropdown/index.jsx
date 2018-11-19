@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './dropdown.css';
 
 
 const Dropdown = ( {
@@ -44,10 +43,11 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
     children  : undefined,
     className : undefined,
-    cssMap    : styles,
     hasError  : false,
     padding   : 'none',
     size      : 'default',
 };
+
+Dropdown.displayName = 'Dropdown';
 
 export default Dropdown;

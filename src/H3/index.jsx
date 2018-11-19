@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './h3.css';
 
 const H3 = ( {
     cssMap,
@@ -44,9 +43,10 @@ H3.propTypes =
 
 H3.defaultProps =
 {
-    title  : undefined,
-    role   : 'default',
-    cssMap : styles,
+    title : undefined,
+    role  : 'default',
 };
+
+H3.displayName = 'H3';
 
 export default H3;

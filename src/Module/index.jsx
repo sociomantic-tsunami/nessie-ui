@@ -107,7 +107,6 @@ export default class Module extends Component
 
     static defaultProps =
     {
-        cssMap        : require( './module.css' ),
         headerLevel   : 2,
         isCollapsed   : false,
         isCollapsible : false,
@@ -115,6 +114,8 @@ export default class Module extends Component
         isLoading     : false,
         isReadOnly    : false,
     };
+
+    static displayName = 'Module';
 
     constructor( props )
     {

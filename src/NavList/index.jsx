@@ -37,7 +37,8 @@ NavList.propTypes =
 NavList.defaultProps =
 {
     layout : 'horizontal',
-    cssMap : require( './navList.css' )
 };
+
+NavList.displayName = 'NavList';
 
 export default NavList;

@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import styles               from './tabButton.css';
 
 const TabButton = ( {
     buttonRef,
@@ -90,7 +89,6 @@ TabButton.defaultProps =
 {
     buttonRef  : undefined,
     className  : undefined,
-    cssMap     : styles,
     isActive   : false,
     isDisabled : false,
     label      : undefined,
@@ -98,5 +96,7 @@ TabButton.defaultProps =
     subtitle   : undefined,
     tabIndex   : 0,
 };
+
+TabButton.displayName = 'TabButton';
 
 export default TabButton;

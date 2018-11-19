@@ -13,7 +13,6 @@ import PropTypes                      from 'prop-types';
 import IconButton                     from '../IconButton';
 import Text                           from '../Text';
 import { buildClassName, generateId } from '../utils';
-import styles                         from './tag.css';
 
 const Tag = ( {
     children,
@@ -101,7 +100,6 @@ Tag.defaultProps =
 {
     children   : undefined,
     className  : undefined,
-    cssMap     : styles,
     forceHover : false,
     id         : undefined,
     isDisabled : false,
@@ -109,5 +107,7 @@ Tag.defaultProps =
     label      : undefined,
     onClick    : undefined,
 };
+
+Tag.displayName = 'Tag';
 
 export default Tag;

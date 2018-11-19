@@ -105,10 +105,11 @@ Fieldset.propTypes =
 
 Fieldset.defaultProps =
 {
-    cssMap                : require( './fieldset.css' ),
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
     hasError              : false,
 };
+
+Fieldset.displayName = 'Fieldset';
 
 export default Fieldset;

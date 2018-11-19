@@ -118,7 +118,6 @@ CheckboxGroup.defaultProps =
 {
     children              : undefined,
     className             : undefined,
-    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     forceHover            : false,
@@ -134,5 +133,7 @@ CheckboxGroup.defaultProps =
     selectedValues        : undefined,
     values                : undefined,
 };
+
+CheckboxGroup.displayName = 'CheckboxGroup';
 
 export default CheckboxGroup;

@@ -173,4 +173,6 @@ DimensionsInput.defaultProps = {
     widthValue        : '',
 };
 
+DimensionsInput.displayName = 'DimensionsInput';
+
 export default DimensionsInput;

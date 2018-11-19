@@ -11,7 +11,6 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
-import styles                         from './tooltip.css';
 import IconButton                     from '../IconButton';
 import Text                           from '../Text';
 
@@ -204,7 +203,6 @@ Tooltip.propTypes =
 Tooltip.defaultProps =
 {
     className     : undefined,
-    cssMap        : styles,
     id            : undefined,
     isDismissible : undefined,
     message       : undefined,
@@ -214,6 +212,8 @@ Tooltip.defaultProps =
     position      : 'top',
     role          : 'default',
 };
+
+Tooltip.displayName = 'Tooltip';
 
 Tooltip.didWarn = {};
 

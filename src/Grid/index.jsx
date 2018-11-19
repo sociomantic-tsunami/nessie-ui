@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './grid.css';
 import { Column }         from '../index';
 
 const deprecatedSpacingOptions = [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
@@ -149,7 +148,6 @@ Grid.defaultProps =
     align         : 'auto',
     children      : undefined,
     className     : undefined,
-    cssMap        : styles,
     gutters       : 'M',
     hasWrap       : true,
     noWarn        : false,
@@ -160,6 +158,8 @@ Grid.defaultProps =
     spacing       : 'M',
     verticalAlign : 'auto',
 };
+
+Grid.displayName = 'Grid';
 
 Grid.didWarn = {};
 

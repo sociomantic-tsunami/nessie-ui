@@ -18,7 +18,6 @@ import React                     from 'react';
 import PropTypes                 from 'prop-types';
 
 import { clamp, buildClassName } from '../utils';
-import styles                    from './scrollBar.css';
 
 
 const ScrollBar = ( {
@@ -200,7 +199,6 @@ ScrollBar.propTypes =
 ScrollBar.defaultProps =
 {
     className        : undefined,
-    cssMap           : styles,
     onChange         : undefined,
     onMouseOut       : undefined,
     onMouseOver      : undefined,
@@ -213,5 +211,7 @@ ScrollBar.defaultProps =
     scrollPos        : 0,
     thumbSize        : '20px',
 };
+
+ScrollBar.displayName = 'ScrollBar';
 
 export default ScrollBar;

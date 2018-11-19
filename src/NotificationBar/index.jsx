@@ -84,10 +84,11 @@ NotificationBar.propTypes =
 
 NotificationBar.defaultProps =
 {
-    cssMap        : require( './notificationBar.css' ),
     isDismissible : true,
     isFixed       : false,
     messageType   : 'info',
 };
+
+NotificationBar.displayName = 'NotificationBar';
 
 export default NotificationBar;

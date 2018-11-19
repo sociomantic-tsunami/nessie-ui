@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './icon.css';
 
 
 const Icon = ( {
@@ -126,11 +125,12 @@ Icon.defaultProps =
 {
     children  : undefined,
     className : undefined,
-    cssMap    : styles,
     label     : undefined,
     role      : 'default',
     size      : 'S',
     type      : 'none',
 };
+
+Icon.displayName = 'Icon';
 
 export default Icon;

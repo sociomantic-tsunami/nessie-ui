@@ -13,7 +13,10 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
+import styles       from './card.css';
+
 import Card         from './index';
+
 
 describe( 'Card', () =>
 {
@@ -21,7 +24,7 @@ describe( 'Card', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Card /> );
+        wrapper = mount( <Card cssMap = { styles } /> );
     } );
 
     test( 'should have same X and Y axis padding when   \

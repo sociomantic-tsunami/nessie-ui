@@ -12,7 +12,6 @@ import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
 import { buildTagsFromValues }        from './utils';
-import styles                         from './tagInput.css';
 
 
 export default class TagInput extends Component
@@ -124,7 +123,6 @@ export default class TagInput extends Component
     {
         children     : undefined,
         className    : undefined,
-        cssMap       : styles,
         forceHover   : false,
         hasError     : false,
         height       : undefined,
@@ -147,6 +145,8 @@ export default class TagInput extends Component
         tags         : undefined,
         value        : undefined,
     };
+
+    static displayName = 'TagInput';
 
     constructor()
     {

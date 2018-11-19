@@ -15,9 +15,10 @@ import H1                               from '../H1';
 import H2                               from '../H2';
 import H3                               from '../H3';
 import H4                               from '../H4';
-import styles                           from './section.css';
 
-const headers = { 1: H1, 2: H2, 3: H3, 4 : H4 };
+const headers = {
+    1 : H1, 2 : H2, 3 : H3, 4 : H4,
+};
 
 
 const Section = ( {
@@ -77,10 +78,11 @@ Section.defaultProps =
 {
     children  : undefined,
     className : undefined,
-    cssMap    : styles,
     id        : undefined,
     level     : undefined,
     title     : undefined,
 };
+
+Section.displayName = 'Section';
 
 export default Section;

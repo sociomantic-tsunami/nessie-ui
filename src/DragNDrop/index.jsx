@@ -42,6 +42,8 @@ export default class DragNDrop extends Component
         cssMap         : require( './dragNDrop.css' )
     };
 
+    static displayName = 'DragNDrop';
+
     render()
     {
         const {

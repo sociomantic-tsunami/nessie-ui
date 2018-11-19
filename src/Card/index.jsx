@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import styles               from './card.css';
 
 const Card = ( {
     align,
@@ -78,9 +77,10 @@ Card.propTypes =
 Card.defaultProps =
 {
     align         : 'auto',
-    cssMap        : styles,
     padding       : 'M',
     verticalAlign : 'top',
 };
+
+Card.displayName = 'Card';
 
 export default Card;

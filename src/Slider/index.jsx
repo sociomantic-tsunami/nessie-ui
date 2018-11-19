@@ -193,7 +193,6 @@ export default class Slider extends React.Component
 
     static defaultProps =
     {
-        cssMap                : require( './slider.css' ),
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         fillFrom              : 'start',
@@ -212,6 +211,8 @@ export default class Slider extends React.Component
         stepLabelsPosition    : 'top',
         value                 : 0,
     };
+
+    static displayName = 'Slider';
 
 
     constructor( props )

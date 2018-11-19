@@ -14,7 +14,6 @@ import Column             from '../Column';
 import Sorter             from '../Sorter';
 import Text               from '../Text';
 import { buildClassName } from '../utils';
-import styles             from './tableCell.css';
 
 const TableCell = ( {
     children,
@@ -166,7 +165,6 @@ TableCell.defaultProps =
 {
     align         : undefined,
     children      : undefined,
-    cssMap        : styles,
     isHeader      : false,
     isRowHeader   : false,
     isSortable    : false,
@@ -176,5 +174,7 @@ TableCell.defaultProps =
     textProps     : undefined,
     verticalAlign : undefined,
 };
+
+TableCell.displayName = 'TableCell';
 
 export default TableCell;

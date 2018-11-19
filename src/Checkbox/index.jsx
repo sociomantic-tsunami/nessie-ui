@@ -12,7 +12,6 @@ import PropTypes      from 'prop-types';
 
 import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
-import styles         from './checkbox.css';
 
 const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
     <Checkable { ...props } id = { id } type = "checkbox" />
@@ -102,7 +101,6 @@ Checkbox.defaultProps =
 {
     children    : undefined,
     className   : undefined,
-    cssMap      : styles,
     forceHover  : false,
     hasError    : false,
     id          : undefined,
@@ -120,5 +118,7 @@ Checkbox.defaultProps =
     onMouseOver : undefined,
     value       : undefined,
 };
+
+Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;

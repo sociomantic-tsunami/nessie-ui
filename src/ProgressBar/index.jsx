@@ -26,13 +26,14 @@ ProgressBar.propTypes =
     /**
      *  Current percentage value
      */
-    progressPercentage : PropTypes.number
+    progressPercentage : PropTypes.number,
 };
 
 ProgressBar.defaultProps =
 {
-    cssMap             : require( './progressBar.css' ),
-    progressPercentage : 0
+    progressPercentage : 0,
 };
+
+ProgressBar.displayName = 'ProgressBar';
 
 export default ProgressBar;

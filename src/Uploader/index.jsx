@@ -17,7 +17,6 @@ import Spinner                        from '../Spinner';
 import IconButton                     from '../IconButton';
 import Tooltip                        from '../Tooltip';
 import Label                          from '../Label';
-import styles                         from './uploader.css';
 
 
 const Uploader = ( {
@@ -265,7 +264,6 @@ Uploader.propTypes =
 Uploader.defaultProps =
 {
     buttonLabel             : 'Upload',
-    cssMap                  : styles,
     errorMessage            : undefined,
     errorMessagePosition    : 'top',
     hasError                : false,
@@ -287,5 +285,7 @@ Uploader.defaultProps =
     uploadState             : 'default',
     warningMessage          : undefined,
 };
+
+Uploader.displayName = 'Uploader';
 
 export default Uploader;

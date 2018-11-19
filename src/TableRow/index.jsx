@@ -13,7 +13,6 @@ import PropTypes          from 'prop-types';
 import Row                from '../Row';
 import TableCell          from '../TableCell';
 import { buildClassName } from '../utils';
-import styles             from './tableRow.css';
 
 const TableRow = ( {
     align,
@@ -129,7 +128,6 @@ TableRow.defaultProps =
     align         : undefined,
     children      : undefined,
     className     : undefined,
-    cssMap        : styles,
     gutters       : undefined,
     isClickable   : undefined,
     isSticky      : undefined,
@@ -139,6 +137,8 @@ TableRow.defaultProps =
     spacing       : undefined,
     verticalAlign : undefined,
 };
+
+TableRow.displayName = 'TableRow';
 
 TableRow.didWarn = {};
 

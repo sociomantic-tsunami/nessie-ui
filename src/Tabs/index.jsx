@@ -11,7 +11,6 @@ import React                    from 'react';
 import PropTypes                from 'prop-types';
 
 import { buildClassName }       from '../utils';
-import styles                   from './tabs.css';
 import { ScrollBox, TabButton } from '../index';
 
 const Tabs = ( {
@@ -111,9 +110,10 @@ Tabs.defaultProps =
     activeTabIndex    : 0,
     children          : undefined,
     className         : undefined,
-    cssMap            : styles,
     onClickTab        : undefined,
     secondaryControls : undefined,
 };
+
+Tabs.displayName = 'Tabs';
 
 export default Tabs;

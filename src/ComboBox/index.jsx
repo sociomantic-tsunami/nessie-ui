@@ -294,6 +294,8 @@ export default class ComboBox extends Component
         textAlign            : 'auto',
     };
 
+    static displayName = 'ComboBox';
+
     constructor( props )
     {
         super();

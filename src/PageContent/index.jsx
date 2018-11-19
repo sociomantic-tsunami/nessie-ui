@@ -12,7 +12,6 @@ import PropTypes          from 'prop-types';
 
 import Spinner            from '../Spinner';
 import { buildClassName } from '../utils';
-import styles             from './pageContent.css';
 
 
 const PageContent = ( {
@@ -63,8 +62,9 @@ PageContent.defaultProps =
     children     : undefined,
     className    : undefined,
     contentWidth : '1080px',
-    cssMap       : styles,
     isLoading    : false,
 };
+
+PageContent.displayName = 'PageContent';
 
 export default PageContent;

@@ -13,7 +13,6 @@ import isEqual                 from 'lodash.isequal';
 
 import { createScrollHandler } from './utils';
 import { buildClassName }      from '../utils';
-import styles                  from './scrollBox.css';
 import IconButton              from '../IconButton';
 import ScrollBar               from '../ScrollBar';
 
@@ -150,7 +149,6 @@ export default class ScrollBox extends Component
         children               : undefined,
         className              : undefined,
         contentWidth           : undefined,
-        cssMap                 : styles,
         height                 : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
@@ -174,6 +172,8 @@ export default class ScrollBox extends Component
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
     };
+
+    static displayName = 'ScrollBox';
 
     constructor()
     {

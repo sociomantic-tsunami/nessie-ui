@@ -11,7 +11,6 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './h2.css';
 
 const H2 = ( {
     cssMap,
@@ -44,9 +43,10 @@ H2.propTypes =
 
 H2.defaultProps =
 {
-    title  : undefined,
-    role   : 'default',
-    cssMap : styles,
+    title : undefined,
+    role  : 'default',
 };
+
+H2.displayName = 'H2';
 
 export default H2;

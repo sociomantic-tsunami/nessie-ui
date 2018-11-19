@@ -11,7 +11,6 @@ import React                                   from 'react';
 import PropTypes                               from 'prop-types';
 
 import { buildClassName, mapAria, generateId } from '../utils';
-import styles                                  from './inputField.css';
 
 
 const InputField = ( {
@@ -230,7 +229,6 @@ InputField.defaultProps =
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
-    cssMap         : styles,
     element        : 'input',
     forceHover     : false,
     hasError       : false,
@@ -256,5 +254,7 @@ InputField.defaultProps =
     type           : 'text',
     value          : '',
 };
+
+InputField.displayName = 'InputField';
 
 export default InputField;

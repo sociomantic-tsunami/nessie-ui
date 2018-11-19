@@ -7,13 +7,12 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }             from '../utils';
-import styles                         from './datePicker.css';
-import DatePickerItem                 from './DatePickerItem';
-import DatePickerHeader               from './DatePickerHeader';
+import { buildClassName }   from '../utils';
+import DatePickerItem       from './DatePickerItem';
+import DatePickerHeader     from './DatePickerHeader';
 
 
 const DatePicker = ( {
@@ -147,7 +146,6 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
     className         : undefined,
-    cssMap            : styles,
     headers           : undefined,
     hourIsDisabled    : false,
     hourIsReadOnly    : false,
@@ -176,5 +174,7 @@ DatePicker.defaultProps = {
     type              : 'day',
     year              : undefined,
 };
+
+DatePicker.displayName = 'DatePicker';
 
 export default DatePicker;

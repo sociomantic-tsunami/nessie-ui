@@ -12,7 +12,6 @@ import PropTypes                      from 'prop-types';
 
 import Fieldset                       from '../Fieldset';
 import { buildClassName, generateId } from '../utils';
-import styles                         from './checkableGroup.css';
 
 
 const CheckableGroup = ( {
@@ -165,7 +164,6 @@ CheckableGroup.defaultProps =
 {
     children              : undefined,
     className             : undefined,
-    cssMap                : styles,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     forceHover            : false,
@@ -179,5 +177,7 @@ CheckableGroup.defaultProps =
     onMouseOut            : undefined,
     onMouseOver           : undefined,
 };
+
+CheckableGroup.displayName = 'CheckableGroup';
 
 export default CheckableGroup;

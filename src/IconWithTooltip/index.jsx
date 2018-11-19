@@ -237,7 +237,6 @@ IconWithTooltip.propTypes =
 
 IconWithTooltip.defaultProps =
 {
-    cssMap           : require( './iconWithTooltip.css' ),
     iconIsVisible    : true,
     iconPosition     : 'right',
     iconSize         : 'M',
@@ -248,5 +247,7 @@ IconWithTooltip.defaultProps =
     tooltipIsVisible : false,
     tooltipPosition  : 'top',
 };
+
+IconWithTooltip.displayName = 'IconWithTooltip';
 
 export default IconWithTooltip;

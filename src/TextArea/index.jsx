@@ -153,7 +153,6 @@ TextArea.defaultProps =
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
-    cssMap         : undefined,
     forceHover     : false,
     hasError       : false,
     id             : undefined,
@@ -177,5 +176,7 @@ TextArea.defaultProps =
     textAlign      : 'left',
     value          : '',
 };
+
+TextArea.displayName = 'TextArea';
 
 export default TextArea;

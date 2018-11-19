@@ -12,7 +12,6 @@ import PropTypes                        from 'prop-types';
 
 import InputField                       from '../InputField';
 import { generateId, buildClassName }   from '../utils';
-import styles                           from './valuedTextInput.css';
 
 
 export default class ValuedTextInput extends React.Component
@@ -151,7 +150,6 @@ export default class ValuedTextInput extends React.Component
         autoComplete       : undefined,
         autoCorrect        : undefined,
         className          : undefined,
-        cssMap             : styles,
         forceHover         : false,
         hasError           : false,
         id                 : undefined,
@@ -175,6 +173,8 @@ export default class ValuedTextInput extends React.Component
         valueLabel         : undefined,
         valueLabelPosition : 'left',
     };
+
+    static displayName = 'ValuedTextInput';
 
     constructor( props )
     {

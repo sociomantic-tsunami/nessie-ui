@@ -41,11 +41,12 @@ export default class Sorter extends Component
 
     static defaultProps =
     {
-        cssMap          : require( './sorter.css' ),
         forceHover      : false,
         sort            : 'none',
         sorterIsVisible : true,
     };
+
+    static displayName = 'Sorter';
 
     constructor()
     {

@@ -42,6 +42,7 @@ const withTheme = Component =>
     ComponentWithTheme.displayName =
         buildDisplayName( ComponentWithTheme, Component );
 
+    ComponentWithTheme.propTypes = Component.propTypes;
     ComponentWithTheme.defaultProps = Component.defaultProps;
 
     return ComponentWithTheme;
