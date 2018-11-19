@@ -10,6 +10,7 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
+import withTheme                      from '../Theming/withTheme';
 import { generateId, buildClassName } from '../utils';
 import Icon                           from '../Icon';
 import Spinner                        from '../Spinner';
@@ -84,17 +85,21 @@ const Button = ( {
 Button.propTypes =
 {
     /**
-    *  Label text
-    */
-    label : PropTypes.string,
+     *  CSS class map
+     */
+    cssMap : PropTypes.objectOf( PropTypes.string ),
     /**
-    *  HTML type attribute
-    */
-    type  : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+     *  Label text
+     */
+    label  : PropTypes.string,
     /**
-    *  Button role/style
-    */
-    role  : PropTypes.oneOf( [
+     *  HTML type attribute
+     */
+    type   : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+    /**
+     *  Button role/style
+     */
+    role   : PropTypes.oneOf( [
         'default',
         'secondary',
         'subtle',
@@ -103,8 +108,8 @@ Button.propTypes =
         'control',
     ] ),
     /**
-    *  Icon type to display (overrides customIcon)
-    */
+     *  Icon type to display (overrides customIcon)
+     */
     iconType : PropTypes.oneOf( [
         'account',
         'add-circle',
@@ -165,24 +170,24 @@ Button.propTypes =
      */
     iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
     /**
-    *  Display as disabled
-    */
+     *  Display as disabled
+     */
     isDisabled   : PropTypes.bool,
     /**
-    *  Display as read-only
-    */
+     *  Display as read-only
+     */
     isReadOnly   : PropTypes.bool,
     /**
-    *  Display loading state
-    */
+     *  Display loading state
+     */
     isLoading    : PropTypes.bool,
     /**
-    *  Initial HTML value attribute
-    */
+     *  Initial HTML value attribute
+     */
     defaultValue : PropTypes.string,
     /**
-    *  HTML value attribute
-    */
+     *  HTML value attribute
+     */
     value        : PropTypes.string,
     /**
      * HTML id attribute
@@ -212,7 +217,6 @@ Button.propTypes =
 
 Button.defaultProps =
 {
-    cssMap       : require( './button.css' ),
     forceHover   : false,
     iconPosition : 'left',
     iconType     : 'none',
@@ -224,4 +228,6 @@ Button.defaultProps =
     type         : 'button',
 };
 
-export default Button;
+Button.displayName = 'Button';
+
+export default withTheme( Button );
