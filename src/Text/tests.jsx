@@ -13,6 +13,8 @@
 import React     from 'react';
 import { mount } from 'enzyme';
 
+import styles    from './text.css';
+
 import Text      from './index';
 
 
@@ -22,7 +24,7 @@ describe( 'TextDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Text /> );
+        wrapper = mount( <Text cssMap = { styles } /> );
     } );
 
     describe( 'getContent', () =>

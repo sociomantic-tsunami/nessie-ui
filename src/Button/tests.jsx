@@ -18,7 +18,6 @@ import styles             from './button.css';
 
 import Button             from './index';
 
-
 describe( 'Button', () =>
 {
     let wrapper;

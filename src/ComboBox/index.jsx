@@ -9,14 +9,13 @@
 
 /* global document */
 
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React, { Component }          from 'react';
+import PropTypes                     from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
-import TextInputWithIcon    from '../TextInputWithIcon';
-import ListBox              from '../ListBox';
-import withDropdown         from '../Addons/withDropdown';
-import { generateId }       from '../utils';
+import { ListBox, ScrollBox, Text }  from '../index';
+import TextInputWithIcon             from '../TextInputWithIcon';
+import withDropdown                  from '../Addons/withDropdown';
+import { generateId }                from '../utils';
 import {
     addPrefix,
     buildListBoxOptions,

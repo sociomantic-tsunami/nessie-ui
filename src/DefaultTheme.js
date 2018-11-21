@@ -13,9 +13,6 @@ import checkableGroup       from './CheckableGroup/checkableGroup.css';
 import checkbox             from './Checkbox/checkbox.css';
 import column               from './Column/column.css';
 import datePicker           from './DatePicker/datePicker.css';
-import datePickerHeader     from './DatePicker/datePickerHeader.css';
-import datePickerItem       from './DatePicker/datePickerItem.css';
-import timeInput            from './DatePicker/timeInput.css';
 import dragNDrop            from './DragNDrop/dragNDrop.css';
 import dropdown             from './Dropdown/dropdown.css';
 import fieldset             from './Fieldset/fieldset.css';
@@ -28,11 +25,8 @@ import icon                 from './Icon/icon.css';
 import iconButton           from './IconButton/iconButton.css';
 import iconWithTooltip      from './IconWithTooltip/iconWithTooltip.css';
 import inputField           from './InputField/inputField.css';
-import inputFrame           from './InputField/inputFrame.css';
 import label                from './Label/label.css';
 import listBox              from './ListBox/listBox.css';
-import listBoxOption        from './ListBox/listBoxOption.css';
-import listBoxOptionGroup   from './ListBox/listBoxOptionGroup.css';
 import messageBox           from './MessageBox/messageBox.css';
 import modalDialog          from './ModalDialog/modalDialog.css';
 import module               from './Module/module.css';
@@ -81,17 +75,12 @@ import flounderDropdown
     from './Addons/FlounderDropdown/flounderDropdown.css';
 
 export default {
-    Button         : button,
-    Card           : card,
-    CheckableGroup : checkableGroup,
-    Checkbox       : checkbox,
-    Column         : column,
-    DatePicker     : {
-        datePicker,
-        datePickerHeader,
-        datePickerItem,
-        timeInput,
-    },
+    Button            : button,
+    Card              : card,
+    CheckableGroup    : checkableGroup,
+    Checkbox          : checkbox,
+    Column            : column,
+    DatePicker        : datePicker,
     DragNDrop         : dragNDrop,
     Dropdown          : dropdown,
     Fieldset          : fieldset,
@@ -103,9 +92,9 @@ export default {
     Icon              : icon,
     IconButton        : iconButton,
     IconWithTooltip   : iconWithTooltip,
-    InputField        : { inputField, inputFrame },
+    InputField        : inputField,
     Label             : label,
-    ListBox           : { listBox, listBoxOption, listBoxOptionGroup },
+    ListBox           : listBox,
     MessageBox        : messageBox,
     ModalDialog       : modalDialog,
     Module            : module,

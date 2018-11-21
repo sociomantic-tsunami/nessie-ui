@@ -11,7 +11,7 @@ import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import Icon                             from '../Icon';
+import { Icon }                         from '../index';
 
 const killFocus = e => e.preventDefault();
 

@@ -7,12 +7,11 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import Label                from '../Label';
-import IconWithTooltip      from '../IconWithTooltip';
+import { buildClassName }         from '../utils';
+import { Label, IconWithTooltip } from '../index';
 
 
 const Fieldset = ( {

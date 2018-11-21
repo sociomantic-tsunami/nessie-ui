@@ -13,7 +13,7 @@ import ThemeContext         from './ThemeContext';
 import { buildDisplayName } from '../utils';
 
 /* interpolates component’s props into the theme */
-const evalTheme = ( theme, props ) =>
+const evalTheme = ( theme = {}, props = {} ) =>
     Object.entries( theme ).reduce(
         ( result,  [ key, value ] ) =>
         {
@@ -29,7 +29,7 @@ const withTheme = Component =>
 {
     const ComponentWithTheme =  props =>
         <ThemeContext.Consumer>
-            { theme =>
+            { ( theme = {} ) =>
             {
                 const cssMap =
                     evalTheme( theme[ Component.displayName ], props );

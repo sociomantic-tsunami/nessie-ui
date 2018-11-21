@@ -85,12 +85,8 @@ const styledButton              = withTheme( Button );
 const styledCard                = withTheme( Card );
 const styledCheckableGroup      = withTheme( CheckableGroup );
 const styledCheckbox            = withTheme( Checkbox );
-const styledCheckboxGroup       = withTheme( CheckboxGroup );
 const styledColumn              = withTheme( Column );
-const styledComboBox            = withTheme( ComboBox );
 const styledDatePicker          = withTheme( DatePicker );
-const styledDateTimeInput       = withTheme( DateTimeInput );
-const styledDimensionsInput     = withTheme( DimensionsInput );
 const styledDragNDrop           = withTheme( DragNDrop );
 const styledDropdown            = withTheme( Dropdown );
 const styledFieldset            = withTheme( Fieldset );
@@ -120,12 +116,9 @@ const styledPageContentHeader   = withTheme( PageContentHeader );
 const styledPageFooter          = withTheme( PageFooter );
 const styledPageHeader          = withTheme( PageHeader );
 const styledPaginator           = withTheme( Paginator );
-const styledPasswordInput       = withTheme( PasswordInput );
 const styledProgressBar         = withTheme( ProgressBar );
 const styledProgressIndicator   = withTheme( ProgressIndicator );
 const styledRadio               = withTheme( Radio );
-const styledRadioGroup          = withTheme( RadioGroup );
-const styledRow                 = withTheme( Row );
 const styledScrollBar           = withTheme( ScrollBar );
 const styledScrollBox           = withTheme( ScrollBox );
 const styledSection             = withTheme( Section );
@@ -133,7 +126,6 @@ const styledSlider              = withTheme( Slider );
 const styledSliderGroup         = withTheme( SliderGroup );
 const styledSorter              = withTheme( Sorter );
 const styledSpinner             = withTheme( Spinner );
-const styledSpriteMap           = withTheme( SpriteMap );
 const styledStatusIndicator     = withTheme( StatusIndicator );
 const styledSwitch              = withTheme( Switch );
 const styledTab                 = withTheme( Tab );
@@ -146,7 +138,6 @@ const styledTag                 = withTheme( Tag );
 const styledTagInput            = withTheme( TagInput );
 const styledText                = withTheme( Text );
 const styledTextArea            = withTheme( TextArea );
-const styledTextInput           = withTheme( TextInput );
 const styledTextInputWithIcon   = withTheme( TextInputWithIcon );
 const styledToggleButton        = withTheme( ToggleButton );
 const styledTooltip             = withTheme( Tooltip );
@@ -159,12 +150,12 @@ export {
     styledCard                  as Card,
     styledCheckableGroup        as CheckableGroup,
     styledCheckbox              as Checkbox,
-    styledCheckboxGroup         as CheckboxGroup,
+    CheckboxGroup,
     styledColumn                as Column,
-    styledComboBox              as ComboBox,
+    ComboBox,
     styledDatePicker            as DatePicker,
-    styledDateTimeInput         as DateTimeInput,
-    styledDimensionsInput       as DimensionsInput,
+    DateTimeInput,
+    DimensionsInput,
     styledDragNDrop             as DragNDrop,
     styledDropdown              as Dropdown,
     styledFieldset              as Fieldset,
@@ -194,12 +185,11 @@ export {
     styledPageFooter            as PageFooter,
     styledPageHeader            as PageHeader,
     styledPaginator             as Paginator,
-    styledPasswordInput         as PasswordInput,
     styledProgressBar           as ProgressBar,
     styledProgressIndicator     as ProgressIndicator,
     styledRadio                 as Radio,
-    styledRadioGroup            as RadioGroup,
-    styledRow                   as Row,
+    RadioGroup,
+    Row,
     styledScrollBar             as ScrollBar,
     styledScrollBox             as ScrollBox,
     styledSection               as Section,
@@ -207,7 +197,7 @@ export {
     styledSliderGroup           as SliderGroup,
     styledSorter                as Sorter,
     styledSpinner               as Spinner,
-    styledSpriteMap             as SpriteMap,
+    SpriteMap,
     styledStatusIndicator       as StatusIndicator,
     styledSwitch                as Switch,
     styledTab                   as Tab,
@@ -220,7 +210,7 @@ export {
     styledTagInput              as TagInput,
     styledText                  as Text,
     styledTextArea              as TextArea,
-    styledTextInput             as TextInput,
+    TextInput,
     styledTextInputWithIcon     as TextInputWithIcon,
     styledToggleButton          as ToggleButton,
     styledTooltip               as Tooltip,
@@ -234,12 +224,12 @@ export default {
     Card              : withTheme( Card ),
     CheckableGroup    : withTheme( CheckableGroup ),
     Checkbox          : withTheme( Checkbox ),
-    CheckboxGroup     : withTheme( CheckboxGroup ),
+    CheckboxGroup,
     Column            : withTheme( Column ),
-    ComboBox          : withTheme( ComboBox ),
+    ComboBox,
     DatePicker        : withTheme( DatePicker ),
-    DateTimeInput     : withTheme( DateTimeInput ),
-    DimensionsInput   : withTheme( DimensionsInput ),
+    DateTimeInput,
+    DimensionsInput,
     DragNDrop         : withTheme( DragNDrop ),
     Dropdown          : withTheme( Dropdown ),
     Fieldset          : withTheme( Fieldset ),
@@ -269,12 +259,12 @@ export default {
     PageFooter        : withTheme( PageFooter ),
     PageHeader        : withTheme( PageHeader ),
     Paginator         : withTheme( Paginator ),
-    PasswordInput     : withTheme( PasswordInput ),
+    PasswordInput,
     ProgressBar       : withTheme( ProgressBar ),
     ProgressIndicator : withTheme( ProgressIndicator ),
     Radio             : withTheme( Radio ),
-    RadioGroup        : withTheme( RadioGroup ),
-    Row               : withTheme( Row ),
+    RadioGroup,
+    Row,
     ScrollBar         : withTheme( ScrollBar ),
     ScrollBox         : withTheme( ScrollBox ),
     Section           : withTheme( Section ),
@@ -282,7 +272,7 @@ export default {
     SliderGroup       : withTheme( SliderGroup ),
     Sorter            : withTheme( Sorter ),
     Spinner           : withTheme( Spinner ),
-    SpriteMap         : withTheme( SpriteMap ),
+    SpriteMap,
     StatusIndicator   : withTheme( StatusIndicator ),
     Switch            : withTheme( Switch ),
     Tab               : withTheme( Tab ),
@@ -295,7 +285,7 @@ export default {
     TagInput          : withTheme( TagInput ),
     Text              : withTheme( Text ),
     TextArea          : withTheme( TextArea ),
-    TextInput         : withTheme( TextInput ),
+    TextInput,
     TextInputWithIcon : withTheme( TextInputWithIcon ),
     ToggleButton      : withTheme( ToggleButton ),
     Tooltip           : withTheme( Tooltip ),

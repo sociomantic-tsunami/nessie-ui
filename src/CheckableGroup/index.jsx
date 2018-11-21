@@ -10,7 +10,7 @@
 import React, { Children }            from 'react';
 import PropTypes                      from 'prop-types';
 
-import Fieldset                       from '../Fieldset';
+import { Fieldset }                   from '../index';
 import { buildClassName, generateId } from '../utils';
 
 
