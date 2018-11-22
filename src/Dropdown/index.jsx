@@ -19,7 +19,7 @@ const Dropdown = ( {
     cssMap,
     hasError,
     padding,
-    size
+    size,
 } ) => (
     <div
         className = { buildClassName( className, cssMap, {

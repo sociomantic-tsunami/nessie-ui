@@ -7,13 +7,11 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { buildClassName } from '../utils';
-import Icon               from '../Icon';
-import Text               from '../Text';
-import Tooltip            from '../Tooltip';
+import { buildClassName }       from '../utils';
+import { Icon, Text, Tooltip }  from '../index';
 
 const IconWithTooltip = ( {
     children,

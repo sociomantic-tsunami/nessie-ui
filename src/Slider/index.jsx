@@ -12,8 +12,7 @@ import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import IconWithTooltip                  from '../IconWithTooltip';
-import Label                            from '../Label';
+import { IconWithTooltip, Label }       from '../index';
 
 
 export default class Slider extends React.Component

@@ -11,8 +11,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import IconButton           from '../IconButton';
-import Text                 from '../Text';
+import { IconButton, Text } from '../index';
 
 const Paginator = ( {
     className,

@@ -11,7 +11,7 @@ import React          from 'react';
 import PropTypes      from 'prop-types';
 
 import { generateId } from '../utils';
-import InputField     from '../InputField';
+import { InputField } from '../index';
 
 
 const TextArea = ( {

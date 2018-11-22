@@ -7,14 +7,13 @@
  *
  */
 
-import React, { Component }    from 'react';
-import PropTypes               from 'prop-types';
-import isEqual                 from 'lodash.isequal';
+import React, { Component }         from 'react';
+import PropTypes                    from 'prop-types';
+import isEqual                      from 'lodash.isequal';
 
-import { createScrollHandler } from './utils';
-import { buildClassName }      from '../utils';
-import IconButton              from '../IconButton';
-import ScrollBar               from '../ScrollBar';
+import { createScrollHandler }      from './utils';
+import { buildClassName }           from '../utils';
+import { IconButton, ScrollBar }    from '../index';
 
 
 export default class ScrollBox extends Component
@@ -56,7 +55,7 @@ export default class ScrollBox extends Component
         /**
          *  on Thumb Drag Start horizontal callback function
          */
-        onThumbDragStartX : PropTypes.func,
+        onThumbDragStartX  : PropTypes.func,
         /**
          *  on Thumb Drag End horizontal callback function
          */
@@ -480,18 +479,16 @@ export default class ScrollBox extends Component
             {
                 if ( this.handleRenderScrollButton( dir ) )
                 {
-                    scrollButtons.push(
-                        <IconButton
-                            className     = { props.cssMap[ `icon${dir}` ] }
-                            hasBackground = {
-                                props.scrollIndicatorVariant === 'circle' }
-                            iconSize      = "S"
-                            iconType      = { dir.toLowerCase() }
-                            key           = { dir }
-                            onClick       = { e =>
-                                this.handleClickScrollButton( dir, e )
-                            } />
-                    );
+                    scrollButtons.push( <IconButton
+                        className     = { props.cssMap[ `icon${dir}` ] }
+                        hasBackground = {
+                            props.scrollIndicatorVariant === 'circle' }
+                        iconSize      = "S"
+                        iconType      = { dir.toLowerCase() }
+                        key           = { dir }
+                        onClick       = { e =>
+                            this.handleClickScrollButton( dir, e )
+                        } /> );
                 }
             }
         } );

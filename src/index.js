@@ -185,6 +185,7 @@ export {
     styledPageFooter            as PageFooter,
     styledPageHeader            as PageHeader,
     styledPaginator             as Paginator,
+    PasswordInput,
     styledProgressBar           as ProgressBar,
     styledProgressIndicator     as ProgressIndicator,
     styledRadio                 as Radio,

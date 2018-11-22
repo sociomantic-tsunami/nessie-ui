@@ -10,7 +10,7 @@
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
-import InputField                       from '../InputField';
+import { InputField }                   from '../index';
 import { generateId, buildClassName }   from '../utils';
 
 

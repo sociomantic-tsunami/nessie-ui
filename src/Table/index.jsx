@@ -7,13 +7,12 @@
  *
  */
 
-import React                   from 'react';
-import PropTypes               from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import TableCell               from '../TableCell';
-import TableRow                from '../TableRow';
-import { buildClassName }      from '../utils';
-import { buildRowsFromValues } from './utils';
+import { TableCell, TableRow }  from '../index';
+import { buildClassName }       from '../utils';
+import { buildRowsFromValues }  from './utils';
 
 
 const Table = ( {

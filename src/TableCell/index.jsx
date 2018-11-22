@@ -7,13 +7,11 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import Column             from '../Column';
-import Sorter             from '../Sorter';
-import Text               from '../Text';
-import { buildClassName } from '../utils';
+import { Column, Sorter, Text } from '../index';
+import { buildClassName }       from '../utils';
 
 const TableCell = ( {
     children,

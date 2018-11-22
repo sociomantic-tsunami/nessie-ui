@@ -11,7 +11,7 @@ import React, { Component }            from 'react';
 import PropTypes                       from 'prop-types';
 
 import { buildClassName }              from '../utils';
-import Icon                            from '../Icon';
+import { Icon }                        from '../index';
 
 export default class Sorter extends Component
 {

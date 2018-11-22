@@ -11,12 +11,14 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
-import Button                         from '../Button';
-import IconWithTooltip                from '../IconWithTooltip';
-import Spinner                        from '../Spinner';
-import IconButton                     from '../IconButton';
-import Tooltip                        from '../Tooltip';
-import Label                          from '../Label';
+import {
+    Button,
+    IconButton,
+    Label,
+    IconWithTooltip,
+    Spinner,
+    Tooltip,
+} from '../index';
 
 
 const Uploader = ( {

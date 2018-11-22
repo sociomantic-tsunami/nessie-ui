@@ -7,12 +7,11 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import Row                from '../Row';
-import TableCell          from '../TableCell';
-import { buildClassName } from '../utils';
+import { Row, TableCell }   from '../index';
+import { buildClassName }   from '../utils';
 
 const TableRow = ( {
     align,

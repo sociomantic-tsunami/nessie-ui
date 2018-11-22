@@ -7,12 +7,11 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import Label                           from '../Label';
-import Slider                          from '../Slider';
+import { buildClassName }   from '../utils';
+import { Label, Slider }    from '../index';
 
 /**
 * gets the label offset for a given value (as a percentage)

@@ -11,7 +11,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import H1                   from '../H1';
+import { H1 }               from '../index';
 
 const PageContentHeader = ( {
     children,
