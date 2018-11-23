@@ -16,6 +16,7 @@ import Checkbox                 from './Checkbox';
 import CheckboxGroup            from './CheckboxGroup';
 import Column                   from './Column';
 import ComboBox                 from './ComboBox';
+import ComboBoxState            from './ComboBoxState';
 import DatePicker               from './DatePicker';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
@@ -89,6 +90,7 @@ export {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxState,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -164,6 +166,7 @@ export default {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxState,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
