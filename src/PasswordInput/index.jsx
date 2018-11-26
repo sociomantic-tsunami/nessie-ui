@@ -202,7 +202,6 @@ PasswordInput.defaultProps =
 {
     aria                  : undefined,
     className             : undefined,
-    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',

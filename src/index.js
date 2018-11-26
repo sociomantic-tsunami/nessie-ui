@@ -81,11 +81,6 @@ import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
 
-const styledButton              = withTheme( Button );
-const styledCard                = withTheme( Card );
-const styledCheckableGroup      = withTheme( CheckableGroup );
-const styledCheckbox            = withTheme( Checkbox );
-const styledColumn              = withTheme( Column );
 const styledDatePicker          = withTheme( DatePicker );
 const styledDragNDrop           = withTheme( DragNDrop );
 const styledDropdown            = withTheme( Dropdown );
@@ -146,12 +141,12 @@ const styledValuedTextInput     = withTheme( ValuedTextInput );
 
 
 export {
-    styledButton                as Button,
-    styledCard                  as Card,
-    styledCheckableGroup        as CheckableGroup,
-    styledCheckbox              as Checkbox,
+    Button,
+    Card,
+    CheckableGroup,
+    Checkbox,
     CheckboxGroup,
-    styledColumn                as Column,
+    Column,
     ComboBox,
     styledDatePicker            as DatePicker,
     DateTimeInput,
@@ -221,12 +216,12 @@ export {
 
 
 export default {
-    Button            : withTheme( Button ),
-    Card              : withTheme( Card ),
-    CheckableGroup    : withTheme( CheckableGroup ),
-    Checkbox          : withTheme( Checkbox ),
+    Button,
+    Card,
+    CheckableGroup,
+    Checkbox,
     CheckboxGroup,
-    Column            : withTheme( Column ),
+    Column,
     ComboBox,
     DatePicker        : withTheme( DatePicker ),
     DateTimeInput,

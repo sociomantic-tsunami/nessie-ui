@@ -9,26 +9,33 @@
 
 /* global document */
 
-import React, { Component }          from 'react';
-import PropTypes                     from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { ListBox, ScrollBox, Text }  from '../index';
-import TextInputWithIcon             from '../TextInputWithIcon';
-import withDropdown                  from '../Addons/withDropdown';
-import { generateId }                from '../utils';
+import {
+    ListBox,
+    ScrollBox,
+    Text,
+} from '../index';
+import TextInputWithIcon from '../TextInputWithIcon';
 import {
     addPrefix,
     buildListBoxOptions,
     getScrollParent,
     removePrefix,
 } from './utils';
-
+import { generateId }   from '../utils';
+import withDropdown     from '../Addons/withDropdown';
+import ThemeContext     from '../Theming/ThemeContext';
+import { evalTheme }    from '../Theming/withTheme';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 
 export default class ComboBox extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /*
@@ -467,6 +474,7 @@ export default class ComboBox extends Component
         } = this.props;
 
         const { dropdownPosition } = this.state;
+        const cssMap = evalTheme( this.context.Combobox, this.props );
 
         let dropdownContent;
 
@@ -520,6 +528,7 @@ export default class ComboBox extends Component
                 autoComplete     = "off"
                 autoCorrect      = "off"
                 className        = { className }
+                cssMap           = { cssMap }
                 dropdownIsOpen   = { isOpen }
                 dropdownPosition = { dropdownPosition }
                 dropdownProps    = { {

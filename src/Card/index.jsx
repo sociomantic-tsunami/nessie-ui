@@ -11,76 +11,89 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const Card = ( {
-    align,
-    cssMap,
-    className,
-    children,
-    padding,
-    verticalAlign,
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            alignX   : align,
-            alignY   : verticalAlign,
-            paddingX : Array.isArray( padding ) ? padding[ 0 ] : padding,
-            paddingY : Array.isArray( padding ) ? padding[ 1 ] : padding,
-        } ) }>
-        { children }
-    </div>
-);
-
-Card.propTypes =
+export default class Card extends React.PureComponent
 {
-    /**
-     *  Horizontal alignment of content (“auto” makes all items 100% width)
-     */
-    align : PropTypes.oneOf( [
-        'auto',
-        'left',
-        'center',
-        'right',
-    ] ),
-    /**
-     *  Module content
-     */
-    children : PropTypes.node,
-    /**
-     *  CSS class map
-     */
-    cssMap   : PropTypes.objectOf( PropTypes.string ),
-    /**
-    *   Card padding
-    */
-    padding  : PropTypes.oneOfType( [
-        PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
-        PropTypes.arrayOf( PropTypes.oneOf( [
-            'none',
-            'S',
-            'M',
-            'L',
-            'XL',
-            'XXL',
-        ] ) ),
-    ] ),
-    /**
-     *  Vertical alignment of content
-     */
-    verticalAlign : PropTypes.oneOf( [
-        'top',
-        'middle',
-        'bottom',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-Card.defaultProps =
-{
-    align         : 'auto',
-    padding       : 'M',
-    verticalAlign : 'top',
-};
+    static propTypes =
+    {
+        /**
+         *  Horizontal alignment of content (“auto” makes all items 100% width)
+         */
+        align : PropTypes.oneOf( [
+            'auto',
+            'left',
+            'center',
+            'right',
+        ] ),
+        /**
+         *  Module content
+         */
+        children : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap   : PropTypes.objectOf( PropTypes.string ),
+        /**
+        *   Card padding
+        */
+        padding  : PropTypes.oneOfType( [
+            PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+            PropTypes.arrayOf( PropTypes.oneOf( [
+                'none',
+                'S',
+                'M',
+                'L',
+                'XL',
+                'XXL',
+            ] ) ),
+        ] ),
+        /**
+         *  Vertical alignment of content
+         */
+        verticalAlign : PropTypes.oneOf( [
+            'top',
+            'middle',
+            'bottom',
+        ] ),
+    };
 
-Card.displayName = 'Card';
+    static defaultProps =
+    {
+        align         : 'auto',
+        padding       : 'M',
+        verticalAlign : 'top',
+    };
 
-export default Card;
+    static displayName = 'Card';
+
+    render()
+    {
+        const {
+            align,
+            className,
+            children,
+            padding,
+            verticalAlign,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.Card, this.props );
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    alignX   : align,
+                    alignY   : verticalAlign,
+                    paddingX : Array.isArray( padding ) ?
+                        padding[ 0 ] : padding,
+                    paddingY : Array.isArray( padding ) ?
+                        padding[ 1 ] : padding,
+                } ) }>
+                { children }
+            </div>
+        );
+    }
+}

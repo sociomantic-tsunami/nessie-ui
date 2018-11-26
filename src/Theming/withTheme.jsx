@@ -27,7 +27,7 @@ const evalTheme = ( theme = {}, props = {} ) =>
 /* creates a new component with theme applied to it */
 const withTheme = Component =>
 {
-    const ComponentWithTheme =  props =>
+    const ComponentWithTheme = props =>
         <ThemeContext.Consumer>
             { ( theme = {} ) =>
             {
@@ -48,4 +48,5 @@ const withTheme = Component =>
     return ComponentWithTheme;
 };
 
+export { evalTheme };
 export default withTheme;
