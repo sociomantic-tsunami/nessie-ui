@@ -32,7 +32,7 @@ describe( 'TextDriver', () =>
             const onClick = jest.fn();
             wrapper.setProps( { onClick } );
 
-            driver.click();
+            wrapper.driver().click();
             expect( onClick ).toBeCalledTimes( 1 );
         } );
     } );
