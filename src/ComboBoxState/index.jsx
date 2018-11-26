@@ -13,6 +13,59 @@ import PropTypes            from 'prop-types';
 import { generateId }       from '../utils';
 import ComboBox             from '../ComboBox';
 
+
+/**
+ * Filters the dropdown options
+ *
+ * @param {Array} options Array of options
+ *
+ * @return {Array} filteredOptions Array of filtered options
+ */
+function handleOptions( options = [] )
+{
+    let filteredOptions =  options.map( option =>
+    {
+        if ( option.options )
+        {
+            return option.options.map( subOption => subOption );
+        }
+
+        return option;
+    } );
+
+    filteredOptions = [].concat( ...filteredOptions );
+
+    return filteredOptions;
+}
+
+/**
+ * gets the index of the option by the passed id
+ *
+ * @param {String} id id of the option
+ *
+ * @param {Array} options Array of options
+ *
+ * @return {Number} index of the option
+ */
+function getIndex( id, options = [] )
+{
+    return options.findIndex( opt => opt.id === id );
+}
+
+/**
+ * gets the option by the passed id
+ *
+ * @param {String} id id of the option
+ *
+ * @param {Array} options Array of options
+ *
+ * @return {Object} option Object.
+ */
+function getOption( id, options = [] )
+{
+    return options.find( opt => opt.id === id );
+}
+
 export default class ComboBoxState extends Component
 {
     static propTypes =
@@ -38,23 +91,17 @@ export default class ComboBoxState extends Component
         defaultOption : undefined,
     };
 
-    constructor( props )
+    constructor()
     {
         super();
 
-        const filteredOptions = this.handleOptions( props.options );
-
-        let defaultOption =
-                         this.getOption( props.defaultOption, filteredOptions );
-
-        defaultOption = defaultOption || filteredOptions[ 0 ];
-
         this.state = {
-            activeOption : undefined,
-            filteredOptions,
-            inputValue   : defaultOption.text,
-            isOpen       : false,
-            selection    : defaultOption.id,
+            activeOption    : undefined,
+            filteredOptions : undefined,
+            inputValue      : undefined,
+            isOpen          : undefined,
+            options         : undefined,
+            selection       : undefined,
         };
 
         this.handleClickIcon       = this.handleClickIcon.bind( this );
@@ -64,14 +111,25 @@ export default class ComboBoxState extends Component
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
     }
 
-    getIndex( id, options = this.state.filteredOptions )
+    static getDerivedStateFromProps( props, state )
     {
-        return options.findIndex( opt => opt.id === id );
-    }
+        if ( props.options !== state.options )
+        {
+            const filteredOptions = handleOptions( props.options );
 
-    getOption( id, options = this.state.filteredOptions )
-    {
-        return options.find( opt => opt.id === id );
+            let defaultOption =
+                              getOption( props.defaultOption, filteredOptions );
+
+            defaultOption = defaultOption || filteredOptions[ 0 ];
+
+            return {
+                filteredOptions,
+                inputValue : defaultOption.text,
+                isOpen     : false,
+                options    : props.options,
+                selection  : defaultOption.id,
+            };
+        }
     }
 
     handleClickIcon( e )
@@ -80,7 +138,7 @@ export default class ComboBoxState extends Component
         this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
     }
 
-    handleClickInput( e )
+    handleClickInput()
     {
         this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
     }
@@ -89,8 +147,7 @@ export default class ComboBoxState extends Component
     {
         this.setState( prevState =>
         {
-            const selectedOption =
-                                this.getOption( id, prevState.filteredOptions );
+            const selectedOption = getOption( id, prevState.filteredOptions );
             return {
                 isOpen     : false,
                 inputValue : selectedOption.text,
@@ -114,7 +171,7 @@ export default class ComboBoxState extends Component
                     const minIndex = 0;
                     const maxIndex = prevState.filteredOptions.length - 1;
 
-                    let activeIndex = this.getIndex(
+                    let activeIndex = getIndex(
                         prevState.activeOption,
                         prevState.filteredOptions,
                     );
@@ -140,12 +197,12 @@ export default class ComboBoxState extends Component
         {
             this.setState( prevState => ( {
                 selection :
-                this.getOption(
+                getOption(
                     prevState.activeOption,
                     prevState.filteredOptions,
                 ).id,
                 inputValue :
-                this.getOption(
+                getOption(
                     prevState.activeOption,
                     prevState.filteredOptions,
                 ).text,
@@ -159,30 +216,13 @@ export default class ComboBoxState extends Component
     {
         this.setState( prevState =>
         {
-            const activeOption = this.getOption(
+            const activeOption = getOption(
                 id,
                 prevState.filteredOptions,
             ).id;
 
             return { activeOption };
         } );
-    }
-
-    handleOptions( options = this.state.options )
-    {
-        let filteredOptions =  options.map( option =>
-        {
-            if ( option.options )
-            {
-                return option.options.map( subOption => subOption );
-            }
-
-            return option;
-        } );
-
-        filteredOptions = [].concat( ...filteredOptions );
-
-        return filteredOptions;
     }
 
     render()
