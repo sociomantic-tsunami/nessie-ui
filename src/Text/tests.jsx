@@ -44,6 +44,18 @@ describe( 'TextDriver', () =>
         driver  = wrapper.driver();
     } );
 
+    describe( 'click', () =>
+    {
+        test( 'should trigger onClick callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
+
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
+    } );
+
     describe( 'getContent', () =>
     {
         test( 'should return the content set by text prop', () =>

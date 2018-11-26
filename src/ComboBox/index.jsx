@@ -115,6 +115,7 @@ export default class ComboBox extends Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',

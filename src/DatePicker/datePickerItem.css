@@ -11,11 +11,7 @@
 
 .default
 {
-    display:            flex;
-
-    flex-direction:     row;
-    align-items:        center;
-    justify-content:    center;
+    display:            block;
 
     padding:            0;
     border:             1px solid transparent;
