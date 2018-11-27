@@ -7,17 +7,20 @@
  *
  */
 
-import ClickableComponentDriver from '../Testing/CommonDrivers/clickableComponentDriver'; // eslint-disable-line max-len
+import ClickableComponentDriver from
+    '../Testing/CommonDrivers/clickableComponentDriver';
 
 const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) => `Button '${label}' cannot be clicked since it is ${state}` // eslint-disable-line max-len
+    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
+        `Button '${label}' cannot be clicked since it is ${state}`,
 };
+
 
 export default class ButtonDriver extends ClickableComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
     }
 
     click()

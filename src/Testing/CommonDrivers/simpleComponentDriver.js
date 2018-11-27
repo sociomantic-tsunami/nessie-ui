@@ -13,7 +13,7 @@ export default class SimpleComponentDriver
     {
         this.wrapper = wrapper;
         this.control = wrapper.find( selector ).first();
-        this.cssMap = this.wrapper.props().cssMap;
+        this.cssMap = this.wrapper.prop( 'cssMap' );
     }
 
     blur()

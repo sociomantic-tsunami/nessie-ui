@@ -11,13 +11,13 @@
 
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
+import CodeMirror           from 'codemirror';
 
-import { buildClassName }   from '../utils';
-import InputContainer       from '../proto/InputContainer';
+import { buildClassName }   from '../../utils';
 import styles               from './codeEditor.css';
 
-
 import 'codemirror/mode/jsx/jsx';
+
 
 const defaultOptions = {
     lineNumbers  : true,
@@ -27,128 +27,108 @@ const defaultOptions = {
 
 const SCROLL_CLASS = 'CodeMirror-scroll';
 
+
 export default class CodeEditor extends Component
 {
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className     : PropTypes.string,
+        /**
          *  callback ref to native CodeMirror object
          */
-        codeMirrorRef         : PropTypes.func,
+        codeMirrorRef : PropTypes.func,
         /**
-         *  Label text string or JSX node
+         *  CSS class map
          */
-        label                 : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-        /**
-         *  Code editor height (CSS length value)
-         */
-        height                : PropTypes.string,
-        /**
-         *  Code editor max height (CSS length value)
-         */
-        maxHeight             : PropTypes.string,
-        /**
-         *  Display as disabled
-         */
-        isDisabled            : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly            : PropTypes.bool,
-        /**
-         *  Display as error/invalid
-         */
-        hasError              : PropTypes.bool,
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *  Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [
-            'top',
-            'topLeft',
-            'topRight',
-            'bottom',
-            'bottomLeft',
-            'bottomRight',
-            'left',
-            'leftTop',
-            'leftBottom',
-            'right',
-            'rightTop',
-            'rightBottom',
-        ] ),
-        /**
-         * Input string default value
-         */
-        defaultValue : PropTypes.string,
-        /**
-         * Input string value
-         */
-        value        : PropTypes.string,
-        /**
-         * HTML id attribute
-         */
-        onChange     : PropTypes.func,
-        /**
-         * Handles CodeMirror focus event
-         */
-        onFocus      : PropTypes.func,
-        /**
-         * Handles CodeMirror blur event
-         */
-        onBlur       : PropTypes.func,
-        /**
-         * Handles component mouseover event
-         */
-        onMouseOver  : PropTypes.func,
-        /**
-         * Handles component mouseout event
-         */
-        onMouseOut   : PropTypes.func,
-        /**
-         * Codemirror options object
-         */
-        options      : PropTypes.object,
-        /**
-         * Display as hover when required from another component
-         */
-        forceHover   : PropTypes.bool,
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
          * cursor position: { line, ch }
          */
-        cursor       : PropTypes.shape( {
+        cursor        : PropTypes.shape( {
             line : PropTypes.number,
             ch   : PropTypes.number,
         } ),
         /**
+         * Display as hover when required from another component
+         */
+        forceHover       : PropTypes.bool,
+        /**
+         *  Display as error/invalid
+         */
+        hasError         : PropTypes.bool,
+        /**
+         *  Code editor height (CSS length value)
+         */
+        height           : PropTypes.string,
+        /**
+         *  Display as disabled
+         */
+        isDisabled       : PropTypes.bool,
+        /**
+         *  Display as read-only
+         */
+        isReadOnly       : PropTypes.bool,
+        /**
+         *  Code editor max height (CSS length value)
+         */
+        maxHeight        : PropTypes.string,
+        /**
+         * Handles CodeMirror blur event
+         */
+        onBlur           : PropTypes.func,
+        /**
+         * Handles CodeMirror change event
+         */
+        onChange         : PropTypes.func,
+        /**
+         * Handles CodeMirror focus event
+         */
+        onFocus          : PropTypes.func,
+        /**
          * onCursorActivity callback function: ( cursor ) => { ... }
          */
         onCursorActivity : PropTypes.func,
+        /**
+         * Handles component mouseout event
+         */
+        onMouseOut       : PropTypes.func,
+        /**
+         * Handles component mouseover event
+         */
+        onMouseOver      : PropTypes.func,
+        /**
+         * Codemirror options object
+         */
+        options          : PropTypes.object,
+        /**
+         * Input string value
+         */
+        value            : PropTypes.string,
     };
 
     static defaultProps =
     {
-        cssMap                : styles,
-        errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
-        forceHover            : false,
-        hasError              : false,
-        height                : undefined,
-        isDisabled            : false,
-        isReadOnly            : false,
-        labelPosition         : 'top',
-        maxHeight             : undefined,
+        className        : undefined,
+        codeMirrorRef    : undefined,
+        cssMap           : styles,
+        cursor           : undefined,
+        forceHover       : false,
+        hasError         : false,
+        height           : undefined,
+        isDisabled       : false,
+        isReadOnly       : false,
+        maxHeight        : undefined,
+        onBlur           : undefined,
+        onChange         : undefined,
+        onCursorActivity : undefined,
+        onFocus          : undefined,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
+        options          : undefined,
+        value            : '',
     };
 
     constructor( props )
@@ -170,11 +150,10 @@ export default class CodeEditor extends Component
         const {
             codeMirrorRef,
             cursor,
-            defaultValue,
             isDisabled,
             isReadOnly,
             options,
-            value = '',
+            value,
         } = this.props;
 
         const combinedOptions = {
@@ -183,11 +162,10 @@ export default class CodeEditor extends Component
             readOnly : ( isDisabled && 'nocursor' ) || isReadOnly,
         };
 
-        const codeMirrorInstance = require( 'codemirror' );
+        const codeMirror =
+            CodeMirror.fromTextArea( this.textarea, combinedOptions );
 
-        const codeMirror = codeMirrorInstance.fromTextArea( this.textarea, combinedOptions );
-
-        codeMirror.setValue( defaultValue || value );
+        codeMirror.setValue( value );
 
         codeMirror.on( 'change', this.handleChange );
         codeMirror.on( 'cursorActivity', this.handleCursorActivity );
@@ -252,7 +230,7 @@ export default class CodeEditor extends Component
 
         if ( typeof value !== 'undefined' && codeMirror.getValue() !== value )
         {
-            codeMirror.setValue( value || '' );
+            codeMirror.setValue( value );
             const that = this;
             setTimeout( () =>
             {
@@ -356,45 +334,40 @@ export default class CodeEditor extends Component
         const {
             className,
             cssMap,
-            options,
-            ...props
-        } = this.props;
-
-        const {
             forceHover,
             hasError,
             height,
             isDisabled,
             maxHeight,
+            onMouseOut,
+            onMouseOver,
             value,
-        } = props;
+        } = this.props;
 
         const { isFocused } = this.state;
 
         return (
-            <InputContainer
-                { ...props }
+            <div
                 className = { buildClassName( className, cssMap, {
                     disabled    : isDisabled,
                     error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
-                } ) }>
-                <div
-                    className = { cssMap.editor }
-                    ref       = { this.handleWrapperRef }
-                    style     = { {
-                        height    : String( height ),
-                        maxHeight : String( maxHeight ),
-                    } }>
-                    <textarea
-                        autoCapitalize = "off"
-                        autoComplete   = "off"
-                        autoCorrect    = "off"
-                        defaultValue   = { value }
-                        ref            = { this.handleTextareaRef }
-                        spellCheck     = { false } />
-                </div>
-            </InputContainer>
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                ref          = { this.handleWrapperRef }
+                style        = { {
+                    height    : String( height ),
+                    maxHeight : String( maxHeight ),
+                } }>
+                <textarea
+                    autoCapitalize = "off"
+                    autoComplete   = "off"
+                    autoCorrect    = "off"
+                    defaultValue   = { value }
+                    ref            = { this.handleTextareaRef }
+                    spellCheck     = { false } />
+            </div>
         );
     }
 }

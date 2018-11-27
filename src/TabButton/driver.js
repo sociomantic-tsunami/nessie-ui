@@ -20,7 +20,7 @@ export default class TabButtonDriver
 
     click()
     {
-        if ( this.wrapper.props().isDisabled )
+        if ( this.wrapper.prop( 'isDisabled' ) )
         {
             throw new Error(
                 ERRORS.CANNOT_BE_CLICKED()

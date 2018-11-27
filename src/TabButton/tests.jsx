@@ -14,6 +14,7 @@ import { mount }        from 'enzyme';
 
 import { TabButton }    from '../index';
 
+
 describe( 'TabButton', () =>
 {
     let wrapper;
@@ -35,12 +36,10 @@ describe( 'TabButton', () =>
 describe( 'TabButton Driver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TabButton /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <TabButton /> );
     } );
 
     describe( 'click()', () =>
@@ -48,11 +47,9 @@ describe( 'TabButton Driver', () =>
         test( 'should trigger onClick', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( {
-                onClick
-            } );
+            wrapper.setProps( { onClick } );
 
-            driver.click();
+            wrapper.driver().click();
 
             expect( onClick ).toBeCalled();
         } );
@@ -60,13 +57,10 @@ describe( 'TabButton Driver', () =>
         test( 'should return error if disabled', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( {
-                onClick,
-                isDisabled : true
-            } );
+            wrapper.setProps( { isDisabled: true, onClick } );
 
-            expect( () => driver.click() ).toThrowError( 'Button cannot be \
-clicked because it is disabled' );
+            expect( () => wrapper.driver().click() ).toThrowError( 'Button \
+cannot be clicked because it is disabled' );
         } );
     } );
 } );

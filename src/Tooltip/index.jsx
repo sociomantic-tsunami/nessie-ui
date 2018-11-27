@@ -12,7 +12,8 @@ import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
 import styles                         from './tooltip.css';
-import { IconButton, Text }           from '../index';
+import IconButton                     from '../IconButton';
+import Text                           from '../Text';
 
 const Tooltip = ( {
     children,

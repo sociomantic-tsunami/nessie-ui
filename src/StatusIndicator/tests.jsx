@@ -8,13 +8,13 @@
  */
 
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React           from 'react';
+import { shallow }     from 'enzyme';
 
-import StatusIndicator  from './index';
+import StatusIndicator from './index';
+
 
 describe( 'StatusIndicator', () =>
 {
@@ -22,12 +22,12 @@ describe( 'StatusIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <StatusIndicator /> );
+        wrapper = shallow( <StatusIndicator /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain the label text', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        wrapper.setProps( { label: 'hallo' } );
+        expect( wrapper.text() ).toBe( 'hallo' );
     } );
 } );

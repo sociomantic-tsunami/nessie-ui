@@ -16,14 +16,14 @@ export default class DatePickerDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = this.wrapper.prop( 'cssMap' );
     }
 
     clickItem( index = 0 )
     {
         const dateItem = this.wrapper.find( 'DatePickerItem' ).at( index );
 
-        if ( dateItem.props().isDisabled )
+        if ( dateItem.prop( 'isDisabled' ) )
         {
             throw new Error(
                 ERRORS.OPTION_CANNOT_BE_CLICKED()

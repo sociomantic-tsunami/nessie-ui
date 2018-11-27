@@ -13,15 +13,39 @@
 {
     width:  auto;
     font:   inherit;
+
+    .content
+    {
+        flex:   1 0 auto;
+    }
+
+    .sorter
+    {
+        display:        flex;
+        flex-direction: column;
+
+        flex:           0 0 auto;
+
+        margin-left:    10px;
+
+    }
+
+    .down
+    {
+        margin-top: -11px;
+    }
+
     &:hover,
     &.fakeHovered
     {
         .up,
         .down
         {
+            fill:       var( --PC-BLUE );
             opacity:    0.5;
         }
     }
+
 }
 
 .sorterVisible
@@ -38,6 +62,7 @@
 {
     .up
     {
+        fill:       var( --PC-BLUE );
         opacity:    1 !important;
     }
 }
@@ -46,32 +71,7 @@
 {
     .down
     {
+        fill:       var( --PC-BLUE );
         opacity:    1 !important;
     }
-}
-
-
-
-
-
-
-.content
-{
-    flex:   1 0 auto;
-}
-
-.sorter
-{
-    display:        flex;
-    flex-direction: column;
-
-    flex:           0 0 auto;
-
-    margin-left:    10px;
-
-}
-
-.down
-{
-    margin-top: -11px;
 }

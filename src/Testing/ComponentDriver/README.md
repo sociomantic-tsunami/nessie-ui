@@ -49,7 +49,7 @@ The driver suite links the components to their drivers. It looks like this:
 
 
 ```es6
-import { ComponentDriver } from 'nessie-ui/dist/componentDriver'; // just 'componentDriver' within Nessie
+import { ComponentDriver } from 'nessie-ui/dist/componentDriver';
 import Module from 'path/to/module';
 import ModuleDriver from 'path/to/module/driver';
 
@@ -72,7 +72,7 @@ the enzyme extension to use drivers.
 
 ```es6
 import * as enzyme from 'enzyme';
-import { ComponentDriver } from 'nessie-ui/dist/componentDriver'; // just 'componentDriver' within Nessie
+import { ComponentDriver } from 'nessie-ui/dist/componentDriver';
 import driverSuite from 'path/to/driver/suite';
 
 // Extend enzyme's API to make drivers available.
@@ -103,11 +103,10 @@ it( 'initial state is expanded', () =>
 it( 'clicking toggle changes the toggle state', () =>
 {
     const wrapper = mount( <Module title='my module title' /> );
-    const driver = wrapper.driver();
 
-    driver.humanClickToggle();
+    wrapper.driver().humanClickToggle();
     expect( driver.isExpanded() ).false;
-    driver.humanClickToggle();
+    wrapper.driver().humanClickToggle();
     expect( driver.isExpanded() ).true;
 } );
 ```

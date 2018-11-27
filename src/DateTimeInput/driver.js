@@ -12,7 +12,7 @@ export default class DateTimeInputDriver
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.cssMap      = wrapper.props().cssMap;
+        this.cssMap      = wrapper.prop( 'cssMap' );
         this.mainInput   = wrapper.find( 'input' ).at( 0 );
         this.hourInput   = wrapper.find( 'input' ).at( 1 );
         this.minuteInput = wrapper.find( 'input' ).at( 2 );
@@ -23,12 +23,12 @@ export default class DateTimeInputDriver
 
     getMainInputValue()
     {
-        return this.mainInput.getNode().value;
+        return this.mainInput.instance().value;
     }
 
     setMainInputValue( value )
     {
-        const node = this.mainInput.getNode();
+        const node = this.mainInput.instance();
 
         node.value = value;
         this.mainInput.simulate( 'change' );
@@ -50,12 +50,12 @@ export default class DateTimeInputDriver
 
     getHourInputValue()
     {
-        return this.hourInput.getNode().value;
+        return this.hourInput.instance().value;
     }
 
     setHourInputValue( value )
     {
-        const node = this.hourInput.getNode();
+        const node = this.hourInput.instance();
 
         node.value = value;
         this.hourInput.simulate( 'change' );
@@ -77,12 +77,12 @@ export default class DateTimeInputDriver
 
     getMinuteInputValue()
     {
-        return this.minuteInput.getNode().value;
+        return this.minuteInput.instance().value;
     }
 
     setMinuteInputValue( value )
     {
-        const node = this.minuteInput.getNode();
+        const node = this.minuteInput.instance();
 
         node.value = value;
         this.minuteInput.simulate( 'change' );

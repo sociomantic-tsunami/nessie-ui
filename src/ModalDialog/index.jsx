@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import IconButton           from '../IconButton';
 
 const ModalDialog = ( {
@@ -21,12 +20,12 @@ const ModalDialog = ( {
     hasNavigation,
     isVisible,
     isWide,
-    onClickOverlay,
-    type,
-    title,
-    onClickPrev,
+    onClickClose,
     onClickNext,
-    onClickClose
+    onClickOverlay,
+    onClickPrev,
+    title,
+    type,
 } ) =>
 {
     if ( !isVisible )
@@ -54,27 +53,21 @@ const ModalDialog = ( {
                 <div className = { cssMap.header }>
                     <span className = { cssMap.title }>{ title }</span>
                     <IconButton
-                        iconType  = "close"
-                        onClick   = { onClickClose }
-                        iconTheme = "navigation"
-                        iconSize  = "L"
-                    />
+                        iconSize = "L"
+                        iconType = "close"
+                        onClick  = { onClickClose } />
                 </div>
                 <div className = { cssMap.navigation }>
                     <IconButton
                         hasBackground
-                        iconType  = "arrow"
-                        onClick   = { onClickPrev }
-                        iconTheme = "navigation"
                         iconSize  = "M"
-                    />
+                        iconType  = "arrow"
+                        onClick   = { onClickPrev } />
                     <IconButton
                         hasBackground
-                        iconType  = "arrow"
-                        onClick   = { onClickNext }
-                        iconTheme = "navigation"
-                        iconSize  = "M"
-                    />
+                        iconSize = "M"
+                        iconType = "arrow"
+                        onClick  = { onClickNext } />
                 </div>
             </div>
         );
@@ -84,9 +77,9 @@ const ModalDialog = ( {
         <div className = "modalContainer">
             <div
                 className = { buildClassName( className, cssMap, {
+                    showNav : hasNavigation,
                     type,
                     wide    : isWide,
-                    showNav : hasNavigation
                 } ) }
                 onClick   = { handleOverlayClick } >
                 { modalUI }
@@ -111,7 +104,7 @@ ModalDialog.propTypes =
         'neutral',
         'crucial',
         'promoted',
-        'carousel'
+        'carousel',
     ] ),
     /**
      *  Display the dialog
@@ -149,10 +142,10 @@ ModalDialog.propTypes =
 
 ModalDialog.defaultProps =
 {
-    type          : 'default',
-    isVisible     : false,
+    cssMap        : require( './modalDialog.css' ),
     hasNavigation : true,
-    cssMap        : require( './modalDialog.css' )
+    isVisible     : false,
+    type          : 'default',
 };
 
 export default ModalDialog;

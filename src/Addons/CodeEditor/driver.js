@@ -10,7 +10,8 @@
 /* global document */
 
 const ERRORS = {
-    EDITOR_READ_ONLY : 'Cannot change the CodeEditor value since it’s read only'
+    EDITOR_READ_ONLY :
+        'Cannot change the CodeEditor value since it’s read only',
 };
 
 export default class CodeEditorDriver
@@ -20,7 +21,7 @@ export default class CodeEditorDriver
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.control = wrapper.node.codeMirror;
+        this.control = wrapper.instance().codeMirror;
     }
 
     focus()

@@ -12,7 +12,7 @@ export default class SectionDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.prop( 'cssMap' );
     }
 
     getContent()

@@ -7,20 +7,11 @@
  *
  */
 
-@import "../proto/base.css";
-
-:global {
-    @import "../../node_modules/codemirror/lib/codemirror.css";
-    @import "../../node_modules/codemirror/theme/monokai.css"
-}
-
+@import "../../proto/base.css";
 
 .default
 {
-    .editor
-    {
-        height: auto;
-    }
+    height: auto;
 
     :global .CodeMirror
     {
@@ -54,6 +45,7 @@
     :global .CodeMirror
     {
         border-color:   var( --PC-RED );
+
         .fakeHovered&
         {
             box-shadow: 0 0 0 2px color( var( --PC-RED ) a( 30% ) );

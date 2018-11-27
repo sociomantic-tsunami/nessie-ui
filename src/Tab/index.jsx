@@ -19,25 +19,14 @@ const Tab = ( {
     className,
     cssMap,
     label,
-    onClick,
-} ) =>
-{
-    if ( !Tab.didWarn && onClick )
-    {
-        console.warn( 'Tab: ‘onClick’ prop is deprecated and will be removed \
-in the next major release.' );
-        Tab.didWarn = true;
-    }
-    return (
-        <div
-            className  = { buildClassName( className, cssMap ) }
-            aria-label = { label }
-            onClick    = { onClick }
-            role       = "tabpanel">
-            { children }
-        </div>
-    );
-};
+} ) => (
+    <div
+        className  = { buildClassName( className, cssMap ) }
+        aria-label = { label }
+        role       = "tabpanel">
+        { children }
+    </div>
+);
 
 Tab.propTypes =
 {

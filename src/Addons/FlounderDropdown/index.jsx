@@ -14,13 +14,12 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import Flounder             from 'flounder/src/core/flounder';
 
-import { buildClassName }   from '../utils';
-import InputContainer       from '../proto/InputContainer';
-import H1                   from '../H1';
-import H2                   from '../H2';
-import H3                   from '../H3';
-import H4                   from '../H4';
+import H1                   from '../../H1';
+import H2                   from '../../H2';
+import H3                   from '../../H3';
+import H4                   from '../../H4';
 import styles               from './flounderDropdown.css';
+import { buildClassName }   from '../../utils';
 import {
     addExtraClasses,
     mapCssToFlounder,
@@ -63,21 +62,17 @@ export default class FlounderDropdown extends Component
     static propTypes =
     {
         /**
-        *  Label text
-        */
-        label         : PropTypes.node,
-        /**
-         *  Label position
+         *  Extra CSS class name
          */
-        labelPosition : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        className : PropTypes.string,
         /**
-        *  Placeholder text
-        */
-        placeholder   : PropTypes.string,
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
-        *  Array of strings or objects (to build the options)
-        */
-        data          : PropTypes.arrayOf( PropTypes.oneOfType( [
+         *  Array of strings or objects (to build the options)
+         */
+        data      : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.shape( {
                 text        : PropTypes.string,
@@ -89,61 +84,62 @@ export default class FlounderDropdown extends Component
             } ),
         ] ) ),
         /**
-         *  Display the dropdown as a header (H1-4)
+         *  Disable arrow
          */
-        headerLevel           : PropTypes.oneOf( [ 1, 2, 3, 4, 'none' ] ),
+        disableArrow : PropTypes.bool,
+        /**
+         * Display as hover when required from another component
+         */
+        forceHover   : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError     : PropTypes.bool,
         /**
-         *  Tooltip message text (string or JSX)
+         *  Display the dropdown as a header (H1-4)
          */
-        errorMessage          : PropTypes.node,
+        headerLevel  : PropTypes.oneOf( [ 1, 2, 3, 4, 'none' ] ),
         /**
-         *  Tooltip is displayed
+         * Toggle icon to show on the right of the dropdown
          */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *  Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [
-            'top',
-            'topLeft',
-            'topRight',
-            'bottom',
-            'bottomLeft',
-            'bottomRight',
-            'left',
-            'leftTop',
-            'leftBottom',
-            'right',
-            'rightTop',
-            'rightBottom',
+        icon         : PropTypes.oneOf( [
+            'arrow',
+            'magnifier',
+            'none',
         ] ),
         /**
-        *  Display as disabled
-        */
-        isDisabled   : PropTypes.bool,
-        /**
-        *  Display as read only
-        */
-        isReadOnly   : PropTypes.bool,
-        /**
-         *  Initial selected value(s). Not the same as the native Flounder
-         *  option with the same name
+         *  Display as disabled
          */
-        defaultValue : PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string ),
-        ] ),
+        isDisabled           : PropTypes.bool,
         /**
-         *  Selected value(s)
+         *  Display as read only
          */
-        value : PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.arrayOf( PropTypes.string ),
-        ] ),
+        isReadOnly           : PropTypes.bool,
+        /**
+         * Determines whether it is a multi-select box or single
+         */
+        multiple             : PropTypes.bool,
+        /**
+         * If there are no tags, this is the message that will be displayed in
+         * the selected area when there are multiple options selected
+         */
+        multipleMessage      : PropTypes.string,
+        /**
+         *  Determines how a multi-select box is displayed
+         */
+        multipleTags         : PropTypes.bool,
+        /**
+         * message to display when there are no option left
+         */
+        noMoreOptionsMessage : PropTypes.string,
+        /**
+         * message to display when there are no results left after a search
+         */
+        noMoreResultsMessage : PropTypes.string,
+        /**
+         *  onBlur callback function (not yet implemented)
+         */
+        onBlur               : PropTypes.func,
         /**
          *  onChange callback function triggered when the selection is changed:
          *  ( e ) => { ... }
@@ -160,10 +156,22 @@ export default class FlounderDropdown extends Component
          */
         onFirstTouch         : PropTypes.func,
         /**
+         *  onFocus callback function: ( e ) => { ... }
+         */
+        onFocus              : PropTypes.func,
+        /**
          * Triggered when someone types in a search box. note: this will do
          * nothing if search is not enabled
          */
         onInputChange        : PropTypes.func,
+        /**
+         *  onMouseOut callback function : ( e ) => { ... }
+         */
+        onMouseOut           : PropTypes.func,
+        /**
+         *  onMouseOver callback function (not yet implemented)
+         */
+        onMouseOver          : PropTypes.func,
         /**
          * Triggered when the selectbox is opened
          */
@@ -173,81 +181,52 @@ export default class FlounderDropdown extends Component
          */
         openOnHover          : PropTypes.bool,
         /**
-         *  onFocus callback function: ( e ) => { ... }
+         *  Placeholder text
          */
-        onFocus              : PropTypes.func,
-        /**
-         *  onBlur callback function (not yet implemented)
-         */
-        onBlur               : PropTypes.func,
-        /**
-         *  onMouseOver callback function (not yet implemented)
-         */
-        onMouseOver          : PropTypes.func,
-        /**
-         *  onMouseOut callback function : ( e ) => { ... }
-         */
-        onMouseOut           : PropTypes.func,
-        /**
-         * Determines whether it is a multi-select box or single
-         */
-        multiple             : PropTypes.bool,
-        /**
-         * If there are no tags, this is the message that will be displayed in
-         * the selected area when there are multiple options selected
-         */
-        multipleMessage      : PropTypes.string,
-        /**
-         * message to display when there are no option left
-         */
-        noMoreOptionsMessage : PropTypes.string,
-        /**
-         * message to display when there are no results left after a search
-         */
-        noMoreResultsMessage : PropTypes.string,
-        /**
-        *  Determines how a multi-select box is displayed
-        */
-        multipleTags         : PropTypes.bool,
+        placeholder          : PropTypes.string,
         /**
         *  Add option to search dropdown
         */
         search               : PropTypes.bool,
         /**
-         * Display as hover when required from another component
+         *  Selected value(s)
          */
-        forceHover           : PropTypes.bool,
-        /**
-         * Toggle icon to show on the right of the dropdown
-         */
-        icon                 : PropTypes.oneOf( [
-            'arrow',
-            'magnifier',
-            'none',
+        value                : PropTypes.oneOfType( [
+            PropTypes.string,
+            PropTypes.arrayOf( PropTypes.string ),
         ] ),
     };
 
     static defaultProps =
     {
-        labelPosition         : 'top',
-        headerLevel           : 'none',
-        hasError              : false,
-        errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
-        isDisabled            : false,
-        isReadOnly            : false,
-        multiple              : false,
-        multipleMessage       : '(Multiple Items Selected)',
-        multipleTags          : false,
-        noMoreOptionsMessage  : 'No more options to add',
-        search                : false,
-        noMoreResultsMessage  : 'No matches found',
-        openOnHover           : false,
-        disableArrow          : false,
-        forceHover            : false,
-        placeholder           : 'Please choose an option',
-        icon                  : 'arrow',
-        cssMap                : styles,
+        className            : undefined,
+        cssMap               : styles,
+        data                 : undefined,
+        disableArrow         : false,
+        forceHover           : false,
+        hasError             : false,
+        headerLevel          : 'none',
+        icon                 : 'arrow',
+        isDisabled           : false,
+        isReadOnly           : false,
+        multiple             : false,
+        multipleMessage      : '(Multiple Items Selected)',
+        multipleTags         : false,
+        noMoreOptionsMessage : 'No more options to add',
+        noMoreResultsMessage : 'No matches found',
+        onBlur               : undefined,
+        onChange             : undefined,
+        onClose              : undefined,
+        onFirstTouch         : undefined,
+        onFocus              : undefined,
+        onInputChange        : undefined,
+        onMouseOut           : undefined,
+        onMouseOver          : undefined,
+        onOpen               : undefined,
+        openOnHover          : false,
+        placeholder          : 'Please choose an option',
+        search               : false,
+        value                : '',
     };
 
     constructor( props )
@@ -261,7 +240,7 @@ export default class FlounderDropdown extends Component
         const { props } = this;
 
         this.buildFlounder();
-        this.setValue( props.value || props.defaultValue );
+        this.setValue( props.value );
         this.setDisabled();
     }
 
@@ -433,35 +412,29 @@ export default class FlounderDropdown extends Component
     render()
     {
         const {
-            className, cssMap, label, ...props
-        } = this.props;
-
-        const {
+            className,
+            cssMap,
             forceHover,
             hasError,
             headerLevel,
             icon,
             isDisabled,
-        } = props;
+        } = this.props;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
         const Wrapper  = isHeader ? headers[ headerLevel ] : 'div';
 
         return (
-
             <Wrapper
                 className = { buildClassName( className, cssMap, {
-                    headerMode  : isHeader,
-                    headerLevel,
-                    toggleIcon  : icon,
                     error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && forceHover,
+                    headerLevel,
+                    headerMode  : isHeader,
+                    toggleIcon  : icon,
                 } ) }>
-                <InputContainer { ...props } label = { !isHeader && label }>
-                    <div ref = { this.handleRef } />
-                </InputContainer>
+                <div ref = { this.handleRef } />
             </Wrapper>
-
         );
     }
 }

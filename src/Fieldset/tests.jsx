@@ -8,7 +8,6 @@
  */
 
 /* global test */
-/* eslint no-console: 0 */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 import React          from 'react';
@@ -20,12 +19,10 @@ import { Fieldset }   from '../index';
 describe( 'Fieldset', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Fieldset /> );
-        instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
@@ -38,18 +35,11 @@ describe( 'Fieldset', () =>
 
     describe( 'props', () =>
     {
-        let props;
-
-        beforeEach( () =>
-        {
-            ( { props } = instance );
-        } );
-
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBeFalsy();
+                expect( Fieldset.defaultProps.hasError ).toBe( false );
             } );
         } );
 
@@ -57,7 +47,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.isDisabled ).toBeUndefined();
+                expect( Fieldset.defaultProps.isDisabled ).toBeUndefined();
             } );
         } );
 
@@ -65,7 +55,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).toBeUndefined();
+                expect( Fieldset.defaultProps.onMouseOut ).toBeUndefined();
             } );
         } );
 
@@ -73,7 +63,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).toBeUndefined();
+                expect( Fieldset.defaultProps.onMouseOver ).toBeUndefined();
             } );
         } );
     } );

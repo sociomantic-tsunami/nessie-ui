@@ -14,13 +14,13 @@ export default class CheckboxDriver extends InputComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.input}` );
-        this.outer = wrapper.find( `.${wrapper.props().cssMap.default}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).input}` );
+        this.outer = wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` );
     }
 
     setChecked()
     {
-        const node = this.control.getNode();
+        const node = this.control.instance();
 
         if ( !node.checked )
         {
@@ -33,7 +33,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     setUnchecked()
     {
-        const node = this.control.getNode();
+        const node = this.control.instance();
 
         if ( node.checked )
         {
@@ -46,7 +46,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     toggleChecked()
     {
-        const node   = this.control.getNode();
+        const node   = this.control.instance();
         node.checked = !node.checked;
         this.control.simulate( 'change' );
         return this;
@@ -54,7 +54,7 @@ export default class CheckboxDriver extends InputComponentDriver
 
     getChecked()
     {
-        return this.control.getNode().checked;
+        return this.control.instance().checked;
     }
 
     mouseOver()

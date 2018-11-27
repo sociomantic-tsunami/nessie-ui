@@ -13,7 +13,7 @@
 .default
 {
     display:    block;
-    fill:       var( --PC-GREY--D25 );
+    position:   relative;
 }
 
 
@@ -42,149 +42,22 @@
 }
 
 
-.theme__control,
-.theme__light
+.role__default
 {
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        fill:   var( --PC-BLUE );
-    }
+    fill:   var( --PC-GREY--D25 );
 }
 
-.theme__button
+.role__critical
 {
-    fill:   var( --PC-WHITE );
+    fill:   var( --PC-RED );
 }
 
-.theme__dark
+.role__promoted
 {
-    &:hover,
-    &.fakeHovered,
-    button:focus > &
-    {
-        fill:   var( --PC-WHITE );
-    }
+    fill:   var( --PC-GREEN );
 }
 
-.theme__navigation
+.role__warning
 {
-    /* not implemented */
-}
-
-
-:not( .theme__button ).type
-{
-    &__alert
-    {
-        fill:   var( --PC-ORANGE );
-    }
-
-    &__approved
-    {
-        fill:   var( --PC-BLUE );
-    }
-
-    &__declined,
-    &__ended,
-    &__deactivated
-    {
-        fill:   var( --PC-GREY--L40 );
-    }
-
-    &__error
-    {
-        fill:   var( --PC-RED );
-    }
-
-    &__info
-    {
-        fill:   var( --PC-BLUE );
-    }
-
-    &__paused
-    {
-        fill:   var( --PC-LIME );
-    }
-
-    &__pending
-    {
-        fill:   var( --PC-ORANGE );
-    }
-
-    &__validation
-    {
-        fill:   var( --PC-GREEN );
-    }
-}
-
-
-.disabled:not( .theme__button )
-{
-    pointer-events: none;
-    fill:           var( --PC-GREY--L70 );
-}
-
-
-@each $icon in (
-        account,
-        add-circle,
-        add,
-        alert,
-        approved,
-        arrow-down,
-        arrow-up,
-        arrow,
-        bell,
-        board,
-        calendar,
-        close-circle,
-        close-thick,
-        close,
-        dash,
-        dashboard,
-        deactivated,
-        declined,
-        delete,
-        down,
-        download,
-        duplicate,
-        edit-circle,
-        edit,
-        ended,
-        error,
-        file,
-        graph,
-        hide,
-        info,
-        inspect,
-        left,
-        lightbulb,
-        link,
-        loader,
-        megaphone,
-        options,
-        paused,
-        pending,
-        preview,
-        puzzle-piece,
-        reset,
-        right,
-        search,
-        show,
-        sociomantic,
-        star-stroke,
-        star,
-        swap,
-        table,
-        up,
-        upload,
-        validation
-    )
-{
-    .type__$(icon)
-    {
-        /* generate placehodler classnames */
-    }
+    fill:   var( --PC-ORANGE );
 }

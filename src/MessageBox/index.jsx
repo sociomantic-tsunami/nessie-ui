@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Text                 from '../Text';
 
 const MessageBox = ( {
@@ -25,7 +24,10 @@ const MessageBox = ( {
     const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
 
     return (
-        <div className = { buildClassName( className, cssMap, { type: messageType } ) }>
+        <div
+            className = { buildClassName( className, cssMap, {
+                type : messageType,
+            } ) }>
             { children || messageNode }
         </div>
     );
@@ -47,13 +49,13 @@ MessageBox.propTypes =
         'info',
         'error',
         'success',
-    ] )
+    ] ),
 };
 
 MessageBox.defaultProps =
 {
     messageType : 'default',
-    cssMap      : require( './messageBox.css' )
+    cssMap      : require( './messageBox.css' ),
 };
 
 export default MessageBox;

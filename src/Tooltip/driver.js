@@ -15,7 +15,7 @@ export default class TooltipDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
     }
 
     getContent()

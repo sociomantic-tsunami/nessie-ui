@@ -7,69 +7,75 @@ const baseConfig           = require( './base' );
 
 
 const distConfig = merge( {}, baseConfig, {
-    output : { libraryTarget: 'commonjs2' },
+    output : { libraryTarget: 'umd' },
 
     devtool   : 'source-map',
     externals : {
-        componentDriver : 'nessie-ui/dist/componentDriver',
-        'nessie-ui'     : 'nessie-ui',
-        'prop-types'    : 'prop-types',
-        react           : 'react',
-        'react-dom'     : 'react-dom',
+        'codemirror/mode/jsx/jsx' : {
+            commonjs  : 'codemirror/mode/jsx/jsx',
+            commonjs2 : 'codemirror/mode/jsx/jsx'
+        },
+        'componentDriver'         : {
+            commonjs  : 'nessie-ui/dist/componentDriver',
+            commonjs2 : 'nessie-ui/dist/componentDriver',
+            'window'  : 'ComponentDriver'
+        },
+        'flounder/src/core/flounder' : {
+            commonjs  : 'flounder/src/core/flounder',
+            commonjs2 : 'flounder/src/core/flounder',
+            'window'  : 'Flounder'
+        },
+        'nessie-ui'  : {
+            'commonjs' : 'nessie-ui',
+            'commonjs2': 'nessie-ui',
+            'window'   : 'Nessie'
+         },
+        'prop-types' : {
+            'commonjs' : 'prop-types',
+            'commonjs2': 'prop-types',
+            'window'   : 'PropTypes'
+        },
+        addons       : {
+            'commonjs' : 'nessie-ui/dist/addons',
+            'commonjs2': 'nessie-ui/dist/addons'
+        },
+        codemirror   : {
+            'commonjs' : 'codemirror',
+            'commonjs2': 'codemirror',
+            'window'   : 'CodeMirror'
+        },
+        react        : {
+            'commonjs' : 'react',
+            'commonjs2': 'react',
+            'window'   : 'React'
+        },
     },
     mode : 'production',
 } );
 
-
-const addons = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/addons.js' ),
-    output : { filename: 'addons.js' },
-
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            fallback  : 'css-loader',
-            filename  : 'addons.css',
-        } ),
-    ],
-} );
-
-const displayComponents = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : {
-        filename      : 'displayComponents.js',
-        library       : 'DisplayComponents',
-        libraryTarget : 'window'
-    },
-
-    externals : {
-        'prop-types' : 'PropTypes',
-        react        : 'React',
-        'react-dom'  : 'ReactDOM',
-    },
-    plugins : [
-        new MiniCssExtractPlugin( {
-            allChunks : true,
-            filename  : 'displayComponentStyles.css',
-        } ),
-    ],
-} );
-
 const components = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/index.js' ),
-    output : { filename: 'index.js' },
+    entry   : path.join( __dirname, '../src/index.js' ),
+    output  : {
+        filename: 'index.js'
+    },
+    plugins : [],
+} );
+components.module.rules[ 1 ].use[ 0 ] = 'style-loader';
 
+const componentDriver = merge( {}, distConfig, {
+    entry  : path.join( __dirname, '../src/Testing/index.js' ),
+    output : { filename: 'componentDriver.js' },
+} );
+
+const componentsJS = merge( {}, distConfig, {
+    entry   : path.join( __dirname, '../src/index.js' ),
+    output  : { filename: 'componentsJS.js' },
     plugins : [
         new MiniCssExtractPlugin( {
             allChunks : true,
             filename  : 'styles.css',
         } ),
     ],
-} );
-
-const componentDriver = merge( {}, distConfig, {
-    entry  : path.join( __dirname, '../src/Testing/index.js' ),
-    output : { filename: 'componentDriver.js' },
 } );
 
 const driverSuite = merge( {}, distConfig, {
@@ -79,9 +85,8 @@ const driverSuite = merge( {}, distConfig, {
 
 
 module.exports = [
-    addons,
-    components,
     componentDriver,
-    displayComponents,
+    components,
+    componentsJS,
     driverSuite,
 ];

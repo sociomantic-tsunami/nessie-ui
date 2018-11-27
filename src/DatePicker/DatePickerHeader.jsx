@@ -28,7 +28,7 @@ const DatePickerHeader = ( {
     minuteIsReadOnly,
     minutePlaceholder,
     minuteValue,
-    mode,
+    hasTimeInput,
     month,
     onBlur,
     onChange,
@@ -50,20 +50,20 @@ const DatePickerHeader = ( {
                 isDisabled = { isDisabled || prevIsDisabled }
                 isReadOnly = { isReadOnly || prevIsReadOnly }
                 onClick    = { onClickPrev }
-                iconTheme  = "button" />
+                role       = "inverted" />
             <IconButton
                 className  = { cssMap.next }
                 iconType   = "right"
                 isDisabled = { isDisabled || nextIsDisabled }
                 isReadOnly = { isReadOnly || nextIsReadOnly }
                 onClick    = { onClickNext }
-                iconTheme  = "button" />
+                role       = "inverted" />
         </div>
         <Text className = { cssMap.date }>
             { month }
             <span className = { cssMap.year }> { year } </span>
         </Text>
-        { mode === 'default' &&
+        { hasTimeInput &&
             <TimeInput
                 hourIsDisabled    = { hourIsDisabled }
                 hourIsReadOnly    = { hourIsReadOnly }
@@ -96,7 +96,7 @@ DatePickerHeader.propTypes = {
     minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    hasTimeInput      : PropTypes.bool,
     month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
     nextIsReadOnly    : PropTypes.bool,
@@ -124,7 +124,7 @@ DatePickerHeader.defaultProps = {
     minuteIsReadOnly  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
-    mode              : 'default',
+    hasTimeInput      : true,
     month             : undefined,
     nextIsDisabled    : undefined,
     nextIsReadOnly    : undefined,

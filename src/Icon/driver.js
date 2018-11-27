@@ -14,7 +14,7 @@ export default class IconDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
         this.button = this.control;
     }
 }

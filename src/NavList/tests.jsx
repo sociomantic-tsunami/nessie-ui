@@ -8,13 +8,13 @@
  */
 
 /* global test */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers*/
+/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import NavList      from './index';
+import NavList     from './index';
+
 
 describe( 'NavList', () =>
 {
@@ -22,12 +22,11 @@ describe( 'NavList', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavList /> );
+        wrapper = shallow( <NavList /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain a <ul> element', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( 'ul' ) ).toHaveLength( 1 );
     } );
 } );

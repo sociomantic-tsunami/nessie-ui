@@ -7,6 +7,9 @@ module.exports = {
     [
         '<rootDir>/src/**/tests.{js,jsx}'
     ],
+    transform: {
+       '^.+\\.(js|jsx)?$': 'babel-jest'
+     },
 
     // We should specify that jest should load all dependencies
     // from the ROOT node_modules folder. If not, and you have
@@ -14,8 +17,8 @@ module.exports = {
     // versions of a module loaded (such as react).
     moduleDirectories :
     [
-        '<rootDir>/src',
-        '<rootDir>/node_modules'
+        '<rootDir>/node_modules',
+        '<rootDir>/src'
     ],
 
     // Tell jest explicitly where to search for source files
@@ -38,8 +41,8 @@ module.exports = {
         {},
         // Map module aliases to directories
         {
-            componentDriver : '<rootDir>/src/Testing/index',
-            'nessie-ui'     : '<rootDir>/src/index'
+            'nessie-ui'       : '<rootDir>/src/index',
+            'componentDriver' : '<rootDir>/src/Testing/index'
         },
         // Mock assets
         {
@@ -54,5 +57,5 @@ module.exports = {
     transformIgnorePatterns :
     [
         'node_modules/(?!flounder)'
-    ],
+    ]
 };

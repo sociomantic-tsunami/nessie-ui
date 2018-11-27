@@ -12,23 +12,103 @@
 .default
 {
     width:  auto;
-}
 
+    .input
+    {
+        position:   absolute;
+        left:       -999999px;
+    }
 
-.loading
-{
-    width:  100%;
+    .previewTooltip
+    {
+        flex:   1 0 auto;
+        width:  100%;
+    }
 
     .uploaderButton
     {
-        pointer-events: none;
+        width:                   100%;
+        max-width:               100%;
+        text-align:              left;
+        text-transform:          none;
+        display:                 block;
+    }
+
+    .buttonsContainer
+    {
+        display:   flex;
+
+        & > *
+        {
+            margin-bottom: 0;
+        }
+    }
+
+    .uploadedButton
+    {
+        flex:                       0 0 auto;
+        width:                      40px;
+        height:                     40px;
+        padding:                    0;
+        border:                     none;
+        background-color:           var( --PC-BLUE );
+        border-top-right-radius:    2px;
+        border-bottom-right-radius: 2px;
+
+        &:focus
+        {
+            outline:    none;
+            box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+            &::after
+            {
+                display: none;
+            }
+        }
+
+        &:hover
+        {
+            background:     var( --PC-BLUE--L10 );
+            color:          var( --PC-WHITE );
+        }
+    }
+
+    .loadingOverlay
+    {
+        display:                    inline-flex;
+        align-items:                center;
+        justify-content:            center;
+        position:                   relative;
+        min-width:                  40px;
+        height:                     40px;
+        background-color:           var( --PC-BLUE );
+        vertical-align:             top;
+        border-top-right-radius:    2px;
+        border-bottom-right-radius: 2px;
+
+        &:focus
+        {
+            outline:    none;
+        }
+    }
+
+    .spinner
+    {
+        border-color:           color( var( --PC-WHITE ) a( 25% ) );
+
+        &::after
+        {
+            border-top-color:   var( --PC-WHITE );
+        }
+    }
+
+    .iconWithTooltip
+    {
+        display:    table;
+        width:      auto;
     }
 }
 
-.uploaded
-{
-    width:  100%;
-}
 
 .loading,
 .uploaded
@@ -51,8 +131,10 @@
     }
 }
 
-.disabled
+.loading
 {
+    width:  100%;
+
     .uploadedButton,
     .loadingOverlay
     {
@@ -60,6 +142,25 @@
         color:              var( --PC-BLUE--L25 );
         pointer-events:     none;
         opacity:            1;
+    }
+
+    .uploaderButton
+    {
+        pointer-events: none;
+    }
+}
+
+.uploaded
+{
+    width:  100%;
+}
+
+
+.disabled
+{
+    .uploadedButton
+    {
+        background: var( --PC-BLUE--L70 );
     }
 }
 
@@ -69,108 +170,4 @@
     {
         pointer-events: none;
     }
-}
-
-
-
-
-
-
-.input
-{
-    position:   absolute;
-    left:       -999999px;
-}
-
-.previewTooltip
-{
-    flex:   1 0 auto;
-    width:  100%;
-}
-
-.uploaderButton
-{
-    width:                   100%;
-    max-width:               100%;
-    text-align:              left;
-    text-transform:          none;
-    display:                 block;
-}
-
-
-.buttonsContainer
-{
-    display:   flex;
-
-    & > *
-    {
-        margin-bottom: 0;
-    }
-}
-
-
-.uploadedButton
-{
-    flex:                       0 0 auto;
-    width:                      40px;
-    height:                     40px;
-    padding:                    0;
-    border:                     none;
-    background-color:           var( --PC-BLUE );
-    border-top-right-radius:    2px;
-    border-bottom-right-radius: 2px;
-
-    &:focus
-    {
-        outline:    none;
-        box-shadow: 0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-
-        &::after
-        {
-            display: none;
-        }
-    }
-
-    &:hover
-    {
-        background:     var( --PC-BLUE--L10 );
-        color:          var( --PC-WHITE );
-    }
-}
-
-
-.loadingOverlay
-{
-    display:                    inline-flex;
-    align-items:                center;
-    justify-content:            center;
-    position:                   relative;
-    min-width:                  40px;
-    height:                     40px;
-    background-color:           var( --PC-BLUE );
-    vertical-align:             top;
-    border-top-right-radius:    2px;
-    border-bottom-right-radius: 2px;
-
-    &:focus
-    {
-        outline:    none;
-    }
-}
-
-
-.spinner
-{
-    border-color:           color( var( --PC-WHITE ) a( 25% ) );
-
-    &::after
-    {
-        border-top-color:   var( --PC-WHITE );
-    }
-}
-
-.iconWithTooltip
-{
-    display:    table;
-    width:      auto;
 }

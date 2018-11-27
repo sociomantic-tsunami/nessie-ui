@@ -8,14 +8,13 @@
  */
 
 /* global test */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import NavBar      from './index';
 
-import NavBar       from './index';
 
 describe( 'NavBar', () =>
 {
@@ -23,12 +22,11 @@ describe( 'NavBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavBar /> );
+        wrapper = shallow( <NavBar /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain a <nav> element', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( 'nav' ) ).toHaveLength( 1 );
     } );
 } );

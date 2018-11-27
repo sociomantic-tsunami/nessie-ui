@@ -36,23 +36,27 @@ export default class Sorter extends Component
         /**
          *  onToggle callback function
          */
-        onToggle        : PropTypes.func
+        onToggle        : PropTypes.func,
     };
 
     static defaultProps =
     {
+        cssMap          : require( './sorter.css' ),
+        forceHover      : false,
         sort            : 'none',
         sorterIsVisible : true,
-        forceHover      : false,
-        cssMap          : require( './sorter.css' )
     };
 
     constructor()
     {
         super();
-        this.state = {
-            isHovered : false
-        };
+        this.state = { isHovered: false };
+        this.toggleHover = this.toggleHover.bind( this );
+    }
+
+    toggleHover()
+    {
+        this.setState( { isHovered: !this.state.isHovered } );
     }
 
     render()
@@ -64,49 +68,38 @@ export default class Sorter extends Component
             forceHover,
             onToggle,
             sort,
-            sorterIsVisible
+            sorterIsVisible,
         } = this.props;
 
         const { isHovered } = this.state;
-        const fakeHovered   = isHovered || forceHover;
-
-        const toggleHover = () => this.setState( { isHovered: !isHovered  } );
+        const fakeHovered = isHovered || forceHover;
 
         return (
-
             <div
                 className = { buildClassName( className, cssMap, {
-                    sorterVisible : sorterIsVisible,
-                    sort,
                     desc          : sort,
-                    fakeHovered   : forceHover
+                    fakeHovered   : forceHover,
+                    sort,
+                    sorterVisible : sorterIsVisible,
                 }  ) }
-                onClick   = { onToggle }>
+                onClick = { onToggle }>
                 <div
                     className    = { cssMap.content }
-                    onMouseEnter = { toggleHover }
-                    onMouseLeave = { toggleHover }>
+                    onMouseEnter = { this.toggleHover }
+                    onMouseLeave = { this.toggleHover }>
                     { children }
                 </div>
                 { sorterIsVisible &&
-                <div className = { cssMap.sorter }>
-                    <Icon
-                        className  = { cssMap.up }
-                        size       = "S"
-                        theme      = "light"
-                        type       = "up"
-                        forceHover = {
-                            fakeHovered || sort === 'asc'
-                        } />
-                    <Icon
-                        className  = { cssMap.down }
-                        size       = "S"
-                        theme      = "light"
-                        type       = "down"
-                        forceHover = {
-                            fakeHovered || sort === 'desc'
-                        } />
-                </div>
+                    <div className = { cssMap.sorter }>
+                        <Icon
+                            className  = { cssMap.up }
+                            size       = "S"
+                            type       = "up" />
+                        <Icon
+                            className  = { cssMap.down }
+                            size       = "S"
+                            type       = "down" />
+                    </div>
                 }
             </div>
         );

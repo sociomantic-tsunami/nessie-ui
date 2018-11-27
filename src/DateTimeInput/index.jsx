@@ -12,8 +12,7 @@ import PropTypes                    from 'prop-types';
 
 import { DatePicker }               from '../index';
 import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Dropdown/withDropdown';
-import withInputContainer           from '../proto/withInputContainer';
+import withDropdown                 from '../Addons/withDropdown';
 import { eventHandler, generateId } from '../utils';
 
 
@@ -86,7 +85,7 @@ const DateTimeInput = ( {
             minuteIsReadOnly  = { minuteIsReadOnly }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            mode              = { mode }
+            hasTimeInput      = { mode === 'default' }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
             nextIsReadOnly    = { nextIsReadOnly }
@@ -411,5 +410,4 @@ DateTimeInput.defaultProps =
     weeks                 : undefined,
 };
 
-export { DateTimeInput };
-export default withInputContainer( DateTimeInput );
+export default DateTimeInput;

@@ -12,7 +12,7 @@ export default class WrapperDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.props().cssMap;
+        this.cssMap  = this.wrapper.prop( 'cssMap' );
     }
 
     getContent()

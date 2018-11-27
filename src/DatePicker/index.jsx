@@ -34,7 +34,7 @@ const DatePicker = ( {
     minuteIsReadOnly,
     minutePlaceholder,
     minuteValue,
-    mode,
+    hasTimeInput,
     nextIsDisabled,
     nextIsReadOnly,
     onBlur,
@@ -69,7 +69,7 @@ const DatePicker = ( {
             minuteIsReadOnly  = { minuteIsReadOnly }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            mode              = { mode }
+            hasTimeInput      = { hasTimeInput }
             onBlur            = { onBlur }
             onChange          = { onChange }
             onFocus           = { onFocus }
@@ -85,8 +85,7 @@ const DatePicker = ( {
                                     <span title = { header.title }>
                                         { header.label }
                                     </span>
-                                </th>
-                            ) }
+                                </th> ) }
                         </tr>
                     </thead>
                 }
@@ -101,10 +100,8 @@ const DatePicker = ( {
                                             onClick = { onClickItem }
                                             type    = { type } />
                                     }
-                                </td>
-                            ) }
-                        </tr>
-                    ) }
+                                </td> ) }
+                        </tr> ) }
                 </tbody>
             </table>
         }
@@ -115,21 +112,23 @@ DatePicker.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
     headers   : PropTypes.arrayOf(
-        PropTypes.objectOf( PropTypes.string ) ),
+        PropTypes.objectOf( PropTypes.string )
+    ),
     hourIsDisabled  : PropTypes.bool,
     hourIsReadOnly  : PropTypes.bool,
     hourPlaceholder : PropTypes.string,
     hourValue       : PropTypes.string,
     isDisabled      : PropTypes.bool,
     isReadOnly      : PropTypes.bool,
-    items           : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object ) ),
+    items           : PropTypes.arrayOf( PropTypes.arrayOf(
+        PropTypes.object
+    ) ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
     minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    hasTimeInput      : PropTypes.bool,
     month             : PropTypes.string,
     nextIsDisabled    : PropTypes.bool,
     nextIsReadOnly    : PropTypes.bool,
@@ -161,7 +160,7 @@ DatePicker.defaultProps = {
     minuteIsDisabled  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,
-    mode              : 'default',
+    hasTimeInput      : true,
     month             : undefined,
     nextIsDisabled    : false,
     nextIsReadOnly    : false,

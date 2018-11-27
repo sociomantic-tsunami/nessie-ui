@@ -17,19 +17,16 @@
 }
 .default
 {
-    .container
+    display:        flex;
+    flex-direction: row;
+
+    margin:         0;
+
+    border-radius:  2px;
+
+    & > *
     {
-        display:        flex;
-        flex-direction: row;
-
-        margin:         0;
-
-        border-radius:  2px;
-
-        & > *
-        {
-            margin: 0;
-        }
+        margin: 0;
     }
 
     .input
@@ -95,10 +92,7 @@
 
 .position__left
 {
-    .container
-    {
-        flex-direction:  row-reverse;
-    }
+    flex-direction:  row-reverse;
 
     .input
     {
@@ -140,10 +134,7 @@
 
 .fakeHovered
 {
-    .container
-    {
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
+    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
 
     .valueLabel
     {
@@ -171,7 +162,7 @@
         box-shadow:     none !important;
     }
 
-    &.fakeHovered .container
+    &.fakeHovered
     {
         box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );
     }

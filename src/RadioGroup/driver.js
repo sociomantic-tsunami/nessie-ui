@@ -52,8 +52,8 @@ export default class RadioGroupDriver
 
     getSelectedValues()
     {
-        const items =
-            this.wrapper.findWhere( n => n.node.checked === true );
+        const items = this.wrapper.findWhere( n =>
+            n.instance() && n.instance().checked === true );
 
         return items.map( item => item.prop( 'value' ) );
     }

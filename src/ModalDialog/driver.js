@@ -22,7 +22,7 @@ export default class ModalDialogDriver extends SimpleComponentDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.content}` );
+        super( wrapper, `.${wrapper.prop( 'cssMap' ).content}` );
 
         this.overlay = wrapper.find( `.${this.cssMap.default}` );
 

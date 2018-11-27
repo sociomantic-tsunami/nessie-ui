@@ -17,6 +17,7 @@ import { Text }         from '../index';
 
 import DragNDrop        from './index';
 
+
 describe( 'DragNDrop', () =>
 {
     let wrapper;
@@ -38,12 +39,8 @@ describe( 'DragNDrop', () =>
     {
         test( 'should find content', () =>
         {
-            const driver = wrapper.driver();
-            wrapper.setProps( {
-                children : <Text>something</Text>
-            } );
-
-            expect( driver.getContent() ).toHaveLength( 1 );
+            wrapper.setProps( { children: <Text>something</Text> } );
+            expect( wrapper.driver().getContent() ).toHaveLength( 1 );
         } );
     } );
 } );

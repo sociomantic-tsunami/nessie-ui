@@ -20,14 +20,14 @@ export default class ListBoxDriver
 
     get options()
     {
-        return this.wrapper.findWhere( node => node.props().role === 'option' );
+        return this.wrapper.findWhere( node => node.prop( 'role' )=== 'option' );
     }
 
     clickOption( index = 0 )
     {
         const option = this.options.at( index );
 
-        if ( option.props().isDisabled )
+        if ( option.prop( 'isDisabled' ) )
         {
             throw new Error(
                 ERRORS.OPTION_CANNOT_BE_CLICKED()

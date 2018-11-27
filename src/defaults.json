@@ -1,8 +1,4 @@
 {
-    "Animate" :
-    {
-        "lochness" : { "isDeprecated" : true }
-    },
     "Button" :
     {
         "label" : "Click me!"
@@ -26,11 +22,6 @@
         "values"         : ["apples", "oranges", "kaki"],
         "selectedValues" : ["apples", "kaki"]
     },
-    "CodeEditor" :
-    {
-        "label" : "Hack the planet"
-    },
-
     "Column" :
     {
         "children"  : "column content"
@@ -64,14 +55,10 @@
         "label"         : "Banner size",
         "errorMessage"  : "Wrong size!"
     },
-    "Divider" :
-    {
-        "lochness" : { "isDeprecated" : true }
-    },
     "DragNDrop" :
     {
         "message"  : "Drop image file to upload",
-        "children" : "{<Label><Required>Image</Required></Label><Uploader/>}"
+        "children" : "{<Label>Image</Label><Uploader/>}"
     },
     "Dropdown" :
     {
@@ -81,29 +68,6 @@
     {
         "label"    : "Fieldset legend",
         "children" : "{<Text>Fieldset content</Text>}"
-    },
-    "Form" :
-    {
-        "lochness" : { "isDeprecated" : true },
-        "children" : "{<TextInput label='Your name'/><TextArea label='Your address'/>}"
-    },
-    "FlounderDropdown" :
-    {
-        "placeholder" : "Just a placeholder",
-        "label"       : "Pick an option",
-        "data"        : [
-           "Option",
-            {
-                "text"        : "Option with description",
-                "value"       : "value2",
-                "description" : "Option description"
-            },
-            {
-                "text"     : "Disabled option",
-                "value"    : "value5",
-                "disabled" : true
-            }
-        ]
     },
     "Grid" :
     {
@@ -246,10 +210,6 @@
         "values"        : [ "apples", "oranges", "kaki" ],
         "selectedValue" : "apples"
     },
-    "Required" :
-    {
-        "lochness" : { "isDeprecated" : true }
-    },
     "Row" :
     {
         "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
@@ -340,14 +300,6 @@
         "label" : "Name",
         "placeholder"  : "Your full name",
         "errorMessage" : "Please enter a valid name"
-    },
-    "TextInputWithDropdown" :
-    {
-        "label"            : "How long?",
-        "lochness"         : { "isDeprecated" : true },
-        "inputPlaceholder" : "number",
-        "dropdownData"     : [ "seconds", "minutes", "hours", "days" ],
-        "errorMessage"     : "That’s too long!"
     },
     "TextInputWithIcon" :
     {

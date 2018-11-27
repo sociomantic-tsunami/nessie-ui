@@ -8,14 +8,14 @@
  */
 
 /* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
+import React           from 'react';
+import { shallow }     from 'enzyme';
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import { Icon }        from '../index';
 
-import NotificationBar  from './index';
+import NotificationBar from './index';
 
 describe( 'NotificationBar', () =>
 {
@@ -23,12 +23,11 @@ describe( 'NotificationBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar /> );
+        wrapper = shallow( <NotificationBar /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should contain an Icon', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( Icon ) ).toHaveLength( 1 );
     } );
 } );

@@ -13,7 +13,7 @@
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
-                
+
 import { Icon }           from '../index';
 
 import IconButton         from './index';
@@ -40,11 +40,6 @@ describe( 'IconButton', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css higher-order component', () =>
-        {
-            
-        } );
-
         test( 'should contain exactly one Icon', () =>
         {
             expect( wrapper.find( Icon ) ).toHaveLength( 1 );
@@ -53,20 +48,6 @@ describe( 'IconButton', () =>
 
     describe( 'props', () =>
     {
-        describe( 'iconTheme', () =>
-        {
-            test( 'should be "control" by default', () =>
-            {
-                expect( instance.props.iconTheme ).toBe( 'control' );
-            } );
-
-            test( 'should be passed to the Icon as theme', () =>
-            {
-                wrapper.setProps( { iconTheme: 'light' } );
-                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe( 'light' );
-            } );
-        } );
-
         describe( 'iconSize', () =>
         {
             test( 'should be "S" by default', () =>
@@ -100,12 +81,10 @@ describe( 'IconButton', () =>
 describe( 'IconButtonDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <IconButton /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'click()', () =>
@@ -115,7 +94,7 @@ describe( 'IconButtonDriver', () =>
             const clickSpy = jest.fn();
             wrapper.setProps( { onClick: clickSpy } );
 
-            driver.click();
+            wrapper.driver().click();
             expect( clickSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -127,7 +106,7 @@ describe( 'IconButtonDriver', () =>
             const focusSpy = jest.fn();
             wrapper.setProps( { onFocus: focusSpy } );
 
-            driver.focus();
+            wrapper.driver().focus();
             expect( focusSpy ).toBeCalledTimes( 1 );
         } );
     } );
@@ -139,7 +118,7 @@ describe( 'IconButtonDriver', () =>
             const blurSpy = jest.fn();
             wrapper.setProps( { onBlur: blurSpy } );
 
-            driver.blur();
+            wrapper.driver().blur();
             expect( blurSpy ).toBeCalledTimes( 1 );
         } );
     } );

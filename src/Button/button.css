@@ -122,6 +122,11 @@
     background: var( --PC-BLUE );
     color:      var( --PC-WHITE );
 
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
     &.fakeHovered,
     &:hover
     {
@@ -158,7 +163,6 @@
     .icon
     {
         fill:   var( --PC-GREY--L25 );
-        color:  var( --PC-GREY--L25 );
     }
 
     .loadingOverlay
@@ -181,6 +185,11 @@
     background: var( --PC-GREEN );
     color:      var( --PC-WHITE );
 
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
+
     &.fakeHovered,
     &:hover
     {
@@ -200,6 +209,11 @@
 {
     background: var( --PC-RED );
     color:      var( --PC-WHITE );
+
+    .icon
+    {
+        fill:   var( --PC-WHITE );
+    }
 
     &.fakeHovered,
     &:hover
@@ -236,7 +250,6 @@
     .icon
     {
         fill:   var( --PC-BLUE );
-        color:  var( --PC-BLUE );
     }
 
     .loadingOverlay
@@ -304,7 +317,6 @@
     .icon
     {
         fill:   var( --PC-GREY--D15 );
-        color:  var( --PC-GREY--D15 );
     }
 
     &.fakeHovered,
@@ -315,7 +327,6 @@
         .icon
         {
             fill:   var( --PC-BLUE );
-            color:  var( --PC-BLUE );
         }
     }
 
@@ -373,7 +384,6 @@
         .icon
         {
             fill:   color( var( --PC-BLUE ) tint( 25% ) );
-            color:  color( var( --PC-BLUE ) tint( 25% ) );
         }
     }
 
@@ -385,7 +395,6 @@
         .icon
         {
             fill:   var( --PC-GREY--L55 );
-            color:  var( --PC-GREY--L55 );
         }
     }
 
@@ -397,7 +406,6 @@
         .icon
         {
             fill:   color( var( --PC-GREEN ) tint( 25% ) );
-            color:  color( var( --PC-GREEN ) tint( 25% ) );
         }
     }
 
@@ -409,7 +417,6 @@
         .icon
         {
             fill:   color( var( --PC-RED ) tint( 25% ) );
-            color:  color( var( --PC-RED ) tint( 25% ) );
         }
     }
 
@@ -425,7 +432,6 @@
         .icon
         {
             fill:   var( --PC-BLUE--L40 );
-            color:  var( --PC-BLUE--L40 );
         }
     }
 
@@ -439,7 +445,6 @@
         .icon
         {
             fill:   var( --PC-GREY--L40 );
-            color:  var( --PC-GREY--L40 );
         }
     }
 }

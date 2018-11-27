@@ -8,15 +8,14 @@
  */
 
 /* global test jest */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React      from 'react';
+import { mount }  from 'enzyme';
 
-import IconButton   from '../IconButton';
+import IconButton from '../IconButton';
 
-import Tag          from './index';
+import Tag        from './index';
 
 
 describe( 'Tag', () =>
@@ -59,12 +58,9 @@ describe( 'Tag', () =>
         } );
     } );
 
-    test( 'should have an IconButton with control theme and close icon as a \
-child', () =>
+    test( 'should have an IconButton with close icon as a child', () =>
     {
-        expect( wrapper.find( IconButton ).props().iconTheme )
-            .toBe( 'control' );
-        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
+        expect( wrapper.find( IconButton ).prop( 'iconType' ) ).toBe( 'close' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>

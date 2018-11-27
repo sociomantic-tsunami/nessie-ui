@@ -38,7 +38,7 @@ export default class FlounderDropdownDriver
         // Nessie Control
         this.wrapper = wrapper;
         // the 3rd party control
-        this.innerFlounderComponent = wrapper.node.flounderInstance;
+        this.innerFlounderComponent = wrapper.instance().flounderInstance;
     }
 
     /**
@@ -142,11 +142,6 @@ export default class FlounderDropdownDriver
     getSelectedItems()
     {
         return this.innerFlounderComponent.getSelected();
-    }
-
-    getErrorMessage()
-    {
-        return this.wrapper.find( 'IconWithTooltip' ).driver().getMessage();
     }
 }
 

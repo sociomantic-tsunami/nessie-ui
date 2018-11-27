@@ -8,7 +8,6 @@
  */
 
 /* global test */
-/* eslint no-console: 0*/
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
@@ -21,26 +20,20 @@ import Section            from './index';
 describe( 'Section', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Section /> );
-        instance = wrapper.instance();
+        wrapper = shallow( <Section /> );
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should be a stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>
     {
-        wrapper.setProps( {
-            title : 'Boom',
-            level : 4,
-        } );
-
+        wrapper.setProps( { title: 'Boom', level: 4 } );
         expect( wrapper.find( H4 ) ).toHaveLength( 1 );
     } );
 
@@ -50,16 +43,12 @@ describe( 'Section', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( Section.defaultProps.title ).toBeUndefined();
             } );
 
             test( 'should be passed to the header component as children', () =>
             {
-                wrapper.setProps( {
-                    title : 'Boom',
-                    level : 1,
-                } );
-
+                wrapper.setProps( { title: 'Boom', level: 1 } );
                 expect( wrapper.find( H1 ).prop( 'children' ) ).toBe( 'Boom' );
             } );
         } );
@@ -70,12 +59,10 @@ describe( 'Section', () =>
 describe( 'SectionDriver', () =>
 {
     let wrapper;
-    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Section /> );
-        driver  = wrapper.driver();
     } );
 
     describe( 'getContent()', () =>
@@ -89,7 +76,7 @@ describe( 'SectionDriver', () =>
             );
 
             wrapper.setProps( {  children } );
-            const content = driver.getContent();
+            const content = wrapper.driver().getContent();
             expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
         } );
     } );
