@@ -90,12 +90,8 @@ const styledH1                  = withTheme( H1 );
 const styledH2                  = withTheme( H2 );
 const styledH3                  = withTheme( H3 );
 const styledH4                  = withTheme( H4 );
-const styledIcon                = withTheme( Icon );
-const styledIconButton          = withTheme( IconButton );
 const styledIconWithTooltip     = withTheme( IconWithTooltip );
-const styledInputField          = withTheme( InputField );
 const styledLabel               = withTheme( Label );
-const styledListBox             = withTheme( ListBox );
 const styledMessageBox          = withTheme( MessageBox );
 const styledModalDialog         = withTheme( ModalDialog );
 const styledModule              = withTheme( Module );
@@ -133,9 +129,7 @@ const styledTag                 = withTheme( Tag );
 const styledTagInput            = withTheme( TagInput );
 const styledText                = withTheme( Text );
 const styledTextArea            = withTheme( TextArea );
-const styledTextInputWithIcon   = withTheme( TextInputWithIcon );
 const styledToggleButton        = withTheme( ToggleButton );
-const styledTooltip             = withTheme( Tooltip );
 const styledUploader            = withTheme( Uploader );
 const styledValuedTextInput     = withTheme( ValuedTextInput );
 
@@ -159,12 +153,12 @@ export {
     styledH2                    as H2,
     styledH3                    as H3,
     styledH4                    as H4,
-    styledIcon                  as Icon,
-    styledIconButton            as IconButton,
+    Icon,
+    IconButton,
     styledIconWithTooltip       as IconWithTooltip,
-    styledInputField            as InputField,
+    InputField,
     styledLabel                 as Label,
-    styledListBox               as ListBox,
+    ListBox,
     styledMessageBox            as MessageBox,
     styledModalDialog           as ModalDialog,
     styledModule                as Module,
@@ -207,9 +201,9 @@ export {
     styledText                  as Text,
     styledTextArea              as TextArea,
     TextInput,
-    styledTextInputWithIcon     as TextInputWithIcon,
+    TextInputWithIcon,
     styledToggleButton          as ToggleButton,
-    styledTooltip               as Tooltip,
+    Tooltip,
     styledUploader              as Uploader,
     styledValuedTextInput       as ValuedTextInput,
 };
@@ -234,12 +228,12 @@ export default {
     H2                : withTheme( H2 ),
     H3                : withTheme( H3 ),
     H4                : withTheme( H4 ),
-    Icon              : withTheme( Icon ),
-    IconButton        : withTheme( IconButton ),
+    Icon,
+    IconButton,
     IconWithTooltip   : withTheme( IconWithTooltip ),
-    InputField        : withTheme( InputField ),
+    InputField,
     Label             : withTheme( Label ),
-    ListBox           : withTheme( ListBox ),
+    ListBox,
     MessageBox        : withTheme( MessageBox ),
     ModalDialog       : withTheme( ModalDialog ),
     Module            : withTheme( Module ),
@@ -282,9 +276,9 @@ export default {
     Text              : withTheme( Text ),
     TextArea          : withTheme( TextArea ),
     TextInput,
-    TextInputWithIcon : withTheme( TextInputWithIcon ),
+    TextInputWithIcon,
     ToggleButton      : withTheme( ToggleButton ),
-    Tooltip           : withTheme( Tooltip ),
+    Tooltip,
     Uploader          : withTheme( Uploader ),
     ValuedTextInput   : withTheme( ValuedTextInput ),
 };

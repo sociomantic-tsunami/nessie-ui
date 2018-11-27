@@ -31,7 +31,6 @@ import { evalTheme }    from '../Theming/withTheme';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-
 export default class ComboBox extends Component
 {
     static contextType = ThemeContext;
@@ -473,8 +472,8 @@ export default class ComboBox extends Component
             textAlign,
         } = this.props;
 
+        const cssMap = evalTheme( this.context.ComboBox, this.props );
         const { dropdownPosition } = this.state;
-        const cssMap = evalTheme( this.context.Combobox, this.props );
 
         let dropdownContent;
 
