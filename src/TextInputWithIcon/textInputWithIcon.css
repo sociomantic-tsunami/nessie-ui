@@ -28,23 +28,11 @@
         margin-top: calc( -1 * ( var( --iconSize ) / 2 ) );
     }
 
-
-    .container
+    .input
     {
-        display:        flex;
-        flex-direction: row;
-        align-items:    center;
-
-        .input
-        {
-            flex:           1 1 auto;
-            min-width:      0;
-            margin-bottom:  0;
-        }
+        margin-bottom:  0;
     }
 }
-
-
 
 .position__left
 {
