@@ -32,6 +32,11 @@
     {
         margin-bottom:  0;
     }
+
+    .icon
+    {
+        pointer-events: none;
+    }
 }
 
 .position__topRight,

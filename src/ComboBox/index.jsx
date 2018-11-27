@@ -88,6 +88,7 @@ export default class ComboBox extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',

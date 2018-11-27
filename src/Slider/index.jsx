@@ -470,7 +470,6 @@ export default class Slider extends React.Component
 
         if ( index >= 0 ) // target is handle
         {
-            console.log( index );
             this.setTargetInput( index );
 
             addEventListener( event.type === 'touchstart' ?

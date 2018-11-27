@@ -13,6 +13,7 @@ import SimpleComponentDriver
     from '../Testing/CommonDrivers/simpleComponentDriver';
 
 
+
 export default class IconWithTooltipDriver extends SimpleComponentDriver
 {
     constructor( wrapper )

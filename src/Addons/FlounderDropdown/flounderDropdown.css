@@ -44,7 +44,7 @@
 
         &:focus
         {
-            outline:    none;
+            outline:        none;
         }
     }
 
@@ -55,6 +55,20 @@
         border-color:   var( --PC-BLUE );
         background:     var( --PC-WHITE );
         box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+    }
+
+    &:not(.headerMode)
+    {
+        .main:focus,
+        &.fakeHovered .main,
+        .mainWrapper.open .main
+        {
+            .selectedDisplayed
+            {
+                @extend %Nessie-SemiBold;
+                font-weight: 600;
+            }
+        }
     }
 
     .main:focus .arrowInner,
@@ -70,8 +84,8 @@
 
     .main.disabled
     {
-        background: var( --PC-GREY--L90 );
-        color:      var( --PC-GREY--L40 );
+        background:     var( --PC-GREY--L90 );
+        color:          var( --PC-GREY--L40 );
 
         border-color:   var( --PC-GREY--L70 );
         box-shadow:     none;
@@ -101,8 +115,7 @@
 
         .selectedDisplayed
         {
-            color:          var( --PC-GREY--D5 );
-            opacity:        0.5;
+            color:      var( --PC-GREY--D5 );
 
             &[data-value=""]
             {
@@ -114,7 +127,7 @@
 
         &.multipleTag
         {
-            background:         var( --PC-WHITE );
+            background: var( --PC-WHITE );
         }
     }
 
@@ -137,10 +150,11 @@
 
         background:     var( --PC-WHITE );
 
-        @extend         %Nessie-Regular;
+        @extend %Nessie-Regular;
 
         overflow:       auto;
         z-index:        50;
+
         @media( min-height: 768px )
         {
             max-height: 450px;
@@ -181,7 +195,7 @@
         {
             @extend %Nessie-RegularIt;
 
-            color:  var( --PC-GREY--L70 );
+            color:      var( --PC-GREY--L70 );
         }
     }
 
@@ -223,24 +237,23 @@
     .searchHidden,
     .placeholder
     {
-        display:            none;
+        display:    none;
     }
 
     .option,
     .header
     {
-        min-height:     var( --line-height-m );
-
         margin:         0;
 
-        padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
-        padding-bottom: calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
-        padding-left:   var( --spacing-2 );
-        padding-right:  var( --spacing-2 );
-
-        line-height:    var( --line-height-m );
+        line-height:    var( --line-height-s );
         font-size:      var( --typo-3 );
-        color:          var( --PC-GREY );
+        color:          var( --PC-GREY--D15 );
+    }
+
+    .option.selected:not(.description)
+    {
+        @extend %Nessie-Bold;
+        color:  var( --PC-BLUE );
     }
 
     .option,
@@ -248,47 +261,58 @@
     {
         cursor: pointer;
 
-        &:hover,
-        &:hover .description
+        padding-top:    var( --spacing-2 );
+        padding-bottom: var( --spacing-2 );
+        padding-left:   var( --spacing-2 );
+        padding-right:  var( --spacing-2 );
+
+        &:hover:not(.description)
         {
-            background-color: var( --PC-BLUE );
-            color:      var( --PC-WHITE );
+            background-color:   var( --PC-GREY--L95 );
+            color:              var( --PC-BLUE );
         }
 
         & > span,
         & > div
         {
-            pointer-events: none;
+            pointer-events:     none;
         }
     }
 
     .selected:not( .section )
     {
-        background: color( var( --PC-BLUE ) a( 10% ) );
+        background:     var( --PC-GREY--L95 );
+    }
+
+    .option:not(.optionWithDescription)
+    {
+        @extend %Nessie-SemiBold;
     }
 
     .option.optionWithDescription
     {
-        padding-top:    var( --spacing-1 );
-        padding-bottom: var( --spacing-1 );
-
         font-size:      var( --typo-5 );
         line-height:    var( --line-height-m );
-        color:          var( --PC-BLUE );
+        color:          var( --PC-GREY--D15 );
 
-        &:hover
+        padding-top:    var( --spacing-1 );
+
+        &.selected
         {
-            color:  var( --PC-WHITE );
+            @extend %Nessie-Bold;
+            color:      var( --PC-BLUE );
         }
     }
 
     .description
     {
-        @extend         %Nessie-Regular;
+        @extend %Nessie-Regular;
 
-        color:          var( --PC-GREY--D25 );
-        line-height:    var( --line-height-m );
+        color:          var( --PC-GREY--L40 );
+        line-height:    var( --line-height-s );
         font-size:      var( --typo-3 );
+
+        margin-top:     4px;
     }
 
 
@@ -302,19 +326,19 @@
 
     .option.noResults
     {
-        @extend         %Nessie-RegularIt;
+        @extend %Nessie-RegularIt;
     }
 
     .option.disabled,
     .error .option.disabled
     {
-        color:  var( --PC-GREY--L70 );
+        color:      var( --PC-GREY--L70 );
     }
 
     .optionWithDescription.disabled,
     .error .optionWithDescription.disabled
     {
-        color:  var( --PC-GREY--L40 );
+        color:      var( --PC-GREY--L40 );
 
         .description
         {
@@ -343,7 +367,7 @@
 
     .arrowInner
     {
-        background-image:  url( './images/down.svg' );
+        background-image:   url( './images/down.svg' );
     }
 
     .search
@@ -442,7 +466,7 @@
 
         &:focus
         {
-            outline:    none;
+            outline:        none;
 
             border-color:   var( --PC-BLUE );
             box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
@@ -471,22 +495,22 @@
     .loading,
     .loadingFailed
     {
-        display:                        flex;
-        pointer-events:                 none;
-        color:                          #777;
+        display:        flex;
+        pointer-events: none;
+        color:          #777;
     }
 
     .loading::after
     {
-        display:                        block;
-        content:                        'Loading';
-        animation:                      loading 1s infinite;
+        display:        block;
+        content:        'Loading';
+        animation:      loading 1s infinite;
     }
 
     .loadingFailed::after
     {
-        display:                        block;
-        content:                        'Data load failed';
+        display:        block;
+        content:        'Data load failed';
     }
 
     .section
@@ -496,28 +520,44 @@
 
     .header
     {
-        @extend %Nessie-RegularIt;
+        @extend %Nessie-SemiBoldIt;
 
         font-size:      var( --typo-3 );
         line-height:    var( --line-height-m );
-        color:          var( --PC-GREY--D25 );
+        color:          var( --PC-GREY--D15 );
+
+        padding-top:    calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
+        padding-bottom: calc( ( var( --optionHeight ) - var( --line-height-m ) ) / 2 );
+        padding-left:   var( --spacing-2 );
+        padding-right:  var( --spacing-2 );
+
+        min-height:     var( --line-height-m );
     }
 
     .option.optionIcon__approved,
     .option.optionIcon__declined,
+    .option.optionIcon__deactivated,
     .option.optionIcon__alert,
     .option.optionIcon__ended,
     .option.optionIcon__pending,
+    .option.optionIcon__paused,
     .option.optionIcon__error,
     .optionIcon__include,
     .optionIcon__exclude,
     .optionIcon__includeExclude
     {
-        padding-left:           calc( var( --spacing-2 ) + var( --iconSize ) + var( --spacing-2 ) );
+        padding-left:           calc( var( --iconSize ) * 3 );
 
         background-repeat:      no-repeat;
-        background-position:    var( --spacing-2 ) center;
+        background-position:    var( --iconSize ) 8px;
         background-size:        var( --iconSize );
+    }
+
+    .optionIcon__include,
+    .optionIcon__exclude,
+    .optionIcon__includeExclude
+    {
+        background-position:    var( --iconSize ) 18px;
     }
 
     .option.optionIcon__approved
@@ -528,6 +568,10 @@
     {
         background-image:   url("./images/declined.svg");
     }
+    .option.optionIcon__deactivated
+    {
+        background-image:   url("./images/deactivated.svg");
+    }
     .option.optionIcon__ended
     {
         background-image:   url("./images/ended.svg");
@@ -535,6 +579,10 @@
     .option.optionIcon__pending
     {
         background-image:   url("./images/pending.svg");
+    }
+    .option.optionIcon__paused
+    {
+        background-image:   url("./images/paused.svg");
     }
     .option.optionIcon__alert
     {
@@ -662,11 +710,14 @@
 
 .headerLevel__1 /* H1 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-4 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-4 ) + var( --spacing-1 ) );
 
-        font-size:      var( --typo-7 );
+        height:         var( --spacing-4 );
+
+        @extend %Nessie-Bold;
+        font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
         letter-spacing: 0.5px;
     }
@@ -681,13 +732,27 @@
         width:  calc( var( --spacing-4 ) );
         height: calc( var( --spacing-4 ) );
     }
+
+    /* Fixes IE 11 arrow alignment */
+    .main,
+    .main .selectedDisplayed {
+        float: left; /* Fixes arrow clickable state in Edge */
+    }
+
+    .arrow
+    {
+        display: inline-block;
+        vertical-align: top;
+    }
 }
 
 .headerLevel__2 /* H2 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-3 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-3 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-6 );
         line-height:    var( --line-height-l );
@@ -708,12 +773,14 @@
 
 .headerLevel__3 /* H3 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-4 );
-        line-height:    var( --line-height-l );
+        line-height:    var( --line-height-m );
         letter-spacing: 0.2px;
     }
 
@@ -731,12 +798,14 @@
 
 .headerLevel__4 /* H4 */
 {
-    .selectedDisplayed
+    .main .selectedDisplayed
     {
-        padding-right:  calc( var( --spacing-2 ) + var( --spacing-2 ) );
+        padding-right:  calc( var( --spacing-2 ) + var( --spacing-1 ) );
+
+        height:         var( --spacing-4 );
 
         font-size:      var( --typo-3 );
-        line-height:    var( --line-height-l );
+        line-height:    var( --line-height-s );
         letter-spacing: 0;
     }
 

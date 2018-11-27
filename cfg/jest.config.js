@@ -7,6 +7,9 @@ module.exports = {
     [
         '<rootDir>/src/**/tests.{js,jsx}'
     ],
+    transform: {
+       '^.+\\.(js|jsx)?$': 'babel-jest'
+     },
 
     // We should specify that jest should load all dependencies
     // from the ROOT node_modules folder. If not, and you have

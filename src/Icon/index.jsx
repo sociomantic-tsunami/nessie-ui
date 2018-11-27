@@ -83,6 +83,7 @@ Icon.propTypes =
         'dash',
         'dashboard',
         'declined',
+        'deactivated',
         'delete',
         'down',
         'download',

@@ -184,6 +184,7 @@ export default class InputField extends React.Component
         value          : '',
     };
 
+
     inputRef = React.createRef();
 
     focus()

@@ -26,6 +26,8 @@ const ScrollBar = ( {
     cssMap,
     onChange,
     onClickTrack,
+    onThumbDragStart,
+    onThumbDragEnd,
     onMouseOut,
     onMouseOver,
     orientation,
@@ -79,6 +81,11 @@ const ScrollBar = ( {
                 className   = { cssMap.thumb }
                 onMouseDown = { md =>
                 {
+                    if ( onThumbDragStart )
+                    {
+                        onThumbDragStart();
+                    }
+
                     if ( !onChange )
                     {
                         return;
@@ -103,7 +110,7 @@ const ScrollBar = ( {
 
                         const newPos = clamp(
                             scrollPos + scrollDiff,
-                            scrollMin, scrollMax
+                            scrollMin, scrollMax,
                         );
 
                         onChange( newPos );
@@ -112,6 +119,11 @@ const ScrollBar = ( {
                     addEventListener( 'mousemove', handleMouseMove );
                     addEventListener( 'mouseup', function handleMouseUp()
                     {
+                        if ( onThumbDragEnd )
+                        {
+                            onThumbDragEnd();
+                        }
+
                         removeEventListener( 'mousemove', handleMouseMove );
                         removeEventListener( 'mouseup', handleMouseUp );
                     } );
@@ -130,66 +142,76 @@ ScrollBar.propTypes =
     /**
      *  Extra CSS class name
      */
-    className    : PropTypes.string,
+    className        : PropTypes.string,
     /**
      *  CSS class map
      */
-    cssMap       : PropTypes.objectOf( PropTypes.string ),
+    cssMap           : PropTypes.objectOf( PropTypes.string ),
     /**
      *  orientation of the ScrollBar
      */
-    orientation  : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    orientation      : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     /**
      *  scroll position change callback function: ( scrollPos, e ) => { ... }
      */
-    onChange     : PropTypes.func,
+    onChange         : PropTypes.func,
     /**
      *  scroll track click callback function: ( scrollPos, e ) => { ... }
      */
-    onClickTrack : PropTypes.func,
+    onClickTrack     : PropTypes.func,
     /**
      *  mouse out callback function: e => { ... }
      */
-    onMouseOut   : PropTypes.func,
+    onMouseOut       : PropTypes.func,
     /**
      *  mouse over callback function: e => { ... }
      */
-    onMouseOver  : PropTypes.func,
+    onMouseOver      : PropTypes.func,
+    /**
+     *  Thumb drag start callback function: e => { ... }
+     */
+    onThumbDragStart : PropTypes.func,
+    /**
+     *  Thumb drag end callback function: e => { ... }
+     */
+    onThumbDragEnd   : PropTypes.func,
     /**
      *  id of the ScrollBox controlled by this ScrollBar
      */
-    scrollBoxId  : PropTypes.string,
+    scrollBoxId      : PropTypes.string,
     /**
      *  Max scroll value
      */
-    scrollMax    : PropTypes.number,
+    scrollMax        : PropTypes.number,
     /**
      *  Min scroll value
      */
-    scrollMin    : PropTypes.number,
+    scrollMin        : PropTypes.number,
     /**
      *  Current scroll position
      */
-    scrollPos    : PropTypes.number,
+    scrollPos        : PropTypes.number,
     /**
      *  Scroll thumb size (CSS unit)
      */
-    thumbSize    : PropTypes.string,
+    thumbSize        : PropTypes.string,
 };
 
 ScrollBar.defaultProps =
 {
-    className   : undefined,
-    cssMap      : styles,
-    onChange    : undefined,
-    onMouseOut  : undefined,
-    onMouseOver : undefined,
-    orientation : 'horizontal',
-    scrollBoxId : undefined,
-    scrollMax   : 0,
-    scrollMin   : 0,
-    scrollPos   : 0,
-    thumbSize   : '20px',
+    className        : undefined,
+    cssMap           : styles,
+    onChange         : undefined,
+    onMouseOut       : undefined,
+    onMouseOver      : undefined,
+    orientation      : 'horizontal',
+    onThumbDragStart : undefined,
+    onThumbDragEnd   : undefined,
+    scrollBoxId      : undefined,
+    scrollMax        : 0,
+    scrollMin        : 0,
+    scrollPos        : 0,
+    thumbSize        : '20px',
 };
 
 export default ScrollBar;
