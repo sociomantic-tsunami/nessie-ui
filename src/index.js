@@ -16,7 +16,6 @@ import Checkbox                 from './Checkbox';
 import CheckboxGroup            from './CheckboxGroup';
 import Column                   from './Column';
 import ComboBox                 from './ComboBox';
-import ComboBoxState            from './ComboBoxState';
 import DatePicker               from './DatePicker';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
@@ -58,6 +57,7 @@ import Row                      from './Row';
 import ScrollBar                from './ScrollBar';
 import ScrollBox                from './ScrollBox';
 import Section                  from './Section';
+import Select                   from './Select';
 import Slider                   from './Slider';
 import SliderGroup              from './SliderGroup';
 import Sorter                   from './Sorter';
@@ -90,7 +90,6 @@ export {
     CheckboxGroup,
     Column,
     ComboBox,
-    ComboBoxState,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -132,6 +131,7 @@ export {
     ScrollBar,
     ScrollBox,
     Section,
+    Select,
     Slider,
     SliderGroup,
     Sorter,
@@ -154,9 +154,8 @@ export {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
-
+    ValuedTextInput,
+};
 
 export default {
     Button,
@@ -166,7 +165,6 @@ export default {
     CheckboxGroup,
     Column,
     ComboBox,
-    ComboBoxState,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -208,6 +206,7 @@ export default {
     ScrollBar,
     ScrollBox,
     Section,
+    Select,
     Slider,
     SliderGroup,
     Sorter,
@@ -230,10 +229,10 @@ export default {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
+    ValuedTextInput,
+};
 
-//Addons
+// Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';
