@@ -26,15 +26,11 @@ import {
 } from './utils';
 import { generateId }   from '../utils';
 import withDropdown     from '../Addons/withDropdown';
-import ThemeContext     from '../Theming/ThemeContext';
-import { evalTheme }    from '../Theming/withTheme';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 export default class ComboBox extends Component
 {
-    static contextType = ThemeContext;
-
     static propTypes =
     {
         /*
@@ -472,7 +468,6 @@ export default class ComboBox extends Component
             textAlign,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.ComboBox, this.props );
         const { dropdownPosition } = this.state;
 
         let dropdownContent;
@@ -527,7 +522,6 @@ export default class ComboBox extends Component
                 autoComplete     = "off"
                 autoCorrect      = "off"
                 className        = { className }
-                cssMap           = { cssMap }
                 dropdownIsOpen   = { isOpen }
                 dropdownPosition = { dropdownPosition }
                 dropdownProps    = { {

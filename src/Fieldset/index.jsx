@@ -12,103 +12,114 @@ import PropTypes                  from 'prop-types';
 
 import { buildClassName }         from '../utils';
 import { Label, IconWithTooltip } from '../index';
+import ThemeContext               from '../Theming/ThemeContext';
+import { evalTheme }              from '../Theming/withTheme';
 
-
-const Fieldset = ( {
-    children,
-    className,
-    cssMap,
-    errorMessage,
-    errorMessageIsVisible,
-    errorMessagePosition,
-    hasError,
-    isDisabled,
-    label,
-    onMouseOut,
-    onMouseOver,
-} ) => (
-    <fieldset
-        className    = { buildClassName( className, cssMap ) }
-        onMouseEnter = { onMouseOver }
-        onMouseLeave = { onMouseOut }>
-        { label &&
-            <IconWithTooltip
-                className        = { cssMap.labelContainer }
-                iconIsVisible    = { !isDisabled && !!errorMessage && hasError }
-                iconPosition     = "right"
-                iconType         = "error"
-                message          = { errorMessage }
-                noWarn
-                tooltipIsVisible = { errorMessageIsVisible }
-                tooltipPosition  = { errorMessagePosition }>
-                <Label element = "legend">{ label }</Label>
-            </IconWithTooltip>
-        }
-        { children }
-    </fieldset>
-);
-
-Fieldset.propTypes =
+export default class Fieldset extends React.PureComponent
 {
-    /**
-     *  Fieldset label string or JSX node
-     */
-    label                 : PropTypes.node,
-    /**
-     *  Display as error/invalid
-     */
-    hasError              : PropTypes.bool,
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    errorMessage          : PropTypes.node,
-    /**
-    *  Display as disabled
-    */
-    isDisabled            : PropTypes.bool,
-    /**
-     *  Error Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-     *  Fieldset content (usually Checkboxes or Radios)
-     */
-    children              : PropTypes.node,
-    /**
-     *  onMouseOver callback function : ( e ) => { ... }
-     */
-    onMouseOver           : PropTypes.func,
-    /**
-     *  onMouseOut callback function : ( e ) => { ... }
-     */
-    onMouseOut            : PropTypes.func,
+    static contextType = ThemeContext;
 
-    /**
-    *  Error message position relative to the icon
-    */
-    errorMessagePosition : PropTypes.oneOf( [
-        'top',
-        'topLeft',
-        'topRight',
-        'bottom',
-        'bottomLeft',
-        'bottomRight',
-        'left',
-        'leftTop',
-        'leftBottom',
-        'right',
-        'rightTop',
-        'rightBottom',
-    ] ),
-};
+    static propTypes =
+    {
+        /**
+         *  Fieldset label string or JSX node
+         */
+        label                 : PropTypes.node,
+        /**
+         *  Display as error/invalid
+         */
+        hasError              : PropTypes.bool,
+        /**
+         *  Tooltip message text (string or JSX)
+         */
+        errorMessage          : PropTypes.node,
+        /**
+        *  Display as disabled
+        */
+        isDisabled            : PropTypes.bool,
+        /**
+         *  Error Tooltip is displayed
+         */
+        errorMessageIsVisible : PropTypes.bool,
+        /**
+         *  Fieldset content (usually Checkboxes or Radios)
+         */
+        children              : PropTypes.node,
+        /**
+         *  onMouseOver callback function : ( e ) => { ... }
+         */
+        onMouseOver           : PropTypes.func,
+        /**
+         *  onMouseOut callback function : ( e ) => { ... }
+         */
+        onMouseOut            : PropTypes.func,
 
-Fieldset.defaultProps =
-{
-    errorMessageIsVisible : false,
-    errorMessagePosition  : 'top',
-    hasError              : false,
-};
+        /**
+        *  Error message position relative to the icon
+        */
+        errorMessagePosition : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
+    };
 
-Fieldset.displayName = 'Fieldset';
+    static defaultProps =
+    {
+        errorMessageIsVisible : false,
+        errorMessagePosition  : 'top',
+        hasError              : false,
+    };
 
-export default Fieldset;
+    static displayName = 'Fieldset';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            errorMessage,
+            errorMessageIsVisible,
+            errorMessagePosition,
+            hasError,
+            isDisabled,
+            label,
+            onMouseOut,
+            onMouseOver,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.Fieldset, this.props );
+
+        return (
+            <fieldset
+                className    = { buildClassName( className, cssMap ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
+                { label &&
+                    <IconWithTooltip
+                        className        = { cssMap.labelContainer }
+                        iconIsVisible    = { !isDisabled &&
+                            !!errorMessage && hasError }
+                        iconPosition     = "right"
+                        iconType         = "error"
+                        message          = { errorMessage }
+                        noWarn
+                        tooltipIsVisible = { errorMessageIsVisible }
+                        tooltipPosition  = { errorMessagePosition }>
+                        <Label element = "legend">{ label }</Label>
+                    </IconWithTooltip>
+                }
+                { children }
+            </fieldset>
+        );
+    }
+}

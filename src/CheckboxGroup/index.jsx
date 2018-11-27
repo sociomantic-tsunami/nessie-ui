@@ -13,13 +13,9 @@ import PropTypes                        from 'prop-types';
 import { CheckableGroup }               from '../index';
 import { generateId }                   from '../utils';
 import { buildCheckboxesFromValues }    from './utils';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { evalTheme }                    from '../Theming/withTheme';
 
 export default class CheckboxGroup extends React.PureComponent
 {
-    static contextType = ThemeContext;
-
     static propTypes =
     {
         /**
@@ -137,10 +133,8 @@ export default class CheckboxGroup extends React.PureComponent
             } ) );
         }
 
-        const cssMap = evalTheme( this.context.Card, this.props );
-
         return (
-            <CheckableGroup { ...props } cssMap = { cssMap } id = { id }>
+            <CheckableGroup { ...props } id = { id }>
                 { items }
             </CheckableGroup>
         );

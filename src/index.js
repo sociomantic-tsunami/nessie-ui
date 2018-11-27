@@ -81,11 +81,6 @@ import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
 
-const styledDatePicker          = withTheme( DatePicker );
-const styledDragNDrop           = withTheme( DragNDrop );
-const styledDropdown            = withTheme( Dropdown );
-const styledFieldset            = withTheme( Fieldset );
-const styledGrid                = withTheme( Grid );
 const styledH1                  = withTheme( H1 );
 const styledH2                  = withTheme( H2 );
 const styledH3                  = withTheme( H3 );
@@ -142,13 +137,13 @@ export {
     CheckboxGroup,
     Column,
     ComboBox,
-    styledDatePicker            as DatePicker,
+    DatePicker,
     DateTimeInput,
     DimensionsInput,
-    styledDragNDrop             as DragNDrop,
-    styledDropdown              as Dropdown,
-    styledFieldset              as Fieldset,
-    styledGrid                  as Grid,
+    DragNDrop,
+    Dropdown,
+    Fieldset,
+    Grid,
     styledH1                    as H1,
     styledH2                    as H2,
     styledH3                    as H3,
@@ -217,13 +212,13 @@ export default {
     CheckboxGroup,
     Column,
     ComboBox,
-    DatePicker        : withTheme( DatePicker ),
+    DatePicker,
     DateTimeInput,
     DimensionsInput,
-    DragNDrop         : withTheme( DragNDrop ),
-    Dropdown          : withTheme( Dropdown ),
-    Fieldset          : withTheme( Fieldset ),
-    Grid              : withTheme( Grid ),
+    DragNDrop,
+    Dropdown,
+    Fieldset,
+    Grid,
     H1                : withTheme( H1 ),
     H2                : withTheme( H2 ),
     H3                : withTheme( H3 ),

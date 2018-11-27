@@ -18,6 +18,7 @@ import { buildClassName, buildDisplayName } from '../../utils';
 const withDropdown = Component =>
 {
     const ComponentWithDropdown = ( {
+        cssMap,
         dropdownIsOpen,
         dropdownPosition,
         dropdownProps,

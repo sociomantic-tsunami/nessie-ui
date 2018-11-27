@@ -12,9 +12,13 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import { Spinner }          from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
 export default class DragNDrop extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -38,7 +42,6 @@ export default class DragNDrop extends Component
     static defaultProps =
     {
         dragNDropState : 'default',
-        cssMap         : require( './dragNDrop.css' ),
     };
 
     static displayName = 'DragNDrop';
@@ -48,11 +51,11 @@ export default class DragNDrop extends Component
         const {
             children,
             className,
-            cssMap,
             dragNDropState,
             message,
         } = this.props;
 
+        const cssMap = evalTheme( this.context.DragNDrop, this.props );
         let dropzoneIsVisible   = false;
         let isUploading         = false;
 
@@ -90,7 +93,10 @@ export default class DragNDrop extends Component
         );
 
         return (
-            <div className = { buildClassName( className, cssMap, { dropzoneIsVisible } ) }>
+            <div
+                className = { buildClassName( className, cssMap, {
+                    dropzoneIsVisible,
+                } ) }>
                 <div className = { cssMap.content }>
                     { children }
                 </div>

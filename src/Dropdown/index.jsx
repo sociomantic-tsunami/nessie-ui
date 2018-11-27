@@ -11,43 +11,53 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
+import ThemeContext       from '../Theming/ThemeContext';
+import { evalTheme }      from '../Theming/withTheme';
 
+export default class Dropdown extends React.Component
+{
+    static contextType = ThemeContext;
 
-const Dropdown = ( {
-    children,
-    className,
-    cssMap,
-    hasError,
-    padding,
-    size,
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            error : hasError,
+    static propTypes = {
+        children  : PropTypes.node,
+        className : PropTypes.string,
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        hasError  : PropTypes.bool,
+        padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+        size      : PropTypes.oneOf( [ 'content', 'default' ] ),
+    };
+
+    static defaultProps = {
+        children  : undefined,
+        className : undefined,
+        hasError  : false,
+        padding   : 'none',
+        size      : 'default',
+    };
+
+    static displayName = 'Dropdown';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            hasError,
             padding,
             size,
-        } ) }>
-        { children }
-    </div>
-);
+        } = this.props;
 
-Dropdown.propTypes = {
-    children  : PropTypes.node,
-    className : PropTypes.string,
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    hasError  : PropTypes.bool,
-    padding   : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    size      : PropTypes.oneOf( [ 'content', 'default' ] ),
-};
+        const cssMap = evalTheme( this.context.Dropdown, this.props );
 
-Dropdown.defaultProps = {
-    children  : undefined,
-    className : undefined,
-    hasError  : false,
-    padding   : 'none',
-    size      : 'default',
-};
-
-Dropdown.displayName = 'Dropdown';
-
-export default Dropdown;
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    error : hasError,
+                    padding,
+                    size,
+                } ) }>
+                { children }
+            </div>
+        );
+    }
+}
