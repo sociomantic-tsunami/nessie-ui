@@ -14,9 +14,12 @@ import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
 import styles         from './checkbox.css';
 
-const Checkbox = ( { id = generateId( 'Checkbox' ), ...props } ) => (
-    <Checkable { ...props } id = { id } type = "checkbox" />
-);
+const Checkbox = React.forwardRef( ( {
+    id = generateId( 'Checkbox' ),
+    ...props
+}, ref ) => (
+    <Checkable { ...props } id = { id } type = "checkbox" ref = { ref } />
+) );
 
 Checkbox.propTypes =
 {
@@ -44,10 +47,6 @@ Checkbox.propTypes =
      *  HTML id attribute
      */
     id          : PropTypes.string,
-    /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef    : PropTypes.func,
     /**
      *  Display as checked (controlled input)
      */
@@ -106,9 +105,8 @@ Checkbox.defaultProps =
     forceHover  : false,
     hasError    : false,
     id          : undefined,
-    inputRef    : undefined,
-    isChecked   : undefined,
     isDisabled  : false,
+    isChecked   : false,
     isReadOnly  : false,
     label       : undefined,
     name        : undefined,

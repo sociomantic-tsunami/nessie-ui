@@ -15,7 +15,7 @@ import styles                              from './textInputWithIcon.css';
 import { IconButton, InputField, Tooltip } from '../index';
 
 
-const TextInputWithIcon = ( {
+const TextInputWithIcon = React.forwardRef( ( {
     aria,
     autoCapitalize,
     autoComplete,
@@ -31,7 +31,6 @@ const TextInputWithIcon = ( {
     iconTooltipPosition,
     iconType,
     id = generateId( 'TextInputWithIcon' ),
-    inputRef,
     inputType,
     isDisabled,
     isReadOnly,
@@ -54,7 +53,7 @@ const TextInputWithIcon = ( {
     spellCheck,
     textAlign,
     value,
-} ) =>
+}, ref ) =>
 {
     let alignText = textAlign;
 
@@ -82,7 +81,6 @@ const TextInputWithIcon = ( {
                 forceHover     = { forceHover }
                 hasError       = { hasError }
                 id             = { id }
-                inputRef       = { inputRef }
                 isDisabled     = { isDisabled }
                 isReadOnly     = { isReadOnlyInput || isReadOnly }
                 name           = { name }
@@ -94,6 +92,7 @@ const TextInputWithIcon = ( {
                 onKeyPress     = { onKeyPress }
                 onKeyUp        = { onKeyUp }
                 placeholder    = { placeholder }
+                ref            = { ref }
                 spellcheck     = { spellCheck }
                 textAlign      = { alignText }
                 type           = { inputType }
@@ -120,7 +119,7 @@ const TextInputWithIcon = ( {
             }
         </div>
     );
-};
+} );
 
 TextInputWithIcon.propTypes =
 {
@@ -258,10 +257,6 @@ TextInputWithIcon.propTypes =
      */
     id               : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef         : PropTypes.func,
-    /**
      *  HTML input type
      */
     inputType        : PropTypes.oneOf( [ 'text', 'password' ] ),
@@ -278,7 +273,7 @@ TextInputWithIcon.propTypes =
      */
     isReadOnlyButton : PropTypes.bool,
     /**
-     *  is read only
+     *  Display as read-only for TextInput
      */
     isReadOnlyInput  : PropTypes.bool,
     /**
@@ -368,7 +363,6 @@ TextInputWithIcon.defaultProps =
     iconTooltipPosition  : 'top',
     iconType             : 'none',
     id                   : undefined,
-    inputRef             : undefined,
     inputType            : 'text',
     isDisabled           : false,
     isReadOnly           : false,

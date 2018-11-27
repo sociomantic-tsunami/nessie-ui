@@ -14,11 +14,11 @@ import { generateId }        from '../utils';
 import { TextInputWithIcon } from '../index';
 
 
-const PasswordInput = ( {
+const PasswordInput = React.forwardRef( ( {
     id = generateId( 'PasswordInput' ),
     passwordIsVisible,
     ...props
-} ) => (
+}, ref ) => (
     <TextInputWithIcon
         { ...props }
         autoCapitalize = "off"
@@ -27,8 +27,9 @@ const PasswordInput = ( {
         iconType       = { passwordIsVisible ? 'hide' : 'show' }
         id             = { id }
         inputType      = { passwordIsVisible ? 'text' : 'password' }
+        ref            = { ref }
         spellCheck     = { false } />
-);
+) );
 
 
 PasswordInput.propTypes =
@@ -100,10 +101,6 @@ PasswordInput.propTypes =
      *  HTML id attribute
      */
     id                : PropTypes.string,
-    /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef          : PropTypes.func,
     /**
      *  Display as disabled
      */
@@ -214,7 +211,6 @@ PasswordInput.defaultProps =
     iconTooltipMessage    : undefined,
     iconTooltipPosition   : undefined,
     id                    : undefined,
-    inputRef              : undefined,
     isDisabled            : false,
     isReadOnly            : false,
     isReadOnlyButton      : undefined,

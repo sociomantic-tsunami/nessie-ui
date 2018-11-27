@@ -9,7 +9,7 @@
 
 /* global document */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { ScrollBox, Text }  from '../index';
@@ -28,7 +28,7 @@ import {
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
 
-export default class ComboBox extends Component
+export default class ComboBox extends React.Component
 {
     static propTypes =
     {
@@ -135,10 +135,6 @@ export default class ComboBox extends Component
          *  Placeholder text
          */
         inputPlaceholder  : PropTypes.string,
-        /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef          : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -267,7 +263,6 @@ export default class ComboBox extends Component
         id                   : undefined,
         inputIsReadOnly      : false,
         inputPlaceholder     : undefined,
-        inputRef             : undefined,
         inputValue           : undefined,
         isDisabled           : false,
         isMultiselect        : false,
@@ -424,6 +419,13 @@ export default class ComboBox extends Component
         }
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
 
     render()
     {
@@ -441,7 +443,6 @@ export default class ComboBox extends Component
             id = generateId( 'ComboBox' ),
             inputIsReadOnly,
             inputPlaceholder,
-            inputRef,
             inputValue,
             isDisabled,
             isMultiselect,
@@ -533,7 +534,6 @@ export default class ComboBox extends Component
                 iconPosition          = { iconPosition }
                 iconType              = { iconType }
                 id                    = { id }
-                inputRef              = { inputRef }
                 isDisabled            = { isDisabled }
                 isReadOnly            = { isReadOnly }
                 isReadOnlyButton      = { buttonIsReadOnly }
@@ -552,6 +552,7 @@ export default class ComboBox extends Component
                 onMouseOver           = { onMouseOver }
                 onMouseOverIcon       = { onMouseOverIcon }
                 placeholder           = { inputPlaceholder }
+                ref                   = { this.inputRef }
                 spellCheck            = { false }
                 textAlign             = { textAlign }
                 value                 = { inputValue }

@@ -14,9 +14,12 @@ import Checkable      from '../proto/Checkable';
 import { generateId } from '../utils';
 import styles         from './radio.css';
 
-const Radio = ( { id = generateId( 'Radio' ), ...props } ) => (
-    <Checkable { ...props } id = { id } type = "radio" />
-);
+const Radio = React.forwardRef( ( {
+    id = generateId( 'Radio' ),
+    ...props
+}, ref ) => (
+    <Checkable { ...props } id = { id } type = "radio" ref = { ref } />
+) );
 
 Radio.propTypes =
 {
@@ -44,10 +47,6 @@ Radio.propTypes =
      *  HTML id attribute
      */
     id          : PropTypes.string,
-    /**
-     * Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef    : PropTypes.func,
     /**
      *  Display as checked (controlled input)
      */
@@ -106,7 +105,6 @@ Radio.defaultProps =
     forceHover  : false,
     hasError    : false,
     id          : undefined,
-    inputRef    : undefined,
     isDisabled  : false,
     isChecked   : false,
     isReadOnly  : false,

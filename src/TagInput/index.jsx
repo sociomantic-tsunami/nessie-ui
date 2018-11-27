@@ -7,7 +7,7 @@
  *
  */
 
-import React, { Children, Component } from 'react';
+import React, { Children }            from 'react';
 import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
@@ -15,7 +15,7 @@ import { buildTagsFromValues }        from './utils';
 import styles                         from './tagInput.css';
 
 
-export default class TagInput extends Component
+export default class TagInput extends React.Component
 {
     static propTypes =
     {
@@ -47,10 +47,6 @@ export default class TagInput extends Component
          *  HTML id attribute
          */
         id           : PropTypes.string,
-        /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef     : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -129,7 +125,6 @@ export default class TagInput extends Component
         hasError     : false,
         height       : undefined,
         id           : undefined,
-        inputRef     : undefined,
         isDisabled   : false,
         isReadOnly   : false,
         isResizable  : false,
@@ -182,6 +177,13 @@ export default class TagInput extends Component
         this.setState( { isFocused: true } );
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -192,7 +194,6 @@ export default class TagInput extends Component
             hasError,
             height,
             id = generateId( 'TagInput' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             isResizable,
@@ -269,7 +270,7 @@ export default class TagInput extends Component
                     onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
-                    ref         = { inputRef }
+                    ref         = { this.inputRef }
                     type        = "text"
                     value       = { value } />
             </label>
