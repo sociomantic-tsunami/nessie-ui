@@ -11,21 +11,33 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const PageHeader = ( { children, cssMap, className } ) =>
-
-    <header className = { buildClassName( className, cssMap ) }>
-        { children }
-    </header>;
-
-PageHeader.propTypes =
+export default class PageHeader extends React.PureComponent
 {
-    /**
-     *  PageHeader content
-     */
-    children : PropTypes.node,
-};
+    static contextType = ThemeContext;
 
-PageHeader.displayName = 'PageHeader';
+    static propTypes =
+    {
+        /**
+         *  PageHeader content
+         */
+        children : PropTypes.node,
+    };
 
-export default PageHeader;
+    static displayName = 'PageHeader';
+
+    render()
+    {
+        const { children, className } = this.props;
+
+        const cssMap = evalTheme( this.context.PageHeader, this.props );
+
+        return (
+            <header className = { buildClassName( className, cssMap ) }>
+                { children }
+            </header>
+        );
+    }
+}

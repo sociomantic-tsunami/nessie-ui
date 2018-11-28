@@ -11,45 +11,54 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
+export default class ProgressIndicator extends React.PureComponent
+{
+    static contextType = ThemeContext;
 
-const ProgressIndicator = ( {
-    cssMap,
-    className,
-    currentPercentage,
-    showPercentage,
-} ) =>
+    static propTypes =
+    {
+        /**
+         *  Show percentage
+         */
+        showPercentage    : PropTypes.bool,
+        /**
+         *  Current percentage value
+         */
+        currentPercentage : PropTypes.number,
+    };
 
+    static defaultProps =
+    {
+        showPercentage : true,
+    };
 
-    <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.spinner }>
-            { showPercentage &&
-            <div className = { cssMap.percentageContainer }>
-                <span className = { cssMap.percentage } >
-                    { currentPercentage }%
-                </span>
+    static displayName = 'ProgressIndicator';
+
+    render()
+    {
+        const {
+            className,
+            currentPercentage,
+            showPercentage,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.ProgressIndicator, this.props );
+
+        return (
+            <div className = { buildClassName( className, cssMap ) }>
+                <div className = { cssMap.spinner }>
+                    { showPercentage &&
+                    <div className = { cssMap.percentageContainer }>
+                        <span className = { cssMap.percentage } >
+                            { currentPercentage }%
+                        </span>
+                    </div>
+                    }
+                </div>
             </div>
-            }
-        </div>
-    </div>;
-
-ProgressIndicator.propTypes =
-{
-    /**
-     *  Show percentage
-     */
-    showPercentage    : PropTypes.bool,
-    /**
-     *  Current percentage value
-     */
-    currentPercentage : PropTypes.number,
-};
-
-ProgressIndicator.defaultProps =
-{
-    showPercentage : true,
-};
-
-ProgressIndicator.displayName = 'ProgressIndicator';
-
-export default ProgressIndicator;
+        );
+    }
+}

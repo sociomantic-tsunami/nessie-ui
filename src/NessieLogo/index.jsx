@@ -10,17 +10,28 @@
 import React                from 'react';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
+export default class NessieLogo extends React.PureComponent
+{
+    static contextType = ThemeContext;
 
-const NessieLogo = ( { cssMap, className } ) =>
+    static propTypes = {};
 
-    <img
-        alt       = ""
-        className = { buildClassName( className, cssMap ) }
-        src       = "images/nessie.svg" />;
+    static displayName = 'NessieLogo';
 
-NessieLogo.propTypes = {};
+    render()
+    {
+        const { className } = this.props;
 
-NessieLogo.displayName = 'NessieLogo';
+        const cssMap = evalTheme( this.context.NessieLogo, this.props );
 
-export default NessieLogo;
+        return (
+            <img
+                alt       = ""
+                className = { buildClassName( className, cssMap ) }
+                src       = "images/nessie.svg" />
+        );
+    }
+}

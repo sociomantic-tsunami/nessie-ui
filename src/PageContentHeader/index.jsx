@@ -12,40 +12,60 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import { H1 }               from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const PageContentHeader = ( {
-    children,
-    cssMap,
-    className,
-    title,
-} ) =>
+export default class PageContentHeader extends React.PureComponent
 {
-    let header = <H1 className = { buildClassName( className, cssMap, { header: !!children } ) }>{ title }</H1>;
+    static contextType = ThemeContext;
 
-    if ( children )
+    static propTypes =
     {
-        header = (
-            <header className = { buildClassName( className, cssMap, { header: !!children } ) }>
-                { children }
-            </header>
-        );
+        /**
+         *  Page content header text (h1)
+         */
+        title    : PropTypes.string,
+        /**
+         *  Page content header custom content; overrides title
+         */
+        children : PropTypes.node,
+    };
+
+    static displayName = 'PageContentHeader';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            title,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.PageContentHeader, this.props );
+
+        let header = (
+            <H1
+                className = { buildClassName(
+                    className,
+                    cssMap,
+                    { header: !!children },
+                ) }>{ title }
+            </H1> );
+
+        if ( children )
+        {
+            header = (
+                <header
+                    className = { buildClassName(
+                        className,
+                        cssMap,
+                        { header: !!children },
+                    ) }>
+                    { children }
+                </header>
+            );
+        }
+
+        return header;
     }
-
-    return header;
-};
-
-PageContentHeader.propTypes =
-{
-    /**
-     *  Page content header text (h1)
-     */
-    title    : PropTypes.string,
-    /**
-     *  Page content header custom content; overrides title
-     */
-    children : PropTypes.node,
-};
-
-PageContentHeader.displayName = 'PageContentHeader';
-
-export default PageContentHeader;
+}

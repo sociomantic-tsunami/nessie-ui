@@ -11,34 +11,46 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-
-const NavList = ( {
-    children, className, cssMap, layout
-} ) => (
-
-    <ul className = { buildClassName( className, cssMap, { layout } ) }>
-        { children }
-    </ul>
-);
-
-NavList.propTypes =
+export default class NavList extends React.PureComponent
 {
-    /**
-     *  List content (NavItems)
-     */
-    children : PropTypes.node,
-    /**
-     *  How to lay out the list items
-     */
-    layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
-};
+    static contextType = ThemeContext;
 
-NavList.defaultProps =
-{
-    layout : 'horizontal',
-};
+    static propTypes =
+    {
+        /**
+         *  List content (NavItems)
+         */
+        children : PropTypes.node,
+        /**
+         *  How to lay out the list items
+         */
+        layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+    };
 
-NavList.displayName = 'NavList';
+    static defaultProps =
+    {
+        layout : 'horizontal',
+    };
 
-export default NavList;
+    static displayName = 'NavList';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            layout,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.NavList, this.props );
+
+        return (
+            <ul className = { buildClassName( className, cssMap, { layout } ) }>
+                { children }
+            </ul>
+        );
+    }
+}

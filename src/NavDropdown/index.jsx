@@ -12,43 +12,54 @@ import PropTypes           from 'prop-types';
 
 import { buildClassName }  from '../utils';
 import { NavList }         from '../index';
+import ThemeContext        from '../Theming/ThemeContext';
+import { evalTheme }       from '../Theming/withTheme';
 
-const NavDropdown = ( { children, className, cssMap } ) =>
+export default class NavDropdown extends React.PureComponent
 {
-    const items = Children.toArray( children ).map( child =>
-        React.cloneElement( child, { ...child.props, role: 'sub' } ) );
+    static contextType = ThemeContext;
 
-    return (
-        <NavList
-            className = { buildClassName( className, cssMap ) }
-            layout    = "vertical">
-            { items }
-        </NavList>
-    );
-};
+    static propTypes =
+    {
+        /**
+         *  Dropdown content (NavItems)
+         */
+        children  : PropTypes.node,
+        /**
+         *  CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
 
-NavDropdown.propTypes =
-{
-    /**
-     *  Dropdown content (NavItems)
-     */
-    children  : PropTypes.node,
-    /**
-     *  CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-};
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+    };
 
-NavDropdown.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-};
+    static displayName = 'NavDropdown';
 
-NavDropdown.displayName = 'NavDropdown';
+    render()
+    {
+        const {
+            children,
+            className,
+        } = this.props;
 
-export default NavDropdown;
+        const cssMap = evalTheme( this.context.NavBar, this.props );
+        const items = Children.toArray( children ).map( child =>
+            React.cloneElement( child, { ...child.props, role: 'sub' } ) );
+
+        return (
+            <NavList
+                className = { buildClassName( className, cssMap ) }
+                layout    = "vertical">
+                { items }
+            </NavList>
+        );
+    }
+}
