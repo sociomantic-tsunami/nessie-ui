@@ -67,7 +67,7 @@ describe( 'Tag', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -77,7 +77,7 @@ describe( 'Tag', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.driver().clickClose();

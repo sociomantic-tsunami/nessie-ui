@@ -24,55 +24,61 @@ describe( 'NavItemDriver', () =>
     {
         wrapper = mount( <NavItem /> );
     } );
+} );
 
-    describe( 'click()', () =>
+
+describe( 'NavItemDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
     {
-        test( 'should trigger onClick callback prop', () =>
-        {
-            const onClick = jest.fn().mockReset();
-            wrapper.setProps( { onClick } );
+        const props = {
+            label : 'Cthulhu',
+        };
 
-            wrapper.driver().click();
+        wrapper = mount(  <NavItem { ...props } /> );
+        driver = wrapper.driver();
+    } );
+
+
+    test( 'should trigger onClick callback once', () =>
+    {
+        const onClickSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onClick : onClickSpy,
+        } );
+
+        driver.click();
 
             expect( onClick ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOver()', () =>
+    test( 'should trigger onMouseOver callback once', () =>
     {
-        test( 'should trigger onMouseOver callback prop', () =>
-        {
-            const onMouseOver = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOver } );
+        const onMouseOverSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOver : onMouseOverSpy,
+        } );
 
-            wrapper.driver().mouseOver();
+        driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    test( 'should trigger onMouseOut callback once', () =>
     {
-        test( 'should trigger onMouseOut callback prop', () =>
-        {
-            const onMouseOut = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOut } );
+        const onMouseOutSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOut : onMouseOutSpy,
+        } );
 
-            wrapper.driver().mouseOut();
+        driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'getLabel()', () =>
-    {
-        test( 'should return the content of component label', () =>
-        {
-            wrapper.setProps( { label: <span>test label</span> } );
-
-            const label = wrapper.driver().getLabel();
-
-            expect( label.text() ).toBe( 'test label' );
         } );
     } );
 } );

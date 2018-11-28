@@ -157,7 +157,12 @@ Table.propTypes =
      *  Display table with borders
      */
     borders       : PropTypes.oneOf( [
-        'cells', 'rows', 'none', 'rowDivider', 'columnDivider' ] ),
+        'cells',
+        'rows',
+        'none',
+        'rowDivider',
+        'columnDivider',
+    ] ),
     /**
      *  Table content (TableRows containing TableCells; overrides values)
      */

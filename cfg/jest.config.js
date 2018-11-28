@@ -17,8 +17,8 @@ module.exports = {
     // versions of a module loaded (such as react).
     moduleDirectories :
     [
+        '<rootDir>/src',
         '<rootDir>/node_modules',
-        '<rootDir>/src'
     ],
 
     // Tell jest explicitly where to search for source files
@@ -26,12 +26,12 @@ module.exports = {
     // including local npm caches etc.
     roots :
     [
-        '<rootDir>/src'
+        '<rootDir>/src',
     ],
 
     setupFiles :
     [
-        '<rootDir>/src/Testing/setupTestEnvironment.js'
+        '<rootDir>/src/Testing/setupTestEnvironment.js',
     ],
 
     setupTestFrameworkScriptFile :
@@ -41,21 +41,21 @@ module.exports = {
         {},
         // Map module aliases to directories
         {
-            'nessie-ui'       : '<rootDir>/src/index',
-            'componentDriver' : '<rootDir>/src/Testing/index'
+            componentDriver : '<rootDir>/src/Testing/index',
+            'nessie-ui'     : '<rootDir>/src/index',
         },
         // Mock assets
         {
             '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
                 '<rootDir>/src/Testing/mocks/fileMock.js',
-            '\\.(css|less|scss)$' : 'identity-obj-proxy'
-        }
+            '\\.(css|less|scss)$' : 'identity-obj-proxy',
+        } /* eslint-disable-line comma-dangle */
     ),
 
     verbose : true,
 
     transformIgnorePatterns :
     [
-        'node_modules/(?!flounder)'
-    ]
+        'node_modules/(?!flounder)',
+    ],
 };

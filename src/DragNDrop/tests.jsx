@@ -35,12 +35,12 @@ describe( 'DragNDrop', () =>
         } );
     } );
 
-    describe( 'wrapperDriver', () =>
+    test( 'should find content', () =>
     {
-        test( 'should find content', () =>
-        {
-            wrapper.setProps( { children: <Text>something</Text> } );
-            expect( wrapper.driver().getContent() ).toHaveLength( 1 );
+        wrapper.setProps( {
+            children : <Text>something</Text>,
         } );
+
+        expect( wrapper.children() ).toHaveLength( 1 );
     } );
 } );

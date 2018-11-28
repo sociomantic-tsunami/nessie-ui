@@ -7,11 +7,11 @@
  *
  */
 
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import Icon                            from '../Icon';
+import { buildClassName }   from '../utils';
+import Icon                 from '../Icon';
 
 export default class Sorter extends Component
 {
@@ -45,18 +45,16 @@ export default class Sorter extends Component
         forceHover      : false,
         sort            : 'none',
         sorterIsVisible : true,
+        forceHover      : false,
+        cssMap          : require( './sorter.css' ),
     };
 
     constructor()
     {
         super();
-        this.state = { isHovered: false };
-        this.toggleHover = this.toggleHover.bind( this );
-    }
-
-    toggleHover()
-    {
-        this.setState( { isHovered: !this.state.isHovered } );
+        this.state = {
+            isHovered : false,
+        };
     }
 
     render()
@@ -79,8 +77,6 @@ export default class Sorter extends Component
                 className = { buildClassName( className, cssMap, {
                     desc          : sort,
                     fakeHovered   : forceHover,
-                    sort,
-                    sorterVisible : sorterIsVisible,
                 }  ) }
                 onClick = { onToggle }>
                 <div

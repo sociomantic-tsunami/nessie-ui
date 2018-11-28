@@ -10,73 +10,119 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
 
-import React                   from 'react';
-import { ReactWrapper, mount } from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { Checkbox }            from '../index';
+import { Checkbox }     from '../index';
 
-import CheckableGroup          from './index';
+import CheckableGroup   from './index';
 
 describe( 'CheckableGroupDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <CheckableGroup /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'getContent()', () =>
+
+    describe( 'change( index )', () =>
     {
-        test( 'should return all child nodes', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
+            const onChange = jest.fn();
             wrapper.setProps( {
+                label    : 'Tekeli-li',
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
+                onChange,
             } );
-            expect( wrapper.driver().getContent() ).toHaveLength( 2 );
+
+            wrapper.driver().change();
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should return an array of ReactWrappers', () =>
+
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
-                ],
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup cannot simulate change \
+since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
             } );
 
-            wrapper.driver().getContent().forEach( item =>
-                expect( item ).toBeInstanceOf( ReactWrapper ) );
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'CheckableGroup cannot simulate change \
+since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
-    describe( 'getSelectedValues()', () =>
-    {
-        test( 'should return an array of selected values', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Checkbox label = "one" value = "first check" isChecked />,
-                    <Checkbox label = "two" value = "second check" />
-                ],
-            } );
-
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'first check' ] );
-        } );
-    } );
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should call onMouseOver exactly once', () =>
+        test( 'should call onMouseOver once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
+            driver.mouseOver();
 
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
@@ -85,12 +131,12 @@ describe( 'CheckableGroupDriver', () =>
 
     describe( 'mouseOut()', () =>
     {
-        test( 'should call onMouseOut exactly once', () =>
+        test( 'should call onMouseOut once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
+            driver.mouseOut();
 
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );

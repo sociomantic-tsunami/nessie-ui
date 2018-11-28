@@ -33,14 +33,14 @@ const ModalDialog = ( {
         return <div className = "modalContainer" />;
     }
 
-    const handleOverlayClick = ( e ) => {
-        if( e.target !== e.currentTarget ) return;
+    const handleOverlayClick = ( e ) =>
+    {
+        if ( e.target !== e.currentTarget ) return;
 
-        if( onClickOverlay )
+        if ( onClickOverlay )
         {
             onClickOverlay( e );
         }
-
     };
 
     const isCarousel = type === 'carousel';
@@ -80,6 +80,7 @@ const ModalDialog = ( {
                     showNav : hasNavigation,
                     type,
                     wide    : isWide,
+                    showNav : hasNavigation,
                 } ) }
                 onClick   = { handleOverlayClick } >
                 { modalUI }
@@ -144,8 +145,6 @@ ModalDialog.defaultProps =
 {
     cssMap        : require( './modalDialog.css' ),
     hasNavigation : true,
-    isVisible     : false,
-    type          : 'default',
 };
 
 export default ModalDialog;

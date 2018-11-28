@@ -7,7 +7,8 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint no-console: 0*/
+/* eslint-disable no-magic-numbers, no-multi-str */
 
 import React      from 'react';
 import { mount }  from 'enzyme';
@@ -17,7 +18,7 @@ import { Column } from '../index';
 import Grid       from './index';
 
 
-describe( 'GridColumnDriver', () =>
+describe( 'Grid', () =>
 {
     let wrapper;
 
@@ -26,14 +27,20 @@ describe( 'GridColumnDriver', () =>
         wrapper = mount( <Grid /> );
     } );
 
-    describe( 'getContent', () =>
+    describe( 'render', () =>
     {
-        it( 'should return the content of the Grid or Column', () =>
+        test( 'should return the content of the Grid or Column', () =>
         {
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
 
-            const content = wrapper.driver().getContent();
+            const content = wrapper.children().first();
             expect( content.text() ).toBe( 'Lightning Strike' );
         } );
+    } );
+
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

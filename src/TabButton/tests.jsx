@@ -47,7 +47,9 @@ describe( 'TabButton Driver', () =>
         test( 'should trigger onClick', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( { onClick } );
+            wrapper.setProps( {
+                onClick,
+            } );
 
             wrapper.driver().click();
 
@@ -57,10 +59,13 @@ describe( 'TabButton Driver', () =>
         test( 'should return error if disabled', () =>
         {
             const onClick = jest.fn();
-            wrapper.setProps( { isDisabled: true, onClick } );
+            wrapper.setProps( {
+                onClick,
+                isDisabled : true,
+            } );
 
-            expect( () => wrapper.driver().click() ).toThrowError( 'Button \
-cannot be clicked because it is disabled' );
+            expect( () => driver.click() ).toThrowError( 'TabButton cannot be \
+clicked because it is disabled' );
         } );
     } );
 } );

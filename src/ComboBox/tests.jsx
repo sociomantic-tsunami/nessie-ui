@@ -14,6 +14,41 @@ import { mount }    from 'enzyme';
 
 import { ComboBox } from '../index';
 
+describe( 'ComboBox', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
+    {
+        wrapper  = mount( <ComboBox /> );
+    } );
+
+    describe( 'render()', () =>
+    {
+        test( 'should render ComboBox', () =>
+        {
+            expect( wrapper ).toHaveLength( 1 );
+        } );
+        test( 'should render ComboBox without label by default', () =>
+        {
+            let label;
+            wrapper.setProps( {
+                label,
+            } );
+            expect( wrapper.find( 'label' ).length ).toBe( 0 );
+        } );
+        test( 'should render ComboBox with label if defined', () =>
+        {
+            const label = 'label';
+            wrapper.setProps( {
+                label,
+            } );
+            expect( wrapper.find( 'label' ).length ).toBe( 1 );
+        } );
+    } );
+} );
+
+
 describe( 'ComboBoxDriver', () =>
 {
     let wrapper;
@@ -23,52 +58,68 @@ describe( 'ComboBoxDriver', () =>
         wrapper = mount( <ComboBox /> );
     } );
 
-    describe( 'blur', () =>
+    describe( 'blur()', () =>
     {
         test( 'should trigger onBlur() callback function once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( {
-                onBlur
+                onBlur,
             } );
 
-            wrapper.driver().blur();
-
+            driver.blur();
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'changeInput', () =>
+
+    describe( 'changeInput()', () =>
     {
         test( 'should trigger onChangeInput() callback function once', () =>
         {
             const onChangeInput = jest.fn();
             wrapper.setProps( {
-                onChangeInput
+                onChangeInput,
             } );
 
-            wrapper.driver().changeInput();
-
+            driver.changeInput();
             expect( onChangeInput ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'clickInput', () =>
+
+    describe( 'clickInput()', () =>
     {
         test( 'should trigger onClickInput() callback function once', () =>
         {
             const onClickInput = jest.fn();
             wrapper.setProps( {
-                onClickInput
+                onClickInput,
             } );
 
-            wrapper.driver().clickInput();
-
+            driver.clickInput();
             expect( onClickInput ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'clickOption', () =>
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should trigger onClickIcon callback function once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( {
+                onClickIcon,
+                'iconType' : 'up',
+            } );
+
+            driver.clickIcon();
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickOption()', () =>
     {
         test( 'should trigger onClickOption() callback function once', () =>
         {
@@ -80,17 +131,17 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
             wrapper.driver().clickOption();
@@ -99,82 +150,98 @@ describe( 'ComboBoxDriver', () =>
         } );
     } );
 
-    describe( 'focus', () =>
+
+    describe( 'focus()', () =>
     {
         test( 'should trigger onFocus() callback function once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( {
-                onFocus
+                onFocus,
             } );
 
-            wrapper.driver().focus();
-
+            driver.focus();
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'keyDown', () =>
+
+    describe( 'keyDown()', () =>
     {
         test( 'should trigger onKeyDown() callback function once', () =>
         {
             const onKeyDown = jest.fn();
             wrapper.setProps( {
-                onKeyDown
+                onKeyDown,
             } );
 
-            wrapper.driver().keyPress( 'abc' );
-
+            driver.keyDown();
             expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'keyPress', () =>
+
+    describe( 'keyPress()', () =>
     {
         test( 'should trigger onKeyPress() callback function once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( {
-                onKeyPress
+                onKeyPress,
             } );
 
-            wrapper.driver().keyPress( 'abc' );
-
+            driver.keyPress();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'keyUp', () =>
+
+    describe( 'keyUp()', () =>
     {
         test( 'should trigger onKeyUp() callback function once', () =>
         {
             const onKeyUp = jest.fn();
             wrapper.setProps( {
-                onKeyUp
+                onKeyUp,
             } );
 
-            wrapper.driver().keyPress( 'abc' );
-
+            driver.keyUp();
             expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut', () =>
+
+    describe( 'mouseOver()', () =>
     {
-        test( 'should trigger onMouseOut() callback function once', () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( {
+                onMouseOver,
+            } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
-                onMouseOut
+                onMouseOut,
             } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOutOption', () =>
+
+    describe( 'mouseOutOption()', () =>
     {
         test( 'should trigger onMouseOutOption() callback function once', () =>
         {
@@ -186,41 +253,26 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
-            wrapper.driver().mouseOutOption();
-
+            driver.mouseOutOption();
             expect( onMouseOutOption ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOver', () =>
-    {
-        test( 'should trigger onMouseOver() callback function once', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( {
-                onMouseOver
-            } );
 
-            wrapper.driver().mouseOver();
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'mouseOverOption', () =>
+    describe( 'mouseOverOption()', () =>
     {
         test( 'should trigger onMouseOverOption() callback function once', () =>
         {
@@ -232,26 +284,26 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
-            wrapper.driver().mouseOverOption();
-
+            driver.mouseOverOption();
             expect( onMouseOverOption ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'scroll', () =>
+
+    describe( 'scroll()', () =>
     {
         test( 'should trigger onScroll() callback function once', () =>
         {
@@ -263,21 +315,20 @@ describe( 'ComboBoxDriver', () =>
                         header  : 'Section 1',
                         options : [
                             { id: 'option1', text: 'Option 1' },
-                            { id: 'option2', text: 'Option 2' }
-                        ]
+                            { id: 'option2', text: 'Option 2' },
+                        ],
                     },
                     {
                         header  : 'Section 2',
                         options : [
                             { id: 'option4', text: 'Option 3' },
-                            { id: 'option5', text: 'Option 4' }
-                        ]
-                    }
-                ]
+                            { id: 'option5', text: 'Option 4' },
+                        ],
+                    },
+                ],
             } );
 
-            wrapper.driver().scroll( 0.3 );
-
+            driver.scroll( 0.3 );
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
     } );

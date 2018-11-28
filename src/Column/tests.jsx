@@ -25,14 +25,9 @@ describe( 'ColumnDriver', () =>
         wrapper = mount( <Column /> );
     } );
 
-    describe( 'Driver self-test', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        test( 'getContent', () =>
-        {
-            wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
-
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
-        } );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

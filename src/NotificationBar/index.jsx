@@ -27,25 +27,27 @@ const NotificationBar = ( {
 } ) =>
     (
         <div
-            className = { buildClassName( className, cssMap, {
-                top  : isFixed,
+            className  = { buildClassName( className, cssMap, {
                 type : messageType,
+                top  : isFixed,
             } ) }>
+
             <Icon
-                className = { cssMap.icon }
-                type      = "info" />
+                className  = { cssMap.info }
+                type       = "info" />
+
             { ( children || message ) &&
                 <Text className = { cssMap.message }>
                     { children || message }
                 </Text>
+
             }
-            { isDismissible &&
-                <IconButton
-                    className = { cssMap.close }
-                    iconType  = "close"
-                    onClick   = { onClickClose }
-                    role      = "inverted" />
-            }
+
+            { isDismissible && <IconButton
+                className  = { cssMap.close }
+                iconType   = "close"
+                iconTheme  = "button"
+                onClick    = { onClickClose } />}
         </div>
     );
 
@@ -65,7 +67,6 @@ NotificationBar.propTypes =
     messageType : PropTypes.oneOf( [
         'alert',
         'error',
-        'info',
         'success',
     ] ),
     /**
@@ -87,7 +88,6 @@ NotificationBar.defaultProps =
     cssMap        : require( './notificationBar.css' ),
     isDismissible : true,
     isFixed       : false,
-    messageType   : 'info',
 };
 
 export default NotificationBar;

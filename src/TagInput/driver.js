@@ -7,56 +7,124 @@
  *
  */
 
-import InputComponentDriver
-    from '../Testing/CommonDrivers/inputComponentDriver';
+import { Tag } from 'nessie-ui';
 
-export default class TagInputDriver extends InputComponentDriver
+const ERR = {
+    TAGINPUT_ERR : ( event, state ) =>
+        `TagInput cannot simulate ${event} since it is ${state}`,
+};
+
+export default class TagInputDriver
 {
     constructor( wrapper )
     {
-        super( wrapper );
         this.wrapper = wrapper;
     }
 
-    clickCloseTagByIndex( index = 0 )
+    clickClose( index = 0 )
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'clickClose', 'disabled' ) );
+        }
 
-        this.wrapper.find( 'Tag' ).at( index ).driver().clickClose();
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR
+                .TAGINPUT_ERR( 'clickClose', 'read only' ) );
+        }
+
+        this.wrapper.find( Tag ).at( index ).driver().clickClose();
         return this;
     }
 
-    clickCloseTagByLabel( label )
+    blur()
     {
-        if ( Array.isArray( label ) )
+        if ( this.wrapper.props().isDisabled )
         {
-            value.forEach( i =>
-            {
-                const item =
-                    this.wrapper.findWhere( n =>
-                        n.prop( 'label' ) === i ).first();
-                item.driver().clickClose();
-            } );
-        }
-        else
-        {
-            const item =
-                this.wrapper.findWhere( n =>
-                    n.prop( 'label' ) === label ).first();
-            item.driver().clickClose();
+            throw new Error( ERR.TAGINPUT_ERR( 'blur', 'disabled' ) );
         }
 
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'blur' );
         return this;
     }
 
-    mouseOut()
+    change( val )
     {
-        this.wrapper.simulate( 'mouseleave' );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'change', 'read only' ) );
+        }
+
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'change', { 'target': { val } } );
+        return this;
+    }
+
+    focus()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'focus', 'disabled' ) );
+        }
+
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'focus' );
+        return this;
+    }
+
+    keyPress( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyPress', { keyCode } );
+        return this;
+    }
+
+    keyDown( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'keyDown', 'disabled' ) );
+        }
+
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyDown', { keyCode } );
+        return this;
+    }
+
+    keyUp( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TAGINPUT_ERR( 'keyUp', 'disabled' ) );
+        }
+
+        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+            .simulate( 'keyUp', { keyCode } );
         return this;
     }
 
     mouseOver()
     {
         this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

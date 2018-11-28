@@ -60,7 +60,9 @@ describe( 'Slider', () =>
 
     test( 'should have slider__disabled if isDisabled = true', () =>
     {
-        const props = { isDisabled: true };
+        const props = {
+            isDisabled : true,
+        };
 
         wrapper = mount( <Slider { ...props } /> );
 
@@ -353,7 +355,7 @@ describe( 'SliderDriver', () =>
     beforeEach( () =>
     {
         const props = {
-            label    : 'Pikaboo',
+            label    : 'Cthulhu',
             maxValue : 200,
             minValue : 0,
             value    : [ 25, 75 ],
@@ -368,37 +370,120 @@ describe( 'SliderDriver', () =>
 
     describe( 'click()', () =>
     {
-        let clickSpy;
+        let onClick;
 
         beforeEach( () =>
         {
-            clickSpy = jest.fn();
-            wrapper.setProps( { onClick: clickSpy } );
+            onClick = jest.fn();
+            wrapper.setProps( { onClick } );
         } );
 
         test( 'should fire the onClick callback prop exactly once', () =>
         {
-            wrapper.driver().click();
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should not fire onClick when slider is disabled ', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( () => wrapper.driver().click() ).toThrow();
-            expect( clickSpy ).not.toBeCalled();
-        } );
 
-        test( 'should throw the expected error when slider is disabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true } );
-            const expectedError =
-                'Slider \'Pikaboo\' cannot be clicked since it is disabled';
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    wrapper.setProps( { isDisabled: true } );
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onClick since it is disabled';
 
-            expect( () => wrapper.driver().click() )
-                .toThrowError( expectedError );
+                    expect( () => driver.click() )
+                        .toThrowError( expectedError );
+                },
+            );
+
+            test( 'should not fire onClick when slider is disabled ', () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
         } );
     } );
+
+
+    describe( 'change( val, index = 0 )', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'Slider \'Cthulhu\' cannot \
+onChange since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                const expectedError = 'Slider \'Cthulhu\' cannot \
+onChange since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
 
     describe( 'blur( index )', () =>
     {
@@ -438,23 +523,39 @@ describe( 'SliderDriver', () =>
             expect( event.target ).toBe( input );
         } );
 
-        test( 'should not fire onBlur when slider is disabled ', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            expect( () => wrapper.driver().click() ).toThrow();
-            expect( onBlur ).not.toBeCalled();
-        } );
 
-        test( 'should throw the expected error when slider is disabled', () =>
+        describe( 'isDisabled', () =>
         {
-            wrapper.setProps( { isDisabled: true } );
-            const expectedError =
-                'Slider \'Pikaboo\' cannot be blurred since it is disabled';
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
 
-            expect( () => wrapper.driver().blur() )
-                .toThrowError( expectedError );
+            test( 'should not fire onBlur when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onBlur since it is disabled';
+
+                    expect( () => driver.blur() ).toThrowError( expectedError );
+                },
+            );
         } );
     } );
+
 
     describe( 'focus( index )', () =>
     {
@@ -493,7 +594,41 @@ describe( 'SliderDriver', () =>
 
             expect( event.target ).toBe( input );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onFocus since it is disabled';
+
+                    expect( () => driver.focus() )
+                        .toThrowError( expectedError );
+                },
+            );
+        } );
     } );
+
 
     describe( 'keyDown( keyCode, index )', () =>
     {
@@ -537,7 +672,41 @@ describe( 'SliderDriver', () =>
 
             expect( event.target ).toBe( input );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.keyDown();
+                }
+                catch ( error )
+                {
+                    expect( onKeyDown ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onKeyDown since it is disabled';
+
+                    expect( () => driver.keyDown() )
+                        .toThrowError( expectedError );
+                },
+            );
+        } );
     } );
+
 
     describe( 'keyUp( keyCode, index )', () =>
     {
@@ -581,7 +750,41 @@ describe( 'SliderDriver', () =>
 
             expect( event.target ).toBe( input );
         } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            beforeEach( () =>
+            {
+                wrapper.setProps( { isDisabled: true } );
+            } );
+
+            test( 'should not fire onFocus when slider is disabled ', () =>
+            {
+                try
+                {
+                    driver.keyUp();
+                }
+                catch ( error )
+                {
+                    expect( onKeyUp ).not.toBeCalled();
+                }
+            } );
+
+            test(
+                'should throw the expected error when slider is disabled',
+                () =>
+                {
+                    const expectedError = 'Slider \'Cthulhu\' cannot \
+onKeyUp since it is disabled';
+
+                    expect( () => driver.keyUp() )
+                        .toThrowError( expectedError );
+                },
+            );
+        } );
     } );
+
 
     describe( 'mouseOut()', () =>
     {
@@ -614,6 +817,7 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
+
     describe( 'mouseOver()', () =>
     {
         let onMouseOver;
@@ -636,7 +840,7 @@ describe( 'SliderDriver', () =>
             {
                 wrapper.driver().mouseOver();
                 const event = onMouseOver.mock.calls[ 0 ][ 0 ];
-                expect( event.target ).toBe( outer.instance() );
+                expect( event.target ).toBe( outer.getNode() );
             },
         );
 
@@ -647,6 +851,7 @@ describe( 'SliderDriver', () =>
             expect( onMouseOver ).toBeCalled();
         } );
     } );
+
 
     describe( 'mouseDown()', () =>
     {
@@ -679,6 +884,7 @@ describe( 'SliderDriver', () =>
         } );
     } );
 
+
     describe( 'mouseUp()', () =>
     {
         test( 'should fire handleUp on the component instance', () =>
@@ -688,59 +894,6 @@ describe( 'SliderDriver', () =>
 
             wrapper.driver().mouseUp();
             expect( handleUp ).toBeCalled();
-        } );
-    } );
-
-    describe( 'setInputValue( value )', () =>
-    {
-        let change;
-
-        test( 'should throw the expected error when slider is disabled', () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-            const expectedError =
-                'Slider \'Pikaboo\' cannot be changed since it is disabled';
-
-            expect( () => wrapper.driver().setInputValue() )
-                .toThrowError( expectedError );
-        } );
-
-        test(
-            'should call the change method exactly once if single value',
-            () =>
-            {
-                const driver = wrapper.driver();
-                change = jest.spyOn( driver, 'change' );
-
-                const value = 20;
-                driver.setInputValue( value );
-                expect( change ).toBeCalledTimes( 1 );
-            },
-        );
-
-        test(
-            'should call change method once per value if array of values',
-            () =>
-            {
-                const driver = wrapper.driver();
-                change = jest.spyOn( driver, 'change' );
-
-                const value = [ 10, 20 ];
-                driver.setInputValue( value );
-                expect( change ).toBeCalledTimes( 2 );
-            },
-        );
-
-        test( 'should call change with value and index for each value', () =>
-        {
-            const driver = wrapper.driver();
-            change = jest.spyOn( driver, 'change' );
-
-            const value = [ 10, 20 ];
-            driver.setInputValue( value );
-
-            value.forEach( ( val, i ) =>
-                expect( change.mock.calls[ i ] ).toEqual( [ val, i ] ) );
         } );
     } );
 } );

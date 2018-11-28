@@ -7,65 +7,131 @@
  *
  */
 
-import InputComponentDriver
-    from '../Testing/CommonDrivers/inputComponentDriver';
+const ERR = {
+    CHECKBOX_ERR : ( label, event, state ) =>
+        `Checkbox '${label}' cannot simulate ${event} since it is ${state}`,
+};
 
-export default class CheckboxDriver extends InputComponentDriver
+export default class CheckboxDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).input}` );
-        this.outer = wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` );
+        this.wrapper = wrapper;
+        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
     }
 
-    setChecked()
+    blur()
     {
-        const node = this.control.instance();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
-        if ( !node.checked )
+        if ( props.isDisabled )
         {
-            node.checked  = true;
-            this.control.simulate( 'change' );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'disabled' ) );
         }
 
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'read only' ) );
+        }
+
+        this.control.simulate( 'blur' );
         return this;
     }
 
-    setUnchecked()
+    focus()
     {
-        const node = this.control.instance();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
 
-        if ( node.checked )
+        if ( props.isDisabled )
         {
-            node.checked = false;
-            this.control.simulate( 'change' );
+            throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'disabled' ) );
         }
 
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'read only' ) );
+        }
+
+        this.control.simulate( 'focus' );
         return this;
     }
 
-    toggleChecked()
+    change()
     {
-        const node   = this.control.instance();
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+        const node   = this.control.getNode();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'read only' ) );
+        }
+
         node.checked = !node.checked;
         this.control.simulate( 'change' );
+
         return this;
     }
 
-    getChecked()
+    click()
     {
-        return this.control.instance().checked;
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'disabled' ) );
+        }
+
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'read only' ) );
+        }
+
+        this.control.simulate( 'click' );
+        return this;
     }
 
     mouseOver()
     {
-        this.outer.simulate( 'mouseenter' );
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR
+                .CHECKBOX_ERR( label, 'mouseOver', 'disabled' ) );
+        }
+
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.outer.simulate( 'mouseleave' );
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+            .text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR
+                .CHECKBOX_ERR( label, 'mouseOut', 'disabled' ) );
+        }
+
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

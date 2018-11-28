@@ -10,11 +10,10 @@
 /* global test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React          from 'react';
-import { shallow }    from 'enzyme';
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-import { Fieldset }   from '../index';
-
+import { Fieldset }         from '../index';
 
 describe( 'Fieldset', () =>
 {
@@ -65,6 +64,45 @@ describe( 'Fieldset', () =>
             {
                 expect( Fieldset.defaultProps.onMouseOver ).toBeUndefined();
             } );
+        } );
+    } );
+} );
+
+
+describe( 'FieldsetDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper  = mount( <Fieldset /> );
+        driver   = wrapper.driver();
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseEnter callback once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseEnter callback once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

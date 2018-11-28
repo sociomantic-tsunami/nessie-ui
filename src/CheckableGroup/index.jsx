@@ -69,7 +69,7 @@ const CheckableGroup = ( {
     return (
         <Fieldset
             className = { buildClassName( className, cssMap, {
-                layout
+                layout,
             } ) }
             errorMessage          = { errorMessage }
             errorMessageIsVisible = { errorMessageIsVisible }

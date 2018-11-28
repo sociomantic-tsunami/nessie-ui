@@ -7,14 +7,37 @@
  *
  */
 
-// eslint-disable-next-line max-len
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver';
+const ERR = {
+    ICON_ERR : ( event ) =>
+        `Icon cannot simulate ${event} because it is disabled`,
+};
 
-export default class IconDriver extends SimpleComponentDriver
+export default class IconDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
-        this.button = this.control;
+        this.wrapper = wrapper;
+    }
+
+    mouseOver()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.ICON_ERR( 'mouseOver' ) );
+        }
+
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.ICON_ERR( 'mouseOut' ) );
+        }
+
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

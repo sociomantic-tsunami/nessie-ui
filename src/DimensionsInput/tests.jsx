@@ -35,7 +35,7 @@ describe( 'DimensionsInput', () =>
             expect( wrapper.find( InputField ) ).toHaveLength( 2 );
         } );
 
-        it( 'should contain exactly one Text', () =>
+        test( 'should contain exactly one Text', () =>
         {
             expect( wrapper.find( Text ) ).toHaveLength( 1 );
         } );

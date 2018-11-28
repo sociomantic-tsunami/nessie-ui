@@ -13,8 +13,7 @@
 import React     from 'react';
 import { mount } from 'enzyme';
 
-import Dropdown  from './index';
-
+import Dropdown     from './index';
 
 describe( 'DropdownDriver', () =>
 {
@@ -25,14 +24,17 @@ describe( 'DropdownDriver', () =>
         wrapper = mount( <Dropdown /> );
     } );
 
-    describe( 'Wrapper driver getContent', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        test( 'should return the dropdown content', () =>
-        {
-            wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
 
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
-        } );
+    test( 'should return the dropdown content', () =>
+    {
+        wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
+
+        const content = wrapper.children();
+        expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
     } );
 } );

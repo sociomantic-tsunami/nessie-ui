@@ -7,33 +7,24 @@
  *
  */
 
+import { DatePicker, IconButton } from 'nessie-ui';
+
+
 export default class DateTimeInputDriver
 {
     constructor( wrapper )
     {
         this.wrapper     = wrapper;
-        this.cssMap      = wrapper.prop( 'cssMap' );
-        this.mainInput   = wrapper.find( 'input' ).at( 0 );
-        this.hourInput   = wrapper.find( 'input' ).at( 1 );
-        this.minuteInput = wrapper.find( 'input' ).at( 2 );
-        this.calendar    = wrapper.find( 'table button' );
-        this.prev        = wrapper.find( 'button' ).at( 1 );
-        this.next        = wrapper.find( 'button' ).at( 2 );
-    }
+        this.cssMap      = wrapper.children().props().cssMap;
 
-    getMainInputValue()
-    {
-        return this.mainInput.instance().value;
-    }
-
-    setMainInputValue( value )
-    {
-        const node = this.mainInput.instance();
-
-        node.value = value;
-        this.mainInput.simulate( 'change' );
-
-        return this;
+        this.mainInput   = wrapper.find( `.${this.cssMap.input}` );
+        this.hourInput   = wrapper.find( `.${this.cssMap.hour}` );
+        this.minuteInput = wrapper.find( `.${this.cssMap.min}` );
+        this.calendar    = wrapper.find( DatePicker );
+        this.icon        = wrapper.find( IconButton )
+            .findWhere( node => node.props().iconType === 'calendar' );
+        this.prev        = wrapper.find( `.${this.cssMap.prev}` );
+        this.next        = wrapper.find( `.${this.cssMap.next}` );
     }
 
     blurMainInput()
@@ -48,21 +39,6 @@ export default class DateTimeInputDriver
         return this;
     }
 
-    getHourInputValue()
-    {
-        return this.hourInput.instance().value;
-    }
-
-    setHourInputValue( value )
-    {
-        const node = this.hourInput.instance();
-
-        node.value = value;
-        this.hourInput.simulate( 'change' );
-
-        return this;
-    }
-
     blurHourInput()
     {
         this.hourInput.simulate( 'blur' );
@@ -72,21 +48,6 @@ export default class DateTimeInputDriver
     focusHourInput()
     {
         this.hourInput.simulate( 'focus' );
-        return this;
-    }
-
-    getMinuteInputValue()
-    {
-        return this.minuteInput.instance().value;
-    }
-
-    setMinuteInputValue( value )
-    {
-        const node = this.minuteInput.instance();
-
-        node.value = value;
-        this.minuteInput.simulate( 'change' );
-
         return this;
     }
 
@@ -104,15 +65,15 @@ export default class DateTimeInputDriver
 
     clickCellByIndex( index = 0 )
     {
-        const day = this.calendar.at( index );
-        day.simulate( 'click' );
+        this.calendar.driver().clickItem( index );
         return this;
     }
 
     clickCellByValue( value )
     {
-        const day = this.calendar.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
+        const day = this.calendar.findWhere( n => n.prop( 'value' ) === value )
+            .first();
+
         day.simulate( 'click' );
         return this;
     }
@@ -126,6 +87,42 @@ export default class DateTimeInputDriver
     clickNext()
     {
         this.next.simulate( 'click' );
+        return this;
+    }
+
+    clickIcon()
+    {
+        this.icon.driver().click();
+        return this;
+    }
+
+    keyPressInput( keyCode )
+    {
+        this.wrapper.driver().keyPressInput( keyCode );
+        return this;
+    }
+
+    keyPressHour( keyCode )
+    {
+        this.calendar.driver().keyPressHour( keyCode );
+        return this;
+    }
+
+    keyPressMinute( keyCode )
+    {
+        this.calendar.driver().keyPressMinute( keyCode );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }
