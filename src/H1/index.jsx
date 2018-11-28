@@ -11,42 +11,53 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
+import ThemeContext       from '../Theming/ThemeContext';
+import { evalTheme }      from '../Theming/withTheme';
 
-const H1 = ( {
-    cssMap,
-    className,
-    children,
-    title,
-    role,
-} ) => (
-    <h1 className = { buildClassName( className, cssMap, { role } ) }>
-        { children || title }
-    </h1>
-);
-
-H1.propTypes =
+export default class H1 extends React.PureComponent
 {
-    /**
-    *  Title text
-    */
-    title : PropTypes.string,
-    /**
-    *  Role (style) to apply to heading
-    */
-    role  : PropTypes.oneOf( [
-        'default',
-        'subtle',
-        'promoted',
-        'critical',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-H1.defaultProps =
-{
-    title : undefined,
-    role  : 'default',
-};
+    static propTypes =
+    {
+        /**
+        *  Title text
+        */
+        title : PropTypes.string,
+        /**
+        *  Role (style) to apply to heading
+        */
+        role  : PropTypes.oneOf( [
+            'default',
+            'subtle',
+            'promoted',
+            'critical',
+        ] ),
+    };
 
-H1.displayName = 'H1';
+    static defaultProps =
+    {
+        title : undefined,
+        role  : 'default',
+    };
 
-export default H1;
+    static displayName = 'H1';
+
+    render()
+    {
+        const {
+            className,
+            children,
+            title,
+            role,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.H1, this.props );
+
+        return (
+            <h1 className = { buildClassName( className, cssMap, { role } ) }>
+                { children || title }
+            </h1>
+        );
+    }
+}

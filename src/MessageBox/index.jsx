@@ -12,51 +12,58 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import Text                 from '../Text';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const MessageBox = ( {
-    cssMap,
-    className,
-    children,
-    message,
-    messageType,
-} ) =>
+export default class MessageBox extends React.PureComponent
 {
-    const messageNode = <Text className = { cssMap.text } >{ message }</Text>;
+    static contextType = ThemeContext;
 
-    return (
-        <div
-            className = { buildClassName( className, cssMap, {
-                type : messageType,
-            } ) }>
-            { children || messageNode }
-        </div>
-    );
-};
+    static propTypes =
+    {
+        /**
+        *  Message text
+        */
+        message     : PropTypes.string,
+        /**
+        *  Message type
+        */
+        messageType : PropTypes.oneOf( [
+            'default',
+            'alert',
+            'info',
+            'error',
+            'success',
+        ] ),
+    };
 
+    static defaultProps =
+    {
+        messageType : 'default',
+    };
 
-MessageBox.propTypes =
-{
-    /**
-    *  Message text
-    */
-    message     : PropTypes.string,
-    /**
-    *  Message type
-    */
-    messageType : PropTypes.oneOf( [
-        'default',
-        'alert',
-        'info',
-        'error',
-        'success',
-    ] ),
-};
+    static displayName = 'MessageBox';
 
-MessageBox.defaultProps =
-{
-    messageType : 'default',
-};
+    render()
+    {
+        const {
+            className,
+            children,
+            message,
+            messageType,
+        } = this.props;
 
-MessageBox.displayName = 'MessageBox';
+        const cssMap = evalTheme( this.context.MessageBox, this.props );
+        const messageNode =
+            <Text className = { cssMap.text } >{ message }</Text>;
 
-export default MessageBox;
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    type : messageType,
+                } ) }>
+                { children || messageNode }
+            </div>
+        );
+    }
+}

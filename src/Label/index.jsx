@@ -12,76 +12,84 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import Text                 from '../Text';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const Label = ( {
-    children,
-    className,
-    cssMap,
-    element,
-    htmlFor,
-    label,
-    noWrap,
-    onMouseOut,
-    onMouseOver,
-    overflowIsHidden,
-} ) =>
+export default class Label extends React.PureComponent
 {
-    const LabelElement = element || 'label';
+    static contextType = ThemeContext;
 
-    return (
-        <LabelElement
-            className    = { buildClassName( className, cssMap ) }
-            htmlFor      = { element === 'label' ? htmlFor : null }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut } >
-            <Text
-                className        = { cssMap.label }
-                noWrap           = { noWrap }
-                overflowIsHidden = { overflowIsHidden }>
-                { children || label }
-            </Text>
-        </LabelElement>
-    );
-};
-Label.propTypes =
-{
-    /**
-    *  Label text
-    */
-    label            : PropTypes.string,
-    /**
-     * HTML element to use (legend should only be used inside a Fieldset)
-     */
-    element          : PropTypes.oneOf( [ 'label', 'legend' ] ),
-    /**
-     *  ID of element this Label labels (HTML for attribute)
-     */
-    htmlFor          : PropTypes.string,
-    /**
-    *  Don’t wrap text to the next line
-    */
-    noWrap           : PropTypes.bool,
-    /**
-     *  Clip overflow
-     */
-    overflowIsHidden : PropTypes.bool,
-    /**
-     *  Mouse over callback function
-     */
-    onMouseOver      : PropTypes.func,
-    /**
-     *  Mouse out callback function
-     */
-    onMouseOut       : PropTypes.func,
-};
+    static propTypes =
+    {
+        /**
+        *  Label text
+        */
+        label            : PropTypes.string,
+        /**
+         * HTML element to use (legend should only be used inside a Fieldset)
+         */
+        element          : PropTypes.oneOf( [ 'label', 'legend' ] ),
+        /**
+         *  ID of element this Label labels (HTML for attribute)
+         */
+        htmlFor          : PropTypes.string,
+        /**
+        *  Don’t wrap text to the next line
+        */
+        noWrap           : PropTypes.bool,
+        /**
+         *  Clip overflow
+         */
+        overflowIsHidden : PropTypes.bool,
+        /**
+         *  Mouse over callback function
+         */
+        onMouseOver      : PropTypes.func,
+        /**
+         *  Mouse out callback function
+         */
+        onMouseOut       : PropTypes.func,
+    };
 
-Label.defaultProps =
-{
-    element          : 'label',
-    noWrap           : false,
-    overflowIsHidden : false,
-};
+    static defaultProps =
+    {
+        element          : 'label',
+        noWrap           : false,
+        overflowIsHidden : false,
+    };
 
-Label.displayName = 'Label';
+    static displayName = 'Label';
 
-export default Label;
+    render()
+    {
+        const {
+            children,
+            className,
+            element,
+            htmlFor,
+            label,
+            noWrap,
+            onMouseOut,
+            onMouseOver,
+            overflowIsHidden,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.Label, this.props );
+        const LabelElement = element || 'label';
+
+        return (
+            <LabelElement
+                className    = { buildClassName( className, cssMap ) }
+                htmlFor      = { element === 'label' ? htmlFor : null }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut } >
+                <Text
+                    className        = { cssMap.label }
+                    noWrap           = { noWrap }
+                    overflowIsHidden = { overflowIsHidden }>
+                    { children || label }
+                </Text>
+            </LabelElement>
+        );
+    }
+}

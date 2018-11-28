@@ -123,7 +123,7 @@ export default class Grid extends React.Component
             verticalAlign,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.Card, this.props );
+        const cssMap = evalTheme( this.context.Grid, this.props );
 
         if ( !noWarn )
         {

@@ -81,15 +81,6 @@ import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
 
-const styledH1                  = withTheme( H1 );
-const styledH2                  = withTheme( H2 );
-const styledH3                  = withTheme( H3 );
-const styledH4                  = withTheme( H4 );
-const styledIconWithTooltip     = withTheme( IconWithTooltip );
-const styledLabel               = withTheme( Label );
-const styledMessageBox          = withTheme( MessageBox );
-const styledModalDialog         = withTheme( ModalDialog );
-const styledModule              = withTheme( Module );
 const styledNavBar              = withTheme( NavBar );
 const styledNavDropdown         = withTheme( NavDropdown );
 const styledNavItem             = withTheme( NavItem );
@@ -144,19 +135,19 @@ export {
     Dropdown,
     Fieldset,
     Grid,
-    styledH1                    as H1,
-    styledH2                    as H2,
-    styledH3                    as H3,
-    styledH4                    as H4,
+    H1,
+    H2,
+    H3,
+    H4,
     Icon,
     IconButton,
-    styledIconWithTooltip       as IconWithTooltip,
+    IconWithTooltip,
     InputField,
-    styledLabel                 as Label,
+    Label,
     ListBox,
-    styledMessageBox            as MessageBox,
-    styledModalDialog           as ModalDialog,
-    styledModule                as Module,
+    MessageBox,
+    ModalDialog,
+    Module,
     styledNavBar                as NavBar,
     styledNavDropdown           as NavDropdown,
     styledNavItem               as NavItem,
@@ -219,19 +210,19 @@ export default {
     Dropdown,
     Fieldset,
     Grid,
-    H1                : withTheme( H1 ),
-    H2                : withTheme( H2 ),
-    H3                : withTheme( H3 ),
-    H4                : withTheme( H4 ),
+    H1,
+    H2,
+    H3,
+    H4,
     Icon,
     IconButton,
-    IconWithTooltip   : withTheme( IconWithTooltip ),
+    IconWithTooltip,
     InputField,
-    Label             : withTheme( Label ),
+    Label,
     ListBox,
-    MessageBox        : withTheme( MessageBox ),
-    ModalDialog       : withTheme( ModalDialog ),
-    Module            : withTheme( Module ),
+    MessageBox,
+    ModalDialog,
+    Module,
     NavBar            : withTheme( NavBar ),
     NavDropdown       : withTheme( NavDropdown ),
     NavItem           : withTheme( NavItem ),
