@@ -47,119 +47,174 @@ export default class Select extends Component
     static propTypes =
     {
         /**
+         *  Display as read-only for IconButton
+         */
+        buttonIsReadOnly     : PropTypes.bool,
+        /**
+         *  Extra CSS class name
+         */
+        className            : PropTypes.string,
+        /**
          *  default option selected
          */
-        defaultOption     : PropTypes.string,
+        defaultOption        : PropTypes.string,
         /**
          * Position of the dropdown relative to the text input
          */
-        dropdownPosition  : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        dropdownPosition     : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        /**
+         *  Display as hover when required from another component
+         */
+        forceHover           : PropTypes.bool,
+        /**
+         *  Display as error/invalid
+         */
+        hasError             : PropTypes.bool,
+        /**
+         *  Display Button icon as disabled
+         */
+        iconButtonIsDisabled : PropTypes.bool,
+        /**
+         *  Alignment of the icon
+         */
+        iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  HTML id attribute
          */
-        id                : PropTypes.string,
+        id                   : PropTypes.string,
+        /**
+         *  Placeholder text
+         */
+        inputPlaceholder     : PropTypes.string,
+        /**
+         *  Display as disabled
+         */
+        isDisabled           : PropTypes.bool,
+        /**
+         *  Dropdown list allows multiple selection
+         */
+        isMultiselect        : PropTypes.bool,
         /*
          * Dropdown is open
          */
-        isOpen            : PropTypes.bool,
+        isOpen               : PropTypes.bool,
+        /**
+         *  Display as read-only
+         */
+        isReadOnly           : PropTypes.bool,
         /**
          *  Blur callback function
          */
-        onBlur            : PropTypes.func,
+        onBlur               : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChangeInput     : PropTypes.func,
+        onChangeInput        : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon       : PropTypes.func,
+        onClickIcon          : PropTypes.func,
         /*
          * On click callback function for input
          */
-        onClickInput      : PropTypes.func,
+        onClickInput         : PropTypes.func,
         /*
          * On click callback function for dropdown option
          */
-        onClickOption     : PropTypes.func,
+        onClickOption        : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus           : PropTypes.func,
+        onFocus              : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown         : PropTypes.func,
+        onKeyDown            : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress        : PropTypes.func,
+        onKeyPress           : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp           : PropTypes.func,
+        onKeyUp              : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut        : PropTypes.func,
+        onMouseOut           : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon    : PropTypes.func,
+        onMouseOutIcon       : PropTypes.func,
         /*
          * On mouse out callback function for dropdown option
          */
-        onMouseOutOption  : PropTypes.func,
+        onMouseOutOption     : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver       : PropTypes.func,
+        onMouseOver          : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon   : PropTypes.func,
+        onMouseOverIcon      : PropTypes.func,
         /*
          * On mouse over callback function for dropdown option
          */
-        onMouseOverOption : PropTypes.func,
+        onMouseOverOption    : PropTypes.func,
         /*
          * On scroll dropdown list
          */
-        onScroll          : PropTypes.func,
+        onScroll             : PropTypes.func,
         /*
          * Dropdown list options
          */
-        options           : PropTypes.arrayOf( PropTypes.object ),
+        options              : PropTypes.arrayOf( PropTypes.object ),
         /**
          *  Selected option
          */
-        selectedOption    : PropTypes.string,
+        selectedOption       : PropTypes.string,
+        /**
+         *  Input text alignment
+         */
+        textAlign            : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     };
 
     static defaultProps =
     {
-        defaultOption     : undefined,
-        dropdownPosition  : 'auto',
-        id                : undefined,
-        isOpen            : undefined,
-        onBlur            : undefined,
-        onChangeInput     : undefined,
-        onClickIcon       : undefined,
-        onClickInput      : undefined,
-        onClickOption     : undefined,
-        onFocus           : undefined,
-        onKeyDown         : undefined,
-        onKeyPress        : undefined,
-        onKeyUp           : undefined,
-        onMouseOut        : undefined,
-        onMouseOutIcon    : undefined,
-        onMouseOutOption  : undefined,
-        onMouseOver       : undefined,
-        onMouseOverIcon   : undefined,
-        onMouseOverOption : undefined,
-        onScroll          : undefined,
-        options           : undefined,
-        selectedOption    : undefined,
+        buttonIsReadOnly     : undefined,
+        className            : undefined,
+        defaultOption        : undefined,
+        dropdownPosition     : 'auto',
+        forceHover           : false,
+        hasError             : false,
+        iconButtonIsDisabled : undefined,
+        iconPosition         : undefined,
+        id                   : undefined,
+        inputPlaceholder     : undefined,
+        isDisabled           : false,
+        isMultiselect        : false,
+        isOpen               : undefined,
+        isReadOnly           : undefined,
+        onBlur               : undefined,
+        onChangeInput        : undefined,
+        onClickIcon          : undefined,
+        onClickInput         : undefined,
+        onClickOption        : undefined,
+        onFocus              : undefined,
+        onKeyDown            : undefined,
+        onKeyPress           : undefined,
+        onKeyUp              : undefined,
+        onMouseOut           : undefined,
+        onMouseOutIcon       : undefined,
+        onMouseOutOption     : undefined,
+        onMouseOver          : undefined,
+        onMouseOverIcon      : undefined,
+        onMouseOverOption    : undefined,
+        onScroll             : undefined,
+        options              : undefined,
+        selectedOption       : undefined,
+        textAlign            : 'auto',
     };
 
     constructor()
@@ -324,7 +379,7 @@ export default class Select extends Component
         {
             callback( e );
         }
-        
+
         this.setState( prevState =>
         {
             const activeOption = getOption(
@@ -339,7 +394,17 @@ export default class Select extends Component
     render()
     {
         const {
+            buttonIsReadOnly,
+            className,
             dropdownPosition,
+            forceHover,
+            hasError,
+            iconButtonIsDisabled,
+            iconPosition,
+            inputPlaceholder,
+            isDisabled,
+            isMultiselect,
+            isReadOnly,
             onBlur,
             onChangeInput,
             onFocus,
@@ -352,6 +417,7 @@ export default class Select extends Component
             onMouseOverIcon,
             onScroll,
             options,
+            textAlign,
         } = this.props;
 
         const {
@@ -364,31 +430,42 @@ export default class Select extends Component
 
         return (
             <ComboBox
-                activeOption      = { activeOption }
-                dropdownPosition  = { dropdownPosition }
-                iconType          = { isOpen ? 'up' : 'down' }
-                id                = { id }
+                activeOption          = { activeOption }
+                buttonIsReadOnly      = { buttonIsReadOnly }
+                className             = { className }
+                dropdownPosition      = { dropdownPosition }
+                forceHover            = { forceHover }
+                hasError              = { hasError }
+                iconButtonIsDisabled  = { iconButtonIsDisabled }
+                iconPosition          = { iconPosition }
+                iconType              = { isOpen ? 'up' : 'down' }
+                id                    = { id }
                 inputIsReadOnly
-                inputValue        = { inputValue }
-                isOpen            = { isOpen }
-                onBlur            = { onBlur }
-                onChangeInput     = { onChangeInput }
-                onClickIcon       = { this.handleClickIcon }
-                onClickInput      = { this.handleClickInput }
-                onClickOption     = { this.handleClickOption }
-                onFocus           = { onFocus }
-                onKeyDown         = { this.handleKeyDown }
-                onKeyPress        = { onKeyPress }
-                onKeyUp           = { onKeyUp }
-                onMouseOut        = { onMouseOut }
-                onMouseOutIcon    = { onMouseOutIcon }
-                onMouseOutOption  = { onMouseOutOption }
-                onMouseOver       = { onMouseOver }
-                onMouseOverIcon   = { onMouseOverIcon }
-                onMouseOverOption = { this.handleMouseOverOption }
-                onScroll          = { onScroll }
-                options           = { options }
-                selection         = { selection } />
+                inputPlaceholder      = { inputPlaceholder }
+                inputValue            = { inputValue }
+                isDisabled            = { isDisabled }
+                isMultiselect         = { isMultiselect }
+                isOpen                = { isOpen }
+                isReadOnly            = { isReadOnly }
+                onBlur                = { onBlur }
+                onChangeInput         = { onChangeInput }
+                onClickIcon           = { this.handleClickIcon }
+                onClickInput          = { this.handleClickInput }
+                onClickOption         = { this.handleClickOption }
+                onFocus               = { onFocus }
+                onKeyDown             = { this.handleKeyDown }
+                onKeyPress            = { onKeyPress }
+                onKeyUp               = { onKeyUp }
+                onMouseOut            = { onMouseOut }
+                onMouseOutIcon        = { onMouseOutIcon }
+                onMouseOutOption      = { onMouseOutOption }
+                onMouseOver           = { onMouseOver }
+                onMouseOverIcon       = { onMouseOverIcon }
+                onMouseOverOption     = { this.handleMouseOverOption }
+                onScroll              = { onScroll }
+                options               = { options }
+                selection             = { selection }
+                textAlign             = { textAlign } />
 
         );
     }
