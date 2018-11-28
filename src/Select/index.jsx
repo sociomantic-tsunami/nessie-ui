@@ -130,6 +130,10 @@ export default class Select extends Component
          * Dropdown list options
          */
         options           : PropTypes.arrayOf( PropTypes.object ),
+        /**
+         *  Selected option
+         */
+        selectedOption    : PropTypes.string,
     };
 
     static defaultProps =
@@ -137,7 +141,7 @@ export default class Select extends Component
         defaultOption     : undefined,
         dropdownPosition  : 'auto',
         id                : undefined,
-        isOpen            : false,
+        isOpen            : undefined,
         onBlur            : undefined,
         onChangeInput     : undefined,
         onClickIcon       : undefined,
@@ -155,6 +159,7 @@ export default class Select extends Component
         onMouseOverOption : undefined,
         onScroll          : undefined,
         options           : undefined,
+        selectedOption    : undefined,
     };
 
     constructor()
@@ -180,23 +185,28 @@ export default class Select extends Component
 
     static getDerivedStateFromProps( props, state )
     {
+        let { flatOptions } = state;
+        const { defaultOption, selectedOption } = props;
+
+        const optionId = selectedOption || state.selection || defaultOption;
+
         if ( props.options !== state.options )
         {
-            const flatOptions = props.options.flatMap( o => o.options || o );
-
-            let defaultOption = getOption( props.defaultOption, flatOptions );
-
-            defaultOption = defaultOption || flatOptions[ 0 ];
-
-            return {
-                flatOptions,
-                id         : props.id || generateId( 'Select' ),
-                inputValue : defaultOption.text,
-                isOpen     : props.isOpen,
-                options    : props.options,
-                selection  : defaultOption.id,
-            };
+            flatOptions = props.options.flatMap( o => o.options || o );
         }
+
+        const currentOption = getOption( optionId, flatOptions ) ||
+                                                               flatOptions[ 0 ];
+
+        return {
+            flatOptions,
+            id         : props.id || state.id || generateId( 'Select' ),
+            inputValue : currentOption.text,
+            isOpen     : typeof props.isOpen === 'undefined' ? state.isOpen :
+                props.isOpen,
+            options   : currentOption.options,
+            selection : currentOption.id,
+        };
     }
 
     handleClickIcon( e )
@@ -246,6 +256,13 @@ export default class Select extends Component
 
     handleKeyDown( e )
     {
+        const callback = this.props.onKeyDown;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
         const { key } = e;
 
         if ( key === 'ArrowUp' || key === 'ArrowDown' )
@@ -301,6 +318,13 @@ export default class Select extends Component
 
     handleMouseOverOption( e, id )
     {
+        const callback = this.props.onMouseOverOption;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+        
         this.setState( prevState =>
         {
             const activeOption = getOption(
@@ -318,10 +342,7 @@ export default class Select extends Component
             dropdownPosition,
             onBlur,
             onChangeInput,
-            onClickIcon,
-            onClickInput,
             onFocus,
-            onKeyDown,
             onKeyPress,
             onKeyUp,
             onMouseOut,
