@@ -11,49 +11,59 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
+import ThemeContext       from '../Theming/ThemeContext';
+import { evalTheme }      from '../Theming/withTheme';
 
-
-const Tab = ( {
-    children,
-    className,
-    cssMap,
-    label,
-} ) => (
-    <div
-        className  = { buildClassName( className, cssMap ) }
-        aria-label = { label }
-        role       = "tabpanel">
-        { children }
-    </div>
-);
-
-Tab.propTypes =
+export default class Tab extends React.PureComponent
 {
-    /**
-     * Section content
-     */
-    children  : PropTypes.node,
-    /**
-     * Extra CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Label to show in TabButton of this tab
-     */
-    label     : PropTypes.string,
-};
+    static contextType = ThemeContext;
 
-Tab.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-    label     : undefined,
-};
+    static propTypes =
+    {
+        /**
+         *  Section content
+         */
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Label to show in TabButton of this tab
+         */
+        label     : PropTypes.string,
+    };
 
-Tab.displayName = 'Tab';
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        label     : undefined,
+    };
 
-export default Tab;
+    static displayName = 'Tab';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            label,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.Tab, this.props );
+
+        return (
+            <div
+                className  = { buildClassName( className, cssMap ) }
+                aria-label = { label }
+                role       = "tabpanel">
+                { children }
+            </div>
+        );
+    }
+}

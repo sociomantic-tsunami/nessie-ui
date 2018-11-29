@@ -7,29 +7,43 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
+import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
-const Spinner = ( { cssMap, className, size } ) =>
-    <div className = { buildClassName( className, cssMap, { size } ) } />;
-
-Spinner.propTypes =
+export default class Spinner extends React.PureComponent
 {
-    /**
-     *  Size of the Spinner
-     */
-    size : PropTypes.oneOf( [ 'small',
-        'big',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-Spinner.defaultProps =
-{
-    size : 'small',
-};
+    static propTypes =
+    {
+        /**
+         *  Size of the Spinner
+         */
+        size : PropTypes.oneOf( [ 'small',
+            'big',
+        ] ),
+    };
 
-Spinner.displayName = 'Spinner';
+    static defaultProps =
+    {
+        size : 'small',
+    };
 
-export default Spinner;
+    static displayName = 'Spinner';
+
+    render()
+    {
+        const { className, size } = this.props;
+
+        const cssMap = evalTheme( this.context.Spinner, this.props );
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, { size } ) } />
+        );
+    }
+}

@@ -14,10 +14,14 @@ import isEqual                      from 'lodash.isequal';
 import { createScrollHandler }      from './utils';
 import { buildClassName }           from '../utils';
 import { IconButton, ScrollBar }    from '../index';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { evalTheme }                from '../Theming/withTheme';
 
 
 export default class ScrollBox extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -502,7 +506,6 @@ export default class ScrollBox extends Component
             children,
             className,
             contentWidth,
-            cssMap,
             height,
             onMouseOut,
             onMouseOver,
@@ -511,6 +514,8 @@ export default class ScrollBox extends Component
             scrollBarsAreVisible,
             scrollIndicatorVariant,
         } = this.props;
+
+        const cssMap = evalTheme( this.context.ScrollBox, this.props );
 
         return (
             <div

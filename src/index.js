@@ -81,19 +81,6 @@ import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
 
-const styledScrollBox           = withTheme( ScrollBox );
-const styledSection             = withTheme( Section );
-const styledSlider              = withTheme( Slider );
-const styledSliderGroup         = withTheme( SliderGroup );
-const styledSorter              = withTheme( Sorter );
-const styledSpinner             = withTheme( Spinner );
-const styledStatusIndicator     = withTheme( StatusIndicator );
-const styledSwitch              = withTheme( Switch );
-const styledTab                 = withTheme( Tab );
-const styledTabButton           = withTheme( TabButton );
-const styledTable               = withTheme( Table );
-const styledTableCell           = withTheme( TableCell );
-const styledTableRow            = withTheme( TableRow );
 const styledTabs                = withTheme( Tabs );
 const styledTag                 = withTheme( Tag );
 const styledTagInput            = withTheme( TagInput );
@@ -151,20 +138,20 @@ export {
     RadioGroup,
     Row,
     ScrollBar,
-    styledScrollBox             as ScrollBox,
-    styledSection               as Section,
-    styledSlider                as Slider,
-    styledSliderGroup           as SliderGroup,
-    styledSorter                as Sorter,
-    styledSpinner               as Spinner,
+    ScrollBox,
+    Section,
+    Slider,
+    SliderGroup,
+    Sorter,
+    Spinner,
     SpriteMap,
-    styledStatusIndicator       as StatusIndicator,
-    styledSwitch                as Switch,
-    styledTab                   as Tab,
-    styledTabButton             as TabButton,
-    styledTable                 as Table,
-    styledTableCell             as TableCell,
-    styledTableRow              as TableRow,
+    StatusIndicator,
+    Switch,
+    Tab,
+    TabButton,
+    Table,
+    TableCell,
+    TableRow,
     styledTabs                  as Tabs,
     styledTag                   as Tag,
     styledTagInput              as TagInput,
@@ -226,20 +213,20 @@ export default {
     RadioGroup,
     Row,
     ScrollBar,
-    ScrollBox       : withTheme( ScrollBox ),
-    Section         : withTheme( Section ),
-    Slider          : withTheme( Slider ),
-    SliderGroup     : withTheme( SliderGroup ),
-    Sorter          : withTheme( Sorter ),
-    Spinner         : withTheme( Spinner ),
+    ScrollBox,
+    Section,
+    Slider,
+    SliderGroup,
+    Sorter,
+    Spinner,
     SpriteMap,
-    StatusIndicator : withTheme( StatusIndicator ),
-    Switch          : withTheme( Switch ),
-    Tab             : withTheme( Tab ),
-    TabButton       : withTheme( TabButton ),
-    Table           : withTheme( Table ),
-    TableCell       : withTheme( TableCell ),
-    TableRow        : withTheme( TableRow ),
+    StatusIndicator,
+    Switch,
+    Tab,
+    TabButton,
+    Table,
+    TableCell,
+    TableRow,
     Tabs            : withTheme( Tabs ),
     Tag             : withTheme( Tag ),
     TagInput        : withTheme( TagInput ),

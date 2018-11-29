@@ -7,14 +7,18 @@
  *
  */
 
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import { Icon }                        from '../index';
+import { buildClassName }   from '../utils';
+import { Icon }             from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { evalTheme }        from '../Theming/withTheme';
 
 export default class Sorter extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -65,12 +69,13 @@ export default class Sorter extends Component
         const {
             children,
             className,
-            cssMap,
             forceHover,
             onToggle,
             sort,
             sorterIsVisible,
         } = this.props;
+
+        const cssMap = evalTheme( this.context.Sorter, this.props );
 
         const { isHovered } = this.state;
         const fakeHovered = isHovered || forceHover;

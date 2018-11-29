@@ -13,10 +13,13 @@ import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
 import { IconWithTooltip, Label }       from '../index';
-
+import ThemeContext                     from '../Theming/ThemeContext';
+import { evalTheme }                    from '../Theming/withTheme';
 
 export default class Slider extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -390,7 +393,9 @@ export default class Slider extends React.Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue,
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -537,7 +542,6 @@ export default class Slider extends React.Component
 
         if ( index >= 0 ) // target is handle
         {
-            console.log( index );
             this.setTargetInput( index );
 
             addEventListener( event.type === 'touchstart' ?
@@ -687,7 +691,6 @@ export default class Slider extends React.Component
     {
         const {
             className,
-            cssMap,
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
@@ -715,6 +718,8 @@ export default class Slider extends React.Component
             ticks = [],
             value,
         } = this.props;
+
+        const cssMap = evalTheme( this.context.Slider, this.props );
 
         let values = [];
 
@@ -808,8 +813,8 @@ export default class Slider extends React.Component
                     grabbing            : this.state.isGrabbing,
                     handleLabelPosition : hasHandleLabels &&
                         handleLabelPosition,
-                        hasHandleLabels,
-                        orientation,
+                    hasHandleLabels,
+                    orientation,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
