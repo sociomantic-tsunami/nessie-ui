@@ -333,6 +333,7 @@ export default class TextInputWithIcon extends React.PureComponent
         } = this.props;
 
         const cssMap = evalTheme( this.context.TextInputWithIcon, this.props );
+
         let alignText = textAlign;
 
         if ( textAlign === 'auto' )

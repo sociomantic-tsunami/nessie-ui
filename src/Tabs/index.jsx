@@ -12,108 +12,116 @@ import PropTypes                from 'prop-types';
 
 import { buildClassName }       from '../utils';
 import { ScrollBox, TabButton } from '../index';
+import ThemeContext             from '../Theming/ThemeContext';
+import { evalTheme }            from '../Theming/withTheme';
 
-const Tabs = ( {
-    activeTabIndex,
-    children,
-    className,
-    cssMap,
-    onChange,
-    onClickTab,
-    secondaryControls,
-} ) =>
+export default class Tabs extends React.PureComponent
 {
-    if ( !Tabs.didWarn && onChange )
+    static contextType = ThemeContext;
+
+    static propTypes =
     {
-        console.warn( 'Tabs: ‘onChange’ prop is deprecated and will be removed \
-in the next major release. Please use ‘onClickTab’ instead.' );
-        Tabs.didWarn = true;
-    }
+        /**
+         *  The active tab index
+         */
+        activeTabIndex    : PropTypes.number,
+        /**
+         *  A set of <Tab> components
+         */
+        children          : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className         : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Tab button click callback function: ( e, newProps ) => { ... }
+         */
+        onClickTab        : PropTypes.func,
+        /**
+         *  Secondary controls to add to tabs header
+         */
+        secondaryControls : PropTypes.node,
+    };
 
-    const clickHandler = onClickTab || onChange;
-
-    const tabs = React.Children.toArray( children );
-
-    const tabButtons = tabs.map( ( tab, tabIndex ) =>
+    static defaultProps =
     {
-        const { isDisabled, label } = tab.props;
-        const isActive = ( activeTabIndex === tabIndex );
+        activeTabIndex    : 0,
+        children          : undefined,
+        className         : undefined,
+        onClickTab        : undefined,
+        secondaryControls : undefined,
+    };
+
+    static displayName = 'Tabs';
+
+    render()
+    {
+        const {
+            activeTabIndex,
+            children,
+            className,
+            onChange,
+            onClickTab,
+            secondaryControls,
+        } = this.props;
+
+        const cssMap = evalTheme( this.context.Tabs, this.props );
+
+        if ( !Tabs.didWarn && onChange )
+        {
+            console.warn( 'Tabs: ‘onChange’ prop is deprecated and will be \
+removed in the next major release. Please use ‘onClickTab’ instead.' );
+            Tabs.didWarn = true;
+        }
+
+        const clickHandler = onClickTab || onChange;
+
+        const tabs = React.Children.toArray( children );
+
+        const tabButtons = tabs.map( ( tab, tabIndex ) =>
+        {
+            const { isDisabled, label } = tab.props;
+            const isActive = ( activeTabIndex === tabIndex );
+
+            return (
+                <TabButton
+                    isActive   = { isActive }
+                    isDisabled = { isDisabled || isActive }
+                    key        = { label || tabIndex }
+                    label      = { label }
+                    onClick    = { e => clickHandler && clickHandler(
+                        e,
+                        { activeTabIndex: tabIndex },
+                    ) }
+                    tabIndex = { tabIndex } />
+            );
+        } );
 
         return (
-            <TabButton
-                isActive   = { isActive }
-                isDisabled = { isDisabled || isActive }
-                key        = { label || tabIndex }
-                label      = { label }
-                onClick    = { e => clickHandler && clickHandler(
-                    e,
-                    { activeTabIndex: tabIndex },
-                ) }
-                tabIndex = { tabIndex } />
+            <div
+                className = { buildClassName( className, cssMap ) }>
+                <div className = { cssMap.header }>
+                    <ScrollBox
+                        className = { cssMap.tabsContainer }
+                        scroll    = "horizontal">
+                        <div className = { cssMap.tabs }>
+                            { tabButtons }
+                        </div>
+                    </ScrollBox>
+                    { secondaryControls &&
+                        <div className = { cssMap.secondaryControls }>
+                            { secondaryControls }
+                        </div>
+                    }
+                </div>
+                <div className = { cssMap.content }>
+                    { tabs[ activeTabIndex ] }
+                </div>
+            </div>
         );
-    } );
-
-    return (
-        <div
-            className = { buildClassName( className, cssMap ) }>
-            <div className = { cssMap.header }>
-                <ScrollBox
-                    className = { cssMap.tabsContainer }
-                    scroll    = "horizontal">
-                    <div className = { cssMap.tabs }>
-                        { tabButtons }
-                    </div>
-                </ScrollBox>
-                { secondaryControls &&
-                    <div className = { cssMap.secondaryControls }>
-                        { secondaryControls }
-                    </div>
-                }
-            </div>
-            <div className = { cssMap.content }>
-                { tabs[ activeTabIndex ] }
-            </div>
-        </div>
-    );
-};
-
-Tabs.propTypes =
-{
-    /**
-     *  The active tab index
-     */
-    activeTabIndex    : PropTypes.number,
-    /**
-     *  A set of <Tab> components
-     */
-    children          : PropTypes.node,
-    /**
-     *  Extra CSS class name
-     */
-    className         : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Tab button click callback function: ( e, newProps ) => { ... }
-     */
-    onClickTab        : PropTypes.func,
-    /**
-     *  Secondary controls to add to tabs header
-     */
-    secondaryControls : PropTypes.node,
-};
-
-Tabs.defaultProps =
-{
-    activeTabIndex    : 0,
-    children          : undefined,
-    className         : undefined,
-    onClickTab        : undefined,
-    secondaryControls : undefined,
-};
-
-Tabs.displayName = 'Tabs';
-
-export default Tabs;
+    }
+}

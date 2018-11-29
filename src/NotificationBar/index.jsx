@@ -73,7 +73,7 @@ export default class NotificationBar extends React.PureComponent
             onClickClose,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.NavBar, this.props );
+        const cssMap = evalTheme( this.context.NotificationBar, this.props );
 
         return (
             <div

@@ -414,13 +414,14 @@ export default class ScrollBox extends Component
 
         const { props } = this;
         const {
-            cssMap,
             scroll,
             onThumbDragStartX,
             onThumbDragEndX,
             onThumbDragStartY,
             onThumbDragEndY,
         } = props;
+
+        const cssMap = evalTheme( this.context.ScrollBox, this.props );
 
         const scrollBars = [];
 

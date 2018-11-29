@@ -12,10 +12,13 @@ import PropTypes                        from 'prop-types';
 
 import { InputField }                   from '../index';
 import { generateId, buildClassName }   from '../utils';
-
+import ThemeContext                     from '../Theming/ThemeContext';
+import { evalTheme }                    from '../Theming/withTheme';
 
 export default class ValuedTextInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -210,7 +213,6 @@ export default class ValuedTextInput extends React.Component
     {
         const {
             className,
-            cssMap,
             forceHover,
             hasError,
             id = generateId( 'ValuedTextInput' ),
@@ -222,6 +224,8 @@ export default class ValuedTextInput extends React.Component
             valueLabelPosition,
             ...props
         } = this.props;
+
+        const cssMap = evalTheme( this.context.ValuedTextInput, this.props );
 
         const { isFocused } = this.state;
 

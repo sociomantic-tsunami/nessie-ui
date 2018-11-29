@@ -7,15 +7,18 @@
  *
  */
 
-import React, { Children, Component } from 'react';
+import React, { Children }            from 'react';
 import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
 import { buildTagsFromValues }        from './utils';
+import ThemeContext                   from '../Theming/ThemeContext';
+import { evalTheme }                  from '../Theming/withTheme';
 
-
-export default class TagInput extends Component
+export default class TagInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -187,7 +190,6 @@ export default class TagInput extends Component
         const {
             children,
             className,
-            cssMap,
             forceHover,
             hasError,
             height,
@@ -208,6 +210,8 @@ export default class TagInput extends Component
             tags,
             value,
         } = this.props;
+
+        const cssMap = evalTheme( this.context.TagInput, this.props );
 
         const { isFocused } = this.state;
 

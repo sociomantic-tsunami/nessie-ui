@@ -7,7 +7,6 @@
  *
  */
 
-import withTheme                from './Theming/withTheme';
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
@@ -81,16 +80,6 @@ import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
 
-const styledTabs                = withTheme( Tabs );
-const styledTag                 = withTheme( Tag );
-const styledTagInput            = withTheme( TagInput );
-const styledText                = withTheme( Text );
-const styledTextArea            = withTheme( TextArea );
-const styledToggleButton        = withTheme( ToggleButton );
-const styledUploader            = withTheme( Uploader );
-const styledValuedTextInput     = withTheme( ValuedTextInput );
-
-
 export {
     Button,
     Card,
@@ -152,17 +141,17 @@ export {
     Table,
     TableCell,
     TableRow,
-    styledTabs                  as Tabs,
-    styledTag                   as Tag,
-    styledTagInput              as TagInput,
-    styledText                  as Text,
-    styledTextArea              as TextArea,
+    Tabs,
+    Tag,
+    TagInput,
+    Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
-    styledToggleButton          as ToggleButton,
+    ToggleButton,
     Tooltip,
-    styledUploader              as Uploader,
-    styledValuedTextInput       as ValuedTextInput,
+    Uploader,
+    ValuedTextInput,
 };
 
 
@@ -227,17 +216,17 @@ export default {
     Table,
     TableCell,
     TableRow,
-    Tabs            : withTheme( Tabs ),
-    Tag             : withTheme( Tag ),
-    TagInput        : withTheme( TagInput ),
-    Text            : withTheme( Text ),
-    TextArea        : withTheme( TextArea ),
+    Tabs,
+    Tag,
+    TagInput,
+    Text,
+    TextArea,
     TextInput,
     TextInputWithIcon,
-    ToggleButton    : withTheme( ToggleButton ),
+    ToggleButton,
     Tooltip,
-    Uploader        : withTheme( Uploader ),
-    ValuedTextInput : withTheme( ValuedTextInput ),
+    Uploader,
+    ValuedTextInput,
 };
 
 

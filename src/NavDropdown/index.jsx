@@ -50,7 +50,7 @@ export default class NavDropdown extends React.PureComponent
             className,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.NavBar, this.props );
+        const cssMap = evalTheme( this.context.NavDropdown, this.props );
         const items = Children.toArray( children ).map( child =>
             React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
