@@ -222,20 +222,25 @@ export default class Select extends Component
         super();
 
         this.state = {
-            activeOption : undefined,
-            flatOptions  : undefined,
-            id           : undefined,
-            inputValue   : undefined,
-            isOpen       : undefined,
-            options      : undefined,
-            selection    : undefined,
+            activeOption   : undefined,
+            flatOptions    : undefined,
+            id             : undefined,
+            inputValue     : undefined,
+            isOpen         : undefined,
+            options        : undefined,
+            selection      : undefined,
+            prevInputValue : undefined,
+            prevSelection  : undefined,
         };
 
+        this.handleChangeInput     = this.handleChangeInput.bind( this );
         this.handleClickIcon       = this.handleClickIcon.bind( this );
         this.handleClickInput      = this.handleClickInput.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
+        this.handleOnFocus         = this.handleOnFocus.bind( this );
+        this.handleOnBlur          = this.handleOnBlur.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -252,15 +257,39 @@ export default class Select extends Component
         const currentOption = optionId ? getOption( optionId, flatOptions ) :
             optionId;
 
+        const selection = currentOption ? currentOption.id : currentOption;
+        const inputValue = currentOption ? currentOption.text : currentOption;
+
+        console.log( state.inputValue, 'BB')
+
         return {
             flatOptions,
             id         : props.id || state.id || generateId( 'Select' ),
-            inputValue : currentOption ? currentOption.text : currentOption,
+            inputValue : state.inputValue,
             isOpen     : typeof props.isOpen === 'undefined' ? state.isOpen :
                 props.isOpen,
             options   : props.options,
-            selection : currentOption ? currentOption.id : currentOption,
+            selection,
         };
+    }
+
+    handleChangeInput( e )
+    {
+        const callback = this.props.onChangeInput;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        const { value } = e.target;
+
+        this.setState( prevState =>
+        {
+            return {
+                inputValue : value,
+            };
+        } );
     }
 
     handleClickIcon( e )
@@ -273,7 +302,7 @@ export default class Select extends Component
         }
 
         e.stopPropagation();
-        this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+        // this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
     }
 
     handleClickInput( e )
@@ -285,7 +314,7 @@ export default class Select extends Component
             callback( e );
         }
 
-        this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+        // this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
     }
 
     handleClickOption( e, id )
@@ -390,6 +419,45 @@ export default class Select extends Component
         } );
     }
 
+    handleOnFocus( e )
+    {
+        const callback = this.props.onFocus;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+
+        this.setState( prevState =>
+        {
+            return {
+                inputValue : undefined,
+                isOpen : true,
+            };
+        }  );
+    }
+
+    handleOnBlur( e )
+    {
+        const callback = this.props.onBlur;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        console.log( 'BLUR' );
+        this.setState( prevState =>
+        {
+            return {
+                isOpen     : false,
+                inputValue : getOption( prevState.selection, prevState.flatOptions ).text,
+
+            };
+        } );
+    }
+
     render()
     {
         const {
@@ -404,9 +472,6 @@ export default class Select extends Component
             isDisabled,
             isMultiselect,
             isReadOnly,
-            onBlur,
-            onChangeInput,
-            onFocus,
             onKeyPress,
             onKeyUp,
             onMouseOut,
@@ -429,42 +494,41 @@ export default class Select extends Component
 
         return (
             <ComboBox
-                activeOption          = { activeOption }
-                buttonIsReadOnly      = { buttonIsReadOnly }
-                className             = { className }
-                dropdownPosition      = { dropdownPosition }
-                forceHover            = { forceHover }
-                hasError              = { hasError }
-                iconButtonIsDisabled  = { iconButtonIsDisabled }
-                iconPosition          = { iconPosition }
-                iconType              = { isOpen ? 'up' : 'down' }
-                id                    = { id }
-                inputIsReadOnly
-                inputPlaceholder      = { inputPlaceholder }
-                inputValue            = { inputValue }
-                isDisabled            = { isDisabled }
-                isMultiselect         = { isMultiselect }
-                isOpen                = { isOpen }
-                isReadOnly            = { isReadOnly }
-                onBlur                = { onBlur }
-                onChangeInput         = { onChangeInput }
-                onClickIcon           = { this.handleClickIcon }
-                onClickInput          = { this.handleClickInput }
-                onClickOption         = { this.handleClickOption }
-                onFocus               = { onFocus }
-                onKeyDown             = { this.handleKeyDown }
-                onKeyPress            = { onKeyPress }
-                onKeyUp               = { onKeyUp }
-                onMouseOut            = { onMouseOut }
-                onMouseOutIcon        = { onMouseOutIcon }
-                onMouseOutOption      = { onMouseOutOption }
-                onMouseOver           = { onMouseOver }
-                onMouseOverIcon       = { onMouseOverIcon }
-                onMouseOverOption     = { this.handleMouseOverOption }
-                onScroll              = { onScroll }
-                options               = { options }
-                selection             = { selection }
-                textAlign             = { textAlign } />
+                activeOption         = { activeOption }
+                buttonIsReadOnly     = { buttonIsReadOnly }
+                className            = { className }
+                dropdownPosition     = { dropdownPosition }
+                forceHover           = { forceHover }
+                hasError             = { hasError }
+                iconButtonIsDisabled = { iconButtonIsDisabled }
+                iconPosition         = { iconPosition }
+                iconType             = { isOpen ? 'up' : 'down' }
+                id                   = { id }
+                inputPlaceholder     = { inputPlaceholder }
+                inputValue           = { inputValue }
+                isDisabled           = { isDisabled }
+                isMultiselect        = { isMultiselect }
+                isOpen               = { isOpen }
+                isReadOnly           = { isReadOnly }
+                onBlur               = { this.handleOnBlur }
+                onChangeInput        = { this.handleChangeInput }
+                onClickIcon          = { this.handleClickIcon }
+                onClickInput         = { this.handleClickInput }
+                onClickOption        = { this.handleClickOption }
+                onFocus              = { this.handleOnFocus }
+                onKeyDown            = { this.handleKeyDown }
+                onKeyPress           = { onKeyPress }
+                onKeyUp              = { onKeyUp }
+                onMouseOut           = { onMouseOut }
+                onMouseOutIcon       = { onMouseOutIcon }
+                onMouseOutOption     = { onMouseOutOption }
+                onMouseOver          = { onMouseOver }
+                onMouseOverIcon      = { onMouseOverIcon }
+                onMouseOverOption    = { this.handleMouseOverOption }
+                onScroll             = { onScroll }
+                options              = { options }
+                selection            = { selection }
+                textAlign            = { textAlign } />
         );
     }
 }
