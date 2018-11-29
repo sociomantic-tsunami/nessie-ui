@@ -242,7 +242,6 @@ export default class Select extends Component
     {
         let { flatOptions } = state;
         const { defaultOption, selectedOption } = props;
-
         const optionId = selectedOption || state.selection || defaultOption;
 
         if ( props.options !== state.options )
@@ -250,17 +249,17 @@ export default class Select extends Component
             flatOptions = props.options.flatMap( o => o.options || o );
         }
 
-        const currentOption = getOption( optionId, flatOptions ) ||
-                                                               flatOptions[ 0 ];
+        const currentOption = optionId ? getOption( optionId, flatOptions ) :
+            optionId;
 
         return {
             flatOptions,
             id         : props.id || state.id || generateId( 'Select' ),
-            inputValue : currentOption.text,
+            inputValue : currentOption ? currentOption.text : currentOption,
             isOpen     : typeof props.isOpen === 'undefined' ? state.isOpen :
                 props.isOpen,
-            options   : currentOption.options,
-            selection : currentOption.id,
+            options   : props.options,
+            selection : currentOption ? currentOption.id : currentOption,
         };
     }
 
@@ -466,7 +465,6 @@ export default class Select extends Component
                 options               = { options }
                 selection             = { selection }
                 textAlign             = { textAlign } />
-
         );
     }
 }
