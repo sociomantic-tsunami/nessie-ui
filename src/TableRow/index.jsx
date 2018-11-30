@@ -107,14 +107,13 @@ export default class TableRow extends React.PureComponent
             align,
             children,
             className,
+            cssMap = evalTheme( this.context.TableRow, this.props ),
             isActive,
             isClickable,
             isSticky,
             verticalAlign,
             ...props
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TableRow, this.props );
 
         if ( !TableRow.didWarn.children && children !== undefined  )
         {

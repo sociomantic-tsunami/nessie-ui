@@ -213,6 +213,7 @@ export default class ValuedTextInput extends React.Component
     {
         const {
             className,
+            cssMap = evalTheme( this.context.ValuedTextInput, this.props ),
             forceHover,
             hasError,
             id = generateId( 'ValuedTextInput' ),
@@ -224,8 +225,6 @@ export default class ValuedTextInput extends React.Component
             valueLabelPosition,
             ...props
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ValuedTextInput, this.props );
 
         const { isFocused } = this.state;
 

@@ -15,7 +15,8 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Switch             from './index';
+import { Switch }         from '../index';
+import styles             from './switch.css';
 
 const { cssMap } = Switch.defaultProps;
 
@@ -26,7 +27,7 @@ describe( 'Switch', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Switch /> );
+        wrapper  = shallow( <Switch cssMap = { styles } /> );
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
@@ -45,7 +46,7 @@ describe( 'SwitchDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Switch /> );
+        wrapper = mount( <Switch cssMap = { styles } /> );
     } );
 
     describe( 'toggle()', () =>

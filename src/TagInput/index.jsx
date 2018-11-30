@@ -190,6 +190,7 @@ export default class TagInput extends React.Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.TagInput, this.props ),
             forceHover,
             hasError,
             height,
@@ -210,8 +211,6 @@ export default class TagInput extends React.Component
             tags,
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TagInput, this.props );
 
         const { isFocused } = this.state;
 

@@ -38,10 +38,9 @@ export default class PageContentHeader extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.PageContentHeader, this.props ),
             title,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.PageContentHeader, this.props );
 
         let header = (
             <H1

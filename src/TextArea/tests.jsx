@@ -10,12 +10,11 @@
 /* global test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React          from 'react';
-import { shallow }    from 'enzyme';
+import React                    from 'react';
+import { shallow }              from 'enzyme';
 
-import { InputField } from '../index';
-
-import TextArea       from './index';
+import { InputField, TextArea } from '../index';
+import styles                   from './textArea.css';
 
 
 describe( 'TextArea', () =>
@@ -24,7 +23,7 @@ describe( 'TextArea', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextArea /> );
+        wrapper  = shallow( <TextArea cssMap = { styles } /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

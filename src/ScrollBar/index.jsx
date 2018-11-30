@@ -108,6 +108,7 @@ export default class ScrollBar extends React.Component
     {
         const {
             className,
+            cssMap = evalTheme( this.context.ScrollBar, this.props ),
             onChange,
             onClickTrack,
             onThumbDragStart,
@@ -121,8 +122,6 @@ export default class ScrollBar extends React.Component
             scrollPos,
             thumbSize,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ScrollBar, this.props );
 
         const isVertical = orientation === 'vertical';
         const scrollLength = Math.abs( scrollMax - scrollMin );

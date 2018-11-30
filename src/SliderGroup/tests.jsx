@@ -10,12 +10,11 @@
 /* global test jest */
 /* eslint-disable max-len */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                           from 'react';
+import { shallow, mount }              from 'enzyme';
 
-import { Label, Slider }  from '../index';
-
-import SliderGroup        from './index';
+import { Label, Slider, SliderGroup }  from '../index';
+import styles                          from './sliderGroup.css';
 
 
 describe( 'SliderGroup', () =>
@@ -24,7 +23,7 @@ describe( 'SliderGroup', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <SliderGroup /> );
+        wrapper = mount( <SliderGroup cssMap = { styles } /> );
     } );
 
     test( 'should render <SliderGroup/>', () =>
@@ -44,8 +43,8 @@ describe( 'SliderGroup', () =>
         const props = {
             sliders : [
                 { 'value': 50 },
-                { 'value': 80 }
-            ]
+                { 'value': 80 },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -59,8 +58,8 @@ describe( 'SliderGroup', () =>
         const props = {
             stepLabels : [
                 { 'stepLabel': 'No filter', 'step': 0 },
-                { 'stepLabel': 'Low', 'step': 25 }
-            ]
+                { 'stepLabel': 'Low', 'step': 25 },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -77,8 +76,8 @@ describe( 'SliderGroup', () =>
                 'category 1',
                 'category 2',
                 'category 3',
-                'category 4'
-            ]
+                'category 4',
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -95,25 +94,25 @@ describe( 'SliderGroup', () =>
             const props = {
                 sliders : [
                     { 'value': 50 },
-                    { 'value': 50 }
+                    { 'value': 50 },
                 ],
                 stepLabels : [
                     {
                         'stepLabel' : 'No filter',
-                        'step'      : 0
+                        'step'      : 0,
                     },
                     {
                         'stepLabel' : 'Low',
-                        'step'      : 25
-                    }
-                ]
+                        'step'      : 25,
+                    },
+                ],
             };
 
             wrapper = mount( <SliderGroup { ...props } /> );
 
             expect( wrapper.find( Slider ).first().prop( 'ticks' ) )
                 .toHaveLength( 2 );
-        }
+        },
     );
 
     test( 'Individul sliders should ignore label and stepLabel props', () =>
@@ -126,20 +125,20 @@ describe( 'SliderGroup', () =>
                     'stepLabels' : [
                         { 'stepLabel': 25, 'step': 25 },
                         { 'stepLabel': 50, 'step': 50 },
-                        { 'stepLabel': 75, 'step': 75 }
-                    ]
+                        { 'stepLabel': 75, 'step': 75 },
+                    ],
                 },
             ],
             stepLabels : [
                 {
                     'stepLabel' : 'No filter',
-                    'step'      : 0
+                    'step'      : 0,
                 },
                 {
                     'stepLabel' : 'Low',
-                    step        : 25
-                }
-            ]
+                    step        : 25,
+                },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -152,7 +151,7 @@ describe( 'SliderGroup', () =>
     test( 'should have sliderGroup__disabled if isDisabled = true', () =>
     {
         const props = {
-            isDisabled : true
+            isDisabled : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -163,7 +162,7 @@ describe( 'SliderGroup', () =>
     test( 'should have sliderGroup__error if hasError = true', () =>
     {
         const props = {
-            hasError : true
+            hasError : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -191,7 +190,7 @@ describe( 'SliderGroup', () =>
                 .toBeTruthy();
             expect( wrapper.find( Slider ).first().prop( 'hasError' ) )
                 .toBeTruthy();
-        }
+        },
     );
 
     test(
@@ -207,7 +206,7 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.find( Slider ).prop( 'minValue' ) ).toBe( 0 );
             expect( wrapper.find( Slider ).prop( 'maxValue' ) ).toBe( 500 );
-        }
+        },
     );
 
     test(
@@ -221,7 +220,7 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.find( Slider ).prop( 'orientation' ) )
                 .toBe( 'vertical' );
-        }
+        },
     );
 
     describe( 'onChange', () =>
@@ -250,7 +249,7 @@ describe( 'SliderGroup', () =>
                 wrapper.find( Slider ).simulate( 'change' );
 
                 expect( onChangeSlider ).toBeCalled();
-            }
+            },
         );
 
         test(
@@ -270,7 +269,7 @@ describe( 'SliderGroup', () =>
 
                 expect( onChangeSlider ).toBeCalled();
                 expect( onChangeSliderGroup ).toBeCalled();
-            }
+            },
         );
     } );
 } );
@@ -281,7 +280,7 @@ describe( 'SliderGroupDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <SliderGroup /> );
+        wrapper = mount( <SliderGroup cssMap = { styles } /> );
     } );
 
     describe( 'getSlider()', () =>
@@ -293,7 +292,7 @@ describe( 'SliderGroupDriver', () =>
                     { value: 50 },
                     { value: 80 },
                     { value: 60 },
-                    { value: 70 }
+                    { value: 70 },
                 ],
             } );
 
@@ -307,7 +306,7 @@ describe( 'SliderGroupDriver', () =>
                     { value: 50 },
                     { value: 80 },
                     { value: 60 },
-                    { value: 70 }
+                    { value: 70 },
                 ],
             } );
 
@@ -321,7 +320,7 @@ describe( 'SliderGroupDriver', () =>
                     { value: 40 },
                     { value: 20 },
                     { value: 10 },
-                    { value: 30 }
+                    { value: 30 },
                 ],
             } );
 

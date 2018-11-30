@@ -10,7 +10,7 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
-import Text                           from '../Text';
+import { Text }                       from '../index';
 import { buildClassName, generateId } from '../utils';
 
 

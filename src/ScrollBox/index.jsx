@@ -506,6 +506,7 @@ export default class ScrollBox extends Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.ScrollBox, this.props ),
             contentWidth,
             height,
             onMouseOut,
@@ -515,8 +516,6 @@ export default class ScrollBox extends Component
             scrollBarsAreVisible,
             scrollIndicatorVariant,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ScrollBox, this.props );
 
         return (
             <div

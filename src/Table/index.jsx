@@ -131,6 +131,7 @@ export default class Table extends React.PureComponent
             children,
             className,
             columns = [],
+            cssMap = evalTheme( this.context.Table, this.props ),
             gutters,
             hasStickyHeader,
             headerTextProps = {},
@@ -143,8 +144,6 @@ export default class Table extends React.PureComponent
             values,
             verticalAlign,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Table, this.props );
 
         if ( !Table.didWarn.children && children !== undefined  )
         {

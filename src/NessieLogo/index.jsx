@@ -23,9 +23,10 @@ export default class NessieLogo extends React.PureComponent
 
     render()
     {
-        const { className } = this.props;
-
-        const cssMap = evalTheme( this.context.NessieLogo, this.props );
+        const {
+            className,
+            cssMap = evalTheme( this.context.NessieLogo, this.props ),
+        } = this.props;
 
         return (
             <img

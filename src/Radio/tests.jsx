@@ -14,8 +14,8 @@ import React       from 'react';
 import { shallow } from 'enzyme';
 
 import Checkable   from '../proto/Checkable';
-
-import Radio       from './index';
+import { Radio }   from '../index';
+import styles      from './radio.css';
 
 
 describe( 'Radio', () =>
@@ -24,7 +24,7 @@ describe( 'Radio', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Radio /> );
+        wrapper  = shallow( <Radio cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>

@@ -13,6 +13,8 @@ import React                    from 'react';
 import { mount }                from 'enzyme';
 
 import { Paginator }            from '../index';
+import styles                   from './paginator.css';
+
 
 describe( 'PaginatorDriver', () =>
 {
@@ -20,7 +22,7 @@ describe( 'PaginatorDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Paginator /> );
+        wrapper  = mount( <Paginator cssMap = { styles } /> );
     } );
 
     describe( 'clickPrev()', () =>

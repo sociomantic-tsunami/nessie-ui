@@ -10,14 +10,12 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React                     from 'react';
+import { mount }                 from 'enzyme';
 
-import ScrollBar  from '../ScrollBar';
-import * as utils from './utils';
-
-import ScrollBox  from './index';
-
+import { ScrollBar, ScrollBox }  from '../index';
+import * as utils                from './utils';
+import styles                    from './scrollBox.css';
 
 describe( 'ScrollBox', () =>
 {
@@ -26,7 +24,7 @@ describe( 'ScrollBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox /> );
+        wrapper = mount( <ScrollBox cssMap = { styles } /> );
         instance = wrapper.instance();
     } );
 
@@ -124,7 +122,7 @@ describe( 'ScrollBoxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox /> );
+        wrapper = mount( <ScrollBox cssMap = { styles } /> );
         instance = wrapper.instance();
         instance.innerRef = {
             clientHeight : 100,
@@ -141,7 +139,6 @@ describe( 'ScrollBoxDriver', () =>
     {
         test( 'invokes onClickScrollUp callback prop', () =>
         {
-
             const onClickScrollUp = jest.fn();
             wrapper.setProps( { onClickScrollUp, scrollUpIsVisible: true } );
             wrapper.setState();

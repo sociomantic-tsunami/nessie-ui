@@ -99,6 +99,7 @@ export default class Tooltip extends React.Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Tooltip, this.props ),
             id = generateId( 'Tooltip' ),
             isDismissible,
             isVisible,
@@ -113,7 +114,6 @@ export default class Tooltip extends React.Component
             role,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.Tooltip, this.props );
         const hasChildren = children !== undefined;
 
         if ( !noWarn )

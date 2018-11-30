@@ -37,9 +37,11 @@ export default class Spinner extends React.PureComponent
 
     render()
     {
-        const { className, size } = this.props;
-
-        const cssMap = evalTheme( this.context.Spinner, this.props );
+        const {
+            className,
+            cssMap = evalTheme( this.context.Spinner, this.props ),
+            size,
+        } = this.props;
 
         return (
             <div

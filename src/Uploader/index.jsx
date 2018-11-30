@@ -167,6 +167,7 @@ export default class Uploader extends React.PureComponent
         const {
             buttonLabel,
             className,
+            cssMap = evalTheme( this.context.Uploader, this.props ),
             errorMessage,
             errorMessagePosition,
             hasError,
@@ -188,8 +189,6 @@ export default class Uploader extends React.PureComponent
             uploadState,
             warningMessage,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Uploader, this.props );
 
         let hasTooltip = false;
         let iconType   = 'upload';

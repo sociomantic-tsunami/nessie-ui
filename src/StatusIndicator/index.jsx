@@ -54,10 +54,12 @@ export default class StatusIndicator extends React.PureComponent
         const deprecatedStatusOptions = [ 'active', 'deactivated' ];
 
         const {
-            children, className, label, status,
+            children,
+            className,
+            cssMap = evalTheme( this.context.StatusIndicator, this.props ),
+            label,
+            status,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.StatusIndicator, this.props );
 
         if ( deprecatedStatusOptions.includes( status ) &&
             !StatusIndicator.didWarn[ status ] )

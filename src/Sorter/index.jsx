@@ -69,13 +69,12 @@ export default class Sorter extends Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Sorter, this.props ),
             forceHover,
             onToggle,
             sort,
             sorterIsVisible,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Sorter, this.props );
 
         const { isHovered } = this.state;
         const fakeHovered = isHovered || forceHover;

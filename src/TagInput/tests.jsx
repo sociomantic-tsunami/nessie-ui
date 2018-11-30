@@ -13,9 +13,8 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import { Tag }            from '../index';
-
-import TagInput           from './index';
+import { Tag, TagInput }  from '../index';
+import styles             from './tagInput.css';
 
 const { cssMap } = TagInput.defaultProps;
 
@@ -26,7 +25,7 @@ describe( 'TagInput', () =>
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <TagInput /> );
+        wrapper      = shallow( <TagInput cssMap = { styles } /> );
         instance     = wrapper.instance();
     } );
 
@@ -51,8 +50,8 @@ describe( 'TagInput', () =>
         wrapper.setProps( {
             children : [
                 <Tag label = "TagLabel 1" />,
-                <Tag label = "TagLabel 2" />
-            ]
+                <Tag label = "TagLabel 2" />,
+            ],
         } );
 
         expect( wrapper.find( Tag ) ).toHaveLength( 2 );
@@ -130,7 +129,7 @@ describe( 'TagInputDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TagInput /> );
+        wrapper  = mount( <TagInput cssMap = { styles } /> );
     } );
 
     describe( 'blur()', () =>
@@ -142,8 +141,8 @@ describe( 'TagInputDriver', () =>
                 onBlur,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().blur();
@@ -161,8 +160,8 @@ describe( 'TagInputDriver', () =>
                 onFocus,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().focus();
@@ -180,8 +179,8 @@ describe( 'TagInputDriver', () =>
                 onClickClose,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().clickCloseTagByIndex( 1 );
@@ -199,8 +198,8 @@ describe( 'TagInputDriver', () =>
                 onClickClose,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().clickCloseTagByLabel( 'TagLabel 1' );
@@ -218,8 +217,8 @@ describe( 'TagInputDriver', () =>
                 onMouseOut,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().mouseOut();
@@ -237,8 +236,8 @@ describe( 'TagInputDriver', () =>
                 onMouseOver,
                 children : [
                     <Tag label = "TagLabel 1" />,
-                    <Tag label = "TagLabel 2" />
-                ]
+                    <Tag label = "TagLabel 2" />,
+                ],
             } );
 
             wrapper.driver().mouseOver();

@@ -9,12 +9,11 @@
 
 /* global test */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import { H1, H4 }         from '../index';
-
-import Section            from './index';
+import { H1, H4, Section }  from '../index';
+import styles               from './section.css';
 
 
 describe( 'Section', () =>
@@ -23,7 +22,7 @@ describe( 'Section', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Section /> );
+        wrapper = shallow( <Section cssMap = { styles } /> );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>
@@ -57,7 +56,7 @@ describe( 'SectionDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Section /> );
+        wrapper = mount( <Section cssMap = { styles } /> );
     } );
 
     describe( 'getContent()', () =>

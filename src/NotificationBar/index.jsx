@@ -66,14 +66,13 @@ export default class NotificationBar extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.NotificationBar, this.props ),
             isDismissible,
             isFixed,
             message,
             messageType,
             onClickClose,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.NotificationBar, this.props );
 
         return (
             <div

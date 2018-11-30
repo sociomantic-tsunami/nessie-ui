@@ -10,12 +10,11 @@
 /* global jest, test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React        from 'react';
-import { shallow }  from 'enzyme';
+import React                    from 'react';
+import { shallow }              from 'enzyme';
 
-import { Icon }     from '../index';
-
-import ToggleButton from './index';
+import { Icon, ToggleButton }   from '../index';
+import styles                   from './toggleButton.css';
 
 
 describe( 'ToggleButton', () =>
@@ -24,7 +23,7 @@ describe( 'ToggleButton', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <ToggleButton /> );
+        wrapper = shallow( <ToggleButton cssMap = { styles } /> );
     } );
 
     test( '<button> should always have type "button"', () =>

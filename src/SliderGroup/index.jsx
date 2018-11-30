@@ -93,6 +93,7 @@ export default class SliderGroup extends React.Component
 
         const {
             className,
+            cssMap = evalTheme( this.context.SliderGroup, this.props ),
             hasError,
             isDisabled,
             isReadOnly,
@@ -103,8 +104,6 @@ export default class SliderGroup extends React.Component
             minValue,
             onChange,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.SliderGroup, this.props );
 
         const ticks = stepLabels.map( label =>
             ( { ...label, stepLabel: '|' } ) );

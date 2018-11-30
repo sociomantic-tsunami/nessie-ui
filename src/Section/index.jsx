@@ -64,12 +64,11 @@ export default class Section extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Section, this.props ),
             id = generateId( 'Section' ),
             level,
             title,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Section, this.props );
 
         const headers = {
             1 : H1, 2 : H2, 3 : H3, 4 : H4,

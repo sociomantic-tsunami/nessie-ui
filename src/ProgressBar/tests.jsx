@@ -10,10 +10,11 @@
 /* global test */
 /* eslint-disable no-magic-numbers  */
 
-import React       from 'react';
-import { mount }   from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import ProgressBar from './index';
+import { ProgressBar }  from '../index';
+import { styles }       from './progressBar.css';
 
 
 describe( 'ProgressBar', () =>
@@ -22,7 +23,7 @@ describe( 'ProgressBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ProgressBar /> );
+        wrapper = mount( <ProgressBar cssMap = { styles } /> );
     } );
 
     test( 'should have its component name as default className', () =>

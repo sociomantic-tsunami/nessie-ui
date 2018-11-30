@@ -58,11 +58,10 @@ export default class PageContent extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.PageContent, this.props ),
             contentWidth,
             isLoading,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.PageContent, this.props );
 
         return (
             <div className = { buildClassName( className, cssMap ) }>

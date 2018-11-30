@@ -33,9 +33,8 @@ export default class PageFooter extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.PageFooter, this.props ),
         } = this.props;
-
-        const cssMap = evalTheme( this.context.PageFooter, this.props );
 
         return (
             <footer className = { buildClassName( className, cssMap ) }>

@@ -132,6 +132,7 @@ export default class Text extends React.PureComponent
             children,
             className,
             color,
+            cssMap = evalTheme( this.context.Text, this.props ),
             letterSpacing,
             lineHeight,
             noWrap,
@@ -143,8 +144,6 @@ export default class Text extends React.PureComponent
             textRef,
             variant,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Text, this.props );
 
         return (
             <div

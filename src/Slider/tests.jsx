@@ -11,12 +11,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import Label        from '../Label/index';
+import { Label, Slider }    from '../index';
+import styles               from './slider.css';
 
-import Slider       from './index';
 
 const noop = () => null;
 
@@ -27,7 +27,7 @@ describe( 'Slider', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Slider /> );
+        wrapper = mount( <Slider cssMap = { styles } /> );
 
         fakeBoundingRect = {
             top    : 0,
@@ -359,7 +359,7 @@ describe( 'SliderDriver', () =>
             value    : [ 25, 75 ],
         };
 
-        wrapper = mount( <Slider { ...props } /> );
+        wrapper = mount( <Slider cssMap = { styles } { ...props } /> );
         cssMap  = wrapper.prop( 'cssMap' );
         outer   = wrapper.find( `.${cssMap.default}` ).first();
         track   = wrapper.find( `.${cssMap.track}` );

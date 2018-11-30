@@ -126,11 +126,10 @@ export default class Radio extends React.Component
     render()
     {
         const {
+            cssMap = evalTheme( this.context.Radio, this.props ),
             id = generateId( 'Radio' ),
             ...props
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Radio, this.props );
 
         return (
             <Checkable

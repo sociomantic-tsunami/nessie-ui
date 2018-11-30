@@ -41,11 +41,10 @@ export default class ProgressIndicator extends React.PureComponent
     {
         const {
             className,
+            cssMap = evalTheme( this.context.ProgressIndicator, this.props ),
             currentPercentage,
             showPercentage,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ProgressIndicator, this.props );
 
         return (
             <div className = { buildClassName( className, cssMap ) }>

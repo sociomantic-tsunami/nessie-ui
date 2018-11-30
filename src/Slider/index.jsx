@@ -691,6 +691,7 @@ export default class Slider extends React.Component
     {
         const {
             className,
+            cssMap = evalTheme( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
@@ -718,8 +719,6 @@ export default class Slider extends React.Component
             ticks = [],
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Slider, this.props );
 
         let values = [];
 

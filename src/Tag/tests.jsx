@@ -10,12 +10,11 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React               from 'react';
+import { mount }           from 'enzyme';
 
-import IconButton from '../IconButton';
-
-import Tag        from './index';
+import { IconButton, Tag } from '../index';
+import styles              from './tag.css';
 
 
 describe( 'Tag', () =>
@@ -24,7 +23,7 @@ describe( 'Tag', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tag /> );
+        wrapper = mount( <Tag cssMap = { styles } /> );
     } );
 
     test( 'should render <Tag/>', () =>
@@ -67,7 +66,7 @@ describe( 'Tag', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -77,7 +76,7 @@ describe( 'Tag', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.driver().clickClose();

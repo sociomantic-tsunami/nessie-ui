@@ -10,10 +10,11 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Tooltip   from './index';
+import { Tooltip }  from '../index';
+import styles       from './tooltip.css';
 
 
 describe( 'Tooltip', () =>
@@ -28,7 +29,7 @@ describe( 'TooltipDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tooltip /> );
+        wrapper = mount( <Tooltip cssMap = { styles } /> );
     } );
 
     describe( 'mouseOver()', () =>

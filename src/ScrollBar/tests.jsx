@@ -12,7 +12,8 @@
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import ScrollBar          from './index';
+import { ScrollBar }      from '../index';
+import styles             from './scrollBar.css';
 
 const { cssMap } = ScrollBar.defaultProps;
 
@@ -23,7 +24,7 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ScrollBar /> );
+        wrapper  = shallow( <ScrollBar cssMap = { styles } /> );
     } );
 
     test( 'should contain exactly two <div>’s', () =>
@@ -87,7 +88,7 @@ describe( 'ScrollBarDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBar /> );
+        wrapper = mount( <ScrollBar cssMap = { styles } /> );
     } );
 
     describe( 'clickTrack( val )', () =>

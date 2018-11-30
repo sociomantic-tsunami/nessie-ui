@@ -10,10 +10,11 @@
 /* global test */
 /* eslint-disable no-magic-numbers */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React         from 'react';
+import { mount }     from 'enzyme';
 
-import Spinner   from './index';
+import { Spinner }   from '../index';
+import styles        from './spinner.css';
 
 
 describe( 'Spinner', () =>
@@ -22,7 +23,7 @@ describe( 'Spinner', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Spinner /> );
+        wrapper = mount( <Spinner cssMap = { styles } /> );
     } );
 
     test( 'should have its component name as default className', () =>

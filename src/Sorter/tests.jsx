@@ -9,10 +9,11 @@
 
 /* global test jest */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Sorter    from './index';
+import { Sorter }   from '../index';
+import styles       from './sorter.css';
 
 
 describe( 'SorterDriver', () =>
@@ -21,7 +22,7 @@ describe( 'SorterDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Sorter /> );
+        wrapper = mount( <Sorter cssMap = { styles } /> );
     } );
 
     test( 'should call onToggle callback function', () =>

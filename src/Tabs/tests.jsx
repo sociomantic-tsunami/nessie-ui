@@ -10,12 +10,11 @@
 /* global test */
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                    from 'react';
+import { shallow, mount }       from 'enzyme';
 
-import { Tab, TabButton } from '../index';
-
-import Tabs               from './index';
+import { Tab, TabButton, Tabs } from '../index';
+import styles                   from './tabs.css';
 
 
 describe( 'Tabs', () =>
@@ -24,7 +23,7 @@ describe( 'Tabs', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Tabs /> );
+        wrapper  = shallow( <Tabs cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>
@@ -49,7 +48,7 @@ describe( 'TabsDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tabs /> );
+        wrapper = mount( <Tabs cssMap = { styles } /> );
     } );
 
     describe( 'getTabButtons()', () =>

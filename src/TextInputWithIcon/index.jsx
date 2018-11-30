@@ -298,6 +298,7 @@ export default class TextInputWithIcon extends React.PureComponent
             autoComplete,
             autoCorrect,
             className,
+            cssMap = evalTheme( this.context.TextInputWithIcon, this.props ),
             forceHover,
             hasError,
             iconButtonIsDisabled,
@@ -331,8 +332,6 @@ export default class TextInputWithIcon extends React.PureComponent
             textAlign,
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TextInputWithIcon, this.props );
 
         let alignText = textAlign;
 

@@ -35,9 +35,11 @@ export default class ProgressBar extends React.PureComponent
 
     render()
     {
-        const { className, progressPercentage } = this.props;
-
-        const cssMap = evalTheme( this.context.ProgressBar, this.props );
+        const {
+            className,
+            cssMap = evalTheme( this.context.ProgressBar, this.props ),
+            progressPercentage,
+        } = this.props;
 
         return (
             <div className = { buildClassName( className, cssMap ) }>

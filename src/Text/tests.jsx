@@ -13,9 +13,8 @@
 import React     from 'react';
 import { mount } from 'enzyme';
 
+import { Text }  from '../index';
 import styles    from './text.css';
-
-import Text      from './index';
 
 
 describe( 'TextDriver', () =>
@@ -59,7 +58,7 @@ alive.';
                 wrapper.setProps( { text: textProp, children } );
                 expect( wrapper.driver().getContent().find( 'div' ).text() )
                     .toBe( textChild );
-            }
+            },
         );
     } );
 } );

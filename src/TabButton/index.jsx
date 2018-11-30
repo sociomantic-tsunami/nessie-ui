@@ -77,6 +77,7 @@ export default class TabButton extends React.PureComponent
         const {
             buttonRef,
             className,
+            cssMap = evalTheme( this.context.TabButton, this.props ),
             isActive,
             isDisabled,
             label,
@@ -84,8 +85,6 @@ export default class TabButton extends React.PureComponent
             subtitle,
             tabIndex,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TabButton, this.props );
 
         return (
             <button

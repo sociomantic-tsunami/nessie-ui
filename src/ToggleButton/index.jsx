@@ -171,6 +171,7 @@ export default class ToggleButton extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.ToggleButton, this.props ),
             iconPosition,
             iconType,
             id = generateId( 'ToggleButton' ),
@@ -186,8 +187,6 @@ export default class ToggleButton extends React.PureComponent
             role,
             subLabel,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ToggleButton, this.props );
 
         return (
             <button

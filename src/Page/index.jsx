@@ -51,10 +51,9 @@ export default class Page extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Page, this.props ),
             overflow,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Page, this.props );
 
         return (
             <div

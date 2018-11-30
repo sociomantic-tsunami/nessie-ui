@@ -182,11 +182,10 @@ export default class TextArea extends React.PureComponent
     render()
     {
         const {
+            cssMap = evalTheme( this.context.TextArea, this.props ),
             id = generateId( 'TextArea' ),
             ...props
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TextArea, this.props );
 
         return (
             <InputField

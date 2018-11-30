@@ -101,6 +101,7 @@ export default class Switch extends React.PureComponent
     {
         const {
             className,
+            cssMap = evalTheme( this.context.Switch, this.props ),
             forceHover,
             id = generateId( 'Switch' ),
             isChecked,
@@ -115,8 +116,6 @@ export default class Switch extends React.PureComponent
             onMouseOver,
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Switch, this.props );
 
         return (
             <div

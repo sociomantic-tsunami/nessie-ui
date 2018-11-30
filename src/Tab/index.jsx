@@ -52,10 +52,9 @@ export default class Tab extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Tab, this.props ),
             label,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Tab, this.props );
 
         return (
             <div

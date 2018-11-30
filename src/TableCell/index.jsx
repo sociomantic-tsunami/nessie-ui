@@ -130,6 +130,7 @@ export default class TableCell extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.TableCell, this.props ),
             isHeader,
             isRowHeader,
             isSortable,
@@ -139,8 +140,6 @@ export default class TableCell extends React.PureComponent
             textProps = {},
             ...props
         } = this.props;
-
-        const cssMap = evalTheme( this.context.TableCell, this.props );
 
         let headerStyle = {};
 

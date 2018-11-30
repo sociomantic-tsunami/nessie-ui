@@ -107,6 +107,7 @@ export default class Paginator extends React.PureComponent
     {
         const {
             className,
+            cssMap = evalTheme( this.context.Paginator, this.props ),
             currentPage,
             ellipsisText,
             endPage,
@@ -122,8 +123,6 @@ export default class Paginator extends React.PureComponent
             showPrevEllipsis,
             startPage,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Paginator, this.props );
 
         const pageButtons = shownPages.map( pageNum => (
             <button

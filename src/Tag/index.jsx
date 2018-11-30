@@ -78,6 +78,7 @@ export default class Tag extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Tag, this.props ),
             forceHover,
             id = generateId( 'Tag' ),
             isDisabled,
@@ -85,8 +86,6 @@ export default class Tag extends React.PureComponent
             label,
             onClick,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Tag, this.props );
 
         let labelText = children || label;
 

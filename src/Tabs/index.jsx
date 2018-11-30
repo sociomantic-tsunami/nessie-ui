@@ -64,12 +64,11 @@ export default class Tabs extends React.PureComponent
             activeTabIndex,
             children,
             className,
+            cssMap = evalTheme( this.context.Tabs, this.props ),
             onChange,
             onClickTab,
             secondaryControls,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Tabs, this.props );
 
         if ( !Tabs.didWarn && onChange )
         {
