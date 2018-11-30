@@ -10,10 +10,10 @@
 /* global test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React         from 'react';
+import { mount }     from 'enzyme';
 
-import Dropdown  from './index';
+import { Dropdown }  from '../index';
 
 
 describe( 'DropdownDriver', () =>

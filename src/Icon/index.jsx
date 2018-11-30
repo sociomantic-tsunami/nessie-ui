@@ -126,13 +126,12 @@ export default class Icon extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Icon, this.props ),
             label,
             role,
             size,
             type,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Icon, this.props );
 
         return (
             <svg

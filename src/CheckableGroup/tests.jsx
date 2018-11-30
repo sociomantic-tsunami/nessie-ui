@@ -10,12 +10,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
 
-import React                   from 'react';
-import { ReactWrapper, mount } from 'enzyme';
+import React                        from 'react';
+import { ReactWrapper, mount }      from 'enzyme';
 
-import { Checkbox }            from '../index';
+import { CheckableGroup, Checkbox } from '../index';
+import styles                       from './checkableGroup.css';
 
-import CheckableGroup          from './index';
 
 describe( 'CheckableGroupDriver', () =>
 {
@@ -23,7 +23,7 @@ describe( 'CheckableGroupDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <CheckableGroup /> );
+        wrapper = mount( <CheckableGroup cssMap = { styles } /> );
     } );
 
     describe( 'getContent()', () =>
@@ -33,7 +33,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
             expect( wrapper.driver().getContent() ).toHaveLength( 2 );
@@ -44,7 +44,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" />,
-                    <Checkbox label = "two" />
+                    <Checkbox label = "two" />,
                 ],
             } );
 
@@ -60,7 +60,7 @@ describe( 'CheckableGroupDriver', () =>
             wrapper.setProps( {
                 children : [
                     <Checkbox label = "one" value = "first check" isChecked />,
-                    <Checkbox label = "two" value = "second check" />
+                    <Checkbox label = "two" value = "second check" />,
                 ],
             } );
 

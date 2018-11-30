@@ -12,7 +12,7 @@
 import React       from 'react';
 import { shallow } from 'enzyme';
 
-import Icon        from './index';
+import { Icon }    from '../index';
 
 
 describe( 'Icon', () =>
@@ -22,11 +22,6 @@ describe( 'Icon', () =>
     beforeEach( () =>
     {
         wrapper = shallow( <Icon /> );
-    } );
-
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should have size S by default', () =>

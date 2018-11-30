@@ -26,11 +26,6 @@ describe( 'Section', () =>
         wrapper = shallow( <Section /> );
     } );
 
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
     test( 'should have a header component corresponding to level prop', () =>
     {
         wrapper.setProps( { title: 'Boom', level: 4 } );

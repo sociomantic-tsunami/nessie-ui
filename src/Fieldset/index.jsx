@@ -87,6 +87,7 @@ export default class Fieldset extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Fieldset, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
@@ -96,8 +97,6 @@ export default class Fieldset extends React.PureComponent
             onMouseOut,
             onMouseOver,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Fieldset, this.props );
 
         return (
             <fieldset

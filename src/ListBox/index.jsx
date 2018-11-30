@@ -98,6 +98,7 @@ export default class ListBox extends React.PureComponent
             activeOption,
             children,
             className,
+            cssMap = evalTheme( this.context.ListBox, this.props ),
             isFocusable,
             isMultiselect,
             id = generateId( 'ListBox' ),
@@ -109,7 +110,6 @@ export default class ListBox extends React.PureComponent
             selection,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.ListBox, this.props );
         let realSelection = selection;
 
         if ( Array.isArray( selection ) )

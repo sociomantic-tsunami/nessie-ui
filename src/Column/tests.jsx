@@ -13,7 +13,8 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Column       from './index';
+import styles       from './column.css';
+import { Column }   from '../index';
 
 
 describe( 'ColumnDriver', () =>
@@ -22,7 +23,7 @@ describe( 'ColumnDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Column /> );
+        wrapper = mount( <Column cssMap = { styles } /> );
     } );
 
     describe( 'Driver self-test', () =>

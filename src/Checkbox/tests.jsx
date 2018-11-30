@@ -14,8 +14,8 @@ import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
 import Checkable          from '../proto/Checkable';
-
-import Checkbox           from './index';
+import styles             from './checkbox.css';
+import { Checkbox }       from '../index';
 
 describe( 'Checkbox', () =>
 {
@@ -23,7 +23,7 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Checkbox /> );
+        wrapper = shallow( <Checkbox cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>
@@ -112,7 +112,7 @@ describe( 'CheckboxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Checkbox /> );
+        wrapper = mount( <Checkbox cssMap = { styles } /> );
     } );
 
     describe( 'focus()', () =>

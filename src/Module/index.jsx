@@ -158,6 +158,7 @@ export default class Module extends Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Module, this.props ),
             customHeader,
             errorMessage,
             errorMessageIsVisible,
@@ -176,8 +177,6 @@ export default class Module extends Component
             onMouseOverHeader,
             title,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Module, this.props );
 
         let header;
         if ( customHeader )

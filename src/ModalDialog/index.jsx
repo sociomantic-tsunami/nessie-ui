@@ -83,6 +83,7 @@ export default class ModalDialog extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.ModalDialog, this.props ),
             hasNavigation,
             isVisible,
             isWide,
@@ -93,8 +94,6 @@ export default class ModalDialog extends React.PureComponent
             title,
             type,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.ModalDialog, this.props );
 
         if ( !isVisible )
         {

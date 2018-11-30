@@ -148,6 +148,7 @@ export default class NavItem extends React.PureComponent
             children,
             label,
             className,
+            cssMap = evalTheme( this.context.NavItem, this.props ),
             dropdownAlign,
             forceHover,
             href,
@@ -161,8 +162,6 @@ export default class NavItem extends React.PureComponent
             onMouseOver,
             role,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.NavItem, this.props );
 
         if ( typeof isCurrentPage !== 'undefined' )
         {

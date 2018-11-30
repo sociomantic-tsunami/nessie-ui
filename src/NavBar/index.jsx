@@ -34,9 +34,8 @@ export default class NavBar extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.NavBar, this.props ),
         } = this.props;
-
-        const cssMap = evalTheme( this.context.NavBar, this.props );
 
         return (
             <nav className = { buildClassName( className, cssMap ) }>

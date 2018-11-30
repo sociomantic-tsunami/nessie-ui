@@ -13,7 +13,7 @@
 import React       from 'react';
 import { shallow } from 'enzyme';
 
-import NavList     from './index';
+import { NavList } from '../index';
 
 
 describe( 'NavList', () =>

@@ -10,12 +10,10 @@
 /* global test */
 /* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React                from 'react';
+import { shallow }          from 'enzyme';
 
-import { Text }    from '../index';
-
-import MessageBox  from './index';
+import { MessageBox, Text } from '../index';
 
 
 describe( 'MessageBox', () =>

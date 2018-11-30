@@ -49,11 +49,11 @@ export default class MessageBox extends React.PureComponent
         const {
             className,
             children,
+            cssMap = evalTheme( this.context.MessageBox, this.props ),
             message,
             messageType,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.MessageBox, this.props );
         const messageNode =
             <Text className = { cssMap.text } >{ message }</Text>;
 

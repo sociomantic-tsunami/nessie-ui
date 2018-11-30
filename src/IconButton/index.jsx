@@ -189,6 +189,7 @@ export default class IconButton extends React.Component
             buttonRef,
             children,
             className,
+            cssMap = evalTheme( this.context.IconButton, this.props ),
             forceHover,
             hasBackground,
             iconSize,
@@ -206,8 +207,6 @@ export default class IconButton extends React.Component
             role,
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.IconButton, this.props );
 
         return (
             <button

@@ -14,8 +14,7 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import styles       from './card.css';
-
-import Card         from './index';
+import { Card }     from '../index';
 
 
 describe( 'Card', () =>

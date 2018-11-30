@@ -42,12 +42,11 @@ export default class Dropdown extends React.Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Dropdown, this.props ),
             hasError,
             padding,
             size,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Dropdown, this.props );
 
         return (
             <div

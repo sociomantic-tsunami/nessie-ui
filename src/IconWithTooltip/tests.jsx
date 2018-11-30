@@ -13,9 +13,8 @@
 import React                            from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
 
-import { Tooltip }                      from '../index';
-
-import IconWithTooltip                  from './index';
+import { IconWithTooltip, Tooltip }     from '../index';
+import styles                           from './iconWithTooltip.css';
 
 
 describe( 'IconWithTooltip', () =>
@@ -24,7 +23,7 @@ describe( 'IconWithTooltip', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <IconWithTooltip /> );
+        wrapper = shallow( <IconWithTooltip cssMap = { styles } /> );
     } );
 
     describe( 'props', () =>
@@ -113,7 +112,7 @@ describe( 'IconWithTooltipDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <IconWithTooltip /> );
+        wrapper = mount( <IconWithTooltip cssMap = { styles } /> );
     } );
 
     describe( 'mouseOver()', () =>

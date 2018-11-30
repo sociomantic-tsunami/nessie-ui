@@ -10,13 +10,11 @@
 /* global test jest */
 
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-
-import { Icon }           from '../index';
-
-import IconButton         from './index';
+import { Icon, IconButton } from '../index';
+import styles               from './iconButton.css';
 
 
 describe( 'IconButton', () =>
@@ -26,7 +24,7 @@ describe( 'IconButton', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <IconButton /> );
+        wrapper  = shallow( <IconButton cssMap = { styles } /> );
         instance = wrapper.instance();
     } );
 
@@ -84,7 +82,7 @@ describe( 'IconButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <IconButton /> );
+        wrapper = mount( <IconButton cssMap = { styles } /> );
     } );
 
     describe( 'click()', () =>

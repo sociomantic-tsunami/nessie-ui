@@ -92,6 +92,7 @@ export default class DatePicker extends React.PureComponent
     {
         const {
             className,
+            cssMap = evalTheme( this.context.DatePicker, this.props ),
             month,
             year,
             headers,
@@ -121,8 +122,6 @@ export default class DatePicker extends React.PureComponent
             prevIsReadOnly,
             type,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.DatePicker, this.props );
 
         return (
             <div className = { buildClassName( className, cssMap ) }>

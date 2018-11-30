@@ -10,12 +10,11 @@
 /* global test */
 /* eslint-disable no-magic-numbers*/
 
-import React       from 'react';
-import { mount }   from 'enzyme';
+import React                    from 'react';
+import { mount }                from 'enzyme';
 
-import { NavList } from '../index';
+import { NavDropdown, NavList } from '../index';
 
-import NavDropdown from './index';
 
 describe( 'NavDropdown', () =>
 {

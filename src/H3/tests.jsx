@@ -13,7 +13,7 @@
 import React       from 'react';
 import { shallow } from 'enzyme';
 
-import H3          from './index';
+import { H3 }      from '../index';
 
 
 describe( 'H3', () =>

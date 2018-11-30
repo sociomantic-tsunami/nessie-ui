@@ -10,12 +10,11 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global test */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import { Text }         from '../index';
-
-import DragNDrop        from './index';
+import { DragNDrop, Text }  from '../index';
+import styles               from './dragNDrop.css';
 
 
 describe( 'DragNDrop', () =>
@@ -24,7 +23,7 @@ describe( 'DragNDrop', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <DragNDrop /> );
+        wrapper = mount( <DragNDrop cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>

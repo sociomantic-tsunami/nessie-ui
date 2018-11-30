@@ -10,10 +10,11 @@
 /* global jest test */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions, max-len */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import DatePicker from './index';
+import styles           from './datePicker.css';
+import { DatePicker }   from '../index';
 
 
 describe( 'DatePickerDriver', () =>
@@ -22,7 +23,7 @@ describe( 'DatePickerDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <DatePicker /> );
+        wrapper = mount( <DatePicker cssMap = { styles } /> );
     } );
 
 

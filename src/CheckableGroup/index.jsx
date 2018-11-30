@@ -112,6 +112,7 @@ export default class CheckableGroup extends React.Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.CheckableGroup, this.props ),
             errorMessage,
             errorMessageIsVisible,
             forceHover,
@@ -126,8 +127,6 @@ export default class CheckableGroup extends React.Component
             onMouseOut,
             onMouseOver,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.CheckableGroup, this.props );
 
         const items = Children.toArray( children ).map( child =>
         {

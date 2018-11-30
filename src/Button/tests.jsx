@@ -10,13 +10,12 @@
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 /* global jest test */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                      from 'react';
+import { mount, shallow }         from 'enzyme';
 
-import { Icon, Spinner }  from '../index';
-import styles             from './button.css';
+import { Button, Icon, Spinner }  from '../index';
+import styles                     from './button.css';
 
-import Button             from './index';
 
 describe( 'Button', () =>
 {
@@ -25,11 +24,6 @@ describe( 'Button', () =>
     beforeEach( () =>
     {
         wrapper  = shallow( <Button cssMap = { styles } /> );
-    } );
-
-    test( 'should a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
     } );
 
     describe( 'render()', () =>

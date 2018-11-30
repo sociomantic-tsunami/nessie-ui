@@ -42,10 +42,9 @@ export default class NavList extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.NavList, this.props ),
             layout,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.NavList, this.props );
 
         return (
             <ul className = { buildClassName( className, cssMap, { layout } ) }>

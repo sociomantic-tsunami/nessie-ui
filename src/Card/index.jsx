@@ -76,11 +76,10 @@ export default class Card extends React.PureComponent
             align,
             className,
             children,
+            cssMap = evalTheme( this.context.Card, this.props ),
             padding,
             verticalAlign,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Card, this.props );
 
         return (
             <div

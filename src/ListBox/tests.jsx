@@ -13,7 +13,7 @@
 import React                 from 'react';
 import { shallow, mount }    from 'enzyme';
 
-import ListBox               from './index';
+import { ListBox }           from '../index';
 
 
 describe( 'ListBox', () =>
@@ -61,34 +61,34 @@ ListBoxOption at given index', () =>
             wrapper.setProps( {
                 onClickOption,
                 options : [ {
-                    'text' : 'Option'
+                    'text' : 'Option',
                 },
                 {
                     'text'        : 'Option with description',
                     'value'       : 'value2',
-                    'description' : 'Option description'
+                    'description' : 'Option description',
                 },
                 {
                     'text'       : 'Disabled option',
                     'value'      : 'value3',
-                    'isDisabled' : true
+                    'isDisabled' : true,
                 },
                 {
                     header  : 'Subsection 1',
                     options : [
                         {
-                            'text' : 'Subsection option 1'
+                            'text' : 'Subsection option 1',
                         },
                         {
-                            'text' : 'Subsection option 2'
+                            'text' : 'Subsection option 2',
                         },
                         {
                             'text'        : 'Subsection description',
                             'description' : 'Option description',
-                            'value'       : 'value12'
-                        }
-                    ]
-                } ]
+                            'value'       : 'value12',
+                        },
+                    ],
+                } ],
             } );
 
             wrapper.driver().clickOption( 1 );
@@ -108,34 +108,34 @@ ListBoxOption at given index', () =>
             wrapper.setProps( {
                 onMouseOverOption,
                 options : [ {
-                    'text' : 'Option'
+                    'text' : 'Option',
                 },
                 {
                     'text'        : 'Option with description',
                     'value'       : 'value2',
-                    'description' : 'Option description'
+                    'description' : 'Option description',
                 },
                 {
                     'text'       : 'Disabled option',
                     'value'      : 'value3',
-                    'isDisabled' : true
+                    'isDisabled' : true,
                 },
                 {
                     header  : 'Subsection 1',
                     options : [
                         {
-                            'text' : 'Subsection option 1'
+                            'text' : 'Subsection option 1',
                         },
                         {
-                            'text' : 'Subsection option 2'
+                            'text' : 'Subsection option 2',
                         },
                         {
                             'text'        : 'Subsection description',
                             'description' : 'Option description',
-                            'value'       : 'value12'
-                        }
-                    ]
-                } ]
+                            'value'       : 'value12',
+                        },
+                    ],
+                } ],
             } );
 
             wrapper.driver().mouseOverOption( 1 );
@@ -155,34 +155,34 @@ ListBoxOption at given index', () =>
             wrapper.setProps( {
                 onMouseOutOption,
                 options : [ {
-                    'text' : 'Option'
+                    'text' : 'Option',
                 },
                 {
                     'text'        : 'Option with description',
                     'value'       : 'value2',
-                    'description' : 'Option description'
+                    'description' : 'Option description',
                 },
                 {
                     'text'       : 'Disabled option',
                     'value'      : 'value3',
-                    'isDisabled' : true
+                    'isDisabled' : true,
                 },
                 {
                     header  : 'Subsection 1',
                     options : [
                         {
-                            'text' : 'Subsection option 1'
+                            'text' : 'Subsection option 1',
                         },
                         {
-                            'text' : 'Subsection option 2'
+                            'text' : 'Subsection option 2',
                         },
                         {
                             'text'        : 'Subsection description',
                             'description' : 'Option description',
-                            'value'       : 'value12'
-                        }
-                    ]
-                } ]
+                            'value'       : 'value12',
+                        },
+                    ],
+                } ],
             } );
 
             wrapper.driver().mouseOutOption( 0 );
@@ -201,18 +201,18 @@ ListBoxOption at given index', () =>
             wrapper.setProps( {
                 onKeyPress,
                 options : [ {
-                    'text' : 'Option'
+                    'text' : 'Option',
                 },
                 {
                     'text'        : 'Option with description',
                     'value'       : 'value2',
-                    'description' : 'Option description'
+                    'description' : 'Option description',
                 },
                 {
                     'text'       : 'Disabled option',
                     'value'      : 'value3',
-                    'isDisabled' : true
-                } ]
+                    'isDisabled' : true,
+                } ],
             } );
 
             wrapper.driver().keyPress();

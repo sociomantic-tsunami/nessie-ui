@@ -9,10 +9,10 @@
 
 /* global test */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React          from 'react';
+import { mount }      from 'enzyme';
 
-import InputField from './index';
+import { InputField } from '../index';
 
 const { cssMap } = InputField.defaultProps;
 
@@ -45,7 +45,6 @@ describe( 'InputField', () =>
             test( 'should be passed to the input element', () =>
             {
                 wrapper.setProps( { element: 'textarea' } );
-
 
                 expect( wrapper.find( `.${cssMap.default}` ).type() )
                     .toBe( 'textarea' );

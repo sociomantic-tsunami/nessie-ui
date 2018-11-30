@@ -125,8 +125,11 @@ export default class Checkbox extends React.Component
 
     render()
     {
-        const { id = generateId( 'Checkbox' ), ...props } = this.props;
-        const cssMap = evalTheme( this.context.Checkbox, this.props );
+        const {
+            id = generateId( 'Checkbox' ),
+            cssMap = evalTheme( this.context.Checkbox, this.props ),
+            ...props
+        } = this.props;
 
         return (
             <Checkable

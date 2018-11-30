@@ -9,12 +9,10 @@
 
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { Column } from '../index';
-
-import Grid       from './index';
+import { Column, Grid } from '../index';
 
 
 describe( 'GridColumnDriver', () =>

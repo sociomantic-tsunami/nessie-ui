@@ -10,10 +10,11 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
-import React       from 'react';
-import { mount }   from 'enzyme';
+import React           from 'react';
+import { mount }       from 'enzyme';
 
-import ModalDialog from './index';
+import { ModalDialog } from '../index';
+import styles          from './modalDialog.css';
 
 
 describe( 'ModalDialog', () =>
@@ -27,7 +28,7 @@ describe( 'ModalDialog', () =>
 
     test( 'should render <ModalDialog/>', () =>
     {
-        wrapper = mount( <ModalDialog /> );
+        wrapper = mount( <ModalDialog cssMap = { styles } /> );
 
         expect( wrapper.find( ModalDialog ) ).toHaveLength( 1 );
     } );
@@ -36,9 +37,9 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : false,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
-        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
 
         const children = wrapper.driver().getContent();
         expect( children ).toHaveLength( 0 );
@@ -48,9 +49,9 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : true,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
-        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
 
         const children = wrapper.driver().getContent();
         expect( children ).toBeTruthy();
@@ -65,12 +66,12 @@ describe( 'ModalDialog', () =>
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack
+                onClickOverlay : callBack,
             };
-            wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
             wrapper.driver().clickOverlay();
             expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+        },
     );
 
     test(
@@ -80,14 +81,14 @@ describe( 'ModalDialog', () =>
             const callBack = jest.fn();
 
             const props = {
-                isVisible      : true,
-                onClickClose   : callBack,
-                type           : 'carousel'
+                isVisible    : true,
+                onClickClose : callBack,
+                type         : 'carousel',
             };
-            wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
             wrapper.driver().clickClose();
             expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+        },
     );
 
     test( 'should trigger `onClickPrev` once when prev button is clicked', () =>
@@ -97,9 +98,9 @@ describe( 'ModalDialog', () =>
         const props = {
             isVisible   : true,
             onClickPrev : callBack,
-            type        : 'carousel'
+            type        : 'carousel',
         };
-        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
         wrapper.driver().clickPrev();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
@@ -111,9 +112,9 @@ describe( 'ModalDialog', () =>
         const props = {
             isVisible   : true,
             onClickNext : callBack,
-            type        : 'carousel'
+            type        : 'carousel',
         };
-        wrapper = mount( <ModalDialog { ...props } /> );
+        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
         wrapper.driver().clickNext();
         expect( callBack ).toHaveBeenCalledTimes( 1 );
     } );
@@ -127,10 +128,10 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible      : true,
-                onClickOverlay : callBack
+                onClickOverlay : callBack,
             };
 
-            wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
 
             expect( () => wrapper.driver().clickClose() )
                 .toThrowError( 'Cannot trigger click on the "Close Button" \
@@ -145,10 +146,10 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible   : true,
-                onClickPrev : callBack
+                onClickPrev : callBack,
             };
 
-            wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
 
             expect( () => wrapper.driver().clickPrev() )
                 .toThrowError( 'Cannot trigger click on the "Prev Button" \
@@ -163,10 +164,10 @@ that\'s not a carousel', () =>
 
             const props = {
                 isVisible   : true,
-                onClickNext : callBack
+                onClickNext : callBack,
             };
 
-            wrapper = mount( <ModalDialog { ...props } /> );
+            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
 
             expect( () => wrapper.driver().clickNext() )
                 .toThrowError( 'Cannot trigger click on the "Next Button" \

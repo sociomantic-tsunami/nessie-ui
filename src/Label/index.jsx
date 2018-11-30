@@ -65,6 +65,7 @@ export default class Label extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.Label, this.props ),
             element,
             htmlFor,
             label,
@@ -74,7 +75,6 @@ export default class Label extends React.PureComponent
             overflowIsHidden,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.Label, this.props );
         const LabelElement = element || 'label';
 
         return (

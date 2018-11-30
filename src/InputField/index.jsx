@@ -204,6 +204,7 @@ export default class InputField extends React.Component
             autoComplete,
             autoCorrect,
             className,
+            cssMap = evalTheme( this.context.InputField, this.props ),
             element,
             forceHover,
             hasError,
@@ -230,7 +231,6 @@ export default class InputField extends React.Component
             value,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.InputField, this.props );
         const InputElement = element || 'input';
 
         return (

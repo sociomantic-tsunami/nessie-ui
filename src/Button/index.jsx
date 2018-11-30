@@ -173,6 +173,7 @@ export default class Button extends React.Component
             buttonRef,
             children,
             className,
+            cssMap = evalTheme( this.context.Button, this.props ),
             defaultValue,
             forceHover,
             iconPosition,
@@ -189,8 +190,6 @@ export default class Button extends React.Component
             type,
             value,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Button, this.props );
 
         const content = (
             <div className = { cssMap.content }>

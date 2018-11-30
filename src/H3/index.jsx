@@ -48,11 +48,10 @@ export default class H3 extends React.PureComponent
         const {
             className,
             children,
+            cssMap = evalTheme( this.context.H3, this.props ),
             title,
             role,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.H3, this.props );
 
         return (
             <h3 className = { buildClassName( className, cssMap, { role } ) }>

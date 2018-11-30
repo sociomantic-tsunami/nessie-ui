@@ -10,12 +10,11 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str*/
 
-import React                       from 'react';
-import { mount, shallow }          from 'enzyme';
+import React                               from 'react';
+import { mount, shallow }                  from 'enzyme';
 
-import { H2, H3, IconWithTooltip } from '../index';
-
-import Module                      from './index';
+import { H2, H3, IconWithTooltip, Module } from '../index';
+import styles                              from './module.css';
 
 
 describe( 'Module', () =>
@@ -25,7 +24,7 @@ describe( 'Module', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Module /> );
+        wrapper  = shallow( <Module cssMap = { styles } /> );
         instance = wrapper.instance();
     } );
 
@@ -180,7 +179,7 @@ describe( 'ModuleDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Module /> );
+        wrapper = mount( <Module cssMap = { styles } /> );
     } );
 
     describe( 'toggle()', () =>

@@ -10,10 +10,11 @@
 /* global test jest */
 /* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import NavItem   from './index';
+import { NavItem }  from '../index';
+import styles       from './navItem.css';
 
 
 describe( 'NavItemDriver', () =>
@@ -22,7 +23,7 @@ describe( 'NavItemDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavItem /> );
+        wrapper = mount( <NavItem cssMap = { styles } /> );
     } );
 
     describe( 'click()', () =>

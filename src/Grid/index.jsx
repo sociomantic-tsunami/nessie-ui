@@ -111,6 +111,7 @@ export default class Grid extends React.Component
             align,
             children,
             className,
+            cssMap = evalTheme( this.context.Grid, this.props ),
             onClick,
             onMouseOut,
             onMouseOver,
@@ -122,8 +123,6 @@ export default class Grid extends React.Component
             spacing,
             verticalAlign,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Grid, this.props );
 
         if ( !noWarn )
         {

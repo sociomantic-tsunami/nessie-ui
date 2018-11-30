@@ -103,12 +103,11 @@ export default class Column extends React.PureComponent
             children,
             className,
             columnTitle,
+            cssMap = evalTheme( this.context.Column, this.props ),
             role,
             size,
             verticalAlign,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.Column, this.props );
 
         if ( !Column.didWarn && verticalAlign === 'space-around' )
         {

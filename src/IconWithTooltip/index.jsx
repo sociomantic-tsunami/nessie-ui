@@ -183,6 +183,7 @@ export default class IconWithTooltip extends React.PureComponent
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.IconWithTooltip, this.props ),
             iconIsVisible,
             iconPosition,
             iconRole,
@@ -200,8 +201,6 @@ export default class IconWithTooltip extends React.PureComponent
             tooltipIsVisible,
             tooltipPosition,
         } = this.props;
-
-        const cssMap = evalTheme( this.context.IconWithTooltip, this.props );
 
         if ( !noWarn && !IconWithTooltip.didWarn )
         {

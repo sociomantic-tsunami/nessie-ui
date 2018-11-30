@@ -27,11 +27,6 @@ describe( 'PasswordInput', () =>
         wrapper  = shallow( <PasswordInput /> );
     } );
 
-    test( 'should be stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
     test( 'should contain exactly one TextInputWithIcon', () =>
     {
         expect( wrapper.find( TextInputWithIcon ) ).toHaveLength( 1 );

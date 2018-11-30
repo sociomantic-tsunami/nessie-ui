@@ -51,11 +51,11 @@ export default class DragNDrop extends Component
         const {
             children,
             className,
+            cssMap = evalTheme( this.context.DragNDrop, this.props ),
             dragNDropState,
             message,
         } = this.props;
 
-        const cssMap = evalTheme( this.context.DragNDrop, this.props );
         let dropzoneIsVisible   = false;
         let isUploading         = false;
 
