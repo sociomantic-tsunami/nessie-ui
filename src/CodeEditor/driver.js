@@ -132,4 +132,23 @@ export default class CodeEditorDriver
         this.wrapper.simulate( 'mouseleave' );
         return this;
     }
+
+    keyPress()
+    {
+        const props = this.wrapper.props();
+        const onKeyPress = this.wrapper.prop( 'onKeyPress' );
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR
+                .CODEEDITOR_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( onKeyPress )
+        {
+            onKeyPress();
+        }
+
+        return this;
+    }
 }

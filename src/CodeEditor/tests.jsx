@@ -48,12 +48,14 @@ describe( 'CodeEditor', () =>
 describe( 'CodeEditorDriver', () =>
 {
     let wrapper;
+    let CodeMirror;
     let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <CodeEditor /> );
-        driver  = wrapper.driver();
+        wrapper    = mount( <CodeEditor /> );
+        CodeMirror = wrapper.instance().codeMirror;
+        driver     = wrapper.driver();
     } );
 
 
@@ -74,10 +76,9 @@ describe( 'CodeEditorDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate blur since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -107,10 +108,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate blur since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.blur() ).toThrow( expectedError );
             } );
@@ -154,10 +154,9 @@ it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate focus since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -187,10 +186,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate focus since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.focus() ).toThrow( expectedError );
             } );
@@ -225,7 +223,6 @@ it is read only';
             wrapper.setProps( { onChange } );
 
             driver.change( 'Tekeli-li' );
-
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -234,10 +231,9 @@ it is read only';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true } );
-
                 const expectedError = 'CodeEditor cannot simulate change since \
 it is disabled';
+                wrapper.setProps( { isDisabled: true } );
 
                 expect( () => driver.change( 'Cthulhu' ) )
                     .toThrow( expectedError );
@@ -248,7 +244,6 @@ it is disabled';
                 const onChange = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onChange,
                 } );
 
@@ -268,10 +263,9 @@ it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true } );
-
                 const expectedError = 'CodeEditor cannot simulate change since \
 it is read only';
+                wrapper.setProps( { isReadOnly: true } );
 
                 expect( () => driver.change( 'Azathoth' ) )
                     .toThrow( expectedError );
@@ -282,7 +276,6 @@ it is read only';
                 const onChange = jest.fn();
                 wrapper.setProps( {
                     isReadOnly : true,
-                    label      : 'Tekeli-li',
                     onChange,
                 } );
 
@@ -327,7 +320,6 @@ since it is disabled';
                 const onMouseOver = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onMouseOver,
                 } );
 
@@ -372,7 +364,6 @@ since it is disabled';
                 const onMouseOut = jest.fn();
                 wrapper.setProps( {
                     isDisabled : true,
-                    label      : 'Tekeli-li',
                     onMouseOut,
                 } );
 
@@ -383,6 +374,50 @@ since it is disabled';
                 catch ( error )
                 {
                     expect( onMouseOut ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'keyPress()', () =>
+    {
+        test( 'should call the onKeyPress callback exactly once ', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPress();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'CodeEditor cannot simulate keyPress \
+since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.keyPress() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onKeyPress when isDisabled', () =>
+            {
+                const onKeyPress = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    onKeyPress,
+                } );
+
+                try
+                {
+                    driver.keyPress();
+                }
+                catch ( error )
+                {
+                    expect( onKeyPress ).not.toBeCalled();
                 }
             } );
         } );
