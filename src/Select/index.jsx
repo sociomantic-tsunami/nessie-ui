@@ -222,15 +222,14 @@ export default class Select extends Component
         super();
 
         this.state = {
-            activeOption   : undefined,
-            flatOptions    : undefined,
-            id             : undefined,
-            inputValue     : undefined,
-            isOpen         : undefined,
-            options        : undefined,
-            selection      : undefined,
-            prevInputValue : undefined,
-            prevSelection  : undefined,
+            activeOption : undefined,
+            flatOptions  : undefined,
+            id           : undefined,
+            isFocused    : false,
+            isOpen       : undefined,
+            options      : undefined,
+            searchValue  : undefined,
+            selection    : undefined,
         };
 
         this.handleChangeInput     = this.handleChangeInput.bind( this );
@@ -238,6 +237,7 @@ export default class Select extends Component
         this.handleClickInput      = this.handleClickInput.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
         this.handleKeyDown         = this.handleKeyDown.bind( this );
+        this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
         this.handleOnFocus         = this.handleOnFocus.bind( this );
         this.handleOnBlur          = this.handleOnBlur.bind( this );
@@ -247,29 +247,29 @@ export default class Select extends Component
     {
         let { flatOptions } = state;
         const { defaultOption, selectedOption } = props;
-        const optionId = selectedOption || state.selection || defaultOption;
+        let optionId = selectedOption || state.selection || defaultOption;
 
         if ( props.options !== state.options )
         {
             flatOptions = props.options.flatMap( o => o.options || o );
         }
 
-        const currentOption = optionId ? getOption( optionId, flatOptions ) :
-            optionId;
+        if ( optionId )
+        {
+            optionId = getOption( optionId, flatOptions )
+            ? getOption( optionId, flatOptions ).id : undefined;
+        }
 
-        const selection = currentOption ? currentOption.id : currentOption;
-        const inputValue = currentOption ? currentOption.text : currentOption;
-
-        console.log( state.inputValue, 'BB')
+        console.log( state.options, 'AKI' );
 
         return {
             flatOptions,
             id         : props.id || state.id || generateId( 'Select' ),
-            inputValue : state.inputValue,
             isOpen     : typeof props.isOpen === 'undefined' ? state.isOpen :
                 props.isOpen,
-            options   : props.options,
-            selection,
+            options     : state.options || props.options,
+            searchValue : state.searchValue,
+            selection   : optionId,
         };
     }
 
@@ -282,14 +282,26 @@ export default class Select extends Component
             callback( e );
         }
 
-        const { value } = e.target;
+        const searchValue = ( e.target.value || '' ).toLowerCase();
+        const allOptions = this.props.options.flatMap( o => o.options || o );
 
-        this.setState( prevState =>
+        let filteredOption = allOptions.filter( ( { id, text } ) =>
         {
-            return {
-                inputValue : value,
-            };
+            return !searchValue ||
+                    id.toLowerCase().indexOf( searchValue ) > -1 ||
+                    text.toLowerCase().indexOf( searchValue ) > -1;
         } );
+
+        // if ( !filteredOption.length )
+        // {
+        //     filteredOption[ 0 ] = 'No Results';
+        // }
+
+        this.setState( { searchValue, options: filteredOption  } );
+
+        console.log( searchValue, 'searchValue' );
+
+        console.log( filteredOption, 'filteredOption' );
     }
 
     handleClickIcon( e )
@@ -301,8 +313,8 @@ export default class Select extends Component
             callback( e );
         }
 
-        e.stopPropagation();
-        // this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+        this.inputRef.focus();
+        this.setState( { isOpen: true } );
     }
 
     handleClickInput( e )
@@ -314,7 +326,7 @@ export default class Select extends Component
             callback( e );
         }
 
-        // this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+        this.setState( { isOpen: true  } );
     }
 
     handleClickOption( e, id )
@@ -330,9 +342,9 @@ export default class Select extends Component
         {
             const selectedOption = getOption( id, prevState.flatOptions );
             return {
-                isOpen     : false,
-                inputValue : selectedOption.text,
-                selection  : selectedOption.id,
+                isOpen      : false,
+                selection   : selectedOption.id,
+                searchValue : undefined,
             };
         } );
     }
@@ -382,21 +394,34 @@ export default class Select extends Component
         }
         else if ( key === 'Enter' )
         {
-            this.setState( prevState => ( {
-                selection :
-                getOption(
+            this.setState( prevState =>
+            {
+                const opt = getOption(
                     prevState.activeOption,
                     prevState.flatOptions,
-                ).id,
-                inputValue :
-                getOption(
-                    prevState.activeOption,
-                    prevState.flatOptions,
-                ).text,
-                isOpen : typeof isOpen === 'boolean' ?
-                    this.state.isOpen : !prevState.isOpen,
-            } ) );
+                );
+
+                return {
+                    selection : opt ? opt.id : undefined,
+                    isOpen    : typeof isOpen === 'boolean' ?
+                        this.state.isOpen : !prevState.isOpen,
+                    options     : undefined,
+                    searchValue : undefined,
+                };
+            } );
         }
+    }
+
+    handleMouseOutOption( e )
+    {
+        const callback = this.props.onMouseOutOption;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( { activeOption: undefined } );
     }
 
     handleMouseOverOption( e, id )
@@ -428,14 +453,10 @@ export default class Select extends Component
             callback( e );
         }
 
-
-        this.setState( prevState =>
-        {
-            return {
-                inputValue : undefined,
-                isOpen : true,
-            };
-        }  );
+        this.setState( {
+            isFocused : true,
+            isOpen    : true,
+        } );
     }
 
     handleOnBlur( e )
@@ -447,14 +468,11 @@ export default class Select extends Component
             callback( e );
         }
 
-        console.log( 'BLUR' );
-        this.setState( prevState =>
-        {
-            return {
-                isOpen     : false,
-                inputValue : getOption( prevState.selection, prevState.flatOptions ).text,
-
-            };
+        this.setState( {
+            isFocused   : false,
+            isOpen      : false,
+            options     : undefined,
+            searchValue : undefined,
         } );
     }
 
@@ -476,21 +494,25 @@ export default class Select extends Component
             onKeyUp,
             onMouseOut,
             onMouseOutIcon,
-            onMouseOutOption,
             onMouseOver,
             onMouseOverIcon,
             onScroll,
-            options,
             textAlign,
         } = this.props;
 
         const {
             activeOption,
+            flatOptions,
             id,
-            inputValue,
+            isFocused,
             isOpen,
+            options,
+            searchValue,
             selection,
         } = this.state;
+
+        const optionVal = getOption( selection, flatOptions ) ?
+            getOption( selection, flatOptions ).text : undefined;
 
         return (
             <ComboBox
@@ -504,8 +526,10 @@ export default class Select extends Component
                 iconPosition         = { iconPosition }
                 iconType             = { isOpen ? 'up' : 'down' }
                 id                   = { id }
+                inputIsReadOnly      = { !isOpen }
+                inputRef             = { ( ref ) => { this.inputRef = ref; } }
                 inputPlaceholder     = { inputPlaceholder }
-                inputValue           = { inputValue }
+                inputValue           = { isFocused && isOpen ? searchValue : optionVal }
                 isDisabled           = { isDisabled }
                 isMultiselect        = { isMultiselect }
                 isOpen               = { isOpen }
@@ -521,7 +545,7 @@ export default class Select extends Component
                 onKeyUp              = { onKeyUp }
                 onMouseOut           = { onMouseOut }
                 onMouseOutIcon       = { onMouseOutIcon }
-                onMouseOutOption     = { onMouseOutOption }
+                onMouseOutOption     = { this.handleMouseOutOption }
                 onMouseOver          = { onMouseOver }
                 onMouseOverIcon      = { onMouseOverIcon }
                 onMouseOverOption    = { this.handleMouseOverOption }
