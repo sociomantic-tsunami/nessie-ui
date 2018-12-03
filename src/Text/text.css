@@ -15,6 +15,8 @@
     margin-bottom:  var( --spacing-1 );
     text-transform: none;
 
+    line-height:    var( --line-height-m );
+
     .default
     {
         display:    inline;
@@ -23,8 +25,8 @@
 
     a:any-link
     {
-        color:              var( --PC-BLUE );
-        text-decoration:    underline;
+        color:                  var( --PC-BLUE );
+        text-decoration:        underline;
 
         &:hover
         {
@@ -42,7 +44,7 @@
 
 .noWrap
 {
-    white-space: nowrap;
+    white-space:    nowrap;
 }
 
 .allCaps
@@ -53,34 +55,38 @@
 /* ROLES */
 .role__default
 {
-    color:  inherit;
-}
-
-.role__subtle
-{
-    color:  var( --PC-GREY--D5 );
-}
-
-.role__promoted
-{
-    color:  var( --PC-GREEN );
+    color:                  inherit;
 }
 
 .role__critical
 {
-    color:  var( --PC-RED );
+    color:                  var( --PC-RED );
+}
+
+.role__link
+{
+    color:                  var( --PC-BLUE );
+    text-decoration:        underline;
+
+    &:hover
+    {
+        text-decoration:    none;
+        cursor:             pointer;
+    }
+}
+
+.role__promoted
+{
+    color:                  var( --PC-GREEN );
+}
+
+.role__subtle
+{
+    color:                  var( --PC-GREY--D5 );
 }
 
 
 /* SIZES */
-
-.size__XXS,
-.size__XS,
-.size__S
-{
-    line-height:    var( --line-height-xs );
-}
-
 .size__XXS
 {
     font-size:  var( --typo-1 );
@@ -98,15 +104,7 @@
 
 .size__M
 {
-
-    font-size:      var( --typo-3 );
-    line-height:    var( --line-height-s );
-}
-
-.size__L,
-.size__XL
-{
-    line-height:    var( --line-height-m );
+    font-size:  var( --typo-3 );
 }
 
 .size__L
@@ -117,12 +115,6 @@
 .size__XL
 {
     font-size:  var( --typo-5 );
-}
-
-.size__XXL,
-.size__XXXL
-{
-    line-height:    var( --line-height-l );
 }
 
 .size__XXL

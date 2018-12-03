@@ -15,14 +15,15 @@
     align-items:        center;
 
     margin:             0;
-    padding:            var( --spacing-1 ) var( --spacing-2 );
+    padding:            calc( var( --spacing-3 ) / 2 ) var( --spacing-3 );
 
     cursor:             pointer;
 
     .icon
     {
         flex:           0 0 auto;
-        margin-right:   var( --spacing-2 );
+        align-self:     flex-start;
+        margin-right:   var( --spacing-3 );
     }
 
     .textContainer
@@ -33,36 +34,52 @@
 
     .optionText
     {
+        @extend %Nessie-SemiBold;
+
         margin:         0;
-        color:          var( --PC-GREY );
+        color:          var( --PC-GREY--D15 );
     }
 
     &:hover,
     &.active
     {
-        background:     var( --PC-BLUE );
+        background:     var( --PC-GREY--L95 );
 
-        .optionText,
-        .description
+        .optionText:not(.description)
         {
-            color:      var( --PC-WHITE );
+            color:      var( --PC-BLUE );
         }
     }
-}
 
-.withDescription
-{
-    .optionText
+    &.withDescription
     {
-        font-size:      var( --typo-5 );
-        line-height:    var( --line-height-m );
-        color:          var( --PC-BLUE );
+        padding-top:        var( --spacing-1 );
+
+        .optionText
+        {
+            @extend %Nessie-Regular;
+            font-size:      var( --typo-5 );
+            line-height:    var( --line-height-m );
+        }
+
+        .description
+        {
+            @extend %Nessie-Regular;
+            color:          var( --PC-GREY--L40 );
+            line-height:    var( --line-height-s );
+            margin-top:     4px;
+        }
     }
 }
 
 .selected
 {
-    background:         color( var( --PC-BLUE ) a( 10% ) );
+    background:         var( --PC-GREY--L95 );
+
+    &.optionText
+    {
+        @extend         %Nessie-Bold;
+    }
 }
 
 .disabled
@@ -78,6 +95,6 @@
     &.withDescription .optionText,
     .description
     {
-        color:          var( --PC-GREY--L40 );
+        color:          var( --PC-GREY--L70 );
     }
 }

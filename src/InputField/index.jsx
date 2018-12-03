@@ -185,10 +185,6 @@ InputField.propTypes =
      */
     onClick      : PropTypes.func,
     /**
-     *  Icon click callback function
-     */
-    onClickIcon  : PropTypes.func,
-    /**
      *  Focus callback function
      */
     onFocus      : PropTypes.func,

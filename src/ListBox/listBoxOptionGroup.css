@@ -28,11 +28,11 @@
 
     .headerText
     {
-        @extend %Nessie-RegularIt;
+        @extend %Nessie-SemiBoldIt;
 
         font-size:      var( --typo-3 );
-        line-height:    var( --line-height-m );
-        color:          var( --PC-GREY--D25 );
+        line-height:    var( --line-height-s );
+        color:          var( --PC-GREY--D15 );
     }
 
     .options

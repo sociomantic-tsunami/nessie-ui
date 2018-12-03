@@ -25,6 +25,7 @@ const Grid = ( {
     onMouseOut,
     onMouseOver,
     gutters,
+    hasFullWidth,
     hasMinHeight,
     hasWrap,
     noWarn,
@@ -69,6 +70,7 @@ children' );
             className = { buildClassName( className, cssMap, {
                 alignX  : align,
                 alignY  : verticalAlign,
+                hasFullWidth,
                 hasMinHeight,
                 gutters : gutters !== 'none' && gutters,
                 wrap    : hasWrap,
@@ -106,6 +108,10 @@ Grid.propTypes =
      *  Gutter size
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+    /**
+     *  Sets 'width: 100%' to prevent content growth from negative margins
+     */
+    hasFullWidth  : PropTypes.bool,
     /**
      * Wrap content
      */
@@ -151,6 +157,7 @@ Grid.defaultProps =
     className     : undefined,
     cssMap        : styles,
     gutters       : 'M',
+    hasFullWidth  : false,
     hasWrap       : true,
     noWarn        : false,
     onClick       : undefined,

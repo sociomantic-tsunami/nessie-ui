@@ -118,6 +118,7 @@ ListBoxOption.propTypes = {
         'close',
         'dash',
         'dashboard',
+        'deactivated',
         'declined',
         'delete',
         'down',
