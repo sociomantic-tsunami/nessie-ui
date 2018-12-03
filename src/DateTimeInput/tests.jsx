@@ -37,6 +37,41 @@ describe( 'DateTimeInputDriver', () =>
             driver.blurMainInput();
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate blur since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.blurMainInput() ).toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onBlur callback prop when isDisabled',
+                () =>
+                {
+                    const onBlur = jest.fn();
+                    wrapper.setProps( {
+                        onBlur,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.blurMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onBlur ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
     } );
 
     describe( 'focusMainInput()', () =>
@@ -48,6 +83,42 @@ describe( 'DateTimeInputDriver', () =>
 
             driver.focusMainInput();
             expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate focus since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.focusMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onFocus callback prop when isDisabled',
+                () =>
+                {
+                    const onFocus = jest.fn();
+                    wrapper.setProps( {
+                        onFocus,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.focusMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onFocus ).not.toBeCalled();
+                    }
+                },
+            );
         } );
     } );
 
@@ -200,27 +271,289 @@ describe( 'DateTimeInputDriver', () =>
     } );
 
 
-    describe( 'keyPressHour()', () =>
+    describe( 'changeMainInput( val )', () =>
+    {
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( {
+                onChange,
+            } );
+
+            driver.changeMainInput();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate change since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.changeMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onChange callback prop when isDisabled',
+                () =>
+                {
+                    const onChange = jest.fn();
+                    wrapper.setProps( {
+                        onChange,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.changeMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onChange ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should throw the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate change since it is read only';
+                wrapper.setProps( {
+                    isReadOnly : true,
+                } );
+
+                expect( () => driver.changeMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onChange callback prop when isReadOnly',
+                () =>
+                {
+                    const onChange = jest.fn();
+                    wrapper.setProps( {
+                        onChange,
+                        isReadOnlyInput : true,
+                    } );
+
+                    try
+                    {
+                        driver.changeMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onChange ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
+    } );
+
+
+    describe( 'changeHourInput()', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeHourInput();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'changeMinuteInput()', () =>
+    {
+        test( 'should trigger onChange callback once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.changeMinuteInput();
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyDownMainInput( keyCode )', () =>
+    {
+        test( 'should call onKeyDown once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( { onKeyDown } );
+
+            driver.keyDownMainInput();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
+        } );
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate keyDown since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.keyDownMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onKeyDown callback prop when isDisabled',
+                () =>
+                {
+                    const onKeyDown = jest.fn();
+                    wrapper.setProps( {
+                        onKeyDown,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.keyDownMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onKeyDown ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
+    } );
+
+
+    describe( 'keyUpMainInput( keyCode )', () =>
+    {
+        test( 'should call onKeyUp once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( { onKeyUp } );
+
+            driver.keyUpMainInput();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
+        } );
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate keyUp since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.keyUpMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onKeyUp callback prop when isDisabled',
+                () =>
+                {
+                    const onKeyUp = jest.fn();
+                    wrapper.setProps( {
+                        onKeyUp,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.keyUpMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onKeyUp ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
+    } );
+
+
+    describe( 'keyPressMainInput( keyCode )', () =>
+    {
+        test( 'should call onKeyPress once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPressMainInput();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should throw the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Main input cannot simulate keyPress since it is disabled';
+                wrapper.setProps( {
+                    isDisabled : true,
+                } );
+
+                expect( () => driver.keyPressMainInput() )
+                    .toThrow( expectedError );
+            } );
+
+            test(
+                'should not trigger onKeyPress callback prop when isDisabled',
+                () =>
+                {
+                    const onKeyPress = jest.fn();
+                    wrapper.setProps( {
+                        onKeyPress,
+                        isDisabled : true,
+                    } );
+
+                    try
+                    {
+                        driver.keyPressMainInput();
+                    }
+                    catch ( error )
+                    {
+                        expect( onKeyPress ).not.toBeCalled();
+                    }
+                },
+            );
+        } );
+    } );
+
+
+    describe( 'keyPressHourInput()', () =>
     {
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
 
-            driver.keyPressHour();
+            driver.keyPressHourInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
 
 
-    describe( 'keyPressMinute()', () =>
+    describe( 'keyPressMinuteInput()', () =>
     {
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
 
-            driver.keyPressMinute();
+            driver.keyPressMinuteInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
     } );
