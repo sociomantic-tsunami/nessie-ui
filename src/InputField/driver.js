@@ -70,7 +70,7 @@ export default class InputFieldDriver
             throw new Error( ERR.INPUTFIELD_ERROR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyPress', { keyCode } );
+        this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -81,7 +81,7 @@ export default class InputFieldDriver
             throw new Error( ERR.INPUTFIELD_ERROR( 'keyDown', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyDown', { keyCode } );
+        this.wrapper.simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -92,7 +92,7 @@ export default class InputFieldDriver
             throw new Error( ERR.INPUTFIELD_ERROR( 'keyUp', 'disabled' ) );
         }
 
-        this.wrapper.simulate( 'keyUp', { keyCode } );
+        this.wrapper.simulate( 'keyUp', { keyCode, which: keyCode } );
         return this;
     }
 

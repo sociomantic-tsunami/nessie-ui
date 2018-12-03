@@ -88,7 +88,7 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyPress', { keyCode } );
+            .simulate( 'keyPress', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -100,7 +100,7 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyDown', { keyCode } );
+            .simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -112,7 +112,7 @@ export default class TagInputDriver
         }
 
         this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'keyUp', { keyCode } );
+            .simulate( 'keyUp', { keyCode, which: keyCode } );
         return this;
     }
 

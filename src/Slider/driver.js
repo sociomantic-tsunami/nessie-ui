@@ -93,7 +93,8 @@ export default class SliderDriver
                 .SLIDER_ERR( this.label, 'onKeyDown', 'disabled' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'keyDown', { keyCode } );
+        this.inputContainer.childAt( index )
+            .simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -105,7 +106,8 @@ export default class SliderDriver
                 .SLIDER_ERR( this.label, 'onKeyUp', 'disabled' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'keyUp', { keyCode } );
+        this.inputContainer.childAt( index )
+            .simulate( 'keyUp', { keyCode, which: keyCode } );
         return this;
     }
 
