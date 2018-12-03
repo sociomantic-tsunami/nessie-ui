@@ -10,56 +10,69 @@
 import { DatePicker, IconButton } from 'nessie-ui';
 
 
+const ERR = {
+    INPUT_ERR : ( event, state ) =>
+        `Main input cannot simulate ${event} since it is ${state}`,
+};
+
 export default class DateTimeInputDriver
 {
     constructor( wrapper )
     {
-        this.wrapper     = wrapper;
-        this.cssMap      = wrapper.children().props().cssMap;
+        this.wrapper    = wrapper;
+        this.cssMap     = wrapper.children().props().cssMap;
 
-        this.mainInput   = wrapper.find( `.${this.cssMap.input}` );
-        this.hourInput   = wrapper.find( `.${this.cssMap.hour}` );
-        this.minuteInput = wrapper.find( `.${this.cssMap.min}` );
-        this.calendar    = wrapper.find( DatePicker );
-        this.icon        = wrapper.find( IconButton )
+        this.mainInput  = wrapper.find( `.${this.cssMap.input}` );
+        this.calendar   = wrapper.find( DatePicker );
+        this.icon       = wrapper.find( IconButton )
             .findWhere( node => node.props().iconType === 'calendar' );
-        this.prev        = wrapper.find( `.${this.cssMap.prev}` );
-        this.next        = wrapper.find( `.${this.cssMap.next}` );
+        this.prev       = wrapper.find( `.${this.cssMap.prev}` );
+        this.next       = wrapper.find( `.${this.cssMap.next}` );
     }
 
     blurMainInput()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'blur', 'disabled' ) );
+        }
+
         this.mainInput.simulate( 'blur' );
         return this;
     }
 
     focusMainInput()
     {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'focus', 'disabled' ) );
+        }
+
         this.mainInput.simulate( 'focus' );
         return this;
     }
 
     blurHourInput()
     {
-        this.hourInput.simulate( 'blur' );
+        this.calendar.driver().blurHourInput();
         return this;
     }
 
     focusHourInput()
     {
-        this.hourInput.simulate( 'focus' );
+        this.calendar.driver().focusHourInput();
         return this;
     }
 
     blurMinuteInput()
     {
-        this.minuteInput.simulate( 'blur' );
+        this.calendar.driver().blurMinuteInput();
         return this;
     }
 
     focusMinuteInput()
     {
-        this.minuteInput.simulate( 'focus' );
+        this.calendar.driver().focusMinuteInput();
         return this;
     }
 
@@ -96,21 +109,80 @@ export default class DateTimeInputDriver
         return this;
     }
 
-    keyPressInput( keyCode )
+    changeMainInput( val )
     {
-        this.wrapper.driver().keyPressInput( keyCode );
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly ||
+            this.wrapper.props().isReadOnlyInput )
+        {
+            throw new Error( ERR.INPUT_ERR( 'change', 'read only' ) );
+        }
+
+        const node = this.mainInput.getNode();
+        node.value = val;
+
+        this.mainInput.simulate( 'change' );
         return this;
     }
 
-    keyPressHour( keyCode )
+    changeHourInput( val )
     {
-        this.calendar.driver().keyPressHour( keyCode );
+        this.calendar.driver().changeHourInput( val );
         return this;
     }
 
-    keyPressMinute( keyCode )
+    changeMinuteInput( val )
     {
-        this.calendar.driver().keyPressMinute( keyCode );
+        this.calendar.driver().changeMinuteInput( val );
+        return this;
+    }
+
+    keyDownMainInput( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'keyDown', 'disabled' ) );
+        }
+
+        this.mainInput.simulate( 'keyDown', { keyCode, which: keyCode } );
+        return this;
+    }
+
+    keyUpMainInput( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'keyUp', 'disabled' ) );
+        }
+
+        this.mainInput.simulate( 'keyUp', { keyCode, which: keyCode } );
+        return this;
+    }
+
+    keyPressMainInput( keyCode )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.INPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        this.mainInput.simulate( 'keyPress', { keyCode, which: keyCode } );
+        return this;
+    }
+
+    keyPressHourInput( keyCode )
+    {
+        this.calendar.driver().keyPressHourInput( keyCode );
+        return this;
+    }
+
+    keyPressMinuteInput( keyCode )
+    {
+        this.calendar.driver().keyPressMinuteInput( keyCode );
         return this;
     }
 

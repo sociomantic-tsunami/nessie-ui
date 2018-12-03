@@ -69,7 +69,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    keyPressHour( key )
+    keyPressHourInput( key )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -85,7 +85,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    keyPressMinute( key )
+    keyPressMinuteInput( key )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -101,7 +101,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    blurHour()
+    blurHourInput()
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -117,7 +117,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    blurMinute()
+    blurMinuteInput()
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -133,7 +133,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    focusHour()
+    focusHourInput()
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -149,7 +149,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    focusMinute()
+    focusMinuteInput()
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -165,7 +165,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    changeHour( val )
+    changeHourInput( val )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {
@@ -189,7 +189,7 @@ export default class DatePickerDriver
         return this;
     }
 
-    changeMinute( val )
+    changeMinuteInput( val )
     {
         if ( this.wrapper.props().mode !== 'default' )
         {

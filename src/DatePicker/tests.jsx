@@ -189,14 +189,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'blurHour()', () =>
+    describe( 'blurHourInput()', () =>
     {
         test( 'should trigger onBlur callback once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            driver.blurHour();
+            driver.blurHourInput();
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -209,7 +209,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.blurHour() ).toThrow( expectedError );
+                expect( () => driver.blurHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onBlur callback prop if mode is not \
@@ -223,7 +223,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.blurHour();
+                    driver.blurHourInput();
                 }
                 catch ( error )
                 {
@@ -243,7 +243,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.blurHour() ).toThrow( expectedError );
+                expect( () => driver.blurHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onBlur callback prop when isDisabled', () =>
@@ -256,7 +256,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.blurHour();
+                    driver.blurHourInput();
                 }
                 catch ( error )
                 {
@@ -267,14 +267,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'focusHour()', () =>
+    describe( 'focusHourInput()', () =>
     {
         test( 'should trigger onFocus callback once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            driver.focusHour();
+            driver.focusHourInput();
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -287,7 +287,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.focusHour() ).toThrow( expectedError );
+                expect( () => driver.focusHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onFocus callback prop if mode is not \
@@ -301,7 +301,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.focusHour();
+                    driver.focusHourInput();
                 }
                 catch ( error )
                 {
@@ -321,7 +321,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.focusHour() ).toThrow( expectedError );
+                expect( () => driver.focusHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onFocus callback prop when isDisabled', () =>
@@ -334,7 +334,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.focusHour();
+                    driver.focusHourInput();
                 }
                 catch ( error )
                 {
@@ -345,14 +345,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'changeHour()', () =>
+    describe( 'changeHourInput()', () =>
     {
         test( 'should trigger onChange callback once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            driver.changeHour();
+            driver.changeHourInput();
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -364,7 +364,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.changeHour() ).toThrow( expectedError );
+                expect( () => driver.changeHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop if mode is not \
@@ -378,7 +378,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.changeHour();
+                    driver.changeHourInput();
                 }
                 catch ( error )
                 {
@@ -398,7 +398,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.changeHour() ).toThrow( expectedError );
+                expect( () => driver.changeHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop when isDisabled', () =>
@@ -411,7 +411,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.changeHour();
+                    driver.changeHourInput();
                 }
                 catch ( error )
                 {
@@ -431,7 +431,7 @@ prevIsDisabled', () =>
                     isReadOnly : true,
                 } );
 
-                expect( () => driver.changeHour() ).toThrow( expectedError );
+                expect( () => driver.changeHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop when isReadOnly', () =>
@@ -444,7 +444,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.changeHour();
+                    driver.changeHourInput();
                 }
                 catch ( error )
                 {
@@ -455,14 +455,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'keyPressHour()', () =>
+    describe( 'keyPressHourInput()', () =>
     {
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
 
-            driver.keyPressHour();
+            driver.keyPressHourInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
@@ -475,7 +475,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.keyPressHour() ).toThrow( expectedError );
+                expect( () => driver.keyPressHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onKeyPress callback prop if mode is not \
@@ -489,7 +489,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.keyPressHour();
+                    driver.keyPressHourInput();
                 }
                 catch ( error )
                 {
@@ -509,7 +509,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.keyPressHour() ).toThrow( expectedError );
+                expect( () => driver.keyPressHourInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onKeyPress callback prop when isDisabled', () =>
@@ -522,7 +522,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.keyPressHour();
+                    driver.keyPressHourInput();
                 }
                 catch ( error )
                 {
@@ -533,14 +533,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'blurMinute()', () =>
+    describe( 'blurMinuteInput()', () =>
     {
         test( 'should trigger onBlur callback once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( { onBlur } );
 
-            driver.blurMinute();
+            driver.blurMinuteInput();
             expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
@@ -553,7 +553,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'month' } );
 
-                expect( () => driver.blurMinute() ).toThrow( expectedError );
+                expect( () => driver.blurMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onBlur callback prop if mode is not \
@@ -564,7 +564,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.blurMinute();
+                    driver.blurMinuteInput();
                 }
                 catch ( error )
                 {
@@ -584,7 +584,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.blurMinute() ).toThrow( expectedError );
+                expect( () => driver.blurMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onBlur callback prop when isDisabled', () =>
@@ -594,7 +594,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.blurMinute();
+                    driver.blurMinuteInput();
                 }
                 catch ( error )
                 {
@@ -605,14 +605,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'focusMinute()', () =>
+    describe( 'focusMinuteInput()', () =>
     {
         test( 'should trigger onFocus callback once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            driver.focusMinute();
+            driver.focusMinuteInput();
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
@@ -625,7 +625,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'month' } );
 
-                expect( () => driver.focusMinute() ).toThrow( expectedError );
+                expect( () => driver.focusMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onFocus callback prop when <mode> is not \
@@ -636,7 +636,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.focusMinute();
+                    driver.focusMinuteInput();
                 }
                 catch ( error )
                 {
@@ -656,7 +656,7 @@ prevIsDisabled', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.focusMinute() ).toThrow( expectedError );
+                expect( () => driver.focusMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onFocus callback prop when isDisabled', () =>
@@ -666,7 +666,7 @@ prevIsDisabled', () =>
 
                 try
                 {
-                    driver.focusMinute();
+                    driver.focusMinuteInput();
                 }
                 catch ( error )
                 {
@@ -677,14 +677,14 @@ prevIsDisabled', () =>
     } );
 
 
-    describe( 'changeMinute()', () =>
+    describe( 'changeMinuteInput()', () =>
     {
         test( 'should trigger onChange callback once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            driver.changeMinute();
+            driver.changeMinuteInput();
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
@@ -697,7 +697,7 @@ prevIsDisabled', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.changeMinute() ).toThrow( expectedError );
+                expect( () => driver.changeMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop when <mode> is \
@@ -708,7 +708,7 @@ not <default>', () =>
 
                 try
                 {
-                    driver.changeMinute();
+                    driver.changeMinuteInput();
                 }
                 catch ( error )
                 {
@@ -728,7 +728,7 @@ not <default>', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.changeMinute() ).toThrow( expectedError );
+                expect( () => driver.changeMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop when isDisabled', () =>
@@ -741,7 +741,7 @@ not <default>', () =>
 
                 try
                 {
-                    driver.changeMinute();
+                    driver.changeMinuteInput();
                 }
                 catch ( error )
                 {
@@ -761,7 +761,7 @@ not <default>', () =>
                     isReadOnly : true,
                 } );
 
-                expect( () => driver.changeMinute() ).toThrow( expectedError );
+                expect( () => driver.changeMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onChange callback prop when isReadOnly', () =>
@@ -774,7 +774,7 @@ not <default>', () =>
 
                 try
                 {
-                    driver.changeMinute();
+                    driver.changeMinuteInput();
                 }
                 catch ( error )
                 {
@@ -785,14 +785,14 @@ not <default>', () =>
     } );
 
 
-    describe( 'keyPressMinute()', () =>
+    describe( 'keyPressMinuteInput()', () =>
     {
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
 
-            driver.keyPressMinute();
+            driver.keyPressMinuteInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
@@ -805,7 +805,7 @@ not <default>', () =>
                     'There\'s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
-                expect( () => driver.keyPressMinute() ).toThrow( expectedError );
+                expect( () => driver.keyPressMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onKeyPress callback prop when <mode> is \
@@ -816,7 +816,7 @@ not <default>', () =>
 
                 try
                 {
-                    driver.keyPressMinute();
+                    driver.keyPressMinuteInput();
                 }
                 catch ( error )
                 {
@@ -836,7 +836,7 @@ not <default>', () =>
                     isDisabled : true,
                 } );
 
-                expect( () => driver.keyPressMinute() ).toThrow( expectedError );
+                expect( () => driver.keyPressMinuteInput() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onKeyPress callback prop when isDisabled', () =>
@@ -849,7 +849,7 @@ not <default>', () =>
 
                 try
                 {
-                    driver.keyPressMinute();
+                    driver.keyPressMinuteInput();
                 }
                 catch ( error )
                 {
