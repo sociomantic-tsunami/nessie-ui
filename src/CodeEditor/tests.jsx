@@ -380,14 +380,14 @@ since it is disabled';
     } );
 
 
-    describe( 'pressKey( keyCode )', () =>
+    describe( 'keyPress()', () =>
     {
         test( 'should call the onKeyPress callback exactly once ', () =>
         {
             const onKeyPress = jest.fn();
             wrapper.setProps( { onKeyPress } );
 
-            driver.pressKey( 50 );
+            driver.keyPress();
             expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
@@ -396,11 +396,11 @@ since it is disabled';
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                const expectedError = 'CodeEditor cannot simulate pressKey \
+                const expectedError = 'CodeEditor cannot simulate keyPress \
 since it is disabled';
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( () => driver.pressKey() ).toThrow( expectedError );
+                expect( () => driver.keyPress() ).toThrow( expectedError );
             } );
 
             test( 'should not trigger onKeyPress when isDisabled', () =>
@@ -413,7 +413,7 @@ since it is disabled';
 
                 try
                 {
-                    driver.pressKey();
+                    driver.keyPress();
                 }
                 catch ( error )
                 {

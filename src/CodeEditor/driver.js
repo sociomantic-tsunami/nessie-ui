@@ -133,7 +133,7 @@ export default class CodeEditorDriver
         return this;
     }
 
-    pressKey( keyCode )
+    keyPress()
     {
         const props = this.wrapper.props();
         const onKeyPress = this.wrapper.prop( 'onKeyPress' );
@@ -141,12 +141,12 @@ export default class CodeEditorDriver
         if ( props.isDisabled )
         {
             throw new Error( ERR
-                .CODEEDITOR_ERR( 'pressKey', 'disabled' ) );
+                .CODEEDITOR_ERR( 'keyPress', 'disabled' ) );
         }
 
         if ( onKeyPress )
         {
-            onKeyPress( keyCode );
+            onKeyPress();
         }
 
         return this;
