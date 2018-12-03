@@ -7,15 +7,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
 import Checkable          from '../proto/Checkable';
-
-import Radio              from './index';
+import { Radio }          from '../index';
 
 
 describe( 'Radio', () =>

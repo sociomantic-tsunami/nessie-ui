@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-unused-expressions, no-magic-numbers  */
+/* eslint-disable no-magic-numbers  */
 
-import React                    from 'react';
-import { mount, shallow }       from 'enzyme';
+import React                                from 'react';
+import { mount, shallow }                   from 'enzyme';
 
-import { TextInputWithIcon }    from '../index';
-
-import PasswordInput            from './index';
-
+import { PasswordInput, TextInputWithIcon } from '../index';
 
 describe( 'PasswordInput', () =>
 {

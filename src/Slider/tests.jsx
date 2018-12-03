@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import React        from 'react';
-import { mount }    from 'enzyme';
-
-import Label        from '../Label/index';
-
-import Slider       from './index';
+import { Label, Slider }    from '../index';
 
 const noop = () => null;
 

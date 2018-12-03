@@ -7,13 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import NavItem   from './index';
+import { NavItem }  from '../index';
 
 describe( 'NavItem', () =>
 {
@@ -60,7 +59,6 @@ describe( 'NavItemDriver', () =>
         } );
 
         driver.click();
-
         expect( onClickSpy ).toBeCalledTimes( 1 );
     } );
 
@@ -72,7 +70,6 @@ describe( 'NavItemDriver', () =>
         } );
 
         driver.mouseOver();
-
         expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
 
@@ -84,7 +81,6 @@ describe( 'NavItemDriver', () =>
         } );
 
         driver.mouseOut();
-
         expect( onMouseOutSpy ).toBeCalledTimes( 1 );
     } );
 } );

@@ -7,13 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers*/
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Label        from './index';
+import { Label }    from '../index';
 
 describe( 'Label', () =>
 {
@@ -59,11 +58,9 @@ describe( 'LabelDriver', () =>
         test( 'should call onMouseOver callback once', () =>
         {
             const onMouseOver = jest.fn();
-
             wrapper.setProps( { ...props, onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
@@ -74,11 +71,9 @@ describe( 'LabelDriver', () =>
         test( 'should call onMouseOver callback once', () =>
         {
             const onMouseOut = jest.fn();
-
             wrapper.setProps( { ...props, onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );

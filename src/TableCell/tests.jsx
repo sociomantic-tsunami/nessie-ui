@@ -1,9 +1,18 @@
-/* global test jest */
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
 
-import React       from 'react';
-import { mount }   from 'enzyme';
+/* eslint-disable no-magic-numbers */
 
-import TableCell   from './index';
+import React            from 'react';
+import { mount }        from 'enzyme';
+
+import { TableCell }    from '../index';
 
 describe( 'TableCellDriver', () =>
 {
@@ -29,7 +38,6 @@ describe( 'TableCellDriver', () =>
             } );
 
             driver.toggle();
-
             expect( onToggle ).toBeCalledTimes( 1 );
         } );
 

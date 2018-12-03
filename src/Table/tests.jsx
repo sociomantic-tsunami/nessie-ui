@@ -1,10 +1,18 @@
-/* global test jest */
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Table        from './index';
-
+import { Table }    from '../index';
 
 describe( 'TableDriver', () =>
 {
@@ -44,7 +52,6 @@ describe( 'TableDriver', () =>
             () =>
             {
                 const onToggle = jest.fn();
-
                 wrapper.setProps( { onToggle } );
 
                 driver.toggle();
@@ -70,7 +77,6 @@ not sortable';
         test( 'should trigger onMouseOver callback once', () =>
         {
             const onMouseOver = jest.fn();
-
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
@@ -84,7 +90,6 @@ not sortable';
         test( 'should trigger onMouseOut callback once', () =>
         {
             const onMouseOut = jest.fn();
-
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();

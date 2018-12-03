@@ -8,14 +8,11 @@
  */
 
 /* eslint-disable no-magic-numbers */
-/* global test */
-/* eslint no-console: 0*/
-
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Divider      from './index';
+import { Divider }  from '../index';
 
 describe( 'Divider', () =>
 {

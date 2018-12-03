@@ -7,13 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Spinner      from './index';
+import { Spinner }  from '../index';
 
 describe( 'Spinner', () =>
 {

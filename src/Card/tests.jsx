@@ -7,13 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Card         from './index';
+import { Card }     from '../index';
 
 describe( 'Card', () =>
 {

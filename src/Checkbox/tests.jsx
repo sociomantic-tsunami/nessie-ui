@@ -7,15 +7,13 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
 
 import Checkable          from '../proto/Checkable';
-
-import Checkbox           from './index';
+import { Checkbox }       from '../index';
 
 describe( 'Checkbox', () =>
 {

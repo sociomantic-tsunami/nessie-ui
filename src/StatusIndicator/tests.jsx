@@ -7,13 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import StatusIndicator  from './index';
+import { StatusIndicator }  from '../index';
 
 describe( 'StatusIndicator', () =>
 {

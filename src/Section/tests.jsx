@@ -7,15 +7,12 @@
  *
  */
 
-/* global test */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React                from 'react';
+import { shallow }          from 'enzyme';
 
-import { H1, H4 }  from '../index';
-
-import Section     from './index';
-
+import { H1, H4, Section }  from '../index';
 
 describe( 'Section', () =>
 {

@@ -7,13 +7,12 @@
  *
  */
 
-/* global jest test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions, max-len */
+/* eslint-disable no-magic-numbers, max-len */
 
 import React                from 'react';
 import { mount, shallow }   from 'enzyme';
 
-import DatePicker           from './index';
+import { DatePicker }       from '../index';
 
 describe( 'DatePicker', () =>
 {

@@ -7,9 +7,7 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
-/* eslint no-console: 0*/
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { shallow, mount } from 'enzyme';
@@ -48,14 +46,12 @@ describe( 'CodeEditor', () =>
 describe( 'CodeEditorDriver', () =>
 {
     let wrapper;
-    let CodeMirror;
     let driver;
 
     beforeEach( () =>
     {
-        wrapper    = mount( <CodeEditor /> );
-        CodeMirror = wrapper.instance().codeMirror;
-        driver     = wrapper.driver();
+        wrapper = mount( <CodeEditor /> );
+        driver  = wrapper.driver();
     } );
 
 
@@ -145,7 +141,6 @@ it is read only';
             wrapper.setProps( { onFocus } );
 
             driver.focus();
-
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
 

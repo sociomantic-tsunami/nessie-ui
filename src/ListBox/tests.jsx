@@ -7,13 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers */
 
 import React                 from 'react';
 import { shallow, mount }    from 'enzyme';
 
-import ListBox               from './index';
+import { ListBox }           from '../index';
 
 
 describe( 'ListBox', () =>

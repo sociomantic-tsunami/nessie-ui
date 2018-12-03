@@ -8,16 +8,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers */
 
-import React                       from 'react';
-import { mount, shallow }          from 'enzyme';
+import React                               from 'react';
+import { mount, shallow }                  from 'enzyme';
 
-import { H2, H3, IconWithTooltip } from '../index';
-
-import Module                      from './index';
-
+import { H2, H3, IconWithTooltip, Module } from '../index';
 
 describe( 'Module', () =>
 {

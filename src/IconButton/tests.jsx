@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
-
-import { Icon }           from '../index';
-
-import IconButton         from './index';
-
+import { Icon, IconButton } from '../index';
 
 describe( 'IconButton', () =>
 {

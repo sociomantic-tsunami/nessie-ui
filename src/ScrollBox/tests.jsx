@@ -7,17 +7,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                    from 'react';
+import { mount, shallow }       from 'enzyme';
 
-import ScrollBar          from '../ScrollBar';
-import * as utils         from './utils';
-
-import ScrollBox          from './index';
-
+import { ScrollBar, ScrollBox } from '../index';
+import * as utils               from './utils';
 
 describe( 'ScrollBox', () =>
 {
@@ -128,7 +124,6 @@ describe( 'ScrollBoxDriver', () =>
             wrapper.setProps( { onClickScrollUp, scrollUpIsVisible: true } );
 
             wrapper.driver().clickScrollUp();
-
             expect( onClickScrollUp ).toBeCalledTimes( 1 );
         } );
 
@@ -141,7 +136,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollRight();
-
             expect( onClickScrollRight ).toBeCalledTimes( 1 );
         } );
 
@@ -155,7 +149,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollDown();
-
             expect( onClickScrollDown ).toBeCalledTimes( 1 );
         } );
 
@@ -169,7 +162,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollLeft();
-
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
         } );
 
@@ -181,7 +173,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollUp();
-
             expect( instance.innerRef.scrollTop ).toBe( 0 );
         } );
 
@@ -193,7 +184,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollRight();
-
             expect( instance.innerRef.scrollLeft ).toBe( 100 );
         } );
 
@@ -205,7 +195,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollDown();
-
             expect( instance.innerRef.scrollTop ).toBe( 100 );
         } );
 
@@ -217,7 +206,6 @@ describe( 'ScrollBoxDriver', () =>
             } );
 
             wrapper.driver().clickScrollLeft();
-
             expect( instance.innerRef.scrollLeft ).toBe( 0 );
         } );
     } );
@@ -230,7 +218,6 @@ describe( 'ScrollBoxDriver', () =>
             wrapper.setProps( { onScroll, scroll: 'vertical' } );
 
             wrapper.driver().scrollVertical( 250 );
-
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
 
@@ -254,7 +241,6 @@ neither \'vertical\' nor \'both\'' );
             wrapper.setProps( { onScroll, scroll: 'horizontal' } );
 
             wrapper.driver().scrollHorizontal( 250 );
-
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
 
