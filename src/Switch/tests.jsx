@@ -7,14 +7,12 @@
  *
  */
 
-/* global test jest */
 /* eslint-disable no-magic-numbers */
-/* eslint-disable no-return-assign */
 
 import React                from 'react';
 import { mount, shallow }   from 'enzyme';
 
-import Switch               from './index';
+import { Switch }           from '../index';
 
 describe( 'Switch', () =>
 {

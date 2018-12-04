@@ -7,7 +7,7 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';

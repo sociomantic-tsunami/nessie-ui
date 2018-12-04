@@ -7,14 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
-
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Animate      from './index';
+import { Animate }  from '../index';
 
 describe( 'Animate', () =>
 {

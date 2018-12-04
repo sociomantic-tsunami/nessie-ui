@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable max-len */
+/* eslint-disable no-magic-numbers */
 
-import React             from 'react';
-import { mount }         from 'enzyme';
+import React                          from 'react';
+import { mount }                      from 'enzyme';
 
-import { Label, Slider } from '../index';
-
-import SliderGroup       from './index';
-
+import { Label, Slider, SliderGroup } from '../index';
 
 describe( 'SliderGroup', () =>
 {
@@ -89,7 +85,8 @@ describe( 'SliderGroup', () =>
     } );
 
     test(
-        'Step labels should pass to the individual Sliders the correct amount of ticks',
+        'Step labels should pass to the individual Sliders the correct amount \
+of ticks',
         () =>
         {
             const props = {
@@ -173,7 +170,8 @@ describe( 'SliderGroup', () =>
     } );
 
     test(
-        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop to the individual sliders if defined',
+        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop \
+to the individual sliders if defined',
         () =>
         {
             const props = {
@@ -195,7 +193,8 @@ describe( 'SliderGroup', () =>
     );
 
     test(
-        'SliderGroup should pass down its minValue and maxValue prop to the individual sliders if defined',
+        'SliderGroup should pass down its minValue and maxValue prop to the \
+individual sliders if defined',
         () =>
         {
             const props = {
@@ -211,7 +210,8 @@ describe( 'SliderGroup', () =>
     );
 
     test(
-        'Individual sliders should get their orientation = vertical even if the a orientation is individually passed as horizontal in sliders array ',
+        'Individual sliders should get their orientation = vertical even if \
+the a orientation is individually passed as horizontal in sliders array ',
         () =>
         {
             const props = {
@@ -264,7 +264,8 @@ describe( 'SliderGroupDriver', () =>
         } );
 
         test(
-            'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange',
+            'Individual slider onChange event should also trigger SliderGroup \
+onChange event if the function is provided in proptype OnChange',
             () =>
             {
                 const onChangeSlider = jest.fn();

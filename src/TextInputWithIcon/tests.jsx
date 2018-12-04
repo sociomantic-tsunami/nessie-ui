@@ -7,8 +7,7 @@
  *
  */
 
-/* global test jest Event */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React               from 'react';
 import { shallow, mount }  from 'enzyme';
@@ -16,12 +15,10 @@ import { shallow, mount }  from 'enzyme';
 import {
     IconButton,
     InputField,
+    TextInputWithIcon,
     TextInputWithIcon as WrappedTextInputWithIcon,
     Tooltip,
 } from '../index';
-
-import TextInputWithIcon from './index';
-
 
 describe( 'TextInputWithIcon', () =>
 {

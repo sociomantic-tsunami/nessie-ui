@@ -7,15 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React                        from 'react';
+import { mount }                    from 'enzyme';
 
-import { Checkbox }     from '../index';
-
-import CheckableGroup   from './index';
+import { Checkbox, CheckableGroup } from '../index';
 
 describe( 'CheckableGroupDriver', () =>
 {
@@ -52,10 +49,9 @@ describe( 'CheckableGroupDriver', () =>
         {
             test( 'throws the expected error when isDisabled', () =>
             {
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'CheckableGroup cannot simulate change \
 since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -85,10 +81,9 @@ since it is disabled';
         {
             test( 'throws the expected error when isReadOnly', () =>
             {
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
                 const expectedError = 'CheckableGroup cannot simulate change \
 since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
 
                 expect( () => driver.change() ).toThrow( expectedError );
             } );
@@ -123,7 +118,6 @@ since it is read only';
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
@@ -137,7 +131,6 @@ since it is read only';
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );

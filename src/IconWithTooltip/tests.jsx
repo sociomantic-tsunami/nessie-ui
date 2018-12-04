@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+import React                        from 'react';
+import { mount, shallow }           from 'enzyme';
 
-import { Tooltip }          from '../index';
-
-import IconWithTooltip      from './index';
-
+import { IconWithTooltip, Tooltip } from '../index';
 
 describe( 'IconWithTooltip', () =>
 {

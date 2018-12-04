@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Column       from './index';
+import { Column }   from '../index';
 
 describe( 'Column', () =>
 {

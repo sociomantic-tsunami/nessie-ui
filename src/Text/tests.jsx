@@ -7,13 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Text         from './index';
+import { Text }     from '../index';
 
 describe( 'Text', () =>
 {

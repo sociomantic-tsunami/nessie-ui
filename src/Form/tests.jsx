@@ -7,13 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Form               from './index';
+import { Form }           from '../index';
 
 describe( 'Form', () =>
 {
@@ -62,10 +61,9 @@ describe( 'FormDriver', () =>
         test( 'should fire the onSubmit callback prop once', () =>
         {
             const onSubmit = jest.fn();
-
             wrapper.setProps( { onSubmit } );
-            wrapper.driver().submit();
 
+            wrapper.driver().submit();
             expect( onSubmit ).toBeCalledTimes( 1 );
         } );
     } );

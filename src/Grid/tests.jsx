@@ -7,16 +7,12 @@
  *
  */
 
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str */
+/* eslint-disable no-magic-numbers */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { Column } from '../index';
-
-import Grid       from './index';
-
+import { Column, Grid } from '../index';
 
 describe( 'Grid', () =>
 {
@@ -32,9 +28,7 @@ describe( 'Grid', () =>
         test( 'should return the content of the Grid or Column', () =>
         {
             wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
-
-            const content = wrapper.children().first();
-            expect( content.text() ).toBe( 'Lightning Strike' );
+            expect( wrapper.text() ).toBe( 'Lightning Strike' );
         } );
     } );
 

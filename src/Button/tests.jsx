@@ -7,16 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                        from 'react';
+import { mount, shallow }           from 'enzyme';
 
-import Icon               from '../Icon';
-import Spinner            from '../Spinner';
-
-import Button             from './index';
+import { Button, Icon, Spinner }    from '../index';
 
 
 describe( 'Button', () =>

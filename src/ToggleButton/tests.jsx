@@ -7,16 +7,12 @@
  *
  */
 
-/* global jest, test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React               from 'react';
-import { shallow, mount }  from 'enzyme';
+import React                    from 'react';
+import { shallow, mount }       from 'enzyme';
 
-import { Icon }            from '../index';
-
-import ToggleButton        from './index';
-
+import { Icon, ToggleButton }   from '../index';
 
 describe( 'ToggleButton', () =>
 {

@@ -7,15 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
+/* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import { Text }         from '../index';
-
-import DragNDrop        from './index';
+import { DragNDrop, Text }  from '../index';
 
 describe( 'DragNDrop', () =>
 {

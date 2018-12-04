@@ -7,13 +7,12 @@
  *
  */
 
-/* global test jest */
-
+/* eslint-disable no-magic-numbers */
 
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
-import ScrollBar           from './index';
+import { ScrollBar }       from '../index';
 
 describe( 'ScrollBar', () =>
 {

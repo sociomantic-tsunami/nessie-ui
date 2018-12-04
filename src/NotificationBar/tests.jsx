@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import React            from 'react';
-import { mount }        from 'enzyme';
-
-import NotificationBar  from './index';
+import { NotificationBar }  from '../index';
 
 describe( 'NotificationBar', () =>
 {

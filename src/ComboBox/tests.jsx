@@ -7,7 +7,7 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
@@ -56,8 +56,8 @@ describe( 'ComboBoxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ComboBox /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <ComboBox /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'blur()', () =>
@@ -147,7 +147,6 @@ describe( 'ComboBoxDriver', () =>
             } );
 
             driver.clickOption();
-
             expect( onClickOption ).toBeCalledTimes( 1 );
         } );
     } );
