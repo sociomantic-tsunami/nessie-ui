@@ -132,4 +132,21 @@ Tabs as children',
             expect( driver.getTabContent() ).toHaveLength( 1 );
         } );
     } );
+    describe( 'clickTab( index )', () =>
+    {
+        test( 'should trigger onClickTab callback prop once', () =>
+        {
+            const onClickTab = jest.fn();
+            wrapper.setProps( {
+                children : [
+                    <Tab label = "Tabity"><div>Ytibat</div></Tab>,
+                    <Tab label = "Taby">Ybat</Tab>
+                ],
+                onClickTab,
+            } );
+            driver.clickTab();
+
+            expect( onClickTab ).toBeCalledTimes( 1 );
+        } );
+    } );
 } );
