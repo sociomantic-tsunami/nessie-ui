@@ -8,8 +8,12 @@ React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
 There are two dependencies you’ll need to include in your app to use Nessie:
 
-1. The Nessie JS bundle including CSS
-1. The Nessie SVG sprite map
+1. The Nessie JS bundle. there are two types of bundle:
+	* One including CSS `index.js`.
+	* One without CSS `componentsJS.js` you need to separately import the CSS (see CSS section below).
+
+
+2. The Nessie SVG sprite map
 
 Since your exact requirements may vary, we’ll leave it up to you decide exactly
 how these should be implemented (the options are outlined below).
@@ -20,7 +24,7 @@ how these should be implemented (the options are outlined below).
 
 If you want _everything_:
 ```
-import * as Nessie from 'nessie-ui';
+import Nessie from 'nessie-ui';
 ```
 
 #### Importing individual components:
@@ -30,9 +34,12 @@ If you want specific components:
 import { ComponentName } from 'nessie-ui';
 ```
 
+`Note`: we no longer have a separate addons.js bundle. The ”add-on” components are exported as part of the main bundle(s), but not as part of the default export. For example, `CodeEditor` is not imported if you do `import Nessie from 'nessie-ui'` (the default import/export). Instead you need to specifically import it as `import { CodeEditor } from 'nessie-ui'`
+
 ### CSS
 
-The Nessie CSS is bundled within the JS bundle. If you want to create a separate `.css` file, you can do that with [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin).
+If you are using the bundle without the CSS then you need to separately import `dist/styles.css`.
+You can either import this file using webpack css-loader or load it directly in your HTML.
 
 ### Sprite map
 

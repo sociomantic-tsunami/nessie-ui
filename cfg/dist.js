@@ -55,6 +55,7 @@ const distConfig = merge( {}, baseConfig, {
 
 const components = merge( {}, distConfig, {
     entry   : path.join( __dirname, '../src/index.js' ),
+    output  : { filename: 'index.js' },
     plugins : [],
 } );
 components.module.rules[ 1 ].use[ 0 ] = 'style-loader';
