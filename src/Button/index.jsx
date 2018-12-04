@@ -35,7 +35,7 @@ export default class Button extends React.Component
             'subtle',
             'promoted',
             'critical',
-            'control'
+            'control',
         ] ),
         /**
         *  Icon type to display (overrides customIcon)
@@ -125,9 +125,17 @@ export default class Button extends React.Component
          */
         id           : PropTypes.string,
         /**
+         *  Button blur callback function: ( e ) => { ... }
+         */
+        onBlur       : PropTypes.func,
+        /**
          *  Button click callback function: ( e ) => { ... }
          */
         onClick      : PropTypes.func,
+        /**
+         *  Button focus callback function: ( e ) => { ... }
+         */
+        onFocus      : PropTypes.func,
         /**
          *  Mouse over callback function: ( e ) => { ... }
          */
@@ -157,7 +165,7 @@ export default class Button extends React.Component
         isDisabled   : false,
         isReadOnly   : false,
         forceHover   : false,
-        cssMap       : require( './button.css' )
+        cssMap       : require( './button.css' ),
     };
 
     constructor( props )
@@ -204,13 +212,15 @@ export default class Button extends React.Component
             iconType,
             id = generateId( 'Button' ),
             isDisabled,
-            isReadOnly,
             isLoading,
+            isReadOnly,
             label,
+            onBlur,
             onClick,
+            onFocus,
             role,
             type,
-            value
+            value,
         } = this.props;
 
         let iconMarkup;
@@ -248,13 +258,15 @@ export default class Button extends React.Component
                     iconPosition,
                     loading     : isLoading && !isDisabled,
                     disabled    : isDisabled,
-                    fakeHovered : forceHover
+                    fakeHovered : forceHover,
                 } ) }
                 id             = { id }
                 defaultValue   = { defaultValue }
                 value          = { value }
                 disabled       = { isDisabled || isLoading || isReadOnly }
+                onBlur         = { onBlur }
                 onClick        = { onClick }
+                onFocus        = { onFocus }
                 onMouseEnter   = { this.handleMouseOver }
                 onMouseLeave   = { this.handleMouseOut }>
                 { content }

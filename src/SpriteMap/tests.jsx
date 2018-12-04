@@ -7,13 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React            from 'react';
+import { shallow }      from 'enzyme';
 
-import SpriteMap   from './index';
+import { SpriteMap }    from '../index';
 
 
 describe( 'SpriteMap', () =>

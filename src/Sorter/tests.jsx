@@ -7,14 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint no-console: 0*/
-
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Sorter       from './index';
+import { Sorter }   from '../index';
 
 describe( 'Sorter', () =>
 {
@@ -24,7 +22,6 @@ describe( 'Sorter', () =>
     {
         wrapper = mount( <Sorter /> );
     } );
-
 
     test( 'should render <Sorter/>', () =>
     {
@@ -41,21 +38,22 @@ describe( 'Sorter', () =>
 describe( 'SorterDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Sorter /> );
+        driver  = wrapper.driver();
     } );
 
-    test( 'should call onToggle callback function', () =>
+    test( 'should call onToggle callback function once', () =>
     {
         const onToggle = jest.fn();
         wrapper.setProps( {
-            onToggle
+            onToggle,
         } );
 
-        wrapper.driver().toggle();
-
-        expect( onToggle ).toBeCalled();
+        driver.click();
+        expect( onToggle ).toBeCalledTimes( 1 );
     } );
 } );

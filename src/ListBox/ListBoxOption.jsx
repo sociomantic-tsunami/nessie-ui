@@ -18,7 +18,7 @@ import {
     buildClassName,
     eventHandler,
     generateId,
-    mapAria
+    mapAria,
 } from '../utils';
 import styles         from './listBoxOption.css';
 

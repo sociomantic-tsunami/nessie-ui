@@ -7,15 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* eslint no-console: 0*/
-/* global test */
-
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import Animate      from './index';
+import { Animate }  from '../index';
 
 describe( 'Animate', () =>
 {
@@ -38,11 +35,11 @@ describe( 'Animate', () =>
     } );
 
     test( 'should have class animate__fadeIn__fadeOut if fadeIn and fadeOut \
-        props are selected', () =>
+props are selected', () =>
     {
         const props = {
             enterAnimation : 'fadeIn',
-            outAnimation   : 'fadeOut'
+            outAnimation   : 'fadeOut',
         };
 
         wrapper = mount( <Animate { ...props } /> );

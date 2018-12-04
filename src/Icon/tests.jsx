@@ -7,15 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React              from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Icon               from './index';
-
+import { Icon }           from '../index';
 
 describe( 'Icon', () =>
 {
@@ -43,33 +40,93 @@ describe( 'Icon', () =>
 describe( 'IconDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Icon /> );
+        driver  = wrapper.driver();
     } );
 
-    test( 'should fire onMouseOver event once', () =>
+
+    describe( 'mouseOver()', () =>
     {
-        const onMouseOver = jest.fn();
-        const onMouseOut = jest.fn();
-        wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
+        test( 'should trigger onMouseOver event once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { type: 'alert', onMouseOver } );
 
-        wrapper.driver().mouseOver();
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
 
-        expect( onMouseOver ).toBeCalledTimes( 1 );
-        expect( onMouseOut ).not.toBeCalled();
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Icon cannot simulate mouseOver because it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onMouseOver when isDisabled', () =>
+            {
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isDisabled: true } );
+
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
+            } );
+        } );
     } );
 
-    test( 'should fire onMouseOver event once', () =>
+
+    describe( 'mouseOut()', () =>
     {
-        const onMouseOver = jest.fn();
-        const onMouseOut = jest.fn();
-        wrapper.setProps( { type: 'alert', onMouseOver, onMouseOut } );
+        test( 'should trigger onMouseOver event once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { type: 'alert', onMouseOut } );
 
-        wrapper.driver().mouseOut();
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
 
-        expect( onMouseOut ).toBeCalledTimes( 1 );
-        expect( onMouseOver ).not.toBeCalled();
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Icon cannot simulate mouseOut because it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onMouseOut when isDisabled', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isDisabled: true } );
+
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
+            } );
+        } );
     } );
 } );

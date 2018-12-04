@@ -97,7 +97,11 @@ export default class CodeEditor extends Component
          */
         value        : PropTypes.string,
         /**
-         * HTML id attribute
+         * Handles CodeMirror blur event
+         */
+        onBlur       : PropTypes.func,
+        /**
+         * Handles CodeMirror change event
          */
         onChange     : PropTypes.func,
         /**
@@ -105,9 +109,9 @@ export default class CodeEditor extends Component
          */
         onFocus      : PropTypes.func,
         /**
-         * Handles CodeMirror blur event
+         * Handles CodeMirror keyPress event
          */
-        onBlur       : PropTypes.func,
+        onKeyPress   : PropTypes.func,
         /**
          * Handles component mouseover event
          */
@@ -161,6 +165,7 @@ export default class CodeEditor extends Component
         this.handleBlur           = this.handleBlur.bind( this );
         this.handleChange         = this.handleChange.bind( this );
         this.handleCursorActivity = this.handleCursorActivity.bind( this );
+        this.handleKeyPress       = this.handleKeyPress.bind( this );
         this.handleTextareaRef    = this.handleTextareaRef.bind( this );
         this.handleWrapperRef     = this.handleWrapperRef.bind( this );
     }
@@ -185,14 +190,18 @@ export default class CodeEditor extends Component
 
         const codeMirrorInstance = require( 'codemirror' );
 
-        const codeMirror = codeMirrorInstance.fromTextArea( this.textarea, combinedOptions );
+        const codeMirror = codeMirrorInstance.fromTextArea(
+            this.textarea,
+            combinedOptions,
+        );
 
         codeMirror.setValue( defaultValue || value );
 
+        codeMirror.on( 'blur', this.handleBlur );
         codeMirror.on( 'change', this.handleChange );
         codeMirror.on( 'cursorActivity', this.handleCursorActivity );
         codeMirror.on( 'focus', this.handleFocus );
-        codeMirror.on( 'blur', this.handleBlur );
+        codeMirror.on( 'keypress', this.handleKeyPress );
 
         if ( cursor )
         {
@@ -332,6 +341,15 @@ export default class CodeEditor extends Component
         if ( onChange && change.origin !== 'setValue' )
         {
             onChange( cm.getValue() );
+        }
+    }
+
+    handleKeyPress()
+    {
+        const { onKeyPress } = this.props;
+        if ( onKeyPress )
+        {
+            onKeyPress();
         }
     }
 

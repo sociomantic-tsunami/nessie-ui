@@ -7,18 +7,16 @@
  *
  */
 
-// eslint-disable-next-line max-len
-import SimpleComponentDriver from '../Testing/CommonDrivers/simpleComponentDriver';
-
 const ERR = {
-    NOTIFICATION_NOT_DISMISSIBLE : 'The NotificationBar is not dismissible'
+    NOTIFICATION_NOT_DISMISSIBLE : 'NotificationBar is not dismissible',
 };
 
-export default class NotificationBarDriver extends SimpleComponentDriver
+export default class NotificationBarDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.props().cssMap.default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickClose()
@@ -29,10 +27,5 @@ export default class NotificationBarDriver extends SimpleComponentDriver
         }
 
         this.wrapper.find( `.${this.cssMap.close}` ).simulate( 'click' );
-    }
-
-    getContent()
-    {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
     }
 }

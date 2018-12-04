@@ -26,7 +26,7 @@ const withDropdown = Component =>
         onMouseOut,
         onMouseOver,
         wrapperRef,
-        ...componentProps,
+        ...componentProps
     } ) => (
         <div
             ref       = { wrapperRef }

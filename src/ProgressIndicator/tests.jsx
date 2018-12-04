@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers  */
 
-import React                from 'react';
-import { mount }            from 'enzyme';
+import React                    from 'react';
+import { mount }                from 'enzyme';
 
-import ProgressIndicator    from './index';
+import { ProgressIndicator }    from '../index';
 
 describe( 'ProgressIndicator', () =>
 {

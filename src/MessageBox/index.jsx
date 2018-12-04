@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Text                 from '../Text';
 
 const MessageBox = ( {
@@ -47,13 +46,13 @@ MessageBox.propTypes =
         'info',
         'error',
         'success',
-    ] )
+    ] ),
 };
 
 MessageBox.defaultProps =
 {
     messageType : 'default',
-    cssMap      : require( './messageBox.css' )
+    cssMap      : require( './messageBox.css' ),
 };
 
 export default MessageBox;

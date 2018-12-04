@@ -11,7 +11,6 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-
 import Spinner              from '../Spinner';
 
 export default class DragNDrop extends Component
@@ -28,7 +27,7 @@ export default class DragNDrop extends Component
         dragNDropState : PropTypes.oneOf( [
             'default',
             'dragOver',
-            'uploading'
+            'uploading',
         ] ),
         /**
          * Message shown in dragOver state
@@ -39,7 +38,7 @@ export default class DragNDrop extends Component
     static defaultProps =
     {
         dragNDropState : 'default',
-        cssMap         : require( './dragNDrop.css' )
+        cssMap         : require( './dragNDrop.css' ),
     };
 
     render()

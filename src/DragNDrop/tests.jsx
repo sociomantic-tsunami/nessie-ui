@@ -7,15 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test */
+/* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import { Text }         from '../index';
-
-import DragNDrop        from './index';
+import { DragNDrop, Text }  from '../index';
 
 describe( 'DragNDrop', () =>
 {
@@ -34,16 +31,12 @@ describe( 'DragNDrop', () =>
         } );
     } );
 
-    describe( 'wrapperDriver', () =>
+    test( 'should find content', () =>
     {
-        test( 'should find content', () =>
-        {
-            const driver = wrapper.driver();
-            wrapper.setProps( {
-                children : <Text>something</Text>
-            } );
-
-            expect( driver.getContent() ).toHaveLength( 1 );
+        wrapper.setProps( {
+            children : <Text>something</Text>,
         } );
+
+        expect( wrapper.children() ).toHaveLength( 1 );
     } );
 } );

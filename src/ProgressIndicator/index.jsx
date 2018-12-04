@@ -17,7 +17,7 @@ const ProgressIndicator = ( {
     cssMap,
     className,
     currentPercentage,
-    showPercentage
+    showPercentage,
 } ) =>
 
 
@@ -42,13 +42,13 @@ ProgressIndicator.propTypes =
     /**
      *  Current percentage value
      */
-    currentPercentage : PropTypes.number
+    currentPercentage : PropTypes.number,
 };
 
 ProgressIndicator.defaultProps =
 {
     cssMap         : require( './progressIndicator.css' ),
-    showPercentage : true
+    showPercentage : true,
 };
 
 export default ProgressIndicator;
