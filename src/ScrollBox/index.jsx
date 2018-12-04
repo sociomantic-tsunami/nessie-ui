@@ -478,21 +478,16 @@ export default class ScrollBox extends Component
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                if ( this.handleRenderScrollButton( dir ) )
-                {
-                    scrollButtons.push(
-                        <IconButton
-                            className     = { props.cssMap[ `icon${dir}` ] }
-                            hasBackground = {
-                                props.scrollIndicatorVariant === 'circle' }
-                            iconSize      = "S"
-                            iconType      = { dir.toLowerCase() }
-                            key           = { dir }
-                            onClick       = { e =>
-                                this.handleClickScrollButton( dir, e )
-                            } />
-                    );
-                }
+                scrollButtons.push( <IconButton
+                    className     = { props.cssMap[ `icon${dir}` ] }
+                    hasBackground = {
+                        props.scrollIndicatorVariant === 'circle' }
+                    iconSize      = "S"
+                    iconType      = { dir.toLowerCase() }
+                    key           = { dir }
+                    onClick       = { e =>
+                        this.handleClickScrollButton( dir, e )
+                    } /> );
             }
         } );
 
