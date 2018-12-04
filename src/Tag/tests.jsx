@@ -7,17 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import IconButton   from '../IconButton';
-
-import Tag          from './index';
-
+import { IconButton, Tag }  from '../index';
 
 describe( 'Tag', () =>
 {
@@ -71,7 +66,7 @@ child', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -81,7 +76,7 @@ child', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.driver().clickClose();

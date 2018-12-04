@@ -7,13 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint no-console: 0*/
+/* eslint-disable no-magic-numbers */
 
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
-import ScrollBar           from './index';
+import { ScrollBar }       from '../index';
 
 describe( 'ScrollBar', () =>
 {
@@ -23,9 +22,9 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ScrollBar /> );
-        instance = wrapper.instance();
-        cssMap   = instance.props.cssMap;
+        wrapper      = shallow( <ScrollBar /> );
+        instance     = wrapper.instance();
+        ( { cssMap } = instance.props );
     } );
 
 
@@ -87,20 +86,23 @@ describe( 'ScrollBar', () =>
 describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBar /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTrack( val )', () =>
     {
         let onClickTrack;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
-            wrapper.driver().clickTrack( 100 );
+            driver.clickTrack( 100 );
         } );
 
         test( 'should call the onClickTrack prop once', () =>
@@ -114,17 +116,18 @@ describe( 'ScrollBarDriver', () =>
         } );
     } );
 
-    describe( 'onChange( val )', () =>
+    describe( 'change( val )', () =>
     {
         let onChange;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().change( 100 );
+            driver.change( 100 );
         } );
 
-        test( 'should call the onChange prop once', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
@@ -137,26 +140,24 @@ describe( 'ScrollBarDriver', () =>
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should simulate mouse over', () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
-
+            driver.mouseOver();
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
-        test( 'should simulate mouse out', () =>
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
     } );

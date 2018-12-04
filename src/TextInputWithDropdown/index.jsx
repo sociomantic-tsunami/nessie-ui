@@ -88,8 +88,6 @@ removed in the next major release.' );
             <Row
                 className    = { cssMap.row }
                 gutters      = "S"
-                onMouseOut   = { onMouseOut }
-                onMouseOver  = { onMouseOver }
                 verticalAlign = "middle">
                 <Column>
                     <InputField

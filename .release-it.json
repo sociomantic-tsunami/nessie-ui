@@ -1,3 +1,0 @@
-{
-    "buildCommand": "github_changelog_generator --no-unreleased"
-}

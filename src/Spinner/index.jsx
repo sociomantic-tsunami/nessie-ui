@@ -21,14 +21,14 @@ Spinner.propTypes =
      *  Size of the Spinner
      */
     size : PropTypes.oneOf( [ 'small',
-        'big'
-    ] )
+        'big',
+    ] ),
 };
 
 Spinner.defaultProps =
 {
     cssMap : require( './spinner.css' ),
-    size   : 'small'
+    size   : 'small',
 };
 
 export default Spinner;

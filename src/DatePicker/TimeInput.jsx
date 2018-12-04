@@ -84,7 +84,6 @@ TimeInput.propTypes = {
     minuteIsReadOnly  : PropTypes.bool,
     minutePlaceholder : PropTypes.string,
     minuteValue       : PropTypes.string,
-
 };
 
 TimeInput.defaultProps = {

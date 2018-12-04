@@ -7,13 +7,13 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { buildClassName }             from '../utils';
-import styles                         from './datePicker.css';
-import DatePickerItem                 from './DatePickerItem';
-import DatePickerHeader               from './DatePickerHeader';
+import { buildClassName } from '../utils';
+import styles             from './datePicker.css';
+import DatePickerItem     from './DatePickerItem';
+import DatePickerHeader   from './DatePickerHeader';
 
 
 const DatePicker = ( {
@@ -85,8 +85,7 @@ const DatePicker = ( {
                                     <span title = { header.title }>
                                         { header.label }
                                     </span>
-                                </th>
-                            ) }
+                                </th> ) }
                         </tr>
                     </thead>
                 }
@@ -101,10 +100,8 @@ const DatePicker = ( {
                                             onClick = { onClickItem }
                                             type    = { type } />
                                     }
-                                </td>
-                            ) }
-                        </tr>
-                    ) }
+                                </td> ) }
+                        </tr> ) }
                 </tbody>
             </table>
         }
@@ -114,8 +111,9 @@ const DatePicker = ( {
 DatePicker.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
-    headers   : PropTypes.arrayOf(
-        PropTypes.objectOf( PropTypes.string ) ),
+    headers   : PropTypes
+        .arrayOf( PropTypes.objectOf( PropTypes.string )
+    ),
     hourIsDisabled  : PropTypes.bool,
     hourIsReadOnly  : PropTypes.bool,
     hourPlaceholder : PropTypes.string,
@@ -123,7 +121,8 @@ DatePicker.propTypes = {
     isDisabled      : PropTypes.bool,
     isReadOnly      : PropTypes.bool,
     items           : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object ) ),
+        PropTypes.arrayOf( PropTypes.object )
+    ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
     minuteIsReadOnly  : PropTypes.bool,

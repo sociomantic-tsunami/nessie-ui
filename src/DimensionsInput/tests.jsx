@@ -7,17 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
+import React                                 from 'react';
+import { shallow }                           from 'enzyme';
 
-import React                from 'react';
-import { shallow }          from 'enzyme';
-
-import { InputField, Text } from '../index';
-
-import DimensionsInput      from './index';
-
+import { DimensionsInput, InputField, Text } from '../index';
 
 describe( 'DimensionsInput', () =>
 {
@@ -35,7 +30,7 @@ describe( 'DimensionsInput', () =>
             expect( wrapper.find( InputField ) ).toHaveLength( 2 );
         } );
 
-        it( 'should contain exactly one Text', () =>
+        test( 'should contain exactly one Text', () =>
         {
             expect( wrapper.find( Text ) ).toHaveLength( 1 );
         } );

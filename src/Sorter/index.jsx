@@ -7,11 +7,11 @@
  *
  */
 
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import Icon                            from '../Icon';
+import { buildClassName }   from '../utils';
+import Icon                 from '../Icon';
 
 export default class Sorter extends Component
 {
@@ -36,7 +36,7 @@ export default class Sorter extends Component
         /**
          *  onToggle callback function
          */
-        onToggle        : PropTypes.func
+        onToggle        : PropTypes.func,
     };
 
     static defaultProps =
@@ -44,14 +44,14 @@ export default class Sorter extends Component
         sort            : 'none',
         sorterIsVisible : true,
         forceHover      : false,
-        cssMap          : require( './sorter.css' )
+        cssMap          : require( './sorter.css' ),
     };
 
     constructor()
     {
         super();
         this.state = {
-            isHovered : false
+            isHovered : false,
         };
     }
 
@@ -64,7 +64,7 @@ export default class Sorter extends Component
             forceHover,
             onToggle,
             sort,
-            sorterIsVisible
+            sorterIsVisible,
         } = this.props;
 
         const { isHovered } = this.state;
@@ -79,7 +79,7 @@ export default class Sorter extends Component
                     sorterVisible : sorterIsVisible,
                     sort,
                     desc          : sort,
-                    fakeHovered   : forceHover
+                    fakeHovered   : forceHover,
                 }  ) }
                 onClick   = { onToggle }>
                 <div

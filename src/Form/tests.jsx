@@ -7,13 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
-import React                            from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import Form                             from './index';
+import { Form }           from '../index';
 
 describe( 'Form', () =>
 {
@@ -57,31 +56,14 @@ describe( 'FormDriver', () =>
         wrapper = mount( <Form /> );
     } );
 
-    describe( 'getContent()', () =>
-    {
-        test( 'should return a ReactWrapper', () =>
-        {
-            const content = wrapper.driver().getContent();
-            expect( content ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the content node', () =>
-        {
-            wrapper.setProps( { children: <h2>Pikachu</h2> } );
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ) ).toHaveLength( 1 );
-        } );
-    } );
-
     describe( 'submit()', () =>
     {
         test( 'should fire the onSubmit callback prop once', () =>
         {
             const onSubmit = jest.fn();
-
             wrapper.setProps( { onSubmit } );
-            wrapper.driver().submit();
 
+            wrapper.driver().submit();
             expect( onSubmit ).toBeCalledTimes( 1 );
         } );
     } );

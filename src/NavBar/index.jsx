@@ -31,7 +31,7 @@ NavBar.propTypes =
 
 NavBar.defaultProps =
 {
-    cssMap : require( './navBar.css' )
+    cssMap : require( './navBar.css' ),
 };
 
 export default NavBar;

@@ -94,6 +94,7 @@ onChange instead.' );
     );
 };
 
+
 InputField.propTypes =
 {
     /**

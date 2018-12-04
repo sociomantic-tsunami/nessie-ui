@@ -7,15 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str*/
-
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import NavBar       from './index';
+import { NavBar }   from '../index';
 
 describe( 'NavBar', () =>
 {
