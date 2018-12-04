@@ -7,17 +7,13 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                    from 'react';
+import { shallow, mount }       from 'enzyme';
 
-import { InputField }     from '../index';
-import InputContainer     from '../proto/InputContainer';
-
-import TextArea           from './index';
-
+import { InputField, TextArea } from '../index';
+import InputContainer           from '../proto/InputContainer';
 
 describe( 'TextArea', () =>
 {

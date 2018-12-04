@@ -7,17 +7,17 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React                             from 'react';
-import { shallow, mount }                from 'enzyme';
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-import { InputField, FlounderDropdown }  from '../index';
-import InputContainer                    from '../proto/InputContainer';
-
-import TextInputWithDropdown             from './index';
-
+import {
+    InputField,
+    FlounderDropdown,
+    TextInputWithDropdown,
+} from '../index';
+import InputContainer   from '../proto/InputContainer';
 
 describe( 'TextInputWithDropdown', () =>
 {

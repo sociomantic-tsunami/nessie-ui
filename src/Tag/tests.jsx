@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import IconButton   from '../IconButton';
-
-import Tag          from './index';
-
+import { IconButton, Tag }  from '../index';
 
 describe( 'Tag', () =>
 {

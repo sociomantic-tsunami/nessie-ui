@@ -7,17 +7,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                        from 'react';
+import { mount, shallow }           from 'enzyme';
 
-import { InputField }     from '../index';
-import InputContainer     from '../proto/InputContainer';
-
-import TextInput          from './index';
-
+import { InputField, TextInput }    from '../index';
+import InputContainer               from '../proto/InputContainer';
 
 describe( 'TextInput', () =>
 {
