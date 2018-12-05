@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React           from 'react';
-import { shallow }     from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import StatusIndicator from './index';
-
+import { StatusIndicator }  from '../index';
 
 describe( 'StatusIndicator', () =>
 {
@@ -22,12 +20,12 @@ describe( 'StatusIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <StatusIndicator /> );
+        wrapper = mount( <StatusIndicator /> );
     } );
 
-    test( 'should contain the label text', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        wrapper.setProps( { label: 'hallo' } );
-        expect( wrapper.text() ).toBe( 'hallo' );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

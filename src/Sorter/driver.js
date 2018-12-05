@@ -14,7 +14,7 @@ export default class SorterDriver
         this.wrapper = wrapper;
     }
 
-    toggle()
+    click()
     {
         this.wrapper.simulate( 'click' );
         return this;

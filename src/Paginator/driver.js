@@ -12,19 +12,19 @@ export default class PaginatorDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.prop( 'cssMap' );
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickPrev()
     {
-        this.wrapper.find( `.${this.cssMap.arrow}` )
+        this.wrapper.find( `.${this.cssMap.arrows}` )
             .first().simulate( 'click' );
         return this;
     }
 
     clickNext()
     {
-        this.wrapper.find( `.${this.cssMap.arrow}` )
+        this.wrapper.find( `.${this.cssMap.arrows}` )
             .last().simulate( 'click' );
         return this;
     }

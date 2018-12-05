@@ -88,6 +88,10 @@ export default class CodeEditor extends Component
          */
         onFocus          : PropTypes.func,
         /**
+         * Handles CodeMirror keyPress event
+         */
+        onKeyPress   : PropTypes.func,
+        /**
          * onCursorActivity callback function: ( cursor ) => { ... }
          */
         onCursorActivity : PropTypes.func,
@@ -125,6 +129,7 @@ export default class CodeEditor extends Component
         onChange         : undefined,
         onCursorActivity : undefined,
         onFocus          : undefined,
+        onKeyPress       : undefined,
         onMouseOut       : undefined,
         onMouseOver      : undefined,
         options          : undefined,
@@ -141,6 +146,7 @@ export default class CodeEditor extends Component
         this.handleBlur           = this.handleBlur.bind( this );
         this.handleChange         = this.handleChange.bind( this );
         this.handleCursorActivity = this.handleCursorActivity.bind( this );
+        this.handleKeyPress       = this.handleKeyPress.bind( this );
         this.handleTextareaRef    = this.handleTextareaRef.bind( this );
         this.handleWrapperRef     = this.handleWrapperRef.bind( this );
     }
@@ -167,10 +173,11 @@ export default class CodeEditor extends Component
 
         codeMirror.setValue( value );
 
+        codeMirror.on( 'blur', this.handleBlur );
         codeMirror.on( 'change', this.handleChange );
         codeMirror.on( 'cursorActivity', this.handleCursorActivity );
         codeMirror.on( 'focus', this.handleFocus );
-        codeMirror.on( 'blur', this.handleBlur );
+        codeMirror.on( 'keypress', this.handleKeyPress );
 
         if ( cursor )
         {
@@ -310,6 +317,15 @@ export default class CodeEditor extends Component
         if ( onChange && change.origin !== 'setValue' )
         {
             onChange( cm.getValue() );
+        }
+    }
+
+    handleKeyPress()
+    {
+        const { onKeyPress } = this.props;
+        if ( onKeyPress )
+        {
+            onKeyPress();
         }
     }
 

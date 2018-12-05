@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import IconButton from '../IconButton';
-
-import Tag        from './index';
-
+import { IconButton, Tag }  from '../index';
 
 describe( 'Tag', () =>
 {
@@ -58,16 +54,19 @@ describe( 'Tag', () =>
         } );
     } );
 
-    test( 'should have an IconButton with close icon as a child', () =>
+    test( 'should have an IconButton with control theme and close icon as a \
+child', () =>
     {
-        expect( wrapper.find( IconButton ).prop( 'iconType' ) ).toBe( 'close' );
+        expect( wrapper.find( IconButton ).props().iconTheme )
+            .toBe( 'control' );
+        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>
     {
         const label = 'Tag Label';
         const props = {
-            label
+            label,
         };
         wrapper = mount( <Tag { ...props } /> );
         expect( wrapper.text() ).toBe( label );
@@ -77,7 +76,7 @@ describe( 'Tag', () =>
     {
         const callBack = jest.fn();
         const props = {
-            onClick : callBack
+            onClick : callBack,
         };
         wrapper = mount( <Tag { ...props } /> );
         wrapper.driver().clickClose();

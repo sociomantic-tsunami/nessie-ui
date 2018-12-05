@@ -94,13 +94,13 @@ using the drivers.
 import { mount } from 'enzyme';
 import Module from 'path/to/module';
 
-it( 'initial state is expanded', () =>
+test( 'initial state is expanded', () =>
 {
     const wrapper = mount( <Module title='my module title' /> );
     expect( wrapper.driver().isExpanded() ).true;
 } );
 
-it( 'clicking toggle changes the toggle state', () =>
+test( 'clicking toggle changes the toggle state', () =>
 {
     const wrapper = mount( <Module title='my module title' /> );
 

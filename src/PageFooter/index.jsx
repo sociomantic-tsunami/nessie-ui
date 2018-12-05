@@ -15,7 +15,7 @@ import { buildClassName }   from '../utils';
 const PageFooter = ( {
     children,
     cssMap,
-    className
+    className,
 } ) =>
 
     <footer className = { buildClassName( className, cssMap ) }>
@@ -29,12 +29,12 @@ PageFooter.propTypes =
     /**
      *  PageFooter content
      */
-    children : PropTypes.node
+    children : PropTypes.node,
 };
 
 PageFooter.defaultProps =
 {
-    cssMap : require( './pageFooter.css' )
+    cssMap : require( './pageFooter.css' ),
 };
 
 export default PageFooter;

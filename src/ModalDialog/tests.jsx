@@ -7,14 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { mount }   from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import ModalDialog from './index';
-
+import { ModalDialog }  from '../index';
 
 describe( 'ModalDialog', () =>
 {
@@ -36,11 +34,12 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : false,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.driver().getContent();
+        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+            .children();
         expect( children ).toHaveLength( 0 );
     } );
 
@@ -48,11 +47,12 @@ describe( 'ModalDialog', () =>
     {
         const props = {
             isVisible : true,
-            children  : <span className = "thisguy">boom</span>
+            children  : <span className = "thisguy">boom</span>,
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.driver().getContent();
+        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+            .children();
         expect( children ).toBeTruthy();
         expect( children.html() ).toBe( '<span class="thisguy">boom</span>' );
     } );
@@ -61,61 +61,61 @@ describe( 'ModalDialog', () =>
         'should trigger `onClickOverlay` once callback when overlay clicked',
         () =>
         {
-            const callBack = jest.fn();
-
+            const onClickOverlay = jest.fn();
             const props = {
-                isVisible      : true,
-                onClickOverlay : callBack
+                isVisible : true,
+                onClickOverlay,
             };
             wrapper = mount( <ModalDialog { ...props } /> );
+
             wrapper.driver().clickOverlay();
-            expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+            expect( onClickOverlay ).toHaveBeenCalledTimes( 1 );
+        },
     );
 
     test(
         'should trigger `onClickClose` once when close button is clicked',
         () =>
         {
-            const callBack = jest.fn();
-
+            const onClickClose = jest.fn();
             const props = {
-                isVisible      : true,
-                onClickClose   : callBack,
-                type           : 'carousel'
+                isVisible : true,
+                onClickClose,
+                type      : 'carousel',
             };
             wrapper = mount( <ModalDialog { ...props } /> );
+
             wrapper.driver().clickClose();
-            expect( callBack ).toHaveBeenCalledTimes( 1 );
-        }
+            expect( onClickClose ).toHaveBeenCalledTimes( 1 );
+        },
     );
 
     test( 'should trigger `onClickPrev` once when prev button is clicked', () =>
     {
-        const callBack = jest.fn();
-
+        const onClickPrev = jest.fn();
         const props = {
-            isVisible   : true,
-            onClickPrev : callBack,
-            type        : 'carousel'
+            isVisible : true,
+            onClickPrev,
+            type      : 'carousel',
         };
         wrapper = mount( <ModalDialog { ...props } /> );
+
         wrapper.driver().clickPrev();
-        expect( callBack ).toHaveBeenCalledTimes( 1 );
+        expect( onClickPrev ).toHaveBeenCalledTimes( 1 );
     } );
 
     test( 'should trigger `onClickNext` once when next button is clicked', () =>
     {
-        const callBack = jest.fn();
-
+        const onClickNext = jest.fn();
         const props = {
-            isVisible   : true,
-            onClickNext : callBack,
-            type        : 'carousel'
+            isVisible : true,
+            onClickNext,
+            type      : 'carousel',
         };
         wrapper = mount( <ModalDialog { ...props } /> );
+
         wrapper.driver().clickNext();
-        expect( callBack ).toHaveBeenCalledTimes( 1 );
+        expect( onClickNext ).toHaveBeenCalledTimes( 1 );
     } );
 
     describe( 'driver', () =>
@@ -123,11 +123,10 @@ describe( 'ModalDialog', () =>
         test( 'should throw an error when clicking the close button on a modal \
 that\'s not a carousel', () =>
         {
-            const callBack = jest.fn();
-
+            const onClickOverlay = jest.fn();
             const props = {
-                isVisible      : true,
-                onClickOverlay : callBack
+                isVisible : true,
+                onClickOverlay,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );
@@ -135,17 +134,16 @@ that\'s not a carousel', () =>
             expect( () => wrapper.driver().clickClose() )
                 .toThrowError( 'Cannot trigger click on the "Close Button" \
 because the modal is not a Carousel' );
-            expect( callBack ).not.toBeCalled();
+            expect( onClickOverlay ).not.toBeCalled();
         } );
 
         test( 'should throw an error when clicking the prev button on a modal \
 that\'s not a carousel', () =>
         {
-            const callBack = jest.fn();
-
+            const onClickPrev = jest.fn();
             const props = {
-                isVisible   : true,
-                onClickPrev : callBack
+                isVisible : true,
+                onClickPrev,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );
@@ -153,17 +151,16 @@ that\'s not a carousel', () =>
             expect( () => wrapper.driver().clickPrev() )
                 .toThrowError( 'Cannot trigger click on the "Prev Button" \
 because the modal is not a Carousel' );
-            expect( callBack ).not.toBeCalled();
+            expect( onClickPrev ).not.toBeCalled();
         } );
 
         test( 'should throw an error when clicking the next button on a modal \
 that\'s not a carousel', () =>
         {
-            const callBack = jest.fn();
-
+            const onClickNext = jest.fn();
             const props = {
-                isVisible   : true,
-                onClickNext : callBack
+                isVisible : true,
+                onClickNext,
             };
 
             wrapper = mount( <ModalDialog { ...props } /> );
@@ -171,7 +168,7 @@ that\'s not a carousel', () =>
             expect( () => wrapper.driver().clickNext() )
                 .toThrowError( 'Cannot trigger click on the "Next Button" \
 because the modal is not a Carousel' );
-            expect( callBack ).not.toBeCalled();
+            expect( onClickNext ).not.toBeCalled();
         } );
     } );
 } );

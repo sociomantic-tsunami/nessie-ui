@@ -7,22 +7,22 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React          from 'react';
-import { shallow }    from 'enzyme';
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-import { Fieldset }   from '../index';
-
+import { Fieldset }         from '../index';
 
 describe( 'Fieldset', () =>
 {
     let wrapper;
+    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Fieldset /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'render()', () =>
@@ -35,11 +35,18 @@ describe( 'Fieldset', () =>
 
     describe( 'props', () =>
     {
+        let props;
+
+        beforeEach( () =>
+        {
+            ( { props } = instance );
+        } );
+
         describe( 'hasError', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( Fieldset.defaultProps.hasError ).toBe( false );
+                expect( props.hasError ).toBeFalsy();
             } );
         } );
 
@@ -47,7 +54,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.isDisabled ).toBeUndefined();
+                expect( props.isDisabled ).toBeUndefined();
             } );
         } );
 
@@ -55,7 +62,7 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.onMouseOut ).toBeUndefined();
+                expect( props.onMouseOut ).toBeUndefined();
             } );
         } );
 
@@ -63,8 +70,47 @@ describe( 'Fieldset', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Fieldset.defaultProps.onMouseOver ).toBeUndefined();
+                expect( props.onMouseOver ).toBeUndefined();
             } );
+        } );
+    } );
+} );
+
+
+describe( 'FieldsetDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper  = mount( <Fieldset /> );
+        driver   = wrapper.driver();
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseEnter callback once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseEnter callback once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

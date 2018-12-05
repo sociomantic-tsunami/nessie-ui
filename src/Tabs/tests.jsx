@@ -7,16 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                    from 'react';
+import { shallow, mount }       from 'enzyme';
 
-import { Tab, TabButton } from '../index';
-
-import Tabs               from './index';
-
+import { Tab, TabButton, Tabs } from '../index';
 
 describe( 'Tabs', () =>
 {
@@ -43,91 +39,52 @@ describe( 'Tabs', () =>
     } );
 } );
 
+
 describe( 'TabsDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tabs /> );
+        wrapper  = mount( <Tabs /> );
+        driver   = wrapper.driver();
     } );
 
-    describe( 'getTabButtons()', () =>
+    describe( 'clickTab( index )', () =>
     {
         test(
-            'should return TabButton instances in Tabs when passed array of \
-Tabs as children',
+            'should trigger onClickTab callback prop once on TabButton at index',
             () =>
             {
+                const onClickTab = jest.fn();
                 wrapper.setProps( {
+                    onClickTab,
                     children : [
                         <Tab label = "Tabity" />,
                         <Tab label = "Taby" />,
                     ],
                 } );
 
-                expect( wrapper.driver().getTabButtons() ).toHaveLength( 2 );
+                driver.clickTab( 1 );
+                expect( onClickTab ).toBeCalledTimes( 1 );
             },
         );
-    } );
 
-    describe( 'getTabButtonsByIndex()', () =>
-    {
-        test( 'should return TabButton with given index', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />,
-                ],
-            } );
+        test(
+            'should throw an expected error if Tab is disabled',
+            () =>
+            {
+                wrapper.setProps( {
+                    children : [
+                        <Tab label = "Tabity" isDisabled />,
+                        <Tab label = "Taby" />,
+                    ],
+                } );
 
-            expect( wrapper.driver().getTabButtonsByIndex( 1 ).prop( 'label' ) )
-                .toBe( 'Taby' );
-        } );
-
-        test( 'should return TabButtons when passed indexes as an array', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Tab label = "Tabity">Ytibat</Tab>,
-                    <Tab label = "Taby">Ybat</Tab>,
-                ],
-            } );
-
-            expect( wrapper.driver().getTabButtonsByIndex( [ 0, 1 ] ) )
-                .toHaveLength( 2 );
-        } );
-    } );
-
-    describe( 'getTabButtonsByLabel()', () =>
-    {
-        test( 'should return TabButton with given label', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Tab label = "Tabity" />,
-                    <Tab label = "Taby" />,
-                ],
-            } );
-
-            expect( wrapper.driver().getTabButtonsByLabel( 'Tabity' )
-                .prop( 'label' ) ).toBe( 'Tabity' );
-        } );
-    } );
-
-    describe( 'getTabContent()', () =>
-    {
-        test( 'should return Tab content', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Tab label = "Tabity"><div>Ytibat</div></Tab>,
-                    <Tab label = "Taby">Ybat</Tab>,
-                ],
-            } );
-
-            expect( wrapper.driver().getTabContent() ).toHaveLength( 1 );
-        } );
+                expect( () => driver.clickTab( 0 ) ).toThrowError( 'TabButton \
+cannot be clicked because it is disabled' );
+            },
+        );
     } );
 } );

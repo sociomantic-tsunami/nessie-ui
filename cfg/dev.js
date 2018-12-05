@@ -12,7 +12,6 @@ const devConfig = merge( {}, baseConfig, {
         library       : 'Nessie',
         libraryTarget : 'window',
     },
-
     externals : {
         'prop-types' : 'PropTypes',
         react        : 'React',
@@ -23,4 +22,4 @@ const devConfig = merge( {}, baseConfig, {
 
 devConfig.module.rules[ 1 ].use[ 0 ] = 'style-loader';
 
-module.exports = devConfig
+module.exports = devConfig;

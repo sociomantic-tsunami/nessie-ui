@@ -7,14 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Uploader  from './index';
-
+import { Uploader } from '../index';
 
 describe( 'Uploader', () =>
 {
@@ -57,7 +55,7 @@ describe( 'Uploader', () =>
             {
                 expect( wrapper.find( 'Button', 'Upload', 'Spinner' ) )
                     .toHaveLength( 1 );
-            }
+            },
         );
     } );
 
@@ -80,7 +78,7 @@ describe( 'Uploader', () =>
             {
                 expect( wrapper.find( 'IconButton', 'Upload', 'Icon' ) )
                     .toHaveLength( 1 );
-            }
+            },
         );
 
         describe( 'readOnly state', () =>
@@ -117,7 +115,7 @@ state', () =>
                 expect( wrapper.find( 'Button' ) ).toHaveLength( 1 );
                 expect( wrapper.find( 'Button' ).prop( 'isReadOnly' ) )
                     .toBeTruthy();
-            }
+            },
         );
     } );
 } );
@@ -125,73 +123,221 @@ state', () =>
 describe( 'UploaderDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Uploader /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'onClick', () =>
+    describe( 'onClick()', () =>
     {
-        test( 'should trigger onClick event', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
                 onClick,
-                uploadState : 'default'
+                uploadState : 'default',
             } );
 
-            wrapper.driver().click();
+            driver.click();
             expect( onClick ).toBeCalled();
         } );
 
-        test( 'should trigger onClick event when clicked on secondary', () =>
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick, isDisabled: true } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should not trigger onClick when isReadOnly', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick, isReadOnly: true } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'onClickSecondary()', () =>
+    {
+        test( 'should trigger onClickSecondary callback prop once', () =>
         {
             const onClickSecondary = jest.fn();
             wrapper.setProps( {
                 onClickSecondary,
-                uploadState : 'uploaded'
+                uploadState : 'uploaded',
             } );
 
-            wrapper.driver().clickSecondary();
+            driver.clickSecondary();
             expect( onClickSecondary ).toBeCalled();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should not trigger onClickSecondary when isDisabled', () =>
+            {
+                const onClickSecondary = jest.fn();
+                wrapper.setProps( { onClickSecondary, isDisabled: true } );
+
+                try
+                {
+                    driver.clickSecondary();
+                }
+                catch ( error )
+                {
+                    expect( onClickSecondary ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should not trigger onClickSecondary when isReadOnly', () =>
+            {
+                const onClickSecondary = jest.fn();
+                wrapper.setProps( { onClickSecondary, isReadOnly: true } );
+
+                try
+                {
+                    driver.clickSecondary();
+                }
+                catch ( error )
+                {
+                    expect( onClickSecondary ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
-    describe( 'onChange', () =>
+
+    describe( 'change( val )', () =>
     {
         test( 'should be undefined by default', () =>
         {
-            wrapper = mount( <Uploader /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
         } );
+
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change( 'jkl' );
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError =
+                    'Uploader cannot simulate change since it is disabled';
+                wrapper.setProps( { isDisabled: true } );
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isDisabled: true } );
+
+                try
+                {
+                    driver.change( 't' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                const expectedError =
+                    'Uploader cannot simulate change since it is read only';
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( { onChange, isReadOnly: true } );
+
+                try
+                {
+                    driver.change( 't' );
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
     } );
+
 
     describe( 'mouseOut', () =>
     {
-        test( 'should trigger onMouseOut() callback function', () =>
+        test( 'should trigger onMouseOut() callback function once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( {
-                onMouseOut
+                onMouseOut,
             } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toBeCalled();
         } );
     } );
+
+
     describe( 'mouseOver', () =>
     {
-        test( 'should trigger onMouseOver() callback function', () =>
+        test( 'should trigger onMouseOver() callback function once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( {
-                onMouseOver
+                onMouseOver,
             } );
 
-            wrapper.driver().mouseOver();
-
+            driver.mouseOver();
             expect( onMouseOver ).toBeCalled();
         } );
     } );

@@ -23,7 +23,7 @@ NessieLogo.propTypes = {};
 
 NessieLogo.defaultProps =
 {
-    cssMap : require( './nessieLogo.css' )
+    cssMap : require( './nessieLogo.css' ),
 };
 
 export default NessieLogo;

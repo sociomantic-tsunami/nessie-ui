@@ -7,24 +7,42 @@
  *
  */
 
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
+import { IconButton } from 'nessie-ui';
 
+const ERR = {
+    TOOLTIP_ERR : ( event, state ) =>
+        `Tooltip cannot simulate ${event} since it is ${state}`,
+};
 
-export default class TooltipDriver extends SimpleComponentDriver
+export default class TooltipDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
-    getContent()
+    clickClose()
     {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
+        if ( !this.wrapper.props().isDismissible )
+        {
+            throw new Error( ERR
+                .TOOLTIP_ERR( 'clickClose', 'not dismissable' ) );
+        }
+
+        this.wrapper.find( IconButton ).driver().click();
+        return this;
     }
 
-    getMessage()
+    mouseOver()
     {
-        return this.wrapper.find( `.${this.cssMap.message}` ).children();
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }
