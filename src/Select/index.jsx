@@ -59,6 +59,10 @@ export default class Select extends Component
          */
         defaultOption        : PropTypes.string,
         /**
+         * Placeholder text to show when no dropdown list options
+         */
+        dropdownPlaceholder  : PropTypes.string,
+        /**
          * Position of the dropdown relative to the text input
          */
         dropdownPosition     : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
@@ -185,6 +189,7 @@ export default class Select extends Component
         buttonIsReadOnly     : undefined,
         className            : undefined,
         defaultOption        : undefined,
+        dropdownPlaceholder  : undefined,
         dropdownPosition     : 'auto',
         forceHover           : false,
         hasError             : false,
@@ -222,14 +227,15 @@ export default class Select extends Component
         super();
 
         this.state = {
-            activeOption : undefined,
-            flatOptions  : undefined,
-            id           : undefined,
-            isFocused    : false,
-            isOpen       : undefined,
-            options      : undefined,
-            searchValue  : undefined,
-            selection    : undefined,
+            activeOption    : undefined,
+            filteredOptions : undefined,
+            flatOptions     : undefined,
+            id              : undefined,
+            isFocused       : false,
+            isOpen          : undefined,
+            options         : undefined,
+            searchValue     : undefined,
+            selection       : undefined,
         };
 
         this.handleChangeInput     = this.handleChangeInput.bind( this );
@@ -257,17 +263,16 @@ export default class Select extends Component
         if ( optionId )
         {
             optionId = getOption( optionId, flatOptions )
-            ? getOption( optionId, flatOptions ).id : undefined;
+                ? getOption( optionId, flatOptions ).id : undefined;
         }
-
-        console.log( state.options, 'AKI' );
 
         return {
             flatOptions,
-            id         : props.id || state.id || generateId( 'Select' ),
-            isOpen     : typeof props.isOpen === 'undefined' ? state.isOpen :
-                props.isOpen,
-            options     : state.options || props.options,
+            filteredOptions : state.filteredOptions,
+            id              : props.id || state.id || generateId( 'Select' ),
+            isOpen          : typeof props.isOpen === 'undefined' ?
+                state.isOpen : props.isOpen,
+            options     : props.options,
             searchValue : state.searchValue,
             selection   : optionId,
         };
@@ -283,25 +288,59 @@ export default class Select extends Component
         }
 
         const searchValue = ( e.target.value || '' ).toLowerCase();
-        const allOptions = this.props.options.flatMap( o => o.options || o );
 
-        let filteredOption = allOptions.filter( ( { id, text } ) =>
-        {
-            return !searchValue ||
-                    id.toLowerCase().indexOf( searchValue ) > -1 ||
-                    text.toLowerCase().indexOf( searchValue ) > -1;
+        const filteredOptions = this.state.flatOptions.filter( ( {
+            id,
+            text,
+        } ) => !searchValue || id.toLowerCase().indexOf( searchValue ) > -1 ||
+                    text.toLowerCase().indexOf( searchValue ) > -1 );
+
+        const activeOption = ( searchValue && filteredOptions.length ) ?
+            filteredOptions[ 0 ].id : undefined;
+
+        this.setState( {
+            activeOption,
+            filteredOptions,
+            searchValue,
         } );
+    }
 
-        // if ( !filteredOption.length )
-        // {
-        //     filteredOption[ 0 ] = 'No Results';
-        // }
+    optionsFilter( filteredOptions )
+    {
+        const filteredOptionsIds = [];
 
-        this.setState( { searchValue, options: filteredOption  } );
+        filteredOptions.map( filteredOption =>
+            filteredOptionsIds.push( filteredOption.id ) );
 
-        console.log( searchValue, 'searchValue' );
+        return this.props.options.reduce( ( formattedOptions, option ) =>
+        {
+            if ( option.options )
+            {
+                const sectionOptions = option.options.reduce( (
+                    sectionFormattedOptions,
+                    sectionOption,
+                ) =>
+                {
+                    if ( filteredOptionsIds.includes( sectionOption.id ) )
+                    {
+                        sectionFormattedOptions.push( sectionOption );
+                    }
+                    return sectionFormattedOptions;
+                }, [] );
 
-        console.log( filteredOption, 'filteredOption' );
+                if ( sectionOptions.length )
+                {
+                    const newOptions = { ...option, options: sectionOptions };
+                    formattedOptions.push( newOptions );
+                }
+            }
+            else if ( filteredOptionsIds.includes( option.id ) )
+            {
+                formattedOptions.push( option );
+            }
+
+            return formattedOptions;
+        }, [] );
     }
 
     handleClickIcon( e )
@@ -342,9 +381,10 @@ export default class Select extends Component
         {
             const selectedOption = getOption( id, prevState.flatOptions );
             return {
-                isOpen      : false,
-                selection   : selectedOption.id,
-                searchValue : undefined,
+                isOpen          : false,
+                filteredOptions : undefined,
+                selection       : selectedOption.id,
+                searchValue     : undefined,
             };
         } );
     }
@@ -368,12 +408,14 @@ export default class Select extends Component
             {
                 if ( prevState.isOpen )
                 {
+                    const options = prevState.filteredOptions ||
+                      prevState.flatOptions;
                     const minIndex = 0;
-                    const maxIndex = prevState.flatOptions.length - 1;
+                    const maxIndex = options.length - 1;
 
                     let activeIndex = getIndex(
-                        prevState.activeOption,
-                        prevState.flatOptions,
+                        prevState.activeOption || prevState.selection,
+                        options,
                     );
 
                     activeIndex = key === 'ArrowUp' ?
@@ -381,7 +423,7 @@ export default class Select extends Component
                         Math.min( activeIndex + 1, maxIndex );
 
                     return {
-                        activeOption : prevState.flatOptions[ activeIndex ].id,
+                        activeOption : options[ activeIndex ].id,
                     };
                 }
 
@@ -394,21 +436,15 @@ export default class Select extends Component
         }
         else if ( key === 'Enter' )
         {
-            this.setState( prevState =>
-            {
-                const opt = getOption(
-                    prevState.activeOption,
-                    prevState.flatOptions,
-                );
-
-                return {
-                    selection : opt ? opt.id : undefined,
-                    isOpen    : typeof isOpen === 'boolean' ?
+            this.setState( prevState => (
+                {
+                    activeOption : prevState.activeOption,
+                    selection    : prevState.activeOption,
+                    isOpen       : typeof isOpen === 'boolean' ?
                         this.state.isOpen : !prevState.isOpen,
-                    options     : undefined,
-                    searchValue : undefined,
-                };
-            } );
+                    filteredOptions : undefined,
+                    searchValue     : undefined,
+                } ) );
         }
     }
 
@@ -469,10 +505,11 @@ export default class Select extends Component
         }
 
         this.setState( {
-            isFocused   : false,
-            isOpen      : false,
-            options     : undefined,
-            searchValue : undefined,
+            activeOption    : undefined,
+            isFocused       : false,
+            isOpen          : false,
+            filteredOptions : undefined,
+            searchValue     : undefined,
         } );
     }
 
@@ -481,6 +518,7 @@ export default class Select extends Component
         const {
             buttonIsReadOnly,
             className,
+            dropdownPlaceholder,
             dropdownPosition,
             forceHover,
             hasError,
@@ -497,16 +535,17 @@ export default class Select extends Component
             onMouseOver,
             onMouseOverIcon,
             onScroll,
+            options,
             textAlign,
         } = this.props;
 
         const {
             activeOption,
+            filteredOptions,
             flatOptions,
             id,
             isFocused,
             isOpen,
-            options,
             searchValue,
             selection,
         } = this.state;
@@ -514,11 +553,15 @@ export default class Select extends Component
         const optionVal = getOption( selection, flatOptions ) ?
             getOption( selection, flatOptions ).text : undefined;
 
+        const optionsToShow = filteredOptions ?
+            this.optionsFilter( filteredOptions ) : options;
+
         return (
             <ComboBox
                 activeOption         = { activeOption }
                 buttonIsReadOnly     = { buttonIsReadOnly }
                 className            = { className }
+                dropdownPlaceholder  = { dropdownPlaceholder }
                 dropdownPosition     = { dropdownPosition }
                 forceHover           = { forceHover }
                 hasError             = { hasError }
@@ -527,9 +570,13 @@ export default class Select extends Component
                 iconType             = { isOpen ? 'up' : 'down' }
                 id                   = { id }
                 inputIsReadOnly      = { !isOpen }
-                inputRef             = { ( ref ) => { this.inputRef = ref; } }
+                inputRef             = { ( ref ) =>
+                {
+                    this.inputRef = ref;
+                } }
                 inputPlaceholder     = { inputPlaceholder }
-                inputValue           = { isFocused && isOpen ? searchValue : optionVal }
+                inputValue           = { isFocused && isOpen ? searchValue :
+                    optionVal }
                 isDisabled           = { isDisabled }
                 isMultiselect        = { isMultiselect }
                 isOpen               = { isOpen }
@@ -550,7 +597,7 @@ export default class Select extends Component
                 onMouseOverIcon      = { onMouseOverIcon }
                 onMouseOverOption    = { this.handleMouseOverOption }
                 onScroll             = { onScroll }
-                options              = { options }
+                options              = { optionsToShow }
                 selection            = { selection }
                 textAlign            = { textAlign } />
         );
