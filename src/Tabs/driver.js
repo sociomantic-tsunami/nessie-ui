@@ -16,7 +16,12 @@ export default class TabsDriver
         this.wrapper = wrapper;
     }
 
-    change( index = 0 )
+    change( index = 1 )
+    {
+        return this.clickTab( index );
+    }
+
+    clickTab( index = 1 )
     {
         this.wrapper.find( TabButton ).at( index ).driver().click();
         return this;
