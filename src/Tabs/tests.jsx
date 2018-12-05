@@ -51,23 +51,23 @@ describe( 'TabsDriver', () =>
         driver   = wrapper.driver();
     } );
 
-    describe( 'change( index )', () =>
+    describe( 'clickTab( index )', () =>
     {
         test(
-            'should trigger onChange callback prop once on TabButton at index',
+            'should trigger onClickTab callback prop once on TabButton at index',
             () =>
             {
-                const onChange = jest.fn();
+                const onClickTab = jest.fn();
                 wrapper.setProps( {
-                    onChange,
+                    onClickTab,
                     children : [
                         <Tab label = "Tabity" />,
                         <Tab label = "Taby" />,
                     ],
                 } );
 
-                driver.change( 1 );
-                expect( onChange ).toBeCalledTimes( 1 );
+                driver.clickTab( 1 );
+                expect( onClickTab ).toBeCalledTimes( 1 );
             },
         );
 
@@ -82,7 +82,7 @@ describe( 'TabsDriver', () =>
                     ],
                 } );
 
-                expect( () => driver.change() ).toThrowError( 'TabButton \
+                expect( () => driver.clickTab( 0 ) ).toThrowError( 'TabButton \
 cannot be clicked because it is disabled' );
             },
         );
