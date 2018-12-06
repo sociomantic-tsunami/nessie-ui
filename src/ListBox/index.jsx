@@ -58,7 +58,7 @@ const ListBox = ( {
             className   = { buildClassName( className, cssMap ) }
             id          = { id }
             onKeyPress  = { onKeyPress }
-            onMouseDown = { !isFocusable && killFocus }
+            onMouseDown = { !isFocusable ? killFocus : undefined }
             tabIndex    = { isFocusable ? '0' : '-1' }>
             { updateOptions(
                 children || buildOptions( options ),

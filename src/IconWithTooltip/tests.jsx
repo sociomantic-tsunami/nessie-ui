@@ -17,12 +17,10 @@ import { IconWithTooltip, Tooltip } from '../index';
 describe( 'IconWithTooltip', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <IconWithTooltip /> );
-        instance = wrapper.instance();
     } );
 
     describe( 'props', () =>
@@ -31,7 +29,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOver ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOver )
+                    .toBeUndefined();
             } );
 
             test(
@@ -51,7 +50,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOut ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOut )
+                    .toBeUndefined();
             } );
 
             test(
@@ -71,7 +71,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverIcon ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOverIcon )
+                    .toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOver', () =>
@@ -88,7 +89,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutIcon ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOutIcon )
+                    .toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOut', () =>

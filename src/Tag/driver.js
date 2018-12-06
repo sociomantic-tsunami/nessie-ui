@@ -7,6 +7,7 @@
  *
  */
 
+import { IconButton } from '../index';
 
 export default class TagDriver
 {
@@ -18,7 +19,7 @@ export default class TagDriver
 
     clickClose()
     {
-        this.wrapper.find( `.${this.cssMap.delete}` ).simulate( 'click' );
+        this.wrapper.find( IconButton ).simulate( 'click' );
         return this;
     }
 }

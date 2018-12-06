@@ -111,18 +111,16 @@ const DatePicker = ( {
 DatePicker.propTypes = {
     className : PropTypes.string,
     cssMap    : PropTypes.objectOf( PropTypes.string ),
-    headers   : PropTypes.arrayOf(
-        PropTypes.objectOf( PropTypes.string )
-    ),
+    headers   : PropTypes.arrayOf( PropTypes
+        .objectOf( PropTypes.string ) ),
     hourIsDisabled  : PropTypes.bool,
     hourIsReadOnly  : PropTypes.bool,
     hourPlaceholder : PropTypes.string,
     hourValue       : PropTypes.string,
     isDisabled      : PropTypes.bool,
     isReadOnly      : PropTypes.bool,
-    items           : PropTypes.arrayOf( PropTypes.arrayOf(
-        PropTypes.object
-    ) ),
+    items           : PropTypes.arrayOf( PropTypes
+        .arrayOf( PropTypes.object ) ),
     label             : PropTypes.string,
     minuteIsDisabled  : PropTypes.bool,
     minuteIsReadOnly  : PropTypes.bool,

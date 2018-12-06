@@ -9,11 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import CodeEditor         from './index';
-
+import CodeEditor   from './index';
 
 describe( 'CodeEditor', () =>
 {
@@ -21,7 +20,7 @@ describe( 'CodeEditor', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <CodeEditor /> );
+        wrapper = mount( <CodeEditor /> );
     } );
 
     describe( 'render()', () =>

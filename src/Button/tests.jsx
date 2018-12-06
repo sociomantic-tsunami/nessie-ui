@@ -18,44 +18,15 @@ import { Button, Icon, Spinner }    from '../index';
 describe( 'Button', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Button /> );
-        instance = wrapper.instance();
     } );
 
-    describe( 'constructor( props )', () =>
+    test( 'should a stateless functional component', () =>
     {
-        test( 'should have name Button', () =>
-        {
-            expect( instance.constructor.name ).toBe( 'Button' );
-        } );
-    } );
-
-    describe( 'handleMouseOver( e )', () =>
-    {
-        test( 'sets isHovered state to true', () =>
-        {
-            const onMouseOver = jest.fn();
-            wrapper.setProps( { onMouseOver } );
-
-            instance.handleMouseOver();
-            expect( instance.state.isHovered ).toEqual( true );
-        } );
-    } );
-
-    describe( 'handleMouseOut( e )', () =>
-    {
-        test( 'sets isHovered state to false', () =>
-        {
-            const onMouseOut = jest.fn();
-            wrapper.setProps( { onMouseOut } );
-
-            instance.handleMouseOut();
-            expect( instance.state.isHovered ).toEqual( false );
-        } );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     describe( 'render()', () =>
@@ -84,12 +55,13 @@ describe( 'Button', () =>
         {
             test( 'should be "none" by default', () =>
             {
-                expect( instance.props.iconType ).toBe( 'none' );
+                expect( Button.defaultProps.iconType ).toBe( 'none' );
             } );
 
             test( 'should be passed to the Icon as type', () =>
             {
                 wrapper.setProps( { iconType: 'add' } );
+
                 expect( wrapper.find( Icon ).prop( 'type' ) ).toBe( 'add' );
             } );
         } );
@@ -98,7 +70,7 @@ describe( 'Button', () =>
         {
             test( 'should be "left" by default', () =>
             {
-                expect( instance.props.iconPosition ).toBe( 'left' );
+                expect( Button.defaultProps.iconPosition ).toBe( 'left' );
             } );
         } );
 
@@ -106,18 +78,7 @@ describe( 'Button', () =>
         {
             test( 'should be "default" by default', () =>
             {
-                expect( instance.props.role ).toBe( 'default' );
-            } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control',
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
+                expect( Button.defaultProps.role ).toBe( 'default' );
             } );
         } );
 
@@ -125,51 +86,7 @@ describe( 'Button', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( instance.props.isLoading ).toBe( false );
-            } );
-
-            test( 'should be passed to Icon as theme when "control"', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    role     : 'control',
-                } );
-
-                expect( wrapper.find( Icon ).prop( 'theme' ) )
-                    .toBe( 'control' );
-            } );
-        } );
-
-        describe( 'onClick', () =>
-        {
-            test( 'is undefined by default', () =>
-            {
-                expect( instance.props.onClick ).toBeUndefined();
-            } );
-
-            test( 'is passed to <button>', () =>
-            {
-                const onClick = jest.fn();
-                wrapper.setProps( { onClick } );
-
-                expect( wrapper.find( 'button' ).prop( 'onClick' ) )
-                    .toEqual( onClick );
-            } );
-        } );
-
-        describe( 'onMouseOver', () =>
-        {
-            test( 'is undefined by default', () =>
-            {
-                expect( instance.props.onMouseOver ).toBeUndefined();
-            } );
-        } );
-
-        describe( 'onMouseOut', () =>
-        {
-            test( 'is undefined by default', () =>
-            {
-                expect( instance.props.onMouseOut ).toBeUndefined();
+                expect( Button.defaultProps.isLoading ).toBe( false );
             } );
         } );
 
@@ -177,7 +94,7 @@ describe( 'Button', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.buttonRef ).toBeUndefined();
+                expect( Button.defaultProps.buttonRef ).toBeUndefined();
             } );
         } );
     } );
@@ -471,224 +388,6 @@ mouseOut since it is loading';
                 catch ( error )
                 {
                     expect( onMouseOut ).not.toBeCalled();
-                }
-            } );
-        } );
-    } );
-
-
-    describe( 'blur()', () =>
-    {
-        test( 'should trigger onBlur callback prop once', () =>
-        {
-            const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
-
-            driver.blur();
-            expect( onBlur ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-blur since it is disabled';
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isDisabled', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-blur since it is read only';
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isReadOnly', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isLoading', () =>
-        {
-            test( 'throws the expected error when isLoading', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-blur since it is loading';
-                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.blur() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onBlur when isLoading', () =>
-            {
-                const onBlur = jest.fn();
-                wrapper.setProps( {
-                    onBlur,
-                    isLoading : true,
-                    label     : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.blur();
-                }
-                catch ( error )
-                {
-                    expect( onBlur ).not.toBeCalled();
-                }
-            } );
-        } );
-    } );
-
-
-    describe( 'focus()', () =>
-    {
-        test( 'should trigger onFocus callback prop once', () =>
-        {
-            const onFocus = jest.fn();
-            wrapper.setProps( { onFocus } );
-
-            driver.focus();
-            expect( onFocus ).toBeCalledTimes( 1 );
-        } );
-
-
-        describe( 'isDisabled', () =>
-        {
-            test( 'throws the expected error when isDisabled', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-focus since it is disabled';
-                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isDisabled', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isDisabled : true,
-                    label      : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isReadOnly', () =>
-        {
-            test( 'throws the expected error when isReadOnly', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-focus since it is read only';
-                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isReadOnly', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isReadOnly : true,
-                    label      : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
-                }
-            } );
-        } );
-
-
-        describe( 'isLoading', () =>
-        {
-            test( 'throws the expected error when isLoading', () =>
-            {
-                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
-focus since it is loading';
-                wrapper.setProps( { isLoading: true, label: 'Tekeli-li' } );
-
-                expect( () => driver.focus() ).toThrow( expectedError );
-            } );
-
-            test( 'should not trigger onFocus when isLoading', () =>
-            {
-                const onFocus = jest.fn();
-                wrapper.setProps( {
-                    onFocus,
-                    isLoading : true,
-                    label     : 'Tekeli-li',
-                } );
-
-                try
-                {
-                    driver.focus();
-                }
-                catch ( error )
-                {
-                    expect( onFocus ).not.toBeCalled();
                 }
             } );
         } );

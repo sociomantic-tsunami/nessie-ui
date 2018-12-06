@@ -43,20 +43,6 @@ describe( 'IconButton', () =>
 
     describe( 'props', () =>
     {
-        describe( 'iconTheme', () =>
-        {
-            test( 'should be "control" by default', () =>
-            {
-                expect( instance.props.iconTheme ).toBe( 'control' );
-            } );
-
-            test( 'should be passed to the Icon as theme', () =>
-            {
-                wrapper.setProps( { iconTheme: 'light' } );
-                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe( 'light' );
-            } );
-        } );
-
         describe( 'iconSize', () =>
         {
             test( 'should be "S" by default', () =>

@@ -41,13 +41,10 @@ describe( 'Tag', () =>
 
     describe( 'read-only state', () =>
     {
-        beforeEach( () =>
-        {
-            wrapper = mount( <Tag isReadOnly /> );
-        } );
-
         test( 'should have an IconButton as a child with isReadOnly set', () =>
         {
+            wrapper.setProps( { isReadOnly: true } );
+
             expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
             expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
                 .toBeTruthy();
@@ -57,29 +54,27 @@ describe( 'Tag', () =>
     test( 'should have an IconButton with control theme and close icon as a \
 child', () =>
     {
-        expect( wrapper.find( IconButton ).props().iconTheme )
-            .toBe( 'control' );
         expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>
     {
         const label = 'Tag Label';
-        const props = {
+        wrapper.setProps( {
             label,
-        };
-        wrapper = mount( <Tag { ...props } /> );
+        } );
+
         expect( wrapper.text() ).toBe( label );
     } );
 
     test( 'should trigger onClick callbacks when IconButton clicked', () =>
     {
-        const callBack = jest.fn();
-        const props = {
-            onClick : callBack,
-        };
-        wrapper = mount( <Tag { ...props } /> );
+        const onClick = jest.fn();
+        wrapper.setProps( {
+            onClick,
+        } );
+
         wrapper.driver().clickClose();
-        expect( callBack ).toBeCalled();
+        expect( onClick ).toBeCalled();
     } );
 } );

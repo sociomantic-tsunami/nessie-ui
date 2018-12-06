@@ -19,7 +19,6 @@ import {
     DateTimeInput,
     Fieldset,
     FlounderDropdown,
-    Icon,
     IconButton,
     IconWithTooltip,
     InputField,
@@ -39,7 +38,6 @@ import {
     SliderGroup,
     Sorter,
     Switch,
-    Tab,
     TabButton,
     Table,
     TableCell,
@@ -65,7 +63,6 @@ import DatePickerDriver            from './DatePicker/driver';
 import DateTimeInputDriver         from './DateTimeInput/driver';
 import FieldsetDriver              from './Fieldset/driver';
 import FlounderDropdownDriver      from './Addons/FlounderDropdown/driver';
-import IconDriver                  from './Icon/driver';
 import IconButtonDriver            from './IconButton/driver';
 import IconWithTooltipDriver       from './IconWithTooltip/driver';
 import InputFieldDriver            from './InputField/driver';
@@ -85,7 +82,6 @@ import SliderDriver                from './Slider/driver';
 import SliderGroupDriver           from './SliderGroup/driver';
 import SorterDriver                from './Sorter/driver';
 import SwitchDriver                from './Switch/driver';
-import TabDriver                   from './Tab/driver';
 import TabButtonDriver             from './TabButton/driver';
 import TableDriver                 from './Table/driver';
 import TableCellDriver             from './TableCell/driver';
@@ -142,10 +138,6 @@ const drivers =
     {
         Component : FlounderDropdown,
         Driver    : FlounderDropdownDriver,
-    },
-    {
-        Component : Icon,
-        Driver    : IconDriver,
     },
     {
         Component : IconButton,
@@ -222,10 +214,6 @@ const drivers =
     {
         Component : Switch,
         Driver    : SwitchDriver,
-    },
-    {
-        Component : Tab,
-        Driver    : TabDriver,
     },
     {
         Component : TabButton,

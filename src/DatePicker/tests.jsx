@@ -9,29 +9,10 @@
 
 /* eslint-disable no-magic-numbers, max-len */
 
-import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { DatePicker }       from '../index';
-
-describe( 'DatePicker', () =>
-{
-    let wrapper;
-    let instance;
-
-    beforeEach( () =>
-    {
-        wrapper  = shallow( <DatePicker /> );
-        instance = wrapper.instance();
-    } );
-
-    test( 'should have its component name and hash as default className', () =>
-    {
-        expect( wrapper.find( `.${instance.props.cssMap.default}` ) )
-            .toHaveLength( 1 );
-    } );
-} );
-
+import { DatePicker }   from '../index';
 
 describe( 'DatePickerDriver', () =>
 {
@@ -193,7 +174,7 @@ prevIsDisabled', () =>
         test( 'should trigger onBlur callback once', () =>
         {
             const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
+            wrapper.setProps( { onBlur, mode: 'default' } );
 
             driver.blurHourInput();
             expect( onBlur ).toBeCalledTimes( 1 );
@@ -271,7 +252,7 @@ prevIsDisabled', () =>
         test( 'should trigger onFocus callback once', () =>
         {
             const onFocus = jest.fn();
-            wrapper.setProps( { onFocus } );
+            wrapper.setProps( { onFocus, mode: 'default' } );
 
             driver.focusHourInput();
             expect( onFocus ).toBeCalledTimes( 1 );
@@ -349,7 +330,7 @@ prevIsDisabled', () =>
         test( 'should trigger onChange callback once', () =>
         {
             const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+            wrapper.setProps( { onChange, mode: 'default' } );
 
             driver.changeHourInput();
             expect( onChange ).toBeCalledTimes( 1 );
@@ -459,7 +440,7 @@ prevIsDisabled', () =>
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
-            wrapper.setProps( { onKeyPress } );
+            wrapper.setProps( { onKeyPress, mode: 'default' } );
 
             driver.keyPressHourInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );
@@ -537,7 +518,7 @@ prevIsDisabled', () =>
         test( 'should trigger onBlur callback once', () =>
         {
             const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
+            wrapper.setProps( { onBlur, mode: 'default' } );
 
             driver.blurMinuteInput();
             expect( onBlur ).toBeCalledTimes( 1 );
@@ -609,7 +590,7 @@ prevIsDisabled', () =>
         test( 'should trigger onFocus callback once', () =>
         {
             const onFocus = jest.fn();
-            wrapper.setProps( { onFocus } );
+            wrapper.setProps( { onFocus, mode: 'default' } );
 
             driver.focusMinuteInput();
             expect( onFocus ).toBeCalledTimes( 1 );
@@ -681,7 +662,7 @@ prevIsDisabled', () =>
         test( 'should trigger onChange callback once', () =>
         {
             const onChange = jest.fn();
-            wrapper.setProps( { onChange } );
+            wrapper.setProps( { onChange, mode: 'default' } );
 
             driver.changeMinuteInput();
             expect( onChange ).toBeCalledTimes( 1 );
@@ -789,7 +770,7 @@ not <default>', () =>
         test( 'should trigger onKeyPress callback once', () =>
         {
             const onKeyPress = jest.fn();
-            wrapper.setProps( { onKeyPress } );
+            wrapper.setProps( { onKeyPress, mode: 'default' } );
 
             driver.keyPressMinuteInput();
             expect( onKeyPress ).toBeCalledTimes( 1 );

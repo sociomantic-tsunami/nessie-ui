@@ -217,7 +217,7 @@ export default class IconButton extends React.Component
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }
-                onClick      = { !isReadOnly && onClick }
+                onClick      = { !isReadOnly ? onClick : undefined }
                 onFocus      = { onFocus }
                 onMouseDown  = { !isFocusable ? killFocus : undefined }
                 onMouseEnter = { onMouseOver }

@@ -7,6 +7,8 @@
  *
  */
 
+import { IconButton } from '../index';
+
 const ERR = {
     NOTIFICATION_NOT_DISMISSIBLE : 'NotificationBar is not dismissible',
 };
@@ -26,6 +28,6 @@ export default class NotificationBarDriver
             throw new Error( ERR.NOTIFICATION_NOT_DISMISSIBLE );
         }
 
-        this.wrapper.find( `.${this.cssMap.close}` ).simulate( 'click' );
+        this.wrapper.find( IconButton ).driver().click();
     }
 }

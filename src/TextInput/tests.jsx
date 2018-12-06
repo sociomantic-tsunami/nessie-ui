@@ -18,17 +18,15 @@ import { InputField, TextInput }    from '../index';
 describe( 'TextInput', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <TextInput /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should be stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should contain exactly one InputField', () =>

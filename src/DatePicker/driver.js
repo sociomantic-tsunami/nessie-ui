@@ -9,6 +9,7 @@
 
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerItem   from './DatePickerItem';
+import { IconButton }   from '../index';
 
 const ERR = {
     ITEM_ERR : ( label, state ) =>
@@ -28,6 +29,10 @@ export default class DatePickerDriver
         this.wrapper = wrapper;
         this.cssMap  = wrapper.props().cssMap;
         this.header  = wrapper.find( DatePickerHeader ).props().cssMap;
+        this.prev    = wrapper.find( IconButton )
+            .findWhere( node => node.props().iconType === 'left' );
+        this.next    = wrapper.find( IconButton )
+            .findWhere( node => node.props().iconType === 'right' );
         this.hour    = this.header.hour;
         this.min     = this.header.min;
     }
@@ -54,7 +59,7 @@ export default class DatePickerDriver
             throw new Error( ERR.NAV_ERR( 'Previous', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.cssMap.prev}` ).simulate( 'click' );
+        this.prev.driver().click();
         return this;
     }
 
@@ -65,20 +70,20 @@ export default class DatePickerDriver
             throw new Error( ERR.NAV_ERR( 'Next', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.cssMap.next}` ).simulate( 'click' );
+        this.next.driver().click();
         return this;
     }
 
     keyPressHourInput( key )
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.hour}` ).simulate( 'keyPress', { key } );
@@ -87,14 +92,14 @@ export default class DatePickerDriver
 
     keyPressMinuteInput( key )
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.min}` ).simulate( 'keyPress', { key } );
@@ -103,14 +108,14 @@ export default class DatePickerDriver
 
     blurHourInput()
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.hour}` ).simulate( 'blur' );
@@ -119,14 +124,14 @@ export default class DatePickerDriver
 
     blurMinuteInput()
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.min}` ).simulate( 'blur' );
@@ -135,14 +140,14 @@ export default class DatePickerDriver
 
     focusHourInput()
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.hour}` ).simulate( 'focus' );
@@ -151,14 +156,14 @@ export default class DatePickerDriver
 
     focusMinuteInput()
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         this.wrapper.find( `.${this.min}` ).simulate( 'focus' );
@@ -167,11 +172,6 @@ export default class DatePickerDriver
 
     changeHourInput( val )
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'disabled' ) );
@@ -180,6 +180,11 @@ export default class DatePickerDriver
         if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         const node = this.wrapper.find( `.${this.hour}` ).instance();
@@ -191,11 +196,6 @@ export default class DatePickerDriver
 
     changeMinuteInput( val )
     {
-        if ( this.wrapper.props().mode !== 'default' )
-        {
-            throw new Error( ERR.NO_INPUT() );
-        }
-
         if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'disabled' ) );
@@ -204,6 +204,11 @@ export default class DatePickerDriver
         if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
         }
 
         const node = this.wrapper.find( `.${this.min}` ).instance();

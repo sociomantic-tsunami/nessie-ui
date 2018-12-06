@@ -23,7 +23,7 @@ export default class CheckboxDriver
     blur()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -43,7 +43,7 @@ export default class CheckboxDriver
     focus()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -63,7 +63,7 @@ export default class CheckboxDriver
     change()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
         const node   = this.control.instance();
 
@@ -86,7 +86,7 @@ export default class CheckboxDriver
     click()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -106,7 +106,7 @@ export default class CheckboxDriver
     mouseOver()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -122,7 +122,7 @@ export default class CheckboxDriver
     mouseOut()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )

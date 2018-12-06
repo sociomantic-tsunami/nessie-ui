@@ -22,12 +22,11 @@ describe( 'Section', () =>
     beforeEach( () =>
     {
         wrapper  = shallow( <Section /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should be an instance of StatelessComponent', () =>
+    test( 'should be a stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>
@@ -46,7 +45,7 @@ describe( 'Section', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( Section.defaultProps.title ).toBeUndefined();
             } );
 
             test( 'should be passed to the header component as children', () =>

@@ -7,7 +7,7 @@
  *
  */
 
-import { DatePicker, IconButton } from 'nessie-ui';
+import { DatePicker, IconButton, InputField } from 'nessie-ui';
 
 
 const ERR = {
@@ -22,7 +22,7 @@ export default class DateTimeInputDriver
         this.wrapper    = wrapper;
         this.cssMap     = wrapper.children().props().cssMap;
 
-        this.mainInput  = wrapper.find( `.${this.cssMap.input}` );
+        this.mainInput  = wrapper.find( InputField );
         this.calendar   = wrapper.find( DatePicker );
         this.icon       = wrapper.find( IconButton )
             .findWhere( node => node.props().iconType === 'calendar' );
@@ -93,13 +93,13 @@ export default class DateTimeInputDriver
 
     clickPrev()
     {
-        this.prev.simulate( 'click' );
+        this.calendar.driver().clickPrev();
         return this;
     }
 
     clickNext()
     {
-        this.next.simulate( 'click' );
+        this.calendar.driver().clickNext();
         return this;
     }
 

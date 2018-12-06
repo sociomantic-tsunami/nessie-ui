@@ -14,6 +14,7 @@ import { mount }      from 'enzyme';
 
 import { InputField } from '../index';
 
+const { cssMap } = InputField.defaultProps;
 
 describe( 'InputField', () =>
 {
@@ -298,16 +299,16 @@ describe( 'InputField', () =>
 
         describe( 'value', () =>
         {
-            test( 'should be undefined by default', () =>
+            test( 'should be empty string by default', () =>
             {
-                expect( props.value ).toBeUndefined();
+                expect( InputField.defaultProps.value ).toBe( '' );
             } );
 
-            test( 'should be passed to the InputField', () =>
+            test( 'should be passed to the input element', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( InputField ).prop( 'value' ) )
+                expect( wrapper.find( `.${cssMap.default}` ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );

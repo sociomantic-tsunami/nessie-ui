@@ -14,17 +14,15 @@ import { mount, shallow }  from 'enzyme';
 
 import { ScrollBar }       from '../index';
 
+const { cssMap } = ScrollBar.defaultProps;
+
 describe( 'ScrollBar', () =>
 {
     let wrapper;
-    let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <ScrollBar /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
+        wrapper = shallow( <ScrollBar /> );
     } );
 
 
@@ -39,7 +37,7 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollMax ).toEqual( 0 );
+                expect( ScrollBar.defaultProps.scrollMax ).toEqual( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuemax', () =>
@@ -54,7 +52,7 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollMin ).toBe( 0 );
+                expect( ScrollBar.defaultProps.scrollMin ).toBe( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuemin', () =>
@@ -69,7 +67,7 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollPos ).toBe( 0 );
+                expect( ScrollBar.defaultProps.scrollPos ).toBe( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuenow', () =>

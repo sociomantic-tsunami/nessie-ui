@@ -23,17 +23,15 @@ import {
 describe( 'TextInputWithIcon', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <TextInputWithIcon /> );
-        instance = wrapper.instance();
     } );
 
-    test( 'should have an instance of StatelessComponent', () =>
+    test( 'should be a stateless functional component', () =>
     {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        expect( wrapper.instance() ).toBe( null );
     } );
 
 
@@ -59,18 +57,12 @@ describe( 'TextInputWithIcon', () =>
 
     describe( 'props', () =>
     {
-        let props;
-
-        beforeEach( () =>
-        {
-            ( { props } = instance );
-        } );
-
         describe( 'placeholder', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.placeholder ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.placeholder )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -86,7 +78,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be "none" by default', () =>
             {
-                expect( props.iconType ).toBe( 'none' );
+                expect( TextInputWithIcon.defaultProps.iconType )
+                    .toBe( 'none' );
             } );
 
             test( 'should remove the IconButton when value is "none"', () =>
@@ -117,7 +110,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be "right" by default', () =>
             {
-                expect( props.iconPosition ).toBe( 'right' );
+                expect( TextInputWithIcon.defaultProps.iconPosition )
+                    .toBe( 'right' );
             } );
 
             test( 'should pass textAlign "left" to Inputfield when value is \
@@ -143,7 +137,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be "auto" by default', () =>
             {
-                expect( props.textAlign ).toBe( 'auto' );
+                expect( TextInputWithIcon.defaultProps.textAlign )
+                    .toBe( 'auto' );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -164,7 +159,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be "top" by default', () =>
             {
-                expect( props.iconTooltipPosition ).toBe( 'top' );
+                expect( TextInputWithIcon.defaultProps.iconTooltipPosition )
+                    .toBe( 'top' );
             } );
 
             test( 'should be passed to the Tooltip as position', () =>
@@ -185,7 +181,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be false by default', () =>
             {
-                expect( props.iconTooltipIsVisible ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.iconTooltipIsVisible )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the Tooltip as isVisible', () =>
@@ -193,7 +190,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { iconTooltipIsVisible: true } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isVisible' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -206,7 +203,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be undefined by default', () =>
             {
-                expect( props.iconTooltipMessage ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.iconTooltipMessage )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the Tooltip', () =>
@@ -222,7 +220,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isDisabled ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.isDisabled )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -230,7 +229,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { isDisabled: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the Tooltip', () =>
@@ -241,7 +240,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -252,7 +251,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -265,7 +264,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be false by default', () =>
             {
-                expect( props.iconButtonIsDisabled ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.iconButtonIsDisabled )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the IconButton as isDisabled', () =>
@@ -273,7 +273,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { iconButtonIsDisabled: true } );
 
                 expect( wrapper.find( IconButton ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -281,7 +281,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isReadOnly ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.isReadOnly )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -289,7 +290,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { isReadOnly: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the Tooltip', () =>
@@ -300,7 +301,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -311,7 +312,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -319,7 +320,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isReadOnlyInput ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.isReadOnlyInput )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -327,7 +329,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { isReadOnlyInput: true } );
 
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -335,7 +337,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.isReadOnlyButton ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.isReadOnlyButton )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -346,7 +349,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
 
@@ -354,7 +357,7 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.hasError ).toBe( false );
+                expect( TextInputWithIcon.defaultProps.hasError ).toBe( false );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -362,7 +365,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( InputField ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the Tooltip', () =>
@@ -373,7 +376,7 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
 
             test( 'should be passed to the IconButton', () =>
@@ -384,31 +387,15 @@ describe( 'TextInputWithIcon', () =>
                 } );
 
                 expect( wrapper.find( IconButton ).prop( 'hasError' ) )
-                    .toBeTruthy();
-            } );
-        } );
-
-        describe( 'defaultValue', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( props.defaultValue ).toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                wrapper.setProps( { defaultValue: 'yes!' } );
-
-                expect( wrapper.find( InputField ).prop( 'defaultValue' ) )
-                    .toBe( 'yes!' );
+                    .toBe( true );
             } );
         } );
 
         describe( 'value', () =>
         {
-            test( 'should be undefined by default', () =>
+            test( 'should be empty string by default', () =>
             {
-                expect( props.value ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.value ).toBe( '' );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -424,7 +411,7 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.id ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.id ).toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -440,7 +427,7 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.name ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.name ).toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -456,7 +443,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onChange ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onChange )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -479,7 +467,8 @@ describe( 'TextInputWithIcon', () =>
 
             test( 'should be undefined by default', () =>
             {
-                expect( props.onClickIcon ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onClickIcon )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the IconButton as onClick', () =>
@@ -497,7 +486,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onFocus ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onFocus )
+                    .toBeUndefined();
             } );
         } );
 
@@ -505,7 +495,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onBlur ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onBlur )
+                    .toBeUndefined();
             } );
         } );
 
@@ -513,7 +504,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onKeyDown ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onKeyDown )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -531,7 +523,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onKeyUp ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onKeyUp )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -549,7 +542,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onKeyPress ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onKeyPress )
+                    .toBeUndefined();
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -567,7 +561,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOver ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onMouseOver )
+                    .toBeUndefined();
             } );
 
             test( 'should not be passed to the InputField', () =>
@@ -611,7 +606,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOut ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onMouseOut )
+                    .toBeUndefined();
             } );
 
             test( 'should not be passed to the InputField', () =>
@@ -655,7 +651,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOverIcon ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onMouseOverIcon )
+                    .toBeUndefined();
             } );
         } );
 
@@ -663,7 +660,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( props.onMouseOutIcon ).toBeUndefined();
+                expect( TextInputWithIcon.defaultProps.onMouseOutIcon )
+                    .toBeUndefined();
             } );
         } );
 
@@ -671,7 +669,8 @@ describe( 'TextInputWithIcon', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( props.forceHover ).toBeFalsy();
+                expect( TextInputWithIcon.defaultProps.forceHover )
+                    .toBe( false );
             } );
 
             test( 'should be passed to the InputField', () =>
@@ -679,7 +678,7 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { forceHover: true } );
 
                 expect( wrapper.find( InputField ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                    .toBe( true );
             } );
         } );
     } );

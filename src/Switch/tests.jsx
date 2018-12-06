@@ -14,23 +14,23 @@ import { mount, shallow }   from 'enzyme';
 
 import { Switch }           from '../index';
 
+const { cssMap } = Switch.defaultProps;
+
 describe( 'Switch', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
         wrapper  = shallow( <Switch /> );
-        instance = wrapper.instance();
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
-        const input = wrapper.find( `.${instance.props.cssMap.input}` );
+        const input = wrapper.find( `.${cssMap.input}` );
 
-        expect( input.prop( 'disabled' ) ).toBeTruthy();
+        expect( input.prop( 'disabled' ) ).toBe( true );
     } );
 } );
 

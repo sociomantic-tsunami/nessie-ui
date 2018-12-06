@@ -242,8 +242,8 @@ export default class ValuedTextInput extends React.Component
                     fakeHovered : forceHover || isFocused,
                     position    : valueLabelPosition,
                 }  ) }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }>
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }>
                 <InputField
                     { ...props }
                     className    = { cssMap.input }

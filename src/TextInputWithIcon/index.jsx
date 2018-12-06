@@ -70,8 +70,8 @@ const TextInputWithIcon = React.forwardRef( ( {
                 error    : hasError,
                 position : iconPosition,
             } ) }
-            onMouseOut  = { onMouseOut }
-            onMouseOver = { onMouseOver }>
+            onMouseLeave = { onMouseOut }
+            onMouseEnter = { onMouseOver }>
             <InputField
                 aria           = { aria }
                 autocapitalize = { autoCapitalize }

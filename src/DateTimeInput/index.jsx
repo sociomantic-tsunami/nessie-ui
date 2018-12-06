@@ -78,7 +78,7 @@ const DateTimeInput = React.forwardRef( ( {
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
-            hasTimeInput      = { mode === 'default' }
+            mode              = { mode }
             month             = { currentMonth }
             nextIsDisabled    = { nextIsDisabled }
             onBlur            = { onBlur }

@@ -14,7 +14,7 @@ export default class RadioDriver
     blur()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -34,7 +34,7 @@ export default class RadioDriver
     focus()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
@@ -54,7 +54,7 @@ export default class RadioDriver
     change()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
         const node  = this.control.instance();
 
@@ -81,7 +81,7 @@ export default class RadioDriver
     click()
     {
         const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.labelContent}` )
+        const label = this.wrapper.find( `.${props.cssMap.label}` )
             .text();
 
         if ( props.isDisabled )
