@@ -16,6 +16,7 @@ import Checkbox                 from './Checkbox';
 import CheckboxGroup            from './CheckboxGroup';
 import Column                   from './Column';
 import ComboBox                 from './ComboBox';
+import ComboBoxStateful         from './ComboBoxStateful';
 import DatePicker               from './DatePicker';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
@@ -57,7 +58,6 @@ import Row                      from './Row';
 import ScrollBar                from './ScrollBar';
 import ScrollBox                from './ScrollBox';
 import Section                  from './Section';
-import Select                   from './Select';
 import Slider                   from './Slider';
 import SliderGroup              from './SliderGroup';
 import Sorter                   from './Sorter';
@@ -90,6 +90,7 @@ export {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxStateful,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -131,7 +132,6 @@ export {
     ScrollBar,
     ScrollBox,
     Section,
-    Select,
     Slider,
     SliderGroup,
     Sorter,
@@ -165,6 +165,7 @@ export default {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxStateful,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -206,7 +207,6 @@ export default {
     ScrollBar,
     ScrollBox,
     Section,
-    Select,
     Slider,
     SliderGroup,
     Sorter,

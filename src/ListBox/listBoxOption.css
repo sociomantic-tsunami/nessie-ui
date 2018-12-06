@@ -40,7 +40,6 @@
         color:          var( --PC-GREY--D15 );
     }
 
-    &:hover,
     &.active
     {
         background:     var( --PC-GREY--L95 );

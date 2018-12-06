@@ -42,7 +42,7 @@ function getOption( id, options = [] )
     return options.find( opt => opt.id === id );
 }
 
-export default class Select extends Component
+export default class ComboBoxStateful extends Component
 {
     static propTypes =
     {
@@ -54,10 +54,6 @@ export default class Select extends Component
          *  Extra CSS class name
          */
         className            : PropTypes.string,
-        /**
-         *  default option selected
-         */
-        defaultOption        : PropTypes.string,
         /**
          * Placeholder text to show when no dropdown list options
          */
@@ -83,124 +79,188 @@ export default class Select extends Component
          */
         iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
+         *  Icon type to display
+         */
+        iconType             : PropTypes.oneOf( [
+            'account',
+            'add-circle',
+            'add',
+            'alert',
+            'approved',
+            'arrow',
+            'arrow-up',
+            'arrow-down',
+            'bell',
+            'board',
+            'calendar',
+            'close-circle',
+            'close-thick',
+            'close',
+            'dash',
+            'dashboard',
+            'deactivated',
+            'declined',
+            'delete',
+            'down',
+            'download',
+            'duplicate',
+            'edit-circle',
+            'edit',
+            'ended',
+            'error',
+            'file',
+            'graph',
+            'hide',
+            'info',
+            'inspect',
+            'left',
+            'lightbulb',
+            'link',
+            'loader',
+            'megaphone',
+            'options',
+            'paused',
+            'pending',
+            'preview',
+            'puzzle-piece',
+            'reset',
+            'right',
+            'search',
+            'show',
+            'star-stroke',
+            'star',
+            'sociomantic',
+            'swap',
+            'table',
+            'up',
+            'upload',
+            'validation',
+            'none',
+        ] ),
+        /**
          *  HTML id attribute
          */
-        id                   : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  Placeholder text
          */
-        inputPlaceholder     : PropTypes.string,
+        inputPlaceholder  : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled           : PropTypes.bool,
+        isDisabled        : PropTypes.bool,
         /**
          *  Dropdown list allows multiple selection
          */
-        isMultiselect        : PropTypes.bool,
+        isMultiselect     : PropTypes.bool,
         /*
          * Dropdown is open
          */
-        isOpen               : PropTypes.bool,
+        isOpen            : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly           : PropTypes.bool,
+        isReadOnly        : PropTypes.bool,
+        /**
+          *  input searchable
+          */
+        isSearchable      : PropTypes.bool,
         /**
          *  Blur callback function
          */
-        onBlur               : PropTypes.func,
+        onBlur            : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChangeInput        : PropTypes.func,
+        onChangeInput     : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon          : PropTypes.func,
+        onClickIcon       : PropTypes.func,
         /*
          * On click callback function for input
          */
-        onClickInput         : PropTypes.func,
+        onClickInput      : PropTypes.func,
         /*
          * On click callback function for dropdown option
          */
-        onClickOption        : PropTypes.func,
+        onClickOption     : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus              : PropTypes.func,
+        onFocus           : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown            : PropTypes.func,
+        onKeyDown         : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress           : PropTypes.func,
+        onKeyPress        : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp              : PropTypes.func,
+        onKeyUp           : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut           : PropTypes.func,
+        onMouseOut        : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon       : PropTypes.func,
+        onMouseOutIcon    : PropTypes.func,
         /*
          * On mouse out callback function for dropdown option
          */
-        onMouseOutOption     : PropTypes.func,
+        onMouseOutOption  : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver          : PropTypes.func,
+        onMouseOver       : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon      : PropTypes.func,
+        onMouseOverIcon   : PropTypes.func,
         /*
          * On mouse over callback function for dropdown option
          */
-        onMouseOverOption    : PropTypes.func,
+        onMouseOverOption : PropTypes.func,
         /*
          * On scroll dropdown list
          */
-        onScroll             : PropTypes.func,
+        onScroll          : PropTypes.func,
         /*
          * Dropdown list options
          */
-        options              : PropTypes.arrayOf( PropTypes.object ),
+        options           : PropTypes.arrayOf( PropTypes.object ),
         /**
          *  Selected option
          */
-        selectedOption       : PropTypes.string,
+        selectedOption    : PropTypes.string,
         /**
          *  Input text alignment
          */
-        textAlign            : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
     };
 
     static defaultProps =
     {
         buttonIsReadOnly     : undefined,
         className            : undefined,
-        defaultOption        : undefined,
         dropdownPlaceholder  : undefined,
         dropdownPosition     : 'auto',
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : undefined,
         iconPosition         : undefined,
+        iconType             : undefined,
         id                   : undefined,
         inputPlaceholder     : undefined,
         isDisabled           : false,
         isMultiselect        : false,
         isOpen               : undefined,
         isReadOnly           : undefined,
+        isSearchable         : false,
         onBlur               : undefined,
         onChangeInput        : undefined,
         onClickIcon          : undefined,
@@ -252,8 +312,8 @@ export default class Select extends Component
     static getDerivedStateFromProps( props, state )
     {
         let { flatOptions } = state;
-        const { defaultOption, selectedOption } = props;
-        let optionId = selectedOption || state.selection || defaultOption;
+        const { selectedOption } = props;
+        let optionId = selectedOption || state.selection;
 
         if ( props.options !== state.options )
         {
@@ -524,10 +584,12 @@ export default class Select extends Component
             hasError,
             iconButtonIsDisabled,
             iconPosition,
+            iconType,
             inputPlaceholder,
             isDisabled,
             isMultiselect,
             isReadOnly,
+            isSearchable,
             onKeyPress,
             onKeyUp,
             onMouseOut,
@@ -567,16 +629,17 @@ export default class Select extends Component
                 hasError             = { hasError }
                 iconButtonIsDisabled = { iconButtonIsDisabled }
                 iconPosition         = { iconPosition }
-                iconType             = { isOpen ? 'up' : 'down' }
+                iconType             = { iconType ||
+                    ( isOpen ? 'up' : 'down' ) }
                 id                   = { id }
-                inputIsReadOnly      = { !isOpen }
+                inputIsReadOnly      = { !isSearchable || !isOpen }
                 inputRef             = { ( ref ) =>
                 {
                     this.inputRef = ref;
                 } }
                 inputPlaceholder     = { inputPlaceholder }
-                inputValue           = { isFocused && isOpen ? searchValue :
-                    optionVal }
+                inputValue           = { isFocused && isOpen && isSearchable ?
+                    searchValue : optionVal }
                 isDisabled           = { isDisabled }
                 isMultiselect        = { isMultiselect }
                 isOpen               = { isOpen }

@@ -31,6 +31,10 @@
         "isOpen"  : true,
         "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]
     },
+    "ComboBoxStateful" :
+    {
+        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]
+    },
     "DatePicker" :
     {
         "month" : "February",
@@ -229,10 +233,6 @@
         "title"   : "The Life and Times of David Hasselhoff",
         "level"   : 1,
         "children" : "{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"
-    },
-    "Select" :
-    {
-        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]
     },
     "Slider":
     {
