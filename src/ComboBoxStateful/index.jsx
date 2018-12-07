@@ -18,7 +18,6 @@ import ComboBox             from '../ComboBox';
  * gets the index of the option by the passed id
  *
  * @param {String} id id of the option
- *
  * @param {Array} options Array of options
  *
  * @return {Number} index of the option
@@ -32,7 +31,6 @@ function getIndex( id, options = [] )
  * gets the option by the passed id
  *
  * @param {String} id id of the option
- *
  * @param {Array} options Array of options
  *
  * @return {Object} option Object.
@@ -40,6 +38,39 @@ function getIndex( id, options = [] )
 function getOption( id, options = [] )
 {
     return options.find( opt => opt.id === id );
+}
+
+/**
+ * gives correct format to the filtered options
+ *
+ * @param {Array} filteredOptionsIds options ids after search filter
+ * @param {Array} originalOptions original options
+ *
+ * @return {Array} formattedOptions filtered and formatted options
+ */
+function optionsFormatted( filteredOptionsIds, originalOptions )
+{
+    return originalOptions.reduce( ( formattedOptions, option ) =>
+    {
+        if ( option.options )
+        {
+            const sectionOptions = optionsFormatted(
+                filteredOptionsIds,
+                option.options,
+            );
+
+            if ( sectionOptions.length )
+            {
+                const newOptions = { ...option, options: sectionOptions };
+                formattedOptions.push( newOptions );
+            }
+        }
+        else if ( filteredOptionsIds.includes( option.id ) )
+        {
+            formattedOptions.push( option );
+        }
+        return formattedOptions;
+    }, [] );
 }
 
 export default class ComboBoxStateful extends Component
@@ -149,10 +180,6 @@ export default class ComboBoxStateful extends Component
          *  Display as disabled
          */
         isDisabled        : PropTypes.bool,
-        /**
-         *  Dropdown list allows multiple selection
-         */
-        isMultiselect     : PropTypes.bool,
         /*
          * Dropdown is open
          */
@@ -257,7 +284,6 @@ export default class ComboBoxStateful extends Component
         id                   : undefined,
         inputPlaceholder     : undefined,
         isDisabled           : false,
-        isMultiselect        : false,
         isOpen               : undefined,
         isReadOnly           : undefined,
         isSearchable         : false,
@@ -307,6 +333,7 @@ export default class ComboBoxStateful extends Component
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
         this.handleOnFocus         = this.handleOnFocus.bind( this );
         this.handleOnBlur          = this.handleOnBlur.bind( this );
+        this.setInputRef           = this.setInputRef.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -338,6 +365,11 @@ export default class ComboBoxStateful extends Component
         };
     }
 
+    setInputRef( ref )
+    {
+        this.inputRef = ref;
+    }
+
     handleChangeInput( e )
     {
         const callback = this.props.onChangeInput;
@@ -363,44 +395,6 @@ export default class ComboBoxStateful extends Component
             filteredOptions,
             searchValue,
         } );
-    }
-
-    optionsFilter( filteredOptions )
-    {
-        const filteredOptionsIds = [];
-
-        filteredOptions.map( filteredOption =>
-            filteredOptionsIds.push( filteredOption.id ) );
-
-        return this.props.options.reduce( ( formattedOptions, option ) =>
-        {
-            if ( option.options )
-            {
-                const sectionOptions = option.options.reduce( (
-                    sectionFormattedOptions,
-                    sectionOption,
-                ) =>
-                {
-                    if ( filteredOptionsIds.includes( sectionOption.id ) )
-                    {
-                        sectionFormattedOptions.push( sectionOption );
-                    }
-                    return sectionFormattedOptions;
-                }, [] );
-
-                if ( sectionOptions.length )
-                {
-                    const newOptions = { ...option, options: sectionOptions };
-                    formattedOptions.push( newOptions );
-                }
-            }
-            else if ( filteredOptionsIds.includes( option.id ) )
-            {
-                formattedOptions.push( option );
-            }
-
-            return formattedOptions;
-        }, [] );
     }
 
     handleClickIcon( e )
@@ -441,6 +435,7 @@ export default class ComboBoxStateful extends Component
         {
             const selectedOption = getOption( id, prevState.flatOptions );
             return {
+                activeOption    : selectedOption.id,
                 isOpen          : false,
                 filteredOptions : undefined,
                 selection       : selectedOption.id,
@@ -466,10 +461,11 @@ export default class ComboBoxStateful extends Component
 
             this.setState( prevState =>
             {
-                if ( prevState.isOpen )
+                const options = prevState.filteredOptions ||
+                prevState.flatOptions;
+
+                if ( prevState.isOpen && options.length )
                 {
-                    const options = prevState.filteredOptions ||
-                      prevState.flatOptions;
                     const minIndex = 0;
                     const maxIndex = options.length - 1;
 
@@ -492,14 +488,19 @@ export default class ComboBoxStateful extends Component
         }
         else if ( key === 'Escape' )
         {
-            this.setState( { isOpen: false } );
+            this.setState( {
+                activeOption    : undefined,
+                filteredOptions : undefined,
+                isOpen          : false,
+                searchValue     : undefined,
+            } );
         }
         else if ( key === 'Enter' )
         {
             this.setState( prevState => (
                 {
                     activeOption : prevState.activeOption,
-                    selection    : prevState.activeOption,
+                    selection    : prevState.activeOption || prevState.selection,
                     isOpen       : typeof isOpen === 'boolean' ?
                         this.state.isOpen : !prevState.isOpen,
                     filteredOptions : undefined,
@@ -587,7 +588,6 @@ export default class ComboBoxStateful extends Component
             iconType,
             inputPlaceholder,
             isDisabled,
-            isMultiselect,
             isReadOnly,
             isSearchable,
             onKeyPress,
@@ -615,8 +615,15 @@ export default class ComboBoxStateful extends Component
         const optionVal = getOption( selection, flatOptions ) ?
             getOption( selection, flatOptions ).text : undefined;
 
-        const optionsToShow = filteredOptions ?
-            this.optionsFilter( filteredOptions ) : options;
+        let optionsToShow = options;
+
+        if ( filteredOptions )
+        {
+            optionsToShow = optionsFormatted(
+                filteredOptions.map( option => option.id ),
+                options,
+            );
+        }
 
         return (
             <ComboBox
@@ -633,15 +640,11 @@ export default class ComboBoxStateful extends Component
                     ( isOpen ? 'up' : 'down' ) }
                 id                   = { id }
                 inputIsReadOnly      = { !isSearchable || !isOpen }
-                inputRef             = { ( ref ) =>
-                {
-                    this.inputRef = ref;
-                } }
+                inputRef             = { this.setInputRef }
                 inputPlaceholder     = { inputPlaceholder }
-                inputValue           = { isFocused && isOpen && isSearchable ?
-                    searchValue : optionVal }
+                inputValue           = { ( isFocused && isOpen && isSearchable )
+                    ? searchValue : optionVal }
                 isDisabled           = { isDisabled }
-                isMultiselect        = { isMultiselect }
                 isOpen               = { isOpen }
                 isReadOnly           = { isReadOnly }
                 onBlur               = { this.handleOnBlur }
