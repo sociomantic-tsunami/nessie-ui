@@ -16,6 +16,7 @@ import Checkbox                 from './Checkbox';
 import CheckboxGroup            from './CheckboxGroup';
 import Column                   from './Column';
 import ComboBox                 from './ComboBox';
+import ComboBoxStateful         from './ComboBoxStateful';
 import DatePicker               from './DatePicker';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
@@ -89,6 +90,7 @@ export {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxStateful,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -152,9 +154,8 @@ export {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
-
+    ValuedTextInput,
+};
 
 export default {
     Button,
@@ -164,6 +165,7 @@ export default {
     CheckboxGroup,
     Column,
     ComboBox,
+    ComboBoxStateful,
     DatePicker,
     DateTimeInput,
     DimensionsInput,
@@ -227,10 +229,10 @@ export default {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
+    ValuedTextInput,
+};
 
-//Addons
+// Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';

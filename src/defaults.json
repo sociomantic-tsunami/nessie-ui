@@ -28,8 +28,13 @@
     },
     "ComboBox" :
     {
-        "isOpen" : true,
-        "options": [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option4","text":"Option 3"},{"id":"option5","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]
+        "isOpen"  : true,
+        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]
+    },
+    "ComboBoxStateful" :
+    {
+        "dropdownPlaceholder" : "No Results",
+        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]
     },
     "DatePicker" :
     {
