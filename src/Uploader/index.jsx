@@ -128,7 +128,6 @@ export default class Uploader extends React.PureComponent
     static defaultProps =
     {
         buttonLabel             : 'Upload',
-        cssMap                  : styles,
         errorMessage            : undefined,
         errorMessagePosition    : 'top',
         hasError                : false,
