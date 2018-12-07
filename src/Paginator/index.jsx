@@ -11,7 +11,7 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import { IconButton, Text } from '../index';
+import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { evalTheme }        from '../Theming/withTheme';
 

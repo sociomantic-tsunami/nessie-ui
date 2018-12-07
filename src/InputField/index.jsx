@@ -196,6 +196,13 @@ export default class InputField extends React.Component
 
     static displayName = 'InputField';
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -209,7 +216,6 @@ export default class InputField extends React.Component
             forceHover,
             hasError,
             id = generateId( 'InputField' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             isResizable,
@@ -260,7 +266,7 @@ export default class InputField extends React.Component
                 onMouseLeave = { onMouseOut }
                 placeholder  = { placeholder }
                 readOnly     = { isReadOnly }
-                ref          = { inputRef }
+                ref          = { this.inputRef }
                 rows         = { element === 'textarea' ? rows : null }
                 spellCheck   = { spellCheck }
                 type         = { element === 'input' ? type : null }

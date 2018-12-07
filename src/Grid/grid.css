@@ -258,6 +258,11 @@
     flex-wrap:  wrap;
 }
 
+.hasFullWidth
+{
+    width:      100%;
+}
+
 .hasMinHeight
 {
     min-height: 87px; /* label + input */

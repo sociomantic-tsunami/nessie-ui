@@ -7,7 +7,6 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers  */
 
 import React                    from 'react';
@@ -15,7 +14,6 @@ import { mount }                from 'enzyme';
 
 import { ProgressIndicator }    from '../index';
 import styles                   from './progressIndicator.css';
-
 
 describe( 'ProgressIndicator', () =>
 {

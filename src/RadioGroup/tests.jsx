@@ -7,14 +7,12 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
-import React                   from 'react';
-import { ReactWrapper, mount } from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { Radio, RadioGroup }   from '../index';
-
+import { RadioGroup }   from '../index';
 
 describe( 'RadioGroupDriver', () =>
 {
@@ -25,49 +23,6 @@ describe( 'RadioGroupDriver', () =>
         wrapper = mount( <RadioGroup /> );
     } );
 
-    describe( 'getContent()', () =>
-    {
-        test( 'should return all child nodes', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Radio label = "one" />,
-                    <Radio label = "two" />,
-                ],
-            } );
-            expect( wrapper.driver().getContent() ).toHaveLength( 2 );
-        } );
-
-        test( 'should return an array of ReactWrappers', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Radio label = "one" />,
-                    <Radio label = "two" />,
-                ],
-            } );
-
-            wrapper.driver().getContent().forEach( item =>
-                expect( item ).toBeInstanceOf( ReactWrapper ) );
-        } );
-    } );
-
-    describe( 'getSelectedValues()', () =>
-    {
-        test( 'should return an array of selected values', () =>
-        {
-            wrapper.setProps( {
-                children : [
-                    <Radio label = "one" value = "first check" isChecked />,
-                    <Radio label = "two" value = "second check" />,
-                ],
-            } );
-
-            expect( wrapper.driver().getSelectedValues() )
-                .toEqual( [ 'first check' ] );
-        } );
-    } );
-
     describe( 'mouseOver()', () =>
     {
         test( 'should call onMouseOver once', () =>
@@ -76,7 +31,6 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( { onMouseOver } );
 
             wrapper.driver().mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
@@ -90,7 +44,6 @@ describe( 'RadioGroupDriver', () =>
             wrapper.setProps( { onMouseOut } );
 
             wrapper.driver().mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );

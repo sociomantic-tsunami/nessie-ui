@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
  * All rights reserved.
@@ -7,15 +8,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str*/
+/* eslint-disable no-magic-numbers */
 
 import React                               from 'react';
 import { mount, shallow }                  from 'enzyme';
 
 import { H2, H3, IconWithTooltip, Module } from '../index';
 import styles                              from './module.css';
-
 
 describe( 'Module', () =>
 {
@@ -78,7 +77,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Module.defaultProps.title ).toBeUndefined();
+                expect( instance.props.title ).toBeUndefined();
             } );
 
             test( 'should be passed to the header component as children', () =>
@@ -93,7 +92,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Module.defaultProps.onMouseOutError ).toBeUndefined();
+                expect( instance.props.onMouseOutError ).toBeUndefined();
             } );
 
             test( 'should be passed to the IconWithTooltip as onMouseOut', () =>
@@ -115,7 +114,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Module.defaultProps.onMouseOverError ).toBeUndefined();
+                expect( instance.props.onMouseOverError ).toBeUndefined();
             } );
 
             test(
@@ -140,7 +139,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Module.defaultProps.onMouseOutHeader ).toBeUndefined();
+                expect( instance.props.onMouseOutHeader ).toBeUndefined();
             } );
 
             test( 'should be passed to the <header> as onMouseOut', () =>
@@ -157,7 +156,7 @@ describe( 'Module', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Module.defaultProps.onMouseOverHeader ).toBeUndefined();
+                expect( instance.props.onMouseOverHeader ).toBeUndefined();
             } );
 
             test( 'should be passed to the <header> as onMouseOver', () =>
@@ -176,45 +175,64 @@ describe( 'Module', () =>
 describe( 'ModuleDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Module cssMap = { styles } /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'toggle()', () =>
+    describe( 'clickToggle()', () =>
     {
         test( 'should fire the onClickToggle prop once', () =>
         {
-            const toggleSpy = jest.fn();
+            const onClickToggle = jest.fn();
             wrapper.setProps( {
                 title         : 'Boom',
                 isCollapsible : true,
-                onClickToggle : toggleSpy,
+                onClickToggle,
             } );
 
-            wrapper.driver().toggle();
+            driver.clickToggle();
+            expect( onClickToggle ).toBeCalledTimes( 1 );
+        } );
 
-            expect( toggleSpy ).toBeCalledTimes( 1 );
+        test( 'should throw expected error if isCollapsible: false', () =>
+        {
+            const error = 'Module is not collapsible. Cannot simulate toggle.';
+            wrapper.setProps( { title: 'Boom' } );
+
+            expect( () => driver.clickToggle() ).toThrowError( error );
         } );
     } );
+
 
     describe( 'clickDelete()', () =>
     {
         test( 'should fire the onClickDelete prop once', () =>
         {
-            const clickDeleteSpy = jest.fn();
+            const onClickDelete = jest.fn();
             wrapper.setProps( {
-                title         : 'Boom',
-                isDeletable   : true,
-                onClickDelete : clickDeleteSpy,
+                title       : 'Boom',
+                isDeletable : true,
+                onClickDelete,
             } );
 
-            wrapper.driver().clickDelete();
+            driver.clickDelete();
+            expect( onClickDelete ).toBeCalledTimes( 1 );
+        } );
 
-            expect( clickDeleteSpy ).toBeCalledTimes( 1 );
+        test( 'should throw expected error if isDeletable: false', () =>
+        {
+            const error =
+                'Module has no delete button. Cannot simulate delete.';
+            wrapper.setProps( { title: 'Boom' } );
+
+            expect( () => driver.clickDelete() ).toThrowError( error );
         } );
     } );
+
 
     describe( 'getCustomHeader()', () =>
     {
@@ -225,8 +243,71 @@ describe( 'ModuleDriver', () =>
                 customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
-            const header = wrapper.driver().getCustomHeader();
+            const header = wrapper.find( `.${wrapper.props().cssMap.header}` )
+                .children();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverHeader()', () =>
+    {
+        test( 'should trigger onMouseOverHeader callback once', () =>
+        {
+            const onMouseOverHeader = jest.fn();
+            wrapper.setProps( { onMouseOverHeader, title: 'Cthulhu' } );
+
+            driver.mouseOverHeader();
+            expect( onMouseOverHeader ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutHeader()', () =>
+    {
+        test( 'should trigger onMouseOutHeader callback once', () =>
+        {
+            const onMouseOutHeader = jest.fn();
+            wrapper.setProps( { onMouseOutHeader, title: 'Cthulhu' } );
+
+            driver.mouseOutHeader();
+            expect( onMouseOutHeader ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverError()', () =>
+    {
+        test( 'should trigger onMouseOverError callback once', () =>
+        {
+            const onMouseOverError = jest.fn();
+            wrapper.setProps( {
+                onMouseOverError,
+                hasError     : true,
+                errorMessage : 'hoomans',
+                title        : 'Azathoth',
+            } );
+
+            driver.mouseOverError();
+            expect( onMouseOverError ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutError()', () =>
+    {
+        test( 'should trigger onMouseOutError callback once', () =>
+        {
+            const onMouseOutError = jest.fn();
+            wrapper.setProps( {
+                onMouseOutError,
+                hasError     : true,
+                errorMessage : 'hoomans',
+                title        : 'Azathoth',
+            } );
+
+            driver.mouseOutError();
+            expect( onMouseOutError ).toBeCalledTimes( 1 );
         } );
     } );
 } );

@@ -7,38 +7,80 @@
  *
  */
 
-import ClickableComponentDriver from
-    '../Testing/CommonDrivers/clickableComponentDriver';
 
-const ERRORS = {
-    BUTTON_CANNOT_BE_CLICKED : ( label, state ) =>
-        `Button '${label}' cannot be clicked since it is ${state}`,
+const ERR = {
+    BUTTON_ERR : ( label, event, state ) =>
+        `Button '${label}' cannot simulate ${event} since it is ${state}`,
 };
 
-
-export default class ButtonDriver extends ClickableComponentDriver
+export default class ButtonDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
+        this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
+        this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
 
     click()
     {
         const props = this.wrapper.props();
-        const { label } = props;
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
         if ( props.isDisabled )
         {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'disabled' ) );
-        }
-        if ( props.isLoading )
-        {
-            throw new Error( ERRORS
-                .BUTTON_CANNOT_BE_CLICKED( label, 'loading' ) );
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'disabled' ) );
         }
 
-        return super.click();
+        if ( props.isReadOnly )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'read only' ) );
+        }
+
+        if ( props.isLoading )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'click', 'loading' ) );
+        }
+
+        this.button.simulate( 'click' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'disabled' ) );
+        }
+
+        if ( props.isLoading )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'loading' ) );
+        }
+
+        this.button.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        const props = this.wrapper.props();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
+
+        if ( props.isDisabled )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'disabled' ) );
+        }
+
+        if ( props.isLoading )
+        {
+            throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'loading' ) );
+        }
+
+        this.button.simulate( 'mouseleave' );
+        return this;
     }
 }

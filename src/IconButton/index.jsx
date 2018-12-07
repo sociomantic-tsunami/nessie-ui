@@ -71,6 +71,7 @@ export default class IconButton extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
@@ -220,7 +221,7 @@ export default class IconButton extends React.Component
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }
-                onClick      = { !isReadOnly && onClick }
+                onClick      = { !isReadOnly ? onClick : undefined }
                 onFocus      = { onFocus }
                 onMouseDown  = { !isFocusable ? killFocus : undefined }
                 onMouseEnter = { onMouseOver }

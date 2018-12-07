@@ -15,7 +15,7 @@ import { generateId } from '../utils';
 import ThemeContext   from '../Theming/ThemeContext';
 import { evalTheme }  from '../Theming/withTheme';
 
-export default class Checkbox extends React.Component
+class Checkbox extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -135,8 +135,13 @@ export default class Checkbox extends React.Component
             <Checkable
                 { ...props }
                 cssMap = { cssMap }
-                id = { id }
-                type = "checkbox" />
+                id     = { id }
+                ref    = { this.props.ref }
+                type   = "checkbox" />
         );
     }
 }
+
+export default React.forwardRef( ( props, ref ) => (
+    <Checkbox { ...props } ref = { ref } />
+) );

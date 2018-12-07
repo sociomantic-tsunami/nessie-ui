@@ -7,8 +7,7 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
@@ -16,105 +15,74 @@ import { mount }    from 'enzyme';
 import { Tooltip }  from '../index';
 import styles       from './tooltip.css';
 
-
-describe( 'Tooltip', () =>
-{
-    /* someone please implement me... */
-} );
-
-
 describe( 'TooltipDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tooltip cssMap = { styles } /> );
+        wrapper = mount( <Tooltip cssMap = { styles } >
+            <h2> Who am I?</h2>
+        </Tooltip> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'mouseOver()', () =>
     {
-        let onMouseOverHandler;
-        let onMouseOutHandler;
-
-        beforeEach( () =>
+        test( 'should fire onMouseOver event', () =>
         {
-            onMouseOverHandler = jest.fn();
-            onMouseOutHandler = jest.fn();
-
+            const onMouseOverHandler = jest.fn();
             wrapper.setProps( {
+                message     : 'Tekeli-li!',
                 onMouseOver : onMouseOverHandler,
-                onMouseOut  : onMouseOutHandler,
             } );
 
-            wrapper.driver().mouseOver();
-        } );
-
-        test( 'should invoke onMouseOver callback', () =>
-        {
-            expect( onMouseOverHandler ).toBeCalled();
-        } );
-
-        test( 'should not invoke onMouseOut callback', () =>
-        {
-            expect( onMouseOutHandler ).not.toBeCalled();
+            driver.mouseOver();
+            expect( onMouseOverHandler ).toBeCalledTimes( 1 );
         } );
     } );
+
 
     describe( 'mouseOut()', () =>
     {
-        let onMouseOverHandler;
-        let onMouseOutHandler;
-
-        beforeEach( () =>
+        test( 'should fire onMouseOut event', () =>
         {
-            onMouseOverHandler = jest.fn();
-            onMouseOutHandler = jest.fn();
-
+            const onMouseOutHandler = jest.fn();
             wrapper.setProps( {
-                onMouseOver : onMouseOverHandler,
-                onMouseOut  : onMouseOutHandler,
+                message    : 'Tekeli-li!',
+                onMouseOut : onMouseOutHandler,
             } );
 
-            wrapper.driver().mouseOut();
-        } );
-
-        test( 'should invoke onMouseOut callback', () =>
-        {
-            expect( onMouseOutHandler ).toBeCalled();
-        } );
-
-        test( 'should not invoke onMouseOver callback', () =>
-        {
-            expect( onMouseOverHandler ).not.toBeCalled();
+            driver.mouseOut();
+            expect( onMouseOutHandler ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'getContent()', () =>
+    describe( 'clickClose()', () =>
     {
-        test( 'should return the wrapped content', () =>
+        test( 'should trigger onClickClose callback prop once', () =>
         {
+            const onClickClose = jest.fn();
             wrapper.setProps( {
-                children : 'Who am I?',
-                message  : 'Pikachu!',
+                onClickClose,
+                message       : 'Sithis',
+                isDismissible : true,
             } );
 
-            const content = wrapper.driver().getContent();
-            expect( content.text() ).toEqual( 'Who am I?' );
+            driver.clickClose();
+            expect( onClickClose ).toBeCalledTimes( 1 );
         } );
-    } );
 
-    describe( 'getMessage()', () =>
-    {
-        test( 'should return the tooltip message', () =>
+        test( 'should throw an expected error when is not dismissable', () =>
         {
+            const expectedError = 'Tooltip cannot simulate clickClose since \
+it is not dismissable';
             wrapper.setProps( {
-                children : 'Who am I?',
-                message  : 'Pikachu!',
+                message : 'Sithis',
             } );
 
-            const content = wrapper.driver().getMessage();
-            expect( content.text() ).toEqual( 'Pikachu!' );
+            expect( () => driver.clickClose() ).toThrow( expectedError );
         } );
     } );
 } );

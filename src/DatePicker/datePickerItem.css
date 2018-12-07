@@ -11,11 +11,7 @@
 
 .default
 {
-    display:            flex;
-
-    flex-direction:     row;
-    align-items:        center;
-    justify-content:    center;
+    display:            block;
 
     padding:            0;
     border:             1px solid transparent;
@@ -29,7 +25,6 @@
         color:                  var( --PC-GREY--D15 );
         font-variant-numeric:   lining-nums tabular-nums;
         font-size:              var( --typo-3 );
-        font-weight:            300;
         line-height:            var( --line-height-s );
     }
 
@@ -86,7 +81,8 @@
 
     .text
     {
-        color:      var( --PC-WHITE );
+        color:       var( --PC-WHITE );
+        font-weight: 700;
     }
 }
 

@@ -14,10 +14,11 @@ import { generateId } from '../utils';
 import { InputField } from '../index';
 
 
-const TextInput = ( {
+const TextInput = React.forwardRef( ( {
     id = generateId( 'TextInput' ),
     ...props
-} ) => <InputField { ...props } id = { id } type = "text" />;
+}, ref ) =>
+    <InputField { ...props } id = { id } type = "text" ref = { ref } /> );
 
 TextInput.propTypes =
 {
@@ -68,10 +69,6 @@ TextInput.propTypes =
      *  HTML id attribute
      */
     id           : PropTypes.string,
-    /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef     : PropTypes.func,
     /**
      *  Display as disabled
      */
@@ -148,7 +145,6 @@ TextInput.defaultProps =
     forceHover     : false,
     hasError       : false,
     id             : undefined,
-    inputRef       : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     name           : undefined,

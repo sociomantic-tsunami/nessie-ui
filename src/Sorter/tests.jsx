@@ -7,7 +7,7 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
@@ -15,8 +15,7 @@ import { mount }    from 'enzyme';
 import { Sorter }   from '../index';
 import styles       from './sorter.css';
 
-
-describe( 'SorterDriver', () =>
+describe( 'Sorter', () =>
 {
     let wrapper;
 
@@ -25,12 +24,37 @@ describe( 'SorterDriver', () =>
         wrapper = mount( <Sorter cssMap = { styles } /> );
     } );
 
-    test( 'should call onToggle callback function', () =>
+    test( 'should render <Sorter/>', () =>
+    {
+        expect( wrapper.find( Sorter ) ).toHaveLength( 1 );
+    } );
+
+    test( 'should have its component name and hash as default className', () =>
+    {
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
+    } );
+} );
+
+describe( 'SorterDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Sorter cssMap = { styles } /> );
+        driver  = wrapper.driver();
+    } );
+
+    test( 'should call onToggle callback function once', () =>
     {
         const onToggle = jest.fn();
-        wrapper.setProps( { onToggle } );
+        wrapper.setProps( {
+            onToggle,
+        } );
 
-        wrapper.driver().toggle();
-        expect( onToggle ).toBeCalled();
+        driver.click();
+        expect( onToggle ).toBeCalledTimes( 1 );
     } );
 } );

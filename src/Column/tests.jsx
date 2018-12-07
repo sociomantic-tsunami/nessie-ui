@@ -7,8 +7,7 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
@@ -16,8 +15,7 @@ import { mount }    from 'enzyme';
 import styles       from './column.css';
 import { Column }   from '../index';
 
-
-describe( 'ColumnDriver', () =>
+describe( 'Column', () =>
 {
     let wrapper;
 
@@ -26,14 +24,9 @@ describe( 'ColumnDriver', () =>
         wrapper = mount( <Column cssMap = { styles } /> );
     } );
 
-    describe( 'Driver self-test', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        test( 'getContent', () =>
-        {
-            wrapper = mount( <Column><h2>Lightning Strike</h2></Column> );
-
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
-        } );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

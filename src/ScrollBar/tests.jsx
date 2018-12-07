@@ -7,16 +7,15 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React               from 'react';
+import { mount, shallow }  from 'enzyme';
 
-import { ScrollBar }      from '../index';
-import styles             from './scrollBar.css';
+import { ScrollBar }       from '../index';
+import styles              from './scrollBar.css';
 
 const { cssMap } = ScrollBar.defaultProps;
-
 
 describe( 'ScrollBar', () =>
 {
@@ -24,8 +23,9 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ScrollBar cssMap = { styles } /> );
+        wrapper = shallow( <ScrollBar cssMap = { styles } /> );
     } );
+
 
     test( 'should contain exactly two <div>’s', () =>
     {
@@ -85,10 +85,12 @@ describe( 'ScrollBar', () =>
 describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBar cssMap = { styles } /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTrack( val )', () =>
@@ -99,7 +101,7 @@ describe( 'ScrollBarDriver', () =>
         {
             onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
-            wrapper.driver().clickTrack( 100 );
+            driver.clickTrack( 100 );
         } );
 
         test( 'should call the onClickTrack prop once', () =>
@@ -113,7 +115,7 @@ describe( 'ScrollBarDriver', () =>
         } );
     } );
 
-    describe( 'onChange( val )', () =>
+    describe( 'change( val )', () =>
     {
         let onChange;
 
@@ -121,10 +123,10 @@ describe( 'ScrollBarDriver', () =>
         {
             onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().change( 100 );
+            driver.change( 100 );
         } );
 
-        test( 'should call the onChange prop once', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
@@ -137,26 +139,24 @@ describe( 'ScrollBarDriver', () =>
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should simulate mouse over', () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
-
+            driver.mouseOver();
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
-        test( 'should simulate mouse out', () =>
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
     } );

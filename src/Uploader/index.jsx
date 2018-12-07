@@ -44,18 +44,12 @@ export default class Uploader extends React.PureComponent
         *  Error message position relative to the icon
         */
         errorMessagePosition : PropTypes.oneOf( [
+            'left',
+            'right',
             'top',
+            'bottom',
             'topLeft',
             'topRight',
-            'bottom',
-            'bottomLeft',
-            'bottomRight',
-            'left',
-            'leftTop',
-            'leftBottom',
-            'right',
-            'rightTop',
-            'rightBottom',
         ] ),
         /**
         *  Display as error/invalid
@@ -69,10 +63,6 @@ export default class Uploader extends React.PureComponent
          * HTML id attribute
          */
         id                      : PropTypes.string,
-        /**
-         * callback that receives ref to native input: ( ref ) => { ... }
-         */
-        inputRef                : PropTypes.func,
         /**
         *  Display as disabled
         */
@@ -138,12 +128,12 @@ export default class Uploader extends React.PureComponent
     static defaultProps =
     {
         buttonLabel             : 'Upload',
+        cssMap                  : styles,
         errorMessage            : undefined,
         errorMessagePosition    : 'top',
         hasError                : false,
         hasWarning              : false,
         id                      : undefined,
-        inputRef                : undefined,
         isDisabled              : false,
         isReadOnly              : false,
         label                   : undefined,
@@ -162,6 +152,13 @@ export default class Uploader extends React.PureComponent
 
     static displayName = 'Uploader';
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -173,7 +170,6 @@ export default class Uploader extends React.PureComponent
             hasError,
             hasWarning,
             id = generateId( 'Uploader' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             label,
@@ -240,7 +236,7 @@ export default class Uploader extends React.PureComponent
                     className = { cssMap.input }
                     name      = { `${id}-file` }
                     onChange  = { onChange }
-                    ref       = { inputRef }
+                    ref       = { this.inputRef }
                     tabIndex  = "-1"
                     type      = "file" />
                 { label &&
@@ -257,7 +253,6 @@ export default class Uploader extends React.PureComponent
                     iconPosition     = "topRight"
                     iconType         = { messageType }
                     message          = { message }
-                    noWarn
                     tooltipIsVisible = { tooltipIsVisible }
                     tooltipPosition  = { errorMessagePosition }>
                     <div className = { cssMap.buttonsContainer }>
@@ -265,8 +260,7 @@ export default class Uploader extends React.PureComponent
                             className = { cssMap.previewTooltip }
                             isVisible = { uploadState ===
                                 'uploaded' && previewTooltipIsVisible }
-                            message = { previewTooltipMessage }
-                            noWarn>
+                            message   = { previewTooltipMessage }>
                             <Button
                                 className  = { uploaderButtonClass }
                                 iconType   = { iconType }

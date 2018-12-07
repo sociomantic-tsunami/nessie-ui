@@ -7,12 +7,12 @@
  *
  */
 
-import React, { Children }              from 'react';
-import PropTypes                        from 'prop-types';
+import React, { Children }       from 'react';
+import PropTypes                 from 'prop-types';
 
-import { CheckableGroup }               from '../index';
-import { generateId, buildClassName }   from '../utils';
-import { buildRadiosFromValues }        from './utils';
+import { CheckableGroup }        from '../index';
+import { generateId }            from '../utils';
+import { buildRadiosFromValues } from './utils';
 
 
 const RadioGroup = ( {

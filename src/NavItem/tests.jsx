@@ -7,8 +7,7 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
 import React        from 'react';
 import { mount }    from 'enzyme';
@@ -16,64 +15,73 @@ import { mount }    from 'enzyme';
 import { NavItem }  from '../index';
 import styles       from './navItem.css';
 
-
-describe( 'NavItemDriver', () =>
+describe( 'NavItem', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavItem cssMap = { styles } /> );
+        const props = {
+            label : 'testLabel',
+        };
+
+        wrapper = mount( <NavItem cssMap = { styles } { ...props } /> );
     } );
 
-    describe( 'click()', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        test( 'should trigger onClick callback prop', () =>
-        {
-            const onClick = jest.fn().mockReset();
-            wrapper.setProps( { onClick } );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
+    } );
+} );
 
-            wrapper.driver().click();
 
-            expect( onClick ).toBeCalledTimes( 1 );
-        } );
+describe( 'NavItemDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        const props = {
+            label : 'Cthulhu',
+        };
+
+        wrapper = mount(  <NavItem { ...props } /> );
+        driver = wrapper.driver();
     } );
 
-    describe( 'mouseOver()', () =>
+
+    test( 'should trigger onClick callback once', () =>
     {
-        test( 'should trigger onMouseOver callback prop', () =>
-        {
-            const onMouseOver = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOver } );
-
-            wrapper.driver().mouseOver();
-
-            expect( onMouseOver ).toBeCalledTimes( 1 );
+        const onClickSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onClick : onClickSpy,
         } );
+
+        driver.click();
+        expect( onClickSpy ).toBeCalledTimes( 1 );
     } );
 
-    describe( 'mouseOut()', () =>
+    test( 'should trigger onMouseOver callback once', () =>
     {
-        test( 'should trigger onMouseOut callback prop', () =>
-        {
-            const onMouseOut = jest.fn().mockReset();
-            wrapper.setProps( { onMouseOut } );
-
-            wrapper.driver().mouseOut();
-
-            expect( onMouseOut ).toBeCalledTimes( 1 );
+        const onMouseOverSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOver : onMouseOverSpy,
         } );
+
+        driver.mouseOver();
+        expect( onMouseOverSpy ).toBeCalledTimes( 1 );
     } );
 
-    describe( 'getLabel()', () =>
+    test( 'should trigger onMouseOut callback once', () =>
     {
-        test( 'should return the content of component label', () =>
-        {
-            wrapper.setProps( { label: <span>test label</span> } );
-
-            const label = wrapper.driver().getLabel();
-
-            expect( label.text() ).toBe( 'test label' );
+        const onMouseOutSpy = jest.fn().mockReset();
+        wrapper.setProps( {
+            onMouseOut : onMouseOutSpy,
         } );
+
+        driver.mouseOut();
+        expect( onMouseOutSpy ).toBeCalledTimes( 1 );
     } );
 } );

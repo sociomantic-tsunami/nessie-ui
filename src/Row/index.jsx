@@ -38,6 +38,10 @@ Row.propTypes =
      */
     gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
     /**
+     *  Sets 'width: 100%' to prevent content growth from negative margins
+     */
+    hasFullWidth  : PropTypes.bool,
+    /**
      *  Row role
      */
     role          : PropTypes.string,
@@ -58,6 +62,7 @@ Row.defaultProps =
     children      : undefined,
     className     : undefined,
     gutters       : 'M',
+    hasFullWidth  : false,
     onClick       : undefined,
     onMouseOut    : undefined,
     onMouseOver   : undefined,

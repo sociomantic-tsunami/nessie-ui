@@ -7,15 +7,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable max-len */
+/* eslint-disable no-magic-numbers */
 
-import React                           from 'react';
-import { shallow, mount }              from 'enzyme';
+import React                          from 'react';
+import { mount }                      from 'enzyme';
 
-import { Label, Slider, SliderGroup }  from '../index';
-import styles                          from './sliderGroup.css';
-
+import { Label, Slider, SliderGroup } from '../index';
+import styles                         from './sliderGroup.css';
 
 describe( 'SliderGroup', () =>
 {
@@ -88,7 +86,8 @@ describe( 'SliderGroup', () =>
     } );
 
     test(
-        'Step labels should pass to the individual Sliders the correct amount of ticks',
+        'Step labels should pass to the individual Sliders the correct amount \
+of ticks',
         () =>
         {
             const props = {
@@ -172,7 +171,8 @@ describe( 'SliderGroup', () =>
     } );
 
     test(
-        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop to the individual sliders if defined',
+        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop \
+to the individual sliders if defined',
         () =>
         {
             const props = {
@@ -194,7 +194,8 @@ describe( 'SliderGroup', () =>
     );
 
     test(
-        'SliderGroup should pass down its minValue and maxValue prop to the individual sliders if defined',
+        'SliderGroup should pass down its minValue and maxValue prop to the \
+individual sliders if defined',
         () =>
         {
             const props = {
@@ -210,7 +211,8 @@ describe( 'SliderGroup', () =>
     );
 
     test(
-        'Individual sliders should get their orientation = vertical even if the a orientation is individually passed as horizontal in sliders array ',
+        'Individual sliders should get their orientation = vertical even if \
+the a orientation is individually passed as horizontal in sliders array ',
         () =>
         {
             const props = {
@@ -234,98 +236,103 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
         } );
-
-        test(
-            'onChange event in individual Sliders should be passed from Sliders array',
-            () =>
-            {
-                const onChangeSlider = jest.fn();
-                const props = {
-                    sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
-
-                wrapper = shallow( <SliderGroup { ...props } /> );
-
-                wrapper.find( Slider ).simulate( 'change' );
-
-                expect( onChangeSlider ).toBeCalled();
-            },
-        );
-
-        test(
-            'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange',
-            () =>
-            {
-                const onChangeSlider = jest.fn();
-                const onChangeSliderGroup = jest.fn();
-                const props = {
-                    onChange : onChangeSliderGroup,
-                    sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
-
-                wrapper = shallow( <SliderGroup { ...props } /> );
-
-                wrapper.find( Slider ).simulate( 'change' );
-
-                expect( onChangeSlider ).toBeCalled();
-                expect( onChangeSliderGroup ).toBeCalled();
-            },
-        );
     } );
 } );
 
 describe( 'SliderGroupDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <SliderGroup cssMap = { styles } /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'getSlider()', () =>
+    describe( 'change( val, index )', () =>
     {
-        test( 'should get Slider at given index', () =>
+        test( 'should trigger onChange in individual Slider', () =>
         {
+            const onChangeSlider = jest.fn();
             wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 },
-                ],
+                sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
             } );
 
-            expect( wrapper.driver().getSlider( 1 ).prop( 'value' ) ).toBe( 80 );
+            driver.change();
+
+            expect( onChangeSlider ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should get Sliders when indexes are passed as an array', () =>
-        {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 },
-                ],
-            } );
+        test(
+            'Individual slider onChange event should also trigger SliderGroup \
+onChange event if the function is provided in proptype OnChange',
+            () =>
+            {
+                const onChangeSlider = jest.fn();
+                const onChangeSliderGroup = jest.fn();
+                wrapper.setProps( {
+                    onChange : onChangeSliderGroup,
+                    sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
+                } );
 
-            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).toHaveLength( 2 );
+                driver.change();
+
+                expect( onChangeSlider ).toBeCalledTimes( 1 );
+                expect( onChangeSliderGroup ).toBeCalledTimes( 1 );
+            },
+        );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isDisabled : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
 
-        test( 'should return a Slider at certain index in array', () =>
-        {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 40 },
-                    { value: 20 },
-                    { value: 10 },
-                    { value: 30 },
-                ],
-            } );
 
-            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].prop( 'value' ) )
-                .toBe( 20 );
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isReadOnly : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 } );

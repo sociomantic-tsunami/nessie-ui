@@ -7,14 +7,13 @@
  *
  */
 
-/* global test */
+/* eslint-disable no-magic-numbers */
 
 import React                from 'react';
-import { mount, shallow }   from 'enzyme';
+import { shallow }          from 'enzyme';
 
 import { H1, H4, Section }  from '../index';
 import styles               from './section.css';
-
 
 describe( 'Section', () =>
 {
@@ -22,12 +21,21 @@ describe( 'Section', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Section cssMap = { styles } /> );
+        wrapper  = shallow( <Section cssMap = { styles } /> );
+    } );
+
+    test( 'should be a stateless functional component', () =>
+    {
+        expect( wrapper.instance() ).toBe( null );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>
     {
-        wrapper.setProps( { title: 'Boom', level: 4 } );
+        wrapper.setProps( {
+            title : 'Boom',
+            level : 4,
+        } );
+
         expect( wrapper.find( H4 ) ).toHaveLength( 1 );
     } );
 
@@ -42,36 +50,13 @@ describe( 'Section', () =>
 
             test( 'should be passed to the header component as children', () =>
             {
-                wrapper.setProps( { title: 'Boom', level: 1 } );
+                wrapper.setProps( {
+                    title : 'Boom',
+                    level : 1,
+                } );
+
                 expect( wrapper.find( H1 ).prop( 'children' ) ).toBe( 'Boom' );
             } );
-        } );
-    } );
-} );
-
-
-describe( 'SectionDriver', () =>
-{
-    let wrapper;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <Section cssMap = { styles } /> );
-    } );
-
-    describe( 'getContent()', () =>
-    {
-        test( 'should return the content', () =>
-        {
-            const children = (
-                <Section title = "Pikachu">
-                    <h2>Lightning Strike</h2>
-                </Section>
-            );
-
-            wrapper.setProps( {  children } );
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
         } );
     } );
 } );

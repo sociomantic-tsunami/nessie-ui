@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import { H4 }      from '../index';
-
+import { H4 }       from '../index';
 
 describe( 'H4', () =>
 {
@@ -22,11 +20,12 @@ describe( 'H4', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <H4 /> );
+        wrapper = mount( <H4 /> );
     } );
 
-    test( 'should contain a <h4> element', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( 'h4' ) ).toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

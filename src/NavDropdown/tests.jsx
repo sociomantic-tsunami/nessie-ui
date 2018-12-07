@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers*/
+/* eslint-disable no-magic-numbers */
 
 import React                    from 'react';
 import { mount }                from 'enzyme';
 
 import { NavDropdown, NavList } from '../index';
-
 
 describe( 'NavDropdown', () =>
 {

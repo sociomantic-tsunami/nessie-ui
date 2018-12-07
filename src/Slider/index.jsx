@@ -43,11 +43,6 @@ export default class Slider extends React.Component
         */
         hasError              : PropTypes.bool,
         /**
-        *  Callback that receives ref to native input; or array of refs to
-        *  native inputs
-        */
-        inputRef              : PropTypes.func,
-        /**
         *  Tooltip message text (string or JSX)
         */
         errorMessage          : PropTypes.node,
@@ -221,7 +216,11 @@ export default class Slider extends React.Component
     {
         super( props );
 
-        this.state = { ...this.state, inputIndex: -1 };
+        this.state = {
+            ...this.state,
+            inputIndex : -1,
+            id         : props.id || generateId( 'Slider' ),
+        };
 
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
@@ -234,68 +233,6 @@ export default class Slider extends React.Component
         this.handleUp    = this.handleUp.bind( this );
     }
 
-    componentDidMount()
-    {
-        this.attachInputRefs();
-    }
-
-    componentWillUpdate( nextProps )
-    {
-        if ( nextProps.inputRef !== this.props.inputRef )
-        {
-            this.detachInputRefs();
-        }
-    }
-
-    componentDidUpdate( prevProps )
-    {
-        const { props } = this;
-
-        if ( prevProps.inputRef !== props.inputRef ||
-            prevProps.value.length !== props.value.length )
-        {
-            this.attachInputRefs();
-        }
-    }
-
-    componentWillUnmount()
-    {
-        this.detachInputRefs();
-    }
-
-    /* eslint-disable react/sort-comp */
-    attachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            const inputs = Array.from( this.inputContainer.childNodes );
-
-            if ( inputs.length === 1 )
-            {
-                inputRef( inputs[ 0 ] );
-            }
-            else if ( inputs.length > 1 )
-            {
-                inputRef( inputs );
-            }
-            else
-            {
-                inputRef( null );
-            }
-        }
-    }
-
-    detachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            inputRef( null );
-        }
-    }
 
     /**
     * Generate track fill style object depending on input values
@@ -699,7 +636,7 @@ export default class Slider extends React.Component
             hasError,
             hasFill,
             hasHandleLabels,
-            id = generateId( 'Slider' ),
+            id = this.state,
             isDisabled,
             isReadOnly,
             label,

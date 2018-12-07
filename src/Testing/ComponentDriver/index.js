@@ -61,7 +61,7 @@ function provideDrivers( suiteSpec )
 {
     suiteSpec.forEach( ( { Component, Driver } ) =>
     {
-        if ( !( typeof Component === 'function' ) )
+        if ( !Component )
         {
             throw new Error( Err.BAD_SUITE_COMPONENT );
         }

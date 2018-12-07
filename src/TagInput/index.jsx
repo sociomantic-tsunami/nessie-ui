@@ -50,10 +50,6 @@ export default class TagInput extends React.Component
          */
         id           : PropTypes.string,
         /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef     : PropTypes.func,
-        /**
          *  Display as disabled
          */
         isDisabled   : PropTypes.bool,
@@ -130,7 +126,6 @@ export default class TagInput extends React.Component
         hasError     : false,
         height       : undefined,
         id           : undefined,
-        inputRef     : undefined,
         isDisabled   : false,
         isReadOnly   : false,
         isResizable  : false,
@@ -185,6 +180,13 @@ export default class TagInput extends React.Component
         this.setState( { isFocused: true } );
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -195,7 +197,6 @@ export default class TagInput extends React.Component
             hasError,
             height,
             id = generateId( 'TagInput' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             isResizable,
@@ -272,7 +273,7 @@ export default class TagInput extends React.Component
                     onKeyUp     = { onKeyUp }
                     placeholder = { placeholder }
                     readOnly    = { isReadOnly }
-                    ref         = { inputRef }
+                    ref         = { this.inputRef }
                     type        = "text"
                     value       = { value } />
             </label>

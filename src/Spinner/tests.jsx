@@ -7,15 +7,13 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React         from 'react';
-import { mount }     from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import { Spinner }   from '../index';
-import styles        from './spinner.css';
-
+import { Spinner }  from '../index';
+import styles       from './spinner.css';
 
 describe( 'Spinner', () =>
 {

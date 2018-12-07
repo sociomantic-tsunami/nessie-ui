@@ -18,7 +18,7 @@ import {
     buildClassName,
     eventHandler,
     generateId,
-    mapAria
+    mapAria,
 } from '../utils';
 import styles         from './listBoxOption.css';
 
@@ -118,6 +118,7 @@ ListBoxOption.propTypes = {
         'close',
         'dash',
         'dashboard',
+        'deactivated',
         'declined',
         'delete',
         'down',

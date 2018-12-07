@@ -15,7 +15,7 @@ import { generateId } from '../utils';
 import ThemeContext   from '../Theming/ThemeContext';
 import { evalTheme }  from '../Theming/withTheme';
 
-export default class Radio extends React.Component
+class Radio extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -135,8 +135,13 @@ export default class Radio extends React.Component
             <Checkable
                 { ...props }
                 cssMap = { cssMap }
-                id = { id }
-                type = "radio" />
+                id     = { id }
+                ref    = { this.props.ref }
+                type   = "radio" />
         );
     }
 }
+
+export default React.forwardRef( ( props, ref ) => (
+    <Radio { ...props } ref = { ref } />
+) );

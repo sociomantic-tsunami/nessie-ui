@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React                from 'react';
-import { shallow }          from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-import { MessageBox, Text } from '../index';
-
+import { MessageBox }   from '../index';
 
 describe( 'MessageBox', () =>
 {
@@ -22,12 +20,12 @@ describe( 'MessageBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <MessageBox /> );
+        wrapper = mount( <MessageBox /> );
     } );
 
-    test( 'should contain a Text component when message is set', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        wrapper.setProps( { message: 'hallo' } );
-        expect( wrapper.find( Text ) ).toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+            .toHaveLength( 1 );
     } );
 } );

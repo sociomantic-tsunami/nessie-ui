@@ -69,10 +69,6 @@ export default class ValuedTextInput extends React.Component
          */
         id                 : PropTypes.string,
         /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef           : PropTypes.func,
-        /**
          *  Display as disabled
          */
         isDisabled         : PropTypes.bool,
@@ -156,7 +152,6 @@ export default class ValuedTextInput extends React.Component
         forceHover         : false,
         hasError           : false,
         id                 : undefined,
-        inputRef           : undefined,
         isDisabled         : false,
         isReadOnly         : false,
         name               : undefined,
@@ -209,6 +204,13 @@ export default class ValuedTextInput extends React.Component
         }
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
@@ -243,14 +245,15 @@ export default class ValuedTextInput extends React.Component
                     fakeHovered : forceHover || isFocused,
                     position    : valueLabelPosition,
                 }  ) }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }>
+                onMouseLeave = { onMouseOut }
+                onMouseEnter = { onMouseOver }>
                 <InputField
                     { ...props }
                     className    = { cssMap.input }
                     id           = { id }
                     onBlur       = { this.handleBlur }
                     onFocus      = { this.handleFocus }
+                    ref          = { this.inputRef }
                     textAlign    = { alignText } />
                 <label
                     className = { cssMap.valueLabel }

@@ -7,18 +7,19 @@
  *
  */
 
-import { IconButton } from 'nessie-ui';
+import { IconButton } from '../index';
 
 export default class TagDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
+        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickClose()
     {
-        this.wrapper.find( IconButton ).first().driver().click();
+        this.wrapper.find( IconButton ).simulate( 'click' );
         return this;
     }
 }
