@@ -180,7 +180,7 @@ describe( 'DateTimeInputDriver', () =>
         {
             onClickCell = jest.fn();
             wrapper.setProps( {
-                weeks : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
+                weeks  : [ [ { value: '1' }, { value: '2' }, { value: '3' } ] ],
                 onClickCell,
             } );
         } );

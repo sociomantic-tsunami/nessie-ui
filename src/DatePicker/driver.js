@@ -41,6 +41,7 @@ export default class DatePickerDriver
     {
         const dateItem  = this.wrapper.find( DatePickerItem )
             .at( index );
+
         const { label } = dateItem.props();
 
         if ( dateItem.isDisabled )

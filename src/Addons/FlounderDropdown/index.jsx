@@ -419,6 +419,8 @@ export default class FlounderDropdown extends Component
             headerLevel,
             icon,
             isDisabled,
+            onMouseOver,
+            onMouseOut,
         } = this.props;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
@@ -432,7 +434,9 @@ export default class FlounderDropdown extends Component
                     headerLevel,
                     headerMode  : isHeader,
                     toggleIcon  : icon,
-                } ) }>
+                } ) }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <div ref = { this.handleRef } />
             </Wrapper>
         );

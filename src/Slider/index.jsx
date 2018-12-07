@@ -213,7 +213,11 @@ export default class Slider extends React.Component
     {
         super( props );
 
-        this.state = { ...this.state, inputIndex: -1 };
+        this.state = {
+            ...this.state,
+            inputIndex : -1,
+            id         : props.id || generateId( 'Slider' ),
+        };
 
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
@@ -323,7 +327,9 @@ export default class Slider extends React.Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue,
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -627,7 +633,7 @@ export default class Slider extends React.Component
             hasError,
             hasFill,
             hasHandleLabels,
-            id = generateId( 'Slider' ),
+            id = this.state,
             isDisabled,
             isReadOnly,
             label,
@@ -740,8 +746,8 @@ export default class Slider extends React.Component
                     grabbing            : this.state.isGrabbing,
                     handleLabelPosition : hasHandleLabels &&
                         handleLabelPosition,
-                        hasHandleLabels,
-                        orientation,
+                    hasHandleLabels,
+                    orientation,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>

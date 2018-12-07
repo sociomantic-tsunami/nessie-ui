@@ -62,13 +62,13 @@ export default class FlounderDropdownDriver
 
     mouseOver()
     {
-        this.wrapper.children().simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.children().simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

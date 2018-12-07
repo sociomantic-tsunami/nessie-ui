@@ -78,14 +78,14 @@ export default class DateTimeInputDriver
 
     clickCellByIndex( index = 0 )
     {
-        this.calendar.driver().clickItem( index );
+        this.wrapper.find( DatePicker ).driver().clickItem( index );
         return this;
     }
 
     clickCellByValue( value )
     {
-        const day = this.calendar.findWhere( n => n.prop( 'value' ) === value )
-            .first();
+        const day = this.wrapper.find( DatePicker )
+            .findWhere( n => n.prop( 'value' ) === value ).first();
 
         day.simulate( 'click' );
         return this;

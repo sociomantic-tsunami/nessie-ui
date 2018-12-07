@@ -305,7 +305,7 @@ describe( 'Slider', () =>
 
                 wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
                     .simulate( 'mousedown' );
-                expect( eventListenerSpy ).toBeCalledTimes( 2 );
+
                 expect( eventListenerSpy )
                     .toBeCalledWith( 'mousemove', mouseMoveSpy );
                 expect( eventListenerSpy )
@@ -506,7 +506,7 @@ onChange since it is read only';
             {
                 driver.blur();
                 const event = onBlur.mock.calls[ 0 ][ 0 ];
-                const firstInput = inputContainer.childAt( 0 ).node;
+                const firstInput = inputContainer.childAt( 0 ).instance();
 
                 expect( event.target ).toBe( firstInput );
             },
@@ -517,7 +517,7 @@ onChange since it is read only';
             const index = 1;
             driver.blur( index );
             const event = onBlur.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -578,7 +578,7 @@ onBlur since it is disabled';
             {
                 driver.focus();
                 const event = onFocus.mock.calls[ 0 ][ 0 ];
-                const firstInput = inputContainer.childAt( 0 ).node;
+                const firstInput = inputContainer.childAt( 0 ).instance();
 
                 expect( event.target ).toBe( firstInput );
             },
@@ -589,7 +589,7 @@ onBlur since it is disabled';
             const index = 1;
             driver.focus( index );
             const event = onFocus.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -657,7 +657,7 @@ onFocus since it is disabled';
         {
             driver.keyDown();
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
-            const firstInput = inputContainer.childAt( 0 ).node;
+            const firstInput = inputContainer.childAt( 0 ).instance();
 
             expect( event.target ).toBe( firstInput );
         } );
@@ -667,7 +667,7 @@ onFocus since it is disabled';
             const index = 1;
             driver.keyDown( null, index );
             const event = onKeyDown.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -735,7 +735,7 @@ onKeyDown since it is disabled';
         {
             driver.keyUp();
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
-            const firstInput = inputContainer.childAt( 0 ).node;
+            const firstInput = inputContainer.childAt( 0 ).instance();
 
             expect( event.target ).toBe( firstInput );
         } );
@@ -745,7 +745,7 @@ onKeyDown since it is disabled';
             const index = 1;
             driver.keyUp( null, index );
             const event = onKeyUp.mock.calls[ 0 ][ 0 ];
-            const input = inputContainer.childAt( index ).node;
+            const input = inputContainer.childAt( index ).instance();
 
             expect( event.target ).toBe( input );
         } );
@@ -890,7 +890,7 @@ onKeyUp since it is disabled';
 
         beforeEach( () =>
         {
-            handleUp = jest.fn( wrapper.node, 'handleUp' );
+            handleUp = jest.fn( wrapper.instance(), 'handleUp' );
         } );
 
         test( 'should fire handleUp on the component instance', () =>
