@@ -167,7 +167,7 @@ and will be removed in a future major release.' );
                         iconTheme    = "button"
                         iconType     = "close"
                         label        = "Close"
-                        onClickClose = { onClickClose } />
+                        onClick      = { onClickClose } />
                 }
             </div>
         );

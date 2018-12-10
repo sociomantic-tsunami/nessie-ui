@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton } from 'nessie-ui';
+import { IconButton } from '../index';
 
 const ERR = {
     TOOLTIP_ERR : ( event, state ) =>
@@ -19,7 +19,6 @@ export default class TooltipDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickClose()

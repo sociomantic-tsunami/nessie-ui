@@ -132,7 +132,7 @@ export default class Switch extends React.PureComponent
                     id             = { id }
                     name           = { name }
                     onBlur         = { onBlur }
-                    onChange       = { !isReadOnly && onChange }
+                    onChange       = { !isReadOnly ? onChange : undefined }
                     onFocus        = { onFocus }
                     type           = "checkbox"
                     value          = { value } />

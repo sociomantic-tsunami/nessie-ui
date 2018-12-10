@@ -105,7 +105,7 @@ describe( 'ButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Button /> );
+        wrapper  = mount( <Button cssMap = { styles } /> );
         driver   = wrapper.driver();
         button   = wrapper.find( 'button' ).first();
     } );

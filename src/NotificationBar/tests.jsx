@@ -13,6 +13,7 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { NotificationBar }  from '../index';
+import styles               from './notificationBar.css';
 
 describe( 'NotificationBar', () =>
 {
@@ -20,7 +21,7 @@ describe( 'NotificationBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar /> );
+        wrapper = mount( <NotificationBar cssMap = { styles } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
@@ -38,7 +39,7 @@ describe( 'NotificationBarDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar /> );
+        wrapper = mount( <NotificationBar cssMap = { styles } /> );
         driver = wrapper.driver();
     } );
 
@@ -48,7 +49,7 @@ describe( 'NotificationBarDriver', () =>
         test( 'should trigger onClickClose callback once', () =>
         {
             const onClickClose = jest.fn();
-            wrapper.setProps( { onClickClose } );
+            wrapper.setProps( { onClickClose, isDismissible: true } );
 
             driver.clickClose();
             expect( onClickClose ).toBeCalledTimes( 1 );

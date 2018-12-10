@@ -7,7 +7,7 @@
  *
  */
 
-import React, { Component }         from 'react';
+import React                        from 'react';
 import PropTypes                    from 'prop-types';
 import isEqual                      from 'lodash.isequal';
 
@@ -18,7 +18,7 @@ import ThemeContext                 from '../Theming/ThemeContext';
 import { evalTheme }                from '../Theming/withTheme';
 
 
-export default class ScrollBox extends Component
+export default class ScrollBox extends React.Component
 {
     static contextType = ThemeContext;
 

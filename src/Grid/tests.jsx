@@ -13,6 +13,7 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { Column, Grid } from '../index';
+import styles           from './grid.css';
 
 describe( 'Grid', () =>
 {
@@ -20,7 +21,7 @@ describe( 'Grid', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Grid /> );
+        wrapper = mount( <Grid cssMap = { styles } /> );
     } );
 
     describe( 'render', () =>

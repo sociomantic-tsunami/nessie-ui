@@ -67,15 +67,28 @@ child', () =>
 
         expect( wrapper.text() ).toBe( label );
     } );
+} );
 
-    test( 'should trigger onClick callbacks when IconButton clicked', () =>
+describe( 'TagDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
     {
-        const onClick = jest.fn();
-        wrapper.setProps( {
-            onClick,
-        } );
+        wrapper = mount( <Tag cssMap = { styles } /> );
+    } );
 
-        wrapper.driver().clickClose();
-        expect( onClick ).toBeCalled();
+    describe( 'clickClose()', () =>
+    {
+        test( 'should trigger onClickClose callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( {
+                onClick,
+            } );
+
+            wrapper.driver().clickClose();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
     } );
 } );

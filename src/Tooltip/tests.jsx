@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Tooltip }  from '../index';
-import styles       from './tooltip.css';
 
 describe( 'TooltipDriver', () =>
 {
@@ -22,9 +21,7 @@ describe( 'TooltipDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tooltip cssMap = { styles } >
-            <h2> Who am I?</h2>
-        </Tooltip> );
+        wrapper = mount( <Tooltip><h2> Who am I?</h2></Tooltip> );
         driver  = wrapper.driver();
     } );
 
@@ -32,14 +29,14 @@ describe( 'TooltipDriver', () =>
     {
         test( 'should fire onMouseOver event', () =>
         {
-            const onMouseOverHandler = jest.fn();
+            const onMouseOver = jest.fn();
             wrapper.setProps( {
-                message     : 'Tekeli-li!',
-                onMouseOver : onMouseOverHandler,
+                message : 'Tekeli-li!',
+                onMouseOver,
             } );
 
             driver.mouseOver();
-            expect( onMouseOverHandler ).toBeCalledTimes( 1 );
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -48,14 +45,14 @@ describe( 'TooltipDriver', () =>
     {
         test( 'should fire onMouseOut event', () =>
         {
-            const onMouseOutHandler = jest.fn();
+            const onMouseOut = jest.fn();
             wrapper.setProps( {
-                message    : 'Tekeli-li!',
-                onMouseOut : onMouseOutHandler,
+                message : 'Tekeli-li!',
+                onMouseOut,
             } );
 
             driver.mouseOut();
-            expect( onMouseOutHandler ).toBeCalledTimes( 1 );
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 

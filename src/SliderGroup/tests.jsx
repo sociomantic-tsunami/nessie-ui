@@ -39,6 +39,7 @@ describe( 'SliderGroup', () =>
     test( 'should render all the individual sliders provided', () =>
     {
         const props = {
+            cssMap  : styles,
             sliders : [
                 { 'value': 50 },
                 { 'value': 80 },
@@ -47,13 +48,13 @@ describe( 'SliderGroup', () =>
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( 'Slider' )
-            .find( `.${wrapper.prop( 'cssMap' ).default}` ) ).toHaveLength( 2 );
+        expect( wrapper.find( Slider ) ).toHaveLength( 2 );
     } );
 
     test( 'should render all the stepLabel labels provided', () =>
     {
         const props = {
+            cssMap     : styles,
             stepLabels : [
                 { 'stepLabel': 'No filter', 'step': 0 },
                 { 'stepLabel': 'Low', 'step': 25 },
@@ -70,6 +71,7 @@ describe( 'SliderGroup', () =>
     test( 'should render all the slider labels provided', () =>
     {
         const props = {
+            cssMap         : styles,
             'sliderLabels' : [
                 'category 1',
                 'category 2',
@@ -91,6 +93,7 @@ of ticks',
         () =>
         {
             const props = {
+                cssMap  : styles,
                 sliders : [
                     { 'value': 50 },
                     { 'value': 50 },
@@ -117,6 +120,7 @@ of ticks',
     test( 'Individul sliders should ignore label and stepLabel props', () =>
     {
         const props = {
+            cssMap  : styles,
             sliders : [
                 {
                     'value'      : 50,
@@ -150,6 +154,7 @@ of ticks',
     test( 'should have sliderGroup__disabled if isDisabled = true', () =>
     {
         const props = {
+            cssMap     : styles,
             isDisabled : true,
         };
 
@@ -161,6 +166,7 @@ of ticks',
     test( 'should have sliderGroup__error if hasError = true', () =>
     {
         const props = {
+            cssMap   : styles,
             hasError : true,
         };
 
@@ -176,6 +182,7 @@ to the individual sliders if defined',
         () =>
         {
             const props = {
+                cssMap     : styles,
                 sliders    : [ { 'value': 50 }, { 'value': 50 } ],
                 isReadOnly : true,
                 isDisabled : true,
@@ -199,6 +206,7 @@ individual sliders if defined',
         () =>
         {
             const props = {
+                cssMap   : styles,
                 sliders  : [ { 'value': 50, 'minValue': 10, 'maxValue': 90 } ],
                 minValue : 0,
                 maxValue : 500,
@@ -216,6 +224,7 @@ the a orientation is individually passed as horizontal in sliders array ',
         () =>
         {
             const props = {
+                cssMap  : styles,
                 sliders : [ { 'value': 50, 'orientation': 'horizontal' } ],
             };
 
@@ -230,6 +239,7 @@ the a orientation is individually passed as horizontal in sliders array ',
         test( 'should be undefined by default', () =>
         {
             const props = {
+                cssMap  : styles,
                 sliders : [ { 'value': 50 } ],
             };
 
@@ -256,11 +266,11 @@ describe( 'SliderGroupDriver', () =>
         {
             const onChangeSlider = jest.fn();
             wrapper.setProps( {
+                cssMap  : styles,
                 sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
             } );
 
             driver.change();
-
             expect( onChangeSlider ).toBeCalledTimes( 1 );
         } );
 
@@ -272,6 +282,7 @@ onChange event if the function is provided in proptype OnChange',
                 const onChangeSlider = jest.fn();
                 const onChangeSliderGroup = jest.fn();
                 wrapper.setProps( {
+                    cssMap   : styles,
                     onChange : onChangeSliderGroup,
                     sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
                 } );

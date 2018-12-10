@@ -24,11 +24,6 @@ describe( 'Section', () =>
         wrapper  = shallow( <Section cssMap = { styles } /> );
     } );
 
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
     test( 'should have a header component corresponding to level prop', () =>
     {
         wrapper.setProps( {

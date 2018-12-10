@@ -13,8 +13,7 @@ import React          from 'react';
 import { mount }      from 'enzyme';
 
 import { InputField } from '../index';
-
-const { cssMap } = InputField.defaultProps;
+import styles         from './inputField.css';
 
 describe( 'InputField', () =>
 {
@@ -23,7 +22,7 @@ describe( 'InputField', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <InputField /> );
+        wrapper  = mount( <InputField cssMap = { styles } /> );
         instance = wrapper.instance();
     } );
 
@@ -308,7 +307,7 @@ describe( 'InputField', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( `.${cssMap.default}` ).prop( 'value' ) )
+                expect( wrapper.find( InputField ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );

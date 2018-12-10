@@ -49,8 +49,6 @@ describe( 'Slider', () =>
 
     test( 'should contain <div class="slider__trackFill">', () =>
     {
-        wrapper = mount( <Slider /> );
-
         expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).trackFill}` ) )
             .toHaveLength( 1 );
     } );
@@ -58,6 +56,7 @@ describe( 'Slider', () =>
     test( 'should have slider__disabled if isDisabled = true', () =>
     {
         const props = {
+            cssMap     : styles,
             isDisabled : true,
         };
 
@@ -70,6 +69,7 @@ describe( 'Slider', () =>
     test( 'should have slider__error if hasError = true', () =>
     {
         const props = {
+            cssMap   : styles,
             hasError : true,
         };
 
@@ -84,6 +84,7 @@ describe( 'Slider', () =>
         () =>
         {
             const props = {
+                cssMap          : styles,
                 hasHandleLabels : true,
             };
 
@@ -97,7 +98,8 @@ describe( 'Slider', () =>
     test( 'should contain a label if filled', () =>
     {
         const props = {
-            label : 'label',
+            cssMap : styles,
+            label  : 'label',
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -109,6 +111,7 @@ describe( 'Slider', () =>
     populated', () =>
     {
         const props = {
+            cssMap         : styles,
             stepLabelStart : 'Today',
             stepLabelEnd   : 'Future',
             stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
@@ -127,6 +130,7 @@ describe( 'Slider', () =>
     test( 'should contain N inputs if value is array of length N', () =>
     {
         let props = {
+            cssMap   : styles,
             value    : [ 1 ],
             onChange : noop,
         };
@@ -137,6 +141,7 @@ describe( 'Slider', () =>
         expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
 
         props = {
+            cssMap   : styles,
             value    : [ 1, 2, 3 ],
             onChange : noop,
         };
@@ -149,6 +154,7 @@ describe( 'Slider', () =>
     test( 'should contain N handle labels if value is array of length N', () =>
     {
         let props = {
+            cssMap   : styles,
             value    : [ 1 ],
             onChange : noop,
         };
@@ -160,6 +166,7 @@ describe( 'Slider', () =>
             .toHaveLength( 1 );
 
         props = {
+            cssMap   : styles,
             value    : [ 1, 2, 3 ],
             onChange : noop,
         };
@@ -173,6 +180,7 @@ describe( 'Slider', () =>
     test( 'should set correct position of the handle label', () =>
     {
         let props = {
+            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'top',
             hasHandleLabels     : true,
@@ -187,6 +195,7 @@ describe( 'Slider', () =>
             .handleLabelPosition__top}` ) ).toHaveLength( 1 );
 
         props = {
+            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'right',
             hasHandleLabels     : true,
@@ -201,6 +210,7 @@ describe( 'Slider', () =>
             .handleLabelPosition__right}` ) ).toHaveLength( 1 );
 
         props = {
+            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'bottom',
             hasHandleLabels     : true,
@@ -215,6 +225,7 @@ describe( 'Slider', () =>
             .handleLabelPosition__bottom}` ) ).toHaveLength( 1 );
 
         props = {
+            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'left',
             hasHandleLabels     : true,
@@ -243,6 +254,7 @@ describe( 'Slider', () =>
         test( 'should return a value within min/max values', () =>
         {
             const props = {
+                cssMap        : styles,
                 isLogarithmic : false,
                 value         : [ 50, 150 ],
                 minValue      : 0,
@@ -269,6 +281,7 @@ describe( 'Slider', () =>
         test( 'should be triggered when mousedown in the handle', () =>
         {
             const props = {
+                cssMap   : styles,
                 value    : 150,
                 onChange : noop,
             };
@@ -283,7 +296,7 @@ describe( 'Slider', () =>
             wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
                 .simulate( 'mousedown' );
 
-            expect( handleDown ).toBeCalled();
+            expect( handleDown ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -291,6 +304,7 @@ describe( 'Slider', () =>
             () =>
             {
                 const props = {
+                    cssMap   : styles,
                     value    : [ 50 ],
                     onChange : noop,
                 };
@@ -354,13 +368,14 @@ describe( 'SliderDriver', () =>
     beforeEach( () =>
     {
         const props = {
+            cssMap   : styles,
             label    : 'Cthulhu',
             maxValue : 200,
             minValue : 0,
             value    : [ 25, 75 ],
         };
 
-        wrapper = mount( <Slider cssMap = { styles } { ...props } /> );
+        wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
         cssMap  = wrapper.prop( 'cssMap' );
         outer   = wrapper.find( `.${cssMap.default}` ).first();
@@ -813,7 +828,7 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -848,7 +863,7 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -880,27 +895,20 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseDown();
-            expect( onMouseDown ).toBeCalled();
+            expect( onMouseDown ).toBeCalledTimes( 1 );
         } );
     } );
 
 
     describe( 'mouseUp()', () =>
     {
-        let handleUp;
-
-        beforeEach( () =>
-        {
-            handleUp = jest.fn( wrapper.instance(), 'handleUp' );
-        } );
-
         test( 'should fire handleUp on the component instance', () =>
         {
-            handleUp = jest.fn();
-            wrapper.setProps( { onMouseUp: handleUp } );
+            const onMouseUp = jest.fn();
+            wrapper.setProps( { onMouseUp } );
 
             driver.mouseUp();
-            expect( handleUp ).toBeCalled();
+            expect( onMouseUp ).toBeCalledTimes( 1 );
         } );
     } );
 } );

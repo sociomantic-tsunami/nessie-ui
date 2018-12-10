@@ -22,10 +22,11 @@ describe( 'NavItem', () =>
     beforeEach( () =>
     {
         const props = {
-            label : 'testLabel',
+            cssMap : styles,
+            label  : 'testLabel',
         };
 
-        wrapper = mount( <NavItem cssMap = { styles } { ...props } /> );
+        wrapper = mount( <NavItem { ...props } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
@@ -44,7 +45,8 @@ describe( 'NavItemDriver', () =>
     beforeEach( () =>
     {
         const props = {
-            label : 'Cthulhu',
+            cssMap : styles,
+            label  : 'Cthulhu',
         };
 
         wrapper = mount(  <NavItem { ...props } /> );

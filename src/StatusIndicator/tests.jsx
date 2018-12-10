@@ -13,6 +13,7 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { StatusIndicator }  from '../index';
+import styles               from './statusIndicator.css';
 
 describe( 'StatusIndicator', () =>
 {
@@ -20,7 +21,7 @@ describe( 'StatusIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <StatusIndicator /> );
+        wrapper = mount( <StatusIndicator cssMap = { styles } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>

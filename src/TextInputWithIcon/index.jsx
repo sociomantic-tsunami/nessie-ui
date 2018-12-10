@@ -348,9 +348,9 @@ export default class TextInputWithIcon extends React.PureComponent
                     error    : hasError,
                     position : iconPosition,
                 } ) }
-                cssMap      = { cssMap }
-                onMouseOut  = { onMouseOut }
-                onMouseOver = { onMouseOver }>
+                cssMap        = { cssMap }
+                onMouseLeave  = { onMouseOut }
+                onMouseEnter  = { onMouseOver }>
                 <InputField
                     aria           = { aria }
                     autocapitalize = { autoCapitalize }

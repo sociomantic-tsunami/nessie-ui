@@ -143,7 +143,7 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.click();
-            expect( onClick ).toBeCalled();
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
 
 
@@ -197,7 +197,7 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.clickSecondary();
-            expect( onClickSecondary ).toBeCalled();
+            expect( onClickSecondary ).toBeCalledTimes( 1 );
         } );
 
 
@@ -324,7 +324,7 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -339,7 +339,7 @@ describe( 'UploaderDriver', () =>
             } );
 
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 } );

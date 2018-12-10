@@ -20,7 +20,7 @@ export default class DateTimeInputDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.cssMap     = wrapper.children().props().cssMap;
+        this.cssMap     = wrapper.find( DatePicker ).props( 'cssMap' );
 
         this.mainInput  = wrapper.find( InputField );
         this.calendar   = wrapper.find( DatePicker );

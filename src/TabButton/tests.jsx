@@ -46,7 +46,7 @@ describe( 'TabButton Driver', () =>
 
     describe( 'click()', () =>
     {
-        test( 'should trigger onClick', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
             const onClick = jest.fn();
             wrapper.setProps( {
@@ -55,7 +55,7 @@ describe( 'TabButton Driver', () =>
 
             driver.click();
 
-            expect( onClick ).toBeCalled();
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
 
         test( 'should return error if disabled', () =>

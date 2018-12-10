@@ -9,12 +9,12 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Checkable          from '../proto/Checkable';
-import styles             from './checkbox.css';
-import { Checkbox }       from '../index';
+import Checkable    from '../proto/Checkable';
+import styles       from './checkbox.css';
+import { Checkbox } from '../index';
 
 describe( 'Checkbox', () =>
 {
@@ -22,7 +22,7 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <Checkbox cssMap = { styles } /> );
+        wrapper = mount( <Checkbox cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>
@@ -50,7 +50,7 @@ describe( 'Checkbox', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
+                expect( wrapper.prop( 'isReadOnly' ) ).toBeFalsy();
             } );
 
             test( 'should be passed to Checkable', () =>

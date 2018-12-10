@@ -179,7 +179,7 @@ describe( 'ToggleButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ToggleButton /> );
+        wrapper  = mount( <ToggleButton cssMap = { styles } /> );
         driver   = wrapper.driver();
         button   = wrapper.find( 'button' ).first();
     } );

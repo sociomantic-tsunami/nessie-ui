@@ -13,6 +13,7 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { NavBar }   from '../index';
+import styles       from './navBar.css';
 
 describe( 'NavBar', () =>
 {
@@ -20,7 +21,7 @@ describe( 'NavBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavBar /> );
+        wrapper = mount( <NavBar cssMap = { styles } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>

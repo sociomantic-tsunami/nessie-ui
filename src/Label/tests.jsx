@@ -13,12 +13,14 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Label }    from '../index';
+import styles       from './label.css';
 
 describe( 'Label', () =>
 {
     let wrapper;
     const props = {
-        label : 'Boom',
+        cssMap : styles,
+        label  : 'Boom',
     };
     beforeEach( () =>
     {

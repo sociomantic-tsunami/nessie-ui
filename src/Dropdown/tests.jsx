@@ -13,6 +13,7 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Dropdown } from '../index';
+import styles       from './dropdown.css';
 
 describe( 'Dropdown', () =>
 {
@@ -20,7 +21,7 @@ describe( 'Dropdown', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Dropdown /> );
+        wrapper = mount( <Dropdown cssMap = { styles } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>

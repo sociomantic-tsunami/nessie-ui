@@ -13,6 +13,7 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { H1 }       from '../index';
+import styles       from './h1.css';
 
 describe( 'H1', () =>
 {
@@ -20,7 +21,7 @@ describe( 'H1', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <H1 /> );
+        wrapper = mount( <H1 cssMap = { styles } /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>

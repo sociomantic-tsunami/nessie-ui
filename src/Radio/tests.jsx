@@ -9,12 +9,12 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Checkable          from '../proto/Checkable';
-import { Radio }          from '../index';
-import styles             from './radio.css';
+import Checkable    from '../proto/Checkable';
+import { Radio }    from '../index';
+import styles       from './radio.css';
 
 
 describe( 'Radio', () =>
@@ -23,7 +23,7 @@ describe( 'Radio', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Radio cssMap = { styles } /> );
+        wrapper = mount( <Radio cssMap = { styles } /> );
     } );
 
     describe( 'render()', () =>
@@ -91,7 +91,7 @@ describe( 'RadioDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Radio /> );
+        wrapper  = mount( <Radio cssMap = { styles } /> );
         driver   = wrapper.driver();
     } );
 

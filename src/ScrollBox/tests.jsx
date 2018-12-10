@@ -241,9 +241,7 @@ describe( 'ScrollBoxDriver', () =>
 
         test( 'should throw an error when scroll direction is wrong', () =>
         {
-            const props = { scroll: 'horizontal' };
-
-            wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper.setProps( { scroll: 'horizontal' } );
 
             expect( () => wrapper.driver().scrollVertical( 10 ) )
                 .toThrowError( 'Cannot scroll because scroll direction is \

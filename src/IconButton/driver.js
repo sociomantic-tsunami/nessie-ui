@@ -8,8 +8,6 @@ export default class IconButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.button  = wrapper
-            .find( `.${this.wrapper.props().cssMap.default}` ).first();
     }
 
     click()
@@ -29,7 +27,7 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'click', 'read only' ) );
         }
 
-        this.button.simulate( 'click' );
+        this.wrapper.simulate( 'click' );
         return this;
     }
 
@@ -44,7 +42,7 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
-        this.button.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseenter' );
         return this;
     }
 
@@ -59,7 +57,7 @@ export default class IconButtonDriver
                 .ICONBUTTON_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
-        this.button.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 
@@ -73,7 +71,7 @@ export default class IconButtonDriver
             throw new Error( ERR.ICONBUTTON_ERR( label, 'focus', 'disabled' ) );
         }
 
-        this.button.simulate( 'focus' );
+        this.wrapper.simulate( 'focus' );
         return this;
     }
 
@@ -87,7 +85,7 @@ export default class IconButtonDriver
             throw new Error( ERR.ICONBUTTON_ERR( label, 'blur', 'disabled' ) );
         }
 
-        this.button.simulate( 'blur' );
+        this.wrapper.simulate( 'blur' );
         return this;
     }
 }

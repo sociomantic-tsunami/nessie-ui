@@ -26,7 +26,9 @@ describe( 'Switch', () =>
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
-        wrapper.setProps( { isDisabled: true } );
+        wrapper.setProps( { cssMap: styles, isDisabled: true } );
+        console.log( wrapper.debug() );
+
         const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
 
         expect( input.prop( 'disabled' ) ).toBe( true );
@@ -132,7 +134,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blur();
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
 
@@ -201,7 +203,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focus();
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
 
@@ -270,7 +272,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -283,7 +285,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 } );
