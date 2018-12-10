@@ -18,6 +18,7 @@ import Column                   from './Column';
 import ComboBox                 from './ComboBox';
 import ComboBoxStateful         from './ComboBoxStateful';
 import DatePicker               from './DatePicker';
+import DatePickerStateful       from './DatePickerStateful';
 import DateTimeInput            from './DateTimeInput';
 import DimensionsInput          from './DimensionsInput';
 import DragNDrop                from './DragNDrop';
@@ -92,6 +93,7 @@ export {
     ComboBox,
     ComboBoxStateful,
     DatePicker,
+    DatePickerStateful,
     DateTimeInput,
     DimensionsInput,
     DragNDrop,
@@ -167,6 +169,7 @@ export default {
     ComboBox,
     ComboBoxStateful,
     DatePicker,
+    DatePickerStateful,
     DateTimeInput,
     DimensionsInput,
     DragNDrop,
