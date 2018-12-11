@@ -9,6 +9,7 @@
 
 import React, { Component }      from 'react';
 import PropTypes                 from 'prop-types';
+import moment                    from 'moment';
 
 import { generateId }            from '../utils';
 import DateTimeInput             from '../DateTimeInput';
@@ -296,6 +297,7 @@ export default class DatePickerStateful extends Component
         };
 
         this.handleClickIcon = this.handleClickIcon.bind( this );
+        this.handleClickCell = this.handleClickCell.bind( this );
         this.handleOnBlur    = this.handleOnBlur.bind( this );
         this.setInputRef     = this.setInputRef.bind( this );
     }
@@ -318,13 +320,15 @@ export default class DatePickerStateful extends Component
     handleClickCell( value )
     {
         // const callback = this.props.onClickCell;
-
+        //
         // if ( callback )
         // {
         //     callback( e );
         // }
 
-        this.setState( { inputValue: value  } );
+        // this.setState( { inputValue: moment.unix( value ).utc()  } );
+
+        this.setState( { inputValue: value } );
     }
 
     handleClickIcon( e )
@@ -336,7 +340,23 @@ export default class DatePickerStateful extends Component
             callback( e );
         }
 
+        this.inputRef.focus();
         this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+    }
+
+    handleOnBlur( e )
+    {
+        const callback = this.props.onBlur;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        if ( !e.relatedTarget )
+        {
+            this.setState( { isOpen: false } );
+        }
     }
 
     render()
@@ -368,9 +388,7 @@ export default class DatePickerStateful extends Component
             months,
             nextIsDisabled,
             nextIsReadOnly,
-            onBlur,
             onChange,
-            onClickCell,
             onClickNext,
             onClickPrev,
             onFocus,
@@ -423,9 +441,9 @@ export default class DatePickerStateful extends Component
                 months            = { months }
                 nextIsDisabled    = { nextIsDisabled }
                 nextIsReadOnly    = { nextIsReadOnly }
-                onBlur            = { onBlur }
+                onBlur            = { this.handleOnBlur }
                 onChange          = { onChange }
-                onClickCell       = { this.onClickCell() }
+                onClickCell       = { this.handleClickCell }
                 onClickIcon       = { this.handleClickIcon }
                 onClickNext       = { onClickNext }
                 onClickPrev       = { onClickPrev }
