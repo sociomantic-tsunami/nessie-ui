@@ -102,6 +102,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "loch-ness": "^2.3.0",
+    "lodash": "^4.17.11",
     "lodash.isequal": "^4.5.0",
     "lodash.merge": "^4.6.1",
     "microbejs": "^0.5.2",
