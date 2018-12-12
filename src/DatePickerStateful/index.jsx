@@ -10,10 +10,90 @@
 import React, { Component }      from 'react';
 import PropTypes                 from 'prop-types';
 import moment                    from 'moment';
+import _                         from 'lodash';
 
 import { generateId }            from '../utils';
 import DateTimeInput             from '../DateTimeInput';
+import copy                      from './copy.json';
 
+const DISPLAY_FORMATTING =
+{
+    month  : 'YYYY/M',
+    day    : 'YYYY/MM/DD',
+    hour   : 'YYYY/MM/DD HH:00',
+    minute : 'YYYY/MM/DD HH:mm',
+};
+
+
+/**
+ * returns the timestamp of the current moment
+ *
+ * @return {Number} timestamp
+ */
+function now()
+{
+    return Math.floor( new Date().getTime() / 1000 / 60 ) * 60;
+}
+
+/**
+ * gets the index of the option by the passed id
+ *
+ * @param {Number}
+ *
+ * @return {Number} index of the option
+ */
+function $m( timestamp )
+{
+    return moment.unix( timestamp ).utc();
+}
+
+/**
+ * gets the index of the option by the passed id
+ *
+ * @param {Number}  ts1 dffdfd
+ * @param {Number}  ts2 dffdfd
+ * @param {String}  precision dffdfd
+ *
+ * @return {Number} index of the option
+ */
+function isTimestampEqual( ts1, ts2, precision )
+{
+    return $m( ts1 ).isSame( $m( ts2 ), precision );
+}
+
+/**
+ * gets the index of the option by the passed id
+ *
+ *
+ * @return {Number} index of the option
+ */
+function tryFormatMainInput( timestamp, precision )
+{
+    if ( !_.isNumber( timestamp ) ) return String( timestamp || '' );
+    return $m( timestamp ).format( precision );
+}
+
+/**
+ * gets the index of the option by the passed id
+ *
+ *
+ * @return {Number} index of the option
+ */
+function precision( mode )
+{
+    let format = 'minute';
+
+    if ( mode === 'date' )
+    {
+        format = 'day';
+    }
+    else if ( mode === 'month' )
+    {
+        format = 'month';
+    }
+
+    return DISPLAY_FORMATTING[ format ];
+}
 
 export default class DatePickerStateful extends Component
 {
@@ -292,8 +372,11 @@ export default class DatePickerStateful extends Component
         super();
 
         this.state = {
+            gridStartTimestamp : undefined,
+            id         : undefined,
             inputValue : undefined,
             isOpen     : undefined,
+            value      : undefined,
         };
 
         this.handleClickIcon = this.handleClickIcon.bind( this );
@@ -306,15 +389,106 @@ export default class DatePickerStateful extends Component
     {
         return {
             id         : props.id || state.id || generateId( 'Select' ),
-            inputValue : state.inputValue,
+            inputValue : tryFormatMainInput( state.value, precision( props.mode ) ),
             isOpen     : typeof props.isOpen === 'undefined' ?
-                state.isOpen : props.isOpen,
+                Boolean( state.gridStartTimestamp ) : props.isOpen,
+            value : now(),
         };
     }
 
     setInputRef( ref )
     {
         this.inputRef = ref;
+    }
+
+    dayMatrix()
+    {
+        const startMonth = this.state.gridStartTimestamp;
+
+        if ( !startMonth ) return;
+
+        const { value } = this.state;
+        // const field = this.fields.default;
+
+        const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
+        const daysInMonth = $m( startMonth ).daysInMonth();
+
+        const days = _.range( -offset, daysInMonth ).map( dayIndex =>
+        {
+            const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
+            const label = hasDate ? String( dayIndex + 1 ) : '';
+            const dayValue = hasDate ?
+                $m( startMonth ).add( dayIndex, 'day' ).unix().toString() :
+                null;
+
+            const isDisabled = false;
+            // const isDisabled = hasDate && !isUnitSelectable( field, value, 'day', this.mode === 'default' );
+
+            const isCurrent = hasDate &&
+                isTimestampEqual( dayValue, now(), 'day' );
+            const isSelected = hasDate && _.isNumber( value ) &&
+                isTimestampEqual( value, dayValue, 'day' );
+            return {
+                label,
+                value : dayValue,
+                isDisabled,
+                isCurrent,
+                isSelected,
+            };
+        } );
+
+        return _.chunk( days, 7 );
+    }
+
+    monthMatrix()
+    {
+        const startYear = this.state.gridStartTimestamp;
+
+        if ( !startYear ) return;
+
+        const { value } = this.state;
+
+        // const field = this.fields.default;
+
+        const months = _.range( 0, 12 ).map( month =>
+        {
+            const label = copy.shortMonths[ month ];
+            const monthValue = $m( startYear ).add( month, 'month' )
+                .unix().toString();
+
+            const isDisabled = false;
+            // const isDisabled = !isUnitSelectable( field, value, 'month' );
+
+            const isCurrent = isTimestampEqual( monthValue, now(), 'month' );
+            const isSelected = _.isNumber( value ) &&
+                isTimestampEqual( value, monthValue, 'month' );
+            return {
+                label,
+                value : monthValue,
+                isDisabled,
+                isCurrent,
+                isSelected,
+            };
+        } );
+
+        return _.chunk( months, 4 );
+    }
+
+    monthLabel()
+    {
+        const month = $m( this.state.gridStartTimestamp ).month();
+        return copy.months[ month ];
+    }
+
+    yearLabel()
+    {
+        return $m( this.state.gridStartTimestamp ).year().toString();
+    }
+
+    dayLabels()
+    {
+        return _.range( 0, 7 ).map( day =>
+            ( { label : copy.dayHeaders[ day ] } ) );
     }
 
     handleClickCell( value )
@@ -328,7 +502,7 @@ export default class DatePickerStateful extends Component
 
         // this.setState( { inputValue: moment.unix( value ).utc()  } );
 
-        this.setState( { inputValue: value } );
+        this.setState( { value: parseInt( value ) } );
     }
 
     handleClickIcon( e )
@@ -340,9 +514,41 @@ export default class DatePickerStateful extends Component
             callback( e );
         }
 
-        this.inputRef.focus();
-        this.setState( prevState => ( { isOpen: !prevState.isOpen  } ) );
+        if ( this.state.isOpen )
+        {
+            this.close();
+        }
+        else
+        {
+            this.open();
+        }
     }
+
+    open()
+    {
+        this.inputRef.focus();
+
+        // let timestamp = this.displayTimestamp;
+
+        // let timestamp = this.fields.default.value;
+        // const min = this.fields.default.min;
+
+        // timestamp = _.isNumber( timestamp ) ? timestamp : now();
+
+        // timestamp = _.isNumber( min ) && min > timestamp ? min : timestamp;
+
+        this.setState( {
+            gridStartTimestamp : $m( this.state.value )
+                .startOf( this.props.mode === 'month' ? 'year' : 'month' )
+                .unix(),
+        } );
+    }
+
+    close()
+    {
+        this.setState( { gridStartTimestamp: null } );
+    }
+
 
     handleOnBlur( e )
     {
@@ -353,9 +559,9 @@ export default class DatePickerStateful extends Component
             callback( e );
         }
 
-        if ( !e.relatedTarget )
+        if ( !e.relatedTarget )// needs to be fixed
         {
-            this.setState( { isOpen: false } );
+            this.setState( { gridStartTimestamp: null } );
         }
     }
 
@@ -363,9 +569,6 @@ export default class DatePickerStateful extends Component
     {
         const {
             className,
-            currentMonth,
-            currentYear,
-            days,
             forceHover,
             hasError,
             hourIsDisabled,
@@ -385,7 +588,6 @@ export default class DatePickerStateful extends Component
             minutePlaceholder,
             minuteValue,
             mode,
-            months,
             nextIsDisabled,
             nextIsReadOnly,
             onChange,
@@ -402,7 +604,6 @@ export default class DatePickerStateful extends Component
             prevIsDisabled,
             prevIsReadOnly,
             textAlign,
-            weeks,
         } = this.props;
 
         const {
@@ -413,9 +614,9 @@ export default class DatePickerStateful extends Component
         return (
             <DateTimeInput
                 className         = { className }
-                currentMonth      = { currentMonth }
-                currentYear       = { currentYear }
-                days              = { days }
+                currentMonth      = { this.monthLabel() }
+                currentYear       = { this.yearLabel() }
+                days              = { this.dayLabels() }
                 forceHover        = { forceHover }
                 hasError          = { hasError }
                 hourIsDisabled    = { hourIsDisabled }
@@ -438,7 +639,7 @@ export default class DatePickerStateful extends Component
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       = { minuteValue }
                 mode              = { mode }
-                months            = { months }
+                months            = { this.monthMatrix() }
                 nextIsDisabled    = { nextIsDisabled }
                 nextIsReadOnly    = { nextIsReadOnly }
                 onBlur            = { this.handleOnBlur }
@@ -458,7 +659,7 @@ export default class DatePickerStateful extends Component
                 prevIsDisabled    = { prevIsDisabled }
                 prevIsReadOnly    = { prevIsReadOnly }
                 textAlign         = { textAlign }
-                weeks             = { weeks } />
+                weeks             = { this.dayMatrix() } />
         );
     }
 }
