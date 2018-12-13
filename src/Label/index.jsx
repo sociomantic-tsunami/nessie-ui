@@ -13,9 +13,9 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import Text                 from '../Text';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class Label extends React.PureComponent
+export default class Label extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -65,7 +65,7 @@ export default class Label extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Label, this.props ),
+            cssMap = createCssMap( this.context.Label, this.props ),
             element,
             htmlFor,
             label,

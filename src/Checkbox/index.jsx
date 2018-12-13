@@ -7,13 +7,13 @@
  *
  */
 
-import React          from 'react';
-import PropTypes      from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import Checkable      from '../proto/Checkable';
-import { generateId } from '../utils';
-import ThemeContext   from '../Theming/ThemeContext';
-import { evalTheme }  from '../Theming/withTheme';
+import Checkable        from '../proto/Checkable';
+import { generateId }   from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
 class Checkbox extends React.Component
 {
@@ -127,7 +127,7 @@ class Checkbox extends React.Component
     {
         const {
             id = generateId( 'Checkbox' ),
-            cssMap = evalTheme( this.context.Checkbox, this.props ),
+            cssMap = createCssMap( this.context.Checkbox, this.props ),
             ...props
         } = this.props;
 

@@ -13,9 +13,9 @@ import PropTypes                        from 'prop-types';
 import { generateId, buildClassName }   from '../utils';
 import { H1, H2, H3, H4 }               from '../index';
 import ThemeContext                     from '../Theming/ThemeContext';
-import { evalTheme }                    from '../Theming/withTheme';
+import { createCssMap }                 from '../Theming/createCss';
 
-export default class Section extends React.PureComponent
+export default class Section extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -64,7 +64,7 @@ export default class Section extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Section, this.props ),
+            cssMap = createCssMap( this.context.Section, this.props ),
             id = generateId( 'Section' ),
             level,
             title,

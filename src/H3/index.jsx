@@ -12,9 +12,9 @@ import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { evalTheme }      from '../Theming/withTheme';
+import { createCssMap }   from '../Theming/createCss';
 
-export default class H3 extends React.PureComponent
+export default class H3 extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -48,7 +48,7 @@ export default class H3 extends React.PureComponent
         const {
             className,
             children,
-            cssMap = evalTheme( this.context.H3, this.props ),
+            cssMap = createCssMap( this.context.H3, this.props ),
             title,
             role,
         } = this.props;

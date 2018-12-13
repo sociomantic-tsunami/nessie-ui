@@ -12,9 +12,9 @@ import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { evalTheme }      from '../Theming/withTheme';
+import { createCssMap }   from '../Theming/createCss';
 
-export default class Column extends React.PureComponent
+export default class Column extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -103,7 +103,7 @@ export default class Column extends React.PureComponent
             children,
             className,
             columnTitle,
-            cssMap = evalTheme( this.context.Column, this.props ),
+            cssMap = createCssMap( this.context.Column, this.props ),
             role,
             size,
             verticalAlign,

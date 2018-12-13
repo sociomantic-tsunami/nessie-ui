@@ -19,7 +19,7 @@ import PropTypes                 from 'prop-types';
 
 import { clamp, buildClassName } from '../utils';
 import ThemeContext              from '../Theming/ThemeContext';
-import { evalTheme }             from '../Theming/withTheme';
+import { createCssMap }          from '../Theming/createCss';
 
 export default class ScrollBar extends React.Component
 {
@@ -108,7 +108,7 @@ export default class ScrollBar extends React.Component
     {
         const {
             className,
-            cssMap = evalTheme( this.context.ScrollBar, this.props ),
+            cssMap = createCssMap( this.context.ScrollBar, this.props ),
             onChange,
             onClickTrack,
             onThumbDragStart,

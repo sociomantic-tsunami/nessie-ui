@@ -13,7 +13,7 @@ import PropTypes                      from 'prop-types';
 import { buildClassName, generateId } from '../utils';
 import { buildTagsFromValues }        from './utils';
 import ThemeContext                   from '../Theming/ThemeContext';
-import { evalTheme }                  from '../Theming/withTheme';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class TagInput extends React.Component
 {
@@ -192,7 +192,7 @@ export default class TagInput extends React.Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.TagInput, this.props ),
+            cssMap = createCssMap( this.context.TagInput, this.props ),
             forceHover,
             hasError,
             height,

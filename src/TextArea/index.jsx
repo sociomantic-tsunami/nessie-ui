@@ -7,15 +7,15 @@
  *
  */
 
-import React          from 'react';
-import PropTypes      from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { generateId } from '../utils';
-import { InputField } from '../index';
-import ThemeContext   from '../Theming/ThemeContext';
-import { evalTheme }  from '../Theming/withTheme';
+import { generateId }   from '../utils';
+import { InputField }   from '../index';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
-export default class TextArea extends React.PureComponent
+export default class TextArea extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -182,7 +182,7 @@ export default class TextArea extends React.PureComponent
     render()
     {
         const {
-            cssMap = evalTheme( this.context.TextArea, this.props ),
+            cssMap = createCssMap( this.context.TextArea, this.props ),
             id = generateId( 'TextArea' ),
             ...props
         } = this.props;

@@ -29,7 +29,6 @@ import withDropdown     from '../Addons/withDropdown';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-
 export default class ComboBox extends React.Component
 {
     static propTypes =

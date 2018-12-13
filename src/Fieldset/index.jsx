@@ -13,9 +13,9 @@ import PropTypes                  from 'prop-types';
 import { buildClassName }         from '../utils';
 import { Label, IconWithTooltip } from '../index';
 import ThemeContext               from '../Theming/ThemeContext';
-import { evalTheme }              from '../Theming/withTheme';
+import { createCssMap }           from '../Theming/createCss';
 
-export default class Fieldset extends React.PureComponent
+export default class Fieldset extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -87,7 +87,7 @@ export default class Fieldset extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Fieldset, this.props ),
+            cssMap = createCssMap( this.context.Fieldset, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,

@@ -13,9 +13,9 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import { NavList }          from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class NavBar extends React.PureComponent
+export default class NavBar extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -34,7 +34,7 @@ export default class NavBar extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.NavBar, this.props ),
+            cssMap = createCssMap( this.context.NavBar, this.props ),
         } = this.props;
 
         return (

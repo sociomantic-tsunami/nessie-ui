@@ -11,9 +11,9 @@ import React                from 'react';
 
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class NessieLogo extends React.PureComponent
+export default class NessieLogo extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -25,7 +25,7 @@ export default class NessieLogo extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.NessieLogo, this.props ),
+            cssMap = createCssMap( this.context.NessieLogo, this.props ),
         } = this.props;
 
         return (

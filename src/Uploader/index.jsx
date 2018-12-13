@@ -20,9 +20,9 @@ import {
     Tooltip,
 } from '../index';
 import ThemeContext     from '../Theming/ThemeContext';
-import { evalTheme }    from '../Theming/withTheme';
+import { createCssMap } from '../Theming/createCss';
 
-export default class Uploader extends React.PureComponent
+export default class Uploader extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -163,7 +163,7 @@ export default class Uploader extends React.PureComponent
         const {
             buttonLabel,
             className,
-            cssMap = evalTheme( this.context.Uploader, this.props ),
+            cssMap = createCssMap( this.context.Uploader, this.props ),
             errorMessage,
             errorMessagePosition,
             hasError,

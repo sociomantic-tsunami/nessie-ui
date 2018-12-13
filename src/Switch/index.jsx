@@ -12,9 +12,9 @@ import PropTypes                        from 'prop-types';
 
 import { buildClassName, generateId }   from '../utils';
 import ThemeContext                     from '../Theming/ThemeContext';
-import { evalTheme }                    from '../Theming/withTheme';
+import { createCssMap }                 from '../Theming/createCss';
 
-export default class Switch extends React.PureComponent
+export default class Switch extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -101,7 +101,7 @@ export default class Switch extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.Switch, this.props ),
+            cssMap = createCssMap( this.context.Switch, this.props ),
             forceHover,
             id = generateId( 'Switch' ),
             isChecked,

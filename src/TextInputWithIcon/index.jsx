@@ -13,9 +13,9 @@ import PropTypes                           from 'prop-types';
 import { buildClassName, generateId }      from '../utils';
 import { IconButton, InputField, Tooltip } from '../index';
 import ThemeContext                        from '../Theming/ThemeContext';
-import { evalTheme }                       from '../Theming/withTheme';
+import { createCssMap }                    from '../Theming/createCss';
 
-export default class TextInputWithIcon extends React.PureComponent
+export default class TextInputWithIcon extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -298,7 +298,7 @@ export default class TextInputWithIcon extends React.PureComponent
             autoComplete,
             autoCorrect,
             className,
-            cssMap = evalTheme( this.context.TextInputWithIcon, this.props ),
+            cssMap = createCssMap( this.context.TextInputWithIcon, this.props ),
             forceHover,
             hasError,
             iconButtonIsDisabled,

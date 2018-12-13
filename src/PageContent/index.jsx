@@ -13,9 +13,9 @@ import PropTypes          from 'prop-types';
 import { Spinner }        from '../index';
 import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { evalTheme }      from '../Theming/withTheme';
+import { createCssMap }   from '../Theming/createCss';
 
-export default class PageContent extends React.PureComponent
+export default class PageContent extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -58,7 +58,7 @@ export default class PageContent extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.PageContent, this.props ),
+            cssMap = createCssMap( this.context.PageContent, this.props ),
             contentWidth,
             isLoading,
         } = this.props;

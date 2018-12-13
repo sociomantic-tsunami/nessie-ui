@@ -15,7 +15,7 @@ import { createScrollHandler }      from './utils';
 import { buildClassName }           from '../utils';
 import { IconButton, ScrollBar }    from '../index';
 import ThemeContext                 from '../Theming/ThemeContext';
-import { evalTheme }                from '../Theming/withTheme';
+import { createCssMap }             from '../Theming/createCss';
 
 
 export default class ScrollBox extends React.Component
@@ -414,7 +414,7 @@ export default class ScrollBox extends React.Component
 
         const { props } = this;
         const {
-            cssMap = evalTheme( this.context.ScrollBox, this.props ),
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
             scroll,
             onThumbDragStartX,
             onThumbDragEndX,
@@ -476,7 +476,7 @@ export default class ScrollBox extends React.Component
     {
         const { props } = this;
         const {
-            cssMap = evalTheme( this.context.ScrollBox, this.props ),
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
         } = props;
         const scrollButtons = [];
 
@@ -508,7 +508,7 @@ export default class ScrollBox extends React.Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.ScrollBox, this.props ),
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
             contentWidth,
             height,
             onMouseOut,

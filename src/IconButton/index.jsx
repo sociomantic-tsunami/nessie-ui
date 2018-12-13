@@ -13,7 +13,7 @@ import PropTypes                        from 'prop-types';
 import { generateId, buildClassName }   from '../utils';
 import { Icon }                         from '../index';
 import ThemeContext                     from '../Theming/ThemeContext';
-import { evalTheme }                    from '../Theming/withTheme';
+import { createCssMap }                 from '../Theming/createCss';
 
 const killFocus = e => e.preventDefault();
 
@@ -190,7 +190,7 @@ export default class IconButton extends React.Component
             buttonRef,
             children,
             className,
-            cssMap = evalTheme( this.context.IconButton, this.props ),
+            cssMap = createCssMap( this.context.IconButton, this.props ),
             forceHover,
             hasBackground,
             iconSize,

@@ -13,7 +13,7 @@ import PropTypes                      from 'prop-types';
 import { generateId, buildClassName } from '../utils';
 import { Icon, Spinner }              from '../index';
 import ThemeContext                   from '../Theming/ThemeContext';
-import { evalTheme }                  from '../Theming/withTheme';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class Button extends React.Component
 {
@@ -173,7 +173,7 @@ export default class Button extends React.Component
             buttonRef,
             children,
             className,
-            cssMap = evalTheme( this.context.Button, this.props ),
+            cssMap = createCssMap( this.context.Button, this.props ),
             defaultValue,
             forceHover,
             iconPosition,

@@ -7,12 +7,12 @@
  *
  */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 import {
     Card,
     H2,
@@ -25,7 +25,7 @@ import {
 const headers = { 2: H2, 3: H3, 4: H4 };
 
 
-export default class Module extends Component
+export default class Module extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -158,7 +158,7 @@ export default class Module extends Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Module, this.props ),
+            cssMap = createCssMap( this.context.Module, this.props ),
             customHeader,
             errorMessage,
             errorMessageIsVisible,

@@ -13,9 +13,9 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import { H1 }               from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class PageContentHeader extends React.PureComponent
+export default class PageContentHeader extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -38,7 +38,7 @@ export default class PageContentHeader extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.PageContentHeader, this.props ),
+            cssMap = createCssMap( this.context.PageContentHeader, this.props ),
             title,
         } = this.props;
 

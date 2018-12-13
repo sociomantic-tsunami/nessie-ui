@@ -13,7 +13,7 @@ import PropTypes                      from 'prop-types';
 import { generateId, buildClassName } from '../utils';
 import { IconButton, Text }           from '../index';
 import ThemeContext                   from '../Theming/ThemeContext';
-import { evalTheme }                  from '../Theming/withTheme';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class Tooltip extends React.Component
 {
@@ -99,7 +99,7 @@ export default class Tooltip extends React.Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Tooltip, this.props ),
+            cssMap = createCssMap( this.context.Tooltip, this.props ),
             id = generateId( 'Tooltip' ),
             isDismissible,
             isVisible,

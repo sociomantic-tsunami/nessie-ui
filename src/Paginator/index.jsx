@@ -13,9 +13,9 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class Paginator extends React.PureComponent
+export default class Paginator extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -107,7 +107,7 @@ export default class Paginator extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.Paginator, this.props ),
+            cssMap = createCssMap( this.context.Paginator, this.props ),
             currentPage,
             ellipsisText,
             endPage,

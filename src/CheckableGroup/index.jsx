@@ -13,7 +13,7 @@ import PropTypes                      from 'prop-types';
 import { Fieldset }                   from '../index';
 import { buildClassName, generateId } from '../utils';
 import ThemeContext                   from '../Theming/ThemeContext';
-import { evalTheme }                  from '../Theming/withTheme';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class CheckableGroup extends React.Component
 {
@@ -112,7 +112,7 @@ export default class CheckableGroup extends React.Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.CheckableGroup, this.props ),
+            cssMap = createCssMap( this.context.CheckableGroup, this.props ),
             errorMessage,
             errorMessageIsVisible,
             forceHover,

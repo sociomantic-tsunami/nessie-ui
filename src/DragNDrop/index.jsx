@@ -7,15 +7,15 @@
  *
  */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import { Spinner }          from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class DragNDrop extends Component
+export default class DragNDrop extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -51,7 +51,7 @@ export default class DragNDrop extends Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.DragNDrop, this.props ),
+            cssMap = createCssMap( this.context.DragNDrop, this.props ),
             dragNDropState,
             message,
         } = this.props;

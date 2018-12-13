@@ -13,9 +13,9 @@ import PropTypes                from 'prop-types';
 import { buildClassName }       from '../utils';
 import { Icon, Text, Tooltip }  from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
-import { evalTheme }            from '../Theming/withTheme';
+import { createCssMap }         from '../Theming/createCss';
 
-export default class IconWithTooltip extends React.PureComponent
+export default class IconWithTooltip extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -183,7 +183,7 @@ export default class IconWithTooltip extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.IconWithTooltip, this.props ),
+            cssMap = createCssMap( this.context.IconWithTooltip, this.props ),
             iconIsVisible,
             iconPosition,
             iconRole,

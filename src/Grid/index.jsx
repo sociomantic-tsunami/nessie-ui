@@ -13,7 +13,7 @@ import PropTypes          from 'prop-types';
 import { buildClassName } from '../utils';
 import { Column }         from '../index';
 import ThemeContext       from '../Theming/ThemeContext';
-import { evalTheme }      from '../Theming/withTheme';
+import { createCssMap }   from '../Theming/createCss';
 
 export default class Grid extends React.Component
 {
@@ -111,7 +111,7 @@ export default class Grid extends React.Component
             align,
             children,
             className,
-            cssMap = evalTheme( this.context.Grid, this.props ),
+            cssMap = createCssMap( this.context.Grid, this.props ),
             onClick,
             onMouseOut,
             onMouseOver,

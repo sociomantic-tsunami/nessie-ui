@@ -230,6 +230,10 @@ export default {
 };
 
 
+// Theme context
+export ThemeContext     from './Theming/ThemeContext';
+
+
 // Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';

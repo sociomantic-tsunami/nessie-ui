@@ -7,14 +7,15 @@
  *
  */
 
-/* global addEventListener removeEventListener Event */
+/* global document addEventListener removeEventListener Event */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
 import { IconWithTooltip, Label }       from '../index';
 import ThemeContext                     from '../Theming/ThemeContext';
-import { evalTheme }                    from '../Theming/withTheme';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class Slider extends React.Component
 {
@@ -628,7 +629,7 @@ export default class Slider extends React.Component
     {
         const {
             className,
-            cssMap = evalTheme( this.context.Slider, this.props ),
+            cssMap = createCssMap( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,

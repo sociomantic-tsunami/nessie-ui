@@ -13,9 +13,9 @@ import PropTypes                from 'prop-types';
 import { buildClassName }       from '../utils';
 import { Icon, NavDropdown }    from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
-import { evalTheme }            from '../Theming/withTheme';
+import { createCssMap }         from '../Theming/createCss';
 
-export default class NavItem extends React.PureComponent
+export default class NavItem extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -148,7 +148,7 @@ export default class NavItem extends React.PureComponent
             children,
             label,
             className,
-            cssMap = evalTheme( this.context.NavItem, this.props ),
+            cssMap = createCssMap( this.context.NavItem, this.props ),
             dropdownAlign,
             forceHover,
             href,

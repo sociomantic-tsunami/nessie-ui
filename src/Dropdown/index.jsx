@@ -12,7 +12,7 @@ import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { evalTheme }      from '../Theming/withTheme';
+import { createCssMap }   from '../Theming/createCss';
 
 export default class Dropdown extends React.Component
 {
@@ -42,7 +42,7 @@ export default class Dropdown extends React.Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Dropdown, this.props ),
+            cssMap = createCssMap( this.context.Dropdown, this.props ),
             hasError,
             padding,
             size,

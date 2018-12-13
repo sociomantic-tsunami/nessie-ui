@@ -13,7 +13,7 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import { Icon }             from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
 export default class Sorter extends Component
 {
@@ -69,7 +69,7 @@ export default class Sorter extends Component
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Sorter, this.props ),
+            cssMap = createCssMap( this.context.Sorter, this.props ),
             forceHover,
             onToggle,
             sort,

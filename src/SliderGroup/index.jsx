@@ -13,7 +13,7 @@ import PropTypes            from 'prop-types';
 import { buildClassName }   from '../utils';
 import { Label, Slider }    from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
 export default class SliderGroup extends React.Component
 {
@@ -93,7 +93,7 @@ export default class SliderGroup extends React.Component
 
         const {
             className,
-            cssMap = evalTheme( this.context.SliderGroup, this.props ),
+            cssMap = createCssMap( this.context.SliderGroup, this.props ),
             hasError,
             isDisabled,
             isReadOnly,

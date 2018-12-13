@@ -16,7 +16,7 @@ import {
     generateId,
 } from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { evalTheme }    from '../Theming/withTheme';
+import { createCssMap } from '../Theming/createCss';
 
 export default class InputField extends React.Component
 {
@@ -211,7 +211,7 @@ export default class InputField extends React.Component
             autoComplete,
             autoCorrect,
             className,
-            cssMap = evalTheme( this.context.InputField, this.props ),
+            cssMap = createCssMap( this.context.InputField, this.props ),
             element,
             forceHover,
             hasError,

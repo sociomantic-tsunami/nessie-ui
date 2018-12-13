@@ -23,9 +23,9 @@ import {
     mapAria,
 } from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { evalTheme }    from '../Theming/withTheme';
+import { createCssMap } from '../Theming/createCss';
 
-export default class ListBox extends React.PureComponent
+export default class ListBox extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -98,7 +98,7 @@ export default class ListBox extends React.PureComponent
             activeOption,
             children,
             className,
-            cssMap = evalTheme( this.context.ListBox, this.props ),
+            cssMap = createCssMap( this.context.ListBox, this.props ),
             isFocusable,
             isMultiselect,
             id = generateId( 'ListBox' ),

@@ -13,9 +13,9 @@ import PropTypes                      from 'prop-types';
 import { IconButton, Text }           from '../index';
 import { buildClassName, generateId } from '../utils';
 import ThemeContext                   from '../Theming/ThemeContext';
-import { evalTheme }                  from '../Theming/withTheme';
+import { createCssMap }               from '../Theming/createCss';
 
-export default class Tag extends React.PureComponent
+export default class Tag extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -78,7 +78,7 @@ export default class Tag extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Tag, this.props ),
+            cssMap = createCssMap( this.context.Tag, this.props ),
             forceHover,
             id = generateId( 'Tag' ),
             isDisabled,

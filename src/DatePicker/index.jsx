@@ -14,9 +14,9 @@ import { buildClassName }   from '../utils';
 import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class DatePicker extends React.PureComponent
+export default class DatePicker extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -92,7 +92,7 @@ export default class DatePicker extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.DatePicker, this.props ),
+            cssMap = createCssMap( this.context.DatePicker, this.props ),
             month,
             year,
             headers,

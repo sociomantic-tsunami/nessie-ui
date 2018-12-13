@@ -12,9 +12,9 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class Page extends React.PureComponent
+export default class Page extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -51,7 +51,7 @@ export default class Page extends React.PureComponent
         const {
             children,
             className,
-            cssMap = evalTheme( this.context.Page, this.props ),
+            cssMap = createCssMap( this.context.Page, this.props ),
             overflow,
         } = this.props;
 

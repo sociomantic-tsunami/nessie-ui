@@ -12,9 +12,9 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class ProgressBar extends React.PureComponent
+export default class ProgressBar extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -37,7 +37,7 @@ export default class ProgressBar extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.ProgressBar, this.props ),
+            cssMap = createCssMap( this.context.ProgressBar, this.props ),
             progressPercentage,
         } = this.props;
 

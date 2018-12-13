@@ -13,9 +13,9 @@ import PropTypes            from 'prop-types';
 import { Row, TableCell }   from '../index';
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class TableRow extends React.PureComponent
+export default class TableRow extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -107,7 +107,7 @@ export default class TableRow extends React.PureComponent
             align,
             children,
             className,
-            cssMap = evalTheme( this.context.TableRow, this.props ),
+            cssMap = createCssMap( this.context.TableRow, this.props ),
             isActive,
             isClickable,
             isSticky,

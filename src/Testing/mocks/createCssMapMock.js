@@ -7,6 +7,6 @@
  *
  */
 
-const evalTheme = ( cssMap = {} ) => cssMap;
+const createCssMap = ( cssMap = {} ) => cssMap;
 
-export { evalTheme };
+export { createCssMap };

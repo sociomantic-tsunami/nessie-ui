@@ -12,9 +12,9 @@ import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { evalTheme }        from '../Theming/withTheme';
+import { createCssMap }     from '../Theming/createCss';
 
-export default class ProgressIndicator extends React.PureComponent
+export default class ProgressIndicator extends React.Component
 {
     static contextType = ThemeContext;
 
@@ -41,7 +41,7 @@ export default class ProgressIndicator extends React.PureComponent
     {
         const {
             className,
-            cssMap = evalTheme( this.context.ProgressIndicator, this.props ),
+            cssMap = createCssMap( this.context.ProgressIndicator, this.props ),
             currentPercentage,
             showPercentage,
         } = this.props;
