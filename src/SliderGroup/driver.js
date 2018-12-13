@@ -7,14 +7,13 @@
  *
  */
 
-import { Slider } from '../index';
+import { Slider } from 'nessie-ui';
 
 export default class SliderGroupDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
     }
 
     change( val, index = 0 )

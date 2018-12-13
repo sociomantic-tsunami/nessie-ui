@@ -19,12 +19,12 @@ export default class UploaderDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.instance().context.Uploader;
     }
 
     click()
     {
-        this.wrapper.find( Button ).first().driver().click();
+        this.wrapper.find( Button ).driver().click();
         return this;
     }
 

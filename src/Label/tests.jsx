@@ -13,14 +13,12 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Label }    from '../index';
-import styles       from './label.css';
 
 describe( 'Label', () =>
 {
     let wrapper;
     const props = {
-        cssMap : styles,
-        label  : 'Boom',
+        label : 'Boom',
     };
     beforeEach( () =>
     {
@@ -34,7 +32,8 @@ describe( 'Label', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Label.default}` ).first() )
             .toHaveLength( 1 );
     } );
 } );

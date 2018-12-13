@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { H2 }       from '../index';
-import styles       from './h2.css';
 
 describe( 'H2', () =>
 {
@@ -21,12 +20,12 @@ describe( 'H2', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <H2 cssMap = { styles } /> );
+        wrapper = mount( <H2 /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.H2.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

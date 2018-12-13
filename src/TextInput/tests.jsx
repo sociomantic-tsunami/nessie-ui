@@ -21,7 +21,7 @@ describe( 'TextInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextInput /> );
+        wrapper = shallow( <TextInput /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

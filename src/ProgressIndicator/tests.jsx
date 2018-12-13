@@ -13,7 +13,6 @@ import React                    from 'react';
 import { mount }                from 'enzyme';
 
 import { ProgressIndicator }    from '../index';
-import styles                   from './progressIndicator.css';
 
 describe( 'ProgressIndicator', () =>
 {
@@ -21,13 +20,13 @@ describe( 'ProgressIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ProgressIndicator cssMap = { styles } /> );
+        wrapper = mount( <ProgressIndicator /> );
     } );
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance()
+            .context.ProgressIndicator.default}` ) ).toHaveLength( 1 );
     } );
     test( 'should contain a ProgressIndicator', () =>
     {

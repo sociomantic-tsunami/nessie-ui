@@ -7,9 +7,10 @@
  *
  */
 
+import { IconButton }   from 'nessie-ui';
+
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerItem   from './DatePickerItem';
-import { IconButton }   from '../index';
 
 const ERR = {
     ITEM_ERR : ( label, state ) =>
@@ -27,7 +28,6 @@ export default class DatePickerDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
         this.header  = wrapper.find( DatePickerHeader ).props().cssMap;
         this.prev    = wrapper.find( IconButton )
             .findWhere( node => node.props().iconType === 'left' );
@@ -41,7 +41,6 @@ export default class DatePickerDriver
     {
         const dateItem  = this.wrapper.find( DatePickerItem )
             .at( index );
-
         const { label } = dateItem.props();
 
         if ( dateItem.isDisabled )

@@ -14,14 +14,13 @@ import { shallow, mount }    from 'enzyme';
 
 import { ListBox }           from '../index';
 
-
 describe( 'ListBox', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ListBox /> );
+        wrapper = shallow( <ListBox /> );
     } );
 
     describe( 'render()', () =>

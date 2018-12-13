@@ -17,21 +17,20 @@ export default class CheckboxDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
+        this.cssMap  = wrapper.children().instance().context.Checkbox;
+        this.control = wrapper.find( `.${this.cssMap.input}` );
     }
 
     blur()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'blur', 'read only' ) );
         }
@@ -42,16 +41,14 @@ export default class CheckboxDriver
 
     focus()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'focus', 'read only' ) );
         }
@@ -62,17 +59,15 @@ export default class CheckboxDriver
 
     change()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
         const node   = this.control.instance();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'change', 'read only' ) );
         }
@@ -85,16 +80,14 @@ export default class CheckboxDriver
 
     click()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.CHECKBOX_ERR( label, 'click', 'read only' ) );
         }
@@ -105,11 +98,9 @@ export default class CheckboxDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .CHECKBOX_ERR( label, 'mouseOver', 'disabled' ) );
@@ -121,11 +112,9 @@ export default class CheckboxDriver
 
     mouseOut()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .CHECKBOX_ERR( label, 'mouseOut', 'disabled' ) );

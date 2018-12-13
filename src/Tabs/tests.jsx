@@ -13,7 +13,6 @@ import React                    from 'react';
 import { shallow, mount }       from 'enzyme';
 
 import { Tab, TabButton, Tabs } from '../index';
-import styles                   from './tabs.css';
 
 describe( 'Tabs', () =>
 {
@@ -21,7 +20,7 @@ describe( 'Tabs', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Tabs cssMap = { styles } /> );
+        wrapper = shallow( <Tabs /> );
     } );
 
     describe( 'render()', () =>
@@ -48,8 +47,8 @@ describe( 'TabsDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Tabs cssMap = { styles } /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Tabs /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTab( index )', () =>

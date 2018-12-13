@@ -13,7 +13,6 @@ import React                    from 'react';
 import { shallow, mount }       from 'enzyme';
 
 import { InputField, TextArea } from '../index';
-import styles                   from './textArea.css';
 
 describe( 'TextArea', () =>
 {
@@ -21,7 +20,7 @@ describe( 'TextArea', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextArea cssMap = { styles } /> );
+        wrapper = shallow( <TextArea /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

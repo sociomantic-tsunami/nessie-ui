@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Text }     from '../index';
-import styles       from './text.css';
 
 describe( 'Text', () =>
 {
@@ -21,12 +20,12 @@ describe( 'Text', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Text cssMap = { styles } /> );
+        wrapper = mount( <Text /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.Text.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

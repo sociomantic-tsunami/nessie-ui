@@ -13,7 +13,6 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { NotificationBar }  from '../index';
-import styles               from './notificationBar.css';
 
 describe( 'NotificationBar', () =>
 {
@@ -21,13 +20,14 @@ describe( 'NotificationBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar cssMap = { styles } /> );
+        wrapper = mount( <NotificationBar /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NotificationBar.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 } );
 
@@ -39,8 +39,8 @@ describe( 'NotificationBarDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar cssMap = { styles } /> );
-        driver = wrapper.driver();
+        wrapper = mount( <NotificationBar /> );
+        driver  = wrapper.driver();
     } );
 
 

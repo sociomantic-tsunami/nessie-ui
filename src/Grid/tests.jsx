@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { Column, Grid } from '../index';
-import styles           from './grid.css';
 
 describe( 'Grid', () =>
 {
@@ -21,7 +20,7 @@ describe( 'Grid', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Grid cssMap = { styles } /> );
+        wrapper = mount( <Grid /> );
     } );
 
     describe( 'render', () =>
@@ -35,7 +34,7 @@ describe( 'Grid', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.Grid.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

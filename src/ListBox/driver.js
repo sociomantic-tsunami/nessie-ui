@@ -7,6 +7,8 @@
  *
  */
 
+/* eslint-disable no-magic-numbers */
+
 import ListBoxOption from './ListBoxOption';
 
 export default class ListBoxDriver

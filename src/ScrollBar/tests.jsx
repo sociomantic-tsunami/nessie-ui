@@ -13,7 +13,6 @@ import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
 import { ScrollBar }       from '../index';
-import styles              from './scrollBar.css';
 
 describe( 'ScrollBar', () =>
 {
@@ -21,7 +20,7 @@ describe( 'ScrollBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <ScrollBar cssMap = { styles } /> );
+        wrapper = shallow( <ScrollBar /> );
     } );
 
 
@@ -84,7 +83,7 @@ describe( 'ScrollBarDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBar cssMap = { styles } /> );
+        wrapper = mount( <ScrollBar /> );
         driver  = wrapper.driver();
     } );
 

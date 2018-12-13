@@ -13,8 +13,8 @@ import ThemeContext         from './ThemeContext';
 import { buildDisplayName } from '../utils';
 
 /* interpolates component’s props into the theme */
-const evalTheme = ( theme = {}, props = {} ) =>
-    Object.entries( theme ).reduce(
+const evalTheme = ( cssMap = {}, props = {} ) =>
+    Object.entries( cssMap ).reduce(
         ( result,  [ key, value ] ) =>
         {
             result[ key ] = typeof value === 'function' ?

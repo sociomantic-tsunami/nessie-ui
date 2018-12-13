@@ -14,14 +14,11 @@ import { shallow } from 'enzyme';
 
 import { Icon }    from '../index';
 
-
 describe( 'Icon', () =>
 {
-    let wrapper;
-
     beforeEach( () =>
     {
-        wrapper = shallow( <Icon /> );
+        shallow( <Icon /> );
     } );
 
     test( 'should have size S by default', () =>

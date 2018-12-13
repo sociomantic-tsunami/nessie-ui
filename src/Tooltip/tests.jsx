@@ -21,7 +21,7 @@ describe( 'TooltipDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tooltip><h2> Who am I?</h2></Tooltip> );
+        wrapper = mount( <Tooltip><h2>Who am I?</h2></Tooltip> );
         driver  = wrapper.driver();
     } );
 

@@ -7,7 +7,7 @@
  *
  */
 
-import { Tooltip } from '../index';
+import { Tooltip } from 'nessie-ui';
 
 export default class IconWithTooltipDriver
 {

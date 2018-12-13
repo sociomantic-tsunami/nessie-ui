@@ -19,6 +19,7 @@ export default class TagInputDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
+        this.cssMap  = wrapper.instance().context.TagInput;
     }
 
     clickClose( index = 0 )
@@ -46,8 +47,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'blur', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'blur' );
+        this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'blur' );
         return this;
     }
 
@@ -63,7 +63,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'change', 'read only' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+        this.wrapper.find( `.${this.cssMap.input}` )
             .simulate( 'change', { 'target': { val } } );
         return this;
     }
@@ -75,8 +75,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'focus', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
-            .simulate( 'focus' );
+        this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'focus' );
         return this;
     }
 
@@ -87,7 +86,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyPress', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+        this.wrapper.find( `.${this.cssMap.input}` )
             .simulate( 'keyPress', { keyCode, which: keyCode } );
         return this;
     }
@@ -99,7 +98,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyDown', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+        this.wrapper.find( `.${this.cssMap.input}` )
             .simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
@@ -111,7 +110,7 @@ export default class TagInputDriver
             throw new Error( ERR.TAGINPUT_ERR( 'keyUp', 'disabled' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.props().cssMap.input}` )
+        this.wrapper.find( `.${this.cssMap.input}` )
             .simulate( 'keyUp', { keyCode, which: keyCode } );
         return this;
     }

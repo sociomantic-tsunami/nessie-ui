@@ -13,7 +13,6 @@ import React          from 'react';
 import { mount }      from 'enzyme';
 
 import { InputField } from '../index';
-import styles         from './inputField.css';
 
 describe( 'InputField', () =>
 {
@@ -22,7 +21,7 @@ describe( 'InputField', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <InputField cssMap = { styles } /> );
+        wrapper  = mount( <InputField /> );
         instance = wrapper.instance();
     } );
 

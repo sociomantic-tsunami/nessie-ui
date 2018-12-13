@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { ModalDialog }  from '../index';
-import styles           from './modalDialog.css';
 
 describe( 'ModalDialog', () =>
 {
@@ -26,7 +25,7 @@ describe( 'ModalDialog', () =>
 
     test( 'should render <ModalDialog/>', () =>
     {
-        wrapper = mount( <ModalDialog cssMap = { styles } /> );
+        wrapper = mount( <ModalDialog /> );
 
         expect( wrapper.find( ModalDialog ) ).toHaveLength( 1 );
     } );
@@ -37,9 +36,10 @@ describe( 'ModalDialog', () =>
             isVisible : false,
             children  : <span className = "thisguy">boom</span>,
         };
-        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+        const children = wrapper
+            .find( `.${wrapper.instance().context.ModalDialog.content}` )
             .children();
         expect( children ).toHaveLength( 0 );
     } );
@@ -50,9 +50,10 @@ describe( 'ModalDialog', () =>
             isVisible : true,
             children  : <span className = "thisguy">boom</span>,
         };
-        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+        const children = wrapper
+            .find( `.${wrapper.instance().context.ModalDialog.content}` )
             .children();
         expect( children ).toBeTruthy();
         expect( children.html() ).toBe( '<span class="thisguy">boom</span>' );
@@ -67,7 +68,7 @@ describe( 'ModalDialog', () =>
                 isVisible : true,
                 onClickOverlay,
             };
-            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
             wrapper.driver().clickOverlay();
             expect( onClickOverlay ).toHaveBeenCalledTimes( 1 );
@@ -84,7 +85,7 @@ describe( 'ModalDialog', () =>
                 onClickClose,
                 type      : 'carousel',
             };
-            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
             wrapper.driver().clickClose();
             expect( onClickClose ).toHaveBeenCalledTimes( 1 );
@@ -99,7 +100,7 @@ describe( 'ModalDialog', () =>
             onClickPrev,
             type      : 'carousel',
         };
-        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
         wrapper.driver().clickPrev();
         expect( onClickPrev ).toHaveBeenCalledTimes( 1 );
@@ -113,7 +114,7 @@ describe( 'ModalDialog', () =>
             onClickNext,
             type      : 'carousel',
         };
-        wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+        wrapper = mount( <ModalDialog { ...props } /> );
 
         wrapper.driver().clickNext();
         expect( onClickNext ).toHaveBeenCalledTimes( 1 );
@@ -130,7 +131,7 @@ that\'s not a carousel', () =>
                 onClickOverlay,
             };
 
-            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
             expect( () => wrapper.driver().clickClose() )
                 .toThrowError( 'Cannot trigger click on the "Close Button" \
@@ -147,7 +148,7 @@ that\'s not a carousel', () =>
                 onClickPrev,
             };
 
-            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
             expect( () => wrapper.driver().clickPrev() )
                 .toThrowError( 'Cannot trigger click on the "Prev Button" \
@@ -164,7 +165,7 @@ that\'s not a carousel', () =>
                 onClickNext,
             };
 
-            wrapper = mount( <ModalDialog cssMap = { styles } { ...props } /> );
+            wrapper = mount( <ModalDialog { ...props } /> );
 
             expect( () => wrapper.driver().clickNext() )
                 .toThrowError( 'Cannot trigger click on the "Next Button" \

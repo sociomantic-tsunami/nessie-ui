@@ -348,7 +348,6 @@ export default class TextInputWithIcon extends React.PureComponent
                     error    : hasError,
                     position : iconPosition,
                 } ) }
-                cssMap        = { cssMap }
                 onMouseLeave  = { onMouseOut }
                 onMouseEnter  = { onMouseOver }>
                 <InputField

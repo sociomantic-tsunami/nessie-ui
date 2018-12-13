@@ -10,10 +10,9 @@
 /* eslint-disable no-magic-numbers */
 
 import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount }          from 'enzyme';
 
 import { Tag, TagInput }  from '../index';
-import styles             from './tagInput.css';
 
 describe( 'TagInput', () =>
 {
@@ -23,9 +22,9 @@ describe( 'TagInput', () =>
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <TagInput cssMap = { styles } /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
+        wrapper  = mount( <TagInput /> );
+        instance = wrapper.instance();
+        cssMap   = wrapper.instance().context.TagInput;
     } );
 
     describe( 'constructor( props )', () =>
@@ -102,8 +101,8 @@ describe( 'TagInputDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TagInput cssMap = { styles } /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <TagInput /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'blur()', () =>

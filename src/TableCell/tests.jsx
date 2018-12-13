@@ -21,7 +21,7 @@ describe( 'TableCellDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TableCell /> );
+        wrapper = mount( <TableCell /> );
         driver  = wrapper.driver();
     } );
 

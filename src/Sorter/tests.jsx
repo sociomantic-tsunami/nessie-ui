@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Sorter }   from '../index';
-import styles       from './sorter.css';
 
 describe( 'Sorter', () =>
 {
@@ -21,7 +20,7 @@ describe( 'Sorter', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Sorter cssMap = { styles } /> );
+        wrapper = mount( <Sorter /> );
     } );
 
     test( 'should render <Sorter/>', () =>
@@ -31,8 +30,8 @@ describe( 'Sorter', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Sorter.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 } );
 
@@ -43,7 +42,7 @@ describe( 'SorterDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Sorter cssMap = { styles } /> );
+        wrapper = mount( <Sorter /> );
         driver  = wrapper.driver();
     } );
 

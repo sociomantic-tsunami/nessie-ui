@@ -20,7 +20,7 @@ describe( 'PasswordInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <PasswordInput /> );
+        wrapper = shallow( <PasswordInput /> );
     } );
 
     test( 'should contain exactly one TextInputWithIcon', () =>

@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { NavItem }  from '../index';
-import styles       from './navItem.css';
 
 describe( 'NavItem', () =>
 {
@@ -22,8 +21,7 @@ describe( 'NavItem', () =>
     beforeEach( () =>
     {
         const props = {
-            cssMap : styles,
-            label  : 'testLabel',
+            label : 'testLabel',
         };
 
         wrapper = mount( <NavItem { ...props } /> );
@@ -31,7 +29,8 @@ describe( 'NavItem', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavItem.default}` ) )
             .toHaveLength( 1 );
     } );
 } );
@@ -45,12 +44,11 @@ describe( 'NavItemDriver', () =>
     beforeEach( () =>
     {
         const props = {
-            cssMap : styles,
-            label  : 'Cthulhu',
+            label : 'Cthulhu',
         };
 
         wrapper = mount(  <NavItem { ...props } /> );
-        driver = wrapper.driver();
+        driver  = wrapper.driver();
     } );
 
 

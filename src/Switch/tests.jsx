@@ -9,11 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import { Switch }         from '../index';
-import styles             from './switch.css';
+import { Switch }   from '../index';
 
 describe( 'Switch', () =>
 {
@@ -21,17 +20,15 @@ describe( 'Switch', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Switch cssMap = { styles } /> );
+        wrapper = mount( <Switch /> );
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
-        wrapper.setProps( { cssMap: styles, isDisabled: true } );
-        console.log( wrapper.debug() );
+        wrapper.setProps( { isDisabled: true } );
 
-        const input = wrapper.find( `.${wrapper.props().cssMap.input}` );
-
-        expect( input.prop( 'disabled' ) ).toBe( true );
+        expect( wrapper.find( `.${wrapper.instance().context.Switch.input}` )
+            .prop( 'disabled' ) ).toBe( true );
     } );
 } );
 
@@ -42,7 +39,7 @@ describe( 'SwitchDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Switch cssMap = { styles } /> );
+        wrapper = mount( <Switch /> );
         driver  = wrapper.driver();
     } );
 

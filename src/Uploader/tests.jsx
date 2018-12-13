@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { Uploader } from '../index';
-import styles       from './uploader.css';
 
 describe( 'Uploader', () =>
 {
@@ -23,7 +22,7 @@ describe( 'Uploader', () =>
     {
         beforeEach( () =>
         {
-            wrapper = mount( <Uploader cssMap = { styles } /> );
+            wrapper = mount( <Uploader /> );
         } );
 
         test( 'it should render an <input type="file">', () =>
@@ -121,6 +120,7 @@ state', () =>
     } );
 } );
 
+
 describe( 'UploaderDriver', () =>
 {
     let wrapper;
@@ -128,7 +128,7 @@ describe( 'UploaderDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Uploader cssMap = { styles } /> );
+        wrapper = mount( <Uploader /> );
         driver  = wrapper.driver();
     } );
 

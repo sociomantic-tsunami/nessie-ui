@@ -13,7 +13,6 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { DragNDrop, Text }  from '../index';
-import styles               from './dragNDrop.css';
 
 describe( 'DragNDrop', () =>
 {
@@ -21,7 +20,7 @@ describe( 'DragNDrop', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <DragNDrop cssMap = { styles } /> );
+        wrapper = mount( <DragNDrop /> );
     } );
 
     describe( 'render()', () =>

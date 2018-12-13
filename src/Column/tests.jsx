@@ -12,7 +12,6 @@
 import React        from 'react';
 import { mount }    from 'enzyme';
 
-import styles       from './column.css';
 import { Column }   from '../index';
 
 describe( 'Column', () =>
@@ -21,12 +20,13 @@ describe( 'Column', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Column cssMap = { styles } /> );
+        wrapper = mount( <Column /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Column.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

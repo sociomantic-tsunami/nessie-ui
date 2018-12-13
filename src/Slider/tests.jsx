@@ -13,7 +13,6 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { Label, Slider }    from '../index';
-import styles               from './slider.css';
 
 const noop = () => null;
 
@@ -24,7 +23,7 @@ describe( 'Slider', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Slider cssMap = { styles } /> );
+        wrapper = mount( <Slider /> );
 
         fakeBoundingRect = {
             top    : 0,
@@ -38,7 +37,8 @@ describe( 'Slider', () =>
 
     test( 'should have slider__default as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -49,33 +49,33 @@ describe( 'Slider', () =>
 
     test( 'should contain <div class="slider__trackFill">', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).trackFill}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.trackFill}` ) )
             .toHaveLength( 1 );
     } );
 
     test( 'should have slider__disabled if isDisabled = true', () =>
     {
         const props = {
-            cssMap     : styles,
             isDisabled : true,
         };
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.disabled}` ) )
             .toHaveLength( 1 );
     } );
 
     test( 'should have slider__error if hasError = true', () =>
     {
         const props = {
-            cssMap   : styles,
             hasError : true,
         };
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider.error}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -84,13 +84,12 @@ describe( 'Slider', () =>
         () =>
         {
             const props = {
-                cssMap          : styles,
                 hasHandleLabels : true,
             };
 
             wrapper = mount( <Slider { ...props } /> );
 
-            expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+            expect( wrapper.find( `.${wrapper.instance().context.Slider
                 .hasHandleLabels}` ) ).toHaveLength( 1 );
         },
     );
@@ -98,8 +97,7 @@ describe( 'Slider', () =>
     test( 'should contain a label if filled', () =>
     {
         const props = {
-            cssMap : styles,
-            label  : 'label',
+            label : 'label',
         };
 
         wrapper = mount( <Slider { ...props } /> );
@@ -111,7 +109,6 @@ describe( 'Slider', () =>
     populated', () =>
     {
         const props = {
-            cssMap         : styles,
             stepLabelStart : 'Today',
             stepLabelEnd   : 'Future',
             stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
@@ -122,7 +119,8 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).stepLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.stepLabel}` ) )
             .toHaveLength( 5 );
     } );
 
@@ -130,7 +128,6 @@ describe( 'Slider', () =>
     test( 'should contain N inputs if value is array of length N', () =>
     {
         let props = {
-            cssMap   : styles,
             value    : [ 1 ],
             onChange : noop,
         };
@@ -141,7 +138,6 @@ describe( 'Slider', () =>
         expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
 
         props = {
-            cssMap   : styles,
             value    : [ 1, 2, 3 ],
             onChange : noop,
         };
@@ -154,7 +150,6 @@ describe( 'Slider', () =>
     test( 'should contain N handle labels if value is array of length N', () =>
     {
         let props = {
-            cssMap   : styles,
             value    : [ 1 ],
             onChange : noop,
         };
@@ -162,25 +157,25 @@ describe( 'Slider', () =>
         wrapper = mount( <Slider { ...props } /> );
 
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
 
         props = {
-            cssMap   : styles,
             value    : [ 1, 2, 3 ],
             onChange : noop,
         };
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 3 );
     } );
 
     test( 'should set correct position of the handle label', () =>
     {
         let props = {
-            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'top',
             hasHandleLabels     : true,
@@ -189,13 +184,13 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__top}` ) ).toHaveLength( 1 );
 
         props = {
-            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'right',
             hasHandleLabels     : true,
@@ -204,13 +199,13 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__right}` ) ).toHaveLength( 1 );
 
         props = {
-            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'bottom',
             hasHandleLabels     : true,
@@ -219,13 +214,13 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__bottom}` ) ).toHaveLength( 1 );
 
         props = {
-            cssMap              : styles,
             value               : [ 1 ],
             handleLabelPosition : 'left',
             hasHandleLabels     : true,
@@ -234,9 +229,10 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__left}` ) ).toHaveLength( 1 );
     } );
 
@@ -254,7 +250,6 @@ describe( 'Slider', () =>
         test( 'should return a value within min/max values', () =>
         {
             const props = {
-                cssMap        : styles,
                 isLogarithmic : false,
                 value         : [ 50, 150 ],
                 minValue      : 0,
@@ -281,7 +276,6 @@ describe( 'Slider', () =>
         test( 'should be triggered when mousedown in the handle', () =>
         {
             const props = {
-                cssMap   : styles,
                 value    : 150,
                 onChange : noop,
             };
@@ -293,7 +287,7 @@ describe( 'Slider', () =>
             slider.forceUpdate();
             wrapper.update();
 
-            wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
+            wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
                 .simulate( 'mousedown' );
 
             expect( handleDown ).toBeCalledTimes( 1 );
@@ -304,7 +298,6 @@ describe( 'Slider', () =>
             () =>
             {
                 const props = {
-                    cssMap   : styles,
                     value    : [ 50 ],
                     onChange : noop,
                 };
@@ -318,7 +311,7 @@ describe( 'Slider', () =>
                 const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
                 const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
 
-                wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
+                wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
                     .simulate( 'mousedown' );
 
                 expect( eventListenerSpy )
@@ -359,8 +352,8 @@ describe( 'Slider', () =>
 describe( 'SliderDriver', () =>
 {
     let wrapper;
-    let driver;
     let cssMap;
+    let driver;
     let outer;
     let track;
     let inputContainer;
@@ -368,7 +361,6 @@ describe( 'SliderDriver', () =>
     beforeEach( () =>
     {
         const props = {
-            cssMap   : styles,
             label    : 'Cthulhu',
             maxValue : 200,
             minValue : 0,
@@ -377,7 +369,7 @@ describe( 'SliderDriver', () =>
 
         wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
-        cssMap  = wrapper.prop( 'cssMap' );
+        cssMap  = wrapper.instance().context.Slider;
         outer   = wrapper.find( `.${cssMap.default}` ).first();
         track   = wrapper.find( `.${cssMap.track}` );
         inputContainer = wrapper.find( `.${cssMap.inputContainer}` );

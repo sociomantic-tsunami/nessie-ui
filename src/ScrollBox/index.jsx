@@ -414,14 +414,13 @@ export default class ScrollBox extends React.Component
 
         const { props } = this;
         const {
+            cssMap = evalTheme( this.context.ScrollBox, this.props ),
             scroll,
             onThumbDragStartX,
             onThumbDragEndX,
             onThumbDragStartY,
             onThumbDragEndY,
         } = props;
-
-        const cssMap = evalTheme( this.context.ScrollBox, this.props );
 
         const scrollBars = [];
 
@@ -476,6 +475,9 @@ export default class ScrollBox extends React.Component
     renderScrollButtons()
     {
         const { props } = this;
+        const {
+            cssMap = evalTheme( this.context.ScrollBox, this.props ),
+        } = props;
         const scrollButtons = [];
 
         [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
@@ -485,7 +487,7 @@ export default class ScrollBox extends React.Component
                 if ( this.handleRenderScrollButton( dir ) )
                 {
                     scrollButtons.push( <IconButton
-                        className     = { props.cssMap[ `icon${dir}` ] }
+                        className     = { cssMap[ `icon${dir}` ] }
                         hasBackground = {
                             props.scrollIndicatorVariant === 'circle' }
                         iconSize      = "S"

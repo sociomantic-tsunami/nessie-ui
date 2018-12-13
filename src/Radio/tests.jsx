@@ -14,8 +14,6 @@ import { mount }    from 'enzyme';
 
 import Checkable    from '../proto/Checkable';
 import { Radio }    from '../index';
-import styles       from './radio.css';
-
 
 describe( 'Radio', () =>
 {
@@ -23,7 +21,7 @@ describe( 'Radio', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Radio cssMap = { styles } /> );
+        wrapper = mount( <Radio /> );
     } );
 
     describe( 'render()', () =>
@@ -91,8 +89,8 @@ describe( 'RadioDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Radio cssMap = { styles } /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Radio /> );
+        driver  = wrapper.driver();
     } );
 
 

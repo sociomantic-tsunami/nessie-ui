@@ -19,7 +19,6 @@ import {
     TextInputWithIcon as WrappedTextInputWithIcon,
     Tooltip,
 } from '../index';
-import styles            from './textInputWithIcon.css';
 
 describe( 'TextInputWithIcon', () =>
 {
@@ -27,7 +26,7 @@ describe( 'TextInputWithIcon', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextInputWithIcon cssMap = { styles } /> );
+        wrapper  = shallow( <TextInputWithIcon /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

@@ -13,7 +13,6 @@ import React                from 'react';
 import { shallow, mount }   from 'enzyme';
 
 import { Icon, IconButton } from '../index';
-import styles               from './iconButton.css';
 
 describe( 'IconButton', () =>
 {
@@ -22,7 +21,7 @@ describe( 'IconButton', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <IconButton cssMap = { styles } /> );
+        wrapper  = shallow( <IconButton /> );
         instance = wrapper.instance();
     } );
 
@@ -81,7 +80,7 @@ describe( 'IconButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <IconButton cssMap = { styles } /> );
+        wrapper = mount( <IconButton /> );
         driver  = wrapper.driver();
     } );
 

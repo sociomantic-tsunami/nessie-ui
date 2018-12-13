@@ -21,8 +21,8 @@ describe( 'DateTimeInputDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <DateTimeInput /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <DateTimeInput /> );
+        driver  = wrapper.driver();
     } );
 
 

@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import Checkable    from '../proto/Checkable';
-import styles       from './checkbox.css';
 import { Checkbox } from '../index';
 
 describe( 'Checkbox', () =>
@@ -22,7 +21,7 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Checkbox cssMap = { styles } /> );
+        wrapper = mount( <Checkbox /> );
     } );
 
     describe( 'render()', () =>
@@ -112,8 +111,8 @@ describe( 'CheckboxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Checkbox cssMap = { styles } /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Checkbox /> );
+        driver  = wrapper.driver();
     } );
 
 

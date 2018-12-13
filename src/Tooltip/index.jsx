@@ -194,7 +194,6 @@ and will be removed in a future major release.' );
                         position,
                         role,
                     } ) }
-                    cssMap       = { cssMap }
                     onMouseEnter = { onMouseOver }
                     onMouseLeave = { onMouseOut }>
                     { contentNode &&
@@ -220,7 +219,6 @@ and will be removed in a future major release.' );
                     position,
                     role,
                 } ) }
-                cssMap       = { cssMap }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { tooltip }

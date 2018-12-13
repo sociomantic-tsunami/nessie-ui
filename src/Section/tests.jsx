@@ -13,7 +13,6 @@ import React                from 'react';
 import { shallow }          from 'enzyme';
 
 import { H1, H4, Section }  from '../index';
-import styles               from './section.css';
 
 describe( 'Section', () =>
 {
@@ -21,7 +20,7 @@ describe( 'Section', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Section cssMap = { styles } /> );
+        wrapper = shallow( <Section /> );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>

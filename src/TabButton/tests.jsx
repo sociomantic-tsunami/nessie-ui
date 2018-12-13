@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { TabButton }    from '../index';
-import styles           from './tabButton.css';
 
 describe( 'TabButton', () =>
 {
@@ -21,7 +20,7 @@ describe( 'TabButton', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TabButton cssMap = { styles } /> );
+        wrapper = mount( <TabButton /> );
     } );
 
     describe( 'render()', () =>
@@ -40,8 +39,8 @@ describe( 'TabButton Driver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TabButton cssMap = { styles } /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <TabButton /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'click()', () =>

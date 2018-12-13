@@ -23,9 +23,7 @@ export default class PasswordInput
 
     blur()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'blur', 'disabled' ) );
         }
@@ -36,9 +34,7 @@ export default class PasswordInput
 
     focus()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'focus', 'disabled' ) );
         }
@@ -49,14 +45,13 @@ export default class PasswordInput
 
     change( val )
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly || props.isReadOnlyInput )
+        if ( this.wrapper.props().isReadOnly ||
+            this.wrapper.props().isReadOnlyInput )
         {
             throw new Error( ERR.PASS_ERR( 'change', 'read only' ) );
         }
@@ -67,9 +62,7 @@ export default class PasswordInput
 
     keyPress( keyCode )
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'keyPress', 'disabled' ) );
         }
@@ -92,14 +85,13 @@ export default class PasswordInput
 
     clickIcon()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.PASS_ERR( 'clickIcon', 'disabled' ) );
         }
 
-        if ( props.isReadOnly || props.isReadOnlyButton )
+        if ( this.wrapper.props().isReadOnly ||
+            this.wrapper.props().isReadOnlyButton )
         {
             throw new Error( ERR.PASS_ERR( 'clickIcon', 'read only' ) );
         }

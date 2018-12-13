@@ -7,7 +7,6 @@
  *
  */
 
-
 const ERR = {
     BUTTON_ERR : ( label, event, state ) =>
         `Button '${label}' cannot simulate ${event} since it is ${state}`,
@@ -18,26 +17,25 @@ export default class ButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.instance().context.Button;
         this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
 
     click()
     {
-        const props = this.wrapper.props();
         const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'click', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'click', 'read only' ) );
         }
 
-        if ( props.isLoading )
+        if ( this.wrapper.props().isLoading )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'click', 'loading' ) );
         }
@@ -48,15 +46,14 @@ export default class ButtonDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
         const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'disabled' ) );
         }
 
-        if ( props.isLoading )
+        if ( this.wrapper.props().isLoading )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOver', 'loading' ) );
         }
@@ -67,15 +64,14 @@ export default class ButtonDriver
 
     mouseOut()
     {
-        const props = this.wrapper.props();
         const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'disabled' ) );
         }
 
-        if ( props.isLoading )
+        if ( this.wrapper.props().isLoading )
         {
             throw new Error( ERR.BUTTON_ERR( label, 'mouseOut', 'loading' ) );
         }

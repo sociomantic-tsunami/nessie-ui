@@ -13,7 +13,6 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { StatusIndicator }  from '../index';
-import styles               from './statusIndicator.css';
 
 describe( 'StatusIndicator', () =>
 {
@@ -21,12 +20,12 @@ describe( 'StatusIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <StatusIndicator cssMap = { styles } /> );
+        wrapper = mount( <StatusIndicator /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .default}` ) ).toHaveLength( 1 );
     } );
 } );

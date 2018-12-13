@@ -13,8 +13,6 @@ import React                      from 'react';
 import { mount, shallow }         from 'enzyme';
 
 import { Button, Icon, Spinner }  from '../index';
-import styles                     from './button.css';
-
 
 describe( 'Button', () =>
 {
@@ -22,7 +20,7 @@ describe( 'Button', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Button cssMap = { styles } /> );
+        wrapper = shallow( <Button /> );
     } );
 
     describe( 'render()', () =>
@@ -105,9 +103,9 @@ describe( 'ButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Button cssMap = { styles } /> );
-        driver   = wrapper.driver();
-        button   = wrapper.find( 'button' ).first();
+        wrapper = mount( <Button /> );
+        driver  = wrapper.driver();
+        button  = wrapper.find( 'button' ).first();
     } );
 
     describe( 'constructor', () =>

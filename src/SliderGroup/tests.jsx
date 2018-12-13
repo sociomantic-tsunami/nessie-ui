@@ -13,7 +13,6 @@ import React                          from 'react';
 import { mount }                      from 'enzyme';
 
 import { Label, Slider, SliderGroup } from '../index';
-import styles                         from './sliderGroup.css';
 
 describe( 'SliderGroup', () =>
 {
@@ -21,7 +20,7 @@ describe( 'SliderGroup', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <SliderGroup cssMap = { styles } /> );
+        wrapper = mount( <SliderGroup /> );
     } );
 
     test( 'should render <SliderGroup/>', () =>
@@ -31,7 +30,8 @@ describe( 'SliderGroup', () =>
 
     test( 'should have sliderGroup__default as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.SliderGroup.default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -39,7 +39,6 @@ describe( 'SliderGroup', () =>
     test( 'should render all the individual sliders provided', () =>
     {
         const props = {
-            cssMap  : styles,
             sliders : [
                 { 'value': 50 },
                 { 'value': 80 },
@@ -54,7 +53,6 @@ describe( 'SliderGroup', () =>
     test( 'should render all the stepLabel labels provided', () =>
     {
         const props = {
-            cssMap     : styles,
             stepLabels : [
                 { 'stepLabel': 'No filter', 'step': 0 },
                 { 'stepLabel': 'Low', 'step': 25 },
@@ -62,16 +60,14 @@ describe( 'SliderGroup', () =>
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.stepLabelsContainer}` )
-            .children() ).toHaveLength( 2 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .stepLabelsContainer}` ).children() ).toHaveLength( 2 );
     } );
 
     test( 'should render all the slider labels provided', () =>
     {
         const props = {
-            cssMap         : styles,
             'sliderLabels' : [
                 'category 1',
                 'category 2',
@@ -81,10 +77,9 @@ describe( 'SliderGroup', () =>
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.sliderLabelContainer}` )
-            .find( Label ) ).toHaveLength( 4 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .sliderLabelContainer}` ).find( Label ) ).toHaveLength( 4 );
     } );
 
     test(
@@ -93,7 +88,6 @@ of ticks',
         () =>
         {
             const props = {
-                cssMap  : styles,
                 sliders : [
                     { 'value': 50 },
                     { 'value': 50 },
@@ -120,7 +114,6 @@ of ticks',
     test( 'Individul sliders should ignore label and stepLabel props', () =>
     {
         const props = {
-            cssMap  : styles,
             sliders : [
                 {
                     'value'      : 50,
@@ -154,26 +147,24 @@ of ticks',
     test( 'should have sliderGroup__disabled if isDisabled = true', () =>
     {
         const props = {
-            cssMap     : styles,
             isDisabled : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .disabled}` ) ).toHaveLength( 1 );
     } );
 
     test( 'should have sliderGroup__error if hasError = true', () =>
     {
         const props = {
-            cssMap   : styles,
             hasError : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .error}` ) ).toHaveLength( 1 );
     } );
 
     test(
@@ -182,7 +173,6 @@ to the individual sliders if defined',
         () =>
         {
             const props = {
-                cssMap     : styles,
                 sliders    : [ { 'value': 50 }, { 'value': 50 } ],
                 isReadOnly : true,
                 isDisabled : true,
@@ -206,7 +196,6 @@ individual sliders if defined',
         () =>
         {
             const props = {
-                cssMap   : styles,
                 sliders  : [ { 'value': 50, 'minValue': 10, 'maxValue': 90 } ],
                 minValue : 0,
                 maxValue : 500,
@@ -224,7 +213,6 @@ the a orientation is individually passed as horizontal in sliders array ',
         () =>
         {
             const props = {
-                cssMap  : styles,
                 sliders : [ { 'value': 50, 'orientation': 'horizontal' } ],
             };
 
@@ -239,7 +227,6 @@ the a orientation is individually passed as horizontal in sliders array ',
         test( 'should be undefined by default', () =>
         {
             const props = {
-                cssMap  : styles,
                 sliders : [ { 'value': 50 } ],
             };
 
@@ -256,7 +243,7 @@ describe( 'SliderGroupDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <SliderGroup cssMap = { styles } /> );
+        wrapper = mount( <SliderGroup /> );
         driver  = wrapper.driver();
     } );
 
@@ -266,7 +253,6 @@ describe( 'SliderGroupDriver', () =>
         {
             const onChangeSlider = jest.fn();
             wrapper.setProps( {
-                cssMap  : styles,
                 sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
             } );
 
@@ -282,7 +268,6 @@ onChange event if the function is provided in proptype OnChange',
                 const onChangeSlider = jest.fn();
                 const onChangeSliderGroup = jest.fn();
                 wrapper.setProps( {
-                    cssMap   : styles,
                     onChange : onChangeSliderGroup,
                     sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
                 } );

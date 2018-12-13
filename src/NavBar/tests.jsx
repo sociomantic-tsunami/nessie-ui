@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { NavBar }   from '../index';
-import styles       from './navBar.css';
 
 describe( 'NavBar', () =>
 {
@@ -21,12 +20,13 @@ describe( 'NavBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavBar cssMap = { styles } /> );
+        wrapper = mount( <NavBar /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavBar.default}` ).first() )
             .toHaveLength( 1 );
     } );
 } );

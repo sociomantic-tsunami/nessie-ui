@@ -8,6 +8,7 @@
  */
 
 /* eslint-disable valid-jsdoc, no-magic-numbers */
+
 import { IconButton, IconWithTooltip } from 'nessie-ui';
 
 /* eslint-disable max-len */
@@ -21,7 +22,7 @@ export default class ModuleDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.instance().context.Module;
     }
 
     /**

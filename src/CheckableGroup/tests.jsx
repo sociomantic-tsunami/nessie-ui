@@ -13,7 +13,6 @@ import React                        from 'react';
 import { mount }                    from 'enzyme';
 
 import { Checkbox, CheckableGroup } from '../index';
-import styles                       from './checkableGroup.css';
 
 describe( 'CheckableGroupDriver', () =>
 {
@@ -22,10 +21,9 @@ describe( 'CheckableGroupDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <CheckableGroup cssMap = { styles } /> );
+        wrapper = mount( <CheckableGroup /> );
         driver  = wrapper.driver();
     } );
-
 
     describe( 'change( index )', () =>
     {

@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { ProgressBar }  from '../index';
-import styles           from './progressBar.css';
 
 describe( 'ProgressBar', () =>
 {
@@ -21,12 +20,13 @@ describe( 'ProgressBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ProgressBar cssMap = { styles } /> );
+        wrapper = mount( <ProgressBar /> );
     } );
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.ProgressBar.default}` ) )
             .toHaveLength( 1 );
     } );
     test( 'should contain a ProgressBar', () =>

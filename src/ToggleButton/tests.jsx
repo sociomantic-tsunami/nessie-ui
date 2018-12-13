@@ -13,7 +13,6 @@ import React                    from 'react';
 import { shallow, mount }       from 'enzyme';
 
 import { Icon, ToggleButton }   from '../index';
-import styles                   from './toggleButton.css';
 
 describe( 'ToggleButton', () =>
 {
@@ -21,7 +20,7 @@ describe( 'ToggleButton', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <ToggleButton cssMap = { styles } /> );
+        wrapper = shallow( <ToggleButton /> );
     } );
 
     test( '<button> should always have type "button"', () =>
@@ -179,9 +178,9 @@ describe( 'ToggleButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ToggleButton cssMap = { styles } /> );
-        driver   = wrapper.driver();
-        button   = wrapper.find( 'button' ).first();
+        wrapper = mount( <ToggleButton /> );
+        driver  = wrapper.driver();
+        button  = wrapper.find( 'button' ).first();
     } );
 
     describe( 'constructor', () =>

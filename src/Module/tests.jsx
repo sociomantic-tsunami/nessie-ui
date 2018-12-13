@@ -14,7 +14,6 @@ import React                               from 'react';
 import { mount, shallow }                  from 'enzyme';
 
 import { H2, H3, IconWithTooltip, Module } from '../index';
-import styles                              from './module.css';
 
 describe( 'Module', () =>
 {
@@ -23,7 +22,7 @@ describe( 'Module', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Module cssMap = { styles } /> );
+        wrapper  = shallow( <Module /> );
         instance = wrapper.instance();
     } );
 
@@ -179,7 +178,7 @@ describe( 'ModuleDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Module cssMap = { styles } /> );
+        wrapper = mount( <Module /> );
         driver  = wrapper.driver();
     } );
 
@@ -243,7 +242,8 @@ describe( 'ModuleDriver', () =>
                 customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
-            const header = wrapper.find( `.${wrapper.props().cssMap.header}` )
+            const header = wrapper
+                .find( `.${wrapper.instance().context.Module.header}` )
                 .children();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
         } );

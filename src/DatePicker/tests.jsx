@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { DatePicker }   from '../index';
-import styles           from './datePicker.css';
 
 describe( 'DatePickerDriver', () =>
 {
@@ -22,8 +21,8 @@ describe( 'DatePickerDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <DatePicker cssMap = { styles } /> );
-        driver = wrapper.driver();
+        wrapper = mount( <DatePicker /> );
+        driver  = wrapper.driver();
     } );
 
 

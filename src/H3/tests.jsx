@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { H3 }       from '../index';
-import styles       from './h3.css';
 
 describe( 'H3', () =>
 {
@@ -21,12 +20,12 @@ describe( 'H3', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <H3 cssMap = { styles } /> );
+        wrapper = mount( <H3 /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.H3.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

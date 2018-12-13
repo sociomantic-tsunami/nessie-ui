@@ -13,7 +13,6 @@ import React                        from 'react';
 import { mount, shallow }           from 'enzyme';
 
 import { IconWithTooltip, Tooltip } from '../index';
-import styles                       from './iconWithTooltip.css';
 
 describe( 'IconWithTooltip', () =>
 {
@@ -21,7 +20,7 @@ describe( 'IconWithTooltip', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <IconWithTooltip cssMap = { styles } /> );
+        wrapper = shallow( <IconWithTooltip /> );
     } );
 
     describe( 'props', () =>
@@ -114,7 +113,7 @@ describe( 'IconWithTooltipDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <IconWithTooltip cssMap = { styles } /> );
+        wrapper = mount( <IconWithTooltip /> );
         driver  = wrapper.driver();
     } );
 

@@ -19,7 +19,7 @@ export default class ModalDialogDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.instance().context.ModalDialog;
         this.overlay = wrapper.find( `.${this.cssMap.default}` );
 
         this.closeButton = wrapper.find( `.${this.cssMap.header}` )

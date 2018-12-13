@@ -18,7 +18,7 @@ export default class SliderDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.prop( 'cssMap' );
+        this.cssMap  = wrapper.instance().context.Slider;
         this.label   = wrapper.prop( 'label' );
 
         this.inputContainer = wrapper.find( `.${this.cssMap.inputContainer}` );

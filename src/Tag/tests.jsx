@@ -13,7 +13,6 @@ import React                from 'react';
 import { mount }            from 'enzyme';
 
 import { IconButton, Tag }  from '../index';
-import styles               from './tag.css';
 
 describe( 'Tag', () =>
 {
@@ -21,7 +20,7 @@ describe( 'Tag', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tag cssMap = { styles } /> );
+        wrapper = mount( <Tag /> );
     } );
 
     test( 'should render <Tag/>', () =>
@@ -31,8 +30,8 @@ describe( 'Tag', () =>
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Switch.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 
     test( 'should have an IconButton as a child', () =>
@@ -75,7 +74,7 @@ describe( 'TagDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Tag cssMap = { styles } /> );
+        wrapper = mount( <Tag /> );
     } );
 
     describe( 'clickClose()', () =>

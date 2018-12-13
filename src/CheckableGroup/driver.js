@@ -9,12 +9,10 @@
 
 import { Checkbox, Radio } from 'nessie-ui';
 
-
 const ERR = {
     CHECKABLEGROUP_ERR : ( event, state ) => `CheckableGroup cannot simulate \
 ${event} since it is ${state}`,
 };
-
 
 export default class CheckableGroupDriver
 {
@@ -28,15 +26,13 @@ export default class CheckableGroupDriver
 
     change( index = 0 )
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .CHECKABLEGROUP_ERR( 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR
                 .CHECKABLEGROUP_ERR( 'change', 'read only' ) );

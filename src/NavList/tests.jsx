@@ -13,7 +13,6 @@ import React        from 'react';
 import { mount }    from 'enzyme';
 
 import { NavList }  from '../index';
-import styles       from './navList.css';
 
 describe( 'NavList', () =>
 {
@@ -21,12 +20,13 @@ describe( 'NavList', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavList cssMap = { styles } /> );
+        wrapper = mount( <NavList /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavList.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

@@ -13,7 +13,6 @@ import React            from 'react';
 import { mount }        from 'enzyme';
 
 import { MessageBox }   from '../index';
-import styles           from './messageBox.css';
 
 describe( 'MessageBox', () =>
 {
@@ -21,12 +20,13 @@ describe( 'MessageBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <MessageBox cssMap = { styles } /> );
+        wrapper = mount( <MessageBox /> );
     } );
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper
+            .find( `.${wrapper.instance().context.MessageBox.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 } );

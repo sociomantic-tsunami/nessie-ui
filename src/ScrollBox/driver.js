@@ -23,7 +23,8 @@ export default class ScrollBoxDriver
     {
         this.wrapper   = wrapper;
         this.props     = wrapper.props();
-        this.scrollBox = wrapper.find( `.${wrapper.prop( 'cssMap' ).inner}` );
+        this.cssMap    = wrapper.instance().context.ScrollBox;
+        this.scrollBox = wrapper.find( `.${this.cssMap.inner}` );
     }
 
     clickScrollUp()
@@ -34,7 +35,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollUpIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconUp}` )
+        this.wrapper.find( `.${this.cssMap.iconUp}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -47,7 +48,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollRightIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconRight}` )
+        this.wrapper.find( `.${this.cssMap.iconRight}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -60,7 +61,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollDownIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconDown}` )
+        this.wrapper.find( `.${this.cssMap.iconDown}` )
             .first().simulate( 'click' );
         return this;
     }
@@ -73,7 +74,7 @@ export default class ScrollBoxDriver
                 .SCROLL_CANNOT_BE_CLICKED( 'scrollLeftIsVisible' ) );
         }
 
-        this.wrapper.find( `.${this.wrapper.prop( 'cssMap' ).iconLeft}` )
+        this.wrapper.find( `.${this.cssMap.iconLeft}` )
             .first().simulate( 'click' );
         return this;
     }
