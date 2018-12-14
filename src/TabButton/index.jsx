@@ -11,92 +11,102 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import styles               from './tabButton.css';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const TabButton = ( {
-    buttonRef,
-    className,
-    cssMap,
-    isActive,
-    isDisabled,
-    label,
-    onClick,
-    subtitle,
-    tabIndex,
-} ) => (
-    <button
-        className = { buildClassName( className, cssMap, {
-            active : isActive,
-        } ) }
-        disabled = { isDisabled }
-        onClick  = { onClick }
-        ref      = { buttonRef }
-        role     = "tab"
-        value    = { String( tabIndex ) }>
-        <div className = { cssMap.content }>
-            <div className = { cssMap.label }>
-                { label }
-                { subtitle &&
-                    <span className = { cssMap.subtitle }>
-                        { subtitle }
-                    </span>
-                }
-            </div>
-        </div>
-    </button>
-);
-
-TabButton.propTypes =
+export default class TabButton extends React.Component
 {
-    /**
-     * Callback that receives the native <button>: ( ref ) => { ... }
-     */
-    buttonRef  : PropTypes.func,
-    /**
-     *  Extra CSS class name
-     */
-    className  : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Display as active
-     */
-    isActive   : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled : PropTypes.bool,
-    /**
-     *  Label text
-     */
-    label      : PropTypes.string,
-    /**
-     *  Click callback function: ( e ) => { ... }
-     */
-    onClick    : PropTypes.func,
-    /**
-     * Subtitle text
-     */
-    subtitle   : PropTypes.string,
-    /**
-     *  Index of this tab
-     */
-    tabIndex   : PropTypes.number,
-};
+    static contextType = ThemeContext;
 
-TabButton.defaultProps =
-{
-    buttonRef  : undefined,
-    className  : undefined,
-    cssMap     : styles,
-    isActive   : false,
-    isDisabled : false,
-    label      : undefined,
-    onClick    : undefined,
-    subtitle   : undefined,
-    tabIndex   : 0,
-};
+    static propTypes =
+    {
+        /**
+         * Callback that receives the native <button>: ( ref ) => { ... }
+         */
+        buttonRef  : PropTypes.func,
+        /**
+         *  Extra CSS class name
+         */
+        className  : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap     : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Display as active
+         */
+        isActive   : PropTypes.bool,
+        /**
+         *  Display as disabled
+         */
+        isDisabled : PropTypes.bool,
+        /**
+         *  Label text
+         */
+        label      : PropTypes.string,
+        /**
+         *  Click callback function: ( e ) => { ... }
+         */
+        onClick    : PropTypes.func,
+        /**
+         * Subtitle text
+         */
+        subtitle   : PropTypes.string,
+        /**
+         *  Index of this tab
+         */
+        tabIndex   : PropTypes.number,
+    };
 
-export default TabButton;
+    static defaultProps =
+    {
+        buttonRef  : undefined,
+        className  : undefined,
+        isActive   : false,
+        isDisabled : false,
+        label      : undefined,
+        onClick    : undefined,
+        subtitle   : undefined,
+        tabIndex   : 0,
+    };
+
+    static displayName = 'TabButton';
+
+    render()
+    {
+        const {
+            buttonRef,
+            className,
+            cssMap = createCssMap( this.context.TabButton, this.props ),
+            isActive,
+            isDisabled,
+            label,
+            onClick,
+            subtitle,
+            tabIndex,
+        } = this.props;
+
+        return (
+            <button
+                className = { buildClassName( className, cssMap, {
+                    active : isActive,
+                } ) }
+                disabled = { isDisabled }
+                onClick  = { onClick }
+                ref      = { buttonRef }
+                role     = "tab"
+                value    = { String( tabIndex ) }>
+                <div className = { cssMap.content }>
+                    <div className = { cssMap.label }>
+                        { label }
+                        { subtitle &&
+                            <span className = { cssMap.subtitle }>
+                                { subtitle }
+                            </span>
+                        }
+                    </div>
+                </div>
+            </button>
+        );
+    }
+}

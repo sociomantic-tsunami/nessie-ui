@@ -21,8 +21,8 @@ describe( 'PaginatorDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Paginator /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Paginator /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickPrev()', () =>

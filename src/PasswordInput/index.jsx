@@ -199,7 +199,6 @@ PasswordInput.defaultProps =
 {
     aria                  : undefined,
     className             : undefined,
-    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     errorMessagePosition  : 'top',
@@ -234,5 +233,7 @@ PasswordInput.defaultProps =
     textAlign             : 'auto',
     value                 : '',
 };
+
+PasswordInput.displayName = 'PasswordInput';
 
 export default PasswordInput;

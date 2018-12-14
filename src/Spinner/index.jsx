@@ -7,28 +7,45 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
+import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const Spinner = ( { cssMap, className, size } ) =>
-    <div className = { buildClassName( className, cssMap, { size } ) } />;
-
-Spinner.propTypes =
+export default class Spinner extends React.Component
 {
-    /**
-     *  Size of the Spinner
-     */
-    size : PropTypes.oneOf( [ 'small',
-        'big',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-Spinner.defaultProps =
-{
-    cssMap : require( './spinner.css' ),
-    size   : 'small',
-};
+    static propTypes =
+    {
+        /**
+         *  Size of the Spinner
+         */
+        size : PropTypes.oneOf( [ 'small',
+            'big',
+        ] ),
+    };
 
-export default Spinner;
+    static defaultProps =
+    {
+        size : 'small',
+    };
+
+    static displayName = 'Spinner';
+
+    render()
+    {
+        const {
+            className,
+            cssMap = createCssMap( this.context.Spinner, this.props ),
+            size,
+        } = this.props;
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, { size } ) } />
+        );
+    }
+}

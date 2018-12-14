@@ -7,19 +7,21 @@
  *
  */
 
-import React, { Component }    from 'react';
-import PropTypes               from 'prop-types';
-import isEqual                 from 'lodash.isequal';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
+import isEqual                      from 'lodash.isequal';
 
-import { createScrollHandler } from './utils';
-import { buildClassName }      from '../utils';
-import styles                  from './scrollBox.css';
-import IconButton              from '../IconButton';
-import ScrollBar               from '../ScrollBar';
+import { createScrollHandler }      from './utils';
+import { buildClassName }           from '../utils';
+import { IconButton, ScrollBar }    from '../index';
+import ThemeContext                 from '../Theming/ThemeContext';
+import { createCssMap }             from '../Theming/createCss';
 
 
-export default class ScrollBox extends Component
+export default class ScrollBox extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -57,7 +59,7 @@ export default class ScrollBox extends Component
         /**
          *  on Thumb Drag Start horizontal callback function
          */
-        onThumbDragStartX : PropTypes.func,
+        onThumbDragStartX  : PropTypes.func,
         /**
          *  on Thumb Drag End horizontal callback function
          */
@@ -150,7 +152,6 @@ export default class ScrollBox extends Component
         children               : undefined,
         className              : undefined,
         contentWidth           : undefined,
-        cssMap                 : styles,
         height                 : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
@@ -174,6 +175,8 @@ export default class ScrollBox extends Component
         scrollRightIsVisible   : false,
         scrollUpIsVisible      : false,
     };
+
+    static displayName = 'ScrollBox';
 
     constructor()
     {
@@ -411,7 +414,7 @@ export default class ScrollBox extends Component
 
         const { props } = this;
         const {
-            cssMap,
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
             scroll,
             onThumbDragStartX,
             onThumbDragEndX,
@@ -472,22 +475,28 @@ export default class ScrollBox extends Component
     renderScrollButtons()
     {
         const { props } = this;
+        const {
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
+        } = props;
         const scrollButtons = [];
 
         [ 'Up', 'Down', 'Left', 'Right' ].forEach( dir =>
         {
             if ( props[ `scroll${dir}IsVisible` ] )
             {
-                scrollButtons.push( <IconButton
-                    className     = { props.cssMap[ `icon${dir}` ] }
-                    hasBackground = {
-                        props.scrollIndicatorVariant === 'circle' }
-                    iconSize      = "S"
-                    iconType      = { dir.toLowerCase() }
-                    key           = { dir }
-                    onClick       = { e =>
-                        this.handleClickScrollButton( dir, e )
-                    } /> );
+                if ( this.handleRenderScrollButton( dir ) )
+                {
+                    scrollButtons.push( <IconButton
+                        className     = { cssMap[ `icon${dir}` ] }
+                        hasBackground = {
+                            props.scrollIndicatorVariant === 'circle' }
+                        iconSize      = "S"
+                        iconType      = { dir.toLowerCase() }
+                        key           = { dir }
+                        onClick       = { e =>
+                            this.handleClickScrollButton( dir, e )
+                        } /> );
+                }
             }
         } );
 
@@ -499,8 +508,8 @@ export default class ScrollBox extends Component
         const {
             children,
             className,
+            cssMap = createCssMap( this.context.ScrollBox, this.props ),
             contentWidth,
-            cssMap,
             height,
             onMouseOut,
             onMouseOver,

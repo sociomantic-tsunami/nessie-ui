@@ -30,8 +30,8 @@ describe( 'Tag', () =>
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Switch.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 
     test( 'should have an IconButton as a child', () =>
@@ -66,15 +66,28 @@ child', () =>
 
         expect( wrapper.text() ).toBe( label );
     } );
+} );
 
-    test( 'should trigger onClick callbacks when IconButton clicked', () =>
+describe( 'TagDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
     {
-        const onClick = jest.fn();
-        wrapper.setProps( {
-            onClick,
-        } );
+        wrapper = mount( <Tag /> );
+    } );
 
-        wrapper.driver().clickClose();
-        expect( onClick ).toBeCalled();
+    describe( 'clickClose()', () =>
+    {
+        test( 'should trigger onClickClose callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( {
+                onClick,
+            } );
+
+            wrapper.driver().clickClose();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
     } );
 } );

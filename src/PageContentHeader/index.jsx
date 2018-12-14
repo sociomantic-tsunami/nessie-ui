@@ -11,44 +11,60 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
-import H1                   from '../H1';
+import { H1 }               from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const PageContentHeader = ( {
-    children,
-    cssMap,
-    className,
-    title,
-} ) =>
+export default class PageContentHeader extends React.Component
 {
-    let header = <H1 className = { buildClassName( className, cssMap, { header: !!children } ) }>{ title }</H1>;
+    static contextType = ThemeContext;
 
-    if ( children )
+    static propTypes =
     {
-        header = (
-            <header className = { buildClassName( className, cssMap, { header: !!children } ) }>
-                { children }
-            </header>
-        );
+        /**
+         *  Page content header text (h1)
+         */
+        title    : PropTypes.string,
+        /**
+         *  Page content header custom content; overrides title
+         */
+        children : PropTypes.node,
+    };
+
+    static displayName = 'PageContentHeader';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.PageContentHeader, this.props ),
+            title,
+        } = this.props;
+
+        let header = (
+            <H1
+                className = { buildClassName(
+                    className,
+                    cssMap,
+                    { header: !!children },
+                ) }>{ title }
+            </H1> );
+
+        if ( children )
+        {
+            header = (
+                <header
+                    className = { buildClassName(
+                        className,
+                        cssMap,
+                        { header: !!children },
+                    ) }>
+                    { children }
+                </header>
+            );
+        }
+
+        return header;
     }
-
-    return header;
-};
-
-PageContentHeader.propTypes =
-{
-    /**
-     *  Page content header text (h1)
-     */
-    title    : PropTypes.string,
-    /**
-     *  Page content header custom content; overrides title
-     */
-    children : PropTypes.node,
-};
-
-PageContentHeader.defaultProps =
-{
-    cssMap : require( './pageContentHeader.css' ),
-};
-
-export default PageContentHeader;
+}

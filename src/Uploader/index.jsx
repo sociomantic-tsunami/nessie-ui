@@ -11,17 +11,21 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
-import Button                         from '../Button';
-import IconWithTooltip                from '../IconWithTooltip';
-import Spinner                        from '../Spinner';
-import IconButton                     from '../IconButton';
-import Tooltip                        from '../Tooltip';
-import Label                          from '../Label';
-import styles                         from './uploader.css';
-
+import {
+    Button,
+    IconButton,
+    Label,
+    IconWithTooltip,
+    Spinner,
+    Tooltip,
+} from '../index';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
 export default class Uploader extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -124,7 +128,6 @@ export default class Uploader extends React.Component
     static defaultProps =
     {
         buttonLabel             : 'Upload',
-        cssMap                  : styles,
         errorMessage            : undefined,
         errorMessagePosition    : 'top',
         hasError                : false,
@@ -146,6 +149,8 @@ export default class Uploader extends React.Component
         warningMessage          : undefined,
     };
 
+    static displayName = 'Uploader';
+
     inputRef = React.createRef();
 
     focus()
@@ -158,7 +163,7 @@ export default class Uploader extends React.Component
         const {
             buttonLabel,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Uploader, this.props ),
             errorMessage,
             errorMessagePosition,
             hasError,

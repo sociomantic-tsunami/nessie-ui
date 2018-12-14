@@ -25,7 +25,6 @@ describe( 'CheckableGroupDriver', () =>
         driver  = wrapper.driver();
     } );
 
-
     describe( 'change( index )', () =>
     {
         test( 'should trigger onChange callback prop once', () =>

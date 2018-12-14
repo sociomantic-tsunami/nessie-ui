@@ -22,7 +22,7 @@ describe( 'DatePickerDriver', () =>
     beforeEach( () =>
     {
         wrapper = mount( <DatePicker /> );
-        driver = wrapper.driver();
+        driver  = wrapper.driver();
     } );
 
 

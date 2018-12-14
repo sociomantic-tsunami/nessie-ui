@@ -10,7 +10,7 @@
 import React                                from 'react';
 import PropTypes                            from 'prop-types';
 
-import Dropdown                             from '../../Dropdown';
+import { Dropdown }                         from '../../index';
 import styles                               from './withDropdown.css';
 import { buildClassName, buildDisplayName } from '../../utils';
 

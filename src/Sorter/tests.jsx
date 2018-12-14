@@ -30,8 +30,8 @@ describe( 'Sorter', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Sorter.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 } );
 

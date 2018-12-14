@@ -23,11 +23,6 @@ describe( 'ToggleButton', () =>
         wrapper = shallow( <ToggleButton /> );
     } );
 
-    test( 'should a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
     test( '<button> should always have type "button"', () =>
     {
         expect( wrapper.find( 'button' ).prop( 'type' ) ).toEqual( 'button' );
@@ -183,9 +178,9 @@ describe( 'ToggleButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <ToggleButton /> );
-        driver   = wrapper.driver();
-        button   = wrapper.find( 'button' ).first();
+        wrapper = mount( <ToggleButton /> );
+        driver  = wrapper.driver();
+        button  = wrapper.find( 'button' ).first();
     } );
 
     describe( 'constructor', () =>

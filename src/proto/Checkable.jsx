@@ -10,7 +10,7 @@
 import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
-import Text                           from '../Text';
+import { Text }                       from '../index';
 import { buildClassName, generateId } from '../utils';
 
 
@@ -147,12 +147,12 @@ export default class Checkable extends React.Component
             value,
         } = this.props;
 
-        let labelText = children || label;
+        let labelContent = children || label;
 
-        if ( typeof labelText === 'string' )
+        if ( typeof labelContent === 'string' )
         {
-            labelText =
-                <Text className = { cssMap.labelText }>{ labelText }</Text>;
+            labelContent =
+                <Text className = { cssMap.labelText }>{ labelContent }</Text>;
         }
 
         return (
@@ -170,15 +170,17 @@ export default class Checkable extends React.Component
                     disabled       = { isDisabled || isReadOnly }
                     id             = { id }
                     name           = { name }
+                    onBlur         = { onBlur }
                     onClick        = { onClick }
                     onChange       = { onChange }
                     onFocus        = { onFocus }
-                    onBlur         = { onBlur }
                     ref            = { this.inputRef }
                     type           = { type }
                     value          = { value } />
                 <label className = { cssMap.label } htmlFor = { id }>
-                    { labelText }
+                    <span className = { cssMap.labelContent }>
+                        { labelContent }
+                    </span>
                 </label>
             </div>
         );

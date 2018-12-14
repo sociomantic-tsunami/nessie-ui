@@ -14,14 +14,13 @@ import { shallow, mount }       from 'enzyme';
 
 import { InputField, TextArea } from '../index';
 
-
 describe( 'TextArea', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextArea /> );
+        wrapper = shallow( <TextArea /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

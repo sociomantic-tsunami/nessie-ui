@@ -17,21 +17,20 @@ export default class SwitchDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
-        this.input   = wrapper.find( `.${wrapper.props().cssMap.input}` );
+        this.cssMap  = wrapper.instance().context.Switch;
+        this.input   = wrapper.find( `.${this.cssMap.input}` );
     }
 
     change()
     {
-        const props = this.wrapper.props();
         const node  = this.input.instance();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.SWITCH_ERR( 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.SWITCH_ERR( 'change', 'read only' ) );
         }
@@ -44,14 +43,12 @@ export default class SwitchDriver
 
     blur()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.SWITCH_ERR( 'blur', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.SWITCH_ERR( 'blur', 'read only' ) );
         }
@@ -62,14 +59,12 @@ export default class SwitchDriver
 
     focus()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.SWITCH_ERR( 'focus', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.SWITCH_ERR( 'focus', 'read only' ) );
         }

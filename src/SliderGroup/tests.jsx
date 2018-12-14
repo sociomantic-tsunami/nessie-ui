@@ -30,7 +30,8 @@ describe( 'SliderGroup', () =>
 
     test( 'should have sliderGroup__default as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.SliderGroup.default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -46,8 +47,7 @@ describe( 'SliderGroup', () =>
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( 'Slider' )
-            .find( `.${wrapper.prop( 'cssMap' ).default}` ) ).toHaveLength( 2 );
+        expect( wrapper.find( Slider ) ).toHaveLength( 2 );
     } );
 
     test( 'should render all the stepLabel labels provided', () =>
@@ -60,10 +60,9 @@ describe( 'SliderGroup', () =>
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.stepLabelsContainer}` )
-            .children() ).toHaveLength( 2 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .stepLabelsContainer}` ).children() ).toHaveLength( 2 );
     } );
 
     test( 'should render all the slider labels provided', () =>
@@ -78,10 +77,9 @@ describe( 'SliderGroup', () =>
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.sliderLabelContainer}` )
-            .find( Label ) ).toHaveLength( 4 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .sliderLabelContainer}` ).find( Label ) ).toHaveLength( 4 );
     } );
 
     test(
@@ -153,8 +151,8 @@ of ticks',
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .disabled}` ) ).toHaveLength( 1 );
     } );
 
     test( 'should have sliderGroup__error if hasError = true', () =>
@@ -165,8 +163,8 @@ of ticks',
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .error}` ) ).toHaveLength( 1 );
     } );
 
     test(
@@ -259,7 +257,6 @@ describe( 'SliderGroupDriver', () =>
             } );
 
             driver.change();
-
             expect( onChangeSlider ).toBeCalledTimes( 1 );
         } );
 

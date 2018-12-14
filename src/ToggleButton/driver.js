@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
 const ERR = {
     TOGGLEBUTTON_ERR : ( label, event, state ) =>
         `ToggleButton '${label}' cannot simulate ${event} since it is ${state}`,
@@ -8,16 +17,15 @@ export default class ToggleButtonDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.button  = wrapper
-            .find( `.${this.wrapper.props().cssMap.default}` ).first();
+        this.cssMap  = wrapper.instance().context.ToggleButton;
+        this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
 
     focus()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+        const label = this.wrapper.find( `.${this.cssMap.title}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .TOGGLEBUTTON_ERR( label, 'focus', 'disabled' ) );
@@ -29,10 +37,9 @@ export default class ToggleButtonDriver
 
     blur()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+        const label = this.wrapper.find( `.${this.cssMap.title}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .TOGGLEBUTTON_ERR( label, 'blur', 'disabled' ) );
@@ -44,10 +51,9 @@ export default class ToggleButtonDriver
 
     click()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+        const label = this.wrapper.find( `.${this.cssMap.title}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .TOGGLEBUTTON_ERR( label, 'click', 'disabled' ) );
@@ -59,10 +65,9 @@ export default class ToggleButtonDriver
 
     mouseOver()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+        const label = this.wrapper.find( `.${this.cssMap.title}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .TOGGLEBUTTON_ERR( label, 'mouseOver', 'disabled' ) );
@@ -74,10 +79,9 @@ export default class ToggleButtonDriver
 
     mouseOut()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.title}` ).text();
+        const label = this.wrapper.find( `.${this.cssMap.title}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR
                 .TOGGLEBUTTON_ERR( label, 'mouseOut', 'disabled' ) );

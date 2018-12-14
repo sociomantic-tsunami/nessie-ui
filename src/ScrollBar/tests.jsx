@@ -14,8 +14,6 @@ import { mount, shallow }  from 'enzyme';
 
 import { ScrollBar }       from '../index';
 
-const { cssMap } = ScrollBar.defaultProps;
-
 describe( 'ScrollBar', () =>
 {
     let wrapper;
@@ -43,8 +41,7 @@ describe( 'ScrollBar', () =>
             test( 'should be passed to the track <div> as aria-valuemax', () =>
             {
                 wrapper.setProps( { scrollMax: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuemax' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuemax' ) ).toBe( 20 );
             } );
         } );
 
@@ -58,8 +55,7 @@ describe( 'ScrollBar', () =>
             test( 'should be passed to the track <div> as aria-valuemin', () =>
             {
                 wrapper.setProps( { scrollMin: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuemin' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuemin' ) ).toBe( 20 );
             } );
         } );
 
@@ -73,8 +69,7 @@ describe( 'ScrollBar', () =>
             test( 'should be passed to the track <div> as aria-valuenow', () =>
             {
                 wrapper.setProps( { scrollPos: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuenow' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuenow' ) ).toBe( 20 );
             } );
         } );
     } );

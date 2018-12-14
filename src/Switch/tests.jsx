@@ -14,23 +14,20 @@ import { mount, shallow }   from 'enzyme';
 
 import { Switch }           from '../index';
 
-const { cssMap } = Switch.defaultProps;
-
 describe( 'Switch', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Switch /> );
+        wrapper = shallow( <Switch /> );
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
-        const input = wrapper.find( `.${cssMap.input}` );
 
-        expect( input.prop( 'disabled' ) ).toBe( true );
+        expect( wrapper.find( 'input' ).prop( 'disabled' ) ).toBe( true );
     } );
 } );
 
@@ -133,7 +130,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onBlur } );
 
             wrapper.driver().blur();
-            expect( onBlur ).toBeCalled();
+            expect( onBlur ).toBeCalledTimes( 1 );
         } );
 
 
@@ -202,7 +199,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onFocus } );
 
             wrapper.driver().focus();
-            expect( onFocus ).toBeCalled();
+            expect( onFocus ).toBeCalledTimes( 1 );
         } );
 
 
@@ -271,7 +268,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onMouseOut } );
 
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -284,7 +281,7 @@ describe( 'SwitchDriver', () =>
             wrapper.setProps( { onMouseOver } );
 
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 } );

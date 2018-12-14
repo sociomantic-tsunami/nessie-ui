@@ -20,12 +20,7 @@ describe( 'PasswordInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <PasswordInput /> );
-    } );
-
-    test( 'should be stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
+        wrapper = shallow( <PasswordInput /> );
     } );
 
     test( 'should contain exactly one TextInputWithIcon', () =>

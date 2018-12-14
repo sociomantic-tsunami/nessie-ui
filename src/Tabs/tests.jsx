@@ -20,7 +20,7 @@ describe( 'Tabs', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Tabs /> );
+        wrapper = shallow( <Tabs /> );
     } );
 
     describe( 'render()', () =>
@@ -47,29 +47,27 @@ describe( 'TabsDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Tabs /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Tabs /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTab( index )', () =>
     {
-        test(
-            'should trigger onClickTab callback prop once on TabButton at index',
-            () =>
-            {
-                const onClickTab = jest.fn();
-                wrapper.setProps( {
-                    onClickTab,
-                    children : [
-                        <Tab label = "Tabity" />,
-                        <Tab label = "Taby" />,
-                    ],
-                } );
+        test( 'should trigger onClickTab callback prop once on TabButton at \
+index', () =>
+        {
+            const onClickTab = jest.fn();
+            wrapper.setProps( {
+                onClickTab,
+                children : [
+                    <Tab label = "Tabity" />,
+                    <Tab label = "Taby" />,
+                ],
+            } );
 
-                driver.clickTab( 1 );
-                expect( onClickTab ).toBeCalledTimes( 1 );
-            },
-        );
+            driver.clickTab( 1 );
+            expect( onClickTab ).toBeCalledTimes( 1 );
+        } );
 
         test(
             'should throw an expected error if Tab is disabled',

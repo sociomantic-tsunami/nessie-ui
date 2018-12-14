@@ -38,7 +38,8 @@ describe( 'ModalDialog', () =>
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+        const children = wrapper
+            .find( `.${wrapper.instance().context.ModalDialog.content}` )
             .children();
         expect( children ).toHaveLength( 0 );
     } );
@@ -51,7 +52,8 @@ describe( 'ModalDialog', () =>
         };
         wrapper = mount( <ModalDialog { ...props } /> );
 
-        const children = wrapper.find( `.${wrapper.props().cssMap.content}` )
+        const children = wrapper
+            .find( `.${wrapper.instance().context.ModalDialog.content}` )
             .children();
         expect( children ).toBeTruthy();
         expect( children.html() ).toBe( '<span class="thisguy">boom</span>' );

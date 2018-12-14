@@ -7,7 +7,7 @@
  *
  */
 
-import { IconButton } from '../index';
+import { IconButton } from 'nessie-ui';
 
 const ERR = {
     NOTIFICATION_NOT_DISMISSIBLE : 'NotificationBar is not dismissible',
@@ -18,7 +18,6 @@ export default class NotificationBarDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
     }
 
     clickClose()

@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the LICENSE file
+ * in the root directory of this source tree.
+ *
+ */
+
+/* eslint-disable no-magic-numbers */
+
 const ERR = {
     RADIO_ERR : ( label, event, state ) =>
         `Radio '${label}' cannot simulate ${event} since it is ${state}`,
@@ -8,21 +19,20 @@ export default class RadioDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.control = wrapper.find( `.${this.wrapper.props().cssMap.input}` );
+        this.cssMap  = wrapper.children().instance().context.Radio;
+        this.control = wrapper.find( `.${this.cssMap.input}` );
     }
 
     blur()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.RADIO_ERR( label, 'blur', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.RADIO_ERR( label, 'blur', 'read only' ) );
         }
@@ -33,16 +43,14 @@ export default class RadioDriver
 
     focus()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.RADIO_ERR( label, 'focus', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.RADIO_ERR( label, 'focus', 'read only' ) );
         }
@@ -53,17 +61,15 @@ export default class RadioDriver
 
     change()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
         const node  = this.control.instance();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.RADIO_ERR( label, 'change', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.RADIO_ERR( label, 'change', 'read only' ) );
         }
@@ -80,16 +86,14 @@ export default class RadioDriver
 
     click()
     {
-        const props = this.wrapper.props();
-        const label = this.wrapper.find( `.${props.cssMap.label}` )
-            .text();
+        const label = this.wrapper.find( `.${this.cssMap.label}` ).text();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
             throw new Error( ERR.RADIO_ERR( label, 'click', 'disabled' ) );
         }
 
-        if ( props.isReadOnly )
+        if ( this.wrapper.props().isReadOnly )
         {
             throw new Error( ERR.RADIO_ERR( label, 'click', 'read only' ) );
         }

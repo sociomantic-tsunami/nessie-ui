@@ -25,7 +25,8 @@ describe( 'ProgressBar', () =>
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.ProgressBar.default}` ) )
             .toHaveLength( 1 );
     } );
     test( 'should contain a ProgressBar', () =>

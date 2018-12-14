@@ -11,28 +11,44 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const ProgressBar = ( { cssMap, className, progressPercentage } ) =>
-    <div className = { buildClassName( className, cssMap ) }>
-        { progressPercentage > 0 &&
-        <div
-            style = { { width: `${progressPercentage}%` } }
-            className = { cssMap.fill } />
-        }
-    </div>;
-
-ProgressBar.propTypes =
+export default class ProgressBar extends React.Component
 {
-    /**
-     *  Current percentage value
-     */
-    progressPercentage : PropTypes.number,
-};
+    static contextType = ThemeContext;
 
-ProgressBar.defaultProps =
-{
-    cssMap             : require( './progressBar.css' ),
-    progressPercentage : 0,
-};
+    static propTypes =
+    {
+        /**
+         *  Current percentage value
+         */
+        progressPercentage : PropTypes.number,
+    };
 
-export default ProgressBar;
+    static defaultProps =
+    {
+        progressPercentage : 0,
+    };
+
+    static displayName = 'ProgressBar';
+
+    render()
+    {
+        const {
+            className,
+            cssMap = createCssMap( this.context.ProgressBar, this.props ),
+            progressPercentage,
+        } = this.props;
+
+        return (
+            <div className = { buildClassName( className, cssMap ) }>
+                { progressPercentage > 0 &&
+                <div
+                    style = { { width: `${progressPercentage}%` } }
+                    className = { cssMap.fill } />
+                }
+            </div>
+        );
+    }
+}

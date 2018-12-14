@@ -29,10 +29,12 @@ describe( 'Card', () =>
         {
             wrapper.setProps( { padding: 'L' } );
 
-            expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).paddingX__L}` ) )
+            expect( wrapper
+                .find( `.${wrapper.instance().context.Card.paddingX__L}` ) )
                 .toHaveLength( 1 );
 
-            expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).paddingY__L}` ) )
+            expect( wrapper
+                .find( `.${wrapper.instance().context.Card.paddingY__L}` ) )
                 .toHaveLength( 1 );
         },
     );
@@ -42,10 +44,12 @@ string', () =>
     {
         wrapper.setProps( { padding: [ 'M', 'L' ] } );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).paddingX__M}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Card.paddingX__M}` ) )
             .toHaveLength( 1 );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).paddingY__L}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Card.paddingY__L}` ) )
             .toHaveLength( 1 );
     } );
 } );

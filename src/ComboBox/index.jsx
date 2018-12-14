@@ -12,21 +12,22 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
-import TextInputWithIcon    from '../TextInputWithIcon';
-import ListBox              from '../ListBox';
-import withDropdown         from '../Addons/withDropdown';
-import { generateId }       from '../utils';
+import {
+    ListBox,
+    ScrollBox,
+    Text,
+} from '../index';
+import TextInputWithIcon from '../TextInputWithIcon';
 import {
     addPrefix,
     buildListBoxOptions,
     getScrollParent,
     removePrefix,
 } from './utils';
-
+import { generateId }   from '../utils';
+import withDropdown     from '../Addons/withDropdown';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
-
 
 export default class ComboBox extends React.Component
 {
@@ -289,6 +290,8 @@ export default class ComboBox extends React.Component
         selection            : undefined,
         textAlign            : 'auto',
     };
+
+    static displayName = 'ComboBox';
 
     constructor( props )
     {

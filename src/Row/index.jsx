@@ -61,7 +61,6 @@ Row.defaultProps =
     align         : 'auto',
     children      : undefined,
     className     : undefined,
-    cssMap        : undefined,
     gutters       : 'M',
     hasFullWidth  : false,
     onClick       : undefined,
@@ -71,5 +70,7 @@ Row.defaultProps =
     spacing       : 'M',
     verticalAlign : 'auto',
 };
+
+Row.displayName = 'Row';
 
 export default Row;

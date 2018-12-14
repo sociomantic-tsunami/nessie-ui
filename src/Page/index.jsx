@@ -11,43 +11,59 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const Page = ( {
-    children,
-    cssMap,
-    className,
-    overflow,
-} ) =>
-
-    <div className = { buildClassName( className, cssMap, { overflow } ) }>
-        { children }
-    </div>;
-
-Page.propTypes =
+export default class Page extends React.Component
 {
-    /**
-     *  Page content
-     */
-    children : PropTypes.node,
+    static contextType = ThemeContext;
 
-    /**
-     * Page overflow setting
-     *
-     */
-    overflow : PropTypes.oneOf( [
-        'auto',
-        'hidden',
-        'visible',
-        'scroll',
-        'scrollX',
-        'scrollY',
-    ] ),
-};
+    static propTypes =
+    {
+        /**
+         *  Page content
+         */
+        children : PropTypes.node,
 
-Page.defaultProps =
-{
-    cssMap : require( './page.css' ),
-    scroll : 'auto',
-};
+        /**
+         * Page overflow setting
+         *
+         */
+        overflow : PropTypes.oneOf( [
+            'auto',
+            'hidden',
+            'visible',
+            'scroll',
+            'scrollX',
+            'scrollY',
+        ] ),
+    };
 
-export default Page;
+    static defaultProps =
+    {
+        scroll : 'auto',
+    };
+
+    static displayName = 'Page';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.Page, this.props ),
+            overflow,
+        } = this.props;
+
+        return (
+            <div
+                className = { buildClassName(
+                    className,
+                    cssMap,
+                    { overflow },
+                ) }>
+                { children }
+            </div>
+        );
+    }
+}

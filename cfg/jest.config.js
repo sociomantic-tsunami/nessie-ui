@@ -49,6 +49,8 @@ module.exports = {
             '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
                 '<rootDir>/src/Testing/mocks/fileMock.js',
             '\\.(css|less|scss)$' : 'identity-obj-proxy',
+            'Theming/createCss'   :
+                '<rootDir>/src/Testing/mocks/createCssMapMock.js',
         } /* eslint-disable-line comma-dangle */
     ),
 

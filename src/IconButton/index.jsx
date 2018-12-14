@@ -11,13 +11,16 @@ import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import Icon                             from '../Icon';
-import styles                           from './iconButton.css';
+import { Icon }                         from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 const killFocus = e => e.preventDefault();
 
 export default class IconButton extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -162,7 +165,6 @@ export default class IconButton extends React.Component
         buttonRef     : undefined,
         children      : undefined,
         className     : undefined,
-        cssMap        : styles,
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
@@ -180,13 +182,15 @@ export default class IconButton extends React.Component
         value         : undefined,
     };
 
+    static displayName = 'IconButton';
+
     render()
     {
         const {
             buttonRef,
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.IconButton, this.props ),
             forceHover,
             hasBackground,
             iconSize,

@@ -37,7 +37,8 @@ describe( 'Slider', () =>
 
     test( 'should have slider__default as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -48,9 +49,8 @@ describe( 'Slider', () =>
 
     test( 'should contain <div class="slider__trackFill">', () =>
     {
-        wrapper = mount( <Slider /> );
-
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).trackFill}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.trackFill}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -62,7 +62,8 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.disabled}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -74,7 +75,7 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider.error}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -88,7 +89,7 @@ describe( 'Slider', () =>
 
             wrapper = mount( <Slider { ...props } /> );
 
-            expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+            expect( wrapper.find( `.${wrapper.instance().context.Slider
                 .hasHandleLabels}` ) ).toHaveLength( 1 );
         },
     );
@@ -118,7 +119,8 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).stepLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.stepLabel}` ) )
             .toHaveLength( 5 );
     } );
 
@@ -155,7 +157,8 @@ describe( 'Slider', () =>
         wrapper = mount( <Slider { ...props } /> );
 
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
 
         props = {
@@ -165,7 +168,8 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 3 );
     } );
 
@@ -180,9 +184,10 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__top}` ) ).toHaveLength( 1 );
 
         props = {
@@ -194,9 +199,10 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__right}` ) ).toHaveLength( 1 );
 
         props = {
@@ -208,9 +214,10 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__bottom}` ) ).toHaveLength( 1 );
 
         props = {
@@ -222,9 +229,10 @@ describe( 'Slider', () =>
 
         wrapper = mount( <Slider { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).handleLabel}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
             .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' )
+        expect( wrapper.find( `.${wrapper.instance().context.Slider
             .handleLabelPosition__left}` ) ).toHaveLength( 1 );
     } );
 
@@ -279,10 +287,10 @@ describe( 'Slider', () =>
             slider.forceUpdate();
             wrapper.update();
 
-            wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
+            wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
                 .simulate( 'mousedown' );
 
-            expect( handleDown ).toBeCalled();
+            expect( handleDown ).toBeCalledTimes( 1 );
         } );
 
         test(
@@ -303,7 +311,7 @@ describe( 'Slider', () =>
                 const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
                 const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
 
-                wrapper.find( `.${wrapper.prop( 'cssMap' ).handle}` )
+                wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
                     .simulate( 'mousedown' );
 
                 expect( eventListenerSpy )
@@ -344,8 +352,8 @@ describe( 'Slider', () =>
 describe( 'SliderDriver', () =>
 {
     let wrapper;
-    let driver;
     let cssMap;
+    let driver;
     let outer;
     let track;
     let inputContainer;
@@ -361,7 +369,7 @@ describe( 'SliderDriver', () =>
 
         wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
-        cssMap  = wrapper.prop( 'cssMap' );
+        cssMap  = wrapper.instance().context.Slider;
         outer   = wrapper.find( `.${cssMap.default}` ).first();
         track   = wrapper.find( `.${cssMap.track}` );
         inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
@@ -812,7 +820,7 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseOut();
-            expect( onMouseOut ).toBeCalled();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -847,7 +855,7 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseOver();
-            expect( onMouseOver ).toBeCalled();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
 
@@ -879,27 +887,20 @@ onKeyUp since it is disabled';
         {
             wrapper.setProps( { isDisabled: true } );
             driver.mouseDown();
-            expect( onMouseDown ).toBeCalled();
+            expect( onMouseDown ).toBeCalledTimes( 1 );
         } );
     } );
 
 
     describe( 'mouseUp()', () =>
     {
-        let handleUp;
-
-        beforeEach( () =>
-        {
-            handleUp = jest.fn( wrapper.instance(), 'handleUp' );
-        } );
-
         test( 'should fire handleUp on the component instance', () =>
         {
-            handleUp = jest.fn();
-            wrapper.setProps( { onMouseUp: handleUp } );
+            const onMouseUp = jest.fn();
+            wrapper.setProps( { onMouseUp } );
 
             driver.mouseUp();
-            expect( handleUp ).toBeCalled();
+            expect( onMouseUp ).toBeCalledTimes( 1 );
         } );
     } );
 } );

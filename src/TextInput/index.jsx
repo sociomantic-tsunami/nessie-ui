@@ -11,7 +11,7 @@ import React          from 'react';
 import PropTypes      from 'prop-types';
 
 import { generateId } from '../utils';
-import InputField     from '../InputField';
+import { InputField } from '../index';
 
 
 const TextInput = React.forwardRef( ( {
@@ -142,7 +142,6 @@ TextInput.defaultProps =
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
-    cssMap         : undefined,
     forceHover     : false,
     hasError       : false,
     id             : undefined,
@@ -163,5 +162,7 @@ TextInput.defaultProps =
     textAlign      : undefined,
     value          : '',
 };
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;

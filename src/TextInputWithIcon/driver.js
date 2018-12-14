@@ -14,48 +14,47 @@ export default class TextInputWithIconDriver
     constructor( wrapper )
     {
         this.wrapper    = wrapper;
-        this.inputfield = wrapper.find( InputField );
     }
 
     change( val )
     {
-        this.inputfield.driver().change( val );
+        this.wrapper.find( InputField ).driver().change( val );
         return this;
     }
 
     click()
     {
-        this.inputfield.driver().click();
+        this.wrapper.find( InputField ).driver().click();
         return this;
     }
 
     keyDown( keyCode )
     {
-        this.inputfield.driver().keyDown( keyCode );
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
         return this;
     }
 
     keyPress( keyCode )
     {
-        this.inputfield.driver().keyPress( keyCode );
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
         return this;
     }
 
     keyUp( keyCode )
     {
-        this.inputfield.driver().keyUp( keyCode );
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
         return this;
     }
 
     focus()
     {
-        this.inputfield.driver().focus();
+        this.wrapper.find( InputField ).driver().focus();
         return this;
     }
 
     blur()
     {
-        this.inputfield.driver().blur();
+        this.wrapper.find( InputField ).driver().blur();
         return this;
     }
 

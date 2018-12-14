@@ -20,7 +20,7 @@ describe( 'IconWithTooltip', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <IconWithTooltip /> );
+        wrapper = shallow( <IconWithTooltip /> );
     } );
 
     describe( 'props', () =>

@@ -10,13 +10,15 @@
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
-import InputField                       from '../InputField';
+import { InputField }                   from '../index';
 import { generateId, buildClassName }   from '../utils';
-import styles                           from './valuedTextInput.css';
-
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class ValuedTextInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -147,7 +149,6 @@ export default class ValuedTextInput extends React.Component
         autoComplete       : undefined,
         autoCorrect        : undefined,
         className          : undefined,
-        cssMap             : styles,
         forceHover         : false,
         hasError           : false,
         id                 : undefined,
@@ -170,6 +171,8 @@ export default class ValuedTextInput extends React.Component
         valueLabel         : undefined,
         valueLabelPosition : 'left',
     };
+
+    static displayName = 'ValuedTextInput';
 
     constructor( props )
     {
@@ -212,7 +215,7 @@ export default class ValuedTextInput extends React.Component
     {
         const {
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.ValuedTextInput, this.props ),
             forceHover,
             hasError,
             id = generateId( 'ValuedTextInput' ),

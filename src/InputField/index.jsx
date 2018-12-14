@@ -7,15 +7,21 @@
  *
  */
 
-import React                                   from 'react';
-import PropTypes                               from 'prop-types';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
-import { buildClassName, mapAria, generateId } from '../utils';
-import styles                                  from './inputField.css';
-
+import {
+    buildClassName,
+    mapAria,
+    generateId,
+} from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
 export default class InputField extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -69,6 +75,10 @@ export default class InputField extends React.Component
          *  HTML id attribute
          */
         id           : PropTypes.string,
+        /**
+         *  Callback that receives the native <input>: ( ref ) => { ... }
+         */
+        inputRef     : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -158,11 +168,11 @@ export default class InputField extends React.Component
         autoComplete   : undefined,
         autoCorrect    : undefined,
         className      : undefined,
-        cssMap         : styles,
         element        : 'input',
         forceHover     : false,
         hasError       : false,
         id             : undefined,
+        inputRef       : undefined,
         isDisabled     : false,
         isReadOnly     : false,
         isResizable    : undefined,
@@ -184,6 +194,7 @@ export default class InputField extends React.Component
         value          : '',
     };
 
+    static displayName = 'InputField';
 
     inputRef = React.createRef();
 
@@ -200,7 +211,7 @@ export default class InputField extends React.Component
             autoComplete,
             autoCorrect,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.InputField, this.props ),
             element,
             forceHover,
             hasError,

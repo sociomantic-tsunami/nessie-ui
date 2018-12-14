@@ -7,24 +7,24 @@
  *
  */
 
+import { Tooltip } from 'nessie-ui';
+
 export default class IconWithTooltipDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.tooltip = wrapper
-            .find( `.${this.wrapper.props().cssMap.iconWithTooltip}` ).first();
     }
 
     mouseOverIcon()
     {
-        this.tooltip.simulate( 'mouseenter' );
+        this.wrapper.find( Tooltip ).driver().mouseOver();
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.simulate( 'mouseleave' );
+        this.wrapper.find( Tooltip ).driver().mouseOut();
         return this;
     }
 

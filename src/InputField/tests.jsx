@@ -14,8 +14,6 @@ import { mount }      from 'enzyme';
 
 import { InputField } from '../index';
 
-const { cssMap } = InputField.defaultProps;
-
 describe( 'InputField', () =>
 {
     let wrapper;
@@ -308,7 +306,7 @@ describe( 'InputField', () =>
             {
                 wrapper.setProps( { value: 'yes!' } );
 
-                expect( wrapper.find( `.${cssMap.default}` ).prop( 'value' ) )
+                expect( wrapper.find( InputField ).prop( 'value' ) )
                     .toBe( 'yes!' );
             } );
         } );

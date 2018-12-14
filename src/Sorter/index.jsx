@@ -7,14 +7,18 @@
  *
  */
 
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import Icon                            from '../Icon';
+import { buildClassName }   from '../utils';
+import { Icon }             from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
 export default class Sorter extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -41,11 +45,12 @@ export default class Sorter extends Component
 
     static defaultProps =
     {
-        cssMap          : require( './sorter.css' ),
         forceHover      : false,
         sort            : 'none',
         sorterIsVisible : true,
     };
+
+    static displayName = 'Sorter';
 
     constructor()
     {
@@ -64,7 +69,7 @@ export default class Sorter extends Component
         const {
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Sorter, this.props ),
             forceHover,
             onToggle,
             sort,

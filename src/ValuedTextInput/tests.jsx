@@ -144,7 +144,7 @@ since it is disabled';
             wrapper.setProps( { onKeyPress } );
 
             driver.keyPress();
-            expect( onKeyPress ).toBeCalled();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
         } );
 
 
@@ -185,7 +185,7 @@ keyPress since it is disabled';
             wrapper.setProps( { onKeyUp } );
 
             driver.keyUp();
-            expect( onKeyUp ).toBeCalled();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
         } );
 
 
@@ -226,7 +226,7 @@ keyUp since it is disabled';
             wrapper.setProps( { onKeyDown } );
 
             driver.keyDown();
-            expect( onKeyDown ).toBeCalled();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
         } );
 
 

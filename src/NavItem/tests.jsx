@@ -29,7 +29,8 @@ describe( 'NavItem', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavItem.default}` ) )
             .toHaveLength( 1 );
     } );
 } );
@@ -47,7 +48,7 @@ describe( 'NavItemDriver', () =>
         };
 
         wrapper = mount(  <NavItem { ...props } /> );
-        driver = wrapper.driver();
+        driver  = wrapper.driver();
     } );
 
 

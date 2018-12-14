@@ -25,7 +25,8 @@ describe( 'NavList', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavList.default}` ) )
             .toHaveLength( 1 );
     } );
 } );

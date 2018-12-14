@@ -12,11 +12,13 @@ import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
 import { buildTagsFromValues }        from './utils';
-import styles                         from './tagInput.css';
-
+import ThemeContext                   from '../Theming/ThemeContext';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class TagInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -120,7 +122,6 @@ export default class TagInput extends React.Component
     {
         children     : undefined,
         className    : undefined,
-        cssMap       : styles,
         forceHover   : false,
         hasError     : false,
         height       : undefined,
@@ -142,6 +143,8 @@ export default class TagInput extends React.Component
         tags         : undefined,
         value        : undefined,
     };
+
+    static displayName = 'TagInput';
 
     constructor()
     {
@@ -189,7 +192,7 @@ export default class TagInput extends React.Component
         const {
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.TagInput, this.props ),
             forceHover,
             hasError,
             height,

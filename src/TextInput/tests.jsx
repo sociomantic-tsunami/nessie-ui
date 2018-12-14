@@ -21,12 +21,7 @@ describe( 'TextInput', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <TextInput /> );
-    } );
-
-    test( 'should be stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
+        wrapper = shallow( <TextInput /> );
     } );
 
     test( 'should contain exactly one InputField', () =>

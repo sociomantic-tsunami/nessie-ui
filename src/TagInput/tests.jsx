@@ -9,22 +9,21 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                       from 'react';
+import { mount, shallow }          from 'enzyme';
 
-import { Tag, TagInput }  from '../index';
+import styles                      from './tagInput.css';
+import { Tag, TagInput }           from '../index';
 
 describe( 'TagInput', () =>
 {
     let wrapper;
     let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
-        wrapper      = shallow( <TagInput /> );
-        instance     = wrapper.instance();
-        ( { cssMap } = instance.props );
+        wrapper  = shallow( <TagInput cssMap = { styles } /> );
+        instance = wrapper.instance();
     } );
 
     describe( 'constructor( props )', () =>
@@ -39,7 +38,8 @@ describe( 'TagInput', () =>
     {
         test( 'should contain exactly one input', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ) ).toHaveLength( 1 );
+            expect( wrapper.find( `.${instance.props.cssMap.input}` ) )
+                .toHaveLength( 1 );
         } );
     } );
 
@@ -66,29 +66,23 @@ describe( 'TagInput', () =>
 
     describe( 'readOnly state', () =>
     {
-        beforeEach( () =>
-        {
-            wrapper.setProps( { isReadOnly: true } );
-        } );
-
         test( 'input should receive readonly', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'readOnly' ) )
-                .toBeTruthy();
+            wrapper.setProps( { isReadOnly: true } );
+
+            expect( wrapper.find( `.${instance.props.cssMap.input}` )
+                .prop( 'readOnly' ) ).toBe( true );
         } );
     } );
 
     describe( 'disabled state', () =>
     {
-        beforeEach( () =>
-        {
-            wrapper.setProps( { isDisabled: true } );
-        } );
-
         test( 'input should receive isDisabled as "disabled"', () =>
         {
-            expect( wrapper.find( `.${cssMap.input}` ).prop( 'disabled' ) )
-                .toBeTruthy();
+            wrapper.setProps( { isDisabled: true } );
+
+            expect( wrapper.find( `.${instance.props.cssMap.input}` )
+                .prop( 'disabled' ) ).toBe( true );
         } );
     } );
 } );
@@ -101,8 +95,8 @@ describe( 'TagInputDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <TagInput /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <TagInput /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'blur()', () =>

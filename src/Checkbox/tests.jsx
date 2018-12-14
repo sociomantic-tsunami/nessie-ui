@@ -9,11 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import Checkable          from '../proto/Checkable';
-import { Checkbox }       from '../index';
+import Checkable            from '../proto/Checkable';
+import { Checkbox }         from '../index';
 
 describe( 'Checkbox', () =>
 {
@@ -21,14 +21,14 @@ describe( 'Checkbox', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Checkbox /> );
+        wrapper = shallow( <Checkbox /> );
     } );
 
     describe( 'render()', () =>
     {
         test( 'should contain exactly one Checkable', () =>
         {
-            expect( wrapper.find( Checkable ) ).toHaveLength( 1 );
+            expect( wrapper.shallow().find( Checkable ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -36,12 +36,17 @@ describe( 'Checkbox', () =>
     {
         describe( 'isDisabled', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isDisabled' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBeTruthy();
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isDisabled' ) ).toBe( true );
             } );
         } );
 
@@ -54,33 +59,42 @@ describe( 'Checkbox', () =>
 
             test( 'should be passed to Checkable', () =>
             {
-                const onChange = jest.fn();
-                wrapper.setProps( { isReadOnly: true, onChange } );
+                wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
-                    .toBe( onChange );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isReadOnly' ) ).toBe( true );
             } );
         } );
 
         describe( 'hasError', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'hasError' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'hasError' ) )
-                    .toBeTruthy();
+                expect( wrapper.shallow().find( Checkable ).prop( 'hasError' ) )
+                    .toBe( true );
             } );
         } );
 
         describe( 'forceHover', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'forceHover' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBeTruthy();
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'forceHover' ) ).toBe( true );
             } );
         } );
 
@@ -94,9 +108,9 @@ describe( 'Checkbox', () =>
             test( 'should be passed to Checkable', () =>
             {
                 const onChange = jest.fn();
-                wrapper.setProps( { isReadOnly: true, onChange } );
+                wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                expect( wrapper.shallow().find( Checkable ).prop( 'onChange' ) )
                     .toBe( onChange );
             } );
         } );
@@ -111,8 +125,8 @@ describe( 'CheckboxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Checkbox /> );
-        driver   = wrapper.driver();
+        wrapper = mount( <Checkbox /> );
+        driver  = wrapper.driver();
     } );
 
 

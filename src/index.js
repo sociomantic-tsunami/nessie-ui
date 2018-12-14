@@ -7,8 +7,6 @@
  *
  */
 
-import 'normalize.css';
-
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
@@ -81,6 +79,7 @@ import Tooltip                  from './Tooltip';
 import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
+
 export {
     Button,
     Card,
@@ -152,8 +151,8 @@ export {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
+    ValuedTextInput,
+};
 
 
 export default {
@@ -227,10 +226,15 @@ export default {
     ToggleButton,
     Tooltip,
     Uploader,
-    ValuedTextInput
-}
+    ValuedTextInput,
+};
 
-//Addons
+
+// Theme context
+export ThemeContext     from './Theming/ThemeContext';
+
+
+// Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';

@@ -7,17 +7,20 @@
  *
  */
 
-/* global addEventListener removeEventListener Event */
+/* global document addEventListener removeEventListener Event */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import IconWithTooltip                  from '../IconWithTooltip';
-import Label                            from '../Label';
-
+import { IconWithTooltip, Label }       from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class Slider extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -188,7 +191,6 @@ export default class Slider extends React.Component
 
     static defaultProps =
     {
-        cssMap                : require( './slider.css' ),
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         fillFrom              : 'start',
@@ -207,6 +209,8 @@ export default class Slider extends React.Component
         stepLabelsPosition    : 'top',
         value                 : 0,
     };
+
+    static displayName = 'Slider';
 
 
     constructor( props )
@@ -625,7 +629,7 @@ export default class Slider extends React.Component
     {
         const {
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,

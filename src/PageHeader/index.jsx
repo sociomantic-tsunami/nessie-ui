@@ -11,24 +11,35 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const PageHeader = ( { children, cssMap, className } ) =>
-
-    <header className = { buildClassName( className, cssMap ) }>
-        { children }
-    </header>;
-
-PageHeader.propTypes =
+export default class PageHeader extends React.Component
 {
-    /**
-     *  PageHeader content
-     */
-    children : PropTypes.node,
-};
+    static contextType = ThemeContext;
 
-PageHeader.defaultProps =
-{
-    cssMap : require( './pageHeader.css' ),
-};
+    static propTypes =
+    {
+        /**
+         *  PageHeader content
+         */
+        children : PropTypes.node,
+    };
 
-export default PageHeader;
+    static displayName = 'PageHeader';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.PageHeader, this.props ),
+        } = this.props;
+
+        return (
+            <header className = { buildClassName( className, cssMap ) }>
+                { children }
+            </header>
+        );
+    }
+}

@@ -242,7 +242,8 @@ describe( 'ModuleDriver', () =>
                 customHeader : <h1 className = "pokemon">Pikachu</h1>,
             } );
 
-            const header = wrapper.find( `.${wrapper.props().cssMap.header}` )
+            const header = wrapper
+                .find( `.${wrapper.instance().context.Module.header}` )
                 .children();
             expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
         } );

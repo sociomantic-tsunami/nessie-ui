@@ -17,16 +17,10 @@ import { H1, H4, Section }  from '../index';
 describe( 'Section', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Section /> );
-    } );
-
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
+        wrapper = shallow( <Section /> );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>

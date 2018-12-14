@@ -9,11 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React                        from 'react';
-import { mount, shallow }           from 'enzyme';
+import React                      from 'react';
+import { mount, shallow }         from 'enzyme';
 
-import { Button, Icon, Spinner }    from '../index';
-
+import { Button, Icon, Spinner }  from '../index';
 
 describe( 'Button', () =>
 {
@@ -21,12 +20,7 @@ describe( 'Button', () =>
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Button /> );
-    } );
-
-    test( 'should a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
+        wrapper = shallow( <Button /> );
     } );
 
     describe( 'render()', () =>
@@ -109,9 +103,9 @@ describe( 'ButtonDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper  = mount( <Button /> );
-        driver   = wrapper.driver();
-        button   = wrapper.find( 'button' ).first();
+        wrapper = mount( <Button /> );
+        driver  = wrapper.driver();
+        button  = wrapper.find( 'button' ).first();
     } );
 
     describe( 'constructor', () =>

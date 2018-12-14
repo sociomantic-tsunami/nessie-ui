@@ -13,13 +13,13 @@ export default class NavItemDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.props().cssMap;
+        this.cssMap  = wrapper.instance().context.NavItem;
     }
 
     click()
     {
-        return this.wrapper.find( `.${this.cssMap.link}` )
-            .first().simulate( 'click' );
+        this.wrapper.find( `.${this.cssMap.link}` ).first().simulate( 'click' );
+        return this;
     }
 
     mouseOver()

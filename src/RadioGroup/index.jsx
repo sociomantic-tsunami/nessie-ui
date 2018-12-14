@@ -123,7 +123,6 @@ RadioGroup.defaultProps =
 {
     children              : undefined,
     className             : undefined,
-    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     forceHover            : false,
@@ -139,5 +138,7 @@ RadioGroup.defaultProps =
     selectedValue         : undefined,
     values                : undefined,
 };
+
+RadioGroup.displayName = 'RadioGroup';
 
 export default RadioGroup;

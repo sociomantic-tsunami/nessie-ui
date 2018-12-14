@@ -382,4 +382,6 @@ DateTimeInput.defaultProps =
     weeks                 : undefined,
 };
 
+DateTimeInput.displayName = 'DateTimeInput';
+
 export default DateTimeInput;
