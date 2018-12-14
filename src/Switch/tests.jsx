@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import { Switch }   from '../index';
+import { Switch }           from '../index';
 
 describe( 'Switch', () =>
 {
@@ -20,15 +20,14 @@ describe( 'Switch', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Switch /> );
+        wrapper = shallow( <Switch /> );
     } );
 
     test( 'should pass isDisabled to <input> as “disabled”', () =>
     {
         wrapper.setProps( { isDisabled: true } );
 
-        expect( wrapper.find( `.${wrapper.instance().context.Switch.input}` )
-            .prop( 'disabled' ) ).toBe( true );
+        expect( wrapper.find( 'input' ).prop( 'disabled' ) ).toBe( true );
     } );
 } );
 

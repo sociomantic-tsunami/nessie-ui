@@ -126,16 +126,16 @@ export default class Switch extends React.Component
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 <input
-                    checked        = { isChecked }
-                    className      = { cssMap.input }
-                    disabled       = { isDisabled || isReadOnly }
-                    id             = { id }
-                    name           = { name }
-                    onBlur         = { onBlur }
-                    onChange       = { !isReadOnly ? onChange : undefined }
-                    onFocus        = { onFocus }
-                    type           = "checkbox"
-                    value          = { value } />
+                    checked   = { isChecked }
+                    className = { cssMap.input }
+                    disabled  = { isDisabled || isReadOnly }
+                    id        = { id }
+                    name      = { name }
+                    onBlur    = { onBlur }
+                    onChange  = { !isReadOnly ? onChange : undefined }
+                    onFocus   = { onFocus }
+                    type      = "checkbox"
+                    value     = { value } />
                 <label
                     aria-label = { label }
                     className  = { cssMap.label }

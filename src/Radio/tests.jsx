@@ -9,11 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import Checkable    from '../proto/Checkable';
-import { Radio }    from '../index';
+import Checkable            from '../proto/Checkable';
+import { Radio }            from '../index';
 
 describe( 'Radio', () =>
 {
@@ -21,14 +21,14 @@ describe( 'Radio', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Radio /> );
+        wrapper = shallow( <Radio /> );
     } );
 
     describe( 'render()', () =>
     {
         test( 'should contain exactly one Checkable', () =>
         {
-            expect( wrapper.find( Checkable ) ).toHaveLength( 1 );
+            expect( wrapper.shallow().find( Checkable ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -36,45 +36,81 @@ describe( 'Radio', () =>
     {
         describe( 'isDisabled', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isDisabled' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBe( true );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isDisabled' ) ).toBe( true );
+            } );
+        } );
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
+            } );
+
+            test( 'should be passed to Checkable', () =>
+            {
+                wrapper.setProps( { isReadOnly: true } );
+
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isReadOnly' ) ).toBe( true );
             } );
         } );
 
         describe( 'hasError', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'hasError' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'hasError' ) )
+                expect( wrapper.shallow().find( Checkable ).prop( 'hasError' ) )
                     .toBe( true );
             } );
         } );
 
         describe( 'forceHover', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'forceHover' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBe( true );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'forceHover' ) ).toBe( true );
             } );
         } );
 
         describe( 'onChange', () =>
         {
+            test( 'should be undefined by default', () =>
+            {
+                expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 const onChange = jest.fn();
                 wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                expect( wrapper.shallow().find( Checkable ).prop( 'onChange' ) )
                     .toBe( onChange );
             } );
         } );
