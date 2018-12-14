@@ -44,7 +44,6 @@ import pageHeader           from './PageHeader/pageHeader.css';
 import paginator            from './Paginator/paginator.css';
 import progressBar          from './ProgressBar/progressBar.css';
 import progressIndicator    from './ProgressIndicator/progressIndicator.css';
-import checkable            from './proto/checkable.css';
 import radio                from './Radio/radio.css';
 import scrollBar            from './ScrollBar/scrollBar.css';
 import scrollBox            from './ScrollBox/scrollBox.css';
@@ -112,7 +111,6 @@ export default {
     Paginator         : paginator,
     ProgressBar       : progressBar,
     ProgressIndicator : progressIndicator,
-    Checkable         : checkable,
     Radio             : radio,
     ScrollBar         : scrollBar,
     ScrollBox         : scrollBox,
