@@ -18,12 +18,33 @@ import copy                      from './copy.json';
 
 const DISPLAY_FORMATTING =
 {
-    month  : 'YYYY/M',
+    month  : 'YYYY/MM',
     day    : 'YYYY/MM/DD',
     hour   : 'YYYY/MM/DD HH:00',
     minute : 'YYYY/MM/DD HH:mm',
 };
 
+const PARSE_FORMATTING =
+[
+
+    {
+        predicate        : /^\d{4}\/\d{1,2}$/,
+        requirePrecision : 'month',
+        format           : 'YYYY/M',
+    },
+    {
+        predicate        : /^\d{4}\/\d{1,2}\/\d{1,2}$/,
+        requirePrecision : 'day',
+        format           : 'YYYY/M/D',
+    },
+    {
+        predicate        : /^\d{4}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{1,2}(:\d{1,2})?$/,
+        requirePrecision : 'minute',
+        format           : 'YYYY/M/D H:m',
+    },
+];
+
+const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
 
 /**
  * returns the timestamp of the current moment
@@ -62,10 +83,30 @@ function isTimestampEqual( ts1, ts2, precision )
 }
 
 /**
- * gets the index of the option by the passed id
- *
- *
- * @return {Number} index of the option
+ */
+function tryParseInputValue( inputValue )
+{
+    if ( !inputValue ) return null;
+
+    const parser = PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
+        predicate.test( inputValue ) &&
+              PRECISIONS.includes( requirePrecision ) );
+
+    if ( !parser ) return inputValue;
+    return moment.utc( inputValue, parser.format ).unix();
+}
+
+/**
+ */
+function comparePrecision( precision )
+{
+    const queryPrecisionCode = PRECISIONS.indexOf( precision );
+    const currentPrecisionCode = PRECISIONS.indexOf( this.precision );
+    return queryPrecisionCode < 0 ? null :
+        currentPrecisionCode - queryPrecisionCode;
+}
+
+/**
  */
 function tryFormatMainInput( timestamp, precision )
 {
@@ -74,10 +115,22 @@ function tryFormatMainInput( timestamp, precision )
 }
 
 /**
- * gets the index of the option by the passed id
- *
- *
- * @return {Number} index of the option
+ */
+function tryFormatHourInput( timestamp )
+{
+    if ( !_.isNumber( timestamp ) ) return '';
+    return $m( timestamp ).format( 'HH' );
+}
+
+/**
+ */
+function tryFormatMinuteInput( timestamp )
+{
+    if ( !_.isNumber( timestamp ) ) return '';
+    return $m( timestamp ).format( 'mm' );
+}
+
+/**
  */
 function precision( mode )
 {
@@ -93,6 +146,26 @@ function precision( mode )
     }
 
     return DISPLAY_FORMATTING[ format ];
+}
+
+/**
+ */
+function displayTimestamp( editingTimestamp, timestamp )
+{
+    if ( typeof editingTimestamp !== 'undefined' )
+    {
+        return editingTimestamp;
+    }
+    return timestamp;
+}
+
+/**
+ */
+function isUnitSelectable( min, max, timestamp, unit, allowFraction )
+{
+    if ( timestamp > max ) return false;
+    if ( !allowFraction ) return timestamp >= min;
+    return $m( timestamp ).add( 1, unit ).unix() > min;
 }
 
 export default class DatePickerStateful extends Component
@@ -213,6 +286,14 @@ export default class DatePickerStateful extends Component
          *  Hour input is read only
          */
         hourIsReadOnly        : PropTypes.bool,
+        /**
+         *  Maximun date selectable
+         */
+        maxDateSelectable     : PropTypes.number,
+        /**
+         *  Minimun date Selectable
+         */
+        minDateSelectable     : PropTypes.number,
         /**
          *  Minute input is disabled
          */
@@ -341,6 +422,8 @@ export default class DatePickerStateful extends Component
         isReadOnlyInput       : undefined,
         label                 : undefined,
         labelPosition         : undefined,
+        maxDateSelectable     : undefined,
+        minDateSelectable     : undefined,
         minuteInputRef        : undefined,
         minuteIsDisabled      : false,
         minutePlaceholder     : undefined,
@@ -372,27 +455,35 @@ export default class DatePickerStateful extends Component
         super();
 
         this.state = {
-            gridStartTimestamp : undefined,
-            id         : undefined,
-            inputValue : undefined,
-            isOpen     : undefined,
-            value      : undefined,
+            editingHourInputValue   : undefined,
+            editingMainInputValue   : undefined,
+            editingMinuteInputValue : undefined,
+            gridStartTimestamp      : undefined,
+            id                      : undefined,
+            isOpen                  : undefined,
+            timestamp               : undefined,
         };
 
+        this.gotoNext        = this.gotoNext.bind( this );
+        this.gotoPrev        = this.gotoPrev.bind( this );
         this.handleClickIcon = this.handleClickIcon.bind( this );
         this.handleClickCell = this.handleClickCell.bind( this );
         this.handleOnBlur    = this.handleOnBlur.bind( this );
         this.setInputRef     = this.setInputRef.bind( this );
+        this.setHourRef      = this.setHourRef.bind( this );
+        this.setMinuteRef    = this.setMinuteRef.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
     {
         return {
-            id         : props.id || state.id || generateId( 'Select' ),
-            inputValue : tryFormatMainInput( state.value, precision( props.mode ) ),
-            isOpen     : typeof props.isOpen === 'undefined' ?
+            id     : props.id || state.id || generateId( 'Select' ),
+            isOpen : typeof props.isOpen === 'undefined' ?
                 Boolean( state.gridStartTimestamp ) : props.isOpen,
-            value : now(),
+            timestamp : displayTimestamp(
+                state.editingTimestamp,
+                state.timestamp,
+            ),
         };
     }
 
@@ -401,14 +492,50 @@ export default class DatePickerStateful extends Component
         this.inputRef = ref;
     }
 
+    setHourRef( ref )
+    {
+        this.inputHourRef = ref;
+    }
+
+    setMinuteRef( ref )
+    {
+        this.inputMinuteRef = ref;
+    }
+
+    gotoNext()
+    {
+        // if ( !this.canGotoNext ) return;
+
+        this.setState( {
+            gridStartTimestamp : $m( this.state.gridStartTimestamp )
+                .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
+                .unix(),
+        } );
+    }
+
+    gotoPrev()
+    {
+        // if ( !this.canGotoPrev ) return;
+
+        this.setState( {
+            gridStartTimestamp : $m( this.state.gridStartTimestamp )
+                .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
+                .unix(),
+        } );
+    }
+
+    canEditHourOrMinute()
+    {
+        return _.isNumber( this.state.timestamp );
+    }
+
     dayMatrix()
     {
         const startMonth = this.state.gridStartTimestamp;
 
         if ( !startMonth ) return;
 
-        const { value } = this.state;
-        // const field = this.fields.default;
+        const { timestamp } = this.state;
 
         const offset = ( $m( startMonth ).weekday() + 6 ) % 7;
         const daysInMonth = $m( startMonth ).daysInMonth();
@@ -417,20 +544,23 @@ export default class DatePickerStateful extends Component
         {
             const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
             const label = hasDate ? String( dayIndex + 1 ) : '';
-            const dayValue = hasDate ?
+            const value = hasDate ?
                 $m( startMonth ).add( dayIndex, 'day' ).unix().toString() :
                 null;
 
-            const isDisabled = false;
-            // const isDisabled = hasDate && !isUnitSelectable( field, value, 'day', this.mode === 'default' );
+
+            const min = typeof min !== 'undefined' ? this.props.minDateSelectable : min;
+            const max = typeof max !== 'undefined' ? this.props.maxDateSelectable : max;
+
+            const isDisabled = hasDate && !isUnitSelectable( min, max, value, 'day', this.mode === 'default' );
 
             const isCurrent = hasDate &&
-                isTimestampEqual( dayValue, now(), 'day' );
-            const isSelected = hasDate && _.isNumber( value ) &&
-                isTimestampEqual( value, dayValue, 'day' );
+                isTimestampEqual( value, now(), 'day' );
+            const isSelected = hasDate && _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'day' );
             return {
                 label,
-                value : dayValue,
+                value,
                 isDisabled,
                 isCurrent,
                 isSelected,
@@ -446,25 +576,25 @@ export default class DatePickerStateful extends Component
 
         if ( !startYear ) return;
 
-        const { value } = this.state;
+        const { timestamp } = this.state;
 
         // const field = this.fields.default;
 
         const months = _.range( 0, 12 ).map( month =>
         {
             const label = copy.shortMonths[ month ];
-            const monthValue = $m( startYear ).add( month, 'month' )
+            const value = $m( startYear ).add( month, 'month' )
                 .unix().toString();
 
             const isDisabled = false;
             // const isDisabled = !isUnitSelectable( field, value, 'month' );
 
-            const isCurrent = isTimestampEqual( monthValue, now(), 'month' );
-            const isSelected = _.isNumber( value ) &&
-                isTimestampEqual( value, monthValue, 'month' );
+            const isCurrent = isTimestampEqual( value, now(), 'month' );
+            const isSelected = _.isNumber( timestamp ) &&
+                isTimestampEqual( timestamp, value, 'month' );
             return {
                 label,
-                value : monthValue,
+                value,
                 isDisabled,
                 isCurrent,
                 isSelected,
@@ -502,7 +632,18 @@ export default class DatePickerStateful extends Component
 
         // this.setState( { inputValue: moment.unix( value ).utc()  } );
 
-        this.setState( { value: parseInt( value ) } );
+        this.setState( { timestamp: parseInt( value ) } );
+        this.purgeEdits();
+    }
+
+    purgeEdits()
+    {
+        this.setState( {
+            editingTimestamp        : undefined,
+            editingMainInputValue   : undefined,
+            editingHourInputValue   : undefined,
+            editingMinuteInputValue : undefined,
+        } );
     }
 
     handleClickIcon( e )
@@ -524,23 +665,102 @@ export default class DatePickerStateful extends Component
         }
     }
 
+    handleChange( inputValue, sender )
+    {
+        const trimmed = inputValue.trim().replace( /\s+/g, ' ' );
+
+        if ( sender === 'main' )
+        {
+            const value = tryParseInputValue( trimmed );
+
+            this.setState( {
+                editingTimestamp        : value,
+                editingHourInputValue   : tryFormatHourInput( value ),
+                editingMinuteInputValue : tryFormatMinuteInput( value ),
+                editingMainInputValue   : inputValue,
+            } );
+        }
+        else if ( sender === 'hour' )
+        {
+            const digits = Number( trimmed );
+
+            this.setState( { editingHourInputValue: inputValue } );
+
+            if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
+            {
+                const value = $m( this.state.timestamp ).set( 'hour', digits )
+                    .unix();
+
+                this.setState( {
+                    editingTimestamp      : value,
+                    editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                } );
+            }
+            else
+            {
+                const digits = _.isNumber( this.state.timestamp ) &&
+                    $m( this.state.timestamp ).hour();
+
+                if ( !_.isNaN( digits ) )
+                {
+                    const value = $m( this.state.timestamp ).set( 'hour', digits ).unix();
+
+                    this.setState( {
+                        editingTimestamp      : value,
+                        editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                    } );
+                }
+            }
+        }
+        else if ( sender === 'minute' )
+        {
+            const digits = Number( trimmed );
+            this.setState( { editingMinuteInputValue: inputValue } );
+
+            if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
+            {
+                const value = $m( this.state.timestamp ).set( 'minute', digits ).unix();
+
+                this.setState( {
+                    editingTimestamp      : value,
+                    editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                } );
+            }
+            else
+            {
+                const digits = _.isNumber( this.state.timestamp ) &&
+                    $m( this.state.timestamp ).minute();
+
+                if ( !_.isNaN( digits ) )
+                {
+                    const value = $m( this.state.timestamp ).set( 'minute', digits ).unix();
+
+                    this.setState( {
+                        editingTimestamp      : value,
+                        editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                    } );
+                }
+            }
+        }
+    }
+
     open()
     {
         this.inputRef.focus();
 
-        // let timestamp = this.displayTimestamp;
+        let { timestamp } = this.state;
 
-        // let timestamp = this.fields.default.value;
         // const min = this.fields.default.min;
 
-        // timestamp = _.isNumber( timestamp ) ? timestamp : now();
+        timestamp = _.isNumber( timestamp ) ? timestamp : now();
 
         // timestamp = _.isNumber( min ) && min > timestamp ? min : timestamp;
 
         this.setState( {
-            gridStartTimestamp : $m( this.state.value )
+            gridStartTimestamp : $m( timestamp )
                 .startOf( this.props.mode === 'month' ? 'year' : 'month' )
                 .unix(),
+            timestamp,
         } );
     }
 
@@ -572,10 +792,7 @@ export default class DatePickerStateful extends Component
             forceHover,
             hasError,
             hourIsDisabled,
-            hourIsReadOnly,
-            hourInputRef,
             hourPlaceholder,
-            hourValue,
             id,
             inputPlaceholder,
             isDisabled,
@@ -583,16 +800,10 @@ export default class DatePickerStateful extends Component
             isReadOnlyButton,
             isReadOnlyInput,
             minuteIsDisabled,
-            minuteIsReadOnly,
-            minuteInputRef,
             minutePlaceholder,
-            minuteValue,
             mode,
             nextIsDisabled,
             nextIsReadOnly,
-            onChange,
-            onClickNext,
-            onClickPrev,
             onFocus,
             onKeyDown,
             onKeyPress,
@@ -607,47 +818,54 @@ export default class DatePickerStateful extends Component
         } = this.props;
 
         const {
-            inputValue,
+            editingHourInputValue,
+            editingMainInputValue,
+            editingMinuteInputValue,
             isOpen,
+            timestamp,
         } = this.state;
 
         return (
             <DateTimeInput
                 className         = { className }
-                currentMonth      = { this.monthLabel() }
+                currentMonth      = { mode !== 'month' ? this.monthLabel() :
+                    undefined }
                 currentYear       = { this.yearLabel() }
                 days              = { this.dayLabels() }
                 forceHover        = { forceHover }
                 hasError          = { hasError }
                 hourIsDisabled    = { hourIsDisabled }
-                hourIsReadOnly    = { hourIsReadOnly }
-                hourInputRef      = { hourInputRef }
+                hourIsReadOnly    = { !this.canEditHourOrMinute() }
+                hourInputRef      = { this.setHourRef }
                 hourPlaceholder   = { hourPlaceholder }
-                hourValue         = { hourValue }
+                hourValue         = { editingHourInputValue ||
+                    tryFormatHourInput( timestamp ) }
                 id                = { id }
                 inputPlaceholder  = { inputPlaceholder }
                 inputRef          = { this.setInputRef }
-                inputValue        = { inputValue }
+                inputValue        = { editingMainInputValue ||
+                    tryFormatMainInput( timestamp, precision( mode ) ) }
                 isDisabled        = { isDisabled }
                 isOpen            = { isOpen }
                 isReadOnly        = { isReadOnly }
                 isReadOnlyButton  = { isReadOnlyButton }
                 isReadOnlyInput   = { isReadOnlyInput }
                 minuteIsDisabled  = { minuteIsDisabled }
-                minuteIsReadOnly  = { minuteIsReadOnly }
-                minuteInputRef    = { minuteInputRef }
+                minuteIsReadOnly  = { !this.canEditHourOrMinute() }
+                minuteInputRef    = { this.setMinuteRef }
                 minutePlaceholder = { minutePlaceholder }
-                minuteValue       = { minuteValue }
+                minuteValue       = { editingMinuteInputValue ||
+                    tryFormatMinuteInput( timestamp ) }
                 mode              = { mode }
                 months            = { this.monthMatrix() }
                 nextIsDisabled    = { nextIsDisabled }
                 nextIsReadOnly    = { nextIsReadOnly }
                 onBlur            = { this.handleOnBlur }
-                onChange          = { onChange }
+                onChange          = { ( ev, sender ) => this.handleChange( ev.target.value, sender ) }
                 onClickCell       = { this.handleClickCell }
                 onClickIcon       = { this.handleClickIcon }
-                onClickNext       = { onClickNext }
-                onClickPrev       = { onClickPrev }
+                onClickNext       = { this.gotoNext }
+                onClickPrev       = { this.gotoPrev }
                 onFocus           = { onFocus }
                 onKeyDown         = { onKeyDown }
                 onKeyPress        = { onKeyPress }
