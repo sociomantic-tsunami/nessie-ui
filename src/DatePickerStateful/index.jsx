@@ -84,7 +84,7 @@ function isTimestampEqual( ts1, ts2, precision )
 
 /**
  */
-function tryParseInputValue( inputValue )
+function tryParseInputValue( inputValue, timestamp )
 {
     if ( !inputValue ) return null;
 
@@ -92,7 +92,11 @@ function tryParseInputValue( inputValue )
         predicate.test( inputValue ) &&
               PRECISIONS.includes( requirePrecision ) );
 
-    if ( !parser ) return inputValue;
+    if ( !parser || isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
+    {
+        return timestamp;
+    }
+
     return moment.utc( inputValue, parser.format ).valueOf();
 }
 
@@ -110,8 +114,6 @@ function comparePrecision( precision )
  */
 function tryFormatMainInput( timestamp, precision )
 {
-    console.log( timestamp );
-      console.log( typeof timestamp );
     if ( !_.isNumber( timestamp ) ) return String( timestamp || '' );
     return $m( timestamp ).format( precision );
 }
@@ -670,7 +672,7 @@ export default class DatePickerStateful extends Component
 
         if ( sender === 'main' )
         {
-            const value = tryParseInputValue( trimmed );
+            const value = tryParseInputValue( trimmed, this.state.timestamp );
 
             this.setState( {
                 editingTimestamp        : value,
@@ -764,6 +766,7 @@ export default class DatePickerStateful extends Component
 
     close()
     {
+        this.purgeEdits();
         this.setState( { gridStartTimestamp: null } );
     }
 
@@ -779,6 +782,7 @@ export default class DatePickerStateful extends Component
 
         if ( !e.relatedTarget )// needs to be fixed
         {
+            this.purgeEdits();
             this.setState( { gridStartTimestamp: null } );
         }
     }
