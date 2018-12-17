@@ -14,7 +14,7 @@
     position: 		relative;
     min-height:     var( --line-height-l );
 
-    @extend %Nessie-SemiBold;
+    @extend %Nessie-Bold;
     font-size:      var( --typo-6 );
     line-height:    var( --line-height-l );
     color:          var( --PC-GREY--D15 );

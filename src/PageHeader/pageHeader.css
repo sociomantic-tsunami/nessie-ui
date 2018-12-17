@@ -14,7 +14,7 @@
     flex:           0 0 auto;
     width:          100%;
     margin:         0;
-    padding:        var( --spacing-3 ) var( --spacing-5 );
+    padding:        var( --spacing-2 ) var( --spacing-4 );
     background:     var( --PC-BLUE );
     color:          var( --PC-WHITE );
 }

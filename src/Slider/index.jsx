@@ -7,16 +7,20 @@
  *
  */
 
-/* global addEventListener removeEventListener Event */
+/* global document addEventListener removeEventListener Event */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import IconWithTooltip                  from '../IconWithTooltip';
-import Label                            from '../Label';
+import { IconWithTooltip, Label }       from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class Slider extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -40,11 +44,6 @@ export default class Slider extends React.Component
         */
         hasError              : PropTypes.bool,
         /**
-        *  Callback that receives ref to native input; or array of refs to
-        *  native inputs
-        */
-        inputRef              : PropTypes.func,
-        /**
         *  Tooltip message text (string or JSX)
         */
         errorMessage          : PropTypes.node,
@@ -59,6 +58,15 @@ export default class Slider extends React.Component
             'top',
             'topLeft',
             'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
         ] ),
         /**
         * Display track fill
@@ -85,9 +93,9 @@ export default class Slider extends React.Component
         */
         stepLabelsPosition : PropTypes.oneOf( [
             'top',
-            'right',
             'bottom',
             'left',
+            'right',
         ] ),
         /**
         * hasHandleLabels
@@ -98,9 +106,9 @@ export default class Slider extends React.Component
         */
         handleLabelPosition : PropTypes.oneOf( [
             'top',
-            'right',
             'bottom',
             'left',
+            'right',
         ] ),
         /**
         * Slider minimum value
@@ -118,8 +126,8 @@ export default class Slider extends React.Component
         * Slider handle value(s)
         */
         value    : PropTypes.oneOfType( [
-            PropTypes.number,
             PropTypes.arrayOf( PropTypes.number ),
+            PropTypes.number,
         ] ),
         /**
         *  Set the track to use a logarithmic calculated value
@@ -169,46 +177,51 @@ export default class Slider extends React.Component
         * Step labels
         */
         stepLabels    : PropTypes.arrayOf( PropTypes.shape( {
-            stepLabel : PropTypes.string,
             step      : PropTypes.number,
+            stepLabel : PropTypes.string,
         } ) ),
         /**
         * Slider ticks separators
         */
         ticks : PropTypes.arrayOf( PropTypes.shape( {
-            stepLabel : PropTypes.string,
             step      : PropTypes.number,
+            stepLabel : PropTypes.string,
         } ) ),
     };
 
     static defaultProps =
     {
-        isDisabled            : false,
-        isReadOnly            : false,
-        hasError              : false,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
-        hasFill               : true,
-        id                    : undefined,
         fillFrom              : 'start',
-        orientation           : 'horizontal',
-        stepLabelsPosition    : 'top',
-        hasHandleLabels       : false,
         handleLabelPosition   : 'top',
+        hasError              : false,
+        hasFill               : true,
+        hasHandleLabels       : false,
+        id                    : undefined,
+        isDisabled            : false,
+        isLogarithmic         : false,
+        isReadOnly            : false,
         maxValue              : 100,
         minValue              : 0,
+        orientation           : 'horizontal',
         step                  : 1,
-        isLogarithmic         : false,
-        cssMap                : require( './slider.css' ),
+        stepLabelsPosition    : 'top',
         value                 : 0,
     };
+
+    static displayName = 'Slider';
 
 
     constructor( props )
     {
         super( props );
 
-        this.state = { ...this.state, inputIndex: -1 };
+        this.state = {
+            ...this.state,
+            inputIndex : -1,
+            id         : props.id || generateId( 'Slider' ),
+        };
 
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
@@ -221,68 +234,6 @@ export default class Slider extends React.Component
         this.handleUp    = this.handleUp.bind( this );
     }
 
-    componentDidMount()
-    {
-        this.attachInputRefs();
-    }
-
-    componentWillUpdate( nextProps )
-    {
-        if ( nextProps.inputRef !== this.props.inputRef )
-        {
-            this.detachInputRefs();
-        }
-    }
-
-    componentDidUpdate( prevProps )
-    {
-        const { props } = this;
-
-        if ( prevProps.inputRef !== props.inputRef ||
-            prevProps.value.length !== props.value.length )
-        {
-            this.attachInputRefs();
-        }
-    }
-
-    componentWillUnmount()
-    {
-        this.detachInputRefs();
-    }
-
-    /* eslint-disable react/sort-comp */
-    attachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            const inputs = Array.from( this.inputContainer.childNodes );
-
-            if ( inputs.length === 1 )
-            {
-                inputRef( inputs[ 0 ] );
-            }
-            else if ( inputs.length > 1 )
-            {
-                inputRef( inputs );
-            }
-            else
-            {
-                inputRef( null );
-            }
-        }
-    }
-
-    detachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            inputRef( null );
-        }
-    }
 
     /**
     * Generate track fill style object depending on input values
@@ -461,7 +412,7 @@ export default class Slider extends React.Component
     {
         const { inputContainer } = this;
 
-        if ( index )
+        if ( index >= 0 )
         {
             this.targetInput = inputContainer.childNodes[ index ];
         }
@@ -481,7 +432,8 @@ export default class Slider extends React.Component
         }
 
         const { onChange } = this.props;
-        const event = new Event( 'change' );
+        const event = document.createEvent( 'Event' );
+        event.initEvent( 'change', true, true );
 
         this.targetInput.value = String( value );
         this.targetInput.dispatchEvent( event );
@@ -524,9 +476,9 @@ export default class Slider extends React.Component
             return;
         }
 
-        const { index } = event.target.dataset;
+        const index = parseInt( event.target.getAttribute( 'data-index' ) );
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( index >= 0 ) // target is handle
         {
             this.setTargetInput( index );
 
@@ -598,7 +550,7 @@ export default class Slider extends React.Component
             onClick( event );
         }
 
-        if ( event.target.dataset.index ) // target is handle
+        if ( event.target.getAttribute( 'data-index' ) ) // target is handle
         {
             event.stopPropagation();
         }
@@ -619,7 +571,7 @@ export default class Slider extends React.Component
         }
 
         this.setState( {
-            inputIndex : parseInt( event.target.dataset.index, 10 ),
+            inputIndex : parseInt( event.target.getAttribute( 'data-index' ) ),
             isGrabbing : true,
         } );
     }
@@ -653,11 +605,11 @@ export default class Slider extends React.Component
     mergeStepLabels()
     {
         const {
+            maxValue,
+            minValue,
+            stepLabelEnd,
             stepLabels = [],
             stepLabelStart,
-            stepLabelEnd,
-            minValue,
-            maxValue,
         } = this.props;
 
         if ( stepLabelStart || stepLabelEnd )
@@ -677,7 +629,7 @@ export default class Slider extends React.Component
     {
         const {
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
@@ -685,7 +637,7 @@ export default class Slider extends React.Component
             hasError,
             hasFill,
             hasHandleLabels,
-            id = generateId( 'Slider' ),
+            id = this.state,
             isDisabled,
             isReadOnly,
             label,
@@ -702,8 +654,8 @@ export default class Slider extends React.Component
             orientation,
             step,
             stepLabelsPosition,
-            value,
             ticks = [],
+            value,
         } = this.props;
 
         let values = [];
@@ -740,13 +692,13 @@ export default class Slider extends React.Component
         const sliderLabelMarkUp = label && (
             <IconWithTooltip
                 className        = { cssMap.labelContainer }
-                iconType         = "error"
+                iconIsVisible    = { !!errorMessage && hasError && !isDisabled }
                 iconPosition     = "right"
+                iconType         = "error"
                 message          = { errorMessage }
+                noWarn
                 tooltipIsVisible = { errorMessageIsVisible }
-                tooltipPosition  = { errorMessagePosition }
-                iconIsVisible    = { !!errorMessage && hasError
-                    && !isDisabled } >
+                tooltipPosition  = { errorMessagePosition }>
                 <Label htmlFor = { `${id}_0` }>{ label }</Label>
             </IconWithTooltip>
         );
@@ -766,9 +718,9 @@ export default class Slider extends React.Component
             }
             return (
                 <div
-                    key         = { i } // eslint-disable-line react/no-array-index-key, max-len
-                    data-index  = { i }
                     className   = { handleClassName }
+                    data-index  = { i }
+                    key         = { i } // eslint-disable-line react/no-array-index-key, max-len
                     style       = { this.getHandleStyle( val ) } >
                     <span className = { cssMap.handleLabel }>
                         { val }
@@ -782,8 +734,8 @@ export default class Slider extends React.Component
                 { ticks.map( ( tick, i ) =>
                     ( tick.step !== minValue || tick.step !== maxValue ) &&
                         <div
-                            key       = { i } // eslint-disable-line react/no-array-index-key, max-len
                             className = { cssMap.tick }
+                            key       = { i } // eslint-disable-line react/no-array-index-key, max-len
                             style     = { this.getHandleStyle( tick.step ) }>
                             {tick.stepLabel}
                         </div> ) }
@@ -837,10 +789,10 @@ export default class Slider extends React.Component
                     <div
                         aria-hidden
                         className    = { cssMap.track }
-                        ref          = { this.setTrackRef }
                         onClick      = { this.handleClick }
                         onMouseDown  = { this.handleDown }
-                        onTouchStart = { this.handleDown }>
+                        onTouchStart = { this.handleDown }
+                        ref          = { this.setTrackRef }>
                         { trackFillMarkUp }
                         { values.map( buildHandle ) }
                         { ticksMarkUp }

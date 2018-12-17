@@ -58,7 +58,7 @@
         "keyword-spacing"          : "error",
         "linebreak-style"          : [ "error", "unix" ],
         "max-len"                  : [ "error", 80, 4 ],
-        "no-console"               : "warn",
+        "no-console"               : ["warn", { allow: ["warn"] } ],
         "no-constant-condition"    : "warn",
         "no-continue"              : "warn",
         "no-debugger"              : "error",
@@ -75,7 +75,7 @@
         "no-magic-numbers"         : "warn",
         "no-multi-assign"          : "off",
         "no-multi-spaces"          : "off",
-        "no-multi-str"             : "warn",
+        "no-multi-str"             : "off",
         "no-sparse-arrays"         : "warn",
         "no-underscore-dangle"     : "off",
         "no-unreachable"           : "warn",
@@ -91,6 +91,7 @@
             "error", "as-needed", { "keywords": true, "unnecessary": false }
         ],
         "quotes"                             : [ "error", "single" ],
+        "radix"                              : ["off"],
         "react/jsx-closing-bracket-location" : "off",
         "react/jsx-curly-spacing"            : [ "error", "always" ],
         "react/jsx-equals-spacing"           : [ "error", "always" ],
@@ -151,9 +152,8 @@
         "describe"   : true,
         "expect"     : true,
         "fetch"      : true,
-        "it"         : true,
-        "sinon"      : true,
-        "xit"        : true
+        "test"       : true,
+        "jest"       : true
     },
     "plugins" : [
         "arca",

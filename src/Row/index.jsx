@@ -11,131 +11,124 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './row.css';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
-const Row = ( {
-    align,
-    children,
-    className,
-    cssMap,
-    gutters,
-    hasDividers,
-    hasWrap,
-    onClick,
-    onMouseOut,
-    onMouseOver,
-    role,
-    spacing,
-    verticalAlign,
-} ) =>
+export default class Row extends React.Component
 {
-    let elements;
+    static contextType = ThemeContext;
 
-    if ( hasDividers )
+    static propTypes =
     {
-        elements = React.Children.toArray( children ).flatMap( (
-            child,
-            index,
-            { length },
-        ) =>
-            ( index < length - 1 ?
-                [ child, <div className = { cssMap.divider } /> ] : child ) );
+        /**
+         *  Horizontal alignment of the columns (“auto” makes all columns equal
+         *  width)
+         */
+        align : PropTypes.oneOf( [
+            'auto', 'left', 'center', 'right' ] ),
+        /**
+         *  Grid content (Columns)
+         */
+        children      : PropTypes.node,
+        /**
+         *  CSS class name
+         */
+        className     : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Gutter size
+         */
+        gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+        /**
+         *  Adds dividers between row items
+         */
+        hasDividers   : PropTypes.bool,
+        /*
+         *  Sets 'width: 100%' to prevent content growth from negative margins
+         */
+        hasFullWidth  : PropTypes.bool,
+        /**
+         *  Wrap content
+         */
+        hasWrap       : PropTypes.bool,
+        /**
+         *  Grid role
+         */
+        role          : PropTypes.string,
+        /**
+         *  Row spacing
+         */
+        spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
+        /**
+         *  Vertical alignment of the columns (“auto” makes all columns equal
+         *  height)
+         */
+        verticalAlign : PropTypes.oneOf( [
+            'auto', 'top', 'middle', 'bottom' ] ),
+    };
+
+    static defaultProps =
+    {
+        align         : 'auto',
+        children      : undefined,
+        className     : undefined,
+        gutters       : 'M',
+        hasDividers   : false,
+        hasFullWidth  : false,
+        role          : undefined,
+        spacing       : 'M',
+        verticalAlign : 'auto',
+    };
+
+    static displayName = 'Row';
+
+    render()
+    {
+        const {
+            align,
+            children,
+            className,
+            cssMap = createCssMap( this.context.Radio, this.props ),
+            gutters,
+            hasDividers,
+            hasFullWidth,
+            hasWrap,
+            role,
+            spacing,
+            verticalAlign,
+        } = this.props;
+
+        let elements;
+
+        if ( hasDividers )
+        {
+            elements = React.Children.toArray( children ).flatMap( (
+                child,
+                index,
+                { length },
+            ) =>
+                ( index < length - 1 ?
+                    [ child, <div className = { cssMap.divider } /> ] :
+                    child ) );
+        }
+
+        return (
+            <div
+                className = { buildClassName( className, cssMap, {
+                    alignX  : align,
+                    alignY  : verticalAlign,
+                    gutters : gutters !== 'none' && gutters,
+                    hasFullWidth,
+                    wrap    : hasWrap,
+                    spacing : spacing !== 'none' && spacing,
+                } ) }
+                hasWrap      = { false }
+                role         = { role && role !== 'none' ? role : null }>
+                { hasDividers ? elements : children }
+            </div>
+        );
     }
-
-    return (
-        <div
-            className = { buildClassName( className, cssMap, {
-                alignX  : align,
-                alignY  : verticalAlign,
-                gutters : gutters !== 'none' && gutters,
-                wrap    : hasWrap,
-                spacing : spacing !== 'none' && spacing,
-            } ) }
-            hasWrap      = { false }
-            onClick      = { onClick }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            role         = { role && role !== 'none' ? role : null }>
-            { hasDividers ? elements : children }
-        </div>
-    );
-};
-
-Row.propTypes =
-{
-    /**
-     *  Horizontal alignment of the columns (“auto” makes all columns equal
-     *  width)
-     */
-    align         : PropTypes.oneOf( [ 'auto', 'left', 'center', 'right' ] ),
-    /**
-     *  Grid content (Columns)
-     */
-    children      : PropTypes.node,
-    /**
-     *  CSS class name
-     */
-    className     : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap        : PropTypes.objectOf( PropTypes.string ),
-    /**
-     *  Gutter size
-     */
-    gutters       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    /**
-     *  Adds dividers between row items
-     */
-    hasDividers   : PropTypes.bool,
-    /**
-     *  Wrap content
-     */
-    hasWrap       : PropTypes.bool,
-    /**
-     *  onClick callback function:
-     *  ( e ) => { ... }
-     */
-    onClick       : PropTypes.func,
-    /**
-     *  onMouseOut callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOut    : PropTypes.func,
-    /**
-     *  onMouseOver callback function:
-     *  ( e ) => { ... }
-     */
-    onMouseOver   : PropTypes.func,
-    /**
-     *  Grid role
-     */
-    role          : PropTypes.string,
-    /**
-     *  Row spacing
-     */
-    spacing       : PropTypes.oneOf( [ 'none', 'S', 'M', 'L' ] ),
-    /**
-     *  Vertical alignment of the columns (“auto” makes all columns equal
-     *  height)
-     */
-    verticalAlign : PropTypes.oneOf( [ 'auto', 'top', 'middle', 'bottom' ] ),
-};
-
-Row.defaultProps =
-{
-    align         : 'auto',
-    children      : undefined,
-    className     : undefined,
-    cssMap        : styles,
-    gutters       : 'M',
-    hasDividers   : false,
-    onClick       : undefined,
-    onMouseOut    : undefined,
-    onMouseOver   : undefined,
-    role          : undefined,
-    spacing       : 'M',
-    verticalAlign : 'auto',
-};
-
-export default Row;
+}

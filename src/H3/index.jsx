@@ -11,42 +11,52 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './h3.css';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
-const H3 = ( {
-    cssMap,
-    className,
-    children,
-    title,
-    role,
-} ) => (
-    <h3 className = { buildClassName( className, cssMap, { role } ) }>
-        { children || title }
-    </h3>
-);
-
-H3.propTypes =
+export default class H3 extends React.Component
 {
-    /**
-    *  Title text
-    */
-    title : PropTypes.string,
-    /**
-    *  Role (style) to apply to heading
-    */
-    role  : PropTypes.oneOf( [
-        'default',
-        'subtle',
-        'promoted',
-        'critical',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-H3.defaultProps =
-{
-    title  : undefined,
-    role   : 'default',
-    cssMap : styles,
-};
+    static propTypes =
+    {
+        /**
+        *  Title text
+        */
+        title : PropTypes.string,
+        /**
+        *  Role (style) to apply to heading
+        */
+        role  : PropTypes.oneOf( [
+            'default',
+            'subtle',
+            'promoted',
+            'critical',
+        ] ),
+    };
 
-export default H3;
+    static defaultProps =
+    {
+        title : undefined,
+        role  : 'default',
+    };
+
+    static displayName = 'H3';
+
+    render()
+    {
+        const {
+            className,
+            children,
+            cssMap = createCssMap( this.context.H3, this.props ),
+            title,
+            role,
+        } = this.props;
+
+        return (
+            <h3 className = { buildClassName( className, cssMap, { role } ) }>
+                { children || title }
+            </h3>
+        );
+    }
+}

@@ -9,89 +9,78 @@
 
 /* global document */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { ScrollBox, Text }  from '../index';
-import TextInputWithIcon    from '../TextInputWithIcon';
-import ListBox              from '../ListBox';
-import withDropdown         from '../Dropdown/withDropdown';
-import { generateId }       from '../utils';
-import InputContainer       from '../proto/InputContainer';
-import styles               from './comboBox.css';
+import {
+    ListBox,
+    ScrollBox,
+    Text,
+} from '../index';
+import TextInputWithIcon from '../TextInputWithIcon';
 import {
     addPrefix,
     buildListBoxOptions,
     getScrollParent,
     removePrefix,
 } from './utils';
-
+import { generateId }   from '../utils';
+import withDropdown     from '../Addons/withDropdown';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-
-export default class ComboBox extends Component
+export default class ComboBox extends React.Component
 {
     static propTypes =
     {
         /*
          * Active option in dropdown list
          */
-        activeOption          : PropTypes.string,
+        activeOption         : PropTypes.string,
         /**
          *  Extra CSS class name
          */
-        className             : PropTypes.string,
+        className            : PropTypes.string,
         /**
          * Placeholder text to show when no dropdown list options
          */
-        dropdownPlaceholder   : PropTypes.string,
+        dropdownPlaceholder  : PropTypes.string,
         /**
          * Position of the dropdown relative to the text input
          */
-        dropdownPosition      : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *   Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        dropdownPosition     : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
         /**
          *  Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover           : PropTypes.bool,
         /**
          *  Input has autocomplete
          */
-        hasAutocomplete       : PropTypes.bool,
+        hasAutocomplete      : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError             : PropTypes.bool,
         /**
          *  Display Button icon as disabled
          */
-        iconButtonIsDisabled  : PropTypes.bool,
+        iconButtonIsDisabled : PropTypes.bool,
         /**
          *  Alignment of the icon
          */
-        iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
+        iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Icon type to display (overrides customIcon)
          */
-        iconType              : PropTypes.oneOf( [
+        iconType             : PropTypes.oneOf( [
             'account',
             'add-circle',
             'add',
             'alert',
             'approved',
             'arrow',
+            'arrow-up',
+            'arrow-down',
             'bell',
             'board',
             'calendar',
@@ -100,6 +89,7 @@ export default class ComboBox extends Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
@@ -117,8 +107,10 @@ export default class ComboBox extends Component
             'left',
             'lightbulb',
             'link',
+            'loader',
             'megaphone',
             'options',
+            'paused',
             'pending',
             'preview',
             'puzzle-piece',
@@ -128,6 +120,7 @@ export default class ComboBox extends Component
             'show',
             'star-stroke',
             'star',
+            'sociomantic',
             'swap',
             'table',
             'up',
@@ -143,10 +136,6 @@ export default class ComboBox extends Component
          *  Placeholder text
          */
         inputPlaceholder  : PropTypes.string,
-        /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef          : PropTypes.func,
         /**
          *  Display as disabled
          */
@@ -175,14 +164,6 @@ export default class ComboBox extends Component
          * Dropdown is open
          */
         isOpen            : PropTypes.bool,
-        /**
-         *  Label text (string or JSX node)
-         */
-        label             : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  HTML name attribute
          */
@@ -269,52 +250,48 @@ export default class ComboBox extends Component
     };
 
     static defaultProps = {
-        activeOption          : undefined,
-        buttonIsReadOnly      : undefined,
-        className             : undefined,
-        dropdownPlaceholder   : undefined,
-        dropdownPosition      : 'auto',
-        errorMessage          : undefined,
-        errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
-        forceHover            : false,
-        hasAutocomplete       : false,
-        hasError              : false,
-        iconButtonIsDisabled  : undefined,
-        iconPosition          : undefined,
-        iconType              : 'none',
-        id                    : undefined,
-        inputIsReadOnly       : false,
-        inputPlaceholder      : undefined,
-        inputRef              : undefined,
-        inputValue            : undefined,
-        isDisabled            : false,
-        isMultiselect         : false,
-        isOpen                : false,
-        isReadOnly            : undefined,
-        label                 : undefined,
-        labelPosition         : 'top',
-        name                  : undefined,
-        onBlur                : undefined,
-        onChangeInput         : undefined,
-        onClickIcon           : undefined,
-        onClickInput          : undefined,
-        onClickOption         : undefined,
-        onFocus               : undefined,
-        onKeyDown             : undefined,
-        onKeyPress            : undefined,
-        onKeyUp               : undefined,
-        onMouseOut            : undefined,
-        onMouseOutIcon        : undefined,
-        onMouseOutOption      : undefined,
-        onMouseOver           : undefined,
-        onMouseOverIcon       : undefined,
-        onMouseOverOption     : undefined,
-        onScroll              : undefined,
-        options               : undefined,
-        selection             : undefined,
-        textAlign             : 'auto',
+        activeOption         : undefined,
+        buttonIsReadOnly     : undefined,
+        className            : undefined,
+        dropdownPlaceholder  : undefined,
+        dropdownPosition     : 'auto',
+        forceHover           : false,
+        hasAutocomplete      : false,
+        hasError             : false,
+        iconButtonIsDisabled : undefined,
+        iconPosition         : undefined,
+        iconType             : 'none',
+        id                   : undefined,
+        inputIsReadOnly      : false,
+        inputPlaceholder     : undefined,
+        inputValue           : undefined,
+        isDisabled           : false,
+        isMultiselect        : false,
+        isOpen               : false,
+        isReadOnly           : undefined,
+        name                 : undefined,
+        onBlur               : undefined,
+        onChangeInput        : undefined,
+        onClickIcon          : undefined,
+        onClickInput         : undefined,
+        onClickOption        : undefined,
+        onFocus              : undefined,
+        onKeyDown            : undefined,
+        onKeyPress           : undefined,
+        onKeyUp              : undefined,
+        onMouseOut           : undefined,
+        onMouseOutIcon       : undefined,
+        onMouseOutOption     : undefined,
+        onMouseOver          : undefined,
+        onMouseOverIcon      : undefined,
+        onMouseOverOption    : undefined,
+        onScroll             : undefined,
+        options              : undefined,
+        selection            : undefined,
+        textAlign            : 'auto',
     };
+
+    static displayName = 'ComboBox';
 
     constructor( props )
     {
@@ -445,6 +422,13 @@ export default class ComboBox extends Component
         }
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
 
     render()
     {
@@ -453,9 +437,6 @@ export default class ComboBox extends Component
             buttonIsReadOnly,
             className,
             dropdownPlaceholder,
-            errorMessage,
-            errorMessageIsVisible,
-            errorMessagePosition,
             forceHover,
             hasAutocomplete,
             hasError,
@@ -465,14 +446,11 @@ export default class ComboBox extends Component
             id = generateId( 'ComboBox' ),
             inputIsReadOnly,
             inputPlaceholder,
-            inputRef,
             inputValue,
             isDisabled,
             isMultiselect,
             isOpen,
             isReadOnly,
-            label,
-            labelPosition,
             name,
             onBlur,
             onChangeInput,
@@ -522,73 +500,66 @@ export default class ComboBox extends Component
         {
             dropdownContent = (
                 <Text
-                    className = { styles.dropdownPlaceholder }
                     noWrap
                     overflowIsHidden
-                    role = "subtle">
+                    role = "subtle"
+                    variant = "RegularIt">
                     { dropdownPlaceholder }
                 </Text>
             );
         }
 
         return (
-            <InputContainer
-                className     = { className }
-                label         = { label }
-                labelPosition = { labelPosition }
-                onMouseOut    = { onMouseOut }
-                onMouseOver   = { onMouseOver }>
-                <InputWithDropdown
-                    aria = { {
-                        activeDescendant :
-                            activeOption && addPrefix( activeOption, id ),
-                        autocomplete : hasAutocomplete ? 'both' : 'list',
-                        expanded     : isOpen,
-                        hasPopup     : 'listbox',
-                        owns         : addPrefix( 'listbox', id ),
-                        role         : 'combobox',
-                    } }
-                    autoCapitalize   = "off"
-                    autoComplete     = "off"
-                    autoCorrect      = "off"
-                    dropdownIsOpen   = { isOpen }
-                    dropdownPosition = { dropdownPosition }
-                    dropdownProps    = { {
-                        children : dropdownContent,
-                        hasError,
-                        padding  : options.length ? 'none' : 'S',
-                    } }
-                    errorMessage          = { errorMessage }
-                    errorMessageIsVisible = { errorMessageIsVisible }
-                    errorMessagePosition  = { errorMessagePosition }
-                    forceHover            = { forceHover }
-                    hasError              = { hasError }
-                    iconButtonIsDisabled  = { iconButtonIsDisabled }
-                    iconPosition          = { iconPosition }
-                    iconType              = { iconType }
-                    id                    = { id }
-                    inputRef              = { inputRef }
-                    isDisabled            = { isDisabled }
-                    isReadOnly            = { isReadOnly }
-                    isReadOnlyButton      = { buttonIsReadOnly }
-                    isReadOnlyInput       = { inputIsReadOnly }
-                    name                  = { name }
-                    onBlur                = { onBlur }
-                    onChange              = { onChangeInput }
-                    onClick               = { onClickInput }
-                    onClickIcon           = { onClickIcon }
-                    onFocus               = { onFocus }
-                    onKeyDown             = { onKeyDown }
-                    onKeyPress            = { onKeyPress }
-                    onKeyUp               = { onKeyUp }
-                    onMouseOutIcon        = { onMouseOutIcon }
-                    onMouseOverIcon       = { onMouseOverIcon }
-                    placeholder           = { inputPlaceholder }
-                    spellCheck            = { false }
-                    textAlign             = { textAlign }
-                    value                 = { inputValue }
-                    wrapperRef            = { this.setWrapperRef } />
-            </InputContainer>
+            <InputWithDropdown
+                aria = { {
+                    activeDescendant :
+                        activeOption && addPrefix( activeOption, id ),
+                    autocomplete : hasAutocomplete ? 'both' : 'list',
+                    expanded     : isOpen,
+                    hasPopup     : 'listbox',
+                    owns         : addPrefix( 'listbox', id ),
+                    role         : 'combobox',
+                } }
+                autoCapitalize   = "off"
+                autoComplete     = "off"
+                autoCorrect      = "off"
+                className        = { className }
+                dropdownIsOpen   = { isOpen }
+                dropdownPosition = { dropdownPosition }
+                dropdownProps    = { {
+                    children : dropdownContent,
+                    hasError,
+                    padding  : options.length ? 'none' : 'S',
+                } }
+                forceHover            = { forceHover }
+                hasError              = { hasError }
+                iconButtonIsDisabled  = { iconButtonIsDisabled }
+                iconPosition          = { iconPosition }
+                iconType              = { iconType }
+                id                    = { id }
+                isDisabled            = { isDisabled }
+                isReadOnly            = { isReadOnly }
+                isReadOnlyButton      = { buttonIsReadOnly }
+                isReadOnlyInput       = { inputIsReadOnly }
+                name                  = { name }
+                onBlur                = { onBlur }
+                onChange              = { onChangeInput }
+                onClick               = { onClickInput }
+                onClickIcon           = { onClickIcon }
+                onFocus               = { onFocus }
+                onKeyDown             = { onKeyDown }
+                onKeyPress            = { onKeyPress }
+                onKeyUp               = { onKeyUp }
+                onMouseOut            = { onMouseOut }
+                onMouseOutIcon        = { onMouseOutIcon }
+                onMouseOver           = { onMouseOver }
+                onMouseOverIcon       = { onMouseOverIcon }
+                placeholder           = { inputPlaceholder }
+                ref                   = { this.inputRef }
+                spellCheck            = { false }
+                textAlign             = { textAlign }
+                value                 = { inputValue }
+                wrapperRef            = { this.setWrapperRef } />
         );
     }
 }

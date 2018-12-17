@@ -12,20 +12,24 @@
 .default
 {
     width:          auto;
-
-    line-height:    var( --line-height-m );
     text-transform: none;
+    line-height:    var( --line-height-m );
 
     .default
     {
-        display:        inline;
-        position:       static;
+        display:    inline;
+        position:   static;
+    }
 
-        color:          inherit;
-        font:           inherit;
-        text-align:     inherit;
-        text-transform: inherit;
-        white-space:    inherit;
+    a:any-link
+    {
+        color:                  var( --PC-BLUE );
+        text-decoration:        underline;
+
+        &:hover
+        {
+            text-decoration:    none;
+        }
     }
 }
 
@@ -38,7 +42,7 @@
 
 .noWrap
 {
-    white-space: nowrap;
+    white-space:    nowrap;
 }
 
 .allCaps
@@ -49,23 +53,36 @@
 /* ROLES */
 .role__default
 {
-    color:  inherit;
-}
-
-.role__subtle
-{
-    color:  var( --PC-GREY--D5 );
-}
-
-.role__promoted
-{
-    color:  var( --PC-GREEN );
+    color:                  inherit;
 }
 
 .role__critical
 {
-    color:  var( --PC-RED );
+    color:                  var( --PC-RED );
 }
+
+.role__link
+{
+    color:                  var( --PC-BLUE );
+    text-decoration:        underline;
+
+    &:hover
+    {
+        text-decoration:    none;
+        cursor:             pointer;
+    }
+}
+
+.role__promoted
+{
+    color:                  var( --PC-GREEN );
+}
+
+.role__subtle
+{
+    color:                  var( --PC-GREY--D5 );
+}
+
 
 /* SIZES */
 .size__XXS
@@ -114,6 +131,11 @@
     @extend %Nessie-Light;
 }
 
+.variant__LightIt
+{
+    @extend %Nessie-LightIt;
+}
+
 .variant__Regular
 {
     @extend %Nessie-Regular;
@@ -129,9 +151,29 @@
     @extend %Nessie-SemiBold;
 }
 
+.variant__SemiBoldIt
+{
+    @extend %Nessie-SemiBoldIt;
+}
+
 .variant__Bold
 {
     @extend %Nessie-Bold;
+}
+
+.variant__BoldIt
+{
+    @extend %Nessie-BoldIt;
+}
+
+.variant__ExtraBold
+{
+    @extend %Nessie-ExtraBold;
+}
+
+.variant__ExtraBoldIt
+{
+    @extend %Nessie-ExtraBoldIt;
 }
 
 /* TEXT ALIGN */

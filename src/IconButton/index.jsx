@@ -11,13 +11,16 @@ import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import Icon                             from '../Icon';
-import styles                           from './iconButton.css';
+import { Icon }                         from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 const killFocus = e => e.preventDefault();
 
 export default class IconButton extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -58,6 +61,8 @@ export default class IconButton extends React.Component
             'alert',
             'approved',
             'arrow',
+            'arrow-up',
+            'arrow-down',
             'bell',
             'board',
             'calendar',
@@ -66,6 +71,7 @@ export default class IconButton extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
@@ -83,8 +89,10 @@ export default class IconButton extends React.Component
             'left',
             'lightbulb',
             'link',
+            'loader',
             'megaphone',
             'options',
+            'paused',
             'pending',
             'preview',
             'puzzle-piece',
@@ -94,22 +102,13 @@ export default class IconButton extends React.Component
             'show',
             'star-stroke',
             'star',
+            'sociomantic',
             'swap',
             'table',
             'up',
             'upload',
             'validation',
             'none',
-        ] ),
-        /**
-         *  Icon theme
-         */
-        iconTheme : PropTypes.oneOf( [
-            'button',
-            'control',
-            'dark',
-            'light',
-            'navigation',
         ] ),
         /**
          * HTML id attribute
@@ -154,6 +153,10 @@ export default class IconButton extends React.Component
         /**
          *  HTML value attribute
          */
+        role        : PropTypes.oneOf( [ 'default', 'inverted' ] ),
+        /**
+         *  HTML value attribute
+         */
         value       : PropTypes.string,
     };
 
@@ -162,11 +165,9 @@ export default class IconButton extends React.Component
         buttonRef     : undefined,
         children      : undefined,
         className     : undefined,
-        cssMap        : styles,
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
-        iconTheme     : 'control',
         id            : undefined,
         isDisabled    : false,
         isFocusable   : true,
@@ -177,8 +178,11 @@ export default class IconButton extends React.Component
         onFocus       : undefined,
         onMouseOut    : undefined,
         onMouseOver   : undefined,
+        role          : 'default',
         value         : undefined,
     };
+
+    static displayName = 'IconButton';
 
     render()
     {
@@ -186,11 +190,10 @@ export default class IconButton extends React.Component
             buttonRef,
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.IconButton, this.props ),
             forceHover,
             hasBackground,
             iconSize,
-            iconTheme,
             iconType,
             id = generateId( 'IconButton' ),
             isDisabled,
@@ -202,20 +205,23 @@ export default class IconButton extends React.Component
             onFocus,
             onMouseOut,
             onMouseOver,
+            role,
             value,
         } = this.props;
 
         return (
             <button
                 className = { buildClassName( className, cssMap, {
-                    background : hasBackground,
-                    disabled   : isDisabled,
-                    size       : iconSize,
+                    background  : hasBackground,
+                    disabled    : isDisabled,
+                    fakeHovered : forceHover,
+                    role,
+                    size        : iconSize,
                 }  ) }
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }
-                onClick      = { !isReadOnly && onClick }
+                onClick      = { !isReadOnly ? onClick : undefined }
                 onFocus      = { onFocus }
                 onMouseDown  = { !isFocusable ? killFocus : undefined }
                 onMouseEnter = { onMouseOver }
@@ -226,10 +232,8 @@ export default class IconButton extends React.Component
                 value        = { value }>
                 <Icon
                     className  = { cssMap.icon }
-                    forceHover = { forceHover }
                     isDisabled = { isDisabled }
                     size       = { iconSize }
-                    theme      = { iconTheme }
                     type       = { iconType }>
                     { children || label }
                 </Icon>

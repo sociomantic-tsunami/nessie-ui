@@ -7,28 +7,20 @@
  *
  */
 
-/* global jest, test */
-/* eslint no-console: 0*/
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
+import React                    from 'react';
+import { shallow, mount }       from 'enzyme';
 
-import React        from 'react';
-import { shallow }  from 'enzyme';
-
-import { Icon }     from '../index';
-
-import ToggleButton from './index';
-
+import { Icon, ToggleButton }   from '../index';
 
 describe( 'ToggleButton', () =>
 {
-    let instance;
     let wrapper;
 
     beforeEach( () =>
     {
         wrapper = shallow( <ToggleButton /> );
-        instance = wrapper.instance();
     } );
 
     test( '<button> should always have type "button"', () =>
@@ -58,7 +50,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.label ).toBeUndefined();
+                expect( ToggleButton.defaultProps.label ).toBeUndefined();
             } );
         } );
 
@@ -66,7 +58,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be "primary" by default', () =>
             {
-                expect( instance.props.role ).toEqual( 'primary' );
+                expect( ToggleButton.defaultProps.role ).toEqual( 'primary' );
             } );
         } );
 
@@ -74,7 +66,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.id ).toBeUndefined();
+                expect( ToggleButton.defaultProps.id ).toBeUndefined();
             } );
         } );
 
@@ -82,7 +74,8 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be "left" by default', () =>
             {
-                expect( instance.props.iconPosition ).toEqual( 'left' );
+                expect( ToggleButton.defaultProps.iconPosition )
+                    .toEqual( 'left' );
             } );
         } );
 
@@ -90,7 +83,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( instance.props.isDisabled ).toEqual( false );
+                expect( ToggleButton.defaultProps.isDisabled ).toEqual( false );
             } );
 
             test( 'should be passed to <button> as "disabled" when true', () =>
@@ -104,7 +97,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( instance.props.isReadOnly ).toEqual( false );
+                expect( ToggleButton.defaultProps.isReadOnly ).toEqual( false );
             } );
 
             test( 'should be passed to <button> as "readOnly" when true', () =>
@@ -118,7 +111,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onClick ).toBeUndefined();
+                expect( ToggleButton.defaultProps.onClick ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> element', () =>
@@ -133,7 +126,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onFocus ).toBeUndefined();
+                expect( ToggleButton.defaultProps.onFocus ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button>', () =>
@@ -148,7 +141,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOver ).toBeUndefined();
+                expect( ToggleButton.defaultProps.onMouseOver ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> as onMouseEnter', () =>
@@ -163,7 +156,7 @@ describe( 'ToggleButton', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOut ).toBeUndefined();
+                expect( ToggleButton.defaultProps.onMouseOut ).toBeUndefined();
             } );
 
             test( 'should be passed to the <button> as onMouseLeave', () =>
@@ -171,6 +164,234 @@ describe( 'ToggleButton', () =>
                 const onMouseOut = jest.fn();
                 wrapper.setProps( { onMouseOut } );
                 expect( wrapper.prop( 'onMouseLeave' ) ).toEqual( onMouseOut );
+            } );
+        } );
+    } );
+} );
+
+
+describe( 'ToggleButtonDriver', () =>
+{
+    let wrapper;
+    let driver;
+    let button;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <ToggleButton /> );
+        driver  = wrapper.driver();
+        button  = wrapper.find( 'button' ).first();
+    } );
+
+    describe( 'constructor', () =>
+    {
+        test( 'assigns the <button> to this.button', () =>
+        {
+            expect( driver.button.instance() ).toEqual( button.instance() );
+        } );
+    } );
+
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onBlur when isDisabled', () =>
+            {
+                const onBlur = jest.fn();
+                wrapper.setProps( { onBlur, isDisabled: true } );
+
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate focus since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus when isDisabled', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( { onFocus, isDisabled: true } );
+
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+    describe( 'click', () =>
+    {
+        test( 'should trigger onClick callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
+
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Cthulhu\' cannot \
+simulate click since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Cthulhu' } );
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( { onClick, isDisabled: true } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate mouseOver since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.mouseOver() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onMouseOver when isDisabled', () =>
+            {
+                const onMouseOver = jest.fn();
+                wrapper.setProps( { onMouseOver, isDisabled: true } );
+
+                try
+                {
+                    driver.mouseOver();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOver ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                const expectedError = 'ToggleButton \'Tekeli-li\' cannot \
+simulate mouseOut since it is disabled';
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onMouseOut when isDisabled', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( { onMouseOut, isDisabled: true } );
+
+                try
+                {
+                    driver.mouseOut();
+                }
+                catch ( error )
+                {
+                    expect( onMouseOut ).not.toBeCalled();
+                }
             } );
         } );
     } );

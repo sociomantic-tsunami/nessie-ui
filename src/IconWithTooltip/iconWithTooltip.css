@@ -25,6 +25,11 @@
 
     font:           inherit;
     line-height:    inherit;
+
+    .icon
+    {
+        pointer-events: none;
+    }
 }
 
 .position__topRight,
@@ -35,7 +40,6 @@
         flex:   1 0 0%;
     }
 }
-
 
 
 .iconVisible
@@ -109,10 +113,6 @@
         }
     }
 }
-
-
-
-
 
 
 .content

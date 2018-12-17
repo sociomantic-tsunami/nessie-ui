@@ -29,7 +29,6 @@
         @extend %Nessie-Light;
         color:          var( --PC-WHITE );
         font-size:      22px;
-        font-weight:    300;
         line-height:    var( --line-height-m );
 
         margin-bottom:  0;
@@ -45,7 +44,6 @@
     {
         @extend %Nessie-Bold;
         font-size:      13px;
-        font-weight:    400;
         line-height:    var( --line-height-s );
 
         position:       absolute;
@@ -64,12 +62,7 @@
     .prev,
     .next
     {
-        width:          var( --spacing-3 );
-        height:         var( --spacing-3 );
-
-        &:focus::after
-        {
-            box-shadow:   0 0 0 2px color( var( --PC-WHITE ) a( 30% ) );
-        }
+        width:  var( --spacing-3 );
+        height: var( --spacing-3 );
     }
 }

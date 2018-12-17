@@ -12,11 +12,11 @@
 .default
 {
     position: 		relative;
-    min-height:     var( --line-height-l );
+    min-height:     var( --line-height-s );
 
     @extend %Nessie-Bold;
     font-size:      var( --typo-3 );
-    line-height:    var( --line-height-l );
+    line-height:    var( --line-height-s );
     color:          var( --PC-GREY--D25 );
     letter-spacing: 0;
 }

@@ -7,49 +7,75 @@
  *
  */
 
-import React                from 'react';
-import PropTypes            from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { buildClassName }   from '../utils';
-import Spinner              from '../Spinner';
+import { Spinner }        from '../index';
+import { buildClassName } from '../utils';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
-
-const PageContent = ( {
-    children,
-    cssMap,
-    className,
-    isLoading
-} ) =>
-
-    <div className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
-            { children }
-        </div>
-        { isLoading &&
-        <div className = { cssMap.loadingOverlay }>
-            <Spinner
-                className = { cssMap.spinner }
-                size = "big" />
-        </div>
-        }
-    </div>;
-
-PageContent.propTypes =
+export default class PageContent extends React.Component
 {
-    /**
-     *  PageContent content
-     */
-    children  : PropTypes.node,
-    /**
-     *  Display loading state
-     */
-    isLoading : PropTypes.bool,
-};
+    static contextType = ThemeContext;
 
-PageContent.defaultProps =
-{
-    cssMap    : require( './pageContent.css' ),
-    isLoading : false
-};
+    static propTypes =
+    {
+        /**
+         *  PageContent content
+         */
+        children     : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className    : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Display loading state
+         */
+        isLoading    : PropTypes.bool,
+        /**
+         *  adjust/configure content width
+         */
+        contentWidth : PropTypes.string,
+    };
 
-export default PageContent;
+    static defaultProps =
+    {
+        children     : undefined,
+        className    : undefined,
+        contentWidth : '1080px',
+        isLoading    : false,
+    };
+
+    static displayName = 'PageContent';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.PageContent, this.props ),
+            contentWidth,
+            isLoading,
+        } = this.props;
+
+        return (
+            <div className = { buildClassName( className, cssMap ) }>
+                <div
+                    className = { cssMap.content }
+                    style = { { width: contentWidth } }>
+                    { children }
+                </div>
+                { isLoading &&
+                    <div className = { cssMap.loadingOverlay }>
+                        <Spinner className = { cssMap.spinner } size = "big" />
+                    </div>
+                }
+            </div>
+        );
+    }
+}

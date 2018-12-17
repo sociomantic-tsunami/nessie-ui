@@ -7,26 +7,20 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React                            from 'react';
-import { mount, shallow, ReactWrapper } from 'enzyme';
+import React                        from 'react';
+import { mount, shallow }           from 'enzyme';
 
-import { Tooltip }                      from '../index';
-
-import IconWithTooltip                  from './index';
-
+import { IconWithTooltip, Tooltip } from '../index';
 
 describe( 'IconWithTooltip', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <IconWithTooltip /> );
-        instance = wrapper.instance();
+        wrapper = shallow( <IconWithTooltip /> );
     } );
 
     describe( 'props', () =>
@@ -35,7 +29,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOver ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOver )
+                    .toBeUndefined();
             } );
 
             test(
@@ -47,7 +42,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseEnter' ) ).toBe( onMouseOver );
-                }
+                },
             );
         } );
 
@@ -55,7 +50,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOut ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOut )
+                    .toBeUndefined();
             } );
 
             test(
@@ -67,7 +63,7 @@ describe( 'IconWithTooltip', () =>
 
                     expect( wrapper.find( 'div' ).first()
                         .prop( 'onMouseLeave' ) ).toBe( onMouseOut );
-                }
+                },
             );
         } );
 
@@ -75,7 +71,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOverIcon ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOverIcon )
+                    .toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOver', () =>
@@ -92,7 +89,8 @@ describe( 'IconWithTooltip', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.onMouseOutIcon ).toBeUndefined();
+                expect( IconWithTooltip.defaultProps.onMouseOutIcon )
+                    .toBeUndefined();
             } );
 
             test( 'should be be passed to the Tooltip as onMouseOut', () =>
@@ -124,88 +122,49 @@ describe( 'IconWithTooltipDriver', () =>
         test( 'should call onMouseOver prop exactly once', () =>
         {
             const onMouseOver = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOver } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOver } );
 
             driver.mouseOver();
-
             expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
     } );
+
 
     describe( 'mouseOut()', () =>
     {
         test( 'should call onMouseOut prop exactly once', () =>
         {
             const onMouseOut = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOut } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOut } );
 
             driver.mouseOut();
-
             expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
+
 
     describe( 'mouseOverIcon()', () =>
     {
         test( 'should call onMouseOverIcon prop exactly once', () =>
         {
             const onMouseOverIcon = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOverIcon } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOverIcon } );
 
             driver.mouseOverIcon();
-
             expect( onMouseOverIcon ).toBeCalledTimes( 1 );
         } );
     } );
+
 
     describe( 'mouseOutIcon()', () =>
     {
         test( 'should call onMouseOutIcon prop exactly once', () =>
         {
             const onMouseOutIcon = jest.fn();
-            wrapper.setProps( { message: 'Pikachu!', onMouseOutIcon } );
+            wrapper.setProps( { message: 'Tekeli-li!', onMouseOutIcon } );
 
             driver.mouseOutIcon();
-
             expect( onMouseOutIcon ).toBeCalledTimes( 1 );
-        } );
-    } );
-
-    describe( 'getContent()', () =>
-    {
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getContent() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the wrapped content', () =>
-        {
-            wrapper.setProps( {
-                message  : 'Pikachu!',
-                children : <h1>Who am i?</h1>
-            } );
-
-            const content = driver.getContent();
-            expect( content.find( 'h1' ) ).toHaveLength( 1 );
-        } );
-    } );
-
-    describe( 'getMessage()', () =>
-    {
-        test( 'should return a Reactwrapper', () =>
-        {
-            expect( driver.getMessage() ).toBeInstanceOf( ReactWrapper );
-        } );
-
-        test( 'should contain the Tooltip message', () =>
-        {
-            wrapper.setProps( {
-                message          : <h2>Pikachu!</h2>,
-                tooltipIsVisible : true,
-            } );
-
-            const message = driver.getMessage();
-            expect( message.find( 'h2' ) ).toHaveLength( 1 );
         } );
     } );
 } );

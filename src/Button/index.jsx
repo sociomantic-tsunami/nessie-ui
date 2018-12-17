@@ -7,52 +7,61 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                          from 'react';
+import PropTypes                      from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import Icon                             from '../Icon';
-import Spinner                          from '../Spinner';
+import { generateId, buildClassName } from '../utils';
+import { Icon, Spinner }              from '../index';
+import ThemeContext                   from '../Theming/ThemeContext';
+import { createCssMap }               from '../Theming/createCss';
 
 export default class Button extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
-        *  Label text
-        */
-        label : PropTypes.string,
+         *  CSS class map
+         */
+        cssMap : PropTypes.objectOf( PropTypes.string ),
         /**
-        *  HTML type attribute
-        */
-        type  : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+         *  Label text
+         */
+        label  : PropTypes.string,
         /**
-        *  Button role/style
-        */
-        role  : PropTypes.oneOf( [
+         *  HTML type attribute
+         */
+        type   : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+        /**
+         *  Button role/style
+         */
+        role   : PropTypes.oneOf( [
             'default',
             'secondary',
             'subtle',
             'promoted',
             'critical',
-            'control'
+            'control',
         ] ),
         /**
-        *  Icon type to display (overrides customIcon)
-        */
+         *  Icon type to display (overrides customIcon)
+         */
         iconType : PropTypes.oneOf( [
             'account',
-            'add',
             'add-circle',
+            'add',
             'alert',
             'approved',
             'arrow',
+            'arrow-up',
+            'arrow-down',
             'bell',
             'board',
             'calendar',
-            'close',
             'close-circle',
             'close-thick',
+            'close',
             'dash',
             'dashboard',
             'declined',
@@ -60,8 +69,8 @@ export default class Button extends React.Component
             'down',
             'download',
             'duplicate',
-            'edit',
             'edit-circle',
+            'edit',
             'ended',
             'error',
             'file',
@@ -72,8 +81,10 @@ export default class Button extends React.Component
             'left',
             'lightbulb',
             'link',
+            'loader',
             'megaphone',
             'options',
+            'paused',
             'pending',
             'preview',
             'puzzle-piece',
@@ -81,8 +92,9 @@ export default class Button extends React.Component
             'right',
             'search',
             'show',
-            'star',
             'star-stroke',
+            'star',
+            'sociomantic',
             'swap',
             'table',
             'up',
@@ -95,24 +107,24 @@ export default class Button extends React.Component
          */
         iconPosition : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
-        *  Display as disabled
-        */
+         *  Display as disabled
+         */
         isDisabled   : PropTypes.bool,
         /**
-        *  Display as read-only
-        */
+         *  Display as read-only
+         */
         isReadOnly   : PropTypes.bool,
         /**
-        *  Display loading state
-        */
+         *  Display loading state
+         */
         isLoading    : PropTypes.bool,
         /**
-        *  Initial HTML value attribute
-        */
+         *  Initial HTML value attribute
+         */
         defaultValue : PropTypes.string,
         /**
-        *  HTML value attribute
-        */
+         *  HTML value attribute
+         */
         value        : PropTypes.string,
         /**
          * HTML id attribute
@@ -142,48 +154,18 @@ export default class Button extends React.Component
 
     static defaultProps =
     {
-        type         : 'button',
-        role         : 'default',
-        iconType     : 'none',
-        iconPosition : 'left',
-        id           : undefined,
-        isLoading    : false,
-        isDisabled   : false,
-        isReadOnly   : false,
         forceHover   : false,
-        cssMap       : require( './button.css' )
+        iconPosition : 'left',
+        iconType     : 'none',
+        id           : undefined,
+        isDisabled   : false,
+        isLoading    : false,
+        isReadOnly   : false,
+        role         : 'default',
+        type         : 'button',
     };
 
-    constructor( props )
-    {
-        super( props );
-
-        this.handleMouseOver = this.handleMouseOver.bind( this );
-        this.handleMouseOut  = this.handleMouseOut.bind( this );
-    }
-
-    handleMouseOver( e )
-    {
-        const { onMouseOver } = this.props;
-        if ( onMouseOver )
-        {
-            onMouseOver( e );
-        }
-
-        this.setState( { isHovered: true } );
-    }
-
-    handleMouseOut( e )
-    {
-        const { onMouseOut } = this.props;
-        if ( onMouseOut )
-        {
-            onMouseOut( e );
-        }
-
-        this.setState( { isHovered: false } );
-    }
-
+    static displayName = 'Button';
 
     render()
     {
@@ -191,42 +173,34 @@ export default class Button extends React.Component
             buttonRef,
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Button, this.props ),
             defaultValue,
             forceHover,
             iconPosition,
             iconType,
             id = generateId( 'Button' ),
             isDisabled,
-            isReadOnly,
             isLoading,
+            isReadOnly,
             label,
             onClick,
+            onMouseOut,
+            onMouseOver,
             role,
             type,
-            value
+            value,
         } = this.props;
 
-        let iconMarkup;
-        if ( iconType && iconType !== 'none' )
-        {
-            iconMarkup = (
+        const content = (
+            <div className = { cssMap.content }>
+                { ( iconType !== 'none' ) &&
                 <div className = { cssMap.iconContainer }>
                     <Icon
                         className  = { cssMap.icon }
                         type       = { iconType }
-                        size       = "S"
-                        theme      = { role === 'control' ? role : 'button' }
-                        variant    = "stroke"
-                        forceHover = { this.isHovered }
-                        isDisabled = { isDisabled } />
+                        size       = "S" />
                 </div>
-            );
-        }
-
-        const content = (
-            <div className = { cssMap.content }>
-                { iconMarkup }
+                }
                 <div className = { cssMap.label }>
                     { children || label }
                 </div>
@@ -235,22 +209,22 @@ export default class Button extends React.Component
 
         return (
             <button
-                ref            = { buttonRef }
-                type           = { type }
-                className      = { buildClassName( className, cssMap, {
-                    role,
+                className = { buildClassName( className, cssMap, {
+                    disabled    : isDisabled,
+                    fakeHovered : forceHover,
                     iconPosition,
                     loading     : isLoading && !isDisabled,
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover
+                    role,
                 } ) }
-                id             = { id }
                 defaultValue   = { defaultValue }
-                value          = { value }
                 disabled       = { isDisabled || isLoading || isReadOnly }
+                id             = { id }
                 onClick        = { onClick }
-                onMouseEnter   = { this.handleMouseOver }
-                onMouseLeave   = { this.handleMouseOut }>
+                onMouseEnter   = { onMouseOver }
+                onMouseLeave   = { onMouseOut }
+                ref            = { buttonRef }
+                type           = { type }
+                value          = { value }>
                 { content }
                 { ( isLoading && !isDisabled ) &&
                 <div className = { cssMap.loadingOverlay }>

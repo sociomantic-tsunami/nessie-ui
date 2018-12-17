@@ -12,7 +12,13 @@ export default class TextDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.prop( 'cssMap' );
+        this.cssMap  = wrapper.instance().context.Text;
+    }
+
+    click()
+    {
+        this.wrapper.simulate( 'click' );
+        return this;
     }
 
     getContent()

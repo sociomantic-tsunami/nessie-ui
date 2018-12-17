@@ -7,37 +7,36 @@
  *
  */
 
-import SimpleComponentDriver
-    from '../Testing/CommonDrivers/simpleComponentDriver';
 import { Tooltip } from 'nessie-ui';
 
-export default class IconWithTooltipDriver extends SimpleComponentDriver
+export default class IconWithTooltipDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
-        this.tooltip = wrapper.children( Tooltip ).first();
+        this.wrapper = wrapper;
     }
 
     mouseOverIcon()
     {
-        this.tooltip.driver().mouseOver();
+        this.wrapper.find( Tooltip ).driver().mouseOver();
         return this;
     }
 
     mouseOutIcon()
     {
-        this.tooltip.driver().mouseOut();
+        this.wrapper.find( Tooltip ).driver().mouseOut();
         return this;
     }
 
-    getContent()
+    mouseOver()
     {
-        return this.wrapper.find( `.${this.cssMap.content}` ).children();
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
     }
 
-    getMessage()
+    mouseOut()
     {
-        return this.tooltip.driver().getMessage();
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

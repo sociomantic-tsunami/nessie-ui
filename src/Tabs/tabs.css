@@ -11,35 +11,145 @@
 
 .default
 {
-    position:       relative;
+    .header
+    {
+        display:        flex;
+        align-items:    flex-end;
+        max-width:      100%;
+        border-bottom:  solid 1px var( --PC-GREY--L70 );
+
+        & > *
+        {
+            margin-bottom:  0;
+        }
+    }
+
+    .tabsContainer
+    {
+        flex:           auto;
+        margin-bottom:  -1px;
+    }
+
+    .tabs
+    {
+        display:    flex;
+
+        & > *
+        {
+            flex:           none;
+            margin-bottom:  0;
+            margin-right:   var( --spacing-2 );
+
+            &:last-child
+            {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .secondaryControls
+    {
+        flex:           none;
+        margin-left:    var( --spacing-2 );
+        margin-bottom:  var( --spacing-2 );
+    }
+
+    .content
+    {
+        /* nothing to do here */
+    }
 }
 
-.header
+
+/* padding X */
+.paddingX__S
 {
-    display:        flex;
-    flex-direction: row;
-    align-items:    flex-end;
-
-    border-bottom:  solid 1px var( --PC-GREY--L70 );
-
-    margin-bottom:	var( --spacing-2 );
+    .content
+    {
+        padding-left:   var( --spacing-1 );
+        padding-right:  var( --spacing-1 );
+    }
 }
 
-.tabs
+.paddingX__M
 {
-    display:        flex;
-    flex-direction: row;
-    flex-grow:      1;
-
-    margin-bottom:  -1px;
+    .content
+    {
+        padding-left:   var( --spacing-2 );
+        padding-right:  var( --spacing-2 );
+    }
 }
 
-.secondaryControls
+.paddingX__L
 {
-    margin-bottom: var( --spacing-2 );
+    .content
+    {
+        padding-left:   var( --spacing-3 );
+        padding-right:  var( --spacing-3 );
+    }
 }
 
-.content
+.paddingX__XL
 {
-    /* padding? */
+    .content
+    {
+        padding-left:   var( --spacing-4 );
+        padding-right:  var( --spacing-4 );
+    }
+}
+
+.paddingX__XXL
+{
+    .content
+    {
+        padding-left:   var( --spacing-5 );
+        padding-right:  var( --spacing-5 );
+    }
+}
+
+
+/* padding Y */
+.paddingY__S
+{
+    .content
+    {
+        padding-top:     var( --spacing-1 );
+        padding-bottom:  var( --spacing-1 );
+    }
+}
+
+.paddingY__M
+{
+    .content
+    {
+        padding-top:     var( --spacing-2 );
+        padding-bottom:  var( --spacing-2 );
+    }
+}
+
+.paddingY__L
+{
+    .content
+    {
+        padding-top:     var( --spacing-3 );
+        padding-bottom:  var( --spacing-3 );
+    }
+}
+
+.paddingY__XL
+{
+    .content
+    {
+        padding-top:     var( --spacing-4 );
+        padding-bottom:  var( --spacing-4 );
+    }
+}
+
+.paddingY__XXL
+{
+    .content
+    {
+        padding-top:     var( --spacing-5 );
+        padding-bottom:  var( --spacing-5 );
+    }
 }

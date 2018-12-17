@@ -7,24 +7,20 @@
  *
  */
 
-const ERRORS = {
-    DISABLED : ( label, action ) =>
-        `Slider ${label ? `'${label}'` : ''} cannot be ${action} since it is \
-disabled`,
+const ERR = {
+    SLIDER_ERR : ( label, action, state ) =>
+        `Slider ${label ? `'${label}'` : ''} cannot ${action} since it is \
+${state}`,
 };
-
-const toArray = value => Array.isArray( value ) ? value : [ value ];
 
 export default class SliderDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
+        this.cssMap  = wrapper.instance().context.Slider;
+        this.label   = wrapper.prop( 'label' );
 
-        this.cssMap = wrapper.prop( 'cssMap' );
-        this.label  = wrapper.prop( 'label' );
-
-        this.default        = wrapper.find( `.${this.cssMap.default}` );
         this.inputContainer = wrapper.find( `.${this.cssMap.inputContainer}` );
         this.track          = wrapper.find( `.${this.cssMap.track}` );
     }
@@ -33,24 +29,32 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'blurred' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onBlur', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'blur' );
         return this;
     }
 
-    change( value, index = 0 )
+    change( val, index = 0 )
     {
+        const input = this.inputContainer.childAt( index );
+        const node  = input.instance();
+
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onChange', 'disabled' ) );
         }
 
-        const input = this.inputContainer.childAt( index );
-        const node  = input.getNode();
+        if ( this.wrapper.prop( 'isReadOnly' ) )
+        {
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onChange', 'read only' ) );
+        }
 
-        node.value = value;
+        node.value = val;
         input.simulate( 'change' );
 
         return this;
@@ -60,7 +64,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'clicked' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onClick', 'disabled' ) );
         }
 
         this.track.simulate( 'click' );
@@ -71,7 +76,8 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'focused' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onFocus', 'disabled' ) );
         }
 
         this.inputContainer.childAt( index ).simulate( 'focus' );
@@ -82,10 +88,12 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onKeyDown', 'disabled' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'keyDown', { keyCode } );
+        this.inputContainer.childAt( index )
+            .simulate( 'keyDown', { keyCode, which: keyCode } );
         return this;
     }
 
@@ -93,10 +101,24 @@ export default class SliderDriver
     {
         if ( this.wrapper.prop( 'isDisabled' ) )
         {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
+            throw new Error( ERR
+                .SLIDER_ERR( this.label, 'onKeyUp', 'disabled' ) );
         }
 
-        this.inputContainer.childAt( index ).simulate( 'keyUp', { keyCode } );
+        this.inputContainer.childAt( index )
+            .simulate( 'keyUp', { keyCode, which: keyCode } );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 
@@ -106,45 +128,9 @@ export default class SliderDriver
         return this;
     }
 
-    mouseOut()
-    {
-        this.default.first().simulate( 'mouseLeave' );
-        return this;
-    }
-
-    mouseOver()
-    {
-        this.default.first().simulate( 'mouseEnter' );
-        return this;
-    }
-
     mouseUp() // not a React SyntheticEvent
     {
-        this.wrapper.node.handleUp();
-        return this;
-    }
-
-    setInputValue( value )
-    {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
-        {
-            throw new Error( ERRORS.DISABLED( this.label, 'changed' ) );
-        }
-
-        const oldValues = toArray( props.value );
-        const newValues = toArray( value );
-
-        oldValues.forEach( ( val, i ) =>
-        {
-            const newValue = newValues[ i ];
-            if ( Number.isFinite( newValue ) )
-            {
-                this.change( newValues[ i ], i );
-            }
-        } );
-
+        this.wrapper.instance().handleUp();
         return this;
     }
 }

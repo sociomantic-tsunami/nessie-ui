@@ -7,6 +7,8 @@
  *
  */
 
+import { TabButton } from 'nessie-ui';
+
 export default class TabsDriver
 {
     constructor( wrapper )
@@ -14,36 +16,14 @@ export default class TabsDriver
         this.wrapper = wrapper;
     }
 
-    getTabButtons()
+    change( index = 1 )
     {
-        return this.wrapper.find( 'TabButton' );
+        return this.clickTab( index );
     }
 
-    getTabButtonsByIndex( index = 0 )
+    clickTab( index = 1 )
     {
-        if ( Array.isArray( index ) )
-        {
-            const tabButtons = [];
-
-            index.forEach( i =>
-            {
-                tabButtons.push( index[ i ] );
-            } );
-
-            return tabButtons;
-        }
-
-        return this.wrapper.find( 'TabButton' ).at( index );
-    }
-
-    getTabButtonsByLabel( label )
-    {
-        return this.wrapper.findWhere( n =>
-            n.prop( 'label' ) === label ).first();
-    }
-
-    getTabContent()
-    {
-        return this.wrapper.find( 'Tab' ).driver().getContent();
+        this.wrapper.find( TabButton ).at( index ).driver().click();
+        return this;
     }
 }

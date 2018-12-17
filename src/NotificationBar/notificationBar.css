@@ -22,7 +22,7 @@
     .info
     {
         margin-right:   20px;
-        fill:           var( --PC-GREY--D25 );
+        fill:           var( --PC-WHITE );
     }
 
     .close
@@ -52,10 +52,5 @@
 
 .type__success
 {
-    background: var(  --PC-GREEN );
-}
-
-.message
-{
-    color: var( --PC-WHITE );
+    background: var( --PC-GREEN );
 }

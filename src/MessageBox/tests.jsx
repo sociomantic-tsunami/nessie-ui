@@ -7,15 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint no-console: 0*/
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React            from 'react';
+import { mount }        from 'enzyme';
 
-
-import MessageBox   from './index';
+import { MessageBox }   from '../index';
 
 describe( 'MessageBox', () =>
 {
@@ -28,7 +25,8 @@ describe( 'MessageBox', () =>
 
     test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper
+            .find( `.${wrapper.instance().context.MessageBox.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 } );

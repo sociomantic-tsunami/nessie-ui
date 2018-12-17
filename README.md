@@ -6,11 +6,10 @@ React + CSS-Modules + Loads of tests = Robust components for monstrous UIs!
 
 ## Usage
 
-There are three dependencies you’ll need to include in your app to use Nessie:
+There are two dependencies you’ll need to include in your app to use Nessie:
 
-1. The Nessie JS,
-1. the Nessie CSS
-1. and the Nessie SVG sprite map
+1. The Nessie JS bundle including CSS
+1. The Nessie SVG sprite map
 
 Since your exact requirements may vary, we’ll leave it up to you decide exactly
 how these should be implemented (the options are outlined below).
@@ -33,8 +32,7 @@ import { ComponentName } from 'nessie-ui';
 
 ### CSS
 
-The Nessie CSS is bundled separately in `dist/styles.css`. You can either import
-this file using webpack `css-loader` or load it directly in your HTML.
+The Nessie CSS is bundled within the JS bundle. If you want to create a separate `.css` file, you can do that with [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin).
 
 ### Sprite map
 

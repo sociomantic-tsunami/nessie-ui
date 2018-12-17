@@ -7,31 +7,20 @@
  *
  */
 
-/* global test */
-/* eslint no-console: 0*/
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { mount, shallow } from 'enzyme';
+import React                from 'react';
+import { shallow }          from 'enzyme';
 
-import { H1, H4 }         from '../index';
-
-import Section            from './index';
-
+import { H1, H4, Section }  from '../index';
 
 describe( 'Section', () =>
 {
     let wrapper;
-    let instance;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <Section /> );
-        instance = wrapper.instance();
-    } );
-
-    test( 'should be an instance of StatelessComponent', () =>
-    {
-        expect( instance.constructor.name ).toBe( 'StatelessComponent' );
+        wrapper = shallow( <Section /> );
     } );
 
     test( 'should have a header component corresponding to level prop', () =>
@@ -50,7 +39,7 @@ describe( 'Section', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( instance.props.title ).toBeUndefined();
+                expect( Section.defaultProps.title ).toBeUndefined();
             } );
 
             test( 'should be passed to the header component as children', () =>
@@ -62,35 +51,6 @@ describe( 'Section', () =>
 
                 expect( wrapper.find( H1 ).prop( 'children' ) ).toBe( 'Boom' );
             } );
-        } );
-    } );
-} );
-
-
-describe( 'SectionDriver', () =>
-{
-    let wrapper;
-    let driver;
-
-    beforeEach( () =>
-    {
-        wrapper = mount( <Section /> );
-        driver  = wrapper.driver();
-    } );
-
-    describe( 'getContent()', () =>
-    {
-        test( 'should return the content', () =>
-        {
-            const children = (
-                <Section title = "Pikachu">
-                    <h2>Lightning Strike</h2>
-                </Section>
-            );
-
-            wrapper.setProps( {  children } );
-            const content = driver.getContent();
-            expect( content.find( 'h2' ).text() ).toBe( 'Lightning Strike' );
         } );
     } );
 } );

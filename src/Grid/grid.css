@@ -125,3 +125,9 @@
 {
     grid-row-gap: var( --L );
 }
+
+
+.hasFullWidth
+{
+    width:      100%;
+}

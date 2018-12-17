@@ -7,7 +7,6 @@
  *
  */
 
-
 /**
  * ## createScrollHandler
  * Higher-order function that adds scroll percentage as second argument
@@ -24,7 +23,7 @@ function createScrollHandler( func, dir )
     {
         const scroll = dir === 'both' ? [
             getScroll( e.target, 'horizontal' ),
-            getScroll( e.target, 'vertical' )
+            getScroll( e.target, 'vertical' ),
         ] : getScroll( e.target, dir );
 
         func( e, scroll );

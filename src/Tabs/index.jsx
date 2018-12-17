@@ -7,15 +7,18 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                    from 'react';
+import PropTypes                from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import TabButton                      from '../TabButton';
-
+import { buildClassName }       from '../utils';
+import { ScrollBox, TabButton } from '../index';
+import ThemeContext             from '../Theming/ThemeContext';
+import { createCssMap }         from '../Theming/createCss';
 
 export default class Tabs extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -27,102 +30,87 @@ export default class Tabs extends React.Component
          */
         children          : PropTypes.node,
         /**
-         * HTML id attribute
+         *  Extra CSS class name
          */
-        id                : PropTypes.string,
+        className         : PropTypes.string,
         /**
-         *  onChange callback function: ( e, newProps ) => { ... }
+         *  CSS class map
          */
-        onChange          : PropTypes.func,
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
         /**
-         *  Secondary Control in Tabs Header
+         *  Tab button click callback function: ( e, newProps ) => { ... }
+         */
+        onClickTab        : PropTypes.func,
+        /**
+         *  Secondary controls to add to tabs header
          */
         secondaryControls : PropTypes.node,
     };
 
-
     static defaultProps =
     {
         activeTabIndex    : 0,
-        cssMap            : require( './tabs.css' ),
-        id                : undefined,
+        children          : undefined,
+        className         : undefined,
+        onClickTab        : undefined,
         secondaryControls : undefined,
     };
 
-    constructor( props )
-    {
-        super( props );
-
-        this.handleChange = this.handleChange.bind( this );
-    }
-
-
-    handleChange( e )
-    {
-        const { onChange } = this.props;
-
-        if ( onChange )
-        {
-            const newProps = e.currentTarget ?
-                { activeTabIndex: parseInt( e.currentTarget.value, 10 ) } : {};
-            onChange( e, newProps );
-        }
-    }
-
-    renderHeader( tabs = [] )
-    {
-        let tabsArray = tabs;
-
-        if ( !Array.isArray( tabs ) )
-        {
-            tabsArray = [ tabs ];
-        }
-
-        const { activeTabIndex } = this.props;
-
-        return tabsArray.map( ( child, index ) =>
-        {
-            const { isDisabled, label } = child.props;
-
-            const isActive = ( activeTabIndex === index );
-
-            return (
-                <TabButton
-                    tabIndex   = { index }
-                    key        = { index } // eslint-disable-line react/no-array-index-key, max-len
-                    label      = { label }
-                    isActive   = { isActive }
-                    isDisabled = { isDisabled || isActive }
-                    onClick    = { this.handleChange } />
-            );
-        } );
-    }
-
+    static displayName = 'Tabs';
 
     render()
     {
         const {
             activeTabIndex,
-            className,
             children,
-            cssMap,
-            id = generateId( 'Tabs' ),
+            className,
+            cssMap = createCssMap( this.context.Tabs, this.props ),
+            onChange,
+            onClickTab,
             secondaryControls,
         } = this.props;
 
-        const tabButtons = this.renderHeader( children );
+        if ( !Tabs.didWarn && onChange )
+        {
+            console.warn( 'Tabs: ‘onChange’ prop is deprecated and will be \
+removed in the next major release. Please use ‘onClickTab’ instead.' );
+            Tabs.didWarn = true;
+        }
 
-        const content = Array.isArray( children ) ?
-            children[ activeTabIndex ] : children;
+        const clickHandler = onClickTab || onChange;
+
+        const tabs = React.Children.toArray( children );
+
+        const tabButtons = tabs.map( ( tab, tabIndex ) =>
+        {
+            const { isDisabled, label } = tab.props;
+            const isActive = ( activeTabIndex === tabIndex );
+
+            return (
+                <TabButton
+                    isActive   = { isActive }
+                    isDisabled = { isDisabled || isActive }
+                    key        = { label || tabIndex }
+                    label      = { label }
+                    onClick    = { e => clickHandler && clickHandler(
+                        e,
+                        { activeTabIndex: tabIndex },
+                    ) }
+                    tabIndex = { tabIndex } />
+            );
+        } );
 
         return (
             <div
-                className = { buildClassName( className, cssMap ) }
-                id = { id } >
+                className = { buildClassName( className, cssMap ) }>
                 <div className = { cssMap.header }>
-                    <div className = { cssMap.tabs }>
-                        { tabButtons }
-                    </div>
+                    <ScrollBox
+                        className = { cssMap.tabsContainer }
+                        scroll    = "horizontal">
+                        <div className = { cssMap.tabs }>
+                            { tabButtons }
+                        </div>
+                    </ScrollBox>
                     { secondaryControls &&
                         <div className = { cssMap.secondaryControls }>
                             { secondaryControls }
@@ -130,7 +118,7 @@ export default class Tabs extends React.Component
                     }
                 </div>
                 <div className = { cssMap.content }>
-                    { content }
+                    { tabs[ activeTabIndex ] }
                 </div>
             </div>
         );

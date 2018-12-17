@@ -11,30 +11,37 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-const PageFooter = ( {
-    children,
-    cssMap,
-    className
-} ) =>
-
-    <footer className = { buildClassName( className, cssMap ) }>
-        <div className = { cssMap.content }>
-            { children }
-        </div>
-    </footer>;
-
-PageFooter.propTypes =
+export default class PageFooter extends React.Component
 {
-    /**
-     *  PageFooter content
-     */
-    children : PropTypes.node
-};
+    static contextType = ThemeContext;
 
-PageFooter.defaultProps =
-{
-    cssMap : require( './pageFooter.css' )
-};
+    static propTypes =
+    {
+        /**
+         *  PageFooter content
+         */
+        children : PropTypes.node,
+    };
 
-export default PageFooter;
+    static displayName = 'PageFooter';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.PageFooter, this.props ),
+        } = this.props;
+
+        return (
+            <footer className = { buildClassName( className, cssMap ) }>
+                <div className = { cssMap.content }>
+                    { children }
+                </div>
+            </footer>
+        );
+    }
+}

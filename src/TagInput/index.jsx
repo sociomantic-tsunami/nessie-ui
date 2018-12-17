@@ -7,172 +7,144 @@
  *
  */
 
-import React, { Children, Component } from 'react';
+import React, { Children }            from 'react';
 import PropTypes                      from 'prop-types';
 
 import { buildClassName, generateId } from '../utils';
 import { buildTagsFromValues }        from './utils';
-import styles                         from './tagInput.css';
-import InputContainer                 from '../proto/InputContainer';
+import ThemeContext                   from '../Theming/ThemeContext';
+import { createCssMap }               from '../Theming/createCss';
 
-
-export default class TagInput extends Component
+export default class TagInput extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
          * Node containing Tag components ( overrides tags prop )
          */
-        children              : PropTypes.node,
+        children     : PropTypes.node,
         /**
          *  CSS class name
          */
-        className             : PropTypes.string,
+        className    : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap                : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *  Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        cssMap       : PropTypes.objectOf( PropTypes.string ),
         /**
          * Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover   : PropTypes.bool,
         /**
-        *  specifies the height for the InputContainer (CSS length value)
+        *  specifies the height for the tag input (CSS length value)
         */
-        height                : PropTypes.string,
+        height       : PropTypes.string,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError     : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id                    : PropTypes.string,
-        /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef              : PropTypes.func,
+        id           : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled            : PropTypes.bool,
+        isDisabled   : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly            : PropTypes.bool,
+        isReadOnly   : PropTypes.bool,
         /**
         *  Allows container to be resize by the user
         */
-        isResizable           : PropTypes.bool,
-        /**
-         *  Label text string or JSX node
-         */
-        label                 : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        isResizable  : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name                  : PropTypes.string,
+        name         : PropTypes.string,
         /**
          * onBlur callback function
          */
-        onBlur                : PropTypes.func,
+        onBlur       : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange              : PropTypes.func,
+        onChange     : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClickClose          : PropTypes.func,
+        onClickClose : PropTypes.func,
         /**
          * onFocus callback function
          */
-        onFocus               : PropTypes.func,
+        onFocus      : PropTypes.func,
         /**
          * onKeyDown callback function
          */
-        onKeyDown             : PropTypes.func,
+        onKeyDown    : PropTypes.func,
         /**
          * onKeyPress callback function
          */
-        onKeyUp               : PropTypes.func,
+        onKeyUp      : PropTypes.func,
         /**
          * onKeyUp callback function
          */
-        onKeyPress            : PropTypes.func,
+        onKeyPress   : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut            : PropTypes.func,
+        onMouseOut   : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver           : PropTypes.func,
+        onMouseOver  : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder           : PropTypes.string,
+        placeholder  : PropTypes.string,
         /**
          * Array of strings to build Tag components
          */
-        tags                  : PropTypes.arrayOf( PropTypes.oneOfType( [
+        tags         : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.object,
         ] ) ),
         /**
          * Input's value
          */
-        value                 : PropTypes.string
+        value : PropTypes.string,
     };
 
     static defaultProps =
     {
-        children              : undefined,
-        className             : undefined,
-        cssMap                : styles,
-        errorMessage          : undefined,
-        errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
-        forceHover            : false,
-        height                : undefined,
-        hasError              : false,
-        id                    : undefined,
-        inputRef              : undefined,
-        isDisabled            : false,
-        isReadOnly            : false,
-        isResizable           : false,
-        label                 : undefined,
-        labelPosition         : 'top',
-        name                  : undefined,
-        onBlur                : undefined,
-        onChange              : undefined,
-        onClickClose          : undefined,
-        onFocus               : undefined,
-        onKeyDown             : undefined,
-        onKeyUp               : undefined,
-        onKeyPress            : undefined,
-        onMouseOut            : undefined,
-        onMouseOver           : undefined,
-        placeholder           : undefined,
-        tags                  : undefined,
-        value                 : undefined
+        children     : undefined,
+        className    : undefined,
+        forceHover   : false,
+        hasError     : false,
+        height       : undefined,
+        id           : undefined,
+        isDisabled   : false,
+        isReadOnly   : false,
+        isResizable  : false,
+        name         : undefined,
+        onBlur       : undefined,
+        onChange     : undefined,
+        onClickClose : undefined,
+        onFocus      : undefined,
+        onKeyDown    : undefined,
+        onKeyPress   : undefined,
+        onKeyUp      : undefined,
+        onMouseOut   : undefined,
+        onMouseOver  : undefined,
+        placeholder  : undefined,
+        tags         : undefined,
+        value        : undefined,
     };
+
+    static displayName = 'TagInput';
 
     constructor()
     {
@@ -208,36 +180,37 @@ export default class TagInput extends Component
         this.setState( { isFocused: true } );
     }
 
+    inputRef = React.createRef();
+
+    focus()
+    {
+        this.inputRef.current.focus();
+    }
+
     render()
     {
         const {
             children,
             className,
-            cssMap,
-            errorMessage,
-            errorMessageIsVisible,
-            errorMessagePosition,
+            cssMap = createCssMap( this.context.TagInput, this.props ),
             forceHover,
             hasError,
             height,
             id = generateId( 'TagInput' ),
-            inputRef,
             isDisabled,
             isReadOnly,
             isResizable,
-            label,
-            labelPosition,
             name,
             onChange,
             onClickClose,
             onKeyDown,
-            onKeyUp,
             onKeyPress,
+            onKeyUp,
             onMouseOut,
             onMouseOver,
             placeholder,
             tags,
-            value
+            value,
         } = this.props;
 
         const { isFocused } = this.state;
@@ -275,46 +248,35 @@ export default class TagInput extends Component
         } );
 
         return (
-            <InputContainer
+            <label
                 className = { buildClassName( className, cssMap, {
                     disabled    : isDisabled,
                     error       : !isDisabled && hasError,
                     fakeHovered : !isDisabled && ( forceHover || isFocused ),
                     resizable   : isResizable,
                 } ) }
-                errorMessage          = { errorMessage }
-                errorMessageIsVisible = { errorMessageIsVisible }
-                errorMessagePosition  = { errorMessagePosition }
-                hasError              = { hasError }
-                id                    = { id }
-                isDisabled            = { isDisabled }
-                label                 = { label }
-                labelPosition         = { labelPosition }
-                onMouseOut            = { onMouseOut }
-                onMouseOver           = { onMouseOver }>
-                <label
-                    className   = { cssMap.container }
-                    htmlFor     = { id }
-                    style       = { { height } }>
-                    { items }
-                    <input
-                        className   = { cssMap.input }
-                        disabled    = { isDisabled }
-                        id          = { id }
-                        name        = { name }
-                        onBlur      = { this.handleBlur }
-                        onChange    = { onChange }
-                        onFocus     = { this.handleFocus }
-                        onKeyDown   = { onKeyDown }
-                        onKeyUp     = { onKeyUp }
-                        onKeyPress  = { onKeyPress }
-                        placeholder = { placeholder }
-                        readOnly    = { isReadOnly }
-                        ref         = { inputRef }
-                        type        = "text"
-                        value       = { value } />
-                </label>
-            </InputContainer>
+                htmlFor      = { id }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                style        = { { height } }>
+                { items }
+                <input
+                    className   = { cssMap.input }
+                    disabled    = { isDisabled }
+                    id          = { id }
+                    name        = { name }
+                    onBlur      = { this.handleBlur }
+                    onChange    = { onChange }
+                    onFocus     = { this.handleFocus }
+                    onKeyDown   = { onKeyDown }
+                    onKeyPress  = { onKeyPress }
+                    onKeyUp     = { onKeyUp }
+                    placeholder = { placeholder }
+                    readOnly    = { isReadOnly }
+                    ref         = { this.inputRef }
+                    type        = "text"
+                    value       = { value } />
+            </label>
         );
     }
 }

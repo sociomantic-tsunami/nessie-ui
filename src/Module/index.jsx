@@ -7,20 +7,28 @@
  *
  */
 
-import React, { Component }            from 'react';
-import PropTypes                       from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }              from '../utils';
-import H2                              from '../H2';
-import H3                              from '../H3';
-import H4                              from '../H4';
-import { IconButton, IconWithTooltip } from '../index';
+import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
+import {
+    Card,
+    H2,
+    H3,
+    H4,
+    IconButton,
+    IconWithTooltip,
+} from '../index';
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
 
-export default class Module extends Component
+export default class Module extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -107,14 +115,15 @@ export default class Module extends Component
 
     static defaultProps =
     {
-        isCollapsible : false,
+        headerLevel   : 2,
         isCollapsed   : false,
+        isCollapsible : false,
         isDeletable   : false,
         isLoading     : false,
         isReadOnly    : false,
-        headerLevel   : 2,
-        cssMap        : require( './module.css' )
     };
+
+    static displayName = 'Module';
 
     constructor( props )
     {
@@ -147,27 +156,26 @@ export default class Module extends Component
     render()
     {
         const {
-            cssMap,
+            children,
             className,
+            cssMap = createCssMap( this.context.Module, this.props ),
+            customHeader,
+            errorMessage,
+            errorMessageIsVisible,
+            hasError,
+            hasModuleError,
+            headerLevel,
             isCollapsed,
             isCollapsible,
             isDeletable,
             isLoading,
             isReadOnly,
-            children,
-            customHeader,
-            headerLevel,
-            hasError,
-            hasModuleError,
-            errorMessage,
-            errorMessageIsVisible,
             onClickHeader,
             onMouseOutError,
-            onMouseOverError,
             onMouseOutHeader,
+            onMouseOverError,
             onMouseOverHeader,
             title,
-
         } = this.props;
 
         let header;
@@ -199,17 +207,18 @@ export default class Module extends Component
                     <div className = { cssMap.controls }>
                         { !!errorMessage && hasError &&
                             <IconWithTooltip
-                                message          = { errorMessage }
                                 iconType         = "error"
-                                tooltipIsVisible = { errorMessageIsVisible }
+                                message          = { errorMessage }
+                                noWarn
                                 onMouseOut       = { onMouseOutError }
-                                onMouseOver      = { onMouseOverError } />
+                                onMouseOver      = { onMouseOverError }
+                                tooltipIsVisible = { errorMessageIsVisible } />
                         }
                         { isDeletable &&
                             <IconButton
                                 iconType   = "delete"
-                                onClick    = { this.handleClickDelete }
-                                isReadOnly = { isReadOnly }>
+                                isReadOnly = { isReadOnly }
+                                onClick    = { this.handleClickDelete }>
                                 Delete
                             </IconButton>
                         }
@@ -225,27 +234,24 @@ export default class Module extends Component
             );
         }
 
-
         return (
-
-            <section
+            <Card
                 className = { buildClassName( className, cssMap, {
-                    collapsible : isCollapsible,
                     collapsed   : isCollapsible && isCollapsed,
+                    collapsible : isCollapsible,
                     error       : hasError,
+                    level       : headerLevel,
                     moduleError : hasModuleError,
-                    level       : headerLevel
-                } ) }>
+                } ) }
+                padding = "none">
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
+                    <div className = { cssMap.content }>
+                        { children }
+                    </div>
                 }
-                { isLoading  &&
-                <div className = { cssMap.loadingOverlay } />
-                }
-            </section>
+                { isLoading  && <div className = { cssMap.loadingOverlay } /> }
+            </Card>
         );
     }
 }

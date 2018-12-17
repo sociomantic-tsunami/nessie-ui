@@ -7,17 +7,12 @@
  *
  */
 
-/* global test jest */
+/* eslint-disable no-magic-numbers */
 
+import React                from 'react';
+import { shallow, mount }   from 'enzyme';
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
-
-                
-import { Icon }           from '../index';
-
-import IconButton         from './index';
-
+import { Icon, IconButton } from '../index';
 
 describe( 'IconButton', () =>
 {
@@ -40,11 +35,6 @@ describe( 'IconButton', () =>
 
     describe( 'render()', () =>
     {
-        test( 'should implement the Css higher-order component', () =>
-        {
-            
-        } );
-
         test( 'should contain exactly one Icon', () =>
         {
             expect( wrapper.find( Icon ) ).toHaveLength( 1 );
@@ -53,20 +43,6 @@ describe( 'IconButton', () =>
 
     describe( 'props', () =>
     {
-        describe( 'iconTheme', () =>
-        {
-            test( 'should be "control" by default', () =>
-            {
-                expect( instance.props.iconTheme ).toBe( 'control' );
-            } );
-
-            test( 'should be passed to the Icon as theme', () =>
-            {
-                wrapper.setProps( { iconTheme: 'light' } );
-                expect( wrapper.find( Icon ).prop( 'theme' ) ).toBe( 'light' );
-            } );
-        } );
-
         describe( 'iconSize', () =>
         {
             test( 'should be "S" by default', () =>
@@ -108,39 +84,169 @@ describe( 'IconButtonDriver', () =>
         driver  = wrapper.driver();
     } );
 
-    describe( 'click()', () =>
+    describe( 'click', () =>
     {
-        test( 'should fire the onClick callback prop exactly once', () =>
+        test( 'should trigger onClick callback prop once', () =>
         {
-            const clickSpy = jest.fn();
-            wrapper.setProps( { onClick: clickSpy } );
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
 
             driver.click();
-            expect( clickSpy ).toBeCalledTimes( 1 );
+            expect( onClick ).toBeCalledTimes( 1 );
         } );
-    } );
 
-    describe( 'focus()', () =>
-    {
-        test( 'should fire the onFocus callback prop once', () =>
+
+        describe( 'isDisabled', () =>
         {
-            const focusSpy = jest.fn();
-            wrapper.setProps( { onFocus: focusSpy } );
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
+click since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
 
-            driver.focus();
-            expect( focusSpy ).toBeCalledTimes( 1 );
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( {
+                    onClick,
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
+click since it is read only';
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isReadOnly', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( {
+                    onClick,
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
         } );
     } );
+
 
     describe( 'blur()', () =>
     {
-        test( 'should fire the onBlur callback prop once', () =>
+        test( 'should trigger onBlur callback prop once', () =>
         {
-            const blurSpy = jest.fn();
-            wrapper.setProps( { onBlur: blurSpy } );
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
 
             driver.blur();
-            expect( blurSpy ).toBeCalledTimes( 1 );
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
+blur since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onBlur when isDisabled', () =>
+            {
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    onBlur,
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                } );
+
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                const expectedError = 'Button \'Tekeli-li\' cannot simulate \
+focus since it is disabled';
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus when isDisabled', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    onFocus,
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                } );
+
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 } );

@@ -7,25 +7,20 @@
  *
  */
 
-/* global test jest */
-/* eslint no-console: 0*/
+/* eslint-disable no-magic-numbers */
 
 import React               from 'react';
 import { mount, shallow }  from 'enzyme';
 
-import ScrollBar           from './index';
+import { ScrollBar }       from '../index';
 
 describe( 'ScrollBar', () =>
 {
     let wrapper;
-    let instance;
-    let cssMap;
 
     beforeEach( () =>
     {
-        wrapper  = shallow( <ScrollBar /> );
-        instance = wrapper.instance();
-        cssMap   = instance.props.cssMap;
+        wrapper = shallow( <ScrollBar /> );
     } );
 
 
@@ -40,14 +35,13 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollMax ).toEqual( 0 );
+                expect( ScrollBar.defaultProps.scrollMax ).toEqual( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuemax', () =>
             {
                 wrapper.setProps( { scrollMax: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuemax' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuemax' ) ).toBe( 20 );
             } );
         } );
 
@@ -55,14 +49,13 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollMin ).toBe( 0 );
+                expect( ScrollBar.defaultProps.scrollMin ).toBe( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuemin', () =>
             {
                 wrapper.setProps( { scrollMin: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuemin' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuemin' ) ).toBe( 20 );
             } );
         } );
 
@@ -70,14 +63,13 @@ describe( 'ScrollBar', () =>
         {
             test( 'should be 0 by default', () =>
             {
-                expect( instance.props.scrollPos ).toBe( 0 );
+                expect( ScrollBar.defaultProps.scrollPos ).toBe( 0 );
             } );
 
             test( 'should be passed to the track <div> as aria-valuenow', () =>
             {
                 wrapper.setProps( { scrollPos: 20 } );
-                expect( wrapper.find( `.${cssMap.default}` )
-                    .prop( 'aria-valuenow' ) ).toBe( 20 );
+                expect( wrapper.prop( 'aria-valuenow' ) ).toBe( 20 );
             } );
         } );
     } );
@@ -87,20 +79,23 @@ describe( 'ScrollBar', () =>
 describe( 'ScrollBarDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <ScrollBar /> );
+        driver  = wrapper.driver();
     } );
 
     describe( 'clickTrack( val )', () =>
     {
         let onClickTrack;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onClickTrack = jest.fn();
             wrapper.setProps( { onClickTrack } );
-            wrapper.driver().clickTrack( 100 );
+            driver.clickTrack( 100 );
         } );
 
         test( 'should call the onClickTrack prop once', () =>
@@ -114,17 +109,18 @@ describe( 'ScrollBarDriver', () =>
         } );
     } );
 
-    describe( 'onChange( val )', () =>
+    describe( 'change( val )', () =>
     {
         let onChange;
 
-        beforeEach( () => {
+        beforeEach( () =>
+        {
             onChange = jest.fn();
             wrapper.setProps( { onChange } );
-            wrapper.driver().change( 100 );
+            driver.change( 100 );
         } );
 
-        test( 'should call the onChange prop once', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
             expect( onChange ).toHaveBeenCalledTimes( 1 );
         } );
@@ -137,26 +133,24 @@ describe( 'ScrollBarDriver', () =>
 
     describe( 'mouseOver()', () =>
     {
-        test( 'should simulate mouse over', () =>
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
-
+            driver.mouseOver();
             expect( onMouseOver ).toHaveBeenCalledTimes( 1 );
         } );
     } );
 
-    describe( 'mouseOut()', () =>
+    describe( 'mouseOut', () =>
     {
-        test( 'should simulate mouse out', () =>
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toHaveBeenCalledTimes( 1 );
         } );
     } );

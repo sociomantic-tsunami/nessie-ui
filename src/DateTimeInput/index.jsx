@@ -12,14 +12,13 @@ import PropTypes                    from 'prop-types';
 
 import { DatePicker }               from '../index';
 import TextInputWithIcon            from '../TextInputWithIcon';
-import withDropdown                 from '../Dropdown/withDropdown';
-import withInputContainer           from '../proto/withInputContainer';
+import withDropdown                 from '../Addons/withDropdown';
 import { eventHandler, generateId } from '../utils';
 
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-const DateTimeInput = ( {
+const DateTimeInput = React.forwardRef( ( {
     className,
     currentMonth,
     currentYear,
@@ -32,7 +31,6 @@ const DateTimeInput = ( {
     hourValue,
     id = generateId( 'DateTimeInput' ),
     inputPlaceholder,
-    inputRef,
     inputValue,
     isDisabled,
     isOpen,
@@ -63,7 +61,7 @@ const DateTimeInput = ( {
     prevIsDisabled,
     textAlign,
     weeks,
-} ) =>
+}, ref ) =>
 {
     const datePicker = (
         <DatePicker
@@ -114,7 +112,6 @@ const DateTimeInput = ( {
             hasError         = { hasError }
             iconType         = "calendar"
             id               = { id }
-            inputRef         = { inputRef }
             isDisabled       = { isDisabled }
             isReadOnly       = { isReadOnly }
             isReadOnlyButton = { isReadOnlyButton }
@@ -131,11 +128,12 @@ const DateTimeInput = ( {
             onMouseOver      = { onMouseOver }
             onMouseOverIcon  = { onMouseOverIcon }
             placeholder      = { inputPlaceholder }
+            ref              = { ref }
             spellCheck       = { false }
             textAlign        = { textAlign }
             value            = { inputValue } />
     );
-};
+} );
 
 DateTimeInput.propTypes =
 {
@@ -201,10 +199,6 @@ DateTimeInput.propTypes =
      */
     inputPlaceholder      : PropTypes.string,
     /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef              : PropTypes.func,
-    /**
      *  Main input value
      */
     inputValue            : PropTypes.string,
@@ -260,9 +254,8 @@ DateTimeInput.propTypes =
     /**
      *  Months to display in month mode
      */
-    months                : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    months                : PropTypes.arrayOf( PropTypes
+        .arrayOf( PropTypes.object ) ),
     /**
      *  “Next” button is disabled
      */
@@ -334,9 +327,8 @@ DateTimeInput.propTypes =
     /**
      *  Weeks to display in default/day mode
      */
-    weeks           : PropTypes.arrayOf(
-        PropTypes.arrayOf( PropTypes.object )
-    ),
+    weeks           : PropTypes.arrayOf( PropTypes
+        .arrayOf( PropTypes.object ) ),
 };
 
 DateTimeInput.defaultProps =
@@ -356,7 +348,6 @@ DateTimeInput.defaultProps =
     hourValue             : undefined,
     id                    : undefined,
     inputPlaceholder      : undefined,
-    inputRef              : undefined,
     inputValue            : undefined,
     isDisabled            : false,
     isOpen                : false,
@@ -391,5 +382,6 @@ DateTimeInput.defaultProps =
     weeks                 : undefined,
 };
 
-export { DateTimeInput };
-export default withInputContainer( DateTimeInput );
+DateTimeInput.displayName = 'DateTimeInput';
+
+export default DateTimeInput;

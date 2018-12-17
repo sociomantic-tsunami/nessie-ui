@@ -11,163 +11,138 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './icon.css';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
-
-const Icon = ( {
-    children,
-    className,
-    cssMap,
-    forceHover,
-    isDisabled,
-    label,
-    onMouseOut,
-    onMouseOver,
-    size,
-    theme,
-    type,
-} ) =>
+export default class Icon extends React.Component
 {
-    let xLink;
+    static contextType = ThemeContext;
 
-    if ( type !== 'none' )
+    static propTypes =
     {
-        xLink = `#icon__${type}`;
+        /**
+         * Icon label (overrides label prop)
+         */
+        children  : PropTypes.string,
+        /**
+         *  CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         * Icon label
+         */
+        label     : PropTypes.string,
+        /**
+         *  Icon role
+         */
+        role      : PropTypes.oneOf( [
+            'default',
+            'critical',
+            'promoted',
+            'warning',
+        ] ),
+        /**
+         *  Icon size
+         */
+        size : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
+        /**
+         *  Icon to show
+         */
+        type : PropTypes.oneOf( [
+            'account',
+            'add-circle',
+            'add',
+            'alert',
+            'approved',
+            'arrow-down',
+            'arrow-up',
+            'arrow',
+            'bell',
+            'board',
+            'calendar',
+            'close-circle',
+            'close-thick',
+            'close',
+            'dash',
+            'dashboard',
+            'declined',
+            'delete',
+            'down',
+            'download',
+            'duplicate',
+            'edit-circle',
+            'edit',
+            'ended',
+            'error',
+            'file',
+            'graph',
+            'hide',
+            'info',
+            'inspect',
+            'left',
+            'lightbulb',
+            'link',
+            'loader',
+            'megaphone',
+            'options',
+            'paused',
+            'pending',
+            'preview',
+            'puzzle-piece',
+            'reset',
+            'right',
+            'search',
+            'show',
+            'sociomantic',
+            'star-stroke',
+            'star',
+            'swap',
+            'table',
+            'up',
+            'upload',
+            'validation',
+            'none',
+        ] ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        label     : undefined,
+        role      : 'default',
+        size      : 'S',
+        type      : 'none',
+    };
+
+    static displayName = 'Icon';
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.Icon, this.props ),
+            label,
+            role,
+            size,
+            type,
+        } = this.props;
+
+        return (
+            <svg
+                aria-label = { children || label }
+                className  = { buildClassName( className, cssMap, {
+                    role,
+                    size,
+                } ) }>
+                { ( type !== 'none' ) &&
+                <use xlinkHref = { `#icon__${type}` } /> }
+            </svg>
+        );
     }
-
-    return (
-        <svg
-            aria-label   = { children || label }
-            className = { buildClassName( className, cssMap, {
-                disabled    : isDisabled,
-                fakeHovered : !isDisabled && forceHover,
-                size,
-                theme,
-                type,
-            } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { xLink && <use xlinkHref = { xLink } /> }
-        </svg>
-    );
-};
-
-Icon.propTypes =
-{
-    /**
-     * Icon label (overrides label prop)
-     */
-    children    : PropTypes.node,
-    /**
-     *  CSS class name
-     */
-    className   : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap      : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * Display as hover when required from another component
-     */
-    forceHover  : PropTypes.bool,
-    /**
-     *  Display as disabled
-     */
-    isDisabled  : PropTypes.bool,
-    /**
-     * Icon label
-     */
-    label       : PropTypes.string,
-    /**
-     *  onMouseOut callback function: ( e ) = { ... }
-     */
-    onMouseOut  : PropTypes.func,
-    /**
-     *  onMouseOver callback function: ( e ) = { ... }
-     */
-    onMouseOver : PropTypes.func,
-    /**
-     *  Icon size
-     */
-    size        : PropTypes.oneOf( [ 'S', 'M', 'L', 'XL' ] ),
-    /**
-     *  Icon theme
-     */
-    theme       : PropTypes.oneOf( [
-        'light',
-        'dark',
-        'control',
-        'button',
-        'navigation',
-    ] ),
-    /**
-     *  Icon to show
-     */
-    type : PropTypes.oneOf( [
-        'account',
-        'add-circle',
-        'add',
-        'alert',
-        'approved',
-        'arrow',
-        'bell',
-        'board',
-        'calendar',
-        'close-circle',
-        'close-thick',
-        'close',
-        'dash',
-        'dashboard',
-        'declined',
-        'delete',
-        'down',
-        'download',
-        'duplicate',
-        'edit-circle',
-        'edit',
-        'ended',
-        'error',
-        'file',
-        'graph',
-        'hide',
-        'info',
-        'inspect',
-        'left',
-        'lightbulb',
-        'link',
-        'megaphone',
-        'options',
-        'pending',
-        'preview',
-        'puzzle-piece',
-        'reset',
-        'right',
-        'search',
-        'show',
-        'star-stroke',
-        'star',
-        'swap',
-        'table',
-        'up',
-        'upload',
-        'validation',
-        'none',
-    ] ),
-};
-
-Icon.defaultProps =
-{
-    children    : undefined,
-    className   : undefined,
-    cssMap      : styles,
-    forceHover  : false,
-    isDisabled  : false,
-    label       : undefined,
-    onMouseOut  : undefined,
-    onMouseOver : undefined,
-    size        : 'S',
-    theme       : 'light',
-    type        : 'none',
-};
-
-export default Icon;
+}
