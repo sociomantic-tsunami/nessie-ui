@@ -46,8 +46,7 @@
     },
     "DatePickerStateful" :
     {
-        "inputPlaceholder"  : "YYYY-MM-DD HH:MM",
-        "minutePlaceholder" : "MM",
+
     },
     "DateTimeInput" :
     {

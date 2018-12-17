@@ -53,7 +53,7 @@ const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
  */
 function now()
 {
-    return Math.floor( new Date().getTime() / 1000 / 60 ) * 60;
+    return new Date().getTime();
 }
 
 /**
@@ -65,7 +65,7 @@ function now()
  */
 function $m( timestamp )
 {
-    return moment.unix( timestamp ).utc();
+    return moment( timestamp ).utc();
 }
 
 /**
@@ -93,7 +93,7 @@ function tryParseInputValue( inputValue )
               PRECISIONS.includes( requirePrecision ) );
 
     if ( !parser ) return inputValue;
-    return moment.utc( inputValue, parser.format ).unix();
+    return moment.utc( inputValue, parser.format ).valueOf();
 }
 
 /**
@@ -110,6 +110,8 @@ function comparePrecision( precision )
  */
 function tryFormatMainInput( timestamp, precision )
 {
+    console.log( timestamp );
+      console.log( typeof timestamp );
     if ( !_.isNumber( timestamp ) ) return String( timestamp || '' );
     return $m( timestamp ).format( precision );
 }
@@ -157,15 +159,6 @@ function displayTimestamp( editingTimestamp, timestamp )
         return editingTimestamp;
     }
     return timestamp;
-}
-
-/**
- */
-function isUnitSelectable( min, max, timestamp, unit, allowFraction )
-{
-    if ( timestamp > max ) return false;
-    if ( !allowFraction ) return timestamp >= min;
-    return $m( timestamp ).add( 1, unit ).unix() > min;
 }
 
 export default class DatePickerStateful extends Component
@@ -508,8 +501,7 @@ export default class DatePickerStateful extends Component
 
         this.setState( {
             gridStartTimestamp : $m( this.state.gridStartTimestamp )
-                .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
-                .unix(),
+                .add( 1, this.props.mode === 'month' ? 'year' : 'month' ),
         } );
     }
 
@@ -519,14 +511,25 @@ export default class DatePickerStateful extends Component
 
         this.setState( {
             gridStartTimestamp : $m( this.state.gridStartTimestamp )
-                .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
-                .unix(),
+                .add( -1, this.props.mode === 'month' ? 'year' : 'month' ),
         } );
     }
 
     canEditHourOrMinute()
     {
         return _.isNumber( this.state.timestamp );
+    }
+
+    isUnitSelectable( timestamp, unit, allowFraction )
+    {
+        const { maxDateSelectable } = this.props;
+        const minDateSelectable = this.props.minDateSelectable || now();
+
+        if ( timestamp > maxDateSelectable ) return false;
+
+        if ( !allowFraction ) return timestamp >= minDateSelectable;
+
+        return $m( timestamp ).add( 1, unit ) > minDateSelectable;
     }
 
     dayMatrix()
@@ -545,14 +548,14 @@ export default class DatePickerStateful extends Component
             const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
             const label = hasDate ? String( dayIndex + 1 ) : '';
             const value = hasDate ?
-                $m( startMonth ).add( dayIndex, 'day' ).unix().toString() :
+                $m( startMonth ).add( dayIndex, 'day' ).valueOf() :
                 null;
 
-
-            const min = typeof min !== 'undefined' ? this.props.minDateSelectable : min;
-            const max = typeof max !== 'undefined' ? this.props.maxDateSelectable : max;
-
-            const isDisabled = hasDate && !isUnitSelectable( min, max, value, 'day', this.mode === 'default' );
+            const isDisabled = hasDate && !this.isUnitSelectable(
+                value,
+                'day',
+                this.props.mode === 'default',
+            );
 
             const isCurrent = hasDate &&
                 isTimestampEqual( value, now(), 'day' );
@@ -578,16 +581,12 @@ export default class DatePickerStateful extends Component
 
         const { timestamp } = this.state;
 
-        // const field = this.fields.default;
-
         const months = _.range( 0, 12 ).map( month =>
         {
             const label = copy.shortMonths[ month ];
-            const value = $m( startYear ).add( month, 'month' )
-                .unix().toString();
+            const value = $m( startYear ).add( month, 'month' ).valueOf();
 
-            const isDisabled = false;
-            // const isDisabled = !isUnitSelectable( field, value, 'month' );
+            const isDisabled = !this.isUnitSelectable( value, 'month' );
 
             const isCurrent = isTimestampEqual( value, now(), 'month' );
             const isSelected = _.isNumber( timestamp ) &&
@@ -688,8 +687,7 @@ export default class DatePickerStateful extends Component
 
             if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
             {
-                const value = $m( this.state.timestamp ).set( 'hour', digits )
-                    .unix();
+                const value = $m( this.state.timestamp ).set( 'hour', digits ).valueOf();
 
                 this.setState( {
                     editingTimestamp      : value,
@@ -703,7 +701,7 @@ export default class DatePickerStateful extends Component
 
                 if ( !_.isNaN( digits ) )
                 {
-                    const value = $m( this.state.timestamp ).set( 'hour', digits ).unix();
+                    const value = $m( this.state.timestamp ).set( 'hour', digits ).valueOf();
 
                     this.setState( {
                         editingTimestamp      : value,
@@ -719,7 +717,7 @@ export default class DatePickerStateful extends Component
 
             if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
             {
-                const value = $m( this.state.timestamp ).set( 'minute', digits ).unix();
+                const value = $m( this.state.timestamp ).set( 'minute', digits ).valueOf();
 
                 this.setState( {
                     editingTimestamp      : value,
@@ -733,7 +731,7 @@ export default class DatePickerStateful extends Component
 
                 if ( !_.isNaN( digits ) )
                 {
-                    const value = $m( this.state.timestamp ).set( 'minute', digits ).unix();
+                    const value = $m( this.state.timestamp ).set( 'minute', digits ).valueOf();
 
                     this.setState( {
                         editingTimestamp      : value,
@@ -759,7 +757,7 @@ export default class DatePickerStateful extends Component
         this.setState( {
             gridStartTimestamp : $m( timestamp )
                 .startOf( this.props.mode === 'month' ? 'year' : 'month' )
-                .unix(),
+                .valueOf(),
             timestamp,
         } );
     }
