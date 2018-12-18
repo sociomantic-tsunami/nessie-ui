@@ -92,7 +92,8 @@ function tryParseInputValue( inputValue, timestamp )
         predicate.test( inputValue ) &&
               PRECISIONS.includes( requirePrecision ) );
 
-    if ( !parser || isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
+    if ( !parser ||
+         _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
     {
         return timestamp;
     }
@@ -499,22 +500,48 @@ export default class DatePickerStateful extends Component
 
     gotoNext()
     {
-        // if ( !this.canGotoNext ) return;
+        if ( !this.canGotoNext() ) return;
 
         this.setState( {
             gridStartTimestamp : $m( this.state.gridStartTimestamp )
-                .add( 1, this.props.mode === 'month' ? 'year' : 'month' ),
+                .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
+                .valueOf(),
         } );
     }
 
     gotoPrev()
     {
-        // if ( !this.canGotoPrev ) return;
+        if ( !this.canGotoPrev() ) return;
 
         this.setState( {
             gridStartTimestamp : $m( this.state.gridStartTimestamp )
-                .add( -1, this.props.mode === 'month' ? 'year' : 'month' ),
+                .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
+                .valueOf(),
         } );
+    }
+
+    canGotoNext()
+    {
+        const { maxDateSelectable } = this.props;
+        const nextGridStart = $m( this.state.gridStartTimestamp )
+            .add( 1, this.props.mode === 'month' ? 'year' : 'month' ).valueOf();
+
+        return !_.isNumber( maxDateSelectable ) ||
+            nextGridStart <= maxDateSelectable;
+    }
+
+    canGotoPrev()
+    {
+        const minDateSelectable = this.props.minDateSelectable || now();
+        const prevGridStart = $m( this.state.gridStartTimestamp )
+            .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
+            .valueOf();
+        const endOfPrev = $m( prevGridStart )
+            .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
+            .valueOf();
+
+        return !_.isNumber( minDateSelectable ) ||
+            endOfPrev > minDateSelectable;
     }
 
     canEditHourOrMinute()
@@ -631,8 +658,6 @@ export default class DatePickerStateful extends Component
         //     callback( e );
         // }
 
-        // this.setState( { inputValue: moment.unix( value ).utc()  } );
-
         this.setState( { timestamp: parseInt( value ) } );
         this.purgeEdits();
     }
@@ -748,13 +773,13 @@ export default class DatePickerStateful extends Component
     {
         this.inputRef.focus();
 
+        const { minDateSelectable } = this.props;
         let { timestamp } = this.state;
-
-        // const min = this.fields.default.min;
 
         timestamp = _.isNumber( timestamp ) ? timestamp : now();
 
-        // timestamp = _.isNumber( min ) && min > timestamp ? min : timestamp;
+        timestamp = _.isNumber( minDateSelectable ) &&
+            minDateSelectable > timestamp ? minDateSelectable : timestamp;
 
         this.setState( {
             gridStartTimestamp : $m( timestamp )
@@ -769,7 +794,6 @@ export default class DatePickerStateful extends Component
         this.purgeEdits();
         this.setState( { gridStartTimestamp: null } );
     }
-
 
     handleOnBlur( e )
     {
@@ -804,7 +828,6 @@ export default class DatePickerStateful extends Component
             minuteIsDisabled,
             minutePlaceholder,
             mode,
-            nextIsDisabled,
             nextIsReadOnly,
             onFocus,
             onKeyDown,
@@ -814,7 +837,6 @@ export default class DatePickerStateful extends Component
             onMouseOutIcon,
             onMouseOver,
             onMouseOverIcon,
-            prevIsDisabled,
             prevIsReadOnly,
             textAlign,
         } = this.props;
@@ -860,7 +882,7 @@ export default class DatePickerStateful extends Component
                     tryFormatMinuteInput( timestamp ) }
                 mode              = { mode }
                 months            = { this.monthMatrix() }
-                nextIsDisabled    = { nextIsDisabled }
+                nextIsDisabled    = { !this.canGotoNext() }
                 nextIsReadOnly    = { nextIsReadOnly }
                 onBlur            = { this.handleOnBlur }
                 onChange          = { ( ev, sender ) => this.handleChange( ev.target.value, sender ) }
@@ -876,7 +898,7 @@ export default class DatePickerStateful extends Component
                 onMouseOutIcon    = { onMouseOutIcon }
                 onMouseOver       = { onMouseOver }
                 onMouseOverIcon   = { onMouseOverIcon }
-                prevIsDisabled    = { prevIsDisabled }
+                prevIsDisabled    = { !this.canGotoPrev() }
                 prevIsReadOnly    = { prevIsReadOnly }
                 textAlign         = { textAlign }
                 weeks             = { this.dayMatrix() } />
