@@ -8,8 +8,8 @@
  */
 
 /* interpolates component’s props into the theme */
-const createCssMap = ( cssMap = {}, props = {} ) =>
-    Object.entries( cssMap ).reduce(
+const createCssMap = ( theme = {}, props = {} ) =>
+    Object.entries( theme ).reduce(
         ( result,  [ key, value ] ) =>
         {
             result[ key ] = typeof value === 'function' ?

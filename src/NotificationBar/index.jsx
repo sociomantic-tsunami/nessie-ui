@@ -10,7 +10,6 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { buildClassName }           from '../utils';
 import { Icon, IconButton, Text }   from '../index';
 import ThemeContext                 from '../Theming/ThemeContext';
 import { createCssMap }             from '../Theming/createCss';
@@ -65,21 +64,15 @@ export default class NotificationBar extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.NotificationBar, this.props ),
             isDismissible,
-            isFixed,
             message,
-            messageType,
             onClickClose,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    top  : isFixed,
-                    type : messageType,
-                } ) }>
+                className = { cssMap.main }>
                 <Icon
                     className = { cssMap.icon }
                     type      = "info" />

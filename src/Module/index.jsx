@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 import {
@@ -236,14 +235,8 @@ export default class Module extends React.Component
 
         return (
             <Card
-                className = { buildClassName( className, cssMap, {
-                    collapsed   : isCollapsible && isCollapsed,
-                    collapsible : isCollapsible,
-                    error       : hasError,
-                    level       : headerLevel,
-                    moduleError : hasModuleError,
-                } ) }
-                padding = "none">
+                className = { cssMap.main }
+                padding   = "none">
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
                     <div className = { cssMap.content }>

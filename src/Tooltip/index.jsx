@@ -7,13 +7,13 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import { IconButton, Text }           from '../index';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming/createCss';
+import { generateId }       from '../utils';
+import { IconButton, Text } from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
 export default class Tooltip extends React.Component
 {
@@ -189,11 +189,7 @@ and will be removed in a future major release.' );
 
             return (
                 <div
-                    className = { buildClassName( className, cssMap, {
-                        dismissible : isDismissible,
-                        position,
-                        role,
-                    } ) }
+                    className    = { cssMap.main }
                     onMouseEnter = { onMouseOver }
                     onMouseLeave = { onMouseOut }>
                     { contentNode &&
@@ -214,11 +210,7 @@ and will be removed in a future major release.' );
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    dismissible : isDismissible,
-                    position,
-                    role,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { tooltip }

@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
@@ -91,7 +90,6 @@ export default class DatePicker extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.DatePicker, this.props ),
             month,
             year,
@@ -124,7 +122,7 @@ export default class DatePicker extends React.Component
         } = this.props;
 
         return (
-            <div className = { buildClassName( className, cssMap ) }>
+            <div className = { cssMap.main }>
                 <DatePickerHeader
                     isDisabled        = { isDisabled }
                     isReadOnly        = { isReadOnly }

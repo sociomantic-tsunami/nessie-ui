@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -23,9 +22,7 @@ export default class Spinner extends React.Component
         /**
          *  Size of the Spinner
          */
-        size : PropTypes.oneOf( [ 'small',
-            'big',
-        ] ),
+        size : PropTypes.oneOf( [ 'small', 'big' ] ),
     };
 
     static defaultProps =
@@ -38,14 +35,9 @@ export default class Spinner extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.Spinner, this.props ),
-            size,
         } = this.props;
 
-        return (
-            <div
-                className = { buildClassName( className, cssMap, { size } ) } />
-        );
+        return <div className = { cssMap.main } />;
     }
 }

@@ -10,7 +10,6 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming/createCss';
 
@@ -99,13 +98,10 @@ export default class Column extends React.Component
     render()
     {
         const {
-            align,
             children,
-            className,
             columnTitle,
             cssMap = createCssMap( this.context.Column, this.props ),
             role,
-            size,
             verticalAlign,
         } = this.props;
 
@@ -118,13 +114,9 @@ prop is deprecated. Please use an alternative layout.' );
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    size,
-                    alignX : align,
-                    alignY : verticalAlign,
-                } ) }
-                role              = { role }
-                data-column-title = { columnTitle }>
+                className         = { cssMap.main }
+                data-column-title = { columnTitle }
+                role              = { role }>
                 { children }
             </div>
         );

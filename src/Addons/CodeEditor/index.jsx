@@ -13,7 +13,6 @@ import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import CodeMirror           from 'codemirror';
 
-import { buildClassName }   from '../../utils';
 import styles               from './codeEditor.css';
 
 import 'codemirror/mode/jsx/jsx';
@@ -348,12 +347,8 @@ export default class CodeEditor extends Component
     render()
     {
         const {
-            className,
             cssMap,
-            forceHover,
-            hasError,
             height,
-            isDisabled,
             maxHeight,
             onMouseOut,
             onMouseOver,
@@ -364,11 +359,7 @@ export default class CodeEditor extends Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
                 ref          = { this.handleWrapperRef }

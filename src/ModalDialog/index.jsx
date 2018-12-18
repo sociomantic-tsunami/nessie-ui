@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -143,11 +142,7 @@ export default class ModalDialog extends React.Component
         return (
             <div className = "modalContainer">
                 <div
-                    className = { buildClassName( className, cssMap, {
-                        showNav : hasNavigation,
-                        type,
-                        wide    : isWide,
-                    } ) }
+                    className = { cssMap.main }
                     onClick   = { handleOverlayClick } >
                     { modalUI }
                     <div className = { cssMap.content }>

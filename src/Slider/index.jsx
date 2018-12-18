@@ -9,13 +9,13 @@
 
 /* global document addEventListener removeEventListener Event */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import { IconWithTooltip, Label }       from '../index';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming/createCss';
+import { generateId }             from '../utils';
+import { IconWithTooltip, Label } from '../index';
+import ThemeContext               from '../Theming/ThemeContext';
+import { createCssMap }           from '../Theming/createCss';
 
 export default class Slider extends React.Component
 {
@@ -744,15 +744,7 @@ export default class Slider extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled            : isDisabled,
-                    error               : !isDisabled && hasError,
-                    grabbing            : this.state.isGrabbing,
-                    handleLabelPosition : hasHandleLabels &&
-                        handleLabelPosition,
-                    hasHandleLabels,
-                    orientation,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 <div

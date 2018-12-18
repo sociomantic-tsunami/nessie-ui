@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -148,7 +147,7 @@ export default class Paginator extends React.Component
         return (
             <div
                 aria-label = "Pagination"
-                className  = { buildClassName( className, cssMap ) }
+                className  = { cssMap.main }
                 role       = "navigation">
                 { showPrev &&
                 <IconButton

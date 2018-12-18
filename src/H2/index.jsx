@@ -10,7 +10,6 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming/createCss';
 
@@ -46,15 +45,13 @@ export default class H2 extends React.Component
     render()
     {
         const {
-            className,
             children,
             cssMap = createCssMap( this.context.H2, this.props ),
             title,
-            role,
         } = this.props;
 
         return (
-            <h2 className = { buildClassName( className, cssMap, { role } ) }>
+            <h2 className = { cssMap.main }>
                 { children || title }
             </h2>
         );

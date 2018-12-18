@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -55,7 +54,6 @@ export default class StatusIndicator extends React.Component
 
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.StatusIndicator, this.props ),
             label,
             status,
@@ -69,11 +67,6 @@ deprecated. Please use one of 'alert', 'critical' or 'promoted' instead.` );
             StatusIndicator.didWarn[ status ] = true;
         }
 
-        return (
-            <div
-                className = { buildClassName( className, cssMap, { status } ) }>
-                { children || label }
-            </div>
-        );
+        return <div className = { cssMap.main }>{ children || label }</div>;
     }
 }

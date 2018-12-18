@@ -11,7 +11,6 @@ import React                    from 'react';
 import PropTypes                from 'prop-types';
 
 import { TableCell, TableRow }  from '../index';
-import { buildClassName }       from '../utils';
 import { buildRowsFromValues }  from './utils';
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming/createCss';
@@ -207,10 +206,7 @@ children' );
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    borders,
-                    zebra : isZebra,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
                 role         = "grid">

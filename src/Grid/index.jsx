@@ -108,20 +108,15 @@ export default class Grid extends React.Component
             [ 'default', 'h1', 'h2', 'h3', 'h4', 'label' ];
 
         const {
-            align,
             children,
-            className,
             cssMap = createCssMap( this.context.Grid, this.props ),
+            hasMinHeight,
+            noWarn,
             onClick,
             onMouseOut,
             onMouseOver,
-            gutters,
-            hasMinHeight,
-            hasWrap,
-            noWarn,
             role,
             spacing,
-            verticalAlign,
         } = this.props;
 
         if ( !noWarn )
@@ -143,7 +138,7 @@ Please use alternative layout.' );
 
             if ( !Grid.didWarn.children && children !== undefined  )
             {
-                React.Children.toArray( children ).map( ( child ) =>
+                React.Children.toArray( children ).forEach( ( child ) =>
                 {
                     if ( child.type !== Column )
                     {
@@ -157,14 +152,7 @@ children' );
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    alignX  : align,
-                    alignY  : verticalAlign,
-                    hasMinHeight,
-                    gutters : gutters !== 'none' && gutters,
-                    wrap    : hasWrap,
-                    spacing : spacing !== 'none' && spacing,
-                } ) }
+                className    = {  cssMap.main }
                 onClick      = { onClick }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }

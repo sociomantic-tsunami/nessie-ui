@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { Spinner }          from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -50,7 +49,6 @@ export default class DragNDrop extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.DragNDrop, this.props ),
             dragNDropState,
             message,
@@ -80,26 +78,17 @@ export default class DragNDrop extends React.Component
         const dropzoneContentContainer = (
             <div className = { cssMap.dropzoneContentContainer }>
                 { !isUploading &&
-                    <div className = { cssMap.message }>
-                        { message }
-                    </div>
+                    <div className = { cssMap.message }> { message }</div>
                 }
                 { isUploading &&
-                    <Spinner
-                        className = { cssMap.spinner }
-                        size      = "big" />
+                    <Spinner className = { cssMap.spinner } size = "big" />
                 }
             </div>
         );
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    dropzoneIsVisible,
-                } ) }>
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
+            <div className = { cssMap.main }>
+                <div className = { cssMap.content }>{ children }</div>
                 { dropzoneIsVisible && dropzoneContentContainer }
             </div>
         );

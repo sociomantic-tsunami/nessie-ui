@@ -19,7 +19,6 @@ import H2                   from '../../H2';
 import H3                   from '../../H3';
 import H4                   from '../../H4';
 import styles               from './flounderDropdown.css';
-import { buildClassName }   from '../../utils';
 import {
     addExtraClasses,
     mapCssToFlounder,
@@ -412,13 +411,8 @@ export default class FlounderDropdown extends Component
     render()
     {
         const {
-            className,
             cssMap,
-            forceHover,
-            hasError,
             headerLevel,
-            icon,
-            isDisabled,
             onMouseOver,
             onMouseOut,
         } = this.props;
@@ -428,13 +422,7 @@ export default class FlounderDropdown extends Component
 
         return (
             <Wrapper
-                className = { buildClassName( className, cssMap, {
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && forceHover,
-                    headerLevel,
-                    headerMode  : isHeader,
-                    toggleIcon  : icon,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 <div ref = { this.handleRef } />

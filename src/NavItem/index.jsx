@@ -10,7 +10,6 @@
 import React                    from 'react';
 import PropTypes                from 'prop-types';
 
-import { buildClassName }       from '../utils';
 import { Icon, NavDropdown }    from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming/createCss';
@@ -147,20 +146,13 @@ export default class NavItem extends React.Component
         const {
             children,
             label,
-            className,
             cssMap = createCssMap( this.context.NavItem, this.props ),
-            dropdownAlign,
-            forceHover,
             href,
             iconType,
             isCurrentPage,
-            isCurrent,
-            isOpen,
-            isDisabled,
             onClick,
             onMouseOut,
             onMouseOver,
-            role,
         } = this.props;
 
         if ( typeof isCurrentPage !== 'undefined' )
@@ -171,26 +163,18 @@ export default class NavItem extends React.Component
 
         return (
             <li
-                className     = { buildClassName( className, cssMap, {
-                    role,
-                    disabled    : isDisabled,
-                    current     : isCurrent || isCurrentPage,
-                    dropdownAlign,
-                    open        : isOpen,
-                    fakeHovered : forceHover,
-                    hasIcon     : iconType !== 'none',
-                } ) }
-                onMouseEnter  = { onMouseOver }
-                onMouseLeave  = { onMouseOut }>
+                className    = { cssMap.main }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <a
                     className = { cssMap.link }
                     href      = { href }
                     onClick   = { onClick }>
                     { ( iconType && iconType !== 'none' ) &&
-                    <Icon
-                        className = { cssMap.icon }
-                        type = { iconType }
-                        size = "S" />
+                        <Icon
+                            className = { cssMap.icon }
+                            type = { iconType }
+                            size = "S" />
                     }
                     <span>{ label }</span>
                 </a>

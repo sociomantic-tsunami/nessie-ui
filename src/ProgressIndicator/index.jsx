@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -40,21 +39,20 @@ export default class ProgressIndicator extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.ProgressIndicator, this.props ),
             currentPercentage,
             showPercentage,
         } = this.props;
 
         return (
-            <div className = { buildClassName( className, cssMap ) }>
+            <div className = { cssMap.main }>
                 <div className = { cssMap.spinner }>
                     { showPercentage &&
-                    <div className = { cssMap.percentageContainer }>
-                        <span className = { cssMap.percentage } >
-                            { currentPercentage }%
-                        </span>
-                    </div>
+                        <div className = { cssMap.percentageContainer }>
+                            <span className = { cssMap.percentage } >
+                                { currentPercentage }%
+                            </span>
+                        </div>
                     }
                 </div>
             </div>

@@ -7,10 +7,10 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
+import { generateId } from '../utils';
 import {
     Button,
     IconButton,
@@ -162,7 +162,6 @@ export default class Uploader extends React.Component
     {
         const {
             buttonLabel,
-            className,
             cssMap = createCssMap( this.context.Uploader, this.props ),
             errorMessage,
             errorMessagePosition,
@@ -177,7 +176,6 @@ export default class Uploader extends React.Component
             onClickSecondary,
             onMouseOut,
             onMouseOver,
-            previewIsDisabled,
             previewTooltipIsVisible,
             previewTooltipMessage,
             tooltipIsVisible,
@@ -223,14 +221,9 @@ export default class Uploader extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled        : isDisabled,
-                    loading         : isLoading,
-                    previewDisabled : previewIsDisabled,
-                    uploaded,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut } >
+                onMouseLeave = { onMouseOut }>
                 <input
                     className = { cssMap.input }
                     name      = { `${id}-file` }

@@ -7,13 +7,13 @@
  *
  */
 
-import React, { Children }            from 'react';
-import PropTypes                      from 'prop-types';
+import React, { Children }     from 'react';
+import PropTypes               from 'prop-types';
 
-import { buildClassName, generateId } from '../utils';
-import { buildTagsFromValues }        from './utils';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming/createCss';
+import { generateId }          from '../utils';
+import { buildTagsFromValues } from './utils';
+import ThemeContext            from '../Theming/ThemeContext';
+import { createCssMap }        from '../Theming/createCss';
 
 export default class TagInput extends React.Component
 {
@@ -146,40 +146,6 @@ export default class TagInput extends React.Component
 
     static displayName = 'TagInput';
 
-    constructor()
-    {
-        super();
-
-        this.state = { isFocused: false };
-
-        this.handleBlur  = this.handleBlur.bind( this );
-        this.handleFocus = this.handleFocus.bind( this );
-    }
-
-    handleBlur( event )
-    {
-        const { onBlur } = this.props;
-
-        if ( onBlur )
-        {
-            onBlur( event );
-        }
-
-        this.setState( { isFocused: false } );
-    }
-
-    handleFocus( event )
-    {
-        const { onFocus } = this.props;
-
-        if ( onFocus )
-        {
-            onFocus( event );
-        }
-
-        this.setState( { isFocused: true } );
-    }
-
     inputRef = React.createRef();
 
     focus()
@@ -191,18 +157,16 @@ export default class TagInput extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.TagInput, this.props ),
-            forceHover,
-            hasError,
             height,
             id = generateId( 'TagInput' ),
             isDisabled,
             isReadOnly,
-            isResizable,
             name,
+            onBlur,
             onChange,
             onClickClose,
+            onFocus,
             onKeyDown,
             onKeyPress,
             onKeyUp,
@@ -212,8 +176,6 @@ export default class TagInput extends React.Component
             tags,
             value,
         } = this.props;
-
-        const { isFocused } = this.state;
 
         let items = children ?
             Children.toArray( children ) : buildTagsFromValues( tags );
@@ -249,12 +211,7 @@ export default class TagInput extends React.Component
 
         return (
             <label
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
-                    resizable   : isResizable,
-                } ) }
+                className    = { cssMap.main }
                 htmlFor      = { id }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
@@ -265,9 +222,9 @@ export default class TagInput extends React.Component
                     disabled    = { isDisabled }
                     id          = { id }
                     name        = { name }
-                    onBlur      = { this.handleBlur }
+                    onBlur      = { onBlur }
                     onChange    = { onChange }
-                    onFocus     = { this.handleFocus }
+                    onFocus     = { onFocus }
                     onKeyDown   = { onKeyDown }
                     onKeyPress  = { onKeyPress }
                     onKeyUp     = { onKeyUp }

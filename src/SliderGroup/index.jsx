@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { Label, Slider }    from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -158,12 +157,7 @@ export default class SliderGroup extends React.Component
             ) );
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    error    : !isDisabled && hasError,
-                    disabled : isDisabled,
-
-                } ) } >
+            <div className = { cssMap.main }>
                 { sliders &&
                 <div className = { cssMap.flexContainer }>
                     { stepLabels &&

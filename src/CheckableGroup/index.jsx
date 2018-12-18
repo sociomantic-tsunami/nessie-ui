@@ -7,13 +7,13 @@
  *
  */
 
-import React, { Children }            from 'react';
-import PropTypes                      from 'prop-types';
+import React, { Children } from 'react';
+import PropTypes           from 'prop-types';
 
-import { Fieldset }                   from '../index';
-import { buildClassName, generateId } from '../utils';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming/createCss';
+import { Fieldset }        from '../index';
+import { generateId }      from '../utils';
+import ThemeContext        from '../Theming/ThemeContext';
+import { createCssMap }    from '../Theming/createCss';
 
 export default class CheckableGroup extends React.Component
 {
@@ -111,7 +111,6 @@ export default class CheckableGroup extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.CheckableGroup, this.props ),
             errorMessage,
             errorMessageIsVisible,
@@ -121,7 +120,6 @@ export default class CheckableGroup extends React.Component
             isDisabled,
             isReadOnly,
             label,
-            layout,
             name,
             onChange,
             onMouseOut,
@@ -162,9 +160,7 @@ export default class CheckableGroup extends React.Component
 
         return (
             <Fieldset
-                className = { buildClassName( className, cssMap, {
-                    layout,
-                } ) }
+                className             = { cssMap.main }
                 errorMessage          = { errorMessage }
                 errorMessageIsVisible = { errorMessageIsVisible }
                 hasError              = { hasError }

@@ -11,7 +11,6 @@ import React                    from 'react';
 import PropTypes                from 'prop-types';
 
 import { Column, Sorter, Text } from '../index';
-import { buildClassName }       from '../utils';
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming/createCss';
 
@@ -176,11 +175,7 @@ export default class TableCell extends React.Component
         return (
             <Column
                 { ...props }
-                className = { buildClassName( className, cssMap, {
-                    header    : isHeader,
-                    rowHeader : isRowHeader,
-                    sticky    : isSticky,
-                } ) }
+                className = { cssMap.main }
                 role      = { isHeader ? 'columnheader' : 'gridcell' }>
                 { contentNode }
             </Column>

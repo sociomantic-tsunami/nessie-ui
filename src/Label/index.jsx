@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import Text                 from '../Text';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -64,7 +63,6 @@ export default class Label extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Label, this.props ),
             element,
             htmlFor,
@@ -79,7 +77,7 @@ export default class Label extends React.Component
 
         return (
             <LabelElement
-                className    = { buildClassName( className, cssMap ) }
+                className    = { cssMap.main }
                 htmlFor      = { element === 'label' ? htmlFor : null }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut } >

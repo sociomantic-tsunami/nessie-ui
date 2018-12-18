@@ -7,12 +7,11 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { buildClassName } from '../utils';
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
 export default class Tab extends React.Component
 {
@@ -51,14 +50,13 @@ export default class Tab extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Tab, this.props ),
             label,
         } = this.props;
 
         return (
             <div
-                className  = { buildClassName( className, cssMap ) }
+                className  = { cssMap.main }
                 aria-label = { label }
                 role       = "tabpanel">
                 { children }

@@ -7,16 +7,14 @@
  *
  */
 
-import React                                        from 'react';
-import PropTypes                                    from 'prop-types';
+import React                        from 'react';
+import PropTypes                    from 'prop-types';
 
-import { buildClassName, eventHandler, generateId } from '../utils';
-import styles                                       from './timeInput.css';
+import { eventHandler, generateId } from '../utils';
+import styles                       from './timeInput.css';
 
 const TimeInput = ( {
-    className,
     cssMap,
-    forceHover,
     hourPlaceholder,
     hourIsDisabled,
     hourIsReadOnly,
@@ -33,10 +31,7 @@ const TimeInput = ( {
     minutePlaceholder,
     minuteValue,
 } ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            fakeHovered : forceHover,
-        } ) }>
+    <div className = { cssMap.main }>
         <input
             id          = { `${id}-input-hour` }
             type        = "text"

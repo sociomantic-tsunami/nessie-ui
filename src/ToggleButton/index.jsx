@@ -7,13 +7,13 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { buildClassName, generateId }  from '../utils';
-import { Icon }                        from '../index';
-import ThemeContext                    from '../Theming/ThemeContext';
-import { createCssMap }                from '../Theming/createCss';
+import { generateId }   from '../utils';
+import { Icon }         from '../index';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming/createCss';
 
 export default class ToggleButton extends React.Component
 {
@@ -170,9 +170,7 @@ export default class ToggleButton extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ToggleButton, this.props ),
-            iconPosition,
             iconType,
             id = generateId( 'ToggleButton' ),
             isDisabled,
@@ -191,28 +189,23 @@ export default class ToggleButton extends React.Component
         return (
             <button
                 aria-pressed = { isPressed ? 'true' : 'false' }
-                className    = { buildClassName( className, cssMap, {
-                    disabled : isDisabled,
-                    pressed  : isPressed,
-                    iconPosition,
-                    role,
-                } ) }
+                className    = { cssMap.main }
                 disabled     = { isDisabled }
-                readOnly     = { isReadOnly }
                 id           = { id }
                 onBlur       = { onBlur }
                 onClick      = { onClick }
                 onFocus      = { onFocus }
-                onMouseLeave = { onMouseOut }
                 onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                readOnly     = { isReadOnly }
                 role         = { role }
-                type         = "button" >
+                type         = "button">
                 <div className = { cssMap.flexContainer }>
                     { iconType !== 'none' &&
                         <Icon
                             className = { cssMap.icon }
-                            type      = { iconType }
-                            size      =  "S" />
+                            size      =  "S"
+                            type      = { iconType } />
                     }
                     <div className = { cssMap.labelContainer }>
                         <div className = { cssMap.title }>

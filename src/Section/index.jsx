@@ -7,13 +7,13 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React              from 'react';
+import PropTypes          from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import { H1, H2, H3, H4 }               from '../index';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming/createCss';
+import { generateId }     from '../utils';
+import { H1, H2, H3, H4 } from '../index';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
 export default class Section extends React.Component
 {
@@ -63,7 +63,6 @@ export default class Section extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Section, this.props ),
             id = generateId( 'Section' ),
             level,
@@ -77,7 +76,7 @@ export default class Section extends React.Component
 
         return (
             <section
-                className = { buildClassName( className, cssMap, { level } ) }
+                className = { cssMap.main }
                 id        = { id }>
                 { title && SectionHeader &&
                     <SectionHeader>{ title }</SectionHeader>

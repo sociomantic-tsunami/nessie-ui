@@ -10,7 +10,6 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming/createCss';
 
@@ -128,36 +127,20 @@ export default class Text extends React.Component
     render()
     {
         const {
-            allCaps,
             children,
-            className,
             color,
             cssMap = createCssMap( this.context.Text, this.props ),
             letterSpacing,
             lineHeight,
-            noWrap,
-            overflowIsHidden,
-            role,
-            size,
             text,
-            textAlign,
             textRef,
-            variant,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    allCaps,
-                    overflowHidden : overflowIsHidden,
-                    noWrap,
-                    role,
-                    size,
-                    textAlign,
-                    variant,
-                } ) }
-                style = { { color, letterSpacing, lineHeight } }
-                ref = { textRef }>
+                className = { cssMap.main }
+                ref       = { textRef }
+                style     = { { color, letterSpacing, lineHeight } }>
                 { children || text }
             </div>
         );

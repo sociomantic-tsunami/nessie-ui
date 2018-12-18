@@ -10,7 +10,6 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
 import { createCssMap }   from '../Theming/createCss';
 
@@ -41,20 +40,12 @@ export default class Dropdown extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Dropdown, this.props ),
-            hasError,
-            padding,
-            size,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    error : hasError,
-                    padding,
-                    size,
-                } ) }>
+                className = { cssMap.main }>
                 { children }
             </div>
         );

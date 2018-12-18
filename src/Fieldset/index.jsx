@@ -10,7 +10,6 @@
 import React                      from 'react';
 import PropTypes                  from 'prop-types';
 
-import { buildClassName }         from '../utils';
 import { Label, IconWithTooltip } from '../index';
 import ThemeContext               from '../Theming/ThemeContext';
 import { createCssMap }           from '../Theming/createCss';
@@ -86,7 +85,6 @@ export default class Fieldset extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Fieldset, this.props ),
             errorMessage,
             errorMessageIsVisible,
@@ -100,7 +98,7 @@ export default class Fieldset extends React.Component
 
         return (
             <fieldset
-                className    = { buildClassName( className, cssMap ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { label &&

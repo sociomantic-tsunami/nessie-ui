@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -41,7 +40,7 @@ export default class Page extends React.Component
 
     static defaultProps =
     {
-        scroll : 'auto',
+        overflow : 'auto',
     };
 
     static displayName = 'Page';
@@ -50,20 +49,9 @@ export default class Page extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Page, this.props ),
-            overflow,
         } = this.props;
 
-        return (
-            <div
-                className = { buildClassName(
-                    className,
-                    cssMap,
-                    { overflow },
-                ) }>
-                { children }
-            </div>
-        );
+        return <div className = { cssMap.main }>{ children }</div>;
     }
 }

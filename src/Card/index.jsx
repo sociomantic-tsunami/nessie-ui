@@ -73,26 +73,10 @@ export default class Card extends React.Component
     render()
     {
         const {
-            align,
-            className,
             children,
             cssMap = createCssMap( this.context.Card, this.props ),
-            padding,
-            verticalAlign,
         } = this.props;
 
-        return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    alignX   : align,
-                    alignY   : verticalAlign,
-                    paddingX : Array.isArray( padding ) ?
-                        padding[ 0 ] : padding,
-                    paddingY : Array.isArray( padding ) ?
-                        padding[ 1 ] : padding,
-                } ) }>
-                { children }
-            </div>
-        );
+        return <div className = { cssMap.main }>{ children }</div>;
     }
 }

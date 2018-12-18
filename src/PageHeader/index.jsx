@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -32,14 +31,9 @@ export default class PageHeader extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.PageHeader, this.props ),
         } = this.props;
 
-        return (
-            <header className = { buildClassName( className, cssMap ) }>
-                { children }
-            </header>
-        );
+        return <header className = { cssMap.main }>{ children }</header>;
     }
 }

@@ -17,7 +17,6 @@ import {
     updateOptions,
 } from './utils';
 import {
-    buildClassName,
     generateId,
     killFocus,
     mapAria,
@@ -124,7 +123,7 @@ export default class ListBox extends React.Component
                     multiSelectable  : isMultiselect,
                     role             : 'listbox',
                 } ) }
-                className   = { buildClassName( className, cssMap ) }
+                className   = { cssMap.main }
                 id          = { id }
                 onKeyPress  = { onKeyPress }
                 onMouseDown = { !isFocusable ? killFocus : undefined }

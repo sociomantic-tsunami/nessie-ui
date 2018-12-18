@@ -10,23 +10,19 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import styles               from './datePickerItem.css';
 import { Text }             from '../index';
 
 
 const DatePickerItem = ( {
     children,
-    className,
     cssMap,
-    forceHover,
     isDisabled,
     isSelected,
     isReadOnly,
     label,
     onClick,
     value,
-    type,
 } ) =>
 {
     const handleClick = e =>
@@ -42,12 +38,7 @@ const DatePickerItem = ( {
     return (
         <button
             aria-pressed = { isSelected }
-            className    = { buildClassName( className, cssMap, {
-                fakeHovered : forceHover,
-                disabled    : isDisabled,
-                selected    : isSelected,
-                type,
-            } ) }
+            className    = { cssMap.main }
             disabled     = { isDisabled }
             onClick      = { handleClick }
             type         = "button"

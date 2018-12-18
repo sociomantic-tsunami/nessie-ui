@@ -11,7 +11,6 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { Row, TableCell }   from '../index';
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
 
@@ -139,12 +138,8 @@ export default class TableRow extends React.Component
         return (
             <Row
                 { ...props }
-                className = { buildClassName( className, cssMap, {
-                    active    : isActive,
-                    clickable : isClickable,
-                    sticky    : isSticky,
-                } ) }
-                role = "row"
+                className = { cssMap.main }
+                role      = "row"
                 noWarn>
                 { cells }
             </Row>

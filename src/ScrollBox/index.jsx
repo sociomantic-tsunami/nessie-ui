@@ -507,29 +507,17 @@ export default class ScrollBox extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ScrollBox, this.props ),
             contentWidth,
             height,
             onMouseOut,
             onMouseOver,
-            padding,
-            scroll,
             scrollBarsAreVisible,
-            scrollIndicatorVariant,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    paddingX : Array.isArray( padding ) ?
-                        padding[ 0 ] : padding,
-                    paddingY : Array.isArray( padding ) ?
-                        padding[ 1 ] : padding,
-                    scroll,
-                    scrollBarsAreVisible,
-                    scrollIndicatorVariant,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
                 style        = { { maxHeight: height } }>

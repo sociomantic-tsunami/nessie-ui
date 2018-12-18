@@ -10,7 +10,6 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { NavList }          from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming/createCss';
@@ -33,15 +32,12 @@ export default class NavBar extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.NavBar, this.props ),
         } = this.props;
 
         return (
-            <nav className = { buildClassName( className, cssMap ) }>
-                <NavList>
-                    { children }
-                </NavList>
+            <nav className = { cssMap.main }>
+                <NavList>{ children }</NavList>
             </nav>
         );
     }

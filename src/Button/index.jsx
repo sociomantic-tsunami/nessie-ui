@@ -172,11 +172,8 @@ export default class Button extends React.Component
         const {
             buttonRef,
             children,
-            className,
             cssMap = createCssMap( this.context.Button, this.props ),
             defaultValue,
-            forceHover,
-            iconPosition,
             iconType,
             id = generateId( 'Button' ),
             isDisabled,
@@ -186,7 +183,6 @@ export default class Button extends React.Component
             onClick,
             onMouseOut,
             onMouseOver,
-            role,
             type,
             value,
         } = this.props;
@@ -209,22 +205,16 @@ export default class Button extends React.Component
 
         return (
             <button
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover,
-                    iconPosition,
-                    loading     : isLoading && !isDisabled,
-                    role,
-                } ) }
-                defaultValue   = { defaultValue }
-                disabled       = { isDisabled || isLoading || isReadOnly }
-                id             = { id }
-                onClick        = { onClick }
-                onMouseEnter   = { onMouseOver }
-                onMouseLeave   = { onMouseOut }
-                ref            = { buttonRef }
-                type           = { type }
-                value          = { value }>
+                className    = { cssMap.main }
+                defaultValue = { defaultValue }
+                disabled     = { isDisabled || isLoading || isReadOnly }
+                id           = { id }
+                onClick      = { onClick }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                ref          = { buttonRef }
+                type         = { type }
+                value        = { value }>
                 { content }
                 { ( isLoading && !isDisabled ) &&
                 <div className = { cssMap.loadingOverlay }>

@@ -10,7 +10,6 @@
 import React, { Children } from 'react';
 import PropTypes           from 'prop-types';
 
-import { buildClassName }  from '../utils';
 import { NavList }         from '../index';
 import ThemeContext        from '../Theming/ThemeContext';
 import { createCssMap }    from '../Theming/createCss';
@@ -47,7 +46,6 @@ export default class NavDropdown extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.NavDropdown, this.props ),
         } = this.props;
 
@@ -55,9 +53,7 @@ export default class NavDropdown extends React.Component
             React.cloneElement( child, { ...child.props, role: 'sub' } ) );
 
         return (
-            <NavList
-                className = { buildClassName( className, cssMap ) }
-                layout    = "vertical">
+            <NavList className = { cssMap.main } layout = "vertical">
                 { items }
             </NavList>
         );

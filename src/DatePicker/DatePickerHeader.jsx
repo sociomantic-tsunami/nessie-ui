@@ -11,12 +11,10 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { IconButton, Text } from '../index';
-import { buildClassName }   from '../utils';
 import styles               from './datePickerHeader.css';
 import TimeInput            from './TimeInput';
 
 const DatePickerHeader = ( {
-    className,
     cssMap,
     hourIsDisabled,
     hourIsReadOnly,
@@ -42,7 +40,7 @@ const DatePickerHeader = ( {
     prevIsReadOnly,
     year,
 } ) => (
-    <div className = { buildClassName( className, cssMap ) }>
+    <div className = { cssMap.main }>
         <div className = { cssMap.buttonsWrapper }>
             <IconButton
                 className  = { cssMap.prev }
