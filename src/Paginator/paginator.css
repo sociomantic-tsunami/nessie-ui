@@ -15,98 +15,112 @@
     flex-direction:     row;
     justify-content:    flex-start;
     align-items:        center;
-}
 
 
-.pageButtons
-{
-    display:        inline-flex;
-    align-items:    flex-start;
-}
-
-
-.pageButton,
-.ellipsis
-{
-    border:         none;
-    margin:         0;
-
-    min-width:      var( --spacing-3 );
-    height:         var( --spacing-3 );
-
-    color:          var( --PC-GREY--L55 );
-
-    @extend %Nessie-SemiBold;
-
-    font-size:      var( --typo-3 );
-    line-height:    var( --line-height-s );
-    letter-spacing: 0.2px;
-
-    text-align:     center;
-
-    &:focus
+    .arrow,
+    .ellipsis,
+    .pageButton,
+    .pageButtons
     {
-        outline:    none;
-    }
-}
+        margin-bottom:  0;
 
-
-.pageButton,
-.arrow
-{
-    border:         1px solid transparent;
-    border-radius:  2px;
-
-    &:focus
-    {
-        border-color:   var( --PC-BLUE );
-        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-    }
-}
-
-.pageButton
-{
-    height:         var( --spacing-3 );
-    background:     var( --PC-GREY--L90 );
-
-    padding-left:   var( --spacing-1 );
-    padding-right:  var( --spacing-1 );
-    padding-top:    0;
-    padding-bottom: 0;
-
-    border:         1px solid transparent;
-    border-radius:  2px;
-
-    &:hover:not( [ disabled ] )
-    {
-        cursor: pointer;
+        &:not( :last-child )
+        {
+            margin-right:   var( --spacing-1 );
+        }
     }
 
-    &:hover,
-    &:disabled
-    {
-        border-color:   var( --PC-BLUE );
-        color:          var( --PC-WHITE );
-        background:     var( --PC-BLUE );
-    }
-}
 
-.arrow
-{
-    &:hover
+    .pageButtons
     {
-        background: var( --PC-GREY--L90 );
+        display:        inline-flex;
+        align-items:    flex-start;
     }
 
-    &:focus::after
-    {
-        display:    none;
-    }
-}
 
-.ellipsis
-{
-    padding:    0;
-    height:     14px;
-    background: transparent;
+    .pageButton,
+    .ellipsis
+    {
+        border:         none;
+        margin:         0;
+
+        min-width:      var( --spacing-3 );
+        height:         var( --spacing-3 );
+
+        color:          var( --PC-GREY--L55 );
+
+        @extend %Nessie-SemiBold;
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        letter-spacing: 0.2px;
+
+        text-align:     center;
+
+        &:focus
+        {
+            outline:    none;
+        }
+    }
+
+
+    .pageButton,
+    .arrow
+    {
+        border:         1px solid transparent;
+        border-radius:  2px;
+
+        &:focus
+        {
+            border-color:   var( --PC-BLUE );
+            box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+        }
+    }
+
+    .pageButton
+    {
+        height:         var( --spacing-3 );
+        background:     var( --PC-GREY--L90 );
+
+        padding-left:   var( --spacing-1 );
+        padding-right:  var( --spacing-1 );
+        padding-top:    0;
+        padding-bottom: 0;
+
+        border:         1px solid transparent;
+        border-radius:  2px;
+
+        &:hover:not( [ disabled ] )
+        {
+            cursor: pointer;
+        }
+
+        &:hover,
+        &:disabled
+        {
+            border-color:   var( --PC-BLUE );
+            color:          var( --PC-WHITE );
+            background:     var( --PC-BLUE );
+        }
+    }
+
+    .arrow
+    {
+        &:hover
+        {
+            background: var( --PC-GREY--L90 );
+        }
+
+        &:focus::after
+        {
+            display:    none;
+        }
+    }
+
+    .ellipsis
+    {
+        padding:    0;
+        height:     14px;
+        background: transparent;
+    }
 }

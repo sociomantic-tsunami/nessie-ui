@@ -19,6 +19,11 @@
 
     background:         var( --PC-BLUE );
 
+    .message
+    {
+        color:          var( --PC-WHITE );
+    }
+
     .info
     {
         margin-right:   20px;
@@ -27,8 +32,8 @@
 
     .close
     {
-        position:   absolute;
-        right:      var( --spacing-2 );
+        position:       absolute;
+        right:          var( --spacing-2 );
     }
 }
 
