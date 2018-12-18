@@ -457,6 +457,7 @@ export default class DatePickerStateful extends Component
             gridStartTimestamp      : undefined,
             id                      : undefined,
             isOpen                  : undefined,
+            minDateSelectable       : undefined,
             timestamp               : undefined,
         };
 
@@ -694,10 +695,22 @@ export default class DatePickerStateful extends Component
     handleChange( inputValue, sender )
     {
         const trimmed = inputValue.trim().replace( /\s+/g, ' ' );
+        const min = this.props.minDateSelectable || now();
 
         if ( sender === 'main' )
         {
-            const value = tryParseInputValue( trimmed, this.state.timestamp );
+            let value = tryParseInputValue( trimmed, this.state.timestamp );
+
+            if ( value < min )
+            {
+                value = min;
+            }
+
+            if ( this.props.maxDateSelectable &&
+                    value > this.props.maxDateSelectable )
+            {
+                value = this.props.maxDateSelectable;
+            }
 
             this.setState( {
                 editingTimestamp        : value,
@@ -885,7 +898,8 @@ export default class DatePickerStateful extends Component
                 nextIsDisabled    = { !this.canGotoNext() }
                 nextIsReadOnly    = { nextIsReadOnly }
                 onBlur            = { this.handleOnBlur }
-                onChange          = { ( ev, sender ) => this.handleChange( ev.target.value, sender ) }
+                onChange          = { ( ev, sender ) =>
+                    this.handleChange( ev.target.value, sender ) }
                 onClickCell       = { this.handleClickCell }
                 onClickIcon       = { this.handleClickIcon }
                 onClickNext       = { this.gotoNext }
