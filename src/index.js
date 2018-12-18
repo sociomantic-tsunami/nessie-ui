@@ -232,7 +232,7 @@ export default {
 
 // Theme context
 export ThemeContext     from './Theming/ThemeContext';
-
+export DefaultTheme     from './DefaultTheme';
 
 // Addons
 export CodeEditor       from './Addons/CodeEditor';
