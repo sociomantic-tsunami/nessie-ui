@@ -7,6 +7,8 @@
  *
  */
 
+/*  global addEventListener, removeEventListener */
+
 import React, { Component }      from 'react';
 import PropTypes                 from 'prop-types';
 import moment                    from 'moment';
@@ -26,7 +28,6 @@ const DISPLAY_FORMATTING =
 
 const PARSE_FORMATTING =
 [
-
     {
         predicate        : /^\d{4}\/\d{1,2}$/,
         requirePrecision : 'month',
@@ -38,7 +39,8 @@ const PARSE_FORMATTING =
         format           : 'YYYY/M/D',
     },
     {
-        predicate        : /^\d{4}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{1,2}(:\d{1,2})?$/,
+        predicate :
+            /^\d{4}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{1,2}(:\d{1,2})?$/,
         requirePrecision : 'minute',
         format           : 'YYYY/M/D H:m',
     },
@@ -57,11 +59,11 @@ function now()
 }
 
 /**
- * gets the index of the option by the passed id
+ * returns utc of the timestamp passed
  *
- * @param {Number}
+ * @param {Number} timestamp passed
  *
- * @return {Number} index of the option
+ * @return {Number} UTC timestamp
  */
 function $m( timestamp )
 {
@@ -69,13 +71,13 @@ function $m( timestamp )
 }
 
 /**
- * gets the index of the option by the passed id
+ * checks if 2 timestamp are equal
  *
- * @param {Number}  ts1 dffdfd
- * @param {Number}  ts2 dffdfd
- * @param {String}  precision dffdfd
+ * @param {Number}  ts1 timestamp
+ * @param {Number}  ts2 timestamp
+ * @param {String}  precision precision to compare
  *
- * @return {Number} index of the option
+ * @return {Boolean}
  */
 function isTimestampEqual( ts1, ts2, precision )
 {
@@ -83,6 +85,13 @@ function isTimestampEqual( ts1, ts2, precision )
 }
 
 /**
+ * Human date ( input value ) conversion to timestamp,
+ * returns current timestamp if invalid input value
+ *
+ * @param {String}  inputValue human readable date
+ * @param {Number}  timestamp current timestamp
+ *
+ * @return {Number} timestamp
  */
 function tryParseInputValue( inputValue, timestamp )
 {
@@ -102,16 +111,12 @@ function tryParseInputValue( inputValue, timestamp )
 }
 
 /**
- */
-function comparePrecision( precision )
-{
-    const queryPrecisionCode = PRECISIONS.indexOf( precision );
-    const currentPrecisionCode = PRECISIONS.indexOf( this.precision );
-    return queryPrecisionCode < 0 ? null :
-        currentPrecisionCode - queryPrecisionCode;
-}
-
-/**
+ * Timestamp conversion to Human date
+ *
+ * @param {Number}  timestamp timestamp
+ * @param {String}  precision precision for formatting
+ *
+ * @return {String} human readable date
  */
 function tryFormatMainInput( timestamp, precision )
 {
@@ -120,6 +125,11 @@ function tryFormatMainInput( timestamp, precision )
 }
 
 /**
+ * Timestamp conversion to Human time ( hours )
+ *
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {String} human readable time ( hours )
  */
 function tryFormatHourInput( timestamp )
 {
@@ -128,6 +138,11 @@ function tryFormatHourInput( timestamp )
 }
 
 /**
+ * Timestamp conversion to Human time ( minutes )
+ *
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {String} human readable time ( minutes )
  */
 function tryFormatMinuteInput( timestamp )
 {
@@ -136,8 +151,13 @@ function tryFormatMinuteInput( timestamp )
 }
 
 /**
+ * set precision for formatting and comparing
+ *
+ * @param {String}  mode  date time input mode
+ *
+ * @return {String} date / time format
  */
-function precision( mode )
+function setPrecision( mode )
 {
     let format = 'minute';
 
@@ -154,6 +174,13 @@ function precision( mode )
 }
 
 /**
+ * returns editing timestamp when editing date time input,
+ * otherwise returns the current timestamp
+ *
+ * @param {Number}  editingTimestamp timestamp
+ * @param {Number}  timestamp timestamp
+ *
+ * @return {Number} timestamp
  */
 function displayTimestamp( editingTimestamp, timestamp )
 {
@@ -171,145 +198,91 @@ export default class DatePickerStateful extends Component
         /**
          *  Extra CSS class name
          */
-        className             : PropTypes.string,
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *   Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
-        /**
-         *  Current month to disaplay in default/day mode
-         */
-        currentMonth          : PropTypes.string,
-        /**
-         *  Current year to display
-         */
-        currentYear           : PropTypes.string,
-        /**
-         *  Days of week to display
-         */
-        days                  : PropTypes.arrayOf( PropTypes.object ),
+        className         : PropTypes.string,
         /**
          *  Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover        : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
-        /**
-         *  Hour input ref callback function:
-         *  ( ref ) = { ... }
-         */
-        hourInputRef          : PropTypes.func,
+        hasError          : PropTypes.bool,
         /**
          *  Hour input is disabled
          */
-        hourIsDisabled        : PropTypes.bool,
+        hourIsDisabled    : PropTypes.bool,
         /**
          *  Hour input placeholder text
          */
-        hourPlaceholder       : PropTypes.string,
-        /**
-         *  Hour input value
-         */
-        hourValue             : PropTypes.string,
+        hourPlaceholder   : PropTypes.string,
         /**
          *  HTML id attribute
          */
-        id                    : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  Main input placeholder text
          */
-        inputPlaceholder      : PropTypes.string,
-        /**
-         *  Callback that receives the native <input>: ( ref ) => { ... }
-         */
-        inputRef              : PropTypes.func,
-        /**
-         *  Main input value
-         */
-        inputValue            : PropTypes.string,
+        inputPlaceholder  : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled            : PropTypes.bool,
+        isDisabled        : PropTypes.bool,
         /**
          *  Picker is open
          */
-        isOpen                : PropTypes.bool,
+        isOpen            : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly            : PropTypes.bool,
+        isReadOnly        : PropTypes.bool,
         /**
          *  Display as read-only for IconButton
          */
-        isReadOnlyButton      : PropTypes.bool,
+        isReadOnlyButton  : PropTypes.bool,
         /**
          *  “Previous” button is read only
          */
-        prevIsReadOnly        : PropTypes.bool,
+        prevIsReadOnly    : PropTypes.bool,
         /**
          *  Display as read-only for TextInput
          */
-        isReadOnlyInput       : PropTypes.bool,
+        isReadOnlyInput   : PropTypes.bool,
         /**
          *  “Next” button is read only
          */
-        nextIsReadOnly        : PropTypes.bool,
-        /**
-         *  Label text (string or JSX node)
-         */
-        label                 : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-        /**
-         *  Minute input ref callback function:
-         *  ( ref ) = { ... }
-         */
-        minuteInputRef        : PropTypes.func,
+        nextIsReadOnly    : PropTypes.bool,
         /**
          *  Hour input is read only
          */
-        hourIsReadOnly        : PropTypes.bool,
+        hourIsReadOnly    : PropTypes.bool,
         /**
          *  Maximun date selectable
          */
-        maxDateSelectable     : PropTypes.number,
+        maxDateSelectable : PropTypes.number,
         /**
          *  Minimun date Selectable
          */
-        minDateSelectable     : PropTypes.number,
+        minDateSelectable : PropTypes.number,
         /**
          *  Minute input is disabled
          */
-        minuteIsDisabled      : PropTypes.bool,
+        minuteIsDisabled  : PropTypes.bool,
         /**
          *  Minute input is read only
          */
-        minuteIsReadOnly      : PropTypes.bool,
+        minuteIsReadOnly  : PropTypes.bool,
         /**
          *  Minute input placeholder text
          */
-        minutePlaceholder     : PropTypes.string,
+        minutePlaceholder : PropTypes.string,
         /**
          *  Minute input value
          */
-        minuteValue           : PropTypes.string,
+        minuteValue       : PropTypes.string,
         /**
          *  Picker mode
          */
-        mode                  : PropTypes.oneOf( [
+        mode              : PropTypes.oneOf( [
             'default',
             'date',
             'month',
@@ -394,56 +367,43 @@ export default class DatePickerStateful extends Component
 
     static defaultProps =
     {
-        className             : undefined,
-        currentMonth          : undefined,
-        currentYear           : undefined,
-        days                  : undefined,
-        errorMessage          : undefined,
-        errorMessageIsVisible : undefined,
-        errorMessagePosition  : undefined,
-        forceHover            : false,
-        hasError              : false,
-        hourInputRef          : undefined,
-        hourIsDisabled        : false,
-        hourPlaceholder       : undefined,
-        hourValue             : undefined,
-        id                    : undefined,
-        inputPlaceholder      : undefined,
-        inputRef              : undefined,
-        inputValue            : undefined,
-        isDisabled            : false,
-        isOpen                : undefined,
-        isReadOnly            : false,
-        isReadOnlyButton      : undefined,
-        isReadOnlyInput       : undefined,
-        label                 : undefined,
-        labelPosition         : undefined,
-        maxDateSelectable     : undefined,
-        minDateSelectable     : undefined,
-        minuteInputRef        : undefined,
-        minuteIsDisabled      : false,
-        minutePlaceholder     : undefined,
-        minuteValue           : undefined,
-        mode                  : 'default',
-        months                : undefined,
-        nextIsDisabled        : false,
-        onBlur                : undefined,
-        onChange              : undefined,
-        onClickCell           : undefined,
-        onClickIcon           : undefined,
-        onClickNext           : undefined,
-        onClickPrev           : undefined,
-        onFocus               : undefined,
-        onKeyDown             : undefined,
-        onKeyPress            : undefined,
-        onKeyUp               : undefined,
-        onMouseOut            : undefined,
-        onMouseOutIcon        : undefined,
-        onMouseOver           : undefined,
-        onMouseOverIcon       : undefined,
-        prevIsDisabled        : false,
-        textAlign             : 'auto',
-        weeks                 : undefined,
+        className         : undefined,
+        forceHover        : false,
+        hasError          : false,
+        hourIsDisabled    : false,
+        hourPlaceholder   : undefined,
+        id                : undefined,
+        inputPlaceholder  : undefined,
+        isDisabled        : false,
+        isOpen            : undefined,
+        isReadOnly        : false,
+        isReadOnlyButton  : undefined,
+        isReadOnlyInput   : undefined,
+        maxDateSelectable : undefined,
+        minDateSelectable : undefined,
+        minuteIsDisabled  : false,
+        minutePlaceholder : undefined,
+        minuteValue       : undefined,
+        mode              : 'default',
+        months            : undefined,
+        nextIsDisabled    : false,
+        onBlur            : undefined,
+        onChange          : undefined,
+        onClickCell       : undefined,
+        onClickIcon       : undefined,
+        onClickNext       : undefined,
+        onClickPrev       : undefined,
+        onFocus           : undefined,
+        onKeyDown         : undefined,
+        onKeyPress        : undefined,
+        onKeyUp           : undefined,
+        onMouseOut        : undefined,
+        onMouseOutIcon    : undefined,
+        onMouseOver       : undefined,
+        onMouseOverIcon   : undefined,
+        prevIsDisabled    : false,
+        textAlign         : 'auto',
+        weeks             : undefined,
     };
 
     constructor()
@@ -457,18 +417,17 @@ export default class DatePickerStateful extends Component
             gridStartTimestamp      : undefined,
             id                      : undefined,
             isOpen                  : undefined,
-            minDateSelectable       : undefined,
             timestamp               : undefined,
         };
 
-        this.gotoNext        = this.gotoNext.bind( this );
-        this.gotoPrev        = this.gotoPrev.bind( this );
-        this.handleClickIcon = this.handleClickIcon.bind( this );
-        this.handleClickCell = this.handleClickCell.bind( this );
-        this.handleOnBlur    = this.handleOnBlur.bind( this );
-        this.setInputRef     = this.setInputRef.bind( this );
-        this.setHourRef      = this.setHourRef.bind( this );
-        this.setMinuteRef    = this.setMinuteRef.bind( this );
+        this.gotoNext           = this.gotoNext.bind( this );
+        this.gotoPrev           = this.gotoPrev.bind( this );
+        this.handleChange       = this.handleChange.bind( this );
+        this.handleClickCell    = this.handleClickCell.bind( this );
+        this.handleClickIcon    = this.handleClickIcon.bind( this );
+        this.handleClickOutSide = this.handleClickOutSide.bind( this );
+        this.setInputRef        = this.setInputRef.bind( this );
+        this.setWrapperRef      = this.setWrapperRef.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -484,19 +443,24 @@ export default class DatePickerStateful extends Component
         };
     }
 
+    componentDidMount()
+    {
+        addEventListener( 'mousedown', this.handleClickOutSide, false );
+    }
+
+    componentWillUnmount()
+    {
+        removeEventListener( 'mousedown', this.handleClickOutSide, false );
+    }
+
     setInputRef( ref )
     {
         this.inputRef = ref;
     }
 
-    setHourRef( ref )
+    setWrapperRef( ref )
     {
-        this.inputHourRef = ref;
-    }
-
-    setMinuteRef( ref )
-    {
-        this.inputMinuteRef = ref;
+        this.wrapperRef = ref;
     }
 
     gotoNext()
@@ -519,6 +483,14 @@ export default class DatePickerStateful extends Component
                 .add( -1, this.props.mode === 'month' ? 'year' : 'month' )
                 .valueOf(),
         } );
+    }
+
+    handleClickOutSide( e )
+    {
+        if ( !this.wrapperRef.contains( e.target ) )
+        {
+            this.close();
+        }
     }
 
     canGotoNext()
@@ -647,17 +619,17 @@ export default class DatePickerStateful extends Component
     dayLabels()
     {
         return _.range( 0, 7 ).map( day =>
-            ( { label : copy.dayHeaders[ day ] } ) );
+            ( { label: copy.dayHeaders[ day ] } ) );
     }
 
     handleClickCell( value )
     {
-        // const callback = this.props.onClickCell;
-        //
-        // if ( callback )
-        // {
-        //     callback( e );
-        // }
+        const callback = this.props.onClickCell;
+
+        if ( callback )
+        {
+            callback( value );
+        }
 
         this.setState( { timestamp: parseInt( value ) } );
         this.purgeEdits();
@@ -692,9 +664,9 @@ export default class DatePickerStateful extends Component
         }
     }
 
-    handleChange( inputValue, sender )
+    handleChange( event, sender )
     {
-        const trimmed = inputValue.trim().replace( /\s+/g, ' ' );
+        const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
         const min = this.props.minDateSelectable || now();
 
         if ( sender === 'main' )
@@ -716,14 +688,14 @@ export default class DatePickerStateful extends Component
                 editingTimestamp        : value,
                 editingHourInputValue   : tryFormatHourInput( value ),
                 editingMinuteInputValue : tryFormatMinuteInput( value ),
-                editingMainInputValue   : inputValue,
+                editingMainInputValue   : event.target.value,
             } );
         }
         else if ( sender === 'hour' )
         {
             const digits = Number( trimmed );
 
-            this.setState( { editingHourInputValue: inputValue } );
+            this.setState( { editingHourInputValue: event.target.value } );
 
             if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 23 )
             {
@@ -731,7 +703,7 @@ export default class DatePickerStateful extends Component
 
                 this.setState( {
                     editingTimestamp      : value,
-                    editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                    editingMainInputValue : tryFormatMainInput( value, setPrecision( this.props.mode ) ),
                 } );
             }
             else
@@ -745,7 +717,7 @@ export default class DatePickerStateful extends Component
 
                     this.setState( {
                         editingTimestamp      : value,
-                        editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                        editingMainInputValue : tryFormatMainInput( value, setPrecision( this.props.mode ) ),
                     } );
                 }
             }
@@ -753,7 +725,7 @@ export default class DatePickerStateful extends Component
         else if ( sender === 'minute' )
         {
             const digits = Number( trimmed );
-            this.setState( { editingMinuteInputValue: inputValue } );
+            this.setState( { editingMinuteInputValue: event.target.value } );
 
             if ( /^\d\d?$/.test( trimmed ) && digits >= 0 && digits <= 59 )
             {
@@ -761,7 +733,7 @@ export default class DatePickerStateful extends Component
 
                 this.setState( {
                     editingTimestamp      : value,
-                    editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                    editingMainInputValue : tryFormatMainInput( value, setPrecision( this.props.mode ) ),
                 } );
             }
             else
@@ -775,7 +747,7 @@ export default class DatePickerStateful extends Component
 
                     this.setState( {
                         editingTimestamp      : value,
-                        editingMainInputValue : tryFormatMainInput( value, precision( this.props.mode ) ),
+                        editingMainInputValue : tryFormatMainInput( value, setPrecision( this.props.mode ) ),
                     } );
                 }
             }
@@ -808,22 +780,6 @@ export default class DatePickerStateful extends Component
         this.setState( { gridStartTimestamp: null } );
     }
 
-    handleOnBlur( e )
-    {
-        const callback = this.props.onBlur;
-
-        if ( callback )
-        {
-            callback( e );
-        }
-
-        if ( !e.relatedTarget )// needs to be fixed
-        {
-            this.purgeEdits();
-            this.setState( { gridStartTimestamp: null } );
-        }
-    }
-
     render()
     {
         const {
@@ -842,6 +798,7 @@ export default class DatePickerStateful extends Component
             minutePlaceholder,
             mode,
             nextIsReadOnly,
+            onBlur,
             onFocus,
             onKeyDown,
             onKeyPress,
@@ -873,7 +830,6 @@ export default class DatePickerStateful extends Component
                 hasError          = { hasError }
                 hourIsDisabled    = { hourIsDisabled }
                 hourIsReadOnly    = { !this.canEditHourOrMinute() }
-                hourInputRef      = { this.setHourRef }
                 hourPlaceholder   = { hourPlaceholder }
                 hourValue         = { editingHourInputValue ||
                     tryFormatHourInput( timestamp ) }
@@ -881,7 +837,7 @@ export default class DatePickerStateful extends Component
                 inputPlaceholder  = { inputPlaceholder }
                 inputRef          = { this.setInputRef }
                 inputValue        = { editingMainInputValue ||
-                    tryFormatMainInput( timestamp, precision( mode ) ) }
+                    tryFormatMainInput( timestamp, setPrecision( mode ) ) }
                 isDisabled        = { isDisabled }
                 isOpen            = { isOpen }
                 isReadOnly        = { isReadOnly }
@@ -889,7 +845,6 @@ export default class DatePickerStateful extends Component
                 isReadOnlyInput   = { isReadOnlyInput }
                 minuteIsDisabled  = { minuteIsDisabled }
                 minuteIsReadOnly  = { !this.canEditHourOrMinute() }
-                minuteInputRef    = { this.setMinuteRef }
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       = { editingMinuteInputValue ||
                     tryFormatMinuteInput( timestamp ) }
@@ -897,9 +852,8 @@ export default class DatePickerStateful extends Component
                 months            = { this.monthMatrix() }
                 nextIsDisabled    = { !this.canGotoNext() }
                 nextIsReadOnly    = { nextIsReadOnly }
-                onBlur            = { this.handleOnBlur }
-                onChange          = { ( ev, sender ) =>
-                    this.handleChange( ev.target.value, sender ) }
+                onBlur            = { onBlur }
+                onChange          = { this.handleChange }
                 onClickCell       = { this.handleClickCell }
                 onClickIcon       = { this.handleClickIcon }
                 onClickNext       = { this.gotoNext }
@@ -915,7 +869,8 @@ export default class DatePickerStateful extends Component
                 prevIsDisabled    = { !this.canGotoPrev() }
                 prevIsReadOnly    = { prevIsReadOnly }
                 textAlign         = { textAlign }
-                weeks             = { this.dayMatrix() } />
+                weeks             = { this.dayMatrix() }
+                wrapperRef        = { this.setWrapperRef } />
         );
     }
 }
