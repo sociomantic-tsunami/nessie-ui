@@ -201,6 +201,11 @@
         "label" : "Tell me your secrets",
         "errorMessage" : "Please enter a valid name"
     },
+    "PasswordInputStateful" :
+    {
+        "label" : "Tell me your secrets",
+        "errorMessage" : "Please enter a dark secret"
+    },
     "ProgressIndicator" :
     {
         "currentPercentage" : 17
