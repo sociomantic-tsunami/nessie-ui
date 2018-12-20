@@ -12,7 +12,7 @@ import PropTypes                from 'prop-types';
 
 import { Icon, Text, Tooltip }  from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming/createCss';
+import { createCssMap }         from '../Theming';
 
 export default class IconWithTooltip extends React.Component
 {

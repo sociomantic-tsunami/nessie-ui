@@ -10,7 +10,7 @@
 import React                from 'react';
 
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class NessieLogo extends React.Component
 {

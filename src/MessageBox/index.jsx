@@ -12,7 +12,7 @@ import PropTypes            from 'prop-types';
 
 import Text                 from '../Text';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class MessageBox extends React.Component
 {

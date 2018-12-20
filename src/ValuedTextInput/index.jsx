@@ -13,7 +13,7 @@ import PropTypes        from 'prop-types';
 import { InputField }   from '../index';
 import { generateId }   from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { createCssMap } from '../Theming';
 
 export default class ValuedTextInput extends React.Component
 {

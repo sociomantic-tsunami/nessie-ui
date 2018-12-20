@@ -19,7 +19,7 @@ import PropTypes        from 'prop-types';
 
 import { clamp }        from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { createCssMap } from '../Theming';
 
 export default class ScrollBar extends React.Component
 {

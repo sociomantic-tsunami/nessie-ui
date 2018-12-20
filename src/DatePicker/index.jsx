@@ -13,7 +13,7 @@ import PropTypes            from 'prop-types';
 import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class DatePicker extends React.Component
 {

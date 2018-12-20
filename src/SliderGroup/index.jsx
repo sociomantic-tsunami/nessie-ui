@@ -12,7 +12,7 @@ import PropTypes            from 'prop-types';
 
 import { Label, Slider }    from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class SliderGroup extends React.Component
 {

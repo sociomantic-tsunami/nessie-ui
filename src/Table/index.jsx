@@ -13,7 +13,7 @@ import PropTypes                from 'prop-types';
 import { TableCell, TableRow }  from '../index';
 import { buildRowsFromValues }  from './utils';
 import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming/createCss';
+import { createCssMap }         from '../Theming';
 
 export default class Table extends React.Component
 {

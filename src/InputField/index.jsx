@@ -12,7 +12,7 @@ import PropTypes               from 'prop-types';
 
 import { mapAria, generateId } from '../utils';
 import ThemeContext            from '../Theming/ThemeContext';
-import { createCssMap }        from '../Theming/createCss';
+import { createCssMap }        from '../Theming';
 
 export default class InputField extends React.Component
 {

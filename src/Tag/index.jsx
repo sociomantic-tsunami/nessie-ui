@@ -7,13 +7,13 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { IconButton, Text }           from '../index';
-import { buildClassName, generateId } from '../utils';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming/createCss';
+import { IconButton, Text } from '../index';
+import { generateId }       from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming';
 
 export default class Tag extends React.Component
 {
@@ -77,7 +77,6 @@ export default class Tag extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Tag, this.props ),
             forceHover,
             id = generateId( 'Tag' ),
@@ -99,10 +98,7 @@ export default class Tag extends React.Component
         }
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    disabled : isDisabled,
-                } ) }>
+            <div className = { cssMap.main }>
                 { labelText }
                 <IconButton
                     className  = { cssMap.delete }

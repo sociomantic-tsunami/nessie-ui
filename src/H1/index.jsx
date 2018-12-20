@@ -11,7 +11,7 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class H1 extends React.Component
 {

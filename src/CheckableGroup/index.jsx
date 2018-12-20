@@ -13,7 +13,7 @@ import PropTypes           from 'prop-types';
 import { Fieldset }        from '../index';
 import { generateId }      from '../utils';
 import ThemeContext        from '../Theming/ThemeContext';
-import { createCssMap }    from '../Theming/createCss';
+import { createCssMap }    from '../Theming';
 
 export default class CheckableGroup extends React.Component
 {

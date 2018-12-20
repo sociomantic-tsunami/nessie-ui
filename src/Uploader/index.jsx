@@ -20,7 +20,7 @@ import {
     Tooltip,
 } from '../index';
 import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { createCssMap } from '../Theming';
 
 export default class Uploader extends React.Component
 {

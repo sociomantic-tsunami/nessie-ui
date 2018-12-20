@@ -7,15 +7,14 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
-import isEqual                      from 'lodash.isequal';
+import React                     from 'react';
+import PropTypes                 from 'prop-types';
+import isEqual                   from 'lodash.isequal';
 
-import { createScrollHandler }      from './utils';
-import { buildClassName }           from '../utils';
-import { IconButton, ScrollBar }    from '../index';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming/createCss';
+import { createScrollHandler }   from './utils';
+import { IconButton, ScrollBar } from '../index';
+import ThemeContext              from '../Theming/ThemeContext';
+import { createCssMap }          from '../Theming';
 
 
 export default class ScrollBox extends React.Component

@@ -7,16 +7,20 @@
  *
  */
 
+import ThemeContext from './ThemeContext';
+
 /* interpolates component’s props into the theme */
 const createCssMap = ( theme = {}, props = {} ) =>
     Object.entries( theme ).reduce(
-        ( result,  [ key, value ] ) =>
+        ( cssMap,  [ key, value ] ) =>
         {
-            result[ key ] = typeof value === 'function' ?
+            cssMap[ key ] = typeof value === 'function' ?
                 value( props ) : value;
-            return result;
+            return cssMap;
         },
         {},
     );
 
-export { createCssMap };
+const { Consumer : ThemeConsumer, Provider : ThemeProvider } = ThemeContext;
+
+export { createCssMap, ThemeConsumer, ThemeProvider };

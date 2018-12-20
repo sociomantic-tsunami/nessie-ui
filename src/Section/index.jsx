@@ -13,7 +13,7 @@ import PropTypes          from 'prop-types';
 import { generateId }     from '../utils';
 import { H1, H2, H3, H4 } from '../index';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class Section extends React.Component
 {
