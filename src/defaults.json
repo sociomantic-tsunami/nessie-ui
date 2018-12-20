@@ -295,6 +295,10 @@
         "children"      : "{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}",
         "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
     },
+    "TagInputStateful" :
+    {
+        "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
+    },
     "TextArea" :
     {
         "label": "Text Area Label",

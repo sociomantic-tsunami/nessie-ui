@@ -73,6 +73,7 @@ import TableRow                 from './TableRow';
 import Tabs                     from './Tabs';
 import Tag                      from './Tag';
 import TagInput                 from './TagInput';
+import TagInputStateful         from './TagInputStateful';
 import Text                     from './Text';
 import TextArea                 from './TextArea';
 import TextInput                from './TextInput';
@@ -147,6 +148,7 @@ export {
     Tabs,
     Tag,
     TagInput,
+    TagInputStateful,
     Text,
     TextArea,
     TextInput,
@@ -222,6 +224,7 @@ export default {
     Tabs,
     Tag,
     TagInput,
+    TagInputStateful,
     Text,
     TextArea,
     TextInput,
