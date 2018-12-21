@@ -144,9 +144,13 @@ export default class TagInputStateful extends React.Component
     {
         super( props );
 
-        this.state = { tags: props.tags };
+        this.state = {
+            tags  : props.tags,
+            value : props.value,
+        };
 
         this.handleClickClose = this.handleClickClose.bind( this );
+        this.handleKeyPress = this.handleKeyPress.bind( this );
     }
 
     handleClickClose( e )
@@ -167,6 +171,22 @@ export default class TagInputStateful extends React.Component
         this.setState( { tags: newItems } );
     }
 
+    handleKeyPress( e )
+    {
+        const { value } = this.state;
+        const callback = this.props.onKeyPress;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        if ( e.keyCode === 8 && value === '' )
+        {
+            this.handleClickClose();
+        }
+    }
+
     render()
     {
         const { props } = this;
@@ -175,7 +195,9 @@ export default class TagInputStateful extends React.Component
             <TagInput
                 { ...props }
                 onClickClose = { this.handleClickClose }
-                tags         = { this.state.tags } />
+                onKeyPress   = { this.handleKeyPress }
+                tags         = { this.state.tags }
+                value        = { this.state.value } />
         );
     }
 }
