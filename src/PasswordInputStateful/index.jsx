@@ -82,103 +82,99 @@ export default class PasswordInputStateful extends React.Component
         /**
          *  HTML id attribute
          */
-        id                : PropTypes.string,
+        id               : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef          : PropTypes.func,
+        inputRef         : PropTypes.func,
         /**
          *  Display as disabled
          */
-        isDisabled        : PropTypes.bool,
+        isDisabled       : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly        : PropTypes.bool,
+        isReadOnly       : PropTypes.bool,
         /**
          *  Display as read-only for IconButton
          */
-        isReadOnlyButton  : PropTypes.bool,
+        isReadOnlyButton : PropTypes.bool,
         /**
          *  Display as read-only for TextInput
          */
-        isReadOnlyInput   : PropTypes.bool,
+        isReadOnlyInput  : PropTypes.bool,
         /**
          *  Label text (string or JSX node)
          */
-        label             : PropTypes.node,
+        label            : PropTypes.node,
         /**
          *  Label position
          */
-        labelPosition     : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
+        labelPosition    : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  HTML name attribute
          */
-        name              : PropTypes.string,
+        name             : PropTypes.string,
         /**
          *  Blur callback function
          */
-        onBlur            : PropTypes.func,
+        onBlur           : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange          : PropTypes.func,
+        onChange         : PropTypes.func,
         /**
          *  Input click callback function
          */
-        onClick           : PropTypes.func,
+        onClick          : PropTypes.func,
         /**
          *  Icon click callback function
          */
-        onClickIcon       : PropTypes.func,
+        onClickIcon      : PropTypes.func,
         /**
          *  Focus callback function
          */
-        onFocus           : PropTypes.func,
+        onFocus          : PropTypes.func,
         /**
          *  Key down callback function
          */
-        onKeyDown         : PropTypes.func,
+        onKeyDown        : PropTypes.func,
         /**
          *  Key press callback function
          */
-        onKeyPress        : PropTypes.func,
+        onKeyPress       : PropTypes.func,
         /**
          *  Key up callback function
          */
-        onKeyUp           : PropTypes.func,
+        onKeyUp          : PropTypes.func,
         /**
          *  Mouse out callback function
          */
-        onMouseOut        : PropTypes.func,
+        onMouseOut       : PropTypes.func,
         /**
          *  Icon mouse out callback function
          */
-        onMouseOutIcon    : PropTypes.func,
+        onMouseOutIcon   : PropTypes.func,
         /**
          *  Mouse over  callback function
          */
-        onMouseOver       : PropTypes.func,
+        onMouseOver      : PropTypes.func,
         /**
          *  Icon mouse over callback function
          */
-        onMouseOverIcon   : PropTypes.func,
-        /**
-         *  alternates input and icon types accordingly.
-         */
-        passwordIsVisible : PropTypes.bool,
+        onMouseOverIcon  : PropTypes.func,
         /**
          *  Placeholder text
          */
-        placeholder       : PropTypes.string,
+        placeholder      : PropTypes.string,
         /**
          *  Input text alignment
          */
-        textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        textAlign        : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
         /**
          *  Input string value
          */
-        value             : PropTypes.string,
+        value            : PropTypes.string,
     };
 
     static defaultProps =
@@ -216,7 +212,6 @@ export default class PasswordInputStateful extends React.Component
         onMouseOutIcon        : undefined,
         onMouseOver           : undefined,
         onMouseOverIcon       : undefined,
-        passwordIsVisible     : undefined,
         placeholder           : undefined,
         textAlign             : 'auto',
         value                 : '',
