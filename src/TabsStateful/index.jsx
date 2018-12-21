@@ -17,10 +17,6 @@ export default class TabsStateful extends React.Component
     static propTypes =
     {
         /**
-         *  The active tab index
-         */
-        activeTabIndex    : PropTypes.number,
-        /**
          *  A set of <Tab> components
          */
         children          : PropTypes.node,
