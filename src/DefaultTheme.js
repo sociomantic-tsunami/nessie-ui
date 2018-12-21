@@ -80,8 +80,8 @@ import valuedTextInputClasses    from './ValuedTextInput/valuedTextInput.css';
 
 
 export default {
-    Button : {
-        main : props => buildClassName( props.className, buttonClasses, {
+    Button : props => ( {
+        main : buildClassName( props.className, buttonClasses, {
             disabled     : props.isDisabled,
             fakeHovered  : props.forceHover,
             iconPosition : props.iconPosition,
@@ -89,9 +89,9 @@ export default {
             role         : props.role,
         } ),
         ...buttonClasses,
-    },
-    Card : {
-        main : props => buildClassName( props.className, cardClasses, {
+    } ),
+    Card : props => ( {
+        main : buildClassName( props.className, cardClasses, {
             alignX   : props.align,
             alignY   : props.verticalAlign,
             paddingX : Array.isArray( props.padding ) ?
@@ -100,102 +100,90 @@ export default {
                 props.padding[ 1 ] : props.padding,
         } ),
         ...cardClasses,
-    },
-    CheckableGroup : {
-        main : props =>
-            buildClassName( props.className, checkableGroupClasses, {
-                layout : props.layout,
-            } ),
+    } ),
+    CheckableGroup : props => ( {
+        main : buildClassName( props.className, checkableGroupClasses, {
+            layout : props.layout,
+        } ),
         ...checkableGroupClasses,
-    },
-    Checkbox : {
-        main : props =>
-            buildClassName( props.className, checkboxClasses, {
-                disabled    : props.isDisabled,
-                error       : !props.isDisabled && props.hasError,
-                fakeHovered : !props.isDisabled && props.forceHover,
-            } ),
+    } ),
+    Checkbox : props => ( {
+        main : buildClassName( props.className, checkboxClasses, {
+            disabled    : props.isDisabled,
+            error       : !props.isDisabled && props.hasError,
+            fakeHovered : !props.isDisabled && props.forceHover,
+        } ),
         ...checkboxClasses,
-    },
-    CodeEditor : {
-        main : props => buildClassName( props.className, codeEditorClasses, {
+    } ),
+    CodeEditor : props => ( {
+        main : buildClassName( props.className, codeEditorClasses, {
             disabled    : props.isDisabled,
             error       : !props.isDisabled && props.hasError,
             fakeHovered : !props.isDisabled && props.forceHover,
         } ),
         ...codeEditorClasses,
-    },
-    Column : {
-        main : props =>
-            buildClassName( props.className, columnClasses, {
-                alignX : props.align,
-                alignY : props.verticalAlign,
-                size   : props.size,
-            } ),
+    } ),
+    Column : props => ( {
+        main : buildClassName( props.className, columnClasses, {
+            alignX : props.align,
+            alignY : props.verticalAlign,
+            size   : props.size,
+        } ),
         ...columnClasses,
-    },
-    DatePicker : {
-        main : props => buildClassName( props.className, datePickerClasses ),
+    } ),
+    DatePicker : props => ( {
+        main : buildClassName( props.className, datePickerClasses ),
         ...datePickerClasses,
-    },
-    DatePickerHeader : {
-        main : props =>
-            buildClassName( props.className, datePickerHeaderClasses ),
+    } ),
+    DatePickerHeader : props => ( {
+        main : buildClassName( props.className, datePickerHeaderClasses ),
         ...datePickerHeaderClasses,
-    },
-    DatePickerItem : {
-        main : props =>
-            buildClassName( props.className, datePickerItemClasses, {
-                disabled    : props.isDisabled,
-                fakeHovered : props.forceHover,
-                selected    : props.isSelected,
-                type        : props.type,
-            } ),
+    } ),
+    DatePickerItem : props => ( {
+        main : buildClassName( props.className, datePickerItemClasses, {
+            disabled    : props.isDisabled,
+            fakeHovered : props.forceHover,
+            selected    : props.isSelected,
+            type        : props.type,
+        } ),
         ...datePickerItemClasses,
-    },
-    TimeInput : {
-        main : props =>
-            buildClassName( props.className, timeInputClasses, {
-                fakeHovered : props.forceHover,
-            } ),
+    } ),
+    TimeInput : props => ( {
+        main : buildClassName( props.className, timeInputClasses, {
+            fakeHovered : props.forceHover,
+        } ),
         ...timeInputClasses,
-    },
-    DragNDrop : {
-        main : props =>
-            buildClassName( props.className, dragNDropClasses, {
-                dropzoneIsVisible : props.dropzoneIsVisible,
-            } ),
+    } ),
+    DragNDrop : props => ( {
+        main : buildClassName( props.className, dragNDropClasses, {
+            dropzoneIsVisible : props.dropzoneIsVisible,
+        } ),
         ...dragNDropClasses,
-    },
-    Dropdown : {
-        main : props =>
-            buildClassName( props.className, dropdownClasses, {
-                error   : props.hasError,
-                padding : props.padding,
-                size    : props.size,
-            } ),
+    } ),
+    Dropdown : props => ( {
+        main : buildClassName( props.className, dropdownClasses, {
+            error   : props.hasError,
+            padding : props.padding,
+            size    : props.size,
+        } ),
         ...dropdownClasses,
-    },
-    Fieldset : {
-        main : props => buildClassName( props.className, fieldsetClasses ),
+    } ),
+    Fieldset : props => ( {
+        main : buildClassName( props.className, fieldsetClasses ),
         ...fieldsetClasses,
-    },
-    FlounderDropdown : {
-        main : props => buildClassName(
-            props.className,
-            flounderDropdownClasses,
-            {
-                error       : !props.isDisabled && props.hasError,
-                fakeHovered : !props.isDisabled && props.forceHover,
-                headerLevel : props.headerLevel,
-                headerMode  : props.isHeader,
-                toggleIcon  : props.icon,
-            },
-        ),
+    } ),
+    FlounderDropdown : props => ( {
+        main : buildClassName( props.className, flounderDropdownClasses, {
+            error       : !props.isDisabled && props.hasError,
+            fakeHovered : !props.isDisabled && props.forceHover,
+            headerLevel : props.headerLevel,
+            headerMode  : props.isHeader,
+            toggleIcon  : props.icon,
+        } ),
         ...flounderDropdownClasses,
-    },
-    Grid : {
-        main : props => buildClassName( props.className, gridClasses, {
+    } ),
+    Grid : props => ( {
+        main : buildClassName( props.className, gridClasses, {
             alignX       : props.align,
             alignY       : props.verticalAlign,
             gutters      : props.gutters !== 'none' && props.gutters,
@@ -204,40 +192,40 @@ export default {
             wrap         : props.hasWrap,
         } ),
         ...gridClasses,
-    },
-    H1 : {
-        main : props => buildClassName( props.className, h1Classes, {
+    } ),
+    H1 : props => ( {
+        main : buildClassName( props.className, h1Classes, {
             role : props.role,
         } ),
         ...h1Classes,
-    },
-    H2 : {
-        main : props => buildClassName( props.className, h2Classes, {
+    } ),
+    H2 : props => ( {
+        main : buildClassName( props.className, h2Classes, {
             role : props.role,
         } ),
         ...h2Classes,
-    },
-    H3 : {
-        main : props => buildClassName( props.className, h3Classes, {
+    } ),
+    H3 : props => ( {
+        main : buildClassName( props.className, h3Classes, {
             role : props.role,
         } ),
         ...h3Classes,
-    },
-    H4 : {
-        main : props => buildClassName( props.className, h4Classes, {
+    } ),
+    H4 : props => ( {
+        main : buildClassName( props.className, h4Classes, {
             role : props.role,
         } ),
         ...h4Classes,
-    },
-    Icon : {
-        main : props => buildClassName( props.className, iconClasses, {
+    } ),
+    Icon : props => ( {
+        main : buildClassName( props.className, iconClasses, {
             role : props.role,
             size : props.size,
         } ),
         ...iconClasses,
-    },
-    IconButton : {
-        main : props => buildClassName( props.className, iconButtonClasses, {
+    } ),
+    IconButton : props => ( {
+        main : buildClassName( props.className, iconButtonClasses, {
             background  : props.hasBackground,
             disabled    : props.isDisabled,
             fakeHovered : props.forceHover,
@@ -245,20 +233,16 @@ export default {
             size        : props.iconSize,
         } ),
         ...iconButtonClasses,
-    },
-    IconWithTooltip : {
-        main : props => buildClassName(
-            props.className,
-            iconWithTooltipClasses,
-            {
-                iconVisible : props.iconIsVisible,
-                position    : !!props.children && props.iconPosition,
-            },
-        ),
+    } ),
+    IconWithTooltip : props => ( {
+        main : buildClassName( props.className, iconWithTooltipClasses, {
+            iconVisible : props.iconIsVisible,
+            position    : !!props.children && props.iconPosition,
+        } ),
         ...iconWithTooltipClasses,
-    },
-    InputField : {
-        main : props => buildClassName( props.className, inputFieldClasses, {
+    } ),
+    InputField : props => ( {
+        main : buildClassName( props.className, inputFieldClasses, {
             align       : props.textAlign,
             disabled    : props.isDisabled,
             error       : !props.isDisabled && props.hasError,
@@ -266,47 +250,47 @@ export default {
             resizable   : props.element === 'textarea' && props.isResizable,
         } ),
         ...inputFieldClasses,
-    },
-    Label : {
-        main : props => buildClassName( props.className, labelClasses ),
+    } ),
+    Label : props => ( {
+        main : buildClassName( props.className, labelClasses ),
         ...labelClasses,
-    },
-    ListBox : {
-        main : props => buildClassName( props.className, listBoxClasses ),
+    } ),
+    ListBox : props => ( {
+        main : buildClassName( props.className, listBoxClasses ),
         ...listBoxClasses,
-    },
-    ListBoxOption : {
-        main : props => buildClassName( props.className, listBoxOptionClasses, {
+    } ),
+    ListBoxOption : props => ( {
+        main : buildClassName( props.className, listBoxOptionClasses, {
             active          : props.isActive,
             disabled        : props.isDisabled,
             selected        : props.isSelected,
             withDescription : !!props.description,
         } ),
         ...listBoxOptionClasses,
-    },
-    ListBoxOptionGroup : {
-        main : props => buildClassName(
+    } ),
+    ListBoxOptionGroup : props => ( {
+        main : buildClassName(
             props.className,
             listBoxOptionGroupClasses,
         ),
         ...listBoxOptionGroupClasses,
-    },
-    MessageBox : {
-        main : props => buildClassName( props.className, messageBoxClasses, {
+    } ),
+    MessageBox : props => ( {
+        main : buildClassName( props.className, messageBoxClasses, {
             type : props.messageType,
         } ),
         ...messageBoxClasses,
-    },
-    ModalDialog : {
-        main : props => buildClassName( props.className, modalDialogClasses, {
+    } ),
+    ModalDialog : props => ( {
+        main : buildClassName( props.className, modalDialogClasses, {
             showNav : props.hasNavigation,
             type    : props.type,
             wide    : props.isWide,
         } ),
         ...modalDialogClasses,
-    },
-    Module : {
-        main : props => buildClassName( props.className, moduleClasses, {
+    } ),
+    Module : props => ( {
+        main : buildClassName( props.className, moduleClasses, {
             collapsed   : props.isCollapsible && props.isCollapsed,
             collapsible : props.isCollapsible,
             error       : props.hasError,
@@ -314,105 +298,94 @@ export default {
             moduleError : props.hasModuleError,
         } ),
         ...moduleClasses,
-    },
-    NavBar : {
-        main : props => buildClassName( props.className, navBarClasses ),
+    } ),
+    NavBar : props => ( {
+        main : buildClassName( props.className, navBarClasses ),
         ...navBarClasses,
-    },
-    NavDropdown : {
-        main : props => buildClassName( props.className, navDropdownClasses ),
+    } ),
+    NavDropdown : props => ( {
+        main : buildClassName( props.className, navDropdownClasses ),
         ...navDropdownClasses,
-    },
-    NavItem : {
-        main : props => buildClassName( props.className, navItemClasses, {
+    } ),
+    NavItem : props => ( {
+        main : buildClassName( props.className, navItemClasses, {
             current       : props.isCurrent || props.isCurrentPage,
             disabled      : props.isDisabled,
             dropdownAlign : props.dropdownAlign,
             fakeHovered   : props.forceHover,
             hasIcon       : props.iconType !== 'none',
             open          : props.isOpen,
-            role          : props.props.role,
+            role          : props.role,
         } ),
         ...navItemClasses,
-    },
-    NavList : {
-        main : props => buildClassName( props.className, navListClasses, {
+    } ),
+    NavList : props => ( {
+        main : buildClassName( props.className, navListClasses, {
             layout : props.layout,
         } ),
         ...navListClasses,
-    },
-    NessieLogo : {
-        main : props => buildClassName( props.className, nessieLogoClasses ),
+    } ),
+    NessieLogo : props => ( {
+        main : buildClassName( props.className, nessieLogoClasses ),
         ...nessieLogoClasses,
-    },
-    NotificationBar : {
-        main : props => buildClassName(
-            props.className,
-            notificationBarClasses,
-            {
-                top  : props.isFixed,
-                type : props.messageType,
-            },
-        ),
+    } ),
+    NotificationBar : props => ( {
+        main : buildClassName( props.className, notificationBarClasses, {
+            top  : props.isFixed,
+            type : props.messageType,
+        } ),
         ...notificationBarClasses,
-    },
-    Page : {
-        main : props => buildClassName( props.className, pageClasses, {
+    } ),
+    Page : props => ( {
+        main : buildClassName( props.className, pageClasses, {
             overflow : props.overflow,
         } ),
         ...pageClasses,
-    },
-    PageContent : {
-        main : props => buildClassName( props.className, pageContentClasses ),
+    } ),
+    PageContent : props => ( {
+        main : buildClassName( props.className, pageContentClasses ),
         ...pageContentClasses,
-    },
-    PageContentHeader : {
-        main : props => buildClassName(
-            props.className,
-            pageContentHeaderClasses,
-        ),
+    } ),
+    PageContentHeader : props => ( {
+        main : buildClassName( props.className, pageContentHeaderClasses ),
         ...pageContentHeaderClasses,
-    },
-    PageFooter : {
-        main : props => buildClassName( props.className, pageFooterClasses ),
+    } ),
+    PageFooter : props => ( {
+        main : buildClassName( props.className, pageFooterClasses ),
         ...pageFooterClasses,
-    },
-    PageHeader : {
-        main : props => buildClassName( props.className, pageHeaderClasses ),
+    } ),
+    PageHeader : props => ( {
+        main : buildClassName( props.className, pageHeaderClasses ),
         ...pageHeaderClasses,
-    },
-    Paginator : {
-        main : props => buildClassName( props.className, paginatorClasses ),
+    } ),
+    Paginator : props => ( {
+        main : buildClassName( props.className, paginatorClasses ),
         ...paginatorClasses,
-    },
-    ProgressBar : {
-        main : props => buildClassName( props.className, progressBarClasses ),
+    } ),
+    ProgressBar : props => ( {
+        main : buildClassName( props.className, progressBarClasses ),
         ...progressBarClasses,
-    },
-    ProgressIndicator : {
-        main : props => buildClassName(
-            props.className,
-            progressIndicatorClasses,
-        ),
+    } ),
+    ProgressIndicator : props => ( {
+        main : buildClassName( props.className, progressIndicatorClasses ),
         ...progressIndicatorClasses,
-    },
-    Radio : {
-        main : props => buildClassName( props.className, radioClasses, {
+    } ),
+    Radio : props => ( {
+        main : buildClassName( props.className, radioClasses, {
             disabled    : props.isDisabled,
             error       : !props.isDisabled && props.hasError,
             fakeHovered : !props.isDisabled && props.forceHover,
         }  ),
-        ...checkboxClasses,
         ...radioClasses,
-    },
-    ScrollBar : {
-        main : props => buildClassName( props.className, scrollBarClasses, {
+    } ),
+    ScrollBar : props => ( {
+        main : buildClassName( props.className, scrollBarClasses, {
             orientation : props.orientation,
         } ),
         ...scrollBarClasses,
-    },
-    ScrollBox : {
-        main : props => buildClassName( props.className, scrollBoxClasses, {
+    } ),
+    ScrollBox : props => ( {
+        main : buildClassName( props.className, scrollBoxClasses, {
             paddingX : Array.isArray( props.padding ) ?
                 props.padding[ 0 ] : props.padding,
             paddingY : Array.isArray( props.padding ) ?
@@ -422,15 +395,15 @@ export default {
             scrollIndicatorVariant : props.scrollIndicatorVariant,
         } ),
         ...scrollBoxClasses,
-    },
-    Section : {
-        main : props => buildClassName( props.className, sectionClasses, {
+    } ),
+    Section : props => ( {
+        main : buildClassName( props.className, sectionClasses, {
             level : props.level,
         } ),
         ...sectionClasses,
-    },
-    Slider : {
-        main : props => buildClassName( props.className, sliderClasses, {
+    } ),
+    Slider : props => ( {
+        main : buildClassName( props.className, sliderClasses, {
             disabled            : props.isDisabled,
             error               : !props.isDisabled && props.hasError,
             grabbing            : props.isGrabbing,
@@ -440,98 +413,94 @@ export default {
             orientation     : props.orientation,
         } ),
         ...sliderClasses,
-    },
-    SliderGroup : {
-        main : props => buildClassName( props.className, sliderGroupClasses, {
+    } ),
+    SliderGroup : props => ( {
+        main : buildClassName( props.className, sliderGroupClasses, {
             error    : !props.isDisabled && props.hasError,
             disabled : props.isDisabled,
-
         } ),
         ...sliderGroupClasses,
-    },
-    Sorter : {
-        main : props => buildClassName( props.className, sorterClasses, {
-            desc          : props.sort,
+    } ),
+    Sorter : props => ( {
+        main : buildClassName( props.className, sorterClasses, {
             fakeHovered   : props.forceHover,
             sort          : props.sort,
             sorterVisible : props.sorterIsVisible,
         } ),
         ...sorterClasses,
-    },
-    Spinner : {
-        main : props => buildClassName( props.className, spinnerClasses, {
+    } ),
+    Spinner : props => ( {
+        main : buildClassName( props.className, spinnerClasses, {
             size : props.size,
         } ),
         ...spinnerClasses,
-    },
-    StatusIndicator : {
-        main : props => buildClassName(
-            props.className,
-            statusIndicatorClasses,
-            { status: props.status },
-        ),
+    } ),
+    StatusIndicator : props => ( {
+        main : buildClassName( props.className, statusIndicatorClasses, {
+            status : props.status,
+        } ),
         ...statusIndicatorClasses,
-    },
-    Switch : {
-        main : props => buildClassName( props.className, switchClasses, {
+    } ),
+    Switch : props => ( {
+        main : buildClassName( props.className, switchClasses, {
             disabled    : props.isDisabled,
             fakeHovered : !props.isDisabled && props.forceHover,
         } ),
         ...switchClasses,
-    },
-    Tab : {
-        main : props => buildClassName( props.className, tabClasses ),
+    } ),
+    Tab : props => ( {
+        main : buildClassName( props.className, tabClasses ),
         ...tabClasses,
-    },
-    TabButton : {
-        main : props => buildClassName( props.className, tabButtonClasses, {
+    } ),
+    TabButton : props => ( {
+        main : buildClassName( props.className, tabButtonClasses, {
             active : props.isActive,
         } ),
         ...tabButtonClasses,
-    },
-    Table : {
-        main : props => buildClassName( props.className, tableClasses, {
+    } ),
+    Table : props => ( {
+        main : buildClassName( props.className, tableClasses, {
             borders : props.borders,
             zebra   : props.isZebra,
         } ),
         ...tableClasses,
-    },
-    TableCell : {
-        main : props => buildClassName( props.className, tableCellClasses, {
+    } ),
+    TableCell : props => ( {
+        main : buildClassName( props.className, tableCellClasses, {
             header    : props.isHeader,
             rowHeader : props.isRowHeader,
             sticky    : props.isSticky,
         } ),
         ...tableCellClasses,
-    },
-    TableRow : {
-        main : props => buildClassName( props.className, tableRowClasses, {
+    } ),
+    TableRow : props => ( {
+        main : buildClassName( props.className, tableRowClasses, {
             active    : props.isActive,
             clickable : props.isClickable,
             sticky    : props.isSticky,
         } ),
         ...tableRowClasses,
-    },
-    Tabs : {
-        main : props => buildClassName( props.className, tabsClasses ),
+    } ),
+    Tabs : props => ( {
+        main : buildClassName( props.className, tabsClasses ),
         ...tabsClasses,
-    },
-    Tag : {
-        main : props => buildClassName( props.className, tagClasses ),
+    } ),
+    Tag : props => ( {
+        main : buildClassName( props.className, tagClasses ),
         ...tagClasses,
-    },
-    TagInput : {
-        main : props => buildClassName( props.className, tagInputClasses, {
+    } ),
+    TagInput : props => ( {
+        main : buildClassName( props.className, tagInputClasses, {
             disabled    : props.isDisabled,
             error       : !props.isDisabled && props.hasError,
             fakeHovered : !props.isDisabled &&
                 ( props.forceHover || props.isFocused ),
             resizable : props.isResizable,
-        }  ),
+        } ),
         ...tagInputClasses,
-    },
-    Text : {
-        main : props => buildClassName( props.className, textClasses, {
+    } ),
+    Text : props => ( {
+        main : buildClassName( props.className, textClasses, {
             allCaps        : props.allCaps,
             noWrap         : props.noWrap,
             overflowHidden : props.overflowIsHidden,
@@ -541,60 +510,52 @@ export default {
             variant        : props.variant,
         } ),
         ...textClasses,
-    },
-    TextArea : {
-        main : props => buildClassName( props.className, textAreaClasses ),
+    } ),
+    TextArea : props => ( {
+        main : buildClassName( props.className, textAreaClasses ),
         ...textAreaClasses,
-    },
-    TextInputWithIcon : {
-        main : props => buildClassName(
-            props.className,
-            textInputWithIconClasses,
-            {
-                disabled : props.isDisabled,
-                error    : props.hasError,
-                position : props.iconPosition,
-            },
-        ),
+    } ),
+    TextInputWithIcon : props => ( {
+        main : buildClassName( props.className, textInputWithIconClasses, {
+            disabled : props.isDisabled,
+            error    : props.hasError,
+            position : props.iconPosition,
+        } ),
         ...textInputWithIconClasses,
-    },
-    ToggleButton : {
-        main : props => buildClassName( props.className, toggleButtonClasses, {
+    } ),
+    ToggleButton : props => ( {
+        main : buildClassName( props.className, toggleButtonClasses, {
             disabled     : props.isDisabled,
             pressed      : props.isPressed,
             iconPosition : props.iconPosition,
             role         : props.role,
         } ),
         ...toggleButtonClasses,
-    },
-    Tooltip : {
-        main : props => buildClassName( props.className, tooltipClasses, {
+    } ),
+    Tooltip : props => ( {
+        main : buildClassName( props.className, tooltipClasses, {
             dismissible : props.isDismissible,
             position    : props.position,
             role        : props.role,
         } ),
         ...tooltipClasses,
-    },
-    Uploader : {
-        main : props => buildClassName( props.className, uploaderClasses, {
+    } ),
+    Uploader : props => ( {
+        main : buildClassName( props.className, uploaderClasses, {
             disabled        : props.isDisabled,
             loading         : props.isLoading,
             previewDisabled : props.previewIsDisabled,
             uploaded        : props.uploaded,
         } ),
         ...uploaderClasses,
-    },
-    ValuedTextInput : {
-        main : props => buildClassName(
-            props.className,
-            valuedTextInputClasses,
-            {
-                disabled    : props.isDisabled,
-                error       : props.hasError,
-                fakeHovered : props.forceHover || props.isFocused,
-                position    : props.valueLabelPosition,
-            },
-        ),
+    } ),
+    ValuedTextInput : props => ( {
+        main : buildClassName( props.className, valuedTextInputClasses, {
+            disabled    : props.isDisabled,
+            error       : props.hasError,
+            fakeHovered : props.forceHover || props.isFocused,
+            position    : props.valueLabelPosition,
+        } ),
         ...valuedTextInputClasses,
-    },
+    } ),
 };

@@ -7,9 +7,10 @@
  *
  */
 
-import ThemeContext from './ThemeContext';
+const createCssMap = ( theme = {}, props = {} ) =>
+{
+    if ( typeof theme === 'function' ) return theme( props );
+    return theme;
+};
 
-const { Consumer : ThemeConsumer, Provider : ThemeProvider } = ThemeContext;
-export { ThemeConsumer, ThemeProvider };
-
-export createCssMap from './createCssMap';
+export default createCssMap;
