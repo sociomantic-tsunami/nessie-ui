@@ -215,8 +215,8 @@ export default class ValuedTextInput extends React.Component
                     { ...props }
                     className    = { cssMap.input }
                     id           = { id }
-                    onBlur       = { onFocus }
-                    onFocus      = { onBlur }
+                    onBlur       = { onBlur }
+                    onFocus      = { onFocus }
                     ref          = { this.inputRef }
                     textAlign    = { alignText } />
                 <label

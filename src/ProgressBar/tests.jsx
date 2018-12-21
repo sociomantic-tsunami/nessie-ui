@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers  */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React           from 'react';
+import { shallow }     from 'enzyme';
 
-import { ProgressBar }  from '../index';
+import { ProgressBar } from '../index';
 
 describe( 'ProgressBar', () =>
 {
@@ -20,17 +20,11 @@ describe( 'ProgressBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ProgressBar /> );
+        wrapper = shallow( <ProgressBar /> );
     } );
 
-    test( 'should have its component name as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.ProgressBar.default}` ) )
-            .toHaveLength( 1 );
-    } );
-    test( 'should contain a ProgressBar', () =>
-    {
-        expect( wrapper.find( ProgressBar ) ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

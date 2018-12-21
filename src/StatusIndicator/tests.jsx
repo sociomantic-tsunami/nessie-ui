@@ -10,7 +10,7 @@
 /* eslint-disable no-magic-numbers */
 
 import React                from 'react';
-import { mount }            from 'enzyme';
+import { shallow }          from 'enzyme';
 
 import { StatusIndicator }  from '../index';
 
@@ -20,12 +20,11 @@ describe( 'StatusIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <StatusIndicator /> );
+        wrapper = shallow( <StatusIndicator /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
-            .default}` ) ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

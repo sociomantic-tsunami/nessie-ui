@@ -11,7 +11,7 @@ import { Sorter } from 'nessie-ui';
 
 const ERRORS = {
     TABLECELL_CANNOT_TOGGLE : () =>
-        'TableCell cannot be toggled since it\'s not sortable',
+        'TableCell cannot be toggled since it’s not sortable',
 };
 
 export default class TableCellDriver

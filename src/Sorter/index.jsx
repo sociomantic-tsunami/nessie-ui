@@ -60,7 +60,6 @@ export default class Sorter extends Component
             sorterIsVisible,
         } = this.props;
 
-
         return (
             <div className = { cssMap.main } onClick = { onToggle }>
                 <div

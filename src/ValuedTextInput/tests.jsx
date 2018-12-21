@@ -14,6 +14,7 @@ import { shallow, mount }               from 'enzyme';
 
 import { InputField, ValuedTextInput }  from '../index';
 
+
 describe( 'ValuedTextInput', () =>
 {
     let wrapper;

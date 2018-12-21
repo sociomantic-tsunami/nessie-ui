@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React                from 'react';
-import { mount }            from 'enzyme';
+import React               from 'react';
+import { mount, shallow }  from 'enzyme';
 
-import { NotificationBar }  from '../index';
+import { NotificationBar } from '../index';
 
 describe( 'NotificationBar', () =>
 {
@@ -20,14 +20,13 @@ describe( 'NotificationBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NotificationBar /> );
+        wrapper = shallow( <NotificationBar /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.NotificationBar.default}` )
-            .first() ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );
 

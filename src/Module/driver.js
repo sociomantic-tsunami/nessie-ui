@@ -11,28 +11,44 @@
 
 import { IconButton, IconWithTooltip } from 'nessie-ui';
 
-/* eslint-disable max-len */
+import { createCssMap }                from '../Theming';
+
+
 const ERR = {
-    MODULE_NOT_COLLAPSIBLE : 'Module is not collapsible. Cannot simulate toggle.',
-    MODULE_HAS_NO_DELETE   : 'Module has no delete button. Cannot simulate delete.',
+    MODULE_NOT_COLLAPSIBLE :
+        'Module is not collapsible. Cannot simulate toggle.',
+    MODULE_HAS_NO_DELETE :
+        'Module has no delete button. Cannot simulate delete.',
 };
+
 
 export default class ModuleDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Module;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Module, instance.props );
+    }
+
 
     /**
      * Simulate human toggle by clicking on the arrow.
      */
     clickToggle()
     {
-        const toggle = this.wrapper.find( IconButton )
-            .findWhere( node => [ 'up', 'down' ]
-                .includes( node.props().iconType ) );
+        const toggle = this.wrapper.find( IconButton ).findWhere( node =>
+            [ 'up', 'down' ].includes( node.props().iconType ) );
 
         if ( toggle.length === 0 )
         {

@@ -12,30 +12,53 @@ import { IconButton }   from 'nessie-ui';
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerItem   from './DatePickerItem';
 
+
 const ERR = {
     ITEM_ERR : ( label, state ) =>
         `Item '${label}' cannot be clicked since it is ${state}`,
     NAV_ERR : ( el, state ) =>
         `${el} cannot simulate click since it is ${state}`,
     NO_INPUT : () =>
-        'There\'s no input because <mode> is not <default>',
+        'There’s no input because <mode> is not <default>',
     TIMEINPUT_ERR : ( event, state ) =>
         `TimeInput cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class DatePickerDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.header  = wrapper.find( DatePickerHeader ).props().cssMap;
-        this.prev    = wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === 'left' );
-        this.next    = wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === 'right' );
-        this.hour    = this.header.hour;
-        this.min     = this.header.min;
     }
+
+    get header()
+    {
+        return this.wrapper.find( DatePickerHeader ).props().cssMap;
+    }
+
+    get prev()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'left' );
+    }
+
+    get next()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'right' );
+    }
+
+    get hour()
+    {
+        return this.header.hour;
+    }
+
+    get min()
+    {
+        return this.header.min;
+    }
+
 
     clickItem( index = 0 )
     {

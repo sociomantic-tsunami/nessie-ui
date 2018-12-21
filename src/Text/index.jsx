@@ -52,6 +52,10 @@ export default class Text extends React.Component
          */
         noWrap           : PropTypes.bool,
         /**
+         *  click callback function
+         */
+        onClick          : PropTypes.func,
+        /**
          *  Clip overflow
          */
         overflowIsHidden : PropTypes.bool,
@@ -63,6 +67,7 @@ export default class Text extends React.Component
             'subtle',
             'promoted',
             'critical',
+            'link',
         ] ),
         /**
          *  Size to apply to text
@@ -113,6 +118,7 @@ export default class Text extends React.Component
         letterSpacing    : undefined,
         lineHeight       : undefined,
         noWrap           : false,
+        onClick          : undefined,
         overflowIsHidden : false,
         role             : 'default',
         size             : 'M',
@@ -132,6 +138,7 @@ export default class Text extends React.Component
             cssMap = createCssMap( this.context.Text, this.props ),
             letterSpacing,
             lineHeight,
+            onClick,
             text,
             textRef,
         } = this.props;
@@ -139,6 +146,7 @@ export default class Text extends React.Component
         return (
             <div
                 className = { cssMap.main }
+                onClick   = { onClick }
                 ref       = { textRef }
                 style     = { { color, letterSpacing, lineHeight } }>
                 { children || text }

@@ -9,10 +9,12 @@
 
 import { InputField } from 'nessie-ui';
 
+
 const ERR = {
     VALUEDTEXTINPUT_ERR : ( event, state ) =>
         `ValuedTextInput cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class ValuedTextInputDriver
 {
@@ -20,6 +22,7 @@ export default class ValuedTextInputDriver
     {
         this.wrapper = wrapper;
     }
+
 
     blur()
     {

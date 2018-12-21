@@ -10,324 +10,163 @@
 /* eslint-disable no-magic-numbers */
 
 import React                from 'react';
-import { mount }            from 'enzyme';
+import { mount, shallow }   from 'enzyme';
 
 import { Label, Slider }    from '../index';
 
 const noop = () => null;
 
+
 describe( 'Slider', () =>
 {
     let wrapper;
-    let fakeBoundingRect;
+    let instance;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Slider /> );
-
-        fakeBoundingRect = {
-            top    : 0,
-            left   : 0,
-            bottom : 200,
-            right  : 200,
-            width  : 200,
-            height : 200,
-        };
+        wrapper  = shallow( <Slider /> );
+        instance = wrapper.instance();
     } );
 
-    test( 'should have slider__default as default className', () =>
+
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 
-    test( 'should render <Slider/>', () =>
+    test( 'should contain a “trackFill” div', () =>
     {
-        expect( wrapper.find( Slider ) ).toHaveLength( 1 );
+        expect( wrapper.find( '.trackFill' ) ).toHaveLength( 1 );
     } );
 
-    test( 'should contain <div class="slider__trackFill">', () =>
+    test( 'should contain a label if set', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.trackFill}` ) )
-            .toHaveLength( 1 );
-    } );
-
-    test( 'should have slider__disabled if isDisabled = true', () =>
-    {
-        const props = {
-            isDisabled : true,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.disabled}` ) )
-            .toHaveLength( 1 );
-    } );
-
-    test( 'should have slider__error if hasError = true', () =>
-    {
-        const props = {
-            hasError : true,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper.find( `.${wrapper.instance().context.Slider.error}` ) )
-            .toHaveLength( 1 );
-    } );
-
-    test(
-        'should have slider__hasHandleLabels when hasHandleLabels = true',
-        () =>
-        {
-            const props = {
-                hasHandleLabels : true,
-            };
-
-            wrapper = mount( <Slider { ...props } /> );
-
-            expect( wrapper.find( `.${wrapper.instance().context.Slider
-                .hasHandleLabels}` ) ).toHaveLength( 1 );
-        },
-    );
-
-    test( 'should contain a label if filled', () =>
-    {
-        const props = {
-            label : 'label',
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
+        wrapper.setProps( { label: 'label' } );
         expect( wrapper.find( Label ) ).toHaveLength( 1 );
     } );
 
     test( 'should contain class slider__stepLabel if stepLabels Array is \
-    populated', () =>
+populated', () =>
     {
-        const props = {
+        wrapper.setProps( {
             stepLabelStart : 'Today',
             stepLabelEnd   : 'Future',
-            stepLabels     : [   { 'stepLabel': '25', 'step': 25 },
+            stepLabels     : [
+                { 'stepLabel': '25', 'step': 25 },
                 { 'stepLabel': '50', 'step': 50 },
                 { 'stepLabel': '75', 'step': 75 },
             ],
-        };
+        } );
 
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.stepLabel}` ) )
-            .toHaveLength( 5 );
+        expect( wrapper.find( '.stepLabel' ) ).toHaveLength( 5 );
     } );
-
 
     test( 'should contain N inputs if value is array of length N', () =>
     {
-        let props = {
-            value    : [ 1 ],
-            onChange : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-
+        wrapper.setProps( { value: [ 1 ] } );
         expect( wrapper.find( 'input' ) ).toHaveLength( 1 );
 
-        props = {
-            value    : [ 1, 2, 3 ],
-            onChange : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
+        wrapper.setProps( { value: [ 1, 2, 3 ] } );
         expect( wrapper.find( 'input' ) ).toHaveLength( 3 );
     } );
 
     test( 'should contain N handle labels if value is array of length N', () =>
     {
-        let props = {
-            value    : [ 1 ],
-            onChange : noop,
-        };
+        wrapper.setProps( { value: [ 1 ] } );
+        expect( wrapper.find( '.handleLabel' ) ).toHaveLength( 1 );
 
-        wrapper = mount( <Slider { ...props } /> );
-
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 1 );
-
-        props = {
-            value    : [ 1, 2, 3 ],
-            onChange : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 3 );
+        wrapper.setProps( { value: [ 1, 2, 3 ] } );
+        expect( wrapper.find( '.handleLabel' ) ).toHaveLength( 3 );
     } );
 
-    test( 'should set correct position of the handle label', () =>
+    describe( 'getValue()', () =>
     {
-        let props = {
-            value               : [ 1 ],
-            handleLabelPosition : 'top',
-            hasHandleLabels     : true,
-            onChange            : noop,
-        };
+        beforeEach( () =>
+        {
+            instance.track = {
+                getBoundingClientRect : () => ( {
+                    top    : 0,
+                    left   : 0,
+                    bottom : 200,
+                    right  : 200,
+                    width  : 200,
+                    height : 200,
+                } ),
+            };
+        } );
 
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.instance().context.Slider
-            .handleLabelPosition__top}` ) ).toHaveLength( 1 );
-
-        props = {
-            value               : [ 1 ],
-            handleLabelPosition : 'right',
-            hasHandleLabels     : true,
-            onChange            : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.instance().context.Slider
-            .handleLabelPosition__right}` ) ).toHaveLength( 1 );
-
-        props = {
-            value               : [ 1 ],
-            handleLabelPosition : 'bottom',
-            hasHandleLabels     : true,
-            onChange            : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.instance().context.Slider
-            .handleLabelPosition__bottom}` ) ).toHaveLength( 1 );
-
-        props = {
-            value               : [ 1 ],
-            handleLabelPosition : 'left',
-            hasHandleLabels     : true,
-            onChange            : noop,
-        };
-
-        wrapper = mount( <Slider { ...props } /> );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Slider.handleLabel}` ) )
-            .toHaveLength( 1 );
-        expect( wrapper.find( `.${wrapper.instance().context.Slider
-            .handleLabelPosition__left}` ) ).toHaveLength( 1 );
-    } );
-
-
-    describe( 'getValue', () =>
-    {
         test( 'should return a number', () =>
         {
-            const result = wrapper.instance().getValue( 1, 5 );
-
-            expect( result ).toBeType( 'number' );
+            expect( instance.getValue( 1, 5 ) ).toBeType( 'number' );
         } );
 
 
         test( 'should return a value within min/max values', () =>
         {
-            const props = {
-                isLogarithmic : false,
-                value         : [ 50, 150 ],
-                minValue      : 0,
-                maxValue      : 200,
-                onChange      : noop,
-            };
+            wrapper.setProps( {
+                maxValue : 200,
+                minValue : 0,
+                value    : [ 50, 150 ],
+            } );
 
-            wrapper = mount( <Slider { ...props } /> );
-
-            const slider = wrapper.instance();
-            slider.track.getBoundingClientRect = () => ( fakeBoundingRect );
-
-            expect( wrapper.instance().getValue( 5, 3 ) )
-                .toBeGreaterThanOrEqual( 0 );
-            expect( wrapper.instance().getValue( 5, 3 ) )
-                .toBeLessThanOrEqual( 200 );
-            expect( wrapper.instance().getValue( 154, 250 ) ).toBe( 154 );
+            expect( instance.getValue( 5, 3 ) ).toBeGreaterThanOrEqual( 0 );
+            expect( instance.getValue( 5, 3 ) ).toBeLessThanOrEqual( 200 );
+            expect( instance.getValue( 154, 250 ) ).toBe( 154 );
         } );
     } );
 
-
-    describe( 'handleDown', () =>
+    describe( 'handleDown()', () =>
     {
-        test( 'should be triggered when mousedown in the handle', () =>
+        beforeEach( () =>
         {
-            const props = {
-                value    : 150,
-                onChange : noop,
-            };
-
-            wrapper = mount( <Slider { ...props } /> );
-            const slider = wrapper.instance();
-            const handleDown = jest.spyOn( slider, 'handleDown' );
-
-            slider.forceUpdate();
-            wrapper.update();
-
-            wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
-                .simulate( 'mousedown' );
-
-            expect( handleDown ).toBeCalledTimes( 1 );
+            instance.getStep = noop;
+            instance.getValue = noop;
+            instance.setTargetInput = noop;
+            instance.setTargetInputValue = noop;
+            instance.focusTargetInput = noop;
         } );
 
-        test(
-            'should trigger addEventListener when mousedown on the handle',
-            () =>
-            {
-                const props = {
-                    value    : [ 50 ],
-                    onChange : noop,
-                };
-                wrapper = mount( <Slider { ...props } /> );
+        test( 'should add the mouseup and mousemove event listeners when \
+target is handle', () =>
+        {
+            const addEventListenerSpy =
+                jest.spyOn( global, 'addEventListener' );
 
-                const eventListenerSpy = jest
-                    .spyOn( global, 'addEventListener' );
+            const mouseMoveSpy = jest.spyOn( instance, 'handleMove' );
+            const mouseUpSpy   = jest.spyOn( instance, 'handleUp' );
 
-                const slider = wrapper.instance();
+            instance.handleDown( {
+                target         : { getAttribute: () => 1 }, // first handle
+                preventDefault : noop,
+            } );
 
-                const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
-                const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
+            expect( addEventListenerSpy ).toBeCalledTimes( 2 );
+            expect( addEventListenerSpy )
+                .toBeCalledWith( 'mousemove', mouseMoveSpy );
+            expect( addEventListenerSpy )
+                .toBeCalledWith( 'mouseup', mouseUpSpy );
+        } );
 
-                wrapper.find( `.${wrapper.instance().context.Slider.handle}` )
-                    .simulate( 'mousedown' );
+        test( 'should *not* add the mouseup and mousemove event listeners when \
+target is track', () =>
+        {
+            const addEventListenerSpy =
+                jest.spyOn( global, 'addEventListener' ).mockReset();
 
-                expect( eventListenerSpy )
-                    .toBeCalledWith( 'mousemove', mouseMoveSpy );
-                expect( eventListenerSpy )
-                    .toBeCalledWith( 'mouseup', mouseUpSpy );
-            },
-        );
+            instance.handleDown( {
+                target         : { getAttribute: () => -1 }, // track
+                preventDefault : noop,
+            } );
+
+            expect( addEventListenerSpy ).not.toBeCalled();
+        } );
     } );
 
-
-    describe( 'handleUp', () =>
+    describe( 'handleUp()', () =>
     {
-        test( 'should trigger removeEventListener', () =>
+        test( 'should remove the mouseUp and mouseMove event listeners', () =>
         {
-            const { handleUp } = wrapper.instance();
+            const { handleUp } = instance;
 
             const removeEventListenerSpy = jest
                 .spyOn( global, 'removeEventListener' );
@@ -352,7 +191,6 @@ describe( 'Slider', () =>
 describe( 'SliderDriver', () =>
 {
     let wrapper;
-    let cssMap;
     let driver;
     let outer;
     let track;
@@ -366,13 +204,11 @@ describe( 'SliderDriver', () =>
             minValue : 0,
             value    : [ 25, 75 ],
         };
-
         wrapper = mount( <Slider { ...props } /> );
         driver  = wrapper.driver();
-        cssMap  = wrapper.instance().context.Slider;
-        outer   = wrapper.find( `.${cssMap.default}` ).first();
-        track   = wrapper.find( `.${cssMap.track}` );
-        inputContainer = wrapper.find( `.${cssMap.inputContainer}` );
+        outer   = wrapper.childAt( 0 );
+        track   = wrapper.find( '.track' );
+        inputContainer = wrapper.find( '.inputContainer' );
     } );
 
     describe( 'click()', () =>
@@ -423,7 +259,7 @@ onClick since it is disabled';
     } );
 
 
-    describe( 'change( val, index = 0 )', () =>
+    describe( 'change( val, index )', () =>
     {
         test( 'should trigger onChange callback once', () =>
         {

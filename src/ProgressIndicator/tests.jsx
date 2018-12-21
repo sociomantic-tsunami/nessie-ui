@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers  */
 
-import React                    from 'react';
-import { mount }                from 'enzyme';
+import React                 from 'react';
+import { shallow }           from 'enzyme';
 
-import { ProgressIndicator }    from '../index';
+import { ProgressIndicator } from '../index';
 
 describe( 'ProgressIndicator', () =>
 {
@@ -20,16 +20,11 @@ describe( 'ProgressIndicator', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ProgressIndicator /> );
+        wrapper = shallow( <ProgressIndicator /> );
     } );
 
-    test( 'should have its component name as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance()
-            .context.ProgressIndicator.default}` ) ).toHaveLength( 1 );
-    } );
-    test( 'should contain a ProgressIndicator', () =>
-    {
-        expect( wrapper.find( ProgressIndicator ) ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

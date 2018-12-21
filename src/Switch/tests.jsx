@@ -14,6 +14,7 @@ import { mount, shallow }   from 'enzyme';
 
 import { Switch }           from '../index';
 
+
 describe( 'Switch', () =>
 {
     let wrapper;
@@ -30,6 +31,7 @@ describe( 'Switch', () =>
         expect( wrapper.find( 'input' ).prop( 'disabled' ) ).toBe( true );
     } );
 } );
+
 
 describe( 'SwitchDriver', () =>
 {

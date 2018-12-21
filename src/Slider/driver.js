@@ -7,6 +7,8 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
 const ERR = {
     SLIDER_ERR : ( label, action, state ) =>
         `Slider ${label ? `'${label}'` : ''} cannot ${action} since it is \
@@ -18,12 +20,35 @@ export default class SliderDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Slider;
-        this.label   = wrapper.prop( 'label' );
-
-        this.inputContainer = wrapper.find( `.${this.cssMap.inputContainer}` );
-        this.track          = wrapper.find( `.${this.cssMap.track}` );
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Slider, instance.props );
+    }
+
+    get label()
+    {
+        return this.wrapper.prop( 'label' );
+    }
+
+    get inputContainer()
+    {
+        return this.wrapper.find( `.${this.cssMap.inputContainer}` );
+    }
+
+    get track()
+    {
+        return this.wrapper.find( `.${this.cssMap.track}` );
+    }
+
 
     blur( index = 0 )
     {

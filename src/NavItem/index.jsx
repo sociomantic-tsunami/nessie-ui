@@ -179,9 +179,9 @@ export default class NavItem extends React.Component
                     <span>{ label }</span>
                 </a>
                 { children &&
-                <NavDropdown className = { cssMap.dropdown }>
-                    { children }
-                </NavDropdown>
+                    <NavDropdown className = { cssMap.dropdown }>
+                        { children }
+                    </NavDropdown>
                 }
             </li>
         );

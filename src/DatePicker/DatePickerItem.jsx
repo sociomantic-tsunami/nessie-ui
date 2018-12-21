@@ -10,70 +10,81 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import styles               from './datePickerItem.css';
 import { Text }             from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming';
 
 
-const DatePickerItem = ( {
-    children,
-    cssMap,
-    isDisabled,
-    isSelected,
-    isReadOnly,
-    label,
-    onClick,
-    value,
-} ) =>
+export default class DatePickerItem extends React.Component
 {
-    const handleClick = e =>
+    static contextType = ThemeContext;
+
+    static propTypes = {
+        children   : PropTypes.node,
+        className  : PropTypes.string,
+        cssMap     : PropTypes.objectOf( PropTypes.string ),
+        forceHover : PropTypes.bool,
+        isDisabled : PropTypes.bool,
+        isSelected : PropTypes.bool,
+        isReadOnly : PropTypes.bool,
+        label      : PropTypes.string,
+        onClick    : PropTypes.func,
+        value      : PropTypes.string,
+        type       : PropTypes.oneOf( [ 'day', 'month' ] ),
+    };
+
+    static defaultProps = {
+        children   : undefined,
+        className  : undefined,
+        cssMap     : undefined,
+        forceHover : false,
+        isDisabled : false,
+        isSelected : false,
+        isReadOnly : false,
+        label      : undefined,
+        onClick    : undefined,
+        value      : undefined,
+        type       : 'day',
+    };
+
+    constructor()
     {
+        super();
+        this.handleClick = this.handleClick.bind( this );
+    }
+
+    handleClick( e )
+    {
+        const { isReadOnly, onClick } = this.props;
         e.stopPropagation();
         e.preventDefault();
         if ( !isReadOnly && onClick )
         {
-            onClick( value );
+            onClick( e.target.value );
         }
-    };
+    }
 
-    return (
-        <button
-            aria-pressed = { isSelected }
-            className    = { cssMap.main }
-            disabled     = { isDisabled }
-            onClick      = { handleClick }
-            type         = "button"
-            value        = { value }>
-            <Text className = { cssMap.text }>{ children || label }</Text>
-        </button>
-    );
-};
+    render()
+    {
+        const {
+            children,
+            cssMap = createCssMap( this.context.DatePickerItem, this.props ),
+            isDisabled,
+            isSelected,
+            label,
+            value,
+        } = this.props;
 
-DatePickerItem.propTypes = {
-    children   : PropTypes.node,
-    className  : PropTypes.string,
-    cssMap     : PropTypes.objectOf( PropTypes.string ),
-    forceHover : PropTypes.bool,
-    isDisabled : PropTypes.bool,
-    isSelected : PropTypes.bool,
-    isReadOnly : PropTypes.bool,
-    label      : PropTypes.string,
-    onClick    : PropTypes.func,
-    value      : PropTypes.string,
-    type       : PropTypes.oneOf( [ 'day', 'month' ] ),
-};
-
-DatePickerItem.defaultProps = {
-    children   : undefined,
-    className  : undefined,
-    cssMap     : styles,
-    forceHover : false,
-    isDisabled : false,
-    isSelected : false,
-    isReadOnly : false,
-    label      : undefined,
-    onClick    : undefined,
-    value      : undefined,
-    type       : 'day',
-};
-
-export default DatePickerItem;
+        return (
+            <button
+                aria-pressed = { isSelected }
+                className    = { cssMap.main }
+                disabled     = { isDisabled }
+                onClick      = { this.handleClick }
+                type         = "button"
+                value        = { value }>
+                <Text className = { cssMap.text }>{ children || label }</Text>
+            </button>
+        );
+    }
+}

@@ -9,18 +9,34 @@
 
 import { Button, IconButton } from 'nessie-ui';
 
+import { createCssMap }       from '../Theming';
+
+
 const ERR = {
     UPLOADER_ERR : ( event, state ) =>
         `Uploader cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class UploaderDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Uploader;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Uploader, instance.props );
+    }
+
 
     click()
     {

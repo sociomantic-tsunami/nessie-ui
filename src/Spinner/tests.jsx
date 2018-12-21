@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import { Spinner }  from '../index';
+import { Spinner } from '../index';
 
 describe( 'Spinner', () =>
 {
@@ -20,16 +20,11 @@ describe( 'Spinner', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Spinner /> );
+        wrapper = shallow( <Spinner /> );
     } );
 
-    test( 'should have its component name as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance().context.Spinner
-            .default}` ) ).toHaveLength( 1 );
-    } );
-    test( 'should contain a Spinner', () =>
-    {
-        expect( wrapper.find( Spinner ) ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

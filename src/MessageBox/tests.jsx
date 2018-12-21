@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { mount }        from 'enzyme';
+import React          from 'react';
+import { shallow }    from 'enzyme';
 
-import { MessageBox }   from '../index';
+import { MessageBox } from '../index';
 
 describe( 'MessageBox', () =>
 {
@@ -20,13 +20,11 @@ describe( 'MessageBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <MessageBox /> );
+        wrapper = shallow( <MessageBox /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.MessageBox.default}` )
-            .first() ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );
