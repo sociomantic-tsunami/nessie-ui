@@ -149,9 +149,9 @@ export default class TagInputStateful extends React.Component
             value : props.value,
         };
 
-        this.handleChange = this.handleChange.bind( this );
+        this.handleChange     = this.handleChange.bind( this );
         this.handleClickClose = this.handleClickClose.bind( this );
-        this.handleKeyDown = this.handleKeyDown.bind( this );
+        this.handleKeyDown    = this.handleKeyDown.bind( this );
     }
 
     handleChange( e )
@@ -187,9 +187,9 @@ export default class TagInputStateful extends React.Component
 
     handleKeyDown( e )
     {
-        const { tags } = this.state;
+        const { tags }  = this.state;
         const { value } = this.state;
-        const callback = this.props.onKeyDown;
+        const callback  = this.props.onKeyDown;
 
         if ( callback )
         {
