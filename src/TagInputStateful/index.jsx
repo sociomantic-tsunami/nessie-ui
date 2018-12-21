@@ -82,11 +82,11 @@ export default class TagInputStateful extends React.Component
          */
         onKeyDown    : PropTypes.func,
         /**
-         * onKeyPress callback function
+         * onKeyUp callback function
          */
         onKeyUp      : PropTypes.func,
         /**
-         * onKeyUp callback function
+         * onKeyPress callback function
          */
         onKeyPress   : PropTypes.func,
         /**
@@ -137,7 +137,7 @@ export default class TagInputStateful extends React.Component
         onMouseOver  : undefined,
         placeholder  : undefined,
         tags         : undefined,
-        value        : undefined,
+        value        : '',
     };
 
     constructor( props )
@@ -149,8 +149,22 @@ export default class TagInputStateful extends React.Component
             value : props.value,
         };
 
+        this.handleChange = this.handleChange.bind( this );
         this.handleClickClose = this.handleClickClose.bind( this );
-        this.handleKeyPress = this.handleKeyPress.bind( this );
+        this.handleKeyDown = this.handleKeyDown.bind( this );
+    }
+
+    handleChange( e )
+    {
+        const newValue = e.target.value;
+        const callback = this.props.onChange;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( { value: newValue } );
     }
 
     handleClickClose( e )
@@ -171,10 +185,11 @@ export default class TagInputStateful extends React.Component
         this.setState( { tags: newItems } );
     }
 
-    handleKeyPress( e )
+    handleKeyDown( e )
     {
+        const { tags } = this.state;
         const { value } = this.state;
-        const callback = this.props.onKeyPress;
+        const callback = this.props.onKeyDown;
 
         if ( callback )
         {
@@ -183,7 +198,9 @@ export default class TagInputStateful extends React.Component
 
         if ( e.keyCode === 8 && value === '' )
         {
-            this.handleClickClose();
+            const newItems = tags.slice( 0, -1 );
+
+            this.setState( { tags: newItems } );
         }
     }
 
@@ -194,8 +211,9 @@ export default class TagInputStateful extends React.Component
         return (
             <TagInput
                 { ...props }
+                onChange     = { this.handleChange }
                 onClickClose = { this.handleClickClose }
-                onKeyPress   = { this.handleKeyPress }
+                onKeyDown    = { this.handleKeyDown }
                 tags         = { this.state.tags }
                 value        = { this.state.value } />
         );
