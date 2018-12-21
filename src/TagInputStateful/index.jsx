@@ -187,6 +187,7 @@ export default class TagInputStateful extends React.Component
 
     handleKeyDown( e )
     {
+        const BACKSPACE = 8;
         const { tags }  = this.state;
         const { value } = this.state;
         const callback  = this.props.onKeyDown;
@@ -196,7 +197,7 @@ export default class TagInputStateful extends React.Component
             callback( e );
         }
 
-        if ( e.keyCode === 8 && value === '' )
+        if ( e.keyCode === BACKSPACE && value === '' )
         {
             const newItems = tags.slice( 0, -1 );
 
