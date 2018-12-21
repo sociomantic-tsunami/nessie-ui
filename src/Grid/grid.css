@@ -19,9 +19,7 @@
 .default
 {
     display:        grid;
-
     max-width:      100%;
-    margin-bottom:  0;
 
     > *
     {
@@ -39,38 +37,30 @@
 {
     grid-auto-flow: column;
 }
-.flow__row_dense
-{
-    grid-auto-flow: row dense;
-}
-.flow__col_dense
-{
-    grid-auto-flow: column dense;
-}
 
 
-.align__top
+.align__start
 {
-    align-items:   start;
+    align-items: start;
 }
 
-.align__middle
+.align__center
 {
-    align-items:   center;
+    align-items: center;
 }
 
-.align__bottom
+.align__end
 {
-    align-items:   end;
+    align-items: end;
 }
 
 .align__stretch
 {
-    align-items:   stretch;
+    align-items: stretch;
 }
 
 
-.justify__left
+.justify__start
 {
     justify-items: start;
 }
@@ -80,7 +70,7 @@
     justify-items: center;
 }
 
-.justify__right
+.justify__end
 {
     justify-items: end;
 }

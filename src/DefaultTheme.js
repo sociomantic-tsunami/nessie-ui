@@ -17,6 +17,7 @@ import dragNDrop            from './DragNDrop/dragNDrop.css';
 import dropdown             from './Dropdown/dropdown.css';
 import fieldset             from './Fieldset/fieldset.css';
 import grid                 from './Grid/grid.css';
+import gridItem             from './GridItem/gridItem.css';
 import h1                   from './H1/h1.css';
 import h2                   from './H2/h2.css';
 import h3                   from './H3/h3.css';
@@ -85,6 +86,7 @@ export default {
     Dropdown          : dropdown,
     Fieldset          : fieldset,
     Grid              : grid,
+    GridItem          : gridItem,
     H1                : h1,
     H2                : h2,
     H3                : h3,

@@ -9,21 +9,16 @@
 
 @import "../proto/base.css";
 
-.default
-{
-    margin-bottom: 0;
-}
 
-
-.align__top
+.align__start
 {
     align-self: start;
 }
-.align__middle
+.align__center
 {
     align-self: center;
 }
-.align__bottom
+.align__end
 {
     align-self: end;
 }
@@ -33,7 +28,7 @@
 }
 
 
-.justify__left
+.justify__start
 {
     justify-self: start;
 }
@@ -41,7 +36,7 @@
 {
     justify-self: center;
 }
-.justify__right
+.justify__end
 {
     justify-self: end;
 }

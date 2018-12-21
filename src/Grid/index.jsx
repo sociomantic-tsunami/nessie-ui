@@ -23,17 +23,17 @@ export default class Grid extends React.Component
         /**
          * Vertical alignment of the grid items
          */
-        align    : PropTypes.oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
+        align : PropTypes.oneOf( [
+            'start', 'middle', 'end', 'stretch' ] ),
         /**
          * Defines the size of implicitly set columns
          */
-        autoCols : PropTypes.string,
+        autoCols      : PropTypes.string,
         /**
          * Controls where to auto place new grid items if their place is
          * undefined
          */
-        autoFlow : PropTypes
-            .oneOf( [ 'row', 'col', 'row_dense', 'col_dense' ] ),
+        autoFlow      : PropTypes.oneOf( [ 'row', 'col' ] ),
         /**
          * Defines the size of implicitly set rows
          */
@@ -67,18 +67,10 @@ export default class Grid extends React.Component
          */
         customRows    : PropTypes.string,
         /**
-         *  Sets width to 100%
-         */
-        hasFullWidth  : PropTypes.bool,
-        /**
          * Horizontal alignment of the grid items
          */
         justify       : PropTypes.oneOf( [
-            'left', 'center', 'right', 'stretch' ] ),
-        /**
-         *  Grid role
-         */
-        role   : PropTypes.string,
+            'start', 'center', 'end', 'stretch' ] ),
         /**
          *  Row gap
          */
@@ -101,9 +93,7 @@ export default class Grid extends React.Component
         columns       : undefined,
         customColumns : undefined,
         customRows    : undefined,
-        hasFullWidth  : false,
         justify       : 'left',
-        role          : undefined,
         rowGap        : 'M',
         rows          : undefined,
     };
@@ -124,36 +114,28 @@ export default class Grid extends React.Component
             customRows,
             columnGap,
             cssMap = createCssMap( this.context.Grid, this.props ),
-            hasFullWidth,
             justify,
-            role,
             rows,
             rowGap,
         } = this.props;
 
         const layout = {
-            'gridAutoColumns' : autoCols !== undefined ?
-                `${autoCols}` : '1fr',
-            'gridAutoRows' : autoRows !== undefined ?
-                `${autoRows}` : '1fr',
-            'gridTemplateColumns' : customColumns !== undefined ?
-                `${customColumns}` : `repeat( ${columns}, 1fr )`,
-            'gridTemplateRows' : customRows !== undefined ?
-                `${customRows}` : `repeat( ${rows}, 1fr )`,
+            gridAutoColumns     : autoCols || '1fr',
+            gridAutoRows        : autoRows || '1fr',
+            gridTemplateColumns : customColumns || `repeat( ${columns}, 1fr )`,
+            gridTemplateRows    : customRows || `repeat( ${rows}, 1fr )`,
         };
 
         return (
             <div
                 className = { buildClassName( className, cssMap, {
                     flow : autoFlow,
-                    hasFullWidth,
                     justify,
                     align,
                     columnGap,
                     rowGap,
                 } ) }
-                style        = { layout }
-                role         = { role && role !== 'none' ? role : null }>
+                style = { layout }>
                 { children }
             </div>
         );
