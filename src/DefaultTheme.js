@@ -78,7 +78,8 @@ import toggleButtonClasses       from './ToggleButton/toggleButton.css';
 import tooltipClasses            from './Tooltip/tooltip.css';
 import uploaderClasses           from './Uploader/uploader.css';
 import valuedTextInputClasses    from './ValuedTextInput/valuedTextInput.css';
-
+import withDropdownClasses       from './Addons/withDropdown';
+import withStickyClasses         from './Addons/withSticky';
 
 export default {
     Button : props => ( {
@@ -651,5 +652,24 @@ export default {
             `position__${props.valueLabelPosition}`,
         ),
         ...valuedTextInputClasses,
+    } ),
+    withDropdown : props => ( {
+        main : classNames.bind( withDropdownClasses )(
+            'default',
+            {
+                open     : props.dropdownIsOpen,
+                position : props.dropdownPosition,
+            },
+            `position__${props.valueLabelPosition}`,
+        ),
+        ...withDropdownClasses,
+    } ),
+    withSticky : props => ( {
+        main : classNames.bind( withStickyClasses )(
+            'default',
+            { sticky: props.isSticky },
+            `position__${props.stickyPosition}`,
+        ),
+        ...withStickyClasses,
     } ),
 };

@@ -10,48 +10,6 @@
 import React, { Component } from 'react';
 import isEqual              from 'lodash.isequal';
 
-const CSS_MODIFIER  = '__';
-const CSS_SEPARATOR = '  ';
-
-
-const buildClassName = ( className, cssMap = {}, cssProps = {} ) =>
-{
-    if ( cssMap )
-    {
-        const defaultString = cssMap.default;
-
-        let cssString = defaultString || '';
-
-        Object.keys( cssProps ).forEach( prop =>
-        {
-            const propValue = cssProps[ prop ];
-
-            if ( propValue )
-            {
-                let cssMapClass = '';
-
-                if ( propValue === true )
-                {
-                    cssMapClass = cssMap[ prop ];
-                }
-                else
-                {
-                    cssMapClass = cssMap[ prop + CSS_MODIFIER + propValue ];
-                }
-
-                if ( cssMapClass )
-                {
-                    cssString += CSS_SEPARATOR + cssMapClass;
-                }
-            }
-        } );
-
-        cssString += className ? ( CSS_SEPARATOR + className ) : '';
-
-        return cssString || undefined;
-    }
-};
-
 
 const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
 {
@@ -105,7 +63,6 @@ const mapAria = ( ariaObj = {} ) =>
 
 
 export {
-    buildClassName,
     buildDisplayName,
     clamp,
     deepPure,
@@ -116,7 +73,6 @@ export {
 };
 
 export default {
-    buildClassName,
     buildDisplayName,
     clamp,
     deepPure,

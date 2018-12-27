@@ -18,7 +18,6 @@ import H1                   from '../../H1';
 import H2                   from '../../H2';
 import H3                   from '../../H3';
 import H4                   from '../../H4';
-import styles               from './flounderDropdown.css';
 import {
     addExtraClasses,
     mapCssToFlounder,
@@ -26,7 +25,8 @@ import {
     stringifyArr,
     stringifyObj,
 } from './utils';
-
+import { createCssMap } from '../../Theming';
+import ThemeContext     from '../../Theming/ThemeContext';
 
 const headers = {
     1 : H1, 2 : H2, 3 : H3, 4 : H4,
@@ -58,6 +58,8 @@ const rebuildOnProps = [
 
 export default class FlounderDropdown extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -199,7 +201,7 @@ export default class FlounderDropdown extends Component
     static defaultProps =
     {
         className            : undefined,
-        cssMap               : styles,
+        cssMap               : undefined,
         data                 : undefined,
         disableArrow         : false,
         forceHover           : false,
@@ -232,6 +234,9 @@ export default class FlounderDropdown extends Component
     {
         super( props );
         this.handleRef = this.handleRef.bind( this );
+        this.state = {
+            cssMap : createCssMap( this.context.FlounderDropdown, props ),
+        };
     }
 
     componentDidMount()
@@ -338,10 +343,10 @@ export default class FlounderDropdown extends Component
                 props.cssMap.optionWithDescription,
             );
 
-            data = mapIconClassesToFlounder( data, props.cssMap );
+            data = mapIconClassesToFlounder( data, this.state.cssMap );
 
             const flounderProps = {
-                classes              : mapCssToFlounder( props.cssMap ),
+                classes              : mapCssToFlounder( this.state.cssMap ),
                 data,
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
@@ -388,7 +393,7 @@ export default class FlounderDropdown extends Component
     isOpen()
     {
         const { flounderInstance } = this;
-        const { cssMap } = this.props;
+        const { cssMap } = this.state;
 
         if ( flounderInstance )
         {
@@ -411,11 +416,12 @@ export default class FlounderDropdown extends Component
     render()
     {
         const {
-            cssMap,
             headerLevel,
             onMouseOver,
             onMouseOut,
         } = this.props;
+
+        const { cssMap } = this.state;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
         const Wrapper  = isHeader ? headers[ headerLevel ] : 'div';

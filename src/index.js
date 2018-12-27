@@ -237,3 +237,4 @@ export DefaultTheme      from './DefaultTheme';
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';
+export withSticky       from './Addons/withSticky';
