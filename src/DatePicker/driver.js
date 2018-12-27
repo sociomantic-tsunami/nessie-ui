@@ -9,9 +9,9 @@
 
 import { IconButton }   from 'nessie-ui';
 
-import DatePickerHeader from './DatePickerHeader';
+import TimeInput        from './TimeInput';
 import DatePickerItem   from './DatePickerItem';
-
+import { createCssMap } from '../Theming';
 
 const ERR = {
     ITEM_ERR : ( label, state ) =>
@@ -32,9 +32,15 @@ export default class DatePickerDriver
         this.wrapper = wrapper;
     }
 
-    get header()
+    get instance()
     {
-        return this.wrapper.find( DatePickerHeader ).props().cssMap;
+        return this.wrapper.instance();
+    }
+
+    get timeInput()
+    {
+        return this.wrapper.find( TimeInput ).prop( 'cssMap' ) ||
+            createCssMap( this.instance.context.TimeInput );
     }
 
     get prev()
@@ -51,12 +57,12 @@ export default class DatePickerDriver
 
     get hour()
     {
-        return this.header.hour;
+        return this.timeInput.hour;
     }
 
     get min()
     {
-        return this.header.min;
+        return this.timeInput.min;
     }
 
 

@@ -234,9 +234,6 @@ export default class FlounderDropdown extends Component
     {
         super( props );
         this.handleRef = this.handleRef.bind( this );
-        this.state = {
-            cssMap : createCssMap( this.context.FlounderDropdown, props ),
-        };
     }
 
     componentDidMount()
@@ -338,15 +335,18 @@ export default class FlounderDropdown extends Component
                 }
             };
 
+            const cssMap = props.cssMap ||
+                createCssMap( this.context.FlounderDropdown, props );
+
             let data = addExtraClasses(
                 props.data,
-                props.cssMap.optionWithDescription,
+                cssMap.optionWithDescription,
             );
 
-            data = mapIconClassesToFlounder( data, this.state.cssMap );
+            data = mapIconClassesToFlounder( data, cssMap );
 
             const flounderProps = {
-                classes              : mapCssToFlounder( this.state.cssMap ),
+                classes              : mapCssToFlounder( cssMap ),
                 data,
                 disableArrow         : props.icon === 'none',
                 multiple             : props.multiple,
@@ -392,8 +392,9 @@ export default class FlounderDropdown extends Component
 
     isOpen()
     {
-        const { flounderInstance } = this;
-        const { cssMap } = this.state;
+        const { flounderInstance, props } = this;
+        const cssMap = props.cssMap ||
+            createCssMap( this.context.FlounderDropdown, props );
 
         if ( flounderInstance )
         {
@@ -416,12 +417,11 @@ export default class FlounderDropdown extends Component
     render()
     {
         const {
+            cssMap = createCssMap( this.context.FlounderDropdown, this.props ),
             headerLevel,
             onMouseOver,
             onMouseOut,
         } = this.props;
-
-        const { cssMap } = this.state;
 
         const isHeader = typeof headers[ headerLevel ] !== 'undefined';
         const Wrapper  = isHeader ? headers[ headerLevel ] : 'div';
