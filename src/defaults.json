@@ -251,11 +251,11 @@
     },
     "Sorter" :
     {
-        "children"  : "Something to sort"
+        "children" : "Something to sort"
     },
     "StatusIndicator" :
     {
-        "label" :  "Active"
+        "label" : "Active"
     },
     "Tab" :
     {
@@ -274,8 +274,8 @@
     },
     "TableCell" :
     {
-        "children"      : "cell content",
-        "columnTitle"   : "column title"
+        "children"    : "cell content",
+        "columnTitle" : "column title"
     },
     "TableRow" :
     {
@@ -288,16 +288,20 @@
     },
     "Tag" :
     {
-        "label"      : "Tag Label"
+        "label" : "Tag Label"
     },
     "TagInput" :
     {
-        "children"      : "{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}",
-        "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
+        "children" : "{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}",
+        "tags"     : [ "TagLabelString 1", "TagLabelString 2" ]
     },
     "TagInputStateful" :
     {
-        "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
+        "tags"    : [ "TagLabelString 1", "TagLabelString 2" ],
+        "options" : [
+            { "tag": "TagLabelString 3", "isSelected": false },
+            { "tag": "TagLabelString 4", "isSelected": false }
+        ]
     },
     "TextArea" :
     {

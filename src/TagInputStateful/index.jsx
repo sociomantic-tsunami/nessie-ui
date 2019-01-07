@@ -11,7 +11,9 @@ import React        from 'react';
 import PropTypes    from 'prop-types';
 
 import { TagInput } from '../index';
+import withDropdown from '../Addons/withDropdown';
 
+const TagInputwithDropdown = withDropdown( TagInput );
 
 export default class TagInputStateful extends React.Component
 {
@@ -20,91 +22,103 @@ export default class TagInputStateful extends React.Component
         /**
          *  CSS class name
          */
-        className    : PropTypes.string,
+        className        : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap       : PropTypes.objectOf( PropTypes.string ),
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
+        /**
+         * Position of the dropdown relative to the text input
+         */
+        dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
         /**
          * Display as hover when required from another component
          */
-        forceHover   : PropTypes.bool,
+        forceHover       : PropTypes.bool,
         /**
         *  specifies the height for the tag input (CSS length value)
         */
-        height       : PropTypes.string,
+        height           : PropTypes.string,
         /**
          *  Display as error/invalid
          */
-        hasError     : PropTypes.bool,
+        hasError         : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id           : PropTypes.string,
+        id               : PropTypes.string,
         /**
          * Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef     : PropTypes.func,
+        inputRef         : PropTypes.func,
         /**
          *  Display as disabled
          */
-        isDisabled   : PropTypes.bool,
+        isDisabled       : PropTypes.bool,
+        /*
+         *  Dropdown is open
+         */
+        isOpen           : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly   : PropTypes.bool,
+        isReadOnly       : PropTypes.bool,
         /**
         *  Allows container to be resize by the user
         */
-        isResizable  : PropTypes.bool,
+        isResizable      : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name         : PropTypes.string,
+        name             : PropTypes.string,
         /**
          * onBlur callback function
          */
-        onBlur       : PropTypes.func,
+        onBlur           : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange     : PropTypes.func,
+        onChange         : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClickClose : PropTypes.func,
+        onClickClose     : PropTypes.func,
         /**
          * onFocus callback function
          */
-        onFocus      : PropTypes.func,
+        onFocus          : PropTypes.func,
         /**
          * onKeyDown callback function
          */
-        onKeyDown    : PropTypes.func,
+        onKeyDown        : PropTypes.func,
         /**
          * onKeyUp callback function
          */
-        onKeyUp      : PropTypes.func,
+        onKeyUp          : PropTypes.func,
         /**
          * onKeyPress callback function
          */
-        onKeyPress   : PropTypes.func,
+        onKeyPress       : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut   : PropTypes.func,
+        onMouseOut       : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver  : PropTypes.func,
+        onMouseOver      : PropTypes.func,
+        /*
+         *  Dropdown list options
+         */
+        options          : PropTypes.arrayOf( PropTypes.object ),
         /**
          *  Placeholder text
          */
-        placeholder  : PropTypes.string,
+        placeholder      : PropTypes.string,
         /**
          * Array of strings to build Tag components
          */
-        tags         : PropTypes.arrayOf( PropTypes.oneOfType( [
+        tags             : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.object,
         ] ) ),
@@ -116,28 +130,30 @@ export default class TagInputStateful extends React.Component
 
     static defaultProps =
     {
-        className    : undefined,
-        forceHover   : false,
-        hasError     : false,
-        height       : undefined,
-        id           : undefined,
-        inputRef     : undefined,
-        isDisabled   : false,
-        isReadOnly   : false,
-        isResizable  : false,
-        name         : undefined,
-        onBlur       : undefined,
-        onChange     : undefined,
-        onClickClose : undefined,
-        onFocus      : undefined,
-        onKeyDown    : undefined,
-        onKeyPress   : undefined,
-        onKeyUp      : undefined,
-        onMouseOut   : undefined,
-        onMouseOver  : undefined,
-        placeholder  : undefined,
-        tags         : undefined,
-        value        : '',
+        className        : undefined,
+        dropdownPosition : 'auto',
+        forceHover       : false,
+        hasError         : false,
+        height           : undefined,
+        id               : undefined,
+        inputRef         : undefined,
+        isDisabled       : false,
+        isReadOnly       : false,
+        isResizable      : false,
+        name             : undefined,
+        onBlur           : undefined,
+        onChange         : undefined,
+        onClickClose     : undefined,
+        onFocus          : undefined,
+        onKeyDown        : undefined,
+        onKeyPress       : undefined,
+        onKeyUp          : undefined,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
+        options          : undefined,
+        placeholder      : undefined,
+        tags             : undefined,
+        value            : '',
     };
 
     constructor( props )
@@ -145,13 +161,28 @@ export default class TagInputStateful extends React.Component
         super( props );
 
         this.state = {
-            tags  : props.tags,
-            value : props.value,
+            isOpen : false,
+            tags   : props.tags,
+            value  : props.value,
         };
 
+        this.handleBlur       = this.handleBlur.bind( this );
         this.handleChange     = this.handleChange.bind( this );
         this.handleClickClose = this.handleClickClose.bind( this );
+        this.handleFocus      = this.handleFocus.bind( this );
         this.handleKeyDown    = this.handleKeyDown.bind( this );
+    }
+
+    handleBlur( e )
+    {
+        const callback = this.props.onBlur;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( { isOpen: false } );
     }
 
     handleChange( e )
@@ -185,6 +216,18 @@ export default class TagInputStateful extends React.Component
         this.setState( { tags: newItems } );
     }
 
+    handleFocus( e )
+    {
+        const callback = this.props.onFocus;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( { isOpen: true } );
+    }
+
     handleKeyDown( e )
     {
         const BACKSPACE       = 8;
@@ -216,14 +259,20 @@ export default class TagInputStateful extends React.Component
     {
         const { props } = this;
 
+        const { dropdownPosition } = this.state;
+
         return (
-            <TagInput
+            <TagInputwithDropdown
                 { ...props }
-                onChange     = { this.handleChange }
-                onClickClose = { this.handleClickClose }
-                onKeyDown    = { this.handleKeyDown }
-                tags         = { this.state.tags }
-                value        = { this.state.value } />
+                dropdownPosition = { dropdownPosition }
+                isOpen           = { this.state.isOpen }
+                onBlur           = { this.handleBlur }
+                onChange         = { this.handleChange }
+                onClickClose     = { this.handleClickClose }
+                onFocus          = { this.handleFocus }
+                onKeyDown        = { this.handleKeyDown }
+                tags             = { this.state.tags }
+                value            = { this.state.value } />
         );
     }
 }
