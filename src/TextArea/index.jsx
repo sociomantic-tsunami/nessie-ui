@@ -22,7 +22,6 @@ const TextArea = React.forwardRef( ( {
         { ...props }
         element = "textarea"
         id      = { id }
-        type    = "text"
         ref     = { ref } />
 ) );
 
