@@ -199,7 +199,7 @@ export default {
         ...dropdownClasses,
     } ),
     Fieldset : {
-        main : classNames.bind( dropdownClasses )( 'default' ),
+        main : classNames.bind( fieldsetClasses )( 'default' ),
         ...fieldsetClasses,
     },
     FlounderDropdown : props => ( {
