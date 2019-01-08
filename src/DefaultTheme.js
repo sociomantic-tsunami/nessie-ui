@@ -173,7 +173,7 @@ export default {
         ...datePickerItemClasses,
     } ),
     TimeInput : props => ( {
-        main : classNames.bind( datePickerItemClasses )(
+        main : classNames.bind( timeInputClasses )(
             'default',
             { fakeHovered: props.forceHover },
             props.className,
