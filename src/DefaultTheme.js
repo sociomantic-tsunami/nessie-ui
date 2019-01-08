@@ -105,7 +105,7 @@ export default {
                 props.padding[ 0 ] : props.padding}`,
             `paddingY__${Array.isArray( props.padding ) ?
                 props.padding[ 1 ] : props.padding}`,
-                props.className,
+            props.className,
         ),
         ...cardClasses,
     } ),
@@ -599,10 +599,17 @@ export default {
         ),
         ...tableRowClasses,
     } ),
-    Tabs : {
-        main : classNames.bind( tabsClasses )( 'default' ),
+    Tabs : props =>  ( {
+        main : classNames.bind( tabsClasses )(
+            'default',
+            `paddingX__${Array.isArray( props.padding ) ?
+                props.padding[ 0 ] : props.padding}`,
+            `paddingY__${Array.isArray( props.padding ) ?
+                props.padding[ 1 ] : props.padding}`,
+            props.className,
+        ),
         ...tabsClasses,
-    },
+    } ),
     Tag : {
         main : classNames.bind( tagClasses )( 'default' ),
         ...tagClasses,

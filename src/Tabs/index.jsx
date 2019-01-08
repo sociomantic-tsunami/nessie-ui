@@ -41,6 +41,20 @@ export default class Tabs extends React.Component
          */
         onClickTab        : PropTypes.func,
         /**
+        *   Tab padding
+        */
+        padding           : PropTypes.oneOfType( [
+            PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
+            PropTypes.arrayOf( PropTypes.oneOf( [
+                'none',
+                'S',
+                'M',
+                'L',
+                'XL',
+                'XXL',
+            ] ) ),
+        ] ),
+        /**
          *  Secondary controls to add to tabs header
          */
         secondaryControls : PropTypes.node,
@@ -52,6 +66,7 @@ export default class Tabs extends React.Component
         children          : undefined,
         className         : undefined,
         onClickTab        : undefined,
+        padding           : [ 'none', 'M' ],
         secondaryControls : undefined,
     };
 
@@ -66,6 +81,7 @@ export default class Tabs extends React.Component
             cssMap = createCssMap( this.context.Tabs, this.props ),
             onChange,
             onClickTab,
+            padding,
             secondaryControls,
         } = this.props;
 
