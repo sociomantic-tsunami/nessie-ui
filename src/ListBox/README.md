@@ -17,9 +17,9 @@ listbox.
         description : 'Option description',
     },
     {
-        text     : 'Disabled option',
-        value    : 'value3',
-        disabled : true,
+        text       : 'Disabled option',
+        value      : 'value3',
+        isDisabled : true,
     },
     {
         header  : 'Subsection 1',
