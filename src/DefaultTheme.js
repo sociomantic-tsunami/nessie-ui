@@ -71,7 +71,6 @@ import tabsClasses               from './Tabs/tabs.css';
 import tagClasses                from './Tag/tag.css';
 import tagInputClasses           from './TagInput/tagInput.css';
 import textClasses               from './Text/text.css';
-import textAreaClasses           from './TextArea/textArea.css';
 import textInputWithIconClasses  from './TextInputWithIcon/textInputWithIcon.css';
 import timeInputClasses          from './DatePicker/timeInput.css';
 import toggleButtonClasses       from './ToggleButton/toggleButton.css';
@@ -643,10 +642,6 @@ export default {
         ),
         ...textClasses,
     } ),
-    TextArea : {
-        main : classNames.bind( textAreaClasses )( 'default' ),
-        ...textAreaClasses,
-    },
     TextInputWithIcon : props => ( {
         main : classNames.bind( textInputWithIconClasses )(
             'default',
