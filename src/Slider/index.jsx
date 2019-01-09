@@ -591,9 +591,9 @@ export default class Slider extends React.Component
             onMouseUp( event );
         }
 
-        removeEventListener( event.type === 'touchmove' ?
+        removeEventListener( event.type === 'touchend' ?
             'touchmove' : 'mousemove', this.handleMove );
-        removeEventListener( event.type === 'touchmove' ?
+        removeEventListener( event.type === 'touchend' ?
             'touchend' : 'mouseup', this.handleUp );
     }
 
