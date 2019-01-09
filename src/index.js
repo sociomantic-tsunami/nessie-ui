@@ -72,6 +72,7 @@ import Table                    from './Table';
 import TableCell                from './TableCell';
 import TableRow                 from './TableRow';
 import Tabs                     from './Tabs';
+import TabsStateful             from './TabsStateful';
 import Tag                      from './Tag';
 import TagInput                 from './TagInput';
 import Text                     from './Text';
@@ -147,6 +148,7 @@ export {
     TableCell,
     TableRow,
     Tabs,
+    TabsStateful,
     Tag,
     TagInput,
     Text,
@@ -223,6 +225,7 @@ export default {
     TableCell,
     TableRow,
     Tabs,
+    TabsStateful,
     Tag,
     TagInput,
     Text,
