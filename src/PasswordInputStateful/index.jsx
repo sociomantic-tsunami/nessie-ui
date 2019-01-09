@@ -27,51 +27,39 @@ export default class PasswordInputStateful extends React.Component
         /**
          *  Extra CSS class name
          */
-        className             : PropTypes.string,
+        className            : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap                : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  Tooltip message text (string or JSX)
-         */
-        errorMessage          : PropTypes.node,
-        /**
-         *  Error Tooltip is displayed
-         */
-        errorMessageIsVisible : PropTypes.bool,
-        /**
-        *   Error message position relative to the icon
-        */
-        errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+        cssMap               : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Display as hover when required from another component
          */
-        forceHover            : PropTypes.bool,
+        forceHover           : PropTypes.bool,
         /**
          *  Display as error/invalid
          */
-        hasError              : PropTypes.bool,
+        hasError             : PropTypes.bool,
         /**
          *  Display Button icon as disabled
          */
-        iconButtonIsDisabled  : PropTypes.bool,
+        iconButtonIsDisabled : PropTypes.bool,
         /**
          *  Alignment of the icon
          */
-        iconPosition          : PropTypes.oneOf( [ 'left', 'right' ] ),
+        iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
         /**
          *  Display the icon tooltip
          */
-        iconTooltipIsVisible  : PropTypes.bool,
+        iconTooltipIsVisible : PropTypes.bool,
         /**
-         *  icon Tooltip message text (string or JSX)
+         *  Icon Tooltip message text (string or JSX)
          */
-        iconTooltipMessage    : PropTypes.node,
+        iconTooltipMessage   : PropTypes.node,
         /**
          *  Icon Tooltip position relative to icon
          */
-        iconTooltipPosition   : PropTypes.oneOf( [
+        iconTooltipPosition  : PropTypes.oneOf( [
             'left',
             'right',
             'top',
@@ -103,14 +91,6 @@ export default class PasswordInputStateful extends React.Component
          *  Display as read-only for TextInput
          */
         isReadOnlyInput  : PropTypes.bool,
-        /**
-         *  Label text (string or JSX node)
-         */
-        label            : PropTypes.node,
-        /**
-         *  Label position
-         */
-        labelPosition    : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
         /**
          *  HTML name attribute
          */
@@ -179,42 +159,37 @@ export default class PasswordInputStateful extends React.Component
 
     static defaultProps =
     {
-        aria                  : undefined,
-        className             : undefined,
-        cssMap                : undefined,
-        errorMessage          : undefined,
-        errorMessageIsVisible : false,
-        errorMessagePosition  : 'top',
-        forceHover            : false,
-        hasError              : false,
-        iconButtonIsDisabled  : undefined,
-        iconPosition          : 'right',
-        iconTooltipIsVisible  : undefined,
-        iconTooltipMessage    : undefined,
-        iconTooltipPosition   : undefined,
-        id                    : undefined,
-        inputRef              : undefined,
-        isDisabled            : false,
-        isReadOnly            : false,
-        isReadOnlyButton      : undefined,
-        isReadOnlyInput       : undefined,
-        label                 : undefined,
-        labelPosition         : 'top',
-        name                  : undefined,
-        onBlur                : undefined,
-        onChange              : undefined,
-        onClickIcon           : undefined,
-        onFocus               : undefined,
-        onKeyDown             : undefined,
-        onKeyPress            : undefined,
-        onKeyUp               : undefined,
-        onMouseOut            : undefined,
-        onMouseOutIcon        : undefined,
-        onMouseOver           : undefined,
-        onMouseOverIcon       : undefined,
-        placeholder           : undefined,
-        textAlign             : 'auto',
-        value                 : '',
+        aria                 : undefined,
+        className            : undefined,
+        cssMap               : undefined,
+        forceHover           : false,
+        hasError             : false,
+        iconButtonIsDisabled : undefined,
+        iconPosition         : 'right',
+        iconTooltipIsVisible : undefined,
+        iconTooltipMessage   : undefined,
+        iconTooltipPosition  : undefined,
+        id                   : undefined,
+        inputRef             : undefined,
+        isDisabled           : false,
+        isReadOnly           : false,
+        isReadOnlyButton     : undefined,
+        isReadOnlyInput      : undefined,
+        name                 : undefined,
+        onBlur               : undefined,
+        onChange             : undefined,
+        onClickIcon          : undefined,
+        onFocus              : undefined,
+        onKeyDown            : undefined,
+        onKeyPress           : undefined,
+        onKeyUp              : undefined,
+        onMouseOut           : undefined,
+        onMouseOutIcon       : undefined,
+        onMouseOver          : undefined,
+        onMouseOverIcon      : undefined,
+        placeholder          : undefined,
+        textAlign            : 'auto',
+        value                : '',
     };
 
     constructor()
