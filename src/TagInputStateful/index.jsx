@@ -10,8 +10,18 @@
 import React        from 'react';
 import PropTypes    from 'prop-types';
 
-import { TagInput } from '../index';
+import {
+    ListBox,
+    ScrollBox,
+    TagInput,
+    Text,
+} from '../index';
 import withDropdown from '../Addons/withDropdown';
+import {
+    addPrefix,
+    buildListBoxOptions,
+    getScrollParent,
+} from '../ComboBox/utils';
 
 const TagInputwithDropdown = withDropdown( TagInput );
 
@@ -161,9 +171,11 @@ export default class TagInputStateful extends React.Component
         super( props );
 
         this.state = {
-            isOpen : false,
-            tags   : props.tags,
-            value  : props.value,
+            dropdownPosition : props.dropdownPosition,
+            isOpen           : false,
+            options          : props.options,
+            tags             : props.tags,
+            value            : props.value,
         };
 
         this.handleBlur       = this.handleBlur.bind( this );
@@ -171,6 +183,51 @@ export default class TagInputStateful extends React.Component
         this.handleClickClose = this.handleClickClose.bind( this );
         this.handleFocus      = this.handleFocus.bind( this );
         this.handleKeyDown    = this.handleKeyDown.bind( this );
+    }
+
+    setScrollBoxRef( ref )
+    {
+        if ( ref )
+        {
+            this.scrollBox = ref;
+        }
+    }
+
+    setWrapperRef( ref )
+    {
+        if ( ref )
+        {
+            this.wrapperRef = ref;
+        }
+    }
+
+    setDropdownPosition( props = this.props )
+    {
+        let { dropdownPosition } = props;
+
+        if ( props.dropdownPosition === 'auto' )
+        {
+            const { wrapperRef } = this;
+
+            if ( wrapperRef )
+            {
+                const scrollParent = getScrollParent( wrapperRef );
+                const wrapperBox   = wrapperRef.getBoundingClientRect();
+                const parentBox    = scrollParent.getBoundingClientRect();
+                const { height }   = parentBox;
+
+                const offset =
+                    wrapperBox.top - parentBox.top - scrollParent.scrollTop;
+
+                dropdownPosition = offset > height / 2 ? 'top' : 'bottom';
+            }
+            else
+            {
+                dropdownPosition = 'bottom';
+            }
+        }
+
+        this.setState( { dropdownPosition } );
     }
 
     handleBlur( e )
@@ -259,20 +316,46 @@ export default class TagInputStateful extends React.Component
     {
         const { props } = this;
 
-        const { dropdownPosition } = this.state;
+        let dropdownContent;
+
+        if ( props.options.length )
+        {
+            dropdownContent = (
+                <ScrollBox
+                    onScroll     = { props.onScroll }
+                    scroll       = "vertical"
+                    scrollBoxRef = { this.setScrollBoxRef }>
+                    <ListBox
+                        id                = { addPrefix( 'listbox', props.id ) }
+                        isFocusable       = { false }
+                        onClickOption     = { this.handleClickOption }
+                        onMouseOutOption  = { this.handleMouseOutOption }
+                        onMouseOverOption = { this.handleMouseOverOption }
+                        selection = { addPrefix( props.selection, props.id ) }>
+                        { buildListBoxOptions( props.options, props.id ) }
+                    </ListBox>
+                </ScrollBox>
+            );
+        }
 
         return (
             <TagInputwithDropdown
                 { ...props }
-                dropdownPosition = { dropdownPosition }
-                isOpen           = { this.state.isOpen }
-                onBlur           = { this.handleBlur }
-                onChange         = { this.handleChange }
-                onClickClose     = { this.handleClickClose }
-                onFocus          = { this.handleFocus }
-                onKeyDown        = { this.handleKeyDown }
-                tags             = { this.state.tags }
-                value            = { this.state.value } />
+                dropdownIsOpen   = { props.isOpen }
+                dropdownPosition = { this.state.dropdownPosition }
+                dropdownProps    = { {
+                    children : dropdownContent,
+                    padding  : props.options.length ? 'none' : 'S',
+                } }
+                isOpen       = { this.state.isOpen }
+                onBlur       = { this.handleBlur }
+                onChange     = { this.handleChange }
+                onClickClose = { this.handleClickClose }
+                onFocus      = { this.handleFocus }
+                onKeyDown    = { this.handleKeyDown }
+                options      = { this.state.options }
+                tags         = { this.state.tags }
+                value        = { this.state.value } />
         );
     }
 }
