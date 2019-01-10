@@ -7,6 +7,8 @@
  *
  */
 
+/* global document */
+
 import React        from 'react';
 import PropTypes    from 'prop-types';
 
@@ -14,7 +16,6 @@ import {
     ListBox,
     ScrollBox,
     TagInput,
-    Text,
 } from '../index';
 import withDropdown from '../Addons/withDropdown';
 import {
@@ -38,16 +39,16 @@ export default class TagInputStateful extends React.Component
          */
         cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
-         * Position of the dropdown relative to the text input
+         *  Position of the dropdown relative to the text input
          */
         dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
         /**
-         * Display as hover when required from another component
+         *  Display as hover when required from another component
          */
         forceHover       : PropTypes.bool,
         /**
-        *  specifies the height for the tag input (CSS length value)
-        */
+         *  specifies the height for the tag input (CSS length value)
+         */
         height           : PropTypes.string,
         /**
          *  Display as error/invalid
@@ -58,14 +59,14 @@ export default class TagInputStateful extends React.Component
          */
         id               : PropTypes.string,
         /**
-         * Callback that receives the native <input>: ( ref ) => { ... }
+         *  Callback that receives the native <input>: ( ref ) => { ... }
          */
         inputRef         : PropTypes.func,
         /**
          *  Display as disabled
          */
         isDisabled       : PropTypes.bool,
-        /*
+        /**
          *  Dropdown is open
          */
         isOpen           : PropTypes.bool,
@@ -74,8 +75,8 @@ export default class TagInputStateful extends React.Component
          */
         isReadOnly       : PropTypes.bool,
         /**
-        *  Allows container to be resize by the user
-        */
+         *  Allows container to be resize by the user
+         */
         isResizable      : PropTypes.bool,
         /**
          *  HTML name attribute
@@ -94,19 +95,19 @@ export default class TagInputStateful extends React.Component
          */
         onClickClose     : PropTypes.func,
         /**
-         * onFocus callback function
+         *  onFocus callback function
          */
         onFocus          : PropTypes.func,
         /**
-         * onKeyDown callback function
+         *  onKeyDown callback function
          */
         onKeyDown        : PropTypes.func,
         /**
-         * onKeyUp callback function
+         *  onKeyUp callback function
          */
         onKeyUp          : PropTypes.func,
         /**
-         * onKeyPress callback function
+         *  onKeyPress callback function
          */
         onKeyPress       : PropTypes.func,
         /**
@@ -117,7 +118,7 @@ export default class TagInputStateful extends React.Component
          *  Input mouseOver callback function
          */
         onMouseOver      : PropTypes.func,
-        /*
+        /**
          *  Dropdown list options
          */
         options          : PropTypes.arrayOf( PropTypes.object ),
@@ -126,14 +127,14 @@ export default class TagInputStateful extends React.Component
          */
         placeholder      : PropTypes.string,
         /**
-         * Array of strings to build Tag components
+         *  Array of strings to build Tag components
          */
         tags             : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.object,
         ] ) ),
         /**
-         * Input's value
+         *  Input's value
          */
         value : PropTypes.string,
     };
@@ -170,12 +171,15 @@ export default class TagInputStateful extends React.Component
     {
         super( props );
 
+        const dropdownPosition = props.dropdownPosition !== 'auto' ?
+            props.dropdownPosition : 'bottom';
+
         this.state = {
-            dropdownPosition : props.dropdownPosition,
-            isOpen           : false,
-            options          : props.options,
-            tags             : props.tags,
-            value            : props.value,
+            dropdownPosition,
+            isOpen  : false,
+            options : props.options,
+            tags    : props.tags,
+            value   : props.value,
         };
 
         this.handleBlur       = this.handleBlur.bind( this );
@@ -183,6 +187,55 @@ export default class TagInputStateful extends React.Component
         this.handleClickClose = this.handleClickClose.bind( this );
         this.handleFocus      = this.handleFocus.bind( this );
         this.handleKeyDown    = this.handleKeyDown.bind( this );
+        this.setInputRef      = this.setInputRef.bind( this );
+        this.setScrollBoxRef  = this.setScrollBoxRef( this );
+        this.setWrapperRef    = this.setWrapperRef.bind( this );
+    }
+
+    componentDidMount()
+    {
+        this.setDropdownPosition();
+    }
+
+    componentWillReceiveProps( newProps )
+    {
+        this.setDropdownPosition( newProps );
+    }
+
+    componentDidUpdate()
+    {
+        const { scrollBox } = this;
+        const { activeOption, id } = this.props;
+
+        if ( scrollBox && activeOption )
+        {
+            const activeEl =
+                document.getElementById( addPrefix( activeOption, id ) );
+
+            if ( activeEl && scrollBox.scrollHeight > scrollBox.offsetHeight )
+            {
+                const pos        = activeEl.offsetTop;
+                const elHeight   = activeEl.offsetHeight;
+                const contHeight = scrollBox.offsetHeight;
+
+                const min = scrollBox.scrollTop;
+                const max = min + ( scrollBox.offsetHeight - elHeight );
+
+                if ( pos < min )
+                {
+                    scrollBox.scrollTop = pos;
+                }
+                else if ( pos > max )
+                {
+                    scrollBox.scrollTop = pos - ( contHeight - elHeight );
+                }
+            }
+        }
+    }
+
+    setInputRef( ref )
+    {
+        this.inputRef = ref;
     }
 
     setScrollBoxRef( ref )
@@ -322,15 +375,14 @@ export default class TagInputStateful extends React.Component
         {
             dropdownContent = (
                 <ScrollBox
+                    height       = "50vh"
                     onScroll     = { props.onScroll }
                     scroll       = "vertical"
                     scrollBoxRef = { this.setScrollBoxRef }>
                     <ListBox
-                        id                = { addPrefix( 'listbox', props.id ) }
-                        isFocusable       = { false }
-                        onClickOption     = { this.handleClickOption }
-                        onMouseOutOption  = { this.handleMouseOutOption }
-                        onMouseOverOption = { this.handleMouseOverOption }
+                        id            = { addPrefix( 'listbox', props.id ) }
+                        isFocusable   = { false }
+                        onClickOption = { this.handleClickOption }
                         selection = { addPrefix( props.selection, props.id ) }>
                         { buildListBoxOptions( props.options, props.id ) }
                     </ListBox>
@@ -347,6 +399,7 @@ export default class TagInputStateful extends React.Component
                     children : dropdownContent,
                     padding  : props.options.length ? 'none' : 'S',
                 } }
+                inputRef     = { this.setInputRef }
                 isOpen       = { this.state.isOpen }
                 onBlur       = { this.handleBlur }
                 onChange     = { this.handleChange }
@@ -355,7 +408,8 @@ export default class TagInputStateful extends React.Component
                 onKeyDown    = { this.handleKeyDown }
                 options      = { this.state.options }
                 tags         = { this.state.tags }
-                value        = { this.state.value } />
+                value        = { this.state.value }
+                wrapperRef   = { this.setWrapperRef } />
         );
     }
 }
