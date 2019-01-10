@@ -23,7 +23,8 @@ export default class GridItem extends React.Component
         /**
          * Vertical alignment of the GridItem content
          */
-        align     : PropTypes.oneOf( [ 'top', 'middle', 'bottom', 'stretch' ] ),
+        align : PropTypes.oneOf( [
+            'start', 'center', 'end', 'stretch' ] ),
         /**
          *  GridItem content
          */
@@ -43,7 +44,7 @@ export default class GridItem extends React.Component
         /**
          * Horizontal alignment of the GridItem content
          */
-        justify   : PropTypes.oneOf( [ 'left', 'center', 'right', 'stretch' ] ),
+        justify   : PropTypes.oneOf( [ 'start', 'center', 'end', 'stretch' ] ),
         /**
          * GridItem row span - should be an integer > 0
          */

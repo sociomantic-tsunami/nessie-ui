@@ -91,7 +91,7 @@ export default class Row extends React.Component
             align,
             children,
             className,
-            cssMap = createCssMap( this.context.Radio, this.props ),
+            cssMap = createCssMap( this.context.Row, this.props ),
             gutters,
             hasDividers,
             hasFullWidth,
