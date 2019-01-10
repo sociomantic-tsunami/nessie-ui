@@ -345,6 +345,27 @@ describe( 'Slider', () =>
             expect( removeEventListenerSpy )
                 .toBeCalledWith( 'mouseup', mouseUpSpy );
         } );
+
+        test( 'should remove touch events', () =>
+        {
+            const { handleUp } = wrapper.instance();
+
+            const removeEventListenerSpy = jest
+                .spyOn( global, 'removeEventListener' ).mockReset();
+
+            const slider = wrapper.instance();
+
+            const mouseMoveSpy = jest.spyOn( slider, 'handleMove' );
+            const mouseUpSpy   = jest.spyOn( slider, 'handleUp' );
+
+            handleUp( { type: 'touchend' } );
+
+            expect( removeEventListenerSpy ).toBeCalledTimes( 2 );
+            expect( removeEventListenerSpy )
+                .toBeCalledWith( 'touchmove', mouseMoveSpy );
+            expect( removeEventListenerSpy )
+                .toBeCalledWith( 'touchend', mouseUpSpy );
+        } );
     } );
 } );
 
