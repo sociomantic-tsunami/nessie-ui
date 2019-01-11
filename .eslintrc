@@ -153,9 +153,8 @@
         "describe"   : true,
         "expect"     : true,
         "fetch"      : true,
-        "it"         : true,
-        "sinon"      : true,
-        "xit"        : true
+        "test"       : true,
+        "jest"       : true
     },
     "plugins" : [
         "arca",

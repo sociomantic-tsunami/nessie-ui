@@ -7,15 +7,13 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
-/* global jest test */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                from 'react';
+import { mount, shallow }   from 'enzyme';
 
-import Checkable          from '../proto/Checkable';
-
-import Checkbox           from './index';
+import Checkable            from '../proto/Checkable';
+import { Checkbox }         from '../index';
 
 describe( 'Checkbox', () =>
 {
@@ -30,7 +28,7 @@ describe( 'Checkbox', () =>
     {
         test( 'should contain exactly one Checkable', () =>
         {
-            expect( wrapper.find( Checkable ) ).toHaveLength( 1 );
+            expect( wrapper.shallow().find( Checkable ) ).toHaveLength( 1 );
         } );
     } );
 
@@ -38,12 +36,17 @@ describe( 'Checkbox', () =>
     {
         describe( 'isDisabled', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'isDisabled' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { isDisabled: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'isDisabled' ) )
-                    .toBe( true );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isDisabled' ) ).toBe( true );
             } );
         } );
 
@@ -51,38 +54,47 @@ describe( 'Checkbox', () =>
         {
             test( 'should be false by default', () =>
             {
-                expect( Checkbox.defaultProps.isReadOnly ).toBe( false );
+                expect( wrapper.prop( 'isReadOnly' ) ).toBe( false );
             } );
 
             test( 'should be passed to Checkable', () =>
             {
-                const onChange = jest.fn();
-                wrapper.setProps( { isReadOnly: true, onChange } );
+                wrapper.setProps( { isReadOnly: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
-                    .toBe( onChange );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'isReadOnly' ) ).toBe( true );
             } );
         } );
 
         describe( 'hasError', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'hasError' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { hasError: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'hasError' ) )
+                expect( wrapper.shallow().find( Checkable ).prop( 'hasError' ) )
                     .toBe( true );
             } );
         } );
 
         describe( 'forceHover', () =>
         {
+            test( 'should be false by default', () =>
+            {
+                expect( wrapper.prop( 'forceHover' ) ).toBe( false );
+            } );
+
             test( 'should be passed to the Checkable', () =>
             {
                 wrapper.setProps( { forceHover: true } );
 
-                expect( wrapper.find( Checkable ).prop( 'forceHover' ) )
-                    .toBe( true );
+                expect( wrapper.shallow().find( Checkable )
+                    .prop( 'forceHover' ) ).toBe( true );
             } );
         } );
 
@@ -90,15 +102,15 @@ describe( 'Checkbox', () =>
         {
             test( 'should be undefined by default', () =>
             {
-                expect( Checkbox.defaultProps.onChange ).toBeUndefined();
+                expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
             } );
 
             test( 'should be passed to Checkable', () =>
             {
                 const onChange = jest.fn();
-                wrapper.setProps( { isReadOnly: true, onChange } );
+                wrapper.setProps( { onChange } );
 
-                expect( wrapper.find( Checkable ).prop( 'onChange' ) )
+                expect( wrapper.shallow().find( Checkable ).prop( 'onChange' ) )
                     .toBe( onChange );
             } );
         } );
@@ -109,11 +121,91 @@ describe( 'Checkbox', () =>
 describe( 'CheckboxDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <Checkbox /> );
+        driver  = wrapper.driver();
     } );
+
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+blur since it is disabled';
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onBlur when isDisabled', () =>
+            {
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onBlur,
+                } );
+
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+blur since it is read only';
+
+                expect( () => driver.blur() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onBlur when isReadOnly', () =>
+            {
+                const onBlur = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onBlur,
+                } );
+
+                try
+                {
+                    driver.blur();
+                }
+                catch ( error )
+                {
+                    expect( onBlur ).not.toBeCalled();
+                }
+            } );
+        } );
+    } );
+
 
     describe( 'focus()', () =>
     {
@@ -122,121 +214,171 @@ describe( 'CheckboxDriver', () =>
             const onFocus = jest.fn();
             wrapper.setProps( { onFocus } );
 
-            wrapper.driver().focus();
-
+            driver.focus();
             expect( onFocus ).toBeCalledTimes( 1 );
         } );
-    } );
 
 
-    describe( 'blur()', () =>
-    {
-        test( 'should call onFocus once', () =>
+        describe( 'isDisabled', () =>
         {
-            const onBlur = jest.fn();
-            wrapper.setProps( { onBlur } );
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+focus since it is disabled';
 
-            wrapper.driver().blur();
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
 
-            expect( onBlur ).toBeCalledTimes( 1 );
+            test( 'should not trigger onFocus when isDisabled', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onFocus,
+                } );
+
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+focus since it is read only';
+
+                expect( () => driver.focus() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onFocus when isReadOnly', () =>
+            {
+                const onFocus = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onFocus,
+                } );
+
+                try
+                {
+                    driver.focus();
+                }
+                catch ( error )
+                {
+                    expect( onFocus ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
 
-    describe( 'setChecked()', () =>
-    {
-        test( 'should not call onChange when already checked', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { isChecked: true, onChange } );
-
-            wrapper.driver().setChecked();
-
-            expect( onChange ).toBeCalledTimes( 0 );
-        } );
-
-        test( 'should call onChange once when unchecked', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { isChecked: false, onChange } );
-
-            wrapper.driver().setChecked();
-
-            expect( onChange ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should set target.checked to true', () =>
-        {
-            let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
-            wrapper.setProps( { isChecked: false, onChange } );
-
-            wrapper.driver().setChecked();
-
-            expect( targetChecked ).toBe( true );
-        } );
-    } );
-
-
-    describe( 'setUnchecked()', () =>
-    {
-        test( 'should not call onChange when already unchecked', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { isChecked: false, onChange } );
-
-            wrapper.driver().setUnchecked();
-
-            expect( onChange ).toBeCalledTimes( 0 );
-        } );
-
-        test( 'should call onChange once when checked', () =>
-        {
-            const onChange = jest.fn();
-            wrapper.setProps( { isChecked: true, onChange } );
-
-            wrapper.driver().setUnchecked();
-
-            expect( onChange ).toBeCalledTimes( 1 );
-        } );
-
-        test( 'should set target.checked to false', () =>
-        {
-            let targetChecked;
-            const onChange = jest.fn().mockImplementation( e =>
-                targetChecked = e.target.checked );
-            wrapper.setProps( { isChecked: true, onChange } );
-
-            wrapper.driver().setUnchecked();
-
-            expect( targetChecked ).toBe( false );
-        } );
-    } );
-
-
-    describe( 'toggleChecked()', () =>
+    describe( 'change()', () =>
     {
         test( 'should call onChange once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( { onChange } );
 
-            wrapper.driver().toggleChecked();
-
+            driver.change();
             expect( onChange ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should toggle the value of target.checked', () =>
+        test( 'should change the value of target.checked to false', () =>
         {
             let targetChecked;
             const onChange = jest.fn().mockImplementation( e =>
                 targetChecked = e.target.checked );
             wrapper.setProps( { onChange, isChecked: true } );
 
-            wrapper.driver().toggleChecked();
+            driver.change();
+            expect( targetChecked ).toBeFalsy();
+        } );
 
-            expect( targetChecked ).toBe( false );
+        test( 'should change the value of target.checked to true', () =>
+        {
+            let targetChecked;
+            const onChange = jest.fn().mockImplementation( e =>
+                targetChecked = e.target.checked );
+            wrapper.setProps( { onChange, isChecked: false } );
+
+            driver.change();
+            expect( targetChecked ).toBeTruthy();
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+change since it is disabled';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+change since it is read only';
+
+                expect( () => driver.change() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onChange,
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
@@ -246,11 +388,74 @@ describe( 'CheckboxDriver', () =>
         test( 'should call onClick once', () =>
         {
             const onClick = jest.fn();
-
             wrapper.setProps( { onClick } );
-            wrapper.driver().click();
 
+            driver.click();
             expect( onClick ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+click since it is disabled';
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isDisabled', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onClick,
+                } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
+        } );
+
+
+        describe( 'isReadOnly', () =>
+        {
+            test( 'throws the expected error when isReadOnly', () =>
+            {
+                wrapper.setProps( { isReadOnly: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+click since it is read only';
+
+                expect( () => driver.click() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onClick when isReadOnly', () =>
+            {
+                const onClick = jest.fn();
+                wrapper.setProps( {
+                    isReadOnly : true,
+                    label      : 'Tekeli-li',
+                    onClick,
+                } );
+
+                try
+                {
+                    driver.click();
+                }
+                catch ( error )
+                {
+                    expect( onClick ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 
@@ -262,9 +467,30 @@ describe( 'CheckboxDriver', () =>
             const onMouseOver = jest.fn();
             wrapper.setProps( { onMouseOver } );
 
-            wrapper.driver().mouseOver();
-
+            driver.mouseOver();
             expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+
+        test( 'throws the expected error when isDisabled', () =>
+        {
+            wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+            const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+mouseOut since it is disabled';
+
+            expect( () => driver.mouseOut() ).toThrow( expectedError );
+        } );
+
+        test( 'should not trigger onMouseOver when isDisabled', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( {
+                isDisabled : true,
+                label      : 'Tekeli-li',
+                onMouseOver,
+            } );
+
+            expect( () => driver.mouseOut() );
+            expect( onMouseOver ).not.toBeCalled();
         } );
     } );
 
@@ -276,9 +502,34 @@ describe( 'CheckboxDriver', () =>
             const onMouseOut = jest.fn();
             wrapper.setProps( { onMouseOut } );
 
-            wrapper.driver().mouseOut();
-
+            driver.mouseOut();
             expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'throws the expected error when isDisabled', () =>
+            {
+                wrapper.setProps( { isDisabled: true, label: 'Tekeli-li' } );
+                const expectedError = 'Checkbox \'Tekeli-li\' cannot simulate \
+mouseOut since it is disabled';
+
+                expect( () => driver.mouseOut() ).toThrow( expectedError );
+            } );
+
+            test( 'should not trigger onMouseOut when isDisabled', () =>
+            {
+                const onMouseOut = jest.fn();
+                wrapper.setProps( {
+                    isDisabled : true,
+                    label      : 'Tekeli-li',
+                    onMouseOut,
+                } );
+
+                expect( () => driver.mouseOut() );
+                expect( onMouseOut ).not.toBeCalled();
+            } );
         } );
     } );
 } );

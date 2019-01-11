@@ -7,40 +7,33 @@
  *
  */
 
-import SimpleComponentDriver from
-    '../Testing/CommonDrivers/simpleComponentDriver';
-
-const ERRORS = {
-    SWITCH_CANNOT_BE_TOGGLED : ( state ) =>
-        `Switch cannot be toggled since it is ${state}`
+const ERR = {
+    SWITCH_ERR : ( event, state ) =>
+        `Switch cannot simulate ${event} since it is ${state}`,
 };
 
-export default class SwitchDriver extends SimpleComponentDriver
+export default class SwitchDriver
 {
     constructor( wrapper )
     {
-        super( wrapper, `.${wrapper.prop( 'cssMap' ).default}` );
-        this.input = wrapper.find( `.${wrapper.prop( 'cssMap' ).input}` );
+        this.wrapper = wrapper;
+        this.cssMap  = wrapper.instance().context.Switch;
+        this.input   = wrapper.find( `.${this.cssMap.input}` );
     }
 
-    toggle()
+    change()
     {
-        const props = this.wrapper.props();
+        const node  = this.input.instance();
 
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
-            );
-        }
-        if ( props.isReadOnly )
-        {
-            throw new Error(
-                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'readonly' )
-            );
+            throw new Error( ERR.SWITCH_ERR( 'change', 'disabled' ) );
         }
 
-        const node = this.input.instance();
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.SWITCH_ERR( 'change', 'read only' ) );
+        }
 
         node.checked = !node.checked;
         this.input.simulate( 'change' );
@@ -50,13 +43,14 @@ export default class SwitchDriver extends SimpleComponentDriver
 
     blur()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
-            );
+            throw new Error( ERR.SWITCH_ERR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.SWITCH_ERR( 'blur', 'read only' ) );
         }
 
         this.input.simulate( 'blur' );
@@ -65,16 +59,29 @@ export default class SwitchDriver extends SimpleComponentDriver
 
     focus()
     {
-        const props = this.wrapper.props();
-
-        if ( props.isDisabled )
+        if ( this.wrapper.props().isDisabled )
         {
-            throw new Error(
-                ERRORS.SWITCH_CANNOT_BE_TOGGLED( 'disabled' )
-            );
+            throw new Error( ERR.SWITCH_ERR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.SWITCH_ERR( 'focus', 'read only' ) );
         }
 
         this.input.simulate( 'focus' );
+        return this;
+    }
+
+    mouseOver()
+    {
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

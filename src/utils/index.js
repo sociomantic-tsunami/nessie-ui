@@ -123,5 +123,5 @@ export default {
     eventHandler,
     generateId,
     killFocus,
-    mapAria
+    mapAria,
 };

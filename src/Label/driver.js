@@ -7,17 +7,22 @@
  *
  */
 
-export default class WrapperDriver
+export default class LabelDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.prop( 'cssMap' );
     }
 
-    getContent()
+    mouseOver()
     {
-        return this.wrapper.find( `.${this.cssMap.default}` )
-            .first().children();
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

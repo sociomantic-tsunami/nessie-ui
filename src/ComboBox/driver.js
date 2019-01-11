@@ -7,7 +7,7 @@
  *
  */
 
-import { InputField, ListBox, ScrollBox } from 'nessie-ui';
+import { IconButton, InputField, ListBox, ScrollBox } from 'nessie-ui';
 
 export default class ComboBoxDriver
 {
@@ -22,9 +22,15 @@ export default class ComboBoxDriver
         return this;
     }
 
-    changeInput()
+    changeInput( val )
     {
-        this.wrapper.find( InputField ).driver().pressKey( 'c' );
+        this.wrapper.find( InputField ).driver().change( val );
+        return this;
+    }
+
+    clickIcon()
+    {
+        this.wrapper.find( IconButton ).driver().click();
         return this;
     }
 
@@ -46,9 +52,21 @@ export default class ComboBoxDriver
         return this;
     }
 
-    keyPress( string )
+    keyPress( keyCode )
     {
-        this.wrapper.find( InputField ).driver().pressKey( string );
+        this.wrapper.find( InputField ).driver().keyPress( keyCode );
+        return this;
+    }
+
+    keyDown( keyCode )
+    {
+        this.wrapper.find( InputField ).driver().keyDown( keyCode );
+        return this;
+    }
+
+    keyUp( keyCode )
+    {
+        this.wrapper.find( InputField ).driver().keyUp( keyCode );
         return this;
     }
 
@@ -58,15 +76,15 @@ export default class ComboBoxDriver
         return this;
     }
 
-    mouseOutOption( index = 0 )
-    {
-        this.wrapper.find( ListBox ).driver().mouseOutOption( index );
-        return this;
-    }
-
     mouseOver()
     {
         this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOutOption( index = 0 )
+    {
+        this.wrapper.find( ListBox ).driver().mouseOutOption( index );
         return this;
     }
 

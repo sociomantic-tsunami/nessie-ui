@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React                from 'react';
+import { mount }            from 'enzyme';
 
-import IconButton from '../IconButton';
-
-import Tag        from './index';
-
+import { IconButton, Tag }  from '../index';
 
 describe( 'Tag', () =>
 {
@@ -34,8 +30,8 @@ describe( 'Tag', () =>
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Switch.default}` )
+            .first() ).toHaveLength( 1 );
     } );
 
     test( 'should have an IconButton as a child', () =>
@@ -45,42 +41,53 @@ describe( 'Tag', () =>
 
     describe( 'read-only state', () =>
     {
-        beforeEach( () =>
-        {
-            wrapper = mount( <Tag isReadOnly /> );
-        } );
-
         test( 'should have an IconButton as a child with isReadOnly set', () =>
         {
+            wrapper.setProps( { isReadOnly: true } );
+
             expect( wrapper.find( IconButton ) ).toHaveLength( 1 );
             expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
                 .toBeTruthy();
         } );
     } );
 
-    test( 'should have an IconButton with close icon as a child', () =>
+    test( 'should have an IconButton with control theme and close icon as a \
+child', () =>
     {
-        expect( wrapper.find( IconButton ).prop( 'iconType' ) ).toBe( 'close' );
+        expect( wrapper.find( IconButton ).props().iconType ).toBe( 'close' );
     } );
 
     test( 'should have a string as a label when prop label is passed', () =>
     {
         const label = 'Tag Label';
-        const props = {
-            label
-        };
-        wrapper = mount( <Tag { ...props } /> );
+        wrapper.setProps( {
+            label,
+        } );
+
         expect( wrapper.text() ).toBe( label );
     } );
+} );
 
-    test( 'should trigger onClick callbacks when IconButton clicked', () =>
+describe( 'TagDriver', () =>
+{
+    let wrapper;
+
+    beforeEach( () =>
     {
-        const callBack = jest.fn();
-        const props = {
-            onClick : callBack
-        };
-        wrapper = mount( <Tag { ...props } /> );
-        wrapper.driver().clickClose();
-        expect( callBack ).toBeCalled();
+        wrapper = mount( <Tag /> );
+    } );
+
+    describe( 'clickClose()', () =>
+    {
+        test( 'should trigger onClickClose callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( {
+                onClick,
+            } );
+
+            wrapper.driver().clickClose();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
     } );
 } );

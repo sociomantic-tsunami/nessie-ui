@@ -13,11 +13,6 @@
 {
     font-variant-numeric:	lining-nums tabular-nums;
     overflow-wrap:          break-word;
-
-    .row
-    {
-        margin-bottom: 0;
-    }
 }
 
 .borders__rows,
@@ -26,8 +21,6 @@
 .borders__columnDivider,
 .zebra
 {
-    margin-bottom:  16px;
-
     .row,
     .headerRow
     {

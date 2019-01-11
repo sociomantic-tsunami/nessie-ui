@@ -9,8 +9,6 @@
 
 @import "../proto/definitions/variables.css";
 
-$shark: 768px;
-
 .default
 {
     flex:               1 0 0%;
@@ -96,7 +94,6 @@ $shark: 768px;
     {
         .size__$(i)\/$(j)
         {
-            /*flex:       0 0 calc( $i / $j * 100% );*/
             min-width:  calc( $i / $j * 100% );
             max-width:  calc( $i / $j * 100% );
         }
@@ -147,4 +144,16 @@ $shark: 768px;
 {
     min-width:  48px;
     max-width:  48px;
+}
+
+
+.divider
+{
+    flex:       none;
+    align-self: center;
+    height:     1px;
+    width:      100%; /* fallback */
+    padding:    0;
+    margin:     0 0 -1px;
+    background: var( --PC-GREY--L25 );
 }

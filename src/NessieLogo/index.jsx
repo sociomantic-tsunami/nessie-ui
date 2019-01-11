@@ -10,20 +10,29 @@
 import React                from 'react';
 
 import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-
-const NessieLogo = ( { cssMap, className } ) =>
-
-    <img
-        alt       = ""
-        className = { buildClassName( className, cssMap ) }
-        src       = "images/nessie.svg" />;
-
-NessieLogo.propTypes = {};
-
-NessieLogo.defaultProps =
+export default class NessieLogo extends React.Component
 {
-    cssMap : require( './nessieLogo.css' )
-};
+    static contextType = ThemeContext;
 
-export default NessieLogo;
+    static propTypes = {};
+
+    static displayName = 'NessieLogo';
+
+    render()
+    {
+        const {
+            className,
+            cssMap = createCssMap( this.context.NessieLogo, this.props ),
+        } = this.props;
+
+        return (
+            <img
+                alt       = ""
+                className = { buildClassName( className, cssMap ) }
+                src       = "images/nessie.svg" />
+        );
+    }
+}

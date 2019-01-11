@@ -11,76 +11,81 @@ import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import H1                               from '../H1';
-import H2                               from '../H2';
-import H3                               from '../H3';
-import H4                               from '../H4';
-import styles                           from './section.css';
+import { H1, H2, H3, H4 }               from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
-const headers = { 1: H1, 2: H2, 3: H3, 4 : H4 };
-
-
-const Section = ( {
-    children,
-    className,
-    cssMap,
-    id = generateId( 'Section' ),
-    level,
-    title,
-} ) =>
+export default class Section extends React.Component
 {
-    const SectionHeader = headers[ level ];
+    static contextType = ThemeContext;
 
-    return (
-        <section
-            className = { buildClassName( className, cssMap, {  level } ) }
-            id        = { id }>
-            { title && SectionHeader &&
-                <SectionHeader>{ title }</SectionHeader>
-            }
-            <div className = { cssMap.content }>
-                { children }
-            </div>
-        </section>
-    );
-};
+    static propTypes =
+    {
+        /**
+         * Section content
+         */
+        children  : PropTypes.node,
+        /**
+         * Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         * HTML id attribute
+         */
+        id        : PropTypes.string,
+        /**
+         *  Section title
+         */
+        title     : PropTypes.string,
+        /**
+         *  Section level in the document outline
+         */
+        level     : PropTypes.number,
+    };
 
-Section.propTypes =
-{
-    /**
-     * Section content
-     */
-    children  : PropTypes.node,
-    /**
-     * Extra CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * HTML id attribute
-     */
-    id        : PropTypes.string,
-    /**
-     *  Section title
-     */
-    title     : PropTypes.string,
-    /**
-     *  Section level in the document outline
-     */
-    level     : PropTypes.number,
-};
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        id        : undefined,
+        level     : undefined,
+        title     : undefined,
+    };
 
-Section.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-    cssMap    : styles,
-    id        : undefined,
-    level     : undefined,
-    title     : undefined,
-};
+    static displayName = 'Section';
 
-export default Section;
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.Section, this.props ),
+            id = generateId( 'Section' ),
+            level,
+            title,
+        } = this.props;
+
+        const headers = {
+            1 : H1, 2 : H2, 3 : H3, 4 : H4,
+        };
+        const SectionHeader = headers[ level ];
+
+        return (
+            <section
+                className = { buildClassName( className, cssMap, { level } ) }
+                id        = { id }>
+                { title && SectionHeader &&
+                    <SectionHeader>{ title }</SectionHeader>
+                }
+                <div className = { cssMap.content }>
+                    { children }
+                </div>
+            </section>
+        );
+    }
+}

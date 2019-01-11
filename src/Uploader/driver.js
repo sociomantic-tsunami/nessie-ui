@@ -9,33 +9,60 @@
 
 import { Button, IconButton } from 'nessie-ui';
 
+const ERR = {
+    UPLOADER_ERR : ( event, state ) =>
+        `Uploader cannot simulate ${event} since it is ${state}`,
+};
+
 export default class UploaderDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
+        this.cssMap  = wrapper.instance().context.Uploader;
     }
 
     click()
     {
-        this.wrapper.find( Button ).simulate( 'click' );
+        this.wrapper.find( Button ).driver().click();
         return this;
     }
 
     clickSecondary()
     {
-        this.wrapper.find( IconButton ).simulate( 'click' );
+        this.wrapper.find( IconButton ).first().driver().click();
         return this;
     }
-    mouseOut()
+
+    change( val )
     {
-        this.wrapper.simulate( 'mouseleave' );
+        const node = this.wrapper.find( `.${this.cssMap.input}` ).instance();
+
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.UPLOADER_ERR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.UPLOADER_ERR( 'change', 'read only' ) );
+        }
+
+        node.name = val;
+        this.wrapper.find( `.${this.cssMap.input}` ).simulate( 'change' );
+
         return this;
     }
 
     mouseOver()
     {
         this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
         return this;
     }
 }

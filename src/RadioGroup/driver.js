@@ -7,55 +7,21 @@
  *
  */
 
+import { CheckableGroup } from 'nessie-ui';
+
 export default class RadioGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper = wrapper;
+        this.wrapper    = wrapper;
+        this.checkables = wrapper.find( CheckableGroup );
     }
 
-    getContent()
-    {
-        const items = this.wrapper.find( 'li' );
-        return items.map( item => item.childAt( 0 ) );
-    }
 
-    selectByIndex( index = 0 )
+    change( index = 0 )
     {
-        const items = this.getContent();
-        items[ index ].driver().setChecked();
+        this.checkables.driver().change( index );
         return this;
-    }
-
-    selectByValue( value )
-    {
-        const item = this.wrapper.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
-        item.driver().setChecked();
-        return this;
-    }
-
-    toggleByIndex( index = 0 )
-    {
-        const items = this.getContent();
-        items[ index ].driver().toggleChecked();
-        return this;
-    }
-
-    toggleByValue( value )
-    {
-        const item = this.wrapper.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
-        item.driver().toggleChecked();
-        return this;
-    }
-
-    getSelectedValues()
-    {
-        const items = this.wrapper.findWhere( n =>
-            n.instance() && n.instance().checked === true );
-
-        return items.map( item => item.prop( 'value' ) );
     }
 
     mouseOver()

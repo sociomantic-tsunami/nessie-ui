@@ -11,97 +11,204 @@ import React                          from 'react';
 import PropTypes                      from 'prop-types';
 
 import { generateId, buildClassName } from '../utils';
-import styles                         from './tooltip.css';
-import IconButton                     from '../IconButton';
-import Text                           from '../Text';
+import { IconButton, Text }           from '../index';
+import ThemeContext                   from '../Theming/ThemeContext';
+import { createCssMap }               from '../Theming/createCss';
 
-const Tooltip = ( {
-    children,
-    className,
-    cssMap,
-    id = generateId( 'Tooltip' ),
-    isDismissible,
-    isVisible,
-    message,
-    noWarn,
-    noWrap,
-    onClickClose,
-    onMouseOut,
-    onMouseOver,
-    overflowIsHidden,
-    position,
-    role,
-} ) =>
+export default class Tooltip extends React.Component
 {
-    const hasChildren = children !== undefined;
+    static contextType = ThemeContext;
 
-    if ( !noWarn )
+    static propTypes =
     {
-        if ( !Tooltip.didWarn.children && hasChildren )
-        {
-            console.warn( 'Tooltip: Using Tooltip as a wrapper is deprecated \
-and ‘children’ will become the tooltip content in a future major release. \
-Please position the tooltip using a library such as Popper.js instead.' );
-            Tooltip.didWarn.children = true;
-        }
+        /**
+         * Extra CSS class name
+         */
+        className     : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
+        /**
+         * HTML id attribute
+         */
+        id            : PropTypes.string,
+        /**
+         *  Display the tooltip as user dismissible
+         */
+        isDismissible : PropTypes.bool,
+        /**
+         *  Tooltip message text (string or JSX)
+         */
+        message       : PropTypes.node,
+        /**
+         *  Function to call on “Close” button click: ( e ) => { ... }
+         */
+        onClickClose  : PropTypes.func,
+        /**
+         *  onMouseOver callback function: ( e ) => { ... }
+         */
+        onMouseOver   : PropTypes.func,
+        /**
+         *  onMouseOut callback function: ( e ) => { ... }
+         */
+        onMouseOut    : PropTypes.func,
+        /**
+         *  Tooltip position relative to associated component
+         */
+        position      : PropTypes.oneOf( [
+            'top',
+            'topLeft',
+            'topRight',
+            'bottom',
+            'bottomLeft',
+            'bottomRight',
+            'left',
+            'leftTop',
+            'leftBottom',
+            'right',
+            'rightTop',
+            'rightBottom',
+        ] ),
+        /**
+         *  Tooltip role/style
+         */
+        role : PropTypes.oneOf( [
+            'default', 'critical', 'promoted', 'warning' ] ),
+    };
 
-        if ( !Tooltip.didWarn.isVisible && isVisible !== undefined )
-        {
-            console.warn( 'Tooltip: prop ‘isVisible’ is deprecated and will be \
-removed in a future major release.' );
-            Tooltip.didWarn.isVisible = true;
-        }
+    static defaultProps =
+    {
+        className     : undefined,
+        id            : undefined,
+        isDismissible : undefined,
+        message       : undefined,
+        onClickClose  : undefined,
+        onMouseOut    : undefined,
+        onMouseOver   : undefined,
+        position      : 'top',
+        role          : 'default',
+    };
 
-        if ( !Tooltip.didWarn.noWrap && noWrap !== undefined )
-        {
-            console.warn( 'Tooltip: prop ‘noWrap’ is deprecated and will be \
-removed in a future major release.' );
-            Tooltip.didWarn.noWrap = true;
-        }
+    static displayName = 'Tooltip';
 
-        if ( !Tooltip.didWarn.overflowIsHidden &&
-            overflowIsHidden !== undefined )
+    static didWarn = {};
+
+    render()
+    {
+        const {
+            children,
+            className,
+            cssMap = createCssMap( this.context.Tooltip, this.props ),
+            id = generateId( 'Tooltip' ),
+            isDismissible,
+            isVisible,
+            message,
+            noWarn,
+            noWrap,
+            onClickClose,
+            onMouseOut,
+            onMouseOver,
+            overflowIsHidden,
+            position,
+            role,
+        } = this.props;
+
+        const hasChildren = children !== undefined;
+
+        if ( !noWarn )
         {
-            console.warn( 'Tooltip: prop ‘overflowIsHidden’ is deprecated and \
+            if ( !Tooltip.didWarn.children && hasChildren )
+            {
+                console.warn( 'Tooltip: Using Tooltip as a wrapper is \
+deprecated and ‘children’ will become the tooltip content in a future major \
+release. Please position the tooltip using a library such as Popper.js \
+instead.' );
+                Tooltip.didWarn.children = true;
+            }
+
+            if ( !Tooltip.didWarn.isVisible && isVisible !== undefined )
+            {
+                console.warn( 'Tooltip: prop ‘isVisible’ is deprecated and \
 will be removed in a future major release.' );
-            Tooltip.didWarn.overflowIsHidden = true;
-        }
-    }
+                Tooltip.didWarn.isVisible = true;
+            }
 
-    const tooltip = (
-        <div
-            className = { cssMap.tooltip }
-            id        = { id }
-            role      = "tooltip">
-            <div className = { cssMap.message }>
-                { typeof message === 'string' ?
-                    <Text>{ message }</Text> : message
+            if ( !Tooltip.didWarn.noWrap && noWrap !== undefined )
+            {
+                console.warn( 'Tooltip: prop ‘noWrap’ is deprecated and will \
+be removed in a future major release.' );
+                Tooltip.didWarn.noWrap = true;
+            }
+
+            if ( !Tooltip.didWarn.overflowIsHidden &&
+                overflowIsHidden !== undefined )
+            {
+                console.warn( 'Tooltip: prop ‘overflowIsHidden’ is deprecated \
+and will be removed in a future major release.' );
+                Tooltip.didWarn.overflowIsHidden = true;
+            }
+        }
+
+        const tooltip = (
+            <div
+                className = { cssMap.tooltip }
+                id        = { id }
+                role      = "tooltip">
+                <div className = { cssMap.message }>
+                    { typeof message === 'string' ?
+                        <Text>{ message }</Text> : message
+                    }
+                </div>
+                { isDismissible &&
+                    <IconButton
+                        className    = { cssMap.close }
+                        iconSize     = "S"
+                        iconTheme    = "button"
+                        iconType     = "close"
+                        label        = "Close"
+                        onClick      = { onClickClose } />
                 }
             </div>
-            { isDismissible &&
-                <IconButton
-                    className    = { cssMap.close }
-                    iconSize     = "S"
-                    iconTheme    = "button"
-                    iconType     = "close"
-                    label        = "Close"
-                    onClickClose = { onClickClose } />
-            }
-        </div>
-    );
+        );
 
-    if ( hasChildren )
-    {
-        let contentNode = children;
-
-        if ( typeof children === 'string' )
+        if ( hasChildren )
         {
-            contentNode = (
-                <Text
-                    noWrap           = { noWrap }
-                    overflowIsHidden = { overflowIsHidden }>
-                    { children }
-                </Text>
+            let contentNode = children;
+
+            if ( typeof children === 'string' )
+            {
+                contentNode = (
+                    <Text
+                        noWrap           = { noWrap }
+                        overflowIsHidden = { overflowIsHidden }>
+                        { children }
+                    </Text>
+                );
+            }
+
+            return (
+                <div
+                    className = { buildClassName( className, cssMap, {
+                        dismissible : isDismissible,
+                        position,
+                        role,
+                    } ) }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }>
+                    { contentNode &&
+                        <div
+                            aria-describedby = { isVisible ? id : null }
+                            className        = { cssMap.content }>
+                            { contentNode }
+                        </div>
+                    }
+                    { ( isVisible !== false ) &&
+                        <div className = { cssMap.tooltipContainer }>
+                            { tooltip }
+                        </div>
+                    }
+                </div>
             );
         }
 
@@ -114,107 +221,8 @@ will be removed in a future major release.' );
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
-                { contentNode &&
-                    <div
-                        aria-describedby = { isVisible ? id : null }
-                        className        = { cssMap.content }>
-                        { contentNode }
-                    </div>
-                }
-                { ( isVisible !== false ) &&
-                    <div className = { cssMap.tooltipContainer }>
-                        { tooltip }
-                    </div>
-                }
+                { tooltip }
             </div>
         );
     }
-
-    return (
-        <div
-            className = { buildClassName( className, cssMap, {
-                dismissible : isDismissible,
-                position,
-                role,
-            } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }>
-            { tooltip }
-        </div>
-    );
-};
-
-Tooltip.propTypes =
-{
-    /**
-     * Extra CSS class name
-     */
-    className     : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap        : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * HTML id attribute
-     */
-    id            : PropTypes.string,
-    /**
-     *  Display the tooltip as user dismissible
-     */
-    isDismissible : PropTypes.bool,
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    message       : PropTypes.node,
-    /**
-     *  Function to call on “Close” button click: ( e ) => { ... }
-     */
-    onClickClose  : PropTypes.func,
-    /**
-     *  onMouseOver callback function: ( e ) => { ... }
-     */
-    onMouseOver   : PropTypes.func,
-    /**
-     *  onMouseOut callback function: ( e ) => { ... }
-     */
-    onMouseOut    : PropTypes.func,
-    /**
-     *  Tooltip position relative to associated component
-     */
-    position      : PropTypes.oneOf( [
-        'top',
-        'topLeft',
-        'topRight',
-        'bottom',
-        'bottomLeft',
-        'bottomRight',
-        'left',
-        'leftTop',
-        'leftBottom',
-        'right',
-        'rightTop',
-        'rightBottom',
-    ] ),
-    /**
-     *  Tooltip role/style
-     */
-    role : PropTypes.oneOf( [ 'default', 'critical', 'promoted', 'warning' ] ),
-};
-
-Tooltip.defaultProps =
-{
-    className     : undefined,
-    cssMap        : styles,
-    id            : undefined,
-    isDismissible : undefined,
-    message       : undefined,
-    onClickClose  : undefined,
-    onMouseOut    : undefined,
-    onMouseOver   : undefined,
-    position      : 'top',
-    role          : 'default',
-};
-
-Tooltip.didWarn = {};
-
-export default Tooltip;
+}

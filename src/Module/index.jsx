@@ -7,20 +7,28 @@
  *
  */
 
-import React, { Component }                  from 'react';
-import PropTypes                             from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }                    from '../utils';
-import H2                                    from '../H2';
-import H3                                    from '../H3';
-import H4                                    from '../H4';
-import { Card, IconButton, IconWithTooltip } from '../index';
+import { buildClassName }   from '../utils';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
+import {
+    Card,
+    H2,
+    H3,
+    H4,
+    IconButton,
+    IconWithTooltip,
+} from '../index';
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
 
-export default class Module extends Component
+export default class Module extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -107,7 +115,6 @@ export default class Module extends Component
 
     static defaultProps =
     {
-        cssMap        : require( './module.css' ),
         headerLevel   : 2,
         isCollapsed   : false,
         isCollapsible : false,
@@ -115,6 +122,8 @@ export default class Module extends Component
         isLoading     : false,
         isReadOnly    : false,
     };
+
+    static displayName = 'Module';
 
     constructor( props )
     {
@@ -149,7 +158,7 @@ export default class Module extends Component
         const {
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Module, this.props ),
             customHeader,
             errorMessage,
             errorMessageIsVisible,

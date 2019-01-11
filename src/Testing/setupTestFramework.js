@@ -21,12 +21,12 @@ expect.extend( {
             : initialType;
         return type === argument ? {
             message : () => `expected ${received} to be type ${argument}`,
-            pass    : true
+            pass    : true,
         } : {
             message : () => `expected ${received} to be type ${argument}`,
-            pass    : false
+            pass    : false,
         };
-    }
+    },
 } );
 
 
@@ -53,7 +53,7 @@ global.window.document.body.createTextRange = function createRange()
         getBoundingClientRect : () =>
             ( { right: 0 } ),
         getClientRects : () => [],
-        createContextualFragment
+        createContextualFragment,
     };
 };
 

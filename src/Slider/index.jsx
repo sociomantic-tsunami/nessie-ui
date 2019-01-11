@@ -7,17 +7,20 @@
  *
  */
 
-/* global addEventListener removeEventListener Event */
+/* global document addEventListener removeEventListener Event */
+
 import React                            from 'react';
 import PropTypes                        from 'prop-types';
 
 import { generateId, buildClassName }   from '../utils';
-import IconWithTooltip                  from '../IconWithTooltip';
-import Label                            from '../Label';
-
+import { IconWithTooltip, Label }       from '../index';
+import ThemeContext                     from '../Theming/ThemeContext';
+import { createCssMap }                 from '../Theming/createCss';
 
 export default class Slider extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -40,11 +43,6 @@ export default class Slider extends React.Component
         * Display as error
         */
         hasError              : PropTypes.bool,
-        /**
-        *  Callback that receives ref to native input; or array of refs to
-        *  native inputs
-        */
-        inputRef              : PropTypes.func,
         /**
         *  Tooltip message text (string or JSX)
         */
@@ -193,7 +191,6 @@ export default class Slider extends React.Component
 
     static defaultProps =
     {
-        cssMap                : require( './slider.css' ),
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         fillFrom              : 'start',
@@ -213,12 +210,18 @@ export default class Slider extends React.Component
         value                 : 0,
     };
 
+    static displayName = 'Slider';
+
 
     constructor( props )
     {
         super( props );
 
-        this.state = { ...this.state, inputIndex: -1 };
+        this.state = {
+            ...this.state,
+            inputIndex : -1,
+            id         : props.id || generateId( 'Slider' ),
+        };
 
         this.setInputContainerRef = this.setInputContainerRef.bind( this );
         this.setTrackRef          = this.setTrackRef.bind( this );
@@ -231,68 +234,6 @@ export default class Slider extends React.Component
         this.handleUp    = this.handleUp.bind( this );
     }
 
-    componentDidMount()
-    {
-        this.attachInputRefs();
-    }
-
-    componentWillUpdate( nextProps )
-    {
-        if ( nextProps.inputRef !== this.props.inputRef )
-        {
-            this.detachInputRefs();
-        }
-    }
-
-    componentDidUpdate( prevProps )
-    {
-        const { props } = this;
-
-        if ( prevProps.inputRef !== props.inputRef ||
-            prevProps.value.length !== props.value.length )
-        {
-            this.attachInputRefs();
-        }
-    }
-
-    componentWillUnmount()
-    {
-        this.detachInputRefs();
-    }
-
-    /* eslint-disable react/sort-comp */
-    attachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            const inputs = Array.from( this.inputContainer.childNodes );
-
-            if ( inputs.length === 1 )
-            {
-                inputRef( inputs[ 0 ] );
-            }
-            else if ( inputs.length > 1 )
-            {
-                inputRef( inputs );
-            }
-            else
-            {
-                inputRef( null );
-            }
-        }
-    }
-
-    detachInputRefs()
-    {
-        const { inputRef } = this.props;
-
-        if ( inputRef )
-        {
-            inputRef( null );
-        }
-    }
 
     /**
     * Generate track fill style object depending on input values
@@ -390,7 +331,9 @@ export default class Slider extends React.Component
     */
     getValue( x, y )
     {
-        const { isLogarithmic, orientation, maxValue, minValue } = this.props;
+        const {
+            isLogarithmic, orientation, maxValue, minValue,
+        } = this.props;
         const { track } = this;
 
         const isVertical = orientation === 'vertical';
@@ -591,9 +534,9 @@ export default class Slider extends React.Component
             onMouseUp( event );
         }
 
-        removeEventListener( event.type === 'touchmove' ?
+        removeEventListener( event.type === 'touchend' ?
             'touchmove' : 'mousemove', this.handleMove );
-        removeEventListener( event.type === 'touchmove' ?
+        removeEventListener( event.type === 'touchend' ?
             'touchend' : 'mouseup', this.handleUp );
     }
 
@@ -686,7 +629,7 @@ export default class Slider extends React.Component
     {
         const {
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
@@ -694,7 +637,7 @@ export default class Slider extends React.Component
             hasError,
             hasFill,
             hasHandleLabels,
-            id = generateId( 'Slider' ),
+            id = this.state,
             isDisabled,
             isReadOnly,
             label,
@@ -807,8 +750,8 @@ export default class Slider extends React.Component
                     grabbing            : this.state.isGrabbing,
                     handleLabelPosition : hasHandleLabels &&
                         handleLabelPosition,
-                        hasHandleLabels,
-                        orientation,
+                    hasHandleLabels,
+                    orientation,
                 } ) }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>

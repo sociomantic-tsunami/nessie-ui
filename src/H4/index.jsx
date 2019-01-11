@@ -11,42 +11,52 @@ import React              from 'react';
 import PropTypes          from 'prop-types';
 
 import { buildClassName } from '../utils';
-import styles             from './h4.css';
+import ThemeContext       from '../Theming/ThemeContext';
+import { createCssMap }   from '../Theming/createCss';
 
-const H4 = ( {
-    cssMap,
-    className,
-    children,
-    title,
-    role,
-} ) => (
-    <h4 className = { buildClassName( className, cssMap, { role } ) }>
-        { children || title }
-    </h4>
-);
-
-H4.propTypes =
+export default class H4 extends React.Component
 {
-    /**
-    *  Title text
-    */
-    title : PropTypes.string,
-    /**
-    *  Role (style) to apply to heading
-    */
-    role  : PropTypes.oneOf( [
-        'default',
-        'subtle',
-        'promoted',
-        'critical',
-    ] ),
-};
+    static contextType = ThemeContext;
 
-H4.defaultProps =
-{
-    title  : undefined,
-    role   : 'default',
-    cssMap : styles,
-};
+    static propTypes =
+    {
+        /**
+        *  Title text
+        */
+        title : PropTypes.string,
+        /**
+        *  Role (style) to apply to heading
+        */
+        role  : PropTypes.oneOf( [
+            'default',
+            'subtle',
+            'promoted',
+            'critical',
+        ] ),
+    };
 
-export default H4;
+    static defaultProps =
+    {
+        title : undefined,
+        role  : 'default',
+    };
+
+    static displayName = 'H4';
+
+    render()
+    {
+        const {
+            className,
+            children,
+            cssMap = createCssMap( this.context.H4, this.props ),
+            title,
+            role,
+        } = this.props;
+
+        return (
+            <h4 className = { buildClassName( className, cssMap, { role } ) }>
+                { children || title }
+            </h4>
+        );
+    }
+}
