@@ -21,6 +21,7 @@ import DragNDrop                from './DragNDrop';
 import Dropdown                 from './Dropdown';
 import Fieldset                 from './Fieldset';
 import Grid                     from './Grid';
+import GridItem                 from './GridItem';
 import H1                       from './H1';
 import H2                       from './H2';
 import H3                       from './H3';
@@ -95,6 +96,7 @@ export {
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,
@@ -170,6 +172,7 @@ export default {
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,

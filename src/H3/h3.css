@@ -13,7 +13,6 @@
 {
     position: 		relative;
     min-height:     var( --line-height-m );
-    margin-bottom:  var( --spacing-2 );
 
     @extend %Nessie-SemiBold;
     font-size:      var( --typo-4 );

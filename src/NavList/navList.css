@@ -29,12 +29,6 @@
     & > *
     {
         flex:           0 0 auto;
-        margin-bottom:  0;
-
-        &:last-child
-        {
-            margin-right:   0;
-        }
     }
 }
 

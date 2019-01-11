@@ -17,6 +17,7 @@ import dragNDrop            from './DragNDrop/dragNDrop.css';
 import dropdown             from './Dropdown/dropdown.css';
 import fieldset             from './Fieldset/fieldset.css';
 import grid                 from './Grid/grid.css';
+import gridItem             from './GridItem/gridItem.css';
 import h1                   from './H1/h1.css';
 import h2                   from './H2/h2.css';
 import h3                   from './H3/h3.css';
@@ -45,6 +46,7 @@ import paginator            from './Paginator/paginator.css';
 import progressBar          from './ProgressBar/progressBar.css';
 import progressIndicator    from './ProgressIndicator/progressIndicator.css';
 import radio                from './Radio/radio.css';
+import row                  from './Row/row.css';
 import scrollBar            from './ScrollBar/scrollBar.css';
 import scrollBox            from './ScrollBox/scrollBox.css';
 import section              from './Section/section.css';
@@ -84,6 +86,7 @@ export default {
     Dropdown          : dropdown,
     Fieldset          : fieldset,
     Grid              : grid,
+    GridItem          : gridItem,
     H1                : h1,
     H2                : h2,
     H3                : h3,
@@ -112,6 +115,7 @@ export default {
     ProgressBar       : progressBar,
     ProgressIndicator : progressIndicator,
     Radio             : radio,
+    Row               : row,
     ScrollBar         : scrollBar,
     ScrollBox         : scrollBox,
     Section           : section,

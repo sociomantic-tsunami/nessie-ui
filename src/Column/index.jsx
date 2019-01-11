@@ -80,18 +80,23 @@ export default class Column extends React.Component
             'bottom',
         ] ),
         /**
+         *  Adds dividers between column items
+         */
+        hasDividers : PropTypes.bool,
+        /**
          *  Column content
          */
-        children : PropTypes.node,
+        children    : PropTypes.node,
         /**
         *  Column role
         */
-        role     : PropTypes.string,
+        role        : PropTypes.string,
     };
 
     static defaultProps =
     {
-        align : 'auto',
+        align       : 'auto',
+        hasDividers : false,
     };
 
     static displayName = 'Column';
@@ -104,16 +109,31 @@ export default class Column extends React.Component
             className,
             columnTitle,
             cssMap = createCssMap( this.context.Column, this.props ),
+            hasDividers,
             role,
             size,
             verticalAlign,
         } = this.props;
+
+        let elements;
 
         if ( !Column.didWarn && verticalAlign === 'space-around' )
         {
             console.warn( 'Column: \'space-around\' option for verticalAlign \
 prop is deprecated. Please use an alternative layout.' );
             Column.didWarn = true;
+        }
+
+        if ( hasDividers )
+        {
+            elements = React.Children.toArray( children ).flatMap( (
+                child,
+                index,
+                { length },
+            ) =>
+                ( index < length - 1 ?
+                    [ child, <div className = { cssMap.divider } /> ] :
+                    child ) );
         }
 
         return (
@@ -125,7 +145,7 @@ prop is deprecated. Please use an alternative layout.' );
                 } ) }
                 role              = { role }
                 data-column-title = { columnTitle }>
-                { children }
+                { hasDividers ? elements : children }
             </div>
         );
     }

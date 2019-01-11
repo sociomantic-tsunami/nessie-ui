@@ -42,11 +42,6 @@
             fill:       var( --PC-BLUE );
         }
     }
-
-    & > *
-    {
-        margin-bottom:  0;
-    }
 }
 
 .disabled

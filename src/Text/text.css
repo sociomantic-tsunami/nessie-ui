@@ -12,9 +12,7 @@
 .default
 {
     width:          auto;
-    margin-bottom:  var( --spacing-1 );
     text-transform: none;
-
     line-height:    var( --line-height-m );
 
     .default
