@@ -76,7 +76,11 @@
     },
     "Grid" :
     {
-        "children": "{<Column size='1/2'><Text>First column</Text></Column><Column size='1/2'><Text>Second column</Text></Column><Column size='1/2'><Text>Third column</Text></Column>}"
+        "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
+    },
+    "GridItem" :
+    {
+        "children": "{<Text>Grid Item dummy text</Text>}"
     },
     "H1" :
     {

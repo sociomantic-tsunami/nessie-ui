@@ -7,8 +7,6 @@
  *
  */
 
-import 'normalize.css';
-
 import Button                   from './Button';
 import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
@@ -24,6 +22,7 @@ import DragNDrop                from './DragNDrop';
 import Dropdown                 from './Dropdown';
 import Fieldset                 from './Fieldset';
 import Grid                     from './Grid';
+import GridItem                 from './GridItem';
 import H1                       from './H1';
 import H2                       from './H2';
 import H3                       from './H3';
@@ -84,6 +83,7 @@ import Tooltip                  from './Tooltip';
 import Uploader                 from './Uploader';
 import ValuedTextInput          from './ValuedTextInput';
 
+
 export {
     Button,
     Card,
@@ -100,6 +100,7 @@ export {
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,
@@ -161,6 +162,7 @@ export {
     ValuedTextInput,
 };
 
+
 export default {
     Button,
     Card,
@@ -177,6 +179,7 @@ export default {
     Dropdown,
     Fieldset,
     Grid,
+    GridItem,
     H1,
     H2,
     H3,
@@ -237,6 +240,11 @@ export default {
     Uploader,
     ValuedTextInput,
 };
+
+
+// Theme context
+export ThemeContext     from './Theming/ThemeContext';
+export DefaultTheme     from './DefaultTheme';
 
 // Addons
 export CodeEditor       from './Addons/CodeEditor';

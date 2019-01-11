@@ -7,17 +7,13 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable no-magic-numbers, no-multi-str */
+/* eslint-disable no-magic-numbers */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React                    from 'react';
+import { mount }                from 'enzyme';
 
-import ScrollBar  from '../ScrollBar';
-import * as utils from './utils';
-
-import ScrollBox  from './index';
-
+import { ScrollBar, ScrollBox } from '../index';
+import * as utils               from './utils';
 
 describe( 'ScrollBox', () =>
 {
@@ -26,7 +22,7 @@ describe( 'ScrollBox', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox /> );
+        wrapper  = mount( <ScrollBox /> );
         instance = wrapper.instance();
     } );
 
@@ -124,7 +120,7 @@ describe( 'ScrollBoxDriver', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <ScrollBox /> );
+        wrapper  = mount( <ScrollBox /> );
         instance = wrapper.instance();
         instance.innerRef = {
             clientHeight : 100,
@@ -134,21 +130,17 @@ describe( 'ScrollBoxDriver', () =>
             scrollLeft   : 50,
             scrollTop    : 50,
         };
-        wrapper.setState();
     } );
 
     describe( 'clickScrollX', () =>
     {
         test( 'invokes onClickScrollUp callback prop', () =>
         {
-
             const onClickScrollUp = jest.fn();
             wrapper.setProps( { onClickScrollUp, scrollUpIsVisible: true } );
             wrapper.setState();
 
             wrapper.driver().clickScrollUp();
-
-
             expect( onClickScrollUp ).toBeCalledTimes( 1 );
         } );
 
@@ -159,11 +151,9 @@ describe( 'ScrollBoxDriver', () =>
                 onClickScrollRight,
                 scrollRightIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollRight();
-
             expect( onClickScrollRight ).toBeCalledTimes( 1 );
         } );
 
@@ -175,11 +165,9 @@ describe( 'ScrollBoxDriver', () =>
                 onClickScrollDown,
                 scrollDownIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollDown();
-
             expect( onClickScrollDown ).toBeCalledTimes( 1 );
         } );
 
@@ -191,11 +179,9 @@ describe( 'ScrollBoxDriver', () =>
                 onClickScrollLeft,
                 scrollLeftIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollLeft();
-
             expect( onClickScrollLeft ).toBeCalledTimes( 1 );
         } );
 
@@ -205,11 +191,9 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount      : 50,
                 scrollUpIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollUp();
-
             expect( instance.innerRef.scrollTop ).toBe( 0 );
         } );
 
@@ -219,11 +203,9 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount         : 50,
                 scrollRightIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollRight();
-
             expect( instance.innerRef.scrollLeft ).toBe( 100 );
         } );
 
@@ -233,11 +215,9 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount        : 50,
                 scrollDownIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollDown();
-
             expect( instance.innerRef.scrollTop ).toBe( 100 );
         } );
 
@@ -247,11 +227,9 @@ describe( 'ScrollBoxDriver', () =>
                 scrollAmount        : 50,
                 scrollLeftIsVisible : true,
             } );
-
             wrapper.setState();
 
             wrapper.driver().clickScrollLeft();
-
             expect( instance.innerRef.scrollLeft ).toBe( 0 );
         } );
     } );
@@ -262,19 +240,16 @@ describe( 'ScrollBoxDriver', () =>
         {
             const onScroll = jest.fn();
             wrapper.setProps( { onScroll, scroll: 'vertical' } );
-
             wrapper.setState();
 
             wrapper.driver().scrollVertical( 250 );
-
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
 
         test( 'should throw an error when scroll direction is wrong', () =>
         {
-            const props = { scroll: 'horizontal' };
-
-            wrapper = mount( <ScrollBox { ...props } /> );
+            wrapper.setProps( { scroll: 'horizontal' } );
+            wrapper.setState();
 
             expect( () => wrapper.driver().scrollVertical( 10 ) )
                 .toThrowError( 'Cannot scroll because scroll direction is \
@@ -288,9 +263,9 @@ neither \'vertical\' nor \'both\'' );
         {
             const onScroll = jest.fn();
             wrapper.setProps( { onScroll, scroll: 'horizontal' } );
+            wrapper.setState();
 
             wrapper.driver().scrollHorizontal( 250 );
-
             expect( onScroll ).toBeCalledTimes( 1 );
         } );
 
@@ -298,6 +273,7 @@ neither \'vertical\' nor \'both\'' );
         test( 'should throw an error when scroll direction is wrong', () =>
         {
             wrapper.setProps( { scroll: 'vertical' } );
+            wrapper.setState();
 
             expect( () => wrapper.driver().scrollHorizontal( 270 ) )
                 .toThrowError( 'Cannot scroll because scroll direction is \

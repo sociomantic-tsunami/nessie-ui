@@ -21,6 +21,10 @@
 
 .default
 {
+    display:        flex;
+    flex-direction: row;
+    align-items:    center;
+
     .icon
     {
         position:   absolute;
@@ -30,6 +34,8 @@
 
     .input
     {
+        flex:           1 1 auto;
+        min-width:      0;
         margin-bottom:  0;
     }
 }

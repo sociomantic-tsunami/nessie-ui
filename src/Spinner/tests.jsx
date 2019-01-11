@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
 /* eslint-disable no-magic-numbers */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import Spinner   from './index';
-
+import { Spinner }  from '../index';
 
 describe( 'Spinner', () =>
 {
@@ -27,8 +25,8 @@ describe( 'Spinner', () =>
 
     test( 'should have its component name as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.Spinner
+            .default}` ) ).toHaveLength( 1 );
     } );
     test( 'should contain a Spinner', () =>
     {

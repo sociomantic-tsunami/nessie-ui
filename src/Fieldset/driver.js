@@ -7,15 +7,22 @@
  *
  */
 
-export default class GridColumnDriver
+export default class FieldsetDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
     }
 
-    getContent()
+    mouseOver()
     {
-        return this.wrapper.children();
+        this.wrapper.simulate( 'mouseenter' );
+        return this;
+    }
+
+    mouseOut()
+    {
+        this.wrapper.simulate( 'mouseleave' );
+        return this;
     }
 }

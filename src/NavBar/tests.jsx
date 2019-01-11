@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import NavBar      from './index';
-
+import { NavBar }   from '../index';
 
 describe( 'NavBar', () =>
 {
@@ -22,11 +20,13 @@ describe( 'NavBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <NavBar /> );
+        wrapper = mount( <NavBar /> );
     } );
 
-    test( 'should contain a <nav> element', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( 'nav' ) ).toHaveLength( 1 );
+        expect( wrapper
+            .find( `.${wrapper.instance().context.NavBar.default}` ).first() )
+            .toHaveLength( 1 );
     } );
 } );

@@ -7,14 +7,12 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React        from 'react';
+import { mount }    from 'enzyme';
 
-import H2          from './index';
-
+import { H2 }       from '../index';
 
 describe( 'H2', () =>
 {
@@ -22,11 +20,12 @@ describe( 'H2', () =>
 
     beforeEach( () =>
     {
-        wrapper = shallow( <H2 /> );
+        wrapper = mount( <H2 /> );
     } );
 
-    test( 'should contain a <h2> element', () =>
+    test( 'should have its component name and hash as default className', () =>
     {
-        expect( wrapper.find( 'h2' ) ).toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.H2.default}` ) )
+            .toHaveLength( 1 );
     } );
 } );

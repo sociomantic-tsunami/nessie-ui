@@ -18,7 +18,7 @@ export default class TagDriver
 
     clickClose()
     {
-        this.wrapper.find( IconButton ).first().driver().click();
+        this.wrapper.find( IconButton ).simulate( 'click' );
         return this;
     }
 }

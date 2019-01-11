@@ -39,7 +39,7 @@ describe( 'FlounderDropdown', () =>
 describe( 'FlounderDropdownDriver', () =>
 {
     let wrapper;
-
+    let driver;
 
     const pokemonList = [
         'Option',
@@ -64,122 +64,84 @@ describe( 'FlounderDropdownDriver', () =>
     beforeEach( () =>
     {
         wrapper = mount( <FlounderDropdown /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'chooseItemByIndex( index )', () =>
+
+    describe( 'change( val )', () =>
     {
-        test( 'should throw error when isReadOnly', () =>
+        test( 'should trigger onChange callback prop once', () =>
         {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange, children: pokemonList } );
 
-            expect( () => wrapper.driver().chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => wrapper.driver().chooseItemByIndex( 0 ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.change( 'a' );
+            expect( onChange ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'chooseItemByText( text )', () =>
+
+    describe( 'close()', () =>
     {
-        test( 'should throw error when isReadOnly', () =>
+        test( 'should trigger onClose callback prop once', () =>
         {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
+            const onClose = jest.fn();
+            wrapper.setProps( { onClose } );
 
-            expect( () => wrapper.driver().chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => wrapper.driver().chooseItemByText( 'Pikachu' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.close();
+            expect( onClose ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'chooseItemByValues( value )', () =>
+
+    describe( 'open()', () =>
     {
-        test( 'should throw error when isReadOnly', () =>
+        test( 'should trigger onOpen callback prop once', () =>
         {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
+            const onOpen = jest.fn();
+            wrapper.setProps( { onOpen } );
 
-            expect( () => wrapper.driver().chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
-        } );
-
-        test( 'should throw error when isDisabled', () =>
-        {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
-
-            expect( () => wrapper.driver().chooseItemByValue( 'pokemon1' ) )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.open();
+            expect( onOpen ).toBeCalledTimes( 1 );
         } );
     } );
 
-    describe( 'removeAllTags()', () =>
+
+    describe( 'firstTouch()', () =>
     {
-        test( 'should throw error when isReadOnly', () =>
+        test( 'should trigger onFirstTouch callback prop once', () =>
         {
-            wrapper.setProps( {
-                isReadOnly : true,
-                data       : pokemonList,
-            } );
+            const onFirstTouch = jest.fn();
+            wrapper.setProps( { children: pokemonList, onFirstTouch } );
 
-            expect( () => wrapper.driver().removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is read-only' );
+            driver.firstTouch();
+            expect( onFirstTouch ).toBeCalledTimes( 1 );
         } );
+    } );
 
-        test( 'should throw error when isDisabled', () =>
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
         {
-            wrapper.setProps( {
-                isDisabled : true,
-                data       : pokemonList,
-            } );
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
 
-            expect( () => wrapper.driver().removeAllTags() )
-                .toThrowError( 'Cannot change the flounder dropdown value \
-since it is disabled' );
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
         } );
+    } );
 
-        test( 'should throw error when not configured with multipleTags', () =>
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
         {
-            wrapper.setProps( { data: pokemonList } );
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
 
-            expect( () => wrapper.driver().removeAllTags() )
-                .toThrowError( 'Cannot deselect tags when flounder dropdown \
-is not configured with multipleTags' );
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
         } );
     } );
 } );

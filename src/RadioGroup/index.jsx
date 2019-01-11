@@ -11,7 +11,7 @@ import React, { Children }       from 'react';
 import PropTypes                 from 'prop-types';
 
 import { CheckableGroup }        from '../index';
-import { generateId, buildClassName }            from '../utils';
+import { generateId }            from '../utils';
 import { buildRadiosFromValues } from './utils';
 
 
@@ -20,7 +20,7 @@ const RadioGroup = ( {
     id = generateId( 'RadioGroup' ),
     selectedValue,
     values,
-    ...props,
+    ...props
 } ) =>
 {
     let items = children ?
@@ -123,7 +123,6 @@ RadioGroup.defaultProps =
 {
     children              : undefined,
     className             : undefined,
-    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     forceHover            : false,
@@ -139,5 +138,7 @@ RadioGroup.defaultProps =
     selectedValue         : undefined,
     values                : undefined,
 };
+
+RadioGroup.displayName = 'RadioGroup';
 
 export default RadioGroup;

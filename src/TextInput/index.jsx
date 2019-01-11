@@ -11,13 +11,14 @@ import React          from 'react';
 import PropTypes      from 'prop-types';
 
 import { generateId } from '../utils';
-import InputField     from '../InputField';
+import { InputField } from '../index';
 
 
-const TextInput = ( {
+const TextInput = React.forwardRef( ( {
     id = generateId( 'TextInput' ),
     ...props
-} ) => <InputField { ...props } id = { id } type = "text" />;
+}, ref ) =>
+    <InputField { ...props } id = { id } type = "text" ref = { ref } /> );
 
 TextInput.propTypes =
 {
@@ -68,10 +69,6 @@ TextInput.propTypes =
      *  HTML id attribute
      */
     id           : PropTypes.string,
-    /**
-     *  Callback that receives the native <input>: ( ref ) => { ... }
-     */
-    inputRef     : PropTypes.func,
     /**
      *  Display as disabled
      */
@@ -145,11 +142,9 @@ TextInput.defaultProps =
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
-    cssMap         : undefined,
     forceHover     : false,
     hasError       : false,
     id             : undefined,
-    inputRef       : undefined,
     isDisabled     : false,
     isReadOnly     : false,
     name           : undefined,
@@ -167,5 +162,7 @@ TextInput.defaultProps =
     textAlign      : undefined,
     value          : '',
 };
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;

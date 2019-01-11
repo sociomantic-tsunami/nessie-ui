@@ -7,15 +7,18 @@
  *
  */
 
-import React, { Component } from 'react';
+import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { buildClassName }   from '../utils';
+import { Spinner }          from '../index';
+import ThemeContext         from '../Theming/ThemeContext';
+import { createCssMap }     from '../Theming/createCss';
 
-import Spinner              from '../Spinner';
-
-export default class DragNDrop extends Component
+export default class DragNDrop extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -28,7 +31,7 @@ export default class DragNDrop extends Component
         dragNDropState : PropTypes.oneOf( [
             'default',
             'dragOver',
-            'uploading'
+            'uploading',
         ] ),
         /**
          * Message shown in dragOver state
@@ -39,15 +42,16 @@ export default class DragNDrop extends Component
     static defaultProps =
     {
         dragNDropState : 'default',
-        cssMap         : require( './dragNDrop.css' )
     };
+
+    static displayName = 'DragNDrop';
 
     render()
     {
         const {
             children,
             className,
-            cssMap,
+            cssMap = createCssMap( this.context.DragNDrop, this.props ),
             dragNDropState,
             message,
         } = this.props;
@@ -89,7 +93,10 @@ export default class DragNDrop extends Component
         );
 
         return (
-            <div className = { buildClassName( className, cssMap, { dropzoneIsVisible } ) }>
+            <div
+                className = { buildClassName( className, cssMap, {
+                    dropzoneIsVisible,
+                } ) }>
                 <div className = { cssMap.content }>
                     { children }
                 </div>

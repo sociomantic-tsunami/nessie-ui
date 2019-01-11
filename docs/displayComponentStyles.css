@@ -1500,7 +1500,7 @@ template {
 .button__default__3AXUD
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -2366,63 +2366,63 @@ template {
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .text__variant__SemiBold__2VAOJ
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 .text__variant__SemiBoldIt__32duo
 {
     font-family: Nessie-SemiBoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .text__variant__Bold__2Ur3P
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
 .text__variant__BoldIt__1pB5r
 {
     font-family: Nessie-BoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .text__variant__ExtraBold__2hx7I
 {
     font-family: Nessie-ExtraBold, sans-serif;
-    font-weight: normal;
+    font-weight: 900;
     font-style: normal;
 }
 
 .text__variant__ExtraBoldIt__3sFS6
 {
     font-family: Nessie-ExtraBoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 900;
+    font-style: italic;
 }
 
 .text__variant__Light__8f8wN
 {
     font-family: Nessie-Light, sans-serif;
-    font-weight: normal;
+    font-weight: 200;
     font-style: normal;
 }
 
 .text__variant__LightIt__1c1gJ
 {
     font-family: Nessie-LightIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 200;
+    font-style: italic;
 }
 
 :root
@@ -2726,7 +2726,7 @@ template {
 .label__label__14d1i
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -2883,7 +2883,7 @@ legend.label__default__1KHiG + *
 .tooltip__default__mBPQb .tooltip__message__2x0kz
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -3333,6 +3333,11 @@ legend.label__default__1KHiG + *
         margin-bottom:  0;
     }
 
+.iconWithTooltip__default__38_eb .iconWithTooltip__icon__3fbtj
+    {
+        pointer-events: none;
+    }
+
 .iconWithTooltip__position__topRight__25nMe > .iconWithTooltip__content__3vlxh, .iconWithTooltip__position__topLeft__MeeB4 > .iconWithTooltip__content__3vlxh
     {
         -webkit-box-flex:   1;
@@ -3734,7 +3739,7 @@ legend.label__default__1KHiG + *
 .checkbox__default__pbnFv .checkbox__labelText__LFWb0
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -9348,14 +9353,14 @@ span.CodeMirror-selectedtext { background: none; }
 .listBoxOption__default__DkyAr .listBoxOption__optionText__2VizO
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 .listBoxOption__selected__2rpmu.listBoxOption__optionText__2VizO
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -9553,8 +9558,8 @@ span.CodeMirror-selectedtext { background: none; }
 .listBoxOptionGroup__default__3m1i2 .listBoxOptionGroup__headerText__114K7
 {
     font-family: Nessie-SemiBoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 600;
+    font-style: italic;
 }
 
 :root
@@ -10014,7 +10019,7 @@ span.CodeMirror-selectedtext { background: none; }
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 :root
@@ -10137,7 +10142,7 @@ span.CodeMirror-selectedtext { background: none; }
 .datePicker__default__12lfM .datePicker__calendarHeader__QSM7u
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -10523,14 +10528,14 @@ span.CodeMirror-selectedtext { background: none; }
 .datePickerHeader__default__3hHMY .datePickerHeader__year__3-0Rm
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
 .datePickerHeader__default__3hHMY .datePickerHeader__date__bZ3Dw
 {
     font-family: Nessie-Light, sans-serif;
-    font-weight: normal;
+    font-weight: 200;
     font-style: normal;
 }
 
@@ -11042,7 +11047,7 @@ span.CodeMirror-selectedtext { background: none; }
 .dragNDrop__message__1VqXX
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -11252,7 +11257,7 @@ span.CodeMirror-selectedtext { background: none; }
 .h1__default__OCMje
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -11416,7 +11421,7 @@ span.CodeMirror-selectedtext { background: none; }
 .h2__default__3XBD-
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -11581,7 +11586,7 @@ span.CodeMirror-selectedtext { background: none; }
 .h3__default__22-Rs
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -11746,7 +11751,7 @@ span.CodeMirror-selectedtext { background: none; }
 .h4__default__3y7ay
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -11919,27 +11924,27 @@ span.CodeMirror-selectedtext { background: none; }
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .flounderDropdown__default__2X8Az:not(.flounderDropdown__headerMode__16Okb) .flounderDropdown__main__1pUya:focus .flounderDropdown__selectedDisplayed__2cJMJ, .flounderDropdown__default__2X8Az:not(.flounderDropdown__headerMode__16Okb).flounderDropdown__fakeHovered__lNHDh .flounderDropdown__main__1pUya .flounderDropdown__selectedDisplayed__2cJMJ, .flounderDropdown__default__2X8Az:not(.flounderDropdown__headerMode__16Okb) .flounderDropdown__mainWrapper__367Dq.flounderDropdown__open__1nJLJ .flounderDropdown__main__1pUya .flounderDropdown__selectedDisplayed__2cJMJ, .flounderDropdown__default__2X8Az .flounderDropdown__option__3uJ_T:not(.flounderDropdown__optionWithDescription__2BGA9), .flounderDropdown__default__2X8Az .flounderDropdown__multipleSelectTag__i3YNn
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 .flounderDropdown__default__2X8Az .flounderDropdown__header__2gOzt
 {
     font-family: Nessie-SemiBoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .flounderDropdown__default__2X8Az .flounderDropdown__option__3uJ_T.flounderDropdown__selected__1jWo3:not(.flounderDropdown__description__3cxuz), .flounderDropdown__default__2X8Az .flounderDropdown__option__3uJ_T.flounderDropdown__optionWithDescription__2BGA9.flounderDropdown__selected__1jWo3, .flounderDropdown__headerLevel__1__3oBgf .flounderDropdown__main__1pUya .flounderDropdown__selectedDisplayed__2cJMJ
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -12726,7 +12731,7 @@ span.CodeMirror-selectedtext { background: none; }
 /* Fixes IE 11 arrow alignment */
 
 .flounderDropdown__headerLevel__1__3oBgf .flounderDropdown__main__1pUya, .flounderDropdown__headerLevel__1__3oBgf .flounderDropdown__main__1pUya .flounderDropdown__selectedDisplayed__2cJMJ {
-        display: inline;
+        float: left; /* Fixes arrow clickable state in Edge */
     }
 
 .flounderDropdown__headerLevel__1__3oBgf .flounderDropdown__arrow__OsOe4
@@ -13730,34 +13735,34 @@ span.CodeMirror-selectedtext { background: none; }
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .inputField__default__BgAmO:-ms-input-placeholder, .inputField__disabled__2qccD:-ms-input-placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .inputField__default__BgAmO::-ms-input-placeholder, .inputField__disabled__2qccD::-ms-input-placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .inputField__default__BgAmO::placeholder, .inputField__disabled__2qccD::placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .inputField__default__BgAmO:focus, .inputField__default__BgAmO.inputField__fakeHovered__2y0UI
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -14208,7 +14213,7 @@ textarea.inputField__resizable__2CfEu
 .modalDialog__title__1o8rG
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -15305,14 +15310,14 @@ only used in type__carousel for now
 .navItem__link__1Uu3K
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 .navItem__role__sub__xE3Hy.navItem__current__41LLP > .navItem__link__1Uu3K
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -16756,7 +16761,7 @@ only used in type__carousel for now
 .paginator__pageButton__1W4o8, .paginator__ellipsis__2AnFD
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -17307,7 +17312,7 @@ only used in type__carousel for now
 .progressIndicator__percentage__3Biz3
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -17536,7 +17541,7 @@ only used in type__carousel for now
 .radio__default__1hjqa .radio__labelText__2T7C7
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -18582,7 +18587,7 @@ only used in type__carousel for now
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 :root
@@ -19081,7 +19086,7 @@ only used in type__carousel for now
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 :root
@@ -19538,7 +19543,7 @@ only used in type__carousel for now
 .statusIndicator__default__21UTk
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -20021,7 +20026,7 @@ only used in type__carousel for now
 .tabButton__default__2fot-, .tabButton__default__2fot- .tabButton__label__s-MZG
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -20634,7 +20639,7 @@ only used in type__carousel for now
 .tableCell__header__2c3IP
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -21181,7 +21186,6 @@ only used in type__carousel for now
                 align-items:    flex-end;
         max-width:      100%;
         border-bottom:  solid 1px #c7d0db;
-        margin-bottom:  16px;
     }
 
 .tabs__default__3DOQh .tabs__header__31DDx > *
@@ -21234,6 +21238,70 @@ only used in type__carousel for now
 .tabs__default__3DOQh .tabs__content__1I5gV
     {
         /* nothing to do here */
+    }
+
+/* padding X */
+
+.tabs__paddingX__S__xI3Ot .tabs__content__1I5gV
+    {
+        padding-left:   8px;
+        padding-right:  8px;
+    }
+
+.tabs__paddingX__M__3vDOB .tabs__content__1I5gV
+    {
+        padding-left:   16px;
+        padding-right:  16px;
+    }
+
+.tabs__paddingX__L__cbd0Y .tabs__content__1I5gV
+    {
+        padding-left:   24px;
+        padding-right:  24px;
+    }
+
+.tabs__paddingX__XL__2_4bR .tabs__content__1I5gV
+    {
+        padding-left:   32px;
+        padding-right:  32px;
+    }
+
+.tabs__paddingX__XXL__1rJaR .tabs__content__1I5gV
+    {
+        padding-left:   40px;
+        padding-right:  40px;
+    }
+
+/* padding Y */
+
+.tabs__paddingY__S__3KjcG .tabs__content__1I5gV
+    {
+        padding-top:     8px;
+        padding-bottom:  8px;
+    }
+
+.tabs__paddingY__M__2i9Lu .tabs__content__1I5gV
+    {
+        padding-top:     16px;
+        padding-bottom:  16px;
+    }
+
+.tabs__paddingY__L__1AIn- .tabs__content__1I5gV
+    {
+        padding-top:     24px;
+        padding-bottom:  24px;
+    }
+
+.tabs__paddingY__XL__1sMjE .tabs__content__1I5gV
+    {
+        padding-top:     32px;
+        padding-bottom:  32px;
+    }
+
+.tabs__paddingY__XXL__3NMkx .tabs__content__1I5gV
+    {
+        padding-top:     40px;
+        padding-bottom:  40px;
     }
 
 /*
@@ -21321,7 +21389,7 @@ only used in type__carousel for now
 .tag__default__308m5 .tag__label__33UX_
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -21518,28 +21586,28 @@ only used in type__carousel for now
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .tagInput__default__3DPRk .tagInput__input__30zcy:-ms-input-placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .tagInput__default__3DPRk .tagInput__input__30zcy::-ms-input-placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 .tagInput__default__3DPRk .tagInput__input__30zcy::placeholder
 {
     font-family: Nessie-RegularIt, sans-serif;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 :root
@@ -22229,21 +22297,21 @@ only used in type__carousel for now
 .toggleButton__role__primary__3UzDS .toggleButton__title__33-bh, .toggleButton__role__subtle__3ZST7 .toggleButton__title__33-bh
 {
     font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 .toggleButton__role__primary__3UzDS .toggleButton__subLabel__y1UZH
 {
     font-family: Nessie-SemiBoldIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .toggleButton__role__secondary__2CHx1 .toggleButton__title__33-bh
 {
     font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 

@@ -7,16 +7,12 @@
  *
  */
 
-/* global test jest */
-/* eslint-disable max-len */
+/* eslint-disable no-magic-numbers */
 
-import React              from 'react';
-import { shallow, mount } from 'enzyme';
+import React                          from 'react';
+import { mount }                      from 'enzyme';
 
-import { Label, Slider }  from '../index';
-
-import SliderGroup        from './index';
-
+import { Label, Slider, SliderGroup } from '../index';
 
 describe( 'SliderGroup', () =>
 {
@@ -34,7 +30,8 @@ describe( 'SliderGroup', () =>
 
     test( 'should have sliderGroup__default as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).default}` ) )
+        expect( wrapper
+            .find( `.${wrapper.instance().context.SliderGroup.default}` ) )
             .toHaveLength( 1 );
     } );
 
@@ -44,14 +41,13 @@ describe( 'SliderGroup', () =>
         const props = {
             sliders : [
                 { 'value': 50 },
-                { 'value': 80 }
-            ]
+                { 'value': 80 },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( 'Slider' )
-            .find( `.${wrapper.prop( 'cssMap' ).default}` ) ).toHaveLength( 2 );
+        expect( wrapper.find( Slider ) ).toHaveLength( 2 );
     } );
 
     test( 'should render all the stepLabel labels provided', () =>
@@ -59,15 +55,14 @@ describe( 'SliderGroup', () =>
         const props = {
             stepLabels : [
                 { 'stepLabel': 'No filter', 'step': 0 },
-                { 'stepLabel': 'Low', 'step': 25 }
-            ]
+                { 'stepLabel': 'Low', 'step': 25 },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.stepLabelsContainer}` )
-            .children() ).toHaveLength( 2 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .stepLabelsContainer}` ).children() ).toHaveLength( 2 );
     } );
 
     test( 'should render all the slider labels provided', () =>
@@ -77,43 +72,43 @@ describe( 'SliderGroup', () =>
                 'category 1',
                 'category 2',
                 'category 3',
-                'category 4'
-            ]
+                'category 4',
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        const cssMap = wrapper.prop( 'cssMap' );
 
-        expect( wrapper.find( `.${cssMap.sliderLabelContainer}` )
-            .find( Label ) ).toHaveLength( 4 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .sliderLabelContainer}` ).find( Label ) ).toHaveLength( 4 );
     } );
 
     test(
-        'Step labels should pass to the individual Sliders the correct amount of ticks',
+        'Step labels should pass to the individual Sliders the correct amount \
+of ticks',
         () =>
         {
             const props = {
                 sliders : [
                     { 'value': 50 },
-                    { 'value': 50 }
+                    { 'value': 50 },
                 ],
                 stepLabels : [
                     {
                         'stepLabel' : 'No filter',
-                        'step'      : 0
+                        'step'      : 0,
                     },
                     {
                         'stepLabel' : 'Low',
-                        'step'      : 25
-                    }
-                ]
+                        'step'      : 25,
+                    },
+                ],
             };
 
             wrapper = mount( <SliderGroup { ...props } /> );
 
             expect( wrapper.find( Slider ).first().prop( 'ticks' ) )
                 .toHaveLength( 2 );
-        }
+        },
     );
 
     test( 'Individul sliders should ignore label and stepLabel props', () =>
@@ -126,20 +121,20 @@ describe( 'SliderGroup', () =>
                     'stepLabels' : [
                         { 'stepLabel': 25, 'step': 25 },
                         { 'stepLabel': 50, 'step': 50 },
-                        { 'stepLabel': 75, 'step': 75 }
-                    ]
+                        { 'stepLabel': 75, 'step': 75 },
+                    ],
                 },
             ],
             stepLabels : [
                 {
                     'stepLabel' : 'No filter',
-                    'step'      : 0
+                    'step'      : 0,
                 },
                 {
                     'stepLabel' : 'Low',
-                    step        : 25
-                }
-            ]
+                    step        : 25,
+                },
+            ],
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
@@ -152,28 +147,29 @@ describe( 'SliderGroup', () =>
     test( 'should have sliderGroup__disabled if isDisabled = true', () =>
     {
         const props = {
-            isDisabled : true
+            isDisabled : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).disabled}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .disabled}` ) ).toHaveLength( 1 );
     } );
 
     test( 'should have sliderGroup__error if hasError = true', () =>
     {
         const props = {
-            hasError : true
+            hasError : true,
         };
 
         wrapper = mount( <SliderGroup { ...props } /> );
 
-        expect( wrapper.find( `.${wrapper.prop( 'cssMap' ).error}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.find( `.${wrapper.instance().context.SliderGroup
+            .error}` ) ).toHaveLength( 1 );
     } );
 
     test(
-        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop to the individual sliders if defined',
+        'SliderGroup should pass down its isReadOnly/isDisabled/hasError prop \
+to the individual sliders if defined',
         () =>
         {
             const props = {
@@ -191,11 +187,12 @@ describe( 'SliderGroup', () =>
                 .toBeTruthy();
             expect( wrapper.find( Slider ).first().prop( 'hasError' ) )
                 .toBeTruthy();
-        }
+        },
     );
 
     test(
-        'SliderGroup should pass down its minValue and maxValue prop to the individual sliders if defined',
+        'SliderGroup should pass down its minValue and maxValue prop to the \
+individual sliders if defined',
         () =>
         {
             const props = {
@@ -207,11 +204,12 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.find( Slider ).prop( 'minValue' ) ).toBe( 0 );
             expect( wrapper.find( Slider ).prop( 'maxValue' ) ).toBe( 500 );
-        }
+        },
     );
 
     test(
-        'Individual sliders should get their orientation = vertical even if the a orientation is individually passed as horizontal in sliders array ',
+        'Individual sliders should get their orientation = vertical even if \
+the a orientation is individually passed as horizontal in sliders array ',
         () =>
         {
             const props = {
@@ -221,7 +219,7 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.find( Slider ).prop( 'orientation' ) )
                 .toBe( 'vertical' );
-        }
+        },
     );
 
     describe( 'onChange', () =>
@@ -235,98 +233,102 @@ describe( 'SliderGroup', () =>
             wrapper = mount( <SliderGroup { ...props } /> );
             expect( wrapper.prop( 'onChange' ) ).toBeUndefined();
         } );
-
-        test(
-            'onChange event in individual Sliders should be passed from Sliders array',
-            () =>
-            {
-                const onChangeSlider = jest.fn();
-                const props = {
-                    sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
-
-                wrapper = shallow( <SliderGroup { ...props } /> );
-
-                wrapper.find( Slider ).simulate( 'change' );
-
-                expect( onChangeSlider ).toBeCalled();
-            }
-        );
-
-        test(
-            'Individual slider onChange event should also trigger SliderGroup onChange event if the function is provided in proptype OnChange',
-            () =>
-            {
-                const onChangeSlider = jest.fn();
-                const onChangeSliderGroup = jest.fn();
-                const props = {
-                    onChange : onChangeSliderGroup,
-                    sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
-                };
-
-                wrapper = shallow( <SliderGroup { ...props } /> );
-
-                wrapper.find( Slider ).simulate( 'change' );
-
-                expect( onChangeSlider ).toBeCalled();
-                expect( onChangeSliderGroup ).toBeCalled();
-            }
-        );
     } );
 } );
 
 describe( 'SliderGroupDriver', () =>
 {
     let wrapper;
+    let driver;
 
     beforeEach( () =>
     {
         wrapper = mount( <SliderGroup /> );
+        driver  = wrapper.driver();
     } );
 
-    describe( 'getSlider()', () =>
+    describe( 'change( val, index )', () =>
     {
-        test( 'should get Slider at given index', () =>
+        test( 'should trigger onChange in individual Slider', () =>
         {
+            const onChangeSlider = jest.fn();
             wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 }
-                ],
+                sliders : [ { 'value': 50, 'onChange': onChangeSlider } ],
             } );
 
-            expect( wrapper.driver().getSlider( 1 ).prop( 'value' ) ).toBe( 80 );
+            driver.change();
+            expect( onChangeSlider ).toBeCalledTimes( 1 );
         } );
 
-        test( 'should get Sliders when indexes are passed as an array', () =>
-        {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 50 },
-                    { value: 80 },
-                    { value: 60 },
-                    { value: 70 }
-                ],
-            } );
+        test(
+            'Individual slider onChange event should also trigger SliderGroup \
+onChange event if the function is provided in proptype OnChange',
+            () =>
+            {
+                const onChangeSlider = jest.fn();
+                const onChangeSliderGroup = jest.fn();
+                wrapper.setProps( {
+                    onChange : onChangeSliderGroup,
+                    sliders  : [ { 'value': 50, 'onChange': onChangeSlider } ],
+                } );
 
-            expect( wrapper.driver().getSlider( [ 0, 2 ] ) ).toHaveLength( 2 );
+                driver.change();
+
+                expect( onChangeSlider ).toBeCalledTimes( 1 );
+                expect( onChangeSliderGroup ).toBeCalledTimes( 1 );
+            },
+        );
+
+
+        describe( 'isDisabled', () =>
+        {
+            test( 'should not trigger onChange when isDisabled', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isDisabled : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
 
-        test( 'should return a Slider at certain index in array', () =>
-        {
-            wrapper.setProps( {
-                sliders : [
-                    { value: 40 },
-                    { value: 20 },
-                    { value: 10 },
-                    { value: 30 }
-                ],
-            } );
 
-            expect( wrapper.driver().getSlider( [ 1, 3 ] )[ 0 ].prop( 'value' ) )
-                .toBe( 20 );
+        describe( 'isReadOnly', () =>
+        {
+            test( 'should not trigger onChange when isReadOnly', () =>
+            {
+                const onChange = jest.fn();
+                wrapper.setProps( {
+                    onChange,
+                    isReadOnly : true,
+                    sliders    : [ {
+                        'value' : 50,
+                        'label' : 'Cthulhu',
+                    } ],
+                } );
+
+                try
+                {
+                    driver.change();
+                }
+                catch ( error )
+                {
+                    expect( onChange ).not.toBeCalled();
+                }
+            } );
         } );
     } );
 } );
