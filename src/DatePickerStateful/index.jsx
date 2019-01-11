@@ -850,8 +850,11 @@ export default class DatePickerStateful extends Component
                     tryFormatHourInput( timestamp ) }
                 id                = { id }
                 inputPlaceholder  = { inputPlaceholder }
-                inputValue        = { editingMainInputValue ||
-                    tryFormatMainInput( timestamp, setPrecision( mode ) ) }
+                inputValue        = { typeof editingMainInputValue ===
+                  'undefined' ? tryFormatMainInput(
+                        timestamp,
+                        setPrecision( mode ),
+                    ) : editingMainInputValue }
                 isDisabled        = { isDisabled }
                 isOpen            = { isOpen }
                 isReadOnly        = { isReadOnly }
