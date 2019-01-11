@@ -51,6 +51,7 @@ import PageFooter               from './PageFooter';
 import PageHeader               from './PageHeader';
 import Paginator                from './Paginator';
 import PasswordInput            from './PasswordInput';
+import PasswordInputStateful    from './PasswordInputStateful';
 import ProgressBar              from './ProgressBar';
 import ProgressIndicator        from './ProgressIndicator';
 import Radio                    from './Radio';
@@ -127,6 +128,7 @@ export {
     PageHeader,
     Paginator,
     PasswordInput,
+    PasswordInputStateful,
     ProgressBar,
     ProgressIndicator,
     Radio,
@@ -204,6 +206,7 @@ export default {
     PageHeader,
     Paginator,
     PasswordInput,
+    PasswordInputStateful,
     ProgressBar,
     ProgressIndicator,
     Radio,
