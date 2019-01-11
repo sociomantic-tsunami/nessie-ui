@@ -414,7 +414,6 @@ export default class DatePickerStateful extends Component
         this.handleClickCell    = this.handleClickCell.bind( this );
         this.handleClickIcon    = this.handleClickIcon.bind( this );
         this.handleClickOutSide = this.handleClickOutSide.bind( this );
-        this.setInputRef        = this.setInputRef.bind( this );
         this.setWrapperRef      = this.setWrapperRef.bind( this );
     }
 
@@ -439,11 +438,6 @@ export default class DatePickerStateful extends Component
     componentWillUnmount()
     {
         removeEventListener( 'mousedown', this.handleClickOutSide, false );
-    }
-
-    setInputRef( ref )
-    {
-        this.inputRef = ref;
     }
 
     setWrapperRef( ref )
@@ -774,8 +768,6 @@ export default class DatePickerStateful extends Component
 
     open()
     {
-        this.inputRef.focus();
-
         const { minDateSelectable } = this.props;
         let { timestamp } = this.state;
 
@@ -858,7 +850,6 @@ export default class DatePickerStateful extends Component
                     tryFormatHourInput( timestamp ) }
                 id                = { id }
                 inputPlaceholder  = { inputPlaceholder }
-                inputRef          = { this.setInputRef }
                 inputValue        = { editingMainInputValue ||
                     tryFormatMainInput( timestamp, setPrecision( mode ) ) }
                 isDisabled        = { isDisabled }
