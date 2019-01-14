@@ -94,6 +94,10 @@ export default class TagInputStateful extends React.Component
          *  Button click callback function: ( e ) => { ... }
          */
         onClickClose     : PropTypes.func,
+        /*
+         * On click callback function for dropdown option
+         */
+        onClickOption    : PropTypes.func,
         /**
          *  onFocus callback function
          */
@@ -149,12 +153,14 @@ export default class TagInputStateful extends React.Component
         id               : undefined,
         inputRef         : undefined,
         isDisabled       : false,
+        isOpen           : false,
         isReadOnly       : false,
         isResizable      : false,
         name             : undefined,
         onBlur           : undefined,
         onChange         : undefined,
         onClickClose     : undefined,
+        onClickOption    : undefined,
         onFocus          : undefined,
         onKeyDown        : undefined,
         onKeyPress       : undefined,
@@ -176,20 +182,20 @@ export default class TagInputStateful extends React.Component
 
         this.state = {
             dropdownPosition,
-            isOpen  : false,
-            options : props.options,
-            tags    : props.tags,
-            value   : props.value,
+            isOpen : props.isOpen,
+            tags   : props.tags,
+            value  : props.value,
         };
 
-        this.handleBlur       = this.handleBlur.bind( this );
-        this.handleChange     = this.handleChange.bind( this );
-        this.handleClickClose = this.handleClickClose.bind( this );
-        this.handleFocus      = this.handleFocus.bind( this );
-        this.handleKeyDown    = this.handleKeyDown.bind( this );
-        this.setInputRef      = this.setInputRef.bind( this );
-        this.setScrollBoxRef  = this.setScrollBoxRef( this );
-        this.setWrapperRef    = this.setWrapperRef.bind( this );
+        this.handleBlur        = this.handleBlur.bind( this );
+        this.handleChange      = this.handleChange.bind( this );
+        this.handleClickClose  = this.handleClickClose.bind( this );
+        this.handleClickOption = this.handleClickOption.bind( this );
+        this.handleFocus       = this.handleFocus.bind( this );
+        this.handleKeyDown     = this.handleKeyDown.bind( this );
+        this.setInputRef       = this.setInputRef.bind( this );
+        this.setScrollBoxRef   = this.setScrollBoxRef( this );
+        this.setWrapperRef     = this.setWrapperRef.bind( this );
     }
 
     componentDidMount()
@@ -312,18 +318,33 @@ export default class TagInputStateful extends React.Component
     {
         const { tags } = this.state;
         const callback = this.props.onClickClose;
+        const closeTag = e.target.value;
 
         if ( callback )
         {
-            callback( e.target.value );
+            callback( closeTag );
         }
-
-        const closeTag = e.target.value;
 
         const newItems = tags.filter( ( item ) => ( typeof item === 'string' ?
             item !== closeTag : item.value !== closeTag ) );
 
         this.setState( { tags: newItems } );
+    }
+
+    handleClickOption( e, id )
+    {
+        const { tags } = this.state;
+        const callback = this.props.onClickOption;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        const option = this.props.options.find( opt => opt.id === id );
+        const newTags = [ ...tags, option.text ];
+
+        this.setState( { tags: newTags } );
     }
 
     handleFocus( e )
@@ -367,46 +388,47 @@ export default class TagInputStateful extends React.Component
 
     render()
     {
-        const { props } = this;
+        const { props }  = this;
+        const { isOpen } = this.state;
 
-        let dropdownContent;
 
-        if ( props.options.length )
-        {
-            dropdownContent = (
-                <ScrollBox
-                    height       = "50vh"
-                    onScroll     = { props.onScroll }
-                    scroll       = "vertical"
-                    scrollBoxRef = { this.setScrollBoxRef }>
-                    <ListBox
-                        id            = { addPrefix( 'listbox', props.id ) }
-                        isFocusable   = { false }
-                        onClickOption = { this.handleClickOption }
-                        selection = { addPrefix( props.selection, props.id ) }>
-                        { buildListBoxOptions( props.options, props.id ) }
-                    </ListBox>
-                </ScrollBox>
-            );
-        }
+        const filteredOptions = this.props.options.filter( item =>
+            !this.state.tags.includes( item.text ) );
+
+
+        const dropdownContent = !!filteredOptions.length && (
+            <ScrollBox
+                onScroll     = { props.onScroll }
+                scroll       = "vertical"
+                scrollBoxRef = { this.setScrollBoxRef }>
+                <ListBox
+                    id            = { addPrefix( 'listbox', props.id ) }
+                    isFocusable   = { false }
+                    onClickOption = { this.handleClickOption }
+                    selection = { addPrefix( props.selection, props.id ) }>
+                    { buildListBoxOptions(
+                        filteredOptions,
+                        props.id,
+                    ) }
+                </ListBox>
+            </ScrollBox>
+        );
 
         return (
             <TagInputwithDropdown
                 { ...props }
-                dropdownIsOpen   = { props.isOpen }
+                dropdownIsOpen   = { filteredOptions.length && isOpen }
                 dropdownPosition = { this.state.dropdownPosition }
                 dropdownProps    = { {
                     children : dropdownContent,
                     padding  : props.options.length ? 'none' : 'S',
                 } }
                 inputRef     = { this.setInputRef }
-                isOpen       = { this.state.isOpen }
                 onBlur       = { this.handleBlur }
                 onChange     = { this.handleChange }
                 onClickClose = { this.handleClickClose }
                 onFocus      = { this.handleFocus }
                 onKeyDown    = { this.handleKeyDown }
-                options      = { this.state.options }
                 tags         = { this.state.tags }
                 value        = { this.state.value }
                 wrapperRef   = { this.setWrapperRef } />

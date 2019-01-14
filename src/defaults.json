@@ -297,10 +297,10 @@
     },
     "TagInputStateful" :
     {
-        "tags"    : [ "TagLabelString 1", "TagLabelString 2" ],
+        "tags" : [ "TagLabelString 1", "TagLabelString 2" ],
         "options" : [
-            { "tag": "TagLabelString 3", "isSelected": false },
-            { "tag": "TagLabelString 4", "isSelected": false }
+            { "text": "TagLabelString 3", "id": "first" },
+            { "text": "TagLabelString 4", "id": "second" }
         ]
     },
     "TextArea" :
