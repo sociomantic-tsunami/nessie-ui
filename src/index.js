@@ -35,6 +35,7 @@ import ListBox                  from './ListBox';
 import MessageBox               from './MessageBox';
 import ModalDialog              from './ModalDialog';
 import Module                   from './Module';
+import ModuleHooks              from './ModuleHooks';
 import NavBar                   from './NavBar';
 import NavDropdown              from './NavDropdown';
 import NavItem                  from './NavItem';
@@ -110,6 +111,7 @@ export {
     MessageBox,
     ModalDialog,
     Module,
+    ModuleHooks,
     NavBar,
     NavDropdown,
     NavItem,
@@ -186,6 +188,7 @@ export default {
     MessageBox,
     ModalDialog,
     Module,
+    ModuleHooks,
     NavBar,
     NavDropdown,
     NavItem,

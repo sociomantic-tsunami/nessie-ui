@@ -155,6 +155,11 @@
         "title": "Our Wonderful Module",
         "children": "{<Text>Some other components go here....</Text>}"
     },
+    "ModuleHooks" :
+    {
+        "title": "Our Wonderful ModuleHooks",
+        "children": "{<Text>Some other components go here....</Text>}"
+    },
     "ModalDialog" :
     {
         "children" : "{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
