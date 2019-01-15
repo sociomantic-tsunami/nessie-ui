@@ -11,9 +11,8 @@ import React, { useState, useContext } from 'react';
 import PropTypes                       from 'prop-types';
 
 import { buildClassName }              from '../utils';
-// import ThemeContext          from '../Theming/ThemeContext';
-// import { createCssMap }      from '../Theming/createCss';
-import styles                          from '../Module/module.css';
+import ThemeContext                    from '../Theming/ThemeContext';
+import { createCssMap }                from '../Theming/createCss';
 import {
     Card,
     H2,
@@ -25,34 +24,62 @@ import {
 
 const headers = { 2: H2, 3: H3, 4: H4 };
 
-const ModuleHooks = ( {
-    children,
-    className,
-    customHeader,
-    cssMap,
-    errorMessage,
-    errorMessageIsVisible,
-    hasError,
-    hasModuleError,
-    headerLevel,
-    // isCollapsed,
-    isCollapsible,
-    isDeletable,
-    isLoading,
-    isReadOnly,
-    onClickHeader,
-    onMouseOutError,
-    onMouseOutHeader,
-    onMouseOverError,
-    onMouseOverHeader,
-    title,
-} ) =>
+const ModuleHooks = props =>
 {
+    const context = useContext( ThemeContext );
     const [ collapsed, toggleCollapsed ] = useState( false );
-    // const context = useContext( ThemeContext );
-    // const cssMap = createCssMap( context.Module, this.props );
+
+    const {
+        children,
+        className,
+        cssMap = createCssMap( context.Module, props ),
+        customHeader,
+        errorMessage,
+        errorMessageIsVisible,
+        hasError,
+        hasModuleError,
+        headerLevel,
+        isCollapsed,
+        isCollapsible,
+        isDeletable,
+        isLoading,
+        isReadOnly,
+        onClickDelete,
+        onClickHeader,
+        onClickToggle,
+        onMouseOutError,
+        onMouseOutHeader,
+        onMouseOverError,
+        onMouseOverHeader,
+        title,
+    } = props;
 
     let header;
+
+    const finalCollapsed = typeof isCollapsed !== 'undefined' ? isCollapsed :
+        collapsed;
+
+    const handleClickToggle = ( e ) =>
+    {
+        e.stopPropagation();
+
+        if ( onClickToggle )
+        {
+            onClickToggle( e );
+        }
+
+        toggleCollapsed( !collapsed );
+    };
+
+    const handleClickDelete = ( e ) =>
+    {
+        e.stopPropagation();
+
+        if ( onClickDelete )
+        {
+            onClickDelete( e );
+        }
+    };
 
     if ( customHeader )
     {
@@ -93,15 +120,15 @@ const ModuleHooks = ( {
                     <IconButton
                         iconType   = "delete"
                         isReadOnly = { isReadOnly }
-                        onClick    = { this.handleClickDelete }>
+                        onClick    = { handleClickDelete }>
                           Delete
                     </IconButton>
                     }
                     { isCollapsible &&
                     <IconButton
-                        iconType  = { collapsed ? 'down' : 'up' }
-                        onClick   = { () => toggleCollapsed( !collapsed ) }>
-                        { collapsed ? 'Show' : 'Hide' }
+                        iconType  = { finalCollapsed ? 'down' : 'up' }
+                        onClick   = { handleClickToggle }>
+                        { finalCollapsed ? 'Show' : 'Hide' }
                     </IconButton>
                     }
                 </div>
@@ -112,7 +139,7 @@ const ModuleHooks = ( {
     return (
         <Card
             className = { buildClassName( className, cssMap, {
-                collapsed   : isCollapsible && collapsed,
+                collapsed   : isCollapsible && finalCollapsed,
                 collapsible : isCollapsible,
                 error       : hasError,
                 level       : headerLevel,
@@ -120,7 +147,7 @@ const ModuleHooks = ( {
             } ) }
             padding = "none">
             { header }
-            { ( !isCollapsible || !collapsed ) &&
+            { ( !isCollapsible || !finalCollapsed ) &&
                 <div className = { cssMap.content }>
                     { children }
                 </div>
@@ -148,10 +175,10 @@ ModuleHooks.propTypes =
      *  Allow module to be collapsed
      */
     isCollapsible         : PropTypes.bool,
-    // /**
-    //  *  Display module as collapsed (show a toggle)
-    //  */
-    // isCollapsed           : PropTypes.bool,
+    /**
+     *  Display module as collapsed (show a toggle)
+     */
+    isCollapsed           : PropTypes.bool,
     /**
      *  Allow module to be removed (show a “Delete” button)
      */
@@ -201,34 +228,34 @@ ModuleHooks.propTypes =
      */
     onClickDelete         : PropTypes.func,
     /**
-      *  Error icon mouse over callback function
-      */
+     *  Error icon mouse over callback function
+     */
     onMouseOutError       : PropTypes.func,
     /**
-      *  Error icon mouse out callback function
-      */
+     *  Error icon mouse out callback function
+     */
     onMouseOverError      : PropTypes.func,
     /**
-      *  Header mouse over callback function
-      */
+     *  Header mouse over callback function
+     */
     onMouseOutHeader      : PropTypes.func,
     /**
-      *  Header mouse out callback function
-      */
+     *  Header mouse out callback function
+     */
     onMouseOverHeader     : PropTypes.func,
 };
 
 ModuleHooks.defaultProps =
 {
-    cssMap        : styles,
+    cssMap        : undefined,
     headerLevel   : 2,
-    // isCollapsed   : false,
+    isCollapsed   : undefined,
     isCollapsible : false,
     isDeletable   : false,
     isLoading     : false,
     isReadOnly    : false,
 };
 
-ModuleHooks.displayName = 'TextInput';
+ModuleHooks.displayName = 'ModuleHooks';
 
 export default ModuleHooks;
