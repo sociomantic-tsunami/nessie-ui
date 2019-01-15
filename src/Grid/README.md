@@ -1,317 +1,124 @@
 ## Component Description
 
-The Grid is the basis of the Nessie layout system.
+The Nessie layout system doesn’t restrict you to a single grid with *x* columns.
+Instead you have the power to define any grid you like, with 4 possible gutter
+sizes (or no gutters at all).
 
-The Nessie layout system doesn’t restrict you to a single grid with _x_ columns.
-Instead you have the power to define any grid you like, up to 24 columns,
-with three possible gutter sizes (or no gutters at all).
-
-What’s more, you’re free to define _multiple_ grids and sub-grids which you can
+What’s more, you’re free to define *multiple* grids and sub-grids which you can
 mix and match as you see fit. (With great power comes great responsibility.
 We urge you to exercise restraint.)
 
+You can use **GridItem** component if you need to extend features of Grid to a
+specific grid cell(s).
+
+
 ### Setting up a Grid
 
-Let’s set up a simple grid with three Columns:
+In order to use Grid, you **don't** need to rely on Rows and Columns anymore,
+because Grid component is using `display: grid;` and almost everything is
+defined on container level, while everything inside is grid item and is placed
+inside grid cells according to rules from container (Grid itself).
+
+A simple example:
 
 ```
 <Grid>
-    <Column size="1/3">...</Column>
-    <Column size="1/3">...</Column>
-    <Column size="1/3">...</Column>
+    <Column>...</Column>
+    <Row>...</Row>
+    <Button>...</Button>
 </Grid>
 ```
 
-Here we use the `size` prop of each Column to set its respective width. The
-result is:
+The result is:
+
 ```
 +---[ Grid ]---------------------------------------------------------+
-|  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
+|  +---[ Column ]-----+  +---[ Row ]--------+  +---[ Button ]-----+  |
 |  |                  |  |                  |  |                  |  |
-|  +------------------+  +------------------+  +------------------+  |                                                                  
+|  +------------------+  +------------------+  +------------------+  |
 +--------------------------------------------------------------------+
 ```
 
-### Column sizes
-
-Configure the width of Columns using their `size` prop.  The `size` prop accepts
-any fraction down to 1/24 (expressed as a string: `"1/24"`) or the value
-`"content"`.
-
-`"content"` will use the Column’s content width as its size.
-
-#### Fractional sizes
-
-Fractional sizes allow you define an _n_-column grid, where _n_ is the total
-number of columns. If we want to have a Column component that spans _s_ grid
-columns then its `size` is the fraction _s/n_.
-
-For example, a Column that spans 4 grid columns in a grid layout of 24 columns
-is expressed as:
-```
-<Column size="4/24"/>
-```
-
-It’s recommended to always use the same denominator for a given Grid and,
-ideally, throughout your application to ensure a consistent overall layout.
+Notice how, no matter which element is placed inside of Grid, all elements
+occupy the same amount of space inside of it. This is because Grid by default
+is giving each item the same size (`1fr`, or 1 fraction of free space) and
+spaces them evenly.
 
 
-#### Grids Without Sizes
+### Difference between implicit and explicit grids
 
-If you don’t set column sizes the column widths will be distributed evenly. You
-can totally mix Columns with and without sizes in the same Grid:
+**Explicit grid** is manually defined grid that is formed by defining a fixed
+number of lines and tracks. In order to set explicit grid, use
+`customColumns` and `customRows` props. It's not obligatory to define an
+explicit grid.
 
-```
-<Grid>
-    <Column size="1/3">...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Grid>
-```
 
-The result here will be identical the previous example – that is, three columns
-of 1/3:
-```
-+---[ Grid ]---------------------------------------------------------+
-|  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
-|  |                  |  |                  |  |                  |  |
-|  +------------------+  +------------------+  +------------------+  |                                                                  
-+--------------------------------------------------------------------+
-```
+If there are more grid items than cells in the grid or when a grid item is
+placed outside of the explicit grid, the grid container automatically generates
+grid tracks by adding grid lines to the grid. The explicit grid together with
+these additional implicit tracks and lines forms the so called
+**implicit grid**. Use `autoCols` and `autoRows` props to define the grid cell
+sizes of implicit grid.
 
-### Grid gutters
 
-The horizontal space between any two Columns in a Grid is called the gutter. You
-can configure gutter size used in a given Grid using the Grid’s `gutters` prop.
+### Columns and rows
 
-The prop accepts one of four values: `"S"`, `"M'` (default), `"L"` and `"none"`
-(no gutters).
+You can simply set the number of `columns` and/or `rows` that you want. This
+way, you can have an explicit grid (e.g. 6x3) with all grid cells of the same
+size (`1fr`).
 
-### Grid spacing
+The number should be an integer greater than 0 (zero).
 
-Configure the vertical spacing between Grids using the Grid’s `spacing` prop.
-The prop accepts one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
-(no spacing).
+If you need more specific grid, you can use `autoCols`/`autoRows` (implicit
+grid) and/or `customCols`/`customRows` (explicit grid); note that
+`customCols`/`customRows` are overriding any `columns`/`rows` respectively.
 
-### Grid wrap
+All props are accepting string values, so you can define your grid however you
+want, e.g.:
+- `100px 1fr auto 200px` (creates a grid with 4 columns)
+- `1fr 3fr 50%` (creates a grid with 3 columns)
+- `repeat(7, 1fr)` (creates a grid with 7 equally wide columns)
+- etc.
 
-You can control whether the Grid content will wrap using the `hasWrap` boolean
-prop (default `true`).
 
-For convenience, a Row component is also avaiable: it’s simply a Grid whose 
-`hasWrap` prop is always `false`. Use it the same as you’d use Grid:
+### Grid flow
 
-```
-<Row>
-    <Column>...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Row>
-```
+With `autoFlow`, you can choose where the new items will be placed if you have
+grid items that you don't explicitly place on the grid - the auto-placement
+algorithm automatically places the items in the Grid. This property controls how
+the auto-placement algorithm works.
 
-### Grid alignment — or, aligning Columns inside Grids
+The prop accepts one of four values:
+- `"row"` - tells the auto-placement algorithm to fill in each row in turn,
+adding new rows as necessary (default)
+- `"col"` - tells the auto-placement algorithm to fill in each column in turn,
+adding new columns as necessary
+- `"row_dense"` and `"col_dense"` - tells the auto-placement algorithm to
+attempt to fill in holes earlier in the grid if smaller items come up later
 
-You can control horizontal and vertical alignment of Columns inside a Grid using
-the Grid’s `align` and `verticalAlign` props, respectively.
+
+### Grid gaps
+
+`columnGap` and `rowGap` are used for defining a space between columns and rows
+respectively.
+
+The props accept one of four values: `"S"`, `"M"` (default), `"L"` and `"none"`
+(no gaps).
+
 
 #### Horizontal alignment
 
-The Grid’s `align` prop accepts one of four values: `"auto"` (default),
-`"left"`, `"right"` and `"center"`.
+The Grid’s `justify` prop accepts one of four values: `"stretch"`,
+`"start"` (default), `"end"` and `"center"`.
 
-The default value (`"auto"`):
-```
-<Grid align="auto">
-    <Column>...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Grid>
-```
+Aligns grid items along the inline (row) axis. This value applies to all grid
+items inside the container.
 
-will distribute the Column widths equally (if no specific widths have been set
-on individual Columns):
-```
-+---[ Grid ]---------------------------------------------------------+
-|  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
-|  |                  |  |                  |  |                  |  |
-|  +------------------+  +------------------+  +------------------+  |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"left"`:
-```
-<Grid align="right">
-    <Column>...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Grid>
-```
-
-will use the content width of each Column and align the Columns to the left of
-the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|  +-[ Column ]--+  +-[ Column ]-+  +-[ Column ]-+                   |
-|  |             |  |            |  |            |                   |
-|  +-------------+  +------------+  +------------+                   |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"right"`:
-```
-<Grid align="right">
-    <Column>...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Grid>
-```
-
-will use the content width of each Column and align the Columns to the right of
-the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|                   +-[ Column ]--+  +-[ Column ]-+  +-[ Column ]-+  |
-|                   |             |  |            |  |            |  |
-|                   +-------------+  +------------+  +------------+  |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"center"`:
-```
-<Grid align="center">
-    <Column>...</Column>
-    <Column>...</Column>
-    <Column>...</Column>
-</Grid>
-```
-
-will use the content width of each Column and align the Columns to the center of
-the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|          +-[ Column ]--+  +-[ Column ]-+  +-[ Column ]-+           |
-|          |             |  |            |  |            |           |
-|          +-------------+  +------------+  +------------+           |                                                                  
-+--------------------------------------------------------------------+
-```
 
 #### Vertical alignment
 
-The Grid’s `verticalAlign` prop accepts one of four values: `"auto"` (default),
-`"top"`, `"middle"` and `"bottom"`.
+The Grid’s `align` prop accepts one of four values: `"stretch"`, `"start"`
+(default), `"center"` and `"end"`.
 
-The default value (`"auto"`):
-```
-<Grid verticalAlign="auto">
-    <Column><Text>First column</Text></Column>
-    <Column>
-        <Text>Second</Text>
-        <Text>column</Text>
-    </Column>
-    <Column><Text>Third column</Text></Column>
-</Grid>
-```
-
-will make all the Columns full height:
-```
-+---[ Grid ]---------------------------------------------------------+
-|  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
-|  | First column     |  | Second           |  | Third column     |  |
-|  |                  |  | column           |  |                  |  |
-|  +------------------+  +------------------+  +------------------+  |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"top"`:
-```
-<Grid verticalAlign="top">
-    <Column><Text>First column</Text></Column>
-    <Column>
-        <Text>Second</Text>
-        <Text>column</Text>
-     </Column>
-    <Column><Text>Third column</Text></Column>
-</Grid>
-```
-
-will use the content height of each Column and align the Columns to the top of
-the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|  +---[ Column ]-----+  +---[ Column ]-----+  +---[ Column ]-----+  |
-|  | First column     |  | Second           |  | Third column     |  |
-|  +------------------+  | column           |  +------------------+  |
-|                        +------------------+                        |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"middle"`:
-```
-<Grid verticalAlign="middle">
-    <Column><Text>First column</Text></Column>
-    <Column>
-        <Text>The</Text>
-        <Text>second</Text>
-        <Text>column</Text>
-    </Column>
-    <Column><Text>Third column</Text></Column>
-</Grid>
-```
-
-will use the content height of each Column and align the Columns to the middle
-of the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|                        +---[ Column ]-----+                        |
-|  +---[ Column ]-----+  | The              |  +---[ Column ]-----+  |
-|  | First column     |  | second           |  | Third column     |  |
-|  +------------------+  | column           |  +------------------+  |
-|                        +------------------+                        |                                                                  
-+--------------------------------------------------------------------+
-```
-
-The value `"bottom"`:
-```
-<Grid verticalAlign="bottom">
-    <Column><Text>First column</Text></Column>
-    <Column>
-        <Text>Second</Text>
-        <Text>column</Text>
-    </Column>
-    <Column><Text>Third column</Text></Column>
-</Grid>
-```
-
-will use the content height of each Column and align the Columns to the bottom
-of the Grid:
-```
-+---[ Grid ]---------------------------------------------------------+
-|                        +---[ Column ]-----+                        |
-|  +---[ Column ]-----+  | Second           |  +---[ Column ]-----+  |
-|  | First column     |  | column           |  | Third column     |  |
-|  +------------------+  +------------------+  +------------------+  |                                                                  
-+--------------------------------------------------------------------+
-```
-
-### Aligning components _inside_ Columns
-
-You can control horizontal and vertical alignment of components inside a Column
-using the Column’s `align` and `verticalAlign` props, respectively.
-
-#### Horizontal alignment
-
-The Column’s `align` prop accepts one of four values: `"auto"` (default),
-`"left"`, `"right"` and `"center"`.
-
-`"auto"` will make all components inside the Column full width. The other
-values will use the content width of the components and align them to the left,
-right or center of the Column, respectively.
-
-#### Vertical alignment
-
-The Column’s `verticalAlign` prop accepts one of four values: `"auto"`
-(default), `"top"`, `"middle"` and `"bottom"`.
-
-`"auto"` will distribute the heights of components inside the Column equally.
-The other values will use the content height of the components and align them
-to the top, middle or center of the Column, respectively.
+Aligns grid items along the block (column) axis. This value applies to all grid
+items inside the container.

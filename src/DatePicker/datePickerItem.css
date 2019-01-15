@@ -50,11 +50,6 @@
     min-width:          var( --spacing-4 ); /* IE fix */
     border-radius:      50%;
     margin:             4px;
-
-    &:last-child
-    {
-        margin-bottom:  4px;
-    }
 }
 
 .type__month
@@ -63,11 +58,6 @@
     width:                  68px;
     border-radius:          3px;
     margin:                 1px;
-
-    &:last-child
-    {
-        margin-bottom:      1px;
-    }
 }
 
 

@@ -23,6 +23,7 @@ import dropdownClasses           from './Dropdown/dropdown.css';
 import fieldsetClasses           from './Fieldset/fieldset.css';
 import flounderDropdownClasses   from './Addons/FlounderDropdown/flounderDropdown.css';
 import gridClasses               from './Grid/grid.css';
+import gridItemClasses           from './GridItem/gridItem.css';
 import h1Classes                 from './H1/h1.css';
 import h2Classes                 from './H2/h2.css';
 import h3Classes                 from './H3/h3.css';
@@ -53,6 +54,7 @@ import paginatorClasses          from './Paginator/paginator.css';
 import progressBarClasses        from './ProgressBar/progressBar.css';
 import progressIndicatorClasses  from './ProgressIndicator/progressIndicator.css';
 import radioClasses              from './Radio/radio.css';
+import rowClasses                from './Row/row.css';
 import scrollBarClasses          from './ScrollBar/scrollBar.css';
 import scrollBoxClasses          from './ScrollBox/scrollBox.css';
 import sectionClasses            from './Section/section.css';
@@ -79,6 +81,7 @@ import uploaderClasses           from './Uploader/uploader.css';
 import valuedTextInputClasses    from './ValuedTextInput/valuedTextInput.css';
 import withDropdownClasses       from './Addons/withDropdown/withDropdown.css';
 import withStickyClasses         from './Addons/withSticky/withSticky.css';
+
 
 export default {
     Button : props => ( {
@@ -218,17 +221,23 @@ export default {
     Grid : props => ( {
         main : classNames.bind( gridClasses )(
             'default',
-            {
-                [ `gutters__${props.gutters}` ] : props.gutters !== 'none',
-                [ `spacing__${props.spacing}` ] : props.spacing !== 'none',
-                hasMinHeight                    : props.hasMinHeight,
-                wrap                            : props.hasWrap,
-            },
-            `alignX__${props.align}`,
-            `alignY__${props.verticalAlign}`,
+            `align__${props.align}`,
+            `columnGap__${props.columnGap}`,
+            `flow__${props.autoFlow}`,
+            `justify__${props.justify}`,
+            `rowGap__${props.rowGap}`,
             props.className,
         ),
         ...gridClasses,
+    } ),
+    GridItem : props => ( {
+        main : classNames.bind( gridItemClasses )(
+            'default',
+            `align__${props.align}`,
+            `justify__${props.justify}`,
+            props.className,
+        ),
+        ...gridItemClasses,
     } ),
     H1 : props => ( {
         main : classNames.bind( h1Classes )(
@@ -461,6 +470,19 @@ export default {
             props.className,
         ),
         ...radioClasses,
+    } ),
+    Row : props => ( {
+        main : classNames.bind( rowClasses )(
+            'default',
+            `size__${props.size}`,
+            `alignX__${props.align}`,
+            `alignY__${props.verticalAlign}`,
+            `gutters__${props.gutters}`,
+            `wrap__${props.hasWrap}`,
+            `spacing__${props.spacing}`,
+            props.className,
+        ),
+        ...rowClasses,
     } ),
     ScrollBar : props => ( {
         main : classNames.bind( scrollBarClasses )(

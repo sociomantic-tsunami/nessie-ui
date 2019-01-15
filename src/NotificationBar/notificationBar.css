@@ -19,16 +19,9 @@
 
     background:         var( --PC-BLUE );
 
-    .message,
-    .icon,
-    .close
-    {
-        margin-bottom:  0;
-    }
-
     .message
     {
-        color: var( --PC-WHITE );
+        color:          var( --PC-WHITE );
     }
 
     .icon
@@ -39,8 +32,8 @@
 
     .close
     {
-        position:   absolute;
-        right:      var( --spacing-2 );
+        position:       absolute;
+        right:          var( --spacing-2 );
     }
 }
 
