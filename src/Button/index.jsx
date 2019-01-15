@@ -22,21 +22,29 @@ export default class Button extends React.Component
     static propTypes =
     {
         /**
+         *  Module content
+         */
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
          *  CSS class map
          */
-        cssMap : PropTypes.objectOf( PropTypes.string ),
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Label text
          */
-        label  : PropTypes.string,
+        label     : PropTypes.string,
         /**
          *  HTML type attribute
          */
-        type   : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+        type      : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
         /**
          *  Button role/style
          */
-        role   : PropTypes.oneOf( [
+        role      : PropTypes.oneOf( [
             'default',
             'secondary',
             'subtle',
@@ -154,6 +162,8 @@ export default class Button extends React.Component
 
     static defaultProps =
     {
+        className    : undefined,
+        cssMap       : undefined,
         forceHover   : false,
         iconPosition : 'left',
         iconType     : 'none',

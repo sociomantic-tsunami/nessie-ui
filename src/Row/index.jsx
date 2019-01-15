@@ -26,7 +26,7 @@ Row.propTypes =
      */
     children      : PropTypes.node,
     /**
-     *  CSS class name
+     *  Extra CSS class name
      */
     className     : PropTypes.string,
     /**
@@ -41,6 +41,21 @@ Row.propTypes =
      *  Sets 'width: 100%' to prevent content growth from negative margins
      */
     hasFullWidth  : PropTypes.bool,
+    /**
+     *  onClick callback function:
+     *  ( e ) => { ... }
+     */
+    onClick       : PropTypes.func,
+    /**
+     *  onMouseOut callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOut    : PropTypes.func,
+    /**
+     *  onMouseOver callback function:
+     *  ( e ) => { ... }
+     */
+    onMouseOver   : PropTypes.func,
     /**
      *  Row role
      */
@@ -61,6 +76,7 @@ Row.defaultProps =
     align         : 'auto',
     children      : undefined,
     className     : undefined,
+    cssMap        : undefined,
     gutters       : 'M',
     hasFullWidth  : false,
     onClick       : undefined,

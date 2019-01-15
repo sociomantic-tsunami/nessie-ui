@@ -33,6 +33,10 @@ export default class Uploader extends React.Component
          */
         buttonLabel          : PropTypes.string,
         /**
+         * Extra CSS class name
+         */
+        className            : PropTypes.string,
+        /**
          *  CSS class map
          */
         cssMap               : PropTypes.objectOf( PropTypes.string ),
@@ -128,6 +132,8 @@ export default class Uploader extends React.Component
     static defaultProps =
     {
         buttonLabel             : 'Upload',
+        className               : undefined,
+        cssMap                  : undefined,
         errorMessage            : undefined,
         errorMessagePosition    : 'top',
         hasError                : false,

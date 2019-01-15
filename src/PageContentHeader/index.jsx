@@ -21,13 +21,29 @@ export default class PageContentHeader extends React.Component
     static propTypes =
     {
         /**
-         *  Page content header text (h1)
-         */
-        title    : PropTypes.string,
-        /**
          *  Page content header custom content; overrides title
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Page content header text (h1)
+         */
+        title     : PropTypes.string,
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        title     : undefined,
     };
 
     static displayName = 'PageContentHeader';

@@ -24,11 +24,11 @@ export default class Tab extends React.Component
          */
         children  : PropTypes.node,
         /**
-         *  Extra CSS class name
+         * Extra CSS classname
          */
         className : PropTypes.string,
         /**
-         *  CSS class map
+         * CSS classname map
          */
         cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
@@ -41,6 +41,7 @@ export default class Tab extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         label     : undefined,
     };
 

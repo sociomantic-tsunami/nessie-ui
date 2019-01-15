@@ -20,6 +20,14 @@ export default class ProgressIndicator extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className         : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Show percentage
          */
         showPercentage    : PropTypes.bool,
@@ -31,7 +39,10 @@ export default class ProgressIndicator extends React.Component
 
     static defaultProps =
     {
-        showPercentage : true,
+        className         : undefined,
+        cssMap            : undefined,
+        showPercentage    : true,
+        currentPercentage : 0,
     };
 
     static displayName = 'ProgressIndicator';

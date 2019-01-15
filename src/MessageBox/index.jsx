@@ -21,6 +21,18 @@ export default class MessageBox extends React.Component
     static propTypes =
     {
         /**
+         *  Message text (JSX node; overrides message prop)
+         */
+        children    : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        /**
         *  Message text
         */
         message     : PropTypes.string,
@@ -38,6 +50,10 @@ export default class MessageBox extends React.Component
 
     static defaultProps =
     {
+        className   : undefined,
+        children    : undefined,
+        cssMap      : undefined,
+        message     : undefined,
         messageType : 'default',
     };
 

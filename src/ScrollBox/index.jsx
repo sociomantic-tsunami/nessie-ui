@@ -24,6 +24,10 @@ export default class ScrollBox extends React.Component
     static propTypes =
     {
         /**
+         *  ScrollBox content
+         */
+        children           : PropTypes.node,
+        /**
          *  Extra CSS class name
          */
         className          : PropTypes.string,
@@ -31,10 +35,6 @@ export default class ScrollBox extends React.Component
          *  CSS class map
          */
         cssMap             : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  ScrollBox content
-         */
-        children           : PropTypes.node,
         /**
          *  ScrollBox content width, any CSS length string
          */
@@ -151,6 +151,7 @@ export default class ScrollBox extends React.Component
         children               : undefined,
         className              : undefined,
         contentWidth           : undefined,
+        cssMap                 : undefined,
         height                 : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
@@ -159,10 +160,10 @@ export default class ScrollBox extends React.Component
         onMouseOut             : undefined,
         onMouseOver            : undefined,
         onScroll               : undefined,
-        onThumbDragStartX      : undefined,
         onThumbDragEndX        : undefined,
-        onThumbDragStartY      : undefined,
         onThumbDragEndY        : undefined,
+        onThumbDragStartX      : undefined,
+        onThumbDragStartY      : undefined,
         padding                : 'none',
         scroll                 : 'both',
         scrollAmount           : undefined,

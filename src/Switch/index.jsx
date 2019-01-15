@@ -21,7 +21,7 @@ export default class Switch extends React.Component
     static propTypes =
     {
         /**
-         * extra CSS classname
+         * Extra CSS classname
          */
         className   : PropTypes.string,
         /**
@@ -84,15 +84,21 @@ export default class Switch extends React.Component
 
     static defaultProps =
     {
-        className  : undefined,
-        forceHover : false,
-        id         : undefined,
-        isChecked  : false,
-        isDisabled : false,
-        isReadOnly : false,
-        label      : undefined,
-        onChange   : undefined,
-        value      : undefined,
+        className   : undefined,
+        cssMap      : undefined,
+        forceHover  : false,
+        id          : undefined,
+        isChecked   : false,
+        isDisabled  : false,
+        isReadOnly  : false,
+        label       : undefined,
+        name        : undefined,
+        onBlur      : undefined,
+        onChange    : undefined,
+        onFocus     : undefined,
+        onMouseOut  : undefined,
+        onMouseOver : undefined,
+        value       : undefined,
     };
 
     static displayName = 'Switch';

@@ -20,13 +20,25 @@ export default class H2 extends React.Component
     static propTypes =
     {
         /**
+         *  Title text (JSX node; overrides title prop)
+         */
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
         *  Title text
         */
-        title : PropTypes.string,
+        title     : PropTypes.string,
         /**
         *  Role (style) to apply to heading
         */
-        role  : PropTypes.oneOf( [
+        role      : PropTypes.oneOf( [
             'default',
             'subtle',
             'promoted',
@@ -36,8 +48,11 @@ export default class H2 extends React.Component
 
     static defaultProps =
     {
-        title : undefined,
-        role  : 'default',
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        role      : 'default',
+        title     : undefined,
     };
 
     static displayName = 'H2';

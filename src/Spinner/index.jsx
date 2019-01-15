@@ -20,14 +20,24 @@ export default class Spinner extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Size of the Spinner
          */
-        size : PropTypes.oneOf( [ 'small', 'big' ] ),
+        size      : PropTypes.oneOf( [ 'small', 'big' ] ),
     };
 
     static defaultProps =
     {
-        size : 'small',
+        className : undefined,
+        cssMap    : undefined,
+        size      : 'small',
     };
 
     static displayName = 'Spinner';

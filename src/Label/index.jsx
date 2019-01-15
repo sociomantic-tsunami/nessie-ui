@@ -21,6 +21,18 @@ export default class Label extends React.Component
     static propTypes =
     {
         /**
+         *  Label text (JSX node; overrides label prop)
+         */
+        children         : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className        : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
+        /**
         *  Label text
         */
         label            : PropTypes.string,
@@ -52,8 +64,15 @@ export default class Label extends React.Component
 
     static defaultProps =
     {
+        children         : undefined,
+        className        : undefined,
+        cssMap           : undefined,
         element          : 'label',
+        htmlFor          : undefined,
+        label            : undefined,
         noWrap           : false,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
         overflowIsHidden : false,
     };
 

@@ -51,6 +51,7 @@ export default class Section extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         id        : undefined,
         level     : undefined,
         title     : undefined,

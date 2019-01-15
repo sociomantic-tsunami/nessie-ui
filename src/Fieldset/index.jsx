@@ -21,6 +21,18 @@ export default class Fieldset extends React.Component
     static propTypes =
     {
         /**
+         *  Fieldset content (usually Checkboxes or Radios)
+         */
+        children              : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Fieldset label string or JSX node
          */
         label                 : PropTypes.node,
@@ -40,10 +52,6 @@ export default class Fieldset extends React.Component
          *  Error Tooltip is displayed
          */
         errorMessageIsVisible : PropTypes.bool,
-        /**
-         *  Fieldset content (usually Checkboxes or Radios)
-         */
-        children              : PropTypes.node,
         /**
          *  onMouseOver callback function : ( e ) => { ... }
          */
@@ -74,9 +82,17 @@ export default class Fieldset extends React.Component
 
     static defaultProps =
     {
+        children              : undefined,
+        className             : undefined,
+        cssMap                : undefined,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         hasError              : false,
+        isDisabled            : undefined,
+        label                 : undefined,
+        onMouseOut            : undefined,
+        onMouseOver           : undefined,
     };
 
     static displayName = 'Fieldset';

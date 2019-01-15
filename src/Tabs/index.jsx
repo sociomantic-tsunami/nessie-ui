@@ -23,27 +23,27 @@ export default class Tabs extends React.Component
         /**
          *  The active tab index
          */
-        activeTabIndex    : PropTypes.number,
+        activeTabIndex : PropTypes.number,
         /**
          *  A set of <Tab> components
          */
-        children          : PropTypes.node,
+        children       : PropTypes.node,
         /**
          *  Extra CSS class name
          */
-        className         : PropTypes.string,
+        className      : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap            : PropTypes.objectOf( PropTypes.string ),
+        cssMap         : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Tab button click callback function: ( e, newProps ) => { ... }
          */
-        onClickTab        : PropTypes.func,
+        onClickTab     : PropTypes.func,
         /**
         *   Tab padding
         */
-        padding           : PropTypes.oneOfType( [
+        padding        : PropTypes.oneOfType( [
             PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
             PropTypes.arrayOf( PropTypes.oneOf( [
                 'none',
@@ -65,6 +65,7 @@ export default class Tabs extends React.Component
         activeTabIndex    : 0,
         children          : undefined,
         className         : undefined,
+        cssMap            : undefined,
         onClickTab        : undefined,
         padding           : [ 'none', 'M' ],
         secondaryControls : undefined,
@@ -77,11 +78,9 @@ export default class Tabs extends React.Component
         const {
             activeTabIndex,
             children,
-            className,
             cssMap = createCssMap( this.context.Tabs, this.props ),
             onChange,
             onClickTab,
-            padding,
             secondaryControls,
         } = this.props;
 

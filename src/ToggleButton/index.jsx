@@ -22,6 +22,10 @@ export default class ToggleButton extends React.Component
     static propTypes =
     {
         /**
+         *  label content (JSX node; overrides label prop)
+         */
+        children     : PropTypes.node,
+        /**
          *  CSS class name
          */
         className    : PropTypes.string,
@@ -29,10 +33,6 @@ export default class ToggleButton extends React.Component
          *  CSS class map
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  label content (JSX node; overrides label prop)
-         */
-        children     : PropTypes.node,
         /**
          *  icon position relative to text
          */
@@ -149,6 +149,7 @@ export default class ToggleButton extends React.Component
     {
         children     : undefined,
         className    : undefined,
+        cssMap       : undefined,
         iconPosition : 'left',
         iconType     : 'none',
         id           : undefined,
@@ -162,6 +163,7 @@ export default class ToggleButton extends React.Component
         onMouseOut   : undefined,
         onMouseOver  : undefined,
         role         : 'primary',
+        subLabel     : undefined,
     };
 
     static displayName = 'ToggleButton';

@@ -20,9 +20,23 @@ export default class ProgressBar extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className          : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap             : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Current percentage value
          */
         progressPercentage : PropTypes.number,
+    };
+
+    static defaultProps =
+    {
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static defaultProps =

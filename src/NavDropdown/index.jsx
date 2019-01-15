@@ -25,7 +25,7 @@ export default class NavDropdown extends React.Component
          */
         children  : PropTypes.node,
         /**
-         *  CSS class name
+         *  Extra CSS class name
          */
         className : PropTypes.string,
         /**
@@ -38,6 +38,7 @@ export default class NavDropdown extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'NavDropdown';

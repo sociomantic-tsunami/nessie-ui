@@ -61,6 +61,7 @@ export default class TabButton extends React.Component
     {
         buttonRef  : undefined,
         className  : undefined,
+        cssMap     : undefined,
         isActive   : false,
         isDisabled : false,
         label      : undefined,

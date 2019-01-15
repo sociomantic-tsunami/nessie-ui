@@ -22,16 +22,27 @@ export default class NavList extends React.Component
         /**
          *  List content (NavItems)
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          *  How to lay out the list items
          */
-        layout   : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
+        layout    : PropTypes.oneOf( [ 'horizontal', 'vertical' ] ),
     };
 
     static defaultProps =
     {
-        layout : 'horizontal',
+        cssMap    : undefined,
+        className : undefined,
+        children  : undefined,
+        layout    : 'horizontal',
     };
 
     static displayName = 'NavList';

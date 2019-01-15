@@ -254,6 +254,7 @@ export default class TextInputWithIcon extends React.Component
         autoComplete         : undefined,
         autoCorrect          : undefined,
         className            : undefined,
+        cssMap               : undefined,
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : false,

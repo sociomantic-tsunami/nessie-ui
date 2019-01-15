@@ -36,9 +36,12 @@ export default class ListBox extends React.Component
         activeOption      : PropTypes.string,
         children          : PropTypes.node,
         /**
-        *  css class
-        */
+         *  Extra CSS class name
+         */
         className         : PropTypes.string,
+        /**
+         *  CSS class map
+         */
         cssMap            : PropTypes.objectOf( PropTypes.string ),
         isFocusable       : PropTypes.bool,
         isMultiselect     : PropTypes.bool,
@@ -73,18 +76,19 @@ export default class ListBox extends React.Component
     };
 
     static defaultProps = {
-        aria              : undefined,
         activeOption      : undefined,
+        aria              : undefined,
         children          : undefined,
         className         : undefined,
+        cssMap            : undefined,
+        id                : undefined,
         isFocusable       : true,
         isMultiselect     : false,
-        id                : undefined,
-        options           : undefined,
         onClickOption     : undefined,
+        onKeyPress        : undefined,
         onMouseOutOption  : undefined,
         onMouseOverOption : undefined,
-        onKeyPress        : undefined,
+        options           : undefined,
         selection         : undefined,
     };
 
@@ -96,7 +100,6 @@ export default class ListBox extends React.Component
             aria,
             activeOption,
             children,
-            className,
             cssMap = createCssMap( this.context.ListBox, this.props ),
             isFocusable,
             isMultiselect,

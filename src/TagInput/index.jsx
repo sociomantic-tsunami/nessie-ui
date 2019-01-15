@@ -122,6 +122,7 @@ export default class TagInput extends React.Component
     {
         children     : undefined,
         className    : undefined,
+        cssMap       : undefined,
         forceHover   : false,
         hasError     : false,
         height       : undefined,

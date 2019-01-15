@@ -21,6 +21,10 @@ export default class Paginator extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className        : PropTypes.node,
+        /**
          *  CSS class map
          */
         cssMap           : PropTypes.objectOf( PropTypes.string ),
@@ -84,6 +88,8 @@ export default class Paginator extends React.Component
 
     static defaultProps =
     {
+        className        : undefined,
+        cssMap           : undefined,
         currentPage      : undefined,
         ellipsisText     : '…',
         endPage          : undefined,
@@ -105,7 +111,6 @@ export default class Paginator extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.Paginator, this.props ),
             currentPage,
             ellipsisText,

@@ -24,6 +24,14 @@ export default class NavItem extends React.Component
          *  Dropdown menu items
          */
         children      : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className     : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /*
         * Dropdown menu alignment
          */
@@ -130,12 +138,20 @@ export default class NavItem extends React.Component
 
     static defaultProps =
     {
+        children      : undefined,
+        className     : undefined,
+        cssMap        : undefined,
         dropdownAlign : 'left',
+        forceHover    : undefined,
         href          : '#',
         iconType      : 'none',
         isCurrent     : false,
         isDisabled    : false,
         isOpen        : false,
+        label         : undefined,
+        onClick       : undefined,
+        onMouseOut    : undefined,
+        onMouseOver   : undefined,
         role          : 'default',
     };
 

@@ -29,6 +29,14 @@ export default class TableCell extends React.Component
          */
         children    : PropTypes.node,
         /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Title of the column this cell in
          */
         columnTitle : PropTypes.string,
@@ -112,10 +120,14 @@ export default class TableCell extends React.Component
     {
         align         : undefined,
         children      : undefined,
+        className     : undefined,
+        columnTitle   : undefined,
+        cssMap        : undefined,
         isHeader      : false,
         isRowHeader   : false,
         isSortable    : false,
         isSticky      : false,
+        onToggle      : undefined,
         size          : undefined,
         sort          : 'none',
         textProps     : undefined,

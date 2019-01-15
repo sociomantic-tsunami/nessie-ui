@@ -63,6 +63,7 @@ export default class Tag extends React.Component
     {
         children   : undefined,
         className  : undefined,
+        cssMap     : undefined,
         forceHover : false,
         id         : undefined,
         isDisabled : false,

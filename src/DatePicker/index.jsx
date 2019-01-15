@@ -56,6 +56,7 @@ export default class DatePicker extends React.Component
 
     static defaultProps = {
         className         : undefined,
+        cssMap            : undefined,
         hasTimeInput      : true,
         headers           : undefined,
         hourIsDisabled    : false,
@@ -67,6 +68,7 @@ export default class DatePicker extends React.Component
         items             : undefined,
         label             : undefined,
         minuteIsDisabled  : false,
+        minuteIsReadOnly  : false,
         minutePlaceholder : undefined,
         minuteValue       : undefined,
         month             : undefined,

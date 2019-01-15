@@ -22,13 +22,20 @@ export default class Page extends React.Component
         /**
          *  Page content
          */
-        children : PropTypes.node,
-
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          * Page overflow setting
          *
          */
-        overflow : PropTypes.oneOf( [
+        overflow  : PropTypes.oneOf( [
             'auto',
             'hidden',
             'visible',
@@ -40,7 +47,10 @@ export default class Page extends React.Component
 
     static defaultProps =
     {
-        overflow : 'auto',
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        overflow  : 'auto',
     };
 
     static displayName = 'Page';

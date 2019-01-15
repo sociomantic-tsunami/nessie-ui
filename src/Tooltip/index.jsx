@@ -80,6 +80,7 @@ export default class Tooltip extends React.Component
     static defaultProps =
     {
         className     : undefined,
+        cssMap        : undefined,
         id            : undefined,
         isDismissible : undefined,
         message       : undefined,

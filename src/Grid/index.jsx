@@ -86,6 +86,7 @@ export default class Grid extends React.Component
         align         : 'auto',
         children      : undefined,
         className     : undefined,
+        cssMap        : undefined,
         gutters       : 'M',
         hasWrap       : true,
         noWarn        : false,

@@ -103,6 +103,7 @@ class Checkbox extends React.Component
     {
         children    : undefined,
         className   : undefined,
+        cssMap      : undefined,
         forceHover  : false,
         hasError    : false,
         id          : undefined,

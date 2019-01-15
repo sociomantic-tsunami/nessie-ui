@@ -23,11 +23,19 @@ export default class ModalDialog extends React.Component
         /**
          *  Dialog Content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Message type
          */
-        type     : PropTypes.oneOf( [
+        type      : PropTypes.oneOf( [
             'default',
             'neutral',
             'crucial',
@@ -70,9 +78,18 @@ export default class ModalDialog extends React.Component
 
     static defaultProps =
     {
-        hasNavigation : true,
-        isVisible     : false,
-        type          : 'default',
+        children       : undefined,
+        className      : undefined,
+        cssMap         : undefined,
+        hasNavigation  : true,
+        isVisible      : false,
+        isWide         : undefined,
+        onClickClose   : undefined,
+        onClickNext    : undefined,
+        onClickOverlay : undefined,
+        onClickPrev    : undefined,
+        title          : undefined,
+        type           : 'default',
     };
 
     static displayName = 'ModalDialog';
@@ -81,11 +98,8 @@ export default class ModalDialog extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ModalDialog, this.props ),
-            hasNavigation,
             isVisible,
-            isWide,
             onClickClose,
             onClickNext,
             onClickOverlay,

@@ -22,26 +22,32 @@ export default class StatusIndicator extends React.Component
         /**
          *  Status text (JSX node; overrides label prop)
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap   : PropTypes.objectOf( PropTypes.string ),
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
         *  Status text
         */
-        label    : PropTypes.string,
+        label     : PropTypes.string,
         /**
          *  Display as active/deactivated
          */
-        status   : PropTypes.oneOf( [ 'alert', 'critical', 'promoted' ] ),
+        status    : PropTypes.oneOf( [ 'alert', 'critical', 'promoted' ] ),
     };
 
     static defaultProps =
     {
-        children : undefined,
-        label    : undefined,
-        status   : 'promoted',
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        label     : undefined,
+        status    : 'promoted',
     };
 
     static displayName = 'StatusIndicator';

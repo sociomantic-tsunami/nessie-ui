@@ -112,6 +112,7 @@ export default class Icon extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         label     : undefined,
         role      : 'default',
         size      : 'S',

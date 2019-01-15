@@ -8,6 +8,7 @@
  */
 
 import React                from 'react';
+import PropTypes            from 'prop-types';
 
 import ThemeContext         from '../Theming/ThemeContext';
 import { createCssMap }     from '../Theming';
@@ -16,7 +17,23 @@ export default class NessieLogo extends React.Component
 {
     static contextType = ThemeContext;
     static displayName = 'NessieLogo';
-    static propTypes = {};
+
+    static propTypes = {
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        className : undefined,
+        cssMap    : undefined,
+    };
 
     render()
     {

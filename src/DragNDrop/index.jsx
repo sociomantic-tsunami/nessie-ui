@@ -25,6 +25,14 @@ export default class DragNDrop extends React.Component
          */
         children       : PropTypes.node,
         /**
+         *  Extra CSS class name
+         */
+        className      : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap         : PropTypes.objectOf( PropTypes.string ),
+        /**
         *  DragNDrop state
         */
         dragNDropState : PropTypes.oneOf( [
@@ -40,7 +48,11 @@ export default class DragNDrop extends React.Component
 
     static defaultProps =
     {
+        children       : undefined,
+        className      : undefined,
+        cssMap         : undefined,
         dragNDropState : 'default',
+        message        : undefined,
     };
 
     static displayName = 'DragNDrop';

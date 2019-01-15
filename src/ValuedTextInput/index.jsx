@@ -149,6 +149,7 @@ export default class ValuedTextInput extends React.Component
         autoComplete       : undefined,
         autoCorrect        : undefined,
         className          : undefined,
+        cssMap             : undefined,
         forceHover         : false,
         hasError           : false,
         id                 : undefined,

@@ -25,6 +25,10 @@ export default class IconWithTooltip extends React.Component
          */
         children      : PropTypes.node,
         /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
+        /**
          * Icon visibility
          */
         iconIsVisible : PropTypes.bool,
@@ -164,12 +168,20 @@ export default class IconWithTooltip extends React.Component
 
     static defaultProps =
     {
+        children         : undefined,
+        cssMap           : undefined,
         iconIsVisible    : true,
         iconPosition     : 'right',
+        iconRole         : undefined,
         iconSize         : 'M',
         iconType         : 'info',
         isDisabled       : false,
+        message          : undefined,
         noWrap           : false,
+        onMouseOut       : undefined,
+        onMouseOutIcon   : undefined,
+        onMouseOver      : undefined,
+        onMouseOverIcon  : undefined,
         overflowIsHidden : false,
         tooltipIsVisible : false,
         tooltipPosition  : 'top',

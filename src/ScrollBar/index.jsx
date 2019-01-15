@@ -89,12 +89,14 @@ export default class ScrollBar extends React.Component
     static defaultProps =
     {
         className        : undefined,
+        cssMap           : undefined,
         onChange         : undefined,
+        onClickTrack     : undefined,
         onMouseOut       : undefined,
         onMouseOver      : undefined,
-        orientation      : 'horizontal',
-        onThumbDragStart : undefined,
         onThumbDragEnd   : undefined,
+        onThumbDragStart : undefined,
+        orientation      : 'horizontal',
         scrollBoxId      : undefined,
         scrollMax        : 0,
         scrollMin        : 0,

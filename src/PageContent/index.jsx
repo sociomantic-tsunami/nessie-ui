@@ -47,6 +47,7 @@ export default class PageContent extends React.Component
         children     : undefined,
         className    : undefined,
         contentWidth : '1080px',
+        cssMap       : undefined,
         isLoading    : false,
     };
 

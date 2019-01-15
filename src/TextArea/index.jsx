@@ -158,6 +158,7 @@ TextArea.defaultProps = {
     autoComplete   : undefined,
     autoCorrect    : undefined,
     className      : undefined,
+    cssMap         : undefined,
     forceHover     : false,
     hasError       : false,
     id             : undefined,

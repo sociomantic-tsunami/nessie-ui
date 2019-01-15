@@ -44,6 +44,10 @@ export default class Table extends React.Component
          */
         className       : PropTypes.string,
         /**
+         *  CSS class map
+         */
+        cssMap          : PropTypes.objectOf( PropTypes.string ),
+        /**
          *  Array of objects defining the table columns
          */
         columns         : PropTypes.arrayOf( PropTypes.object ),
@@ -104,6 +108,7 @@ export default class Table extends React.Component
         children        : undefined,
         className       : undefined,
         columns         : undefined,
+        cssMap          : undefined,
         gutters         : 'M',
         hasStickyHeader : false,
         headerTextProps : undefined,
@@ -126,15 +131,12 @@ export default class Table extends React.Component
         const {
             align,
             bodyTextProps = {},
-            borders,
             children,
-            className,
             columns = [],
             cssMap = createCssMap( this.context.Table, this.props ),
             gutters,
             hasStickyHeader,
             headerTextProps = {},
-            isZebra,
             onMouseOut,
             onMouseOver,
             onToggle,

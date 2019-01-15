@@ -31,15 +31,19 @@ export default class Card extends React.Component
         /**
          *  Module content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap   : PropTypes.objectOf( PropTypes.string ),
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
         *   Card padding
         */
-        padding  : PropTypes.oneOfType( [
+        padding   : PropTypes.oneOfType( [
             PropTypes.oneOf( [ 'none', 'S', 'M', 'L', 'XL', 'XXL' ] ),
             PropTypes.arrayOf( PropTypes.oneOf( [
                 'none',
@@ -63,6 +67,9 @@ export default class Card extends React.Component
     static defaultProps =
     {
         align         : 'auto',
+        children      : undefined,
+        className     : undefined,
+        cssMap        : undefined,
         padding       : 'M',
         verticalAlign : 'top',
     };

@@ -114,7 +114,10 @@ export default class Text extends React.Component
     static defaultProps =
     {
         allCaps          : false,
+        children         : undefined,
+        className        : undefined,
         color            : undefined,
+        cssMap           : undefined,
         letterSpacing    : undefined,
         lineHeight       : undefined,
         noWrap           : false,

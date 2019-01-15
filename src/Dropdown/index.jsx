@@ -29,6 +29,7 @@ export default class Dropdown extends React.Component
     static defaultProps = {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         hasError  : false,
         padding   : 'none',
         size      : 'default',

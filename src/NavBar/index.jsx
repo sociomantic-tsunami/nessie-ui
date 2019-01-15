@@ -23,7 +23,26 @@ export default class NavBar extends React.Component
         /**
          *  Navigation bar content (NavItems)
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'NavBar';

@@ -41,6 +41,14 @@ export default class SliderGroup extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className  : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap     : PropTypes.objectOf( PropTypes.string ),
+        /**
         * Individual Slider props
         */
         sliders    : PropTypes.arrayOf( PropTypes.object ),
@@ -83,11 +91,17 @@ export default class SliderGroup extends React.Component
 
     static defaultProps =
     {
-        isDisabled : false,
-        isReadOnly : false,
-        hasError   : false,
-        maxValue   : 100,
-        minValue   : 0,
+        className    : undefined,
+        cssMap       : undefined,
+        hasError     : false,
+        isDisabled   : false,
+        isReadOnly   : false,
+        maxValue     : 100,
+        minValue     : 0,
+        onChange     : undefined,
+        sliderLabels : undefined,
+        sliders      : undefined,
+        stepLabels   : undefined,
     };
 
     static displayName = 'SliderGroup';

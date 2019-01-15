@@ -24,6 +24,14 @@ export default class Sorter extends Component
          *  Sorter text/content
          */
         children        : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className       : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap          : PropTypes.objectOf( PropTypes.string ),
         /*
         * Force hover
          */
@@ -44,7 +52,11 @@ export default class Sorter extends Component
 
     static defaultProps =
     {
+        children        : undefined,
+        className       : undefined,
+        cssMap          : undefined,
         forceHover      : false,
+        onToggle        : undefined,
         sort            : 'none',
         sorterIsVisible : true,
     };

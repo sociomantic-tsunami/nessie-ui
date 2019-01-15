@@ -20,9 +20,34 @@ export default class Column extends React.Component
     static propTypes =
     {
         /**
+         *  Horizontal alignment of content (“auto” makes all items 100% width)
+         */
+        align : PropTypes.oneOf( [
+            'auto',
+            'left',
+            'center',
+            'right',
+        ] ),
+        /**
+         *  Column content
+         */
+        children    : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
         *  Title of Column
         */
         columnTitle : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        /**
+        *  Column role
+        */
+        role        : PropTypes.string,
         /**
          *  Width of the Column
          */
@@ -61,15 +86,6 @@ export default class Column extends React.Component
             /* eslint-enable max-len */
         ] ),
         /**
-         *  Horizontal alignment of content (“auto” makes all items 100% width)
-         */
-        align : PropTypes.oneOf( [
-            'auto',
-            'left',
-            'center',
-            'right',
-        ] ),
-        /**
          *  Vertical alignment of content (“auto” is equivalent to “top”)
          */
         verticalAlign : PropTypes.oneOf( [
@@ -78,19 +94,18 @@ export default class Column extends React.Component
             'middle',
             'bottom',
         ] ),
-        /**
-         *  Column content
-         */
-        children : PropTypes.node,
-        /**
-        *  Column role
-        */
-        role     : PropTypes.string,
     };
 
     static defaultProps =
     {
-        align : 'auto',
+        align         : 'auto',
+        children      : undefined,
+        className     : undefined,
+        columnTitle   : undefined,
+        cssMap        : undefined,
+        role          : undefined,
+        size          : undefined,
+        verticalAlign : undefined,
     };
 
     static displayName = 'Column';

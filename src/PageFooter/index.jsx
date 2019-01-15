@@ -22,7 +22,22 @@ export default class PageFooter extends React.Component
         /**
          *  PageFooter content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'PageFooter';
