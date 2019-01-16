@@ -25,7 +25,6 @@ const DateTimeInput = React.forwardRef( ( {
     days,
     forceHover,
     hasError,
-    hourInputRef,
     hourIsDisabled,
     hourPlaceholder,
     hourValue,
@@ -37,7 +36,6 @@ const DateTimeInput = React.forwardRef( ( {
     isReadOnly,
     isReadOnlyButton,
     isReadOnlyInput,
-    minuteInputRef,
     minuteIsDisabled,
     minutePlaceholder,
     minuteValue,
@@ -61,12 +59,13 @@ const DateTimeInput = React.forwardRef( ( {
     prevIsDisabled,
     textAlign,
     weeks,
+    wrapperRef,
 }, ref ) =>
+
 {
     const datePicker = (
         <DatePicker
             headers           = { mode !== 'month' ? days : undefined }
-            hourInputRef      = { hourInputRef }
             hourIsDisabled    = { hourIsDisabled }
             hourPlaceholder   = { hourPlaceholder }
             hourValue         = { hourValue }
@@ -74,7 +73,6 @@ const DateTimeInput = React.forwardRef( ( {
             isReadOnly        = { isReadOnly }
             items             = { mode === 'month' ? months : weeks }
             key               = "datePicker"
-            minuteInputRef    = { minuteInputRef }
             minuteIsDisabled  = { minuteIsDisabled }
             minutePlaceholder = { minutePlaceholder }
             minuteValue       = { minuteValue }
@@ -131,7 +129,8 @@ const DateTimeInput = React.forwardRef( ( {
             ref              = { ref }
             spellCheck       = { false }
             textAlign        = { textAlign }
-            value            = { inputValue } />
+            value            = { inputValue }
+            wrapperRef       = { wrapperRef } />
     );
 } );
 
@@ -140,126 +139,108 @@ DateTimeInput.propTypes =
     /**
      *  Extra CSS class name
      */
-    className             : PropTypes.string,
-    /**
-     *  Tooltip message text (string or JSX)
-     */
-    errorMessage          : PropTypes.node,
-    /**
-     *  Error Tooltip is displayed
-     */
-    errorMessageIsVisible : PropTypes.bool,
-    /**
-    *   Error message position relative to the icon
-    */
-    errorMessagePosition  : PropTypes.oneOf( [ 'top', 'topLeft' ] ),
+    className         : PropTypes.string,
     /**
      *  Current month to disaplay in default/day mode
      */
-    currentMonth          : PropTypes.string,
+    currentMonth      : PropTypes.string,
     /**
      *  Current year to display
      */
-    currentYear           : PropTypes.string,
+    currentYear       : PropTypes.string,
     /**
      *  Days of week to display
      */
-    days                  : PropTypes.arrayOf( PropTypes.object ),
+    days              : PropTypes.arrayOf( PropTypes.object ),
     /**
      *  Display as hover when required from another component
      */
-    forceHover            : PropTypes.bool,
+    forceHover        : PropTypes.bool,
     /**
      *  Display as error/invalid
      */
-    hasError              : PropTypes.bool,
-    /**
-     *  Hour input ref callback function:
-     *  ( ref ) = { ... }
-     */
-    hourInputRef          : PropTypes.func,
+    hasError          : PropTypes.bool,
     /**
      *  Hour input is disabled
      */
-    hourIsDisabled        : PropTypes.bool,
+    hourIsDisabled    : PropTypes.bool,
     /**
      *  Hour input placeholder text
      */
-    hourPlaceholder       : PropTypes.string,
+    hourPlaceholder   : PropTypes.string,
     /**
      *  Hour input value
      */
-    hourValue             : PropTypes.string,
+    hourValue         : PropTypes.string,
     /**
      *  HTML id attribute
      */
-    id                    : PropTypes.string,
+    id                : PropTypes.string,
     /**
      *  Main input placeholder text
      */
-    inputPlaceholder      : PropTypes.string,
+    inputPlaceholder  : PropTypes.string,
     /**
      *  Main input value
      */
-    inputValue            : PropTypes.string,
+    inputValue        : PropTypes.string,
     /**
      *  Display as disabled
      */
-    isDisabled            : PropTypes.bool,
+    isDisabled        : PropTypes.bool,
     /**
      *  Picker is open
      */
-    isOpen                : PropTypes.bool,
+    isOpen            : PropTypes.bool,
     /**
      *  Display as read-only
      */
-    isReadOnly            : PropTypes.bool,
+    isReadOnly        : PropTypes.bool,
     /**
      *  Display as read-only for IconButton
      */
-    isReadOnlyButton      : PropTypes.bool,
+    isReadOnlyButton  : PropTypes.bool,
     /**
      *  Display as read-only for TextInput
      */
-    isReadOnlyInput       : PropTypes.bool,
+    isReadOnlyInput   : PropTypes.bool,
     /**
-     *  Label text (string or JSX node)
+     *  Hour input is read only
      */
-    label                 : PropTypes.node,
-    /**
-     *  Label position
-     */
-    labelPosition         : PropTypes.oneOf( [ 'top', 'left', 'right' ] ),
-    /**
-     *  Minute input ref callback function:
-     *  ( ref ) = { ... }
-     */
-    minuteInputRef        : PropTypes.func,
+    hourIsReadOnly    : PropTypes.bool,
     /**
      *  Minute input is disabled
      */
-    minuteIsDisabled      : PropTypes.bool,
+    minuteIsDisabled  : PropTypes.bool,
+    /**
+     *  Minute input is read only
+     */
+    minuteIsReadOnly  : PropTypes.bool,
     /**
      *  Minute input placeholder text
      */
-    minutePlaceholder     : PropTypes.string,
+    minutePlaceholder : PropTypes.string,
     /**
      *  Minute input value
      */
-    minuteValue           : PropTypes.string,
+    minuteValue       : PropTypes.string,
     /**
      *  Picker mode
      */
-    mode                  : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
+    mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
     /**
      *  Months to display in month mode
      */
-    months                : PropTypes.arrayOf( PropTypes
+    months            : PropTypes.arrayOf( PropTypes
         .arrayOf( PropTypes.object ) ),
     /**
      *  “Next” button is disabled
      */
     nextIsDisabled  : PropTypes.bool,
+    /**
+     *  “Next” button is read only
+     */
+    nextIsReadOnly  : PropTypes.bool,
     /**
      *  Blur callback function
      */
@@ -321,6 +302,10 @@ DateTimeInput.propTypes =
      */
     prevIsDisabled  : PropTypes.bool,
     /**
+     *  “Previous” button is read only
+     */
+    prevIsReadOnly  : PropTypes.bool,
+    /**
      *  Input text alignment
      */
     textAlign       : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
@@ -329,57 +314,54 @@ DateTimeInput.propTypes =
      */
     weeks           : PropTypes.arrayOf( PropTypes
         .arrayOf( PropTypes.object ) ),
+    /**
+     *  Callback function that receives a ref to the outer wrapper div
+     */
+    wrapperRef : PropTypes.func,
 };
 
 DateTimeInput.defaultProps =
 {
-    className             : undefined,
-    currentMonth          : undefined,
-    currentYear           : undefined,
-    days                  : undefined,
-    errorMessage          : undefined,
-    errorMessageIsVisible : undefined,
-    errorMessagePosition  : undefined,
-    forceHover            : false,
-    hasError              : false,
-    hourInputRef          : undefined,
-    hourIsDisabled        : false,
-    hourPlaceholder       : undefined,
-    hourValue             : undefined,
-    id                    : undefined,
-    inputPlaceholder      : undefined,
-    inputValue            : undefined,
-    isDisabled            : false,
-    isOpen                : false,
-    isReadOnly            : false,
-    isReadOnlyButton      : undefined,
-    isReadOnlyInput       : undefined,
-    label                 : undefined,
-    labelPosition         : undefined,
-    minuteInputRef        : undefined,
-    minuteIsDisabled      : false,
-    minutePlaceholder     : undefined,
-    minuteValue           : undefined,
-    mode                  : 'default',
-    months                : undefined,
-    nextIsDisabled        : false,
-    onBlur                : undefined,
-    onChange              : undefined,
-    onClickCell           : undefined,
-    onClickIcon           : undefined,
-    onClickNext           : undefined,
-    onClickPrev           : undefined,
-    onFocus               : undefined,
-    onKeyDown             : undefined,
-    onKeyPress            : undefined,
-    onKeyUp               : undefined,
-    onMouseOut            : undefined,
-    onMouseOutIcon        : undefined,
-    onMouseOver           : undefined,
-    onMouseOverIcon       : undefined,
-    prevIsDisabled        : false,
-    textAlign             : 'auto',
-    weeks                 : undefined,
+    className         : undefined,
+    currentMonth      : undefined,
+    currentYear       : undefined,
+    days              : undefined,
+    forceHover        : false,
+    hasError          : false,
+    hourIsDisabled    : false,
+    hourPlaceholder   : undefined,
+    hourValue         : undefined,
+    id                : undefined,
+    inputPlaceholder  : undefined,
+    inputValue        : undefined,
+    isDisabled        : false,
+    isOpen            : false,
+    isReadOnly        : false,
+    isReadOnlyButton  : undefined,
+    isReadOnlyInput   : undefined,
+    minuteIsDisabled  : false,
+    minutePlaceholder : undefined,
+    minuteValue       : undefined,
+    mode              : 'default',
+    months            : undefined,
+    nextIsDisabled    : false,
+    onBlur            : undefined,
+    onChange          : undefined,
+    onClickCell       : undefined,
+    onClickIcon       : undefined,
+    onClickNext       : undefined,
+    onClickPrev       : undefined,
+    onFocus           : undefined,
+    onKeyDown         : undefined,
+    onKeyPress        : undefined,
+    onKeyUp           : undefined,
+    onMouseOut        : undefined,
+    onMouseOutIcon    : undefined,
+    onMouseOver       : undefined,
+    onMouseOverIcon   : undefined,
+    prevIsDisabled    : false,
+    textAlign         : 'auto',
+    weeks             : undefined,
 };
 
 DateTimeInput.displayName = 'DateTimeInput';
