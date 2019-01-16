@@ -34,9 +34,6 @@ module.exports = {
         '<rootDir>/src/Testing/setupTestEnvironment.js',
     ],
 
-    setupTestFrameworkScriptFile :
-        '<rootDir>/src/Testing/setupTestFramework.js',
-
     moduleNameMapper : Object.assign(
         {},
         // Map module aliases to directories
