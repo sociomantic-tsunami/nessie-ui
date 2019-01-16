@@ -82,15 +82,15 @@ export default class Tabs extends React.Component
         this.handleClickTab = this.handleClickTab.bind( this );
     }
 
-    handleClickTab( e, { activeTabIndex } )
+    handleClickTab( { value : tabIndex }, e )
     {
         const { onClickTab } = this.props;
         if ( onClickTab )
         {
-            onClickTab( e );
+            onClickTab( { tabIndex }, e );
         }
 
-        this.setState( { activeTabIndex } );
+        this.setState( { activeTabIndex: tabIndex } );
     }
 
     render()
@@ -116,11 +116,9 @@ export default class Tabs extends React.Component
                     isDisabled = { isDisabled || isActive }
                     key        = { label || tabIndex }
                     label      = { label }
-                    onClick    = { e => this.handleClickTab(
-                        { activeTabIndex: tabIndex },
-                        e,
-                    ) }
-                    tabIndex = { tabIndex } />
+                    onClick    = { this.handleClickTab }
+                    tabIndex   = { tabIndex }
+                    value      = { tabIndex } />
             );
         } );
 
