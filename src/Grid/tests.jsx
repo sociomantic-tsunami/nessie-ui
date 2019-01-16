@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React            from 'react';
-import { shallow }      from 'enzyme';
+import React              from 'react';
+import { shallow }        from 'enzyme';
 
-import { Grid, Column } from '../index';
+import { Grid, GridItem } from '../index';
+
 
 describe( 'Grid', () =>
 {
@@ -29,12 +30,12 @@ describe( 'Grid', () =>
         {
             wrapper.setProps( {
                 children : [
-                    <Column key = { 1 } />,
-                    <Column key = { 2 } />,
+                    <GridItem key = { 1 } />,
+                    <GridItem key = { 2 } />,
                 ],
             } );
 
-            expect( wrapper.find( Column ) ).toHaveLength( 2 );
+            expect( wrapper.find( GridItem ) ).toHaveLength( 2 );
         } );
     } );
 

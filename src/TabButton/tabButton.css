@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,33 +7,66 @@
  *
  */
 
-@import "../Button/button.css"; /* imports base.css */
+@import "../proto/base.css";
 
 .default
 {
+    appearance:     none !important;
+
+    display:        table; /* flex doesn’t work here */
+
+    width:          auto;
+    height:         auto;
+
+    padding:        0;
+
+    border:         none;
+    border-radius:  2px;
+
+    background:     transparent;
+    cursor:         pointer;
+
+    @extend %Nessie-Bold;
+
     color:          var( --PC-GREY--L70 );
     text-transform: none;
 
     .content
     {
-        min-width:      0;
-        margin:         0;
-        padding:        0;
+        /* Firefox doesn’t properly support flex directly
+         * on button so we need to set it here
+         */
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+        box-sizing:         border-box;
+        height:             40px;
+        text-align:         center;
 
-        border:         1px solid transparent;
-        border-radius:  0 0 2px;
+        min-width:          0;
+        margin:             0;
+        padding:            0;
+
+        border:             1px solid transparent;
+        border-radius:      0 0 2px;
     }
 
     .label
     {
         @extend %Nessie-Bold;
 
-        font-size:      var( --typo-3 );
-        line-height:    var( --line-height-s );
         padding-left:   var( --spacing-1 );
         padding-right:  var( --spacing-1 );
-        letter-spacing: 0;
         margin-bottom:  -1px;
+
+        font-size:      var( --typo-3 );
+        line-height:    var( --line-height-s );
+        letter-spacing: 0.5px;
+
+        overflow:       hidden;
+        text-overflow:  ellipsis;
+        white-space:    nowrap;
+
     }
 
     .subtitle
@@ -65,4 +98,11 @@
     {
         border-bottom-color:   var( --PC-BLUE );
     }
+}
+
+
+.disabled
+{
+    cursor:         default;
+    pointer-events: none;
 }

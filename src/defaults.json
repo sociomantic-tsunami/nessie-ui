@@ -1,31 +1,4 @@
 {
-    "Button" :
-    {
-        "label" : "Click me!"
-    },
-    "Card" :
-    {
-        "children" : "{<TextInput label='Your name'/>}"
-    },
-    "CheckableGroup" :
-    {
-        "label" : "What’s your favorite fruit?",
-        "children" : "{<Radio>Apples</Radio><Radio>Oranges</Radio><Radio isChecked>Kaki</Radio><Radio isDisabled>Forbidden fruit</Radio>}"
-    },
-    "Checkbox" :
-    {
-        "label" : "Check it out"
-    },
-    "CheckboxGroup" :
-    {
-        "label"          : "Which fruits do you like?",
-        "values"         : ["apples", "oranges", "kaki"],
-        "selectedValues" : ["apples", "kaki"]
-    },
-    "Column" :
-    {
-        "children"  : "column content"
-    },
     "ComboBox" :
     {
         "isOpen"  : true,
@@ -59,24 +32,9 @@
         "months"            : [[{"label":"Jan","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Feb","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Mar","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Apr","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"May","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jun","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jul","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Aug","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"Sep","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Oct","value":"10","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"Nov","value":"11","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"Dec","value":"12","isCurrent":false,"isDisabled":false,"isSelected":false}]],
         "weeks"             : [[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]
     },
-    "DimensionsInput" :
-    {
-        "label"         : "Banner size",
-        "errorMessage"  : "Wrong size!"
-    },
-    "DragNDrop" :
-    {
-        "message"  : "Drop image file to upload",
-        "children" : "{<Label>Image</Label><Uploader/>}"
-    },
     "Dropdown" :
     {
-        "children" : "{<ul><li>List item A</li><li>List item B</li><li>List item C</li></ul>}"
-    },
-    "Fieldset" :
-    {
-        "label"    : "Fieldset legend",
-        "children" : "{<Text>Fieldset content</Text>}"
+        "children" : "Dropdown content"
     },
     "Grid" :
     {
@@ -86,22 +44,6 @@
     {
         "children": "{<Text>Grid Item dummy text</Text>}"
     },
-    "H1" :
-    {
-        "title": "h1 element"
-    },
-    "H2" :
-    {
-        "title": "h2 element"
-    },
-    "H3" :
-    {
-        "title": "h3 element"
-    },
-    "H4" :
-    {
-        "title": "h4 element"
-    },
     "Icon" :
     {
         "type"  : "add"
@@ -110,17 +52,6 @@
     {
         "iconType"  : "add",
         "label"     : "Add"
-    },
-    "IconWithTooltip" :
-    {
-        "iconType"          : "error",
-        "message"           : "Something’s wrong!",
-        "tooltipIsVisible"  : true,
-        "lochness"          : { "isDeprecated": true }
-    },
-    "Label" :
-    {
-        "label": " Label example"
     },
     "ListBox" :
     {
@@ -156,55 +87,6 @@
             }
         ]
     },
-    "MessageBox" :
-    {
-        "message": "Our Wonderful Message"
-    },
-    "Module" :
-    {
-        "title": "Our Wonderful Module",
-        "children": "{<Text>Some other components go here....</Text>}"
-    },
-    "ModalDialog" :
-    {
-        "children" : "{<Section><H3>Header</H3><Text>Modal box content</Text><TextInput></TextInput><TextArea></TextArea></Section><Row align='right'><Column><Button size='M' role={'subtle'}>OK</Button></Column></Row>}"
-    },
-    "NavBar" :
-    {
-        "children" : "{<NavItem iconType='lightbulb' label='Creatives' isOpen href='#'><NavItem label='Another menu' href='#'/><NavItem label='Another menu' href='#' isCurrent/></NavItem><NavItem iconType='megaphone' label='Campaigns' href='#'/><NavItem iconType='account' label='Account' href='#'/>}"
-    },
-    "NavDropdown" :
-    {
-        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
-    },
-    "NavItem" :
-    {
-        "label" : "Creatives",
-        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
-    },
-    "NavList" :
-    {
-        "children" : "{<NavItem label='Menu item'/><NavItem label='Another menu item'/>}"
-    },
-    "NotificationBar" :
-    {
-        "message" : "Here you can view your campaign settings"
-    },
-    "PageContent" :
-    {
-        "children" : "{<Text>This is the page content container. Not much to see here, really.</Text>}"
-    },
-    "Paginator" :
-    {
-        "shownPages"    : [ 10, 11, 12 ],
-        "startPage"     : 1,
-        "endPage"       : 99,
-        "currentPage"   : 10,
-        "startEllipsis" : true,
-        "endEllipsis"   : true,
-        "showPrev"      : true,
-        "showNext"      : true
-    },
     "PasswordInput" :
     {
         "label" : "Tell me your secrets",
@@ -215,61 +97,15 @@
         "label" : "Tell me your secrets",
         "errorMessage" : "Please enter a dark secret"
     },
-    "ProgressIndicator" :
-    {
-        "currentPercentage" : 17
-    },
-    "Radio" :
-    {
-        "label": "Ga Ga"
-    },
-    "RadioGroup" :
-    {
-        "label"         : "What’s your favorite fruit?",
-        "values"        : [ "apples", "oranges", "kaki" ],
-        "selectedValue" : "apples"
-    },
-    "Row" :
-    {
-        "children": "{<Column size='1/3'><Text>left<br/>column<br/>content</Text></Column><Column size='1/3'><Text>middle column content</Text></Column><Column size='1/3'><Text>right column content</Text></Column>}"
-    },
     "ScrollBar" :
     {
         "scrollMax" : 100
     },
     "ScrollBox" :
     {
-        "children"     : "{<Table columns={ [ { title: 'Action', size: '1/3', isSortable: true }, { title: 'Date', size: '1/3', isSortable: true }, { title: 'Comments', size: '1/3', isSortable: false } ] } values={ [ ['Create','2016/06/10','Made a thing'], ['Delete','2016/06/10','Erased a thing'], ['Edit',  '2016/06/12','Modified a thing'], ['Create','2016/06/15','Made another thing'] ] }/>}",
+        "children"     : "ScrollBox content",
         "contentWidth" : "150%",
         "height"       : "100px"
-    },
-    "Section" :
-    {
-        "title"   : "The Life and Times of David Hasselhoff",
-        "level"   : 1,
-        "children" : "{<Section level={2} title='Early Life'><Text>Subsection content...</Text></Section><Section level={2} title='Early Career'><Text>Subsection content...</Text></Section><Section level={2} title='Popularity in Germany'><Section level={3} title='Single-handedly singing down the Berlin Wall'><Text>Sub-subsection content...</Text></Section></Section><Text>More main section content...</Text>}"
-    },
-    "Slider":
-    {
-        "stepLabelStart": "Today",
-        "stepLabelEnd"  : "Future",
-        "value"         : [ 25, 75 ],
-        "ticks"         : [{"stepLabel":"|","step":25},{"stepLabel":"|","step":50},{"stepLabel":"|","step":75}],
-        "stepLabels"    : [{"stepLabel":"25","step":25},{"stepLabel":"50","step":50},{"stepLabel":"75","step":75}]
-    },
-    "SliderGroup":
-    {
-        "sliders"       : [ { "value": 50 }, { "value": 50, "isDisabled": true }, { "value": 50, "isDisabled": true }, { "value": 50, "isDisabled": true } ],
-        "stepLabels"    : [ { "stepLabel": "No filter", "step": 0 }, { "stepLabel": "Low", "step": 25 }, { "stepLabel": "Medium", "step": 50 }, { "stepLabel": "High", "step": 75 }, { "stepLabel": "Very high", "step": 100 } ],
-        "sliderLabels"  : [ "category 1", "category 2", "category 3", "category 4" ]
-    },
-    "Sorter" :
-    {
-        "children"  : "Something to sort"
-    },
-    "StatusIndicator" :
-    {
-        "label" :  "Active"
     },
     "Tab" :
     {
@@ -281,20 +117,6 @@
         "label" : "Tab title",
         "subtitle" :"Something subtitly"
     },
-    "Table" :
-    {
-        "values"  : [["Create","2016/06/10","Made a thing"],["Delete","2016/06/10","Erased a thing"],["Edit","2016/06/12","Modified a thing"], ["Create","2016/06/15","Made another thing"]],
-        "columns" : [{"title":"Action","isSortable":true, "size":"1/4"},{"title":"Date","isSortable":true, "size":"1/4"},{"title":"Comments","isSortable":false, "size":"1/2"}]
-    },
-    "TableCell" :
-    {
-        "children"      : "cell content",
-        "columnTitle"   : "column title"
-    },
-    "TableRow" :
-    {
-        "children": "{<TableCell size='1/3' columnTitle='left column title'><Text>left</Text><Text>column</Text><Text>content</Text></TableCell><TableCell size='1/3' columnTitle='middle column title'>middle column content</TableCell><TableCell size='1/3' columnTitle='right column title'>right column content</TableCell>}"
-    },
     "Tabs" :
     {
         "children"          : "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}",
@@ -305,26 +127,6 @@
         "children"          : "{<Tab label=\"Deutsch\">Halo!</Tab><Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab>}",
         "activeTabIndex"    : 0
     },
-    "Tag" :
-    {
-        "label"      : "Tag Label"
-    },
-    "TagInput" :
-    {
-        "children"      : "{<Tag label=\"TagLabel 1\"/><Tag label=\"TagLabel 2\"/>}",
-        "tags"          : [ "TagLabelString 1", "TagLabelString 2" ]
-    },
-    "TextArea" :
-    {
-        "label": "Text Area Label",
-        "placeholder": "Please enter max. 500 characters"
-    },
-    "TextInput" :
-    {
-        "label" : "Name",
-        "placeholder"  : "Your full name",
-        "errorMessage" : "Please enter a valid name"
-    },
     "TextInputWithIcon" :
     {
         "label"            : "Name",
@@ -332,23 +134,8 @@
         "inputType"        : "text",
         "iconType"         : "show"
     },
-    "ToggleButton" : {
-      "label": "Toggle me tender",
-      "subLabel": "Toggle me sweet"
-    },
     "Tooltip" :
     {
         "message"  : "Pro tip!"
-    },
-    "Uploader" :
-    {
-        "label"  : "Banner image"
-    },
-    "ValuedTextInput" :
-    {
-        "label"         : "How much is the fish?",
-        "placeholder"   : "0.00",
-        "valueLabel"    : "EUR",
-        "errorMessage"  : "Enter a price in euros and cents"
     }
 }
