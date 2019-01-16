@@ -87,6 +87,18 @@
             right:  0;
         }
     }
+
+
+    &:focus-within,
+    &.fakeHovered
+    {
+        box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
+
+        .valueLabel
+        {
+            border-color:   var( --PC-BLUE );
+        }
+    }
 }
 
 
@@ -132,15 +144,6 @@
 }
 
 
-.fakeHovered
-{
-    box-shadow:     0 0 0 2px color( var( --PC-BLUE ) a( 30% ) );
-
-    .valueLabel
-    {
-        border-color:   var( --PC-BLUE );
-    }
-}
 
 
 .error
@@ -162,6 +165,7 @@
         box-shadow:     none !important;
     }
 
+    &:focus-within,
     &.fakeHovered
     {
         box-shadow:     0 0 0 2px color( var( --PC-RED ) a( 30% ) );

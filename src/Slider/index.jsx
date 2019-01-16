@@ -9,13 +9,13 @@
 
 /* global document addEventListener removeEventListener Event */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React                      from 'react';
+import PropTypes                  from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import { IconWithTooltip, Label }       from '../index';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming/createCss';
+import { generateId }             from '../utils';
+import { IconWithTooltip, Label } from '../index';
+import ThemeContext               from '../Theming/ThemeContext';
+import { createCssMap }           from '../Theming';
 
 export default class Slider extends React.Component
 {
@@ -23,6 +23,14 @@ export default class Slider extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
         /**
         *  Label text
         */
@@ -191,6 +199,9 @@ export default class Slider extends React.Component
 
     static defaultProps =
     {
+        className             : undefined,
+        cssMap                : undefined,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         fillFrom              : 'start',
@@ -202,11 +213,26 @@ export default class Slider extends React.Component
         isDisabled            : false,
         isLogarithmic         : false,
         isReadOnly            : false,
+        label                 : undefined,
         maxValue              : 100,
         minValue              : 0,
+        onBlur                : undefined,
+        onChange              : undefined,
+        onClick               : undefined,
+        onFocus               : undefined,
+        onKeyDown             : undefined,
+        onKeyUp               : undefined,
+        onMouseDown           : undefined,
+        onMouseOut            : undefined,
+        onMouseOver           : undefined,
+        onMouseUp             : undefined,
         orientation           : 'horizontal',
         step                  : 1,
+        stepLabelEnd          : undefined,
+        stepLabels            : undefined,
         stepLabelsPosition    : 'top',
+        stepLabelStart        : undefined,
+        ticks                 : undefined,
         value                 : 0,
     };
 
@@ -628,16 +654,12 @@ export default class Slider extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.Slider, this.props ),
             errorMessage,
             errorMessageIsVisible,
             errorMessagePosition,
-            handleLabelPosition,
             hasError,
             hasFill,
-            hasHandleLabels,
-            id = this.state,
             isDisabled,
             isReadOnly,
             label,
@@ -651,12 +673,13 @@ export default class Slider extends React.Component
             onMouseOut,
             onMouseOver,
             onMouseUp,
-            orientation,
             step,
             stepLabelsPosition,
             ticks = [],
             value,
         } = this.props;
+
+        const { id } = this.state;
 
         let values = [];
 
@@ -744,15 +767,7 @@ export default class Slider extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled            : isDisabled,
-                    error               : !isDisabled && hasError,
-                    grabbing            : this.state.isGrabbing,
-                    handleLabelPosition : hasHandleLabels &&
-                        handleLabelPosition,
-                    hasHandleLabels,
-                    orientation,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 <div

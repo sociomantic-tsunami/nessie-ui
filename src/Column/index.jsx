@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class Column extends React.Component
 {
@@ -21,9 +20,38 @@ export default class Column extends React.Component
     static propTypes =
     {
         /**
+         *  Horizontal alignment of content (“auto” makes all items 100% width)
+         */
+        align : PropTypes.oneOf( [
+            'auto',
+            'left',
+            'center',
+            'right',
+        ] ),
+        /**
+         *  Column content
+         */
+        children    : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
         *  Title of Column
         */
         columnTitle : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Adds dividers between column items
+         */
+        hasDividers : PropTypes.bool,
+        /**
+        *  Column role
+        */
+        role        : PropTypes.string,
         /**
          *  Width of the Column
          */
@@ -62,15 +90,6 @@ export default class Column extends React.Component
             /* eslint-enable max-len */
         ] ),
         /**
-         *  Horizontal alignment of content (“auto” makes all items 100% width)
-         */
-        align : PropTypes.oneOf( [
-            'auto',
-            'left',
-            'center',
-            'right',
-        ] ),
-        /**
          *  Vertical alignment of content (“auto” is equivalent to “top”)
          */
         verticalAlign : PropTypes.oneOf( [
@@ -79,24 +98,19 @@ export default class Column extends React.Component
             'middle',
             'bottom',
         ] ),
-        /**
-         *  Adds dividers between column items
-         */
-        hasDividers : PropTypes.bool,
-        /**
-         *  Column content
-         */
-        children    : PropTypes.node,
-        /**
-        *  Column role
-        */
-        role        : PropTypes.string,
     };
 
     static defaultProps =
     {
-        align       : 'auto',
-        hasDividers : false,
+        align         : 'auto',
+        children      : undefined,
+        className     : undefined,
+        columnTitle   : undefined,
+        cssMap        : undefined,
+        hasDividers   : false,
+        role          : undefined,
+        size          : undefined,
+        verticalAlign : undefined,
     };
 
     static displayName = 'Column';
@@ -104,25 +118,14 @@ export default class Column extends React.Component
     render()
     {
         const {
-            align,
             children,
-            className,
             columnTitle,
             cssMap = createCssMap( this.context.Column, this.props ),
             hasDividers,
             role,
-            size,
-            verticalAlign,
         } = this.props;
 
         let elements;
-
-        if ( !Column.didWarn && verticalAlign === 'space-around' )
-        {
-            console.warn( 'Column: \'space-around\' option for verticalAlign \
-prop is deprecated. Please use an alternative layout.' );
-            Column.didWarn = true;
-        }
 
         if ( hasDividers )
         {
@@ -130,21 +133,18 @@ prop is deprecated. Please use an alternative layout.' );
                 child,
                 index,
                 { length },
-            ) =>
-                ( index < length - 1 ?
+            ) => (
+                index < ( length - 1 ) ?
                     [ child, <div className = { cssMap.divider } /> ] :
-                    child ) );
+                    child
+            ) );
         }
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    size,
-                    alignX : align,
-                    alignY : verticalAlign,
-                } ) }
-                role              = { role }
-                data-column-title = { columnTitle }>
+                className         = { cssMap.main }
+                data-column-title = { columnTitle }
+                role              = { role }>
                 { hasDividers ? elements : children }
             </div>
         );

@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import { Column }   from '../index';
+import { Column }  from '../index';
 
 describe( 'Column', () =>
 {
@@ -20,13 +20,11 @@ describe( 'Column', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Column /> );
+        wrapper = shallow( <Column /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Column.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

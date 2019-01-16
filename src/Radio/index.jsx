@@ -13,7 +13,7 @@ import PropTypes        from 'prop-types';
 import Checkable        from '../proto/Checkable';
 import { generateId }   from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { createCssMap } from '../Theming';
 
 class Radio extends React.Component
 {
@@ -103,12 +103,13 @@ class Radio extends React.Component
     {
         children    : undefined,
         className   : undefined,
+        cssMap      : undefined,
         forceHover  : false,
         hasError    : false,
         id          : undefined,
         inputRef    : undefined,
-        isDisabled  : false,
         isChecked   : false,
+        isDisabled  : false,
         isReadOnly  : false,
         label       : undefined,
         name        : undefined,

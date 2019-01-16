@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { H1 }               from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class PageContentHeader extends React.Component
 {
@@ -22,13 +21,29 @@ export default class PageContentHeader extends React.Component
     static propTypes =
     {
         /**
-         *  Page content header text (h1)
-         */
-        title    : PropTypes.string,
-        /**
          *  Page content header custom content; overrides title
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Page content header text (h1)
+         */
+        title     : PropTypes.string,
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        title     : undefined,
     };
 
     static displayName = 'PageContentHeader';
@@ -37,29 +52,16 @@ export default class PageContentHeader extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.PageContentHeader, this.props ),
             title,
         } = this.props;
 
-        let header = (
-            <H1
-                className = { buildClassName(
-                    className,
-                    cssMap,
-                    { header: !!children },
-                ) }>{ title }
-            </H1> );
+        let header = <H1 className = { cssMap.main }>{ title }</H1>;
 
         if ( children )
         {
             header = (
-                <header
-                    className = { buildClassName(
-                        className,
-                        cssMap,
-                        { header: !!children },
-                    ) }>
+                <header className = { cssMap.main }>
                     { children }
                 </header>
             );

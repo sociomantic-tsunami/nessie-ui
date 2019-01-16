@@ -63,7 +63,7 @@ describe( 'TableDriver', () =>
             'should throw an expected error if TableCell is not sortable',
             () =>
             {
-                const expectedError = 'TableCell cannot be toggled since it\'s \
+                const expectedError = 'TableCell cannot be toggled since it’s \
 not sortable';
 
                 expect( () => driver.toggle( 2 ) ).toThrow( expectedError );

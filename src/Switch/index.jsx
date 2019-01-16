@@ -7,12 +7,12 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { buildClassName, generateId }   from '../utils';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming/createCss';
+import { generateId }   from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class Switch extends React.Component
 {
@@ -21,7 +21,7 @@ export default class Switch extends React.Component
     static propTypes =
     {
         /**
-         * extra CSS classname
+         * Extra CSS classname
          */
         className   : PropTypes.string,
         /**
@@ -84,15 +84,21 @@ export default class Switch extends React.Component
 
     static defaultProps =
     {
-        className  : undefined,
-        forceHover : false,
-        id         : undefined,
-        isChecked  : false,
-        isDisabled : false,
-        isReadOnly : false,
-        label      : undefined,
-        onChange   : undefined,
-        value      : undefined,
+        className   : undefined,
+        cssMap      : undefined,
+        forceHover  : false,
+        id          : undefined,
+        isChecked   : false,
+        isDisabled  : false,
+        isReadOnly  : false,
+        label       : undefined,
+        name        : undefined,
+        onBlur      : undefined,
+        onChange    : undefined,
+        onFocus     : undefined,
+        onMouseOut  : undefined,
+        onMouseOver : undefined,
+        value       : undefined,
     };
 
     static displayName = 'Switch';
@@ -100,9 +106,7 @@ export default class Switch extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.Switch, this.props ),
-            forceHover,
             id = generateId( 'Switch' ),
             isChecked,
             isDisabled,
@@ -119,10 +123,7 @@ export default class Switch extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    fakeHovered : !isDisabled && forceHover,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 <input

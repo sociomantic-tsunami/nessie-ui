@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class Paginator extends React.Component
 {
@@ -21,6 +20,10 @@ export default class Paginator extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Extra CSS class name
+         */
+        className        : PropTypes.node,
         /**
          *  CSS class map
          */
@@ -85,6 +88,8 @@ export default class Paginator extends React.Component
 
     static defaultProps =
     {
+        className        : undefined,
+        cssMap           : undefined,
         currentPage      : undefined,
         ellipsisText     : '…',
         endPage          : undefined,
@@ -106,7 +111,6 @@ export default class Paginator extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.Paginator, this.props ),
             currentPage,
             ellipsisText,
@@ -148,7 +152,7 @@ export default class Paginator extends React.Component
         return (
             <div
                 aria-label = "Pagination"
-                className  = { buildClassName( className, cssMap ) }
+                className  = { cssMap.main }
                 role       = "navigation">
                 { showPrev &&
                 <IconButton

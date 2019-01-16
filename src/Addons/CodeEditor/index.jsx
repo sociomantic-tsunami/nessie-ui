@@ -9,12 +9,12 @@
 
 /* eslint-disable react/forbid-prop-types */
 
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
-import CodeMirror           from 'codemirror';
+import React, { Component }           from 'react';
+import PropTypes                      from 'prop-types';
+import CodeMirror                     from 'codemirror';
 
-import { buildClassName }   from '../../utils';
-import styles               from './codeEditor.css';
+import { createCssMap }               from '../../Theming';
+import ThemeContext                   from '../../Theming/ThemeContext';
 
 import 'codemirror/mode/jsx/jsx';
 
@@ -30,6 +30,8 @@ const SCROLL_CLASS = 'CodeMirror-scroll';
 
 export default class CodeEditor extends Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -90,7 +92,7 @@ export default class CodeEditor extends Component
         /**
          * Handles CodeMirror keyPress event
          */
-        onKeyPress   : PropTypes.func,
+        onKeyPress       : PropTypes.func,
         /**
          * onCursorActivity callback function: ( cursor ) => { ... }
          */
@@ -117,7 +119,7 @@ export default class CodeEditor extends Component
     {
         className        : undefined,
         codeMirrorRef    : undefined,
-        cssMap           : styles,
+        cssMap           : undefined,
         cursor           : undefined,
         forceHover       : false,
         hasError         : false,
@@ -140,7 +142,7 @@ export default class CodeEditor extends Component
     {
         super( props );
 
-        this.state = { ...this.state, isFocused: false };
+        this.state = { ...this.state };
 
         this.handleFocus          = this.handleFocus.bind( this );
         this.handleBlur           = this.handleBlur.bind( this );
@@ -282,8 +284,6 @@ export default class CodeEditor extends Component
 
     handleFocus( cm )
     {
-        this.setState( { isFocused: true } );
-
         const { onFocus } = this.props;
         if ( onFocus )
         {
@@ -293,8 +293,6 @@ export default class CodeEditor extends Component
 
     handleBlur( cm )
     {
-        this.setState( { isFocused: false } );
-
         const { onBlur } = this.props;
         if ( onBlur )
         {
@@ -348,27 +346,17 @@ export default class CodeEditor extends Component
     render()
     {
         const {
-            className,
-            cssMap,
-            forceHover,
-            hasError,
+            cssMap = createCssMap( this.context.CodeEditor, this.props ),
             height,
-            isDisabled,
             maxHeight,
             onMouseOut,
             onMouseOver,
             value,
         } = this.props;
 
-        const { isFocused } = this.state;
-
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && ( forceHover || isFocused ),
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
                 ref          = { this.handleWrapperRef }

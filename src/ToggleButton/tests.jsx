@@ -14,6 +14,7 @@ import { shallow, mount }       from 'enzyme';
 
 import { Icon, ToggleButton }   from '../index';
 
+
 describe( 'ToggleButton', () =>
 {
     let wrapper;

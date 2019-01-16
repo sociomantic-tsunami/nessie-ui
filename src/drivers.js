@@ -44,6 +44,7 @@ import {
     Tabs,
     Tag,
     TagInput,
+    Text,
     TextArea,
     TextInput,
     TextInputWithIcon,
@@ -88,6 +89,7 @@ import TableCellDriver             from './TableCell/driver';
 import TabsDriver                  from './Tabs/driver';
 import TagDriver                   from './Tag/driver';
 import TagInputDriver              from './TagInput/driver';
+import TextDriver                  from './Text/driver';
 import TextAreaDriver              from './TextArea/driver';
 import TextInputDriver             from './TextInput/driver';
 import TextInputWithIconDriver     from './TextInputWithIcon/driver';
@@ -238,6 +240,10 @@ const drivers =
     {
         Component : TagInput,
         Driver    : TagInputDriver,
+    },
+    {
+        Component : Text,
+        Driver    : TextDriver,
     },
     {
         Component : TextArea,

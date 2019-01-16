@@ -7,17 +7,10 @@
  *
  */
 
-export default class TextDriver
+const createCssMap = ( theme = {}, props = {} ) =>
 {
-    constructor( wrapper )
-    {
-        this.wrapper = wrapper;
-    }
+    if ( typeof theme === 'function' ) return theme( props );
+    return theme;
+};
 
-
-    click()
-    {
-        this.wrapper.simulate( 'click' );
-        return this;
-    }
-}
+export default createCssMap;

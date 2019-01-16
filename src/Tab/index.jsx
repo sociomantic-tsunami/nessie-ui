@@ -7,12 +7,11 @@
  *
  */
 
-import React              from 'react';
-import PropTypes          from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { buildClassName } from '../utils';
-import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class Tab extends React.Component
 {
@@ -25,11 +24,11 @@ export default class Tab extends React.Component
          */
         children  : PropTypes.node,
         /**
-         *  Extra CSS class name
+         * Extra CSS classname
          */
         className : PropTypes.string,
         /**
-         *  CSS class map
+         * CSS classname map
          */
         cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
@@ -42,6 +41,7 @@ export default class Tab extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         label     : undefined,
     };
 
@@ -51,14 +51,13 @@ export default class Tab extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Tab, this.props ),
             label,
         } = this.props;
 
         return (
             <div
-                className  = { buildClassName( className, cssMap ) }
+                className  = { cssMap.main }
                 aria-label = { label }
                 role       = "tabpanel">
                 { children }

@@ -232,24 +232,6 @@ describe( 'ModuleDriver', () =>
         } );
     } );
 
-
-    describe( 'getCustomHeader()', () =>
-    {
-        test( 'should return the customHeader content', () =>
-        {
-            wrapper.setProps( {
-                title        : 'Boom',
-                customHeader : <h1 className = "pokemon">Pikachu</h1>,
-            } );
-
-            const header = wrapper
-                .find( `.${wrapper.instance().context.Module.header}` )
-                .children();
-            expect( header.find( '.pokemon' ) ).toHaveLength( 1 );
-        } );
-    } );
-
-
     describe( 'mouseOverHeader()', () =>
     {
         test( 'should trigger onMouseOverHeader callback once', () =>

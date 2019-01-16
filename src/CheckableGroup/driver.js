@@ -9,20 +9,27 @@
 
 import { Checkbox, Radio } from 'nessie-ui';
 
+
 const ERR = {
     CHECKABLEGROUP_ERR : ( event, state ) => `CheckableGroup cannot simulate \
 ${event} since it is ${state}`,
 };
 
+
 export default class CheckableGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper    = wrapper;
-        this.checkables = wrapper.find( Checkbox ).length ?
-            wrapper.find( Checkbox ) :
-            wrapper.find( Radio );
+        this.wrapper = wrapper;
     }
+
+    get checkables()
+    {
+        const { wrapper } = this;
+        return wrapper.find( Checkbox ).length ?
+            wrapper.find( Checkbox ) : wrapper.find( Radio );
+    }
+
 
     change( index = 0 )
     {

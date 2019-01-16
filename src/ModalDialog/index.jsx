@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { IconButton }       from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class ModalDialog extends React.Component
 {
@@ -24,11 +23,19 @@ export default class ModalDialog extends React.Component
         /**
          *  Dialog Content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Message type
          */
-        type     : PropTypes.oneOf( [
+        type      : PropTypes.oneOf( [
             'default',
             'neutral',
             'crucial',
@@ -71,9 +78,18 @@ export default class ModalDialog extends React.Component
 
     static defaultProps =
     {
-        hasNavigation : true,
-        isVisible     : false,
-        type          : 'default',
+        children       : undefined,
+        className      : undefined,
+        cssMap         : undefined,
+        hasNavigation  : true,
+        isVisible      : false,
+        isWide         : undefined,
+        onClickClose   : undefined,
+        onClickNext    : undefined,
+        onClickOverlay : undefined,
+        onClickPrev    : undefined,
+        title          : undefined,
+        type           : 'default',
     };
 
     static displayName = 'ModalDialog';
@@ -82,11 +98,8 @@ export default class ModalDialog extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ModalDialog, this.props ),
-            hasNavigation,
             isVisible,
-            isWide,
             onClickClose,
             onClickNext,
             onClickOverlay,
@@ -143,11 +156,7 @@ export default class ModalDialog extends React.Component
         return (
             <div className = "modalContainer">
                 <div
-                    className = { buildClassName( className, cssMap, {
-                        showNav : hasNavigation,
-                        type,
-                        wide    : isWide,
-                    } ) }
+                    className = { cssMap.main }
                     onClick   = { handleOverlayClick } >
                     { modalUI }
                     <div className = { cssMap.content }>

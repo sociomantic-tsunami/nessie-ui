@@ -7,14 +7,28 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
 
 export default class NavItemDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.NavItem;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.NavItem, instance.props );
+    }
+
 
     click()
     {

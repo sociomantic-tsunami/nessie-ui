@@ -14,12 +14,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 
-import React                     from 'react';
-import PropTypes                 from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { clamp, buildClassName } from '../utils';
-import ThemeContext              from '../Theming/ThemeContext';
-import { createCssMap }          from '../Theming/createCss';
+import { clamp }        from '../utils';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class ScrollBar extends React.Component
 {
@@ -89,12 +89,14 @@ export default class ScrollBar extends React.Component
     static defaultProps =
     {
         className        : undefined,
+        cssMap           : undefined,
         onChange         : undefined,
+        onClickTrack     : undefined,
         onMouseOut       : undefined,
         onMouseOver      : undefined,
-        orientation      : 'horizontal',
-        onThumbDragStart : undefined,
         onThumbDragEnd   : undefined,
+        onThumbDragStart : undefined,
+        orientation      : 'horizontal',
         scrollBoxId      : undefined,
         scrollMax        : 0,
         scrollMin        : 0,
@@ -107,7 +109,6 @@ export default class ScrollBar extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.ScrollBar, this.props ),
             onChange,
             onClickTrack,
@@ -135,13 +136,11 @@ export default class ScrollBar extends React.Component
             <div
                 aria-controls    = { scrollBoxId }
                 aria-orientation = { orientation }
-                aria-valuenow    = { scrollPos }
-                aria-valuemin    = { scrollMin }
                 aria-valuemax    = { scrollMax }
-                className = { buildClassName( className, cssMap, {
-                    orientation,
-                } ) }
-                onClick = { e =>
+                aria-valuemin    = { scrollMin }
+                aria-valuenow    = { scrollPos }
+                className        = { cssMap.main }
+                onClick          = { e =>
                 {
                     if ( e.target !== e.currentTarget || !onClickTrack )
                     {

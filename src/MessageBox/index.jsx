@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import Text                 from '../Text';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class MessageBox extends React.Component
 {
@@ -21,6 +20,18 @@ export default class MessageBox extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Message text (JSX node; overrides message prop)
+         */
+        children    : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
         /**
         *  Message text
         */
@@ -39,6 +50,10 @@ export default class MessageBox extends React.Component
 
     static defaultProps =
     {
+        className   : undefined,
+        children    : undefined,
+        cssMap      : undefined,
+        message     : undefined,
         messageType : 'default',
     };
 
@@ -47,21 +62,16 @@ export default class MessageBox extends React.Component
     render()
     {
         const {
-            className,
             children,
             cssMap = createCssMap( this.context.MessageBox, this.props ),
             message,
-            messageType,
         } = this.props;
 
         const messageNode =
             <Text className = { cssMap.text } >{ message }</Text>;
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    type : messageType,
-                } ) }>
+            <div className = { cssMap.main }>
                 { children || messageNode }
             </div>
         );

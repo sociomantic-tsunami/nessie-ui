@@ -10,10 +10,9 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { Icon }             from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class Sorter extends Component
 {
@@ -25,6 +24,14 @@ export default class Sorter extends Component
          *  Sorter text/content
          */
         children        : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className       : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap          : PropTypes.objectOf( PropTypes.string ),
         /*
         * Force hover
          */
@@ -45,49 +52,28 @@ export default class Sorter extends Component
 
     static defaultProps =
     {
+        children        : undefined,
+        className       : undefined,
+        cssMap          : undefined,
         forceHover      : false,
+        onToggle        : undefined,
         sort            : 'none',
         sorterIsVisible : true,
     };
 
     static displayName = 'Sorter';
 
-    constructor()
-    {
-        super();
-        this.state = { isHovered: false };
-        this.toggleHover = this.toggleHover.bind( this );
-    }
-
-    toggleHover()
-    {
-        this.setState( { isHovered: !this.state.isHovered } );
-    }
-
     render()
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Sorter, this.props ),
-            forceHover,
             onToggle,
-            sort,
             sorterIsVisible,
         } = this.props;
 
-        const { isHovered } = this.state;
-        const fakeHovered = isHovered || forceHover;
-
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    desc          : sort,
-                    fakeHovered   : forceHover,
-                    sort,
-                    sorterVisible : sorterIsVisible,
-                }  ) }
-                onClick = { onToggle }>
+            <div className = { cssMap.main } onClick = { onToggle }>
                 <div
                     className    = { cssMap.content }
                     onMouseEnter = { this.toggleHover }

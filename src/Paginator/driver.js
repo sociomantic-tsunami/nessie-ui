@@ -7,32 +7,47 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
+
 export default class PaginatorDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Paginator;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Paginator, instance.props );
+    }
+
 
     clickPrev()
     {
-        this.wrapper.find( `.${this.cssMap.arrow}` )
-            .first().simulate( 'click' );
+        this.wrapper.find( `.${this.cssMap.arrow}` ).first()
+            .simulate( 'click' );
         return this;
     }
 
     clickNext()
     {
-        this.wrapper.find( `.${this.cssMap.arrow}` )
-            .last().simulate( 'click' );
+        this.wrapper.find( `.${this.cssMap.arrow}` ).last()
+            .simulate( 'click' );
         return this;
     }
 
     clickPage( i = 0 )
     {
-        this.wrapper.find( `.${this.cssMap.pageButton}` )
-            .at( i ).simulate( 'click' );
+        this.wrapper.find( `.${this.cssMap.pageButton}` ).at( i )
+            .simulate( 'click' );
         return this;
     }
 }

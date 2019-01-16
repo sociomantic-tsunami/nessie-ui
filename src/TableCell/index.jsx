@@ -11,9 +11,8 @@ import React                    from 'react';
 import PropTypes                from 'prop-types';
 
 import { Column, Sorter, Text } from '../index';
-import { buildClassName }       from '../utils';
 import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming/createCss';
+import { createCssMap }         from '../Theming';
 
 export default class TableCell extends React.Component
 {
@@ -29,6 +28,14 @@ export default class TableCell extends React.Component
          *  Cell content
          */
         children    : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Title of the column this cell in
          */
@@ -113,10 +120,14 @@ export default class TableCell extends React.Component
     {
         align         : undefined,
         children      : undefined,
+        className     : undefined,
+        columnTitle   : undefined,
+        cssMap        : undefined,
         isHeader      : false,
         isRowHeader   : false,
         isSortable    : false,
         isSticky      : false,
+        onToggle      : undefined,
         size          : undefined,
         sort          : 'none',
         textProps     : undefined,
@@ -176,11 +187,7 @@ export default class TableCell extends React.Component
         return (
             <Column
                 { ...props }
-                className = { buildClassName( className, cssMap, {
-                    header    : isHeader,
-                    rowHeader : isRowHeader,
-                    sticky    : isSticky,
-                } ) }
+                className = { cssMap.main }
                 role      = { isHeader ? 'columnheader' : 'gridcell' }>
                 { contentNode }
             </Column>

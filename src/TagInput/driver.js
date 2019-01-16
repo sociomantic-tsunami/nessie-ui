@@ -7,19 +7,34 @@
  *
  */
 
-import { Tag } from 'nessie-ui';
+import { Tag }          from 'nessie-ui';
+
+import { createCssMap } from '../Theming';
+
 
 const ERR = {
     TAGINPUT_ERR : ( event, state ) =>
         `TagInput cannot simulate ${event} since it is ${state}`,
 };
 
+
 export default class TagInputDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.TagInput;
+    }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.TagInput, instance.props );
     }
 
     clickClose( index = 0 )

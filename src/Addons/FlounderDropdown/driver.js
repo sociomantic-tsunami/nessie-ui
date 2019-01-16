@@ -8,28 +8,18 @@
  */
 
 
-/**
- * Driver for flounder dropdown driver. The flounder dropdown uses currently
- * a non React control. This renders Enzyme useless in many cases and a manual
- * approach is used. If the control changes to React please extend
- * InputComponentDriver.
- * When this will happen the following methods could be developed easily:
- * Search, SearchAndChoose (through change text)
- * ToggleDropdownOptions (through click/hover)
- *
- * otherwise I think it's possible to change the elements through
- * this.flounderControl.refs and re-render the wrapper.
- */
-
 export default class FlounderDropdownDriver
 {
     constructor( wrapper )
     {
-        // Nessie Control
         this.wrapper = wrapper;
-        // the 3rd party control
-        this.innerFlounderComponent = wrapper.instance().flounderInstance;
     }
+
+    get innerFlounderComponent()
+    {
+        return this.wrapper.instance().flounderInstance;
+    }
+
 
     getFlounderAPI()
     {

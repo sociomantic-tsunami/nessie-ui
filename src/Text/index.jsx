@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class Text extends React.Component
 {
@@ -53,6 +52,10 @@ export default class Text extends React.Component
          */
         noWrap           : PropTypes.bool,
         /**
+         *  click callback function
+         */
+        onClick          : PropTypes.func,
+        /**
          *  Clip overflow
          */
         overflowIsHidden : PropTypes.bool,
@@ -64,6 +67,7 @@ export default class Text extends React.Component
             'subtle',
             'promoted',
             'critical',
+            'link',
         ] ),
         /**
          *  Size to apply to text
@@ -110,10 +114,14 @@ export default class Text extends React.Component
     static defaultProps =
     {
         allCaps          : false,
+        children         : undefined,
+        className        : undefined,
         color            : undefined,
+        cssMap           : undefined,
         letterSpacing    : undefined,
         lineHeight       : undefined,
         noWrap           : false,
+        onClick          : undefined,
         overflowIsHidden : false,
         role             : 'default',
         size             : 'M',
@@ -128,36 +136,22 @@ export default class Text extends React.Component
     render()
     {
         const {
-            allCaps,
             children,
-            className,
             color,
             cssMap = createCssMap( this.context.Text, this.props ),
             letterSpacing,
             lineHeight,
-            noWrap,
-            overflowIsHidden,
-            role,
-            size,
+            onClick,
             text,
-            textAlign,
             textRef,
-            variant,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    allCaps,
-                    overflowHidden : overflowIsHidden,
-                    noWrap,
-                    role,
-                    size,
-                    textAlign,
-                    variant,
-                } ) }
-                style = { { color, letterSpacing, lineHeight } }
-                ref = { textRef }>
+                className = { cssMap.main }
+                onClick   = { onClick }
+                ref       = { textRef }
+                style     = { { color, letterSpacing, lineHeight } }>
                 { children || text }
             </div>
         );

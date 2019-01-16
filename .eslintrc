@@ -101,11 +101,7 @@
         "react/jsx-indent"                   : [ "error", 4 ],
         "react/jsx-wrap-multilines"          : [ "error", { "arrow": false } ],
         "react/no-unused-prop-types"         : "warn",
-        "react/prop-types"                   : [
-            "error", { "ignore" : [ "children", "className", "cssMap" ] }
-        ],
-        "react/require-default-props" : "off",
-        "require-jsdoc"               : [
+        "require-jsdoc"                      : [
             "error",
             {
                 "require" : {

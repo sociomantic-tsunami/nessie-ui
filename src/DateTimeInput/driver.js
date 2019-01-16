@@ -9,26 +9,60 @@
 
 import { DatePicker, IconButton, InputField } from 'nessie-ui';
 
+import { createCssMap }                       from '../Theming';
+
 
 const ERR = {
     INPUT_ERR : ( event, state ) =>
         `Main input cannot simulate ${event} since it is ${state}`,
 };
 
+
 export default class DateTimeInputDriver
 {
     constructor( wrapper )
     {
-        this.wrapper    = wrapper;
-        this.cssMap     = wrapper.find( DatePicker ).props( 'cssMap' );
-
-        this.mainInput  = wrapper.find( InputField );
-        this.calendar   = wrapper.find( DatePicker );
-        this.icon       = wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === 'calendar' );
-        this.prev       = wrapper.find( `.${this.cssMap.prev}` );
-        this.next       = wrapper.find( `.${this.cssMap.next}` );
+        this.wrapper = wrapper;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.DateTimeInput, instance.props );
+    }
+
+    get mainInput()
+    {
+        return this.wrapper.find( InputField );
+    }
+
+    get calendar()
+    {
+        return this.wrapper.find( DatePicker );
+    }
+
+    get icon()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'calendar' );
+    }
+
+    get prev()
+    {
+        return this.wrapper.find( `.${this.cssMap.prev}` );
+    }
+
+    get next()
+    {
+        return this.wrapper.find( `.${this.cssMap.next}` );
+    }
+
 
     blurMainInput()
     {

@@ -7,18 +7,37 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
+
 const ERR = {
     SWITCH_ERR : ( event, state ) =>
         `Switch cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class SwitchDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Switch;
-        this.input   = wrapper.find( `.${this.cssMap.input}` );
+    }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Switch, instance.props );
+    }
+
+    get input()
+    {
+        return this.wrapper.find( `.${this.cssMap.input}` );
     }
 
     change()

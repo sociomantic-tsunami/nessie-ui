@@ -7,26 +7,55 @@
  *
  */
 
-import { IconButton } from 'nessie-ui';
+import { IconButton }   from 'nessie-ui';
+
+import { createCssMap } from '../Theming';
+
 
 const ERR = {
     NOT_A_CAROUSEL : item => `Cannot trigger click on the "${item}" because \
 the modal is not a Carousel`,
 };
 
+
 export default class ModalDialogDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.ModalDialog;
-        this.overlay = wrapper.find( `.${this.cssMap.default}` );
+    }
 
-        this.closeButton = wrapper.find( `.${this.cssMap.header}` )
-            .find( IconButton );
-        this.prevButton  = wrapper.find( `.${this.cssMap.navigation}` )
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.ModalDialog, instance.props );
+    }
+
+    get overlay()
+    {
+        return this.wrapper.find( `.${this.cssMap.main}` );
+    }
+
+    get closeButton()
+    {
+        return this.wrapper.find( `.${this.cssMap.header}` ).find( IconButton );
+    }
+
+    get prevButton()
+    {
+        return this.wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).first();
-        this.nextButton  = wrapper.find( `.${this.cssMap.navigation}` )
+    }
+
+    get nextButton()
+    {
+        return this.wrapper.find( `.${this.cssMap.navigation}` )
             .find( IconButton ).last();
     }
 

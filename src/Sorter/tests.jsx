@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { Sorter }   from '../index';
+import { Sorter }         from '../index';
+
 
 describe( 'Sorter', () =>
 {
@@ -20,20 +21,15 @@ describe( 'Sorter', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Sorter /> );
+        wrapper = shallow( <Sorter /> );
     } );
 
-    test( 'should render <Sorter/>', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( Sorter ) ).toHaveLength( 1 );
-    } );
-
-    test( 'should have its component name and hash as default className', () =>
-    {
-        expect( wrapper.find( `.${wrapper.instance().context.Sorter.default}` )
-            .first() ).toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );
+
 
 describe( 'SorterDriver', () =>
 {
@@ -49,9 +45,7 @@ describe( 'SorterDriver', () =>
     test( 'should call onToggle callback function once', () =>
     {
         const onToggle = jest.fn();
-        wrapper.setProps( {
-            onToggle,
-        } );
+        wrapper.setProps( { onToggle } );
 
         driver.click();
         expect( onToggle ).toBeCalledTimes( 1 );

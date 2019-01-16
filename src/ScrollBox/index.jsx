@@ -7,15 +7,14 @@
  *
  */
 
-import React                        from 'react';
-import PropTypes                    from 'prop-types';
-import isEqual                      from 'lodash.isequal';
+import React                     from 'react';
+import PropTypes                 from 'prop-types';
+import isEqual                   from 'lodash.isequal';
 
-import { createScrollHandler }      from './utils';
-import { buildClassName }           from '../utils';
-import { IconButton, ScrollBar }    from '../index';
-import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming/createCss';
+import { createScrollHandler }   from './utils';
+import { IconButton, ScrollBar } from '../index';
+import ThemeContext              from '../Theming/ThemeContext';
+import { createCssMap }          from '../Theming';
 
 
 export default class ScrollBox extends React.Component
@@ -25,6 +24,10 @@ export default class ScrollBox extends React.Component
     static propTypes =
     {
         /**
+         *  ScrollBox content
+         */
+        children           : PropTypes.node,
+        /**
          *  Extra CSS class name
          */
         className          : PropTypes.string,
@@ -32,10 +35,6 @@ export default class ScrollBox extends React.Component
          *  CSS class map
          */
         cssMap             : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  ScrollBox content
-         */
-        children           : PropTypes.node,
         /**
          *  ScrollBox content width, any CSS length string
          */
@@ -152,6 +151,7 @@ export default class ScrollBox extends React.Component
         children               : undefined,
         className              : undefined,
         contentWidth           : undefined,
+        cssMap                 : undefined,
         height                 : undefined,
         onClickScrollDown      : undefined,
         onClickScrollLeft      : undefined,
@@ -160,10 +160,10 @@ export default class ScrollBox extends React.Component
         onMouseOut             : undefined,
         onMouseOver            : undefined,
         onScroll               : undefined,
-        onThumbDragStartX      : undefined,
         onThumbDragEndX        : undefined,
-        onThumbDragStartY      : undefined,
         onThumbDragEndY        : undefined,
+        onThumbDragStartX      : undefined,
+        onThumbDragStartY      : undefined,
         padding                : 'none',
         scroll                 : 'both',
         scrollAmount           : undefined,
@@ -507,29 +507,17 @@ export default class ScrollBox extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ScrollBox, this.props ),
             contentWidth,
             height,
             onMouseOut,
             onMouseOver,
-            padding,
-            scroll,
             scrollBarsAreVisible,
-            scrollIndicatorVariant,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    paddingX : Array.isArray( padding ) ?
-                        padding[ 0 ] : padding,
-                    paddingY : Array.isArray( padding ) ?
-                        padding[ 1 ] : padding,
-                    scroll,
-                    scrollBarsAreVisible,
-                    scrollIndicatorVariant,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }
                 style        = { { maxHeight: height } }>

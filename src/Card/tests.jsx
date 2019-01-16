@@ -9,10 +9,10 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import { Card }     from '../index';
+import { Card }    from '../index';
 
 describe( 'Card', () =>
 {
@@ -20,36 +20,11 @@ describe( 'Card', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Card /> );
+        wrapper = shallow( <Card /> );
     } );
 
-    test(
-        'should have same X and Y axis padding when padding prop is a string',
-        () =>
-        {
-            wrapper.setProps( { padding: 'L' } );
-
-            expect( wrapper
-                .find( `.${wrapper.instance().context.Card.paddingX__L}` ) )
-                .toHaveLength( 1 );
-
-            expect( wrapper
-                .find( `.${wrapper.instance().context.Card.paddingY__L}` ) )
-                .toHaveLength( 1 );
-        },
-    );
-
-    test( 'should have different X and Y axis padding when padding prop is a \
-string', () =>
+    test( 'should have “main” as default className', () =>
     {
-        wrapper.setProps( { padding: [ 'M', 'L' ] } );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Card.paddingX__M}` ) )
-            .toHaveLength( 1 );
-
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Card.paddingY__L}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

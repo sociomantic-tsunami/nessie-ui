@@ -15,6 +15,7 @@ import { mount, shallow }   from 'enzyme';
 import Checkable            from '../proto/Checkable';
 import { Radio }            from '../index';
 
+
 describe( 'Radio', () =>
 {
     let wrapper;

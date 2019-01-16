@@ -10,9 +10,9 @@
 /* eslint-disable no-magic-numbers */
 
 import React            from 'react';
-import { mount }        from 'enzyme';
+import { shallow }      from 'enzyme';
 
-import { Column, Grid } from '../index';
+import { Grid, Column } from '../index';
 
 describe( 'Grid', () =>
 {
@@ -20,21 +20,26 @@ describe( 'Grid', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Grid /> );
+        wrapper = shallow( <Grid /> );
     } );
 
     describe( 'render', () =>
     {
-        test( 'should return the content of the Grid or Column', () =>
+        test( 'should render the children of the Grid', () =>
         {
-            wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
-            expect( wrapper.text() ).toBe( 'Lightning Strike' );
+            wrapper.setProps( {
+                children : [
+                    <Column key = { 1 } />,
+                    <Column key = { 2 } />,
+                ],
+            } );
+
+            expect( wrapper.find( Column ) ).toHaveLength( 2 );
         } );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance().context.Grid.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

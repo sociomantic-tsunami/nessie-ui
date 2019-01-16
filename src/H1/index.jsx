@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class H1 extends React.Component
 {
@@ -21,13 +20,25 @@ export default class H1 extends React.Component
     static propTypes =
     {
         /**
+         *  Title text (JSX node; overrides title prop)
+         */
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
         *  Title text
         */
-        title : PropTypes.string,
+        title     : PropTypes.string,
         /**
         *  Role (style) to apply to heading
         */
-        role  : PropTypes.oneOf( [
+        role      : PropTypes.oneOf( [
             'default',
             'subtle',
             'promoted',
@@ -37,8 +48,11 @@ export default class H1 extends React.Component
 
     static defaultProps =
     {
-        title : undefined,
-        role  : 'default',
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        role      : 'default',
+        title     : undefined,
     };
 
     static displayName = 'H1';
@@ -46,15 +60,13 @@ export default class H1 extends React.Component
     render()
     {
         const {
-            className,
             children,
             cssMap = createCssMap( this.context.H1, this.props ),
             title,
-            role,
         } = this.props;
 
         return (
-            <h1 className = { buildClassName( className, cssMap, { role } ) }>
+            <h1 className = { cssMap.main }>
                 { children || title }
             </h1>
         );

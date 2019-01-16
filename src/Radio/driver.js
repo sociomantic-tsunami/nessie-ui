@@ -9,19 +9,39 @@
 
 /* eslint-disable no-magic-numbers */
 
+import { createCssMap } from '../Theming';
+
+
 const ERR = {
     RADIO_ERR : ( label, event, state ) =>
         `Radio '${label}' cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class RadioDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.children().instance().context.Radio;
-        this.control = wrapper.find( `.${this.cssMap.input}` );
     }
+
+    get instance()
+    {
+        return this.wrapper.children().instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Radio, instance.props );
+    }
+
+    get control()
+    {
+        return this.wrapper.find( `.${this.cssMap.input}` );
+    }
+
 
     blur()
     {

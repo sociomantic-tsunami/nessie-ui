@@ -15,6 +15,7 @@ import { mount, shallow }          from 'enzyme';
 import styles                      from './tagInput.css';
 import { Tag, TagInput }           from '../index';
 
+
 describe( 'TagInput', () =>
 {
     let wrapper;
@@ -101,7 +102,7 @@ describe( 'TagInputDriver', () =>
 
     describe( 'blur()', () =>
     {
-        test( 'should call blur exactly once', () =>
+        test( 'should call onBlur exactly once', () =>
         {
             const onBlur = jest.fn();
             wrapper.setProps( {
@@ -148,7 +149,7 @@ describe( 'TagInputDriver', () =>
 
     describe( 'focus()', () =>
     {
-        test( 'should call focus exactly once', () =>
+        test( 'should call onFocus exactly once', () =>
         {
             const onFocus = jest.fn();
             wrapper.setProps( {
@@ -195,7 +196,7 @@ describe( 'TagInputDriver', () =>
 
     describe( 'change()', () =>
     {
-        test( 'should call change exactly once', () =>
+        test( 'should call onChange exactly once', () =>
         {
             const onChange = jest.fn();
             wrapper.setProps( {

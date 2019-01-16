@@ -7,19 +7,39 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
+
 const ERR = {
     BUTTON_ERR : ( label, event, state ) =>
         `Button '${label}' cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class ButtonDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.Button;
-        this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Button, instance.props );
+    }
+
+    get button()
+    {
+        return this.wrapper.find( `.${this.cssMap.main}` ).first();
+    }
+
 
     click()
     {

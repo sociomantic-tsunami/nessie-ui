@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class GridItem extends React.Component
 {
@@ -53,38 +52,31 @@ export default class GridItem extends React.Component
 
     static defaultProps =
     {
-        align     : 'top',
+        align     : 'start',
         children  : undefined,
         className : undefined,
         colSpan   : undefined,
-        justify   : 'left',
+        cssMap    : undefined,
+        justify   : 'start',
         rowSpan   : undefined,
     };
 
     render()
     {
         const {
-            align,
             children,
-            className,
             colSpan,
             cssMap = createCssMap( this.context.GridItem, this.props ),
-            justify,
             rowSpan,
         } = this.props;
 
-        const span = {
-            gridColumn : `span ${colSpan}`,
-            gridRow    : `span ${rowSpan}`,
-        };
-
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    align,
-                    justify,
-                } ) }
-                style = { span }>
+                className = { cssMap.main }
+                style     = { {
+                    gridColumn : `span ${colSpan}`,
+                    gridRow    : `span ${rowSpan}`,
+                } }>
                 { children }
             </div>
         );

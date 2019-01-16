@@ -7,6 +7,8 @@
  *
  */
 
-const createCssMap = ( cssMap = {} ) => cssMap;
+import cssMock from 'identity-obj-proxy';
 
-export { createCssMap };
+const createCssMap = () => cssMock;
+
+export default createCssMap;

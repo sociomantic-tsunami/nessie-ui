@@ -7,67 +7,76 @@
  *
  */
 
-import React                                from 'react';
-import PropTypes                            from 'prop-types';
+import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { Dropdown }                         from '../../index';
-import styles                               from './withDropdown.css';
-import { buildClassName, buildDisplayName } from '../../utils';
+import { Dropdown }         from '../../index';
+import { buildDisplayName } from '../../utils';
+import ThemeContext         from '../../Theming/ThemeContext';
+import { createCssMap }     from '../../Theming';
 
 
 const withDropdown = Component =>
 {
-    const ComponentWithDropdown = ( {
-        cssMap,
-        dropdownIsOpen,
-        dropdownPosition,
-        dropdownProps,
-        onMouseOut,
-        onMouseOver,
-        wrapperRef,
-        ...componentProps
-    } ) => (
-        <div
-            className = { buildClassName( '', styles, {
-                open     : dropdownIsOpen,
-                position : dropdownPosition,
-            } ) }
-            onMouseEnter = { onMouseOver }
-            onMouseLeave = { onMouseOut }
-            ref          = { wrapperRef }>
-            <Component { ...componentProps } />
-            <Dropdown { ...dropdownProps } className = { styles.dropdown } />
-        </div>
-    );
+    class ComponentWithDropdown extends React.Component
+    {
+        static contextType = ThemeContext;
 
-    ComponentWithDropdown.propTypes = {
-        ...Component.propTypes,
-        /**
-         *  Show/hide the dropdown
-         */
-        dropdownIsOpen   : PropTypes.bool,
-        /**
-         *  Position of dropdown relative to component
-         */
-        dropdownPosition : PropTypes.oneOf( [ 'bottom', 'top' ] ),
-        /**
-         *  Props to pass directly to the Dropdown component
-         */
-        dropdownProps    : PropTypes.objectOf( PropTypes.any ),
-        /**
-         *  Callback function that receives a ref to the outer wrapper div
-         */
-        wrapperRef       : PropTypes.func,
-    };
+        static propTypes = {
+            ...Component.propTypes,
+            /**
+             *  Show/hide the dropdown
+             */
+            dropdownIsOpen   : PropTypes.bool,
+            /**
+             *  Position of dropdown relative to component
+             */
+            dropdownPosition : PropTypes.oneOf( [ 'bottom', 'top' ] ),
+            /**
+             *  Props to pass directly to the Dropdown component
+             */
+            dropdownProps    : PropTypes.objectOf( PropTypes.any ),
+            /**
+             *  Callback function that receives a ref to the outer wrapper div
+             */
+            wrapperRef       : PropTypes.func,
+        };
 
-    ComponentWithDropdown.defaultProps = {
-        ...Component.defaultProps,
-        dropdownIsOpen   : false,
-        dropdownPosition : 'bottom',
-        dropdownProps    : undefined,
-        wrapperRef       : undefined,
-    };
+        static defaultProps = {
+            ...Component.defaultProps,
+            dropdownIsOpen   : false,
+            dropdownPosition : 'bottom',
+            dropdownProps    : undefined,
+            wrapperRef       : undefined,
+        };
 
+        render()
+        {
+            const {
+                cssMap = createCssMap( this.context.withDropdown, this.props ),
+                dropdownIsOpen,
+                dropdownPosition,
+                dropdownProps,
+                onMouseOut,
+                onMouseOver,
+                wrapperRef,
+                ...componentProps
+            } = this.props;
+
+            return (
+                <div
+                    className    = { cssMap.main }
+                    onMouseEnter = { onMouseOver }
+                    onMouseLeave = { onMouseOut }
+                    ref          = { wrapperRef }>
+                    <Component { ...componentProps } />
+                    <Dropdown
+                        { ...dropdownProps }
+                        className = { cssMap.dropdown } />
+                </div>
+            );
+        }
+    }
     ComponentWithDropdown.displayName =
         buildDisplayName( ComponentWithDropdown, Component );
 

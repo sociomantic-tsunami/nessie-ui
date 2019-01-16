@@ -7,13 +7,13 @@
  *
  */
 
-import React                           from 'react';
-import PropTypes                       from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { buildClassName, generateId }  from '../utils';
-import { Icon }                        from '../index';
-import ThemeContext                    from '../Theming/ThemeContext';
-import { createCssMap }                from '../Theming/createCss';
+import { generateId }   from '../utils';
+import { Icon }         from '../index';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 export default class ToggleButton extends React.Component
 {
@@ -22,6 +22,10 @@ export default class ToggleButton extends React.Component
     static propTypes =
     {
         /**
+         *  label content (JSX node; overrides label prop)
+         */
+        children     : PropTypes.node,
+        /**
          *  CSS class name
          */
         className    : PropTypes.string,
@@ -29,10 +33,6 @@ export default class ToggleButton extends React.Component
          *  CSS class map
          */
         cssMap       : PropTypes.objectOf( PropTypes.string ),
-        /**
-         *  label content (JSX node; overrides label prop)
-         */
-        children     : PropTypes.node,
         /**
          *  icon position relative to text
          */
@@ -149,6 +149,7 @@ export default class ToggleButton extends React.Component
     {
         children     : undefined,
         className    : undefined,
+        cssMap       : undefined,
         iconPosition : 'left',
         iconType     : 'none',
         id           : undefined,
@@ -162,6 +163,7 @@ export default class ToggleButton extends React.Component
         onMouseOut   : undefined,
         onMouseOver  : undefined,
         role         : 'primary',
+        subLabel     : undefined,
     };
 
     static displayName = 'ToggleButton';
@@ -170,9 +172,7 @@ export default class ToggleButton extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.ToggleButton, this.props ),
-            iconPosition,
             iconType,
             id = generateId( 'ToggleButton' ),
             isDisabled,
@@ -191,28 +191,23 @@ export default class ToggleButton extends React.Component
         return (
             <button
                 aria-pressed = { isPressed ? 'true' : 'false' }
-                className    = { buildClassName( className, cssMap, {
-                    disabled : isDisabled,
-                    pressed  : isPressed,
-                    iconPosition,
-                    role,
-                } ) }
+                className    = { cssMap.main }
                 disabled     = { isDisabled }
-                readOnly     = { isReadOnly }
                 id           = { id }
                 onBlur       = { onBlur }
                 onClick      = { onClick }
                 onFocus      = { onFocus }
-                onMouseLeave = { onMouseOut }
                 onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                readOnly     = { isReadOnly }
                 role         = { role }
-                type         = "button" >
+                type         = "button">
                 <div className = { cssMap.flexContainer }>
                     { iconType !== 'none' &&
                         <Icon
                             className = { cssMap.icon }
-                            type      = { iconType }
-                            size      =  "S" />
+                            size      =  "S"
+                            type      = { iconType } />
                     }
                     <div className = { cssMap.labelContainer }>
                         <div className = { cssMap.title }>

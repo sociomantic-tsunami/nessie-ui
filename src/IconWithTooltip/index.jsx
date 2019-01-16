@@ -10,10 +10,9 @@
 import React                    from 'react';
 import PropTypes                from 'prop-types';
 
-import { buildClassName }       from '../utils';
 import { Icon, Text, Tooltip }  from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming/createCss';
+import { createCssMap }         from '../Theming';
 
 export default class IconWithTooltip extends React.Component
 {
@@ -25,6 +24,10 @@ export default class IconWithTooltip extends React.Component
          *  Node that the Tooltip wraps
          */
         children      : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /**
          * Icon visibility
          */
@@ -165,12 +168,20 @@ export default class IconWithTooltip extends React.Component
 
     static defaultProps =
     {
+        children         : undefined,
+        cssMap           : undefined,
         iconIsVisible    : true,
         iconPosition     : 'right',
+        iconRole         : undefined,
         iconSize         : 'M',
         iconType         : 'info',
         isDisabled       : false,
+        message          : undefined,
         noWrap           : false,
+        onMouseOut       : undefined,
+        onMouseOutIcon   : undefined,
+        onMouseOver      : undefined,
+        onMouseOverIcon  : undefined,
         overflowIsHidden : false,
         tooltipIsVisible : false,
         tooltipPosition  : 'top',
@@ -182,10 +193,8 @@ export default class IconWithTooltip extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.IconWithTooltip, this.props ),
             iconIsVisible,
-            iconPosition,
             iconRole,
             iconSize,
             iconType,
@@ -225,10 +234,7 @@ Tooltip components instead.' );
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    iconVisible : iconIsVisible,
-                    position    : !!children && iconPosition,
-                } ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { children &&

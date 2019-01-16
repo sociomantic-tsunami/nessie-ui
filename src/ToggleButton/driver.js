@@ -7,19 +7,39 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
+
 const ERR = {
     TOGGLEBUTTON_ERR : ( label, event, state ) =>
         `ToggleButton '${label}' cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class ToggleButtonDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.instance().context.ToggleButton;
-        this.button  = wrapper.find( `.${this.cssMap.default}` ).first();
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.ToggleButton, instance.props );
+    }
+
+    get button()
+    {
+        return this.wrapper.find( `.${this.cssMap.main}` ).first();
+    }
+
 
     focus()
     {
