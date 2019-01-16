@@ -1,6 +1,6 @@
 const path                 = require( 'path' );
 
-const merge                = require( 'lodash.merge' );
+const { merge }            = require( 'lodash' );
 
 const baseConfig           = require( './base' );
 

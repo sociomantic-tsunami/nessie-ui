@@ -8,7 +8,7 @@
  */
 
 import React, { Component } from 'react';
-import isEqual              from 'lodash.isequal';
+import { isEqual }          from 'lodash';
 
 
 const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
