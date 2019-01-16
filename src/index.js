@@ -54,6 +54,7 @@ import ProgressBar              from './ProgressBar';
 import ProgressIndicator        from './ProgressIndicator';
 import Radio                    from './Radio';
 import RadioGroup               from './RadioGroup';
+import RadioGroupHooks          from './RadioGroupHooks';
 import Row                      from './Row';
 import ScrollBar                from './ScrollBar';
 import ScrollBox                from './ScrollBox';
@@ -131,6 +132,7 @@ export {
     ProgressIndicator,
     Radio,
     RadioGroup,
+    RadioGroupHooks,
     Row,
     ScrollBar,
     ScrollBox,
@@ -209,6 +211,7 @@ export default {
     ProgressIndicator,
     Radio,
     RadioGroup,
+    RadioGroupHooks,
     Row,
     ScrollBar,
     ScrollBox,

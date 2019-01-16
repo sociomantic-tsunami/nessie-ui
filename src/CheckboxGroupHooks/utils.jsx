@@ -17,18 +17,23 @@ import { Checkbox } from '../index';
  *
  * @param   {Array.<String>|Array.<Object>} values  array of values
  *
+ * @param   {Array.<String>|Array.<Object>} selectedValues  array of selectedValues
+ *
+ * @param   {Func} onChange  onChange prop
+ *
+ * @param   {Func} setValue  update selectedValue state
+ *
  * @return  {Array.<ReactElement>}
  *
  */
 function buildCheckboxesFromValues( values = [], onChange, selectedValues, setValue )
 {
-    const onChangeCB = ( e )=> {
-
-        if(!selectedValues) {
-            return;
-        }
-
+    const onChangeCB = ( e )=>
+    {
         const { target } = e;
+
+        if(!selectedValues) return;
+
         if(target.checked){
             if(selectedValues.indexOf(target.value) === -1){
                 const result = [...selectedValues, target.value];
