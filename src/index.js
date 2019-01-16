@@ -12,6 +12,7 @@ import Card                     from './Card';
 import CheckableGroup           from './CheckableGroup';
 import Checkbox                 from './Checkbox';
 import CheckboxGroup            from './CheckboxGroup';
+import CheckboxGroupHooks            from './CheckboxGroupHooks';
 import Column                   from './Column';
 import ComboBox                 from './ComboBox';
 import DatePicker               from './DatePicker';
@@ -88,6 +89,7 @@ export {
     CheckableGroup,
     Checkbox,
     CheckboxGroup,
+    CheckboxGroupHooks,
     Column,
     ComboBox,
     DatePicker,
@@ -165,6 +167,7 @@ export default {
     CheckableGroup,
     Checkbox,
     CheckboxGroup,
+    CheckboxGroupHooks,
     Column,
     ComboBox,
     DatePicker,

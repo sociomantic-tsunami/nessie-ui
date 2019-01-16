@@ -22,6 +22,12 @@
         "values"         : ["apples", "oranges", "kaki"],
         "selectedValues" : ["apples", "kaki"]
     },
+    "CheckboxGroupHooks" :
+    {
+        "label"          : "Which fruits do you like?",
+        "values"         : ["apples", "oranges", "kaki"],
+        "selectedValues" : []
+    },
     "Column" :
     {
         "children"  : "column content"
