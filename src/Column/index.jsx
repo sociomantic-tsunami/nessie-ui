@@ -123,17 +123,9 @@ export default class Column extends React.Component
             cssMap = createCssMap( this.context.Column, this.props ),
             hasDividers,
             role,
-            verticalAlign,
         } = this.props;
 
         let elements;
-
-        if ( !Column.didWarn && verticalAlign === 'space-around' )
-        {
-            console.warn( 'Column: \'space-around\' option for verticalAlign \
-prop is deprecated. Please use an alternative layout.' );
-            Column.didWarn = true;
-        }
 
         if ( hasDividers )
         {
@@ -141,10 +133,11 @@ prop is deprecated. Please use an alternative layout.' );
                 child,
                 index,
                 { length },
-            ) =>
-                ( index < length - 1 ?
+            ) => (
+                index < ( length - 1 ) ?
                     [ child, <div className = { cssMap.divider } /> ] :
-                    child ) );
+                    child
+            ) );
         }
 
         return (

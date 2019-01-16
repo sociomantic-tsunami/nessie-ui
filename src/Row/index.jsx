@@ -24,7 +24,11 @@ export default class Row extends React.Component
          *  width)
          */
         align : PropTypes.oneOf( [
-            'auto', 'left', 'center', 'right' ] ),
+            'auto',
+            'left',
+            'center',
+            'right',
+        ] ),
         /**
          *  Grid content (Columns)
          */
@@ -66,7 +70,11 @@ export default class Row extends React.Component
          *  height)
          */
         verticalAlign : PropTypes.oneOf( [
-            'auto', 'top', 'middle', 'bottom' ] ),
+            'auto',
+            'top',
+            'middle',
+            'bottom',
+        ] ),
     };
 
     static defaultProps =
@@ -103,17 +111,17 @@ export default class Row extends React.Component
                 child,
                 index,
                 { length },
-            ) =>
-                ( index < length - 1 ?
+            ) => (
+                index < ( length - 1 ) ?
                     [ child, <div className = { cssMap.divider } /> ] :
-                    child ) );
+                    child
+            ) );
         }
 
         return (
             <div
                 className = { cssMap.main }
-                hasWrap   = { false }
-                role      = { role && role !== 'none' ? role : null }>
+                role      = { role }>
                 { hasDividers ? elements : children }
             </div>
         );
