@@ -17,12 +17,61 @@ import {
     ScrollBox,
     TagInput,
 } from '../index';
-import withDropdown from '../Addons/withDropdown';
+import withDropdown     from '../Addons/withDropdown';
+import { generateId }   from '../utils';
 import {
     addPrefix,
     buildListBoxOptions,
     getScrollParent,
 } from '../ComboBox/utils';
+
+
+/**
+ * gets the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Object} option Object.
+ */
+function getOption( id, options = [] )
+{
+    return options.find( opt => opt.id === id );
+}
+
+/**
+ * gives correct format to the filtered options
+ *
+ * @param {Array} filteredOptionsIds options ids after search filter
+ * @param {Array} originalOptions original options
+ *
+ * @return {Array} formattedOptions filtered and formatted options
+ */
+function optionsFormatted( filteredOptionsIds, originalOptions )
+{
+    return originalOptions.reduce( ( formattedOptions, option ) =>
+    {
+        if ( option.options )
+        {
+            const sectionOptions = optionsFormatted(
+                filteredOptionsIds,
+                option.options,
+            );
+
+            if ( sectionOptions.length )
+            {
+                const newOptions = { ...option, options: sectionOptions };
+                formattedOptions.push( newOptions );
+            }
+        }
+        else if ( filteredOptionsIds.includes( option.id ) )
+        {
+            formattedOptions.push( option );
+        }
+        return formattedOptions;
+    }, [] );
+}
+
 
 const TagInputwithDropdown = withDropdown( TagInput );
 
@@ -181,10 +230,12 @@ export default class TagInputStateful extends React.Component
             props.dropdownPosition : 'bottom';
 
         this.state = {
+            activeOption : undefined,
             dropdownPosition,
-            isOpen : props.isOpen,
-            tags   : props.tags,
-            value  : props.value,
+            isOpen       : props.isOpen,
+            selection    : undefined,
+            tags         : props.tags,
+            value        : props.value,
         };
 
         this.handleBlur        = this.handleBlur.bind( this );
@@ -289,6 +340,33 @@ export default class TagInputStateful extends React.Component
         this.setState( { dropdownPosition } );
     }
 
+    static getDerivedStateFromProps( props, state )
+    {
+        const { selectedOption } = props;
+        let optionId = selectedOption || state.selection;
+        let flatOptions;
+
+        if ( props.options !== state.options )
+        {
+            flatOptions = props.options.flatMap( o => o.options || o );
+        }
+
+        if ( optionId )
+        {
+            optionId = getOption( optionId, flatOptions )
+                ? getOption( optionId, flatOptions ).id : undefined;
+        }
+
+        return {
+            filteredOptions : state.filteredOptions,
+            id              : props.id || state.id || generateId( 'Select' ),
+            isOpen          : state.isOpen,
+            options         : props.options,
+            value           : state.value,
+            selection       : optionId,
+        };
+    }
+
     handleBlur( e )
     {
         const callback = this.props.onBlur;
@@ -303,7 +381,6 @@ export default class TagInputStateful extends React.Component
 
     handleChange( e )
     {
-        const newValue = e.target.value;
         const callback = this.props.onChange;
 
         if ( callback )
@@ -311,7 +388,21 @@ export default class TagInputStateful extends React.Component
             callback( e );
         }
 
-        this.setState( { value: newValue } );
+        const searchValue = ( e.target.value || '' ).toLowerCase();
+
+        const filteredOptions = this.props.options.filter( ( {
+            id,
+            text,
+        } ) => !searchValue || id.toLowerCase().indexOf( searchValue ) > -1 ||
+                    text.toLowerCase().indexOf( searchValue ) > -1 );
+
+        const activeOption = ( searchValue && filteredOptions.length ) ?
+            filteredOptions[ 0 ].id : undefined;
+
+        this.setState( {
+            activeOption,
+            value : e.target.value,
+        } );
     }
 
     handleClickClose( e )
@@ -344,7 +435,17 @@ export default class TagInputStateful extends React.Component
         const option = this.props.options.find( opt => opt.id === id );
         const newTags = [ ...tags, option.text ];
 
-        this.setState( { tags: newTags } );
+        this.setState( prevState =>
+        {
+            const selectedOption = getOption( id, prevState.options );
+            return {
+                activeOption : selectedOption.id,
+                // isOpen       : false,
+                selection    : selectedOption.id,
+                value        : undefined,
+                tags         : newTags,
+            };
+        } );
     }
 
     handleFocus( e )
@@ -361,8 +462,8 @@ export default class TagInputStateful extends React.Component
 
     handleKeyDown( e )
     {
-        const BACKSPACE       = 8;
-        const ENTER           = 13;
+        const BACKSPACE       = 8;  // keyCode for 'backspace'
+        const ENTER           = 13; // keyCode for 'enter'
         const { tags, value } = this.state;
         const callback        = this.props.onKeyDown;
 
@@ -373,27 +474,46 @@ export default class TagInputStateful extends React.Component
 
         if ( e.keyCode === BACKSPACE && value === '' )
         {
-            const newItems = tags.slice( 0, -1 );
+            const newTags = tags.slice( 0, -1 );
 
-            this.setState( { tags: newItems } );
+            this.setState( { tags: newTags } );
         }
 
         if ( e.keyCode === ENTER && value !== '' )
         {
-            const newItems = tags.concat( value );
+            const newTags = tags.concat( value );
 
-            this.setState( { tags: newItems, value: '' } );
+            this.setState( { tags: newTags, value: '' } );
         }
     }
 
     render()
     {
         const { props }  = this;
-        const { isOpen } = this.state;
+        const {
+            activeOption,
+            options,
+            isOpen,
+            selection,
+            tags,
+            value,
+        } = this.state;
 
+        let optionsToShow;
 
-        const filteredOptions = this.props.options.filter( item =>
-            !this.state.tags.includes( item.text ) );
+        const filteredOptions = options.filter( item =>
+            !tags.includes( item.text ) );
+
+        if ( filteredOptions )
+        {
+            optionsToShow = optionsFormatted(
+                filteredOptions.map( option => option.id ),
+                options,
+            );
+        }
+
+        const optionVal = getOption( selection, options ) ?
+            getOption( selection, options ).text : undefined;
 
 
         const dropdownContent = !!filteredOptions.length && (
@@ -407,7 +527,7 @@ export default class TagInputStateful extends React.Component
                     onClickOption = { this.handleClickOption }
                     selection = { addPrefix( props.selection, props.id ) }>
                     { buildListBoxOptions(
-                        filteredOptions,
+                        optionsToShow || filteredOptions,
                         props.id,
                     ) }
                 </ListBox>
@@ -417,6 +537,7 @@ export default class TagInputStateful extends React.Component
         return (
             <TagInputwithDropdown
                 { ...props }
+                activeOption     = { activeOption }
                 dropdownIsOpen   = { filteredOptions.length && isOpen }
                 dropdownPosition = { this.state.dropdownPosition }
                 dropdownProps    = { {
@@ -429,8 +550,9 @@ export default class TagInputStateful extends React.Component
                 onClickClose = { this.handleClickClose }
                 onFocus      = { this.handleFocus }
                 onKeyDown    = { this.handleKeyDown }
+                selection    = { this.state.selection }
                 tags         = { this.state.tags }
-                value        = { this.state.value }
+                value        = { isOpen ? value : optionVal }
                 wrapperRef   = { this.setWrapperRef } />
         );
     }
