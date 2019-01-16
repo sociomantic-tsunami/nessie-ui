@@ -1,141 +1,671 @@
 {
-    "ComboBox" :
-    {
-        "isOpen"  : true,
-        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"header":"Section 3","options":[{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]}]
-    },
-    "ComboBoxStateful" :
-    {
-        "dropdownPlaceholder" : "No Results",
-        "options" : [{"header":"Section 1","options":[{"id":"option1","text":"Option 1"},{"id":"option2","text":"Option 2"}]},{"header":"Section 2","options":[{"id":"option3","text":"Option 3"},{"id":"option4","text":"Option 4"}]},{"id":"option5","text":"Option 5"},{"id":"option6","text":"Option 6"}]
-    },
-    "DatePicker" :
-    {
-        "month" : "February",
-        "year" : "2018",
-        "label"   : "January 2000",
-        "headers" : [{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],
-        "items"   : [[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]
-    },
-    "DatePickerStateful" :
-    {
+	"ComboBox": {
+		"isOpen": true,
+		"options": [{
+			"header": "Section 1",
+			"options": [{
+				"id": "option1",
+				"text": "Option 1"
+			}, {
+				"id": "option2",
+				"text": "Option 2"
+			}]
+		}, {
+			"header": "Section 2",
+			"options": [{
+				"id": "option3",
+				"text": "Option 3"
+			}, {
+				"id": "option4",
+				"text": "Option 4"
+			}]
+		}, {
+			"header": "Section 3",
+			"options": [{
+				"id": "option5",
+				"text": "Option 5"
+			}, {
+				"id": "option6",
+				"text": "Option 6"
+			}]
+		}]
+	},
+	"ComboBoxStateful": {
+		"dropdownPlaceholder": "No Results",
+		"options": [{
+			"header": "Section 1",
+			"options": [{
+				"id": "option1",
+				"text": "Option 1"
+			}, {
+				"id": "option2",
+				"text": "Option 2"
+			}]
+		}, {
+			"header": "Section 2",
+			"options": [{
+				"id": "option3",
+				"text": "Option 3"
+			}, {
+				"id": "option4",
+				"text": "Option 4"
+			}]
+		}, {
+			"id": "option5",
+			"text": "Option 5"
+		}, {
+			"id": "option6",
+			"text": "Option 6"
+		}]
+	},
+	"DatePicker": {
+		"month": "February",
+		"year": "2018",
+		"label": "January 2000",
+		"headers": [{
+			"label": "Mon",
+			"title": "Monday"
+		}, {
+			"label": "Tue",
+			"title": "Tuesday"
+		}, {
+			"label": "Wed",
+			"title": "Wednesday"
+		}, {
+			"label": "Thu",
+			"title": "Thursday"
+		}, {
+			"label": "Fri",
+			"title": "Friday"
+		}, {
+			"label": "Sat",
+			"title": "Saturday"
+		}, {
+			"label": "Sun",
+			"title": "Sunday"
+		}],
+		"items": [
+			[{
+				"label": "01",
+				"value": "1",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "02",
+				"value": "2",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "03",
+				"value": "3",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "04",
+				"value": "4",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "05",
+				"value": "5",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "06",
+				"value": "6",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "07",
+				"value": "7",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "08",
+				"value": "8",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "09",
+				"value": "9",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "10",
+				"value": "10",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "11",
+				"value": "11",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "12",
+				"value": "12",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "13",
+				"value": "13",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "14",
+				"value": "14",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "15",
+				"value": "15",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "16",
+				"value": "16",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "17",
+				"value": "17",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "18",
+				"value": "18",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "19",
+				"value": "19",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "20",
+				"value": "20",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "21",
+				"value": "21",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "22",
+				"value": "22",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "23",
+				"value": "23",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "24",
+				"value": "24",
+				"isCurrent": true,
+				"isDisabled": false,
+				"isSelected": true
+			}, {
+				"label": "25",
+				"value": "25",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "26",
+				"value": "26",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "27",
+				"value": "27",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "28",
+				"value": "28",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}],
+			[{
+				"label": "29",
+				"value": "29",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "30",
+				"value": "30",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "31",
+				"value": "31",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}]
+		]
+	},
+	"DatePickerStateful": {
 
-    },
-    "DateTimeInput" :
-    {
-        "currentMonth"      : "January",
-        "currentYear"       : "2000",
-        "days"              : [{"label":"Mon","title":"Monday"},{"label":"Tue","title":"Tuesday"},{"label":"Wed","title":"Wednesday"},{"label":"Thu","title":"Thursday"},{"label":"Fri","title":"Friday"},{"label":"Sat","title":"Saturday"},{"label":"Sun","title":"Sunday"}],
-        "hourPlaceholder"   : "HH",
-        "inputPlaceholder"  : "YYYY-MM-DD HH:MM",
-        "minutePlaceholder" : "MM",
-        "months"            : [[{"label":"Jan","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Feb","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Mar","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Apr","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"May","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jun","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Jul","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Aug","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"Sep","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"Oct","value":"10","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"Nov","value":"11","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"Dec","value":"12","isCurrent":false,"isDisabled":false,"isSelected":false}]],
-        "weeks"             : [[{"label":"01","value":"1","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"02","value":"2","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"03","value":"3","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"04","value":"4","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"05","value":"5","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"06","value":"6","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"07","value":"7","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"08","value":"8","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"09","value":"9","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"10","value":"10","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"11","value":"11","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"12","value":"12","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"13","value":"13","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"14","value":"14","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"15","value":"15","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"16","value":"16","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"17","value":"17","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"18","value":"18","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"19","value":"19","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"20","value":"20","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"21","value":"21","isCurrent":false,"isDisabled":true,"isSelected":false}],[{"label":"22","value":"22","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"23","value":"23","isCurrent":false,"isDisabled":true,"isSelected":false},{"label":"24","value":"24","isCurrent":true,"isDisabled":false,"isSelected":true},{"label":"25","value":"25","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"26","value":"26","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"27","value":"27","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"28","value":"28","isCurrent":false,"isDisabled":false,"isSelected":false}],[{"label":"29","value":"29","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"30","value":"30","isCurrent":false,"isDisabled":false,"isSelected":false},{"label":"31","value":"31","isCurrent":false,"isDisabled":false,"isSelected":false}]]
-    },
-    "Dropdown" :
-    {
-        "children" : "Dropdown content"
-    },
-    "Grid" :
-    {
-        "children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
-    },
-    "GridItem" :
-    {
-        "children": "{<Text>Grid Item dummy text</Text>}"
-    },
-    "Icon" :
-    {
-        "type"  : "add"
-    },
-    "IconButton" :
-    {
-        "iconType"  : "add",
-        "label"     : "Add"
-    },
-    "ListBox" :
-    {
-        "options" : [
-            {
-                "text" : "Option"
-            },
-            {
-                "text"        : "Option with description",
-                "value"       : "value2",
-                "description" :"Option description"
-            },
-            {
-                "text"       : "Disabled option",
-                "value"      : "value3",
-                "isDisabled" : true
-            },
-            {
-                "header"  : "Subsection 1",
-                "options" : [
-                    {
-                        "text" : "Subsection option 1"
-                    },
-                    {
-                        "text" : "Subsection option 2"
-                    },
-                    {
-                        "text"        : "Subsection option with really, really, long text and a long description",
-                        "description" : "Option description is also really, really, long",
-                        "value"       : "value12"
-                    }
-                ]
-            }
-        ]
-    },
-    "PasswordInput" :
-    {
-        "label" : "Tell me your secrets",
-        "errorMessage" : "Please enter a valid name"
-    },
-    "PasswordInputStateful" :
-    {
-        "label" : "Tell me your secrets",
-        "errorMessage" : "Please enter a dark secret"
-    },
-    "ScrollBar" :
-    {
-        "scrollMax" : 100
-    },
-    "ScrollBox" :
-    {
-        "children"     : "ScrollBox content",
-        "contentWidth" : "150%",
-        "height"       : "100px"
-    },
-    "Tab" :
-    {
-        "label"    : "Tab title text",
-        "children" : "{<Text>Tab content goes here</Text>}"
-    },
-    "TabButton" :
-    {
-        "label" : "Tab title",
-        "subtitle" :"Something subtitly"
-    },
-    "Tabs" :
-    {
-        "children"          : "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}",
-        "activeTabIndex"    : 1
-    },
-    "TabsStateful" :
-    {
-        "children"          : "{<Tab label=\"Deutsch\">Halo!</Tab><Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab>}",
-        "activeTabIndex"    : 0
-    },
-    "TextInputWithIcon" :
-    {
-        "label"            : "Name",
-        "inputPlaceholder" : "name",
-        "inputType"        : "text",
-        "iconType"         : "show"
-    },
-    "Tooltip" :
-    {
-        "message"  : "Pro tip!"
-    }
+	},
+	"DateTimeInput": {
+		"currentMonth": "January",
+		"currentYear": "2000",
+		"days": [{
+			"label": "Mon",
+			"title": "Monday"
+		}, {
+			"label": "Tue",
+			"title": "Tuesday"
+		}, {
+			"label": "Wed",
+			"title": "Wednesday"
+		}, {
+			"label": "Thu",
+			"title": "Thursday"
+		}, {
+			"label": "Fri",
+			"title": "Friday"
+		}, {
+			"label": "Sat",
+			"title": "Saturday"
+		}, {
+			"label": "Sun",
+			"title": "Sunday"
+		}],
+		"hourPlaceholder": "HH",
+		"inputPlaceholder": "YYYY-MM-DD HH:MM",
+		"minutePlaceholder": "MM",
+		"months": [
+			[{
+				"label": "Jan",
+				"value": "1",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Feb",
+				"value": "2",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Mar",
+				"value": "3",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Apr",
+				"value": "4",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "May",
+				"value": "5",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Jun",
+				"value": "6",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Jul",
+				"value": "7",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Aug",
+				"value": "8",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "Sep",
+				"value": "9",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "Oct",
+				"value": "10",
+				"isCurrent": true,
+				"isDisabled": false,
+				"isSelected": true
+			}, {
+				"label": "Nov",
+				"value": "11",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "Dec",
+				"value": "12",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}]
+		],
+		"weeks": [
+			[{
+				"label": "01",
+				"value": "1",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "02",
+				"value": "2",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "03",
+				"value": "3",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "04",
+				"value": "4",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "05",
+				"value": "5",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "06",
+				"value": "6",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "07",
+				"value": "7",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "08",
+				"value": "8",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "09",
+				"value": "9",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "10",
+				"value": "10",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "11",
+				"value": "11",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "12",
+				"value": "12",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "13",
+				"value": "13",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "14",
+				"value": "14",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "15",
+				"value": "15",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "16",
+				"value": "16",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "17",
+				"value": "17",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "18",
+				"value": "18",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "19",
+				"value": "19",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "20",
+				"value": "20",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "21",
+				"value": "21",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}],
+			[{
+				"label": "22",
+				"value": "22",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "23",
+				"value": "23",
+				"isCurrent": false,
+				"isDisabled": true,
+				"isSelected": false
+			}, {
+				"label": "24",
+				"value": "24",
+				"isCurrent": true,
+				"isDisabled": false,
+				"isSelected": true
+			}, {
+				"label": "25",
+				"value": "25",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "26",
+				"value": "26",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "27",
+				"value": "27",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "28",
+				"value": "28",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}],
+			[{
+				"label": "29",
+				"value": "29",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "30",
+				"value": "30",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}, {
+				"label": "31",
+				"value": "31",
+				"isCurrent": false,
+				"isDisabled": false,
+				"isSelected": false
+			}]
+		]
+	},
+	"Dropdown": {
+		"children": "Dropdown content"
+	},
+	"Grid": {
+		"children": "{<GridItem><Text>First column</Text></GridItem><GridItem><Text>Second column</Text></GridItem><GridItem><Text>Third column</Text></GridItem>}"
+	},
+	"GridItem": {
+		"children": "{<Text>Grid Item dummy text</Text>}"
+	},
+	"Icon": {
+		"type": "add"
+	},
+	"IconButton": {
+		"iconType": "add",
+		"label": "Add"
+	},
+	"ListBox": {
+		"options": [{
+				"text": "Option"
+			},
+			{
+				"text": "Option with description",
+				"value": "value2",
+				"description": "Option description"
+			},
+			{
+				"text": "Disabled option",
+				"value": "value3",
+				"isDisabled": true
+			},
+			{
+				"header": "Subsection 1",
+				"options": [{
+						"text": "Subsection option 1"
+					},
+					{
+						"text": "Subsection option 2"
+					},
+					{
+						"text": "Subsection option with really, really, long text and a long description",
+						"description": "Option description is also really, really, long",
+						"value": "value12"
+					}
+				]
+			}
+		]
+	},
+	"PasswordInput": {
+		"label": "Tell me your secrets",
+		"errorMessage": "Please enter a valid name"
+	},
+	"PasswordInputStateful": {
+		"label": "Tell me your secrets",
+		"errorMessage": "Please enter a dark secret"
+	},
+	"ScrollBar": {
+		"scrollMax": 100
+	},
+	"ScrollBox": {
+		"children": "ScrollBox content",
+		"contentWidth": "150%",
+		"height": "100px"
+	},
+	"Tab": {
+		"label": "Tab title text",
+		"children": "{<Text>Tab content goes here</Text>}"
+	},
+	"TabButton": {
+		"label": "Tab title",
+		"subtitle": "Something subtitly"
+	},
+	"Tabs": {
+		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}",
+		"activeTabIndex": 1
+	},
+	"TabsStateful": {
+		"children": "{<Tab label=\"Deutsch\">Halo!</Tab><Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab>}",
+		"activeTabIndex": 0
+	},
+	"TextInputWithIcon": {
+		"label": "Name",
+		"inputPlaceholder": "name",
+		"inputType": "text",
+		"iconType": "show"
+	},
+	"Tooltip": {
+		"message": "Pro tip!"
+	}
 }
