@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import { NavBar }   from '../index';
+import { NavBar }  from '../index';
+
 
 describe( 'NavBar', () =>
 {
@@ -20,13 +21,11 @@ describe( 'NavBar', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <NavBar /> );
+        wrapper = shallow( <NavBar /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.NavBar.default}` ).first() )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

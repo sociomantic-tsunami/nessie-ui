@@ -7,11 +7,11 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 
-import { Text }                       from '../index';
-import { buildClassName, generateId } from '../utils';
+import { Text }       from '../index';
+import { generateId } from '../utils';
 
 
 export default class Checkable extends React.Component
@@ -104,8 +104,8 @@ export default class Checkable extends React.Component
         forceHover  : false,
         hasError    : false,
         id          : undefined,
-        isDisabled  : false,
         isChecked   : false,
+        isDisabled  : false,
         isReadOnly  : false,
         label       : undefined,
         name        : undefined,
@@ -127,10 +127,8 @@ export default class Checkable extends React.Component
     {
         const {
             children,
-            className,
+
             cssMap,
-            forceHover,
-            hasError,
             id = generateId( 'Checkable' ),
             isDisabled,
             isChecked,
@@ -157,13 +155,9 @@ export default class Checkable extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && forceHover,
-                } ) }
-                onMouseLeave = { onMouseOut }
-                onMouseEnter = { onMouseOver }>
+                className    = { cssMap.main }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <input
                     checked        = { isChecked }
                     className      = { cssMap.input }

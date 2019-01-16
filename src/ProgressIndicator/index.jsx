@@ -10,9 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class ProgressIndicator extends React.Component
 {
@@ -20,6 +19,14 @@ export default class ProgressIndicator extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Extra CSS class name
+         */
+        className         : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Show percentage
          */
@@ -32,7 +39,10 @@ export default class ProgressIndicator extends React.Component
 
     static defaultProps =
     {
-        showPercentage : true,
+        className         : undefined,
+        cssMap            : undefined,
+        showPercentage    : true,
+        currentPercentage : 0,
     };
 
     static displayName = 'ProgressIndicator';
@@ -40,21 +50,20 @@ export default class ProgressIndicator extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.ProgressIndicator, this.props ),
             currentPercentage,
             showPercentage,
         } = this.props;
 
         return (
-            <div className = { buildClassName( className, cssMap ) }>
+            <div className = { cssMap.main }>
                 <div className = { cssMap.spinner }>
                     { showPercentage &&
-                    <div className = { cssMap.percentageContainer }>
-                        <span className = { cssMap.percentage } >
-                            { currentPercentage }%
-                        </span>
-                    </div>
+                        <div className = { cssMap.percentageContainer }>
+                            <span className = { cssMap.percentage } >
+                                { currentPercentage }%
+                            </span>
+                        </div>
                     }
                 </div>
             </div>

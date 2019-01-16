@@ -10,9 +10,10 @@
 /* eslint-disable no-magic-numbers */
 
 import React        from 'react';
-import { mount }    from 'enzyme';
+import { shallow }  from 'enzyme';
 
 import { Dropdown } from '../index';
+
 
 describe( 'Dropdown', () =>
 {
@@ -20,21 +21,17 @@ describe( 'Dropdown', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Dropdown /> );
+        wrapper = shallow( <Dropdown /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.Dropdown.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 
-    test( 'should return the dropdown content', () =>
+    test( 'should render the children of the Dropdown', () =>
     {
-        wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
-
-        const content = wrapper.children();
-        expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
+        wrapper.setProps( { children: 'Lightning Strike' } );
+        expect( wrapper.children().text() ).toBe( 'Lightning Strike' );
     } );
 } );

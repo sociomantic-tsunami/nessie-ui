@@ -10,10 +10,10 @@
 import React                               from 'react';
 import PropTypes                           from 'prop-types';
 
-import { buildClassName, generateId }      from '../utils';
+import { generateId }                      from '../utils';
 import { IconButton, InputField, Tooltip } from '../index';
 import ThemeContext                        from '../Theming/ThemeContext';
-import { createCssMap }                    from '../Theming/createCss';
+import { createCssMap }                    from '../Theming';
 
 export default class TextInputWithIcon extends React.Component
 {
@@ -254,6 +254,7 @@ export default class TextInputWithIcon extends React.Component
         autoComplete         : undefined,
         autoCorrect          : undefined,
         className            : undefined,
+        cssMap               : undefined,
         forceHover           : false,
         hasError             : false,
         iconButtonIsDisabled : false,
@@ -343,13 +344,9 @@ export default class TextInputWithIcon extends React.Component
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    disabled : isDisabled,
-                    error    : hasError,
-                    position : iconPosition,
-                } ) }
-                onMouseLeave  = { onMouseOut }
-                onMouseEnter  = { onMouseOver }>
+                className    = { cssMap.main }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <InputField
                     aria           = { aria }
                     autocapitalize = { autoCapitalize }
@@ -376,24 +373,24 @@ export default class TextInputWithIcon extends React.Component
                     type           = { inputType }
                     value          = { value } />
                 { ( iconType && iconType !== 'none' ) &&
-                <Tooltip
-                    className   = { cssMap.icon }
-                    hasError    = { hasError }
-                    isDisabled  = { isDisabled }
-                    isReadOnly  = { isReadOnly }
-                    isVisible   = { iconTooltipIsVisible }
-                    message     = { iconTooltipMessage }
-                    onMouseOut  = { onMouseOutIcon }
-                    onMouseOver = { onMouseOverIcon }
-                    position    = { iconTooltipPosition } >
-                    <IconButton
+                    <Tooltip
+                        className   = { cssMap.icon }
                         hasError    = { hasError }
-                        iconType    = { iconType }
-                        isDisabled  = { isDisabled || iconButtonIsDisabled }
-                        isFocusable = { false }
-                        isReadOnly  = { isReadOnlyButton || isReadOnly }
-                        onClick     = { onClickIcon } />
-                </Tooltip>
+                        isDisabled  = { isDisabled }
+                        isReadOnly  = { isReadOnly }
+                        isVisible   = { iconTooltipIsVisible }
+                        message     = { iconTooltipMessage }
+                        onMouseOut  = { onMouseOutIcon }
+                        onMouseOver = { onMouseOverIcon }
+                        position    = { iconTooltipPosition } >
+                        <IconButton
+                            hasError    = { hasError }
+                            iconType    = { iconType }
+                            isDisabled  = { isDisabled || iconButtonIsDisabled }
+                            isFocusable = { false }
+                            isReadOnly  = { isReadOnlyButton || isReadOnly }
+                            onClick     = { onClickIcon } />
+                    </Tooltip>
                 }
             </div>
         );

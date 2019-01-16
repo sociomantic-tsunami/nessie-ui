@@ -7,19 +7,39 @@
  *
  */
 
+import { createCssMap } from '../Theming';
+
+
 const ERR = {
     CHECKBOX_ERR : ( label, event, state ) =>
         `Checkbox '${label}' cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class CheckboxDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = wrapper.children().instance().context.Checkbox;
-        this.control = wrapper.find( `.${this.cssMap.input}` );
     }
+
+    get instance()
+    {
+        return this.wrapper.children().instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.Checkbox, instance.props );
+    }
+
+    get control()
+    {
+        return this.wrapper.find( `.${this.cssMap.input}` );
+    }
+
 
     blur()
     {

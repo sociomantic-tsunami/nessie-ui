@@ -186,7 +186,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.blurHourInput() ).toThrow( expectedError );
@@ -264,7 +264,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.focusHourInput() ).toThrow( expectedError );
@@ -341,7 +341,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.changeHourInput() ).toThrow( expectedError );
@@ -452,7 +452,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.keyPressHourInput() ).toThrow( expectedError );
@@ -530,7 +530,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'month' } );
 
                 expect( () => driver.blurMinuteInput() ).toThrow( expectedError );
@@ -602,7 +602,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'month' } );
 
                 expect( () => driver.focusMinuteInput() ).toThrow( expectedError );
@@ -674,7 +674,7 @@ prevIsDisabled', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.changeMinuteInput() ).toThrow( expectedError );
@@ -782,7 +782,7 @@ not <default>', () =>
             test( 'should throw an error if mode is not <default>', () =>
             {
                 const expectedError =
-                    'There\'s no input because <mode> is not <default>';
+                    'There’s no input because <mode> is not <default>';
                 wrapper.setProps( { mode: 'date' } );
 
                 expect( () => driver.keyPressMinuteInput() ).toThrow( expectedError );

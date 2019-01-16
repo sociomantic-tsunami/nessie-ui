@@ -232,12 +232,12 @@ export default {
     ValuedTextInput,
 };
 
-
-// Theme context
-export ThemeContext     from './Theming/ThemeContext';
-export DefaultTheme     from './DefaultTheme';
+// Theming
+export { ThemeProvider } from './Theming';
+export DefaultTheme      from './DefaultTheme';
 
 // Addons
 export CodeEditor       from './Addons/CodeEditor';
 export FlounderDropdown from './Addons/FlounderDropdown';
 export withDropdown     from './Addons/withDropdown';
+export withSticky       from './Addons/withSticky';

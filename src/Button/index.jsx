@@ -7,13 +7,13 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React             from 'react';
+import PropTypes         from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import { Icon, Spinner }              from '../index';
-import ThemeContext                   from '../Theming/ThemeContext';
-import { createCssMap }               from '../Theming/createCss';
+import { generateId }    from '../utils';
+import { Icon, Spinner } from '../index';
+import ThemeContext      from '../Theming/ThemeContext';
+import { createCssMap }  from '../Theming';
 
 export default class Button extends React.Component
 {
@@ -22,21 +22,29 @@ export default class Button extends React.Component
     static propTypes =
     {
         /**
+         *  Module content
+         */
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
          *  CSS class map
          */
-        cssMap : PropTypes.objectOf( PropTypes.string ),
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Label text
          */
-        label  : PropTypes.string,
+        label     : PropTypes.string,
         /**
          *  HTML type attribute
          */
-        type   : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
+        type      : PropTypes.oneOf( [ 'button', 'reset', 'submit' ] ),
         /**
          *  Button role/style
          */
-        role   : PropTypes.oneOf( [
+        role      : PropTypes.oneOf( [
             'default',
             'secondary',
             'subtle',
@@ -154,6 +162,8 @@ export default class Button extends React.Component
 
     static defaultProps =
     {
+        className    : undefined,
+        cssMap       : undefined,
         forceHover   : false,
         iconPosition : 'left',
         iconType     : 'none',
@@ -172,11 +182,8 @@ export default class Button extends React.Component
         const {
             buttonRef,
             children,
-            className,
             cssMap = createCssMap( this.context.Button, this.props ),
             defaultValue,
-            forceHover,
-            iconPosition,
             iconType,
             id = generateId( 'Button' ),
             isDisabled,
@@ -186,7 +193,6 @@ export default class Button extends React.Component
             onClick,
             onMouseOut,
             onMouseOver,
-            role,
             type,
             value,
         } = this.props;
@@ -209,22 +215,16 @@ export default class Button extends React.Component
 
         return (
             <button
-                className = { buildClassName( className, cssMap, {
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover,
-                    iconPosition,
-                    loading     : isLoading && !isDisabled,
-                    role,
-                } ) }
-                defaultValue   = { defaultValue }
-                disabled       = { isDisabled || isLoading || isReadOnly }
-                id             = { id }
-                onClick        = { onClick }
-                onMouseEnter   = { onMouseOver }
-                onMouseLeave   = { onMouseOut }
-                ref            = { buttonRef }
-                type           = { type }
-                value          = { value }>
+                className    = { cssMap.main }
+                defaultValue = { defaultValue }
+                disabled     = { isDisabled || isLoading || isReadOnly }
+                id           = { id }
+                onClick      = { onClick }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }
+                ref          = { buttonRef }
+                type         = { type }
+                value        = { value }>
                 { content }
                 { ( isLoading && !isDisabled ) &&
                 <div className = { cssMap.loadingOverlay }>

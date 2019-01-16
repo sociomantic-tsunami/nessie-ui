@@ -10,10 +10,9 @@
 import React                    from 'react';
 import PropTypes                from 'prop-types';
 
-import { buildClassName }       from '../utils';
 import { Icon, NavDropdown }    from '../index';
 import ThemeContext             from '../Theming/ThemeContext';
-import { createCssMap }         from '../Theming/createCss';
+import { createCssMap }         from '../Theming';
 
 export default class NavItem extends React.Component
 {
@@ -25,6 +24,14 @@ export default class NavItem extends React.Component
          *  Dropdown menu items
          */
         children      : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className     : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap        : PropTypes.objectOf( PropTypes.string ),
         /*
         * Dropdown menu alignment
          */
@@ -131,12 +138,20 @@ export default class NavItem extends React.Component
 
     static defaultProps =
     {
+        children      : undefined,
+        className     : undefined,
+        cssMap        : undefined,
         dropdownAlign : 'left',
+        forceHover    : undefined,
         href          : '#',
         iconType      : 'none',
         isCurrent     : false,
         isDisabled    : false,
         isOpen        : false,
+        label         : undefined,
+        onClick       : undefined,
+        onMouseOut    : undefined,
+        onMouseOver   : undefined,
         role          : 'default',
     };
 
@@ -147,20 +162,13 @@ export default class NavItem extends React.Component
         const {
             children,
             label,
-            className,
             cssMap = createCssMap( this.context.NavItem, this.props ),
-            dropdownAlign,
-            forceHover,
             href,
             iconType,
             isCurrentPage,
-            isCurrent,
-            isOpen,
-            isDisabled,
             onClick,
             onMouseOut,
             onMouseOver,
-            role,
         } = this.props;
 
         if ( typeof isCurrentPage !== 'undefined' )
@@ -171,33 +179,25 @@ export default class NavItem extends React.Component
 
         return (
             <li
-                className     = { buildClassName( className, cssMap, {
-                    role,
-                    disabled    : isDisabled,
-                    current     : isCurrent || isCurrentPage,
-                    dropdownAlign,
-                    open        : isOpen,
-                    fakeHovered : forceHover,
-                    hasIcon     : iconType !== 'none',
-                } ) }
-                onMouseEnter  = { onMouseOver }
-                onMouseLeave  = { onMouseOut }>
+                className    = { cssMap.main }
+                onMouseEnter = { onMouseOver }
+                onMouseLeave = { onMouseOut }>
                 <a
                     className = { cssMap.link }
                     href      = { href }
                     onClick   = { onClick }>
                     { ( iconType && iconType !== 'none' ) &&
-                    <Icon
-                        className = { cssMap.icon }
-                        type = { iconType }
-                        size = "S" />
+                        <Icon
+                            className = { cssMap.icon }
+                            type = { iconType }
+                            size = "S" />
                     }
                     <span>{ label }</span>
                 </a>
                 { children &&
-                <NavDropdown className = { cssMap.dropdown }>
-                    { children }
-                </NavDropdown>
+                    <NavDropdown className = { cssMap.dropdown }>
+                        { children }
+                    </NavDropdown>
                 }
             </li>
         );

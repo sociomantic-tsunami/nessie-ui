@@ -33,11 +33,7 @@ const RadioGroup = ( {
         } ) );
     }
 
-    return (
-        <CheckableGroup { ...props } id = { id }>
-            { items }
-        </CheckableGroup>
-    );
+    return <CheckableGroup { ...props } id = { id }>{ items }</CheckableGroup>;
 };
 
 RadioGroup.propTypes =
@@ -123,6 +119,7 @@ RadioGroup.defaultProps =
 {
     children              : undefined,
     className             : undefined,
+    cssMap                : undefined,
     errorMessage          : undefined,
     errorMessageIsVisible : false,
     forceHover            : false,
@@ -130,6 +127,7 @@ RadioGroup.defaultProps =
     id                    : undefined,
     isDisabled            : false,
     isReadOnly            : false,
+    label                 : undefined,
     layout                : 'horizontal',
     name                  : undefined,
     onChange              : undefined,

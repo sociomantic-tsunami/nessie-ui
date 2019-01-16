@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { NavList }          from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class NavBar extends React.Component
 {
@@ -24,7 +23,26 @@ export default class NavBar extends React.Component
         /**
          *  Navigation bar content (NavItems)
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'NavBar';
@@ -33,15 +51,12 @@ export default class NavBar extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.NavBar, this.props ),
         } = this.props;
 
         return (
-            <nav className = { buildClassName( className, cssMap ) }>
-                <NavList>
-                    { children }
-                </NavList>
+            <nav className = { cssMap.main }>
+                <NavList>{ children }</NavList>
             </nav>
         );
     }

@@ -10,9 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 import {
     Card,
     H2,
@@ -32,13 +31,17 @@ export default class Module extends React.Component
     static propTypes =
     {
         /**
-         *  Module title
-         */
-        title                 : PropTypes.string,
-        /**
-         *  Module content
+         *  Module Content
          */
         children              : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Allow module to be collapsed
          */
@@ -111,16 +114,36 @@ export default class Module extends React.Component
           *  Header mouse out callback function
           */
         onMouseOverHeader     : PropTypes.func,
+        /**
+         *  Module title
+         */
+        title                 : PropTypes.string,
     };
 
     static defaultProps =
     {
-        headerLevel   : 2,
-        isCollapsed   : false,
-        isCollapsible : false,
-        isDeletable   : false,
-        isLoading     : false,
-        isReadOnly    : false,
+        children              : undefined,
+        className             : undefined,
+        cssMap                : undefined,
+        customHeader          : undefined,
+        errorMessage          : undefined,
+        errorMessageIsVisible : false,
+        hasError              : false,
+        hasModuleError        : false,
+        headerLevel           : 2,
+        isCollapsed           : false,
+        isCollapsible         : false,
+        isDeletable           : false,
+        isLoading             : false,
+        isReadOnly            : false,
+        onClickDelete         : undefined,
+        onClickHeader         : undefined,
+        onClickToggle         : undefined,
+        onMouseOutError       : undefined,
+        onMouseOutHeader      : undefined,
+        onMouseOverError      : undefined,
+        onMouseOverHeader     : undefined,
+        title                 : undefined,
     };
 
     static displayName = 'Module';
@@ -163,7 +186,6 @@ export default class Module extends React.Component
             errorMessage,
             errorMessageIsVisible,
             hasError,
-            hasModuleError,
             headerLevel,
             isCollapsed,
             isCollapsible,
@@ -236,14 +258,8 @@ export default class Module extends React.Component
 
         return (
             <Card
-                className = { buildClassName( className, cssMap, {
-                    collapsed   : isCollapsible && isCollapsed,
-                    collapsible : isCollapsible,
-                    error       : hasError,
-                    level       : headerLevel,
-                    moduleError : hasModuleError,
-                } ) }
-                padding = "none">
+                className = { cssMap.main }
+                padding   = "none">
                 { header }
                 { ( !isCollapsible || !isCollapsed ) &&
                     <div className = { cssMap.content }>

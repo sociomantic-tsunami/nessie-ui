@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React       from 'react';
+import { shallow } from 'enzyme';
 
-import { H1 }       from '../index';
+import { H1 }      from '../index';
+
 
 describe( 'H1', () =>
 {
@@ -20,12 +21,11 @@ describe( 'H1', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <H1 /> );
+        wrapper  = shallow( <H1 /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance().context.H1.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { Text }     from '../index';
+import { Text }           from '../index';
+
 
 describe( 'Text', () =>
 {
@@ -20,12 +21,36 @@ describe( 'Text', () =>
 
     beforeEach( () =>
     {
-        wrapper = mount( <Text /> );
+        wrapper = shallow( <Text /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper.find( `.${wrapper.instance().context.Text.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
+    } );
+} );
+
+
+describe( 'TextDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <Text /> );
+        driver  = wrapper.driver();
+    } );
+
+    describe( 'click()', () =>
+    {
+        test( 'should call onClick exactly once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
+
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
     } );
 } );

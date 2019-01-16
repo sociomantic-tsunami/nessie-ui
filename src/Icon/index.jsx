@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class Icon extends React.Component
 {
@@ -113,6 +112,7 @@ export default class Icon extends React.Component
     {
         children  : undefined,
         className : undefined,
+        cssMap    : undefined,
         label     : undefined,
         role      : 'default',
         size      : 'S',
@@ -125,21 +125,15 @@ export default class Icon extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Icon, this.props ),
             label,
-            role,
-            size,
             type,
         } = this.props;
 
         return (
             <svg
                 aria-label = { children || label }
-                className  = { buildClassName( className, cssMap, {
-                    role,
-                    size,
-                } ) }>
+                className  = { cssMap.main }>
                 { ( type !== 'none' ) &&
                 <use xlinkHref = { `#icon__${type}` } /> }
             </svg>

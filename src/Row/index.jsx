@@ -10,9 +10,8 @@
 import React              from 'react';
 import PropTypes          from 'prop-types';
 
-import { buildClassName } from '../utils';
 import ThemeContext       from '../Theming/ThemeContext';
-import { createCssMap }   from '../Theming/createCss';
+import { createCssMap }   from '../Theming';
 
 export default class Row extends React.Component
 {
@@ -25,7 +24,11 @@ export default class Row extends React.Component
          *  width)
          */
         align : PropTypes.oneOf( [
-            'auto', 'left', 'center', 'right' ] ),
+            'auto',
+            'left',
+            'center',
+            'right',
+        ] ),
         /**
          *  Grid content (Columns)
          */
@@ -67,7 +70,11 @@ export default class Row extends React.Component
          *  height)
          */
         verticalAlign : PropTypes.oneOf( [
-            'auto', 'top', 'middle', 'bottom' ] ),
+            'auto',
+            'top',
+            'middle',
+            'bottom',
+        ] ),
     };
 
     static defaultProps =
@@ -75,9 +82,11 @@ export default class Row extends React.Component
         align         : 'auto',
         children      : undefined,
         className     : undefined,
+        cssMap        : undefined,
         gutters       : 'M',
         hasDividers   : false,
         hasFullWidth  : false,
+        hasWrap       : false,
         role          : undefined,
         spacing       : 'M',
         verticalAlign : 'auto',
@@ -88,17 +97,10 @@ export default class Row extends React.Component
     render()
     {
         const {
-            align,
             children,
-            className,
             cssMap = createCssMap( this.context.Row, this.props ),
-            gutters,
             hasDividers,
-            hasFullWidth,
-            hasWrap,
             role,
-            spacing,
-            verticalAlign,
         } = this.props;
 
         let elements;
@@ -109,24 +111,17 @@ export default class Row extends React.Component
                 child,
                 index,
                 { length },
-            ) =>
-                ( index < length - 1 ?
+            ) => (
+                index < ( length - 1 ) ?
                     [ child, <div className = { cssMap.divider } /> ] :
-                    child ) );
+                    child
+            ) );
         }
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    alignX  : align,
-                    alignY  : verticalAlign,
-                    gutters : gutters !== 'none' && gutters,
-                    hasFullWidth,
-                    wrap    : hasWrap,
-                    spacing : spacing !== 'none' && spacing,
-                } ) }
-                hasWrap      = { false }
-                role         = { role && role !== 'none' ? role : null }>
+                className = { cssMap.main }
+                role      = { role }>
                 { hasDividers ? elements : children }
             </div>
         );

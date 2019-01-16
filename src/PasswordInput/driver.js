@@ -21,6 +21,7 @@ export default class PasswordInput
         this.wrapper = wrapper;
     }
 
+
     blur()
     {
         if ( this.wrapper.props().isDisabled )

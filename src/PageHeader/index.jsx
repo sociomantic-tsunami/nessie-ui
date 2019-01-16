@@ -10,9 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class PageHeader extends React.Component
 {
@@ -23,7 +22,22 @@ export default class PageHeader extends React.Component
         /**
          *  PageHeader content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'PageHeader';
@@ -32,14 +46,9 @@ export default class PageHeader extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.PageHeader, this.props ),
         } = this.props;
 
-        return (
-            <header className = { buildClassName( className, cssMap ) }>
-                { children }
-            </header>
-        );
+        return <header className = { cssMap.main }>{ children }</header>;
     }
 }

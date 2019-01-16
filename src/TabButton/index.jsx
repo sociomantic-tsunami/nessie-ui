@@ -10,9 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class TabButton extends React.Component
 {
@@ -62,6 +61,7 @@ export default class TabButton extends React.Component
     {
         buttonRef  : undefined,
         className  : undefined,
+        cssMap     : undefined,
         isActive   : false,
         isDisabled : false,
         label      : undefined,
@@ -76,9 +76,7 @@ export default class TabButton extends React.Component
     {
         const {
             buttonRef,
-            className,
             cssMap = createCssMap( this.context.TabButton, this.props ),
-            isActive,
             isDisabled,
             label,
             onClick,
@@ -88,14 +86,12 @@ export default class TabButton extends React.Component
 
         return (
             <button
-                className = { buildClassName( className, cssMap, {
-                    active : isActive,
-                } ) }
-                disabled = { isDisabled }
-                onClick  = { onClick }
-                ref      = { buttonRef }
-                role     = "tab"
-                value    = { String( tabIndex ) }>
+                className = { cssMap.main }
+                disabled  = { isDisabled }
+                onClick   = { onClick }
+                ref       = { buttonRef }
+                role      = "tab"
+                value     = { String( tabIndex ) }>
                 <div className = { cssMap.content }>
                     <div className = { cssMap.label }>
                         { label }

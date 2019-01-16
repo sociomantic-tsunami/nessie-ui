@@ -10,11 +10,10 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import DatePickerItem       from './DatePickerItem';
 import DatePickerHeader     from './DatePickerHeader';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class DatePicker extends React.Component
 {
@@ -33,12 +32,12 @@ export default class DatePicker extends React.Component
         isReadOnly      : PropTypes.bool,
         items           : PropTypes.arrayOf( PropTypes
             .arrayOf( PropTypes.object ) ),
+        hasTimeInput      : PropTypes.bool,
         label             : PropTypes.string,
         minuteIsDisabled  : PropTypes.bool,
         minuteIsReadOnly  : PropTypes.bool,
         minutePlaceholder : PropTypes.string,
         minuteValue       : PropTypes.string,
-        hasTimeInput      : PropTypes.bool,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
         nextIsReadOnly    : PropTypes.bool,
@@ -57,6 +56,8 @@ export default class DatePicker extends React.Component
 
     static defaultProps = {
         className         : undefined,
+        cssMap            : undefined,
+        hasTimeInput      : true,
         headers           : undefined,
         hourIsDisabled    : false,
         hourIsReadOnly    : false,
@@ -67,9 +68,9 @@ export default class DatePicker extends React.Component
         items             : undefined,
         label             : undefined,
         minuteIsDisabled  : false,
+        minuteIsReadOnly  : false,
         minutePlaceholder : undefined,
         minuteValue       : undefined,
-        hasTimeInput      : true,
         month             : undefined,
         nextIsDisabled    : false,
         nextIsReadOnly    : false,
@@ -91,10 +92,8 @@ export default class DatePicker extends React.Component
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.DatePicker, this.props ),
-            month,
-            year,
+            hasTimeInput,
             headers,
             hourIsDisabled,
             hourIsReadOnly,
@@ -108,48 +107,49 @@ export default class DatePicker extends React.Component
             minuteIsReadOnly,
             minutePlaceholder,
             minuteValue,
-            hasTimeInput,
+            month,
             nextIsDisabled,
             nextIsReadOnly,
             onBlur,
             onChange,
-            onFocus,
-            onKeyPress,
             onClickItem,
             onClickNext,
             onClickPrev,
+            onFocus,
+            onKeyPress,
             prevIsDisabled,
             prevIsReadOnly,
             type,
+            year,
         } = this.props;
 
         return (
-            <div className = { buildClassName( className, cssMap ) }>
+            <div className = { cssMap.main }>
                 <DatePickerHeader
-                    isDisabled        = { isDisabled }
-                    isReadOnly        = { isReadOnly }
-                    label             = { label }
-                    month             = { month }
-                    year              = { year }
-                    nextIsDisabled    = { nextIsDisabled }
-                    nextIsReadOnly    = { nextIsReadOnly }
-                    onClickNext       = { onClickNext }
-                    onClickPrev       = { onClickPrev }
-                    prevIsDisabled    = { prevIsDisabled }
-                    prevIsReadOnly    = { prevIsReadOnly }
+                    hasTimeInput      = { hasTimeInput }
                     hourIsDisabled    = { hourIsDisabled }
                     hourIsReadOnly    = { hourIsReadOnly }
                     hourPlaceholder   = { hourPlaceholder }
                     hourValue         = { hourValue }
+                    isDisabled        = { isDisabled }
+                    isReadOnly        = { isReadOnly }
+                    label             = { label }
                     minuteIsDisabled  = { minuteIsDisabled }
                     minuteIsReadOnly  = { minuteIsReadOnly }
                     minutePlaceholder = { minutePlaceholder }
                     minuteValue       = { minuteValue }
-                    hasTimeInput      = { hasTimeInput }
+                    month             = { month }
+                    nextIsDisabled    = { nextIsDisabled }
+                    nextIsReadOnly    = { nextIsReadOnly }
                     onBlur            = { onBlur }
                     onChange          = { onChange }
+                    onClickNext       = { onClickNext }
+                    onClickPrev       = { onClickPrev }
                     onFocus           = { onFocus }
-                    onKeyPress        = { onKeyPress } />
+                    onKeyPress        = { onKeyPress }
+                    prevIsDisabled    = { prevIsDisabled }
+                    prevIsReadOnly    = { prevIsReadOnly }
+                    year              = { year } />
 
                 { items &&
                     <table className = { cssMap.calendar }>

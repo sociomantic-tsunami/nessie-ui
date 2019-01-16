@@ -10,10 +10,9 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import Text                 from '../Text';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class Label extends React.Component
 {
@@ -21,6 +20,18 @@ export default class Label extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Label text (JSX node; overrides label prop)
+         */
+        children         : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className        : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap           : PropTypes.objectOf( PropTypes.string ),
         /**
         *  Label text
         */
@@ -53,8 +64,15 @@ export default class Label extends React.Component
 
     static defaultProps =
     {
+        children         : undefined,
+        className        : undefined,
+        cssMap           : undefined,
         element          : 'label',
+        htmlFor          : undefined,
+        label            : undefined,
         noWrap           : false,
+        onMouseOut       : undefined,
+        onMouseOver      : undefined,
         overflowIsHidden : false,
     };
 
@@ -64,7 +82,6 @@ export default class Label extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Label, this.props ),
             element,
             htmlFor,
@@ -79,7 +96,7 @@ export default class Label extends React.Component
 
         return (
             <LabelElement
-                className    = { buildClassName( className, cssMap ) }
+                className    = { cssMap.main }
                 htmlFor      = { element === 'label' ? htmlFor : null }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut } >

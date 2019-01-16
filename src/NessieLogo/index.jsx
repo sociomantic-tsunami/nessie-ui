@@ -8,30 +8,43 @@
  */
 
 import React                from 'react';
+import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class NessieLogo extends React.Component
 {
     static contextType = ThemeContext;
-
-    static propTypes = {};
-
     static displayName = 'NessieLogo';
+
+    static propTypes = {
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        className : undefined,
+        cssMap    : undefined,
+    };
 
     render()
     {
         const {
-            className,
             cssMap = createCssMap( this.context.NessieLogo, this.props ),
         } = this.props;
 
         return (
             <img
                 alt       = ""
-                className = { buildClassName( className, cssMap ) }
+                className = { cssMap.main }
                 src       = "images/nessie.svg" />
         );
     }

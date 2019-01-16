@@ -7,25 +7,49 @@
  *
  */
 
-import { ScrollBar } from 'nessie-ui';
+import { ScrollBar }    from 'nessie-ui';
+
+import { createCssMap } from '../Theming';
+
 
 const ERR = {
-    SCROLL_CANNOT_BE_CLICKED : ( prop ) =>
+    SCROLL_CANNOT_BE_CLICKED : prop =>
         `Button cannot be clicked since it doesn't have ${prop} prop`,
-    CANNOT_SCROLL_IN_DIRECTION : ( direction ) =>
+    CANNOT_SCROLL_IN_DIRECTION : direction =>
         `Cannot scroll because scroll direction is neither '${direction}' nor \
 'both'`,
 };
+
 
 export default class ScrollBoxDriver
 {
     constructor( wrapper )
     {
-        this.wrapper   = wrapper;
-        this.props     = wrapper.props();
-        this.cssMap    = wrapper.instance().context.ScrollBox;
-        this.scrollBox = wrapper.find( `.${this.cssMap.inner}` );
+        this.wrapper = wrapper;
     }
+
+    get props()
+    {
+        return this.wrapper.props();
+    }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get cssMap()
+    {
+        const { instance } = this;
+        return instance.props.cssMap ||
+            createCssMap( instance.context.ScrollBox, instance.props );
+    }
+
+    get scrollBox()
+    {
+        return this.wrapper.find( `.${this.cssMap.inner}` );
+    }
+
 
     clickScrollUp()
     {

@@ -9,20 +9,25 @@
 
 /* global document */
 
+
 const ERR = {
     CODEEDITOR_ERR : ( event, state ) =>
         `CodeEditor cannot simulate ${event} since it is ${state}`,
 };
 
+
 export default class CodeEditorDriver
 {
     constructor( wrapper )
     {
-        // Nessie Control
         this.wrapper = wrapper;
-        // the 3rd party control
-        this.control = wrapper.instance().codeMirror;
     }
+
+    get control()
+    {
+        return this.wrapper.instance().codeMirror;
+    }
+
 
     getCodeMirrorAPI()
     {

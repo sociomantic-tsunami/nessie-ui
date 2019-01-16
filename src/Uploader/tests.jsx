@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { Uploader } from '../index';
+import { Uploader }       from '../index';
+
 
 describe( 'Uploader', () =>
 {
@@ -22,7 +23,7 @@ describe( 'Uploader', () =>
     {
         beforeEach( () =>
         {
-            wrapper = mount( <Uploader /> );
+            wrapper = shallow( <Uploader /> );
         } );
 
         test( 'it should render an <input type="file">', () =>

@@ -9,8 +9,9 @@
 
 import { IconButton }   from 'nessie-ui';
 
-import DatePickerHeader from './DatePickerHeader';
+import TimeInput        from './TimeInput';
 import DatePickerItem   from './DatePickerItem';
+import { createCssMap } from '../Theming';
 
 const ERR = {
     ITEM_ERR : ( label, state ) =>
@@ -18,24 +19,52 @@ const ERR = {
     NAV_ERR : ( el, state ) =>
         `${el} cannot simulate click since it is ${state}`,
     NO_INPUT : () =>
-        'There\'s no input because <mode> is not <default>',
+        'There’s no input because <mode> is not <default>',
     TIMEINPUT_ERR : ( event, state ) =>
         `TimeInput cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class DatePickerDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.header  = wrapper.find( DatePickerHeader ).props().cssMap;
-        this.prev    = wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === 'left' );
-        this.next    = wrapper.find( IconButton )
-            .findWhere( node => node.props().iconType === 'right' );
-        this.hour    = this.header.hour;
-        this.min     = this.header.min;
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get timeInput()
+    {
+        return this.wrapper.find( TimeInput ).prop( 'cssMap' ) ||
+            createCssMap( this.instance.context.TimeInput );
+    }
+
+    get prev()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'left' );
+    }
+
+    get next()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'right' );
+    }
+
+    get hour()
+    {
+        return this.timeInput.hour;
+    }
+
+    get min()
+    {
+        return this.timeInput.min;
+    }
+
 
     clickItem( index = 0 )
     {

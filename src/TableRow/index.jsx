@@ -11,9 +11,8 @@ import React                from 'react';
 import PropTypes            from 'prop-types';
 
 import { Row, TableCell }   from '../index';
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class TableRow extends React.Component
 {
@@ -87,9 +86,11 @@ export default class TableRow extends React.Component
         align         : undefined,
         children      : undefined,
         className     : undefined,
+        cssMap        : undefined,
         gutters       : undefined,
-        isClickable   : undefined,
-        isSticky      : undefined,
+        isActive      : false,
+        isClickable   : false,
+        isSticky      : false,
         onClick       : undefined,
         onMouseOut    : undefined,
         onMouseOver   : undefined,
@@ -139,12 +140,8 @@ export default class TableRow extends React.Component
         return (
             <Row
                 { ...props }
-                className = { buildClassName( className, cssMap, {
-                    active    : isActive,
-                    clickable : isClickable,
-                    sticky    : isSticky,
-                } ) }
-                role = "row"
+                className = { cssMap.main }
+                role      = "row"
                 noWarn>
                 { cells }
             </Row>

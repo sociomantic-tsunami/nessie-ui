@@ -7,16 +7,12 @@
  *
  */
 
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React                   from 'react';
+import PropTypes               from 'prop-types';
 
-import {
-    buildClassName,
-    mapAria,
-    generateId,
-} from '../utils';
-import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { mapAria, generateId } from '../utils';
+import ThemeContext            from '../Theming/ThemeContext';
+import { createCssMap }        from '../Theming';
 
 export default class InputField extends React.Component
 {
@@ -168,6 +164,7 @@ export default class InputField extends React.Component
         autoComplete   : undefined,
         autoCorrect    : undefined,
         className      : undefined,
+        cssMap         : undefined,
         element        : 'input',
         forceHover     : false,
         hasError       : false,
@@ -180,6 +177,7 @@ export default class InputField extends React.Component
         onBlur         : undefined,
         onChange       : undefined,
         onClick        : undefined,
+        onClickIcon    : undefined,
         onFocus        : undefined,
         onKeyDown      : undefined,
         onKeyPress     : undefined,
@@ -210,15 +208,11 @@ export default class InputField extends React.Component
             autoCapitalize,
             autoComplete,
             autoCorrect,
-            className,
             cssMap = createCssMap( this.context.InputField, this.props ),
             element,
-            forceHover,
-            hasError,
             id = generateId( 'InputField' ),
             isDisabled,
             isReadOnly,
-            isResizable,
             name,
             onBlur,
             onChange,
@@ -232,7 +226,6 @@ export default class InputField extends React.Component
             placeholder,
             rows,
             spellCheck,
-            textAlign,
             type,
             value,
         } = this.props;
@@ -245,32 +238,26 @@ export default class InputField extends React.Component
                 autoCapitalize = { autoCapitalize }
                 autoComplete   = { autoComplete }
                 autoCorrect    = { autoCorrect }
-                className      = { buildClassName( className, cssMap, {
-                    align       : textAlign,
-                    disabled    : isDisabled,
-                    error       : !isDisabled && hasError,
-                    fakeHovered : !isDisabled && forceHover,
-                    resizable   : element === 'textarea' && isResizable,
-                } ) }
-                disabled     = { isDisabled }
-                id           = { id }
-                name         = { name }
-                onBlur       = { onBlur }
-                onChange     = { onChange }
-                onClick      = { onClick }
-                onFocus      = { onFocus }
-                onKeyDown    = { onKeyDown }
-                onKeyPress   = { onKeyPress }
-                onKeyUp      = { onKeyUp }
-                onMouseEnter = { onMouseOver }
-                onMouseLeave = { onMouseOut }
-                placeholder  = { placeholder }
-                readOnly     = { isReadOnly }
-                ref          = { this.inputRef }
-                rows         = { element === 'textarea' ? rows : null }
-                spellCheck   = { spellCheck }
-                type         = { element === 'input' ? type : null }
-                value        = { value } />
+                className      = { cssMap.main }
+                disabled       = { isDisabled }
+                id             = { id }
+                name           = { name }
+                onBlur         = { onBlur }
+                onChange       = { onChange }
+                onClick        = { onClick }
+                onFocus        = { onFocus }
+                onKeyDown      = { onKeyDown }
+                onKeyPress     = { onKeyPress }
+                onKeyUp        = { onKeyUp }
+                onMouseEnter   = { onMouseOver }
+                onMouseLeave   = { onMouseOut }
+                placeholder    = { placeholder }
+                readOnly       = { isReadOnly }
+                ref            = { this.inputRef }
+                rows           = { element === 'textarea' ? rows : null }
+                spellCheck     = { spellCheck }
+                type           = { element === 'input' ? type : null }
+                value          = { value } />
         );
     }
 }

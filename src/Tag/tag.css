@@ -25,6 +25,8 @@
 
     .label
     {
+        margin-bottom:  0;
+
         @extend %Nessie-SemiBold;
 
         letter-spacing: 0.4px;

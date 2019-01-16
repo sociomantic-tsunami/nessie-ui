@@ -10,10 +10,9 @@
 import React                      from 'react';
 import PropTypes                  from 'prop-types';
 
-import { buildClassName }         from '../utils';
 import { Label, IconWithTooltip } from '../index';
 import ThemeContext               from '../Theming/ThemeContext';
-import { createCssMap }           from '../Theming/createCss';
+import { createCssMap }           from '../Theming';
 
 export default class Fieldset extends React.Component
 {
@@ -21,6 +20,18 @@ export default class Fieldset extends React.Component
 
     static propTypes =
     {
+        /**
+         *  Fieldset content (usually Checkboxes or Radios)
+         */
+        children              : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className             : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap                : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Fieldset label string or JSX node
          */
@@ -41,10 +52,6 @@ export default class Fieldset extends React.Component
          *  Error Tooltip is displayed
          */
         errorMessageIsVisible : PropTypes.bool,
-        /**
-         *  Fieldset content (usually Checkboxes or Radios)
-         */
-        children              : PropTypes.node,
         /**
          *  onMouseOver callback function : ( e ) => { ... }
          */
@@ -75,9 +82,17 @@ export default class Fieldset extends React.Component
 
     static defaultProps =
     {
+        children              : undefined,
+        className             : undefined,
+        cssMap                : undefined,
+        errorMessage          : undefined,
         errorMessageIsVisible : false,
         errorMessagePosition  : 'top',
         hasError              : false,
+        isDisabled            : undefined,
+        label                 : undefined,
+        onMouseOut            : undefined,
+        onMouseOver           : undefined,
     };
 
     static displayName = 'Fieldset';
@@ -86,7 +101,6 @@ export default class Fieldset extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Fieldset, this.props ),
             errorMessage,
             errorMessageIsVisible,
@@ -100,7 +114,7 @@ export default class Fieldset extends React.Component
 
         return (
             <fieldset
-                className    = { buildClassName( className, cssMap ) }
+                className    = { cssMap.main }
                 onMouseEnter = { onMouseOver }
                 onMouseLeave = { onMouseOut }>
                 { label &&

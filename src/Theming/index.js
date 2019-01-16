@@ -7,17 +7,9 @@
  *
  */
 
-export default class TextDriver
-{
-    constructor( wrapper )
-    {
-        this.wrapper = wrapper;
-    }
+import ThemeContext from './ThemeContext';
 
+const { Consumer : ThemeConsumer, Provider : ThemeProvider } = ThemeContext;
+export { ThemeConsumer, ThemeProvider };
 
-    click()
-    {
-        this.wrapper.simulate( 'click' );
-        return this;
-    }
-}
+export createCssMap from './createCssMap';

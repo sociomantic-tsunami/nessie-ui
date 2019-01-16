@@ -13,8 +13,12 @@ export default class RadioGroupDriver
 {
     constructor( wrapper )
     {
-        this.wrapper    = wrapper;
-        this.checkables = wrapper.find( CheckableGroup );
+        this.wrapper = wrapper;
+    }
+
+    get checkables()
+    {
+        return this.wrapper.find( CheckableGroup );
     }
 
 

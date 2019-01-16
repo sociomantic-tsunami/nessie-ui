@@ -13,7 +13,7 @@ import PropTypes        from 'prop-types';
 import Checkable        from '../proto/Checkable';
 import { generateId }   from '../utils';
 import ThemeContext     from '../Theming/ThemeContext';
-import { createCssMap } from '../Theming/createCss';
+import { createCssMap } from '../Theming';
 
 class Checkbox extends React.Component
 {
@@ -103,6 +103,7 @@ class Checkbox extends React.Component
     {
         children    : undefined,
         className   : undefined,
+        cssMap      : undefined,
         forceHover  : false,
         hasError    : false,
         id          : undefined,

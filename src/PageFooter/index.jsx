@@ -10,9 +10,8 @@
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
 
 export default class PageFooter extends React.Component
 {
@@ -23,7 +22,22 @@ export default class PageFooter extends React.Component
         /**
          *  PageFooter content
          */
-        children : PropTypes.node,
+        children  : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className : PropTypes.node,
+        /**
+         *  CSS class map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+    };
+
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
     };
 
     static displayName = 'PageFooter';
@@ -32,15 +46,12 @@ export default class PageFooter extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.PageFooter, this.props ),
         } = this.props;
 
         return (
-            <footer className = { buildClassName( className, cssMap ) }>
-                <div className = { cssMap.content }>
-                    { children }
-                </div>
+            <footer className = { cssMap.main }>
+                <div className = { cssMap.content }>{ children }</div>
             </footer>
         );
     }

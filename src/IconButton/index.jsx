@@ -7,13 +7,13 @@
  *
  */
 
-import React                            from 'react';
-import PropTypes                        from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { generateId, buildClassName }   from '../utils';
-import { Icon }                         from '../index';
-import ThemeContext                     from '../Theming/ThemeContext';
-import { createCssMap }                 from '../Theming/createCss';
+import { generateId }   from '../utils';
+import { Icon }         from '../index';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
 const killFocus = e => e.preventDefault();
 
@@ -165,9 +165,11 @@ export default class IconButton extends React.Component
         buttonRef     : undefined,
         children      : undefined,
         className     : undefined,
+        cssMap        : undefined,
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
+        iconType      : undefined,
         id            : undefined,
         isDisabled    : false,
         isFocusable   : true,
@@ -189,10 +191,7 @@ export default class IconButton extends React.Component
         const {
             buttonRef,
             children,
-            className,
             cssMap = createCssMap( this.context.IconButton, this.props ),
-            forceHover,
-            hasBackground,
             iconSize,
             iconType,
             id = generateId( 'IconButton' ),
@@ -205,19 +204,12 @@ export default class IconButton extends React.Component
             onFocus,
             onMouseOut,
             onMouseOver,
-            role,
             value,
         } = this.props;
 
         return (
             <button
-                className = { buildClassName( className, cssMap, {
-                    background  : hasBackground,
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover,
-                    role,
-                    size        : iconSize,
-                }  ) }
+                className = { cssMap.main }
                 disabled     = { isDisabled }
                 id           = { id }
                 onBlur       = { onBlur }

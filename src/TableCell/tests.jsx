@@ -46,7 +46,7 @@ describe( 'TableCellDriver', () =>
             () =>
             {
                 const onToggle = jest.fn();
-                const expectedError = 'TableCell cannot be toggled since it\'s \
+                const expectedError = 'TableCell cannot be toggled since it’s \
 not sortable';
 
                 wrapper.setProps( {

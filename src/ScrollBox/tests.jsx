@@ -15,6 +15,7 @@ import { mount }                from 'enzyme';
 import { ScrollBar, ScrollBox } from '../index';
 import * as utils               from './utils';
 
+
 describe( 'ScrollBox', () =>
 {
     let wrapper;

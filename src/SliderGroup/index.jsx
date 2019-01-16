@@ -7,13 +7,32 @@
  *
  */
 
+/* eslint-disable react/no-array-index-key */
+
 import React                from 'react';
 import PropTypes            from 'prop-types';
 
-import { buildClassName }   from '../utils';
 import { Label, Slider }    from '../index';
 import ThemeContext         from '../Theming/ThemeContext';
-import { createCssMap }     from '../Theming/createCss';
+import { createCssMap }     from '../Theming';
+
+
+const getOffset = ( value, minValue, maxValue ) =>
+{
+    if ( minValue >= maxValue || value <= minValue )
+    {
+        return 0;
+    }
+
+    else if ( value >= maxValue )
+    {
+        return 100;
+    }
+
+    const range = maxValue - minValue;
+    return ( ( value - minValue ) / range ) * 100;
+};
+
 
 export default class SliderGroup extends React.Component
 {
@@ -22,18 +41,26 @@ export default class SliderGroup extends React.Component
     static propTypes =
     {
         /**
+         *  Extra CSS class name
+         */
+        className  : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap     : PropTypes.objectOf( PropTypes.string ),
+        /**
         * Individual Slider props
         */
         sliders    : PropTypes.arrayOf( PropTypes.object ),
         /**
-        * SliderGroup labels
+        * Step labels (left)
         */
         stepLabels : PropTypes.arrayOf( PropTypes.shape( {
             stepLabel : PropTypes.string,
             step      : PropTypes.number,
         } ) ),
         /**
-        * bototm category labels
+        * Slider labels (bottom)
         */
         sliderLabels : PropTypes.arrayOf( PropTypes.string ),
         /**
@@ -64,49 +91,38 @@ export default class SliderGroup extends React.Component
 
     static defaultProps =
     {
-        isDisabled : false,
-        isReadOnly : false,
-        hasError   : false,
-        maxValue   : 100,
-        minValue   : 0,
+        className    : undefined,
+        cssMap       : undefined,
+        hasError     : false,
+        isDisabled   : false,
+        isReadOnly   : false,
+        maxValue     : 100,
+        minValue     : 0,
+        onChange     : undefined,
+        sliderLabels : undefined,
+        sliders      : undefined,
+        stepLabels   : undefined,
     };
 
     static displayName = 'SliderGroup';
 
     render()
     {
-        const getOffset = ( value, minValue, maxValue ) =>
-        {
-            if ( minValue >= maxValue || value <= minValue )
-            {
-                return 0;
-            }
-
-            else if ( value >= maxValue )
-            {
-                return 100;
-            }
-
-            const range = maxValue - minValue;
-            return ( ( value - minValue ) / range ) * 100;
-        };
-
         const {
-            className,
             cssMap = createCssMap( this.context.SliderGroup, this.props ),
             hasError,
             isDisabled,
             isReadOnly,
-            sliders = [],
-            sliderLabels = [],
-            stepLabels = [],
             maxValue,
             minValue,
             onChange,
+            sliderLabels = [],
+            sliders = [],
+            stepLabels = [],
         } = this.props;
 
-        const ticks = stepLabels.map( label =>
-            ( { ...label, stepLabel: '|' } ) );
+        const ticks = stepLabels.map( label => (
+            { ...label, stepLabel: '|' } ) );
 
         const sliderNode = sliders.map( ( slider, i ) =>
         {
@@ -125,77 +141,71 @@ export default class SliderGroup extends React.Component
 
             return (
                 <div
-                    key       = { i } // eslint-disable-line react/no-array-index-key, max-len
-                    className = { cssMap.sliderWrapper }>
+                    className = { cssMap.sliderWrapper }
+                    key       = { i }>
                     <Slider
                         { ...slider }
-                        label         = { null }
                         className     = { cssMap.slider }
-                        stepLabels    = { null }
-                        isDisabled    = { isDisabled || slider.isDisabled }
                         hasError      = { hasError || slider.hasError }
+                        isDisabled    = { isDisabled || slider.isDisabled }
+                        isReadOnly    = { isReadOnly || slider.isReadOnly }
+                        label         = { null }
                         maxValue      = { maxValue }
                         minValue      = { minValue }
-                        isReadOnly    = { isReadOnly || slider.isReadOnly }
-                        ticks         = { ticks }
                         onChange      = { handleChange }
-                        orientation   = "vertical" />
+                        orientation   = "vertical"
+                        stepLabels    = { null }
+                        ticks         = { ticks } />
                 </div>
             );
         } );
 
-        const sliderLabelsNode = sliderLabels.map( ( label, i ) =>
-            (
-                <div
-                    key       = { i } // eslint-disable-line react/no-array-index-key, max-len
-                    className = { cssMap.sliderLabelWrapper }>
-                    <Label
-                        className        = { cssMap.sliderLabel }
-                        label            = { label }
-                        overflowIsHidden
-                    />
-                </div>
-            ) );
+        const sliderLabelsNode = sliderLabels.map( ( label, i ) => (
+            <div
+                className = { cssMap.sliderLabelWrapper }
+                key       = { i }>
+                <Label
+                    className = { cssMap.sliderLabel }
+                    label     = { label }
+                    overflowIsHidden
+                />
+            </div>
+        ) );
 
         return (
-            <div
-                className = { buildClassName( className, cssMap, {
-                    error    : !isDisabled && hasError,
-                    disabled : isDisabled,
-
-                } ) } >
+            <div className = { cssMap.main }>
                 { sliders &&
-                <div className = { cssMap.flexContainer }>
-                    { stepLabels &&
-                    <div className = { cssMap.stepLabelsContainer }>
-                        { stepLabels.map( ( value, i ) =>
-                            <div
-                                key       = { i }  // eslint-disable-line react/no-array-index-key, max-len
-                                className = { cssMap.labelWrapper }
-                                style = { {
-                                    bottom :
-                                        `${getOffset(
-                                            value.step,
-                                            minValue,
-                                            maxValue,
-                                        )}%`,
-                                } } >
-                                <div
-                                    className = { cssMap.stepLabel } >
-                                    { value.stepLabel }
-                                </div>
-                            </div> )}
+                    <div className = { cssMap.flexContainer }>
+                        { stepLabels &&
+                            <div className = { cssMap.stepLabelsContainer }>
+                                { stepLabels.map( ( value, i ) =>
+                                    <div
+                                        className = { cssMap.labelWrapper }
+                                        key       = { i }
+                                        style     = { {
+                                            bottom :
+                                                `${getOffset(
+                                                    value.step,
+                                                    minValue,
+                                                    maxValue,
+                                                )}%`,
+                                        } } >
+                                        <div className = { cssMap.stepLabel } >
+                                            { value.stepLabel }
+                                        </div>
+                                    </div> )
+                                }
+                            </div>
+                        }
+                        <div className = { cssMap.slidersContainer }>
+                            { sliderNode }
+                        </div>
                     </div>
-                    }
-                    <div className = { cssMap.slidersContainer }>
-                        { sliderNode }
-                    </div>
-                </div>
                 }
                 { sliderLabels &&
-                <div className = { cssMap.sliderLabelContainer }>
-                    { sliderLabelsNode }
-                </div>
+                    <div className = { cssMap.sliderLabelContainer }>
+                        { sliderLabelsNode }
+                    </div>
                 }
             </div>
         );

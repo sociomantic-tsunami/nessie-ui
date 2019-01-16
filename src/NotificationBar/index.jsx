@@ -10,10 +10,9 @@
 import React                        from 'react';
 import PropTypes                    from 'prop-types';
 
-import { buildClassName }           from '../utils';
 import { Icon, IconButton, Text }   from '../index';
 import ThemeContext                 from '../Theming/ThemeContext';
-import { createCssMap }             from '../Theming/createCss';
+import { createCssMap }             from '../Theming';
 
 export default class NotificationBar extends React.Component
 {
@@ -22,16 +21,24 @@ export default class NotificationBar extends React.Component
     static propTypes =
     {
         /**
-        *  Message text
-        */
+         *  Message text
+         */
         message     : PropTypes.string,
         /**
          *  NotificationBar content
          */
         children    : PropTypes.node,
         /**
-        *  Message type
-        */
+         *  Extra CSS class name
+         */
+        className   : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap      : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Message type
+         */
         messageType : PropTypes.oneOf( [
             'alert',
             'error',
@@ -43,20 +50,25 @@ export default class NotificationBar extends React.Component
          */
         onClickClose  : PropTypes.func,
         /**
-        *  Message text
-        */
+         *  Message text
+         */
         isDismissible : PropTypes.bool,
         /**
-        *  Change position to fixed top in the viewport
-        */
+         *  Change position to fixed top in the viewport
+         */
         isFixed       : PropTypes.bool,
     };
 
     static defaultProps =
     {
+        children      : undefined,
+        className     : undefined,
+        cssMap        : undefined,
         isDismissible : true,
         isFixed       : false,
+        message       : undefined,
         messageType   : 'info',
+        onClickClose  : undefined,
     };
 
     static displayName = 'NotificationBar';
@@ -65,21 +77,15 @@ export default class NotificationBar extends React.Component
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.NotificationBar, this.props ),
             isDismissible,
-            isFixed,
             message,
-            messageType,
             onClickClose,
         } = this.props;
 
         return (
             <div
-                className = { buildClassName( className, cssMap, {
-                    top  : isFixed,
-                    type : messageType,
-                } ) }>
+                className = { cssMap.main }>
                 <Icon
                     className = { cssMap.icon }
                     type      = "info" />

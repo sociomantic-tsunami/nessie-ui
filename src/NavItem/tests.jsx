@@ -9,10 +9,11 @@
 
 /* eslint-disable no-magic-numbers */
 
-import React        from 'react';
-import { mount }    from 'enzyme';
+import React              from 'react';
+import { mount, shallow } from 'enzyme';
 
-import { NavItem }  from '../index';
+import { NavItem }        from '../index';
+
 
 describe( 'NavItem', () =>
 {
@@ -20,18 +21,12 @@ describe( 'NavItem', () =>
 
     beforeEach( () =>
     {
-        const props = {
-            label : 'testLabel',
-        };
-
-        wrapper = mount( <NavItem { ...props } /> );
+        wrapper = shallow( <NavItem /> );
     } );
 
-    test( 'should have its component name and hash as default className', () =>
+    test( 'should have “main” as default className', () =>
     {
-        expect( wrapper
-            .find( `.${wrapper.instance().context.NavItem.default}` ) )
-            .toHaveLength( 1 );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );
 
@@ -43,18 +38,13 @@ describe( 'NavItemDriver', () =>
 
     beforeEach( () =>
     {
-        const props = {
-            label : 'Cthulhu',
-        };
-
-        wrapper = mount(  <NavItem { ...props } /> );
-        driver  = wrapper.driver();
+        wrapper = mount( <NavItem /> );
+        driver = wrapper.driver();
     } );
-
 
     test( 'should trigger onClick callback once', () =>
     {
-        const onClickSpy = jest.fn().mockReset();
+        const onClickSpy = jest.fn();
         wrapper.setProps( {
             onClick : onClickSpy,
         } );
@@ -65,7 +55,7 @@ describe( 'NavItemDriver', () =>
 
     test( 'should trigger onMouseOver callback once', () =>
     {
-        const onMouseOverSpy = jest.fn().mockReset();
+        const onMouseOverSpy = jest.fn();
         wrapper.setProps( {
             onMouseOver : onMouseOverSpy,
         } );
@@ -76,7 +66,7 @@ describe( 'NavItemDriver', () =>
 
     test( 'should trigger onMouseOut callback once', () =>
     {
-        const onMouseOutSpy = jest.fn().mockReset();
+        const onMouseOutSpy = jest.fn();
         wrapper.setProps( {
             onMouseOut : onMouseOutSpy,
         } );
