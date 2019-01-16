@@ -2983,10 +2983,6 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codemirror@^5.42.2:
-  version "5.42.2"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.42.2.tgz#801ab715a7a7e1c7ed4162b78e9d8138b98de8f0"
-
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -5157,12 +5153,6 @@ flat@^4.1.0:
 flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
-
-flounder@^1.3.13:
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/flounder/-/flounder-1.3.13.tgz#a34b00d3e9738f35683ee988debc011ac97206a2"
-  dependencies:
-    microbejs "^0.4.20"
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
@@ -7664,14 +7654,6 @@ methods@0.0.1:
 methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
-
-microbejs@^0.4.20:
-  version "0.4.21"
-  resolved "https://registry.yarnpkg.com/microbejs/-/microbejs-0.4.21.tgz#2a833527e93dcf761cab895db00859d302b5e887"
-
-microbejs@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/microbejs/-/microbejs-0.5.2.tgz#8db4eeb521d1b865ebb4544c88bfd8d351a9a3a5"
 
 micromatch@^2.1.5, micromatch@^2.3.11:
   version "2.3.11"
