@@ -27,6 +27,19 @@ import {
 
 
 /**
+ * gets the index of the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Number} index of the option
+ */
+function getIndex( id, options = [] )
+{
+    return options.findIndex( opt => opt.id === id );
+}
+
+/**
  * gets the option by the passed id
  *
  * @param {String} id id of the option
@@ -49,107 +62,115 @@ export default class TagInputStateful extends React.Component
         /**
          *  CSS class name
          */
-        className        : PropTypes.string,
+        className         : PropTypes.string,
         /**
          *  CSS class map
          */
-        cssMap           : PropTypes.objectOf( PropTypes.string ),
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
         /**
          *  Position of the dropdown relative to the text input
          */
-        dropdownPosition : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
+        dropdownPosition  : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
         /**
          *  Display as hover when required from another component
          */
-        forceHover       : PropTypes.bool,
+        forceHover        : PropTypes.bool,
         /**
          *  specifies the height for the tag input (CSS length value)
          */
-        height           : PropTypes.string,
+        height            : PropTypes.string,
         /**
          *  Display as error/invalid
          */
-        hasError         : PropTypes.bool,
+        hasError          : PropTypes.bool,
         /**
          *  HTML id attribute
          */
-        id               : PropTypes.string,
+        id                : PropTypes.string,
         /**
          *  Callback that receives the native <input>: ( ref ) => { ... }
          */
-        inputRef         : PropTypes.func,
+        inputRef          : PropTypes.func,
         /**
          *  Display as disabled
          */
-        isDisabled       : PropTypes.bool,
+        isDisabled        : PropTypes.bool,
         /**
          *  Dropdown is open
          */
-        isOpen           : PropTypes.bool,
+        isOpen            : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly       : PropTypes.bool,
+        isReadOnly        : PropTypes.bool,
         /**
          *  Allows container to be resize by the user
          */
-        isResizable      : PropTypes.bool,
+        isResizable       : PropTypes.bool,
         /**
          *  HTML name attribute
          */
-        name             : PropTypes.string,
+        name              : PropTypes.string,
         /**
          * onBlur callback function
          */
-        onBlur           : PropTypes.func,
+        onBlur            : PropTypes.func,
         /**
          *  Input change callback function
          */
-        onChange         : PropTypes.func,
+        onChange          : PropTypes.func,
         /**
          *  Button click callback function: ( e ) => { ... }
          */
-        onClickClose     : PropTypes.func,
+        onClickClose      : PropTypes.func,
         /*
          * On click callback function for dropdown option
          */
-        onClickOption    : PropTypes.func,
+        onClickOption     : PropTypes.func,
         /**
          *  onFocus callback function
          */
-        onFocus          : PropTypes.func,
+        onFocus           : PropTypes.func,
         /**
          *  onKeyDown callback function
          */
-        onKeyDown        : PropTypes.func,
+        onKeyDown         : PropTypes.func,
         /**
          *  onKeyUp callback function
          */
-        onKeyUp          : PropTypes.func,
+        onKeyUp           : PropTypes.func,
         /**
          *  onKeyPress callback function
          */
-        onKeyPress       : PropTypes.func,
+        onKeyPress        : PropTypes.func,
         /**
          *  Input mouseOut callback function
          */
-        onMouseOut       : PropTypes.func,
+        onMouseOut        : PropTypes.func,
+        /**
+         *  On mouse out callback function for dropdown option
+         */
+        onMouseOutOption  : PropTypes.func,
         /**
          *  Input mouseOver callback function
          */
-        onMouseOver      : PropTypes.func,
+        onMouseOver       : PropTypes.func,
+        /**
+         *  On mouse over callback function for dropdown option
+         */
+        onMouseOverOption : PropTypes.func,
         /**
          *  Dropdown list options
          */
-        options          : PropTypes.arrayOf( PropTypes.object ),
+        options           : PropTypes.arrayOf( PropTypes.object ),
         /**
          *  Placeholder text
          */
-        placeholder      : PropTypes.string,
+        placeholder       : PropTypes.string,
         /**
          *  Array of strings to build Tag components
          */
-        tags             : PropTypes.arrayOf( PropTypes.oneOfType( [
+        tags              : PropTypes.arrayOf( PropTypes.oneOfType( [
             PropTypes.string,
             PropTypes.object,
         ] ) ),
@@ -161,32 +182,34 @@ export default class TagInputStateful extends React.Component
 
     static defaultProps =
     {
-        className        : undefined,
-        dropdownPosition : 'auto',
-        forceHover       : false,
-        hasError         : false,
-        height           : undefined,
-        id               : undefined,
-        inputRef         : undefined,
-        isDisabled       : false,
-        isOpen           : false,
-        isReadOnly       : false,
-        isResizable      : false,
-        name             : undefined,
-        onBlur           : undefined,
-        onChange         : undefined,
-        onClickClose     : undefined,
-        onClickOption    : undefined,
-        onFocus          : undefined,
-        onKeyDown        : undefined,
-        onKeyPress       : undefined,
-        onKeyUp          : undefined,
-        onMouseOut       : undefined,
-        onMouseOver      : undefined,
-        options          : undefined,
-        placeholder      : undefined,
-        tags             : undefined,
-        value            : '',
+        className         : undefined,
+        dropdownPosition  : 'auto',
+        forceHover        : false,
+        hasError          : false,
+        height            : undefined,
+        id                : undefined,
+        inputRef          : undefined,
+        isDisabled        : false,
+        isOpen            : false,
+        isReadOnly        : false,
+        isResizable       : false,
+        name              : undefined,
+        onBlur            : undefined,
+        onChange          : undefined,
+        onClickClose      : undefined,
+        onClickOption     : undefined,
+        onFocus           : undefined,
+        onKeyDown         : undefined,
+        onKeyPress        : undefined,
+        onKeyUp           : undefined,
+        onMouseOutOption  : undefined,
+        onMouseOut        : undefined,
+        onMouseOver       : undefined,
+        onMouseOverOption : undefined,
+        options           : undefined,
+        placeholder       : undefined,
+        tags              : undefined,
+        value             : '',
     };
 
     constructor( props )
@@ -206,15 +229,17 @@ export default class TagInputStateful extends React.Component
             value        : props.value,
         };
 
-        this.handleBlur        = this.handleBlur.bind( this );
-        this.handleChange      = this.handleChange.bind( this );
-        this.handleClickClose  = this.handleClickClose.bind( this );
-        this.handleClickOption = this.handleClickOption.bind( this );
-        this.handleFocus       = this.handleFocus.bind( this );
-        this.handleKeyDown     = this.handleKeyDown.bind( this );
-        this.setInputRef       = this.setInputRef.bind( this );
-        this.setScrollBoxRef   = this.setScrollBoxRef( this );
-        this.setWrapperRef     = this.setWrapperRef.bind( this );
+        this.handleBlur            = this.handleBlur.bind( this );
+        this.handleChange          = this.handleChange.bind( this );
+        this.handleClickClose      = this.handleClickClose.bind( this );
+        this.handleClickOption     = this.handleClickOption.bind( this );
+        this.handleFocus           = this.handleFocus.bind( this );
+        this.handleKeyDown         = this.handleKeyDown.bind( this );
+        this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
+        this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
+        this.setInputRef           = this.setInputRef.bind( this );
+        this.setScrollBoxRef       = this.setScrollBoxRef( this );
+        this.setWrapperRef         = this.setWrapperRef.bind( this );
     }
 
     componentDidMount()
@@ -367,7 +392,7 @@ export default class TagInputStateful extends React.Component
         this.setState( {
             activeOption,
             filteredOptions,
-            value   : e.target.value,
+            value : e.target.value,
         } );
     }
 
@@ -427,29 +452,115 @@ export default class TagInputStateful extends React.Component
 
     handleKeyDown( e )
     {
-        const BACKSPACE       = 8;  // keyCode for 'backspace'
-        const ENTER           = 13; // keyCode for 'enter'
-        const { tags, value } = this.state;
-        const callback        = this.props.onKeyDown;
+        const BACKSPACE = 8;  // keyCode for 'backspace'
+        const ENTER     = 13; // keyCode for 'enter'
+        const ARROWUP   = 38; // keyCode for 'arrow up'
+        const ARROWDOWN = 40; // keyCode for 'arrow down'
+        const ESCAPE    = 27; // keyCode for 'escape'
+        const { activeOption, tags, value } = this.state;
+        const callback = this.props.onKeyDown;
+        const { keyCode } = e;
 
         if ( callback )
         {
             callback( e );
         }
 
-        if ( e.keyCode === BACKSPACE && value === '' )
+        if ( keyCode === BACKSPACE && value === '' )
         {
             const newTags = tags.slice( 0, -1 );
 
             this.setState( { tags: newTags } );
         }
 
-        if ( e.keyCode === ENTER && value !== '' )
+        if ( keyCode === ENTER && value !== '' )
         {
-            const newTags = tags.concat( value );
+            let newTags;
+
+            if ( activeOption )
+            {
+                const option =
+                    this.props.options.find( opt => opt.id === activeOption );
+
+                newTags = tags.concat( option.text );
+            }
+            else  newTags = tags.concat( value );
 
             this.setState( { tags: newTags, value: '' } );
         }
+
+        if ( keyCode === ARROWUP || keyCode === ARROWDOWN )
+        {
+            e.preventDefault();
+
+            this.setState( prevState =>
+            {
+                const options = prevState.filteredOptions ||
+                prevState.flatOptions;
+
+                if ( prevState.isOpen && options.length )
+                {
+                    const minIndex = 0;
+                    const maxIndex = options.length - 1;
+
+                    let activeIndex = getIndex(
+                        prevState.activeOption || prevState.selection,
+                        options,
+                    );
+
+                    activeIndex = keyCode === ARROWUP ?
+                        Math.max( activeIndex - 1, minIndex ) :
+                        Math.min( activeIndex + 1, maxIndex );
+
+                    return {
+                        activeOption : options[ activeIndex ].id,
+                    };
+                }
+
+                return { isOpen: true };
+            } );
+        }
+        else if ( keyCode === ESCAPE )
+        {
+            this.setState( {
+                activeOption    : undefined,
+                filteredOptions : undefined,
+                isOpen          : false,
+                value           : '',
+            } );
+        }
+    }
+
+    handleMouseOutOption( e )
+    {
+        const callback = this.props.onMouseOutOption;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( { activeOption: undefined } );
+    }
+
+    handleMouseOverOption( e, id )
+    {
+        const callback = this.props.onMouseOverOption;
+
+        if ( callback )
+        {
+            callback( e );
+        }
+
+        this.setState( prevState =>
+        {
+            const activeOption = getOption(
+                id,
+                prevState.filteredOptions,
+            ).id;
+
+            return { activeOption };
+        } );
     }
 
     render()
@@ -472,10 +583,12 @@ export default class TagInputStateful extends React.Component
                 scroll       = "vertical"
                 scrollBoxRef = { this.setScrollBoxRef }>
                 <ListBox
-                    activeOption  = { activeOption }
-                    id            = { addPrefix( 'listbox', props.id ) }
-                    isFocusable   = { false }
-                    onClickOption = { this.handleClickOption }
+                    activeOption      = { activeOption }
+                    id                = { addPrefix( 'listbox', props.id ) }
+                    isFocusable       = { false }
+                    onClickOption     = { this.handleClickOption }
+                    onMouseOutOption  = { this.handleMouseOutOption }
+                    onMouseOverOption = { this.handleMouseOverOption }
                     selection = { addPrefix( props.selection, props.id ) }>
                     { buildListBoxOptions(
                         filteredOptions,
