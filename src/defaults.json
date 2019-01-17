@@ -627,11 +627,7 @@
 			}
 		]
 	},
-	"PasswordInput": {
-		"label": "Tell me your secrets",
-		"errorMessage": "Please enter a valid name"
-	},
-	"PasswordInputStateful": {
+	"PasswordInpu": {
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
 	},

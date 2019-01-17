@@ -14,7 +14,7 @@ import { TextInputWithIcon } from '../';
 import { generateId }        from '../utils';
 
 
-export default class PasswordInputStateful extends React.Component
+export default class PasswordInput extends React.Component
 {
     static propTypes =
     {

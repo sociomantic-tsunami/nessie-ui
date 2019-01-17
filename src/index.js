@@ -21,7 +21,6 @@ import IconButton               from './IconButton';
 import InputField               from './InputField';
 import ListBox                  from './ListBox';
 import PasswordInput            from './PasswordInput';
-import PasswordInputStateful    from './PasswordInputStateful';
 import ScrollBar                from './ScrollBar';
 import ScrollBox                from './ScrollBox';
 import SpriteMap                from './SpriteMap';
@@ -48,7 +47,6 @@ export {
     InputField,
     ListBox,
     PasswordInput,
-    PasswordInputStateful,
     ScrollBar,
     ScrollBox,
     SpriteMap,
@@ -76,7 +74,6 @@ export default {
     InputField,
     ListBox,
     PasswordInput,
-    PasswordInputStateful,
     ScrollBar,
     ScrollBox,
     SpriteMap,
@@ -94,4 +91,4 @@ export { ThemeProvider } from './Theming';
 export DefaultTheme      from './DefaultTheme';
 
 // Addons
-export withDropdown     from './Addons/withDropdown';
+export withDropdown from './Addons/withDropdown';
