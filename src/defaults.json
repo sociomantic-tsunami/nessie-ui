@@ -278,9 +278,6 @@
 			}]
 		]
 	},
-	"DatePickerStateful": {
-
-	},
 	"DateTimeInput": {
 		"currentMonth": "January",
 		"currentYear": "2000",
