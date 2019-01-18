@@ -34,8 +34,6 @@ const DateTimeInput = React.forwardRef( ( {
     isDisabled,
     isOpen,
     isReadOnly,
-    isReadOnlyButton,
-    isReadOnlyInput,
     minuteIsDisabled,
     minutePlaceholder,
     minuteValue,
@@ -112,8 +110,6 @@ const DateTimeInput = React.forwardRef( ( {
             id               = { id }
             isDisabled       = { isDisabled }
             isReadOnly       = { isReadOnly }
-            isReadOnlyButton = { isReadOnlyButton }
-            isReadOnlyInput  = { isReadOnlyInput }
             onBlur           = { eventHandler( onBlur, 'main' ) }
             onChange         = { eventHandler( onChange, 'main' ) }
             onClickIcon      = { onClickIcon }
@@ -196,14 +192,6 @@ DateTimeInput.propTypes =
      *  Display as read-only
      */
     isReadOnly        : PropTypes.bool,
-    /**
-     *  Display as read-only for IconButton
-     */
-    isReadOnlyButton  : PropTypes.bool,
-    /**
-     *  Display as read-only for TextInput
-     */
-    isReadOnlyInput   : PropTypes.bool,
     /**
      *  Hour input is read only
      */
@@ -337,8 +325,6 @@ DateTimeInput.defaultProps =
     isDisabled        : false,
     isOpen            : false,
     isReadOnly        : false,
-    isReadOnlyButton  : undefined,
-    isReadOnlyInput   : undefined,
     minuteIsDisabled  : false,
     minutePlaceholder : undefined,
     minuteValue       : undefined,

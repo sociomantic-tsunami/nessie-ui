@@ -78,10 +78,6 @@ export default class ComboBoxStateful extends Component
     static propTypes =
     {
         /**
-         *  Display as read-only for IconButton
-         */
-        buttonIsReadOnly     : PropTypes.bool,
-        /**
          *  Extra CSS class name
          */
         className            : PropTypes.string,
@@ -272,7 +268,6 @@ export default class ComboBoxStateful extends Component
 
     static defaultProps =
     {
-        buttonIsReadOnly     : undefined,
         className            : undefined,
         dropdownPlaceholder  : undefined,
         dropdownPosition     : 'auto',
@@ -577,7 +572,6 @@ export default class ComboBoxStateful extends Component
     render()
     {
         const {
-            buttonIsReadOnly,
             className,
             dropdownPlaceholder,
             dropdownPosition,
@@ -628,7 +622,6 @@ export default class ComboBoxStateful extends Component
         return (
             <ComboBox
                 activeOption         = { activeOption }
-                buttonIsReadOnly     = { buttonIsReadOnly }
                 className            = { className }
                 dropdownPlaceholder  = { dropdownPlaceholder }
                 dropdownPosition     = { dropdownPosition }
@@ -639,14 +632,13 @@ export default class ComboBoxStateful extends Component
                 iconType             = { iconType ||
                     ( isOpen ? 'up' : 'down' ) }
                 id                   = { id }
-                inputIsReadOnly      = { !isSearchable || !isOpen }
+                isReadOnly           = { !isSearchable || !isOpen }
                 inputRef             = { this.setInputRef }
                 inputPlaceholder     = { inputPlaceholder }
                 inputValue           = { ( isFocused && isOpen && isSearchable )
                     ? searchValue : optionVal }
                 isDisabled           = { isDisabled }
                 isOpen               = { isOpen }
-                isReadOnly           = { isReadOnly }
                 onBlur               = { this.handleOnBlur }
                 onChangeInput        = { this.handleChangeInput }
                 onClickIcon          = { this.handleClickIcon }

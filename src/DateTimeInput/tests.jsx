@@ -342,7 +342,7 @@ describe( 'DateTimeInputDriver', () =>
                     const onChange = jest.fn();
                     wrapper.setProps( {
                         onChange,
-                        isReadOnlyInput : true,
+                        isReadOnly : true,
                     } );
 
                     try

@@ -145,14 +145,6 @@ export default class ComboBox extends React.Component
          */
         isReadOnly        : PropTypes.bool,
         /**
-         *  Display as read-only for IconButton
-         */
-        buttonIsReadOnly  : PropTypes.bool,
-        /**
-         *  Display as read-only for TextInput
-         */
-        inputIsReadOnly   : PropTypes.bool,
-        /**
          *  Input field value
          */
         inputValue        : PropTypes.string,
@@ -251,7 +243,6 @@ export default class ComboBox extends React.Component
 
     static defaultProps = {
         activeOption         : undefined,
-        buttonIsReadOnly     : undefined,
         className            : undefined,
         dropdownPlaceholder  : undefined,
         dropdownPosition     : 'auto',
@@ -262,7 +253,6 @@ export default class ComboBox extends React.Component
         iconPosition         : undefined,
         iconType             : 'none',
         id                   : undefined,
-        inputIsReadOnly      : false,
         inputPlaceholder     : undefined,
         inputValue           : undefined,
         isDisabled           : false,
@@ -434,7 +424,6 @@ export default class ComboBox extends React.Component
     {
         const {
             activeOption,
-            buttonIsReadOnly,
             className,
             dropdownPlaceholder,
             forceHover,
@@ -444,7 +433,6 @@ export default class ComboBox extends React.Component
             iconPosition,
             iconType,
             id = generateId( 'ComboBox' ),
-            inputIsReadOnly,
             inputPlaceholder,
             inputValue,
             isDisabled,
@@ -539,8 +527,6 @@ export default class ComboBox extends React.Component
                 id                    = { id }
                 isDisabled            = { isDisabled }
                 isReadOnly            = { isReadOnly }
-                isReadOnlyButton      = { buttonIsReadOnly }
-                isReadOnlyInput       = { inputIsReadOnly }
                 name                  = { name }
                 onBlur                = { onBlur }
                 onChange              = { onChangeInput }

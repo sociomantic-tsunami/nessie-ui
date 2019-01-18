@@ -86,14 +86,6 @@ export default class PasswordInput extends React.Component
          */
         isReadOnly       : PropTypes.bool,
         /**
-         *  Display as read-only for IconButton
-         */
-        isReadOnlyButton : PropTypes.bool,
-        /**
-         *  Display as read-only for TextInput
-         */
-        isReadOnlyInput  : PropTypes.bool,
-        /**
          *  HTML name attribute
          */
         name             : PropTypes.string,
@@ -175,8 +167,6 @@ export default class PasswordInput extends React.Component
         inputRef             : undefined,
         isDisabled           : false,
         isReadOnly           : false,
-        isReadOnlyButton     : undefined,
-        isReadOnlyInput      : undefined,
         name                 : undefined,
         onBlur               : undefined,
         onChange             : undefined,

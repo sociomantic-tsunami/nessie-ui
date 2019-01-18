@@ -236,17 +236,9 @@ export default class DatePickerStateful extends Component
          */
         isReadOnly        : PropTypes.bool,
         /**
-         *  Display as read-only for IconButton
-         */
-        isReadOnlyButton  : PropTypes.bool,
-        /**
          *  “Previous” button is read only
          */
         prevIsReadOnly    : PropTypes.bool,
-        /**
-         *  Display as read-only for TextInput
-         */
-        isReadOnlyInput   : PropTypes.bool,
         /**
          *  “Next” button is read only
          */
@@ -366,8 +358,6 @@ export default class DatePickerStateful extends Component
         isDisabled        : false,
         isOpen            : undefined,
         isReadOnly        : false,
-        isReadOnlyButton  : undefined,
-        isReadOnlyInput   : undefined,
         maxDateSelectable : undefined,
         minDateSelectable : undefined,
         minuteIsDisabled  : false,
@@ -803,8 +793,6 @@ export default class DatePickerStateful extends Component
             inputPlaceholder,
             isDisabled,
             isReadOnly,
-            isReadOnlyButton,
-            isReadOnlyInput,
             minuteIsDisabled,
             minuteIsReadOnly,
             minutePlaceholder,
@@ -858,8 +846,6 @@ export default class DatePickerStateful extends Component
                 isDisabled        = { isDisabled }
                 isOpen            = { isOpen }
                 isReadOnly        = { isReadOnly }
-                isReadOnlyButton  = { isReadOnlyButton }
-                isReadOnlyInput   = { isReadOnlyInput }
                 minuteIsDisabled  = { minuteIsDisabled }
                 minuteIsReadOnly  = { typeof minuteIsReadOnly === 'undefined' ?
                     !this.canEditHourOrMinute() : minuteIsReadOnly }
