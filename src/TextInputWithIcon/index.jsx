@@ -298,7 +298,6 @@ export default class TextInputWithIcon extends React.Component
             autoCapitalize,
             autoComplete,
             autoCorrect,
-            className,
             cssMap = createCssMap( this.context.TextInputWithIcon, this.props ),
             forceHover,
             hasError,
@@ -356,7 +355,6 @@ export default class TextInputWithIcon extends React.Component
                     forceHover     = { forceHover }
                     hasError       = { hasError }
                     id             = { id }
-                    inputRef       = { inputRef }
                     isDisabled     = { isDisabled }
                     isReadOnly     = { isReadOnlyInput || isReadOnly }
                     name           = { name }
@@ -368,6 +366,7 @@ export default class TextInputWithIcon extends React.Component
                     onKeyPress     = { onKeyPress }
                     onKeyUp        = { onKeyUp }
                     placeholder    = { placeholder }
+                    ref            = { inputRef }
                     spellcheck     = { spellCheck }
                     textAlign      = { alignText }
                     type           = { inputType }
