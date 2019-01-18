@@ -55,12 +55,12 @@ export default class DatePickerItem extends React.Component
 
     handleClick( e )
     {
-        const { isReadOnly, onClick } = this.props;
-        e.stopPropagation();
         e.preventDefault();
+        
+        const { isReadOnly, onClick } = this.props;
         if ( !isReadOnly && onClick )
         {
-            onClick( e.target.value );
+            onClick( { value: parseInt( e.currentTarget.value ) }, e );
         }
     }
 
