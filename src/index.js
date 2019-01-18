@@ -9,7 +9,6 @@
 
 
 import ComboBox                 from './ComboBox';
-import ComboBoxStateful         from './ComboBoxStateful';
 import DatePicker               from './DatePicker';
 import DatePickerStateful       from './DatePickerStateful';
 import DateTimeInput            from './DateTimeInput';
@@ -36,7 +35,6 @@ import Tooltip                  from './Tooltip';
 
 export {
     ComboBox,
-    ComboBoxStateful,
     DatePicker,
     DatePickerStateful,
     DateTimeInput,
@@ -64,7 +62,6 @@ export {
 
 export default {
     ComboBox,
-    ComboBoxStateful,
     DatePicker,
     DatePickerStateful,
     DateTimeInput,

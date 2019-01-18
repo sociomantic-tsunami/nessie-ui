@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2018 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -9,7 +9,7 @@
 
 /* global document */
 
-import React                from 'react';
+import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 
 import {
@@ -21,7 +21,6 @@ import TextInputWithIcon from '../TextInputWithIcon';
 import {
     addPrefix,
     buildListBoxOptions,
-    getScrollParent,
     removePrefix,
 } from './utils';
 import { generateId }   from '../utils';
@@ -29,448 +28,429 @@ import withDropdown     from '../Addons/withDropdown';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
-export default class ComboBox extends React.Component
+/**
+ * gets the index of the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Number} index of the option
+ */
+function getIndex( id, options = [] )
+{
+    return options.findIndex( opt => opt.id === id );
+}
+
+/**
+ * gets the option by the passed id
+ *
+ * @param {String} id id of the option
+ * @param {Array} options Array of options
+ *
+ * @return {Object} option Object.
+ */
+function getOption( id, options = [] )
+{
+    return options.find( opt => opt.id === id );
+}
+
+/**
+ * gives correct format to the filtered options
+ *
+ * @param {Array} filteredOptionsIds options ids after search filter
+ * @param {Array} originalOptions original options
+ *
+ * @return {Array} formattedOptions filtered and formatted options
+ */
+function optionsFormatted( filteredOptionsIds, originalOptions )
+{
+    return originalOptions.reduce( ( formattedOptions, option ) => {
+        if ( option.options )
+        {
+            const sectionOptions = optionsFormatted(
+                filteredOptionsIds,
+                option.options,
+            );
+
+            if ( sectionOptions.length )
+            {
+                const newOptions = { ...option, options: sectionOptions };
+                formattedOptions.push( newOptions );
+            }
+        }
+        else if ( filteredOptionsIds.includes( option.id ) )
+        {
+            formattedOptions.push( option );
+        }
+        return formattedOptions;
+    }, [] );
+}
+
+export default class ComboBox extends Component
 {
     static propTypes =
     {
-        /*
-         * Active option in dropdown list
-         */
-        activeOption         : PropTypes.string,
         /**
          *  Extra CSS class name
          */
-        className            : PropTypes.string,
+        className           : PropTypes.string,
         /**
          * Placeholder text to show when no dropdown list options
          */
-        dropdownPlaceholder  : PropTypes.string,
+        dropdownPlaceholder : PropTypes.string,
         /**
          * Position of the dropdown relative to the text input
          */
-        dropdownPosition     : PropTypes.oneOf( [ 'top', 'bottom', 'auto' ] ),
-        /**
-         *  Display as hover when required from another component
-         */
-        forceHover           : PropTypes.bool,
-        /**
-         *  Input has autocomplete
-         */
-        hasAutocomplete      : PropTypes.bool,
+        dropdownPosition    : PropTypes.oneOf( [ 'top', 'bottom' ] ),
         /**
          *  Display as error/invalid
          */
-        hasError             : PropTypes.bool,
+        hasError            : PropTypes.bool,
         /**
-         *  Display Button icon as disabled
+         *  Component id
          */
-        iconButtonIsDisabled : PropTypes.bool,
-        /**
-         *  Alignment of the icon
-         */
-        iconPosition         : PropTypes.oneOf( [ 'left', 'right' ] ),
-        /**
-         *  Icon type to display (overrides customIcon)
-         */
-        iconType             : PropTypes.oneOf( [
-            'account',
-            'add-circle',
-            'add',
-            'alert',
-            'approved',
-            'arrow',
-            'arrow-up',
-            'arrow-down',
-            'bell',
-            'board',
-            'calendar',
-            'close-circle',
-            'close-thick',
-            'close',
-            'dash',
-            'dashboard',
-            'deactivated',
-            'declined',
-            'delete',
-            'down',
-            'download',
-            'duplicate',
-            'edit-circle',
-            'edit',
-            'ended',
-            'error',
-            'file',
-            'graph',
-            'hide',
-            'info',
-            'inspect',
-            'left',
-            'lightbulb',
-            'link',
-            'loader',
-            'megaphone',
-            'options',
-            'paused',
-            'pending',
-            'preview',
-            'puzzle-piece',
-            'reset',
-            'right',
-            'search',
-            'show',
-            'star-stroke',
-            'star',
-            'sociomantic',
-            'swap',
-            'table',
-            'up',
-            'upload',
-            'validation',
-            'none',
-        ] ),
-        /**
-         *  HTML id attribute
-         */
-        id                : PropTypes.string,
+        id                  : PropTypes.string,
         /**
          *  Placeholder text
          */
-        inputPlaceholder  : PropTypes.string,
+        inputPlaceholder    : PropTypes.string,
         /**
          *  Display as disabled
          */
-        isDisabled        : PropTypes.bool,
+        isDisabled          : PropTypes.bool,
         /**
          *  Display as read-only
          */
-        isReadOnly        : PropTypes.bool,
+        isReadOnly          : PropTypes.bool,
         /**
-         *  Display as read-only for IconButton
-         */
-        buttonIsReadOnly  : PropTypes.bool,
+          *  input searchable
+          */
+        isSearchable        : PropTypes.bool,
         /**
-         *  Display as read-only for TextInput
+         *  Change callback: ( { selectedOption } ) => ...
          */
-        inputIsReadOnly   : PropTypes.bool,
-        /**
-         *  Input field value
-         */
-        inputValue        : PropTypes.string,
-        /**
-         *  Dropdown list allows multiple selection
-         */
-        isMultiselect     : PropTypes.bool,
-        /*
-         * Dropdown is open
-         */
-        isOpen            : PropTypes.bool,
-        /**
-         *  HTML name attribute
-         */
-        name              : PropTypes.string,
-        /**
-         *  Blur callback function
-         */
-        onBlur            : PropTypes.func,
-        /**
-         *  Input change callback function
-         */
-        onChangeInput     : PropTypes.func,
-        /**
-         *  Icon click callback function
-         */
-        onClickIcon       : PropTypes.func,
-        /*
-         * On click callback function for input
-         */
-        onClickInput      : PropTypes.func,
-        /*
-         * On click callback function for dropdown option
-         */
-        onClickOption     : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus           : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown         : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress        : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp           : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut        : PropTypes.func,
-        /**
-         *  Icon mouse out callback function
-         */
-        onMouseOutIcon    : PropTypes.func,
-        /*
-         * On mouse out callback function for dropdown option
-         */
-        onMouseOutOption  : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver       : PropTypes.func,
-        /**
-         *  Icon mouse over callback function
-         */
-        onMouseOverIcon   : PropTypes.func,
-        /*
-         * On mouse over callback function for dropdown option
-         */
-        onMouseOverOption : PropTypes.func,
-        /*
-         * On scroll dropdown list
-         */
-        onScroll          : PropTypes.func,
+        onChange            : PropTypes.func,
         /*
          * Dropdown list options
          */
-        options           : PropTypes.arrayOf( PropTypes.object ),
-        /*
-         * Selected option(s) from dropdown list
-         */
-        selection         : PropTypes.oneOfType( [
-            PropTypes.string,
-            PropTypes.objectOf( PropTypes.string ),
-        ] ),
+        options             : PropTypes.arrayOf( PropTypes.object ),
         /**
-         *  Input text alignment
+         *  Selected option id
          */
-        textAlign : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
+        selectedOption      : PropTypes.string,
     };
 
-    static defaultProps = {
-        activeOption         : undefined,
-        buttonIsReadOnly     : undefined,
-        className            : undefined,
-        dropdownPlaceholder  : undefined,
-        dropdownPosition     : 'auto',
-        forceHover           : false,
-        hasAutocomplete      : false,
-        hasError             : false,
-        iconButtonIsDisabled : undefined,
-        iconPosition         : undefined,
-        iconType             : 'none',
-        id                   : undefined,
-        inputIsReadOnly      : false,
-        inputPlaceholder     : undefined,
-        inputValue           : undefined,
-        isDisabled           : false,
-        isMultiselect        : false,
-        isOpen               : false,
-        isReadOnly           : undefined,
-        name                 : undefined,
-        onBlur               : undefined,
-        onChangeInput        : undefined,
-        onClickIcon          : undefined,
-        onClickInput         : undefined,
-        onClickOption        : undefined,
-        onFocus              : undefined,
-        onKeyDown            : undefined,
-        onKeyPress           : undefined,
-        onKeyUp              : undefined,
-        onMouseOut           : undefined,
-        onMouseOutIcon       : undefined,
-        onMouseOutOption     : undefined,
-        onMouseOver          : undefined,
-        onMouseOverIcon      : undefined,
-        onMouseOverOption    : undefined,
-        onScroll             : undefined,
-        options              : undefined,
-        selection            : undefined,
-        textAlign            : 'auto',
+    static defaultProps =
+    {
+        className           : undefined,
+        dropdownPlaceholder : undefined,
+        dropdownPosition    : 'auto',
+        hasError            : false,
+        id                  : undefined,
+        inputPlaceholder    : undefined,
+        isDisabled          : false,
+        isReadOnly          : undefined,
+        isSearchable        : false,
+        onChange            : undefined,
+        options             : undefined,
+        selectedOption      : undefined,
     };
 
-    static displayName = 'ComboBox';
+    inputRef = React.createRef();
+    scrollBoxRef = React.createRef();
+    wrapperRef = React.createRef();
 
-    constructor( props )
+    constructor()
     {
         super();
 
-        const dropdownPosition = props.dropdownPosition !== 'auto' ?
-            props.dropdownPosition : 'bottom';
+        this.state = {
+            activeOption    : undefined,
+            filteredOptions : undefined,
+            flatOptions     : undefined,
+            id              : undefined,
+            isFocused       : false,
+            isOpen          : undefined,
+            options         : undefined,
+            searchValue     : undefined,
+            selection       : undefined,
+        };
 
-        this.state = { dropdownPosition };
-
+        this.handleChangeInput     = this.handleChangeInput.bind( this );
+        this.handleClickIcon       = this.handleClickIcon.bind( this );
+        this.handleClickInput      = this.handleClickInput.bind( this );
         this.handleClickOption     = this.handleClickOption.bind( this );
+        this.handleKeyDown         = this.handleKeyDown.bind( this );
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
-        this.setScrollBoxRef       = this.setScrollBoxRef( this );
-        this.setWrapperRef         = this.setWrapperRef.bind( this );
+        this.handleBlur            = this.handleBlur.bind( this );
+        this.handleFocus           = this.handleFocus.bind( this );
     }
 
-    componentDidMount()
+    static getDerivedStateFromProps( props, state )
     {
-        this.setDropdownPosition();
-    }
+        let { flatOptions } = state;
+        const { selectedOption } = props;
+        let optionId = selectedOption || state.selection;
 
-    componentWillReceiveProps( newProps )
-    {
-        this.setDropdownPosition( newProps );
+        if ( props.options !== state.options )
+        {
+            flatOptions = props.options.flatMap( o => o.options || o );
+        }
+
+        if ( optionId )
+        {
+            optionId = getOption( optionId, flatOptions )
+                ? getOption( optionId, flatOptions ).id : undefined;
+        }
+
+        return {
+            flatOptions,
+            filteredOptions : state.filteredOptions,
+            id              : props.id || state.id || generateId( 'Select' ),
+            options         : props.options,
+            searchValue     : state.searchValue,
+            selection       : optionId,
+        };
     }
 
     componentDidUpdate()
     {
-        const { scrollBox } = this;
-        const { activeOption, id } = this.props;
+        const { current: scrollBoxRef } = this.scrollBoxRef;
+        const { activeOption, id } = this.state;
 
-        if ( scrollBox && activeOption )
+        if ( scrollBoxRef && activeOption )
         {
             const activeEl =
                 document.getElementById( addPrefix( activeOption, id ) );
 
-            if ( activeEl && scrollBox.scrollHeight > scrollBox.offsetHeight )
+            if ( activeEl &&
+                scrollBoxRef.scrollHeight > scrollBoxRef.offsetHeight )
             {
                 const pos        = activeEl.offsetTop;
                 const elHeight   = activeEl.offsetHeight;
-                const contHeight = scrollBox.offsetHeight;
+                const contHeight = scrollBoxRef.offsetHeight;
 
-                const min = scrollBox.scrollTop;
-                const max = min + ( scrollBox.offsetHeight - elHeight );
+                const min = scrollBoxRef.scrollTop;
+                const max = min + ( scrollBoxRef.offsetHeight - elHeight );
 
                 if ( pos < min )
                 {
-                    scrollBox.scrollTop = pos;
+                    scrollBoxRef.scrollTop = pos;
                 }
                 else if ( pos > max )
                 {
-                    scrollBox.scrollTop = pos - ( contHeight - elHeight );
+                    scrollBoxRef.scrollTop = pos - ( contHeight - elHeight );
                 }
             }
         }
     }
-
-    setScrollBoxRef( ref )
-    {
-        if ( ref )
-        {
-            this.scrollBox = ref;
-        }
-    }
-
-    setWrapperRef( ref )
-    {
-        if ( ref )
-        {
-            this.wrapperRef = ref;
-        }
-    }
-
-    setDropdownPosition( props = this.props )
-    {
-        let { dropdownPosition } = props;
-
-        if ( props.dropdownPosition === 'auto' )
-        {
-            const { wrapperRef } = this;
-
-            if ( wrapperRef )
-            {
-                const scrollParent = getScrollParent( wrapperRef );
-                const wrapperBox   = wrapperRef.getBoundingClientRect();
-                const parentBox    = scrollParent.getBoundingClientRect();
-                const { height }   = parentBox;
-
-                const offset =
-                    wrapperBox.top - parentBox.top - scrollParent.scrollTop;
-
-                dropdownPosition = offset > height / 2 ? 'top' : 'bottom';
-            }
-            else
-            {
-                dropdownPosition = 'bottom';
-            }
-        }
-
-        this.setState( { dropdownPosition } );
-    }
-
-    handleClickOption( e, optId )
-    {
-        const { id, onClickOption } = this.props;
-        if ( onClickOption )
-        {
-            onClickOption( e, removePrefix( optId, id ) );
-        }
-    }
-
-    handleMouseOutOption( e, optId )
-    {
-        const { id, onMouseOutOption } = this.props;
-        if ( onMouseOutOption )
-        {
-            onMouseOutOption( e, removePrefix( optId, id ) );
-        }
-    }
-
-    handleMouseOverOption( e, optId )
-    {
-        const { id, onMouseOverOption } = this.props;
-        if ( onMouseOverOption )
-        {
-            onMouseOverOption( e, removePrefix( optId, id ) );
-        }
-    }
-
-    inputRef = React.createRef();
 
     focus()
     {
         this.inputRef.current.focus();
     }
 
+    handleChangeInput( e )
+    {
+        const searchValue = ( e.target.value || '' ).toLowerCase();
+
+        const filteredOptions = this.state.flatOptions.filter( ( {
+            id,
+            text,
+        } ) => !searchValue || id.toLowerCase().indexOf( searchValue ) > -1
+                    || text.toLowerCase().indexOf( searchValue ) > -1 );
+
+        const activeOption = ( searchValue && filteredOptions.length )
+            ? filteredOptions[ 0 ].id : undefined;
+
+        this.setState( {
+            activeOption,
+            filteredOptions,
+            searchValue,
+        } );
+    }
+
+    handleClickIcon()
+    {
+        this.inputRef.current.focus();
+        this.setState( { isOpen: true } );
+    }
+
+    handleClickInput()
+    {
+        this.setState( { isOpen: true  } );
+    }
+
+    handleClickOption( e, optId )
+    {
+        const { onChange } = this.props;
+        const { id } = this.state;
+        const unprefixedId = removePrefix( optId, id );
+
+        this.setState( prevState => {
+            const selectedOption = getOption(
+                unprefixedId,
+                prevState.flatOptions,
+            );
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { selectedOption: selectedOption.id }, e );
+            }
+
+            return {
+                activeOption    : selectedOption.id,
+                isOpen          : false,
+                filteredOptions : undefined,
+                selection       : selectedOption.id,
+                searchValue     : undefined,
+            };
+        } );
+    }
+
+    handleKeyDown( e )
+    {
+        const { key } = e;
+
+        if ( key === 'ArrowUp' || key === 'ArrowDown' )
+        {
+            e.preventDefault();
+
+            this.setState( prevState => {
+                const options = prevState.filteredOptions
+                || prevState.flatOptions;
+
+                if ( prevState.isOpen && options.length )
+                {
+                    const minIndex = 0;
+                    const maxIndex = options.length - 1;
+
+                    let activeIndex = getIndex(
+                        prevState.activeOption || prevState.selection,
+                        options,
+                    );
+
+                    activeIndex = key === 'ArrowUp'
+                        ? Math.max( activeIndex - 1, minIndex )
+                        : Math.min( activeIndex + 1, maxIndex );
+
+                    return {
+                        activeOption : options[ activeIndex ].id,
+                    };
+                }
+
+                return { isOpen: true };
+            } );
+        }
+        else if ( key === 'Escape' )
+        {
+            this.setState( {
+                activeOption    : undefined,
+                filteredOptions : undefined,
+                isOpen          : false,
+                searchValue     : undefined,
+            } );
+        }
+        else if ( key === 'Enter' )
+        {
+            const { onChange } = this.props;
+
+            this.setState( prevState => {
+
+                const selectedOption = prevState.activeOption ||
+                    prevState.selection;
+
+                if ( typeof onChange === 'function' )
+                {
+                    onChange( { selectedOption: selectedOption.id }, e );
+                }
+                return {
+                    activeOption : prevState.activeOption,
+                    selection    : selectedOption,
+                    isOpen : typeof isOpen === 'boolean'
+                        ? this.state.isOpen : !prevState.isOpen,
+                    filteredOptions : undefined,
+                    searchValue     : undefined,
+                }
+            } );
+        }
+    }
+
+    handleMouseOutOption()
+    {
+        this.setState( { activeOption: undefined } );
+    }
+
+    handleMouseOverOption( e, optId )
+    {
+        const { id } = this.state;
+        const unprefixedId = removePrefix( optId, id );
+
+        this.setState( prevState => {
+            const activeOption = getOption(
+                unprefixedId,
+                prevState.flatOptions,
+            ).id;
+            return { activeOption };
+        } );
+    }
+
+    handleFocus()
+    {
+        this.setState( {
+            isFocused : true,
+            isOpen    : true,
+        } );
+    }
+
+    handleBlur()
+    {
+        this.setState( {
+            activeOption    : undefined,
+            isFocused       : false,
+            isOpen          : false,
+            filteredOptions : undefined,
+            searchValue     : undefined,
+        } );
+    }
 
     render()
     {
         const {
-            activeOption,
-            buttonIsReadOnly,
             className,
             dropdownPlaceholder,
-            forceHover,
-            hasAutocomplete,
+            dropdownPosition,
             hasError,
-            iconButtonIsDisabled,
-            iconPosition,
-            iconType,
-            id = generateId( 'ComboBox' ),
-            inputIsReadOnly,
             inputPlaceholder,
-            inputValue,
             isDisabled,
-            isMultiselect,
-            isOpen,
             isReadOnly,
-            name,
-            onBlur,
-            onChangeInput,
-            onClickIcon,
-            onClickInput,
-            onFocus,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOutIcon,
-            onMouseOver,
-            onMouseOverIcon,
-            onScroll,
-            options = [],
-            selection,
-            textAlign,
+            isSearchable,
+            options,
         } = this.props;
 
-        const { dropdownPosition } = this.state;
+        const {
+            activeOption,
+            filteredOptions,
+            flatOptions,
+            id,
+            isFocused,
+            isOpen,
+            searchValue,
+            selection,
+        } = this.state;
+
+        const optionVal = getOption( selection, flatOptions )
+            ? getOption( selection, flatOptions ).text : undefined;
+
+        let optionsToShow = options;
+
+        if ( filteredOptions )
+        {
+            optionsToShow = optionsFormatted(
+                filteredOptions.map( option => option.id ),
+                options,
+            );
+        }
 
         let dropdownContent;
 
@@ -479,19 +459,17 @@ export default class ComboBox extends React.Component
             dropdownContent = (
                 <ScrollBox
                     height       = "50vh"
-                    onScroll     = { onScroll }
                     scroll       = "vertical"
-                    scrollBoxRef = { this.setScrollBoxRef }>
+                    scrollBoxRef = { this.scrollBoxRef }>
                     <ListBox
                         activeOption      = { addPrefix( activeOption, id ) }
                         id                = { addPrefix( 'listbox', id ) }
                         isFocusable       = { false }
-                        isMultiselect     = { isMultiselect }
                         onClickOption     = { this.handleClickOption }
                         onMouseOutOption  = { this.handleMouseOutOption }
                         onMouseOverOption = { this.handleMouseOverOption }
                         selection         = { addPrefix( selection, id ) }>
-                        { buildListBoxOptions( options, id ) }
+                        { buildListBoxOptions( optionsToShow, id ) }
                     </ListBox>
                 </ScrollBox>
             );
@@ -502,7 +480,7 @@ export default class ComboBox extends React.Component
                 <Text
                     noWrap
                     overflowIsHidden
-                    role = "subtle"
+                    role    = "subtle"
                     variant = "RegularIt">
                     { dropdownPlaceholder }
                 </Text>
@@ -514,7 +492,7 @@ export default class ComboBox extends React.Component
                 aria = { {
                     activeDescendant :
                         activeOption && addPrefix( activeOption, id ),
-                    autocomplete : hasAutocomplete ? 'both' : 'list',
+                    autocomplete : 'list',
                     expanded     : isOpen,
                     hasPopup     : 'listbox',
                     owns         : addPrefix( 'listbox', id ),
@@ -531,35 +509,25 @@ export default class ComboBox extends React.Component
                     hasError,
                     padding  : options.length ? 'none' : 'S',
                 } }
-                forceHover            = { forceHover }
-                hasError              = { hasError }
-                iconButtonIsDisabled  = { iconButtonIsDisabled }
-                iconPosition          = { iconPosition }
-                iconType              = { iconType }
-                id                    = { id }
-                isDisabled            = { isDisabled }
-                isReadOnly            = { isReadOnly }
-                isReadOnlyButton      = { buttonIsReadOnly }
-                isReadOnlyInput       = { inputIsReadOnly }
-                name                  = { name }
-                onBlur                = { onBlur }
-                onChange              = { onChangeInput }
-                onClick               = { onClickInput }
-                onClickIcon           = { onClickIcon }
-                onFocus               = { onFocus }
-                onKeyDown             = { onKeyDown }
-                onKeyPress            = { onKeyPress }
-                onKeyUp               = { onKeyUp }
-                onMouseOut            = { onMouseOut }
-                onMouseOutIcon        = { onMouseOutIcon }
-                onMouseOver           = { onMouseOver }
-                onMouseOverIcon       = { onMouseOverIcon }
-                placeholder           = { inputPlaceholder }
-                ref                   = { this.inputRef }
-                spellCheck            = { false }
-                textAlign             = { textAlign }
-                value                 = { inputValue }
-                wrapperRef            = { this.setWrapperRef } />
+                hasError        = { hasError }
+                iconType        = { isOpen ? 'up' : 'down' }
+                id              = { id }
+                isDisabled      = { isDisabled }
+                isReadOnly      = { isReadOnly }
+                isReadOnlyInput = { !isSearchable || !isOpen }
+                onBlur          = { this.handleBlur }
+                onChange        = { this.handleChangeInput }
+                onClick         = { this.handleClickInput }
+                onClickIcon     = { this.handleClickIcon }
+                onFocus         = { this.handleFocus }
+                onKeyDown       = { this.handleKeyDown }
+                placeholder     = { inputPlaceholder }
+                ref             = { this.inputRef }
+                spellCheck      = { false }
+                value           = { ( isFocused && isOpen && isSearchable ) ?
+                    searchValue : optionVal
+                }
+                wrapperRef = { this.wrapperRef } />
         );
     }
 }
