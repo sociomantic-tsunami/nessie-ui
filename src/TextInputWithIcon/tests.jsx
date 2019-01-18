@@ -297,17 +297,6 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
                     .toBe( true );
             } );
-
-            test( 'should be passed to the IconButton', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isReadOnly : true,
-                } );
-
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
         } );
 
         describe( 'hasError', () =>
