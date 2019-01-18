@@ -15,12 +15,17 @@ import { IconButton, Text }               from '../index';
 import ThemeContext                       from '../Theming/ThemeContext';
 import { createCssMap }                   from '../Theming';
 
+
 export default class Tooltip extends React.Component
 {
     static contextType = ThemeContext;
 
     static propTypes =
     {
+        /**
+         *  Tooltip message (JSX node; overrides message prop)
+         */
+        children      : PropTypes.node,
         /**
          * Extra CSS class name
          */
@@ -38,9 +43,9 @@ export default class Tooltip extends React.Component
          */
         isDismissible : PropTypes.bool,
         /**
-         *  Tooltip message text (string or JSX)
+         *  Tooltip message (string)
          */
-        message       : PropTypes.node,
+        message       : PropTypes.string,
         /**
          *  Function to call on “Close” button click: ( e ) => { ... }
          */
@@ -74,11 +79,16 @@ export default class Tooltip extends React.Component
          *  Tooltip role/style
          */
         role : PropTypes.oneOf( [
-            'default', 'critical', 'promoted', 'warning' ] ),
+            'default',
+            'critical',
+            'promoted',
+            'warning',
+        ] ),
     };
 
     static defaultProps =
     {
+        children      : undefined,
         className     : undefined,
         cssMap        : undefined,
         id            : undefined,
@@ -93,72 +103,36 @@ export default class Tooltip extends React.Component
 
     static displayName = 'Tooltip';
 
-    static didWarn = {};
+    constructor( props )
+    {
+        super();
+        this.state = { id: props.id || generateId( 'Tooltip' ) };
+    }
 
     render()
     {
         const {
             children,
-            className,
             cssMap = createCssMap( this.context.Tooltip, this.props ),
-            id = generateId( 'Tooltip' ),
             isDismissible,
-            isVisible,
             message,
-            noWarn,
-            noWrap,
             onClickClose,
             onMouseOut,
             onMouseOver,
-            overflowIsHidden,
-            position,
-            role,
         } = this.props;
 
-        const hasChildren = children !== undefined;
+        const { id } = this.state;
 
-        if ( !noWarn )
-        {
-            if ( !Tooltip.didWarn.children && hasChildren )
-            {
-                console.warn( 'Tooltip: Using Tooltip as a wrapper is \
-deprecated and ‘children’ will become the tooltip content in a future major \
-release. Please position the tooltip using a library such as Popper.js \
-instead.' );
-                Tooltip.didWarn.children = true;
-            }
-
-            if ( !Tooltip.didWarn.isVisible && isVisible !== undefined )
-            {
-                console.warn( 'Tooltip: prop ‘isVisible’ is deprecated and \
-will be removed in a future major release.' );
-                Tooltip.didWarn.isVisible = true;
-            }
-
-            if ( !Tooltip.didWarn.noWrap && noWrap !== undefined )
-            {
-                console.warn( 'Tooltip: prop ‘noWrap’ is deprecated and will \
-be removed in a future major release.' );
-                Tooltip.didWarn.noWrap = true;
-            }
-
-            if ( !Tooltip.didWarn.overflowIsHidden &&
-                overflowIsHidden !== undefined )
-            {
-                console.warn( 'Tooltip: prop ‘overflowIsHidden’ is deprecated \
-and will be removed in a future major release.' );
-                Tooltip.didWarn.overflowIsHidden = true;
-            }
-        }
-
-        const tooltip = (
+        return (
             <div
-                className = { cssMap.tooltip }
-                id        = { id }
-                role      = "tooltip">
+                className    = { cssMap.main }
+                id           = { id }
+                onMouseEnter = { createEventHandler( onMouseOut, { id } ) }
+                onMouseLeave = { createEventHandler( onMouseOver, { id } ) }
+                role         = "tooltip">
                 <div className = { cssMap.message }>
-                    { typeof message === 'string' ?
-                        <Text>{ message }</Text> : message
+                    { children || ( typeof message === 'string' ?
+                        <Text>{ message }</Text> : message )
                     }
                 </div>
                 { isDismissible &&
@@ -170,51 +144,6 @@ and will be removed in a future major release.' );
                         label        = "Close"
                         onClick      = { onClickClose } />
                 }
-            </div>
-        );
-
-        if ( hasChildren )
-        {
-            let contentNode = children;
-
-            if ( typeof children === 'string' )
-            {
-                contentNode = (
-                    <Text
-                        noWrap           = { noWrap }
-                        overflowIsHidden = { overflowIsHidden }>
-                        { children }
-                    </Text>
-                );
-            }
-
-            return (
-                <div
-                    className   = { cssMap.main }
-                    onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
-                    onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
-                    { contentNode &&
-                        <div
-                            aria-describedby = { isVisible ? id : null }
-                            className        = { cssMap.content }>
-                            { contentNode }
-                        </div>
-                    }
-                    { ( isVisible !== false ) &&
-                        <div className = { cssMap.tooltipContainer }>
-                            { tooltip }
-                        </div>
-                    }
-                </div>
-            );
-        }
-
-        return (
-            <div
-                className   = { cssMap.main }
-                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
-                onMouseOver = { createEventHandler( onMouseOver, { id } ) }>
-                { tooltip }
             </div>
         );
     }
