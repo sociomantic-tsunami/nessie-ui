@@ -7,63 +7,243 @@
  *
  */
 
-const ERRORS = {
-    CANNOT_BE_CLICKED : () => 'Button cannot be clicked because it is disabled'
+import { IconButton }   from 'nessie-ui';
+
+import TimeInput        from './TimeInput';
+import DatePickerItem   from './DatePickerItem';
+import { createCssMap } from '../Theming';
+
+const ERR = {
+    ITEM_ERR : ( label, state ) =>
+        `Item '${label}' cannot be clicked since it is ${state}`,
+    NAV_ERR : ( el, state ) =>
+        `${el} cannot simulate click since it is ${state}`,
+    NO_INPUT : () =>
+        'There’s no input because <mode> is not <default>',
+    TIMEINPUT_ERR : ( event, state ) =>
+        `TimeInput cannot simulate ${event} since it is ${state}`,
 };
+
 
 export default class DatePickerDriver
 {
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap  = this.wrapper.prop( 'cssMap' );
     }
+
+    get instance()
+    {
+        return this.wrapper.instance();
+    }
+
+    get timeInput()
+    {
+        return this.wrapper.find( TimeInput ).prop( 'cssMap' ) ||
+            createCssMap( this.instance.context.TimeInput );
+    }
+
+    get prev()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'left' );
+    }
+
+    get next()
+    {
+        return this.wrapper.find( IconButton ).findWhere( node =>
+            node.props().iconType === 'right' );
+    }
+
+    get hour()
+    {
+        return this.timeInput.hour;
+    }
+
+    get min()
+    {
+        return this.timeInput.min;
+    }
+
 
     clickItem( index = 0 )
     {
-        const dateItem = this.wrapper.find( 'DatePickerItem' ).at( index );
+        const dateItem  = this.wrapper.find( DatePickerItem )
+            .at( index );
+        const { label } = dateItem.props();
 
-        if ( dateItem.prop( 'isDisabled' ) )
+        if ( dateItem.isDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERR.ITEM_ERR( label, 'disabled' ) );
         }
 
-        this.wrapper.find( 'DatePickerItem' ).at( index )
-            .simulate( 'click' );
+        dateItem.simulate( 'click' );
         return this;
     }
 
     clickPrev()
     {
-        const header = this.wrapper.find( 'DatePickerHeader' ).props();
-
-        if ( header.prevIsDisabled )
+        if ( this.wrapper.props().prevIsDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERR.NAV_ERR( 'Previous', 'disabled' ) );
         }
 
-        this.wrapper.find( 'IconButton' ).first()
-            .simulate( 'click' );
+        this.prev.driver().click();
         return this;
     }
 
     clickNext()
     {
-        const header = this.wrapper.find( 'DatePickerHeader' ).props();
-
-        if ( header.nextIsDisabled )
+        if ( this.wrapper.props().nextIsDisabled )
         {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
+            throw new Error( ERR.NAV_ERR( 'Next', 'disabled' ) );
         }
 
-        this.wrapper.find( 'IconButton' ).last()
-            .simulate( 'click' );
+        this.next.driver().click();
+        return this;
+    }
+
+    keyPressHourInput( key )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.hour}` ).simulate( 'keyPress', { key } );
+        return this;
+    }
+
+    keyPressMinuteInput( key )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'keyPress', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.min}` ).simulate( 'keyPress', { key } );
+        return this;
+    }
+
+    blurHourInput()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.hour}` ).simulate( 'blur' );
+        return this;
+    }
+
+    blurMinuteInput()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'blur', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.min}` ).simulate( 'blur' );
+        return this;
+    }
+
+    focusHourInput()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.hour}` ).simulate( 'focus' );
+        return this;
+    }
+
+    focusMinuteInput()
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'focus', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        this.wrapper.find( `.${this.min}` ).simulate( 'focus' );
+        return this;
+    }
+
+    changeHourInput( val )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        const node = this.wrapper.find( `.${this.hour}` ).instance();
+        node.value = val;
+
+        this.wrapper.find( `.${this.hour}` ).simulate( 'change' );
+        return this;
+    }
+
+    changeMinuteInput( val )
+    {
+        if ( this.wrapper.props().isDisabled )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'change', 'disabled' ) );
+        }
+
+        if ( this.wrapper.props().isReadOnly )
+        {
+            throw new Error( ERR.TIMEINPUT_ERR( 'change', 'read only' ) );
+        }
+
+        if ( this.wrapper.props().mode !== 'default' )
+        {
+            throw new Error( ERR.NO_INPUT() );
+        }
+
+        const node = this.wrapper.find( `.${this.min}` ).instance();
+        node.value = val;
+
+        this.wrapper.find( `.${this.min}` ).simulate( 'change' );
         return this;
     }
 }

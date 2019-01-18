@@ -1,131 +1,233 @@
-/*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
- * All rights reserved.
- *
- * This source code is licensed under the MIT license found in the LICENSE file
- * in the root directory of this source tree.
- *
- */
-
-export default class DateTimeInputDriver
-{
-    constructor( wrapper )
-    {
-        this.wrapper     = wrapper;
-        this.cssMap      = wrapper.prop( 'cssMap' );
-        this.mainInput   = wrapper.find( 'input' ).at( 0 );
-        this.hourInput   = wrapper.find( 'input' ).at( 1 );
-        this.minuteInput = wrapper.find( 'input' ).at( 2 );
-        this.calendar    = wrapper.find( 'table button' );
-        this.prev        = wrapper.find( 'button' ).at( 1 );
-        this.next        = wrapper.find( 'button' ).at( 2 );
-    }
-
-    getMainInputValue()
-    {
-        return this.mainInput.instance().value;
-    }
-
-    setMainInputValue( value )
-    {
-        const node = this.mainInput.instance();
-
-        node.value = value;
-        this.mainInput.simulate( 'change' );
-
-        return this;
-    }
-
-    blurMainInput()
-    {
-        this.mainInput.simulate( 'blur' );
-        return this;
-    }
-
-    focusMainInput()
-    {
-        this.mainInput.simulate( 'focus' );
-        return this;
-    }
-
-    getHourInputValue()
-    {
-        return this.hourInput.instance().value;
-    }
-
-    setHourInputValue( value )
-    {
-        const node = this.hourInput.instance();
-
-        node.value = value;
-        this.hourInput.simulate( 'change' );
-
-        return this;
-    }
-
-    blurHourInput()
-    {
-        this.hourInput.simulate( 'blur' );
-        return this;
-    }
-
-    focusHourInput()
-    {
-        this.hourInput.simulate( 'focus' );
-        return this;
-    }
-
-    getMinuteInputValue()
-    {
-        return this.minuteInput.instance().value;
-    }
-
-    setMinuteInputValue( value )
-    {
-        const node = this.minuteInput.instance();
-
-        node.value = value;
-        this.minuteInput.simulate( 'change' );
-
-        return this;
-    }
-
-    blurMinuteInput()
-    {
-        this.minuteInput.simulate( 'blur' );
-        return this;
-    }
-
-    focusMinuteInput()
-    {
-        this.minuteInput.simulate( 'focus' );
-        return this;
-    }
-
-    clickCellByIndex( index = 0 )
-    {
-        const day = this.calendar.at( index );
-        day.simulate( 'click' );
-        return this;
-    }
-
-    clickCellByValue( value )
-    {
-        const day = this.calendar.findWhere( n =>
-            n.prop( 'value' ) === value ).first();
-        day.simulate( 'click' );
-        return this;
-    }
-
-    clickPrev()
-    {
-        this.prev.simulate( 'click' );
-        return this;
-    }
-
-    clickNext()
-    {
-        this.next.simulate( 'click' );
-        return this;
-    }
-}
+// /*
+//  * Copyright (c) 2018 dunnhumby Germany GmbH.
+//  * All rights reserved.
+//  *
+//  * This source code is licensed under the MIT license found in the LICENSE file
+//  * in the root directory of this source tree.
+//  *
+//  */
+//
+// import { DatePicker, IconButton, InputField } from 'nessie-ui';
+//
+// import { createCssMap }                       from '../Theming';
+//
+//
+// const ERR = {
+//     INPUT_ERR : ( event, state ) =>
+//         `Main input cannot simulate ${event} since it is ${state}`,
+// };
+//
+//
+// export default class DateTimeInputDriver
+// {
+//     constructor( wrapper )
+//     {
+//         this.wrapper = wrapper;
+//     }
+//
+//     get instance()
+//     {
+//         return this.wrapper.instance();
+//     }
+//
+//     get cssMap()
+//     {
+//         const { instance } = this;
+//         return instance.props.cssMap ||
+//             createCssMap( instance.context.DateTimeInput, instance.props );
+//     }
+//
+//     get mainInput()
+//     {
+//         return this.wrapper.find( InputField );
+//     }
+//
+//     get calendar()
+//     {
+//         return this.wrapper.find( DatePicker );
+//     }
+//
+//     get icon()
+//     {
+//         return this.wrapper.find( IconButton ).findWhere( node =>
+//             node.props().iconType === 'calendar' );
+//     }
+//
+//     get prev()
+//     {
+//         return this.wrapper.find( `.${this.cssMap.prev}` );
+//     }
+//
+//     get next()
+//     {
+//         return this.wrapper.find( `.${this.cssMap.next}` );
+//     }
+//
+//
+//     blurMainInput()
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'blur', 'disabled' ) );
+//         }
+//
+//         this.mainInput.simulate( 'blur' );
+//         return this;
+//     }
+//
+//     focusMainInput()
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'focus', 'disabled' ) );
+//         }
+//
+//         this.mainInput.simulate( 'focus' );
+//         return this;
+//     }
+//
+//     blurHourInput()
+//     {
+//         this.calendar.driver().blurHourInput();
+//         return this;
+//     }
+//
+//     focusHourInput()
+//     {
+//         this.calendar.driver().focusHourInput();
+//         return this;
+//     }
+//
+//     blurMinuteInput()
+//     {
+//         this.calendar.driver().blurMinuteInput();
+//         return this;
+//     }
+//
+//     focusMinuteInput()
+//     {
+//         this.calendar.driver().focusMinuteInput();
+//         return this;
+//     }
+//
+//     clickCellByIndex( index = 0 )
+//     {
+//         this.wrapper.find( DatePicker ).driver().clickItem( index );
+//         return this;
+//     }
+//
+//     clickCellByValue( value )
+//     {
+//         const day = this.wrapper.find( DatePicker )
+//             .findWhere( n => n.prop( 'value' ) === value ).first();
+//
+//         day.simulate( 'click' );
+//         return this;
+//     }
+//
+//     clickPrev()
+//     {
+//         this.calendar.driver().clickPrev();
+//         return this;
+//     }
+//
+//     clickNext()
+//     {
+//         this.calendar.driver().clickNext();
+//         return this;
+//     }
+//
+//     clickIcon()
+//     {
+//         this.icon.driver().click();
+//         return this;
+//     }
+//
+//     changeMainInput( val )
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'change', 'disabled' ) );
+//         }
+//
+//         if ( this.wrapper.props().isReadOnly )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'change', 'read only' ) );
+//         }
+//
+//         const node = this.mainInput.instance();
+//         node.value = val;
+//
+//         this.mainInput.simulate( 'change' );
+//         return this;
+//     }
+//
+//     changeHourInput( val )
+//     {
+//         this.calendar.driver().changeHourInput( val );
+//         return this;
+//     }
+//
+//     changeMinuteInput( val )
+//     {
+//         this.calendar.driver().changeMinuteInput( val );
+//         return this;
+//     }
+//
+//     keyDownMainInput( keyCode )
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'keyDown', 'disabled' ) );
+//         }
+//
+//         this.mainInput.simulate( 'keyDown', { keyCode, which: keyCode } );
+//         return this;
+//     }
+//
+//     keyUpMainInput( keyCode )
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'keyUp', 'disabled' ) );
+//         }
+//
+//         this.mainInput.simulate( 'keyUp', { keyCode, which: keyCode } );
+//         return this;
+//     }
+//
+//     keyPressMainInput( keyCode )
+//     {
+//         if ( this.wrapper.props().isDisabled )
+//         {
+//             throw new Error( ERR.INPUT_ERR( 'keyPress', 'disabled' ) );
+//         }
+//
+//         this.mainInput.simulate( 'keyPress', { keyCode, which: keyCode } );
+//         return this;
+//     }
+//
+//     keyPressHourInput( keyCode )
+//     {
+//         this.calendar.driver().keyPressHourInput( keyCode );
+//         return this;
+//     }
+//
+//     keyPressMinuteInput( keyCode )
+//     {
+//         this.calendar.driver().keyPressMinuteInput( keyCode );
+//         return this;
+//     }
+//
+//     mouseOver()
+//     {
+//         this.wrapper.simulate( 'mouseOver' );
+//         return this;
+//     }
+//
+//     mouseOut()
+//     {
+//         this.wrapper.simulate( 'mouseOut' );
+//         return this;
+//     }
+// }

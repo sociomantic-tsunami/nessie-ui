@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -8,49 +8,6 @@
  */
 
 import React, { Component } from 'react';
-import isEqual              from 'lodash.isequal';
-
-const CSS_MODIFIER  = '__';
-const CSS_SEPARATOR = '  ';
-
-
-const buildClassName = ( className, cssMap = {}, cssProps = {} ) =>
-{
-    if ( cssMap )
-    {
-        const defaultString = cssMap.default;
-
-        let cssString = defaultString || '';
-
-        Object.keys( cssProps ).forEach( prop =>
-        {
-            const propValue = cssProps[ prop ];
-
-            if ( propValue )
-            {
-                let cssMapClass = '';
-
-                if ( propValue === true )
-                {
-                    cssMapClass = cssMap[ prop ];
-                }
-                else
-                {
-                    cssMapClass = cssMap[ prop + CSS_MODIFIER + propValue ];
-                }
-
-                if ( cssMapClass )
-                {
-                    cssString += CSS_SEPARATOR + cssMapClass;
-                }
-            }
-        } );
-
-        cssString += className ? ( CSS_SEPARATOR + className ) : '';
-
-        return cssString || undefined;
-    }
-};
 
 
 const buildDisplayName = ( WrapperComponent, WrappedComponent ) =>
@@ -100,7 +57,7 @@ function createEventHandler( func, payload )
         {
             return; // don't fire when mouse/focus moves between descendants
         }
-        else if ( [ 'keyup', 'keydown', 'keypress' ].includes( type ) )
+        if ( [ 'keyup', 'keydown', 'keypress' ].includes( type ) )
         {
             eventPayload.key = e.key;
         }
@@ -122,24 +79,7 @@ function createEventHandler( func, payload )
     };
 }
 
-const deepPure = Comp => class DeepPure extends Component
-{
-    shouldComponentUpdate( nextProps )
-    {
-        return !isEqual( this.props, nextProps );
-    }
-    render()
-    {
-        return <Comp { ...this.props } />;
-    }
-};
-
-const eventHandler = ( func, ...rest ) => func && ( e => func( e, ...rest ) );
-
-
-const getComponentName = Comp =>
-    Comp.displayName || Comp.name || 'Component';
-
+const getComponentName = Comp => Comp.displayName || Comp.name || 'Component';
 
 const generateId = componentName =>
     `${componentName}${Math.floor( ( Math.random() * 9e15 ) + 1e15 )}`;
@@ -164,24 +104,18 @@ const mapAria = ( ariaObj = {} ) =>
 
 
 export {
-    buildClassName,
     buildDisplayName,
     clamp,
     createEventHandler,
-    deepPure,
-    eventHandler,
     generateId,
     killFocus,
     mapAria,
 };
 
 export default {
-    buildClassName,
     buildDisplayName,
     clamp,
     createEventHandler,
-    deepPure,
-    eventHandler,
     generateId,
     killFocus,
     mapAria,

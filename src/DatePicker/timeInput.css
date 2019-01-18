@@ -41,8 +41,8 @@
         border:             none;
         border-radius:      2px;
 
+        @extend %Nessie-Regular;
         text-align:         center;
-        font:               inherit;
         line-height:        var( --line-height-s );
         font-size:          13px;
         color:              var( --PC-WHITE );

@@ -7,59 +7,61 @@
  *
  */
 
-import React                          from 'react';
-import PropTypes                      from 'prop-types';
+import React            from 'react';
+import PropTypes        from 'prop-types';
 
-import { generateId, buildClassName } from '../utils';
-import styles                         from './tab.css';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
-const Tab = ( {
-    children,
-    className,
-    cssMap,
-    id = generateId( 'Tab' ),
-    label,
-} ) => (
-    <div
-        className  = { buildClassName( className, cssMap ) }
-        aria-label = { label }
-        id         = { id }
-        role       = "tabpanel">
-        { children }
-    </div>
-);
-
-Tab.propTypes =
+export default class Tab extends React.Component
 {
-    /**
-     * Section content
-     */
-    children  : PropTypes.node,
-    /**
-     * Extra CSS class name
-     */
-    className : PropTypes.string,
-    /**
-     *  CSS class map
-     */
-    cssMap    : PropTypes.objectOf( PropTypes.string ),
-    /**
-     * HTML id attribute
-     */
-    id        : PropTypes.string,
-    /**
-    *  Label to show in TabButton of this tab
-    */
-    label     : PropTypes.string,
-};
+    static contextType = ThemeContext;
 
-Tab.defaultProps =
-{
-    children  : undefined,
-    className : undefined,
-    cssMap    : styles,
-    id        : undefined,
-    label     : undefined,
-};
+    static propTypes =
+    {
+        /**
+         *  Section content
+         */
+        children  : PropTypes.node,
+        /**
+         * Extra CSS classname
+         */
+        className : PropTypes.string,
+        /**
+         * CSS classname map
+         */
+        cssMap    : PropTypes.objectOf( PropTypes.string ),
+        /**
+         *  Label to show in TabButton of this tab
+         */
+        label     : PropTypes.string,
+    };
 
-export default Tab;
+    static defaultProps =
+    {
+        children  : undefined,
+        className : undefined,
+        cssMap    : undefined,
+        label     : undefined,
+    };
+
+    static displayName = 'Tab';
+
+    render()
+    {
+        const {
+            children,
+            cssMap = createCssMap( this.context.Tab, this.props ),
+            label,
+        } = this.props;
+
+        return (
+            <div
+                className  = { cssMap.main }
+                aria-label = { label }
+                role       = "tabpanel">
+                { children }
+            </div>
+        );
+    }
+}

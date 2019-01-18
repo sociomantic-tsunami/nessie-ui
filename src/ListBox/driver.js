@@ -7,9 +7,9 @@
  *
  */
 
-const ERRORS = {
-    OPTION_CANNOT_BE_CLICKED : () => 'Option cannot be clicked since it\'s disabled', // eslint-disable-line max-len
-};
+/* eslint-disable no-magic-numbers */
+
+import ListBoxOption from './ListBoxOption';
 
 export default class ListBoxDriver
 {
@@ -18,21 +18,9 @@ export default class ListBoxDriver
         this.wrapper = wrapper;
     }
 
-    get options()
-    {
-        return this.wrapper.findWhere( node => node.prop( 'role' )=== 'option' );
-    }
-
     clickOption( index = 0 )
     {
-        const option = this.options.at( index );
-
-        if ( option.prop( 'isDisabled' ) )
-        {
-            throw new Error(
-                ERRORS.OPTION_CANNOT_BE_CLICKED()
-            );
-        }
+        const option = this.wrapper.find( ListBoxOption ).at( index );
 
         option.simulate( 'click' );
         return this;
@@ -40,19 +28,23 @@ export default class ListBoxDriver
 
     mouseOverOption( index = 0 )
     {
-        this.options.at( index ).simulate( 'mouseenter' );
+        const option = this.wrapper.find( ListBoxOption ).at( index );
+
+        option.simulate( 'mouseOver' );
         return this;
     }
 
     mouseOutOption( index = 0 )
     {
-        this.options.at( index ).simulate( 'mouseleave' );
+        const option = this.wrapper.find( ListBoxOption ).at( index );
+
+        option.simulate( 'mouseOut' );
         return this;
     }
 
-    keyPress()
+    keyPress( keyCode )
     {
-        this.wrapper.simulate( 'keyPress' );
+        this.wrapper.simulate( 'keyPress', { keyCode, which: keyCode } );
         return this;
     }
 }

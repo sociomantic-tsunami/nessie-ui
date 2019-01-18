@@ -7,32 +7,31 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React     from 'react';
-import { mount } from 'enzyme';
+import React        from 'react';
+import { shallow }  from 'enzyme';
 
-import Dropdown  from './index';
+import { Dropdown } from '../index';
 
 
-describe( 'DropdownDriver', () =>
+describe( 'Dropdown', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Dropdown /> );
+        wrapper = shallow( <Dropdown /> );
     } );
 
-    describe( 'Wrapper driver getContent', () =>
+    test( 'should have “main” as default className', () =>
     {
-        test( 'should return the dropdown content', () =>
-        {
-            wrapper = mount( <Dropdown><p>Lightning Strike</p></Dropdown> );
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
+    } );
 
-            const content = wrapper.driver().getContent();
-            expect( content.find( 'p' ).text() ).toBe( 'Lightning Strike' );
-        } );
+    test( 'should render the children of the Dropdown', () =>
+    {
+        wrapper.setProps( { children: 'Lightning Strike' } );
+        expect( wrapper.children().text() ).toBe( 'Lightning Strike' );
     } );
 } );

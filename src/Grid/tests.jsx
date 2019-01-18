@@ -7,33 +7,40 @@
  *
  */
 
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React      from 'react';
-import { mount }  from 'enzyme';
+import React              from 'react';
+import { shallow }        from 'enzyme';
 
-import { Column } from '../index';
-
-import Grid       from './index';
+import { Grid, GridItem } from '../index';
 
 
-describe( 'GridColumnDriver', () =>
+describe( 'Grid', () =>
 {
     let wrapper;
 
     beforeEach( () =>
     {
-        wrapper = mount( <Grid /> );
+        wrapper = shallow( <Grid /> );
     } );
 
-    describe( 'getContent', () =>
+    describe( 'render', () =>
     {
-        it( 'should return the content of the Grid or Column', () =>
+        test( 'should render the children of the Grid', () =>
         {
-            wrapper.setProps( { children: <Column>Lightning Strike</Column> } );
+            wrapper.setProps( {
+                children : [
+                    <GridItem key = { 1 } />,
+                    <GridItem key = { 2 } />,
+                ],
+            } );
 
-            const content = wrapper.driver().getContent();
-            expect( content.text() ).toBe( 'Lightning Strike' );
+            expect( wrapper.find( GridItem ) ).toHaveLength( 2 );
         } );
+    } );
+
+    test( 'should have “main” as default className', () =>
+    {
+        expect( wrapper.prop( 'className' ) ).toEqual( 'main' );
     } );
 } );

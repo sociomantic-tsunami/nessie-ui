@@ -12,10 +12,6 @@ export default class ScrollBarDriver
     constructor( wrapper )
     {
         this.wrapper = wrapper;
-        this.cssMap = wrapper.prop( 'cssMap' );
-
-        this.thumb = wrapper.find( `.${this.cssMap.thumb}` );
-        this.track = wrapper.find( `.${this.cssMap.default}` );
     }
 
     clickTrack( val )
@@ -32,13 +28,13 @@ export default class ScrollBarDriver
 
     mouseOver()
     {
-        this.wrapper.simulate( 'mouseenter' );
+        this.wrapper.simulate( 'mouseOver' );
         return this;
     }
 
     mouseOut()
     {
-        this.wrapper.simulate( 'mouseleave' );
+        this.wrapper.simulate( 'mouseOut' );
         return this;
     }
 }

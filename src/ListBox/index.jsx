@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -17,117 +17,132 @@ import {
     updateOptions,
 } from './utils';
 import {
-    buildClassName,
     createEventHandler,
     generateId,
     killFocus,
     mapAria,
 } from '../utils';
-import styles from './listBox.css';
+import ThemeContext     from '../Theming/ThemeContext';
+import { createCssMap } from '../Theming';
 
+export default class ListBox extends React.Component
+{
+    static contextType = ThemeContext;
 
-const ListBox = ( {
-    activeOption,
-    aria,
-    children,
-    className,
-    cssMap,
-    id = generateId( 'ListBox' ),
-    isFocusable,
-    isMultiselect,
-    onClickOption,
-    onKeyPress,
-    onMouseOutOption,
-    onMouseOverOption,
-    options,
-    selection,
-} ) => (
-    <ul
-        { ...mapAria( {
-            ...aria,
-            activeDescendant : isFocusable ? activeOption : null,
-            multiSelectable  : isMultiselect,
-            role             : 'listbox',
-        } ) }
-        className   = { buildClassName( className, cssMap ) }
-        id          = { id }
-        onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
-        onMouseDown = { !isFocusable && killFocus }
-        tabIndex    = { isFocusable ? '0' : '-1' }>
-        { updateOptions(
-            children || buildOptions( options ),
-            {
-                activeOption,
-                onClickOption,
-                onMouseOutOption,
-                onMouseOverOption,
-                selection : ( isMultiselect && Array.isArray( selection ) ) ?
-                    selection[ 0 ] : selection,
-            },
-        ) }
-    </ul>
-);
+    static propTypes = {
+        aria              : PropTypes.objectOf( PropTypes.string ),
+        /**
+        *  Highlights option
+        */
+        activeOption      : PropTypes.string,
+        children          : PropTypes.node,
+        /**
+         *  Extra CSS class name
+         */
+        className         : PropTypes.string,
+        /**
+         *  CSS class map
+         */
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
+        isFocusable       : PropTypes.bool,
+        isMultiselect     : PropTypes.bool,
+        /**
+        *  ListBox ID
+        */
+        id                : PropTypes.string,
+        /**
+        *  Array of strings or objects (to build the options)
+        */
+        options           : PropTypes.arrayOf( PropTypes.object ),
+        /**
+         *  onClickOption callback function ( e ) => { ... }
+         */
+        onClickOption     : PropTypes.func,
+        /**
+         *  onMouseOutOption callback function ( e ) => { ... }
+         */
+        onMouseOutOption  : PropTypes.func,
+        /**
+         *  onMouseOverOption callback function ( e ) => { ... }
+         */
+        onMouseOverOption : PropTypes.func,
+        /**
+         *  onKeyPress callback function ( e ) => { ... }
+         */
+        onKeyPress        : PropTypes.func,
+        selection         : PropTypes.oneOfType( [
+            PropTypes.string,
+            PropTypes.arrayOf( PropTypes.string ),
+        ] ),
+    };
 
+    static defaultProps = {
+        activeOption      : undefined,
+        aria              : undefined,
+        children          : undefined,
+        className         : undefined,
+        cssMap            : undefined,
+        id                : undefined,
+        isFocusable       : true,
+        isMultiselect     : false,
+        onClickOption     : undefined,
+        onKeyPress        : undefined,
+        onMouseOutOption  : undefined,
+        onMouseOverOption : undefined,
+        options           : undefined,
+        selection         : undefined,
+    };
 
-ListBox.propTypes = {
-    aria              : PropTypes.objectOf( PropTypes.string ),
-    /**
-    *  Highlights option
-    */
-    activeOption      : PropTypes.string,
-    children          : PropTypes.node,
-    /**
-    *  css class
-    */
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    isFocusable       : PropTypes.bool,
-    isMultiselect     : PropTypes.bool,
-    /**
-    *  ListBox ID
-    */
-    id                : PropTypes.string,
-    /**
-    *  Array of strings or objects (to build the options)
-    */
-    options           : PropTypes.arrayOf( PropTypes.object ),
-    /**
-     *  onClickOption callback function ( e ) => { ... }
-     */
-    onClickOption     : PropTypes.func,
-    /**
-     *  onMouseOutOption callback function ( e ) => { ... }
-     */
-    onMouseOutOption  : PropTypes.func,
-    /**
-     *  onMouseOverOption callback function ( e ) => { ... }
-     */
-    onMouseOverOption : PropTypes.func,
-    /**
-     *  onKeyPress callback function ( e ) => { ... }
-     */
-    onKeyPress        : PropTypes.func,
-    selection         : PropTypes.oneOfType( [
-        PropTypes.string,
-        PropTypes.arrayOf( PropTypes.string ),
-    ] ),
-};
+    static displayName = 'ListBox';
 
-ListBox.defaultProps = {
-    aria              : undefined,
-    activeOption      : undefined,
-    children          : undefined,
-    className         : undefined,
-    cssMap            : styles,
-    isFocusable       : true,
-    isMultiselect     : false,
-    id                : undefined,
-    options           : undefined,
-    onClickOption     : undefined,
-    onMouseOutOption  : undefined,
-    onMouseOverOption : undefined,
-    onKeyPress        : undefined,
-    selection         : undefined,
-};
+    render()
+    {
+        const {
+            aria,
+            activeOption,
+            children,
+            cssMap = createCssMap( this.context.ListBox, this.props ),
+            isFocusable,
+            isMultiselect,
+            id = generateId( 'ListBox' ),
+            onClickOption,
+            onMouseOutOption,
+            onMouseOverOption,
+            onKeyPress,
+            options,
+            selection,
+        } = this.props;
 
-export default ListBox;
+        let realSelection = selection;
+
+        if ( Array.isArray( selection ) )
+        {
+            realSelection = isMultiselect ? selection : selection[ 0 ];
+        }
+        return (
+            <ul
+                { ...mapAria( {
+                    ...aria,
+                    activeDescendant : isFocusable ? activeOption : null,
+                    multiSelectable  : isMultiselect,
+                    role             : 'listbox',
+                } ) }
+                className   = { cssMap.main }
+                id          = { id }
+                onKeyPress  = { createEventHandler( onKeyPress, { id } ) }
+                onMouseDown = { !isFocusable ? killFocus : undefined }
+                tabIndex    = { isFocusable ? '0' : '-1' }>
+                { updateOptions(
+                    children || buildOptions( options ),
+                    {
+                        activeOption,
+                        onClickOption,
+                        onMouseOutOption,
+                        onMouseOverOption,
+                        selection : realSelection,
+                    },
+                ) }
+            </ul>
+        );
+    }
+}

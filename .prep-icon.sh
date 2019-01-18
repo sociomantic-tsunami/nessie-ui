@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-svgo -f ./src/Icon/svg/ \
+mkdir ./src/Icon/svg/clean && \
+    svgo -f ./src/Icon/svg/ \
     --enable=removeStyleElement \
     --pretty \
     --output=./src/Icon/svg/clean

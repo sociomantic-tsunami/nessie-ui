@@ -7,99 +7,112 @@
  *
  */
 
-import React                                        from 'react';
-import PropTypes                                    from 'prop-types';
+import React                              from 'react';
+import PropTypes                          from 'prop-types';
 
-import { buildClassName, eventHandler, generateId } from '../utils';
-import styles                                       from './timeInput.css';
+import { createEventHandler, generateId } from '../utils';
+import ThemeContext                       from '../Theming/ThemeContext';
+import { createCssMap }                   from '../Theming';
 
-const TimeInput = ( {
-    className,
-    cssMap,
-    forceHover,
-    hourPlaceholder,
-    hourIsDisabled,
-    hourValue,
-    id = generateId( 'TimeInput' ),
-    isDisabled,
-    isReadOnly,
-    onChange,
-    onBlur,
-    onFocus,
-    onKeyPress,
-    minuteIsDisabled,
-    minutePlaceholder,
-    minuteValue
-} ) => (
-    <div
-        className = { buildClassName( className, cssMap, {
-            fakeHovered : forceHover
-        } ) }>
-        <input
-            id          = { `${id}-input-hour` }
-            type        = "text"
-            placeholder = { hourPlaceholder }
-            value       = { hourValue }
-            className   = { cssMap.hour }
-            disabled    = { isDisabled || hourIsDisabled }
-            readOnly    = { isReadOnly }
-            onFocus     = { eventHandler( onFocus, 'hour' ) }
-            onBlur      = { eventHandler( onBlur, 'hour' ) }
-            onChange    = { eventHandler( onChange, 'hour' ) }
-            onKeyPress  = { eventHandler( onKeyPress, 'hour' ) } />
-        <span>:</span>
-        <input
-            id          = { `${id}-input-minute` }
-            type        = "text"
-            placeholder = { minutePlaceholder }
-            value       = { minuteValue }
-            className   = { cssMap.min }
-            disabled    = { isDisabled || minuteIsDisabled }
-            readOnly    = { isReadOnly }
-            onFocus     = { eventHandler( onFocus, 'minute' ) }
-            onBlur      = { eventHandler( onBlur, 'minute' ) }
-            onChange    = { eventHandler( onChange, 'minute' ) }
-            onKeyPress  = { eventHandler( onKeyPress, 'minute' ) } />
-    </div>
-);
 
-TimeInput.propTypes = {
-    className         : PropTypes.string,
-    cssMap            : PropTypes.objectOf( PropTypes.string ),
-    forceHover        : PropTypes.bool,
-    hourPlaceholder   : PropTypes.string,
-    hourIsDisabled    : PropTypes.bool,
-    hourValue         : PropTypes.string,
-    id                : PropTypes.string,
-    isDisabled        : PropTypes.bool,
-    isReadOnly        : PropTypes.bool,
-    onChange          : PropTypes.func,
-    onBlur            : PropTypes.func,
-    onFocus           : PropTypes.func,
-    onKeyPress        : PropTypes.func,
-    minuteIsDisabled  : PropTypes.bool,
-    minutePlaceholder : PropTypes.string,
-    minuteValue       : PropTypes.string,
+export default class TimeInput extends React.Component
+{
+    static contextType = ThemeContext;
 
-};
+    static propTypes = {
+        className         : PropTypes.string,
+        cssMap            : PropTypes.objectOf( PropTypes.string ),
+        forceHover        : PropTypes.bool,
+        hourIsDisabled    : PropTypes.bool,
+        hourIsReadOnly    : PropTypes.bool,
+        hourPlaceholder   : PropTypes.string,
+        hourValue         : PropTypes.string,
+        id                : PropTypes.string,
+        isDisabled        : PropTypes.bool,
+        isReadOnly        : PropTypes.bool,
+        minuteIsDisabled  : PropTypes.bool,
+        minuteIsReadOnly  : PropTypes.bool,
+        minutePlaceholder : PropTypes.string,
+        minuteValue       : PropTypes.string,
+        onBlur            : PropTypes.func,
+        onChange          : PropTypes.func,
+        onFocus           : PropTypes.func,
+        onKeyPress        : PropTypes.func,
+    };
 
-TimeInput.defaultProps = {
-    className         : undefined,
-    cssMap            : styles,
-    forceHover        : false,
-    hourPlaceholder   : 'HH',
-    hourIsDisabled    : false,
-    hourValue         : undefined,
-    id                : undefined,
-    isDisabled        : false,
-    isReadOnly        : false,
-    onChange          : undefined,
-    onBlur            : undefined,
-    onFocus           : undefined,
-    onKeyPress        : undefined,
-    minuteIsDisabled  : false,
-    minutePlaceholder : 'MM',
-    minuteValue       : undefined,
-};
+    static defaultProps = {
+        className         : undefined,
+        cssMap            : undefined,
+        forceHover        : false,
+        hourIsDisabled    : false,
+        hourIsReadOnly    : false,
+        hourPlaceholder   : 'HH',
+        hourValue         : undefined,
+        id                : undefined,
+        isDisabled        : false,
+        isReadOnly        : false,
+        minuteIsDisabled  : false,
+        minuteIsReadOnly  : false,
+        minutePlaceholder : 'MM',
+        minuteValue       : undefined,
+        onBlur            : undefined,
+        onChange          : undefined,
+        onFocus           : undefined,
+        onKeyPress        : undefined,
+    };
 
-export default TimeInput;
+    render()
+    {
+        const {
+            cssMap = createCssMap( this.context.TimeInput, this.props ),
+            hourIsDisabled,
+            hourIsReadOnly,
+            hourPlaceholder,
+            hourValue,
+            id = generateId( 'TimeInput' ),
+            isDisabled,
+            isReadOnly,
+            minuteIsDisabled,
+            minuteIsReadOnly,
+            minutePlaceholder,
+            minuteValue,
+            onBlur,
+            onChange,
+            onFocus,
+            onKeyPress,
+        } = this.props;
+
+        const hourId = `${id}-hour`;
+        const minId = `${id}-minute`;
+
+        return (
+            <div className = { cssMap.main }>
+                <input
+                    className   = { cssMap.hour }
+                    disabled    = { isDisabled || hourIsDisabled }
+                    id          = { hourId }
+                    onBlur      = { createEventHandler( onBlur, { id: hourId } ) }
+                    onChange    = { createEventHandler( onChange, { id: hourId } ) }
+                    onFocus     = { createEventHandler( onFocus, { id: hourId } ) }
+                    onKeyPress  = { createEventHandler( onKeyPress, { id: hourId } ) }
+                    placeholder = { hourPlaceholder }
+                    readOnly    = { isReadOnly || hourIsReadOnly }
+                    type        = "text"
+                    value       = { hourValue } />
+                <span>:</span>
+                <input
+                    className   = { cssMap.min }
+                    disabled    = { isDisabled || minuteIsDisabled }
+                    id          = { minId }
+                    onBlur      = { createEventHandler( onBlur, { id: minId } ) }
+                    onChange    = { createEventHandler( onChange, { id: minId } ) }
+                    onFocus     = { createEventHandler( onFocus, { id: minId } ) }
+                    onKeyPress  = { createEventHandler( onKeyPress, { id: minId } ) }
+                    placeholder = { minutePlaceholder }
+                    readOnly    = { isReadOnly || minuteIsReadOnly }
+                    type        = "text"
+                    value       = { minuteValue } />
+            </div>
+        );
+    }
+}

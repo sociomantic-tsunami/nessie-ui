@@ -5,8 +5,11 @@ module.exports = {
 
     testMatch :
     [
-        '<rootDir>/src/**/tests.{js,jsx}'
+        '<rootDir>/src/**/tests.{js,jsx}',
     ],
+    transform : {
+        '^.+\\.(js|jsx)?$' : 'babel-jest',
+    },
 
     // We should specify that jest should load all dependencies
     // from the ROOT node_modules folder. If not, and you have
@@ -15,7 +18,7 @@ module.exports = {
     moduleDirectories :
     [
         '<rootDir>/node_modules',
-        '<rootDir>/src'
+        '<rootDir>/src',
     ],
 
     // Tell jest explicitly where to search for source files
@@ -23,37 +26,35 @@ module.exports = {
     // including local npm caches etc.
     roots :
     [
-        '<rootDir>/src'
+        '<rootDir>/src',
     ],
 
     setupFiles :
     [
-        '<rootDir>/src/Testing/setupTestEnvironment.js'
+        '<rootDir>/src/Testing/setupTestEnvironment.js',
     ],
-
-    setupTestFrameworkScriptFile :
-        '<rootDir>/src/Testing/setupTestFramework.js',
 
     moduleNameMapper : Object.assign(
         {},
         // Map module aliases to directories
         {
             'nessie-ui'       : '<rootDir>/src/index',
-            'addons'          : '<rootDir>/src/addons',
-            'componentDriver' : '<rootDir>/src/Testing/index'
+            'componentDriver' : '<rootDir>/src/Testing/index',
         },
         // Mock assets
         {
             '\\.(html|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$' :
                 '<rootDir>/src/Testing/mocks/fileMock.js',
-            '\\.(css|less|scss)$' : 'identity-obj-proxy'
-        }
+            '\\.(css|less|scss)$' : 'identity-obj-proxy',
+            'createCssMap'        :
+                '<rootDir>/src/Testing/mocks/createCssMapMock.js',
+        } /* eslint-disable-line comma-dangle */
     ),
 
     verbose : true,
 
     transformIgnorePatterns :
     [
-        'node_modules/(?!flounder)'
-    ]
+        'node_modules/(?!flounder)',
+    ],
 };

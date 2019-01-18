@@ -7,51 +7,78 @@
  *
  */
 
-
 /*------------------------------------//
 //    $FONT DEFINITIONS
 //------------------------------------*/
 
 %Nessie-Regular
 {
-    font-family: Nessie-Regular, sans-serif;
-    font-weight: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 400;
     font-style: normal;
 }
 
 %Nessie-RegularIt
 {
-    font-family: Nessie-RegularIt, sans-serif;
-    font-weight: normal;
-    font-style: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 %Nessie-SemiBold
 {
-    font-family: Nessie-SemiBold, sans-serif;
-    font-weight: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 600;
     font-style: normal;
+}
+
+%Nessie-SemiBoldIt
+{
+    font-family: Nessie, sans-serif;
+    font-weight: 600;
+    font-style: italic;
 }
 
 %Nessie-Bold
 {
-    font-family: Nessie-Bold, sans-serif;
-    font-weight: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 700;
     font-style: normal;
+}
+
+%Nessie-BoldIt
+{
+    font-family: Nessie, sans-serif;
+    font-weight: 700;
+    font-style: italic;
 }
 
 %Nessie-ExtraBold
 {
-    font-family: Nessie-ExtraBold, sans-serif;
-    font-weight: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 800;
     font-style: normal;
+}
+
+%Nessie-ExtraBoldIt
+{
+    font-family: Nessie, sans-serif;
+    font-weight: 800;
+    font-style: italic;
 }
 
 %Nessie-Light
 {
-    font-family: Nessie-Light, sans-serif;
-    font-weight: normal;
+    font-family: Nessie, sans-serif;
+    font-weight: 300;
     font-style: normal;
+}
+
+%Nessie-LightIt
+{
+    font-family: Nessie, sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 :root
@@ -65,6 +92,7 @@
     --typo-6:           20px;
     --typo-7:           24px;
 
+    --line-height-xs:   14px;
     --line-height-s:    16px;
     --line-height-m:    24px;
     --line-height-l:    32px;

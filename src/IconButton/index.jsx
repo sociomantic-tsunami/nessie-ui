@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -7,23 +7,22 @@
  *
  */
 
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React                                from 'react';
+import PropTypes                            from 'prop-types';
 
-import {
-    createEventHandler,
-    buildClassName,
-    generateId,
-} from '../utils';
-import Icon   from '../Icon';
-import styles from './iconButton.css';
+import { Icon }                             from '..';
 
+import { createEventHandler, generateId }   from '../utils';
+import ThemeContext                         from '../Theming/ThemeContext';
+import { createCssMap }                     from '../Theming';
 
 const killFocus = e => e.preventDefault();
 
 
 export default class IconButton extends React.Component
 {
+    static contextType = ThemeContext;
+
     static propTypes =
     {
         /**
@@ -64,6 +63,8 @@ export default class IconButton extends React.Component
             'alert',
             'approved',
             'arrow',
+            'arrow-up',
+            'arrow-down',
             'bell',
             'board',
             'calendar',
@@ -72,6 +73,7 @@ export default class IconButton extends React.Component
             'close',
             'dash',
             'dashboard',
+            'deactivated',
             'declined',
             'delete',
             'down',
@@ -89,8 +91,10 @@ export default class IconButton extends React.Component
             'left',
             'lightbulb',
             'link',
+            'loader',
             'megaphone',
             'options',
+            'paused',
             'pending',
             'preview',
             'puzzle-piece',
@@ -100,6 +104,7 @@ export default class IconButton extends React.Component
             'show',
             'star-stroke',
             'star',
+            'sociomantic',
             'swap',
             'table',
             'up',
@@ -119,10 +124,6 @@ export default class IconButton extends React.Component
          *  Button is focusable
          */
         isFocusable : PropTypes.bool,
-        /**
-         *  Display as read-only
-         */
-        isReadOnly  : PropTypes.bool,
         /**
          *  Label text
          */
@@ -162,14 +163,14 @@ export default class IconButton extends React.Component
         buttonRef     : undefined,
         children      : undefined,
         className     : undefined,
-        cssMap        : styles,
+        cssMap        : undefined,
         forceHover    : false,
         hasBackground : false,
         iconSize      : 'S',
+        iconType      : undefined,
         id            : undefined,
         isDisabled    : false,
         isFocusable   : true,
-        isReadOnly    : false,
         label         : undefined,
         onBlur        : undefined,
         onClick       : undefined,
@@ -180,54 +181,43 @@ export default class IconButton extends React.Component
         value         : undefined,
     };
 
+    static displayName = 'IconButton';
+
     render()
     {
         const {
             buttonRef,
             children,
-            className,
-            cssMap,
-            forceHover,
-            hasBackground,
+            cssMap = createCssMap( this.context.IconButton, this.props ),
             iconSize,
             iconType,
             id = generateId( 'IconButton' ),
             isDisabled,
             isFocusable,
-            isReadOnly,
             label,
             onBlur,
             onClick,
             onFocus,
             onMouseOut,
             onMouseOver,
-            role,
             value,
         } = this.props;
 
         return (
             <button
-                className = { buildClassName( className, cssMap, {
-                    background  : hasBackground,
-                    disabled    : isDisabled,
-                    fakeHovered : forceHover,
-                    role,
-                    size        : iconSize,
-                }  ) }
-                disabled = { isDisabled }
-                id       = { id }
-                onBlur   = { createEventHandler( onBlur, { id } ) }
-                onClick  = { !isReadOnly &&
-                    createEventHandler( onClick, { id } )
-                }
-                onFocus      = { createEventHandler( onFocus, { id } ) }
-                onMouseDown  = { !isFocusable ? killFocus : undefined }
-                onMouseOut   = { createEventHandler( onMouseOut, { id } ) }
-                onMouseOver  = { createEventHandler( onMouseOver, { id } ) }
-                ref          = { buttonRef }
-                tabIndex     = { isFocusable ? '0' : '-1' }
-                type         = "button"
-                value        = { value }>
+                className   = { cssMap.main }
+                disabled    = { isDisabled }
+                id          = { id }
+                onBlur      = { createEventHandler( onBlur, { id } ) }
+                onClick     = { createEventHandler( onClick, { id } ) }
+                onFocus     = { createEventHandler( onFocus, { id } ) }
+                onMouseDown = { !isFocusable ? killFocus : undefined }
+                onMouseOut  = { createEventHandler( onMouseOut, { id } ) }
+                onMouseOver = { createEventHandler( onMouseOver, { id } ) }
+                ref         = { buttonRef }
+                tabIndex    = { isFocusable ? '0' : '-1' }
+                type        = "button"
+                value       = { value }>
                 <Icon
                     className  = { cssMap.icon }
                     isDisabled = { isDisabled }

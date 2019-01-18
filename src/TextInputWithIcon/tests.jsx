@@ -7,20 +7,18 @@
  *
  */
 
-/* global test */
-/* eslint-disable no-magic-numbers, no-multi-str, no-unused-expressions */
+/* eslint-disable no-magic-numbers */
 
-import React       from 'react';
-import { shallow } from 'enzyme';
+import React               from 'react';
+import { shallow, mount }  from 'enzyme';
 
 import {
     IconButton,
     InputField,
+    TextInputWithIcon,
+    TextInputWithIcon as WrappedTextInputWithIcon,
     Tooltip,
 } from '../index';
-
-import TextInputWithIcon from './index';
-
 
 describe( 'TextInputWithIcon', () =>
 {
@@ -30,12 +28,6 @@ describe( 'TextInputWithIcon', () =>
     {
         wrapper  = shallow( <TextInputWithIcon /> );
     } );
-
-    test( 'should be a stateless functional component', () =>
-    {
-        expect( wrapper.instance() ).toBe( null );
-    } );
-
 
     test( 'should contain exactly one InputField', () =>
     {
@@ -234,17 +226,6 @@ describe( 'TextInputWithIcon', () =>
                     .toBe( true );
             } );
 
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isDisabled : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isDisabled' ) )
-                    .toBe( true );
-            } );
-
             test( 'should be passed to the IconButton', () =>
             {
                 wrapper.setProps( {
@@ -294,65 +275,6 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
                     .toBe( true );
             } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isReadOnly : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
-
-            test( 'should be passed to the IconButton', () =>
-            {
-                wrapper.setProps( {
-                    iconType   : 'add',
-                    isReadOnly : true,
-                } );
-
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'isReadOnlyInput', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.isReadOnlyInput )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                wrapper.setProps( { isReadOnlyInput: true } );
-
-                expect( wrapper.find( InputField ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
-        } );
-
-        describe( 'isReadOnlyButton', () =>
-        {
-            test( 'should be false by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.isReadOnlyButton )
-                    .toBe( false );
-            } );
-
-            test( 'should be passed to the IconButton', () =>
-            {
-                wrapper.setProps( {
-                    iconType         : 'add',
-                    isReadOnlyButton : true,
-                } );
-
-                expect( wrapper.find( IconButton ).prop( 'isReadOnly' ) )
-                    .toBe( true );
-            } );
         } );
 
         describe( 'hasError', () =>
@@ -367,17 +289,6 @@ describe( 'TextInputWithIcon', () =>
                 wrapper.setProps( { hasError: true } );
 
                 expect( wrapper.find( InputField ).prop( 'hasError' ) )
-                    .toBe( true );
-            } );
-
-            test( 'should be passed to the Tooltip', () =>
-            {
-                wrapper.setProps( {
-                    iconType : 'add',
-                    hasError : true,
-                } );
-
-                expect( wrapper.find( Tooltip ).prop( 'hasError' ) )
                     .toBe( true );
             } );
 
@@ -441,25 +352,6 @@ describe( 'TextInputWithIcon', () =>
             } );
         } );
 
-        describe( 'onChange', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onChange )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onChange = () => undefined;
-
-                wrapper.setProps( { onChange } );
-
-                expect( wrapper.find( InputField ).prop( 'onChange' ) )
-                    .toBe( onChange );
-            } );
-        } );
-
         describe( 'onClickIcon', () =>
         {
             beforeEach( () =>
@@ -499,63 +391,6 @@ describe( 'TextInputWithIcon', () =>
             {
                 expect( TextInputWithIcon.defaultProps.onBlur )
                     .toBeUndefined();
-            } );
-        } );
-
-        describe( 'onKeyDown', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyDown )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyDown = () => undefined;
-
-                wrapper.setProps( { onKeyDown } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyDown' ) )
-                    .toBe( onKeyDown );
-            } );
-        } );
-
-        describe( 'onKeyUp', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyUp )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyUp = () => undefined;
-
-                wrapper.setProps( { onKeyUp } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyUp' ) )
-                    .toBe( onKeyUp );
-            } );
-        } );
-
-        describe( 'onKeyPress', () =>
-        {
-            test( 'should be undefined by default', () =>
-            {
-                expect( TextInputWithIcon.defaultProps.onKeyPress )
-                    .toBeUndefined();
-            } );
-
-            test( 'should be passed to the InputField', () =>
-            {
-                const onKeyPress = () => undefined;
-
-                wrapper.setProps( { onKeyPress } );
-
-                expect( wrapper.find( InputField ).prop( 'onKeyPress' ) )
-                    .toBe( onKeyPress );
             } );
         } );
 
@@ -682,6 +517,175 @@ describe( 'TextInputWithIcon', () =>
                 expect( wrapper.find( InputField ).prop( 'forceHover' ) )
                     .toBe( true );
             } );
+        } );
+    } );
+} );
+
+
+describe( 'TextInputWithIconDriver', () =>
+{
+    let wrapper;
+    let driver;
+
+    beforeEach( () =>
+    {
+        wrapper = mount( <WrappedTextInputWithIcon /> );
+        driver  = wrapper.driver();
+    } );
+
+
+    describe( 'change( val )', () =>
+    {
+        test( 'should trigger onChange callback prop once', () =>
+        {
+            const onChange = jest.fn();
+            wrapper.setProps( { onChange } );
+
+            driver.change( 'dfg' );
+            expect( onChange ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'click()', () =>
+    {
+        test( 'should trigger onClick callback prop once', () =>
+        {
+            const onClick = jest.fn();
+            wrapper.setProps( { onClick } );
+
+            driver.click();
+            expect( onClick ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyDown()', () =>
+    {
+        test( 'should trigger onKeyDown callback prop once', () =>
+        {
+            const onKeyDown = jest.fn();
+            wrapper.setProps( { onKeyDown } );
+
+            driver.keyDown();
+            expect( onKeyDown ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyPress()', () =>
+    {
+        test( 'should trigger onKeyPress callback prop once', () =>
+        {
+            const onKeyPress = jest.fn();
+            wrapper.setProps( { onKeyPress } );
+
+            driver.keyPress();
+            expect( onKeyPress ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'keyUp()', () =>
+    {
+        test( 'should trigger onKeyUp callback prop once', () =>
+        {
+            const onKeyUp = jest.fn();
+            wrapper.setProps( { onKeyUp } );
+
+            driver.keyUp();
+            expect( onKeyUp ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'focus()', () =>
+    {
+        test( 'should trigger onFocus callback prop once', () =>
+        {
+            const onFocus = jest.fn();
+            wrapper.setProps( { onFocus } );
+
+            driver.focus();
+            expect( onFocus ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'blur()', () =>
+    {
+        test( 'should trigger onBlur callback prop once', () =>
+        {
+            const onBlur = jest.fn();
+            wrapper.setProps( { onBlur } );
+
+            driver.blur();
+            expect( onBlur ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOver()', () =>
+    {
+        test( 'should trigger onMouseOver callback prop once', () =>
+        {
+            const onMouseOver = jest.fn();
+            wrapper.setProps( { onMouseOver } );
+
+            driver.mouseOver();
+            expect( onMouseOver ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOut()', () =>
+    {
+        test( 'should trigger onMouseOut callback prop once', () =>
+        {
+            const onMouseOut = jest.fn();
+            wrapper.setProps( { onMouseOut } );
+
+            driver.mouseOut();
+            expect( onMouseOut ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'clickIcon()', () =>
+    {
+        test( 'should trigger onClickIcon callback prop once', () =>
+        {
+            const onClickIcon = jest.fn();
+            wrapper.setProps( { onClickIcon, iconType: 'add' } );
+
+            driver.clickIcon();
+            expect( onClickIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOverIcon()', () =>
+    {
+        test( 'should trigger onMouseOverIcon callback prop once', () =>
+        {
+            const onMouseOverIcon = jest.fn();
+            wrapper.setProps( { onMouseOverIcon, iconType: 'add' } );
+
+            driver.mouseOverIcon();
+            expect( onMouseOverIcon ).toBeCalledTimes( 1 );
+        } );
+    } );
+
+
+    describe( 'mouseOutIcon()', () =>
+    {
+        test( 'should trigger onMouseOutIcon callback prop once', () =>
+        {
+            const onMouseOutIcon = jest.fn();
+            wrapper.setProps( { onMouseOutIcon, iconType: 'add' } );
+
+            driver.mouseOutIcon();
+            expect( onMouseOutIcon ).toBeCalledTimes( 1 );
         } );
     } );
 } );

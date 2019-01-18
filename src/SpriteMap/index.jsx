@@ -35,7 +35,10 @@ SpriteMap.propTypes =
 
 SpriteMap.defaultProps =
 {
-    id : undefined,
+    id             : undefined,
+    spriteTemplate : undefined,
 };
+
+SpriteMap.displayName = 'SpriteMap';
 
 export default SpriteMap;
