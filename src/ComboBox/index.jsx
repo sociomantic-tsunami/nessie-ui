@@ -9,22 +9,15 @@
 
 /* global document */
 
-import React, { Component } from 'react';
-import PropTypes            from 'prop-types';
+import React, { Component }                       from 'react';
+import PropTypes                                  from 'prop-types';
 
-import {
-    ListBox,
-    ScrollBox,
-    Text,
-} from '../index';
-import TextInputWithIcon from '../TextInputWithIcon';
-import {
-    addPrefix,
-    prefixOptions,
-    removePrefix,
-} from './utils';
-import { generateId }   from '../utils';
-import withDropdown     from '../Addons/withDropdown';
+import { ListBox, ScrollBox, Text }               from '..';
+
+import TextInputWithIcon                          from '../TextInputWithIcon';
+import withDropdown                               from '../Addons/withDropdown';
+import { generateId }                             from '../utils';
+import { addPrefix, prefixOptions, removePrefix } from './utils';
 
 const InputWithDropdown = withDropdown( TextInputWithIcon );
 
