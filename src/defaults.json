@@ -627,7 +627,7 @@
 			}
 		]
 	},
-	"PasswordInpu": {
+	"PasswordInput": {
 		"label": "Tell me your secrets",
 		"errorMessage": "Please enter a dark secret"
 	},
