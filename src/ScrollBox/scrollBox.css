@@ -104,7 +104,7 @@
 
         svg
         {
-            fill:   var( --PC-WHITE );
+            color:  var( --PC-WHITE );
         }
     }
 
@@ -149,8 +149,8 @@
 
         svg
         {
-            fill:           var( --PC-GREY--D5 );
-            z-index:        1;
+            color:      var( --PC-GREY--D5 );
+            z-index:    1;
         }
 
         &::before
