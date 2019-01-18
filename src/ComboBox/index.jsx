@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -20,7 +20,7 @@ import {
 import TextInputWithIcon from '../TextInputWithIcon';
 import {
     addPrefix,
-    buildListBoxOptions,
+    prefixOptions,
     removePrefix,
 } from './utils';
 import { generateId }   from '../utils';
@@ -173,7 +173,7 @@ export default class ComboBox extends Component
             isOpen          : undefined,
             options         : undefined,
             searchValue     : undefined,
-            selection       : undefined,
+            selectedOption  : undefined,
         };
 
         this.handleChangeInput     = this.handleChangeInput.bind( this );
@@ -191,7 +191,7 @@ export default class ComboBox extends Component
     {
         let { flatOptions } = state;
         const { selectedOption } = props;
-        let optionId = selectedOption || state.selection;
+        let optionId = selectedOption || state.selectedOption;
 
         if ( props.options !== state.options )
         {
@@ -210,7 +210,7 @@ export default class ComboBox extends Component
             id              : props.id || state.id || generateId( 'Select' ),
             options         : props.options,
             searchValue     : state.searchValue,
-            selection       : optionId,
+            selectedOption  : optionId,
         };
     }
 
@@ -255,11 +255,8 @@ export default class ComboBox extends Component
     {
         const searchValue = ( e.target.value || '' ).toLowerCase();
 
-        const filteredOptions = this.state.flatOptions.filter( ( {
-            id,
-            text,
-        } ) => !searchValue || id.toLowerCase().indexOf( searchValue ) > -1
-                    || text.toLowerCase().indexOf( searchValue ) > -1 );
+        const filteredOptions = this.state.flatOptions.filter( ( { text } ) =>
+            !searchValue || text.toLowerCase().indexOf( searchValue ) > -1 );
 
         const activeOption = ( searchValue && filteredOptions.length )
             ? filteredOptions[ 0 ].id : undefined;
@@ -284,26 +281,27 @@ export default class ComboBox extends Component
 
     handleClickOption( e, optId )
     {
-        const { onChange } = this.props;
+        const { isReadOnly, onChange } = this.props;
         const { id } = this.state;
         const unprefixedId = removePrefix( optId, id );
 
         this.setState( prevState => {
-            const selectedOption = getOption(
+            const selectedOption = !isReadOnly ? getOption(
                 unprefixedId,
                 prevState.flatOptions,
-            );
-            if ( typeof onChange === 'function' )
+            ).id : prevState.selectedOption;
+
+            if ( !isReadOnly && typeof onChange === 'function' )
             {
-                onChange( { selectedOption: selectedOption.id }, e );
+                onChange( { selectedOption }, e );
             }
 
             return {
-                activeOption    : selectedOption.id,
-                isOpen          : false,
+                activeOption    : selectedOption,
                 filteredOptions : undefined,
-                selection       : selectedOption.id,
+                isOpen          : false,
                 searchValue     : undefined,
+                selectedOption,
             };
         } );
     }
@@ -326,7 +324,7 @@ export default class ComboBox extends Component
                     const maxIndex = options.length - 1;
 
                     let activeIndex = getIndex(
-                        prevState.activeOption || prevState.selection,
+                        prevState.activeOption || prevState.selectedOption,
                         options,
                     );
 
@@ -353,24 +351,24 @@ export default class ComboBox extends Component
         }
         else if ( key === 'Enter' )
         {
-            const { onChange } = this.props;
+            const { isReadOnly, onChange } = this.props;
 
             this.setState( prevState => {
 
-                const selectedOption = prevState.activeOption ||
-                    prevState.selection;
+                const selectedOption = !isReadOnly && prevState.activeOption ?
+                    prevState.activeOption : prevState.selectedOption;
 
-                if ( typeof onChange === 'function' )
+                if ( !isReadOnly && typeof onChange === 'function' )
                 {
-                    onChange( { selectedOption: selectedOption.id }, e );
+                    onChange( { selectedOption }, e );
                 }
                 return {
-                    activeOption : prevState.activeOption,
-                    selection    : selectedOption,
-                    isOpen : typeof isOpen === 'boolean'
-                        ? this.state.isOpen : !prevState.isOpen,
+                    activeOption    : prevState.activeOption,
                     filteredOptions : undefined,
-                    searchValue     : undefined,
+                    isOpen          : typeof isOpen === 'boolean' ?
+                        this.state.isOpen : !prevState.isOpen,
+                    searchValue : undefined,
+                    selectedOption,
                 }
             } );
         }
@@ -436,11 +434,11 @@ export default class ComboBox extends Component
             isFocused,
             isOpen,
             searchValue,
-            selection,
+            selectedOption,
         } = this.state;
 
-        const optionVal = getOption( selection, flatOptions )
-            ? getOption( selection, flatOptions ).text : undefined;
+        const optionVal = getOption( selectedOption, flatOptions )
+            ? getOption( selectedOption, flatOptions ).text : undefined;
 
         let optionsToShow = options;
 
@@ -454,7 +452,7 @@ export default class ComboBox extends Component
 
         let dropdownContent;
 
-        if ( options.length )
+        if ( optionsToShow.length )
         {
             dropdownContent = (
                 <ScrollBox
@@ -468,9 +466,10 @@ export default class ComboBox extends Component
                         onClickOption     = { this.handleClickOption }
                         onMouseOutOption  = { this.handleMouseOutOption }
                         onMouseOverOption = { this.handleMouseOverOption }
-                        selection         = { addPrefix( selection, id ) }>
-                        { buildListBoxOptions( optionsToShow, id ) }
-                    </ListBox>
+                        options           = {
+                            prefixOptions( optionsToShow, id )
+                        }
+                        selection = { addPrefix( selectedOption, id ) } />
                 </ScrollBox>
             );
         }
@@ -507,7 +506,7 @@ export default class ComboBox extends Component
                 dropdownProps    = { {
                     children : dropdownContent,
                     hasError,
-                    padding  : options.length ? 'none' : 'S',
+                    padding  : optionsToShow.length ? 'none' : 'S',
                 } }
                 hasError        = { hasError }
                 iconType        = { isOpen ? 'up' : 'down' }
