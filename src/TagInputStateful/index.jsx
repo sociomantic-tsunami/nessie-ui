@@ -220,13 +220,14 @@ export default class TagInputStateful extends React.Component
             props.dropdownPosition : 'bottom';
 
         this.state = {
-            activeOption : undefined,
+            activeOption    : undefined,
             dropdownPosition,
-            isOpen       : props.isOpen,
-            options      : props.options,
-            selection    : undefined,
-            tags         : props.tags,
-            value        : props.value,
+            filteredOptions : undefined,
+            isOpen          : props.isOpen,
+            options         : props.options,
+            selection       : undefined,
+            tags            : props.tags,
+            value           : props.value,
         };
 
         this.handleBlur            = this.handleBlur.bind( this );
@@ -458,8 +459,8 @@ export default class TagInputStateful extends React.Component
         const ARROWDOWN = 40; // keyCode for 'arrow down'
         const ESCAPE    = 27; // keyCode for 'escape'
         const { activeOption, tags, value } = this.state;
-        const callback = this.props.onKeyDown;
         const { keyCode } = e;
+        const callback = this.props.onKeyDown;
 
         if ( callback )
         {
@@ -520,7 +521,8 @@ export default class TagInputStateful extends React.Component
                 return { isOpen: true };
             } );
         }
-        else if ( keyCode === ESCAPE )
+
+        if ( keyCode === ESCAPE )
         {
             this.setState( {
                 activeOption    : undefined,
