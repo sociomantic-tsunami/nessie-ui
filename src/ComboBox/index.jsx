@@ -144,7 +144,7 @@ export default class ComboBox extends Component
     {
         className           : undefined,
         dropdownPlaceholder : undefined,
-        dropdownPosition    : 'auto',
+        dropdownPosition    : 'bottom',
         hasError            : false,
         id                  : undefined,
         inputPlaceholder    : undefined,
