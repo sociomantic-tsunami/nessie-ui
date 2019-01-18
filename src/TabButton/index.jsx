@@ -72,6 +72,21 @@ export default class TabButton extends React.Component
 
     static displayName = 'TabButton';
 
+    constructor()
+    {
+        super();
+        this.handleClick = this.handleClick.bind( this );
+    }
+
+    handleClick( e )
+    {
+        const { onClick } = this.props;
+        if ( onClick )
+        {
+            onClick( { value: parseInt( e.currentTarget.value ) }, e );
+        }
+    }
+
     render()
     {
         const {
@@ -79,7 +94,6 @@ export default class TabButton extends React.Component
             cssMap = createCssMap( this.context.TabButton, this.props ),
             isDisabled,
             label,
-            onClick,
             subtitle,
             tabIndex,
         } = this.props;
@@ -88,10 +102,10 @@ export default class TabButton extends React.Component
             <button
                 className = { cssMap.main }
                 disabled  = { isDisabled }
-                onClick   = { onClick }
+                onClick   = { this.handleClick }
                 ref       = { buttonRef }
                 role      = "tab"
-                value     = { String( tabIndex ) }>
+                value     = { tabIndex }>
                 <div className = { cssMap.content }>
                     <div className = { cssMap.label }>
                         { label }

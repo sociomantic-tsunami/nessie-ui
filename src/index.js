@@ -27,7 +27,6 @@ import SpriteMap                from './SpriteMap';
 import Tab                      from './Tab';
 import TabButton                from './TabButton';
 import Tabs                     from './Tabs';
-import TabsStateful             from './TabsStateful';
 import Text                     from './Text';
 import TextInputWithIcon        from './TextInputWithIcon';
 import Tooltip                  from './Tooltip';
@@ -53,7 +52,6 @@ export {
     Tab,
     TabButton,
     Tabs,
-    TabsStateful,
     Text,
     TextInputWithIcon,
     Tooltip,
@@ -80,7 +78,6 @@ export default {
     Tab,
     TabButton,
     Tabs,
-    TabsStateful,
     Text,
     TextInputWithIcon,
     Tooltip,
