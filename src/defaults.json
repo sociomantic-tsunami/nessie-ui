@@ -304,8 +304,8 @@
 			"title": "Sunday"
 		}],
 		"hourPlaceholder": "HH",
-		"inputPlaceholder": "YYYY-MM-DD HH:MM",
-		"minutePlaceholder": "MM",
+		"inputPlaceholder": "YYYY/MM/DD HH:mm",
+		"minutePlaceholder": "mm",
 		"months": [
 			[{
 				"label": "Jan",

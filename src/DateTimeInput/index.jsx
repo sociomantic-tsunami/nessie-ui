@@ -7,12 +7,14 @@
  *
  */
 
+/* global addEventListener, removeEventListener */
+
 import React, { Component }         from 'react';
 import PropTypes                    from 'prop-types';
 import moment                       from 'moment';
 import _                            from 'lodash';
 
-import { eventHandler, generateId } from '../utils';
+import { generateId }               from '../utils';
 import copy                         from './copy.json';
 
 import { DatePicker }               from '..';
@@ -48,6 +50,11 @@ const PARSE_FORMATTING = [
 ];
 
 const PRECISIONS = [ 'minute', 'hour', 'day', 'month' ];
+
+const DAY_LABELS = _.range( 0, 7 ).map( day => ( {
+    label : copy.dayHeaders[ day ]
+} ) );
+
 
 /**
  * returns the timestamp of the current moment
@@ -98,7 +105,9 @@ function tryParseInputValue( inputValue, timestamp )
 {
     if ( !inputValue ) return null;
 
-    const parser = PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) => predicate.test( inputValue ) && PRECISIONS.includes( requirePrecision ) );
+    const parser = PARSE_FORMATTING.find( ( { predicate, requirePrecision } ) =>
+        predicate.test( inputValue ) &&
+            PRECISIONS.includes( requirePrecision ) );
 
     if ( !parser
         || _.isNaN( moment.utc( inputValue, parser.format ).valueOf() ) )
@@ -201,10 +210,6 @@ export default class DateTimeInput extends Component
          */
         className         : PropTypes.string,
         /**
-         *  Display as hover when required from another component
-         */
-        forceHover        : PropTypes.bool,
-        /**
          *  Display as error/invalid
          */
         hasError          : PropTypes.bool,
@@ -229,6 +234,14 @@ export default class DateTimeInput extends Component
          */
         isReadOnly        : PropTypes.bool,
         /**
+         *  Maximum timestamp selectable
+         */
+        maxDateSelectable : PropTypes.number,
+        /**
+         *  Minimum timestamp selectable
+         */
+        minDateSelectable : PropTypes.number,
+        /**
          *  Minute input placeholder text
          */
         minutePlaceholder : PropTypes.string,
@@ -237,73 +250,18 @@ export default class DateTimeInput extends Component
          */
         mode              : PropTypes.oneOf( [ 'default', 'date', 'month' ] ),
         /**
-         *  Blur callback function
-         */
-        onBlur            : PropTypes.func,
-        /**
-         *  Input change callback function
+         *  Change callback: ( { value } ) => ...
          */
         onChange          : PropTypes.func,
         /**
-         *  Icon click callback function
+         *  Selected timestamp
          */
-        onClickIcon       : PropTypes.func,
-        /**
-         *  onClick callback function for calendar date cell
-         */
-        onClickCell       : PropTypes.func,
-        /**
-         *  onClick callback function for “Previous” button
-         */
-        onClickNext       : PropTypes.func,
-        /**
-         *  onClick callback function for “Next” button
-         */
-        onClickPrev       : PropTypes.func,
-        /**
-         *  Focus callback function
-         */
-        onFocus           : PropTypes.func,
-        /**
-         *  Key down callback function
-         */
-        onKeyDown         : PropTypes.func,
-        /**
-         *  Key press callback function
-         */
-        onKeyPress        : PropTypes.func,
-        /**
-         *  Key up callback function
-         */
-        onKeyUp           : PropTypes.func,
-        /**
-         *  Mouse out callback function
-         */
-        onMouseOut        : PropTypes.func,
-        /**
-         *  Icon mouse out callback function
-         */
-        onMouseOutIcon    : PropTypes.func,
-        /**
-         *  Mouse over  callback function
-         */
-        onMouseOver       : PropTypes.func,
-        /**
-         *  Icon mouse over callback function
-         */
-        onMouseOverIcon   : PropTypes.func,
-        /**
-         *  Input text alignment
-         */
-        textAlign         : PropTypes.oneOf( [ 'auto', 'left', 'right' ] ),
-        maxDateSelectable : PropTypes.number,
-        minDateSelectable : PropTypes.number,
+        value             : PropTypes.number,
     };
 
     static defaultProps =
     {
         className         : undefined,
-        forceHover        : false,
         hasError          : false,
         hourPlaceholder   : undefined,
         id                : undefined,
@@ -314,25 +272,13 @@ export default class DateTimeInput extends Component
         minDateSelectable : undefined,
         minutePlaceholder : undefined,
         mode              : 'default',
-        onBlur            : undefined,
         onChange          : undefined,
-        onClickCell       : undefined,
-        onClickIcon       : undefined,
-        onClickNext       : undefined,
-        onClickPrev       : undefined,
-        onFocus           : undefined,
-        onKeyDown         : undefined,
-        onKeyPress        : undefined,
-        onKeyUp           : undefined,
-        onMouseOut        : undefined,
-        onMouseOutIcon    : undefined,
-        onMouseOver       : undefined,
-        onMouseOverIcon   : undefined,
-        textAlign         : 'auto',
+        value             : undefined,
     };
 
     static displayName = 'DateTimeInput';
 
+    wrapperRef = React.createRef();
 
     constructor()
     {
@@ -349,13 +295,13 @@ export default class DateTimeInput extends Component
             timestamp               : undefined,
         };
 
-        this.handleClickNext    = this.handleClickNext.bind( this );
-        this.handleClickPrev    = this.handleClickPrev.bind( this );
-        this.handleChange       = this.handleChange.bind( this );
-        this.handleClickCell    = this.handleClickCell.bind( this );
-        this.handleClickIcon    = this.handleClickIcon.bind( this );
-        this.handleClickOutSide = this.handleClickOutSide.bind( this );
-        this.setWrapperRef      = this.setWrapperRef.bind( this );
+        this.handleChangeDatePicker = this.handleChangeDatePicker.bind( this );
+        this.handleChangeInput      = this.handleChangeInput.bind( this );
+        this.handleClickCell        = this.handleClickCell.bind( this );
+        this.handleClickIcon        = this.handleClickIcon.bind( this );
+        this.handleClickNext        = this.handleClickNext.bind( this );
+        this.handleClickOutSide     = this.handleClickOutSide.bind( this );
+        this.handleClickPrev        = this.handleClickPrev.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -363,7 +309,7 @@ export default class DateTimeInput extends Component
         return {
             id        : props.id || state.id || generateId( 'Select' ),
             isOpen    : Boolean( state.gridStartTimestamp ),
-            timestamp : displayTimestamp(
+            timestamp : props.value || displayTimestamp(
                 state.editingTimestamp,
                 state.timestamp,
             ),
@@ -380,20 +326,9 @@ export default class DateTimeInput extends Component
         removeEventListener( 'mousedown', this.handleClickOutSide, false );
     }
 
-    setWrapperRef( ref )
+
+    handleClickNext()
     {
-        this.wrapperRef = ref;
-    }
-
-    handleClickNext( e )
-    {
-        const callback = this.props.onClickNext;
-
-        if ( callback )
-        {
-            callback( e );
-        }
-
         if ( !this.canGotoNext() ) return;
 
         this.setState( {
@@ -403,15 +338,8 @@ export default class DateTimeInput extends Component
         } );
     }
 
-    handleClickPrev( e )
+    handleClickPrev()
     {
-        const callback = this.props.onClickPrev;
-
-        if ( callback )
-        {
-            callback( e );
-        }
-
         if ( !this.canGotoPrev() ) return;
 
         this.setState( {
@@ -423,7 +351,7 @@ export default class DateTimeInput extends Component
 
     handleClickOutSide( e )
     {
-        if ( !this.wrapperRef.contains( e.target ) )
+        if ( !this.wrapperRef.current.contains( e.target ) )
         {
             this.close();
         }
@@ -435,8 +363,8 @@ export default class DateTimeInput extends Component
         const nextGridStart = $m( this.state.gridStartTimestamp )
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' ).valueOf();
 
-        return !_.isNumber( maxDateSelectable )
-            || nextGridStart <= maxDateSelectable;
+        return !_.isNumber( maxDateSelectable ) ||
+            ( nextGridStart <= maxDateSelectable );
     }
 
     canGotoPrev()
@@ -449,8 +377,8 @@ export default class DateTimeInput extends Component
             .add( 1, this.props.mode === 'month' ? 'year' : 'month' )
             .valueOf();
 
-        return !_.isNumber( minDateSelectable ) ||
-            endOfPrev > minDateSelectable;
+        return !_.isNumber( minDateSelectable )
+            || endOfPrev > minDateSelectable;
     }
 
     canEditHourOrMinute()
@@ -550,21 +478,21 @@ export default class DateTimeInput extends Component
         return $m( this.state.gridStartTimestamp ).year().toString();
     }
 
-    dayLabels()
+    handleClickCell( { value } )
     {
-        return _.range( 0, 7 ).map( day => ( { label: copy.dayHeaders[ day ] } ) );
-    }
+        const { isReadOnly } = this.props;
 
-    handleClickCell( value )
-    {
-        const callback = this.props.onClickCell;
-
-        if ( callback )
+        if ( !isReadOnly )
         {
-            callback( value );
+            this.setState( { timestamp: value } );
+
+            const { onChange } = this.props;
+            if ( typeof onChange === 'function' )
+            {
+                onChange( { value } );
+            }
         }
 
-        this.setState( { timestamp: parseInt( value ) } );
         this.purgeEdits();
     }
 
@@ -578,15 +506,8 @@ export default class DateTimeInput extends Component
         } );
     }
 
-    handleClickIcon( e )
+    handleClickIcon()
     {
-        const callback = this.props.onClickIcon;
-
-        if ( callback )
-        {
-            callback( e );
-        }
-
         if ( this.state.isOpen )
         {
             this.close();
@@ -597,7 +518,7 @@ export default class DateTimeInput extends Component
         }
     }
 
-    handleChange( event, sender )
+    handleChangeInput( event, sender )
     {
         const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
         const min = this.props.minDateSelectable || now();
@@ -611,8 +532,8 @@ export default class DateTimeInput extends Component
                 value = min;
             }
 
-            if ( this.props.maxDateSelectable
-                    && value > this.props.maxDateSelectable )
+            if ( this.props.maxDateSelectable &&
+                value > this.props.maxDateSelectable )
             {
                 value = this.props.maxDateSelectable;
             }
@@ -624,7 +545,13 @@ export default class DateTimeInput extends Component
                 editingMainInputValue   : event.target.value,
             } );
         }
-        else if ( sender === 'hour' )
+    }
+
+    handleChangeDatePicker( event, sender )
+    {
+        const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
+
+        if ( sender === 'hour' )
         {
             let digits = Number( trimmed );
 
@@ -731,7 +658,6 @@ export default class DateTimeInput extends Component
     {
         const {
             className,
-            forceHover,
             hasError,
             hourPlaceholder,
             id = generateId( 'DateTimeInput' ),
@@ -740,16 +666,6 @@ export default class DateTimeInput extends Component
             isReadOnly,
             minutePlaceholder,
             mode,
-            onBlur,
-            onFocus,
-            onKeyDown,
-            onKeyPress,
-            onKeyUp,
-            onMouseOut,
-            onMouseOutIcon,
-            onMouseOver,
-            onMouseOverIcon,
-            textAlign,
         } = this.props;
 
         const {
@@ -763,7 +679,7 @@ export default class DateTimeInput extends Component
         const datePicker = (
             <DatePicker
                 hasTimeInput    = { mode === 'default' }
-                headers         = { mode !== 'month' && this.dayLabels() }
+                headers         = { mode !== 'month' && DAY_LABELS }
                 hourIsReadOnly  = { !this.canEditHourOrMinute() }
                 hourPlaceholder = { hourPlaceholder }
                 hourValue       = { editingHourInputValue ||
@@ -774,7 +690,6 @@ export default class DateTimeInput extends Component
                 items      = { mode === 'month' ?
                     this.monthMatrix() : this.dayMatrix()
                 }
-                key               = "datePicker"
                 minuteIsReadOnly  = { !this.canEditHourOrMinute() }
                 minutePlaceholder = { minutePlaceholder }
                 minuteValue       =  { editingMinuteInputValue ||
@@ -783,13 +698,10 @@ export default class DateTimeInput extends Component
                 mode           = { mode }
                 month          = { mode !== 'month' && this.monthLabel() }
                 nextIsDisabled = { !this.canGotoNext() }
-                onBlur         = { onBlur }
-                onChange       = { this.handleChange }
+                onChange       = { this.handleChangeDatePicker }
                 onClickItem    = { this.handleClickCell }
                 onClickNext    = { this.handleClickNext }
                 onClickPrev    = { this.handleClickPrev }
-                onFocus        = { onFocus }
-                onKeyPress     = { onKeyPress }
                 prevIsDisabled = { !this.canGotoPrev() }
                 type           = { mode === 'month' ? 'month' : 'day' }
                 year           = { this.yearLabel() } />
@@ -804,36 +716,26 @@ export default class DateTimeInput extends Component
 
         return (
             <InputWithDropdown
-                autoCapitalize   = "off"
-                autoComplete     = "off"
-                autoCorrect      = "off"
-                className        = { className }
-                dropdownIsOpen   = { isOpen }
-                dropdownProps    = { dropdownProps }
-                forceHover       = { forceHover || isOpen }
-                hasError         = { hasError }
-                iconType         = "calendar"
-                id               = { id }
-                isDisabled       = { isDisabled }
-                isReadOnly       = { isReadOnly }
-                onBlur           = { eventHandler( onBlur, 'main' ) }
-                onChange         = { eventHandler( this.handleChange, 'main' ) }
-                onClickIcon      = { this.handleClickIcon }
-                onFocus          = { eventHandler( onFocus, 'main' ) }
-                onKeyDown        = { onKeyDown }
-                onKeyPress       = { eventHandler( onKeyPress, 'main' ) }
-                onKeyUp          = { onKeyUp }
-                onMouseOut       = { onMouseOut }
-                onMouseOutIcon   = { onMouseOutIcon }
-                onMouseOver      = { onMouseOver }
-                onMouseOverIcon  = { onMouseOverIcon }
-                placeholder      = { inputPlaceholder }
-                spellCheck       = { false }
-                textAlign        = { textAlign }
-                value            = { editingMainInputValue ||
+                autoCapitalize  = "off"
+                autoComplete    = "off"
+                autoCorrect     = "off"
+                className       = { className }
+                dropdownIsOpen  = { isOpen }
+                dropdownProps   = { dropdownProps }
+                forceHover      = { isOpen }
+                hasError        = { hasError }
+                iconType        = "calendar"
+                id              = { id }
+                isDisabled      = { isDisabled }
+                isReadOnlyInput = { isReadOnly }
+                onChangeInput   = { this.handleChangeInput }
+                onClickIcon     = { this.handleClickIcon }
+                placeholder     = { inputPlaceholder }
+                spellCheck      = { false }
+                value           = { editingMainInputValue ||
                     formatDateTime( timestamp, setPrecision( mode ) )
                 }
-                wrapperRef = { this.setWrapperRef } />
+                wrapperRef = { this.wrapperRef } />
         );
     }
 }
