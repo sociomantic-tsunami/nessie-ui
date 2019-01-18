@@ -350,7 +350,7 @@ export default class ScrollBox extends React.Component
         {
             if ( this.props.scrollBoxRef )
             {
-                this.props.scrollBoxRef( ref );
+                this.props.scrollBoxRef.current = ref;
             }
 
             this.innerRef = ref;
