@@ -504,6 +504,7 @@ export default class ComboBox extends Component
                 hasError        = { hasError }
                 iconType        = { isOpen ? 'up' : 'down' }
                 id              = { id }
+                inputRef        = { this.inputRef }
                 isDisabled      = { isDisabled }
                 isReadOnly      = { isReadOnly }
                 isReadOnlyInput = { !isSearchable || !isOpen }
@@ -514,7 +515,6 @@ export default class ComboBox extends Component
                 onFocus         = { this.handleFocus }
                 onKeyDown       = { this.handleKeyDown }
                 placeholder     = { inputPlaceholder }
-                ref             = { this.inputRef }
                 spellCheck      = { false }
                 value           = { ( isFocused && isOpen && isSearchable ) ?
                     searchValue : optionVal
