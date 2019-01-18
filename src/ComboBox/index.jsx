@@ -162,7 +162,6 @@ export default class ComboBox extends Component
             filteredOptions : undefined,
             flatOptions     : undefined,
             id              : undefined,
-            isFocused       : false,
             isOpen          : undefined,
             options         : undefined,
             searchValue     : undefined,
@@ -177,7 +176,6 @@ export default class ComboBox extends Component
         this.handleMouseOutOption  = this.handleMouseOutOption.bind( this );
         this.handleMouseOverOption = this.handleMouseOverOption.bind( this );
         this.handleBlur            = this.handleBlur.bind( this );
-        this.handleFocus           = this.handleFocus.bind( this );
     }
 
     static getDerivedStateFromProps( props, state )
@@ -263,8 +261,8 @@ export default class ComboBox extends Component
 
     handleClickIcon()
     {
-        this.inputRef.current.focus();
-        this.setState( { isOpen: true } );
+        this.focus();
+        this.setState( prevState => ( { isOpen: !prevState.isOpen } ) );
     }
 
     handleClickInput()
@@ -386,19 +384,10 @@ export default class ComboBox extends Component
         } );
     }
 
-    handleFocus()
-    {
-        this.setState( {
-            isFocused : true,
-            isOpen    : true,
-        } );
-    }
-
     handleBlur()
     {
         this.setState( {
             activeOption    : undefined,
-            isFocused       : false,
             isOpen          : false,
             filteredOptions : undefined,
             searchValue     : undefined,
@@ -424,7 +413,6 @@ export default class ComboBox extends Component
             filteredOptions,
             flatOptions,
             id,
-            isFocused,
             isOpen,
             searchValue,
             selectedOption,
@@ -512,11 +500,10 @@ export default class ComboBox extends Component
                 onChange        = { this.handleChangeInput }
                 onClick         = { this.handleClickInput }
                 onClickIcon     = { this.handleClickIcon }
-                onFocus         = { this.handleFocus }
                 onKeyDown       = { this.handleKeyDown }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }
-                value           = { ( isFocused && isOpen && isSearchable ) ?
+                value           = { ( isOpen && isSearchable ) ?
                     searchValue : optionVal
                 }
                 wrapperRef = { this.wrapperRef } />
