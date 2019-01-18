@@ -652,12 +652,7 @@
 		"subtitle": "Something subtitly"
 	},
 	"Tabs": {
-		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}",
-		"activeTabIndex": 1
-	},
-	"TabsStateful": {
-		"children": "{<Tab label=\"Deutsch\">Halo!</Tab><Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab>}",
-		"activeTabIndex": 0
+		"children": "{<Tab label=\"English\">hello!</Tab><Tab label=\"Español\">hola!</Tab><Tab label=\"Русский\">привет!</Tab>}"
 	},
 	"TextInputWithIcon": {
 		"label": "Name",

@@ -10,7 +10,7 @@
 import React                    from 'react';
 import PropTypes                from 'prop-types';
 
-import { ScrollBox, TabButton } from '../index';
+import { ScrollBox, TabButton } from '../';
 import ThemeContext             from '../Theming/ThemeContext';
 import { createCssMap }         from '../Theming';
 
@@ -62,7 +62,7 @@ export default class Tabs extends React.Component
 
     static defaultProps =
     {
-        activeTabIndex    : 0,
+        activeTabIndex    : undefined,
         children          : undefined,
         className         : undefined,
         cssMap            : undefined,
@@ -73,30 +73,40 @@ export default class Tabs extends React.Component
 
     static displayName = 'Tabs';
 
+
+    constructor()
+    {
+        super();
+
+        this.state = { activeTabIndex: 0 };
+        this.handleClickTab = this.handleClickTab.bind( this );
+    }
+
+    handleClickTab( { value : tabIndex }, e )
+    {
+        const { onClickTab } = this.props;
+        if ( onClickTab )
+        {
+            onClickTab( { tabIndex }, e );
+        }
+
+        this.setState( { activeTabIndex: tabIndex } );
+    }
+
     render()
     {
         const {
-            activeTabIndex,
             children,
             cssMap = createCssMap( this.context.Tabs, this.props ),
-            onChange,
-            onClickTab,
             secondaryControls,
         } = this.props;
 
-        if ( !Tabs.didWarn && onChange )
-        {
-            console.warn( 'Tabs: ‘onChange’ prop is deprecated and will be \
-removed in the next major release. Please use ‘onClickTab’ instead.' );
-            Tabs.didWarn = true;
-        }
-
-        const clickHandler = onClickTab || onChange;
+        const activeTabIndex =
+            this.props.activeTabIndex || this.state.activeTabIndex;
 
         const tabs = React.Children.toArray( children );
 
-        const tabButtons = tabs.map( ( tab, tabIndex ) =>
-        {
+        const tabButtons = tabs.map( ( tab, tabIndex ) => {
             const { isDisabled, label } = tab.props;
             const isActive = ( activeTabIndex === tabIndex );
 
@@ -106,11 +116,9 @@ removed in the next major release. Please use ‘onClickTab’ instead.' );
                     isDisabled = { isDisabled || isActive }
                     key        = { label || tabIndex }
                     label      = { label }
-                    onClick    = { e => clickHandler && clickHandler(
-                        e,
-                        { activeTabIndex: tabIndex },
-                    ) }
-                    tabIndex = { tabIndex } />
+                    onClick    = { this.handleClickTab }
+                    tabIndex   = { tabIndex }
+                    value      = { tabIndex } />
             );
         } );
 

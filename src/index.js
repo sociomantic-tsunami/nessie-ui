@@ -8,30 +8,29 @@
  */
 
 
-import ComboBox                 from './ComboBox';
-import ComboBoxStateful         from './ComboBoxStateful';
-import DatePicker               from './DatePicker';
-import DatePickerStateful       from './DatePickerStateful';
-import DateTimeInput            from './DateTimeInput';
-import Dropdown                 from './Dropdown';
-import Grid                     from './Grid';
-import GridItem                 from './GridItem';
-import Icon                     from './Icon';
-import IconButton               from './IconButton';
-import InputField               from './InputField';
-import ListBox                  from './ListBox';
-import PasswordInput            from './PasswordInput';
-import PasswordInputStateful    from './PasswordInputStateful';
-import ScrollBar                from './ScrollBar';
-import ScrollBox                from './ScrollBox';
-import SpriteMap                from './SpriteMap';
-import Tab                      from './Tab';
-import TabButton                from './TabButton';
-import Tabs                     from './Tabs';
-import TabsStateful             from './TabsStateful';
-import Text                     from './Text';
-import TextInputWithIcon        from './TextInputWithIcon';
-import Tooltip                  from './Tooltip';
+import ComboBox              from './ComboBox';
+import ComboBoxStateful      from './ComboBoxStateful';
+import DatePicker            from './DatePicker';
+import DatePickerStateful    from './DatePickerStateful';
+import DateTimeInput         from './DateTimeInput';
+import Dropdown              from './Dropdown';
+import Grid                  from './Grid';
+import GridItem              from './GridItem';
+import Icon                  from './Icon';
+import IconButton            from './IconButton';
+import InputField            from './InputField';
+import ListBox               from './ListBox';
+import PasswordInput         from './PasswordInput';
+import PasswordInputStateful from './PasswordInputStateful';
+import ScrollBar             from './ScrollBar';
+import ScrollBox             from './ScrollBox';
+import SpriteMap             from './SpriteMap';
+import Tab                   from './Tab';
+import TabButton             from './TabButton';
+import Tabs                  from './Tabs';
+import Text                  from './Text';
+import TextInputWithIcon     from './TextInputWithIcon';
+import Tooltip               from './Tooltip';
 
 
 export {
@@ -55,7 +54,6 @@ export {
     Tab,
     TabButton,
     Tabs,
-    TabsStateful,
     Text,
     TextInputWithIcon,
     Tooltip,
@@ -83,7 +81,6 @@ export default {
     Tab,
     TabButton,
     Tabs,
-    TabsStateful,
     Text,
     TextInputWithIcon,
     Tooltip,
