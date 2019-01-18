@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2018 dunnhumby Germany GmbH.
+ * Copyright (c) 2017-2019 dunnhumby Germany GmbH.
  * All rights reserved.
  *
  * This source code is licensed under the MIT license found in the LICENSE file
@@ -412,9 +412,8 @@ export default class DateTimeInput extends Component
         const days = _.range( -offset, daysInMonth ).map( dayIndex => {
             const hasDate = dayIndex >= 0 && dayIndex < daysInMonth;
             const label = hasDate ? String( dayIndex + 1 ) : '';
-            const value = hasDate
-                ? $m( startMonth ).add( dayIndex, 'day' ).valueOf()
-                : null;
+            const value = hasDate ?
+                $m( startMonth ).add( dayIndex, 'day' ).valueOf() : null;
 
             const isDisabled = hasDate && !this.isUnitSelectable(
                 value,

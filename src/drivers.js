@@ -11,7 +11,7 @@ import { ComponentDriver } from 'componentDriver';
 import {
     ComboBox,
     DatePicker,
-    DateTimeInput,
+    // DateTimeInput,
     IconButton,
     InputField,
     ListBox,
@@ -27,7 +27,7 @@ import {
 
 import ComboBoxDriver          from './ComboBox/driver';
 import DatePickerDriver        from './DatePicker/driver';
-import DateTimeInputDriver     from './DateTimeInput/driver';
+// import DateTimeInputDriver     from './DateTimeInput/driver';
 import IconButtonDriver        from './IconButton/driver';
 import InputFieldDriver        from './InputField/driver';
 import ListBoxDriver           from './ListBox/driver';
@@ -51,10 +51,10 @@ const drivers =
         Component : DatePicker,
         Driver    : DatePickerDriver,
     },
-    {
-        Component : DateTimeInput,
-        Driver    : DateTimeInputDriver,
-    },
+    // {
+    //     Component : DateTimeInput,
+    //     Driver    : DateTimeInputDriver,
+    // },
     {
         Component : IconButton,
         Driver    : IconButtonDriver,
