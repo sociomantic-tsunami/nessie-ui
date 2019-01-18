@@ -40,7 +40,6 @@ export default class DatePicker extends React.Component
         minuteValue       : PropTypes.string,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
-        nextIsReadOnly    : PropTypes.bool,
         onBlur            : PropTypes.func,
         onChange          : PropTypes.func,
         onClickItem       : PropTypes.func,
@@ -49,7 +48,6 @@ export default class DatePicker extends React.Component
         onFocus           : PropTypes.func,
         onKeyPress        : PropTypes.func,
         prevIsDisabled    : PropTypes.bool,
-        prevIsReadOnly    : PropTypes.bool,
         type              : PropTypes.oneOf( [ 'day', 'month' ] ),
         year              : PropTypes.string,
     };
@@ -73,7 +71,6 @@ export default class DatePicker extends React.Component
         minuteValue       : undefined,
         month             : undefined,
         nextIsDisabled    : false,
-        nextIsReadOnly    : false,
         onBlur            : undefined,
         onChange          : undefined,
         onClickItem       : undefined,
@@ -82,7 +79,6 @@ export default class DatePicker extends React.Component
         onFocus           : undefined,
         onKeyPress        : undefined,
         prevIsDisabled    : false,
-        prevIsReadOnly    : false,
         type              : 'day',
         year              : undefined,
     };
@@ -109,7 +105,6 @@ export default class DatePicker extends React.Component
             minuteValue,
             month,
             nextIsDisabled,
-            nextIsReadOnly,
             onBlur,
             onChange,
             onClickItem,
@@ -118,7 +113,6 @@ export default class DatePicker extends React.Component
             onFocus,
             onKeyPress,
             prevIsDisabled,
-            prevIsReadOnly,
             type,
             year,
         } = this.props;
@@ -140,7 +134,6 @@ export default class DatePicker extends React.Component
                     minuteValue       = { minuteValue }
                     month             = { month }
                     nextIsDisabled    = { nextIsDisabled }
-                    nextIsReadOnly    = { nextIsReadOnly }
                     onBlur            = { onBlur }
                     onChange          = { onChange }
                     onClickNext       = { onClickNext }
@@ -148,7 +141,6 @@ export default class DatePicker extends React.Component
                     onFocus           = { onFocus }
                     onKeyPress        = { onKeyPress }
                     prevIsDisabled    = { prevIsDisabled }
-                    prevIsReadOnly    = { prevIsReadOnly }
                     year              = { year } />
 
                 { items &&

@@ -26,7 +26,6 @@ export default class DatePickerItem extends React.Component
         forceHover : PropTypes.bool,
         isDisabled : PropTypes.bool,
         isSelected : PropTypes.bool,
-        isReadOnly : PropTypes.bool,
         label      : PropTypes.string,
         onClick    : PropTypes.func,
         value      : PropTypes.string,
@@ -40,7 +39,6 @@ export default class DatePickerItem extends React.Component
         forceHover : false,
         isDisabled : false,
         isSelected : false,
-        isReadOnly : false,
         label      : undefined,
         onClick    : undefined,
         value      : undefined,
@@ -55,10 +53,8 @@ export default class DatePickerItem extends React.Component
 
     handleClick( e )
     {
-        e.preventDefault();
-        
-        const { isReadOnly, onClick } = this.props;
-        if ( !isReadOnly && onClick )
+        const { onClick } = this.props;
+        if ( onClick )
         {
             onClick( { value: parseInt( e.currentTarget.value ) }, e );
         }

@@ -36,7 +36,6 @@ export default class DatePickerHeader extends React.Component
         minuteValue       : PropTypes.string,
         month             : PropTypes.string,
         nextIsDisabled    : PropTypes.bool,
-        nextIsReadOnly    : PropTypes.bool,
         onBlur            : PropTypes.func,
         onChange          : PropTypes.func,
         onClickNext       : PropTypes.func,
@@ -44,7 +43,6 @@ export default class DatePickerHeader extends React.Component
         onFocus           : PropTypes.func,
         onKeyPress        : PropTypes.func,
         prevIsDisabled    : PropTypes.bool,
-        prevIsReadOnly    : PropTypes.bool,
         year              : PropTypes.string,
     };
 
@@ -64,7 +62,6 @@ export default class DatePickerHeader extends React.Component
         minuteValue       : undefined,
         month             : undefined,
         nextIsDisabled    : undefined,
-        nextIsReadOnly    : undefined,
         onBlur            : undefined,
         onChange          : undefined,
         onClickNext       : undefined,
@@ -72,7 +69,6 @@ export default class DatePickerHeader extends React.Component
         onFocus           : undefined,
         onKeyPress        : undefined,
         prevIsDisabled    : undefined,
-        prevIsReadOnly    : undefined,
         year              : undefined,
     };
 
@@ -93,7 +89,6 @@ export default class DatePickerHeader extends React.Component
             minuteValue,
             month,
             nextIsDisabled,
-            nextIsReadOnly,
             onBlur,
             onChange,
             onClickNext,
@@ -101,7 +96,6 @@ export default class DatePickerHeader extends React.Component
             onFocus,
             onKeyPress,
             prevIsDisabled,
-            prevIsReadOnly,
             year,
         } = this.props;
 
@@ -112,14 +106,12 @@ export default class DatePickerHeader extends React.Component
                         className  = { cssMap.prev }
                         iconType   = "left"
                         isDisabled = { isDisabled || prevIsDisabled }
-                        isReadOnly = { isReadOnly || prevIsReadOnly }
                         onClick    = { onClickPrev }
                         role       = "inverted" />
                     <IconButton
                         className  = { cssMap.next }
                         iconType   = "right"
                         isDisabled = { isDisabled || nextIsDisabled }
-                        isReadOnly = { isReadOnly || nextIsReadOnly }
                         onClick    = { onClickNext }
                         role       = "inverted" />
                 </div>
