@@ -517,33 +517,30 @@ export default class DateTimeInput extends Component
         }
     }
 
-    handleChangeInput( event, sender )
+    handleChangeInput( event )
     {
         const trimmed = event.target.value.trim().replace( /\s+/g, ' ' );
         const min = this.props.minDateSelectable || now();
 
-        if ( sender === 'main' )
+        let value = tryParseInputValue( trimmed, this.state.timestamp );
+
+        if ( value < min )
         {
-            let value = tryParseInputValue( trimmed, this.state.timestamp );
-
-            if ( value < min )
-            {
-                value = min;
-            }
-
-            if ( this.props.maxDateSelectable &&
-                value > this.props.maxDateSelectable )
-            {
-                value = this.props.maxDateSelectable;
-            }
-
-            this.setState( {
-                editingTimestamp        : value,
-                editingHourInputValue   : formatHours( value ),
-                editingMinuteInputValue : formatMinutes( value ),
-                editingMainInputValue   : event.target.value,
-            } );
+            value = min;
         }
+
+        if ( this.props.maxDateSelectable &&
+            value > this.props.maxDateSelectable )
+        {
+            value = this.props.maxDateSelectable;
+        }
+
+        this.setState( {
+            editingTimestamp        : value,
+            editingHourInputValue   : formatHours( value ),
+            editingMinuteInputValue : formatMinutes( value ),
+            editingMainInputValue   : event.target.value,
+        } );
     }
 
     handleChangeDatePicker( event, sender )
@@ -727,13 +724,13 @@ export default class DateTimeInput extends Component
                 id              = { id }
                 isDisabled      = { isDisabled }
                 isReadOnlyInput = { isReadOnly }
-                onChangeInput   = { this.handleChangeInput }
+                onChange        = { this.handleChangeInput }
                 onClickIcon     = { this.handleClickIcon }
                 placeholder     = { inputPlaceholder }
                 spellCheck      = { false }
-                value           = { editingMainInputValue ||
-                    formatDateTime( timestamp, setPrecision( mode ) )
-                }
+                value           = { typeof editingMainInputValue === 'undefined'
+                    ? formatDateTime( timestamp, setPrecision( mode ) ) :
+                    editingMainInputValue }
                 wrapperRef = { this.wrapperRef } />
         );
     }
